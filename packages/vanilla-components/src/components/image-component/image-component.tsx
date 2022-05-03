@@ -40,8 +40,8 @@ export class ImageComponent {
    * Configure alignment of the image
    *
    * @uiName Alignment
-   * @uiEnum ['left', 'center', 'right']
-   * @uiEnumNames ['Left', 'Center', 'Right']
+   * @uiEnum ["left", "center", "right"]
+   * @uiEnumNames ["Left", "Center", "Right"]
    * @default "center"
    */
   @Prop() alignment: string;

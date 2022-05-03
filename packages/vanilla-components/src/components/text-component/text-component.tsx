@@ -64,8 +64,8 @@ export class TextComponent {
    * Text alignment
    *
    * @uiName Text Align
-   * @uiEnum ['left', 'center', 'right']
-   * @uiEnumNames ['Left', 'Center', 'Right']
+   * @uiEnum ["left", "center", "right"]
+   * @uiEnumNames ["Left", "Center", "Right"]
    */
   @Prop() textalign: string;
   /**

@@ -17,61 +17,79 @@ export namespace Components {
         /**
           * Background & border color of the copy button.
           * @uiName Background Color
+          * @uiWidget color
+          * @format color
+          * @default #35b21e
          */
         "backgroundcolor": string;
         /**
           * Configure border radius with pixel amount
           * @uiName Border Radius
+          * @default 4
          */
         "borderradius": number;
         /**
           * Text color of the fuel tank code.
           * @uiName Code Font Color
+          * @uiWidget color
+          * @format color
+          * @default #000000
          */
         "codefontcolor": string;
         /**
           * Font size of the fuel tank code.
           * @uiName Code Font Size
+          * @default 14
          */
         "codefontsize": number;
         /**
           * Shown when the button has failed to copy the code to the users clipboard.
           * @uiName Copy Failure Text
+          * @default "Press Ctrl+C to copy"
          */
         "copyfailure": string;
         /**
           * Shown when the code is successfully copied to the users clipboard.
           * @uiName Copy Success Text
+          * @default "copied!"
          */
         "copysuccess": string;
         /**
           * Font size of the copy button text.
           * @uiName Font Size
+          * @default 14
          */
         "fontsize": number;
         /**
           * Hide or show the component
           * @uiName Hide Button
+          * @default undefined
          */
         "ishidden": boolean;
         /**
           * rewardkey is used to get the fuel tank code for a user.
           * @uiName Reward Key
+          * @default "referredReward"
          */
         "rewardkey": string;
         /**
           * Text shown inside the copy button.
           * @uiName Button Text
+          * @default "COPY CODE"
          */
         "text": string;
         /**
           * Color of text inside the copy button.
           * @uiName Text Color
+          * @uiWidget color
+          * @format color
+          * @default #ffffff
          */
         "textcolor": string;
         /**
           * Sets a maximum width on the copy button.
           * @uiName Max Width
+          * @default 170
          */
         "width": number;
     }
@@ -79,16 +97,21 @@ export namespace Components {
         /**
           * Background & border color of the copy button.
           * @uiName Button Color
+          * @uiWidget color
+          * @format color
+          * @default "#5C6164"
          */
         "buttoncolor": string;
         /**
           * Shown when the button has failed to copy the code to the users clipboard.
           * @uiName Copy Failure Text
+          * @default "Press Ctrl+C to copy"
          */
         "copyfailure": string;
         /**
           * Shown when the code is successfully copied to the users clipboard.
           * @uiName Copy Success Text
+          * @default "copied!"
          */
         "copysuccess": string;
         /**
@@ -99,11 +122,15 @@ export namespace Components {
         /**
           * Text shown inside the copy button.
           * @uiName Button Text
+          * @default "Copy"
          */
         "text": string;
         /**
           * Color of text inside the copy button.
           * @uiName Text Color
+          * @uiWidget color
+          * @format color
+          * @default "#FFFFFF"
          */
         "textcolor": string;
     }
@@ -111,16 +138,24 @@ export namespace Components {
         /**
           * Configure the background color.
           * @uiName Background Color
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "background": string;
         /**
           * Font family used inside the container.
           * @uiName Font Family
+          * @default "Roboto"
+          * @uiEnum ["Roboto", "Artifakt Element", "Helvetica Neue,Helvetica,Arial,sans-serif", "Lato,sans-serif", "Times New Roman", "Arial", "Courier", "Tahoma", "Verdana", "Georgia"]
+          * @uiEnumNames ["Roboto","Artifakt Element","Helvetica Neue","Lato","Times New Roman","Arial","Courier","Tahoma","Verdana","Georgia"]
          */
         "fontfamily": string;
         /**
           * Configure the color of the loading state.
           * @uiName Loading Color
+          * @uiWidget color
+          * @format color
          */
         "loadingcolor": string;
         /**
@@ -129,8 +164,8 @@ export namespace Components {
          */
         "maxwidth": string;
         /**
-          * Show and hide the powered by SaaSquatch link.
-          * @uiName Powered By
+          * Show and hide the powered by SaaSquatch link. Can only be disabled on Pro plans.
+          * @uiName Show Powered By
          */
         "poweredby": boolean;
     }
@@ -138,6 +173,9 @@ export namespace Components {
         /**
           * Configure alignment of the image
           * @uiName Alignment
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
+          * @default "center"
          */
         "alignment": string;
         /**
@@ -148,6 +186,8 @@ export namespace Components {
         /**
           * Additional CSS applied to the image element
           * @uiName CSS
+          * @uiWidget textArea
+          * @default "padding-top: 38px; padding-bottom: 7px;"
          */
         "css": string;
         /**
@@ -158,6 +198,8 @@ export namespace Components {
         /**
           * Image link
           * @uiName URL
+          * @uiWidget imageUpload
+          * @format url
          */
         "url": string;
         /**
@@ -175,6 +217,8 @@ export namespace Components {
         /**
           * Color of the stat value and description
           * @uiName Stat Color
+          * @uiWidget color
+          * @format color
          */
         "statcolor": string;
         /**
@@ -185,6 +229,8 @@ export namespace Components {
         /**
           * Used to query the stats for a user
           * @uiName Stat Type
+          * @uiWidget statTypeSelector
+          * @required
          */
         "stattype": string;
         /**
@@ -226,55 +272,68 @@ export namespace Components {
         /**
           * Color of the cancelled icon and text
           * @uiName Cancelled Color
-          * @uiGroup cancelledRewardProps
+          * @uiGroup Cancelled Rewards
+          * @uiWidget color
+          * @format color
+          * @default "#C81D05"
          */
         "cancelledcolor": string;
         /**
           * Cancelled text content shown in the user column
           * @uiName Cancelled Content
-          * @uiGroup cancelledRewardProps
+          * @uiGroup Cancelled Rewards
+          * @default "Signed up, referred {date}"
          */
         "cancelledcontent": string;
         /**
           * Cancelled text content shown alongside the icon in the referral column
           * @uiName Cancelled Value
-          * @uiGroup cancelledRewardProps
+          * @uiGroup Cancelled Rewards
+          * @default "Cancelled Reward"
          */
         "cancelledvalue": string;
         /**
           * Content shown when a referral is converted
           * @uiName Converted Content
-          * @uiGroup convertedReferralProps
+          * @uiGroup Converted Referrals
+          * @default "Signed up, referred {date}"
          */
         "convertedcontent": string;
         /**
           * Color of the customer note
           * @uiName Reward Color
-          * @uiGroup convertedReferralProps
+          * @uiGroup Converted Referrals
+          * @uiWidget color
+          * @format color
          */
         "customernotecolor": string;
         /**
           * Color of the expired icon and text
           * @uiName Expired Color
-          * @uiGroup expiredRewardProps
+          * @uiGroup Expired Rewards
+          * @uiWidget color
+          * @format color
+          * @default "lightgray"
          */
         "expiredcolor": string;
         /**
           * Expired content shown in the user column
           * @uiName Expired Content
-          * @uiGroup expiredRewardProps
+          * @uiGroup Expired Rewards
+          * @default "Signed up, referred {date}"
          */
         "expiredcontent": string;
         /**
           * Expired content shown alongside the icon in the referral column
           * @uiName Expired Value
-          * @uiGroup expiredRewardProps
+          * @uiGroup Expired Rewards
+          * @default "Expired Reward"
          */
         "expiredvalue": string;
         /**
           * Reward expiry ICU message
           * @uiName Expires Value
-          * @uiGroup expiredRewardProps
+          * @uiGroup Expired Rewards
          */
         "expiresvalue": string;
         /**
@@ -291,67 +350,88 @@ export namespace Components {
         /**
           * Shown when referral list is empty
           * @uiName Empty Referrals Text
+          * @default "No Referrals Yet..."
          */
         "noreferralsyet": string;
         /**
           * Shown inside the paginate less button
           * @uiName Paginate Less Text
+          * @default "Previous"
          */
         "paginateless": string;
         /**
           * Shown inside the paginate more button
           * @uiName Paginate More Text
+          * @default "View More"
          */
         "paginatemore": string;
         /**
           * Color of the pending icon and text
           * @uiName Pending Color
-          * @uiGroup pendingReferralProps
+          * @uiGroup Pending Referrals
+          * @uiWidget color
+          * @format color
+          * @default "lightgray"
          */
         "pendingcolor": string;
         /**
           * Pending content shown in the user column
           * @uiName Pending Content
-          * @uiGroup pendingReferralProps
+          * @uiGroup Pending Referrals
+          * @default "Trial user, referred {date}"
          */
         "pendingcontent": string;
         /**
           * Pending content shown alongside the icon in the referral column
           * @uiName Pending Value
-          * @uiGroup pendingReferralProps
+          * @uiGroup Pending Referrals
+          * @default "Referral pending"
          */
         "pendingvalue": string;
         /**
           * Shown when reward is redeemed
           * @uiName Redeemed Value
+          * @uiGroup Converted Referrals
+          * @default "Redeemed"
          */
         "redeemedvalue": string;
         /**
           * Text color of the referred users name
           * @uiName Referral Name Color
+          * @uiWidget color
+          * @format color
+          * @default "darkslategray"
          */
         "referralnamecolor": string;
         /**
           * Text color of the referral status
           * @uiName Referral Text Color
+          * @uiWidget color
+          * @format color
+          * @default "lightgray"
          */
         "referraltextcolor": string;
         /**
           * Text explaining who referred you to the program
           * @uiName Referrer Content
-          * @uiGroup referrerProps
+          * @uiGroup Referrer
+          * @default "Referred you {date}"
          */
         "referrercontent": string;
         /**
           * Referred Text shown in reward column
           * @uiName Referrer Value
-          * @uiGroup referrerProps
+          * @uiGroup Referrer
+          * @default "Referred"
          */
         "referrervalue": string;
         /**
           * Color of the successful reward icon and the text value
           * @uiName Reward Color
-          * @uiGroup convertedReferralProps
+          * @uiGroup Converted Referrals
+          * @uiWidget color
+          * @format color
+          * @default "#4BB543"
          */
         "rewardcolor": string;
         /**
@@ -367,24 +447,28 @@ export namespace Components {
         /**
           * Show or hide the referrer
           * @uiName Show Referrer
-          * @uiGroup referrerProps
+          * @uiGroup Referrer
+          * @default ""
          */
         "showreferrer": boolean;
         /**
           * Text shown when the referred users name is unknown
           * @uiName Unknown User Text
+          * @default "Your Friend"
          */
         "unknownuser": string;
         /**
           * Show value of the first earned reward inside the rewards column
           * @uiName Use First Reward
-          * @uiGroup convertedReferralProps
+          * @uiGroup Converted Referrals
          */
         "usefirstreward": boolean;
         /**
           * Value shown in the rewards column
           * @uiName Value Content
-          * @uiGroup convertedReferralProps
+          * @uiGroup Converted Referrals
+          * @uiWidget textArea
+          * @default "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}"
          */
         "valuecontent": string;
     }
@@ -409,6 +493,8 @@ export namespace Components {
         /**
           * Background color of the share button
           * @uiName Share Button Background Color
+          * @uiWidget color
+          * @format color
          */
         "backgroundcolor": string;
         /**
@@ -449,6 +535,8 @@ export namespace Components {
         /**
           * Color of the text inside the share button
           * @uiName Share Button Text Color
+          * @uiWidget color
+          * @format color
          */
         "textcolor": string;
         /**
@@ -459,6 +547,8 @@ export namespace Components {
         /**
           * URL redirect location
           * @uiName URL
+          * @uiWidget imageUpload
+          * @format url
          */
         "url": string;
     }
@@ -466,109 +556,129 @@ export namespace Components {
         /**
           * Background color of the Email button
           * @uiName Email Background Color
-          * @uiGroup emailButton
+          * @uiGroup Email
+          * @uiWidget color
+          * @format color
+          * @default "#4b4d50"
          */
         "emailbackgroundcolor": string;
         /**
           * CSS Class name used to style the Email button
           * @uiName Email Class Name
-          * @uiGroup emailButton
+          * @uiGroup Email
          */
         "emailclassName": string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName Email Display Rule
-          * @uiGroup emailButton
+          * @uiGroup Email
+          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+          * @default "mobile-and-desktop"
          */
         "emaildisplayrule": string;
         /**
           * Email button icon
           * @uiName Email Icon
-          * @uiGroup emailButton
+          * @uiGroup Email
          */
         "emailicon": string;
         /**
           * Number to horizontally align the Email button icon
           * @uiName Email Icon Horizontal
-          * @uiGroup emailButton
+          * @uiGroup Email
          */
         "emailiconhorizontal": number;
         /**
           * Size of the Email button icon
           * @uiName Email Icon Size
-          * @uiGroup emailButton
+          * @uiGroup Email
          */
         "emailiconsize": number;
         /**
           * Number to vertically align the Email button icon
           * @uiName Email Icon Vertical
-          * @uiGroup emailButton
+          * @uiGroup Email
          */
         "emailiconvertical": number;
         /**
           * Text inside the Email button
           * @uiName Email Text
-          * @uiGroup emailButton
+          * @uiGroup Email
+          * @default "Email"
          */
         "emailtext": string;
         /**
           * Color of the text inside the Email button
           * @uiName Email Text Color
-          * @uiGroup emailButton
+          * @uiGroup Email
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "emailtextcolor": string;
         /**
           * Background color of the facebook button
           * @uiName Facebook Background Color
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
+          * @uiWidget color
+          * @format color
+          * @default "#234079"
          */
         "facebookbackgroundcolor": string;
         /**
           * CSS Class name used to style the facebook button
           * @uiName Facebook Class Name
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
          */
         "facebookclassName": string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName Facebook Display Rule
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
+          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+          * @default "mobile-and-desktop"
          */
         "facebookdisplayrule": string;
         /**
           * Facebook button icon
           * @uiName Facebook Icon
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
          */
         "facebookicon": string;
         /**
           * Number to horizontally align the facebook button icon
           * @uiName Facebook Icon Horizontal
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
          */
         "facebookiconhorizontal": number;
         /**
           * Size of the facebook button icon
           * @uiName Facebook Icon Size
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
          */
         "facebookiconsize": number;
         /**
           * Number to vertically align the facebook button icon
           * @uiName Facebook Icon Vertical
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
          */
         "facebookiconvertical": number;
         /**
           * Text inside the facebook button
           * @uiName Facebook Text
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
+          * @default "Facebook"
          */
         "facebooktext": string;
         /**
           * Color of the text inside the facebook button
           * @uiName Facebook Text Color
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "facebooktextcolor": string;
         /**
@@ -579,379 +689,449 @@ export namespace Components {
         /**
           * Background color of the Line button
           * @uiName Line Background Color
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
+          * @uiWidget color
+          * @format color
+          * @default "#00c300"
          */
         "linebackgroundcolor": string;
         /**
           * CSS Class name used to style the Line button
           * @uiName Line Class Name
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
          */
         "lineclassName": string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName Line Display Rule
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
+          * @uiEnum ["mobile-only","hidden"]
+          * @uiEnumNames ["Mobile Only","Hide"]
+          * @default "mobile-only"
          */
         "linedisplayrule": string;
         /**
           * Line button icon
           * @uiName Line Icon
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
          */
         "lineicon": string;
         /**
           * Number to horizontally align the Line button icon
           * @uiName Line Icon Horizontal
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
          */
         "lineiconhorizontal": number;
         /**
           * Size of the Line button icon
           * @uiName Line Icon Size
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
          */
         "lineiconsize": number;
         /**
           * Number to vertically align the Line button icon
           * @uiName Line Icon Vertical
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
          */
         "lineiconvertical": number;
         /**
           * Text inside the Line button
           * @uiName Line Text
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
+          * @default "Line Messenger"
          */
         "linetext": string;
         /**
           * Color of the text inside the Line button
           * @uiName Line Text Color
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "linetextcolor": string;
         /**
           * Background color of the linkedin button
           * @uiName Linkedin Background Color
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "linkedinbackgroundcolor": string;
         /**
           * CSS Class name used to style the Linkedin button
           * @uiName Linkedin Class Name
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
          */
         "linkedinclassName": string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName Linkedin Display Rule
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
+          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+          * @default "hidden"
          */
         "linkedindisplayrule": string;
         /**
           * Linkedin button icon
           * @uiName Linkedin Icon
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
          */
         "linkedinicon": string;
         /**
           * Number to horizontally align the Linkedin button icon
           * @uiName Linkedin Icon Horizontal
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
          */
         "linkediniconhorizontal": number;
         /**
           * Size of the Linkedin button icon
           * @uiName Linkedin Icon Size
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
          */
         "linkediniconsize": number;
         /**
           * Number to vertically align the Linkedin button icon
           * @uiName Linkedin Icon Vertical
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
          */
         "linkediniconvertical": number;
         /**
           * Text inside the linkedin button
           * @uiName Linkedin Text
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
+          * @default "LinkedIn"
          */
         "linkedintext": string;
         /**
           * Color of the text inside the Linkedin button
           * @uiName Linkedin Text Color
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
+          * @uiWidget color
+          * @format color
+          * @default "#0084b9"
          */
         "linkedintextcolor": string;
         /**
           * Background color of the Messenger button
           * @uiName Messenger Background Color
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
+          * @uiWidget color
+          * @format color
+          * @default "#0084ff"
          */
         "messengerbackgroundcolor": string;
         /**
           * CSS Class name used to style the Messenger button
           * @uiName Messenger Class Name
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
          */
         "messengerclassName": string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName Messenger Display Rule
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
+          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+          * @default "hidden"
          */
         "messengerdisplayrule": string;
         /**
           * Messenger button icon
           * @uiName Messenger Icon
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
          */
         "messengericon": string;
         /**
           * Number to horizontally align the Messenger button icon
           * @uiName Messenger Icon Horizontal
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
          */
         "messengericonhorizontal": number;
         /**
           * Size of the Messenger button icon
           * @uiName Messenger Icon Size
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
          */
         "messengericonsize": number;
         /**
           * Number to vertically align the Messenger button icon
           * @uiName Messenger Icon Vertical
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
          */
         "messengericonvertical": number;
         /**
           * Text inside the Messenger button
           * @uiName Messenger Text
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
+          * @default "Messenger"
          */
         "messengertext": string;
         /**
           * Color of the text inside the Messenger button
           * @uiName Messenger Text Color
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "messengertextcolor": string;
         /**
           * Background color of the Pinterest button
           * @uiName Pinterest Background Color
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
+          * @uiWidget color
+          * @format color
+          * @default "#cb2027"
          */
         "pinterestbackgroundcolor": string;
         /**
           * CSS Class name used to style the Pinterest button
           * @uiName Pinterest Class Name
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
          */
         "pinterestclassName": string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName Pinterest Display Rule
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
+          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+          * @default "hidden"
          */
         "pinterestdisplayrule": string;
         /**
           * Pinterest button icon
           * @uiName Pinterest Icon
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
          */
         "pinteresticon": string;
         /**
           * Number to horizontally align the Pinterest button icon
           * @uiName Pinterest Icon Horizontal
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
          */
         "pinteresticonhorizontal": number;
         /**
           * Size of the Pinterest button icon
           * @uiName Pinterest Icon Size
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
          */
         "pinteresticonsize": number;
         /**
           * Number to vertically align the Pinterest button icon
           * @uiName Pinterest Icon Vertical
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
          */
         "pinteresticonvertical": number;
         /**
           * Text inside the Pinterest button
           * @uiName Pinterest Text
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
+          * @default "Pinterest"
          */
         "pinteresttext": string;
         /**
           * Color of the text inside the Pinterest button
           * @uiName Pinterest Text Color
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "pinteresttextcolor": string;
         /**
           * Background color of the SMS button
           * @uiName SMS Background Color
-          * @uiGroup smsButton
+          * @uiGroup SMS
+          * @uiWidget color
+          * @format color
+          * @default "#7bbf38"
          */
         "smsbackgroundcolor": string;
         /**
           * CSS Class name used to style the SMS button
           * @uiName SMS Class Name
-          * @uiGroup smsButton
+          * @uiGroup SMS
          */
         "smsclassName": string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName SMS Display Rule
-          * @uiGroup smsButton
+          * @uiGroup SMS
+          * @uiEnum ["mobile-only","hidden"]
+          * @uiEnumNames ["Mobile Only","Hide"]
+          * @default "mobile-only"
          */
         "smsdisplayrule": string;
         /**
           * SMS button icon
           * @uiName SMS Icon
-          * @uiGroup smsButton
+          * @uiGroup SMS
          */
         "smsicon": string;
         /**
           * Number to horizontally align the SMS button icon
           * @uiName SMS Icon Horizontal
-          * @uiGroup smsButton
+          * @uiGroup SMS
          */
         "smsiconhorizontal": number;
         /**
           * Size of the SMS button icon
           * @uiName SMS Icon Size
-          * @uiGroup smsButton
+          * @uiGroup SMS
          */
         "smsiconsize": number;
         /**
           * Number to vertically align the SMS button icon
           * @uiName SMS Icon Vertical
-          * @uiGroup smsButton
+          * @uiGroup SMS
          */
         "smsiconvertical": number;
         /**
           * Text inside the SMS button
           * @uiName SMS Text
-          * @uiGroup smsButton
+          * @uiGroup SMS
+          * @default "SMS"
          */
         "smstext": string;
         /**
           * Color of the text inside the SMS button
           * @uiName SMS Text Color
-          * @uiGroup smsButton
+          * @uiGroup SMS
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "smstextcolor": string;
         /**
           * Background color of the twitter button
           * @uiName Twitter Background Color
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
+          * @uiWidget color
+          * @format color
+          * @default "#4797d2"
          */
         "twitterbackgroundcolor": string;
         /**
           * CSS Class name used to style the twitter button
           * @uiName Twitter Class Name
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
          */
         "twitterclassName": string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName Twitter Display Rule
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
+          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+          * @default "mobile-and-desktop"
          */
         "twitterdisplayrule": string;
         /**
           * Twitter button icon
           * @uiName Twitter Icon
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
          */
         "twittericon": string;
         /**
           * Number to horizontally align the twitter button icon
           * @uiName Twitter Icon Horizontal
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
          */
         "twittericonhorizontal": number;
         /**
           * Size of the twitter button icon
           * @uiName Twitter Icon Size
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
          */
         "twittericonsize": number;
         /**
           * Number to vertically align the twitter button icon
           * @uiName Twitter Icon Vertical
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
          */
         "twittericonvertical": number;
         /**
           * Text inside the twitter button
           * @uiName Twitter Text
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
+          * @default "Twitter"
          */
         "twittertext": string;
         /**
           * Color of the text inside the twitter button
           * @uiName Twitter Text Color
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "twittertextcolor": string;
         /**
           * Background color of the WhatsApp button
           * @uiName WhatsApp Background Color
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
+          * @uiWidget color
+          * @format color
+          * @default "#25D366"
          */
         "whatsappbackgroundcolor": string;
         /**
           * CSS Class name used to style the WhatsApp button
           * @uiName WhatsApp Class Name
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
          */
         "whatsappclassName": string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName WhatsApp Display Rule
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
+          * @uiEnum ["mobile-only","hidden"]
+          * @uiEnumNames ["Mobile Only","Hide"]
+          * @default "mobile-only"
          */
         "whatsappdisplayrule": string;
         /**
           * WhatsApp button icon
           * @uiName WhatsApp Icon
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
          */
         "whatsappicon": string;
         /**
           * Number to horizontally align the WhatsApp button icon
           * @uiName WhatsApp Icon Horizontal
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
          */
         "whatsappiconhorizontal": number;
         /**
           * Size of the WhatsApp button icon
           * @uiName WhatsApp Icon Size
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
          */
         "whatsappiconsize": number;
         /**
           * Number to vertically align the WhatsApp button icon
           * @uiName WhatsApp Icon Vertical
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
          */
         "whatsappiconvertical": number;
         /**
           * Text inside the WhatsApp button
           * @uiName WhatsApp Text
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
+          * @default "Whatspp"
          */
         "whatsapptext": string;
         /**
           * Color of the text inside the WhatsApp button
           * @uiName WhatsApp Text Color
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "whatsapptextcolor": string;
     }
@@ -964,6 +1144,8 @@ export namespace Components {
         /**
           * Text color of the stat
           * @uiName Stat Color
+          * @uiWidget color
+          * @format color
          */
         "statcolor": string;
         /**
@@ -974,6 +1156,8 @@ export namespace Components {
         /**
           * Type of stat being displayed. e.g /rewardsCount
           * @uiName Stat Type
+          * @uiWidget statTypeSelector
+          * @required
          */
         "stattype": string;
         /**
@@ -991,23 +1175,27 @@ export namespace Components {
         /**
           * Configure the padding bottom of the container
           * @uiName Padding Bottom
+          * @default "0"
          */
         "paddingbottom": string;
         /**
           * Configure the padding top of the container
           * @uiName Padding Top
+          * @default "0"
          */
         "paddingtop": string;
     }
     interface SqhTextComponent {
         /**
-          * Background color of the container
+          * Background the container, color or url
           * @uiName Background
          */
         "background": string;
         /**
           * Color of the text
           * @uiName Color
+          * @uiWidget color
+          * @format color
          */
         "color": string;
         /**
@@ -1053,6 +1241,8 @@ export namespace Components {
         /**
           * Text alignment
           * @uiName Text Align
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
         "textalign": string;
     }
@@ -1178,61 +1368,79 @@ declare namespace LocalJSX {
         /**
           * Background & border color of the copy button.
           * @uiName Background Color
+          * @uiWidget color
+          * @format color
+          * @default #35b21e
          */
         "backgroundcolor"?: string;
         /**
           * Configure border radius with pixel amount
           * @uiName Border Radius
+          * @default 4
          */
         "borderradius"?: number;
         /**
           * Text color of the fuel tank code.
           * @uiName Code Font Color
+          * @uiWidget color
+          * @format color
+          * @default #000000
          */
         "codefontcolor"?: string;
         /**
           * Font size of the fuel tank code.
           * @uiName Code Font Size
+          * @default 14
          */
         "codefontsize"?: number;
         /**
           * Shown when the button has failed to copy the code to the users clipboard.
           * @uiName Copy Failure Text
+          * @default "Press Ctrl+C to copy"
          */
         "copyfailure"?: string;
         /**
           * Shown when the code is successfully copied to the users clipboard.
           * @uiName Copy Success Text
+          * @default "copied!"
          */
         "copysuccess"?: string;
         /**
           * Font size of the copy button text.
           * @uiName Font Size
+          * @default 14
          */
         "fontsize"?: number;
         /**
           * Hide or show the component
           * @uiName Hide Button
+          * @default undefined
          */
         "ishidden"?: boolean;
         /**
           * rewardkey is used to get the fuel tank code for a user.
           * @uiName Reward Key
+          * @default "referredReward"
          */
         "rewardkey"?: string;
         /**
           * Text shown inside the copy button.
           * @uiName Button Text
+          * @default "COPY CODE"
          */
         "text"?: string;
         /**
           * Color of text inside the copy button.
           * @uiName Text Color
+          * @uiWidget color
+          * @format color
+          * @default #ffffff
          */
         "textcolor"?: string;
         /**
           * Sets a maximum width on the copy button.
           * @uiName Max Width
+          * @default 170
          */
         "width"?: number;
     }
@@ -1240,16 +1448,21 @@ declare namespace LocalJSX {
         /**
           * Background & border color of the copy button.
           * @uiName Button Color
+          * @uiWidget color
+          * @format color
+          * @default "#5C6164"
          */
         "buttoncolor"?: string;
         /**
           * Shown when the button has failed to copy the code to the users clipboard.
           * @uiName Copy Failure Text
+          * @default "Press Ctrl+C to copy"
          */
         "copyfailure"?: string;
         /**
           * Shown when the code is successfully copied to the users clipboard.
           * @uiName Copy Success Text
+          * @default "copied!"
          */
         "copysuccess"?: string;
         /**
@@ -1260,11 +1473,15 @@ declare namespace LocalJSX {
         /**
           * Text shown inside the copy button.
           * @uiName Button Text
+          * @default "Copy"
          */
         "text"?: string;
         /**
           * Color of text inside the copy button.
           * @uiName Text Color
+          * @uiWidget color
+          * @format color
+          * @default "#FFFFFF"
          */
         "textcolor"?: string;
     }
@@ -1272,16 +1489,24 @@ declare namespace LocalJSX {
         /**
           * Configure the background color.
           * @uiName Background Color
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "background"?: string;
         /**
           * Font family used inside the container.
           * @uiName Font Family
+          * @default "Roboto"
+          * @uiEnum ["Roboto", "Artifakt Element", "Helvetica Neue,Helvetica,Arial,sans-serif", "Lato,sans-serif", "Times New Roman", "Arial", "Courier", "Tahoma", "Verdana", "Georgia"]
+          * @uiEnumNames ["Roboto","Artifakt Element","Helvetica Neue","Lato","Times New Roman","Arial","Courier","Tahoma","Verdana","Georgia"]
          */
         "fontfamily"?: string;
         /**
           * Configure the color of the loading state.
           * @uiName Loading Color
+          * @uiWidget color
+          * @format color
          */
         "loadingcolor"?: string;
         /**
@@ -1290,8 +1515,8 @@ declare namespace LocalJSX {
          */
         "maxwidth"?: string;
         /**
-          * Show and hide the powered by SaaSquatch link.
-          * @uiName Powered By
+          * Show and hide the powered by SaaSquatch link. Can only be disabled on Pro plans.
+          * @uiName Show Powered By
          */
         "poweredby"?: boolean;
     }
@@ -1299,6 +1524,9 @@ declare namespace LocalJSX {
         /**
           * Configure alignment of the image
           * @uiName Alignment
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
+          * @default "center"
          */
         "alignment"?: string;
         /**
@@ -1309,6 +1537,8 @@ declare namespace LocalJSX {
         /**
           * Additional CSS applied to the image element
           * @uiName CSS
+          * @uiWidget textArea
+          * @default "padding-top: 38px; padding-bottom: 7px;"
          */
         "css"?: string;
         /**
@@ -1319,6 +1549,8 @@ declare namespace LocalJSX {
         /**
           * Image link
           * @uiName URL
+          * @uiWidget imageUpload
+          * @format url
          */
         "url"?: string;
         /**
@@ -1338,6 +1570,8 @@ declare namespace LocalJSX {
         /**
           * Color of the stat value and description
           * @uiName Stat Color
+          * @uiWidget color
+          * @format color
          */
         "statcolor"?: string;
         /**
@@ -1348,6 +1582,8 @@ declare namespace LocalJSX {
         /**
           * Used to query the stats for a user
           * @uiName Stat Type
+          * @uiWidget statTypeSelector
+          * @required
          */
         "stattype"?: string;
         /**
@@ -1389,55 +1625,68 @@ declare namespace LocalJSX {
         /**
           * Color of the cancelled icon and text
           * @uiName Cancelled Color
-          * @uiGroup cancelledRewardProps
+          * @uiGroup Cancelled Rewards
+          * @uiWidget color
+          * @format color
+          * @default "#C81D05"
          */
         "cancelledcolor"?: string;
         /**
           * Cancelled text content shown in the user column
           * @uiName Cancelled Content
-          * @uiGroup cancelledRewardProps
+          * @uiGroup Cancelled Rewards
+          * @default "Signed up, referred {date}"
          */
         "cancelledcontent"?: string;
         /**
           * Cancelled text content shown alongside the icon in the referral column
           * @uiName Cancelled Value
-          * @uiGroup cancelledRewardProps
+          * @uiGroup Cancelled Rewards
+          * @default "Cancelled Reward"
          */
         "cancelledvalue"?: string;
         /**
           * Content shown when a referral is converted
           * @uiName Converted Content
-          * @uiGroup convertedReferralProps
+          * @uiGroup Converted Referrals
+          * @default "Signed up, referred {date}"
          */
         "convertedcontent"?: string;
         /**
           * Color of the customer note
           * @uiName Reward Color
-          * @uiGroup convertedReferralProps
+          * @uiGroup Converted Referrals
+          * @uiWidget color
+          * @format color
          */
         "customernotecolor"?: string;
         /**
           * Color of the expired icon and text
           * @uiName Expired Color
-          * @uiGroup expiredRewardProps
+          * @uiGroup Expired Rewards
+          * @uiWidget color
+          * @format color
+          * @default "lightgray"
          */
         "expiredcolor"?: string;
         /**
           * Expired content shown in the user column
           * @uiName Expired Content
-          * @uiGroup expiredRewardProps
+          * @uiGroup Expired Rewards
+          * @default "Signed up, referred {date}"
          */
         "expiredcontent"?: string;
         /**
           * Expired content shown alongside the icon in the referral column
           * @uiName Expired Value
-          * @uiGroup expiredRewardProps
+          * @uiGroup Expired Rewards
+          * @default "Expired Reward"
          */
         "expiredvalue"?: string;
         /**
           * Reward expiry ICU message
           * @uiName Expires Value
-          * @uiGroup expiredRewardProps
+          * @uiGroup Expired Rewards
          */
         "expiresvalue"?: string;
         /**
@@ -1454,67 +1703,88 @@ declare namespace LocalJSX {
         /**
           * Shown when referral list is empty
           * @uiName Empty Referrals Text
+          * @default "No Referrals Yet..."
          */
         "noreferralsyet"?: string;
         /**
           * Shown inside the paginate less button
           * @uiName Paginate Less Text
+          * @default "Previous"
          */
         "paginateless"?: string;
         /**
           * Shown inside the paginate more button
           * @uiName Paginate More Text
+          * @default "View More"
          */
         "paginatemore"?: string;
         /**
           * Color of the pending icon and text
           * @uiName Pending Color
-          * @uiGroup pendingReferralProps
+          * @uiGroup Pending Referrals
+          * @uiWidget color
+          * @format color
+          * @default "lightgray"
          */
         "pendingcolor"?: string;
         /**
           * Pending content shown in the user column
           * @uiName Pending Content
-          * @uiGroup pendingReferralProps
+          * @uiGroup Pending Referrals
+          * @default "Trial user, referred {date}"
          */
         "pendingcontent"?: string;
         /**
           * Pending content shown alongside the icon in the referral column
           * @uiName Pending Value
-          * @uiGroup pendingReferralProps
+          * @uiGroup Pending Referrals
+          * @default "Referral pending"
          */
         "pendingvalue"?: string;
         /**
           * Shown when reward is redeemed
           * @uiName Redeemed Value
+          * @uiGroup Converted Referrals
+          * @default "Redeemed"
          */
         "redeemedvalue"?: string;
         /**
           * Text color of the referred users name
           * @uiName Referral Name Color
+          * @uiWidget color
+          * @format color
+          * @default "darkslategray"
          */
         "referralnamecolor"?: string;
         /**
           * Text color of the referral status
           * @uiName Referral Text Color
+          * @uiWidget color
+          * @format color
+          * @default "lightgray"
          */
         "referraltextcolor"?: string;
         /**
           * Text explaining who referred you to the program
           * @uiName Referrer Content
-          * @uiGroup referrerProps
+          * @uiGroup Referrer
+          * @default "Referred you {date}"
          */
         "referrercontent"?: string;
         /**
           * Referred Text shown in reward column
           * @uiName Referrer Value
-          * @uiGroup referrerProps
+          * @uiGroup Referrer
+          * @default "Referred"
          */
         "referrervalue"?: string;
         /**
           * Color of the successful reward icon and the text value
           * @uiName Reward Color
-          * @uiGroup convertedReferralProps
+          * @uiGroup Converted Referrals
+          * @uiWidget color
+          * @format color
+          * @default "#4BB543"
          */
         "rewardcolor"?: string;
         /**
@@ -1530,24 +1800,28 @@ declare namespace LocalJSX {
         /**
           * Show or hide the referrer
           * @uiName Show Referrer
-          * @uiGroup referrerProps
+          * @uiGroup Referrer
+          * @default ""
          */
         "showreferrer"?: boolean;
         /**
           * Text shown when the referred users name is unknown
           * @uiName Unknown User Text
+          * @default "Your Friend"
          */
         "unknownuser"?: string;
         /**
           * Show value of the first earned reward inside the rewards column
           * @uiName Use First Reward
-          * @uiGroup convertedReferralProps
+          * @uiGroup Converted Referrals
          */
         "usefirstreward"?: boolean;
         /**
           * Value shown in the rewards column
           * @uiName Value Content
-          * @uiGroup convertedReferralProps
+          * @uiGroup Converted Referrals
+          * @uiWidget textArea
+          * @default "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}"
          */
         "valuecontent"?: string;
     }
@@ -1572,6 +1846,8 @@ declare namespace LocalJSX {
         /**
           * Background color of the share button
           * @uiName Share Button Background Color
+          * @uiWidget color
+          * @format color
          */
         "backgroundcolor"?: string;
         /**
@@ -1612,6 +1888,8 @@ declare namespace LocalJSX {
         /**
           * Color of the text inside the share button
           * @uiName Share Button Text Color
+          * @uiWidget color
+          * @format color
          */
         "textcolor"?: string;
         /**
@@ -1622,6 +1900,8 @@ declare namespace LocalJSX {
         /**
           * URL redirect location
           * @uiName URL
+          * @uiWidget imageUpload
+          * @format url
          */
         "url"?: string;
     }
@@ -1629,109 +1909,129 @@ declare namespace LocalJSX {
         /**
           * Background color of the Email button
           * @uiName Email Background Color
-          * @uiGroup emailButton
+          * @uiGroup Email
+          * @uiWidget color
+          * @format color
+          * @default "#4b4d50"
          */
         "emailbackgroundcolor"?: string;
         /**
           * CSS Class name used to style the Email button
           * @uiName Email Class Name
-          * @uiGroup emailButton
+          * @uiGroup Email
          */
         "emailclassName"?: string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName Email Display Rule
-          * @uiGroup emailButton
+          * @uiGroup Email
+          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+          * @default "mobile-and-desktop"
          */
         "emaildisplayrule"?: string;
         /**
           * Email button icon
           * @uiName Email Icon
-          * @uiGroup emailButton
+          * @uiGroup Email
          */
         "emailicon"?: string;
         /**
           * Number to horizontally align the Email button icon
           * @uiName Email Icon Horizontal
-          * @uiGroup emailButton
+          * @uiGroup Email
          */
         "emailiconhorizontal"?: number;
         /**
           * Size of the Email button icon
           * @uiName Email Icon Size
-          * @uiGroup emailButton
+          * @uiGroup Email
          */
         "emailiconsize"?: number;
         /**
           * Number to vertically align the Email button icon
           * @uiName Email Icon Vertical
-          * @uiGroup emailButton
+          * @uiGroup Email
          */
         "emailiconvertical"?: number;
         /**
           * Text inside the Email button
           * @uiName Email Text
-          * @uiGroup emailButton
+          * @uiGroup Email
+          * @default "Email"
          */
         "emailtext"?: string;
         /**
           * Color of the text inside the Email button
           * @uiName Email Text Color
-          * @uiGroup emailButton
+          * @uiGroup Email
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "emailtextcolor"?: string;
         /**
           * Background color of the facebook button
           * @uiName Facebook Background Color
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
+          * @uiWidget color
+          * @format color
+          * @default "#234079"
          */
         "facebookbackgroundcolor"?: string;
         /**
           * CSS Class name used to style the facebook button
           * @uiName Facebook Class Name
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
          */
         "facebookclassName"?: string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName Facebook Display Rule
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
+          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+          * @default "mobile-and-desktop"
          */
         "facebookdisplayrule"?: string;
         /**
           * Facebook button icon
           * @uiName Facebook Icon
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
          */
         "facebookicon"?: string;
         /**
           * Number to horizontally align the facebook button icon
           * @uiName Facebook Icon Horizontal
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
          */
         "facebookiconhorizontal"?: number;
         /**
           * Size of the facebook button icon
           * @uiName Facebook Icon Size
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
          */
         "facebookiconsize"?: number;
         /**
           * Number to vertically align the facebook button icon
           * @uiName Facebook Icon Vertical
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
          */
         "facebookiconvertical"?: number;
         /**
           * Text inside the facebook button
           * @uiName Facebook Text
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
+          * @default "Facebook"
          */
         "facebooktext"?: string;
         /**
           * Color of the text inside the facebook button
           * @uiName Facebook Text Color
-          * @uiGroup facebookButton
+          * @uiGroup Facebook
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "facebooktextcolor"?: string;
         /**
@@ -1742,379 +2042,449 @@ declare namespace LocalJSX {
         /**
           * Background color of the Line button
           * @uiName Line Background Color
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
+          * @uiWidget color
+          * @format color
+          * @default "#00c300"
          */
         "linebackgroundcolor"?: string;
         /**
           * CSS Class name used to style the Line button
           * @uiName Line Class Name
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
          */
         "lineclassName"?: string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName Line Display Rule
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
+          * @uiEnum ["mobile-only","hidden"]
+          * @uiEnumNames ["Mobile Only","Hide"]
+          * @default "mobile-only"
          */
         "linedisplayrule"?: string;
         /**
           * Line button icon
           * @uiName Line Icon
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
          */
         "lineicon"?: string;
         /**
           * Number to horizontally align the Line button icon
           * @uiName Line Icon Horizontal
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
          */
         "lineiconhorizontal"?: number;
         /**
           * Size of the Line button icon
           * @uiName Line Icon Size
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
          */
         "lineiconsize"?: number;
         /**
           * Number to vertically align the Line button icon
           * @uiName Line Icon Vertical
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
          */
         "lineiconvertical"?: number;
         /**
           * Text inside the Line button
           * @uiName Line Text
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
+          * @default "Line Messenger"
          */
         "linetext"?: string;
         /**
           * Color of the text inside the Line button
           * @uiName Line Text Color
-          * @uiGroup lineButton
+          * @uiGroup Line Messenger
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "linetextcolor"?: string;
         /**
           * Background color of the linkedin button
           * @uiName Linkedin Background Color
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "linkedinbackgroundcolor"?: string;
         /**
           * CSS Class name used to style the Linkedin button
           * @uiName Linkedin Class Name
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
          */
         "linkedinclassName"?: string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName Linkedin Display Rule
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
+          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+          * @default "hidden"
          */
         "linkedindisplayrule"?: string;
         /**
           * Linkedin button icon
           * @uiName Linkedin Icon
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
          */
         "linkedinicon"?: string;
         /**
           * Number to horizontally align the Linkedin button icon
           * @uiName Linkedin Icon Horizontal
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
          */
         "linkediniconhorizontal"?: number;
         /**
           * Size of the Linkedin button icon
           * @uiName Linkedin Icon Size
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
          */
         "linkediniconsize"?: number;
         /**
           * Number to vertically align the Linkedin button icon
           * @uiName Linkedin Icon Vertical
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
          */
         "linkediniconvertical"?: number;
         /**
           * Text inside the linkedin button
           * @uiName Linkedin Text
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
+          * @default "LinkedIn"
          */
         "linkedintext"?: string;
         /**
           * Color of the text inside the Linkedin button
           * @uiName Linkedin Text Color
-          * @uiGroup linkedinButton
+          * @uiGroup LinkedIn
+          * @uiWidget color
+          * @format color
+          * @default "#0084b9"
          */
         "linkedintextcolor"?: string;
         /**
           * Background color of the Messenger button
           * @uiName Messenger Background Color
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
+          * @uiWidget color
+          * @format color
+          * @default "#0084ff"
          */
         "messengerbackgroundcolor"?: string;
         /**
           * CSS Class name used to style the Messenger button
           * @uiName Messenger Class Name
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
          */
         "messengerclassName"?: string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName Messenger Display Rule
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
+          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+          * @default "hidden"
          */
         "messengerdisplayrule"?: string;
         /**
           * Messenger button icon
           * @uiName Messenger Icon
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
          */
         "messengericon"?: string;
         /**
           * Number to horizontally align the Messenger button icon
           * @uiName Messenger Icon Horizontal
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
          */
         "messengericonhorizontal"?: number;
         /**
           * Size of the Messenger button icon
           * @uiName Messenger Icon Size
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
          */
         "messengericonsize"?: number;
         /**
           * Number to vertically align the Messenger button icon
           * @uiName Messenger Icon Vertical
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
          */
         "messengericonvertical"?: number;
         /**
           * Text inside the Messenger button
           * @uiName Messenger Text
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
+          * @default "Messenger"
          */
         "messengertext"?: string;
         /**
           * Color of the text inside the Messenger button
           * @uiName Messenger Text Color
-          * @uiGroup messengerButton
+          * @uiGroup Messenger
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "messengertextcolor"?: string;
         /**
           * Background color of the Pinterest button
           * @uiName Pinterest Background Color
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
+          * @uiWidget color
+          * @format color
+          * @default "#cb2027"
          */
         "pinterestbackgroundcolor"?: string;
         /**
           * CSS Class name used to style the Pinterest button
           * @uiName Pinterest Class Name
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
          */
         "pinterestclassName"?: string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName Pinterest Display Rule
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
+          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+          * @default "hidden"
          */
         "pinterestdisplayrule"?: string;
         /**
           * Pinterest button icon
           * @uiName Pinterest Icon
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
          */
         "pinteresticon"?: string;
         /**
           * Number to horizontally align the Pinterest button icon
           * @uiName Pinterest Icon Horizontal
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
          */
         "pinteresticonhorizontal"?: number;
         /**
           * Size of the Pinterest button icon
           * @uiName Pinterest Icon Size
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
          */
         "pinteresticonsize"?: number;
         /**
           * Number to vertically align the Pinterest button icon
           * @uiName Pinterest Icon Vertical
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
          */
         "pinteresticonvertical"?: number;
         /**
           * Text inside the Pinterest button
           * @uiName Pinterest Text
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
+          * @default "Pinterest"
          */
         "pinteresttext"?: string;
         /**
           * Color of the text inside the Pinterest button
           * @uiName Pinterest Text Color
-          * @uiGroup pinterestButton
+          * @uiGroup Pinterest
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "pinteresttextcolor"?: string;
         /**
           * Background color of the SMS button
           * @uiName SMS Background Color
-          * @uiGroup smsButton
+          * @uiGroup SMS
+          * @uiWidget color
+          * @format color
+          * @default "#7bbf38"
          */
         "smsbackgroundcolor"?: string;
         /**
           * CSS Class name used to style the SMS button
           * @uiName SMS Class Name
-          * @uiGroup smsButton
+          * @uiGroup SMS
          */
         "smsclassName"?: string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName SMS Display Rule
-          * @uiGroup smsButton
+          * @uiGroup SMS
+          * @uiEnum ["mobile-only","hidden"]
+          * @uiEnumNames ["Mobile Only","Hide"]
+          * @default "mobile-only"
          */
         "smsdisplayrule"?: string;
         /**
           * SMS button icon
           * @uiName SMS Icon
-          * @uiGroup smsButton
+          * @uiGroup SMS
          */
         "smsicon"?: string;
         /**
           * Number to horizontally align the SMS button icon
           * @uiName SMS Icon Horizontal
-          * @uiGroup smsButton
+          * @uiGroup SMS
          */
         "smsiconhorizontal"?: number;
         /**
           * Size of the SMS button icon
           * @uiName SMS Icon Size
-          * @uiGroup smsButton
+          * @uiGroup SMS
          */
         "smsiconsize"?: number;
         /**
           * Number to vertically align the SMS button icon
           * @uiName SMS Icon Vertical
-          * @uiGroup smsButton
+          * @uiGroup SMS
          */
         "smsiconvertical"?: number;
         /**
           * Text inside the SMS button
           * @uiName SMS Text
-          * @uiGroup smsButton
+          * @uiGroup SMS
+          * @default "SMS"
          */
         "smstext"?: string;
         /**
           * Color of the text inside the SMS button
           * @uiName SMS Text Color
-          * @uiGroup smsButton
+          * @uiGroup SMS
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "smstextcolor"?: string;
         /**
           * Background color of the twitter button
           * @uiName Twitter Background Color
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
+          * @uiWidget color
+          * @format color
+          * @default "#4797d2"
          */
         "twitterbackgroundcolor"?: string;
         /**
           * CSS Class name used to style the twitter button
           * @uiName Twitter Class Name
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
          */
         "twitterclassName"?: string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName Twitter Display Rule
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
+          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+          * @default "mobile-and-desktop"
          */
         "twitterdisplayrule"?: string;
         /**
           * Twitter button icon
           * @uiName Twitter Icon
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
          */
         "twittericon"?: string;
         /**
           * Number to horizontally align the twitter button icon
           * @uiName Twitter Icon Horizontal
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
          */
         "twittericonhorizontal"?: number;
         /**
           * Size of the twitter button icon
           * @uiName Twitter Icon Size
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
          */
         "twittericonsize"?: number;
         /**
           * Number to vertically align the twitter button icon
           * @uiName Twitter Icon Vertical
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
          */
         "twittericonvertical"?: number;
         /**
           * Text inside the twitter button
           * @uiName Twitter Text
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
+          * @default "Twitter"
          */
         "twittertext"?: string;
         /**
           * Color of the text inside the twitter button
           * @uiName Twitter Text Color
-          * @uiGroup twitterButton
+          * @uiGroup Twitter
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "twittertextcolor"?: string;
         /**
           * Background color of the WhatsApp button
           * @uiName WhatsApp Background Color
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
+          * @uiWidget color
+          * @format color
+          * @default "#25D366"
          */
         "whatsappbackgroundcolor"?: string;
         /**
           * CSS Class name used to style the WhatsApp button
           * @uiName WhatsApp Class Name
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
          */
         "whatsappclassName"?: string;
         /**
           * Show and hide button depending on what type of device the user is on
           * @uiName WhatsApp Display Rule
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
+          * @uiEnum ["mobile-only","hidden"]
+          * @uiEnumNames ["Mobile Only","Hide"]
+          * @default "mobile-only"
          */
         "whatsappdisplayrule"?: string;
         /**
           * WhatsApp button icon
           * @uiName WhatsApp Icon
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
          */
         "whatsappicon"?: string;
         /**
           * Number to horizontally align the WhatsApp button icon
           * @uiName WhatsApp Icon Horizontal
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
          */
         "whatsappiconhorizontal"?: number;
         /**
           * Size of the WhatsApp button icon
           * @uiName WhatsApp Icon Size
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
          */
         "whatsappiconsize"?: number;
         /**
           * Number to vertically align the WhatsApp button icon
           * @uiName WhatsApp Icon Vertical
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
          */
         "whatsappiconvertical"?: number;
         /**
           * Text inside the WhatsApp button
           * @uiName WhatsApp Text
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
+          * @default "Whatspp"
          */
         "whatsapptext"?: string;
         /**
           * Color of the text inside the WhatsApp button
           * @uiName WhatsApp Text Color
-          * @uiGroup whatsappButton
+          * @uiGroup WhatsApp
+          * @uiWidget color
+          * @format color
+          * @default "#ffffff"
          */
         "whatsapptextcolor"?: string;
     }
@@ -2129,6 +2499,8 @@ declare namespace LocalJSX {
         /**
           * Text color of the stat
           * @uiName Stat Color
+          * @uiWidget color
+          * @format color
          */
         "statcolor"?: string;
         /**
@@ -2139,6 +2511,8 @@ declare namespace LocalJSX {
         /**
           * Type of stat being displayed. e.g /rewardsCount
           * @uiName Stat Type
+          * @uiWidget statTypeSelector
+          * @required
          */
         "stattype"?: string;
         /**
@@ -2156,23 +2530,27 @@ declare namespace LocalJSX {
         /**
           * Configure the padding bottom of the container
           * @uiName Padding Bottom
+          * @default "0"
          */
         "paddingbottom"?: string;
         /**
           * Configure the padding top of the container
           * @uiName Padding Top
+          * @default "0"
          */
         "paddingtop"?: string;
     }
     interface SqhTextComponent {
         /**
-          * Background color of the container
+          * Background the container, color or url
           * @uiName Background
          */
         "background"?: string;
         /**
           * Color of the text
           * @uiName Color
+          * @uiWidget color
+          * @format color
          */
         "color"?: string;
         /**
@@ -2218,6 +2596,8 @@ declare namespace LocalJSX {
         /**
           * Text alignment
           * @uiName Text Align
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
         "textalign"?: string;
     }

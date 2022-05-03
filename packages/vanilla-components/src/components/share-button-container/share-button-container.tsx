@@ -20,8 +20,8 @@ export class ShareButtonContainer {
    *
    * @uiName Email Display Rule
    * @uiGroup Email
-   * @uiEnum ['mobile-and-desktop','mobile-only','desktop-only','hidden']
-   * @uiEnumNames ['Mobile and Desktop','Mobile Only','Desktop Only','Hide']
+   * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+   * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
    * @default "mobile-and-desktop"
    */
   @Prop() emaildisplayrule: string;
@@ -95,8 +95,8 @@ export class ShareButtonContainer {
    *
    * @uiName Facebook Display Rule
    * @uiGroup Facebook
-   * @uiEnum ['mobile-and-desktop','mobile-only','desktop-only','hidden']
-   * @uiEnumNames ['Mobile and Desktop','Mobile Only','Desktop Only','Hide']
+   * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+   * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
    * @default "mobile-and-desktop"
    */
   @Prop() facebookdisplayrule: string;
@@ -171,8 +171,8 @@ export class ShareButtonContainer {
    *
    * @uiName Twitter Display Rule
    * @uiGroup Twitter
-   * @uiEnum ['mobile-and-desktop','mobile-only','desktop-only','hidden']
-   * @uiEnumNames ['Mobile and Desktop','Mobile Only','Desktop Only','Hide']
+   * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+   * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
    * @default "mobile-and-desktop"
    */
   @Prop() twitterdisplayrule: string;
@@ -247,8 +247,8 @@ export class ShareButtonContainer {
    *
    * @uiName SMS Display Rule
    * @uiGroup SMS
-   * @uiEnum ['mobile-only','hidden']
-   * @uiEnumNames ['Mobile Only','Hide']
+   * @uiEnum ["mobile-only","hidden"]
+   * @uiEnumNames ["Mobile Only","Hide"]
    * @default "mobile-only"
    */
   @Prop() smsdisplayrule: string;
@@ -322,8 +322,8 @@ export class ShareButtonContainer {
    *
    * @uiName WhatsApp Display Rule
    * @uiGroup WhatsApp
-   * @uiEnum ['mobile-only','hidden']
-   * @uiEnumNames ['Mobile Only','Hide']
+   * @uiEnum ["mobile-only","hidden"]
+   * @uiEnumNames ["Mobile Only","Hide"]
    * @default "mobile-only"
    */
   @Prop() whatsappdisplayrule: string;
@@ -398,8 +398,8 @@ export class ShareButtonContainer {
    *
    * @uiName Linkedin Display Rule
    * @uiGroup LinkedIn
-   * @uiEnum ['mobile-and-desktop','mobile-only','desktop-only','hidden']
-   * @uiEnumNames ['Mobile and Desktop','Mobile Only','Desktop Only','Hide']
+   * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+   * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
    * @default "hidden"
    */
   @Prop() linkedindisplayrule: string;
@@ -473,8 +473,8 @@ export class ShareButtonContainer {
    *
    * @uiName Pinterest Display Rule
    * @uiGroup Pinterest
-   * @uiEnum ['mobile-and-desktop','mobile-only','desktop-only','hidden']
-   * @uiEnumNames ['Mobile and Desktop','Mobile Only','Desktop Only','Hide']
+   * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+   * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
    * @default "hidden"
    */
   @Prop() pinterestdisplayrule: string;
@@ -549,8 +549,8 @@ export class ShareButtonContainer {
    *
    * @uiName Messenger Display Rule
    * @uiGroup Messenger
-   * @uiEnum ['mobile-and-desktop','mobile-only','desktop-only','hidden']
-   * @uiEnumNames ['Mobile and Desktop','Mobile Only','Desktop Only','Hide']
+   * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+   * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
    * @default "hidden"
    */
   @Prop() messengerdisplayrule: string;
@@ -624,8 +624,8 @@ export class ShareButtonContainer {
    *
    * @uiName Line Display Rule
    * @uiGroup Line Messenger
-   * @uiEnum ['mobile-only','hidden']
-   * @uiEnumNames ['Mobile Only','Hide']
+   * @uiEnum ["mobile-only","hidden"]
+   * @uiEnumNames ["Mobile Only","Hide"]
    * @default "mobile-only"
    */
   @Prop() linedisplayrule: string;
