@@ -10,6 +10,7 @@ import {
 import { css } from "emotion";
 /**
  * @uiName Partner Stat
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqh-partner-stat-component",

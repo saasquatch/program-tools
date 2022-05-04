@@ -3,6 +3,9 @@ import { API } from "../../services/WidgetHost";
 
 /**
  * @uiName Share Button Container
+ * @canvasRenderer always-replace
+ * @exampleGroup Sharing
+ * @example Share Button Group - <sqh-share-button-container ishidden="false" emaildisplayrule="mobile-and-desktop" emailtext="Email" emailtextcolor="#ffffff" emailbackgroundcolor="#4b4d50" facebookdisplayrule="mobile-and-desktop" facebooktext="Facebook" facebooktextcolor="#ffffff" facebookbackgroundcolor="#234079" twitterdisplayrule="mobile-and-desktop" twittertext="Twitter" twittertextcolor="#ffffff" twitterbackgroundcolor="#4797d2" smsdisplayrule="mobile-only" smstext="SMS" smstextcolor="#ffffff" smsbackgroundcolor="#7bbf38" whatsappdisplayrule="mobile-only" whatsapptext="Whatspp" whatsapptextcolor="#ffffff" whatsappbackgroundcolor="#25D366" linkedindisplayrule="hidden" linkedintext="LinkedIn" linkedintextcolor="#ffffff" linkedinbackgroundcolor="#0084b9" pinterestdisplayrule="hidden" pinteresttext="Pinterest" pinteresttextcolor="#ffffff" pinterestbackgroundcolor="#cb2027" messengerdisplayrule="hidden" messengertext="Messenger" messengertextcolor="#ffffff" messengerbackgroundcolor="#0084ff" linedisplayrule="mobile-only" linetext="Line Messenger" linetextcolor="#ffffff" linebackgroundcolor="#00c300"></sqh-share-button-container>
  */
 @Component({
   tag: "sqh-share-button-container",

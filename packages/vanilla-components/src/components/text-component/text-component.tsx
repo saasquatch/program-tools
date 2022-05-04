@@ -4,6 +4,10 @@ import marked from "marked";
 
 /**
  * @uiName Text Component
+ * @canvasRenderer always-replace
+ * @exampleGroup Common Components
+ * @example Header Text - <sqh-text-component sqhheader="true" ishidden="false" ismarkdown="false" text="Give $10 and Get $10!" color="#4486E1" fontsize="30" textalign="center" paddingtop="30" paddingbottom="10"></sqh-text-component>
+ * @example Paragraph Text - <sqh-text-component sqhbody="true" ishidden="false" ismarkdown="true" text="Give a friend a $10 and receive $10 for yourself when they purchase.<br/><br/>Share the link below or use the code **<sqh-referral-code />**" color="#000000" fontsize="13" textalign="center" paddingtop="5" paddingbottom="20"></sqh-text-component>
  */
 @Component({
   tag: "sqh-text-component",

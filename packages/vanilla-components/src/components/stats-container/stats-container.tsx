@@ -5,6 +5,7 @@ import { css } from "emotion";
 
 /**
  * @uiName Stats Container
+ * @canvasRenderer always-replace
  * @slots [{"name":"","title":"Stats"}]
  */
 @Component({

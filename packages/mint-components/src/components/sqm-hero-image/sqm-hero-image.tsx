@@ -18,7 +18,7 @@ export class HeroImage {
   /**
    * @uiWidget ImageUpload
    * @format url
-   * @uiName Image Link
+   * @uiName Image
    */
   @Prop() imageUrl: string;
 

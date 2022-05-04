@@ -339,7 +339,6 @@ export namespace Components {
         /**
           * When true, the local gets set by using the value passed to the referral component
           * @uiName Internationalization
-          * @uiGroup internationalizationProps
          */
         "internationalization": boolean;
         /**
@@ -1692,7 +1691,6 @@ declare namespace LocalJSX {
         /**
           * When true, the local gets set by using the value passed to the referral component
           * @uiName Internationalization
-          * @uiGroup internationalizationProps
          */
         "internationalization"?: boolean;
         /**

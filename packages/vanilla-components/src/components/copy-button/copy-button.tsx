@@ -5,6 +5,9 @@ import { API } from "../../services/WidgetHost";
 import Clipboard from "clipboard";
 /**
  * @uiName Copy Button
+ * @canvasRenderer always-replace
+ * @exampleGroup Common Components
+ * @example Fuel Tank Copy Button - <sqh-copy-button ishidden="false" copysuccess="copied!" copyfailure="Press Ctrl+C to copy" codefontcolor="#000000" codefontsize="14" text="COPY CODE" fontsize="14" width="170" backgroundcolor="#35b21e" textcolor="#ffffff" borderradius="4" rewardkey="referredReward" codefontsize="14" codefontcolor="#000000"></sqh-copy-button>
  */
 @Component({
   tag: "sqh-copy-button",

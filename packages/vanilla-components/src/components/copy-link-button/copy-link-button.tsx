@@ -5,6 +5,9 @@ import { css } from "emotion";
 import { API } from "../../services/WidgetHost";
 /**
  * @uiName Copy Link Button
+ * @canvasRenderer always-replace
+ * @exampleGroup Common Components
+ * @example Copy Link Button - <sqh-copy-link-button ishidden="false" copysuccess="copied!" copyfailure="Press Ctrl+C to copy" text="Copy" buttoncolor="#5C6164" textcolor="#FFFFFF"></sqh-copy-link-button>
  */
 @Component({
   tag: "sqh-copy-link-button",

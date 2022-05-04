@@ -11,6 +11,7 @@ import { css } from "emotion";
 
 /**
  * @uiName Stat Component
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqh-stat-component",

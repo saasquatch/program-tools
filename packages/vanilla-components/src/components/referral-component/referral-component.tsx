@@ -2,6 +2,7 @@ import { h, Component, Prop } from "@stencil/core";
 import FormatJS from "../../services/FormatJs";
 /**
  * @uiName Referral Component
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqh-referral-component",
