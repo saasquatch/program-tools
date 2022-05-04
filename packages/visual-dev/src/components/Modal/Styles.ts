@@ -25,11 +25,11 @@ export const ModalDivStyle = css`
 
 export const ModalHeaderStyle = css`
   user-select: none;
-  padding: 20px;
+  padding: var(--sq-spacing-large);
   background: var(--sq-nav-surface-primary);
   box-sizing: border-box;
   border-radius: 8px 8px 0 0;
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-header-one);
   line-height: var(--sq-line-height-header-one);
@@ -64,7 +64,7 @@ export const ModalContentDivStyle = css`
 
   ::-webkit-scrollbar-thumb:hover {
   }
-  padding: 20px;
+  padding: var(--sq-spacing-large);
 `;
 
 export const ModalContentTextDivStyle = css`
@@ -72,7 +72,7 @@ export const ModalContentTextDivStyle = css`
   margin-top: 10px;
   margin-bottom: 10px;
   color: var(--sq-text);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-size: var(--sq-font-size-regular);
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
@@ -81,7 +81,7 @@ export const ModalContentTextDivStyle = css`
 export const CodeDivStyle = css`
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: var(--sq-spacing-large);
   color: var(--sq-text);
   background: var(--sq-background);
   border: 1px solid var(--sq-border);
@@ -97,21 +97,21 @@ export const DividerDivStyle = css`
   height: 1px;
   width: calc(100% + 40px);
   background: var(--sq-border);
-  margin: 20px -20px 20px -20px;
+  margin: var(--sq-spacing-large) calc(-1 * var(--sq-spacing-large));
   padding-right: 40px;
 `;
 
 export const ModalBannerDivStyle = css`
   user-select: none;
   display: flex;
-  padding: 20px;
-  margin: -20px;
-  margin-bottom: 20px;
+  padding: var(--sq-spacing-large);
+  margin: calc(-1 * var(--sq-spacing-large));
+  margin-bottom: var(--sq-spacing-large);
   align-items: center;
-  text-indent: 20px;
+  text-indent: var(--sq-spacing-large);
   background: var(--sq-surface-modal-banner);
   color: var(--sq-surface);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-header-three);
   line-height: var(--sq-line-height-regular);
@@ -127,12 +127,12 @@ export const ModalBackDivStyle = css`
   font-family: Helvetica;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
-  line-height: 20px;
+  font-size: var(--sq-font-size-header-three);
+  line-height: var(--sq-line-height-header-three);
   color: var(--sq-text-subdued);
   background: var(--sq-surface);
   border-bottom: 1px solid var(--sq-border);
-  padding: 20px;
-  margin: -20px;
-  margin-bottom: 20px;
+  padding: var(--sq-spacing-large);
+  margin: calc(-1 * var(--sq-spacing-large));
+  margin-bottom: var(--sq-spacing-large);
 `;
