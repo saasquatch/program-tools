@@ -59,6 +59,7 @@ const vanillaStyle = `
  * @example H3 - <sqm-text><h3>H3 Header Text</h3></sqm-text>
  * @example H4 - <sqm-text><h4>H4 Header Text</h4></sqm-text>
  * @example Paragraph - <sqm-text><p>Paragraph Text</p></sqm-text>
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqm-text",

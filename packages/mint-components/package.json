@@ -67,7 +67,7 @@
     "workbox-build": "4.3.1"
   },
   "dependencies": {
-    "@raisins/stencil-docs-target": "^0.2.5",
+    "@raisins/stencil-docs-target": "^0.2.7",
     "@saasquatch/component-boilerplate": "^1.3.1",
     "@saasquatch/stencil-hooks": "^2.0.2",
     "@saasquatch/stencilbook": "^1.0.0",
