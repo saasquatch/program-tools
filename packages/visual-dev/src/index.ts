@@ -60,6 +60,7 @@ import {
 } from "./components/Card";
 import { Dropdown, DropdownView } from "./components/Dropdown";
 import { Tabs, TabsView } from "./components/Tabs";
+import { ModalView } from "./components/Modal";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -106,6 +107,7 @@ export {
   List,
   LoadingSpinner,
   LoadingSpinnerLarge,
+  ModalView,
   ObjectFieldTemplate,
   PopoverView,
   Popover,
