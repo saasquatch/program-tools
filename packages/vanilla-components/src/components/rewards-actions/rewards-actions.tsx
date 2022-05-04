@@ -2,6 +2,7 @@ import { h, Component, Prop } from "@stencil/core";
 
 /**
  * @uiName Reward Actions
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqh-rewards-actions",

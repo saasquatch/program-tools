@@ -2,6 +2,7 @@ import { h, Component, Prop } from "@stencil/core";
 import { css } from "emotion";
 /**
  * @uiName Global Container
+ * @canvasRenderer always-replace
  * @slots [{"name":"", "title":"Widget Content"}]
  */
 @Component({

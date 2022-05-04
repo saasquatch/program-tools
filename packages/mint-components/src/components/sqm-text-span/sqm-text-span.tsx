@@ -4,6 +4,7 @@ import { TextSpanView } from "./sqm-text-span-view";
 
 /**
  * @uiName Text Span
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqm-text-span",

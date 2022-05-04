@@ -2,6 +2,7 @@ import { h, Component, State } from "@stencil/core";
 import { API } from "../../services/WidgetHost";
 /**
  * @uiName Referral Code
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqh-referral-code",

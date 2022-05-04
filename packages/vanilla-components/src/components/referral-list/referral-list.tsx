@@ -5,6 +5,7 @@ import { API } from "../../services/WidgetHost";
 
 /**
  * @uiName Referral List
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqh-referral-list",
@@ -239,7 +240,6 @@ export class ReferralList {
    * When true, the local gets set by using the value passed to the referral component
    *
    * @uiName Internationalization
-   * @uiGroup internationalizationProps
    */
   @Prop() internationalization: boolean;
 

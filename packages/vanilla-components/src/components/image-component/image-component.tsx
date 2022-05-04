@@ -3,6 +3,7 @@ import { css } from "emotion";
 
 /**
  * @uiName Image Component
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqh-image-component",

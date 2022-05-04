@@ -8,6 +8,7 @@ import { css } from "emotion";
 
 /**
  * @uiName Share Button
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqh-share-button",

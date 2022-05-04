@@ -6,6 +6,9 @@ import { API, widgetIdent } from "../../services/WidgetHost";
 // const widget = window["widgetIdent"];
 /**
  * @uiName Close Button
+ * @canvasRenderer always-replace
+ * @exampleGroup Common Components
+ * @example Close Popup Button - <sqh-close-button text="Close"></sqh-close-button>
  */
 @Component({
   tag: "sqh-close-button",

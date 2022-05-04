@@ -53,6 +53,7 @@ const vanillaStyle = `
  * @uiName Text
  * @slots [{"name":"", "title":"Text"}]
  * @slotEditor richText
+ * @canvasRenderer always-replace
  * @exampleGroup Typography
  * @example H1 - <sqm-text><h1>H1 Header Text</h1></sqm-text>
  * @example H2 - <sqm-text><h2>H2 Header Text</h2></sqm-text>
