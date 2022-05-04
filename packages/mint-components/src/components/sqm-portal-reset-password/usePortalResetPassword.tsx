@@ -74,6 +74,12 @@ export function usePortalResetPassword(
     }
   }, [verifyPasswordResetCodeState?.errors]);
 
+  useEffect(() => {
+    if (resetPasswordState?.errors?.message) {
+      setError("Network request failed.");
+    }
+  }, [resetPasswordState?.errors]);
+
   return {
     states: {
       loading: resetPasswordState.loading,
