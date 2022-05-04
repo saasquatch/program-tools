@@ -1,24 +1,15 @@
 import React, { useCallback, useState } from "react";
 import { Button } from "../Button";
-import {
-  Modal,
-  ModalContent,
-  ModalContentDivider,
-  ModalContentAction,
-  ModalContentText,
-  ModalContentBanner,
-  ModalContentTopAction,
-  ModalContentCode,
-} from ".";
 import { Dropdown } from "../Dropdown";
 import { InputView } from "../Input";
 import { RadioActionView } from "../RadioAction";
 import { IconView } from "../Icon";
 import { CheckboxView } from "../Checkbox";
+import { ModalView } from ".";
 
 export default {
   title: "Components / Modal",
-  component: Modal,
+  component: ModalView,
 };
 
 export const WithPrimaryAction = () => {
@@ -29,13 +20,13 @@ export const WithPrimaryAction = () => {
       <Button buttonType="secondary" onClick={handleChange}>
         Open Modal
       </Button>
-      <Modal
+      <ModalView
         title="Salesforce Submit Actions"
         open={active}
         onClose={handleChange}
       >
-        <ModalContent>
-          <ModalContentText>
+        <ModalView.ModalContentView>
+          <ModalView.ModalContentTextView>
             Configure actions which will be completed when the form is submitted
             by a user.
             <br />
@@ -46,15 +37,54 @@ export const WithPrimaryAction = () => {
               {" "}
               Integrations Page{" "}
             </span>
-          </ModalContentText>
-          <ModalContentAction
+          </ModalView.ModalContentTextView>
+          <ModalView.ModalContentActionView
             primaryAction={{
               text: "Close",
               onAction: handleChange,
             }}
           />
-        </ModalContent>
-      </Modal>
+        </ModalView.ModalContentView>
+      </ModalView>
+    </div>
+  );
+};
+
+export const WithPrimaryActionCustomTitle = () => {
+  const [active, setActive] = useState(true);
+  const handleChange = useCallback(() => setActive(!active), [active]);
+  return (
+    <div style={{ height: 300 }}>
+      <Button buttonType="secondary" onClick={handleChange}>
+        Open Modal
+      </Button>
+      <ModalView
+        title="Salesforce Submit Actions"
+        open={active}
+        onClose={handleChange}
+        customTitleCSS={{ fontSize: "14px" }}
+      >
+        <ModalView.ModalContentView>
+          <ModalView.ModalContentTextView>
+            Configure actions which will be completed when the form is submitted
+            by a user.
+            <br />
+            <br />
+            You need to first enable and configure the Salesforce integration on
+            the &nbsp;{" "}
+            <span style={{ color: "#1f97d2", userSelect: "none" }}>
+              {" "}
+              Integrations Page{" "}
+            </span>
+          </ModalView.ModalContentTextView>
+          <ModalView.ModalContentActionView
+            primaryAction={{
+              text: "Close",
+              onAction: handleChange,
+            }}
+          />
+        </ModalView.ModalContentView>
+      </ModalView>
     </div>
   );
 };
@@ -68,9 +98,9 @@ export const WithPrimaryAndSecondaryAction = () => {
       <Button buttonType="secondary" onClick={handleChange}>
         Open Modal
       </Button>
-      <Modal title="Add Referral Code" open={active} onClose={handleChange}>
-        <ModalContent>
-          <ModalContentText>
+      <ModalView title="Add Referral Code" open={active} onClose={handleChange}>
+        <ModalView.ModalContentView>
+          <ModalView.ModalContentTextView>
             Select a program{" "}
             <span style={{ color: "#adadad" }}> (required) </span>
             <br />
@@ -114,9 +144,9 @@ export const WithPrimaryAndSecondaryAction = () => {
               value={false}
               onChange={void 0}
             />
-          </ModalContentText>
-          <ModalContentDivider />
-          <ModalContentAction
+          </ModalView.ModalContentTextView>
+          <ModalView.ModalContentDividerView />
+          <ModalView.ModalContentActionView
             primaryAction={{
               text: "Save",
               onAction: handleChange,
@@ -126,8 +156,8 @@ export const WithPrimaryAndSecondaryAction = () => {
               onAction: handleChange,
             }}
           />
-        </ModalContent>
-      </Modal>
+        </ModalView.ModalContentView>
+      </ModalView>
     </div>
   );
 };
@@ -140,13 +170,13 @@ export const WithCriticalAction = () => {
       <Button buttonType="secondary" onClick={handleChange}>
         Open Modal
       </Button>
-      <Modal
+      <ModalView
         title="Salesforce Submit Actions"
         open={active}
         onClose={handleChange}
       >
-        <ModalContent>
-          <ModalContentText>
+        <ModalView.ModalContentView>
+          <ModalView.ModalContentTextView>
             Delete this reward?
             <br />
             <br />
@@ -154,9 +184,9 @@ export const WithCriticalAction = () => {
               {" "}
               This action cannot be undone{" "}
             </span>{" "}
-          </ModalContentText>
-          <ModalContentDivider />
-          <ModalContentAction
+          </ModalView.ModalContentTextView>
+          <ModalView.ModalContentDividerView />
+          <ModalView.ModalContentActionView
             primaryAction={{
               text: "Confirm",
               danger: true,
@@ -167,8 +197,8 @@ export const WithCriticalAction = () => {
               onAction: handleChange,
             }}
           />
-        </ModalContent>
-      </Modal>
+        </ModalView.ModalContentView>
+      </ModalView>
     </div>
   );
 };
@@ -197,12 +227,12 @@ export const WithBanner = () => {
       <Button buttonType="secondary" onClick={handleChange}>
         Open Modal
       </Button>
-      <Modal title="Signup Program" open={active} onClose={handleChange}>
-        <ModalContent>
-          <ModalContentBanner
+      <ModalView title="Signup Program" open={active} onClose={handleChange}>
+        <ModalView.ModalContentView>
+          <ModalView.ModalContentBannerView
             banner={{ text: "A section heading", icon: program_icon }}
           />
-          <ModalContentText>
+          <ModalView.ModalContentTextView>
             Encourage new users to try your product or service by offering a
             special reward upon signup.
             <br />
@@ -231,9 +261,9 @@ export const WithBanner = () => {
                 Customize the email to notify users when they get a reward.
               </li>
             </ul>
-          </ModalContentText>
-          <ModalContentDivider />
-          <ModalContentAction
+          </ModalView.ModalContentTextView>
+          <ModalView.ModalContentDividerView />
+          <ModalView.ModalContentActionView
             primaryAction={{
               text: "Create",
               onAction: handleChange,
@@ -243,8 +273,8 @@ export const WithBanner = () => {
               onAction: handleChange,
             }}
           />
-        </ModalContent>
-      </Modal>
+        </ModalView.ModalContentView>
+      </ModalView>
     </div>
   );
 };
@@ -257,19 +287,19 @@ export const WithHeaderAction = () => {
       <Button buttonType="secondary" onClick={handleChange}>
         Open Modal
       </Button>
-      <Modal
+      <ModalView
         title="Referral Program With Objectives Program"
         open={active}
         onClose={handleChange}
       >
-        <ModalContent>
-          <ModalContentTopAction
+        <ModalView.ModalContentView>
+          <ModalView.ModalContentTopActionView
             action={{
               text: "Back to Learn More",
               icon: <IconView size="20px" icon="leftward_arrow" />,
             }}
           />
-          <ModalContentText>
+          <ModalView.ModalContentTextView>
             <span style={{ color: "#989898" }}>
               {" "}
               Name your program to start setting up your program rules.{" "}
@@ -281,9 +311,9 @@ export const WithHeaderAction = () => {
             <br />
             Program ID
             <InputView disabled style={{ margin: "10px 0 10px 0" }} />
-          </ModalContentText>
-          <ModalContentDivider />
-          <ModalContentAction
+          </ModalView.ModalContentTextView>
+          <ModalView.ModalContentDividerView />
+          <ModalView.ModalContentActionView
             primaryAction={{
               text: "Create",
               onAction: handleChange,
@@ -293,8 +323,8 @@ export const WithHeaderAction = () => {
               onAction: handleChange,
             }}
           />
-        </ModalContent>
-      </Modal>
+        </ModalView.ModalContentView>
+      </ModalView>
     </div>
   );
 };
@@ -307,9 +337,9 @@ export const WithMultipleSectionsAndActions = () => {
       <Button buttonType="secondary" onClick={handleChange}>
         Open Modal
       </Button>
-      <Modal title="Signup Program" open={active} onClose={handleChange}>
-        <ModalContent>
-          <ModalContentText>
+      <ModalView title="Signup Program" open={active} onClose={handleChange}>
+        <ModalView.ModalContentView>
+          <ModalView.ModalContentTextView>
             <h2 style={{ marginTop: 0, marginBottom: 8 }}>
               Change Email Address
             </h2>
@@ -323,15 +353,15 @@ export const WithMultipleSectionsAndActions = () => {
             <InputView value="" style={{ margin: "10px 0 10px 0" }} />
             Enter Password
             <InputView value="" style={{ margin: "10px 0 10px 0" }} />
-          </ModalContentText>
-          <ModalContentAction
+          </ModalView.ModalContentTextView>
+          <ModalView.ModalContentActionView
             primaryAction={{
               text: "Save",
               onAction: handleChange,
             }}
           />
-          <ModalContentDivider />
-          <ModalContentText>
+          <ModalView.ModalContentDividerView />
+          <ModalView.ModalContentTextView>
             <h2 style={{ marginTop: 25, marginBottom: 8 }}>Change Password</h2>
             <span style={{ color: "#989898" }}>
               {" "}
@@ -345,15 +375,15 @@ export const WithMultipleSectionsAndActions = () => {
             <InputView value="" style={{ margin: "10px 0 10px 0" }} />
             Re-enter New Password
             <InputView value="" style={{ margin: "10px 0 10px 0" }} />
-          </ModalContentText>
-          <ModalContentAction
+          </ModalView.ModalContentTextView>
+          <ModalView.ModalContentActionView
             primaryAction={{
               text: "Save",
               onAction: handleChange,
             }}
           />
-        </ModalContent>
-      </Modal>
+        </ModalView.ModalContentView>
+      </ModalView>
     </div>
   );
 };
@@ -366,9 +396,9 @@ export const WithFormElements = () => {
       <Button buttonType="secondary" onClick={handleChange}>
         Open Modal
       </Button>
-      <Modal title="Add User" open={active} onClose={handleChange}>
-        <ModalContent>
-          <ModalContentText>
+      <ModalView title="Add User" open={active} onClose={handleChange}>
+        <ModalView.ModalContentView>
+          <ModalView.ModalContentTextView>
             First Name
             <InputView value="" style={{ margin: "10px 0 10px 0" }} />
             Last Name
@@ -384,9 +414,9 @@ export const WithFormElements = () => {
               value={true}
               options={{ text: "Referrable" }}
             ></CheckboxView>
-          </ModalContentText>
-          <ModalContentDivider />
-          <ModalContentAction
+          </ModalView.ModalContentTextView>
+          <ModalView.ModalContentDividerView />
+          <ModalView.ModalContentActionView
             primaryAction={{
               text: "Add",
               onAction: handleChange,
@@ -396,8 +426,8 @@ export const WithFormElements = () => {
               onAction: handleChange,
             }}
           />
-        </ModalContent>
-      </Modal>
+        </ModalView.ModalContentView>
+      </ModalView>
     </div>
   );
 };
@@ -429,11 +459,13 @@ export const WithCodeBlock = () => {
       <Button buttonType="secondary" onClick={handleChange}>
         Open Modal
       </Button>
-      <Modal title="Reward Details" open={active} onClose={handleChange}>
-        <ModalContent>
-          <ModalContentCode>{code}</ModalContentCode>
-          <ModalContentDivider />
-          <ModalContentAction
+      <ModalView title="Reward Details" open={active} onClose={handleChange}>
+        <ModalView.ModalContentView>
+          <ModalView.ModalContentCodeView>
+            {code}
+          </ModalView.ModalContentCodeView>
+          <ModalView.ModalContentDividerView />
+          <ModalView.ModalContentActionView
             primaryAction={{
               text: "Add",
               onAction: handleChange,
@@ -443,8 +475,8 @@ export const WithCodeBlock = () => {
               onAction: handleChange,
             }}
           />
-        </ModalContent>
-      </Modal>
+        </ModalView.ModalContentView>
+      </ModalView>
     </div>
   );
 };
@@ -503,11 +535,13 @@ export const WithCodeBlockOverflow = () => {
       <Button buttonType="secondary" onClick={handleChange}>
         Open Modal
       </Button>
-      <Modal title="Reward Details" open={active} onClose={handleChange}>
-        <ModalContent>
-          <ModalContentCode>{code}</ModalContentCode>
-          <ModalContentDivider />
-          <ModalContentAction
+      <ModalView title="Reward Details" open={active} onClose={handleChange}>
+        <ModalView.ModalContentView>
+          <ModalView.ModalContentCodeView>
+            {code}
+          </ModalView.ModalContentCodeView>
+          <ModalView.ModalContentDividerView />
+          <ModalView.ModalContentActionView
             primaryAction={{
               text: "Add",
               onAction: handleChange,
@@ -517,8 +551,8 @@ export const WithCodeBlockOverflow = () => {
               onAction: handleChange,
             }}
           />
-        </ModalContent>
-      </Modal>
+        </ModalView.ModalContentView>
+      </ModalView>
     </div>
   );
 };

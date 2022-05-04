@@ -19,22 +19,24 @@ export interface OptionProps {
 
 export interface StyleProps {
   customCSS?: CSSProp;
+  customTitleCSS?: CSSProp;
 }
 
 const ModalBackdrop = styled.div`
   ${Styles.ModalBackdropStyle}
 `;
 
-const ModalDiv = styled.div<Required<StyleProps>>`
+const ModalDiv = styled.div<{ customCSS?: CSSProp }>`
   ${Styles.ModalDivStyle}
   ${(props) => props.customCSS}
 `;
 
-const ModalHeader = styled.div`
+const ModalHeader = styled.div<{ customTitleCSS?: CSSProp }>`
   ${Styles.ModalHeaderStyle}
+  ${(props) => props.customTitleCSS}
 `;
 
-export const Modal = React.forwardRef<React.ElementRef<"div">, ModalProps>(
+export const ModalView = React.forwardRef<React.ElementRef<"div">, ModalProps>(
   (props, forwardedRef) => {
     const {
       title,
@@ -45,6 +47,7 @@ export const Modal = React.forwardRef<React.ElementRef<"div">, ModalProps>(
       secondaryAction,
       children,
       customCSS = {},
+      customTitleCSS = {},
       ...rest
     } = props;
     return (
@@ -52,7 +55,7 @@ export const Modal = React.forwardRef<React.ElementRef<"div">, ModalProps>(
         {open && (
           <ModalBackdrop>
             <ModalDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
-              <ModalHeader>
+              <ModalHeader customTitleCSS={customTitleCSS}>
                 {title}
                 <IconView
                   icon="close"

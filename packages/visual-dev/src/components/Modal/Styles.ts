@@ -95,16 +95,15 @@ export const CodeDivStyle = css`
 
 export const DividerDivStyle = css`
   height: 1px;
-  width: 100%;
+  width: calc(100% + 40px);
   background: var(--sq-border);
-  margin: 20px 0 20px -20px;
+  margin: 20px -20px 20px -20px;
   padding-right: 40px;
 `;
 
 export const ModalBannerDivStyle = css`
   user-select: none;
   display: flex;
-  height: 36px;
   padding: 20px;
   margin: -20px;
   margin-bottom: 20px;

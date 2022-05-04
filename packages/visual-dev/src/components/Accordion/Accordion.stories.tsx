@@ -1,6 +1,6 @@
 import React from "react";
 import { AccordionView } from ".";
-import { Switch, SwitchView } from "../Switch";
+import { SwitchView } from "../Switch";
 
 export default {
   title: "Components / Accordion",

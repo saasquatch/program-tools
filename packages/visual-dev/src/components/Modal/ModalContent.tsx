@@ -5,14 +5,14 @@ import * as Styles from "./Styles";
 
 type ModalActionProps = ActionOptions &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate"|"css">;
+  Omit<React.ComponentProps<"div">, "translate" | "css">;
 
-interface ActionOptions {
+export interface ActionOptions {
   primaryAction?: any;
   secondaryAction?: any;
 }
 
-interface StyleProps {
+export interface StyleProps {
   customCSS?: CSSProp;
 }
 
@@ -21,11 +21,17 @@ const ModalActionDiv = styled.div<Required<StyleProps>>`
   ${(props) => props.customCSS}
 `;
 
-export const ModalContentAction = React.forwardRef<
+export const ModalContentActionView = React.forwardRef<
   React.ElementRef<"div">,
   ModalActionProps
 >((props, forwardedRef) => {
-  const { primaryAction, secondaryAction, children, customCSS = {}, ...rest } = props;
+  const {
+    primaryAction,
+    secondaryAction,
+    children,
+    customCSS = {},
+    ...rest
+  } = props;
 
   return (
     <ModalActionDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
@@ -57,7 +63,7 @@ type ModalContentProps = ContentOptions &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate">;
 
-interface ContentOptions {
+export interface ContentOptions {
   children?: React.ReactNode;
 }
 
@@ -65,7 +71,8 @@ const ModalContentDiv = styled.div<Required<StyleProps>>`
   ${Styles.ModalContentDivStyle}
   ${(props) => props.customCSS}
 `;
-export const ModalContent = React.forwardRef<
+
+export const ModalContentView = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps
 >((props, forwardedRef) => {
@@ -83,7 +90,7 @@ const ModalContentTextDiv = styled.div<Required<StyleProps>>`
   ${(props) => props.customCSS}
 `;
 
-export const ModalContentText = React.forwardRef<
+export const ModalContentTextView = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps
 >((props, forwardedRef) => {
@@ -100,7 +107,8 @@ const CodeDiv = styled.div<Required<StyleProps>>`
   ${Styles.CodeDivStyle}
   ${(props) => props.customCSS}
 `;
-export const ModalContentCode = React.forwardRef<
+
+export const ModalContentCodeView = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps
 >((props, forwardedRef) => {
@@ -117,7 +125,8 @@ const DividerDiv = styled.div<Required<StyleProps>>`
   ${Styles.DividerDivStyle}
   ${(props) => props.customCSS}
 `;
-export const ModalContentDivider = React.forwardRef<
+
+export const ModalContentDividerView = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps
 >((props, forwardedRef) => {
@@ -130,7 +139,7 @@ const ModalBannerDiv = styled.div<Required<StyleProps>>`
   ${Styles.ModalBannerDivStyle}
 `;
 
-export const ModalContentBanner = React.forwardRef<
+export const ModalContentBannerView = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps & { banner: any }
 >((props, forwardedRef) => {
@@ -148,14 +157,19 @@ const ModalBackDiv = styled.div<Required<StyleProps>>`
   ${Styles.ModalBackDivStyle}
 `;
 
-export const ModalContentTopAction = React.forwardRef<
+export const ModalContentTopActionView = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps & { action: any }
 >((props, forwardedRef) => {
   const { action, children, customCSS = {}, ...rest } = props;
 
   return (
-    <ModalBackDiv onClick={action} {...rest} ref={forwardedRef} customCSS={customCSS}>
+    <ModalBackDiv
+      onClick={action}
+      {...rest}
+      ref={forwardedRef}
+      customCSS={customCSS}
+    >
       {action ? action.icon : ""}
       {action ? action.text : ""}
     </ModalBackDiv>
