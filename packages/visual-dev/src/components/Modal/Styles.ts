@@ -4,7 +4,7 @@ export const ModalBackdropStyle = css`
   position: absolute;
   display: flex;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 1;
   top: 0;
   right: 0;
@@ -17,8 +17,8 @@ export const ModalDivStyle = css`
   white-space: pre-wrap;
   min-width: 558px;
   background-color: var(--sq-surface);
-  box-shadow: 0 0 0 1px var(--sq-border);
   border-radius: 8px;
+  overflow: hidden;
   margin: auto;
   padding: 0;
 `;
@@ -28,7 +28,7 @@ export const ModalHeaderStyle = css`
   padding: var(--sq-spacing-large);
   background: var(--sq-nav-surface-primary);
   box-sizing: border-box;
-  border-radius: 8px 8px 0 0;
+  // border-radius: 8px 8px 0 0;
   font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-header-one);
