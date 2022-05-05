@@ -11,6 +11,10 @@ import { css } from "emotion";
 /**
  * @uiName Partner Stat
  * @canvasRenderer always-replace
+ * @exampleGroup Statistics
+ * @example Pending CASH/CAD - <sqh-partner-stat-component statcolor="#000000" stattype="/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit" statdescription="Pending Balance" paddingtop="10" paddingbottom="10"></sqh-partner-stat-component>
+ * @example Available CASH/CAD - <sqh-partner-stat-component stattype="/rewardBalance/CREDIT/CASH_CAD/prettyValue" statdescription="Available Balance" paddingtop="10" paddingbottom="10" statcolor="#4CAF50"></sqh-partner-stat-component>
+ * @example Redeemed CASH/CAD - <sqh-partner-stat-component stattype="/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit" statdescription="Redeemed Balance" paddingtop="10" paddingbottom="10" statcolor="#000000"></sqh-partner-stat-component>
  */
 @Component({
   tag: "sqh-partner-stat-component",
