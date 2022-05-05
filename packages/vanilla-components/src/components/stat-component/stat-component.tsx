@@ -35,8 +35,8 @@ export class StatComponent {
    * @uiName Stat Type
    * @uiWidget statTypeSelector
    * @required
+   * @minLength 1
    */
-  //STAT TYPE UIOPTIONS ARE NEEDED HERE
   @Prop() stattype: string;
   /**
    * Value shown inside stat

@@ -19,7 +19,10 @@ export class HeroImage {
   /** @uiName Empty State Title  */
   @Prop() emptyStateHeader: string;
 
-  /** @uiName Empty State Text  */
+  /** 
+   * @uiName Empty State Text  
+   * @uiWidget textArea
+   */
   @Prop() emptyStateText: string;
 
   render() {

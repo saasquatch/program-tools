@@ -8,10 +8,8 @@ import { autoColorScaleCss } from "../sqm-stencilbook/AutoColor";
  * @uiName Brand Container
  * @slots [{"name":"","title":"Branded Content"}]
  * @exampleGroup Common Components
- * @example Brand Container - <sqm-brand color="" brand="Nunito Sans">Add your branded content here!</sqm-brand>
+ * @example Brand Container - <sqm-brand brand="Nunito Sans">Add your branded content here!</sqm-brand>
  */
-
-//FINISH ME Default stencil blue!
 @Component({
   tag: "sqm-brand",
   shadow: true,
@@ -23,7 +21,6 @@ export class BrandComponent {
    * @uiName Brand Color
    * @uiWidget color
    * @format color
-   * @default #FFF
    */
   @Prop() brandColor: string;
 

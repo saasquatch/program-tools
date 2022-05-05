@@ -230,7 +230,8 @@ export namespace Components {
           * Used to query the stats for a user
           * @uiName Stat Type
           * @uiWidget statTypeSelector
-          * @required
+          * @required 
+          * @minLength 1
          */
         "stattype": string;
         /**
@@ -1156,7 +1157,8 @@ export namespace Components {
           * Type of stat being displayed. e.g /rewardsCount
           * @uiName Stat Type
           * @uiWidget statTypeSelector
-          * @required
+          * @required 
+          * @minLength 1
          */
         "stattype": string;
         /**
@@ -1582,7 +1584,8 @@ declare namespace LocalJSX {
           * Used to query the stats for a user
           * @uiName Stat Type
           * @uiWidget statTypeSelector
-          * @required
+          * @required 
+          * @minLength 1
          */
         "stattype"?: string;
         /**
@@ -2510,7 +2513,8 @@ declare namespace LocalJSX {
           * Type of stat being displayed. e.g /rewardsCount
           * @uiName Stat Type
           * @uiWidget statTypeSelector
-          * @required
+          * @required 
+          * @minLength 1
          */
         "stattype"?: string;
         /**

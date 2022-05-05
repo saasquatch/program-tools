@@ -34,8 +34,8 @@ export class PartnerStatComponent {
    * @uiName Stat Type
    * @uiWidget statTypeSelector
    * @required
+   * @minLength 1
    */
-  //STAT TYPE UIOPTIONS ARE NEEDED HERE
   @Prop() stattype: string;
   /**
    * Value of the stat

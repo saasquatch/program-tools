@@ -126,6 +126,7 @@ export class SqmRewardExchangeList {
 
   /**
    * @uiName Select Amount Text
+   * @uiWidget textArea
    */
   @Prop() selectText: string = "Select amount to receive";
 

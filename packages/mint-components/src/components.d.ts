@@ -93,7 +93,6 @@ export namespace Components {
           * @uiName Brand Color
           * @uiWidget color
           * @format color
-          * @default #FFF
          */
         "brandColor": string;
         /**
@@ -237,6 +236,7 @@ export namespace Components {
         "emptyStateImage": string;
         /**
           * @uiName Empty State Text
+          * @uiWidget textArea
          */
         "emptyStateText": string;
     }
@@ -309,6 +309,7 @@ export namespace Components {
         "buttonText"?: string;
         /**
           * @uiName Description Text
+          * @uiWidget textArea
          */
         "description"?: string;
         /**
@@ -337,7 +338,7 @@ export namespace Components {
         /**
           * @uiWidget ImageUpload
           * @format url
-          * @uiName Image Link
+          * @uiName Image
          */
         "imageUrl": string;
         /**
@@ -1464,6 +1465,7 @@ export namespace Components {
         "rewardTitle": string;
         /**
           * @uiName Select Amount Text
+          * @uiWidget textArea
          */
         "selectText": string;
         /**
@@ -2063,9 +2065,10 @@ export namespace Components {
         "startsOnMessage": string;
         /**
           * Select what type of stat to display for the goal. Manual paths are also supported.
-          * @uiWidget statTypeSelectWidget
           * @uiName Goal Progress Source
           * @required 
+          * @minLength 1
+          * @uiWidget statTypeSelectWidget
           * @uiWidgetOptions {"version": 1.1}
           * @uiGroup Goal
          */
@@ -2815,7 +2818,6 @@ declare namespace LocalJSX {
           * @uiName Brand Color
           * @uiWidget color
           * @format color
-          * @default #FFF
          */
         "brandColor"?: string;
         /**
@@ -2959,6 +2961,7 @@ declare namespace LocalJSX {
         "emptyStateImage"?: string;
         /**
           * @uiName Empty State Text
+          * @uiWidget textArea
          */
         "emptyStateText"?: string;
     }
@@ -3031,6 +3034,7 @@ declare namespace LocalJSX {
         "buttonText"?: string;
         /**
           * @uiName Description Text
+          * @uiWidget textArea
          */
         "description"?: string;
         /**
@@ -3059,7 +3063,7 @@ declare namespace LocalJSX {
         /**
           * @uiWidget ImageUpload
           * @format url
-          * @uiName Image Link
+          * @uiName Image
          */
         "imageUrl"?: string;
         /**
@@ -4172,6 +4176,7 @@ declare namespace LocalJSX {
         "rewardTitle"?: string;
         /**
           * @uiName Select Amount Text
+          * @uiWidget textArea
          */
         "selectText"?: string;
         /**
@@ -4761,9 +4766,10 @@ declare namespace LocalJSX {
         "startsOnMessage"?: string;
         /**
           * Select what type of stat to display for the goal. Manual paths are also supported.
-          * @uiWidget statTypeSelectWidget
           * @uiName Goal Progress Source
           * @required 
+          * @minLength 1
+          * @uiWidget statTypeSelectWidget
           * @uiWidgetOptions {"version": 1.1}
           * @uiGroup Goal
          */

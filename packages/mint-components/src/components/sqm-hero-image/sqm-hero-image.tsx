@@ -85,6 +85,7 @@ export class HeroImage {
 
   /**
    * @uiName Description Text
+   * @uiWidget textArea
    */
   @Prop() description?: string;
 
