@@ -7,14 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2022-05-09
+
+### Changed
+
+- Update portal components to use managed identity v2 error responses
+- \<sqm-portal-forgot-password>
+  - clear success message on re-send
+- \<sqm-portal-email-verification>
+  - clear success message on re-send
+- \<sqm-portal-reset-password>
+  - handle network failure of reset password mutation
 
 ## [1.5.5] - 2022-04-21
+
 - Fixed grapesJs from build by removing window.location.origin from stencil build file
   - Grapes was broken in the previous build
 
 ## [1.5.4] - 2022-04-13
 
 ### Changed
+
 - Changed Component:
   - /<sqm-leaderboard>
     - Now supports a top point earners leaderboard, `topPointEarners`
@@ -31,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.5.3] - 2022-03-31
 
 ### Added
+
 - Input component added for use in \<sqm-portal-register>
 - Added Component:
   - \<sqm-input-field>
