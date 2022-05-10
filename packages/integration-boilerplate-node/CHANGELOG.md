@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2022-05-09
+
+### Changed
+
+- GraphQL error responses are included in thrown error
+
 ## [1.1.0] - 2022-01-27
 
 ### Added
@@ -22,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[unreleased]: https://github.com/sasquatch/integration-boilerplate-node/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/sasquatch/integration-boilerplate-node/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.1
 [1.1.0]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.0
 [1.0.0]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.0.0

@@ -39,6 +39,9 @@ export type GraphQlRequestError<T> = {
             rsCode: string;
           };
           classification: string;
+          // V managed identity extensions V
+          message?: string;
+          code?: string;
         };
       }
     ];

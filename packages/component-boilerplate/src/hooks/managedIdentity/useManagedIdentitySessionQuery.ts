@@ -8,9 +8,9 @@ import {
 } from "../../environment/UserIdentityContext";
 import { useLazyQuery } from "../graphql/useLazyQuery";
 
-const ManagedIdentityQuery = gql`
-  query ManagedIdentity {
-    managedIdentity {
+const ManagedIdentitySessionQuery = gql`
+  query ManagedIdentitySession {
+    managedIdentitySession {
       email
       emailVerified
       sessionData
@@ -18,31 +18,31 @@ const ManagedIdentityQuery = gql`
   }
 `;
 
-interface ManagedIdentityResult {
-  managedIdentity: {
+interface ManagedIdentitySessionResult {
+  managedIdentitySession: {
     email: string;
     emailVerified: boolean;
     sessionData: Record<string, any>;
   };
 }
 
-export function useManagedIdentityQuery(): [
+export function useManagedIdentitySessionQuery(): [
   () => unknown,
-  QueryData<ManagedIdentityResult>
+  QueryData<ManagedIdentitySessionResult>
 ] {
   const userIdentity = useUserIdentity();
   const [request, { loading, data, errors, refetch }] =
-    useLazyQuery<ManagedIdentityResult>(ManagedIdentityQuery);
+    useLazyQuery<ManagedIdentitySessionResult>(ManagedIdentitySessionQuery);
 
   useEffect(() => {
-    if (data?.managedIdentity) {
-      const { managedIdentity: res } = data;
+    if (data?.managedIdentitySession) {
+      const { managedIdentitySession: res } = data;
       setUserIdentity({
         ...userIdentity,
         managedIdentity: res,
       });
     }
-  }, [data?.managedIdentity]);
+  }, [data?.managedIdentitySession]);
 
   const requestNoParams = useCallback(() => request({}), [request]);
 

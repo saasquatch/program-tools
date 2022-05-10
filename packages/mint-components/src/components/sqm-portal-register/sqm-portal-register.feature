@@ -35,7 +35,7 @@ Feature: Portal Register
         When they click "Register"
         Then the button enters a loading state
         When the registration fails
-        Then an error banner is shown stating that they should try again
+        Then an error banner is shown
 
     @motivating
     Scenario Outline: A user cannot register with an email linked to an existing account
@@ -64,17 +64,6 @@ Feature: Portal Register
         When they click "Register"
         Then a verification email is sent to their email
         And they are redirected to "/verify"
-
-    @motivating
-    Scenario: Users are redirected from the verification email to the value of the nextPage url parameter if it exists
-        Given a user who is registering
-        And their url contains a "nextPage" query paramater with "/activity"
-        When they register
-        And they receive their verification email
-        When they click to verify their email
-        And they verify their email
-        And they click "Continue"
-        Then they are redirected to "/activity"
 
     @minutae
     Scenario Outline: Navigation back to the login page can be customized but defaults to "/login"

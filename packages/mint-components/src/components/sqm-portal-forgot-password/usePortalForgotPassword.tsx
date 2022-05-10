@@ -14,6 +14,7 @@ export function usePortalForgotPassword(props: PortalForgotPassword) {
 
   const submit = async (event: any) => {
     setError("");
+    setSuccess(false);
     let formData = event.detail.formData;
 
     formData?.forEach((value: any, key: string) => {
@@ -41,7 +42,10 @@ export function usePortalForgotPassword(props: PortalForgotPassword) {
   return {
     states: {
       loading,
-      error: errors?.response?.errors?.[0]?.message || error,
+      error:
+        errors?.response?.errors?.[0]?.extensions?.message ||
+        errors?.response?.errors?.[0]?.message ||
+        error,
       success,
       loginPath: props.loginPath,
     },
