@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - clear success message on re-send
 - \<sqm-portal-reset-password>
   - handle network failure of reset password mutation
+- removed sqm-graphql-client-provider usage from portal templates
 
 ## [1.5.5] - 2022-04-21
 
