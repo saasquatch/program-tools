@@ -27,4 +27,9 @@ export const defaultTabStyle = css`
     font-weight: bold;
     border-bottom: 2px solid #575757;
   }
+
+  &.disabled {
+    color: var(--sq-text-subdued);
+    cursor: default;
+  }
 `

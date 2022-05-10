@@ -42,6 +42,21 @@ export const FunctionalTabs = () => {
   );
 };
 
+export const DisabledTabs = () => {
+  const [selected, setSelected] = React.useState<string>("second")
+
+  return (
+    <>
+      <TabsView selected={selected} onTabClick={setSelected}>
+        <TabsView.TabView disabled id="first">First</TabsView.TabView>
+        <TabsView.TabView id="second">Second</TabsView.TabView>
+        <TabsView.TabView id="third">Third</TabsView.TabView>
+      </TabsView>
+      <div style={{ marginTop: "32px" }}>Tab selected: {selected}</div>
+    </>
+  );
+}
+
 export const NavigationTabs = () => {
   const [selected, setSelected] = React.useState<string>("programs");
 

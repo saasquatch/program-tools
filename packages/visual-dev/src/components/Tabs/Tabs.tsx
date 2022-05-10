@@ -8,16 +8,23 @@ const TabsContext = React.createContext<TabsContextType>([
   undefined,
 ]);
 
-const TabView: React.FC<{ id: string; children: React.ReactNode }> = ({
+export interface TabViewProps {
+  id: string
+  children: React.ReactNode
+  disabled?: boolean
+}
+
+const TabView: React.FC<TabViewProps> = ({
   id,
+  disabled,
   children,
 }) => {
   const [selected, setId] = useTabs();
 
   return (
     <div
-      className={`tab${selected == id ? " active" : ""}`}
-      onClick={() => setId!(id)}
+      className={`tab${selected == id ? " active" : ""} ${disabled ? "disabled" : ""}`}
+      onClick={() => !disabled && setId!(id)}
     >
       {children}
     </div>
