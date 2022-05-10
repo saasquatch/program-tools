@@ -50,6 +50,45 @@ export const WithPrimaryAction = () => {
   );
 };
 
+export const WithCustomZIndex = () => {
+  const [active, setActive] = useState(true);
+  const handleChange = useCallback(() => setActive(!active), [active]);
+  return (
+    <div style={{ height: 300 }}>
+      <Button buttonType="secondary" onClick={handleChange}>
+        Open Modal
+      </Button>
+      <ModalView
+        title="Salesforce Submit Actions"
+        open={active}
+        onClose={handleChange}
+        zIndex={99999}
+      >
+        <ModalView.ModalContentView>
+          <ModalView.ModalContentTextView>
+            Configure actions which will be completed when the form is submitted
+            by a user.
+            <br />
+            <br />
+            You need to first enable and configure the Salesforce integration on
+            the &nbsp;{" "}
+            <span style={{ color: "#1f97d2", userSelect: "none" }}>
+              {" "}
+              Integrations Page{" "}
+            </span>
+          </ModalView.ModalContentTextView>
+          <ModalView.ModalContentActionView
+            primaryAction={{
+              text: "Close",
+              onAction: handleChange,
+            }}
+          />
+        </ModalView.ModalContentView>
+      </ModalView>
+    </div>
+  );
+};
+
 export const WithPrimaryActionCustomTitle = () => {
   const [active, setActive] = useState(true);
   const handleChange = useCallback(() => setActive(!active), [active]);

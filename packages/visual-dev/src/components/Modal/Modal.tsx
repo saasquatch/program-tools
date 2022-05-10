@@ -14,6 +14,7 @@ export interface OptionProps {
   onClose: any;
   primaryAction?: any;
   secondaryAction?: any;
+  zIndex?: number;
   children: React.ReactNode;
 }
 
@@ -22,8 +23,9 @@ export interface StyleProps {
   customTitleCSS?: CSSProp;
 }
 
-const ModalBackdrop = styled.div`
+const ModalBackdrop = styled.div<{ zIndex?: number }>`
   ${Styles.ModalBackdropStyle}
+  ${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : "z-index: 1;")}
 `;
 
 const ModalDiv = styled.div<{ customCSS?: CSSProp }>`
@@ -42,6 +44,7 @@ export const ModalView = React.forwardRef<React.ElementRef<"div">, ModalProps>(
       title,
       open = false,
       onClose,
+      zIndex,
       banner,
       primaryAction,
       secondaryAction,
@@ -53,7 +56,7 @@ export const ModalView = React.forwardRef<React.ElementRef<"div">, ModalProps>(
     return (
       <div>
         {open && (
-          <ModalBackdrop>
+          <ModalBackdrop zIndex={zIndex}>
             <ModalDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
               <ModalHeader customTitleCSS={customTitleCSS}>
                 {title}

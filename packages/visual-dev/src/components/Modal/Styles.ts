@@ -5,7 +5,6 @@ export const ModalBackdropStyle = css`
   display: flex;
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1;
   top: 0;
   right: 0;
   bottom: 0;
