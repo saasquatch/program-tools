@@ -23,7 +23,7 @@ export class TitledSection {
   @Prop() label: string;
 
   /**
-   * @uiName Text Align
+   * @uiName Text Alignment
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]

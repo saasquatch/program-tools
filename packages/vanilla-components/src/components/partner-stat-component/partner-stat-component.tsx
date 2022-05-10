@@ -29,7 +29,7 @@ export class PartnerStatComponent {
    */
   @Prop() ishidden: boolean;
   /**
-   * Used to query the stats for a user
+   * Determines what type of stat is displayed. Manual paths are also supported.
    *
    * @uiName Stat Type
    * @uiWidget statTypeSelector
@@ -40,19 +40,18 @@ export class PartnerStatComponent {
   /**
    * Value of the stat
    *
-   * @uiName Stat Value
+   * @uiName Value
+   * @undocumented
    */
   @Prop() statvalue: string;
   /**
-   * Description of the stat
-   *
-   * @uiName Stat Description
+   * @uiName Description
    */
   @Prop() statdescription: string;
   /**
    * Color of the stat value and description
    *
-   * @uiName Stat Color
+   * @uiName Color
    * @uiWidget color
    * @format color
    */

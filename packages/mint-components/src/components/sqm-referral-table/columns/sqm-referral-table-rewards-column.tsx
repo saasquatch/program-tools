@@ -20,6 +20,8 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   @Prop() columnTitle: string = "Rewards";
 
   /**
+   * Text shown in the reward status badge.
+   * 
    * @uiName Reward Status Text
    * @uiWidget textArea
    */
@@ -27,6 +29,8 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
     "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
 
   /**
+   * Additional status text shown in the details drop down.
+   * 
    * @uiName Reward Status Long Text
    * @uiWidget textArea
    */
@@ -34,21 +38,29 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
     "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }";
 
   /**
+   * Shown in the dropdown details when a reward has an associated fuel tank code.
+   * 
    * @uiName Fuel Tank Code Text
    */
   @Prop() fuelTankText: string = "Your code is";
 
   /**
+   * Shown in the dropdown details when a reward has been received.’
+   * 
    * @uiName Reward Received Text
    */
   @Prop() rewardReceivedText: string = "Reward received on";
 
   /**
+   * Shown in the dropdown details when a reward has an expiry date.
+   * 
    * @uiName Reward Expiring Text
    */
   @Prop() expiringText: string = "Expiring in";
 
   /**
+   * Shown in the dropdown details when a reward is pending.
+   * 
    * @uiName Reward Pending Text
    */
   @Prop() pendingForText: string = "{status} for {date}";

@@ -41,14 +41,14 @@ export class TaskCard {
   rewardUnit: string = "Points";
 
   /**
-   * @uiName Title Text
+   * @uiName Title
    * @uiGroup Task
    */
   @Prop()
   cardTitle: string = "Title Text";
 
   /**
-   * @uiName Description Text
+   * @uiName Description
    * @uiGroup Task
    */
   @Prop()
@@ -94,6 +94,8 @@ export class TaskCard {
   steps: boolean = false;
 
   /**
+   * The unit displayed to the right of steps and progress numbers on the progress bar. Ex: $ for dollars  
+   * 
    * @uiName Progress Bar Unit
    * @uiGroup Goal
    */
@@ -101,12 +103,16 @@ export class TaskCard {
   progressBarUnit: string = "";
 
   /**
+   * Displayed when a user views a task card after the reward duration interval.
+   * 
    * @uiName Expiry Date Message
    * @uiGroup Task
    */
   @Prop() expiryMessage: string = "Ends {endDate}";
 
   /**
+   * Task cards are disabled to users outside of the duration. They are not disabled if no duration is configured.
+   * 
    * @uiName Reward Duration
    * @uiWidget dateRange
    * @uiWidgetOptions {"allowPastDates":true, "months": 1}
@@ -123,7 +129,7 @@ export class TaskCard {
   @Prop() startsOnMessage: string = "Starts {startDate}";
 
   /**
-   * Timeframe that the task card will be shown
+   * Task cards are hidden from users outside of the duration. They are always displayed if no duration is configured.
    *
    * @uiName Display Duration
    * @uiWidget dateRange
@@ -151,23 +157,23 @@ export class TaskCard {
     "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}";
 
   /**
-   * @uiName CTA Button Text
-   * @uiGroup CTA Button
+   * @uiName Button Text
+   * @uiGroup Button
    */
   @Prop()
   buttonText: string = "Complete Action";
 
   /**
-   * @uiName CTA Button Link
-   * @uiGroup CTA Button
+   * @uiName Button Link
+   * @uiGroup Button
    */
   @Prop()
   buttonLink: string;
 
   /**
-   * CTA Button Link Opens in New Tab
+   * Button Link Opens in New Tab
    * @uiName Open In New Tab
-   * @uiGroup CTA Button
+   * @uiGroup Button
    */
   @Prop()
   openNewTab: boolean = false;
@@ -186,10 +192,10 @@ export class TaskCard {
   statType: string;
 
   /**
-   * Optionally send an event to SaaSquatch when a user clicks the CTA. This field configured what key of the event sent is.
+   * Optionally send an event to SaaSquatch when a user clicks the button. Enter your event key into this field.
    *
    * @uiName Task Card Button Event Key
-   * @uiGroup CTA Button
+   * @uiGroup Button
    */
   @Prop() eventKey?: string;
 

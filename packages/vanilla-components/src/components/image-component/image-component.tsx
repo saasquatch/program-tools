@@ -17,30 +17,26 @@ export class ImageComponent {
    */
   @Prop() ishidden: boolean;
   /**
-   * Image link
-   *
-   * @uiName URL
+   * @uiName Image URL
    * @uiWidget imageUpload
    * @format url
    * 
    */
   @Prop() url: string;
   /**
-   * Image width
+   * Define the width of the image with a pixel amount.
    *
    * @uiName Width
    */
   @Prop() width: number;
   /**
-   * Configure border radius with pixel amount
+   * Define the radius of the corners with a pixel amount.
    *
    * @uiName Border Radius
    */
   @Prop() borderradius: number;
   /**
-   * Configure alignment of the image
-   *
-   * @uiName Alignment
+   * @uiName Horizontal Alignment
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
    * @default "center"

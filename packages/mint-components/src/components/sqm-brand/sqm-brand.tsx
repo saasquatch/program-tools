@@ -25,7 +25,7 @@ export class BrandComponent {
   @Prop() brandColor: string;
 
   /**
-   * The brand font that you want to use
+   * A font from the Google Fonts library used throughout the widget. This value is case sensitive.
    *
    * @uiName Brand Font
    * @default "Nunito Sans"

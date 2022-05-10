@@ -25,7 +25,7 @@ export class ShareLink {
    */
   @Prop() programId?: string;
   /**
-   * This is shown after someone has successfully copied the link to the clipboard.
+   * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
    *
    * @uiName Tooltip Text
    */

@@ -18,8 +18,7 @@ import { useConditionalSection, UseConditionalSection } from './useConditonalSec
 })
 export class SqbConditionalSection {
   /**
-   * Conditionally show child content when a user meets specified criteria.
-   * Logic is created with JSONata, a user's segments, customField and email can be used.
+   * Show child content when a user meets specified criteria. Logic is created with JSONata. A user's segments, customField and email can be used.
    *
    * @uiName Condition
    * @uiWidget textArea

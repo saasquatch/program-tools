@@ -46,18 +46,14 @@
             alignment="left"
             stat-type="/referralsCount"
           >
-            <sqm-text>
-              <p>Referrals</p>
-            </sqm-text>
+            <p>Referrals</p>
           </sqm-big-stat>
           <sqm-big-stat
             flex-reverse="true"
             alignment="left"
             stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"
           >
-            <sqm-text>
-              <p>Giftcards</p>
-            </sqm-text>
+            <p>Giftcards</p>
           </sqm-big-stat>
         </sqm-stat-container>
       </sqm-portal-container>
@@ -73,9 +69,7 @@
           label-margin="xxx-small"
           padding="none"
         >
-          <sqm-text slot="label">
-            <h3>Get rewarded when your friend uses our product</h3>
-          </sqm-text>
+          <h3 slot="label">Get rewarded when your friend uses our product</h3>
         </sqm-titled-section>
         <sqm-referral-card vertical-alignment="start">
           <sqm-portal-container
@@ -86,9 +80,7 @@
             max-width="100%"
             padding="none"
           >
-            <sqm-text
-              >They’ll get a $50 credit towards a new account and you’ll get:
-            </sqm-text>
+            They’ll get a $50 credit towards a new account and you’ll get:
             <sqm-timeline icon="circle">
               <sqm-timeline-entry
                 reward="$50"
@@ -121,15 +113,13 @@
             max-width="100%"
             padding="none"
           >
-            <sqm-text>Choose how you want to share: </sqm-text>
-            <sqm-text>
-              <sub>Your unique referral link:</sub>
-              <sqm-share-link
-                tooltip-text="Copied to Clipboard"
-                tooltip-lifespan="1000"
-              >
-              </sqm-share-link>
-            </sqm-text>
+            Choose how you want to share
+            <sub>Your unique referral link:</sub>
+            <sqm-share-link
+              tooltip-text="Copied to Clipboard"
+              tooltip-lifespan="1000"
+            >
+            </sqm-share-link>
             <sqm-portal-container
               gap="x-small"
               direction="column"
@@ -212,8 +202,8 @@
             more-label="Next"
             prev-label="Prev"
             show-labels
-			sm-breakpoint="599"
-			md-breakpoint="799"
+            sm-breakpoint="599"
+            md-breakpoint="799"
           >
             <sqm-referral-table-user-column
               column-title="User"

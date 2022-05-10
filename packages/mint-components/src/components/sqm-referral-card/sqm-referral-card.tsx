@@ -22,7 +22,7 @@ export class ReferralCard {
    * @uiName Vertical Aligment
    * @uiType string
    * @uiEnum ["start", "center", "end"]
-   * @uiEnumNames ["Start", "Center", "End"]
+   * @uiEnumNames ["Top", "Center", "Bottom"]
    */
   @Prop() verticalAlignment: "start" | "center" | "end" = "start";
 

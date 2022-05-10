@@ -20,7 +20,7 @@ export class GlobalContainer {
    */
   @Prop() background: string;
   /**
-   * Configure the color of the loading state.
+   * The background colour of the component while in the loading state.
    *
    * @uiName Loading Color
    * @uiWidget color
@@ -37,13 +37,11 @@ export class GlobalContainer {
    */
   @Prop() fontfamily: string;
   /**
-   * Maximum width on the container.
-   *
-   * @uiName Max Width
+   * @uiName Container Max Width
    */
   @Prop() maxwidth: string;
   /**
-   * Show and hide the powered by SaaSquatch link. Can only be disabled on Pro plans.
+   * Show the Powered by SaaSquatch link. This can only be disabled on Pro plans.
    *
    * @uiName Show Powered By
    */

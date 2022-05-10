@@ -21,8 +21,6 @@ export class CopyLinkButton {
    */
   @Prop() ishidden: boolean;
   /**
-   * Text shown inside the copy button.
-   *
    * @uiName Button Text
    * @default "Copy"
    */
@@ -42,8 +40,6 @@ export class CopyLinkButton {
    */
   @Prop() copyfailure: string;
   /**
-   * Background & border color of the copy button.
-   *
    * @uiName Button Color
    * @uiWidget color
    * @format color
@@ -51,9 +47,7 @@ export class CopyLinkButton {
    */
   @Prop() buttoncolor: string;
   /**
-   * Color of text inside the copy button.
-   *
-   * @uiName Text Color
+   * @uiName Button Text Color
    * @uiWidget color
    * @format color
    * @default "#FFFFFF"

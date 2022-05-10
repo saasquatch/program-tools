@@ -64,7 +64,7 @@ export class ShareButtonContainer {
    */
   @Prop() emailicon: string = "mail";
   /**
-   * CSS Class name used to style the Email button
+   * CSS class name for additional styling.
    *
    * @uiName Email Class Name
    * @uiGroup Email
@@ -139,7 +139,7 @@ export class ShareButtonContainer {
    */
   @Prop() facebookicon: string = "facebook";
   /**
-   * CSS Class name used to style the facebook button
+   * CSS class name for additional styling.
    *
    * @uiName Facebook Class Name
    * @uiGroup Facebook
@@ -215,7 +215,7 @@ export class ShareButtonContainer {
    */
   @Prop() twittericon: string = "twitter";
   /**
-   * CSS Class name used to style the twitter button
+   * CSS class name for additional styling.
    *
    * @uiName Twitter Class Name
    * @uiGroup Twitter
@@ -291,7 +291,7 @@ export class ShareButtonContainer {
    */
   @Prop() smsicon: string = "chat";
   /**
-   * CSS Class name used to style the SMS button
+   * CSS class name for additional styling.
    *
    * @uiName SMS Class Name
    * @uiGroup SMS
@@ -366,7 +366,7 @@ export class ShareButtonContainer {
    */
   @Prop() whatsappicon: string = "whatsapp";
   /**
-   * CSS Class name used to style the WhatsApp button
+   * CSS class name for additional styling.
    *
    * @uiName WhatsApp Class Name
    * @uiGroup WhatsApp
@@ -442,7 +442,7 @@ export class ShareButtonContainer {
    */
   @Prop() linkedinicon: string = "linkedin";
   /**
-   * CSS Class name used to style the Linkedin button
+   * CSS class name for additional styling.
    *
    * @uiName Linkedin Class Name
    * @uiGroup LinkedIn
@@ -517,7 +517,7 @@ export class ShareButtonContainer {
    */
   @Prop() pinteresticon: string = "pinterest";
   /**
-   * CSS Class name used to style the Pinterest button
+   * CSS class name for additional styling.
    *
    * @uiName Pinterest Class Name
    * @uiGroup Pinterest
@@ -593,7 +593,7 @@ export class ShareButtonContainer {
    */
   @Prop() messengericon: string = "messenger";
   /**
-   * CSS Class name used to style the Messenger button
+   * CSS class name for additional styling.
    *
    * @uiName Messenger Class Name
    * @uiGroup Messenger
@@ -668,7 +668,7 @@ export class ShareButtonContainer {
    */
   @Prop() lineicon: string = "line";
   /**
-   * CSS Class name used to style the Line button
+   * CSS class name for additional styling.
    *
    * @uiName Line Class Name
    * @uiGroup Line Messenger

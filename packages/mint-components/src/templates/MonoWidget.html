@@ -50,27 +50,21 @@
             alignment="left"
             stat-type="/referralsCount"
           >
-            <sqm-text>
-              <p>Referrals</p>
-            </sqm-text>
+            <p>Referrals</p>
           </sqm-big-stat>
           <sqm-big-stat
             flex-reverse="true"
             alignment="left"
             stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"
           >
-            <sqm-text>
-              <p>Giftcards Earned</p>
-            </sqm-text>
+            <p>Giftcards Earned</p>
           </sqm-big-stat>
           <sqm-big-stat
             flex-reverse="true"
             alignment="left"
             stat-type="/rewardBalance/CREDIT/POINT/value/global"
           >
-            <sqm-text>
-              <p>Points Balance</p>
-            </sqm-text>
+            <p>Points Balance</p>
           </sqm-big-stat>
         </sqm-stat-container>
         <sqm-scroll
@@ -94,15 +88,11 @@
           label-margin="xxx-small"
           padding="none"
         >
-          <sqm-text slot="label">
-            <h3>Share $50 with friends</h3>
-          </sqm-text>
-          <sqm-text slot="content">
-            <p>
-              They’ll get a $50 credit towards a new account and you’ll get up
-              to $1200
-            </p>
-          </sqm-text>
+          <h3 slot="label">Share $50 with friends</h3>
+          <p slot="content">
+            They’ll get a $50 credit towards a new account and you’ll get up to
+            $1200
+          </p>
         </sqm-titled-section>
         <sqm-referral-card vertical-alignment="start">
           <sqm-portal-container
@@ -113,9 +103,7 @@
             max-width="100%"
             padding="none"
           >
-            <sqm-text
-              >They’ll get a $50 credit towards a new account and you’ll get:
-            </sqm-text>
+            They’ll get a $50 credit towards a new account and you’ll get:
             <sqm-timeline icon="circle">
               <sqm-timeline-entry
                 reward="$50"
@@ -148,15 +136,13 @@
             max-width="100%"
             padding="none"
           >
-            <sqm-text>Choose how you want to share: </sqm-text>
-            <sqm-text>
-              <sub>Your unique referral link:</sub>
-              <sqm-share-link
-                tooltip-text="Copied to Clipboard"
-                tooltip-lifespan="1000"
-              >
-              </sqm-share-link>
-            </sqm-text>
+            Choose how you want to share:
+            <sub>Your unique referral link:</sub>
+            <sqm-share-link
+              tooltip-text="Copied to Clipboard"
+              tooltip-lifespan="1000"
+            >
+            </sqm-share-link>
             <sqm-portal-container
               gap="x-small"
               direction="column"
@@ -201,16 +187,12 @@
           padding="none"
         >
           <sqm-titled-section text-align="center" label-margin="xxx-small">
-            <sqm-text slot="label">
-              <h3>Earn more rewards</h3>
-            </sqm-text>
-            <sqm-text slot="content">
-              <p>
-                Get points while using our product. Use those points to redeem
-                rewards like one free month of Enterprise or two plane tickets
-                to anywhere in North America
-              </p>
-            </sqm-text>
+            <h3 slot="label">Earn more rewards</h3>
+            <p slot="content">
+              Get points while using our product. Use those points to redeem
+              rewards like one free month of Enterprise or two plane tickets to
+              anywhere in North America
+            </p>
           </sqm-titled-section>
           <sqm-card-feed gap="24" width="347">
             <sqm-task-card

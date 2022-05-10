@@ -79,30 +79,28 @@ export class HeroImage {
   @Prop() imageMobilePos: "top" | "bottom" = "top";
 
   /**
-   * @uiName Title Text
+   * @uiName Title
    */
   @Prop() header?: string;
 
   /**
-   * @uiName Description Text
+   * @uiName Description
    * @uiWidget textArea
    */
   @Prop() description?: string;
 
   /**
-   * @uiName CTA Button Text
+   * @uiName Button Text
    */
   @Prop() buttonText?: string;
 
   /**
-   * @uiName CTA Button Link
+   * @uiName Button Link
    */
   @Prop() buttonLink?: string;
 
   /**
-   * CTA Button Opens Link in New Tab
-   *
-   * @uiName Button New Tab
+   * @uiName Open Link in New Tab
    */
   @Prop() buttonNewTab?: boolean = false;
 

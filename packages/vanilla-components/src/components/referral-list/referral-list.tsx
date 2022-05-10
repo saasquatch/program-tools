@@ -42,7 +42,7 @@ export class ReferralList {
    */
   @Prop() noreferralsyet: string;
   /**
-   * Text color of the referred users name
+   * Text color of the referred user's name
    *
    * @uiName Referral Name Color
    * @uiWidget color
@@ -51,8 +51,6 @@ export class ReferralList {
    */
   @Prop() referralnamecolor: string;
   /**
-   * Text color of the referral status
-   *
    * @uiName Referral Text Color
    * @uiWidget color
    * @format color
@@ -60,21 +58,17 @@ export class ReferralList {
    */
   @Prop() referraltextcolor: string;
   /**
-   * Text shown when the referred users name is unknown
+   * Text shown when the referred user's name is unknown
    *
    * @uiName Unknown User Text
    * @default "Your Friend"
    */
   @Prop() unknownuser: string;
   /**
-   * Show or hide expired rewards
-   * 
-   * @uiName Show Expiry
+   * @uiName Show Expired Rewards
    */
   @Prop() showexpiry: boolean;
   /**
-   * Show the customer note for a referral
-   *
    * @uiName Show Customer Note
    */
   @Prop() shownotes: boolean;
@@ -87,9 +81,9 @@ export class ReferralList {
    */
   @Prop() redeemedvalue: string;
   /**
-   * Show or hide the referrer
+   * Show referral and reward information on who referred you.
    *
-   * @uiName Show Referrer
+   * @uiName Show Referred By
    * @uiGroup Referrer
    * @default ""
    */
@@ -111,7 +105,7 @@ export class ReferralList {
    */
   @Prop() referrervalue: string;
   /**
-   * Color of the successful reward icon and the text value
+   * Color of the successful reward icon and text in the rewards column.
    *
    * @uiName Reward Color
    * @uiGroup Converted Referrals
@@ -121,16 +115,14 @@ export class ReferralList {
    */
   @Prop() rewardcolor: string;
   /**
-   * Color of the customer note
-   *
-   * @uiName Reward Color
+   * @uiName Customer Note Color
    * @uiGroup Converted Referrals
    * @uiWidget color
    * @format color
    */
   @Prop() customernotecolor: string;
   /**
-   * Show value of the first earned reward inside the rewards column
+   * Show the value of the first earned reward inside the rewards column
    *
    * @uiName Use First Reward
    * @uiGroup Converted Referrals
@@ -154,7 +146,7 @@ export class ReferralList {
    */
   @Prop() valuecontent: string;
   /**
-   * Color of the pending icon and text
+   * Color of the pending reward icon and text in the rewards column.
    *
    * @uiName Pending Color
    * @uiGroup Pending Referrals
@@ -180,7 +172,7 @@ export class ReferralList {
    */
   @Prop() pendingvalue: string;
   /**
-   * Color of the expired icon and text
+   * Color of the expired reward icon and text in the rewards column.
    *
    * @uiName Expired Color
    * @uiGroup Expired Rewards
@@ -213,7 +205,7 @@ export class ReferralList {
    */
   @Prop() expiresvalue: string;
   /**
-   * Color of the cancelled icon and text
+   * Color of the cancelled icon and text in the rewards column.
    *
    * @uiName Cancelled Color
    * @uiGroup Cancelled Rewards
@@ -223,7 +215,7 @@ export class ReferralList {
    */
   @Prop() cancelledcolor: string;
   /**
-   * Cancelled text content shown in the user column
+   * Content shown in the referral column for a cancelled reward.
    *
    * @uiName Cancelled Content
    * @uiGroup Cancelled Rewards
@@ -231,7 +223,7 @@ export class ReferralList {
    */
   @Prop() cancelledcontent: string;
   /**
-   * Cancelled text content shown alongside the icon in the referral column
+   * Text shown alongside the icon in the referral column for a cancelled reward.
    *
    * @uiName Cancelled Value
    * @uiGroup Cancelled Rewards

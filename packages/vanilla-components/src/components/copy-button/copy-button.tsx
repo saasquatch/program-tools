@@ -22,47 +22,37 @@ export class CopyButton {
    */
   @Prop() ishidden: boolean;
   /**
-   * Text shown inside the copy button.
-   *
    * @uiName Button Text
    * @default "COPY CODE"
    */
   @Prop() text: string;
   /**
-   * Sets a maximum width on the copy button.
-   *
-   * @uiName Max Width
+   * @uiName Button Max Width
    * @default 170
    */
   @Prop() width: number;
   /**
-   * Background & border color of the copy button.
-   *
-   * @uiName Background Color
+   * @uiName Button Color
    * @uiWidget color
    * @format color
    * @default #35b21e
    */
   @Prop() backgroundcolor: string;
   /**
-   * Configure border radius with pixel amount
+   * Define the radius of the corners with a pixel amount.
    *
    * @uiName Border Radius
    * @default 4
    */
   @Prop() borderradius: number;
   /**
-   * Color of text inside the copy button.
-   *
-   * @uiName Text Color
+   * @uiName Button Text Color
    * @uiWidget color
    * @format color
    * @default #ffffff
    */
   @Prop() textcolor: string;
   /**
-   * Font size of the copy button text.
-   *
    * @uiName Font Size
    * @default 14
    */
@@ -82,7 +72,7 @@ export class CopyButton {
    */
   @Prop() copyfailure: string;
   /**
-   * rewardkey is used to get the fuel tank code for a user.
+   * The rewardKey of a fuel tank reward. This is used to get the fuel tank code for a user.
    *
    * @uiName Reward Key
    * @default "referredReward"
@@ -96,9 +86,7 @@ export class CopyButton {
    */
   @Prop() codefontsize: number;
   /**
-   * Text color of the fuel tank code.
-   *
-   * @uiName Code Font Color
+   * @uiName Fuel Tank Code Color
    * @uiWidget color
    * @format color
    * @default #000000
