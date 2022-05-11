@@ -15,22 +15,20 @@ export namespace Components {
     }
     interface SqhCopyButton {
         /**
-          * Background & border color of the copy button.
-          * @uiName Background Color
+          * @uiName Button Color
           * @uiWidget color
           * @format color
           * @default #35b21e
          */
         "backgroundcolor": string;
         /**
-          * Configure border radius with pixel amount
+          * Define the radius of the corners with a pixel amount.
           * @uiName Border Radius
           * @default 4
          */
         "borderradius": number;
         /**
-          * Text color of the fuel tank code.
-          * @uiName Code Font Color
+          * @uiName Fuel Tank Code Color
           * @uiWidget color
           * @format color
           * @default #000000
@@ -55,7 +53,6 @@ export namespace Components {
          */
         "copysuccess": string;
         /**
-          * Font size of the copy button text.
           * @uiName Font Size
           * @default 14
          */
@@ -67,35 +64,31 @@ export namespace Components {
          */
         "ishidden": boolean;
         /**
-          * rewardkey is used to get the fuel tank code for a user.
+          * The rewardKey of a fuel tank reward. This is used to get the fuel tank code for a user.
           * @uiName Reward Key
           * @default "referredReward"
          */
         "rewardkey": string;
         /**
-          * Text shown inside the copy button.
           * @uiName Button Text
           * @default "COPY CODE"
          */
         "text": string;
         /**
-          * Color of text inside the copy button.
-          * @uiName Text Color
+          * @uiName Button Text Color
           * @uiWidget color
           * @format color
           * @default #ffffff
          */
         "textcolor": string;
         /**
-          * Sets a maximum width on the copy button.
-          * @uiName Max Width
+          * @uiName Button Max Width
           * @default 170
          */
         "width": number;
     }
     interface SqhCopyLinkButton {
         /**
-          * Background & border color of the copy button.
           * @uiName Button Color
           * @uiWidget color
           * @format color
@@ -120,14 +113,12 @@ export namespace Components {
          */
         "ishidden": boolean;
         /**
-          * Text shown inside the copy button.
           * @uiName Button Text
           * @default "Copy"
          */
         "text": string;
         /**
-          * Color of text inside the copy button.
-          * @uiName Text Color
+          * @uiName Button Text Color
           * @uiWidget color
           * @format color
           * @default "#FFFFFF"
@@ -152,34 +143,32 @@ export namespace Components {
          */
         "fontfamily": string;
         /**
-          * Configure the color of the loading state.
+          * The background colour of the component while in the loading state.
           * @uiName Loading Color
           * @uiWidget color
           * @format color
          */
         "loadingcolor": string;
         /**
-          * Maximum width on the container.
-          * @uiName Max Width
+          * @uiName Container Max Width
          */
         "maxwidth": string;
         /**
-          * Show and hide the powered by SaaSquatch link. Can only be disabled on Pro plans.
+          * Show the Powered by SaaSquatch link. This can only be disabled on Pro plans.
           * @uiName Show Powered By
          */
         "poweredby": boolean;
     }
     interface SqhImageComponent {
         /**
-          * Configure alignment of the image
-          * @uiName Alignment
+          * @uiName Horizontal Alignment
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
           * @default "center"
          */
         "alignment": string;
         /**
-          * Configure border radius with pixel amount
+          * Define the radius of the corners with a pixel amount.
           * @uiName Border Radius
          */
         "borderradius": number;
@@ -196,14 +185,13 @@ export namespace Components {
          */
         "ishidden": boolean;
         /**
-          * Image link
-          * @uiName URL
+          * @uiName Image URL
           * @uiWidget imageUpload
           * @format url
          */
         "url": string;
         /**
-          * Image width
+          * Define the width of the image with a pixel amount.
           * @uiName Width
          */
         "width": number;
@@ -216,18 +204,17 @@ export namespace Components {
         "ishidden": boolean;
         /**
           * Color of the stat value and description
-          * @uiName Stat Color
+          * @uiName Color
           * @uiWidget color
           * @format color
          */
         "statcolor": string;
         /**
-          * Description of the stat
-          * @uiName Stat Description
+          * @uiName Description
          */
         "statdescription": string;
         /**
-          * Used to query the stats for a user
+          * Determines what type of stat is displayed. Manual paths are also supported.
           * @uiName Stat Type
           * @uiWidget statTypeSelector
           * @required 
@@ -236,7 +223,8 @@ export namespace Components {
         "stattype": string;
         /**
           * Value of the stat
-          * @uiName Stat Value
+          * @uiName Value
+          * @undocumented
          */
         "statvalue": string;
     }
@@ -271,7 +259,7 @@ export namespace Components {
     }
     interface SqhReferralList {
         /**
-          * Color of the cancelled icon and text
+          * Color of the cancelled icon and text in the rewards column.
           * @uiName Cancelled Color
           * @uiGroup Cancelled Rewards
           * @uiWidget color
@@ -280,14 +268,14 @@ export namespace Components {
          */
         "cancelledcolor": string;
         /**
-          * Cancelled text content shown in the user column
+          * Content shown in the referral column for a cancelled reward.
           * @uiName Cancelled Content
           * @uiGroup Cancelled Rewards
           * @default "Signed up, referred {date}"
          */
         "cancelledcontent": string;
         /**
-          * Cancelled text content shown alongside the icon in the referral column
+          * Text shown alongside the icon in the referral column for a cancelled reward.
           * @uiName Cancelled Value
           * @uiGroup Cancelled Rewards
           * @default "Cancelled Reward"
@@ -301,15 +289,14 @@ export namespace Components {
          */
         "convertedcontent": string;
         /**
-          * Color of the customer note
-          * @uiName Reward Color
+          * @uiName Customer Note Color
           * @uiGroup Converted Referrals
           * @uiWidget color
           * @format color
          */
         "customernotecolor": string;
         /**
-          * Color of the expired icon and text
+          * Color of the expired reward icon and text in the rewards column.
           * @uiName Expired Color
           * @uiGroup Expired Rewards
           * @uiWidget color
@@ -366,7 +353,7 @@ export namespace Components {
          */
         "paginatemore": string;
         /**
-          * Color of the pending icon and text
+          * Color of the pending reward icon and text in the rewards column.
           * @uiName Pending Color
           * @uiGroup Pending Referrals
           * @uiWidget color
@@ -396,7 +383,7 @@ export namespace Components {
          */
         "redeemedvalue": string;
         /**
-          * Text color of the referred users name
+          * Text color of the referred user's name
           * @uiName Referral Name Color
           * @uiWidget color
           * @format color
@@ -404,7 +391,6 @@ export namespace Components {
          */
         "referralnamecolor": string;
         /**
-          * Text color of the referral status
           * @uiName Referral Text Color
           * @uiWidget color
           * @format color
@@ -426,7 +412,7 @@ export namespace Components {
          */
         "referrervalue": string;
         /**
-          * Color of the successful reward icon and the text value
+          * Color of the successful reward icon and text in the rewards column.
           * @uiName Reward Color
           * @uiGroup Converted Referrals
           * @uiWidget color
@@ -435,30 +421,28 @@ export namespace Components {
          */
         "rewardcolor": string;
         /**
-          * Show or hide expired rewards
-          * @uiName Show Expiry
+          * @uiName Show Expired Rewards
          */
         "showexpiry": boolean;
         /**
-          * Show the customer note for a referral
           * @uiName Show Customer Note
          */
         "shownotes": boolean;
         /**
-          * Show or hide the referrer
-          * @uiName Show Referrer
+          * Show referral and reward information on who referred you.
+          * @uiName Show Referred By
           * @uiGroup Referrer
           * @default ""
          */
         "showreferrer": boolean;
         /**
-          * Text shown when the referred users name is unknown
+          * Text shown when the referred user's name is unknown
           * @uiName Unknown User Text
           * @default "Your Friend"
          */
         "unknownuser": string;
         /**
-          * Show value of the first earned reward inside the rewards column
+          * Show the value of the first earned reward inside the rewards column
           * @uiName Use First Reward
           * @uiGroup Converted Referrals
          */
@@ -563,7 +547,7 @@ export namespace Components {
          */
         "emailbackgroundcolor": string;
         /**
-          * CSS Class name used to style the Email button
+          * CSS class name for additional styling.
           * @uiName Email Class Name
           * @uiGroup Email
          */
@@ -627,7 +611,7 @@ export namespace Components {
          */
         "facebookbackgroundcolor": string;
         /**
-          * CSS Class name used to style the facebook button
+          * CSS class name for additional styling.
           * @uiName Facebook Class Name
           * @uiGroup Facebook
          */
@@ -696,7 +680,7 @@ export namespace Components {
          */
         "linebackgroundcolor": string;
         /**
-          * CSS Class name used to style the Line button
+          * CSS class name for additional styling.
           * @uiName Line Class Name
           * @uiGroup Line Messenger
          */
@@ -760,7 +744,7 @@ export namespace Components {
          */
         "linkedinbackgroundcolor": string;
         /**
-          * CSS Class name used to style the Linkedin button
+          * CSS class name for additional styling.
           * @uiName Linkedin Class Name
           * @uiGroup LinkedIn
          */
@@ -824,7 +808,7 @@ export namespace Components {
          */
         "messengerbackgroundcolor": string;
         /**
-          * CSS Class name used to style the Messenger button
+          * CSS class name for additional styling.
           * @uiName Messenger Class Name
           * @uiGroup Messenger
          */
@@ -888,7 +872,7 @@ export namespace Components {
          */
         "pinterestbackgroundcolor": string;
         /**
-          * CSS Class name used to style the Pinterest button
+          * CSS class name for additional styling.
           * @uiName Pinterest Class Name
           * @uiGroup Pinterest
          */
@@ -952,7 +936,7 @@ export namespace Components {
          */
         "smsbackgroundcolor": string;
         /**
-          * CSS Class name used to style the SMS button
+          * CSS class name for additional styling.
           * @uiName SMS Class Name
           * @uiGroup SMS
          */
@@ -1016,7 +1000,7 @@ export namespace Components {
          */
         "twitterbackgroundcolor": string;
         /**
-          * CSS Class name used to style the twitter button
+          * CSS class name for additional styling.
           * @uiName Twitter Class Name
           * @uiGroup Twitter
          */
@@ -1080,7 +1064,7 @@ export namespace Components {
          */
         "whatsappbackgroundcolor": string;
         /**
-          * CSS Class name used to style the WhatsApp button
+          * CSS class name for additional styling.
           * @uiName WhatsApp Class Name
           * @uiGroup WhatsApp
          */
@@ -1367,22 +1351,20 @@ declare namespace LocalJSX {
     }
     interface SqhCopyButton {
         /**
-          * Background & border color of the copy button.
-          * @uiName Background Color
+          * @uiName Button Color
           * @uiWidget color
           * @format color
           * @default #35b21e
          */
         "backgroundcolor"?: string;
         /**
-          * Configure border radius with pixel amount
+          * Define the radius of the corners with a pixel amount.
           * @uiName Border Radius
           * @default 4
          */
         "borderradius"?: number;
         /**
-          * Text color of the fuel tank code.
-          * @uiName Code Font Color
+          * @uiName Fuel Tank Code Color
           * @uiWidget color
           * @format color
           * @default #000000
@@ -1407,7 +1389,6 @@ declare namespace LocalJSX {
          */
         "copysuccess"?: string;
         /**
-          * Font size of the copy button text.
           * @uiName Font Size
           * @default 14
          */
@@ -1419,35 +1400,31 @@ declare namespace LocalJSX {
          */
         "ishidden"?: boolean;
         /**
-          * rewardkey is used to get the fuel tank code for a user.
+          * The rewardKey of a fuel tank reward. This is used to get the fuel tank code for a user.
           * @uiName Reward Key
           * @default "referredReward"
          */
         "rewardkey"?: string;
         /**
-          * Text shown inside the copy button.
           * @uiName Button Text
           * @default "COPY CODE"
          */
         "text"?: string;
         /**
-          * Color of text inside the copy button.
-          * @uiName Text Color
+          * @uiName Button Text Color
           * @uiWidget color
           * @format color
           * @default #ffffff
          */
         "textcolor"?: string;
         /**
-          * Sets a maximum width on the copy button.
-          * @uiName Max Width
+          * @uiName Button Max Width
           * @default 170
          */
         "width"?: number;
     }
     interface SqhCopyLinkButton {
         /**
-          * Background & border color of the copy button.
           * @uiName Button Color
           * @uiWidget color
           * @format color
@@ -1472,14 +1449,12 @@ declare namespace LocalJSX {
          */
         "ishidden"?: boolean;
         /**
-          * Text shown inside the copy button.
           * @uiName Button Text
           * @default "Copy"
          */
         "text"?: string;
         /**
-          * Color of text inside the copy button.
-          * @uiName Text Color
+          * @uiName Button Text Color
           * @uiWidget color
           * @format color
           * @default "#FFFFFF"
@@ -1504,34 +1479,32 @@ declare namespace LocalJSX {
          */
         "fontfamily"?: string;
         /**
-          * Configure the color of the loading state.
+          * The background colour of the component while in the loading state.
           * @uiName Loading Color
           * @uiWidget color
           * @format color
          */
         "loadingcolor"?: string;
         /**
-          * Maximum width on the container.
-          * @uiName Max Width
+          * @uiName Container Max Width
          */
         "maxwidth"?: string;
         /**
-          * Show and hide the powered by SaaSquatch link. Can only be disabled on Pro plans.
+          * Show the Powered by SaaSquatch link. This can only be disabled on Pro plans.
           * @uiName Show Powered By
          */
         "poweredby"?: boolean;
     }
     interface SqhImageComponent {
         /**
-          * Configure alignment of the image
-          * @uiName Alignment
+          * @uiName Horizontal Alignment
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
           * @default "center"
          */
         "alignment"?: string;
         /**
-          * Configure border radius with pixel amount
+          * Define the radius of the corners with a pixel amount.
           * @uiName Border Radius
          */
         "borderradius"?: number;
@@ -1548,14 +1521,13 @@ declare namespace LocalJSX {
          */
         "ishidden"?: boolean;
         /**
-          * Image link
-          * @uiName URL
+          * @uiName Image URL
           * @uiWidget imageUpload
           * @format url
          */
         "url"?: string;
         /**
-          * Image width
+          * Define the width of the image with a pixel amount.
           * @uiName Width
          */
         "width"?: number;
@@ -1570,18 +1542,17 @@ declare namespace LocalJSX {
         "onStatTypeUpdated"?: (event: CustomEvent<any>) => void;
         /**
           * Color of the stat value and description
-          * @uiName Stat Color
+          * @uiName Color
           * @uiWidget color
           * @format color
          */
         "statcolor"?: string;
         /**
-          * Description of the stat
-          * @uiName Stat Description
+          * @uiName Description
          */
         "statdescription"?: string;
         /**
-          * Used to query the stats for a user
+          * Determines what type of stat is displayed. Manual paths are also supported.
           * @uiName Stat Type
           * @uiWidget statTypeSelector
           * @required 
@@ -1590,7 +1561,8 @@ declare namespace LocalJSX {
         "stattype"?: string;
         /**
           * Value of the stat
-          * @uiName Stat Value
+          * @uiName Value
+          * @undocumented
          */
         "statvalue"?: string;
     }
@@ -1625,7 +1597,7 @@ declare namespace LocalJSX {
     }
     interface SqhReferralList {
         /**
-          * Color of the cancelled icon and text
+          * Color of the cancelled icon and text in the rewards column.
           * @uiName Cancelled Color
           * @uiGroup Cancelled Rewards
           * @uiWidget color
@@ -1634,14 +1606,14 @@ declare namespace LocalJSX {
          */
         "cancelledcolor"?: string;
         /**
-          * Cancelled text content shown in the user column
+          * Content shown in the referral column for a cancelled reward.
           * @uiName Cancelled Content
           * @uiGroup Cancelled Rewards
           * @default "Signed up, referred {date}"
          */
         "cancelledcontent"?: string;
         /**
-          * Cancelled text content shown alongside the icon in the referral column
+          * Text shown alongside the icon in the referral column for a cancelled reward.
           * @uiName Cancelled Value
           * @uiGroup Cancelled Rewards
           * @default "Cancelled Reward"
@@ -1655,15 +1627,14 @@ declare namespace LocalJSX {
          */
         "convertedcontent"?: string;
         /**
-          * Color of the customer note
-          * @uiName Reward Color
+          * @uiName Customer Note Color
           * @uiGroup Converted Referrals
           * @uiWidget color
           * @format color
          */
         "customernotecolor"?: string;
         /**
-          * Color of the expired icon and text
+          * Color of the expired reward icon and text in the rewards column.
           * @uiName Expired Color
           * @uiGroup Expired Rewards
           * @uiWidget color
@@ -1720,7 +1691,7 @@ declare namespace LocalJSX {
          */
         "paginatemore"?: string;
         /**
-          * Color of the pending icon and text
+          * Color of the pending reward icon and text in the rewards column.
           * @uiName Pending Color
           * @uiGroup Pending Referrals
           * @uiWidget color
@@ -1750,7 +1721,7 @@ declare namespace LocalJSX {
          */
         "redeemedvalue"?: string;
         /**
-          * Text color of the referred users name
+          * Text color of the referred user's name
           * @uiName Referral Name Color
           * @uiWidget color
           * @format color
@@ -1758,7 +1729,6 @@ declare namespace LocalJSX {
          */
         "referralnamecolor"?: string;
         /**
-          * Text color of the referral status
           * @uiName Referral Text Color
           * @uiWidget color
           * @format color
@@ -1780,7 +1750,7 @@ declare namespace LocalJSX {
          */
         "referrervalue"?: string;
         /**
-          * Color of the successful reward icon and the text value
+          * Color of the successful reward icon and text in the rewards column.
           * @uiName Reward Color
           * @uiGroup Converted Referrals
           * @uiWidget color
@@ -1789,30 +1759,28 @@ declare namespace LocalJSX {
          */
         "rewardcolor"?: string;
         /**
-          * Show or hide expired rewards
-          * @uiName Show Expiry
+          * @uiName Show Expired Rewards
          */
         "showexpiry"?: boolean;
         /**
-          * Show the customer note for a referral
           * @uiName Show Customer Note
          */
         "shownotes"?: boolean;
         /**
-          * Show or hide the referrer
-          * @uiName Show Referrer
+          * Show referral and reward information on who referred you.
+          * @uiName Show Referred By
           * @uiGroup Referrer
           * @default ""
          */
         "showreferrer"?: boolean;
         /**
-          * Text shown when the referred users name is unknown
+          * Text shown when the referred user's name is unknown
           * @uiName Unknown User Text
           * @default "Your Friend"
          */
         "unknownuser"?: string;
         /**
-          * Show value of the first earned reward inside the rewards column
+          * Show the value of the first earned reward inside the rewards column
           * @uiName Use First Reward
           * @uiGroup Converted Referrals
          */
@@ -1917,7 +1885,7 @@ declare namespace LocalJSX {
          */
         "emailbackgroundcolor"?: string;
         /**
-          * CSS Class name used to style the Email button
+          * CSS class name for additional styling.
           * @uiName Email Class Name
           * @uiGroup Email
          */
@@ -1981,7 +1949,7 @@ declare namespace LocalJSX {
          */
         "facebookbackgroundcolor"?: string;
         /**
-          * CSS Class name used to style the facebook button
+          * CSS class name for additional styling.
           * @uiName Facebook Class Name
           * @uiGroup Facebook
          */
@@ -2050,7 +2018,7 @@ declare namespace LocalJSX {
          */
         "linebackgroundcolor"?: string;
         /**
-          * CSS Class name used to style the Line button
+          * CSS class name for additional styling.
           * @uiName Line Class Name
           * @uiGroup Line Messenger
          */
@@ -2114,7 +2082,7 @@ declare namespace LocalJSX {
          */
         "linkedinbackgroundcolor"?: string;
         /**
-          * CSS Class name used to style the Linkedin button
+          * CSS class name for additional styling.
           * @uiName Linkedin Class Name
           * @uiGroup LinkedIn
          */
@@ -2178,7 +2146,7 @@ declare namespace LocalJSX {
          */
         "messengerbackgroundcolor"?: string;
         /**
-          * CSS Class name used to style the Messenger button
+          * CSS class name for additional styling.
           * @uiName Messenger Class Name
           * @uiGroup Messenger
          */
@@ -2242,7 +2210,7 @@ declare namespace LocalJSX {
          */
         "pinterestbackgroundcolor"?: string;
         /**
-          * CSS Class name used to style the Pinterest button
+          * CSS class name for additional styling.
           * @uiName Pinterest Class Name
           * @uiGroup Pinterest
          */
@@ -2306,7 +2274,7 @@ declare namespace LocalJSX {
          */
         "smsbackgroundcolor"?: string;
         /**
-          * CSS Class name used to style the SMS button
+          * CSS class name for additional styling.
           * @uiName SMS Class Name
           * @uiGroup SMS
          */
@@ -2370,7 +2338,7 @@ declare namespace LocalJSX {
          */
         "twitterbackgroundcolor"?: string;
         /**
-          * CSS Class name used to style the twitter button
+          * CSS class name for additional styling.
           * @uiName Twitter Class Name
           * @uiGroup Twitter
          */
@@ -2434,7 +2402,7 @@ declare namespace LocalJSX {
          */
         "whatsappbackgroundcolor"?: string;
         /**
-          * CSS Class name used to style the WhatsApp button
+          * CSS class name for additional styling.
           * @uiName WhatsApp Class Name
           * @uiGroup WhatsApp
          */

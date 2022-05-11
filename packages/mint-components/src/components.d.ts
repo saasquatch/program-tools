@@ -96,7 +96,7 @@ export namespace Components {
          */
         "brandColor": string;
         /**
-          * The brand font that you want to use
+          * A font from the Google Fonts library used throughout the widget. This value is case sensitive.
           * @uiName Brand Font
           * @default "Nunito Sans"
          */
@@ -295,25 +295,24 @@ export namespace Components {
          */
         "backgroundColor"?: string;
         /**
-          * @uiName CTA Button Link
+          * @uiName Button Link
          */
         "buttonLink"?: string;
         /**
-          * CTA Button Opens Link in New Tab
-          * @uiName Button New Tab
+          * @uiName Open Link in New Tab
          */
         "buttonNewTab"?: boolean;
         /**
-          * @uiName CTA Button Text
+          * @uiName Button Text
          */
         "buttonText"?: string;
         /**
-          * @uiName Description Text
+          * @uiName Description
           * @uiWidget textArea
          */
         "description"?: string;
         /**
-          * @uiName Title Text
+          * @uiName Title
          */
         "header"?: string;
         /**
@@ -1155,12 +1154,118 @@ export namespace Components {
     }
     interface SqmProgramMenu {
     }
+    interface SqmQa {
+        /**
+          * Description here
+          * @uiName Boolean Switch
+         */
+        "booleanSwitch"?: boolean;
+        /**
+          * Description here
+          * @uiName Color
+          * @uiWidget color
+          * @format color
+         */
+        "color"?: string;
+        /**
+          * Description here
+          * @uiName Date Interval
+          * @uiWidget dateInterval
+          * @format date-interval
+         */
+        "dateInterval"?: string;
+        /**
+          * Description here
+          * @uiName Image Upload
+          * @uiWidget imageUpload
+          * @format url
+         */
+        "imageUpload"?: string;
+        /**
+          * Description here
+          * @uiName Number Max 7
+          * @maximum 7
+         */
+        "max"?: number;
+        /**
+          * Description here
+          * @uiName String Max Length 10
+          * @maxLength 10
+         */
+        "maxLength"?: string;
+        /**
+          * Description here
+          * @uiName Number Min 7
+          * @minimum 7
+         */
+        "min"?: number;
+        /**
+          * Description here
+          * @uiName String Min Length 10
+          * @minLength 10
+         */
+        "minLength"?: string;
+        /**
+          * Description here
+          * @uiName Number Enum Select
+          * @uiEnum [1,2,3]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "numberEnumSelect"?: number;
+        /**
+          * Description here
+          * @uiName Number Input
+         */
+        "numberInput"?: number;
+        /**
+          * Description here
+          * @uiName Number Required
+          * @required
+         */
+        "numberRequired"?: number;
+        /**
+          * Description here
+          * @uiName Program Selector
+          * @uiWidget programSelector
+         */
+        "programSelector"?: string;
+        /**
+          * Description here
+          * @uiName Stat Selector
+          * @uiWidget statTypeSelectWidget
+         */
+        "statSelector"?: string;
+        /**
+          * Description here
+          * @uiName String Enum Select
+          * @uiEnum ["option1","option2","option3"]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "stringEnumSelect"?: string;
+        /**
+          * Description here
+          * @uiName String Required
+          * @required
+         */
+        "stringRequired"?: string;
+        /**
+          * Description here
+          * @uiName Text Area Input
+          * @uiWidget textArea
+         */
+        "textAreaInput"?: string;
+        /**
+          * Description here
+          * @uiName Text Input
+         */
+        "textInput"?: string;
+    }
     interface SqmReferralCard {
         /**
           * @uiName Vertical Aligment
           * @uiType string
           * @uiEnum ["start", "center", "end"]
-          * @uiEnumNames ["Start", "Center", "End"]
+          * @uiEnumNames ["Top", "Center", "Bottom"]
          */
         "verticalAlignment": "start" | "center" | "end";
     }
@@ -1283,10 +1388,12 @@ export namespace Components {
          */
         "columnTitle": string;
         /**
+          * Shown in the dropdown details when a reward has an expiry date.
           * @uiName Reward Expiring Text
          */
         "expiringText": string;
         /**
+          * Shown in the dropdown details when a reward has an associated fuel tank code.
           * @uiName Fuel Tank Code Text
          */
         "fuelTankText": string;
@@ -1295,6 +1402,7 @@ export namespace Components {
          */
         "hideDetails": boolean;
         /**
+          * Shown in the dropdown details when a reward is pending.
           * @uiName Reward Pending Text
          */
         "pendingForText": string;
@@ -1302,15 +1410,18 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
         /**
+          * Shown in the dropdown details when a reward has been received.’
           * @uiName Reward Received Text
          */
         "rewardReceivedText": string;
         /**
+          * Additional status text shown in the details drop down.
           * @uiName Reward Status Long Text
           * @uiWidget textArea
          */
         "statusLongText": string;
         /**
+          * Text shown in the reward status badge.
           * @uiName Reward Status Text
           * @uiWidget textArea
          */
@@ -1873,7 +1984,7 @@ export namespace Components {
          */
         "tooltiplifespan": number;
         /**
-          * This is shown after someone has successfully copied the code to the clipboard.
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
           * @uiName Tooltip Text
          */
         "tooltiptext": string;
@@ -1896,7 +2007,7 @@ export namespace Components {
          */
         "tooltiplifespan": number;
         /**
-          * This is shown after someone has successfully copied the link to the clipboard.
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
           * @uiName Tooltip Text
          */
         "tooltiptext": string;
@@ -1944,17 +2055,17 @@ export namespace Components {
     }
     interface SqmTaskCard {
         /**
-          * @uiName CTA Button Link
-          * @uiGroup CTA Button
+          * @uiName Button Link
+          * @uiGroup Button
          */
         "buttonLink": string;
         /**
-          * @uiName CTA Button Text
-          * @uiGroup CTA Button
+          * @uiName Button Text
+          * @uiGroup Button
          */
         "buttonText": string;
         /**
-          * @uiName Title Text
+          * @uiName Title
           * @uiGroup Task
          */
         "cardTitle": string;
@@ -1971,12 +2082,12 @@ export namespace Components {
          */
         "demoData"?: DemoData<TaskCardViewProps | BigStatViewProps>;
         /**
-          * @uiName Description Text
+          * @uiName Description
           * @uiGroup Task
          */
         "description": string;
         /**
-          * Timeframe that the task card will be shown
+          * Task cards are hidden from users outside of the duration. They are always displayed if no duration is configured.
           * @uiName Display Duration
           * @uiWidget dateRange
           * @uiWidgetOptions {"allowPastDates":true, "months": 1}
@@ -1990,12 +2101,13 @@ export namespace Components {
          */
         "endedMessage": string;
         /**
-          * Optionally send an event to SaaSquatch when a user clicks the CTA. This field configured what key of the event sent is.
+          * Optionally send an event to SaaSquatch when a user clicks the button. Enter your event key into this field.
           * @uiName Task Card Button Event Key
-          * @uiGroup CTA Button
+          * @uiGroup Button
          */
         "eventKey"?: string;
         /**
+          * Displayed when a user views a task card after the reward duration interval.
           * @uiName Expiry Date Message
           * @uiGroup Task
          */
@@ -2013,9 +2125,9 @@ export namespace Components {
          */
         "goal": number;
         /**
-          * CTA Button Link Opens in New Tab
+          * Button Link Opens in New Tab
           * @uiName Open In New Tab
-          * @uiGroup CTA Button
+          * @uiGroup Button
          */
         "openNewTab": boolean;
         /**
@@ -2026,6 +2138,7 @@ export namespace Components {
          */
         "programId"?: string;
         /**
+          * The unit displayed to the right of steps and progress numbers on the progress bar. Ex: $ for dollars
           * @uiName Progress Bar Unit
           * @uiGroup Goal
          */
@@ -2041,6 +2154,7 @@ export namespace Components {
          */
         "rewardAmount": string;
         /**
+          * Task cards are disabled to users outside of the duration. They are not disabled if no duration is configured.
           * @uiName Reward Duration
           * @uiWidget dateRange
           * @uiWidgetOptions {"allowPastDates":true, "months": 1}
@@ -2146,7 +2260,7 @@ export namespace Components {
          */
         "padding": Spacing;
         /**
-          * @uiName Text Align
+          * @uiName Text Alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
@@ -2410,6 +2524,12 @@ declare global {
     var HTMLSqmProgramMenuElement: {
         prototype: HTMLSqmProgramMenuElement;
         new (): HTMLSqmProgramMenuElement;
+    };
+    interface HTMLSqmQaElement extends Components.SqmQa, HTMLStencilElement {
+    }
+    var HTMLSqmQaElement: {
+        prototype: HTMLSqmQaElement;
+        new (): HTMLSqmQaElement;
     };
     interface HTMLSqmReferralCardElement extends Components.SqmReferralCard, HTMLStencilElement {
     }
@@ -2716,6 +2836,7 @@ declare global {
         "sqm-program-explainer": HTMLSqmProgramExplainerElement;
         "sqm-program-explainer-step": HTMLSqmProgramExplainerStepElement;
         "sqm-program-menu": HTMLSqmProgramMenuElement;
+        "sqm-qa": HTMLSqmQaElement;
         "sqm-referral-card": HTMLSqmReferralCardElement;
         "sqm-referral-iframe": HTMLSqmReferralIframeElement;
         "sqm-referral-table": HTMLSqmReferralTableElement;
@@ -2821,7 +2942,7 @@ declare namespace LocalJSX {
          */
         "brandColor"?: string;
         /**
-          * The brand font that you want to use
+          * A font from the Google Fonts library used throughout the widget. This value is case sensitive.
           * @uiName Brand Font
           * @default "Nunito Sans"
          */
@@ -3020,25 +3141,24 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * @uiName CTA Button Link
+          * @uiName Button Link
          */
         "buttonLink"?: string;
         /**
-          * CTA Button Opens Link in New Tab
-          * @uiName Button New Tab
+          * @uiName Open Link in New Tab
          */
         "buttonNewTab"?: boolean;
         /**
-          * @uiName CTA Button Text
+          * @uiName Button Text
          */
         "buttonText"?: string;
         /**
-          * @uiName Description Text
+          * @uiName Description
           * @uiWidget textArea
          */
         "description"?: string;
         /**
-          * @uiName Title Text
+          * @uiName Title
          */
         "header"?: string;
         /**
@@ -3880,12 +4000,118 @@ declare namespace LocalJSX {
     }
     interface SqmProgramMenu {
     }
+    interface SqmQa {
+        /**
+          * Description here
+          * @uiName Boolean Switch
+         */
+        "booleanSwitch"?: boolean;
+        /**
+          * Description here
+          * @uiName Color
+          * @uiWidget color
+          * @format color
+         */
+        "color"?: string;
+        /**
+          * Description here
+          * @uiName Date Interval
+          * @uiWidget dateInterval
+          * @format date-interval
+         */
+        "dateInterval"?: string;
+        /**
+          * Description here
+          * @uiName Image Upload
+          * @uiWidget imageUpload
+          * @format url
+         */
+        "imageUpload"?: string;
+        /**
+          * Description here
+          * @uiName Number Max 7
+          * @maximum 7
+         */
+        "max"?: number;
+        /**
+          * Description here
+          * @uiName String Max Length 10
+          * @maxLength 10
+         */
+        "maxLength"?: string;
+        /**
+          * Description here
+          * @uiName Number Min 7
+          * @minimum 7
+         */
+        "min"?: number;
+        /**
+          * Description here
+          * @uiName String Min Length 10
+          * @minLength 10
+         */
+        "minLength"?: string;
+        /**
+          * Description here
+          * @uiName Number Enum Select
+          * @uiEnum [1,2,3]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "numberEnumSelect"?: number;
+        /**
+          * Description here
+          * @uiName Number Input
+         */
+        "numberInput"?: number;
+        /**
+          * Description here
+          * @uiName Number Required
+          * @required
+         */
+        "numberRequired"?: number;
+        /**
+          * Description here
+          * @uiName Program Selector
+          * @uiWidget programSelector
+         */
+        "programSelector"?: string;
+        /**
+          * Description here
+          * @uiName Stat Selector
+          * @uiWidget statTypeSelectWidget
+         */
+        "statSelector"?: string;
+        /**
+          * Description here
+          * @uiName String Enum Select
+          * @uiEnum ["option1","option2","option3"]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "stringEnumSelect"?: string;
+        /**
+          * Description here
+          * @uiName String Required
+          * @required
+         */
+        "stringRequired"?: string;
+        /**
+          * Description here
+          * @uiName Text Area Input
+          * @uiWidget textArea
+         */
+        "textAreaInput"?: string;
+        /**
+          * Description here
+          * @uiName Text Input
+         */
+        "textInput"?: string;
+    }
     interface SqmReferralCard {
         /**
           * @uiName Vertical Aligment
           * @uiType string
           * @uiEnum ["start", "center", "end"]
-          * @uiEnumNames ["Start", "Center", "End"]
+          * @uiEnumNames ["Top", "Center", "Bottom"]
          */
         "verticalAlignment"?: "start" | "center" | "end";
     }
@@ -4003,10 +4229,12 @@ declare namespace LocalJSX {
          */
         "columnTitle"?: string;
         /**
+          * Shown in the dropdown details when a reward has an expiry date.
           * @uiName Reward Expiring Text
          */
         "expiringText"?: string;
         /**
+          * Shown in the dropdown details when a reward has an associated fuel tank code.
           * @uiName Fuel Tank Code Text
          */
         "fuelTankText"?: string;
@@ -4015,19 +4243,23 @@ declare namespace LocalJSX {
          */
         "hideDetails"?: boolean;
         /**
+          * Shown in the dropdown details when a reward is pending.
           * @uiName Reward Pending Text
          */
         "pendingForText"?: string;
         /**
+          * Shown in the dropdown details when a reward has been received.’
           * @uiName Reward Received Text
          */
         "rewardReceivedText"?: string;
         /**
+          * Additional status text shown in the details drop down.
           * @uiName Reward Status Long Text
           * @uiWidget textArea
          */
         "statusLongText"?: string;
         /**
+          * Text shown in the reward status badge.
           * @uiName Reward Status Text
           * @uiWidget textArea
          */
@@ -4574,7 +4806,7 @@ declare namespace LocalJSX {
          */
         "tooltiplifespan"?: number;
         /**
-          * This is shown after someone has successfully copied the code to the clipboard.
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
           * @uiName Tooltip Text
          */
         "tooltiptext"?: string;
@@ -4597,7 +4829,7 @@ declare namespace LocalJSX {
          */
         "tooltiplifespan"?: number;
         /**
-          * This is shown after someone has successfully copied the link to the clipboard.
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
           * @uiName Tooltip Text
          */
         "tooltiptext"?: string;
@@ -4645,17 +4877,17 @@ declare namespace LocalJSX {
     }
     interface SqmTaskCard {
         /**
-          * @uiName CTA Button Link
-          * @uiGroup CTA Button
+          * @uiName Button Link
+          * @uiGroup Button
          */
         "buttonLink"?: string;
         /**
-          * @uiName CTA Button Text
-          * @uiGroup CTA Button
+          * @uiName Button Text
+          * @uiGroup Button
          */
         "buttonText"?: string;
         /**
-          * @uiName Title Text
+          * @uiName Title
           * @uiGroup Task
          */
         "cardTitle"?: string;
@@ -4672,12 +4904,12 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<TaskCardViewProps | BigStatViewProps>;
         /**
-          * @uiName Description Text
+          * @uiName Description
           * @uiGroup Task
          */
         "description"?: string;
         /**
-          * Timeframe that the task card will be shown
+          * Task cards are hidden from users outside of the duration. They are always displayed if no duration is configured.
           * @uiName Display Duration
           * @uiWidget dateRange
           * @uiWidgetOptions {"allowPastDates":true, "months": 1}
@@ -4691,12 +4923,13 @@ declare namespace LocalJSX {
          */
         "endedMessage"?: string;
         /**
-          * Optionally send an event to SaaSquatch when a user clicks the CTA. This field configured what key of the event sent is.
+          * Optionally send an event to SaaSquatch when a user clicks the button. Enter your event key into this field.
           * @uiName Task Card Button Event Key
-          * @uiGroup CTA Button
+          * @uiGroup Button
          */
         "eventKey"?: string;
         /**
+          * Displayed when a user views a task card after the reward duration interval.
           * @uiName Expiry Date Message
           * @uiGroup Task
          */
@@ -4714,9 +4947,9 @@ declare namespace LocalJSX {
          */
         "goal"?: number;
         /**
-          * CTA Button Link Opens in New Tab
+          * Button Link Opens in New Tab
           * @uiName Open In New Tab
-          * @uiGroup CTA Button
+          * @uiGroup Button
          */
         "openNewTab"?: boolean;
         /**
@@ -4727,6 +4960,7 @@ declare namespace LocalJSX {
          */
         "programId"?: string;
         /**
+          * The unit displayed to the right of steps and progress numbers on the progress bar. Ex: $ for dollars
           * @uiName Progress Bar Unit
           * @uiGroup Goal
          */
@@ -4742,6 +4976,7 @@ declare namespace LocalJSX {
          */
         "rewardAmount"?: string;
         /**
+          * Task cards are disabled to users outside of the duration. They are not disabled if no duration is configured.
           * @uiName Reward Duration
           * @uiWidget dateRange
           * @uiWidgetOptions {"allowPastDates":true, "months": 1}
@@ -4846,7 +5081,7 @@ declare namespace LocalJSX {
          */
         "padding"?: Spacing;
         /**
-          * @uiName Text Align
+          * @uiName Text Alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
@@ -4910,6 +5145,7 @@ declare namespace LocalJSX {
         "sqm-program-explainer": SqmProgramExplainer;
         "sqm-program-explainer-step": SqmProgramExplainerStep;
         "sqm-program-menu": SqmProgramMenu;
+        "sqm-qa": SqmQa;
         "sqm-referral-card": SqmReferralCard;
         "sqm-referral-iframe": SqmReferralIframe;
         "sqm-referral-table": SqmReferralTable;
@@ -5000,6 +5236,7 @@ declare module "@stencil/core" {
             "sqm-program-explainer": LocalJSX.SqmProgramExplainer & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerElement>;
             "sqm-program-explainer-step": LocalJSX.SqmProgramExplainerStep & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerStepElement>;
             "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
+            "sqm-qa": LocalJSX.SqmQa & JSXBase.HTMLAttributes<HTMLSqmQaElement>;
             "sqm-referral-card": LocalJSX.SqmReferralCard & JSXBase.HTMLAttributes<HTMLSqmReferralCardElement>;
             "sqm-referral-iframe": LocalJSX.SqmReferralIframe & JSXBase.HTMLAttributes<HTMLSqmReferralIframeElement>;
             "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;

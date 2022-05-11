@@ -5,13 +5,13 @@
 
 ## Properties
 
-| Property       | Attribute      | Description                                                                      | Type      | Default     |
-| -------------- | -------------- | -------------------------------------------------------------------------------- | --------- | ----------- |
-| `background`   | `background`   | Configure the background color.                                                  | `string`  | `undefined` |
-| `fontfamily`   | `fontfamily`   | Font family used inside the container.                                           | `string`  | `undefined` |
-| `loadingcolor` | `loadingcolor` | Configure the color of the loading state.                                        | `string`  | `undefined` |
-| `maxwidth`     | `maxwidth`     | Maximum width on the container.                                                  | `string`  | `undefined` |
-| `poweredby`    | `poweredby`    | Show and hide the powered by SaaSquatch link. Can only be disabled on Pro plans. | `boolean` | `undefined` |
+| Property       | Attribute      | Description                                                                  | Type      | Default     |
+| -------------- | -------------- | ---------------------------------------------------------------------------- | --------- | ----------- |
+| `background`   | `background`   | Configure the background color.                                              | `string`  | `undefined` |
+| `fontfamily`   | `fontfamily`   | Font family used inside the container.                                       | `string`  | `undefined` |
+| `loadingcolor` | `loadingcolor` | The background colour of the component while in the loading state.           | `string`  | `undefined` |
+| `maxwidth`     | `maxwidth`     |                                                                              | `string`  | `undefined` |
+| `poweredby`    | `poweredby`    | Show the Powered by SaaSquatch link. This can only be disabled on Pro plans. | `boolean` | `undefined` |
 
 
 ----------------------------------------------

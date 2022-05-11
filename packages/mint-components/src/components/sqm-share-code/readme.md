@@ -12,7 +12,7 @@
 | `demoData`        | --                 |                                                                                                                         | `{ disabled?: boolean; onClick?: () => void; shareString?: string; open?: boolean; tooltiptext?: string; }` | `undefined`             |
 | `programId`       | `program-id`       | The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded. | `string`                                                                                                    | `undefined`             |
 | `tooltiplifespan` | `tooltip-lifespan` | The number of milliseconds that the tooltip appears for                                                                 | `number`                                                                                                    | `1000`                  |
-| `tooltiptext`     | `tooltip-text`     | This is shown after someone has successfully copied the code to the clipboard.                                          | `string`                                                                                                    | `"Copied to Clipboard"` |
+| `tooltiptext`     | `tooltip-text`     | Shown inside a tooltip after someone has successfully copied the link to their clipboard.                               | `string`                                                                                                    | `"Copied to Clipboard"` |
 
 
 ## Dependencies

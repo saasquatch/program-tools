@@ -5,13 +5,13 @@
 
 ## Properties
 
-| Property          | Attribute         | Description                             | Type      | Default     |
-| ----------------- | ----------------- | --------------------------------------- | --------- | ----------- |
-| `ishidden`        | `ishidden`        | Hide or show the component              | `boolean` | `undefined` |
-| `statcolor`       | `statcolor`       | Color of the stat value and description | `string`  | `undefined` |
-| `statdescription` | `statdescription` | Description of the stat                 | `string`  | `undefined` |
-| `stattype`        | `stattype`        | Used to query the stats for a user      | `string`  | `undefined` |
-| `statvalue`       | `statvalue`       | Value of the stat                       | `string`  | `undefined` |
+| Property          | Attribute         | Description                                                                 | Type      | Default     |
+| ----------------- | ----------------- | --------------------------------------------------------------------------- | --------- | ----------- |
+| `ishidden`        | `ishidden`        | Hide or show the component                                                  | `boolean` | `undefined` |
+| `statcolor`       | `statcolor`       | Color of the stat value and description                                     | `string`  | `undefined` |
+| `statdescription` | `statdescription` |                                                                             | `string`  | `undefined` |
+| `stattype`        | `stattype`        | Determines what type of stat is displayed. Manual paths are also supported. | `string`  | `undefined` |
+| `statvalue`       | `statvalue`       | Value of the stat                                                           | `string`  | `undefined` |
 
 
 ## Events
