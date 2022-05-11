@@ -400,7 +400,7 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
   );
 };
 
-export const SelectView = React.forwardRef(SelectInnerView);
+// export const SelectView = React.forwardRef(SelectInnerView);
 
 /**
  * @deprecated use {@link SelectView} instead
