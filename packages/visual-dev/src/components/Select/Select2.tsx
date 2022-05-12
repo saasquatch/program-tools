@@ -19,6 +19,10 @@ export interface SelectContainerViewProps {
    * Custom CSS for the select handle container
    */
   customContainerCSS?: CSSProp;
+  /**
+   * Children of the container, generally SelectHandleView and SelectListView
+   */
+  children: React.ReactNode;
 }
 export interface HandleOptionProps<ItemType> {
   /**
@@ -224,11 +228,8 @@ declare module "react" {
   ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
 }
 
-const SelectContainerView = (
-  props: SelectContainerViewProps,
-  children: React.ReactNode
-) => {
-  const { limitWidth = true, customContainerCSS = `` } = props;
+const SelectContainerView = (props: SelectContainerViewProps) => {
+  const { limitWidth = true, customContainerCSS = ``, children } = props;
   return (
     <ContainerDiv
       customContainerCSS={customContainerCSS}
