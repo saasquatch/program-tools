@@ -10,10 +10,6 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 /**
  * @uiName Leaderboard
  * @slots [{"name":"empty", "title":"Empty State"}]
- * @exampleGroup Leaderboards
- * @example Referral Converted Leaderboard - <sqm-leaderboard usersheading="Referrer" statsheading="Referrals" rankheading="Rank" rank-type="rowNumber" leaderboard-type="topConvertedReferrers" show-rank anonymous-user="Anonymous User"> <sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" > </sqm-empty></sqm-leaderboard>
- * @example Referral Started Leaderboard - <sqm-leaderboard usersheading="Referrer" statsheading="Referrals" rankheading="Rank" rank-type="rowNumber" leaderboard-type="topStartedReferrers" show-rank anonymous-user="Anonymous User"> <sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" > </sqm-empty></sqm-leaderboard>
- * @example Point Earners Leaderboard - <sqm-leaderboard usersheading="Users" statsheading="Points Earned" rankheading="Rank" rank-type="rowNumber" leaderboard-type="topPointEarners" show-rank anonymous-user="Anonymous User"> <sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to earn points and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
  */
 @Component({
   tag: "sqm-leaderboard",

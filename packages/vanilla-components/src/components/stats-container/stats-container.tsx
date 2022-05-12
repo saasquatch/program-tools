@@ -18,20 +18,19 @@ import { css } from "emotion";
 export class StatsContainer {
   @Element() container: HTMLElement;
   /**
-   * Hide the component
-   *
+   * @undocumented
    * @uiName Is Hidden
    */
   @Prop() ishidden: boolean = false;
   /**
-   * Configure the padding top of the container
+   * Define the bottom padding of the container with a pixel amount.
    *
    * @uiName Padding Top
    * @default "0"
    */
   @Prop() paddingtop: string;
   /**
-   * Configure the padding bottom of the container
+   * Define the top padding of the container with a pixel amount.
    *
    * @uiName Padding Bottom
    * @default "0"

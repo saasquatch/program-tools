@@ -95,7 +95,7 @@ export class Scroll {
   @Prop() iconSlot: string;
 
   /**
-   * @uiName Icon Name
+   * @uiName Icon
    */
   @Prop() iconName: string;
 

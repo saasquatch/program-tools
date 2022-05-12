@@ -15,71 +15,60 @@ import marked from "marked";
 })
 export class TextComponent {
   /**
-   * Hide or show the component
-   *
+   * @undocumented
    * @uiName Hide Text
    */
   @Prop() ishidden: boolean;
   /**
-   * Compiles plain text into markdown
+   * Compile plain text into markdown.
    *
-   * @uiName Is Markdown
+   * @uiName Use Markdown
    */
   @Prop() ismarkdown: boolean;
   /**
-   * The text content
-   *
    * @uiName Text
    */
   @Prop() text: string;
   /**
-   * Font family of the text
-   *
    * @uiName Font Family
    */
   @Prop() fontfamily: string;
   /**
-   * Color of the text
-   *
-   * @uiName Color
+   * @uiName Text Color
    * @uiWidget color
    * @format color
    */
   @Prop() color: string;
   /**
-   * Size of the text
-   *
    * @uiName Font Size
    */
   @Prop() fontsize: string;
   /**
-   * Top padding on text
+   * Define the top padding of the container with a pixel amount.
    *
    * @uiName Padding Top
    */
   @Prop() paddingtop: string;
   /**
-   * Bottom padding on text
+   * Define the bottom padding of the container with a pixel amount.
    *
    * @uiName Padding Bottom
    */
   @Prop() paddingbottom: string;
   /**
-   * Text alignment
-   *
-   * @uiName Text Align
+   * @uiName Text Alignment
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
    */
   @Prop() textalign: string;
   /**
-   * Background the container, color or url
+   * Fill the background with a color or image. Input color values as a HEX code and an image as a URL.
    *
    * @uiName Background
    */
   @Prop() background: string;
   /**
-   * Height of the container
+   * Define the height of the container with a pixel amount.
    *
    * @uiName Height
    */

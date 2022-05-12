@@ -13,8 +13,7 @@ import { API } from "../../services/WidgetHost";
 })
 export class ShareButtonContainer {
   /**
-   * Hide or show the component
-   *
+   * @undocumented
    * @uiName Hide Share Buttons
    */
   @Prop() ishidden: boolean;
@@ -29,8 +28,6 @@ export class ShareButtonContainer {
    */
   @Prop() emaildisplayrule: string;
   /**
-   * Text inside the Email button
-   *
    * @uiName Email Text
    * @uiGroup Email
    * @default "Email"
@@ -47,8 +44,6 @@ export class ShareButtonContainer {
    */
   @Prop() emailbackgroundcolor: string;
   /**
-   * Color of the text inside the Email button
-   *
    * @uiName Email Text Color
    * @uiGroup Email
    * @uiWidget color
@@ -85,8 +80,6 @@ export class ShareButtonContainer {
    */
   @Prop() emailiconvertical: number;
   /**
-   * Size of the Email button icon
-   *
    * @uiName Email Icon Size
    * @uiGroup Email
    */
@@ -104,8 +97,6 @@ export class ShareButtonContainer {
    */
   @Prop() facebookdisplayrule: string;
   /**
-   * Text inside the facebook button
-   *
    * @uiName Facebook Text
    * @uiGroup Facebook
    * @default "Facebook"
@@ -122,8 +113,6 @@ export class ShareButtonContainer {
    */
   @Prop() facebookbackgroundcolor: string;
   /**
-   * Color of the text inside the facebook button
-   *
    * @uiName Facebook Text Color
    * @uiGroup Facebook
    * @uiWidget color
@@ -160,8 +149,6 @@ export class ShareButtonContainer {
    */
   @Prop() facebookiconvertical: number;
   /**
-   * Size of the facebook button icon
-   *
    * @uiName Facebook Icon Size
    * @uiGroup Facebook
    */
@@ -180,8 +167,6 @@ export class ShareButtonContainer {
    */
   @Prop() twitterdisplayrule: string;
   /**
-   * Text inside the twitter button
-   *
    * @uiName Twitter Text
    * @uiGroup Twitter
    * @default "Twitter"
@@ -198,8 +183,6 @@ export class ShareButtonContainer {
    */
   @Prop() twitterbackgroundcolor: string;
   /**
-   * Color of the text inside the twitter button
-   *
    * @uiName Twitter Text Color
    * @uiGroup Twitter
    * @uiWidget color
@@ -236,8 +219,6 @@ export class ShareButtonContainer {
    */
   @Prop() twittericonvertical: number;
   /**
-   * Size of the twitter button icon
-   *
    * @uiName Twitter Icon Size
    * @uiGroup Twitter
    */
@@ -256,8 +237,6 @@ export class ShareButtonContainer {
    */
   @Prop() smsdisplayrule: string;
   /**
-   * Text inside the SMS button
-   *
    * @uiName SMS Text
    * @uiGroup SMS
    * @default "SMS"
@@ -274,8 +253,6 @@ export class ShareButtonContainer {
    */
   @Prop() smsbackgroundcolor: string;
   /**
-   * Color of the text inside the SMS button
-   *
    * @uiName SMS Text Color
    * @uiGroup SMS
    * @uiWidget color
@@ -312,8 +289,6 @@ export class ShareButtonContainer {
    */
   @Prop() smsiconvertical: number;
   /**
-   * Size of the SMS button icon
-   *
    * @uiName SMS Icon Size
    * @uiGroup SMS
    */
@@ -331,8 +306,6 @@ export class ShareButtonContainer {
    */
   @Prop() whatsappdisplayrule: string;
   /**
-   * Text inside the WhatsApp button
-   *
    * @uiName WhatsApp Text
    * @uiGroup WhatsApp
    * @default "Whatspp"
@@ -349,8 +322,6 @@ export class ShareButtonContainer {
    */
   @Prop() whatsappbackgroundcolor: string;
   /**
-   * Color of the text inside the WhatsApp button
-   *
    * @uiName WhatsApp Text Color
    * @uiGroup WhatsApp
    * @uiWidget color
@@ -387,8 +358,6 @@ export class ShareButtonContainer {
    */
   @Prop() whatsappiconvertical: number = 2;
   /**
-   * Size of the WhatsApp button icon
-   *
    * @uiName WhatsApp Icon Size
    * @uiGroup WhatsApp
    */
@@ -407,8 +376,6 @@ export class ShareButtonContainer {
    */
   @Prop() linkedindisplayrule: string;
   /**
-   * Text inside the linkedin button
-   *
    * @uiName Linkedin Text
    * @uiGroup LinkedIn
    * @default "LinkedIn"
@@ -425,8 +392,6 @@ export class ShareButtonContainer {
    */
   @Prop() linkedinbackgroundcolor: string;
   /**
-   * Color of the text inside the Linkedin button
-   *
    * @uiName Linkedin Text Color
    * @uiGroup LinkedIn
    * @uiWidget color
@@ -463,8 +428,6 @@ export class ShareButtonContainer {
    */
   @Prop() linkediniconvertical: number;
   /**
-   * Size of the Linkedin button icon
-   *
    * @uiName Linkedin Icon Size
    * @uiGroup LinkedIn
    */
@@ -482,8 +445,6 @@ export class ShareButtonContainer {
    */
   @Prop() pinterestdisplayrule: string;
   /**
-   * Text inside the Pinterest button
-   *
    * @uiName Pinterest Text
    * @uiGroup Pinterest
    * @default "Pinterest"
@@ -500,8 +461,6 @@ export class ShareButtonContainer {
    */
   @Prop() pinterestbackgroundcolor: string;
   /**
-   * Color of the text inside the Pinterest button
-   *
    * @uiName Pinterest Text Color
    * @uiGroup Pinterest
    * @uiWidget color
@@ -538,8 +497,6 @@ export class ShareButtonContainer {
    */
   @Prop() pinteresticonvertical: number = 4;
   /**
-   * Size of the Pinterest button icon
-   *
    * @uiName Pinterest Icon Size
    * @uiGroup Pinterest
    */
@@ -558,8 +515,6 @@ export class ShareButtonContainer {
    */
   @Prop() messengerdisplayrule: string;
   /**
-   * Text inside the Messenger button
-   *
    * @uiName Messenger Text
    * @uiGroup Messenger
    * @default "Messenger"
@@ -576,8 +531,6 @@ export class ShareButtonContainer {
    */
   @Prop() messengerbackgroundcolor: string;
   /**
-   * Color of the text inside the Messenger button
-   *
    * @uiName Messenger Text Color
    * @uiGroup Messenger
    * @uiWidget color
@@ -614,8 +567,6 @@ export class ShareButtonContainer {
    */
   @Prop() messengericonvertical: number = 3;
   /**
-   * Size of the Messenger button icon
-   *
    * @uiName Messenger Icon Size
    * @uiGroup Messenger
    */
@@ -633,8 +584,6 @@ export class ShareButtonContainer {
    */
   @Prop() linedisplayrule: string;
   /**
-   * Text inside the Line button
-   *
    * @uiName Line Text
    * @uiGroup Line Messenger
    * @default "Line Messenger"
@@ -651,8 +600,6 @@ export class ShareButtonContainer {
    */
   @Prop() linebackgroundcolor: string;
   /**
-   * Color of the text inside the Line button
-   *
    * @uiName Line Text Color
    * @uiGroup Line Messenger
    * @uiWidget color
@@ -689,8 +636,6 @@ export class ShareButtonContainer {
    */
   @Prop() lineiconvertical: number = -5;
   /**
-   * Size of the Line button icon
-   *
    * @uiName Line Icon Size
    * @uiGroup Line Messenger
    */

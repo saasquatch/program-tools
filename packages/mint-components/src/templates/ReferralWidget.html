@@ -31,32 +31,22 @@
       center
       display="grid"
     >
-      <sqm-portal-container
-        justify-content="start"
-        direction="row"
-        center
-        display="flex"
-        gap="xx-large"
-        max-width="100%"
-        padding="none"
-      >
-        <sqm-stat-container space="xxx-large" display="flex">
-          <sqm-big-stat
-            flex-reverse="true"
-            alignment="left"
-            stat-type="/referralsCount"
-          >
-            <p>Referrals</p>
-          </sqm-big-stat>
-          <sqm-big-stat
-            flex-reverse="true"
-            alignment="left"
-            stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"
-          >
-            <p>Giftcards</p>
-          </sqm-big-stat>
-        </sqm-stat-container>
-      </sqm-portal-container>
+      <sqm-stat-container space="xxx-large" display="flex">
+        <sqm-big-stat
+          flex-reverse="true"
+          alignment="left"
+          stat-type="/referralsCount"
+        >
+          <p>Referrals</p>
+        </sqm-big-stat>
+        <sqm-big-stat
+          flex-reverse="true"
+          alignment="left"
+          stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"
+        >
+          <p>Giftcards</p>
+        </sqm-big-stat>
+      </sqm-stat-container>
       <sqm-portal-container
         gap="large"
         direction="column"
@@ -155,93 +145,64 @@
           </sqm-portal-container>
         </sqm-referral-card>
       </sqm-portal-container>
-      <sqm-tabs placement="top">
-        <sqm-tab header="Leaderboard">
-          <sqm-portal-container
-            gap="large"
-            direction="column"
-            display="grid"
-            max-width="100%"
-            padding="none"
+      <sqm-portal-container
+        gap="large"
+        direction="column"
+        display="grid"
+        max-width="100%"
+        padding="none"
+      >
+        <sqm-titled-section
+          padding="none"
+          text-align="center"
+          label-margin="xx-small"
+        >
+          <h3 slot="label">Referral History</h3>
+        </sqm-titled-section>
+        <sqm-referral-table
+          per-page="4"
+          hidden-columns="2"
+          more-label="Next"
+          prev-label="Prev"
+          show-labels
+          sm-breakpoint="599"
+          md-breakpoint="799"
+        >
+          <sqm-referral-table-user-column
+            column-title="User"
+            anonymous-user="Anonymous User"
+            deleted-user="Deleted User"
           >
-            <sqm-hero-image
-              image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000248/squatch-assets/MVgOJn7.png"
-              description="Be one of the top 3 referrers at the end of the year and receive our product free for 1 year!"
-              layout="columns"
-              image-percentage="30"
-              padding-image="large"
-              padding-text="large"
-              background-color="#EFF8FE"
-              image-mobile-pos="top"
-              image-pos="right"
-              overlay-opacity="0.75"
-            >
-            </sqm-hero-image>
-            <sqm-leaderboard
-              usersheading="Referrer"
-              statsheading="Referrals"
-              rankheading="Rank"
-              rank-type="rowNumber"
-              leaderboard-type="topStartedReferrers"
-              show-rank
-              anonymous-user="Anonymous User"
-            >
-              <sqm-empty
-                slot="empty"
-                empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard2.png"
-                empty-state-header="View your rank in the leaderboard"
-                empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
-              >
-              </sqm-empty>
-            </sqm-leaderboard>
-          </sqm-portal-container>
-        </sqm-tab>
-        <sqm-tab header="Referral history">
-          <sqm-referral-table
-            per-page="4"
-            hidden-columns="2"
-            more-label="Next"
-            prev-label="Prev"
-            show-labels
-            sm-breakpoint="599"
-            md-breakpoint="799"
+          </sqm-referral-table-user-column>
+          <sqm-referral-table-status-column
+            column-title="Referral status"
+            converted-status-text="Converted"
+            in-progress-status-text="In Progress"
           >
-            <sqm-referral-table-user-column
-              column-title="User"
-              anonymous-user="Anonymous User"
-              deleted-user="Deleted User"
-            >
-            </sqm-referral-table-user-column>
-            <sqm-referral-table-status-column
-              column-title="Referral status"
-              converted-status-text="Converted"
-              in-progress-status-text="In Progress"
-            >
-            </sqm-referral-table-status-column>
-            <sqm-referral-table-rewards-column
-              column-title="Rewards"
-              expiring-text="Expiring in"
-              fuel-tank-text="Your code is"
-              pending-for-text="{status} for {date}"
-              reward-received-text="Reward received on"
-              status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }"
-              status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-            >
-            </sqm-referral-table-rewards-column>
-            <sqm-referral-table-date-column
-              column-title="Date referred"
-              date-shown="dateReferralStarted"
-            >
-            </sqm-referral-table-date-column>
-            <sqm-empty
-              slot="empty"
-              empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png"
-              empty-state-header="View your referral details"
-              empty-state-text="Refer a friend to view the status of your referrals and rewards earned"
-            ></sqm-empty>
-          </sqm-referral-table>
-        </sqm-tab>
-      </sqm-tabs>
+          </sqm-referral-table-status-column>
+          <sqm-referral-table-rewards-column
+            column-title="Rewards"
+            expiring-text="Expiring in"
+            fuel-tank-text="Your code is"
+            pending-for-text="{status} for {date}"
+            reward-received-text="Reward received on"
+            status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }"
+            status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+          >
+          </sqm-referral-table-rewards-column>
+          <sqm-referral-table-date-column
+            column-title="Date referred"
+            date-shown="dateReferralStarted"
+          >
+          </sqm-referral-table-date-column>
+          <sqm-empty
+            slot="empty"
+            empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png"
+            empty-state-header="View your referral details"
+            empty-state-text="Refer a friend to view the status of your referrals and rewards earned"
+          ></sqm-empty>
+        </sqm-referral-table>
+      </sqm-portal-container>
     </sqm-portal-container>
   </sqm-portal-container>
 </sqm-brand>

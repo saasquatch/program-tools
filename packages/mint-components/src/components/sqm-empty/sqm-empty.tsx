@@ -13,14 +13,14 @@ export class HeroImage {
   /**
    * @uiWidget ImageUpload
    * @format url
-   * @uiName Empty State Image Link  */
+   * @uiName Image */
   @Prop() emptyStateImage: string;
 
-  /** @uiName Empty State Title  */
+  /** @uiName Title  */
   @Prop() emptyStateHeader: string;
 
-  /** 
-   * @uiName Empty State Text  
+  /**
+   * @uiName Description
    * @uiWidget textArea
    */
   @Prop() emptyStateText: string;

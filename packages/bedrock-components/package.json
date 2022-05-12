@@ -1,9 +1,9 @@
 {
   "name": "@saasquatch/bedrock-components",
   "title": "Bedrock Components",
-  "version": "1.3.2-1",
-  "description": "Component library that will add advanced logic to your widgets and pages. Built and maintained by Saasquatch.",
-  "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1651014187/squatch-assets/Bedrock_Package_Icon.png",
+  "version": "1.3.2-2",
+  "description": "Component library that adds advanced logic to your widgets and pages. Built and maintained by Saasquatch.",
+  "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1652219900/squatch-assets/For_Bedrock.svg",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
   "es2015": "dist/esm/index.mjs",

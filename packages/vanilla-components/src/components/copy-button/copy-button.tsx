@@ -15,10 +15,8 @@ import Clipboard from "clipboard";
 })
 export class CopyButton {
   /**
-   * Hide or show the component
-   *
    * @uiName Hide Button
-   * @default undefined
+   * @undocumented
    */
   @Prop() ishidden: boolean;
   /**

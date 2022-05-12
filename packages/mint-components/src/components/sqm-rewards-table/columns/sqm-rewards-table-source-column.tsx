@@ -47,6 +47,8 @@ export class RewardTableUserColumn implements RewardTableColumn {
     "{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}";
 
   /**
+   * Shown when a reward has been created by a source other than a referral.
+   * 
    * @uiName Reward Source Text
    * @uiWidget textArea
    */

@@ -11,8 +11,6 @@ import { css } from "emotion";
 })
 export class GlobalContainer {
   /**
-   * Configure the background color.
-   *
    * @uiName Background Color
    * @uiWidget color
    * @format color

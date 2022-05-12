@@ -58,9 +58,8 @@ export namespace Components {
          */
         "fontsize": number;
         /**
-          * Hide or show the component
           * @uiName Hide Button
-          * @default undefined
+          * @undocumented
          */
         "ishidden": boolean;
         /**
@@ -108,7 +107,7 @@ export namespace Components {
          */
         "copysuccess": string;
         /**
-          * Hide or show the component
+          * @undocumented 
           * @uiName Hide Button
          */
         "ishidden": boolean;
@@ -127,7 +126,6 @@ export namespace Components {
     }
     interface SqhGlobalContainer {
         /**
-          * Configure the background color.
           * @uiName Background Color
           * @uiWidget color
           * @format color
@@ -180,7 +178,7 @@ export namespace Components {
          */
         "css": string;
         /**
-          * Hide or show the component
+          * @undocumented 
           * @uiName Hide Image
          */
         "ishidden": boolean;
@@ -198,7 +196,7 @@ export namespace Components {
     }
     interface SqhPartnerStatComponent {
         /**
-          * Hide or show the component
+          * @undocumented 
           * @uiName Hide Stat
          */
         "ishidden": boolean;
@@ -330,7 +328,7 @@ export namespace Components {
          */
         "internationalization": boolean;
         /**
-          * Hide or show the component
+          * @undocumented 
           * @uiName Hide Referral List
          */
         "ishidden": boolean;
@@ -391,7 +389,7 @@ export namespace Components {
          */
         "referralnamecolor": string;
         /**
-          * @uiName Referral Text Color
+          * @uiName Referral Status Text Color
           * @uiWidget color
           * @format color
           * @default "lightgray"
@@ -574,7 +572,6 @@ export namespace Components {
          */
         "emailiconhorizontal": number;
         /**
-          * Size of the Email button icon
           * @uiName Email Icon Size
           * @uiGroup Email
          */
@@ -586,14 +583,12 @@ export namespace Components {
          */
         "emailiconvertical": number;
         /**
-          * Text inside the Email button
           * @uiName Email Text
           * @uiGroup Email
           * @default "Email"
          */
         "emailtext": string;
         /**
-          * Color of the text inside the Email button
           * @uiName Email Text Color
           * @uiGroup Email
           * @uiWidget color
@@ -638,7 +633,6 @@ export namespace Components {
          */
         "facebookiconhorizontal": number;
         /**
-          * Size of the facebook button icon
           * @uiName Facebook Icon Size
           * @uiGroup Facebook
          */
@@ -650,14 +644,12 @@ export namespace Components {
          */
         "facebookiconvertical": number;
         /**
-          * Text inside the facebook button
           * @uiName Facebook Text
           * @uiGroup Facebook
           * @default "Facebook"
          */
         "facebooktext": string;
         /**
-          * Color of the text inside the facebook button
           * @uiName Facebook Text Color
           * @uiGroup Facebook
           * @uiWidget color
@@ -666,7 +658,7 @@ export namespace Components {
          */
         "facebooktextcolor": string;
         /**
-          * Hide or show the component
+          * @undocumented 
           * @uiName Hide Share Buttons
          */
         "ishidden": boolean;
@@ -707,7 +699,6 @@ export namespace Components {
          */
         "lineiconhorizontal": number;
         /**
-          * Size of the Line button icon
           * @uiName Line Icon Size
           * @uiGroup Line Messenger
          */
@@ -719,14 +710,12 @@ export namespace Components {
          */
         "lineiconvertical": number;
         /**
-          * Text inside the Line button
           * @uiName Line Text
           * @uiGroup Line Messenger
           * @default "Line Messenger"
          */
         "linetext": string;
         /**
-          * Color of the text inside the Line button
           * @uiName Line Text Color
           * @uiGroup Line Messenger
           * @uiWidget color
@@ -771,7 +760,6 @@ export namespace Components {
          */
         "linkediniconhorizontal": number;
         /**
-          * Size of the Linkedin button icon
           * @uiName Linkedin Icon Size
           * @uiGroup LinkedIn
          */
@@ -783,14 +771,12 @@ export namespace Components {
          */
         "linkediniconvertical": number;
         /**
-          * Text inside the linkedin button
           * @uiName Linkedin Text
           * @uiGroup LinkedIn
           * @default "LinkedIn"
          */
         "linkedintext": string;
         /**
-          * Color of the text inside the Linkedin button
           * @uiName Linkedin Text Color
           * @uiGroup LinkedIn
           * @uiWidget color
@@ -835,7 +821,6 @@ export namespace Components {
          */
         "messengericonhorizontal": number;
         /**
-          * Size of the Messenger button icon
           * @uiName Messenger Icon Size
           * @uiGroup Messenger
          */
@@ -847,14 +832,12 @@ export namespace Components {
          */
         "messengericonvertical": number;
         /**
-          * Text inside the Messenger button
           * @uiName Messenger Text
           * @uiGroup Messenger
           * @default "Messenger"
          */
         "messengertext": string;
         /**
-          * Color of the text inside the Messenger button
           * @uiName Messenger Text Color
           * @uiGroup Messenger
           * @uiWidget color
@@ -899,7 +882,6 @@ export namespace Components {
          */
         "pinteresticonhorizontal": number;
         /**
-          * Size of the Pinterest button icon
           * @uiName Pinterest Icon Size
           * @uiGroup Pinterest
          */
@@ -911,14 +893,12 @@ export namespace Components {
          */
         "pinteresticonvertical": number;
         /**
-          * Text inside the Pinterest button
           * @uiName Pinterest Text
           * @uiGroup Pinterest
           * @default "Pinterest"
          */
         "pinteresttext": string;
         /**
-          * Color of the text inside the Pinterest button
           * @uiName Pinterest Text Color
           * @uiGroup Pinterest
           * @uiWidget color
@@ -963,7 +943,6 @@ export namespace Components {
          */
         "smsiconhorizontal": number;
         /**
-          * Size of the SMS button icon
           * @uiName SMS Icon Size
           * @uiGroup SMS
          */
@@ -975,14 +954,12 @@ export namespace Components {
          */
         "smsiconvertical": number;
         /**
-          * Text inside the SMS button
           * @uiName SMS Text
           * @uiGroup SMS
           * @default "SMS"
          */
         "smstext": string;
         /**
-          * Color of the text inside the SMS button
           * @uiName SMS Text Color
           * @uiGroup SMS
           * @uiWidget color
@@ -1027,7 +1004,6 @@ export namespace Components {
          */
         "twittericonhorizontal": number;
         /**
-          * Size of the twitter button icon
           * @uiName Twitter Icon Size
           * @uiGroup Twitter
          */
@@ -1039,14 +1015,12 @@ export namespace Components {
          */
         "twittericonvertical": number;
         /**
-          * Text inside the twitter button
           * @uiName Twitter Text
           * @uiGroup Twitter
           * @default "Twitter"
          */
         "twittertext": string;
         /**
-          * Color of the text inside the twitter button
           * @uiName Twitter Text Color
           * @uiGroup Twitter
           * @uiWidget color
@@ -1091,7 +1065,6 @@ export namespace Components {
          */
         "whatsappiconhorizontal": number;
         /**
-          * Size of the WhatsApp button icon
           * @uiName WhatsApp Icon Size
           * @uiGroup WhatsApp
          */
@@ -1103,14 +1076,12 @@ export namespace Components {
          */
         "whatsappiconvertical": number;
         /**
-          * Text inside the WhatsApp button
           * @uiName WhatsApp Text
           * @uiGroup WhatsApp
           * @default "Whatspp"
          */
         "whatsapptext": string;
         /**
-          * Color of the text inside the WhatsApp button
           * @uiName WhatsApp Text Color
           * @uiGroup WhatsApp
           * @uiWidget color
@@ -1121,20 +1092,19 @@ export namespace Components {
     }
     interface SqhStatComponent {
         /**
-          * Hide or show the component
-          * @uiName Hide Stat
+          * @undocumented 
+          * @uiName Hide Component
          */
         "ishidden": boolean;
         /**
-          * Text color of the stat
-          * @uiName Stat Color
+          * @uiName Color
           * @uiWidget color
           * @format color
          */
         "statcolor": string;
         /**
-          * Description shown underneath stat value
-          * @uiName Stat Description
+          * Text shown underneath the stat value
+          * @uiName Description
          */
         "statdescription": string;
         /**
@@ -1146,25 +1116,25 @@ export namespace Components {
          */
         "stattype": string;
         /**
-          * Value shown inside stat
+          * @undocumented 
           * @uiName Stat Value
          */
         "statvalue": string;
     }
     interface SqhStatsContainer {
         /**
-          * Hide the component
+          * @undocumented 
           * @uiName Is Hidden
          */
         "ishidden": boolean;
         /**
-          * Configure the padding bottom of the container
+          * Define the top padding of the container with a pixel amount.
           * @uiName Padding Bottom
           * @default "0"
          */
         "paddingbottom": string;
         /**
-          * Configure the padding top of the container
+          * Define the bottom padding of the container with a pixel amount.
           * @uiName Padding Top
           * @default "0"
          */
@@ -1172,60 +1142,55 @@ export namespace Components {
     }
     interface SqhTextComponent {
         /**
-          * Background the container, color or url
+          * Fill the background with a color or image. Input color values as a HEX code and an image as a URL.
           * @uiName Background
          */
         "background": string;
         /**
-          * Color of the text
-          * @uiName Color
+          * @uiName Text Color
           * @uiWidget color
           * @format color
          */
         "color": string;
         /**
-          * Font family of the text
           * @uiName Font Family
          */
         "fontfamily": string;
         /**
-          * Size of the text
           * @uiName Font Size
          */
         "fontsize": string;
         /**
-          * Height of the container
+          * Define the height of the container with a pixel amount.
           * @uiName Height
          */
         "height": string;
         /**
-          * Hide or show the component
+          * @undocumented 
           * @uiName Hide Text
          */
         "ishidden": boolean;
         /**
-          * Compiles plain text into markdown
-          * @uiName Is Markdown
+          * Compile plain text into markdown.
+          * @uiName Use Markdown
          */
         "ismarkdown": boolean;
         /**
-          * Bottom padding on text
+          * Define the bottom padding of the container with a pixel amount.
           * @uiName Padding Bottom
          */
         "paddingbottom": string;
         /**
-          * Top padding on text
+          * Define the top padding of the container with a pixel amount.
           * @uiName Padding Top
          */
         "paddingtop": string;
         /**
-          * The text content
           * @uiName Text
          */
         "text": string;
         /**
-          * Text alignment
-          * @uiName Text Align
+          * @uiName Text Alignment
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
          */
@@ -1394,9 +1359,8 @@ declare namespace LocalJSX {
          */
         "fontsize"?: number;
         /**
-          * Hide or show the component
           * @uiName Hide Button
-          * @default undefined
+          * @undocumented
          */
         "ishidden"?: boolean;
         /**
@@ -1444,7 +1408,7 @@ declare namespace LocalJSX {
          */
         "copysuccess"?: string;
         /**
-          * Hide or show the component
+          * @undocumented 
           * @uiName Hide Button
          */
         "ishidden"?: boolean;
@@ -1463,7 +1427,6 @@ declare namespace LocalJSX {
     }
     interface SqhGlobalContainer {
         /**
-          * Configure the background color.
           * @uiName Background Color
           * @uiWidget color
           * @format color
@@ -1516,7 +1479,7 @@ declare namespace LocalJSX {
          */
         "css"?: string;
         /**
-          * Hide or show the component
+          * @undocumented 
           * @uiName Hide Image
          */
         "ishidden"?: boolean;
@@ -1534,7 +1497,7 @@ declare namespace LocalJSX {
     }
     interface SqhPartnerStatComponent {
         /**
-          * Hide or show the component
+          * @undocumented 
           * @uiName Hide Stat
          */
         "ishidden"?: boolean;
@@ -1668,7 +1631,7 @@ declare namespace LocalJSX {
          */
         "internationalization"?: boolean;
         /**
-          * Hide or show the component
+          * @undocumented 
           * @uiName Hide Referral List
          */
         "ishidden"?: boolean;
@@ -1729,7 +1692,7 @@ declare namespace LocalJSX {
          */
         "referralnamecolor"?: string;
         /**
-          * @uiName Referral Text Color
+          * @uiName Referral Status Text Color
           * @uiWidget color
           * @format color
           * @default "lightgray"
@@ -1912,7 +1875,6 @@ declare namespace LocalJSX {
          */
         "emailiconhorizontal"?: number;
         /**
-          * Size of the Email button icon
           * @uiName Email Icon Size
           * @uiGroup Email
          */
@@ -1924,14 +1886,12 @@ declare namespace LocalJSX {
          */
         "emailiconvertical"?: number;
         /**
-          * Text inside the Email button
           * @uiName Email Text
           * @uiGroup Email
           * @default "Email"
          */
         "emailtext"?: string;
         /**
-          * Color of the text inside the Email button
           * @uiName Email Text Color
           * @uiGroup Email
           * @uiWidget color
@@ -1976,7 +1936,6 @@ declare namespace LocalJSX {
          */
         "facebookiconhorizontal"?: number;
         /**
-          * Size of the facebook button icon
           * @uiName Facebook Icon Size
           * @uiGroup Facebook
          */
@@ -1988,14 +1947,12 @@ declare namespace LocalJSX {
          */
         "facebookiconvertical"?: number;
         /**
-          * Text inside the facebook button
           * @uiName Facebook Text
           * @uiGroup Facebook
           * @default "Facebook"
          */
         "facebooktext"?: string;
         /**
-          * Color of the text inside the facebook button
           * @uiName Facebook Text Color
           * @uiGroup Facebook
           * @uiWidget color
@@ -2004,7 +1961,7 @@ declare namespace LocalJSX {
          */
         "facebooktextcolor"?: string;
         /**
-          * Hide or show the component
+          * @undocumented 
           * @uiName Hide Share Buttons
          */
         "ishidden"?: boolean;
@@ -2045,7 +2002,6 @@ declare namespace LocalJSX {
          */
         "lineiconhorizontal"?: number;
         /**
-          * Size of the Line button icon
           * @uiName Line Icon Size
           * @uiGroup Line Messenger
          */
@@ -2057,14 +2013,12 @@ declare namespace LocalJSX {
          */
         "lineiconvertical"?: number;
         /**
-          * Text inside the Line button
           * @uiName Line Text
           * @uiGroup Line Messenger
           * @default "Line Messenger"
          */
         "linetext"?: string;
         /**
-          * Color of the text inside the Line button
           * @uiName Line Text Color
           * @uiGroup Line Messenger
           * @uiWidget color
@@ -2109,7 +2063,6 @@ declare namespace LocalJSX {
          */
         "linkediniconhorizontal"?: number;
         /**
-          * Size of the Linkedin button icon
           * @uiName Linkedin Icon Size
           * @uiGroup LinkedIn
          */
@@ -2121,14 +2074,12 @@ declare namespace LocalJSX {
          */
         "linkediniconvertical"?: number;
         /**
-          * Text inside the linkedin button
           * @uiName Linkedin Text
           * @uiGroup LinkedIn
           * @default "LinkedIn"
          */
         "linkedintext"?: string;
         /**
-          * Color of the text inside the Linkedin button
           * @uiName Linkedin Text Color
           * @uiGroup LinkedIn
           * @uiWidget color
@@ -2173,7 +2124,6 @@ declare namespace LocalJSX {
          */
         "messengericonhorizontal"?: number;
         /**
-          * Size of the Messenger button icon
           * @uiName Messenger Icon Size
           * @uiGroup Messenger
          */
@@ -2185,14 +2135,12 @@ declare namespace LocalJSX {
          */
         "messengericonvertical"?: number;
         /**
-          * Text inside the Messenger button
           * @uiName Messenger Text
           * @uiGroup Messenger
           * @default "Messenger"
          */
         "messengertext"?: string;
         /**
-          * Color of the text inside the Messenger button
           * @uiName Messenger Text Color
           * @uiGroup Messenger
           * @uiWidget color
@@ -2237,7 +2185,6 @@ declare namespace LocalJSX {
          */
         "pinteresticonhorizontal"?: number;
         /**
-          * Size of the Pinterest button icon
           * @uiName Pinterest Icon Size
           * @uiGroup Pinterest
          */
@@ -2249,14 +2196,12 @@ declare namespace LocalJSX {
          */
         "pinteresticonvertical"?: number;
         /**
-          * Text inside the Pinterest button
           * @uiName Pinterest Text
           * @uiGroup Pinterest
           * @default "Pinterest"
          */
         "pinteresttext"?: string;
         /**
-          * Color of the text inside the Pinterest button
           * @uiName Pinterest Text Color
           * @uiGroup Pinterest
           * @uiWidget color
@@ -2301,7 +2246,6 @@ declare namespace LocalJSX {
          */
         "smsiconhorizontal"?: number;
         /**
-          * Size of the SMS button icon
           * @uiName SMS Icon Size
           * @uiGroup SMS
          */
@@ -2313,14 +2257,12 @@ declare namespace LocalJSX {
          */
         "smsiconvertical"?: number;
         /**
-          * Text inside the SMS button
           * @uiName SMS Text
           * @uiGroup SMS
           * @default "SMS"
          */
         "smstext"?: string;
         /**
-          * Color of the text inside the SMS button
           * @uiName SMS Text Color
           * @uiGroup SMS
           * @uiWidget color
@@ -2365,7 +2307,6 @@ declare namespace LocalJSX {
          */
         "twittericonhorizontal"?: number;
         /**
-          * Size of the twitter button icon
           * @uiName Twitter Icon Size
           * @uiGroup Twitter
          */
@@ -2377,14 +2318,12 @@ declare namespace LocalJSX {
          */
         "twittericonvertical"?: number;
         /**
-          * Text inside the twitter button
           * @uiName Twitter Text
           * @uiGroup Twitter
           * @default "Twitter"
          */
         "twittertext"?: string;
         /**
-          * Color of the text inside the twitter button
           * @uiName Twitter Text Color
           * @uiGroup Twitter
           * @uiWidget color
@@ -2429,7 +2368,6 @@ declare namespace LocalJSX {
          */
         "whatsappiconhorizontal"?: number;
         /**
-          * Size of the WhatsApp button icon
           * @uiName WhatsApp Icon Size
           * @uiGroup WhatsApp
          */
@@ -2441,14 +2379,12 @@ declare namespace LocalJSX {
          */
         "whatsappiconvertical"?: number;
         /**
-          * Text inside the WhatsApp button
           * @uiName WhatsApp Text
           * @uiGroup WhatsApp
           * @default "Whatspp"
          */
         "whatsapptext"?: string;
         /**
-          * Color of the text inside the WhatsApp button
           * @uiName WhatsApp Text Color
           * @uiGroup WhatsApp
           * @uiWidget color
@@ -2459,22 +2395,21 @@ declare namespace LocalJSX {
     }
     interface SqhStatComponent {
         /**
-          * Hide or show the component
-          * @uiName Hide Stat
+          * @undocumented 
+          * @uiName Hide Component
          */
         "ishidden"?: boolean;
         "onStatAdded"?: (event: CustomEvent<any>) => void;
         "onStatTypeUpdated"?: (event: CustomEvent<any>) => void;
         /**
-          * Text color of the stat
-          * @uiName Stat Color
+          * @uiName Color
           * @uiWidget color
           * @format color
          */
         "statcolor"?: string;
         /**
-          * Description shown underneath stat value
-          * @uiName Stat Description
+          * Text shown underneath the stat value
+          * @uiName Description
          */
         "statdescription"?: string;
         /**
@@ -2486,25 +2421,25 @@ declare namespace LocalJSX {
          */
         "stattype"?: string;
         /**
-          * Value shown inside stat
+          * @undocumented 
           * @uiName Stat Value
          */
         "statvalue"?: string;
     }
     interface SqhStatsContainer {
         /**
-          * Hide the component
+          * @undocumented 
           * @uiName Is Hidden
          */
         "ishidden"?: boolean;
         /**
-          * Configure the padding bottom of the container
+          * Define the top padding of the container with a pixel amount.
           * @uiName Padding Bottom
           * @default "0"
          */
         "paddingbottom"?: string;
         /**
-          * Configure the padding top of the container
+          * Define the bottom padding of the container with a pixel amount.
           * @uiName Padding Top
           * @default "0"
          */
@@ -2512,60 +2447,55 @@ declare namespace LocalJSX {
     }
     interface SqhTextComponent {
         /**
-          * Background the container, color or url
+          * Fill the background with a color or image. Input color values as a HEX code and an image as a URL.
           * @uiName Background
          */
         "background"?: string;
         /**
-          * Color of the text
-          * @uiName Color
+          * @uiName Text Color
           * @uiWidget color
           * @format color
          */
         "color"?: string;
         /**
-          * Font family of the text
           * @uiName Font Family
          */
         "fontfamily"?: string;
         /**
-          * Size of the text
           * @uiName Font Size
          */
         "fontsize"?: string;
         /**
-          * Height of the container
+          * Define the height of the container with a pixel amount.
           * @uiName Height
          */
         "height"?: string;
         /**
-          * Hide or show the component
+          * @undocumented 
           * @uiName Hide Text
          */
         "ishidden"?: boolean;
         /**
-          * Compiles plain text into markdown
-          * @uiName Is Markdown
+          * Compile plain text into markdown.
+          * @uiName Use Markdown
          */
         "ismarkdown"?: boolean;
         /**
-          * Bottom padding on text
+          * Define the bottom padding of the container with a pixel amount.
           * @uiName Padding Bottom
          */
         "paddingbottom"?: string;
         /**
-          * Top padding on text
+          * Define the top padding of the container with a pixel amount.
           * @uiName Padding Top
          */
         "paddingtop"?: string;
         /**
-          * The text content
           * @uiName Text
          */
         "text"?: string;
         /**
-          * Text alignment
-          * @uiName Text Align
+          * @uiName Text Alignment
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
          */

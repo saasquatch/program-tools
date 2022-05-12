@@ -10,7 +10,7 @@ import { DemoData } from "./global/demo";
 export namespace Components {
     interface SqbConditionalSection {
         /**
-          * Conditionally show child content when a user meets specified criteria. Logic is created with JSONata, a user's segments, customField and email can be used.
+          * Show child content when a user meets specified criteria. Logic is created with JSONata. A user's segments, customField and email can be used.
           * @uiName Condition
           * @uiWidget textArea
           * @required 
@@ -26,8 +26,6 @@ export namespace Components {
           * Overwrite the program context used by child components with the selected program.
           * @uiName Program
           * @uiWidget programSelector
-          * @required 
-          * @minLength 1
          */
         "programId": string;
     }
@@ -107,7 +105,7 @@ declare global {
 declare namespace LocalJSX {
     interface SqbConditionalSection {
         /**
-          * Conditionally show child content when a user meets specified criteria. Logic is created with JSONata, a user's segments, customField and email can be used.
+          * Show child content when a user meets specified criteria. Logic is created with JSONata. A user's segments, customField and email can be used.
           * @uiName Condition
           * @uiWidget textArea
           * @required 
@@ -123,8 +121,6 @@ declare namespace LocalJSX {
           * Overwrite the program context used by child components with the selected program.
           * @uiName Program
           * @uiWidget programSelector
-          * @required 
-          * @minLength 1
          */
         "programId"?: string;
     }

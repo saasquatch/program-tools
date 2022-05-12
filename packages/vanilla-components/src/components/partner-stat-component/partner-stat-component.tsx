@@ -23,8 +23,7 @@ import { css } from "emotion";
 export class PartnerStatComponent {
   @Element() elem: HTMLElement;
   /**
-   * Hide or show the component
-   *
+   * @undocumented
    * @uiName Hide Stat
    */
   @Prop() ishidden: boolean;

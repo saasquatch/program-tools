@@ -7,7 +7,7 @@
 
 | Property          | Attribute         | Description                                                                 | Type      | Default     |
 | ----------------- | ----------------- | --------------------------------------------------------------------------- | --------- | ----------- |
-| `ishidden`        | `ishidden`        | Hide or show the component                                                  | `boolean` | `undefined` |
+| `ishidden`        | `ishidden`        |                                                                             | `boolean` | `undefined` |
 | `statcolor`       | `statcolor`       | Color of the stat value and description                                     | `string`  | `undefined` |
 | `statdescription` | `statdescription` |                                                                             | `string`  | `undefined` |
 | `stattype`        | `stattype`        | Determines what type of stat is displayed. Manual paths are also supported. | `string`  | `undefined` |

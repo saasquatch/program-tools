@@ -25,9 +25,8 @@ import { css } from "emotion";
 export class StatComponent {
   @Element() elem: HTMLElement;
   /**
-   * Hide or show the component
-   *
-   * @uiName Hide Stat
+   * @undocumented
+   * @uiName Hide Component
    */
   @Prop() ishidden: boolean;
   /**
@@ -39,21 +38,18 @@ export class StatComponent {
    */
   @Prop() stattype: string;
   /**
-   * Value shown inside stat
-   *
+   * @undocumented
    * @uiName Stat Value
    */
   @Prop() statvalue: string;
   /**
-   * Description shown underneath stat value
+   * Text shown underneath the stat value
    *
-   * @uiName Stat Description
+   * @uiName Description
    */
   @Prop() statdescription: string;
   /**
-   * Text color of the stat
-   *
-   * @uiName Stat Color
+   * @uiName Color
    * @uiWidget color
    * @format color
    */

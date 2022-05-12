@@ -15,8 +15,7 @@ import { API } from "../../services/WidgetHost";
 })
 export class CopyLinkButton {
   /**
-   * Hide or show the component
-   *
+   * @undocumented
    * @uiName Hide Button
    */
   @Prop() ishidden: boolean;

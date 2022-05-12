@@ -17,7 +17,7 @@
 | `expiredvalue`         | `expiredvalue`         | Expired content shown alongside the icon in the referral column                   | `string`  | `undefined` |
 | `expiresvalue`         | `expiresvalue`         | Reward expiry ICU message                                                         | `string`  | `undefined` |
 | `internationalization` | `internationalization` | When true, the local gets set by using the value passed to the referral component | `boolean` | `undefined` |
-| `ishidden`             | `ishidden`             | Hide or show the component                                                        | `boolean` | `undefined` |
+| `ishidden`             | `ishidden`             |                                                                                   | `boolean` | `undefined` |
 | `noreferralsyet`       | `noreferralsyet`       | Shown when referral list is empty                                                 | `string`  | `undefined` |
 | `paginateless`         | `paginateless`         | Shown inside the paginate less button                                             | `string`  | `undefined` |
 | `paginatemore`         | `paginatemore`         | Shown inside the paginate more button                                             | `string`  | `undefined` |

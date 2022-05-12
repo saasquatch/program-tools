@@ -225,17 +225,17 @@ export namespace Components {
     }
     interface SqmEmpty {
         /**
-          * @uiName Empty State Title
+          * @uiName Title
          */
         "emptyStateHeader": string;
         /**
           * @uiWidget ImageUpload
           * @format url
-          * @uiName Empty State Image Link
+          * @uiName Image
          */
         "emptyStateImage": string;
         /**
-          * @uiName Empty State Text
+          * @uiName Description
           * @uiWidget textArea
          */
         "emptyStateText": string;
@@ -726,7 +726,7 @@ export namespace Components {
          */
         "gap": Spacing;
         /**
-          * Defines how the container distributes space between & around content items along the main-axis of a flex container
+          * Define how this container distributes its contents along the main-axis.
           * @uiName Justify Content
           * @uiType string
           * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
@@ -1157,30 +1157,86 @@ export namespace Components {
     interface SqmQa {
         /**
           * Description here
-          * @uiName Boolean Switch
+          * @uiName Boolean Switch with default
          */
         "booleanSwitch"?: boolean;
         /**
           * Description here
-          * @uiName Color
+          * @uiName Boolean Switch with no default
+         */
+        "booleanSwitchNoDefault"?: boolean;
+        /**
+          * Description here
+          * @uiName Boolean Switch required with no default
+          * @required
+         */
+        "booleanSwitchRequiredNoDefault"?: boolean;
+        /**
+          * Description here
+          * @uiName Color with default
           * @uiWidget color
           * @format color
          */
         "color"?: string;
         /**
           * Description here
-          * @uiName Date Interval
-          * @uiWidget dateInterval
+          * @uiName Color with no default
+          * @uiWidget color
+          * @format color
+         */
+        "colorNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Color required with no default
+          * @required 
+          * @uiWidget color
+          * @format color
+         */
+        "colorRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Date Interval with default
+          * @uiWidget dateRange
           * @format date-interval
          */
         "dateInterval"?: string;
         /**
           * Description here
-          * @uiName Image Upload
-          * @uiWidget imageUpload
+          * @uiName Date Interval with no default
+          * @uiWidget dateRange
+          * @format date-interval
+         */
+        "dateIntervalNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Date Interval required with no default
+          * @required 
+          * @uiWidget dateRange
+          * @format date-interval
+         */
+        "dateIntervalRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Image Upload with default
+          * @uiWidget ImageUpload
           * @format url
          */
         "imageUpload"?: string;
+        /**
+          * Description here
+          * @uiName Image Upload with no default
+          * @uiWidget ImageUpload
+          * @format url
+         */
+        "imageUploadNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Image Upload required with no default
+          * @required 
+          * @uiWidget ImageUpload
+          * @format url
+         */
+        "imageUploadRequiredNoDefault"?: string;
         /**
           * Description here
           * @uiName Number Max 7
@@ -1207,58 +1263,136 @@ export namespace Components {
         "minLength"?: string;
         /**
           * Description here
-          * @uiName Number Enum Select
+          * @uiName Number Enum Select with default
           * @uiEnum [1,2,3]
           * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
          */
         "numberEnumSelect"?: number;
         /**
           * Description here
-          * @uiName Number Input
+          * @uiName Number Enum Select with no default
+          * @uiEnum [1,2,3]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "numberEnumSelectNoDefault"?: number;
+        /**
+          * Description here
+          * @uiName Number Enum Select required with no default
+          * @required 
+          * @uiEnum [1,2,3]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "numberEnumSelectRequiredNoDefault"?: number;
+        /**
+          * Description here
+          * @uiName Number Input with default
          */
         "numberInput"?: number;
         /**
           * Description here
-          * @uiName Number Required
+          * @uiName Number Input with no default
+         */
+        "numberInputNoDefault"?: number;
+        /**
+          * Description here
+          * @uiName Number required with no default
           * @required
          */
         "numberRequired"?: number;
         /**
           * Description here
-          * @uiName Program Selector
+          * @uiName Program Selector with default
           * @uiWidget programSelector
          */
         "programSelector"?: string;
         /**
           * Description here
-          * @uiName Stat Selector
+          * @uiName Program Selector with no default
+          * @uiWidget programSelector
+         */
+        "programSelectorNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Program Selector required with no default
+          * @required 
+          * @uiWidget programSelector
+         */
+        "programSelectorRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Stat Selector with default
           * @uiWidget statTypeSelectWidget
          */
         "statSelector"?: string;
         /**
           * Description here
-          * @uiName String Enum Select
+          * @uiName Stat Selector with no default
+          * @uiWidget statTypeSelectWidget
+         */
+        "statSelectorNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Stat Selector required with no default
+          * @uiWidget statTypeSelectWidget
+         */
+        "statSelectorRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName String Enum Select with default
           * @uiEnum ["option1","option2","option3"]
           * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
          */
         "stringEnumSelect"?: string;
         /**
           * Description here
-          * @uiName String Required
+          * @uiName String Enum Select with no default
+          * @uiEnum ["option1","option2","option3"]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "stringEnumSelectNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName String Enum Select required with no default
+          * @required 
+          * @uiEnum ["option1","option2","option3"]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "stringEnumSelectRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName String required with no default
           * @required
          */
         "stringRequired"?: string;
         /**
           * Description here
           * @uiName Text Area Input
-          * @uiWidget textArea
+          * @uiWidget textArea with default
          */
         "textAreaInput"?: string;
         /**
           * Description here
-          * @uiName Text Input
+          * @uiName Text Area Input
+          * @uiWidget textArea with no default
+         */
+        "textAreaInputNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Text Area Input
+          * @uiWidget textArea required with no default
+          * @required
+         */
+        "textAreaInputRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Text Input with default
          */
         "textInput"?: string;
+        /**
+          * Description here
+          * @uiName Text Input with no default
+         */
+        "textInputNoDefault"?: string;
     }
     interface SqmReferralCard {
         /**
@@ -1644,7 +1778,7 @@ export namespace Components {
     }
     interface SqmRewardsTableCustomerNoteColumn {
         /**
-          * @uiName Customer Note Column Title
+          * @uiName Column Title
          */
         "columnTitle": string;
         "renderCell": (data: Reward, locale: string) => Promise<any>;
@@ -1733,6 +1867,7 @@ export namespace Components {
          */
         "rewardExchangeText": string;
         /**
+          * Shown when a reward has been created by a source other than a referral.
           * @uiName Reward Source Text
           * @uiWidget textArea
          */
@@ -1810,7 +1945,7 @@ export namespace Components {
          */
         "circle": boolean;
         /**
-          * @uiName Icon Name
+          * @uiName Icon
          */
         "iconName": string;
         /**
@@ -3071,17 +3206,17 @@ declare namespace LocalJSX {
     }
     interface SqmEmpty {
         /**
-          * @uiName Empty State Title
+          * @uiName Title
          */
         "emptyStateHeader"?: string;
         /**
           * @uiWidget ImageUpload
           * @format url
-          * @uiName Empty State Image Link
+          * @uiName Image
          */
         "emptyStateImage"?: string;
         /**
-          * @uiName Empty State Text
+          * @uiName Description
           * @uiWidget textArea
          */
         "emptyStateText"?: string;
@@ -3572,7 +3707,7 @@ declare namespace LocalJSX {
          */
         "gap"?: Spacing;
         /**
-          * Defines how the container distributes space between & around content items along the main-axis of a flex container
+          * Define how this container distributes its contents along the main-axis.
           * @uiName Justify Content
           * @uiType string
           * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
@@ -4003,30 +4138,86 @@ declare namespace LocalJSX {
     interface SqmQa {
         /**
           * Description here
-          * @uiName Boolean Switch
+          * @uiName Boolean Switch with default
          */
         "booleanSwitch"?: boolean;
         /**
           * Description here
-          * @uiName Color
+          * @uiName Boolean Switch with no default
+         */
+        "booleanSwitchNoDefault"?: boolean;
+        /**
+          * Description here
+          * @uiName Boolean Switch required with no default
+          * @required
+         */
+        "booleanSwitchRequiredNoDefault"?: boolean;
+        /**
+          * Description here
+          * @uiName Color with default
           * @uiWidget color
           * @format color
          */
         "color"?: string;
         /**
           * Description here
-          * @uiName Date Interval
-          * @uiWidget dateInterval
+          * @uiName Color with no default
+          * @uiWidget color
+          * @format color
+         */
+        "colorNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Color required with no default
+          * @required 
+          * @uiWidget color
+          * @format color
+         */
+        "colorRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Date Interval with default
+          * @uiWidget dateRange
           * @format date-interval
          */
         "dateInterval"?: string;
         /**
           * Description here
-          * @uiName Image Upload
-          * @uiWidget imageUpload
+          * @uiName Date Interval with no default
+          * @uiWidget dateRange
+          * @format date-interval
+         */
+        "dateIntervalNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Date Interval required with no default
+          * @required 
+          * @uiWidget dateRange
+          * @format date-interval
+         */
+        "dateIntervalRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Image Upload with default
+          * @uiWidget ImageUpload
           * @format url
          */
         "imageUpload"?: string;
+        /**
+          * Description here
+          * @uiName Image Upload with no default
+          * @uiWidget ImageUpload
+          * @format url
+         */
+        "imageUploadNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Image Upload required with no default
+          * @required 
+          * @uiWidget ImageUpload
+          * @format url
+         */
+        "imageUploadRequiredNoDefault"?: string;
         /**
           * Description here
           * @uiName Number Max 7
@@ -4053,58 +4244,136 @@ declare namespace LocalJSX {
         "minLength"?: string;
         /**
           * Description here
-          * @uiName Number Enum Select
+          * @uiName Number Enum Select with default
           * @uiEnum [1,2,3]
           * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
          */
         "numberEnumSelect"?: number;
         /**
           * Description here
-          * @uiName Number Input
+          * @uiName Number Enum Select with no default
+          * @uiEnum [1,2,3]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "numberEnumSelectNoDefault"?: number;
+        /**
+          * Description here
+          * @uiName Number Enum Select required with no default
+          * @required 
+          * @uiEnum [1,2,3]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "numberEnumSelectRequiredNoDefault"?: number;
+        /**
+          * Description here
+          * @uiName Number Input with default
          */
         "numberInput"?: number;
         /**
           * Description here
-          * @uiName Number Required
+          * @uiName Number Input with no default
+         */
+        "numberInputNoDefault"?: number;
+        /**
+          * Description here
+          * @uiName Number required with no default
           * @required
          */
         "numberRequired"?: number;
         /**
           * Description here
-          * @uiName Program Selector
+          * @uiName Program Selector with default
           * @uiWidget programSelector
          */
         "programSelector"?: string;
         /**
           * Description here
-          * @uiName Stat Selector
+          * @uiName Program Selector with no default
+          * @uiWidget programSelector
+         */
+        "programSelectorNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Program Selector required with no default
+          * @required 
+          * @uiWidget programSelector
+         */
+        "programSelectorRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Stat Selector with default
           * @uiWidget statTypeSelectWidget
          */
         "statSelector"?: string;
         /**
           * Description here
-          * @uiName String Enum Select
+          * @uiName Stat Selector with no default
+          * @uiWidget statTypeSelectWidget
+         */
+        "statSelectorNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Stat Selector required with no default
+          * @uiWidget statTypeSelectWidget
+         */
+        "statSelectorRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName String Enum Select with default
           * @uiEnum ["option1","option2","option3"]
           * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
          */
         "stringEnumSelect"?: string;
         /**
           * Description here
-          * @uiName String Required
+          * @uiName String Enum Select with no default
+          * @uiEnum ["option1","option2","option3"]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "stringEnumSelectNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName String Enum Select required with no default
+          * @required 
+          * @uiEnum ["option1","option2","option3"]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "stringEnumSelectRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName String required with no default
           * @required
          */
         "stringRequired"?: string;
         /**
           * Description here
           * @uiName Text Area Input
-          * @uiWidget textArea
+          * @uiWidget textArea with default
          */
         "textAreaInput"?: string;
         /**
           * Description here
-          * @uiName Text Input
+          * @uiName Text Area Input
+          * @uiWidget textArea with no default
+         */
+        "textAreaInputNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Text Area Input
+          * @uiWidget textArea required with no default
+          * @required
+         */
+        "textAreaInputRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Text Input with default
          */
         "textInput"?: string;
+        /**
+          * Description here
+          * @uiName Text Input with no default
+         */
+        "textInputNoDefault"?: string;
     }
     interface SqmReferralCard {
         /**
@@ -4476,7 +4745,7 @@ declare namespace LocalJSX {
     }
     interface SqmRewardsTableCustomerNoteColumn {
         /**
-          * @uiName Customer Note Column Title
+          * @uiName Column Title
          */
         "columnTitle"?: string;
     }
@@ -4557,6 +4826,7 @@ declare namespace LocalJSX {
          */
         "rewardExchangeText"?: string;
         /**
+          * Shown when a reward has been created by a source other than a referral.
           * @uiName Reward Source Text
           * @uiWidget textArea
          */
@@ -4632,7 +4902,7 @@ declare namespace LocalJSX {
          */
         "circle"?: boolean;
         /**
-          * @uiName Icon Name
+          * @uiName Icon
          */
         "iconName"?: string;
         /**

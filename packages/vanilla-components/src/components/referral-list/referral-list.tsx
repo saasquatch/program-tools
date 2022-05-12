@@ -15,8 +15,7 @@ import { API } from "../../services/WidgetHost";
 })
 export class ReferralList {
   /**
-   * Hide or show the component
-   *
+   * @undocumented
    * @uiName Hide Referral List
    */
   @Prop() ishidden: boolean;
@@ -51,7 +50,7 @@ export class ReferralList {
    */
   @Prop() referralnamecolor: string;
   /**
-   * @uiName Referral Text Color
+   * @uiName Referral Status Text Color
    * @uiWidget color
    * @format color
    * @default "lightgray"

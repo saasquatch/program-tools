@@ -11,8 +11,7 @@ import { css } from "emotion";
 })
 export class ImageComponent {
   /**
-   * Hide or show the component
-   *
+   * @undocumented
    * @uiName Hide Image
    */
   @Prop() ishidden: boolean;

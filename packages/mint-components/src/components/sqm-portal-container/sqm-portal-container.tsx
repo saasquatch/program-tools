@@ -52,7 +52,7 @@ export class PortalContainer {
   @Prop() display: "grid" | "flex" = "grid";
 
   /**
-   * Defines how the container distributes space between & around content items along the main-axis of a flex container
+   * Define how this container distributes its contents along the main-axis.
    *
    * @uiName Justify Content
    * @uiType string

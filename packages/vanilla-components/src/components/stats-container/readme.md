@@ -5,11 +5,11 @@
 
 ## Properties
 
-| Property        | Attribute       | Description                                   | Type      | Default     |
-| --------------- | --------------- | --------------------------------------------- | --------- | ----------- |
-| `ishidden`      | `ishidden`      | Hide the component                            | `boolean` | `false`     |
-| `paddingbottom` | `paddingbottom` | Configure the padding bottom of the container | `string`  | `undefined` |
-| `paddingtop`    | `paddingtop`    | Configure the padding top of the container    | `string`  | `undefined` |
+| Property        | Attribute       | Description                                                     | Type      | Default     |
+| --------------- | --------------- | --------------------------------------------------------------- | --------- | ----------- |
+| `ishidden`      | `ishidden`      |                                                                 | `boolean` | `false`     |
+| `paddingbottom` | `paddingbottom` | Define the top padding of the container with a pixel amount.    | `string`  | `undefined` |
+| `paddingtop`    | `paddingtop`    | Define the bottom padding of the container with a pixel amount. | `string`  | `undefined` |
 
 
 ----------------------------------------------
