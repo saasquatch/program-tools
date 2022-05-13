@@ -3,7 +3,7 @@ import { useState } from "react";
 import { RadioGenericView, RadioOption } from ".";
 
 export default {
-  title: "Components / Select",
+  title: "Components / Generic Radio",
   component: RadioGenericView,
 };
 

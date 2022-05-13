@@ -465,7 +465,7 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
 
   const isOpen = disabled || loading ? false : functional.isOpen;
 
-  return isOpen ? (
+  return (
     <ItemContainerList
       limitWidth={limitWidth}
       limitHeight={limitHeight}
@@ -473,22 +473,24 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
       ref={ref}
       {...functional.getMenuProps()}
     >
-      {items.map((item, index) => (
-        <ListItem
-          style={
-            functional.highlightedIndex === index
-              ? { backgroundColor: "var(--sq-surface-hover)" }
-              : {}
-          }
-          key={`${itemToString(item)}-${index}`}
-          {...functional.getItemProps({ item, index })}
-        >
-          {itemToNode(item)}
-        </ListItem>
-      ))}
+      {isOpen ? (
+        items.map((item, index) => (
+          <ListItem
+            style={
+              functional.highlightedIndex === index
+                ? { backgroundColor: "var(--sq-surface-hover)" }
+                : {}
+            }
+            key={`${itemToString(item)}-${index}`}
+            {...functional.getItemProps({ item, index })}
+          >
+            {itemToNode(item)}
+          </ListItem>
+        ))
+      ) : (
+        <></>
+      )}
     </ItemContainerList>
-  ) : (
-    <></>
   );
 };
 
