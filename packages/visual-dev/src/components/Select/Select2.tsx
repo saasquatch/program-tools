@@ -473,6 +473,7 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
       ref={ref}
       {...functional.getMenuProps()}
     >
+      {/* Place the conditional render inside getMenuProps call to avoid downshift errors */}
       {isOpen ? (
         items.map((item, index) => (
           <ListItem
