@@ -553,8 +553,8 @@ export const layers_with_errors = (
     />
     <rect x="15" width="13" height="13" rx="6.5" fill="white" />
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M21.4935 0C17.9055 0 15 2.912 15 6.5C15 10.088 17.9055 13 21.4935 13C25.088 13 28 10.088 28 6.5C28 2.912 25.088 0 21.4935 0ZM22.15 8.45H20.85V9.75H22.15V8.45ZM22.15 3.25H20.85V7.15H22.15V3.25Z"
       fill="#C71D06"
     />
