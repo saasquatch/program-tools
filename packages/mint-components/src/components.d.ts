@@ -1333,6 +1333,7 @@ export namespace Components {
         /**
           * Description here
           * @uiName Stat Selector required with no default
+          * @required 
           * @uiWidget statTypeSelectWidget
          */
         "statSelectorRequiredNoDefault"?: string;
@@ -4314,6 +4315,7 @@ declare namespace LocalJSX {
         /**
           * Description here
           * @uiName Stat Selector required with no default
+          * @required 
           * @uiWidget statTypeSelectWidget
          */
         "statSelectorRequiredNoDefault"?: string;
