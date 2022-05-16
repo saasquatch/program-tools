@@ -31,6 +31,7 @@ export const TabsView: FunctionalComponent<TabsViewProps> = ({
       <sl-tab-group placement={placement}>
         {content.tabs.map((tab: TabElement) => {
           const slotName = tab.getAttribute("slot");
+          console.log({ tab });
           return [
             <sl-tab
               slot="nav"
