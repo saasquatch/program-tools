@@ -186,8 +186,21 @@ function useReferralTableDemo(
       (component) => component.slot !== "loading" && component.slot !== "empty"
     );
     // get the column titles (renderLabel is asynchronous)
-    const columnsPromise = columnComponents?.map(async (c: any) =>
-      tryMethod(c, () => c.renderLabel())
+    const columnsPromise = columnComponents?.map(
+      async (c: any, idx: number) => {
+        const slot = c?.firstElementChild?.getAttribute("slot");
+        if (
+          c.tagName === "RAISINS-PLOP-TARGET" &&
+          slot !== "loading" &&
+          slot !== "empty"
+        ) {
+          c.setAttribute("slot", "column-" + idx);
+          // Replace add text with a simple + button
+          c.firstElementChild.childNodes[1].innerHTML = "+";
+          return tryMethod(c, () => c.renderLabel(idx));
+        }
+        return tryMethod(c, () => c.renderLabel());
+      }
     );
 
     // show the referrer row before any other rows (renderReferrerCell is asynchronous)

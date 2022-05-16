@@ -13,7 +13,6 @@ export interface TabElement extends Element {
 export function useTabs() {
   const rawTabs = useChildElements<TabElement>();
   const host = useHost();
-  console.log({ rawTabs });
   const tabs = useMemo(
     () =>
       rawTabs
@@ -22,14 +21,6 @@ export function useTabs() {
             tab.tagName === "SQM-TAB" || tab.tagName === "RAISINS-PLOP-TARGET"
         )
         .map((tab, i) => {
-          if (tab.tagName === "RAISINS-PLOP-TARGET") {
-            tab.setAttribute("slot", "tab-" + i);
-            // set id as targets for scroll component
-            tab.setAttribute("id", "tab-" + i);
-            // @ts-ignore
-            tab.setAttribute("header", tab.innerText);
-            return tab;
-          }
           tab.setAttribute("slot", "tab-" + i);
           // set id as targets for scroll component
           tab.setAttribute("id", "tab-" + i);
@@ -41,10 +32,6 @@ export function useTabs() {
   useEffect(() => {
     const listener = (e: CustomEvent) => {
       const target = e.target as HTMLElement;
-      console.log({ target });
-      if (target.tagName === "RAISINS-PLOP-TARGET") {
-        return;
-      }
       // Prevents recursively nested components from sending requests up all the way
       e.stopPropagation();
 
