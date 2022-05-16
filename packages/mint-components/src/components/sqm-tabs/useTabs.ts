@@ -21,6 +21,15 @@ export function useTabs() {
             tab.tagName === "SQM-TAB" || tab.tagName === "RAISINS-PLOP-TARGET"
         )
         .map((tab, i) => {
+          if (tab.tagName === "RAISINS-PLOP-TARGET") {
+            const plopTab = tab as unknown as HTMLElement;
+            plopTab.style.position = "absolute";
+            plopTab.style.left = "6px";
+            const plopTarget = tab.firstElementChild
+              .childNodes[1] as HTMLElement;
+            plopTarget.innerHTML = "＋";
+            (plopTarget as HTMLElement).style.lineHeight = "20px";
+          }
           tab.setAttribute("slot", "tab-" + i);
           // set id as targets for scroll component
           tab.setAttribute("id", "tab-" + i);
