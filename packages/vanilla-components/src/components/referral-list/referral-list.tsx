@@ -230,7 +230,7 @@ export class ReferralList {
    */
   @Prop() cancelledvalue: string;
   /**
-   * When true, the local gets set by using the value passed to the referral component
+   * Use the value passed to the referral component to set the locale of the user.
    *
    * @uiName Internationalization
    */
