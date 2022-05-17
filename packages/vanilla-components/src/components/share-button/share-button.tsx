@@ -44,8 +44,6 @@ export class ShareButton {
    */
   @Prop() textcolor: string;
   /**
-   * Share button icon
-   *
    * @uiName Share Button Icon
    */
   @Prop() icon: string;
@@ -68,14 +66,12 @@ export class ShareButton {
    */
   @Prop() iconvertical: number;
   /**
-   * Size of the Share button icon
+   * Size of the Share button icon in em units
    *
    * @uiName Share Button Icon Size
    */
   @Prop() iconsize: number;
   /**
-   * Type of the share button
-   *
    * @uiName Share Button Type
    */
   @Prop() type: string;
