@@ -38,6 +38,10 @@ import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-v
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
+    interface RaisinsPlopTarget {
+        "renderCell": () => Promise<any>;
+        "renderLabel": (idx: any) => Promise<any>;
+    }
     interface SqmAssetCard {
         /**
           * @undocumented 
@@ -1333,6 +1337,7 @@ export namespace Components {
         /**
           * Description here
           * @uiName Stat Selector required with no default
+          * @required 
           * @uiWidget statTypeSelectWidget
          */
         "statSelectorRequiredNoDefault"?: string;
@@ -2420,6 +2425,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLRaisinsPlopTargetElement extends Components.RaisinsPlopTarget, HTMLStencilElement {
+    }
+    var HTMLRaisinsPlopTargetElement: {
+        prototype: HTMLRaisinsPlopTargetElement;
+        new (): HTMLRaisinsPlopTargetElement;
+    };
     interface HTMLSqmAssetCardElement extends Components.SqmAssetCard, HTMLStencilElement {
     }
     var HTMLSqmAssetCardElement: {
@@ -2931,6 +2942,7 @@ declare global {
         new (): HTMLSqmUserNameElement;
     };
     interface HTMLElementTagNameMap {
+        "raisins-plop-target": HTMLRaisinsPlopTargetElement;
         "sqm-asset-card": HTMLSqmAssetCardElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-brand": HTMLSqmBrandElement;
@@ -3019,6 +3031,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface RaisinsPlopTarget {
+    }
     interface SqmAssetCard {
         /**
           * @undocumented 
@@ -4314,6 +4328,7 @@ declare namespace LocalJSX {
         /**
           * Description here
           * @uiName Stat Selector required with no default
+          * @required 
           * @uiWidget statTypeSelectWidget
          */
         "statSelectorRequiredNoDefault"?: string;
@@ -5375,6 +5390,7 @@ declare namespace LocalJSX {
         "loadingText"?: string;
     }
     interface IntrinsicElements {
+        "raisins-plop-target": RaisinsPlopTarget;
         "sqm-asset-card": SqmAssetCard;
         "sqm-big-stat": SqmBigStat;
         "sqm-brand": SqmBrand;
@@ -5466,6 +5482,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "raisins-plop-target": LocalJSX.RaisinsPlopTarget & JSXBase.HTMLAttributes<HTMLRaisinsPlopTargetElement>;
             "sqm-asset-card": LocalJSX.SqmAssetCard & JSXBase.HTMLAttributes<HTMLSqmAssetCardElement>;
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;

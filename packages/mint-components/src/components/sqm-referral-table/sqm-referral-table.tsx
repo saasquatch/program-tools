@@ -183,11 +183,32 @@ function useReferralTableDemo(
     }
     // filter out loading and empty states from columns array
     const columnComponents = components.filter(
-      (component) => component.slot !== "loading" && component.slot !== "empty"
+      (component) =>
+        component.slot !== "loading" &&
+        component.slot !== "empty" &&
+        component?.firstElementChild?.getAttribute("slot") !== "loading" &&
+        component?.firstElementChild?.getAttribute("slot") !== "empty"
     );
     // get the column titles (renderLabel is asynchronous)
-    const columnsPromise = columnComponents?.map(async (c: any) =>
-      tryMethod(c, () => c.renderLabel())
+    const columnsPromise = columnComponents?.map(
+      async (c: any, idx: number) => {
+        const slot = c?.firstElementChild?.getAttribute("slot");
+        // Custom plop targets
+        if (
+          c.tagName === "RAISINS-PLOP-TARGET" &&
+          slot !== "loading" &&
+          slot !== "empty"
+        ) {
+          c.setAttribute("slot", "column-" + idx);
+          c.style.position = "absolute";
+          // Replace add text with a simple + button
+          const plopTarget = c.firstElementChild.childNodes[1];
+          plopTarget.innerHTML = "＋";
+          (plopTarget as HTMLElement).style.lineHeight = "20px";
+          return tryMethod(c, () => c.renderLabel(idx));
+        }
+        return tryMethod(c, () => c.renderLabel());
+      }
     );
 
     // show the referrer row before any other rows (renderReferrerCell is asynchronous)

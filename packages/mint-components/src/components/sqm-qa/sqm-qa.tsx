@@ -245,6 +245,7 @@ export class ShareButton {
    /**
     * Description here
     * @uiName Stat Selector required with no default
+    * @required
     * @uiWidget statTypeSelectWidget
     */
    @Prop() statSelectorRequiredNoDefault?: string;
