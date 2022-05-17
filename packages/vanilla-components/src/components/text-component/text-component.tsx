@@ -49,6 +49,11 @@ export class TextComponent {
    * @uiName Padding Top
    */
   @Prop() paddingtop: string;
+
+  /**
+   * @uiName Font Weight
+   */
+  @Prop() fontweight: string;
   /**
    * Define the bottom padding of the container with a pixel amount.
    *
@@ -81,8 +86,9 @@ export class TextComponent {
       /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i;
 
     const textStyle = css`
-      font-family: ${this.fontfamily || "inherit"};
-      font-size: ${this.fontsize ? this.fontsize + "px" : "inherit"};
+      font-family: ${this.fontfamily || 'inherit'};
+      font-size: ${this.fontsize ? this.fontsize + 'px' : 'inherit'};
+      font-weight: ${this.fontweight ? this.fontweight : 'inherit'};
       text-align: ${this.textalign};
       color: ${this.color || "inherit"};
       padding-top: ${this.paddingtop ? this.paddingtop + "px" : "inherit"};

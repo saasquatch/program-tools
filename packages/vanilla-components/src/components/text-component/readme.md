@@ -11,6 +11,7 @@
 | `color`         | `color`         |                                                                                                    | `string`  | `undefined` |
 | `fontfamily`    | `fontfamily`    |                                                                                                    | `string`  | `undefined` |
 | `fontsize`      | `fontsize`      |                                                                                                    | `string`  | `undefined` |
+| `fontweight`    | `fontweight`    |                                                                                                    | `string`  | `undefined` |
 | `height`        | `height`        | Define the height of the container with a pixel amount.                                            | `string`  | `undefined` |
 | `ishidden`      | `ishidden`      |                                                                                                    | `boolean` | `undefined` |
 | `ismarkdown`    | `ismarkdown`    | Compile plain text into markdown.                                                                  | `boolean` | `undefined` |

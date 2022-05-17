@@ -1,7 +1,7 @@
 {
   "name": "@saasquatch/vanilla-components",
   "title": "Vanilla Components",
-  "version": "1.2.4-7",
+  "version": "1.2.4-8",
   "description": "A minimal design library with components for referral and loyalty experiences.",
   "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1652219900/squatch-assets/For_Vanilla.svg",
   "raisins": "docs/raisins.json",
@@ -60,6 +60,7 @@
     "puppeteer": "3.0.3",
     "ts-node": "^8.10.1",
     "uuid": "^8.3.0",
+    "progressbar.js": "^1.0.1",
     "workbox-build": "4.3.1"
   },
   "resolutions": {

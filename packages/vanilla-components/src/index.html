@@ -17,18 +17,18 @@
     <meta http-equiv="x-ua-compatible" content="IE=Edge" />
 
     <script>
-      //      window.widgetIdent = {
-      //        env: "demo",
-      //        engagementMedium: "POPUP",
-      //        locale: "en_US",
-      //        tenantAlias: "test_a3edz4n6iax72",
-      //        programId: "servicetitanwidget",
-      //        appDomain: "https://staging.referralsaasquatch.com",
-      //        userId: "5ac26c53ead2245a935343d5",
-      //        accountId: "5ac26c53ead2245a935343d4",
-      //        token:
-      //          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWFjMjZjNTNlYWQyMjQ1YTkzNTM0M2Q1IiwiYWNjb3VudElkIjoiNWFjMjZjNTNlYWQyMjQ1YTkzNTM0M2Q0In19.eH7Qi2io7Cxgj6TCN28FdMRRqydwhfEX-gbHt_oCPU0",
-      //      };
+           window.widgetIdent = {
+             env: "demo",
+             engagementMedium: "POPUP",
+             locale: "en_US",
+             tenantAlias: "test_a3edz4n6iax72",
+             programId: "servicetitanwidget",
+             appDomain: "https://staging.referralsaasquatch.com",
+             userId: "5ac26c53ead2245a935343d5",
+             accountId: "5ac26c53ead2245a935343d4",
+             token:
+               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWFjMjZjNTNlYWQyMjQ1YTkzNTM0M2Q1IiwiYWNjb3VudElkIjoiNWFjMjZjNTNlYWQyMjQ1YTkzNTM0M2Q0In19.eH7Qi2io7Cxgj6TCN28FdMRRqydwhfEX-gbHt_oCPU0",
+           };
     </script>
 
     <script src="https://unpkg.com/@saasquatch/widget-host@latest/umd/@saasquatch/widget-host.js"></script>
@@ -382,5 +382,77 @@
         paddingbottom="10"
       ></sqh-text-component>
     </sqh-global-container>
+
+    <!-- VIP WIDGET-->
+    
+ <sqh-global-container 
+ class="squatch-container" 
+ background="#ffffff"
+ fontfamily="Roboto"
+ >
+     
+   <sqh-text-component 
+     sqhbanner="true"
+     ishidden="true"
+     background="https://res.cloudinary.com/saasquatch/image/upload/v1535746336/prod_default_assets/default_banner.jpg"
+     height="auto"
+     paddingtop="150"
+     paddingbottom="150"
+     text=""
+     color="#000000"
+   ></sqh-text-component>
+ 
+   <sqh-text-component
+     sqhheader="true" 
+     text="Spend $100.<br>Get $5 Credit." 
+     ismarkdown="true"
+     color="#285F62" 
+     fontsize="30" 
+     fontweight="bold"
+     textalign="center"
+     paddingtop="30" 
+     paddingbottom="10"
+   ></sqh-text-component>
+   
+ <!-- New Component Here -->
+ 
+   <sqh-progress-indicator
+     sqhprogress="true"
+     textcolor="#000"
+     earned="You've already earned"
+     progress="Almost there - Spend {amountNeeded} more dollars and get $5 credit."
+     progresstype="Path"
+     progresswidth="200px"
+     percentagecolor="#285F62"
+     percentagesize="32px"
+     progresscolor="#009DF5"
+   >
+   </sqh-progress-indicator>
+ 
+   <sqh-cta-component 
+     sqhfooter="true" 
+     text="Shop Now" 
+     color="#FFF" 
+     backgroundcolor="#F5A100"
+     fontsize="14"
+     textalign="center"
+     paddingtop="10"
+     paddingbottom="10"
+     width="170"
+     borderradius="24"
+     url="https://google.com"
+   ></sqh-cta-component>
+ 
+   <sqh-text-component 
+     sqhfooter="true" 
+     text="Terms and Conditions" 
+     color="lightgray" 
+     fontsize="13"
+     textalign="center"
+     paddingtop="10"
+     paddingbottom="10"
+   ></sqh-text-component>
+     
+ </sqh-global-container>    
   </body>
 </html>
