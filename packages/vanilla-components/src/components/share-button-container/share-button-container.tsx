@@ -52,8 +52,6 @@ export class ShareButtonContainer {
    */
   @Prop() emailtextcolor: string;
   /**
-   * Email button icon
-   *
    * @uiName Email Icon
    * @uiGroup Email
    */
@@ -121,8 +119,6 @@ export class ShareButtonContainer {
    */
   @Prop() facebooktextcolor: string;
   /**
-   * Facebook button icon
-   *
    * @uiName Facebook Icon
    * @uiGroup Facebook
    */
@@ -191,8 +187,6 @@ export class ShareButtonContainer {
    */
   @Prop() twittertextcolor: string;
   /**
-   * Twitter button icon
-   *
    * @uiName Twitter Icon
    * @uiGroup Twitter
    */
@@ -261,8 +255,6 @@ export class ShareButtonContainer {
    */
   @Prop() smstextcolor: string;
   /**
-   * SMS button icon
-   *
    * @uiName SMS Icon
    * @uiGroup SMS
    */
@@ -330,8 +322,6 @@ export class ShareButtonContainer {
    */
   @Prop() whatsapptextcolor: string = "#fff";
   /**
-   * WhatsApp button icon
-   *
    * @uiName WhatsApp Icon
    * @uiGroup WhatsApp
    */
@@ -400,8 +390,6 @@ export class ShareButtonContainer {
    */
   @Prop() linkedintextcolor: string;
   /**
-   * Linkedin button icon
-   *
    * @uiName Linkedin Icon
    * @uiGroup LinkedIn
    */
@@ -469,8 +457,6 @@ export class ShareButtonContainer {
    */
   @Prop() pinteresttextcolor: string;
   /**
-   * Pinterest button icon
-   *
    * @uiName Pinterest Icon
    * @uiGroup Pinterest
    */
@@ -539,8 +525,6 @@ export class ShareButtonContainer {
    */
   @Prop() messengertextcolor: string;
   /**
-   * Messenger button icon
-   *
    * @uiName Messenger Icon
    * @uiGroup Messenger
    */
@@ -608,8 +592,6 @@ export class ShareButtonContainer {
    */
   @Prop() linetextcolor: string;
   /**
-   * Line button icon
-   *
    * @uiName Line Icon
    * @uiGroup Line Messenger
    */
