@@ -31,13 +31,17 @@ export class TitledSection {
   @Prop() textAlign: "left" | "center" | "right" = "left";
 
   /**
-   * @uiName Label Margin Style
+   * Margin applied to the bottom of the label slot
+   *
+   * @uiName Label Bottom Margin
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() labelMargin: Spacing = "small";
   /**
+   * Padding applied to all 4 sides of the container
+   *
    * @uiName Section Padding
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
