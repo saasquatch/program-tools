@@ -5,7 +5,7 @@ import { getProps } from "../../utils/utils";
 import { TimelineEntryView } from "./sqm-timeline-entry-view";
 
 /**
- * @uiName Timeline Entry
+ * @uiName Program Timeline Entry
  * @validParents ["sqm-timeline"]
  * @exampleGroup Common Components
  * @example Timeline Entry - <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry>

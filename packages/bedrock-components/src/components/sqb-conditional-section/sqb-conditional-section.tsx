@@ -9,8 +9,8 @@ import { useConditionalSection, UseConditionalSection } from './useConditonalSec
  * @uiName Conditional Section
  * @exampleGroup Advanced
  * @slots [{"name":"","title":"Section Content"}]
- * @example Conditional Section On Segment - <sqb-conditional-section condition="'vip' in user.segments">Add your conditional content here!</sqb-conditional-section>
- * @example Conditional Section On Custom Field - <sqb-conditional-section condition="user.customFields.foo = true">Add your conditional content here!</sqb-conditional-section>
+ * @example Conditional Section On Segment - <sqb-conditional-section condition="'vip' in user.segments"><p>Add your conditional content here!</p></sqb-conditional-section>
+ * @example Conditional Section On Custom Field - <sqb-conditional-section condition="user.customFields.foo = true"><p>Add your conditional content here!</p></sqb-conditional-section>
  */
 @Component({
   tag: 'sqb-conditional-section',
