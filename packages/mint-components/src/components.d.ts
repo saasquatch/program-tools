@@ -1201,6 +1201,7 @@ export namespace Components {
           * Description here
           * @uiName Date Interval with default
           * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
           * @format date-interval
          */
         "dateInterval"?: string;
@@ -1208,6 +1209,7 @@ export namespace Components {
           * Description here
           * @uiName Date Interval with no default
           * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
           * @format date-interval
          */
         "dateIntervalNoDefault"?: string;
@@ -1216,6 +1218,7 @@ export namespace Components {
           * @uiName Date Interval required with no default
           * @required 
           * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
           * @format date-interval
          */
         "dateIntervalRequiredNoDefault"?: string;
@@ -4192,6 +4195,7 @@ declare namespace LocalJSX {
           * Description here
           * @uiName Date Interval with default
           * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
           * @format date-interval
          */
         "dateInterval"?: string;
@@ -4199,6 +4203,7 @@ declare namespace LocalJSX {
           * Description here
           * @uiName Date Interval with no default
           * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
           * @format date-interval
          */
         "dateIntervalNoDefault"?: string;
@@ -4207,6 +4212,7 @@ declare namespace LocalJSX {
           * @uiName Date Interval required with no default
           * @required 
           * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
           * @format date-interval
          */
         "dateIntervalRequiredNoDefault"?: string;
