@@ -13,8 +13,8 @@ export const AlertDiv = css`
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
-  div + div {
-    padding-left: var(--sq-spacing-medium);
+  & > :first-child {
+    margin-right: var(--sq-spacing-medium);
   }
 `;
 
