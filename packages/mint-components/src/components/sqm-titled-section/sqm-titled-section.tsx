@@ -16,7 +16,7 @@ import { PortalSectionView } from "./sqm-portal-section-view";
 })
 export class TitledSection {
   /**
-   * Label for the section unless overwritten via the label slot.
+   * Text value shown when there is no label slot declared.
    *
    * @uiName Label
    */
