@@ -71,6 +71,7 @@ export class ShareButton {
    * Description here
    * @uiName Date Interval with default
    * @uiWidget dateRange
+   * @uiWidgetOptions {"allowPastDates":true, "months": 1}
    * @format date-interval
    */
   @Prop() dateInterval?: string =
@@ -151,6 +152,7 @@ export class ShareButton {
    * Description here
    * @uiName Date Interval with no default
    * @uiWidget dateRange
+   * @uiWidgetOptions {"allowPastDates":true, "months": 1}
    * @format date-interval
    */
   @Prop() dateIntervalNoDefault?: string;
@@ -187,76 +189,77 @@ export class ShareButton {
    * @uiName Boolean Switch required with no default
    * @required
    */
-   @Prop() booleanSwitchRequiredNoDefault?: boolean;
+  @Prop() booleanSwitchRequiredNoDefault?: boolean;
 
-   /**
-    * Description here
-    * @uiName Text Area Input
-    * @uiWidget textArea required with no default
-    * @required
-    */
-   @Prop() textAreaInputRequiredNoDefault?: string;
- 
-   /**
-    * Description here
-    * @uiName String Enum Select required with no default
-    * @required
-    * @uiEnum ["option1","option2","option3"]
-    * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-    */
-   @Prop() stringEnumSelectRequiredNoDefault?: string;
- 
-   /**
-    * Description here
-    * @uiName Number Enum Select required with no default
-    * @required
-    * @uiEnum [1,2,3]
-    * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-    */
-   @Prop() numberEnumSelectRequiredNoDefault?: number;
- 
-   /**
-    * Description here
-    * @uiName Color required with no default
-    * @required
-    * @uiWidget color
-    * @format color
-    */
-   @Prop() colorRequiredNoDefault?: string;
- 
-   /**
-    * Description here
-    * @uiName Image Upload required with no default
-    * @required
-    * @uiWidget ImageUpload
-    * @format url
-    */
-   @Prop() imageUploadRequiredNoDefault?: string;
- 
-   /**
-    * Description here
-    * @uiName Date Interval required with no default
-    * @required
-    * @uiWidget dateRange
-    * @format date-interval
-    */
-   @Prop() dateIntervalRequiredNoDefault?: string;
- 
-   /**
-    * Description here
-    * @uiName Stat Selector required with no default
-    * @required
-    * @uiWidget statTypeSelectWidget
-    */
-   @Prop() statSelectorRequiredNoDefault?: string;
- 
-   /**
-    * Description here
-    * @uiName Program Selector required with no default
-    * @required
-    * @uiWidget programSelector
-    */
-   @Prop() programSelectorRequiredNoDefault?: string;
+  /**
+   * Description here
+   * @uiName Text Area Input
+   * @uiWidget textArea required with no default
+   * @required
+   */
+  @Prop() textAreaInputRequiredNoDefault?: string;
+
+  /**
+   * Description here
+   * @uiName String Enum Select required with no default
+   * @required
+   * @uiEnum ["option1","option2","option3"]
+   * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+   */
+  @Prop() stringEnumSelectRequiredNoDefault?: string;
+
+  /**
+   * Description here
+   * @uiName Number Enum Select required with no default
+   * @required
+   * @uiEnum [1,2,3]
+   * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+   */
+  @Prop() numberEnumSelectRequiredNoDefault?: number;
+
+  /**
+   * Description here
+   * @uiName Color required with no default
+   * @required
+   * @uiWidget color
+   * @format color
+   */
+  @Prop() colorRequiredNoDefault?: string;
+
+  /**
+   * Description here
+   * @uiName Image Upload required with no default
+   * @required
+   * @uiWidget ImageUpload
+   * @format url
+   */
+  @Prop() imageUploadRequiredNoDefault?: string;
+
+  /**
+   * Description here
+   * @uiName Date Interval required with no default
+   * @required
+   * @uiWidget dateRange
+   * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+   * @format date-interval
+   */
+  @Prop() dateIntervalRequiredNoDefault?: string;
+
+  /**
+   * Description here
+   * @uiName Stat Selector required with no default
+   * @required
+   * @uiWidget statTypeSelectWidget
+   */
+  @Prop() statSelectorRequiredNoDefault?: string;
+
+  /**
+   * Description here
+   * @uiName Program Selector required with no default
+   * @required
+   * @uiWidget programSelector
+   */
+  @Prop() programSelectorRequiredNoDefault?: string;
 
   /**
    * Description here
