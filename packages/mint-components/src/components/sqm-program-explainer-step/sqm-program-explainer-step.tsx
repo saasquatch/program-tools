@@ -41,7 +41,7 @@ export class ProgramExplainerStep {
 
   /**
    * Displayed in place of an icon
-   * 
+   *
    * @uiName Image Url
    * @uiWidget imageUpload
    * @format url
@@ -49,8 +49,8 @@ export class ProgramExplainerStep {
   @Prop() imageUrl?: string;
 
   /**
-   * Options available at https://shoelace.style/components/icon 
-   * 
+   * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
+   *
    * @uiName Icon
    */
   @Prop() icon?: string;

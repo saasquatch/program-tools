@@ -93,6 +93,7 @@ export class Scroll {
   @Prop() iconSlot: string;
 
   /**
+   * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
    * @uiName Icon
    */
   @Prop() iconName: string;
@@ -130,7 +131,7 @@ export class Scroll {
             color: "var(--sl-color-primary-text)",
             background: "var(--sl-color-neutral-500)",
             "&:hover": {
-              opacity:"0.8"
+              opacity: "0.8",
             },
           },
         },
