@@ -1402,6 +1402,25 @@ export namespace Components {
          */
         "textInputNoDefault"?: string;
     }
+    interface SqmQaReferralCard {
+        /**
+          * @uiName Vertical Aligment
+          * @uiType string
+          * @uiEnum ["start", "center", "end"]
+          * @uiEnumNames ["Top", "Center", "Bottom"]
+         */
+        "verticalAlignment": "start" | "center" | "end";
+    }
+    interface SqmQaTabs {
+        /**
+          * Used to specify the placement of the tabs
+          * @uiName Tabs Placement
+          * @uiType string
+          * @uiEnum ["left", "right", "bottom", "top"]
+          * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
+         */
+        "placement"?: "left" | "right" | "bottom" | "top";
+    }
     interface SqmReferralCard {
         /**
           * @uiName Vertical Aligment
@@ -2680,6 +2699,18 @@ declare global {
         prototype: HTMLSqmQaElement;
         new (): HTMLSqmQaElement;
     };
+    interface HTMLSqmQaReferralCardElement extends Components.SqmQaReferralCard, HTMLStencilElement {
+    }
+    var HTMLSqmQaReferralCardElement: {
+        prototype: HTMLSqmQaReferralCardElement;
+        new (): HTMLSqmQaReferralCardElement;
+    };
+    interface HTMLSqmQaTabsElement extends Components.SqmQaTabs, HTMLStencilElement {
+    }
+    var HTMLSqmQaTabsElement: {
+        prototype: HTMLSqmQaTabsElement;
+        new (): HTMLSqmQaTabsElement;
+    };
     interface HTMLSqmReferralCardElement extends Components.SqmReferralCard, HTMLStencilElement {
     }
     var HTMLSqmReferralCardElement: {
@@ -2987,6 +3018,8 @@ declare global {
         "sqm-program-explainer-step": HTMLSqmProgramExplainerStepElement;
         "sqm-program-menu": HTMLSqmProgramMenuElement;
         "sqm-qa": HTMLSqmQaElement;
+        "sqm-qa-referral-card": HTMLSqmQaReferralCardElement;
+        "sqm-qa-tabs": HTMLSqmQaTabsElement;
         "sqm-referral-card": HTMLSqmReferralCardElement;
         "sqm-referral-iframe": HTMLSqmReferralIframeElement;
         "sqm-referral-table": HTMLSqmReferralTableElement;
@@ -4396,6 +4429,25 @@ declare namespace LocalJSX {
          */
         "textInputNoDefault"?: string;
     }
+    interface SqmQaReferralCard {
+        /**
+          * @uiName Vertical Aligment
+          * @uiType string
+          * @uiEnum ["start", "center", "end"]
+          * @uiEnumNames ["Top", "Center", "Bottom"]
+         */
+        "verticalAlignment"?: "start" | "center" | "end";
+    }
+    interface SqmQaTabs {
+        /**
+          * Used to specify the placement of the tabs
+          * @uiName Tabs Placement
+          * @uiType string
+          * @uiEnum ["left", "right", "bottom", "top"]
+          * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
+         */
+        "placement"?: "left" | "right" | "bottom" | "top";
+    }
     interface SqmReferralCard {
         /**
           * @uiName Vertical Aligment
@@ -5438,6 +5490,8 @@ declare namespace LocalJSX {
         "sqm-program-explainer-step": SqmProgramExplainerStep;
         "sqm-program-menu": SqmProgramMenu;
         "sqm-qa": SqmQa;
+        "sqm-qa-referral-card": SqmQaReferralCard;
+        "sqm-qa-tabs": SqmQaTabs;
         "sqm-referral-card": SqmReferralCard;
         "sqm-referral-iframe": SqmReferralIframe;
         "sqm-referral-table": SqmReferralTable;
@@ -5530,6 +5584,8 @@ declare module "@stencil/core" {
             "sqm-program-explainer-step": LocalJSX.SqmProgramExplainerStep & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerStepElement>;
             "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
             "sqm-qa": LocalJSX.SqmQa & JSXBase.HTMLAttributes<HTMLSqmQaElement>;
+            "sqm-qa-referral-card": LocalJSX.SqmQaReferralCard & JSXBase.HTMLAttributes<HTMLSqmQaReferralCardElement>;
+            "sqm-qa-tabs": LocalJSX.SqmQaTabs & JSXBase.HTMLAttributes<HTMLSqmQaTabsElement>;
             "sqm-referral-card": LocalJSX.SqmReferralCard & JSXBase.HTMLAttributes<HTMLSqmReferralCardElement>;
             "sqm-referral-iframe": LocalJSX.SqmReferralIframe & JSXBase.HTMLAttributes<HTMLSqmReferralIframeElement>;
             "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;
