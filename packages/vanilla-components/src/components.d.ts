@@ -413,7 +413,7 @@ export namespace Components {
          */
         "expiresvalue": string;
         /**
-          * When true, the local gets set by using the value passed to the referral component
+          * Use the value passed to the referral component to set the locale of the user.
           * @uiName Internationalization
          */
         "internationalization": boolean;
@@ -580,7 +580,7 @@ export namespace Components {
          */
         "displayrule": string;
         /**
-          * Share button icon
+          * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
           * @uiName Share Button Icon
          */
         "icon": string;
@@ -590,7 +590,7 @@ export namespace Components {
          */
         "iconhorizontal": number;
         /**
-          * Size of the Share button icon
+          * Size of the Share button icon in em units
           * @uiName Share Button Icon Size
          */
         "iconsize": number;
@@ -612,7 +612,6 @@ export namespace Components {
          */
         "textcolor": string;
         /**
-          * Type of the share button
           * @uiName Share Button Type
          */
         "type": string;
@@ -650,7 +649,6 @@ export namespace Components {
          */
         "emaildisplayrule": string;
         /**
-          * Email button icon
           * @uiName Email Icon
           * @uiGroup Email
          */
@@ -711,7 +709,6 @@ export namespace Components {
          */
         "facebookdisplayrule": string;
         /**
-          * Facebook button icon
           * @uiName Facebook Icon
           * @uiGroup Facebook
          */
@@ -777,7 +774,6 @@ export namespace Components {
          */
         "linedisplayrule": string;
         /**
-          * Line button icon
           * @uiName Line Icon
           * @uiGroup Line Messenger
          */
@@ -838,7 +834,6 @@ export namespace Components {
          */
         "linkedindisplayrule": string;
         /**
-          * Linkedin button icon
           * @uiName Linkedin Icon
           * @uiGroup LinkedIn
          */
@@ -899,7 +894,6 @@ export namespace Components {
          */
         "messengerdisplayrule": string;
         /**
-          * Messenger button icon
           * @uiName Messenger Icon
           * @uiGroup Messenger
          */
@@ -960,7 +954,6 @@ export namespace Components {
          */
         "pinterestdisplayrule": string;
         /**
-          * Pinterest button icon
           * @uiName Pinterest Icon
           * @uiGroup Pinterest
          */
@@ -1021,7 +1014,6 @@ export namespace Components {
          */
         "smsdisplayrule": string;
         /**
-          * SMS button icon
           * @uiName SMS Icon
           * @uiGroup SMS
          */
@@ -1082,7 +1074,6 @@ export namespace Components {
          */
         "twitterdisplayrule": string;
         /**
-          * Twitter button icon
           * @uiName Twitter Icon
           * @uiGroup Twitter
          */
@@ -1143,7 +1134,6 @@ export namespace Components {
          */
         "whatsappdisplayrule": string;
         /**
-          * WhatsApp button icon
           * @uiName WhatsApp Icon
           * @uiGroup WhatsApp
          */
@@ -1265,7 +1255,7 @@ export namespace Components {
          */
         "ishidden": boolean;
         /**
-          * Compile plain text into markdown.
+          * Compiles plain text into {@link https://www.markdownguide.org/getting-started/ markdown}.
           * @uiName Use Markdown
          */
         "ismarkdown": boolean;
@@ -1824,7 +1814,7 @@ declare namespace LocalJSX {
          */
         "expiresvalue"?: string;
         /**
-          * When true, the local gets set by using the value passed to the referral component
+          * Use the value passed to the referral component to set the locale of the user.
           * @uiName Internationalization
          */
         "internationalization"?: boolean;
@@ -1991,7 +1981,7 @@ declare namespace LocalJSX {
          */
         "displayrule"?: string;
         /**
-          * Share button icon
+          * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
           * @uiName Share Button Icon
          */
         "icon"?: string;
@@ -2001,7 +1991,7 @@ declare namespace LocalJSX {
          */
         "iconhorizontal"?: number;
         /**
-          * Size of the Share button icon
+          * Size of the Share button icon in em units
           * @uiName Share Button Icon Size
          */
         "iconsize"?: number;
@@ -2023,7 +2013,6 @@ declare namespace LocalJSX {
          */
         "textcolor"?: string;
         /**
-          * Type of the share button
           * @uiName Share Button Type
          */
         "type"?: string;
@@ -2061,7 +2050,6 @@ declare namespace LocalJSX {
          */
         "emaildisplayrule"?: string;
         /**
-          * Email button icon
           * @uiName Email Icon
           * @uiGroup Email
          */
@@ -2122,7 +2110,6 @@ declare namespace LocalJSX {
          */
         "facebookdisplayrule"?: string;
         /**
-          * Facebook button icon
           * @uiName Facebook Icon
           * @uiGroup Facebook
          */
@@ -2188,7 +2175,6 @@ declare namespace LocalJSX {
          */
         "linedisplayrule"?: string;
         /**
-          * Line button icon
           * @uiName Line Icon
           * @uiGroup Line Messenger
          */
@@ -2249,7 +2235,6 @@ declare namespace LocalJSX {
          */
         "linkedindisplayrule"?: string;
         /**
-          * Linkedin button icon
           * @uiName Linkedin Icon
           * @uiGroup LinkedIn
          */
@@ -2310,7 +2295,6 @@ declare namespace LocalJSX {
          */
         "messengerdisplayrule"?: string;
         /**
-          * Messenger button icon
           * @uiName Messenger Icon
           * @uiGroup Messenger
          */
@@ -2371,7 +2355,6 @@ declare namespace LocalJSX {
          */
         "pinterestdisplayrule"?: string;
         /**
-          * Pinterest button icon
           * @uiName Pinterest Icon
           * @uiGroup Pinterest
          */
@@ -2432,7 +2415,6 @@ declare namespace LocalJSX {
          */
         "smsdisplayrule"?: string;
         /**
-          * SMS button icon
           * @uiName SMS Icon
           * @uiGroup SMS
          */
@@ -2493,7 +2475,6 @@ declare namespace LocalJSX {
          */
         "twitterdisplayrule"?: string;
         /**
-          * Twitter button icon
           * @uiName Twitter Icon
           * @uiGroup Twitter
          */
@@ -2554,7 +2535,6 @@ declare namespace LocalJSX {
          */
         "whatsappdisplayrule"?: string;
         /**
-          * WhatsApp button icon
           * @uiName WhatsApp Icon
           * @uiGroup WhatsApp
          */
@@ -2678,7 +2658,7 @@ declare namespace LocalJSX {
          */
         "ishidden"?: boolean;
         /**
-          * Compile plain text into markdown.
+          * Compiles plain text into {@link https://www.markdownguide.org/getting-started/ markdown}.
           * @uiName Use Markdown
          */
         "ismarkdown"?: boolean;

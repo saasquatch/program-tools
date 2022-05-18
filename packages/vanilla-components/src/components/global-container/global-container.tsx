@@ -82,6 +82,8 @@ export class GlobalContainer {
       />
     );
 
+    const isDemo = window["widgetIdent"]?.env === "demo"
+
     return (
       <div class={style}>
         {this.fontfamily == "Roboto" ? robotoFont : ""}
@@ -98,7 +100,7 @@ export class GlobalContainer {
         ) : (
           ""
         )}
-        <this.LoadingState loadingcolor={this.loadingcolor} />
+        {!isDemo && <this.LoadingState loadingcolor={this.loadingcolor} />}
       </div>
     );
   }

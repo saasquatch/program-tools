@@ -14,7 +14,7 @@
 | `fontweight`    | `fontweight`    |                                                                                                    | `string`  | `undefined` |
 | `height`        | `height`        | Define the height of the container with a pixel amount.                                            | `string`  | `undefined` |
 | `ishidden`      | `ishidden`      |                                                                                                    | `boolean` | `undefined` |
-| `ismarkdown`    | `ismarkdown`    | Compile plain text into markdown.                                                                  | `boolean` | `undefined` |
+| `ismarkdown`    | `ismarkdown`    | Compiles plain text into {@link https://www.markdownguide.org/getting-started/ markdown}.          | `boolean` | `undefined` |
 | `paddingbottom` | `paddingbottom` | Define the bottom padding of the container with a pixel amount.                                    | `string`  | `undefined` |
 | `paddingtop`    | `paddingtop`    | Define the top padding of the container with a pixel amount.                                       | `string`  | `undefined` |
 | `text`          | `text`          |                                                                                                    | `string`  | `undefined` |
