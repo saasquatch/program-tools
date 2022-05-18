@@ -10,12 +10,11 @@ import { css } from 'emotion';
 })
 export class CTAComponent {
   /**
-   * @undocumented
    * @uiName Hide Text
    */
    @Prop() ishidden: boolean;
    /**
-    * Compile plain text into markdown.
+    * Compile plain text into HTML. See {@link https://www.markdownguide.org/getting-started/ markdown} for more details.
     *
     * @uiName Use Markdown
     */
@@ -38,9 +37,11 @@ export class CTAComponent {
     * @uiName Font Size
     */
    @Prop() fontsize: string;
-   /**
-   * @uiName Padding Top
-   */
+  /**
+    * Top padding in pixels
+    * 
+    * @uiName Padding Top
+    */
   @Prop() paddingtop: string;
 
   /**
@@ -48,6 +49,8 @@ export class CTAComponent {
    */
   @Prop() fontweight: string;
   /**
+   * Bottom padding in pixels
+   * 
    * @uiName Padding Bottom
    */
   @Prop() paddingbottom: string;
