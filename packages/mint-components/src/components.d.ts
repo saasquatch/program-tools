@@ -1138,7 +1138,7 @@ export namespace Components {
          */
         "header": string;
         /**
-          * Options available at https://shoelace.style/components/icon
+          * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
           * @uiName Icon
          */
         "icon"?: string;
@@ -1915,10 +1915,12 @@ export namespace Components {
          */
         "columnTitle": string;
         /**
+          * Expiry date prefix
           * @uiName Expired Status Text
          */
         "expiryText": string;
         /**
+          * Text describing how long a reward is pending for until it expires
           * @uiName Expiry Date Prefix
          */
         "pendingScheduled": string;
@@ -1972,6 +1974,7 @@ export namespace Components {
          */
         "circle": boolean;
         /**
+          * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
           * @uiName Icon
          */
         "iconName": string;
@@ -2403,18 +2406,20 @@ export namespace Components {
     }
     interface SqmTitledSection {
         /**
-          * Label for the section unless overwritten via the label slot.
+          * Text value shown when there is no label slot declared.
           * @uiName Label
          */
         "label": string;
         /**
-          * @uiName Label Margin Style
+          * Margin applied to the bottom of the label slot
+          * @uiName Label Bottom Margin
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "labelMargin": Spacing;
         /**
+          * Padding applied to all 4 sides of the container
           * @uiName Section Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
@@ -4165,7 +4170,7 @@ declare namespace LocalJSX {
          */
         "header"?: string;
         /**
-          * Options available at https://shoelace.style/components/icon
+          * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
           * @uiName Icon
          */
         "icon"?: string;
@@ -4920,10 +4925,12 @@ declare namespace LocalJSX {
          */
         "columnTitle"?: string;
         /**
+          * Expiry date prefix
           * @uiName Expired Status Text
          */
         "expiryText"?: string;
         /**
+          * Text describing how long a reward is pending for until it expires
           * @uiName Expiry Date Prefix
          */
         "pendingScheduled"?: string;
@@ -4975,6 +4982,7 @@ declare namespace LocalJSX {
          */
         "circle"?: boolean;
         /**
+          * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
           * @uiName Icon
          */
         "iconName"?: string;
@@ -5405,18 +5413,20 @@ declare namespace LocalJSX {
     }
     interface SqmTitledSection {
         /**
-          * Label for the section unless overwritten via the label slot.
+          * Text value shown when there is no label slot declared.
           * @uiName Label
          */
         "label"?: string;
         /**
-          * @uiName Label Margin Style
+          * Margin applied to the bottom of the label slot
+          * @uiName Label Bottom Margin
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "labelMargin"?: Spacing;
         /**
+          * Padding applied to all 4 sides of the container
           * @uiName Section Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
