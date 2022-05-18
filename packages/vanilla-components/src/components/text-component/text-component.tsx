@@ -20,7 +20,7 @@ export class TextComponent {
    */
   @Prop() ishidden: boolean;
   /**
-   * Compile plain text into markdown.
+   * Compiles plain text into {@link https://www.markdownguide.org/getting-started/ markdown}.
    *
    * @uiName Use Markdown
    */
