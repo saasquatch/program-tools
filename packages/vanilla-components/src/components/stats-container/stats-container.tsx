@@ -19,7 +19,7 @@ export class StatsContainer {
   @Element() container: HTMLElement;
   /**
    * @undocumented
-   * @uiName Is Hidden
+   * @uiName Hide stats
    */
   @Prop() ishidden: boolean = false;
   /**
