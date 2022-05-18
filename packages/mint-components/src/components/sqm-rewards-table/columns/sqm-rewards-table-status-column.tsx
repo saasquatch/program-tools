@@ -27,9 +27,9 @@ export class RewardTableStatusColumn implements RewardTableColumn {
     "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
 
   /**
-   * Expiry date prefix
+   * Text shown before the date of an expiring reward.
    *
-   * @uiName Expired Status Text
+   * @uiName Expiry Date Prefix
    */
   @Prop() expiryText: string = "Expires on ";
 
@@ -41,9 +41,9 @@ export class RewardTableStatusColumn implements RewardTableColumn {
   @Prop() pendingUsTax: string = "W-9 required";
 
   /**
-   * Text describing how long a reward is pending for until it expires
+   * Text shown before the available date of a pending reward.
    *
-   * @uiName Expiry Date Prefix
+   * @uiName Pending Date Prefix
    */
   @Prop() pendingScheduled: string = "Until";
 
