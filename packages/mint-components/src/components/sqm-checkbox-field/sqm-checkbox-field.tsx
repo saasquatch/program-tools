@@ -49,6 +49,7 @@ export class CheckboxField {
 
   /**
    * @uiName Optional
+   * @default
    */
   @Prop() checkboxOptional?: boolean = false;
 

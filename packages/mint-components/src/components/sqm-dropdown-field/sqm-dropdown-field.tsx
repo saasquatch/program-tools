@@ -37,6 +37,7 @@ export class DropdownField {
 
   /**
    * @uiName Optional
+   * @default
    */
   @Prop() dropdownOptional?: boolean = false;
 

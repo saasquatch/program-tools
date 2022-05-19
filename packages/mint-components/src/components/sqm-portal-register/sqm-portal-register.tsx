@@ -69,6 +69,7 @@ export class PortalRegister {
    * Show or hide the confirm password input
    *
    * @uiName Show Confirm Password Field
+   * @default
    */
   @Prop()
   confirmPassword: boolean = false;
@@ -83,6 +84,7 @@ export class PortalRegister {
    * Hide default input fields to use custom fields
    *
    * @uiName Hide Default Inputs
+   * @default
    */
   @Prop()
   hideInputs: boolean = false;

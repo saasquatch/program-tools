@@ -67,6 +67,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
 
   /**
    * @uiName Hide dropdown details of reward
+   * @default
    */
   @Prop() hideDetails: boolean = false;
 

@@ -35,6 +35,7 @@ export class BigStat {
    * Controls the order of the stat value & description column
    *
    * @uiName Flex Reverse
+   * @default
    */
   @Prop() flexReverse?: boolean = false;
   /**

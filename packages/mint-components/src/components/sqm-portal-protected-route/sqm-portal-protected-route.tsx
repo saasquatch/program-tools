@@ -22,6 +22,7 @@ export class PortalProtectedRoute {
 
   /**
    * @uiName Require Email Verification
+   * @default
    */
   @Prop()
   requireEmailVerification: boolean = false;

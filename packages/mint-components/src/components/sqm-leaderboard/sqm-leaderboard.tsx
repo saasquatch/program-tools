@@ -46,6 +46,7 @@ export class Leaderboard {
    * Hide the viewer's leaderboard row if not in the top results.
    *
    * @uiName Hide Viewing User
+   * @default
    */
   @Prop() hideViewer: boolean = false;
 

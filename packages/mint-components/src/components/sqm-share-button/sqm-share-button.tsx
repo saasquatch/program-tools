@@ -129,10 +129,12 @@ export class ShareButton {
   @Prop() icon?: string;
   /**
    * @uiName Hide Icon
+   * @default
    */
   @Prop() hideicon?: boolean = false;
   /**
    * @uiName Hide Text
+   * @default
    */
   @Prop() hidetext?: boolean = false;
   /**

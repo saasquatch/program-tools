@@ -40,6 +40,7 @@ export class PortalResetPassword {
    * Show or hide confirm password field
    *
    * @uiName Show Confirm Password
+   * @default
    */
   @Prop()
   confirmPassword: boolean = false;

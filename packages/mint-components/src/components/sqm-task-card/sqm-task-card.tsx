@@ -57,6 +57,7 @@ export class TaskCard {
   /**
    * @uiName Goal Repeatable
    * @uiGroup Goal
+   * @default
    */
   @Prop()
   repeatable: boolean = false;
@@ -73,6 +74,7 @@ export class TaskCard {
   /**
    * @uiName Show Progress Bar
    * @uiGroup Goal
+   * @default
    */
   @Prop()
   showProgressBar: boolean = false;
@@ -89,6 +91,7 @@ export class TaskCard {
   /**
    * @uiName Progress Bar Steps
    * @uiGroup Goal
+   * @default
    */
   @Prop()
   steps: boolean = false;
@@ -174,6 +177,7 @@ export class TaskCard {
    * Button Link Opens in New Tab
    * @uiName Open In New Tab
    * @uiGroup Button
+   * @default
    */
   @Prop()
   openNewTab: boolean = false;

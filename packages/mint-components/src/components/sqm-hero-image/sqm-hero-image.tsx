@@ -101,6 +101,7 @@ export class HeroImage {
 
   /**
    * @uiName Open Link in New Tab
+   * @default
    */
   @Prop() buttonNewTab?: boolean = false;
 

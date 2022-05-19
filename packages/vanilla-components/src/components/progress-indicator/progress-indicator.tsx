@@ -43,6 +43,7 @@ interface currency {
 
 export class ProgressIndicator {
   /**
+   * @undocumented
    * @uiName Hide Component
    */
   @Prop() ishidden: boolean = false;

@@ -45,6 +45,7 @@ export class InputField {
 
   /**
    * @uiName Optional
+   * @default
    */
   @Prop() fieldOptional?: boolean = false;
 

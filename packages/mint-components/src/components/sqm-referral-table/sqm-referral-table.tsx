@@ -57,6 +57,7 @@ export class ReferralTable {
    * Show referred by user in table
    *
    * @uiName Show Referrer
+   * @default
    */
   @Prop() showReferrer?: boolean = false;
 
