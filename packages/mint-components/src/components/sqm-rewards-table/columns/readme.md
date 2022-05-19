@@ -7,14 +7,14 @@
 
 ## Properties
 
-| Property           | Attribute           | Description                                                       | Type     | Default                                                                                                                                          |
-| ------------------ | ------------------- | ----------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `columnTitle`      | `column-title`      |                                                                   | `string` | `"Status"`                                                                                                                                       |
-| `expiryText`       | `expiry-text`       | Expiry date prefix                                                | `string` | `"Expires on "`                                                                                                                                  |
-| `pendingScheduled` | `pending-scheduled` | Text describing how long a reward is pending for until it expires | `string` | `"Until"`                                                                                                                                        |
-| `pendingUnhandled` | `pending-unhandled` | Displayed when fulfillment error occured when creating a reward.  | `string` | `"Fulfillment error"`                                                                                                                            |
-| `pendingUsTax`     | `pending-us-tax`    | Displayed when a reward is pending due to W9 compliance.          | `string` | `"W-9 required"`                                                                                                                                 |
-| `statusText`       | `status-text`       |                                                                   | `string` | `"{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"` |
+| Property           | Attribute           | Description                                                      | Type     | Default                                                                                                                                          |
+| ------------------ | ------------------- | ---------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `columnTitle`      | `column-title`      |                                                                  | `string` | `"Status"`                                                                                                                                       |
+| `expiryText`       | `expiry-text`       | Text shown before the date of an expiring reward.                | `string` | `"Expires on "`                                                                                                                                  |
+| `pendingScheduled` | `pending-scheduled` | Text shown before the available date of a pending reward.        | `string` | `"Until"`                                                                                                                                        |
+| `pendingUnhandled` | `pending-unhandled` | Displayed when fulfillment error occured when creating a reward. | `string` | `"Fulfillment error"`                                                                                                                            |
+| `pendingUsTax`     | `pending-us-tax`    | Displayed when a reward is pending due to W9 compliance.         | `string` | `"W-9 required"`                                                                                                                                 |
+| `statusText`       | `status-text`       |                                                                  | `string` | `"{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"` |
 
 
 ## Methods
