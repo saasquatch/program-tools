@@ -1915,13 +1915,13 @@ export namespace Components {
          */
         "columnTitle": string;
         /**
-          * Expiry date prefix
-          * @uiName Expired Status Text
+          * Text shown before the date of an expiring reward.
+          * @uiName Expiry Date Prefix
          */
         "expiryText": string;
         /**
-          * Text describing how long a reward is pending for until it expires
-          * @uiName Expiry Date Prefix
+          * Text shown before the available date of a pending reward.
+          * @uiName Pending Date Prefix
          */
         "pendingScheduled": string;
         /**
@@ -2008,10 +2008,12 @@ export namespace Components {
          */
         "scrollAnimation": "smooth" | "auto";
         /**
+          * ID applied to the HTML tag you would like to scroll to. E.g tab-1
           * @uiName Scroll Id
          */
         "scrollId"?: string;
         /**
+          * The name of the HTML tag you would like to scroll to. E.g referral-table
           * @uiName Scroll Tag Name
          */
         "scrollTagName"?: string;
@@ -2296,7 +2298,7 @@ export namespace Components {
          */
         "openNewTab": boolean;
         /**
-          * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
+          * The ID of the program that is used to scope the task card. When no ID is specified, it defaults to the program context in which the component is rendered.
           * @uiName Program ID Override
           * @uiWidget programSelector
           * @uiGroup Goal
@@ -4925,13 +4927,13 @@ declare namespace LocalJSX {
          */
         "columnTitle"?: string;
         /**
-          * Expiry date prefix
-          * @uiName Expired Status Text
+          * Text shown before the date of an expiring reward.
+          * @uiName Expiry Date Prefix
          */
         "expiryText"?: string;
         /**
-          * Text describing how long a reward is pending for until it expires
-          * @uiName Expiry Date Prefix
+          * Text shown before the available date of a pending reward.
+          * @uiName Pending Date Prefix
          */
         "pendingScheduled"?: string;
         /**
@@ -5016,10 +5018,12 @@ declare namespace LocalJSX {
          */
         "scrollAnimation"?: "smooth" | "auto";
         /**
+          * ID applied to the HTML tag you would like to scroll to. E.g tab-1
           * @uiName Scroll Id
          */
         "scrollId"?: string;
         /**
+          * The name of the HTML tag you would like to scroll to. E.g referral-table
           * @uiName Scroll Tag Name
          */
         "scrollTagName"?: string;
@@ -5304,7 +5308,7 @@ declare namespace LocalJSX {
          */
         "openNewTab"?: boolean;
         /**
-          * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
+          * The ID of the program that is used to scope the task card. When no ID is specified, it defaults to the program context in which the component is rendered.
           * @uiName Program ID Override
           * @uiWidget programSelector
           * @uiGroup Goal

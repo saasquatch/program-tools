@@ -38,11 +38,15 @@ export class Scroll {
   @Prop() buttonText: string;
 
   /**
+   * The name of the HTML tag you would like to scroll to. E.g referral-table
+   *
    * @uiName Scroll Tag Name
    */
   @Prop() scrollTagName?: string;
 
   /**
+   * ID applied to the HTML tag you would like to scroll to. E.g tab-1
+   *
    * @uiName Scroll Id
    */
   @Prop() scrollId?: string;

@@ -94,8 +94,8 @@ export class TaskCard {
   steps: boolean = false;
 
   /**
-   * The unit displayed to the right of steps and progress numbers on the progress bar. Ex: $ for dollars  
-   * 
+   * The unit displayed to the right of steps and progress numbers on the progress bar. Ex: $ for dollars
+   *
    * @uiName Progress Bar Unit
    * @uiGroup Goal
    */
@@ -104,7 +104,7 @@ export class TaskCard {
 
   /**
    * Displayed when a user views a task card after the reward duration interval.
-   * 
+   *
    * @uiName Expiry Date Message
    * @uiGroup Task
    */
@@ -112,7 +112,7 @@ export class TaskCard {
 
   /**
    * Task cards are disabled to users outside of the duration. They are not disabled if no duration is configured.
-   * 
+   *
    * @uiName Reward Duration
    * @uiWidget dateRange
    * @uiWidgetOptions {"allowPastDates":true, "months": 1}
@@ -200,7 +200,7 @@ export class TaskCard {
   @Prop() eventKey?: string;
 
   /**
-   * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
+   * The ID of the program that is used to scope the task card. When no ID is specified, it defaults to the program context in which the component is rendered.
    *
    * @uiName Program ID Override
    * @uiWidget programSelector

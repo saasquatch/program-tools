@@ -42,15 +42,62 @@ interface currency {
 })
 
 export class ProgressIndicator {
+  /**
+   * @uiName Hide Component
+   */
   @Prop() ishidden: boolean = false;
+  /**
+   * @uiName Text Color
+   * @uiWidget color
+   * @format color
+   */
   @Prop() textcolor: string;
+  /**
+   * @undocumented
+   * @uiName Text Alignment
+   * @uiEnum ["left", "center", "right"]
+   * @uiEnumNames ["Left", "Center", "Right"]
+   */
   @Prop() align: string;
+  /**
+   * Select the type of icon to display.
+   * 
+   * @uiName Indicator Icon Type
+   * @uiEnum ["Path", "Cirlce", "SemiCircle", "Line"]
+   * @uiEnumNames ["Path", "Cirlce", "SemiCircle", "Line"]
+   */
   @Prop() progresstype: string;
+  /**
+   * Text to show how much credit has been earned.
+   * 
+   * @uiName Credit Earned Text
+   */
   @Prop() earned: string;
+  /**
+   * Text to show a users progress.
+   * 
+   * @uiName Progress Text
+   */
   @Prop() progress: string;
-
+  /**
+   * Width of the progress bar.
+   * 
+   * @uiName Progress Width
+   */
   @Prop() progresswidth: string;
+  /**
+   * Color of the percentage text.
+   * 
+   * @uiName Percentage Color
+   * @uiWidget color
+   * @format color
+   */
   @Prop() percentagecolor: string;
+  /**
+   * Font size of the percentage text.
+   * 
+   * @uiName Percentage Text Size
+   */
   @Prop() percentagesize: string;
 
   @Prop() progresscolor: string;
