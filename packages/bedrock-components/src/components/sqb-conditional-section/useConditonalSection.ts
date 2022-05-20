@@ -10,6 +10,7 @@ const UserQuery = gql`
         email
         customFields
         segments
+        countryCode
       }
     }
   }
