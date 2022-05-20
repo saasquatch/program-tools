@@ -1,5 +1,5 @@
 import React from "react";
-import { AlertView } from ".";
+import { Alert, AlertView } from ".";
 
 export default {
   title: "Components / Alert",
@@ -23,6 +23,15 @@ export const success = () => (
 );
 export const info = () => (
   <AlertView type="info" title="An info alert">
+    An explanation of what this alert is in multiple lines.
+  </AlertView>
+);
+export const customCSS = () => (
+  <AlertView
+    type="success"
+    title="An info alert"
+    customCSS="background:red !important;"
+  >
     An explanation of what this alert is in multiple lines.
   </AlertView>
 );

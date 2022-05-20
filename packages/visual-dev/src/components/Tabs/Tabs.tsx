@@ -9,21 +9,28 @@ const TabsContext = React.createContext<TabsContextType>([
 ]);
 
 export interface TabViewProps {
-  id: string
-  children: React.ReactNode
-  disabled?: boolean
+  /**
+   * Unique identifier for the given tab
+   */
+  id: string;
+  /**
+   * Content displayed to represent the tab, typically a label
+   */
+  children: React.ReactNode;
+  /**
+   * Disable switching to the given tab
+   */
+  disabled?: boolean;
 }
 
-const TabView: React.FC<TabViewProps> = ({
-  id,
-  disabled,
-  children,
-}) => {
+const TabView: React.FC<TabViewProps> = ({ id, disabled, children }) => {
   const [selected, setId] = useTabs();
 
   return (
     <div
-      className={`tab${selected == id ? " active" : ""} ${disabled ? "disabled" : ""}`}
+      className={`tab${selected == id ? " active" : ""} ${
+        disabled ? "disabled" : ""
+      }`}
       onClick={() => !disabled && setId!(id)}
     >
       {children}
@@ -32,9 +39,21 @@ const TabView: React.FC<TabViewProps> = ({
 };
 
 export interface TabsProps {
+  /**
+   * Currently selected tab, by tab id
+   */
   selected?: string;
+  /**
+   * Callback triggered when the tab is clicked, passed the tab id
+   */
   onTabClick: (id: string) => void;
+  /**
+   * Custom styling applied to the tabs container
+   */
   customTabStyle?: any;
+  /**
+   * Content of the Tabs container, typically a number of TabView components
+   */
   children: React.ReactNode;
 }
 

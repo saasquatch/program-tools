@@ -7,12 +7,24 @@ type TabGroupProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
+  /**
+   * Tab group content, typically a number of Tab components
+   */
   children?: React.ReactNode;
+  /**
+   * True if the given tab is selected
+   */
   selected?: boolean;
 }
 
 export interface StyleProps {
+  /**
+   * Tab color scheme, primary or secondary
+   */
   color?: "primary" | "secondary";
+  /**
+   * Custom CSS applied to the tab container
+   */
   customCSS?: CSSProp;
 }
 

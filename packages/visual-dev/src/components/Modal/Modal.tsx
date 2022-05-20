@@ -8,18 +8,44 @@ type ModalProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
+  /**
+   * Title at top of modal
+   */
   title: string;
+  /**
+   * Display the open modal
+   */
   open?: boolean;
-  banner?: any;
+  /**
+   * Callback triggered when the "X" in the top right of the modal is clicked
+   */
   onClose: any;
+  /**
+   * Callback triggered when the primary modal action button is clicked (if available)
+   */
   primaryAction?: any;
+  /**
+   * Callback triggered when the secondary modal action button is clicked (if available)
+   */
   secondaryAction?: any;
+  /**
+   * Z-index used to overlay the modal over existing content (prefer a construct like react portals)
+   */
   zIndex?: number;
+  /**
+   * Content inside the modal under the title
+   */
   children: React.ReactNode;
 }
 
 export interface StyleProps {
+  /**
+   * Custon CSS applied to the modal container
+   */
   customCSS?: CSSProp;
+  /**
+   * Custom CSS applied to the modal title
+   */
   customTitleCSS?: CSSProp;
 }
 
@@ -45,7 +71,6 @@ export const ModalView = React.forwardRef<React.ElementRef<"div">, ModalProps>(
       open = false,
       onClose,
       zIndex,
-      banner,
       primaryAction,
       secondaryAction,
       children,

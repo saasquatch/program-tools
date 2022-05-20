@@ -32,6 +32,7 @@ export interface StyleProps {
 const AlertDiv = styled.div<Required<StyleProps>>`
   ${Styles.AlertDiv}
   ${(props) => Styles[props.type]}
+  ${(props) => props.customCSS}
 `;
 
 const icons = {
