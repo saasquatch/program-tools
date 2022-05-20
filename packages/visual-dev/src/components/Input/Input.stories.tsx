@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IconButton, IconButtonView } from "../Button";
 import { InputView } from ".";
 import { useSelect } from "downshift";
-import { Select, SelectView } from "../Select";
+import { Select } from "../Select";
 
 export default {
   title: "Components / Input",
@@ -153,7 +153,7 @@ export const WithUnits = () => {
           borderRight: "none",
         }}
       />
-      <SelectView {...props}></SelectView>
+      <Select {...props}></Select>
     </div>
   );
 };
