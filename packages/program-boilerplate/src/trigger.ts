@@ -1,4 +1,4 @@
-import Transaction from './transaction';
+import Transaction from "./transaction";
 
 import {
   ProgramTriggerResult,
@@ -9,7 +9,7 @@ import {
   Program,
   TriggerType,
   ValidationResult,
-} from './types/rpc';
+} from "./types/rpc";
 
 /**
  * Triggers the program and returns the result (JSON + HTTP code)
@@ -34,24 +34,25 @@ export function triggerProgram(
     | ProgramIntrospectionBody
     | ProgramValidationBody
     | ProgramVariableSchemaRequestBody,
-  program: Program = {},
+  program: Program = {}
 ): ProgramTriggerResult {
-  switch (body.messageType || 'PROGRAM_TRIGGER') {
-    case 'PROGRAM_INTROSPECTION':
+  switch (body.messageType || "PROGRAM_TRIGGER") {
+    case "PROGRAM_INTROSPECTION":
       body = body as ProgramIntrospectionBody;
       return handleProgramIntrospection(body, program);
-    case 'PROGRAM_TRIGGER':
+    case "PROGRAM_TRIGGER":
       body = body as ProgramTriggerBody;
       return handleProgramTrigger(body, program);
-    case 'PROGRAM_VALIDATION':
+    case "PROGRAM_VALIDATION":
       // Make modifications to template based on rules here if necessary.
       body = body as ProgramValidationBody;
       return handleProgramValidation(body, program);
-    case 'PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST':
+    case "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST":
       body = body as ProgramVariableSchemaRequestBody;
       return handleProgramVariableSchemaRequest(body, program);
     default:
-      console.log('UNREACHABLE CODE REACHED!!');
+      // use winston logger instead
+      console.log("UNREACHABLE CODE REACHED!!");
       return {
         json: {
           message: `Unrecognized messageType ${body.messageType}`,
@@ -71,9 +72,9 @@ export function triggerProgram(
  */
 function handleProgramTrigger(
   body: ProgramTriggerBody,
-  program: Program,
+  program: Program
 ): ProgramTriggerResult {
-  const transaction = new Transaction({body});
+  const transaction = new Transaction({ body });
 
   const triggerType = body.activeTrigger.type as TriggerType;
   const handleTrigger: any = program[triggerType];
@@ -89,10 +90,12 @@ function handleProgramTrigger(
     };
   } catch (e) {
     const errorMes = {
-      error: 'An error occurred in a webtask',
+      error: "An error occurred in a webtask",
+      // consider not returning stack trace for security reasons
       message: e.stack,
     };
 
+    // use winston logger instead
     console.log(errorMes);
 
     return {
@@ -112,7 +115,7 @@ function handleProgramTrigger(
  */
 function handleProgramIntrospection(
   body: ProgramIntrospectionBody,
-  program: Program,
+  program: Program
 ): ProgramTriggerResult {
   const template = body.template;
   const rules = body.program.rules;
@@ -120,7 +123,7 @@ function handleProgramIntrospection(
   const tenant = body.tenant;
 
   // Make modifications to template based on rules here if necessary.
-  const handleIntrospection = program['PROGRAM_INTROSPECTION'];
+  const handleIntrospection = program["PROGRAM_INTROSPECTION"];
   try {
     const newTemplate =
       (handleIntrospection &&
@@ -134,10 +137,12 @@ function handleProgramIntrospection(
     };
   } catch (e) {
     const errorMes = {
-      error: 'An error occurred in a webtask',
+      error: "An error occurred in a webtask",
+      // consider not returning stack trace for security reasons
       message: e.stack,
     };
 
+    // use winston logger instead
     console.log(errorMes);
 
     return {
@@ -157,17 +162,18 @@ function handleProgramIntrospection(
  */
 function handleProgramValidation(
   body: ProgramValidationBody,
-  program: Program,
+  program: Program
 ): ProgramTriggerResult {
   const results: ValidationResult[] = [];
 
   body.validationRequests.forEach((r) => {
-    const validationHandlers = program['PROGRAM_VALIDATION'];
+    const validationHandlers = program["PROGRAM_VALIDATION"];
     const requirementHandler = validationHandlers
       ? validationHandlers[r.key]
       : undefined;
 
     if (!requirementHandler) {
+      // this return goes to no where
       return {
         json: {
           message: `Requirement handler for key ${r.key} not implemented`,
@@ -175,6 +181,7 @@ function handleProgramValidation(
         code: 501,
       };
     } else {
+      // should maybe add error handling
       results.push({
         key: r.key,
         results: requirementHandler(r.queryResult, body.program, body.time),
@@ -183,20 +190,20 @@ function handleProgramValidation(
   });
 
   return {
-    json: {validationResults: results},
+    json: { validationResults: results },
     code: 200,
   };
 }
 
 function handleProgramVariableSchemaRequest(
   body: ProgramVariableSchemaRequestBody,
-  program: Program,
+  program: Program
 ): ProgramTriggerResult {
   const schema = body.schema;
   const scheduleKey = body.scheduleKey;
   const triggerType = body.triggerType;
   const handleSchemaRequest =
-    program['PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST'];
+    program["PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST"];
   if (!handleSchemaRequest) {
     return {
       json: {},
@@ -208,10 +215,13 @@ function handleProgramVariableSchemaRequest(
       newSchema = handleSchemaRequest(schema, triggerType, scheduleKey);
     } catch (e) {
       const errorMes = {
-        error: 'An error occurred in a webtask (PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST)',
+        error:
+          "An error occurred in a webtask (PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST)",
+        // consider not returning stack trace for security reasons
         message: e.stack,
       };
 
+      // use winston logger instead
       console.log(errorMes);
     }
     if (!newSchema) {

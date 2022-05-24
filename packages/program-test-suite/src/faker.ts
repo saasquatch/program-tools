@@ -1,5 +1,5 @@
-import {types} from '@saasquatch/program-boilerplate';
-import * as faker from 'faker';
+import { types } from "@saasquatch/program-boilerplate";
+import * as faker from "faker";
 
 type ProgramIntrospectionBody = types.rpc.ProgramIntrospectionBody;
 type ProgramTriggerBody = types.rpc.ProgramTriggerBody;
@@ -9,10 +9,10 @@ type ValidationRequest = types.rpc.ValidationRequest;
 export function getValidationJson(
   reqs: ValidationRequest[],
   id: string,
-  rules: any,
+  rules: any
 ): ProgramValidationBody {
   return {
-    messageType: 'PROGRAM_VALIDATION',
+    messageType: "PROGRAM_VALIDATION",
     validationRequests: reqs,
     time: 1500000000000,
     program: {
@@ -25,19 +25,19 @@ export function getValidationJson(
 export function getIntrospectionJson(
   template?: any,
   rules?: any,
-  rewards?: any[],
+  rewards?: any[]
 ): ProgramIntrospectionBody {
   return {
-    messageType: 'PROGRAM_INTROSPECTION',
+    messageType: "PROGRAM_INTROSPECTION",
     template,
     rules,
     program: {
-      id: 'r1',
+      id: "r1",
       rules,
       rewards,
     },
     tenant: {
-      tenantAlias: 'test_UNITTESTTENANT',
+      tenantAlias: "test_UNITTESTTENANT",
       isLiveMode: false,
     },
   };
@@ -51,25 +51,25 @@ type ProgramTriggerInfo = {
 };
 
 export function getProgramTriggerJson(
-  info: ProgramTriggerInfo,
+  info: ProgramTriggerInfo
 ): ProgramTriggerBody {
   return {
-    messageType: 'PROGRAM_TRIGGER',
+    messageType: "PROGRAM_TRIGGER",
     activeTrigger: {
       type: info.type,
       time: info.time || Date.now(),
       user: info.user,
     },
     program: {
-      id: 'r1',
+      id: "r1",
       rules: info.rules,
     },
     tenant: {
       settings: {
-        suspectedFraudModerationState: 'IGNORE',
+        suspectedFraudModerationState: "IGNORE",
       },
     },
-    ids: [...Array(10).keys()].map(a => `triggergivenid${a + 1}`),
+    ids: [...Array(10).keys()].map((a) => `triggergivenid${a + 1}`),
   };
 }
 
@@ -102,17 +102,17 @@ export function getRandomUser(name: string): any {
   return {
     id: `${name}ID`,
     accountId: `${name}ACCOUNTID`,
-    firstName: faker.fake('{{name.firstName}}'),
-    lastName: faker.fake('{{name.lastName}}'),
-    email: faker.fake('{{internet.email}}'),
+    firstName: faker.fake("{{name.firstName}}"),
+    lastName: faker.fake("{{name.lastName}}"),
+    email: faker.fake("{{internet.email}}"),
     dateCreated: Date.now(),
     customFields: {},
     segments: [],
     referredByReferral: {
-      id: 'REFERRALID',
+      id: "REFERRALID",
       referrerUser: {
-        id: 'REFERRERID',
-        accountId: 'REFERRERACCOUNTID',
+        id: "REFERRERID",
+        accountId: "REFERRERACCOUNTID",
         dateBlocked: undefined,
         rewards: {
           totalCount: 0,

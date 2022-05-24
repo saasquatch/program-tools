@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "strict":false,
+    "lib": [
+      "dom",
+      "es2017",
+      "es2019",
+      "es2020",
+      // Intl is polyfilled in `global.ts` entrypoint
+      "esnext.intl"
+    ],
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es2019",
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "jsx": "react",
+    "jsxFactory": "h",
+    // "noImplicitAny": true,
+		"types": ["resize-observer-browser", "jest"]
+  },
+  "include": [
+    "src",
+    "types/jsx.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "@saasquatch/integration-boilerplate-react",
+  "version": "1.0.0",
+  "description": "Utilities for building SaaSquatch integration frontends in React",
+  "engines": {
+    "node": "^14"
+  },
+  "files": [
+    "dist/"
+  ],
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "Johan Venter <johan@saasquatch.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^17.0.11",
+    "@types/react-dom": "^17.0.7",
+    "jest": "^27.0.4",
+    "jest-cucumber": "^3.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "ts-jest": "^27.0.3",
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "penpal": "^4.1.1",
+    "resize-observer-polyfill": "^1.5.1"
+  },
+  "peerDependencies": {
+    "react": ">=17",
+    "react-dom": ">=17"
+  }
+}

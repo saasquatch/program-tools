@@ -1,0 +1,49 @@
+@include ErrorStyles;
+@include HostBlock;
+
+.FormWrapper {
+  & > :not(:first-child) {
+    margin-top: 54px;
+  }
+}
+
+.FormSection {
+  width: 100%;
+
+  & > :not(:first-child) {
+    margin-top: 16px;
+  }
+}
+
+.ButtonWrapper {
+  display: flex;
+  margin-top: 24px;
+
+  justify-content: flex-end;
+
+  & > :not(:first-child) {
+    margin-left: var(--sl-font-size-x-small);
+  }
+}
+
+.CardWrapper {
+  box-sizing: border-box;
+  background: var(--sl-color-white);
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media screen and (max-width: 499px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.CardWrapper.ShowEdit {
+  @media screen and (max-width: 880px) {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+}

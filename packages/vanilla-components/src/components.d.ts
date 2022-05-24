@@ -56,6 +56,7 @@ export namespace Components {
     interface SqhReferralCode {
     }
     interface SqhReferralComponent {
+        "locale": string;
         "referral": Referral | ReferredByReferral;
         "referraltype": "converted" | "pending" | "referrer";
         "referralvariables": ReferralVariables;
@@ -70,6 +71,8 @@ export namespace Components {
         "expiredcolor": string;
         "expiredcontent": string;
         "expiredvalue": string;
+        "expiresvalue": string;
+        "internationalization": boolean;
         "ishidden": boolean;
         "noreferralsyet": string;
         "paginateless": string;
@@ -381,6 +384,7 @@ declare namespace LocalJSX {
     interface SqhReferralCode {
     }
     interface SqhReferralComponent {
+        "locale"?: string;
         "referral"?: Referral | ReferredByReferral;
         "referraltype"?: "converted" | "pending" | "referrer";
         "referralvariables"?: ReferralVariables;
@@ -395,6 +399,8 @@ declare namespace LocalJSX {
         "expiredcolor"?: string;
         "expiredcontent"?: string;
         "expiredvalue"?: string;
+        "expiresvalue"?: string;
+        "internationalization"?: boolean;
         "ishidden"?: boolean;
         "noreferralsyet"?: string;
         "paginateless"?: string;

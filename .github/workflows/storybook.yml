@@ -1,0 +1,49 @@
+name: visual-dev Storybook
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - packages/visual-dev/**
+  pull_request:
+    paths:
+      - packages/visual-dev/**
+
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
+jobs:
+  deploy:
+    name: Deploy to static site bucket
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Node Setup
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+
+      - name: Install npm dependencies
+        run: cd packages/visual-dev && npm install
+
+      - name: Build
+        run: cd packages/visual-dev && npm run storybook:build
+
+      - name: Setup GCP
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@0.1.1
+        with:
+          version: "270.0.0"
+          service_account_email: ${{ secrets.GCP_STATIC_SITE_SERVICE_ACCOUNT_EMAIL }}
+          service_account_key: ${{ secrets.GCP_STATIC_SITE_SERVICE_ACCOUNT_KEY_B64 }}
+
+      - name: Deploy to bucket (pull request)
+        if: ${{ github.event_name == 'pull_request' }}
+        run: gsutil -m rsync -d -r packages/visual-dev/.out/ gs://stencilbook_static_saasquatch/visual-dev/pr${{ github.event.number }}/
+
+      - name: Deploy to bucket (push)
+        if: ${{ github.event_name == 'push' }}
+        run: gsutil -m rsync -d -r packages/visual-dev/.out/ gs://stencilbook_static_saasquatch/visual-dev/production/

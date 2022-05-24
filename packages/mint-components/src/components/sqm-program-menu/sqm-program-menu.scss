@@ -1,0 +1,19 @@
+@include HostBlock;
+
+.HeaderWrapper {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: var(--sl-spacing-small) var(--sl-spacing-large);
+  align-items: center;
+
+  background-color: var(--sqm-header-background);
+
+  @media screen and (max-width: 499px) {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    padding: 0 var(--sl-spacing-x-small);
+  }
+}

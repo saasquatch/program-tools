@@ -1,7 +1,7 @@
 /**
  * A program type
  */
-export type ProgramType = 'ACQUISITION' | 'LOYALTY' | 'RETENTION';
+export type ProgramType = "ACQUISITION" | "LOYALTY" | "RETENTION";
 
 /**
  * A referral. This type is not complete and is only

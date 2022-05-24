@@ -1,11 +1,11 @@
-import * as express from 'express';
+import * as express from "express";
 
-import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
-import {rewardEmailQuery} from './queries';
-import Transaction from './transaction';
-import {triggerProgram} from './trigger';
-import {getLogger} from './logger';
-import * as types from './types';
+import { meetCustomFieldRules, meetEventTriggerRules } from "./conversion";
+import { rewardEmailQuery } from "./queries";
+import Transaction from "./transaction";
+import { triggerProgram } from "./trigger";
+import { getLogger, setLogLevel } from "./logger";
+import * as types from "./types";
 
 import {
   Program,
@@ -13,20 +13,20 @@ import {
   RequirementValidationResult,
   ValidationProgramField,
   ProgramTriggerBody,
-} from './types/rpc';
+} from "./types/rpc";
 
-import {timeboxExpression, safeJsonata} from './jsonata';
+import { timeboxExpression, safeJsonata } from "./jsonata";
 
-import {ProgramType} from './types/saasquatch';
+import { ProgramType } from "./types/saasquatch";
 import {
   inferType,
   getGoalAnalyticTimestamp,
   setRewardSchedule,
   numToEquality,
   getTriggerSchema,
-} from './utils';
+} from "./utils";
 
-export {types};
+export { types };
 
 export {
   Transaction,
@@ -48,6 +48,7 @@ export {
   timeboxExpression,
   safeJsonata,
   getLogger,
+  setLogLevel,
 };
 
 /**
@@ -59,8 +60,8 @@ export {
  * @return {Object} The express server
  */
 export function webtask(program: Program = {}): express.Application {
-  const bodyParser = require('body-parser');
-  const compression = require('compression');
+  const bodyParser = require("body-parser");
+  const compression = require("compression");
 
   const app = express();
 
@@ -71,18 +72,18 @@ export function webtask(program: Program = {}): express.Application {
   // because OWASP advises not to
   app.use((req, res, next) => {
     if (
-      process.env.NODE_ENV === 'production' &&
-      req.header('X-Forwarded-Proto') !== 'https'
+      process.env.NODE_ENV === "production" &&
+      req.header("X-Forwarded-Proto") !== "https"
     ) {
-      return res.status(403).send({message: 'SSL required'});
+      return res.status(403).send({ message: "SSL required" });
     }
 
     // allow the request to continue if https is used
     next();
   });
 
-  app.post('/*', (context, res) => {
-    const {json, code} = triggerProgram(context.body, program);
+  app.post("/*", (context, res) => {
+    const { json, code } = triggerProgram(context.body, program);
 
     res.status(code).json(json);
   });
