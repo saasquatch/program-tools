@@ -1,0 +1,10 @@
+export declare const ModalBackdropStyle: import("styled-components").FlattenSimpleInterpolation;
+export declare const ModalDivStyle: import("styled-components").FlattenSimpleInterpolation;
+export declare const ModalHeaderStyle: import("styled-components").FlattenSimpleInterpolation;
+export declare const ModalActionDivStyle: import("styled-components").FlattenSimpleInterpolation;
+export declare const ModalContentDivStyle: import("styled-components").FlattenSimpleInterpolation;
+export declare const ModalContentTextDivStyle: import("styled-components").FlattenSimpleInterpolation;
+export declare const CodeDivStyle: import("styled-components").FlattenSimpleInterpolation;
+export declare const DividerDivStyle: import("styled-components").FlattenSimpleInterpolation;
+export declare const ModalBannerDivStyle: import("styled-components").FlattenSimpleInterpolation;
+export declare const ModalBackDivStyle: import("styled-components").FlattenSimpleInterpolation;

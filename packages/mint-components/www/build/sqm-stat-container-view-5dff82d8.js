@@ -1,0 +1,66 @@
+import { h } from './index-832bd454.js';
+import { c as createStyleSheet } from './JSS-f59933eb.js';
+
+function StatContainerView(props, children) {
+  const divideSpace = () => {
+    const spaceValue = getComputedStyle(document.documentElement).getPropertyValue(`--sl-spacing-${props.space}`);
+    return `${Math.floor(parseInt(spaceValue) / 2)}rem`;
+  };
+  const style = {
+    StatContainer: {
+      width: "100%",
+      display: "grid",
+      "grid-template-columns": "repeat(auto-fill, minmax(130px, auto))",
+      gap: divideSpace(),
+      // First set of styles applies when shadow DOM is disabled, second set applies when shadow DOM is enabled
+      "& > *": {
+        "border-right": "1px solid #EAEAEA",
+        "padding-right": divideSpace(),
+      },
+      "& > :last-child": {
+        "border-right": "1px solid #ffffff",
+      },
+      "& > ::slotted(*)": {
+        "border-right": "1px solid #EAEAEA",
+        "padding-right": divideSpace(),
+        height: "100%",
+      },
+      "& > ::slotted(*:last-child)": {
+        "border-right": "none",
+      },
+      // TODO: Try Make this happen without media queries
+      // "@media screen and (max-width: 499px)": {
+      //   gridTemplateColumns: "1fr",
+      //   "& > *": {
+      //     borderRight: "none",
+      //     paddingRight: "none",
+      //   },
+      //   "& > :last-child": {
+      //     borderRight: "none",
+      //     paddingRight: "none",
+      //   },
+      //   "& > ::slotted(*)": {
+      //     borderRight: "none",
+      //     paddingRight: "none",
+      //   },
+      // },
+    },
+    StatFrame: {
+      display: "flex",
+    },
+    BorderFix: {
+      "border-right": "1px solid #ffffff",
+      width: "0px",
+      "margin-left": "-1px",
+    },
+  };
+  const sheet = createStyleSheet(style);
+  const styleString = sheet.toString();
+  return (h("div", { class: sheet.classes.StatFrame },
+    h("div", { class: sheet.classes.StatContainer },
+      h("style", { type: "text/css" }, styleString),
+      children),
+    h("div", { class: sheet.classes.BorderFix })));
+}
+
+export { StatContainerView as S };

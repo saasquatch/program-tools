@@ -1,0 +1,9 @@
+export declare const tabgroup: import("styled-components").FlattenSimpleInterpolation;
+export declare const tab: import("styled-components").FlattenSimpleInterpolation;
+export declare const selected: import("styled-components").FlattenSimpleInterpolation;
+export declare const primary_bg: import("styled-components").FlattenSimpleInterpolation;
+export declare const secondary_bg: import("styled-components").FlattenSimpleInterpolation;
+export declare const primary_text: import("styled-components").FlattenSimpleInterpolation;
+export declare const secondary_text: import("styled-components").FlattenSimpleInterpolation;
+export declare const primary_grey: import("styled-components").FlattenSimpleInterpolation;
+export declare const secondary_grey: import("styled-components").FlattenSimpleInterpolation;

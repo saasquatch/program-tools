@@ -1,0 +1,16 @@
+export declare const CardDiv: import("styled-components").FlattenSimpleInterpolation;
+export declare const CardHeaderDiv: import("styled-components").FlattenSimpleInterpolation;
+export declare const CardHeaderIconDiv: import("styled-components").FlattenSimpleInterpolation;
+export declare const CardHeaderTextDiv: import("styled-components").FlattenSimpleInterpolation;
+export declare const CardTextDiv: import("styled-components").FlattenSimpleInterpolation;
+export declare const CardFooterDiv: import("styled-components").FlattenSimpleInterpolation;
+export declare const CardLongDiv: import("styled-components").FlattenSimpleInterpolation;
+export declare const CardLongHeaderDiv: import("styled-components").FlattenSimpleInterpolation;
+export declare const CardLongTextDiv: import("styled-components").FlattenSimpleInterpolation;
+export declare const CardLongFooterDiv: import("styled-components").FlattenSimpleInterpolation;
+export declare const CardEditDiv: import("styled-components").FlattenSimpleInterpolation;
+export declare const CardEditHeaderDiv: import("styled-components").FlattenSimpleInterpolation;
+export declare const CardEditHeaderIconDiv: import("styled-components").FlattenSimpleInterpolation;
+export declare const CardEditHeaderTextDiv: import("styled-components").FlattenSimpleInterpolation;
+export declare const CardEditTitleTextDiv: import("styled-components").FlattenSimpleInterpolation;
+export declare const CardEditTextDescriptionDiv: import("styled-components").FlattenSimpleInterpolation;
