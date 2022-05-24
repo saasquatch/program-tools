@@ -7,7 +7,6 @@
 
 | Property            | Attribute      | Description | Type                                     | Default     |
 | ------------------- | -------------- | ----------- | ---------------------------------------- | ----------- |
-| `locale`            | `locale`       |             | `string`                                 | `undefined` |
 | `referral`          | --             |             | `Referral \| ReferredByReferral`         | `undefined` |
 | `referraltype`      | `referraltype` |             | `"converted" \| "pending" \| "referrer"` | `undefined` |
 | `referralvariables` | --             |             | `ReferralVariables`                      | `undefined` |

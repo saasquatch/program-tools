@@ -56,10 +56,10 @@ function parseValue(value: string): RuleValue {
     return Number(value);
   }
 
-  if (value.toLowerCase() === "true" || value.toLowerCase() === "yes") {
+  if (value.toLowerCase() === 'true' || value.toLowerCase() === 'yes') {
     return Boolean(true);
   }
-  if (value.toLowerCase() === "false" || value.toLowerCase() === "no") {
+  if (value.toLowerCase() === 'false' || value.toLowerCase() === 'no') {
     return Boolean(false);
   }
 
@@ -75,17 +75,17 @@ function parseValue(value: string): RuleValue {
  */
 function meetCustomFieldCondition(
   user: UserQueryResult,
-  customConversionRule: CustomFieldConversionRule
+  customConversionRule: CustomFieldConversionRule,
 ): boolean {
   const ruleVal = parseValue(customConversionRule.value.toString());
   const val = user.customFields[customConversionRule.fieldName];
 
   switch (customConversionRule.operator) {
-    case "equal":
+    case 'equal':
       return val == ruleVal;
-    case "greater":
+    case 'greater':
       return val > ruleVal;
-    case "smaller":
+    case 'smaller':
       return val < ruleVal;
     default:
       break;
@@ -102,18 +102,17 @@ function meetCustomFieldCondition(
  */
 function meetEventCondition(
   events: Event[],
-  eventTriggerRule: EventTriggerRule
+  eventTriggerRule: EventTriggerRule,
 ): boolean {
-  return events.some(function (event) {
+  return events.some(function(event) {
     if (event.key !== eventTriggerRule.eventKey) return false;
     const ruleVal = parseValue(eventTriggerRule.value);
     switch (eventTriggerRule.operator) {
-      case "equal":
-        // this should probably be strict equals if we are going to the trouble of parsing
+      case 'equal':
         return event.fields.value == ruleVal;
-      case "greater":
+      case 'greater':
         return event.fields.value > ruleVal;
-      case "smaller":
+      case 'smaller':
         return event.fields.value < ruleVal;
       default:
         break;
@@ -123,7 +122,6 @@ function meetEventCondition(
 }
 
 /**
- * @deprecated No longer in use, use JSONata expression and evaluation instead
  * Checks if the customFields of the user meet every rule that defines customFields-based conversion
  *
  * @param {UserQueryResult} user UserQueryResult passed in context.
@@ -132,7 +130,7 @@ function meetEventCondition(
  */
 export function meetCustomFieldRules(
   user: UserQueryResult,
-  customConversionRules: CustomFieldConversionRule[]
+  customConversionRules: CustomFieldConversionRule[],
 ): boolean {
   if (!user) {
     return false;
@@ -140,13 +138,12 @@ export function meetCustomFieldRules(
   if (!customConversionRules || customConversionRules.length === 0) {
     return true;
   }
-  return customConversionRules.every((rule) =>
-    meetCustomFieldCondition(user, rule)
+  return customConversionRules.every(rule =>
+    meetCustomFieldCondition(user, rule),
   );
 }
 
 /**
- * @deprecated No longer in use, use JSONata expression and evaluation instead
  * Checks if the events triggering the program meet every rule that defines event-based conversion
  *
  * @param {Event[]} events
@@ -155,7 +152,7 @@ export function meetCustomFieldRules(
  */
 export function meetEventTriggerRules(
   events: Event[],
-  eventTriggerRules: EventTriggerRule[]
+  eventTriggerRules: EventTriggerRule[],
 ): boolean {
   if (!eventTriggerRules || eventTriggerRules.length === 0) {
     return true;
@@ -163,5 +160,5 @@ export function meetEventTriggerRules(
   if (!events || events.length === 0) {
     return false;
   }
-  return eventTriggerRules.every((rule) => meetEventCondition(events, rule));
+  return eventTriggerRules.every(rule => meetEventCondition(events, rule));
 }

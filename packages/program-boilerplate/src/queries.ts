@@ -1,66 +1,62 @@
 export const rewardEmailQuery = `
-  query ($userId:String!, $accountId:String!, $rewardId:ID!, $programId:ID!, $referralId: ID!) {
-    reward(id:$rewardId) {
-      ...AllFlatRewardFields
-    }
-    user(id:$userId, accountId:$accountId) {
+query ($userId:String!, $accountId:String!, $rewardId:ID!, $programId:ID!, $referralId: ID!) {
+  reward(id:$rewardId) {
+    ...AllFlatRewardFields
+  }
+  user(id:$userId, accountId:$accountId) {
+    firstName
+    lastName
+    referralCode(programId:$programId)
+    shareLink(programId:$programId,useCleanLink:true)
+    facebook: messageLink(programId:$programId,shareMedium:FACEBOOK,engagementMedium:EMAIL)
+    twitter: messageLink(programId:$programId,shareMedium:TWITTER,engagementMedium:EMAIL)
+    email:messageLink(programId:$programId,shareMedium:EMAIL,engagementMedium:EMAIL)
+    sms:messageLink(programId:$programId,shareMedium:SMS,engagementMedium:EMAIL)
+    linkedin: messageLink(programId:$programId,shareMedium:LINKEDIN,engagementMedium:EMAIL)
+    fbmessenger: messageLink(programId:$programId,shareMedium:FBMESSENGER,engagementMedium:EMAIL)
+  }
+
+  referral(id:$referralId) {
+    referrerUser{
       firstName
       lastName
-      customFields
-      referralCode(programId:$programId)
-      shareLink(programId:$programId,useCleanLink:true)
-      facebook: messageLink(programId:$programId,shareMedium:FACEBOOK,engagementMedium:EMAIL)
-      twitter: messageLink(programId:$programId,shareMedium:TWITTER,engagementMedium:EMAIL)
-      email:messageLink(programId:$programId,shareMedium:EMAIL,engagementMedium:EMAIL)
-      sms:messageLink(programId:$programId,shareMedium:SMS,engagementMedium:EMAIL)
-      linkedin: messageLink(programId:$programId,shareMedium:LINKEDIN,engagementMedium:EMAIL)
-      fbmessenger: messageLink(programId:$programId,shareMedium:FBMESSENGER,engagementMedium:EMAIL)
     }
-
-    referral(id:$referralId) {
-      referrerUser{
-        firstName
-        lastName
-        customFields
-      }
-      referredUser{
-        firstName
-        lastName
-        customFields
-      }
-    }
-
-    tenant {
-      emailAddress
-      settings {
-        companyName
-      }
+    referredUser{
+      firstName
+      lastName
     }
   }
 
-  fragment AllFlatRewardFields on FlatReward {
-    type
-    prettyValue
-    value
-    unit
-    name
-    dateGiven
-    dateExpires
-    dateCancelled
-    rewardSource
-    fuelTankCode
-    fuelTankType
-    currency
-    programId
-    programRewardKey
+  tenant {
+    emailAddress
+    settings {
+      companyName
+    }
   }
+}
+
+fragment AllFlatRewardFields on FlatReward {
+  type
+  prettyValue
+  value
+  unit
+  name
+  dateGiven
+  dateExpires
+  dateCancelled
+  rewardSource
+  fuelTankCode
+  fuelTankType
+  currency
+  programId
+  programRewardKey
+}
 `;
 
 export const nonRewardEmailQueryForReferralPrograms = `query ($userId:String!, $accountId:String!,$programId:ID!, $referralId: ID!) {
   user(id:$userId, accountId:$accountId) {
     firstName
     lastName
-    customFields
     referralCode(programId:$programId)
     shareLink(programId:$programId,useCleanLink:true)
     facebook: messageLink(programId:$programId,shareMedium:FACEBOOK)
@@ -75,12 +71,10 @@ export const nonRewardEmailQueryForReferralPrograms = `query ($userId:String!, $
     referrerUser{
       firstName
       lastName
-      customFields
     }
     referredUser{
       firstName
       lastName
-      customFields
     }
   }
 
@@ -92,61 +86,41 @@ export const nonRewardEmailQueryForReferralPrograms = `query ($userId:String!, $
   }
 }
 `;
-
 export const rewardEmailQueryForNonReferralPrograms = `
-  query ($userId:String!, $accountId:String!, $rewardId:ID!, $programId:ID!) {
-    reward(id:$rewardId) {
-      ...AllFlatRewardFields
-    }
-    user(id:$userId, accountId:$accountId) {
-      firstName
-      lastName
-      customFields
-      email:messageLink(programId:$programId,shareMedium:EMAIL)
-    }
-
-    tenant {
-      emailAddress
-      settings {
-        companyName
-      }
-    }
+query ($userId:String!, $accountId:String!, $rewardId:ID!, $programId:ID!) {
+  reward(id:$rewardId) {
+    ...AllFlatRewardFields
+  }
+  user(id:$userId, accountId:$accountId) {
+    firstName
+    lastName
+    email:messageLink(programId:$programId,shareMedium:EMAIL)
   }
 
-  fragment AllFlatRewardFields on FlatReward {
-    type
-    prettyValue
-    value
-    unit
-    name
-    dateGiven
-    dateExpires
-    dateCancelled
-    rewardSource
-    fuelTankCode
-    fuelTankType
-    currency
-    programId
-    programRewardKey
-  }
-`;
-
-export const nonRewardEmailQueryForNonReferralPrograms = `
-  query ($userId:String!, $accountId:String!, $programId:ID!) {
-    user(id:$userId, accountId:$accountId) {
-      firstName
-      lastName
-      customFields
-      email:messageLink(programId:$programId,shareMedium:EMAIL)
-    }
-
-    tenant {
-      emailAddress
-      settings {
-        companyName
-      }
+  tenant {
+    emailAddress
+    settings {
+      companyName
     }
   }
+}
+
+fragment AllFlatRewardFields on FlatReward {
+  type
+  prettyValue
+  value
+  unit
+  name
+  dateGiven
+  dateExpires
+  dateCancelled
+  rewardSource
+  fuelTankCode
+  fuelTankType
+  currency
+  programId
+  programRewardKey
+}
 `;
 
 //context for reward schedule trigger

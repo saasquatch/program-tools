@@ -1,66 +1,82 @@
-import { sync as globSync } from "glob";
-import { loadFeature, autoBindSteps, StepDefinitions } from "jest-cucumber";
-import { types } from "@saasquatch/program-boilerplate";
+import {World as CucumberWorld} from 'cucumber';
 
-import { World } from "./world";
-import builtinSteps from "./steps";
+import {types} from '@saasquatch/program-boilerplate';
 
-export { default as jestConfig } from "./jest.config";
-export { getWorld } from "./world";
+import {init, setup} from './steps';
 
-export function runProgramTests(
-  program: types.rpc.Program,
-  featurePath: string,
-  steps: StepDefinitions[],
-  schemaFile: string,
-  templateFile: string,
-  rulesFile: string,
-  featureFilterTags?: string[]
-) {
-  World.setProgram(program);
-  World.loadDefaults(templateFile, schemaFile, rulesFile);
+import deepmerge from 'deepmerge';
 
-  const features: ReturnType<typeof loadFeature>[] = [];
-  const featureFiles = globSync(`${featurePath}/**/*.feature`);
+declare interface World extends CucumberWorld {
+  state: Readonly<State>;
 
-  if (!featureFiles.length) {
-    throw new Error(`No feature files found at path "${featurePath}"`);
-  }
+  /**
+   * Like React's setState method
+   *
+   * @param newState
+   */
+  setState: (newState: Partial<State>) => World;
+}
 
-  for (let featureFile of featureFiles) {
-    try {
-      const feature = loadFeature(featureFile);
-      const keep = featureFilterTags?.length
-        ? featureFilterTags.every((tag) => feature.tags.includes(tag))
-        : true;
-      if (keep) features.push(feature);
-    } catch (e) {
-      console.error(`Failed to load feature file "${featureFile}":`, e.message);
-      throw e;
-    }
-  }
+declare interface State {
+  programTriggerResult: any;
+  validationReqs: types.rpc.ValidationRequest[];
+  assertionResults: {
+    [key: string]: any;
+  };
+  config: Partial<{
+    schemaPath: string;
+    defaultIntrospection: any;
+    defaultRules: any;
+    defaultTemplate: any;
+  }>;
+  current: Partial<{
+    events: any[];
+    time: number;
+    user: any;
+    referral: any;
+    programRewards: any[];
+    rules: any;
+    template: any;
+  }>;
+}
 
-  for (let feature of features) {
-    // Put the tags of the scenarios into the title so we can find the tags later
-    for (let scenario of feature.scenarios) {
-      if (scenario.tags.length)
-        scenario.title = `${scenario.title} :: [${scenario.tags.join(",")}]`;
-    }
-    for (let scenarioOutline of feature.scenarioOutlines) {
-      if (scenarioOutline.tags.length) {
-        scenarioOutline.title = `${
-          scenarioOutline.title
-        } :: [${scenarioOutline.tags.join(",")}]`;
-      }
-      for (let scenario of scenarioOutline.scenarios) {
-        if (scenarioOutline.tags.length) {
-          scenario.title = `${scenario.title} :: [${scenarioOutline.tags.join(
-            ","
-          )}]`;
-        }
-      }
-    }
-  }
+declare interface Cucumber {
+  Before: Function;
+  After: Function;
+  Given: Function;
+  When: Function;
+  Then: Function;
+}
 
-  autoBindSteps(features, [...steps, ...builtinSteps]);
+if (!process.env.PROGRAM_LOG_LEVEL) {
+  process.env.PROGRAM_LOG_LEVEL = 'none';
+}
+
+export {World, State, Cucumber, init, setup};
+
+export class CustomWorld implements World {
+  state: Readonly<State> = {
+    programTriggerResult: {},
+    validationReqs: [],
+    assertionResults: {},
+    config: {
+      schemaPath: '',
+      defaultIntrospection: {},
+      defaultRules: {},
+      defaultTemplate: {},
+    },
+    current: {
+      events: [],
+      user: {},
+      referral: {},
+      programRewards: [],
+      rules: {},
+      template: {},
+    },
+  };
+
+  setState = function(this: World, newState: Partial<State>) {
+    this.state = deepmerge(this.state, newState, {arrayMerge: (_, a) => a});
+    return this;
+  };
 }

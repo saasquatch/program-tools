@@ -1,23 +1,21 @@
-import { StepDefinitions } from "jest-cucumber";
+import {World, Cucumber} from '../index';
 
-import { getWorld } from "../world";
+export function init(cucumber: Cucumber): void {
+  const {Given} = cucumber;
 
-const eventSteps: StepDefinitions = ({ given }) => {
-  given("there are no events", () => {
-    getWorld().setState({
+  Given('there are no events', function(this: World) {
+    this.setState({
       current: {
         events: [],
       },
     });
   });
 
-  given("the following event exists:", (data: any) => {
-    getWorld().setState({
+  Given('the following event exists:', function(this: World, data: any) {
+    this.setState({
       current: {
-        events: [...(getWorld().state.current.events || []), JSON.parse(data)],
+        events: [...this.state.current.events, JSON.parse(data)],
       },
     });
   });
-};
-
-export default eventSteps;
+}

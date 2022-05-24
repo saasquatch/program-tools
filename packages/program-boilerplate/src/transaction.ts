@@ -3,12 +3,11 @@ import {
   rewardEmailQuery,
   nonRewardEmailQueryForReferralPrograms,
   rewardEmailQueryForNonReferralPrograms,
-  nonRewardEmailQueryForNonReferralPrograms,
-} from "./queries";
+} from './queries';
 
-import { ProgramTriggerBody } from "./types/rpc";
-import { ProgramType, User } from "./types/saasquatch";
-import ObjectID from "bson-objectid";
+import {ProgramTriggerBody} from './types/rpc';
+import {ProgramType, User} from './types/saasquatch';
+import ObjectID from 'bson-objectid';
 
 type TransactionContext = {
   body: ProgramTriggerBody;
@@ -21,17 +20,7 @@ type ReferralRewardInput = {
   userEvent?: any;
   rewardSource?: string;
   status?: string;
-  overrideProperties?: {
-    dateScheduledFor?: number | null;
-    dateExpires?: number | null;
-  };
-  dynamicProperties?: {
-    dateScheduledFor?: number | null;
-    dateExpires?: number | null;
-    type: string;
-    unit: string;
-    assignedCredit: number;
-  };
+  rewardProperties?: any;
 };
 
 export default class Transaction {
@@ -52,7 +41,7 @@ export default class Transaction {
   constructor(
     context: TransactionContext,
     mutations: any = [],
-    analytics: any = []
+    analytics: any = [],
   ) {
     this.mutations = mutations;
     this.analytics = analytics;
@@ -73,7 +62,7 @@ export default class Transaction {
    */
   fireProgramEvalAnalytics(user: User, type: ProgramType) {
     const evalAnalytic = {
-      eventType: "PROGRAM_EVALUATED",
+      eventType: 'PROGRAM_EVALUATED',
       data: {
         user: {
           id: user.id,
@@ -95,18 +84,16 @@ export default class Transaction {
    * @param {string} analyticsKey      type of goal achieved
    * @param {string} analyticsDedupeId dedupe id of the analytic event
    * @param {number} timestamp         timestamp of the event
-   * @param {boolean} isConversion     whether the analytic should convert the referral
    */
   fireProgramGoalAnalytics(
     user: User,
     programType: ProgramType,
     analyticsKey: string,
-    analyticsDedupeId: string | null,
+    analyticsDedupeId: string,
     timestamp: number,
-    isConversion: boolean = true
   ) {
     const goalAnalytic = {
-      eventType: "PROGRAM_GOAL",
+      eventType: 'PROGRAM_GOAL',
       data: {
         programType,
         timestamp,
@@ -116,7 +103,6 @@ export default class Transaction {
           id: user.id,
           accountId: user.accountId,
         },
-        isConversion,
       },
     };
 
@@ -131,7 +117,7 @@ export default class Transaction {
   generateSimpleReward(rewardKey: string) {
     const rewardId = ObjectID.generate();
     const newMutation = {
-      type: "CREATE_REWARD",
+      type: 'CREATE_REWARD',
       data: {
         user: {
           id: this.currentUser.id,
@@ -143,7 +129,7 @@ export default class Transaction {
     };
 
     this.mutations = [...this.mutations, newMutation];
-    return { rewardId };
+    return {rewardId};
   }
 
   /**
@@ -161,8 +147,7 @@ export default class Transaction {
       userEvent,
       rewardSource,
       status,
-      overrideProperties,
-      dynamicProperties,
+      rewardProperties,
     } = input;
 
     const rewardId = ObjectID.generate();
@@ -174,27 +159,24 @@ export default class Transaction {
       key: rewardKey,
       rewardId: rewardId,
       referralId: referralId,
-      overrideProperties,
-      dynamicProperties,
     };
 
-    // this does nothing because { userEvent: undefined } will never === undefined, etc
     const validProperties = [
-      { userEvent },
-      { rewardSource },
-      { status },
+      {userEvent},
+      {rewardSource},
+      {status},
+      rewardProperties,
     ].filter((prop) => prop !== undefined);
     const updatedRewardData = validProperties.reduce((currentData, prop) => {
-      return { ...currentData, ...prop };
+      return {...currentData, ...prop};
     }, rewardData);
-
     const newMutation = {
-      type: "CREATE_REWARD",
+      type: 'CREATE_REWARD',
       data: updatedRewardData,
     };
 
     this.mutations = [...this.mutations, newMutation];
-    return { rewardId };
+    return {rewardId};
   }
 
   /**
@@ -211,28 +193,30 @@ export default class Transaction {
   }: {
     emailKey: string;
     user: User;
-    rewardId?: string;
+    rewardId: any;
   }) {
-    const variables = {
+    if (!rewardId) {
+      throw new Error('rewardId must be provided before email sent.');
+    }
+
+    const queryVariables = {
       userId: user.id,
       accountId: user.accountId,
+      rewardId: rewardId,
       programId: this.context.body.program.id,
     };
 
-    const queryVariables = rewardId ? { ...variables, rewardId } : variables;
     const newMutation = {
-      type: "SEND_EMAIL",
+      type: 'SEND_EMAIL',
       data: {
         user: {
           id: user.id,
           accountId: user.accountId,
         },
-        rewardId,
         key: emailKey,
-        queryVariables,
-        query: rewardId
-          ? rewardEmailQueryForNonReferralPrograms
-          : nonRewardEmailQueryForNonReferralPrograms,
+        queryVariables: queryVariables,
+        query: rewardEmailQueryForNonReferralPrograms,
+        rewardId: rewardId,
       },
     };
 
@@ -257,15 +241,14 @@ export default class Transaction {
       referralId: referralId,
     };
 
-    const queryVariables = rewardId ? { ...variables, rewardId } : variables;
+    const queryVariables = rewardId ? {...variables, rewardId} : variables;
     const newMutation = {
-      type: "SEND_EMAIL",
+      type: 'SEND_EMAIL',
       data: {
         user: {
           id: user.id,
           accountId: user.accountId,
         },
-        rewardId,
         key: emailKey,
         queryVariables: queryVariables,
         query: rewardId
@@ -288,8 +271,8 @@ export default class Transaction {
     rewardKey: string;
     user: User;
   }) {
-    const { rewardId } = this.generateSimpleReward(rewardKey);
-    this.generateSimpleEmail({ emailKey, user, rewardId });
+    const {rewardId} = this.generateSimpleReward(rewardKey);
+    this.generateSimpleEmail({emailKey, user, rewardId});
   }
 
   /**
@@ -301,52 +284,49 @@ export default class Transaction {
     referralId,
     user,
     status,
-    overrideProperties,
-    dynamicProperties,
+    rewardProperties,
   }: {
     emailKey: string;
     rewardKey: string;
     referralId: string;
     user: User;
     status?: string;
-    overrideProperties?: any;
-    dynamicProperties?: any;
+    rewardProperties?: any;
   }) {
-    const { rewardId } = this.generateReferralReward({
+    const {rewardId} = this.generateReferralReward({
       rewardKey,
       referralId,
       user,
       userEvent: undefined,
       rewardSource: undefined,
       status,
-      overrideProperties,
-      dynamicProperties,
+      rewardProperties,
     });
 
-    this.generateReferralEmail({ emailKey, user, referralId, rewardId });
+    this.generateReferralEmail({emailKey, user, referralId, rewardId});
   }
 
   generateRefunds() {
     const refundEvents = (this.events || []).filter(
       (e) =>
-        e.key === "refund" &&
+        e.key === 'refund' &&
         e.fields &&
         // we can't do much if there's no order_id
-        e.fields.order_id
+        e.fields.order_id,
     );
     refundEvents.forEach((refundEvent) => {
       const refundNode = {
-        type: "MODERATE_GRAPH_NODES",
+        type: 'MODERATE_GRAPH_NODES',
         data: {
-          graphNodeType: "USER_EVENT",
+          graphNodeType: 'USER_EVENT',
           filter: {
-            key: "purchase",
+            key: 'purchase',
             fields: {
               order_id_eq: refundEvent.fields.order_id,
             },
           },
           moderationInput: {
-            action: "DENY",
+            action: 'DENY',
             maxDepth: 5,
           },
         },

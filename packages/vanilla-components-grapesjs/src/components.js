@@ -693,7 +693,6 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'convertedcontent' },
           { type: 'string', name: 'expiredcolor' },
           { type: 'string', name: 'expiredvalue' },
-          { type: 'string', name: 'expiresvalue'},
           { type: 'string', name: 'expiredcontent' },
           { type: 'string', name: 'cancelledcolor' },
           { type: 'string', name: 'cancelledvalue' },
@@ -702,8 +701,7 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'valuecontent' },
           { type: 'string', name: 'paginatemore' },
           { type: 'string', name: 'paginateless' },
-          { type: 'string', name: 'unknownuser' },
-          { type: 'boolean', name: 'internationalization'}
+          { type: 'string', name: 'unknownuser' }
         ],
         uiSchema: {
           ishidden: { 'ui:widget': 'hidden' },
@@ -763,10 +761,6 @@ export default (editor, config = {}) => {
                       'type': 'string',
                       'title': 'Label For Unknown User'
                     },
-                    'internationalization':{
-                      'type': 'boolean',
-                      'title': 'Internationalize dates'
-                    },
                     'paginatemore': {
                       'type': 'string',
                       'title': 'View More Text'
@@ -775,22 +769,6 @@ export default (editor, config = {}) => {
                       'type': 'string',
                       'title': 'Previous Text'
                     },
-
-                  },
-                  "dependencies":{
-                    "showexpiry":{
-                      "oneOf": [
-                        {
-                          "properties":{
-                            "showexpiry": {"const": true},
-                            "expiresvalue":{
-                              "title": "Expires Description",
-                              "type": "string"
-                            }
-                          }
-                        }
-                      ]
-                    }
                   }
                 },
                 {
