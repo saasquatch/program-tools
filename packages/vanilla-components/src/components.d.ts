@@ -165,20 +165,21 @@ export namespace Components {
          */
         "height": string;
         /**
-          * @undocumented 
           * @uiName Hide Text
          */
         "ishidden": boolean;
         /**
-          * Compile plain text into markdown.
+          * Compile plain text into HTML. See {@link https://www.markdownguide.org/getting-started/ markdown} for more details.
           * @uiName Use Markdown
          */
         "ismarkdown": boolean;
         /**
+          * Bottom padding in pixels
           * @uiName Padding Bottom
          */
         "paddingbottom": string;
         /**
+          * Top padding in pixels
           * @uiName Padding Top
          */
         "paddingtop": string;
@@ -305,15 +306,58 @@ export namespace Components {
         "statvalue": string;
     }
     interface SqhProgressIndicator {
+        /**
+          * @undocumented 
+          * @uiName Text Alignment
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
+         */
         "align": string;
+        /**
+          * Text to show how much credit has been earned.
+          * @uiName Credit Earned Text
+         */
         "earned": string;
+        /**
+          * @undocumented 
+          * @uiName Hide Component
+         */
         "ishidden": boolean;
+        /**
+          * Color of the percentage text.
+          * @uiName Percentage Color
+          * @uiWidget color
+          * @format color
+         */
         "percentagecolor": string;
+        /**
+          * Font size of the percentage text.
+          * @uiName Percentage Text Size
+         */
         "percentagesize": string;
+        /**
+          * Text to show a users progress.
+          * @uiName Progress Text
+         */
         "progress": string;
         "progresscolor": string;
+        /**
+          * Select the type of icon to display.
+          * @uiName Indicator Icon Type
+          * @uiEnum ["Path", "Cirlce", "SemiCircle", "Line"]
+          * @uiEnumNames ["Path", "Cirlce", "SemiCircle", "Line"]
+         */
         "progresstype": string;
+        /**
+          * Width of the progress bar.
+          * @uiName Progress Width
+         */
         "progresswidth": string;
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+          * @format color
+         */
         "textcolor": string;
     }
     interface SqhReferralCode {
@@ -357,21 +401,21 @@ export namespace Components {
         "cancelledcolor": string;
         /**
           * Content shown in the referral column for a cancelled reward.
-          * @uiName Cancelled Content
+          * @uiName Cancelled Description
           * @uiGroup Cancelled Rewards
           * @default "Signed up, referred {date}"
          */
         "cancelledcontent": string;
         /**
           * Text shown alongside the icon in the referral column for a cancelled reward.
-          * @uiName Cancelled Value
+          * @uiName Cancelled Text
           * @uiGroup Cancelled Rewards
           * @default "Cancelled Reward"
          */
         "cancelledvalue": string;
         /**
-          * Content shown when a referral is converted
-          * @uiName Converted Content
+          * Description shown when a referral is converted.
+          * @uiName Converted Description
           * @uiGroup Converted Referrals
           * @default "Signed up, referred {date}"
          */
@@ -393,22 +437,22 @@ export namespace Components {
          */
         "expiredcolor": string;
         /**
-          * Expired content shown in the user column
-          * @uiName Expired Content
+          * Expired text shown in the referral column.
+          * @uiName Expired Description
           * @uiGroup Expired Rewards
           * @default "Signed up, referred {date}"
          */
         "expiredcontent": string;
         /**
-          * Expired content shown alongside the icon in the referral column
-          * @uiName Expired Value
+          * Expired text shown alongside the icon in the referral column.
+          * @uiName Expired Text
           * @uiGroup Expired Rewards
           * @default "Expired Reward"
          */
         "expiredvalue": string;
         /**
           * Reward expiry ICU message
-          * @uiName Expires Value
+          * @uiName Expires Text
           * @uiGroup Expired Rewards
          */
         "expiresvalue": string;
@@ -423,19 +467,19 @@ export namespace Components {
          */
         "ishidden": boolean;
         /**
-          * Shown when referral list is empty
+          * Shown when referral list is empty.
           * @uiName Empty Referrals Text
           * @default "No Referrals Yet..."
          */
         "noreferralsyet": string;
         /**
-          * Shown inside the paginate less button
+          * Shown inside the paginate less button.
           * @uiName Paginate Less Text
           * @default "Previous"
          */
         "paginateless": string;
         /**
-          * Shown inside the paginate more button
+          * Shown inside the paginate more button.
           * @uiName Paginate More Text
           * @default "View More"
          */
@@ -450,28 +494,28 @@ export namespace Components {
          */
         "pendingcolor": string;
         /**
-          * Pending content shown in the user column
-          * @uiName Pending Content
+          * Pending description shown in the referral column.
+          * @uiName Pending Description
           * @uiGroup Pending Referrals
           * @default "Trial user, referred {date}"
          */
         "pendingcontent": string;
         /**
-          * Pending content shown alongside the icon in the referral column
-          * @uiName Pending Value
+          * Pending text shown alongside the icon in the referral column.
+          * @uiName Pending Text
           * @uiGroup Pending Referrals
           * @default "Referral pending"
          */
         "pendingvalue": string;
         /**
-          * Shown when reward is redeemed
-          * @uiName Redeemed Value
+          * Shown when reward is redeemed.
+          * @uiName Redeemed Text
           * @uiGroup Converted Referrals
           * @default "Redeemed"
          */
         "redeemedvalue": string;
         /**
-          * Text color of the referred user's name
+          * Text color of the referred user's name.
           * @uiName Referral Name Color
           * @uiWidget color
           * @format color
@@ -486,15 +530,15 @@ export namespace Components {
          */
         "referraltextcolor": string;
         /**
-          * Text explaining who referred you to the program
-          * @uiName Referrer Content
+          * Text explaining who referred you to the program.
+          * @uiName Referrer Description
           * @uiGroup Referrer
           * @default "Referred you {date}"
          */
         "referrercontent": string;
         /**
-          * Referred Text shown in reward column
-          * @uiName Referrer Value
+          * Referred Text shown in reward column.
+          * @uiName Referrer Text
           * @uiGroup Referrer
           * @default "Referred"
          */
@@ -524,19 +568,19 @@ export namespace Components {
          */
         "showreferrer": boolean;
         /**
-          * Text shown when the referred user's name is unknown
+          * Text shown when the referred user's name is unknown.
           * @uiName Unknown User Text
           * @default "Your Friend"
          */
         "unknownuser": string;
         /**
-          * Show the value of the first earned reward inside the rewards column
+          * Show the value of the first earned reward inside the rewards column.
           * @uiName Use First Reward
           * @uiGroup Converted Referrals
          */
         "usefirstreward": boolean;
         /**
-          * Value shown in the rewards column
+          * ICU message shown in the rewards column. See {@link https://unicode-org.github.io/icu/userguide/format_parse/messages/ ICU messages} for more details.
           * @uiName Value Content
           * @uiGroup Converted Referrals
           * @uiWidget textArea
@@ -1204,7 +1248,7 @@ export namespace Components {
     interface SqhStatsContainer {
         /**
           * @undocumented 
-          * @uiName Is Hidden
+          * @uiName Hide stats
          */
         "ishidden": boolean;
         /**
@@ -1255,7 +1299,7 @@ export namespace Components {
          */
         "ishidden": boolean;
         /**
-          * Compiles plain text into {@link https://www.markdownguide.org/getting-started/ markdown}.
+          * Compile plain text into HTML. See {@link https://www.markdownguide.org/getting-started/ markdown} for more details.
           * @uiName Use Markdown
          */
         "ismarkdown": boolean;
@@ -1564,20 +1608,21 @@ declare namespace LocalJSX {
          */
         "height"?: string;
         /**
-          * @undocumented 
           * @uiName Hide Text
          */
         "ishidden"?: boolean;
         /**
-          * Compile plain text into markdown.
+          * Compile plain text into HTML. See {@link https://www.markdownguide.org/getting-started/ markdown} for more details.
           * @uiName Use Markdown
          */
         "ismarkdown"?: boolean;
         /**
+          * Bottom padding in pixels
           * @uiName Padding Bottom
          */
         "paddingbottom"?: string;
         /**
+          * Top padding in pixels
           * @uiName Padding Top
          */
         "paddingtop"?: string;
@@ -1706,15 +1751,58 @@ declare namespace LocalJSX {
         "statvalue"?: string;
     }
     interface SqhProgressIndicator {
+        /**
+          * @undocumented 
+          * @uiName Text Alignment
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
+         */
         "align"?: string;
+        /**
+          * Text to show how much credit has been earned.
+          * @uiName Credit Earned Text
+         */
         "earned"?: string;
+        /**
+          * @undocumented 
+          * @uiName Hide Component
+         */
         "ishidden"?: boolean;
+        /**
+          * Color of the percentage text.
+          * @uiName Percentage Color
+          * @uiWidget color
+          * @format color
+         */
         "percentagecolor"?: string;
+        /**
+          * Font size of the percentage text.
+          * @uiName Percentage Text Size
+         */
         "percentagesize"?: string;
+        /**
+          * Text to show a users progress.
+          * @uiName Progress Text
+         */
         "progress"?: string;
         "progresscolor"?: string;
+        /**
+          * Select the type of icon to display.
+          * @uiName Indicator Icon Type
+          * @uiEnum ["Path", "Cirlce", "SemiCircle", "Line"]
+          * @uiEnumNames ["Path", "Cirlce", "SemiCircle", "Line"]
+         */
         "progresstype"?: string;
+        /**
+          * Width of the progress bar.
+          * @uiName Progress Width
+         */
         "progresswidth"?: string;
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+          * @format color
+         */
         "textcolor"?: string;
     }
     interface SqhReferralCode {
@@ -1758,21 +1846,21 @@ declare namespace LocalJSX {
         "cancelledcolor"?: string;
         /**
           * Content shown in the referral column for a cancelled reward.
-          * @uiName Cancelled Content
+          * @uiName Cancelled Description
           * @uiGroup Cancelled Rewards
           * @default "Signed up, referred {date}"
          */
         "cancelledcontent"?: string;
         /**
           * Text shown alongside the icon in the referral column for a cancelled reward.
-          * @uiName Cancelled Value
+          * @uiName Cancelled Text
           * @uiGroup Cancelled Rewards
           * @default "Cancelled Reward"
          */
         "cancelledvalue"?: string;
         /**
-          * Content shown when a referral is converted
-          * @uiName Converted Content
+          * Description shown when a referral is converted.
+          * @uiName Converted Description
           * @uiGroup Converted Referrals
           * @default "Signed up, referred {date}"
          */
@@ -1794,22 +1882,22 @@ declare namespace LocalJSX {
          */
         "expiredcolor"?: string;
         /**
-          * Expired content shown in the user column
-          * @uiName Expired Content
+          * Expired text shown in the referral column.
+          * @uiName Expired Description
           * @uiGroup Expired Rewards
           * @default "Signed up, referred {date}"
          */
         "expiredcontent"?: string;
         /**
-          * Expired content shown alongside the icon in the referral column
-          * @uiName Expired Value
+          * Expired text shown alongside the icon in the referral column.
+          * @uiName Expired Text
           * @uiGroup Expired Rewards
           * @default "Expired Reward"
          */
         "expiredvalue"?: string;
         /**
           * Reward expiry ICU message
-          * @uiName Expires Value
+          * @uiName Expires Text
           * @uiGroup Expired Rewards
          */
         "expiresvalue"?: string;
@@ -1824,19 +1912,19 @@ declare namespace LocalJSX {
          */
         "ishidden"?: boolean;
         /**
-          * Shown when referral list is empty
+          * Shown when referral list is empty.
           * @uiName Empty Referrals Text
           * @default "No Referrals Yet..."
          */
         "noreferralsyet"?: string;
         /**
-          * Shown inside the paginate less button
+          * Shown inside the paginate less button.
           * @uiName Paginate Less Text
           * @default "Previous"
          */
         "paginateless"?: string;
         /**
-          * Shown inside the paginate more button
+          * Shown inside the paginate more button.
           * @uiName Paginate More Text
           * @default "View More"
          */
@@ -1851,28 +1939,28 @@ declare namespace LocalJSX {
          */
         "pendingcolor"?: string;
         /**
-          * Pending content shown in the user column
-          * @uiName Pending Content
+          * Pending description shown in the referral column.
+          * @uiName Pending Description
           * @uiGroup Pending Referrals
           * @default "Trial user, referred {date}"
          */
         "pendingcontent"?: string;
         /**
-          * Pending content shown alongside the icon in the referral column
-          * @uiName Pending Value
+          * Pending text shown alongside the icon in the referral column.
+          * @uiName Pending Text
           * @uiGroup Pending Referrals
           * @default "Referral pending"
          */
         "pendingvalue"?: string;
         /**
-          * Shown when reward is redeemed
-          * @uiName Redeemed Value
+          * Shown when reward is redeemed.
+          * @uiName Redeemed Text
           * @uiGroup Converted Referrals
           * @default "Redeemed"
          */
         "redeemedvalue"?: string;
         /**
-          * Text color of the referred user's name
+          * Text color of the referred user's name.
           * @uiName Referral Name Color
           * @uiWidget color
           * @format color
@@ -1887,15 +1975,15 @@ declare namespace LocalJSX {
          */
         "referraltextcolor"?: string;
         /**
-          * Text explaining who referred you to the program
-          * @uiName Referrer Content
+          * Text explaining who referred you to the program.
+          * @uiName Referrer Description
           * @uiGroup Referrer
           * @default "Referred you {date}"
          */
         "referrercontent"?: string;
         /**
-          * Referred Text shown in reward column
-          * @uiName Referrer Value
+          * Referred Text shown in reward column.
+          * @uiName Referrer Text
           * @uiGroup Referrer
           * @default "Referred"
          */
@@ -1925,19 +2013,19 @@ declare namespace LocalJSX {
          */
         "showreferrer"?: boolean;
         /**
-          * Text shown when the referred user's name is unknown
+          * Text shown when the referred user's name is unknown.
           * @uiName Unknown User Text
           * @default "Your Friend"
          */
         "unknownuser"?: string;
         /**
-          * Show the value of the first earned reward inside the rewards column
+          * Show the value of the first earned reward inside the rewards column.
           * @uiName Use First Reward
           * @uiGroup Converted Referrals
          */
         "usefirstreward"?: boolean;
         /**
-          * Value shown in the rewards column
+          * ICU message shown in the rewards column. See {@link https://unicode-org.github.io/icu/userguide/format_parse/messages/ ICU messages} for more details.
           * @uiName Value Content
           * @uiGroup Converted Referrals
           * @uiWidget textArea
@@ -2607,7 +2695,7 @@ declare namespace LocalJSX {
     interface SqhStatsContainer {
         /**
           * @undocumented 
-          * @uiName Is Hidden
+          * @uiName Hide stats
          */
         "ishidden"?: boolean;
         /**
@@ -2658,7 +2746,7 @@ declare namespace LocalJSX {
          */
         "ishidden"?: boolean;
         /**
-          * Compiles plain text into {@link https://www.markdownguide.org/getting-started/ markdown}.
+          * Compile plain text into HTML. See {@link https://www.markdownguide.org/getting-started/ markdown} for more details.
           * @uiName Use Markdown
          */
         "ismarkdown"?: boolean;

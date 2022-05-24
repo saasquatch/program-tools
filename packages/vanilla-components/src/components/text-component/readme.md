@@ -5,20 +5,20 @@
 
 ## Properties
 
-| Property        | Attribute       | Description                                                                                        | Type      | Default     |
-| --------------- | --------------- | -------------------------------------------------------------------------------------------------- | --------- | ----------- |
-| `background`    | `background`    | Fill the background with a color or image. Input color values as a HEX code and an image as a URL. | `string`  | `undefined` |
-| `color`         | `color`         |                                                                                                    | `string`  | `undefined` |
-| `fontfamily`    | `fontfamily`    |                                                                                                    | `string`  | `undefined` |
-| `fontsize`      | `fontsize`      |                                                                                                    | `string`  | `undefined` |
-| `fontweight`    | `fontweight`    |                                                                                                    | `string`  | `undefined` |
-| `height`        | `height`        | Define the height of the container with a pixel amount.                                            | `string`  | `undefined` |
-| `ishidden`      | `ishidden`      |                                                                                                    | `boolean` | `undefined` |
-| `ismarkdown`    | `ismarkdown`    | Compiles plain text into {@link https://www.markdownguide.org/getting-started/ markdown}.          | `boolean` | `undefined` |
-| `paddingbottom` | `paddingbottom` | Define the bottom padding of the container with a pixel amount.                                    | `string`  | `undefined` |
-| `paddingtop`    | `paddingtop`    | Define the top padding of the container with a pixel amount.                                       | `string`  | `undefined` |
-| `text`          | `text`          |                                                                                                    | `string`  | `undefined` |
-| `textalign`     | `textalign`     |                                                                                                    | `string`  | `undefined` |
+| Property        | Attribute       | Description                                                                                                         | Type      | Default     |
+| --------------- | --------------- | ------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `background`    | `background`    | Fill the background with a color or image. Input color values as a HEX code and an image as a URL.                  | `string`  | `undefined` |
+| `color`         | `color`         |                                                                                                                     | `string`  | `undefined` |
+| `fontfamily`    | `fontfamily`    |                                                                                                                     | `string`  | `undefined` |
+| `fontsize`      | `fontsize`      |                                                                                                                     | `string`  | `undefined` |
+| `fontweight`    | `fontweight`    |                                                                                                                     | `string`  | `undefined` |
+| `height`        | `height`        | Define the height of the container with a pixel amount.                                                             | `string`  | `undefined` |
+| `ishidden`      | `ishidden`      |                                                                                                                     | `boolean` | `undefined` |
+| `ismarkdown`    | `ismarkdown`    | Compile plain text into HTML. See {@link https://www.markdownguide.org/getting-started/ markdown} for more details. | `boolean` | `undefined` |
+| `paddingbottom` | `paddingbottom` | Define the bottom padding of the container with a pixel amount.                                                     | `string`  | `undefined` |
+| `paddingtop`    | `paddingtop`    | Define the top padding of the container with a pixel amount.                                                        | `string`  | `undefined` |
+| `text`          | `text`          |                                                                                                                     | `string`  | `undefined` |
+| `textalign`     | `textalign`     |                                                                                                                     | `string`  | `undefined` |
 
 
 ----------------------------------------------

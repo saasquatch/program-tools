@@ -74,6 +74,7 @@ export namespace Components {
         /**
           * Controls the order of the stat value & description column
           * @uiName Flex Reverse
+          * @default
          */
         "flexReverse"?: boolean;
         /**
@@ -137,6 +138,7 @@ export namespace Components {
         "checkboxName": string;
         /**
           * @uiName Optional
+          * @default
          */
         "checkboxOptional"?: boolean;
         /**
@@ -179,6 +181,7 @@ export namespace Components {
         "dropdownName": string;
         /**
           * @uiName Optional
+          * @default
          */
         "dropdownOptional"?: boolean;
         /**
@@ -304,6 +307,7 @@ export namespace Components {
         "buttonLink"?: string;
         /**
           * @uiName Open Link in New Tab
+          * @default
          */
         "buttonNewTab"?: boolean;
         /**
@@ -433,6 +437,7 @@ export namespace Components {
         "fieldName": string;
         /**
           * @uiName Optional
+          * @default
          */
         "fieldOptional"?: boolean;
         /**
@@ -457,6 +462,7 @@ export namespace Components {
         /**
           * Hide the viewer's leaderboard row if not in the top results.
           * @uiName Hide Viewing User
+          * @default
          */
         "hideViewer": boolean;
         /**
@@ -975,6 +981,7 @@ export namespace Components {
         "redirectToUnverified": string;
         /**
           * @uiName Require Email Verification
+          * @default
          */
         "requireEmailVerification": boolean;
     }
@@ -982,6 +989,7 @@ export namespace Components {
         /**
           * Show or hide the confirm password input
           * @uiName Show Confirm Password Field
+          * @default
          */
         "confirmPassword": boolean;
         /**
@@ -1004,6 +1012,7 @@ export namespace Components {
         /**
           * Hide default input fields to use custom fields
           * @uiName Hide Default Inputs
+          * @default
          */
         "hideInputs": boolean;
         /**
@@ -1042,6 +1051,7 @@ export namespace Components {
         /**
           * Show or hide confirm password field
           * @uiName Show Confirm Password
+          * @default
          */
         "confirmPassword": boolean;
         /**
@@ -1494,6 +1504,7 @@ export namespace Components {
         /**
           * Show referred by user in table
           * @uiName Show Referrer
+          * @default
          */
         "showReferrer"?: boolean;
         /**
@@ -1560,6 +1571,7 @@ export namespace Components {
         "fuelTankText": string;
         /**
           * @uiName Hide dropdown details of reward
+          * @default
          */
         "hideDetails": boolean;
         /**
@@ -2048,10 +2060,12 @@ export namespace Components {
         "disabled"?: boolean;
         /**
           * @uiName Hide Icon
+          * @default
          */
         "hideicon"?: boolean;
         /**
           * @uiName Hide Text
+          * @default
          */
         "hidetext"?: boolean;
         /**
@@ -2295,6 +2309,7 @@ export namespace Components {
           * Button Link Opens in New Tab
           * @uiName Open In New Tab
           * @uiGroup Button
+          * @default
          */
         "openNewTab": boolean;
         /**
@@ -2313,6 +2328,7 @@ export namespace Components {
         /**
           * @uiName Goal Repeatable
           * @uiGroup Goal
+          * @default
          */
         "repeatable": boolean;
         /**
@@ -2336,6 +2352,7 @@ export namespace Components {
         /**
           * @uiName Show Progress Bar
           * @uiGroup Goal
+          * @default
          */
         "showProgressBar": boolean;
         /**
@@ -2357,6 +2374,7 @@ export namespace Components {
         /**
           * @uiName Progress Bar Steps
           * @uiGroup Goal
+          * @default
          */
         "steps": boolean;
     }
@@ -3108,6 +3126,7 @@ declare namespace LocalJSX {
         /**
           * Controls the order of the stat value & description column
           * @uiName Flex Reverse
+          * @default
          */
         "flexReverse"?: boolean;
         /**
@@ -3171,6 +3190,7 @@ declare namespace LocalJSX {
         "checkboxName"?: string;
         /**
           * @uiName Optional
+          * @default
          */
         "checkboxOptional"?: boolean;
         /**
@@ -3213,6 +3233,7 @@ declare namespace LocalJSX {
         "dropdownName"?: string;
         /**
           * @uiName Optional
+          * @default
          */
         "dropdownOptional"?: boolean;
         /**
@@ -3338,6 +3359,7 @@ declare namespace LocalJSX {
         "buttonLink"?: string;
         /**
           * @uiName Open Link in New Tab
+          * @default
          */
         "buttonNewTab"?: boolean;
         /**
@@ -3467,6 +3489,7 @@ declare namespace LocalJSX {
         "fieldName"?: string;
         /**
           * @uiName Optional
+          * @default
          */
         "fieldOptional"?: boolean;
         /**
@@ -3491,6 +3514,7 @@ declare namespace LocalJSX {
         /**
           * Hide the viewer's leaderboard row if not in the top results.
           * @uiName Hide Viewing User
+          * @default
          */
         "hideViewer"?: boolean;
         /**
@@ -4009,6 +4033,7 @@ declare namespace LocalJSX {
         "redirectToUnverified"?: string;
         /**
           * @uiName Require Email Verification
+          * @default
          */
         "requireEmailVerification"?: boolean;
     }
@@ -4016,6 +4041,7 @@ declare namespace LocalJSX {
         /**
           * Show or hide the confirm password input
           * @uiName Show Confirm Password Field
+          * @default
          */
         "confirmPassword"?: boolean;
         /**
@@ -4038,6 +4064,7 @@ declare namespace LocalJSX {
         /**
           * Hide default input fields to use custom fields
           * @uiName Hide Default Inputs
+          * @default
          */
         "hideInputs"?: boolean;
         /**
@@ -4076,6 +4103,7 @@ declare namespace LocalJSX {
         /**
           * Show or hide confirm password field
           * @uiName Show Confirm Password
+          * @default
          */
         "confirmPassword"?: boolean;
         /**
@@ -4528,6 +4556,7 @@ declare namespace LocalJSX {
         /**
           * Show referred by user in table
           * @uiName Show Referrer
+          * @default
          */
         "showReferrer"?: boolean;
         /**
@@ -4589,6 +4618,7 @@ declare namespace LocalJSX {
         "fuelTankText"?: string;
         /**
           * @uiName Hide dropdown details of reward
+          * @default
          */
         "hideDetails"?: boolean;
         /**
@@ -5058,10 +5088,12 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         /**
           * @uiName Hide Icon
+          * @default
          */
         "hideicon"?: boolean;
         /**
           * @uiName Hide Text
+          * @default
          */
         "hidetext"?: boolean;
         /**
@@ -5305,6 +5337,7 @@ declare namespace LocalJSX {
           * Button Link Opens in New Tab
           * @uiName Open In New Tab
           * @uiGroup Button
+          * @default
          */
         "openNewTab"?: boolean;
         /**
@@ -5323,6 +5356,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Goal Repeatable
           * @uiGroup Goal
+          * @default
          */
         "repeatable"?: boolean;
         /**
@@ -5346,6 +5380,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Show Progress Bar
           * @uiGroup Goal
+          * @default
          */
         "showProgressBar"?: boolean;
         /**
@@ -5367,6 +5402,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Progress Bar Steps
           * @uiGroup Goal
+          * @default
          */
         "steps"?: boolean;
     }
