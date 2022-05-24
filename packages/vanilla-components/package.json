@@ -57,10 +57,10 @@
     "jest-cli": "^26.2.2",
     "marked": "^1.1.1",
     "path-to-regexp": "^6.1.0",
+    "progressbar.js": "^1.0.1",
     "puppeteer": "3.0.3",
     "ts-node": "^8.10.1",
     "uuid": "^8.3.0",
-    "progressbar.js": "^1.0.1",
     "workbox-build": "4.3.1"
   },
   "resolutions": {
@@ -79,7 +79,7 @@
   "gitHead": "8bb7593d8b46310071835017f0cd63c8c36013b4",
   "dependencies": {
     "@formatjs/intl-pluralrules": "^1.5.8",
-    "@raisins/stencil-docs-target": "^0.2.8"
+    "@raisins/stencil-docs-target": "^0.2.9"
   },
   "jest": {
     "transform": {
