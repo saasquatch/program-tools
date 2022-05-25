@@ -20,7 +20,7 @@ export class TextComponent {
    */
   @Prop() ishidden: boolean;
   /**
-   * Compile plain text into HTML. See {@link https://www.markdownguide.org/getting-started/ markdown} for more details.
+   * Compile plain text into HTML. See [markdown](https://www.markdownguide.org/getting-started/) for more details.
    *
    * @uiName Use Markdown
    */
@@ -86,9 +86,9 @@ export class TextComponent {
       /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i;
 
     const textStyle = css`
-      font-family: ${this.fontfamily || 'inherit'};
-      font-size: ${this.fontsize ? this.fontsize + 'px' : 'inherit'};
-      font-weight: ${this.fontweight ? this.fontweight : 'inherit'};
+      font-family: ${this.fontfamily || "inherit"};
+      font-size: ${this.fontsize ? this.fontsize + "px" : "inherit"};
+      font-weight: ${this.fontweight ? this.fontweight : "inherit"};
       text-align: ${this.textalign};
       color: ${this.color || "inherit"};
       padding-top: ${this.paddingtop ? this.paddingtop + "px" : "inherit"};

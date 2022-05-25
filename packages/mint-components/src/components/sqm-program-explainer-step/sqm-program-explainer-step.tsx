@@ -49,7 +49,7 @@ export class ProgramExplainerStep {
   @Prop() imageUrl?: string;
 
   /**
-   * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
+   * Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive.
    *
    * @uiName Icon
    */

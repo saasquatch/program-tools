@@ -6,2812 +6,2844 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface SqhCloseButton {
-        /**
-          * The text shown inside the close button.
-          * @uiName Button Text
-         */
-        "text": string;
-    }
-    interface SqhCopyButton {
-        /**
-          * @uiName Button Color
-          * @uiWidget color
-          * @format color
-          * @default #35b21e
-         */
-        "backgroundcolor": string;
-        /**
-          * Define the radius of the corners with a pixel amount.
-          * @uiName Border Radius
-          * @default 4
-         */
-        "borderradius": number;
-        /**
-          * @uiName Fuel Tank Code Color
-          * @uiWidget color
-          * @format color
-          * @default #000000
-         */
-        "codefontcolor": string;
-        /**
-          * Font size of the fuel tank code.
-          * @uiName Code Font Size
-          * @default 14
-         */
-        "codefontsize": number;
-        /**
-          * Shown when the button has failed to copy the code to the users clipboard.
-          * @uiName Copy Failure Text
-          * @default "Press Ctrl+C to copy"
-         */
-        "copyfailure": string;
-        /**
-          * Shown when the code is successfully copied to the users clipboard.
-          * @uiName Copy Success Text
-          * @default "copied!"
-         */
-        "copysuccess": string;
-        /**
-          * @uiName Font Size
-          * @default 14
-         */
-        "fontsize": number;
-        /**
-          * @uiName Hide Button
-          * @undocumented
-         */
-        "ishidden": boolean;
-        /**
-          * The rewardKey of a fuel tank reward. This is used to get the fuel tank code for a user.
-          * @uiName Reward Key
-          * @default "referredReward"
-         */
-        "rewardkey": string;
-        /**
-          * @uiName Button Text
-          * @default "COPY CODE"
-         */
-        "text": string;
-        /**
-          * @uiName Button Text Color
-          * @uiWidget color
-          * @format color
-          * @default #ffffff
-         */
-        "textcolor": string;
-        /**
-          * @uiName Button Max Width
-          * @default 170
-         */
-        "width": number;
-    }
-    interface SqhCopyLinkButton {
-        /**
-          * @uiName Button Color
-          * @uiWidget color
-          * @format color
-          * @default "#5C6164"
-         */
-        "buttoncolor": string;
-        /**
-          * Shown when the button has failed to copy the code to the users clipboard.
-          * @uiName Copy Failure Text
-          * @default "Press Ctrl+C to copy"
-         */
-        "copyfailure": string;
-        /**
-          * Shown when the code is successfully copied to the users clipboard.
-          * @uiName Copy Success Text
-          * @default "copied!"
-         */
-        "copysuccess": string;
-        /**
-          * @undocumented 
-          * @uiName Hide Button
-         */
-        "ishidden": boolean;
-        /**
-          * @uiName Button Text
-          * @default "Copy"
-         */
-        "text": string;
-        /**
-          * @uiName Button Text Color
-          * @uiWidget color
-          * @format color
-          * @default "#FFFFFF"
-         */
-        "textcolor": string;
-    }
-    interface SqhCtaComponent {
-        /**
-          * @uiName Background
-         */
-        "background": string;
-        /**
-          * @uiName Border Radius
-          * @default "8px"
-         */
-        "borderradius": string;
-        /**
-          * @uiName Button Color
-          * @uiWidget color
-          * @format color
-          * @default '#F5A100'
-         */
-        "buttonbackground": string;
-        /**
-          * @uiName Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "color": string;
-        /**
-          * @uiName Font Family
-         */
-        "fontfamily": string;
-        /**
-          * @uiName Font Size
-         */
-        "fontsize": string;
-        /**
-          * @uiName Font Weight
-         */
-        "fontweight": string;
-        /**
-          * Button height in pixels.
-          * @uiName Button Height
-         */
-        "height": string;
-        /**
-          * @uiName Hide Text
-         */
-        "ishidden": boolean;
-        /**
-          * Compile plain text into HTML. See {@link https://www.markdownguide.org/getting-started/ markdown} for more details.
-          * @uiName Use Markdown
-         */
-        "ismarkdown": boolean;
-        /**
-          * Bottom padding in pixels
-          * @uiName Padding Bottom
-         */
-        "paddingbottom": string;
-        /**
-          * Top padding in pixels
-          * @uiName Padding Top
-         */
-        "paddingtop": string;
-        /**
-          * @uiName Text
-         */
-        "text": string;
-        /**
-          * @uiName Text Alignment
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "textalign": string;
-        /**
-          * @uiName Button Link
-         */
-        "url": string;
-        /**
-          * Button width in pixels.
-          * @uiName Button Width
-         */
-        "width": string;
-    }
-    interface SqhGlobalContainer {
-        /**
-          * @uiName Background Color
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "background": string;
-        /**
-          * Font family used inside the container.
-          * @uiName Font Family
-          * @default "Roboto"
-          * @uiEnum ["Roboto", "Artifakt Element", "Helvetica Neue,Helvetica,Arial,sans-serif", "Lato,sans-serif", "Times New Roman", "Arial", "Courier", "Tahoma", "Verdana", "Georgia"]
-          * @uiEnumNames ["Roboto","Artifakt Element","Helvetica Neue","Lato","Times New Roman","Arial","Courier","Tahoma","Verdana","Georgia"]
-         */
-        "fontfamily": string;
-        /**
-          * The background colour of the component while in the loading state.
-          * @uiName Loading Color
-          * @uiWidget color
-          * @format color
-         */
-        "loadingcolor": string;
-        /**
-          * @uiName Container Max Width
-         */
-        "maxwidth": string;
-        /**
-          * Show the Powered by SaaSquatch link. This can only be disabled on Pro plans.
-          * @uiName Show Powered By
-         */
-        "poweredby": boolean;
-    }
-    interface SqhImageComponent {
-        /**
-          * @uiName Horizontal Alignment
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-          * @default "center"
-         */
-        "alignment": string;
-        /**
-          * Define the radius of the corners with a pixel amount.
-          * @uiName Border Radius
-         */
-        "borderradius": number;
-        /**
-          * Additional CSS applied to the image element
-          * @uiName CSS
-          * @uiWidget textArea
-          * @default "padding-top: 38px; padding-bottom: 7px;"
-         */
-        "css": string;
-        /**
-          * @undocumented 
-          * @uiName Hide Image
-         */
-        "ishidden": boolean;
-        /**
-          * @uiName Image URL
-          * @uiWidget imageUpload
-          * @format url
-         */
-        "url": string;
-        /**
-          * Define the width of the image with a pixel amount.
-          * @uiName Width
-         */
-        "width": number;
-    }
-    interface SqhPartnerStatComponent {
-        /**
-          * @undocumented 
-          * @uiName Hide Stat
-         */
-        "ishidden": boolean;
-        /**
-          * Color of the stat value and description
-          * @uiName Color
-          * @uiWidget color
-          * @format color
-         */
-        "statcolor": string;
-        /**
-          * @uiName Description
-         */
-        "statdescription": string;
-        /**
-          * Determines what type of stat is displayed. Manual paths are also supported.
-          * @uiName Stat Type
-          * @uiWidget statTypeSelector
-          * @required 
-          * @minLength 1
-         */
-        "stattype": string;
-        /**
-          * Value of the stat
-          * @uiName Value
-          * @undocumented
-         */
-        "statvalue": string;
-    }
-    interface SqhProgressIndicator {
-        /**
-          * @undocumented 
-          * @uiName Text Alignment
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "align": string;
-        /**
-          * Text to show how much credit has been earned.
-          * @uiName Credit Earned Text
-         */
-        "earned": string;
-        /**
-          * @undocumented 
-          * @uiName Hide Component
-         */
-        "ishidden": boolean;
-        /**
-          * Color of the percentage text.
-          * @uiName Percentage Color
-          * @uiWidget color
-          * @format color
-         */
-        "percentagecolor": string;
-        /**
-          * Font size of the percentage text.
-          * @uiName Percentage Text Size
-         */
-        "percentagesize": string;
-        /**
-          * Text to show a users progress.
-          * @uiName Progress Text
-         */
-        "progress": string;
-        "progresscolor": string;
-        /**
-          * Select the type of icon to display.
-          * @uiName Indicator Icon Type
-          * @uiEnum ["Path", "Cirlce", "SemiCircle", "Line"]
-          * @uiEnumNames ["Path", "Cirlce", "SemiCircle", "Line"]
-         */
-        "progresstype": string;
-        /**
-          * Width of the progress bar.
-          * @uiName Progress Width
-         */
-        "progresswidth": string;
-        /**
-          * @uiName Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "textcolor": string;
-    }
-    interface SqhReferralCode {
-    }
-    interface SqhReferralComponent {
-        /**
-          * Configure the local
-          * @uiName Local
-         */
-        "locale": string;
-        /**
-          * Referral object
-          * @uiName Referral
-         */
-        "referral": Referral | ReferredByReferral;
-        /**
-          * Type of referral
-          * @uiName Referral Type
-         */
-        "referraltype": "converted" | "pending" | "referrer";
-        /**
-          * Referral variables used to format the row in the referral list
-          * @uiName Referral Variables
-         */
-        "referralvariables": ReferralVariables;
-        /**
-          * Text shown when the name of a user is unknown
-          * @uiName Unknown User
-         */
-        "unknownuser": String;
-    }
-    interface SqhReferralList {
-        /**
-          * Color of the cancelled icon and text in the rewards column.
-          * @uiName Cancelled Color
-          * @uiGroup Cancelled Rewards
-          * @uiWidget color
-          * @format color
-          * @default "#C81D05"
-         */
-        "cancelledcolor": string;
-        /**
-          * Content shown in the referral column for a cancelled reward.
-          * @uiName Cancelled Description
-          * @uiGroup Cancelled Rewards
-          * @default "Signed up, referred {date}"
-         */
-        "cancelledcontent": string;
-        /**
-          * Text shown alongside the icon in the referral column for a cancelled reward.
-          * @uiName Cancelled Text
-          * @uiGroup Cancelled Rewards
-          * @default "Cancelled Reward"
-         */
-        "cancelledvalue": string;
-        /**
-          * Description shown when a referral is converted.
-          * @uiName Converted Description
-          * @uiGroup Converted Referrals
-          * @default "Signed up, referred {date}"
-         */
-        "convertedcontent": string;
-        /**
-          * @uiName Customer Note Color
-          * @uiGroup Converted Referrals
-          * @uiWidget color
-          * @format color
-         */
-        "customernotecolor": string;
-        /**
-          * Color of the expired reward icon and text in the rewards column.
-          * @uiName Expired Color
-          * @uiGroup Expired Rewards
-          * @uiWidget color
-          * @format color
-          * @default "lightgray"
-         */
-        "expiredcolor": string;
-        /**
-          * Expired text shown in the referral column.
-          * @uiName Expired Description
-          * @uiGroup Expired Rewards
-          * @default "Signed up, referred {date}"
-         */
-        "expiredcontent": string;
-        /**
-          * Expired text shown alongside the icon in the referral column.
-          * @uiName Expired Text
-          * @uiGroup Expired Rewards
-          * @default "Expired Reward"
-         */
-        "expiredvalue": string;
-        /**
-          * Reward expiry ICU message
-          * @uiName Expires Text
-          * @uiGroup Expired Rewards
-         */
-        "expiresvalue": string;
-        /**
-          * Use the value passed to the referral component to set the locale of the user.
-          * @uiName Internationalization
-         */
-        "internationalization": boolean;
-        /**
-          * @undocumented 
-          * @uiName Hide Referral List
-         */
-        "ishidden": boolean;
-        /**
-          * Shown when referral list is empty.
-          * @uiName Empty Referrals Text
-          * @default "No Referrals Yet..."
-         */
-        "noreferralsyet": string;
-        /**
-          * Shown inside the paginate less button.
-          * @uiName Paginate Less Text
-          * @default "Previous"
-         */
-        "paginateless": string;
-        /**
-          * Shown inside the paginate more button.
-          * @uiName Paginate More Text
-          * @default "View More"
-         */
-        "paginatemore": string;
-        /**
-          * Color of the pending reward icon and text in the rewards column.
-          * @uiName Pending Color
-          * @uiGroup Pending Referrals
-          * @uiWidget color
-          * @format color
-          * @default "lightgray"
-         */
-        "pendingcolor": string;
-        /**
-          * Pending description shown in the referral column.
-          * @uiName Pending Description
-          * @uiGroup Pending Referrals
-          * @default "Trial user, referred {date}"
-         */
-        "pendingcontent": string;
-        /**
-          * Pending text shown alongside the icon in the referral column.
-          * @uiName Pending Text
-          * @uiGroup Pending Referrals
-          * @default "Referral pending"
-         */
-        "pendingvalue": string;
-        /**
-          * Shown when reward is redeemed.
-          * @uiName Redeemed Text
-          * @uiGroup Converted Referrals
-          * @default "Redeemed"
-         */
-        "redeemedvalue": string;
-        /**
-          * Text color of the referred user's name.
-          * @uiName Referral Name Color
-          * @uiWidget color
-          * @format color
-          * @default "darkslategray"
-         */
-        "referralnamecolor": string;
-        /**
-          * @uiName Referral Status Text Color
-          * @uiWidget color
-          * @format color
-          * @default "lightgray"
-         */
-        "referraltextcolor": string;
-        /**
-          * Text explaining who referred you to the program.
-          * @uiName Referrer Description
-          * @uiGroup Referrer
-          * @default "Referred you {date}"
-         */
-        "referrercontent": string;
-        /**
-          * Referred Text shown in reward column.
-          * @uiName Referrer Text
-          * @uiGroup Referrer
-          * @default "Referred"
-         */
-        "referrervalue": string;
-        /**
-          * Color of the successful reward icon and text in the rewards column.
-          * @uiName Reward Color
-          * @uiGroup Converted Referrals
-          * @uiWidget color
-          * @format color
-          * @default "#4BB543"
-         */
-        "rewardcolor": string;
-        /**
-          * @uiName Show Expired Rewards
-         */
-        "showexpiry": boolean;
-        /**
-          * @uiName Show Customer Note
-         */
-        "shownotes": boolean;
-        /**
-          * Show referral and reward information on who referred you.
-          * @uiName Show Referred By
-          * @uiGroup Referrer
-          * @default ""
-         */
-        "showreferrer": boolean;
-        /**
-          * Text shown when the referred user's name is unknown.
-          * @uiName Unknown User Text
-          * @default "Your Friend"
-         */
-        "unknownuser": string;
-        /**
-          * Show the value of the first earned reward inside the rewards column.
-          * @uiName Use First Reward
-          * @uiGroup Converted Referrals
-         */
-        "usefirstreward": boolean;
-        /**
-          * ICU message shown in the rewards column. See {@link https://unicode-org.github.io/icu/userguide/format_parse/messages/ ICU messages} for more details.
-          * @uiName Value Content
-          * @uiGroup Converted Referrals
-          * @uiWidget textArea
-          * @default "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}"
-         */
-        "valuecontent": string;
-    }
-    interface SqhRewardsActions {
-        /**
-          * Text inside the hide button
-          * @uiName Hide Button Text
-         */
-        "hidetext": string;
-        /**
-          * Text inside the next button
-          * @uiName Next Button Text
-         */
-        "nexttext": string;
-        /**
-          * Text inside the previous button
-          * @uiName Previous Button Text
-         */
-        "previoustext": string;
-    }
-    interface SqhShareButton {
-        /**
-          * Background color of the share button
-          * @uiName Share Button Background Color
-          * @uiWidget color
-          * @format color
-         */
-        "backgroundcolor": string;
-        /**
-          * CSS Class name used to style the share button
-          * @uiName Share Button Class Name
-         */
-        "buttonClassName": string;
-        /**
-          * Show or hide button depending on what type of device the user is on
-          * @uiName Share Button Display Rule
-         */
-        "displayrule": string;
-        /**
-          * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
-          * @uiName Share Button Icon
-         */
-        "icon": string;
-        /**
-          * Number to horizontally align the share button icon
-          * @uiName Share Button Icon Horizontal
-         */
-        "iconhorizontal": number;
-        /**
-          * Size of the Share button icon in em units
-          * @uiName Share Button Icon Size
-         */
-        "iconsize": number;
-        /**
-          * Number to vertically align the share button icon
-          * @uiName Share Button Icon Vertical
-         */
-        "iconvertical": number;
-        /**
-          * Text inside the share button
-          * @uiName Share Button Text
-         */
-        "text": string;
-        /**
-          * Color of the text inside the share button
-          * @uiName Share Button Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "textcolor": string;
-        /**
-          * @uiName Share Button Type
-         */
-        "type": string;
-        /**
-          * URL redirect location
-          * @uiName URL
-          * @uiWidget imageUpload
-          * @format url
-         */
-        "url": string;
-    }
-    interface SqhShareButtonContainer {
-        /**
-          * Background color of the Email button
-          * @uiName Email Background Color
-          * @uiGroup Email
-          * @uiWidget color
-          * @format color
-          * @default "#4b4d50"
-         */
-        "emailbackgroundcolor": string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName Email Class Name
-          * @uiGroup Email
-         */
-        "emailclassName": string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName Email Display Rule
-          * @uiGroup Email
-          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
-          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "mobile-and-desktop"
-         */
-        "emaildisplayrule": string;
-        /**
-          * @uiName Email Icon
-          * @uiGroup Email
-         */
-        "emailicon": string;
-        /**
-          * Number to horizontally align the Email button icon
-          * @uiName Email Icon Horizontal
-          * @uiGroup Email
-         */
-        "emailiconhorizontal": number;
-        /**
-          * @uiName Email Icon Size
-          * @uiGroup Email
-         */
-        "emailiconsize": number;
-        /**
-          * Number to vertically align the Email button icon
-          * @uiName Email Icon Vertical
-          * @uiGroup Email
-         */
-        "emailiconvertical": number;
-        /**
-          * @uiName Email Text
-          * @uiGroup Email
-          * @default "Email"
-         */
-        "emailtext": string;
-        /**
-          * @uiName Email Text Color
-          * @uiGroup Email
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "emailtextcolor": string;
-        /**
-          * Background color of the facebook button
-          * @uiName Facebook Background Color
-          * @uiGroup Facebook
-          * @uiWidget color
-          * @format color
-          * @default "#234079"
-         */
-        "facebookbackgroundcolor": string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName Facebook Class Name
-          * @uiGroup Facebook
-         */
-        "facebookclassName": string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName Facebook Display Rule
-          * @uiGroup Facebook
-          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
-          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "mobile-and-desktop"
-         */
-        "facebookdisplayrule": string;
-        /**
-          * @uiName Facebook Icon
-          * @uiGroup Facebook
-         */
-        "facebookicon": string;
-        /**
-          * Number to horizontally align the facebook button icon
-          * @uiName Facebook Icon Horizontal
-          * @uiGroup Facebook
-         */
-        "facebookiconhorizontal": number;
-        /**
-          * @uiName Facebook Icon Size
-          * @uiGroup Facebook
-         */
-        "facebookiconsize": number;
-        /**
-          * Number to vertically align the facebook button icon
-          * @uiName Facebook Icon Vertical
-          * @uiGroup Facebook
-         */
-        "facebookiconvertical": number;
-        /**
-          * @uiName Facebook Text
-          * @uiGroup Facebook
-          * @default "Facebook"
-         */
-        "facebooktext": string;
-        /**
-          * @uiName Facebook Text Color
-          * @uiGroup Facebook
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "facebooktextcolor": string;
-        /**
-          * @undocumented 
-          * @uiName Hide Share Buttons
-         */
-        "ishidden": boolean;
-        /**
-          * Background color of the Line button
-          * @uiName Line Background Color
-          * @uiGroup Line Messenger
-          * @uiWidget color
-          * @format color
-          * @default "#00c300"
-         */
-        "linebackgroundcolor": string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName Line Class Name
-          * @uiGroup Line Messenger
-         */
-        "lineclassName": string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName Line Display Rule
-          * @uiGroup Line Messenger
-          * @uiEnum ["mobile-only","hidden"]
-          * @uiEnumNames ["Mobile Only","Hide"]
-          * @default "mobile-only"
-         */
-        "linedisplayrule": string;
-        /**
-          * @uiName Line Icon
-          * @uiGroup Line Messenger
-         */
-        "lineicon": string;
-        /**
-          * Number to horizontally align the Line button icon
-          * @uiName Line Icon Horizontal
-          * @uiGroup Line Messenger
-         */
-        "lineiconhorizontal": number;
-        /**
-          * @uiName Line Icon Size
-          * @uiGroup Line Messenger
-         */
-        "lineiconsize": number;
-        /**
-          * Number to vertically align the Line button icon
-          * @uiName Line Icon Vertical
-          * @uiGroup Line Messenger
-         */
-        "lineiconvertical": number;
-        /**
-          * @uiName Line Text
-          * @uiGroup Line Messenger
-          * @default "Line Messenger"
-         */
-        "linetext": string;
-        /**
-          * @uiName Line Text Color
-          * @uiGroup Line Messenger
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "linetextcolor": string;
-        /**
-          * Background color of the linkedin button
-          * @uiName Linkedin Background Color
-          * @uiGroup LinkedIn
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "linkedinbackgroundcolor": string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName Linkedin Class Name
-          * @uiGroup LinkedIn
-         */
-        "linkedinclassName": string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName Linkedin Display Rule
-          * @uiGroup LinkedIn
-          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
-          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "hidden"
-         */
-        "linkedindisplayrule": string;
-        /**
-          * @uiName Linkedin Icon
-          * @uiGroup LinkedIn
-         */
-        "linkedinicon": string;
-        /**
-          * Number to horizontally align the Linkedin button icon
-          * @uiName Linkedin Icon Horizontal
-          * @uiGroup LinkedIn
-         */
-        "linkediniconhorizontal": number;
-        /**
-          * @uiName Linkedin Icon Size
-          * @uiGroup LinkedIn
-         */
-        "linkediniconsize": number;
-        /**
-          * Number to vertically align the Linkedin button icon
-          * @uiName Linkedin Icon Vertical
-          * @uiGroup LinkedIn
-         */
-        "linkediniconvertical": number;
-        /**
-          * @uiName Linkedin Text
-          * @uiGroup LinkedIn
-          * @default "LinkedIn"
-         */
-        "linkedintext": string;
-        /**
-          * @uiName Linkedin Text Color
-          * @uiGroup LinkedIn
-          * @uiWidget color
-          * @format color
-          * @default "#0084b9"
-         */
-        "linkedintextcolor": string;
-        /**
-          * Background color of the Messenger button
-          * @uiName Messenger Background Color
-          * @uiGroup Messenger
-          * @uiWidget color
-          * @format color
-          * @default "#0084ff"
-         */
-        "messengerbackgroundcolor": string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName Messenger Class Name
-          * @uiGroup Messenger
-         */
-        "messengerclassName": string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName Messenger Display Rule
-          * @uiGroup Messenger
-          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
-          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "hidden"
-         */
-        "messengerdisplayrule": string;
-        /**
-          * @uiName Messenger Icon
-          * @uiGroup Messenger
-         */
-        "messengericon": string;
-        /**
-          * Number to horizontally align the Messenger button icon
-          * @uiName Messenger Icon Horizontal
-          * @uiGroup Messenger
-         */
-        "messengericonhorizontal": number;
-        /**
-          * @uiName Messenger Icon Size
-          * @uiGroup Messenger
-         */
-        "messengericonsize": number;
-        /**
-          * Number to vertically align the Messenger button icon
-          * @uiName Messenger Icon Vertical
-          * @uiGroup Messenger
-         */
-        "messengericonvertical": number;
-        /**
-          * @uiName Messenger Text
-          * @uiGroup Messenger
-          * @default "Messenger"
-         */
-        "messengertext": string;
-        /**
-          * @uiName Messenger Text Color
-          * @uiGroup Messenger
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "messengertextcolor": string;
-        /**
-          * Background color of the Pinterest button
-          * @uiName Pinterest Background Color
-          * @uiGroup Pinterest
-          * @uiWidget color
-          * @format color
-          * @default "#cb2027"
-         */
-        "pinterestbackgroundcolor": string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName Pinterest Class Name
-          * @uiGroup Pinterest
-         */
-        "pinterestclassName": string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName Pinterest Display Rule
-          * @uiGroup Pinterest
-          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
-          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "hidden"
-         */
-        "pinterestdisplayrule": string;
-        /**
-          * @uiName Pinterest Icon
-          * @uiGroup Pinterest
-         */
-        "pinteresticon": string;
-        /**
-          * Number to horizontally align the Pinterest button icon
-          * @uiName Pinterest Icon Horizontal
-          * @uiGroup Pinterest
-         */
-        "pinteresticonhorizontal": number;
-        /**
-          * @uiName Pinterest Icon Size
-          * @uiGroup Pinterest
-         */
-        "pinteresticonsize": number;
-        /**
-          * Number to vertically align the Pinterest button icon
-          * @uiName Pinterest Icon Vertical
-          * @uiGroup Pinterest
-         */
-        "pinteresticonvertical": number;
-        /**
-          * @uiName Pinterest Text
-          * @uiGroup Pinterest
-          * @default "Pinterest"
-         */
-        "pinteresttext": string;
-        /**
-          * @uiName Pinterest Text Color
-          * @uiGroup Pinterest
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "pinteresttextcolor": string;
-        /**
-          * Background color of the SMS button
-          * @uiName SMS Background Color
-          * @uiGroup SMS
-          * @uiWidget color
-          * @format color
-          * @default "#7bbf38"
-         */
-        "smsbackgroundcolor": string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName SMS Class Name
-          * @uiGroup SMS
-         */
-        "smsclassName": string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName SMS Display Rule
-          * @uiGroup SMS
-          * @uiEnum ["mobile-only","hidden"]
-          * @uiEnumNames ["Mobile Only","Hide"]
-          * @default "mobile-only"
-         */
-        "smsdisplayrule": string;
-        /**
-          * @uiName SMS Icon
-          * @uiGroup SMS
-         */
-        "smsicon": string;
-        /**
-          * Number to horizontally align the SMS button icon
-          * @uiName SMS Icon Horizontal
-          * @uiGroup SMS
-         */
-        "smsiconhorizontal": number;
-        /**
-          * @uiName SMS Icon Size
-          * @uiGroup SMS
-         */
-        "smsiconsize": number;
-        /**
-          * Number to vertically align the SMS button icon
-          * @uiName SMS Icon Vertical
-          * @uiGroup SMS
-         */
-        "smsiconvertical": number;
-        /**
-          * @uiName SMS Text
-          * @uiGroup SMS
-          * @default "SMS"
-         */
-        "smstext": string;
-        /**
-          * @uiName SMS Text Color
-          * @uiGroup SMS
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "smstextcolor": string;
-        /**
-          * Background color of the twitter button
-          * @uiName Twitter Background Color
-          * @uiGroup Twitter
-          * @uiWidget color
-          * @format color
-          * @default "#4797d2"
-         */
-        "twitterbackgroundcolor": string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName Twitter Class Name
-          * @uiGroup Twitter
-         */
-        "twitterclassName": string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName Twitter Display Rule
-          * @uiGroup Twitter
-          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
-          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "mobile-and-desktop"
-         */
-        "twitterdisplayrule": string;
-        /**
-          * @uiName Twitter Icon
-          * @uiGroup Twitter
-         */
-        "twittericon": string;
-        /**
-          * Number to horizontally align the twitter button icon
-          * @uiName Twitter Icon Horizontal
-          * @uiGroup Twitter
-         */
-        "twittericonhorizontal": number;
-        /**
-          * @uiName Twitter Icon Size
-          * @uiGroup Twitter
-         */
-        "twittericonsize": number;
-        /**
-          * Number to vertically align the twitter button icon
-          * @uiName Twitter Icon Vertical
-          * @uiGroup Twitter
-         */
-        "twittericonvertical": number;
-        /**
-          * @uiName Twitter Text
-          * @uiGroup Twitter
-          * @default "Twitter"
-         */
-        "twittertext": string;
-        /**
-          * @uiName Twitter Text Color
-          * @uiGroup Twitter
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "twittertextcolor": string;
-        /**
-          * Background color of the WhatsApp button
-          * @uiName WhatsApp Background Color
-          * @uiGroup WhatsApp
-          * @uiWidget color
-          * @format color
-          * @default "#25D366"
-         */
-        "whatsappbackgroundcolor": string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName WhatsApp Class Name
-          * @uiGroup WhatsApp
-         */
-        "whatsappclassName": string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName WhatsApp Display Rule
-          * @uiGroup WhatsApp
-          * @uiEnum ["mobile-only","hidden"]
-          * @uiEnumNames ["Mobile Only","Hide"]
-          * @default "mobile-only"
-         */
-        "whatsappdisplayrule": string;
-        /**
-          * @uiName WhatsApp Icon
-          * @uiGroup WhatsApp
-         */
-        "whatsappicon": string;
-        /**
-          * Number to horizontally align the WhatsApp button icon
-          * @uiName WhatsApp Icon Horizontal
-          * @uiGroup WhatsApp
-         */
-        "whatsappiconhorizontal": number;
-        /**
-          * @uiName WhatsApp Icon Size
-          * @uiGroup WhatsApp
-         */
-        "whatsappiconsize": number;
-        /**
-          * Number to vertically align the WhatsApp button icon
-          * @uiName WhatsApp Icon Vertical
-          * @uiGroup WhatsApp
-         */
-        "whatsappiconvertical": number;
-        /**
-          * @uiName WhatsApp Text
-          * @uiGroup WhatsApp
-          * @default "Whatspp"
-         */
-        "whatsapptext": string;
-        /**
-          * @uiName WhatsApp Text Color
-          * @uiGroup WhatsApp
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "whatsapptextcolor": string;
-    }
-    interface SqhStatComponent {
-        /**
-          * @undocumented 
-          * @uiName Hide Component
-         */
-        "ishidden": boolean;
-        /**
-          * @uiName Color
-          * @uiWidget color
-          * @format color
-         */
-        "statcolor": string;
-        /**
-          * Text shown underneath the stat value
-          * @uiName Description
-         */
-        "statdescription": string;
-        /**
-          * Type of stat being displayed. e.g /rewardsCount
-          * @uiName Stat Type
-          * @uiWidget statTypeSelector
-          * @required 
-          * @minLength 1
-         */
-        "stattype": string;
-        /**
-          * @undocumented 
-          * @uiName Stat Value
-         */
-        "statvalue": string;
-    }
-    interface SqhStatsContainer {
-        /**
-          * @undocumented 
-          * @uiName Hide stats
-         */
-        "ishidden": boolean;
-        /**
-          * Define the top padding of the container with a pixel amount.
-          * @uiName Padding Bottom
-          * @default "0"
-         */
-        "paddingbottom": string;
-        /**
-          * Define the bottom padding of the container with a pixel amount.
-          * @uiName Padding Top
-          * @default "0"
-         */
-        "paddingtop": string;
-    }
-    interface SqhTextComponent {
-        /**
-          * Fill the background with a color or image. Input color values as a HEX code and an image as a URL.
-          * @uiName Background
-         */
-        "background": string;
-        /**
-          * @uiName Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "color": string;
-        /**
-          * @uiName Font Family
-         */
-        "fontfamily": string;
-        /**
-          * @uiName Font Size
-         */
-        "fontsize": string;
-        /**
-          * @uiName Font Weight
-         */
-        "fontweight": string;
-        /**
-          * Define the height of the container with a pixel amount.
-          * @uiName Height
-         */
-        "height": string;
-        /**
-          * @undocumented 
-          * @uiName Hide Text
-         */
-        "ishidden": boolean;
-        /**
-          * Compile plain text into HTML. See {@link https://www.markdownguide.org/getting-started/ markdown} for more details.
-          * @uiName Use Markdown
-         */
-        "ismarkdown": boolean;
-        /**
-          * Define the bottom padding of the container with a pixel amount.
-          * @uiName Padding Bottom
-         */
-        "paddingbottom": string;
-        /**
-          * Define the top padding of the container with a pixel amount.
-          * @uiName Padding Top
-         */
-        "paddingtop": string;
-        /**
-          * @uiName Text
-         */
-        "text": string;
-        /**
-          * @uiName Text Alignment
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "textalign": string;
-    }
+  interface SqhCloseButton {
+    /**
+     * The text shown inside the close button.
+     * @uiName Button Text
+     */
+    text: string;
+  }
+  interface SqhCopyButton {
+    /**
+     * @uiName Button Color
+     * @uiWidget color
+     * @format color
+     * @default #35b21e
+     */
+    backgroundcolor: string;
+    /**
+     * Define the radius of the corners with a pixel amount.
+     * @uiName Border Radius
+     * @default 4
+     */
+    borderradius: number;
+    /**
+     * @uiName Fuel Tank Code Color
+     * @uiWidget color
+     * @format color
+     * @default #000000
+     */
+    codefontcolor: string;
+    /**
+     * Font size of the fuel tank code.
+     * @uiName Code Font Size
+     * @default 14
+     */
+    codefontsize: number;
+    /**
+     * Shown when the button has failed to copy the code to the users clipboard.
+     * @uiName Copy Failure Text
+     * @default "Press Ctrl+C to copy"
+     */
+    copyfailure: string;
+    /**
+     * Shown when the code is successfully copied to the users clipboard.
+     * @uiName Copy Success Text
+     * @default "copied!"
+     */
+    copysuccess: string;
+    /**
+     * @uiName Font Size
+     * @default 14
+     */
+    fontsize: number;
+    /**
+     * @uiName Hide Button
+     * @undocumented
+     */
+    ishidden: boolean;
+    /**
+     * The rewardKey of a fuel tank reward. This is used to get the fuel tank code for a user.
+     * @uiName Reward Key
+     * @default "referredReward"
+     */
+    rewardkey: string;
+    /**
+     * @uiName Button Text
+     * @default "COPY CODE"
+     */
+    text: string;
+    /**
+     * @uiName Button Text Color
+     * @uiWidget color
+     * @format color
+     * @default #ffffff
+     */
+    textcolor: string;
+    /**
+     * @uiName Button Max Width
+     * @default 170
+     */
+    width: number;
+  }
+  interface SqhCopyLinkButton {
+    /**
+     * @uiName Button Color
+     * @uiWidget color
+     * @format color
+     * @default "#5C6164"
+     */
+    buttoncolor: string;
+    /**
+     * Shown when the button has failed to copy the code to the users clipboard.
+     * @uiName Copy Failure Text
+     * @default "Press Ctrl+C to copy"
+     */
+    copyfailure: string;
+    /**
+     * Shown when the code is successfully copied to the users clipboard.
+     * @uiName Copy Success Text
+     * @default "copied!"
+     */
+    copysuccess: string;
+    /**
+     * @undocumented
+     * @uiName Hide Button
+     */
+    ishidden: boolean;
+    /**
+     * @uiName Button Text
+     * @default "Copy"
+     */
+    text: string;
+    /**
+     * @uiName Button Text Color
+     * @uiWidget color
+     * @format color
+     * @default "#FFFFFF"
+     */
+    textcolor: string;
+  }
+  interface SqhCtaComponent {
+    /**
+     * @uiName Background
+     */
+    background: string;
+    /**
+     * @uiName Border Radius
+     * @default "8px"
+     */
+    borderradius: string;
+    /**
+     * @uiName Button Color
+     * @uiWidget color
+     * @format color
+     * @default '#F5A100'
+     */
+    buttonbackground: string;
+    /**
+     * @uiName Text Color
+     * @uiWidget color
+     * @format color
+     */
+    color: string;
+    /**
+     * @uiName Font Family
+     */
+    fontfamily: string;
+    /**
+     * @uiName Font Size
+     */
+    fontsize: string;
+    /**
+     * @uiName Font Weight
+     */
+    fontweight: string;
+    /**
+     * Button height in pixels.
+     * @uiName Button Height
+     */
+    height: string;
+    /**
+     * @uiName Hide Text
+     */
+    ishidden: boolean;
+    /**
+     * Compile plain text into HTML. See [markdown](https://www.markdownguide.org/getting-started/) for more details.
+     * @uiName Use Markdown
+     */
+    ismarkdown: boolean;
+    /**
+     * Bottom padding in pixels
+     * @uiName Padding Bottom
+     */
+    paddingbottom: string;
+    /**
+     * Top padding in pixels
+     * @uiName Padding Top
+     */
+    paddingtop: string;
+    /**
+     * @uiName Text
+     */
+    text: string;
+    /**
+     * @uiName Text Alignment
+     * @uiEnum ["left", "center", "right"]
+     * @uiEnumNames ["Left", "Center", "Right"]
+     */
+    textalign: string;
+    /**
+     * @uiName Button Link
+     */
+    url: string;
+    /**
+     * Button width in pixels.
+     * @uiName Button Width
+     */
+    width: string;
+  }
+  interface SqhGlobalContainer {
+    /**
+     * @uiName Background Color
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    background: string;
+    /**
+     * Font family used inside the container.
+     * @uiName Font Family
+     * @default "Roboto"
+     * @uiEnum ["Roboto", "Artifakt Element", "Helvetica Neue,Helvetica,Arial,sans-serif", "Lato,sans-serif", "Times New Roman", "Arial", "Courier", "Tahoma", "Verdana", "Georgia"]
+     * @uiEnumNames ["Roboto","Artifakt Element","Helvetica Neue","Lato","Times New Roman","Arial","Courier","Tahoma","Verdana","Georgia"]
+     */
+    fontfamily: string;
+    /**
+     * The background colour of the component while in the loading state.
+     * @uiName Loading Color
+     * @uiWidget color
+     * @format color
+     */
+    loadingcolor: string;
+    /**
+     * @uiName Container Max Width
+     */
+    maxwidth: string;
+    /**
+     * Show the Powered by SaaSquatch link. This can only be disabled on Pro plans.
+     * @uiName Show Powered By
+     */
+    poweredby: boolean;
+  }
+  interface SqhImageComponent {
+    /**
+     * @uiName Horizontal Alignment
+     * @uiEnum ["left", "center", "right"]
+     * @uiEnumNames ["Left", "Center", "Right"]
+     * @default "center"
+     */
+    alignment: string;
+    /**
+     * Define the radius of the corners with a pixel amount.
+     * @uiName Border Radius
+     */
+    borderradius: number;
+    /**
+     * Additional CSS applied to the image element
+     * @uiName CSS
+     * @uiWidget textArea
+     * @default "padding-top: 38px; padding-bottom: 7px;"
+     */
+    css: string;
+    /**
+     * @undocumented
+     * @uiName Hide Image
+     */
+    ishidden: boolean;
+    /**
+     * @uiName Image URL
+     * @uiWidget imageUpload
+     * @format url
+     */
+    url: string;
+    /**
+     * Define the width of the image with a pixel amount.
+     * @uiName Width
+     */
+    width: number;
+  }
+  interface SqhPartnerStatComponent {
+    /**
+     * @undocumented
+     * @uiName Hide Stat
+     */
+    ishidden: boolean;
+    /**
+     * Color of the stat value and description
+     * @uiName Color
+     * @uiWidget color
+     * @format color
+     */
+    statcolor: string;
+    /**
+     * @uiName Description
+     */
+    statdescription: string;
+    /**
+     * Determines what type of stat is displayed. Manual paths are also supported.
+     * @uiName Stat Type
+     * @uiWidget statTypeSelector
+     * @required
+     * @minLength 1
+     */
+    stattype: string;
+    /**
+     * Value of the stat
+     * @uiName Value
+     * @undocumented
+     */
+    statvalue: string;
+  }
+  interface SqhProgressIndicator {
+    /**
+     * @undocumented
+     * @uiName Text Alignment
+     * @uiEnum ["left", "center", "right"]
+     * @uiEnumNames ["Left", "Center", "Right"]
+     */
+    align: string;
+    /**
+     * Text to show how much credit has been earned.
+     * @uiName Credit Earned Text
+     */
+    earned: string;
+    /**
+     * @undocumented
+     * @uiName Hide Component
+     */
+    ishidden: boolean;
+    /**
+     * Color of the percentage text.
+     * @uiName Percentage Color
+     * @uiWidget color
+     * @format color
+     */
+    percentagecolor: string;
+    /**
+     * Font size of the percentage text.
+     * @uiName Percentage Text Size
+     */
+    percentagesize: string;
+    /**
+     * Text to show a users progress.
+     * @uiName Progress Text
+     */
+    progress: string;
+    progresscolor: string;
+    /**
+     * Select the type of icon to display.
+     * @uiName Indicator Icon Type
+     * @uiEnum ["Path", "Cirlce", "SemiCircle", "Line"]
+     * @uiEnumNames ["Path", "Cirlce", "SemiCircle", "Line"]
+     */
+    progresstype: string;
+    /**
+     * Width of the progress bar.
+     * @uiName Progress Width
+     */
+    progresswidth: string;
+    /**
+     * @uiName Text Color
+     * @uiWidget color
+     * @format color
+     */
+    textcolor: string;
+  }
+  interface SqhReferralCode {}
+  interface SqhReferralComponent {
+    /**
+     * Configure the local
+     * @uiName Local
+     */
+    locale: string;
+    /**
+     * Referral object
+     * @uiName Referral
+     */
+    referral: Referral | ReferredByReferral;
+    /**
+     * Type of referral
+     * @uiName Referral Type
+     */
+    referraltype: "converted" | "pending" | "referrer";
+    /**
+     * Referral variables used to format the row in the referral list
+     * @uiName Referral Variables
+     */
+    referralvariables: ReferralVariables;
+    /**
+     * Text shown when the name of a user is unknown
+     * @uiName Unknown User
+     */
+    unknownuser: String;
+  }
+  interface SqhReferralList {
+    /**
+     * Color of the cancelled icon and text in the rewards column.
+     * @uiName Cancelled Color
+     * @uiGroup Cancelled Rewards
+     * @uiWidget color
+     * @format color
+     * @default "#C81D05"
+     */
+    cancelledcolor: string;
+    /**
+     * Content shown in the referral column for a cancelled reward.
+     * @uiName Cancelled Description
+     * @uiGroup Cancelled Rewards
+     * @default "Signed up, referred {date}"
+     */
+    cancelledcontent: string;
+    /**
+     * Text shown alongside the icon in the referral column for a cancelled reward.
+     * @uiName Cancelled Text
+     * @uiGroup Cancelled Rewards
+     * @default "Cancelled Reward"
+     */
+    cancelledvalue: string;
+    /**
+     * Description shown when a referral is converted.
+     * @uiName Converted Description
+     * @uiGroup Converted Referrals
+     * @default "Signed up, referred {date}"
+     */
+    convertedcontent: string;
+    /**
+     * @uiName Customer Note Color
+     * @uiGroup Converted Referrals
+     * @uiWidget color
+     * @format color
+     */
+    customernotecolor: string;
+    /**
+     * Color of the expired reward icon and text in the rewards column.
+     * @uiName Expired Color
+     * @uiGroup Expired Rewards
+     * @uiWidget color
+     * @format color
+     * @default "lightgray"
+     */
+    expiredcolor: string;
+    /**
+     * Expired text shown in the referral column.
+     * @uiName Expired Description
+     * @uiGroup Expired Rewards
+     * @default "Signed up, referred {date}"
+     */
+    expiredcontent: string;
+    /**
+     * Expired text shown alongside the icon in the referral column.
+     * @uiName Expired Text
+     * @uiGroup Expired Rewards
+     * @default "Expired Reward"
+     */
+    expiredvalue: string;
+    /**
+     * Reward expiry ICU message
+     * @uiName Expires Text
+     * @uiGroup Expired Rewards
+     */
+    expiresvalue: string;
+    /**
+     * Use the value passed to the referral component to set the locale of the user.
+     * @uiName Internationalization
+     */
+    internationalization: boolean;
+    /**
+     * @undocumented
+     * @uiName Hide Referral List
+     */
+    ishidden: boolean;
+    /**
+     * Shown when referral list is empty.
+     * @uiName Empty Referrals Text
+     * @default "No Referrals Yet..."
+     */
+    noreferralsyet: string;
+    /**
+     * Shown inside the paginate less button.
+     * @uiName Paginate Less Text
+     * @default "Previous"
+     */
+    paginateless: string;
+    /**
+     * Shown inside the paginate more button.
+     * @uiName Paginate More Text
+     * @default "View More"
+     */
+    paginatemore: string;
+    /**
+     * Color of the pending reward icon and text in the rewards column.
+     * @uiName Pending Color
+     * @uiGroup Pending Referrals
+     * @uiWidget color
+     * @format color
+     * @default "lightgray"
+     */
+    pendingcolor: string;
+    /**
+     * Pending description shown in the referral column.
+     * @uiName Pending Description
+     * @uiGroup Pending Referrals
+     * @default "Trial user, referred {date}"
+     */
+    pendingcontent: string;
+    /**
+     * Pending text shown alongside the icon in the referral column.
+     * @uiName Pending Text
+     * @uiGroup Pending Referrals
+     * @default "Referral pending"
+     */
+    pendingvalue: string;
+    /**
+     * Shown when reward is redeemed.
+     * @uiName Redeemed Text
+     * @uiGroup Converted Referrals
+     * @default "Redeemed"
+     */
+    redeemedvalue: string;
+    /**
+     * Text color of the referred user's name.
+     * @uiName Referral Name Color
+     * @uiWidget color
+     * @format color
+     * @default "darkslategray"
+     */
+    referralnamecolor: string;
+    /**
+     * @uiName Referral Status Text Color
+     * @uiWidget color
+     * @format color
+     * @default "lightgray"
+     */
+    referraltextcolor: string;
+    /**
+     * Text explaining who referred you to the program.
+     * @uiName Referrer Description
+     * @uiGroup Referrer
+     * @default "Referred you {date}"
+     */
+    referrercontent: string;
+    /**
+     * Referred Text shown in reward column.
+     * @uiName Referrer Text
+     * @uiGroup Referrer
+     * @default "Referred"
+     */
+    referrervalue: string;
+    /**
+     * Color of the successful reward icon and text in the rewards column.
+     * @uiName Reward Color
+     * @uiGroup Converted Referrals
+     * @uiWidget color
+     * @format color
+     * @default "#4BB543"
+     */
+    rewardcolor: string;
+    /**
+     * @uiName Show Expired Rewards
+     */
+    showexpiry: boolean;
+    /**
+     * @uiName Show Customer Note
+     */
+    shownotes: boolean;
+    /**
+     * Show referral and reward information on who referred you.
+     * @uiName Show Referred By
+     * @uiGroup Referrer
+     * @default ""
+     */
+    showreferrer: boolean;
+    /**
+     * Text shown when the referred user's name is unknown.
+     * @uiName Unknown User Text
+     * @default "Your Friend"
+     */
+    unknownuser: string;
+    /**
+     * Show the value of the first earned reward inside the rewards column.
+     * @uiName Use First Reward
+     * @uiGroup Converted Referrals
+     */
+    usefirstreward: boolean;
+    /**
+     * ICU message shown in the rewards column. See [ICU messages](https://unicode-org.github.io/icu/userguide/format_parse/messages/) for more details.
+     * @uiName Value Content
+     * @uiGroup Converted Referrals
+     * @uiWidget textArea
+     * @default "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}"
+     */
+    valuecontent: string;
+  }
+  interface SqhRewardsActions {
+    /**
+     * Text inside the hide button
+     * @uiName Hide Button Text
+     */
+    hidetext: string;
+    /**
+     * Text inside the next button
+     * @uiName Next Button Text
+     */
+    nexttext: string;
+    /**
+     * Text inside the previous button
+     * @uiName Previous Button Text
+     */
+    previoustext: string;
+  }
+  interface SqhShareButton {
+    /**
+     * Background color of the share button
+     * @uiName Share Button Background Color
+     * @uiWidget color
+     * @format color
+     */
+    backgroundcolor: string;
+    /**
+     * CSS Class name used to style the share button
+     * @uiName Share Button Class Name
+     */
+    buttonClassName: string;
+    /**
+     * Show or hide button depending on what type of device the user is on
+     * @uiName Share Button Display Rule
+     */
+    displayrule: string;
+    /**
+     * Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive.
+     * @uiName Share Button Icon
+     */
+    icon: string;
+    /**
+     * Number to horizontally align the share button icon
+     * @uiName Share Button Icon Horizontal
+     */
+    iconhorizontal: number;
+    /**
+     * Size of the Share button icon in em units
+     * @uiName Share Button Icon Size
+     */
+    iconsize: number;
+    /**
+     * Number to vertically align the share button icon
+     * @uiName Share Button Icon Vertical
+     */
+    iconvertical: number;
+    /**
+     * Text inside the share button
+     * @uiName Share Button Text
+     */
+    text: string;
+    /**
+     * Color of the text inside the share button
+     * @uiName Share Button Text Color
+     * @uiWidget color
+     * @format color
+     */
+    textcolor: string;
+    /**
+     * @uiName Share Button Type
+     */
+    type: string;
+    /**
+     * URL redirect location
+     * @uiName URL
+     * @uiWidget imageUpload
+     * @format url
+     */
+    url: string;
+  }
+  interface SqhShareButtonContainer {
+    /**
+     * Background color of the Email button
+     * @uiName Email Background Color
+     * @uiGroup Email
+     * @uiWidget color
+     * @format color
+     * @default "#4b4d50"
+     */
+    emailbackgroundcolor: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName Email Class Name
+     * @uiGroup Email
+     */
+    emailclassName: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName Email Display Rule
+     * @uiGroup Email
+     * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+     * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+     * @default "mobile-and-desktop"
+     */
+    emaildisplayrule: string;
+    /**
+     * @uiName Email Icon
+     * @uiGroup Email
+     */
+    emailicon: string;
+    /**
+     * Number to horizontally align the Email button icon
+     * @uiName Email Icon Horizontal
+     * @uiGroup Email
+     */
+    emailiconhorizontal: number;
+    /**
+     * @uiName Email Icon Size
+     * @uiGroup Email
+     */
+    emailiconsize: number;
+    /**
+     * Number to vertically align the Email button icon
+     * @uiName Email Icon Vertical
+     * @uiGroup Email
+     */
+    emailiconvertical: number;
+    /**
+     * @uiName Email Text
+     * @uiGroup Email
+     * @default "Email"
+     */
+    emailtext: string;
+    /**
+     * @uiName Email Text Color
+     * @uiGroup Email
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    emailtextcolor: string;
+    /**
+     * Background color of the facebook button
+     * @uiName Facebook Background Color
+     * @uiGroup Facebook
+     * @uiWidget color
+     * @format color
+     * @default "#234079"
+     */
+    facebookbackgroundcolor: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName Facebook Class Name
+     * @uiGroup Facebook
+     */
+    facebookclassName: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName Facebook Display Rule
+     * @uiGroup Facebook
+     * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+     * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+     * @default "mobile-and-desktop"
+     */
+    facebookdisplayrule: string;
+    /**
+     * @uiName Facebook Icon
+     * @uiGroup Facebook
+     */
+    facebookicon: string;
+    /**
+     * Number to horizontally align the facebook button icon
+     * @uiName Facebook Icon Horizontal
+     * @uiGroup Facebook
+     */
+    facebookiconhorizontal: number;
+    /**
+     * @uiName Facebook Icon Size
+     * @uiGroup Facebook
+     */
+    facebookiconsize: number;
+    /**
+     * Number to vertically align the facebook button icon
+     * @uiName Facebook Icon Vertical
+     * @uiGroup Facebook
+     */
+    facebookiconvertical: number;
+    /**
+     * @uiName Facebook Text
+     * @uiGroup Facebook
+     * @default "Facebook"
+     */
+    facebooktext: string;
+    /**
+     * @uiName Facebook Text Color
+     * @uiGroup Facebook
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    facebooktextcolor: string;
+    /**
+     * @undocumented
+     * @uiName Hide Share Buttons
+     */
+    ishidden: boolean;
+    /**
+     * Background color of the Line button
+     * @uiName Line Background Color
+     * @uiGroup Line Messenger
+     * @uiWidget color
+     * @format color
+     * @default "#00c300"
+     */
+    linebackgroundcolor: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName Line Class Name
+     * @uiGroup Line Messenger
+     */
+    lineclassName: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName Line Display Rule
+     * @uiGroup Line Messenger
+     * @uiEnum ["mobile-only","hidden"]
+     * @uiEnumNames ["Mobile Only","Hide"]
+     * @default "mobile-only"
+     */
+    linedisplayrule: string;
+    /**
+     * @uiName Line Icon
+     * @uiGroup Line Messenger
+     */
+    lineicon: string;
+    /**
+     * Number to horizontally align the Line button icon
+     * @uiName Line Icon Horizontal
+     * @uiGroup Line Messenger
+     */
+    lineiconhorizontal: number;
+    /**
+     * @uiName Line Icon Size
+     * @uiGroup Line Messenger
+     */
+    lineiconsize: number;
+    /**
+     * Number to vertically align the Line button icon
+     * @uiName Line Icon Vertical
+     * @uiGroup Line Messenger
+     */
+    lineiconvertical: number;
+    /**
+     * @uiName Line Text
+     * @uiGroup Line Messenger
+     * @default "Line Messenger"
+     */
+    linetext: string;
+    /**
+     * @uiName Line Text Color
+     * @uiGroup Line Messenger
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    linetextcolor: string;
+    /**
+     * Background color of the linkedin button
+     * @uiName Linkedin Background Color
+     * @uiGroup LinkedIn
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    linkedinbackgroundcolor: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName Linkedin Class Name
+     * @uiGroup LinkedIn
+     */
+    linkedinclassName: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName Linkedin Display Rule
+     * @uiGroup LinkedIn
+     * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+     * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+     * @default "hidden"
+     */
+    linkedindisplayrule: string;
+    /**
+     * @uiName Linkedin Icon
+     * @uiGroup LinkedIn
+     */
+    linkedinicon: string;
+    /**
+     * Number to horizontally align the Linkedin button icon
+     * @uiName Linkedin Icon Horizontal
+     * @uiGroup LinkedIn
+     */
+    linkediniconhorizontal: number;
+    /**
+     * @uiName Linkedin Icon Size
+     * @uiGroup LinkedIn
+     */
+    linkediniconsize: number;
+    /**
+     * Number to vertically align the Linkedin button icon
+     * @uiName Linkedin Icon Vertical
+     * @uiGroup LinkedIn
+     */
+    linkediniconvertical: number;
+    /**
+     * @uiName Linkedin Text
+     * @uiGroup LinkedIn
+     * @default "LinkedIn"
+     */
+    linkedintext: string;
+    /**
+     * @uiName Linkedin Text Color
+     * @uiGroup LinkedIn
+     * @uiWidget color
+     * @format color
+     * @default "#0084b9"
+     */
+    linkedintextcolor: string;
+    /**
+     * Background color of the Messenger button
+     * @uiName Messenger Background Color
+     * @uiGroup Messenger
+     * @uiWidget color
+     * @format color
+     * @default "#0084ff"
+     */
+    messengerbackgroundcolor: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName Messenger Class Name
+     * @uiGroup Messenger
+     */
+    messengerclassName: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName Messenger Display Rule
+     * @uiGroup Messenger
+     * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+     * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+     * @default "hidden"
+     */
+    messengerdisplayrule: string;
+    /**
+     * @uiName Messenger Icon
+     * @uiGroup Messenger
+     */
+    messengericon: string;
+    /**
+     * Number to horizontally align the Messenger button icon
+     * @uiName Messenger Icon Horizontal
+     * @uiGroup Messenger
+     */
+    messengericonhorizontal: number;
+    /**
+     * @uiName Messenger Icon Size
+     * @uiGroup Messenger
+     */
+    messengericonsize: number;
+    /**
+     * Number to vertically align the Messenger button icon
+     * @uiName Messenger Icon Vertical
+     * @uiGroup Messenger
+     */
+    messengericonvertical: number;
+    /**
+     * @uiName Messenger Text
+     * @uiGroup Messenger
+     * @default "Messenger"
+     */
+    messengertext: string;
+    /**
+     * @uiName Messenger Text Color
+     * @uiGroup Messenger
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    messengertextcolor: string;
+    /**
+     * Background color of the Pinterest button
+     * @uiName Pinterest Background Color
+     * @uiGroup Pinterest
+     * @uiWidget color
+     * @format color
+     * @default "#cb2027"
+     */
+    pinterestbackgroundcolor: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName Pinterest Class Name
+     * @uiGroup Pinterest
+     */
+    pinterestclassName: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName Pinterest Display Rule
+     * @uiGroup Pinterest
+     * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+     * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+     * @default "hidden"
+     */
+    pinterestdisplayrule: string;
+    /**
+     * @uiName Pinterest Icon
+     * @uiGroup Pinterest
+     */
+    pinteresticon: string;
+    /**
+     * Number to horizontally align the Pinterest button icon
+     * @uiName Pinterest Icon Horizontal
+     * @uiGroup Pinterest
+     */
+    pinteresticonhorizontal: number;
+    /**
+     * @uiName Pinterest Icon Size
+     * @uiGroup Pinterest
+     */
+    pinteresticonsize: number;
+    /**
+     * Number to vertically align the Pinterest button icon
+     * @uiName Pinterest Icon Vertical
+     * @uiGroup Pinterest
+     */
+    pinteresticonvertical: number;
+    /**
+     * @uiName Pinterest Text
+     * @uiGroup Pinterest
+     * @default "Pinterest"
+     */
+    pinteresttext: string;
+    /**
+     * @uiName Pinterest Text Color
+     * @uiGroup Pinterest
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    pinteresttextcolor: string;
+    /**
+     * Background color of the SMS button
+     * @uiName SMS Background Color
+     * @uiGroup SMS
+     * @uiWidget color
+     * @format color
+     * @default "#7bbf38"
+     */
+    smsbackgroundcolor: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName SMS Class Name
+     * @uiGroup SMS
+     */
+    smsclassName: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName SMS Display Rule
+     * @uiGroup SMS
+     * @uiEnum ["mobile-only","hidden"]
+     * @uiEnumNames ["Mobile Only","Hide"]
+     * @default "mobile-only"
+     */
+    smsdisplayrule: string;
+    /**
+     * @uiName SMS Icon
+     * @uiGroup SMS
+     */
+    smsicon: string;
+    /**
+     * Number to horizontally align the SMS button icon
+     * @uiName SMS Icon Horizontal
+     * @uiGroup SMS
+     */
+    smsiconhorizontal: number;
+    /**
+     * @uiName SMS Icon Size
+     * @uiGroup SMS
+     */
+    smsiconsize: number;
+    /**
+     * Number to vertically align the SMS button icon
+     * @uiName SMS Icon Vertical
+     * @uiGroup SMS
+     */
+    smsiconvertical: number;
+    /**
+     * @uiName SMS Text
+     * @uiGroup SMS
+     * @default "SMS"
+     */
+    smstext: string;
+    /**
+     * @uiName SMS Text Color
+     * @uiGroup SMS
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    smstextcolor: string;
+    /**
+     * Background color of the twitter button
+     * @uiName Twitter Background Color
+     * @uiGroup Twitter
+     * @uiWidget color
+     * @format color
+     * @default "#4797d2"
+     */
+    twitterbackgroundcolor: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName Twitter Class Name
+     * @uiGroup Twitter
+     */
+    twitterclassName: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName Twitter Display Rule
+     * @uiGroup Twitter
+     * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+     * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+     * @default "mobile-and-desktop"
+     */
+    twitterdisplayrule: string;
+    /**
+     * @uiName Twitter Icon
+     * @uiGroup Twitter
+     */
+    twittericon: string;
+    /**
+     * Number to horizontally align the twitter button icon
+     * @uiName Twitter Icon Horizontal
+     * @uiGroup Twitter
+     */
+    twittericonhorizontal: number;
+    /**
+     * @uiName Twitter Icon Size
+     * @uiGroup Twitter
+     */
+    twittericonsize: number;
+    /**
+     * Number to vertically align the twitter button icon
+     * @uiName Twitter Icon Vertical
+     * @uiGroup Twitter
+     */
+    twittericonvertical: number;
+    /**
+     * @uiName Twitter Text
+     * @uiGroup Twitter
+     * @default "Twitter"
+     */
+    twittertext: string;
+    /**
+     * @uiName Twitter Text Color
+     * @uiGroup Twitter
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    twittertextcolor: string;
+    /**
+     * Background color of the WhatsApp button
+     * @uiName WhatsApp Background Color
+     * @uiGroup WhatsApp
+     * @uiWidget color
+     * @format color
+     * @default "#25D366"
+     */
+    whatsappbackgroundcolor: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName WhatsApp Class Name
+     * @uiGroup WhatsApp
+     */
+    whatsappclassName: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName WhatsApp Display Rule
+     * @uiGroup WhatsApp
+     * @uiEnum ["mobile-only","hidden"]
+     * @uiEnumNames ["Mobile Only","Hide"]
+     * @default "mobile-only"
+     */
+    whatsappdisplayrule: string;
+    /**
+     * @uiName WhatsApp Icon
+     * @uiGroup WhatsApp
+     */
+    whatsappicon: string;
+    /**
+     * Number to horizontally align the WhatsApp button icon
+     * @uiName WhatsApp Icon Horizontal
+     * @uiGroup WhatsApp
+     */
+    whatsappiconhorizontal: number;
+    /**
+     * @uiName WhatsApp Icon Size
+     * @uiGroup WhatsApp
+     */
+    whatsappiconsize: number;
+    /**
+     * Number to vertically align the WhatsApp button icon
+     * @uiName WhatsApp Icon Vertical
+     * @uiGroup WhatsApp
+     */
+    whatsappiconvertical: number;
+    /**
+     * @uiName WhatsApp Text
+     * @uiGroup WhatsApp
+     * @default "Whatspp"
+     */
+    whatsapptext: string;
+    /**
+     * @uiName WhatsApp Text Color
+     * @uiGroup WhatsApp
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    whatsapptextcolor: string;
+  }
+  interface SqhStatComponent {
+    /**
+     * @undocumented
+     * @uiName Hide Component
+     */
+    ishidden: boolean;
+    /**
+     * @uiName Color
+     * @uiWidget color
+     * @format color
+     */
+    statcolor: string;
+    /**
+     * Text shown underneath the stat value
+     * @uiName Description
+     */
+    statdescription: string;
+    /**
+     * Type of stat being displayed. e.g /rewardsCount
+     * @uiName Stat Type
+     * @uiWidget statTypeSelector
+     * @required
+     * @minLength 1
+     */
+    stattype: string;
+    /**
+     * @undocumented
+     * @uiName Stat Value
+     */
+    statvalue: string;
+  }
+  interface SqhStatsContainer {
+    /**
+     * @undocumented
+     * @uiName Hide stats
+     */
+    ishidden: boolean;
+    /**
+     * Define the top padding of the container with a pixel amount.
+     * @uiName Padding Bottom
+     * @default "0"
+     */
+    paddingbottom: string;
+    /**
+     * Define the bottom padding of the container with a pixel amount.
+     * @uiName Padding Top
+     * @default "0"
+     */
+    paddingtop: string;
+  }
+  interface SqhTextComponent {
+    /**
+     * Fill the background with a color or image. Input color values as a HEX code and an image as a URL.
+     * @uiName Background
+     */
+    background: string;
+    /**
+     * @uiName Text Color
+     * @uiWidget color
+     * @format color
+     */
+    color: string;
+    /**
+     * @uiName Font Family
+     */
+    fontfamily: string;
+    /**
+     * @uiName Font Size
+     */
+    fontsize: string;
+    /**
+     * @uiName Font Weight
+     */
+    fontweight: string;
+    /**
+     * Define the height of the container with a pixel amount.
+     * @uiName Height
+     */
+    height: string;
+    /**
+     * @undocumented
+     * @uiName Hide Text
+     */
+    ishidden: boolean;
+    /**
+     * Compile plain text into HTML. See [markdown](https://www.markdownguide.org/getting-started/) for more details.
+     * @uiName Use Markdown
+     */
+    ismarkdown: boolean;
+    /**
+     * Define the bottom padding of the container with a pixel amount.
+     * @uiName Padding Bottom
+     */
+    paddingbottom: string;
+    /**
+     * Define the top padding of the container with a pixel amount.
+     * @uiName Padding Top
+     */
+    paddingtop: string;
+    /**
+     * @uiName Text
+     */
+    text: string;
+    /**
+     * @uiName Text Alignment
+     * @uiEnum ["left", "center", "right"]
+     * @uiEnumNames ["Left", "Center", "Right"]
+     */
+    textalign: string;
+  }
 }
 declare global {
-    interface HTMLSqhCloseButtonElement extends Components.SqhCloseButton, HTMLStencilElement {
-    }
-    var HTMLSqhCloseButtonElement: {
-        prototype: HTMLSqhCloseButtonElement;
-        new (): HTMLSqhCloseButtonElement;
-    };
-    interface HTMLSqhCopyButtonElement extends Components.SqhCopyButton, HTMLStencilElement {
-    }
-    var HTMLSqhCopyButtonElement: {
-        prototype: HTMLSqhCopyButtonElement;
-        new (): HTMLSqhCopyButtonElement;
-    };
-    interface HTMLSqhCopyLinkButtonElement extends Components.SqhCopyLinkButton, HTMLStencilElement {
-    }
-    var HTMLSqhCopyLinkButtonElement: {
-        prototype: HTMLSqhCopyLinkButtonElement;
-        new (): HTMLSqhCopyLinkButtonElement;
-    };
-    interface HTMLSqhCtaComponentElement extends Components.SqhCtaComponent, HTMLStencilElement {
-    }
-    var HTMLSqhCtaComponentElement: {
-        prototype: HTMLSqhCtaComponentElement;
-        new (): HTMLSqhCtaComponentElement;
-    };
-    interface HTMLSqhGlobalContainerElement extends Components.SqhGlobalContainer, HTMLStencilElement {
-    }
-    var HTMLSqhGlobalContainerElement: {
-        prototype: HTMLSqhGlobalContainerElement;
-        new (): HTMLSqhGlobalContainerElement;
-    };
-    interface HTMLSqhImageComponentElement extends Components.SqhImageComponent, HTMLStencilElement {
-    }
-    var HTMLSqhImageComponentElement: {
-        prototype: HTMLSqhImageComponentElement;
-        new (): HTMLSqhImageComponentElement;
-    };
-    interface HTMLSqhPartnerStatComponentElement extends Components.SqhPartnerStatComponent, HTMLStencilElement {
-    }
-    var HTMLSqhPartnerStatComponentElement: {
-        prototype: HTMLSqhPartnerStatComponentElement;
-        new (): HTMLSqhPartnerStatComponentElement;
-    };
-    interface HTMLSqhProgressIndicatorElement extends Components.SqhProgressIndicator, HTMLStencilElement {
-    }
-    var HTMLSqhProgressIndicatorElement: {
-        prototype: HTMLSqhProgressIndicatorElement;
-        new (): HTMLSqhProgressIndicatorElement;
-    };
-    interface HTMLSqhReferralCodeElement extends Components.SqhReferralCode, HTMLStencilElement {
-    }
-    var HTMLSqhReferralCodeElement: {
-        prototype: HTMLSqhReferralCodeElement;
-        new (): HTMLSqhReferralCodeElement;
-    };
-    interface HTMLSqhReferralComponentElement extends Components.SqhReferralComponent, HTMLStencilElement {
-    }
-    var HTMLSqhReferralComponentElement: {
-        prototype: HTMLSqhReferralComponentElement;
-        new (): HTMLSqhReferralComponentElement;
-    };
-    interface HTMLSqhReferralListElement extends Components.SqhReferralList, HTMLStencilElement {
-    }
-    var HTMLSqhReferralListElement: {
-        prototype: HTMLSqhReferralListElement;
-        new (): HTMLSqhReferralListElement;
-    };
-    interface HTMLSqhRewardsActionsElement extends Components.SqhRewardsActions, HTMLStencilElement {
-    }
-    var HTMLSqhRewardsActionsElement: {
-        prototype: HTMLSqhRewardsActionsElement;
-        new (): HTMLSqhRewardsActionsElement;
-    };
-    interface HTMLSqhShareButtonElement extends Components.SqhShareButton, HTMLStencilElement {
-    }
-    var HTMLSqhShareButtonElement: {
-        prototype: HTMLSqhShareButtonElement;
-        new (): HTMLSqhShareButtonElement;
-    };
-    interface HTMLSqhShareButtonContainerElement extends Components.SqhShareButtonContainer, HTMLStencilElement {
-    }
-    var HTMLSqhShareButtonContainerElement: {
-        prototype: HTMLSqhShareButtonContainerElement;
-        new (): HTMLSqhShareButtonContainerElement;
-    };
-    interface HTMLSqhStatComponentElement extends Components.SqhStatComponent, HTMLStencilElement {
-    }
-    var HTMLSqhStatComponentElement: {
-        prototype: HTMLSqhStatComponentElement;
-        new (): HTMLSqhStatComponentElement;
-    };
-    interface HTMLSqhStatsContainerElement extends Components.SqhStatsContainer, HTMLStencilElement {
-    }
-    var HTMLSqhStatsContainerElement: {
-        prototype: HTMLSqhStatsContainerElement;
-        new (): HTMLSqhStatsContainerElement;
-    };
-    interface HTMLSqhTextComponentElement extends Components.SqhTextComponent, HTMLStencilElement {
-    }
-    var HTMLSqhTextComponentElement: {
-        prototype: HTMLSqhTextComponentElement;
-        new (): HTMLSqhTextComponentElement;
-    };
-    interface HTMLElementTagNameMap {
-        "sqh-close-button": HTMLSqhCloseButtonElement;
-        "sqh-copy-button": HTMLSqhCopyButtonElement;
-        "sqh-copy-link-button": HTMLSqhCopyLinkButtonElement;
-        "sqh-cta-component": HTMLSqhCtaComponentElement;
-        "sqh-global-container": HTMLSqhGlobalContainerElement;
-        "sqh-image-component": HTMLSqhImageComponentElement;
-        "sqh-partner-stat-component": HTMLSqhPartnerStatComponentElement;
-        "sqh-progress-indicator": HTMLSqhProgressIndicatorElement;
-        "sqh-referral-code": HTMLSqhReferralCodeElement;
-        "sqh-referral-component": HTMLSqhReferralComponentElement;
-        "sqh-referral-list": HTMLSqhReferralListElement;
-        "sqh-rewards-actions": HTMLSqhRewardsActionsElement;
-        "sqh-share-button": HTMLSqhShareButtonElement;
-        "sqh-share-button-container": HTMLSqhShareButtonContainerElement;
-        "sqh-stat-component": HTMLSqhStatComponentElement;
-        "sqh-stats-container": HTMLSqhStatsContainerElement;
-        "sqh-text-component": HTMLSqhTextComponentElement;
-    }
+  interface HTMLSqhCloseButtonElement
+    extends Components.SqhCloseButton,
+      HTMLStencilElement {}
+  var HTMLSqhCloseButtonElement: {
+    prototype: HTMLSqhCloseButtonElement;
+    new (): HTMLSqhCloseButtonElement;
+  };
+  interface HTMLSqhCopyButtonElement
+    extends Components.SqhCopyButton,
+      HTMLStencilElement {}
+  var HTMLSqhCopyButtonElement: {
+    prototype: HTMLSqhCopyButtonElement;
+    new (): HTMLSqhCopyButtonElement;
+  };
+  interface HTMLSqhCopyLinkButtonElement
+    extends Components.SqhCopyLinkButton,
+      HTMLStencilElement {}
+  var HTMLSqhCopyLinkButtonElement: {
+    prototype: HTMLSqhCopyLinkButtonElement;
+    new (): HTMLSqhCopyLinkButtonElement;
+  };
+  interface HTMLSqhCtaComponentElement
+    extends Components.SqhCtaComponent,
+      HTMLStencilElement {}
+  var HTMLSqhCtaComponentElement: {
+    prototype: HTMLSqhCtaComponentElement;
+    new (): HTMLSqhCtaComponentElement;
+  };
+  interface HTMLSqhGlobalContainerElement
+    extends Components.SqhGlobalContainer,
+      HTMLStencilElement {}
+  var HTMLSqhGlobalContainerElement: {
+    prototype: HTMLSqhGlobalContainerElement;
+    new (): HTMLSqhGlobalContainerElement;
+  };
+  interface HTMLSqhImageComponentElement
+    extends Components.SqhImageComponent,
+      HTMLStencilElement {}
+  var HTMLSqhImageComponentElement: {
+    prototype: HTMLSqhImageComponentElement;
+    new (): HTMLSqhImageComponentElement;
+  };
+  interface HTMLSqhPartnerStatComponentElement
+    extends Components.SqhPartnerStatComponent,
+      HTMLStencilElement {}
+  var HTMLSqhPartnerStatComponentElement: {
+    prototype: HTMLSqhPartnerStatComponentElement;
+    new (): HTMLSqhPartnerStatComponentElement;
+  };
+  interface HTMLSqhProgressIndicatorElement
+    extends Components.SqhProgressIndicator,
+      HTMLStencilElement {}
+  var HTMLSqhProgressIndicatorElement: {
+    prototype: HTMLSqhProgressIndicatorElement;
+    new (): HTMLSqhProgressIndicatorElement;
+  };
+  interface HTMLSqhReferralCodeElement
+    extends Components.SqhReferralCode,
+      HTMLStencilElement {}
+  var HTMLSqhReferralCodeElement: {
+    prototype: HTMLSqhReferralCodeElement;
+    new (): HTMLSqhReferralCodeElement;
+  };
+  interface HTMLSqhReferralComponentElement
+    extends Components.SqhReferralComponent,
+      HTMLStencilElement {}
+  var HTMLSqhReferralComponentElement: {
+    prototype: HTMLSqhReferralComponentElement;
+    new (): HTMLSqhReferralComponentElement;
+  };
+  interface HTMLSqhReferralListElement
+    extends Components.SqhReferralList,
+      HTMLStencilElement {}
+  var HTMLSqhReferralListElement: {
+    prototype: HTMLSqhReferralListElement;
+    new (): HTMLSqhReferralListElement;
+  };
+  interface HTMLSqhRewardsActionsElement
+    extends Components.SqhRewardsActions,
+      HTMLStencilElement {}
+  var HTMLSqhRewardsActionsElement: {
+    prototype: HTMLSqhRewardsActionsElement;
+    new (): HTMLSqhRewardsActionsElement;
+  };
+  interface HTMLSqhShareButtonElement
+    extends Components.SqhShareButton,
+      HTMLStencilElement {}
+  var HTMLSqhShareButtonElement: {
+    prototype: HTMLSqhShareButtonElement;
+    new (): HTMLSqhShareButtonElement;
+  };
+  interface HTMLSqhShareButtonContainerElement
+    extends Components.SqhShareButtonContainer,
+      HTMLStencilElement {}
+  var HTMLSqhShareButtonContainerElement: {
+    prototype: HTMLSqhShareButtonContainerElement;
+    new (): HTMLSqhShareButtonContainerElement;
+  };
+  interface HTMLSqhStatComponentElement
+    extends Components.SqhStatComponent,
+      HTMLStencilElement {}
+  var HTMLSqhStatComponentElement: {
+    prototype: HTMLSqhStatComponentElement;
+    new (): HTMLSqhStatComponentElement;
+  };
+  interface HTMLSqhStatsContainerElement
+    extends Components.SqhStatsContainer,
+      HTMLStencilElement {}
+  var HTMLSqhStatsContainerElement: {
+    prototype: HTMLSqhStatsContainerElement;
+    new (): HTMLSqhStatsContainerElement;
+  };
+  interface HTMLSqhTextComponentElement
+    extends Components.SqhTextComponent,
+      HTMLStencilElement {}
+  var HTMLSqhTextComponentElement: {
+    prototype: HTMLSqhTextComponentElement;
+    new (): HTMLSqhTextComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    "sqh-close-button": HTMLSqhCloseButtonElement;
+    "sqh-copy-button": HTMLSqhCopyButtonElement;
+    "sqh-copy-link-button": HTMLSqhCopyLinkButtonElement;
+    "sqh-cta-component": HTMLSqhCtaComponentElement;
+    "sqh-global-container": HTMLSqhGlobalContainerElement;
+    "sqh-image-component": HTMLSqhImageComponentElement;
+    "sqh-partner-stat-component": HTMLSqhPartnerStatComponentElement;
+    "sqh-progress-indicator": HTMLSqhProgressIndicatorElement;
+    "sqh-referral-code": HTMLSqhReferralCodeElement;
+    "sqh-referral-component": HTMLSqhReferralComponentElement;
+    "sqh-referral-list": HTMLSqhReferralListElement;
+    "sqh-rewards-actions": HTMLSqhRewardsActionsElement;
+    "sqh-share-button": HTMLSqhShareButtonElement;
+    "sqh-share-button-container": HTMLSqhShareButtonContainerElement;
+    "sqh-stat-component": HTMLSqhStatComponentElement;
+    "sqh-stats-container": HTMLSqhStatsContainerElement;
+    "sqh-text-component": HTMLSqhTextComponentElement;
+  }
 }
 declare namespace LocalJSX {
-    interface SqhCloseButton {
-        /**
-          * The text shown inside the close button.
-          * @uiName Button Text
-         */
-        "text"?: string;
-    }
-    interface SqhCopyButton {
-        /**
-          * @uiName Button Color
-          * @uiWidget color
-          * @format color
-          * @default #35b21e
-         */
-        "backgroundcolor"?: string;
-        /**
-          * Define the radius of the corners with a pixel amount.
-          * @uiName Border Radius
-          * @default 4
-         */
-        "borderradius"?: number;
-        /**
-          * @uiName Fuel Tank Code Color
-          * @uiWidget color
-          * @format color
-          * @default #000000
-         */
-        "codefontcolor"?: string;
-        /**
-          * Font size of the fuel tank code.
-          * @uiName Code Font Size
-          * @default 14
-         */
-        "codefontsize"?: number;
-        /**
-          * Shown when the button has failed to copy the code to the users clipboard.
-          * @uiName Copy Failure Text
-          * @default "Press Ctrl+C to copy"
-         */
-        "copyfailure"?: string;
-        /**
-          * Shown when the code is successfully copied to the users clipboard.
-          * @uiName Copy Success Text
-          * @default "copied!"
-         */
-        "copysuccess"?: string;
-        /**
-          * @uiName Font Size
-          * @default 14
-         */
-        "fontsize"?: number;
-        /**
-          * @uiName Hide Button
-          * @undocumented
-         */
-        "ishidden"?: boolean;
-        /**
-          * The rewardKey of a fuel tank reward. This is used to get the fuel tank code for a user.
-          * @uiName Reward Key
-          * @default "referredReward"
-         */
-        "rewardkey"?: string;
-        /**
-          * @uiName Button Text
-          * @default "COPY CODE"
-         */
-        "text"?: string;
-        /**
-          * @uiName Button Text Color
-          * @uiWidget color
-          * @format color
-          * @default #ffffff
-         */
-        "textcolor"?: string;
-        /**
-          * @uiName Button Max Width
-          * @default 170
-         */
-        "width"?: number;
-    }
-    interface SqhCopyLinkButton {
-        /**
-          * @uiName Button Color
-          * @uiWidget color
-          * @format color
-          * @default "#5C6164"
-         */
-        "buttoncolor"?: string;
-        /**
-          * Shown when the button has failed to copy the code to the users clipboard.
-          * @uiName Copy Failure Text
-          * @default "Press Ctrl+C to copy"
-         */
-        "copyfailure"?: string;
-        /**
-          * Shown when the code is successfully copied to the users clipboard.
-          * @uiName Copy Success Text
-          * @default "copied!"
-         */
-        "copysuccess"?: string;
-        /**
-          * @undocumented 
-          * @uiName Hide Button
-         */
-        "ishidden"?: boolean;
-        /**
-          * @uiName Button Text
-          * @default "Copy"
-         */
-        "text"?: string;
-        /**
-          * @uiName Button Text Color
-          * @uiWidget color
-          * @format color
-          * @default "#FFFFFF"
-         */
-        "textcolor"?: string;
-    }
-    interface SqhCtaComponent {
-        /**
-          * @uiName Background
-         */
-        "background"?: string;
-        /**
-          * @uiName Border Radius
-          * @default "8px"
-         */
-        "borderradius"?: string;
-        /**
-          * @uiName Button Color
-          * @uiWidget color
-          * @format color
-          * @default '#F5A100'
-         */
-        "buttonbackground"?: string;
-        /**
-          * @uiName Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "color"?: string;
-        /**
-          * @uiName Font Family
-         */
-        "fontfamily"?: string;
-        /**
-          * @uiName Font Size
-         */
-        "fontsize"?: string;
-        /**
-          * @uiName Font Weight
-         */
-        "fontweight"?: string;
-        /**
-          * Button height in pixels.
-          * @uiName Button Height
-         */
-        "height"?: string;
-        /**
-          * @uiName Hide Text
-         */
-        "ishidden"?: boolean;
-        /**
-          * Compile plain text into HTML. See {@link https://www.markdownguide.org/getting-started/ markdown} for more details.
-          * @uiName Use Markdown
-         */
-        "ismarkdown"?: boolean;
-        /**
-          * Bottom padding in pixels
-          * @uiName Padding Bottom
-         */
-        "paddingbottom"?: string;
-        /**
-          * Top padding in pixels
-          * @uiName Padding Top
-         */
-        "paddingtop"?: string;
-        /**
-          * @uiName Text
-         */
-        "text"?: string;
-        /**
-          * @uiName Text Alignment
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "textalign"?: string;
-        /**
-          * @uiName Button Link
-         */
-        "url"?: string;
-        /**
-          * Button width in pixels.
-          * @uiName Button Width
-         */
-        "width"?: string;
-    }
-    interface SqhGlobalContainer {
-        /**
-          * @uiName Background Color
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "background"?: string;
-        /**
-          * Font family used inside the container.
-          * @uiName Font Family
-          * @default "Roboto"
-          * @uiEnum ["Roboto", "Artifakt Element", "Helvetica Neue,Helvetica,Arial,sans-serif", "Lato,sans-serif", "Times New Roman", "Arial", "Courier", "Tahoma", "Verdana", "Georgia"]
-          * @uiEnumNames ["Roboto","Artifakt Element","Helvetica Neue","Lato","Times New Roman","Arial","Courier","Tahoma","Verdana","Georgia"]
-         */
-        "fontfamily"?: string;
-        /**
-          * The background colour of the component while in the loading state.
-          * @uiName Loading Color
-          * @uiWidget color
-          * @format color
-         */
-        "loadingcolor"?: string;
-        /**
-          * @uiName Container Max Width
-         */
-        "maxwidth"?: string;
-        /**
-          * Show the Powered by SaaSquatch link. This can only be disabled on Pro plans.
-          * @uiName Show Powered By
-         */
-        "poweredby"?: boolean;
-    }
-    interface SqhImageComponent {
-        /**
-          * @uiName Horizontal Alignment
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-          * @default "center"
-         */
-        "alignment"?: string;
-        /**
-          * Define the radius of the corners with a pixel amount.
-          * @uiName Border Radius
-         */
-        "borderradius"?: number;
-        /**
-          * Additional CSS applied to the image element
-          * @uiName CSS
-          * @uiWidget textArea
-          * @default "padding-top: 38px; padding-bottom: 7px;"
-         */
-        "css"?: string;
-        /**
-          * @undocumented 
-          * @uiName Hide Image
-         */
-        "ishidden"?: boolean;
-        /**
-          * @uiName Image URL
-          * @uiWidget imageUpload
-          * @format url
-         */
-        "url"?: string;
-        /**
-          * Define the width of the image with a pixel amount.
-          * @uiName Width
-         */
-        "width"?: number;
-    }
-    interface SqhPartnerStatComponent {
-        /**
-          * @undocumented 
-          * @uiName Hide Stat
-         */
-        "ishidden"?: boolean;
-        "onStatAdded"?: (event: CustomEvent<any>) => void;
-        "onStatTypeUpdated"?: (event: CustomEvent<any>) => void;
-        /**
-          * Color of the stat value and description
-          * @uiName Color
-          * @uiWidget color
-          * @format color
-         */
-        "statcolor"?: string;
-        /**
-          * @uiName Description
-         */
-        "statdescription"?: string;
-        /**
-          * Determines what type of stat is displayed. Manual paths are also supported.
-          * @uiName Stat Type
-          * @uiWidget statTypeSelector
-          * @required 
-          * @minLength 1
-         */
-        "stattype"?: string;
-        /**
-          * Value of the stat
-          * @uiName Value
-          * @undocumented
-         */
-        "statvalue"?: string;
-    }
-    interface SqhProgressIndicator {
-        /**
-          * @undocumented 
-          * @uiName Text Alignment
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "align"?: string;
-        /**
-          * Text to show how much credit has been earned.
-          * @uiName Credit Earned Text
-         */
-        "earned"?: string;
-        /**
-          * @undocumented 
-          * @uiName Hide Component
-         */
-        "ishidden"?: boolean;
-        /**
-          * Color of the percentage text.
-          * @uiName Percentage Color
-          * @uiWidget color
-          * @format color
-         */
-        "percentagecolor"?: string;
-        /**
-          * Font size of the percentage text.
-          * @uiName Percentage Text Size
-         */
-        "percentagesize"?: string;
-        /**
-          * Text to show a users progress.
-          * @uiName Progress Text
-         */
-        "progress"?: string;
-        "progresscolor"?: string;
-        /**
-          * Select the type of icon to display.
-          * @uiName Indicator Icon Type
-          * @uiEnum ["Path", "Cirlce", "SemiCircle", "Line"]
-          * @uiEnumNames ["Path", "Cirlce", "SemiCircle", "Line"]
-         */
-        "progresstype"?: string;
-        /**
-          * Width of the progress bar.
-          * @uiName Progress Width
-         */
-        "progresswidth"?: string;
-        /**
-          * @uiName Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "textcolor"?: string;
-    }
-    interface SqhReferralCode {
-    }
-    interface SqhReferralComponent {
-        /**
-          * Configure the local
-          * @uiName Local
-         */
-        "locale"?: string;
-        /**
-          * Referral object
-          * @uiName Referral
-         */
-        "referral"?: Referral | ReferredByReferral;
-        /**
-          * Type of referral
-          * @uiName Referral Type
-         */
-        "referraltype"?: "converted" | "pending" | "referrer";
-        /**
-          * Referral variables used to format the row in the referral list
-          * @uiName Referral Variables
-         */
-        "referralvariables"?: ReferralVariables;
-        /**
-          * Text shown when the name of a user is unknown
-          * @uiName Unknown User
-         */
-        "unknownuser"?: String;
-    }
-    interface SqhReferralList {
-        /**
-          * Color of the cancelled icon and text in the rewards column.
-          * @uiName Cancelled Color
-          * @uiGroup Cancelled Rewards
-          * @uiWidget color
-          * @format color
-          * @default "#C81D05"
-         */
-        "cancelledcolor"?: string;
-        /**
-          * Content shown in the referral column for a cancelled reward.
-          * @uiName Cancelled Description
-          * @uiGroup Cancelled Rewards
-          * @default "Signed up, referred {date}"
-         */
-        "cancelledcontent"?: string;
-        /**
-          * Text shown alongside the icon in the referral column for a cancelled reward.
-          * @uiName Cancelled Text
-          * @uiGroup Cancelled Rewards
-          * @default "Cancelled Reward"
-         */
-        "cancelledvalue"?: string;
-        /**
-          * Description shown when a referral is converted.
-          * @uiName Converted Description
-          * @uiGroup Converted Referrals
-          * @default "Signed up, referred {date}"
-         */
-        "convertedcontent"?: string;
-        /**
-          * @uiName Customer Note Color
-          * @uiGroup Converted Referrals
-          * @uiWidget color
-          * @format color
-         */
-        "customernotecolor"?: string;
-        /**
-          * Color of the expired reward icon and text in the rewards column.
-          * @uiName Expired Color
-          * @uiGroup Expired Rewards
-          * @uiWidget color
-          * @format color
-          * @default "lightgray"
-         */
-        "expiredcolor"?: string;
-        /**
-          * Expired text shown in the referral column.
-          * @uiName Expired Description
-          * @uiGroup Expired Rewards
-          * @default "Signed up, referred {date}"
-         */
-        "expiredcontent"?: string;
-        /**
-          * Expired text shown alongside the icon in the referral column.
-          * @uiName Expired Text
-          * @uiGroup Expired Rewards
-          * @default "Expired Reward"
-         */
-        "expiredvalue"?: string;
-        /**
-          * Reward expiry ICU message
-          * @uiName Expires Text
-          * @uiGroup Expired Rewards
-         */
-        "expiresvalue"?: string;
-        /**
-          * Use the value passed to the referral component to set the locale of the user.
-          * @uiName Internationalization
-         */
-        "internationalization"?: boolean;
-        /**
-          * @undocumented 
-          * @uiName Hide Referral List
-         */
-        "ishidden"?: boolean;
-        /**
-          * Shown when referral list is empty.
-          * @uiName Empty Referrals Text
-          * @default "No Referrals Yet..."
-         */
-        "noreferralsyet"?: string;
-        /**
-          * Shown inside the paginate less button.
-          * @uiName Paginate Less Text
-          * @default "Previous"
-         */
-        "paginateless"?: string;
-        /**
-          * Shown inside the paginate more button.
-          * @uiName Paginate More Text
-          * @default "View More"
-         */
-        "paginatemore"?: string;
-        /**
-          * Color of the pending reward icon and text in the rewards column.
-          * @uiName Pending Color
-          * @uiGroup Pending Referrals
-          * @uiWidget color
-          * @format color
-          * @default "lightgray"
-         */
-        "pendingcolor"?: string;
-        /**
-          * Pending description shown in the referral column.
-          * @uiName Pending Description
-          * @uiGroup Pending Referrals
-          * @default "Trial user, referred {date}"
-         */
-        "pendingcontent"?: string;
-        /**
-          * Pending text shown alongside the icon in the referral column.
-          * @uiName Pending Text
-          * @uiGroup Pending Referrals
-          * @default "Referral pending"
-         */
-        "pendingvalue"?: string;
-        /**
-          * Shown when reward is redeemed.
-          * @uiName Redeemed Text
-          * @uiGroup Converted Referrals
-          * @default "Redeemed"
-         */
-        "redeemedvalue"?: string;
-        /**
-          * Text color of the referred user's name.
-          * @uiName Referral Name Color
-          * @uiWidget color
-          * @format color
-          * @default "darkslategray"
-         */
-        "referralnamecolor"?: string;
-        /**
-          * @uiName Referral Status Text Color
-          * @uiWidget color
-          * @format color
-          * @default "lightgray"
-         */
-        "referraltextcolor"?: string;
-        /**
-          * Text explaining who referred you to the program.
-          * @uiName Referrer Description
-          * @uiGroup Referrer
-          * @default "Referred you {date}"
-         */
-        "referrercontent"?: string;
-        /**
-          * Referred Text shown in reward column.
-          * @uiName Referrer Text
-          * @uiGroup Referrer
-          * @default "Referred"
-         */
-        "referrervalue"?: string;
-        /**
-          * Color of the successful reward icon and text in the rewards column.
-          * @uiName Reward Color
-          * @uiGroup Converted Referrals
-          * @uiWidget color
-          * @format color
-          * @default "#4BB543"
-         */
-        "rewardcolor"?: string;
-        /**
-          * @uiName Show Expired Rewards
-         */
-        "showexpiry"?: boolean;
-        /**
-          * @uiName Show Customer Note
-         */
-        "shownotes"?: boolean;
-        /**
-          * Show referral and reward information on who referred you.
-          * @uiName Show Referred By
-          * @uiGroup Referrer
-          * @default ""
-         */
-        "showreferrer"?: boolean;
-        /**
-          * Text shown when the referred user's name is unknown.
-          * @uiName Unknown User Text
-          * @default "Your Friend"
-         */
-        "unknownuser"?: string;
-        /**
-          * Show the value of the first earned reward inside the rewards column.
-          * @uiName Use First Reward
-          * @uiGroup Converted Referrals
-         */
-        "usefirstreward"?: boolean;
-        /**
-          * ICU message shown in the rewards column. See {@link https://unicode-org.github.io/icu/userguide/format_parse/messages/ ICU messages} for more details.
-          * @uiName Value Content
-          * @uiGroup Converted Referrals
-          * @uiWidget textArea
-          * @default "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}"
-         */
-        "valuecontent"?: string;
-    }
-    interface SqhRewardsActions {
-        /**
-          * Text inside the hide button
-          * @uiName Hide Button Text
-         */
-        "hidetext"?: string;
-        /**
-          * Text inside the next button
-          * @uiName Next Button Text
-         */
-        "nexttext"?: string;
-        /**
-          * Text inside the previous button
-          * @uiName Previous Button Text
-         */
-        "previoustext"?: string;
-    }
-    interface SqhShareButton {
-        /**
-          * Background color of the share button
-          * @uiName Share Button Background Color
-          * @uiWidget color
-          * @format color
-         */
-        "backgroundcolor"?: string;
-        /**
-          * CSS Class name used to style the share button
-          * @uiName Share Button Class Name
-         */
-        "buttonClassName"?: string;
-        /**
-          * Show or hide button depending on what type of device the user is on
-          * @uiName Share Button Display Rule
-         */
-        "displayrule"?: string;
-        /**
-          * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
-          * @uiName Share Button Icon
-         */
-        "icon"?: string;
-        /**
-          * Number to horizontally align the share button icon
-          * @uiName Share Button Icon Horizontal
-         */
-        "iconhorizontal"?: number;
-        /**
-          * Size of the Share button icon in em units
-          * @uiName Share Button Icon Size
-         */
-        "iconsize"?: number;
-        /**
-          * Number to vertically align the share button icon
-          * @uiName Share Button Icon Vertical
-         */
-        "iconvertical"?: number;
-        /**
-          * Text inside the share button
-          * @uiName Share Button Text
-         */
-        "text"?: string;
-        /**
-          * Color of the text inside the share button
-          * @uiName Share Button Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "textcolor"?: string;
-        /**
-          * @uiName Share Button Type
-         */
-        "type"?: string;
-        /**
-          * URL redirect location
-          * @uiName URL
-          * @uiWidget imageUpload
-          * @format url
-         */
-        "url"?: string;
-    }
-    interface SqhShareButtonContainer {
-        /**
-          * Background color of the Email button
-          * @uiName Email Background Color
-          * @uiGroup Email
-          * @uiWidget color
-          * @format color
-          * @default "#4b4d50"
-         */
-        "emailbackgroundcolor"?: string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName Email Class Name
-          * @uiGroup Email
-         */
-        "emailclassName"?: string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName Email Display Rule
-          * @uiGroup Email
-          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
-          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "mobile-and-desktop"
-         */
-        "emaildisplayrule"?: string;
-        /**
-          * @uiName Email Icon
-          * @uiGroup Email
-         */
-        "emailicon"?: string;
-        /**
-          * Number to horizontally align the Email button icon
-          * @uiName Email Icon Horizontal
-          * @uiGroup Email
-         */
-        "emailiconhorizontal"?: number;
-        /**
-          * @uiName Email Icon Size
-          * @uiGroup Email
-         */
-        "emailiconsize"?: number;
-        /**
-          * Number to vertically align the Email button icon
-          * @uiName Email Icon Vertical
-          * @uiGroup Email
-         */
-        "emailiconvertical"?: number;
-        /**
-          * @uiName Email Text
-          * @uiGroup Email
-          * @default "Email"
-         */
-        "emailtext"?: string;
-        /**
-          * @uiName Email Text Color
-          * @uiGroup Email
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "emailtextcolor"?: string;
-        /**
-          * Background color of the facebook button
-          * @uiName Facebook Background Color
-          * @uiGroup Facebook
-          * @uiWidget color
-          * @format color
-          * @default "#234079"
-         */
-        "facebookbackgroundcolor"?: string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName Facebook Class Name
-          * @uiGroup Facebook
-         */
-        "facebookclassName"?: string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName Facebook Display Rule
-          * @uiGroup Facebook
-          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
-          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "mobile-and-desktop"
-         */
-        "facebookdisplayrule"?: string;
-        /**
-          * @uiName Facebook Icon
-          * @uiGroup Facebook
-         */
-        "facebookicon"?: string;
-        /**
-          * Number to horizontally align the facebook button icon
-          * @uiName Facebook Icon Horizontal
-          * @uiGroup Facebook
-         */
-        "facebookiconhorizontal"?: number;
-        /**
-          * @uiName Facebook Icon Size
-          * @uiGroup Facebook
-         */
-        "facebookiconsize"?: number;
-        /**
-          * Number to vertically align the facebook button icon
-          * @uiName Facebook Icon Vertical
-          * @uiGroup Facebook
-         */
-        "facebookiconvertical"?: number;
-        /**
-          * @uiName Facebook Text
-          * @uiGroup Facebook
-          * @default "Facebook"
-         */
-        "facebooktext"?: string;
-        /**
-          * @uiName Facebook Text Color
-          * @uiGroup Facebook
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "facebooktextcolor"?: string;
-        /**
-          * @undocumented 
-          * @uiName Hide Share Buttons
-         */
-        "ishidden"?: boolean;
-        /**
-          * Background color of the Line button
-          * @uiName Line Background Color
-          * @uiGroup Line Messenger
-          * @uiWidget color
-          * @format color
-          * @default "#00c300"
-         */
-        "linebackgroundcolor"?: string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName Line Class Name
-          * @uiGroup Line Messenger
-         */
-        "lineclassName"?: string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName Line Display Rule
-          * @uiGroup Line Messenger
-          * @uiEnum ["mobile-only","hidden"]
-          * @uiEnumNames ["Mobile Only","Hide"]
-          * @default "mobile-only"
-         */
-        "linedisplayrule"?: string;
-        /**
-          * @uiName Line Icon
-          * @uiGroup Line Messenger
-         */
-        "lineicon"?: string;
-        /**
-          * Number to horizontally align the Line button icon
-          * @uiName Line Icon Horizontal
-          * @uiGroup Line Messenger
-         */
-        "lineiconhorizontal"?: number;
-        /**
-          * @uiName Line Icon Size
-          * @uiGroup Line Messenger
-         */
-        "lineiconsize"?: number;
-        /**
-          * Number to vertically align the Line button icon
-          * @uiName Line Icon Vertical
-          * @uiGroup Line Messenger
-         */
-        "lineiconvertical"?: number;
-        /**
-          * @uiName Line Text
-          * @uiGroup Line Messenger
-          * @default "Line Messenger"
-         */
-        "linetext"?: string;
-        /**
-          * @uiName Line Text Color
-          * @uiGroup Line Messenger
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "linetextcolor"?: string;
-        /**
-          * Background color of the linkedin button
-          * @uiName Linkedin Background Color
-          * @uiGroup LinkedIn
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "linkedinbackgroundcolor"?: string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName Linkedin Class Name
-          * @uiGroup LinkedIn
-         */
-        "linkedinclassName"?: string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName Linkedin Display Rule
-          * @uiGroup LinkedIn
-          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
-          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "hidden"
-         */
-        "linkedindisplayrule"?: string;
-        /**
-          * @uiName Linkedin Icon
-          * @uiGroup LinkedIn
-         */
-        "linkedinicon"?: string;
-        /**
-          * Number to horizontally align the Linkedin button icon
-          * @uiName Linkedin Icon Horizontal
-          * @uiGroup LinkedIn
-         */
-        "linkediniconhorizontal"?: number;
-        /**
-          * @uiName Linkedin Icon Size
-          * @uiGroup LinkedIn
-         */
-        "linkediniconsize"?: number;
-        /**
-          * Number to vertically align the Linkedin button icon
-          * @uiName Linkedin Icon Vertical
-          * @uiGroup LinkedIn
-         */
-        "linkediniconvertical"?: number;
-        /**
-          * @uiName Linkedin Text
-          * @uiGroup LinkedIn
-          * @default "LinkedIn"
-         */
-        "linkedintext"?: string;
-        /**
-          * @uiName Linkedin Text Color
-          * @uiGroup LinkedIn
-          * @uiWidget color
-          * @format color
-          * @default "#0084b9"
-         */
-        "linkedintextcolor"?: string;
-        /**
-          * Background color of the Messenger button
-          * @uiName Messenger Background Color
-          * @uiGroup Messenger
-          * @uiWidget color
-          * @format color
-          * @default "#0084ff"
-         */
-        "messengerbackgroundcolor"?: string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName Messenger Class Name
-          * @uiGroup Messenger
-         */
-        "messengerclassName"?: string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName Messenger Display Rule
-          * @uiGroup Messenger
-          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
-          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "hidden"
-         */
-        "messengerdisplayrule"?: string;
-        /**
-          * @uiName Messenger Icon
-          * @uiGroup Messenger
-         */
-        "messengericon"?: string;
-        /**
-          * Number to horizontally align the Messenger button icon
-          * @uiName Messenger Icon Horizontal
-          * @uiGroup Messenger
-         */
-        "messengericonhorizontal"?: number;
-        /**
-          * @uiName Messenger Icon Size
-          * @uiGroup Messenger
-         */
-        "messengericonsize"?: number;
-        /**
-          * Number to vertically align the Messenger button icon
-          * @uiName Messenger Icon Vertical
-          * @uiGroup Messenger
-         */
-        "messengericonvertical"?: number;
-        /**
-          * @uiName Messenger Text
-          * @uiGroup Messenger
-          * @default "Messenger"
-         */
-        "messengertext"?: string;
-        /**
-          * @uiName Messenger Text Color
-          * @uiGroup Messenger
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "messengertextcolor"?: string;
-        /**
-          * Background color of the Pinterest button
-          * @uiName Pinterest Background Color
-          * @uiGroup Pinterest
-          * @uiWidget color
-          * @format color
-          * @default "#cb2027"
-         */
-        "pinterestbackgroundcolor"?: string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName Pinterest Class Name
-          * @uiGroup Pinterest
-         */
-        "pinterestclassName"?: string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName Pinterest Display Rule
-          * @uiGroup Pinterest
-          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
-          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "hidden"
-         */
-        "pinterestdisplayrule"?: string;
-        /**
-          * @uiName Pinterest Icon
-          * @uiGroup Pinterest
-         */
-        "pinteresticon"?: string;
-        /**
-          * Number to horizontally align the Pinterest button icon
-          * @uiName Pinterest Icon Horizontal
-          * @uiGroup Pinterest
-         */
-        "pinteresticonhorizontal"?: number;
-        /**
-          * @uiName Pinterest Icon Size
-          * @uiGroup Pinterest
-         */
-        "pinteresticonsize"?: number;
-        /**
-          * Number to vertically align the Pinterest button icon
-          * @uiName Pinterest Icon Vertical
-          * @uiGroup Pinterest
-         */
-        "pinteresticonvertical"?: number;
-        /**
-          * @uiName Pinterest Text
-          * @uiGroup Pinterest
-          * @default "Pinterest"
-         */
-        "pinteresttext"?: string;
-        /**
-          * @uiName Pinterest Text Color
-          * @uiGroup Pinterest
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "pinteresttextcolor"?: string;
-        /**
-          * Background color of the SMS button
-          * @uiName SMS Background Color
-          * @uiGroup SMS
-          * @uiWidget color
-          * @format color
-          * @default "#7bbf38"
-         */
-        "smsbackgroundcolor"?: string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName SMS Class Name
-          * @uiGroup SMS
-         */
-        "smsclassName"?: string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName SMS Display Rule
-          * @uiGroup SMS
-          * @uiEnum ["mobile-only","hidden"]
-          * @uiEnumNames ["Mobile Only","Hide"]
-          * @default "mobile-only"
-         */
-        "smsdisplayrule"?: string;
-        /**
-          * @uiName SMS Icon
-          * @uiGroup SMS
-         */
-        "smsicon"?: string;
-        /**
-          * Number to horizontally align the SMS button icon
-          * @uiName SMS Icon Horizontal
-          * @uiGroup SMS
-         */
-        "smsiconhorizontal"?: number;
-        /**
-          * @uiName SMS Icon Size
-          * @uiGroup SMS
-         */
-        "smsiconsize"?: number;
-        /**
-          * Number to vertically align the SMS button icon
-          * @uiName SMS Icon Vertical
-          * @uiGroup SMS
-         */
-        "smsiconvertical"?: number;
-        /**
-          * @uiName SMS Text
-          * @uiGroup SMS
-          * @default "SMS"
-         */
-        "smstext"?: string;
-        /**
-          * @uiName SMS Text Color
-          * @uiGroup SMS
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "smstextcolor"?: string;
-        /**
-          * Background color of the twitter button
-          * @uiName Twitter Background Color
-          * @uiGroup Twitter
-          * @uiWidget color
-          * @format color
-          * @default "#4797d2"
-         */
-        "twitterbackgroundcolor"?: string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName Twitter Class Name
-          * @uiGroup Twitter
-         */
-        "twitterclassName"?: string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName Twitter Display Rule
-          * @uiGroup Twitter
-          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
-          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "mobile-and-desktop"
-         */
-        "twitterdisplayrule"?: string;
-        /**
-          * @uiName Twitter Icon
-          * @uiGroup Twitter
-         */
-        "twittericon"?: string;
-        /**
-          * Number to horizontally align the twitter button icon
-          * @uiName Twitter Icon Horizontal
-          * @uiGroup Twitter
-         */
-        "twittericonhorizontal"?: number;
-        /**
-          * @uiName Twitter Icon Size
-          * @uiGroup Twitter
-         */
-        "twittericonsize"?: number;
-        /**
-          * Number to vertically align the twitter button icon
-          * @uiName Twitter Icon Vertical
-          * @uiGroup Twitter
-         */
-        "twittericonvertical"?: number;
-        /**
-          * @uiName Twitter Text
-          * @uiGroup Twitter
-          * @default "Twitter"
-         */
-        "twittertext"?: string;
-        /**
-          * @uiName Twitter Text Color
-          * @uiGroup Twitter
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "twittertextcolor"?: string;
-        /**
-          * Background color of the WhatsApp button
-          * @uiName WhatsApp Background Color
-          * @uiGroup WhatsApp
-          * @uiWidget color
-          * @format color
-          * @default "#25D366"
-         */
-        "whatsappbackgroundcolor"?: string;
-        /**
-          * CSS class name for additional styling.
-          * @uiName WhatsApp Class Name
-          * @uiGroup WhatsApp
-         */
-        "whatsappclassName"?: string;
-        /**
-          * Show and hide button depending on what type of device the user is on
-          * @uiName WhatsApp Display Rule
-          * @uiGroup WhatsApp
-          * @uiEnum ["mobile-only","hidden"]
-          * @uiEnumNames ["Mobile Only","Hide"]
-          * @default "mobile-only"
-         */
-        "whatsappdisplayrule"?: string;
-        /**
-          * @uiName WhatsApp Icon
-          * @uiGroup WhatsApp
-         */
-        "whatsappicon"?: string;
-        /**
-          * Number to horizontally align the WhatsApp button icon
-          * @uiName WhatsApp Icon Horizontal
-          * @uiGroup WhatsApp
-         */
-        "whatsappiconhorizontal"?: number;
-        /**
-          * @uiName WhatsApp Icon Size
-          * @uiGroup WhatsApp
-         */
-        "whatsappiconsize"?: number;
-        /**
-          * Number to vertically align the WhatsApp button icon
-          * @uiName WhatsApp Icon Vertical
-          * @uiGroup WhatsApp
-         */
-        "whatsappiconvertical"?: number;
-        /**
-          * @uiName WhatsApp Text
-          * @uiGroup WhatsApp
-          * @default "Whatspp"
-         */
-        "whatsapptext"?: string;
-        /**
-          * @uiName WhatsApp Text Color
-          * @uiGroup WhatsApp
-          * @uiWidget color
-          * @format color
-          * @default "#ffffff"
-         */
-        "whatsapptextcolor"?: string;
-    }
-    interface SqhStatComponent {
-        /**
-          * @undocumented 
-          * @uiName Hide Component
-         */
-        "ishidden"?: boolean;
-        "onStatAdded"?: (event: CustomEvent<any>) => void;
-        "onStatTypeUpdated"?: (event: CustomEvent<any>) => void;
-        /**
-          * @uiName Color
-          * @uiWidget color
-          * @format color
-         */
-        "statcolor"?: string;
-        /**
-          * Text shown underneath the stat value
-          * @uiName Description
-         */
-        "statdescription"?: string;
-        /**
-          * Type of stat being displayed. e.g /rewardsCount
-          * @uiName Stat Type
-          * @uiWidget statTypeSelector
-          * @required 
-          * @minLength 1
-         */
-        "stattype"?: string;
-        /**
-          * @undocumented 
-          * @uiName Stat Value
-         */
-        "statvalue"?: string;
-    }
-    interface SqhStatsContainer {
-        /**
-          * @undocumented 
-          * @uiName Hide stats
-         */
-        "ishidden"?: boolean;
-        /**
-          * Define the top padding of the container with a pixel amount.
-          * @uiName Padding Bottom
-          * @default "0"
-         */
-        "paddingbottom"?: string;
-        /**
-          * Define the bottom padding of the container with a pixel amount.
-          * @uiName Padding Top
-          * @default "0"
-         */
-        "paddingtop"?: string;
-    }
-    interface SqhTextComponent {
-        /**
-          * Fill the background with a color or image. Input color values as a HEX code and an image as a URL.
-          * @uiName Background
-         */
-        "background"?: string;
-        /**
-          * @uiName Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "color"?: string;
-        /**
-          * @uiName Font Family
-         */
-        "fontfamily"?: string;
-        /**
-          * @uiName Font Size
-         */
-        "fontsize"?: string;
-        /**
-          * @uiName Font Weight
-         */
-        "fontweight"?: string;
-        /**
-          * Define the height of the container with a pixel amount.
-          * @uiName Height
-         */
-        "height"?: string;
-        /**
-          * @undocumented 
-          * @uiName Hide Text
-         */
-        "ishidden"?: boolean;
-        /**
-          * Compile plain text into HTML. See {@link https://www.markdownguide.org/getting-started/ markdown} for more details.
-          * @uiName Use Markdown
-         */
-        "ismarkdown"?: boolean;
-        /**
-          * Define the bottom padding of the container with a pixel amount.
-          * @uiName Padding Bottom
-         */
-        "paddingbottom"?: string;
-        /**
-          * Define the top padding of the container with a pixel amount.
-          * @uiName Padding Top
-         */
-        "paddingtop"?: string;
-        /**
-          * @uiName Text
-         */
-        "text"?: string;
-        /**
-          * @uiName Text Alignment
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "textalign"?: string;
-    }
-    interface IntrinsicElements {
-        "sqh-close-button": SqhCloseButton;
-        "sqh-copy-button": SqhCopyButton;
-        "sqh-copy-link-button": SqhCopyLinkButton;
-        "sqh-cta-component": SqhCtaComponent;
-        "sqh-global-container": SqhGlobalContainer;
-        "sqh-image-component": SqhImageComponent;
-        "sqh-partner-stat-component": SqhPartnerStatComponent;
-        "sqh-progress-indicator": SqhProgressIndicator;
-        "sqh-referral-code": SqhReferralCode;
-        "sqh-referral-component": SqhReferralComponent;
-        "sqh-referral-list": SqhReferralList;
-        "sqh-rewards-actions": SqhRewardsActions;
-        "sqh-share-button": SqhShareButton;
-        "sqh-share-button-container": SqhShareButtonContainer;
-        "sqh-stat-component": SqhStatComponent;
-        "sqh-stats-container": SqhStatsContainer;
-        "sqh-text-component": SqhTextComponent;
-    }
+  interface SqhCloseButton {
+    /**
+     * The text shown inside the close button.
+     * @uiName Button Text
+     */
+    text?: string;
+  }
+  interface SqhCopyButton {
+    /**
+     * @uiName Button Color
+     * @uiWidget color
+     * @format color
+     * @default #35b21e
+     */
+    backgroundcolor?: string;
+    /**
+     * Define the radius of the corners with a pixel amount.
+     * @uiName Border Radius
+     * @default 4
+     */
+    borderradius?: number;
+    /**
+     * @uiName Fuel Tank Code Color
+     * @uiWidget color
+     * @format color
+     * @default #000000
+     */
+    codefontcolor?: string;
+    /**
+     * Font size of the fuel tank code.
+     * @uiName Code Font Size
+     * @default 14
+     */
+    codefontsize?: number;
+    /**
+     * Shown when the button has failed to copy the code to the users clipboard.
+     * @uiName Copy Failure Text
+     * @default "Press Ctrl+C to copy"
+     */
+    copyfailure?: string;
+    /**
+     * Shown when the code is successfully copied to the users clipboard.
+     * @uiName Copy Success Text
+     * @default "copied!"
+     */
+    copysuccess?: string;
+    /**
+     * @uiName Font Size
+     * @default 14
+     */
+    fontsize?: number;
+    /**
+     * @uiName Hide Button
+     * @undocumented
+     */
+    ishidden?: boolean;
+    /**
+     * The rewardKey of a fuel tank reward. This is used to get the fuel tank code for a user.
+     * @uiName Reward Key
+     * @default "referredReward"
+     */
+    rewardkey?: string;
+    /**
+     * @uiName Button Text
+     * @default "COPY CODE"
+     */
+    text?: string;
+    /**
+     * @uiName Button Text Color
+     * @uiWidget color
+     * @format color
+     * @default #ffffff
+     */
+    textcolor?: string;
+    /**
+     * @uiName Button Max Width
+     * @default 170
+     */
+    width?: number;
+  }
+  interface SqhCopyLinkButton {
+    /**
+     * @uiName Button Color
+     * @uiWidget color
+     * @format color
+     * @default "#5C6164"
+     */
+    buttoncolor?: string;
+    /**
+     * Shown when the button has failed to copy the code to the users clipboard.
+     * @uiName Copy Failure Text
+     * @default "Press Ctrl+C to copy"
+     */
+    copyfailure?: string;
+    /**
+     * Shown when the code is successfully copied to the users clipboard.
+     * @uiName Copy Success Text
+     * @default "copied!"
+     */
+    copysuccess?: string;
+    /**
+     * @undocumented
+     * @uiName Hide Button
+     */
+    ishidden?: boolean;
+    /**
+     * @uiName Button Text
+     * @default "Copy"
+     */
+    text?: string;
+    /**
+     * @uiName Button Text Color
+     * @uiWidget color
+     * @format color
+     * @default "#FFFFFF"
+     */
+    textcolor?: string;
+  }
+  interface SqhCtaComponent {
+    /**
+     * @uiName Background
+     */
+    background?: string;
+    /**
+     * @uiName Border Radius
+     * @default "8px"
+     */
+    borderradius?: string;
+    /**
+     * @uiName Button Color
+     * @uiWidget color
+     * @format color
+     * @default '#F5A100'
+     */
+    buttonbackground?: string;
+    /**
+     * @uiName Text Color
+     * @uiWidget color
+     * @format color
+     */
+    color?: string;
+    /**
+     * @uiName Font Family
+     */
+    fontfamily?: string;
+    /**
+     * @uiName Font Size
+     */
+    fontsize?: string;
+    /**
+     * @uiName Font Weight
+     */
+    fontweight?: string;
+    /**
+     * Button height in pixels.
+     * @uiName Button Height
+     */
+    height?: string;
+    /**
+     * @uiName Hide Text
+     */
+    ishidden?: boolean;
+    /**
+     * Compile plain text into HTML. See [markdown](https://www.markdownguide.org/getting-started/) for more details.
+     * @uiName Use Markdown
+     */
+    ismarkdown?: boolean;
+    /**
+     * Bottom padding in pixels
+     * @uiName Padding Bottom
+     */
+    paddingbottom?: string;
+    /**
+     * Top padding in pixels
+     * @uiName Padding Top
+     */
+    paddingtop?: string;
+    /**
+     * @uiName Text
+     */
+    text?: string;
+    /**
+     * @uiName Text Alignment
+     * @uiEnum ["left", "center", "right"]
+     * @uiEnumNames ["Left", "Center", "Right"]
+     */
+    textalign?: string;
+    /**
+     * @uiName Button Link
+     */
+    url?: string;
+    /**
+     * Button width in pixels.
+     * @uiName Button Width
+     */
+    width?: string;
+  }
+  interface SqhGlobalContainer {
+    /**
+     * @uiName Background Color
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    background?: string;
+    /**
+     * Font family used inside the container.
+     * @uiName Font Family
+     * @default "Roboto"
+     * @uiEnum ["Roboto", "Artifakt Element", "Helvetica Neue,Helvetica,Arial,sans-serif", "Lato,sans-serif", "Times New Roman", "Arial", "Courier", "Tahoma", "Verdana", "Georgia"]
+     * @uiEnumNames ["Roboto","Artifakt Element","Helvetica Neue","Lato","Times New Roman","Arial","Courier","Tahoma","Verdana","Georgia"]
+     */
+    fontfamily?: string;
+    /**
+     * The background colour of the component while in the loading state.
+     * @uiName Loading Color
+     * @uiWidget color
+     * @format color
+     */
+    loadingcolor?: string;
+    /**
+     * @uiName Container Max Width
+     */
+    maxwidth?: string;
+    /**
+     * Show the Powered by SaaSquatch link. This can only be disabled on Pro plans.
+     * @uiName Show Powered By
+     */
+    poweredby?: boolean;
+  }
+  interface SqhImageComponent {
+    /**
+     * @uiName Horizontal Alignment
+     * @uiEnum ["left", "center", "right"]
+     * @uiEnumNames ["Left", "Center", "Right"]
+     * @default "center"
+     */
+    alignment?: string;
+    /**
+     * Define the radius of the corners with a pixel amount.
+     * @uiName Border Radius
+     */
+    borderradius?: number;
+    /**
+     * Additional CSS applied to the image element
+     * @uiName CSS
+     * @uiWidget textArea
+     * @default "padding-top: 38px; padding-bottom: 7px;"
+     */
+    css?: string;
+    /**
+     * @undocumented
+     * @uiName Hide Image
+     */
+    ishidden?: boolean;
+    /**
+     * @uiName Image URL
+     * @uiWidget imageUpload
+     * @format url
+     */
+    url?: string;
+    /**
+     * Define the width of the image with a pixel amount.
+     * @uiName Width
+     */
+    width?: number;
+  }
+  interface SqhPartnerStatComponent {
+    /**
+     * @undocumented
+     * @uiName Hide Stat
+     */
+    ishidden?: boolean;
+    onStatAdded?: (event: CustomEvent<any>) => void;
+    onStatTypeUpdated?: (event: CustomEvent<any>) => void;
+    /**
+     * Color of the stat value and description
+     * @uiName Color
+     * @uiWidget color
+     * @format color
+     */
+    statcolor?: string;
+    /**
+     * @uiName Description
+     */
+    statdescription?: string;
+    /**
+     * Determines what type of stat is displayed. Manual paths are also supported.
+     * @uiName Stat Type
+     * @uiWidget statTypeSelector
+     * @required
+     * @minLength 1
+     */
+    stattype?: string;
+    /**
+     * Value of the stat
+     * @uiName Value
+     * @undocumented
+     */
+    statvalue?: string;
+  }
+  interface SqhProgressIndicator {
+    /**
+     * @undocumented
+     * @uiName Text Alignment
+     * @uiEnum ["left", "center", "right"]
+     * @uiEnumNames ["Left", "Center", "Right"]
+     */
+    align?: string;
+    /**
+     * Text to show how much credit has been earned.
+     * @uiName Credit Earned Text
+     */
+    earned?: string;
+    /**
+     * @undocumented
+     * @uiName Hide Component
+     */
+    ishidden?: boolean;
+    /**
+     * Color of the percentage text.
+     * @uiName Percentage Color
+     * @uiWidget color
+     * @format color
+     */
+    percentagecolor?: string;
+    /**
+     * Font size of the percentage text.
+     * @uiName Percentage Text Size
+     */
+    percentagesize?: string;
+    /**
+     * Text to show a users progress.
+     * @uiName Progress Text
+     */
+    progress?: string;
+    progresscolor?: string;
+    /**
+     * Select the type of icon to display.
+     * @uiName Indicator Icon Type
+     * @uiEnum ["Path", "Cirlce", "SemiCircle", "Line"]
+     * @uiEnumNames ["Path", "Cirlce", "SemiCircle", "Line"]
+     */
+    progresstype?: string;
+    /**
+     * Width of the progress bar.
+     * @uiName Progress Width
+     */
+    progresswidth?: string;
+    /**
+     * @uiName Text Color
+     * @uiWidget color
+     * @format color
+     */
+    textcolor?: string;
+  }
+  interface SqhReferralCode {}
+  interface SqhReferralComponent {
+    /**
+     * Configure the local
+     * @uiName Local
+     */
+    locale?: string;
+    /**
+     * Referral object
+     * @uiName Referral
+     */
+    referral?: Referral | ReferredByReferral;
+    /**
+     * Type of referral
+     * @uiName Referral Type
+     */
+    referraltype?: "converted" | "pending" | "referrer";
+    /**
+     * Referral variables used to format the row in the referral list
+     * @uiName Referral Variables
+     */
+    referralvariables?: ReferralVariables;
+    /**
+     * Text shown when the name of a user is unknown
+     * @uiName Unknown User
+     */
+    unknownuser?: String;
+  }
+  interface SqhReferralList {
+    /**
+     * Color of the cancelled icon and text in the rewards column.
+     * @uiName Cancelled Color
+     * @uiGroup Cancelled Rewards
+     * @uiWidget color
+     * @format color
+     * @default "#C81D05"
+     */
+    cancelledcolor?: string;
+    /**
+     * Content shown in the referral column for a cancelled reward.
+     * @uiName Cancelled Description
+     * @uiGroup Cancelled Rewards
+     * @default "Signed up, referred {date}"
+     */
+    cancelledcontent?: string;
+    /**
+     * Text shown alongside the icon in the referral column for a cancelled reward.
+     * @uiName Cancelled Text
+     * @uiGroup Cancelled Rewards
+     * @default "Cancelled Reward"
+     */
+    cancelledvalue?: string;
+    /**
+     * Description shown when a referral is converted.
+     * @uiName Converted Description
+     * @uiGroup Converted Referrals
+     * @default "Signed up, referred {date}"
+     */
+    convertedcontent?: string;
+    /**
+     * @uiName Customer Note Color
+     * @uiGroup Converted Referrals
+     * @uiWidget color
+     * @format color
+     */
+    customernotecolor?: string;
+    /**
+     * Color of the expired reward icon and text in the rewards column.
+     * @uiName Expired Color
+     * @uiGroup Expired Rewards
+     * @uiWidget color
+     * @format color
+     * @default "lightgray"
+     */
+    expiredcolor?: string;
+    /**
+     * Expired text shown in the referral column.
+     * @uiName Expired Description
+     * @uiGroup Expired Rewards
+     * @default "Signed up, referred {date}"
+     */
+    expiredcontent?: string;
+    /**
+     * Expired text shown alongside the icon in the referral column.
+     * @uiName Expired Text
+     * @uiGroup Expired Rewards
+     * @default "Expired Reward"
+     */
+    expiredvalue?: string;
+    /**
+     * Reward expiry ICU message
+     * @uiName Expires Text
+     * @uiGroup Expired Rewards
+     */
+    expiresvalue?: string;
+    /**
+     * Use the value passed to the referral component to set the locale of the user.
+     * @uiName Internationalization
+     */
+    internationalization?: boolean;
+    /**
+     * @undocumented
+     * @uiName Hide Referral List
+     */
+    ishidden?: boolean;
+    /**
+     * Shown when referral list is empty.
+     * @uiName Empty Referrals Text
+     * @default "No Referrals Yet..."
+     */
+    noreferralsyet?: string;
+    /**
+     * Shown inside the paginate less button.
+     * @uiName Paginate Less Text
+     * @default "Previous"
+     */
+    paginateless?: string;
+    /**
+     * Shown inside the paginate more button.
+     * @uiName Paginate More Text
+     * @default "View More"
+     */
+    paginatemore?: string;
+    /**
+     * Color of the pending reward icon and text in the rewards column.
+     * @uiName Pending Color
+     * @uiGroup Pending Referrals
+     * @uiWidget color
+     * @format color
+     * @default "lightgray"
+     */
+    pendingcolor?: string;
+    /**
+     * Pending description shown in the referral column.
+     * @uiName Pending Description
+     * @uiGroup Pending Referrals
+     * @default "Trial user, referred {date}"
+     */
+    pendingcontent?: string;
+    /**
+     * Pending text shown alongside the icon in the referral column.
+     * @uiName Pending Text
+     * @uiGroup Pending Referrals
+     * @default "Referral pending"
+     */
+    pendingvalue?: string;
+    /**
+     * Shown when reward is redeemed.
+     * @uiName Redeemed Text
+     * @uiGroup Converted Referrals
+     * @default "Redeemed"
+     */
+    redeemedvalue?: string;
+    /**
+     * Text color of the referred user's name.
+     * @uiName Referral Name Color
+     * @uiWidget color
+     * @format color
+     * @default "darkslategray"
+     */
+    referralnamecolor?: string;
+    /**
+     * @uiName Referral Status Text Color
+     * @uiWidget color
+     * @format color
+     * @default "lightgray"
+     */
+    referraltextcolor?: string;
+    /**
+     * Text explaining who referred you to the program.
+     * @uiName Referrer Description
+     * @uiGroup Referrer
+     * @default "Referred you {date}"
+     */
+    referrercontent?: string;
+    /**
+     * Referred Text shown in reward column.
+     * @uiName Referrer Text
+     * @uiGroup Referrer
+     * @default "Referred"
+     */
+    referrervalue?: string;
+    /**
+     * Color of the successful reward icon and text in the rewards column.
+     * @uiName Reward Color
+     * @uiGroup Converted Referrals
+     * @uiWidget color
+     * @format color
+     * @default "#4BB543"
+     */
+    rewardcolor?: string;
+    /**
+     * @uiName Show Expired Rewards
+     */
+    showexpiry?: boolean;
+    /**
+     * @uiName Show Customer Note
+     */
+    shownotes?: boolean;
+    /**
+     * Show referral and reward information on who referred you.
+     * @uiName Show Referred By
+     * @uiGroup Referrer
+     * @default ""
+     */
+    showreferrer?: boolean;
+    /**
+     * Text shown when the referred user's name is unknown.
+     * @uiName Unknown User Text
+     * @default "Your Friend"
+     */
+    unknownuser?: string;
+    /**
+     * Show the value of the first earned reward inside the rewards column.
+     * @uiName Use First Reward
+     * @uiGroup Converted Referrals
+     */
+    usefirstreward?: boolean;
+    /**
+     * ICU message shown in the rewards column. See [ICU messages](https://unicode-org.github.io/icu/userguide/format_parse/messages/) for more details.
+     * @uiName Value Content
+     * @uiGroup Converted Referrals
+     * @uiWidget textArea
+     * @default "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}"
+     */
+    valuecontent?: string;
+  }
+  interface SqhRewardsActions {
+    /**
+     * Text inside the hide button
+     * @uiName Hide Button Text
+     */
+    hidetext?: string;
+    /**
+     * Text inside the next button
+     * @uiName Next Button Text
+     */
+    nexttext?: string;
+    /**
+     * Text inside the previous button
+     * @uiName Previous Button Text
+     */
+    previoustext?: string;
+  }
+  interface SqhShareButton {
+    /**
+     * Background color of the share button
+     * @uiName Share Button Background Color
+     * @uiWidget color
+     * @format color
+     */
+    backgroundcolor?: string;
+    /**
+     * CSS Class name used to style the share button
+     * @uiName Share Button Class Name
+     */
+    buttonClassName?: string;
+    /**
+     * Show or hide button depending on what type of device the user is on
+     * @uiName Share Button Display Rule
+     */
+    displayrule?: string;
+    /**
+     * Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive.
+     * @uiName Share Button Icon
+     */
+    icon?: string;
+    /**
+     * Number to horizontally align the share button icon
+     * @uiName Share Button Icon Horizontal
+     */
+    iconhorizontal?: number;
+    /**
+     * Size of the Share button icon in em units
+     * @uiName Share Button Icon Size
+     */
+    iconsize?: number;
+    /**
+     * Number to vertically align the share button icon
+     * @uiName Share Button Icon Vertical
+     */
+    iconvertical?: number;
+    /**
+     * Text inside the share button
+     * @uiName Share Button Text
+     */
+    text?: string;
+    /**
+     * Color of the text inside the share button
+     * @uiName Share Button Text Color
+     * @uiWidget color
+     * @format color
+     */
+    textcolor?: string;
+    /**
+     * @uiName Share Button Type
+     */
+    type?: string;
+    /**
+     * URL redirect location
+     * @uiName URL
+     * @uiWidget imageUpload
+     * @format url
+     */
+    url?: string;
+  }
+  interface SqhShareButtonContainer {
+    /**
+     * Background color of the Email button
+     * @uiName Email Background Color
+     * @uiGroup Email
+     * @uiWidget color
+     * @format color
+     * @default "#4b4d50"
+     */
+    emailbackgroundcolor?: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName Email Class Name
+     * @uiGroup Email
+     */
+    emailclassName?: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName Email Display Rule
+     * @uiGroup Email
+     * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+     * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+     * @default "mobile-and-desktop"
+     */
+    emaildisplayrule?: string;
+    /**
+     * @uiName Email Icon
+     * @uiGroup Email
+     */
+    emailicon?: string;
+    /**
+     * Number to horizontally align the Email button icon
+     * @uiName Email Icon Horizontal
+     * @uiGroup Email
+     */
+    emailiconhorizontal?: number;
+    /**
+     * @uiName Email Icon Size
+     * @uiGroup Email
+     */
+    emailiconsize?: number;
+    /**
+     * Number to vertically align the Email button icon
+     * @uiName Email Icon Vertical
+     * @uiGroup Email
+     */
+    emailiconvertical?: number;
+    /**
+     * @uiName Email Text
+     * @uiGroup Email
+     * @default "Email"
+     */
+    emailtext?: string;
+    /**
+     * @uiName Email Text Color
+     * @uiGroup Email
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    emailtextcolor?: string;
+    /**
+     * Background color of the facebook button
+     * @uiName Facebook Background Color
+     * @uiGroup Facebook
+     * @uiWidget color
+     * @format color
+     * @default "#234079"
+     */
+    facebookbackgroundcolor?: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName Facebook Class Name
+     * @uiGroup Facebook
+     */
+    facebookclassName?: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName Facebook Display Rule
+     * @uiGroup Facebook
+     * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+     * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+     * @default "mobile-and-desktop"
+     */
+    facebookdisplayrule?: string;
+    /**
+     * @uiName Facebook Icon
+     * @uiGroup Facebook
+     */
+    facebookicon?: string;
+    /**
+     * Number to horizontally align the facebook button icon
+     * @uiName Facebook Icon Horizontal
+     * @uiGroup Facebook
+     */
+    facebookiconhorizontal?: number;
+    /**
+     * @uiName Facebook Icon Size
+     * @uiGroup Facebook
+     */
+    facebookiconsize?: number;
+    /**
+     * Number to vertically align the facebook button icon
+     * @uiName Facebook Icon Vertical
+     * @uiGroup Facebook
+     */
+    facebookiconvertical?: number;
+    /**
+     * @uiName Facebook Text
+     * @uiGroup Facebook
+     * @default "Facebook"
+     */
+    facebooktext?: string;
+    /**
+     * @uiName Facebook Text Color
+     * @uiGroup Facebook
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    facebooktextcolor?: string;
+    /**
+     * @undocumented
+     * @uiName Hide Share Buttons
+     */
+    ishidden?: boolean;
+    /**
+     * Background color of the Line button
+     * @uiName Line Background Color
+     * @uiGroup Line Messenger
+     * @uiWidget color
+     * @format color
+     * @default "#00c300"
+     */
+    linebackgroundcolor?: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName Line Class Name
+     * @uiGroup Line Messenger
+     */
+    lineclassName?: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName Line Display Rule
+     * @uiGroup Line Messenger
+     * @uiEnum ["mobile-only","hidden"]
+     * @uiEnumNames ["Mobile Only","Hide"]
+     * @default "mobile-only"
+     */
+    linedisplayrule?: string;
+    /**
+     * @uiName Line Icon
+     * @uiGroup Line Messenger
+     */
+    lineicon?: string;
+    /**
+     * Number to horizontally align the Line button icon
+     * @uiName Line Icon Horizontal
+     * @uiGroup Line Messenger
+     */
+    lineiconhorizontal?: number;
+    /**
+     * @uiName Line Icon Size
+     * @uiGroup Line Messenger
+     */
+    lineiconsize?: number;
+    /**
+     * Number to vertically align the Line button icon
+     * @uiName Line Icon Vertical
+     * @uiGroup Line Messenger
+     */
+    lineiconvertical?: number;
+    /**
+     * @uiName Line Text
+     * @uiGroup Line Messenger
+     * @default "Line Messenger"
+     */
+    linetext?: string;
+    /**
+     * @uiName Line Text Color
+     * @uiGroup Line Messenger
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    linetextcolor?: string;
+    /**
+     * Background color of the linkedin button
+     * @uiName Linkedin Background Color
+     * @uiGroup LinkedIn
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    linkedinbackgroundcolor?: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName Linkedin Class Name
+     * @uiGroup LinkedIn
+     */
+    linkedinclassName?: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName Linkedin Display Rule
+     * @uiGroup LinkedIn
+     * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+     * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+     * @default "hidden"
+     */
+    linkedindisplayrule?: string;
+    /**
+     * @uiName Linkedin Icon
+     * @uiGroup LinkedIn
+     */
+    linkedinicon?: string;
+    /**
+     * Number to horizontally align the Linkedin button icon
+     * @uiName Linkedin Icon Horizontal
+     * @uiGroup LinkedIn
+     */
+    linkediniconhorizontal?: number;
+    /**
+     * @uiName Linkedin Icon Size
+     * @uiGroup LinkedIn
+     */
+    linkediniconsize?: number;
+    /**
+     * Number to vertically align the Linkedin button icon
+     * @uiName Linkedin Icon Vertical
+     * @uiGroup LinkedIn
+     */
+    linkediniconvertical?: number;
+    /**
+     * @uiName Linkedin Text
+     * @uiGroup LinkedIn
+     * @default "LinkedIn"
+     */
+    linkedintext?: string;
+    /**
+     * @uiName Linkedin Text Color
+     * @uiGroup LinkedIn
+     * @uiWidget color
+     * @format color
+     * @default "#0084b9"
+     */
+    linkedintextcolor?: string;
+    /**
+     * Background color of the Messenger button
+     * @uiName Messenger Background Color
+     * @uiGroup Messenger
+     * @uiWidget color
+     * @format color
+     * @default "#0084ff"
+     */
+    messengerbackgroundcolor?: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName Messenger Class Name
+     * @uiGroup Messenger
+     */
+    messengerclassName?: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName Messenger Display Rule
+     * @uiGroup Messenger
+     * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+     * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+     * @default "hidden"
+     */
+    messengerdisplayrule?: string;
+    /**
+     * @uiName Messenger Icon
+     * @uiGroup Messenger
+     */
+    messengericon?: string;
+    /**
+     * Number to horizontally align the Messenger button icon
+     * @uiName Messenger Icon Horizontal
+     * @uiGroup Messenger
+     */
+    messengericonhorizontal?: number;
+    /**
+     * @uiName Messenger Icon Size
+     * @uiGroup Messenger
+     */
+    messengericonsize?: number;
+    /**
+     * Number to vertically align the Messenger button icon
+     * @uiName Messenger Icon Vertical
+     * @uiGroup Messenger
+     */
+    messengericonvertical?: number;
+    /**
+     * @uiName Messenger Text
+     * @uiGroup Messenger
+     * @default "Messenger"
+     */
+    messengertext?: string;
+    /**
+     * @uiName Messenger Text Color
+     * @uiGroup Messenger
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    messengertextcolor?: string;
+    /**
+     * Background color of the Pinterest button
+     * @uiName Pinterest Background Color
+     * @uiGroup Pinterest
+     * @uiWidget color
+     * @format color
+     * @default "#cb2027"
+     */
+    pinterestbackgroundcolor?: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName Pinterest Class Name
+     * @uiGroup Pinterest
+     */
+    pinterestclassName?: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName Pinterest Display Rule
+     * @uiGroup Pinterest
+     * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+     * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+     * @default "hidden"
+     */
+    pinterestdisplayrule?: string;
+    /**
+     * @uiName Pinterest Icon
+     * @uiGroup Pinterest
+     */
+    pinteresticon?: string;
+    /**
+     * Number to horizontally align the Pinterest button icon
+     * @uiName Pinterest Icon Horizontal
+     * @uiGroup Pinterest
+     */
+    pinteresticonhorizontal?: number;
+    /**
+     * @uiName Pinterest Icon Size
+     * @uiGroup Pinterest
+     */
+    pinteresticonsize?: number;
+    /**
+     * Number to vertically align the Pinterest button icon
+     * @uiName Pinterest Icon Vertical
+     * @uiGroup Pinterest
+     */
+    pinteresticonvertical?: number;
+    /**
+     * @uiName Pinterest Text
+     * @uiGroup Pinterest
+     * @default "Pinterest"
+     */
+    pinteresttext?: string;
+    /**
+     * @uiName Pinterest Text Color
+     * @uiGroup Pinterest
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    pinteresttextcolor?: string;
+    /**
+     * Background color of the SMS button
+     * @uiName SMS Background Color
+     * @uiGroup SMS
+     * @uiWidget color
+     * @format color
+     * @default "#7bbf38"
+     */
+    smsbackgroundcolor?: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName SMS Class Name
+     * @uiGroup SMS
+     */
+    smsclassName?: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName SMS Display Rule
+     * @uiGroup SMS
+     * @uiEnum ["mobile-only","hidden"]
+     * @uiEnumNames ["Mobile Only","Hide"]
+     * @default "mobile-only"
+     */
+    smsdisplayrule?: string;
+    /**
+     * @uiName SMS Icon
+     * @uiGroup SMS
+     */
+    smsicon?: string;
+    /**
+     * Number to horizontally align the SMS button icon
+     * @uiName SMS Icon Horizontal
+     * @uiGroup SMS
+     */
+    smsiconhorizontal?: number;
+    /**
+     * @uiName SMS Icon Size
+     * @uiGroup SMS
+     */
+    smsiconsize?: number;
+    /**
+     * Number to vertically align the SMS button icon
+     * @uiName SMS Icon Vertical
+     * @uiGroup SMS
+     */
+    smsiconvertical?: number;
+    /**
+     * @uiName SMS Text
+     * @uiGroup SMS
+     * @default "SMS"
+     */
+    smstext?: string;
+    /**
+     * @uiName SMS Text Color
+     * @uiGroup SMS
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    smstextcolor?: string;
+    /**
+     * Background color of the twitter button
+     * @uiName Twitter Background Color
+     * @uiGroup Twitter
+     * @uiWidget color
+     * @format color
+     * @default "#4797d2"
+     */
+    twitterbackgroundcolor?: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName Twitter Class Name
+     * @uiGroup Twitter
+     */
+    twitterclassName?: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName Twitter Display Rule
+     * @uiGroup Twitter
+     * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+     * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
+     * @default "mobile-and-desktop"
+     */
+    twitterdisplayrule?: string;
+    /**
+     * @uiName Twitter Icon
+     * @uiGroup Twitter
+     */
+    twittericon?: string;
+    /**
+     * Number to horizontally align the twitter button icon
+     * @uiName Twitter Icon Horizontal
+     * @uiGroup Twitter
+     */
+    twittericonhorizontal?: number;
+    /**
+     * @uiName Twitter Icon Size
+     * @uiGroup Twitter
+     */
+    twittericonsize?: number;
+    /**
+     * Number to vertically align the twitter button icon
+     * @uiName Twitter Icon Vertical
+     * @uiGroup Twitter
+     */
+    twittericonvertical?: number;
+    /**
+     * @uiName Twitter Text
+     * @uiGroup Twitter
+     * @default "Twitter"
+     */
+    twittertext?: string;
+    /**
+     * @uiName Twitter Text Color
+     * @uiGroup Twitter
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    twittertextcolor?: string;
+    /**
+     * Background color of the WhatsApp button
+     * @uiName WhatsApp Background Color
+     * @uiGroup WhatsApp
+     * @uiWidget color
+     * @format color
+     * @default "#25D366"
+     */
+    whatsappbackgroundcolor?: string;
+    /**
+     * CSS class name for additional styling.
+     * @uiName WhatsApp Class Name
+     * @uiGroup WhatsApp
+     */
+    whatsappclassName?: string;
+    /**
+     * Show and hide button depending on what type of device the user is on
+     * @uiName WhatsApp Display Rule
+     * @uiGroup WhatsApp
+     * @uiEnum ["mobile-only","hidden"]
+     * @uiEnumNames ["Mobile Only","Hide"]
+     * @default "mobile-only"
+     */
+    whatsappdisplayrule?: string;
+    /**
+     * @uiName WhatsApp Icon
+     * @uiGroup WhatsApp
+     */
+    whatsappicon?: string;
+    /**
+     * Number to horizontally align the WhatsApp button icon
+     * @uiName WhatsApp Icon Horizontal
+     * @uiGroup WhatsApp
+     */
+    whatsappiconhorizontal?: number;
+    /**
+     * @uiName WhatsApp Icon Size
+     * @uiGroup WhatsApp
+     */
+    whatsappiconsize?: number;
+    /**
+     * Number to vertically align the WhatsApp button icon
+     * @uiName WhatsApp Icon Vertical
+     * @uiGroup WhatsApp
+     */
+    whatsappiconvertical?: number;
+    /**
+     * @uiName WhatsApp Text
+     * @uiGroup WhatsApp
+     * @default "Whatspp"
+     */
+    whatsapptext?: string;
+    /**
+     * @uiName WhatsApp Text Color
+     * @uiGroup WhatsApp
+     * @uiWidget color
+     * @format color
+     * @default "#ffffff"
+     */
+    whatsapptextcolor?: string;
+  }
+  interface SqhStatComponent {
+    /**
+     * @undocumented
+     * @uiName Hide Component
+     */
+    ishidden?: boolean;
+    onStatAdded?: (event: CustomEvent<any>) => void;
+    onStatTypeUpdated?: (event: CustomEvent<any>) => void;
+    /**
+     * @uiName Color
+     * @uiWidget color
+     * @format color
+     */
+    statcolor?: string;
+    /**
+     * Text shown underneath the stat value
+     * @uiName Description
+     */
+    statdescription?: string;
+    /**
+     * Type of stat being displayed. e.g /rewardsCount
+     * @uiName Stat Type
+     * @uiWidget statTypeSelector
+     * @required
+     * @minLength 1
+     */
+    stattype?: string;
+    /**
+     * @undocumented
+     * @uiName Stat Value
+     */
+    statvalue?: string;
+  }
+  interface SqhStatsContainer {
+    /**
+     * @undocumented
+     * @uiName Hide stats
+     */
+    ishidden?: boolean;
+    /**
+     * Define the top padding of the container with a pixel amount.
+     * @uiName Padding Bottom
+     * @default "0"
+     */
+    paddingbottom?: string;
+    /**
+     * Define the bottom padding of the container with a pixel amount.
+     * @uiName Padding Top
+     * @default "0"
+     */
+    paddingtop?: string;
+  }
+  interface SqhTextComponent {
+    /**
+     * Fill the background with a color or image. Input color values as a HEX code and an image as a URL.
+     * @uiName Background
+     */
+    background?: string;
+    /**
+     * @uiName Text Color
+     * @uiWidget color
+     * @format color
+     */
+    color?: string;
+    /**
+     * @uiName Font Family
+     */
+    fontfamily?: string;
+    /**
+     * @uiName Font Size
+     */
+    fontsize?: string;
+    /**
+     * @uiName Font Weight
+     */
+    fontweight?: string;
+    /**
+     * Define the height of the container with a pixel amount.
+     * @uiName Height
+     */
+    height?: string;
+    /**
+     * @undocumented
+     * @uiName Hide Text
+     */
+    ishidden?: boolean;
+    /**
+     * Compile plain text into HTML. See [markdown](https://www.markdownguide.org/getting-started/) for more details.
+     * @uiName Use Markdown
+     */
+    ismarkdown?: boolean;
+    /**
+     * Define the bottom padding of the container with a pixel amount.
+     * @uiName Padding Bottom
+     */
+    paddingbottom?: string;
+    /**
+     * Define the top padding of the container with a pixel amount.
+     * @uiName Padding Top
+     */
+    paddingtop?: string;
+    /**
+     * @uiName Text
+     */
+    text?: string;
+    /**
+     * @uiName Text Alignment
+     * @uiEnum ["left", "center", "right"]
+     * @uiEnumNames ["Left", "Center", "Right"]
+     */
+    textalign?: string;
+  }
+  interface IntrinsicElements {
+    "sqh-close-button": SqhCloseButton;
+    "sqh-copy-button": SqhCopyButton;
+    "sqh-copy-link-button": SqhCopyLinkButton;
+    "sqh-cta-component": SqhCtaComponent;
+    "sqh-global-container": SqhGlobalContainer;
+    "sqh-image-component": SqhImageComponent;
+    "sqh-partner-stat-component": SqhPartnerStatComponent;
+    "sqh-progress-indicator": SqhProgressIndicator;
+    "sqh-referral-code": SqhReferralCode;
+    "sqh-referral-component": SqhReferralComponent;
+    "sqh-referral-list": SqhReferralList;
+    "sqh-rewards-actions": SqhRewardsActions;
+    "sqh-share-button": SqhShareButton;
+    "sqh-share-button-container": SqhShareButtonContainer;
+    "sqh-stat-component": SqhStatComponent;
+    "sqh-stats-container": SqhStatsContainer;
+    "sqh-text-component": SqhTextComponent;
+  }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
-    export namespace JSX {
-        interface IntrinsicElements {
-            "sqh-close-button": LocalJSX.SqhCloseButton & JSXBase.HTMLAttributes<HTMLSqhCloseButtonElement>;
-            "sqh-copy-button": LocalJSX.SqhCopyButton & JSXBase.HTMLAttributes<HTMLSqhCopyButtonElement>;
-            "sqh-copy-link-button": LocalJSX.SqhCopyLinkButton & JSXBase.HTMLAttributes<HTMLSqhCopyLinkButtonElement>;
-            "sqh-cta-component": LocalJSX.SqhCtaComponent & JSXBase.HTMLAttributes<HTMLSqhCtaComponentElement>;
-            "sqh-global-container": LocalJSX.SqhGlobalContainer & JSXBase.HTMLAttributes<HTMLSqhGlobalContainerElement>;
-            "sqh-image-component": LocalJSX.SqhImageComponent & JSXBase.HTMLAttributes<HTMLSqhImageComponentElement>;
-            "sqh-partner-stat-component": LocalJSX.SqhPartnerStatComponent & JSXBase.HTMLAttributes<HTMLSqhPartnerStatComponentElement>;
-            "sqh-progress-indicator": LocalJSX.SqhProgressIndicator & JSXBase.HTMLAttributes<HTMLSqhProgressIndicatorElement>;
-            "sqh-referral-code": LocalJSX.SqhReferralCode & JSXBase.HTMLAttributes<HTMLSqhReferralCodeElement>;
-            "sqh-referral-component": LocalJSX.SqhReferralComponent & JSXBase.HTMLAttributes<HTMLSqhReferralComponentElement>;
-            "sqh-referral-list": LocalJSX.SqhReferralList & JSXBase.HTMLAttributes<HTMLSqhReferralListElement>;
-            "sqh-rewards-actions": LocalJSX.SqhRewardsActions & JSXBase.HTMLAttributes<HTMLSqhRewardsActionsElement>;
-            "sqh-share-button": LocalJSX.SqhShareButton & JSXBase.HTMLAttributes<HTMLSqhShareButtonElement>;
-            "sqh-share-button-container": LocalJSX.SqhShareButtonContainer & JSXBase.HTMLAttributes<HTMLSqhShareButtonContainerElement>;
-            "sqh-stat-component": LocalJSX.SqhStatComponent & JSXBase.HTMLAttributes<HTMLSqhStatComponentElement>;
-            "sqh-stats-container": LocalJSX.SqhStatsContainer & JSXBase.HTMLAttributes<HTMLSqhStatsContainerElement>;
-            "sqh-text-component": LocalJSX.SqhTextComponent & JSXBase.HTMLAttributes<HTMLSqhTextComponentElement>;
-        }
+  export namespace JSX {
+    interface IntrinsicElements {
+      "sqh-close-button": LocalJSX.SqhCloseButton &
+        JSXBase.HTMLAttributes<HTMLSqhCloseButtonElement>;
+      "sqh-copy-button": LocalJSX.SqhCopyButton &
+        JSXBase.HTMLAttributes<HTMLSqhCopyButtonElement>;
+      "sqh-copy-link-button": LocalJSX.SqhCopyLinkButton &
+        JSXBase.HTMLAttributes<HTMLSqhCopyLinkButtonElement>;
+      "sqh-cta-component": LocalJSX.SqhCtaComponent &
+        JSXBase.HTMLAttributes<HTMLSqhCtaComponentElement>;
+      "sqh-global-container": LocalJSX.SqhGlobalContainer &
+        JSXBase.HTMLAttributes<HTMLSqhGlobalContainerElement>;
+      "sqh-image-component": LocalJSX.SqhImageComponent &
+        JSXBase.HTMLAttributes<HTMLSqhImageComponentElement>;
+      "sqh-partner-stat-component": LocalJSX.SqhPartnerStatComponent &
+        JSXBase.HTMLAttributes<HTMLSqhPartnerStatComponentElement>;
+      "sqh-progress-indicator": LocalJSX.SqhProgressIndicator &
+        JSXBase.HTMLAttributes<HTMLSqhProgressIndicatorElement>;
+      "sqh-referral-code": LocalJSX.SqhReferralCode &
+        JSXBase.HTMLAttributes<HTMLSqhReferralCodeElement>;
+      "sqh-referral-component": LocalJSX.SqhReferralComponent &
+        JSXBase.HTMLAttributes<HTMLSqhReferralComponentElement>;
+      "sqh-referral-list": LocalJSX.SqhReferralList &
+        JSXBase.HTMLAttributes<HTMLSqhReferralListElement>;
+      "sqh-rewards-actions": LocalJSX.SqhRewardsActions &
+        JSXBase.HTMLAttributes<HTMLSqhRewardsActionsElement>;
+      "sqh-share-button": LocalJSX.SqhShareButton &
+        JSXBase.HTMLAttributes<HTMLSqhShareButtonElement>;
+      "sqh-share-button-container": LocalJSX.SqhShareButtonContainer &
+        JSXBase.HTMLAttributes<HTMLSqhShareButtonContainerElement>;
+      "sqh-stat-component": LocalJSX.SqhStatComponent &
+        JSXBase.HTMLAttributes<HTMLSqhStatComponentElement>;
+      "sqh-stats-container": LocalJSX.SqhStatsContainer &
+        JSXBase.HTMLAttributes<HTMLSqhStatsContainerElement>;
+      "sqh-text-component": LocalJSX.SqhTextComponent &
+        JSXBase.HTMLAttributes<HTMLSqhTextComponentElement>;
     }
+  }
 }

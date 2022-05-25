@@ -136,7 +136,7 @@ export class ReferralList {
    */
   @Prop() convertedcontent: string;
   /**
-   * ICU message shown in the rewards column. See {@link https://unicode-org.github.io/icu/userguide/format_parse/messages/ ICU messages} for more details.
+   * ICU message shown in the rewards column. See [ICU messages](https://unicode-org.github.io/icu/userguide/format_parse/messages/) for more details.
    *
    * @uiName Value Content
    * @uiGroup Converted Referrals
