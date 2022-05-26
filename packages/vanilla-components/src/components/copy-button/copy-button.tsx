@@ -21,7 +21,7 @@ export class CopyButton {
   @Prop() ishidden: boolean;
   /**
    * @uiName Button Text
-   * @default "COPY CODE"
+   * @default COPY CODE
    */
   @Prop() text: string;
   /**
@@ -59,21 +59,21 @@ export class CopyButton {
    * Shown when the code is successfully copied to the users clipboard.
    *
    * @uiName Copy Success Text
-   * @default "copied!"
+   * @default copied!
    */
   @Prop() copysuccess: string;
   /**
    * Shown when the button has failed to copy the code to the users clipboard.
    *
    * @uiName Copy Failure Text
-   * @default "Press Ctrl+C to copy"
+   * @default Press Ctrl+C to copy
    */
   @Prop() copyfailure: string;
   /**
    * The rewardKey of a fuel tank reward. This is used to get the fuel tank code for a user.
    *
    * @uiName Reward Key
-   * @default "referredReward"
+   * @default referredReward
    */
   @Prop() rewardkey: string;
   /**

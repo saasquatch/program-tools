@@ -68,7 +68,7 @@ export class CTAComponent {
     * @uiName Button Color
     * @uiWidget color
     * @format color
-    * @default '#F5A100'
+    * @default #F5A100
     */
   @Prop() buttonbackground: string;
   /**
@@ -85,7 +85,7 @@ export class CTAComponent {
   @Prop() width: string;
   /**
    * @uiName Border Radius
-   * @default "8px"
+   * @default 8px
    */
   @Prop() borderradius: string;
   /**
