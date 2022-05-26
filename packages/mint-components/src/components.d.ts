@@ -38,5648 +38,5810 @@ import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-v
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
-    interface RaisinsPlopTarget {
-        "renderCell": () => Promise<any>;
-        "renderLabel": (idx: any) => Promise<any>;
-    }
-    interface SqmAssetCard {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<AssetCardViewProps>;
-        /**
-          * @uiName Banner Image
-         */
-        "imgUrl": string;
-        /**
-          * @uiName Banner Title
-         */
-        "titleText": string;
-    }
-    interface SqmBigStat {
-        /**
-          * Controls the alignment of the flexbox
-          * @uiName Alignment
-          * @uiType string
-          * @uiEnum ["left", "right", "center"]
-          * @uiEnumNames ["Left", "Right", "Center"]
-         */
-        "alignment"?: "left" | "right" | "center";
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<BigStatViewProps>;
-        /**
-          * Controls the order of the stat value & description column
-          * @uiName Flex Reverse
-          * @default
-         */
-        "flexReverse"?: boolean;
-        /**
-          * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
-          * @uiName Program ID
-          * @uiWidget programSelector
-         */
-        "programId"?: string;
-        /**
-          * Select what type of stat to display. Manual paths are also supported.
-          * @uiWidget statTypeSelectWidget
-          * @uiName Stat Type
-          * @required 
-          * @uiWidgetOptions {"version": 1.1}
-         */
-        "statType": string;
-    }
-    interface SqmBrand {
-        /**
-          * Controls the primary brand color used in the Mint Components library.
-          * @uiName Brand Color
-          * @uiWidget color
-          * @format color
-         */
-        "brandColor": string;
-        /**
-          * A font from the Google Fonts library used throughout the widget. This value is case sensitive.
-          * @uiName Brand Font
-          * @default "Nunito Sans"
-         */
-        "brandFont": string;
-    }
-    interface SqmCardFeed {
-        /**
-          * @uiName Column Gap
-          * @uiType number
-         */
-        "gap": number;
-        /**
-          * @uiName Card Width
-         */
-        "width": number;
-    }
-    interface SqmCheckboxField {
-        /**
-          * @uiName Checkbox Label
-         */
-        "checkboxLabel": string;
-        /**
-          * Used with link text if the checkbox label contains {labelLink}
-          * @uiName Checkbox Label Link
-         */
-        "checkboxLabelLink": string;
-        /**
-          * @uiName Checkbox Label Link Text
-         */
-        "checkboxLabelLinkText": string;
-        /**
-          * @uiName Checkbox Name Attribute
-         */
-        "checkboxName": string;
-        /**
-          * @uiName Optional
-          * @default
-         */
-        "checkboxOptional"?: boolean;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<CheckboxFieldViewProps>;
-        /**
-          * @uiName Unchecked Error Message
-         */
-        "errorMessage": string;
-    }
-    interface SqmDividedLayout {
-        /**
-          * @uiName Direction
-          * @uiType string
-          * @uiEnum ["row", "column"]
-          * @uiEnumNames ["Row", "Column"]
-         */
-        "direction": "row" | "column";
-        /**
-          * Uses Shorthand CSS border syntax
-          * @uiName Border Style
-         */
-        "dividerStyle": string;
-    }
-    interface SqmDropdownField {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<DropdownFieldViewProps>;
-        /**
-          * @uiName Dropdown Label
-         */
-        "dropdownLabel": string;
-        /**
-          * @uiName Dropdown Name Attribute
-         */
-        "dropdownName": string;
-        /**
-          * @uiName Optional
-          * @default
-         */
-        "dropdownOptional"?: boolean;
-        /**
-          * @uiName Unselected Error Message
-         */
-        "errorMessage": string;
-    }
-    interface SqmEditProfile {
-        /**
-          * @uiName Cancel Button Text
-         */
-        "canceltext": string;
-        /**
-          * @uiName Region Field Label
-         */
-        "currentregiontext": string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<EditProfileViewProps>;
-        /**
-          * @uiName Heading
-         */
-        "editprofileheader": string;
-        /**
-          * Enable editing button text
-          * @uiName Edit Profile Text
-         */
-        "editprofiletext": string;
-        /**
-          * @uiName First Name Label
-         */
-        "firstnametext": string;
-        /**
-          * @uiName Last Name Label
-         */
-        "lastnametext": string;
-        /**
-          * Show or hide current region
-          * @uiName Show Region
-         */
-        "showregion": boolean;
-        /**
-          * @uiName Info Button Text
-         */
-        "updatetext": string;
-    }
-    interface SqmEmpty {
-        /**
-          * @uiName Title
-         */
-        "emptyStateHeader": string;
-        /**
-          * @uiWidget ImageUpload
-          * @format url
-          * @uiName Image
-         */
-        "emptyStateImage": string;
-        /**
-          * @uiName Description
-          * @uiWidget textArea
-         */
-        "emptyStateText": string;
-    }
-    interface SqmFormMessage {
-        /**
-          * Icon to use in alert
-          * @uiName Icon
-         */
-        "icon"?: string;
-        /**
-          * @uiName Alert Type
-         */
-        "type": string;
-    }
-    interface SqmGraphqlClientProvider {
-        /**
-          * @uiName Domain
-         */
-        "domain": string;
-    }
-    interface SqmHero {
-        /**
-          * Can be an image url, colour or Shoelace variable.
-          * @uiName Background
-         */
-        "background"?: string;
-        /**
-          * Number of columns in the layout
-          * @uiName Columns
-         */
-        "columns": 1 | 2;
-        /**
-          * @uiName Padding Size
-          * @uiEnum ["none", "small", "medium","large"]
-          * @uiEnumNames ["None", "Small", "Medium", "Large"]
-         */
-        "paddingSize": "none" | "small" | "medium" | "large";
-        /**
-          * Secondary background image or color (for use in the right column)
-          * @uiName Secondary Background
-         */
-        "secondaryBackground"?: string;
-        /**
-          * Flexbox wrap direction, accepts wrap or wrap-reverse
-          * @uiName Wrap Direction
-          * @uiEnum ["wrap", "wrap-reverse"]
-          * @uiEnumNames ["Wrap", "Wrap Reverse"]
-         */
-        "wrapDirection": "wrap" | "wrap-reverse";
-    }
-    interface SqmHeroImage {
-        /**
-          * @uiName Background Color
-          * @uiWidget color
-          * @format color
-         */
-        "backgroundColor"?: string;
-        /**
-          * @uiName Button Link
-         */
-        "buttonLink"?: string;
-        /**
-          * @uiName Open Link in New Tab
-          * @default
-         */
-        "buttonNewTab"?: boolean;
-        /**
-          * @uiName Button Text
-         */
-        "buttonText"?: string;
-        /**
-          * @uiName Description
-          * @uiWidget textArea
-         */
-        "description"?: string;
-        /**
-          * @uiName Title
-         */
-        "header"?: string;
-        /**
-          * @uiName Image Mobile Position
-          * @uiType string
-          * @uiEnum ["top", "bottom"]
-          * @uiEnumNames ["Top", "Bottom"]
-         */
-        "imageMobilePos": "top" | "bottom";
-        /**
-          * @uiName Image Percentage
-          * @uiType number
-         */
-        "imagePercentage": number;
-        /**
-          * @uiName Image Position
-          * @uiType string
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "imagePos": "left" | "center" | "right";
-        /**
-          * @uiWidget ImageUpload
-          * @format url
-          * @uiName Image
-         */
-        "imageUrl": string;
-        /**
-          * @uiName Image Layout
-          * @uiType string
-          * @uiEnum ["overlay", "columns"]
-          * @uiEnumNames ["Overlay", "Two-column"]
-         */
-        "layout": "overlay" | "columns";
-        /**
-          * @uiName Overlay Color
-          * @uiWidget color
-          * @format color
-         */
-        "overlayColor"?: string;
-        /**
-          * @uiName Overlay Opacity
-         */
-        "overlayOpacity": string;
-        /**
-          * @uiName Image Padding
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "paddingImage": Spacing;
-        /**
-          * @uiName Text Padding
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "paddingText": Spacing;
-        /**
-          * @uiName Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "textColor"?: string;
-    }
-    interface SqmHookStoryContainer {
-        "hookStory": FunctionalComponent;
-    }
-    interface SqmImage {
-        /**
-          * @uiName Position Alignment
-          * @uiType string
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "alignment": "left" | "center" | "right";
-        /**
-          * @uiName Background Color
-          * @uiWidget color
-          * @format
-         */
-        "backgroundColor": string;
-        /**
-          * @uiWidget ImageUpload
-          * @format url
-          * @required 
-          * @uiName Image Link
-         */
-        "imageUrl": string;
-        /**
-          * (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
-          * @uiName Minimum Height
-         */
-        "minHeight"?: string;
-    }
-    interface SqmInputField {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<InputFieldViewProps>;
-        /**
-          * @uiName Required Error Message
-         */
-        "errorMessage": string;
-        /**
-          * @uiName Input Label
-         */
-        "fieldLabel": string;
-        /**
-          * Used as the key of the inputs value in form data.
-          * @uiName Input Name Attribute
-         */
-        "fieldName": string;
-        /**
-          * @uiName Optional
-          * @default
-         */
-        "fieldOptional"?: boolean;
-        /**
-          * @uiName Input Type
-          * @uiType string
-          * @uiEnum ["text", "date", "tel"]
-          * @uiEnumNames ["Text", "Date", "Phone Number"]
-         */
-        "fieldType": "text" | "date" | "tel";
-    }
-    interface SqmLeaderboard {
-        /**
-          * Title displayed for users without names
-          * @uiName Unknown User Text
-         */
-        "anonymousUser": string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<LeaderboardViewProps>;
-        /**
-          * Hide the viewer's leaderboard row if not in the top results.
-          * @uiName Hide Viewing User
-          * @default
-         */
-        "hideViewer": boolean;
-        /**
-          * @uiName Leaderboard Time Interval
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-         */
-        "interval": string;
-        /**
-          * @uiName Leaderboard Type
-          * @uiType string
-          * @required 
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
-          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
-         */
-        "leaderboardType": | "topStartedReferrers"
-    | "topConvertedReferrers"
-    | "topPointEarners";
-        /**
-          * Control the maximum amount of rows displayed on the leaderboard.
-          * @uiName Maximum Rows Number
-         */
-        "maxRows": number;
-        /**
-          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
-          * @uiName Program
-          * @uiWidget programSelector
-         */
-        "programId"?: string;
-        /**
-          * @uiName Rank Type
-          * @uiType string
-          * @uiEnum ["rowNumber", "rank", "denseRank"]
-          * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
-         */
-        "rankType": "rowNumber" | "rank" | "denseRank";
-        /**
-          * @uiName Rank Column Heading
-         */
-        "rankheading"?: string;
-        /**
-          * @uiName Show Leaderboard Rank
-         */
-        "showRank": boolean;
-        /**
-          * @uiName Stats Column Heading
-         */
-        "statsheading": string;
-        /**
-          * @uiName User Column Heading
-         */
-        "usersheading": string;
-    }
-    interface SqmLeaderboardRank {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<LeaderboardRankViewProps>;
-        /**
-          * @uiName Leaderboard Time Interval
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-         */
-        "interval": string;
-        /**
-          * @uiName Leaderboard Type
-          * @uiType string
-          * @required 
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
-          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
-         */
-        "leaderboardType": | "topStartedReferrers"
-    | "topConvertedReferrers"
-    | "topPointEarners";
-        /**
-          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
-          * @uiName Program
-          * @uiWidget programSelector
-         */
-        "programId"?: string;
-        /**
-          * @uiName Rank Text
-          * @uiWidget textArea
-         */
-        "rankText": string;
-        /**
-          * @uiName Default Rank
-          * @uiType string
-          * @uiEnum ["rowNumber", "rank", "denseRank"]
-          * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
-         */
-        "rankType": "rowNumber" | "rank" | "denseRank";
-        /**
-          * @uiName Unranked Text
-         */
-        "unrankedText": string;
-    }
-    interface SqmNameFields {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<NameFieldsViewProps>;
-        /**
-          * @uiName First Name label
-         */
-        "firstNameLabel": string;
-        /**
-          * @uiName Last Name label
-         */
-        "lastNameLabel": string;
-    }
-    interface SqmNavigationMenu {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<NavigationMenuViewProps>;
-        /**
-          * @uiName Include Dropdown Menu
-         */
-        "includeDropdown": boolean;
-        /**
-          * Label on the header menu
-          * @uiName Menu Label
-         */
-        "menuLabel": string;
-    }
-    interface SqmNavigationSidebar {
-    }
-    interface SqmNavigationSidebarItem {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<NavigationSidebarItemViewProps>;
-        /**
-          * Options available at https://shoelace.style/components/icon
-          * @uiName Icon
-         */
-        "icon": string;
-        /**
-          * @uiName Label
-         */
-        "label": string;
-        /**
-          * @uiName Navigation Path
-         */
-        "path": string;
-    }
-    interface SqmPasswordField {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: PasswordFieldViewDemoProps;
-        /**
-          * Enable live password validation
-          * @uiName Enable Validation
-         */
-        "enableValidation": boolean;
-        /**
-          * Label for password field
-          * @uiName Password Label
-         */
-        "fieldLabel": string;
-    }
-    interface SqmPopupContainer {
-        /**
-          * Display a close button on the popup
-          * @uiName Show Close Button
-         */
-        "closeButton": boolean;
-        /**
-          * Text inside the close button
-          * @uiName Close Button Text
-         */
-        "closeButtonText": string;
-        /**
-          * Specify padding on the popup contents when in embedded mode
-          * @uiName Embed Padding
-          * @uiType string
-          * @uiEnum ["none", "small", "medium", "large"]
-          * @uiEnumNames ["None", "Small", "Medium", "Large"]
-         */
-        "embedPadding"?: "none" | "small" | "medium" | "large";
-        /**
-          * Specify padding on the popup contents when in popup mode
-          * @uiName Popup Padding
-          * @uiType string
-          * @uiEnum ["none", "small", "medium", "large"]
-          * @uiEnumNames ["None", "Small", "Medium", "Large"]
-         */
-        "popupPadding"?: "none" | "small" | "medium" | "large";
-        /**
-          * Show Powered By SaaSquatch link
-          * @uiName Show Powered By
-         */
-        "poweredBy": boolean;
-    }
-    interface SqmPortalChangePassword {
-        /**
-          * Modal cancel button text
-          * @uiName Cancel Button Text
-         */
-        "cancelText": string;
-        /**
-          * Modal change password button text
-          * @uiName Change Password Button Text
-         */
-        "changePasswordButtonText": string;
-        /**
-          * Password confirmation input field label
-          * @uiName Confirm Password Label
-         */
-        "confirmPasswordFieldLabel": string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalChangePasswordViewProps>;
-        /**
-          * @uiName Change Password Modal Header
-         */
-        "modalChangePasswordHeader": string;
-        /**
-          * Password input field label
-          * @uiName Password Label
-         */
-        "passwordFieldLabel": string;
-        /**
-          * @uiName Change Password Button Text
-         */
-        "portalChangePasswordButtonText": string;
-        /**
-          * Portal change password section header
-          * @uiName Change Password Header
-         */
-        "portalChangePasswordHeader": string;
-        /**
-          * Successful password change message
-          * @uiName Successful Message
-         */
-        "successMessage": string;
-    }
-    interface SqmPortalContainer {
-        /**
-          * @uiName Center Content
-         */
-        "center"?: boolean;
-        /**
-          * @uiName Direction
-          * @uiType string
-          * @uiEnum ["row", "column"]
-          * @uiEnumNames ["Row", "Column"]
-         */
-        "direction": "row" | "column";
-        /**
-          * @uiName Display
-          * @uiType string
-          * @uiEnum ["grid", "flex"]
-          * @uiEnumNames ["Grid", "Flex"]
-         */
-        "display": "grid" | "flex";
-        /**
-          * @uiName Gap
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "gap": Spacing;
-        /**
-          * Define how this container distributes its contents along the main-axis.
-          * @uiName Justify Content
-          * @uiType string
-          * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
-          * @uiEnumNames ["Start", "Center", "End", "Space Between", "Space Around", "Space Evenly"]
-         */
-        "justifyContent"?: | "start"
-    | "center"
-    | "end"
-    | "space-between"
-    | "space-around"
-    | "space-evenly";
-        /**
-          * @uiName Maximum width
-         */
-        "maxWidth"?: string;
-        /**
-          * @uiName Minimum Width
-         */
-        "minWidth"?: string;
-        /**
-          * @uiName Padding
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "padding": Spacing;
-    }
-    interface SqmPortalEmailVerification {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalEmailVerificationViewProps>;
-        /**
-          * @uiName Email Verification Header Text
-         */
-        "emailVerificationHeader": string;
-        /**
-          * The page that users are redirected to from the verification email.
-          * @uiName Email Redirection Base Path
-         */
-        "redirectPath": string;
-        /**
-          * @uiName Re-send Email Button Text
-         */
-        "resendEmailButtonText": string;
-        /**
-          * @uiName Email Verification Body Text
-         */
-        "verifyMessage": string;
-    }
-    interface SqmPortalFooter {
-        /**
-          * @uiName FAQ Link
-         */
-        "faqLink"?: string;
-        /**
-          * @uiName FAQ Text
-         */
-        "faqText"?: string;
-        /**
-          * @uiName Padding Bottom
-         */
-        "paddingBottom": string;
-        /**
-          * @uiName Padding Left
-         */
-        "paddingLeft": string;
-        /**
-          * @uiName Padding Right
-         */
-        "paddingRight": string;
-        /**
-          * @uiName Padding Top
-         */
-        "paddingTop": string;
-        /**
-          * @uiName Powered By Link
-         */
-        "poweredByLink": string;
-        /**
-          * @uiName Show Powered By SaaSquatch
-         */
-        "showPoweredBy": boolean;
-        /**
-          * @uiName Support Email
-         */
-        "supportEmail": string;
-        /**
-          * @uiName Support Text
-         */
-        "supportText": string;
-        /**
-          * @uiName Terms and Conditions Link
-         */
-        "termsLink"?: string;
-        /**
-          * @uiName Terms and Conditions Text
-         */
-        "termsText"?: string;
-    }
-    interface SqmPortalForgotPassword {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalForgotPasswordViewProps>;
-        /**
-          * @uiName Email Label
-         */
-        "emailLabel": string;
-        /**
-          * @uiName Login Page Routing Path
-         */
-        "loginPath": string;
-        /**
-          * The page that users are redirected to from the password reset email.
-          * @uiName Email Redirection Base Path
-         */
-        "redirectPath": string;
-        /**
-          * @uiName Password Reset Button Text
-         */
-        "submitLabel": string;
-    }
-    interface SqmPortalFrame {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalFrameViewProps>;
-    }
-    interface SqmPortalLogin {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalLoginViewProps>;
-        /**
-          * Label for email field
-          * @uiName Email Label
-         */
-        "emailLabel": string;
-        /**
-          * Label for forgotten password button
-          * @uiName Forgot Password Text
-         */
-        "forgotPasswordLabel": string;
-        /**
-          * Forgot password redirect path
-          * @uiName Forgot Password Path
-         */
-        "forgotPasswordPath": string;
-        /**
-          * Page navigated to after sign-in
-          * @uiName Next Page Path
-         */
-        "nextPage": string;
-        /**
-          * @uiName Heading Label
-         */
-        "pageLabel": string;
-        /**
-          * Label for password field
-          * @uiName Password Label
-         */
-        "passwordLabel": string;
-        /**
-          * Label for register button
-          * @uiName Register Button Text
-         */
-        "registerLabel": string;
-        /**
-          * Register redirect path
-          * @uiName Register Path
-         */
-        "registerPath": string;
-        /**
-          * Label for submit button
-          * @uiName Submit Button Text
-         */
-        "submitLabel": string;
-    }
-    interface SqmPortalLogout {
-        /**
-          * @uiName Next Page Path
-         */
-        "nextPage": string;
-    }
-    interface SqmPortalProfile {
-        /**
-          * Country input field label
-          * @uiName Country Label
-         */
-        "countrytext": string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalProfileViewProps>;
-        /**
-          * @uiName Edit Profile Header
-         */
-        "editProfileHeader": string;
-        /**
-          * @uiName Edit Profile Sub Header
-         */
-        "editProfileSubHeader": string;
-        /**
-          * Email input field label
-          * @uiName Email Label
-         */
-        "emailtext": string;
-        /**
-          * First name input field label
-          * @uiName First Name Label
-         */
-        "firstnametext": string;
-        /**
-          * Last name input field label
-          * @uiName Last Name Label
-         */
-        "lastnametext": string;
-        /**
-          * Show or hide the country field
-          * @uiName Show Country Field
-         */
-        "showCountry": boolean;
-        /**
-          * @uiName Submit Changes Button Text
-         */
-        "submitChangeButtonText": string;
-    }
-    interface SqmPortalProtectedRoute {
-        /**
-          * @uiName Redirect Path
-         */
-        "redirectTo": string;
-        /**
-          * @uiName Redirect Unverified Users Path
-         */
-        "redirectToUnverified": string;
-        /**
-          * @uiName Require Email Verification
-          * @default
-         */
-        "requireEmailVerification": boolean;
-    }
-    interface SqmPortalRegister {
-        /**
-          * Show or hide the confirm password input
-          * @uiName Show Confirm Password Field
-          * @default
-         */
-        "confirmPassword": boolean;
-        /**
-          * @uiName Confirm Password Label
-         */
-        "confirmPasswordLabel": string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalRegisterViewProps>;
-        /**
-          * @uiName Email Label
-         */
-        "emailLabel": string;
-        /**
-          * @uiName Enable Password Validation
-         */
-        "enablePasswordValidation": boolean;
-        /**
-          * Hide default input fields to use custom fields
-          * @uiName Hide Default Inputs
-          * @default
-         */
-        "hideInputs": boolean;
-        /**
-          * @uiName Login Button Text
-         */
-        "loginLabel": string;
-        /**
-          * Login button redirection path
-          * @uiName Login Path
-         */
-        "loginPath": string;
-        /**
-          * Page navigated to after registration
-          * @uiName Next Page
-         */
-        "nextPage": string;
-        /**
-          * @uiName Heading Label
-         */
-        "pageLabel": string;
-        /**
-          * @uiName Password Label
-         */
-        "passwordLabel": string;
-        /**
-          * The page that users are redirected to from the verification email.
-          * @uiName Email Redirection Base Path
-         */
-        "redirectPath": string;
-        /**
-          * @uiName Submit Button Text
-         */
-        "submitLabel": string;
-    }
-    interface SqmPortalResetPassword {
-        /**
-          * Show or hide confirm password field
-          * @uiName Show Confirm Password
-          * @default
-         */
-        "confirmPassword": boolean;
-        /**
-          * @uiName Confirm Password Label
-         */
-        "confirmPasswordFieldLabel": string;
-        /**
-          * Button text displayed after a successful password reset
-          * @uiName Continue Button Text
-         */
-        "continueButtonText": string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalResetPasswordViewProps>;
-        /**
-          * The page that users are redirected to if the reset fails due to outdated password reset attempt.
-          * @uiName Failed Page Path
-         */
-        "failedPage": string;
-        /**
-          * The page that users are redirected to when the password reset succeeds.
-          * @uiName Next Page Path
-         */
-        "nextPage": string;
-        /**
-          * @uiName Password Label
-         */
-        "passwordFieldLabel": string;
-        /**
-          * Displayed after a successful password reset
-          * @uiName Successful Password Reset Text
-         */
-        "passwordResetHeader": string;
-        /**
-          * @uiName Password Reset Button Text
-         */
-        "resetPasswordButtonText": string;
-        /**
-          * @uiName Reset Password Header Text
-         */
-        "resetPasswordHeader": string;
-    }
-    interface SqmPortalVerifyEmail {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalVerifyEmailViewProps>;
-        /**
-          * The page that users are redirected to if verification fails due to outdated verification attempt.
-          * @uiName Failed Page Path
-         */
-        "failedPage": string;
-        /**
-          * The page that users are redirected to when the verification succeeds.
-          * @uiName Next Page Path
-         */
-        "nextPage": string;
-    }
-    interface SqmProgramExplainer {
-        /**
-          * @uiName Header Background Color
-          * @uiWidget color
-          * @format color
-         */
-        "backgroundColor": string;
-        /**
-          * @uiName Header Text
-         */
-        "header": string;
-        /**
-          * @uiName Header Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "textColor": string;
-    }
-    interface SqmProgramExplainerStep {
-        /**
-          * @uiName Background Color
-          * @uiWidget color
-          * @format color
-         */
-        "backgroundColor": string;
-        /**
-          * @uiName Description
-          * @uiWidget textArea
-         */
-        "description": string;
-        /**
-          * @uiName Title
-         */
-        "header": string;
-        /**
-          * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
-          * @uiName Icon
-         */
-        "icon"?: string;
-        /**
-          * Displayed in place of an icon
-          * @uiName Image Url
-          * @uiWidget imageUpload
-          * @format url
-         */
-        "imageUrl"?: string;
-        /**
-          * @uiName Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "textColor": string;
-    }
-    interface SqmProgramMenu {
-    }
-    interface SqmQa {
-        /**
-          * Description here
-          * @uiName Boolean Switch with default
-         */
-        "booleanSwitch"?: boolean;
-        /**
-          * Description here
-          * @uiName Boolean Switch with no default
-         */
-        "booleanSwitchNoDefault"?: boolean;
-        /**
-          * Description here
-          * @uiName Boolean Switch required with no default
-          * @required
-         */
-        "booleanSwitchRequiredNoDefault"?: boolean;
-        /**
-          * Description here
-          * @uiName Color with default
-          * @uiWidget color
-          * @format color
-         */
-        "color"?: string;
-        /**
-          * Description here
-          * @uiName Color with no default
-          * @uiWidget color
-          * @format color
-         */
-        "colorNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Color required with no default
-          * @required 
-          * @uiWidget color
-          * @format color
-         */
-        "colorRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Date Interval with default
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @format date-interval
-         */
-        "dateInterval"?: string;
-        /**
-          * Description here
-          * @uiName Date Interval with no default
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @format date-interval
-         */
-        "dateIntervalNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Date Interval required with no default
-          * @required 
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @format date-interval
-         */
-        "dateIntervalRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Image Upload with default
-          * @uiWidget ImageUpload
-          * @format url
-         */
-        "imageUpload"?: string;
-        /**
-          * Description here
-          * @uiName Image Upload with no default
-          * @uiWidget ImageUpload
-          * @format url
-         */
-        "imageUploadNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Image Upload required with no default
-          * @required 
-          * @uiWidget ImageUpload
-          * @format url
-         */
-        "imageUploadRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Number Max 7
-          * @maximum 7
-         */
-        "max"?: number;
-        /**
-          * Description here
-          * @uiName String Max Length 10
-          * @maxLength 10
-         */
-        "maxLength"?: string;
-        /**
-          * Description here
-          * @uiName Number Min 7
-          * @minimum 7
-         */
-        "min"?: number;
-        /**
-          * Description here
-          * @uiName String Min Length 10
-          * @minLength 10
-         */
-        "minLength"?: string;
-        /**
-          * Description here
-          * @uiName Number Enum Select with default
-          * @uiEnum [1,2,3]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "numberEnumSelect"?: number;
-        /**
-          * Description here
-          * @uiName Number Enum Select with no default
-          * @uiEnum [1,2,3]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "numberEnumSelectNoDefault"?: number;
-        /**
-          * Description here
-          * @uiName Number Enum Select required with no default
-          * @required 
-          * @uiEnum [1,2,3]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "numberEnumSelectRequiredNoDefault"?: number;
-        /**
-          * Description here
-          * @uiName Number Input with default
-         */
-        "numberInput"?: number;
-        /**
-          * Description here
-          * @uiName Number Input with no default
-         */
-        "numberInputNoDefault"?: number;
-        /**
-          * Description here
-          * @uiName Number required with no default
-          * @required
-         */
-        "numberRequired"?: number;
-        /**
-          * Description here
-          * @uiName Program Selector with default
-          * @uiWidget programSelector
-         */
-        "programSelector"?: string;
-        /**
-          * Description here
-          * @uiName Program Selector with no default
-          * @uiWidget programSelector
-         */
-        "programSelectorNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Program Selector required with no default
-          * @required 
-          * @uiWidget programSelector
-         */
-        "programSelectorRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Stat Selector with default
-          * @uiWidget statTypeSelectWidget
-         */
-        "statSelector"?: string;
-        /**
-          * Description here
-          * @uiName Stat Selector with no default
-          * @uiWidget statTypeSelectWidget
-         */
-        "statSelectorNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Stat Selector required with no default
-          * @required 
-          * @uiWidget statTypeSelectWidget
-         */
-        "statSelectorRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName String Enum Select with default
-          * @uiEnum ["option1","option2","option3"]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "stringEnumSelect"?: string;
-        /**
-          * Description here
-          * @uiName String Enum Select with no default
-          * @uiEnum ["option1","option2","option3"]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "stringEnumSelectNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName String Enum Select required with no default
-          * @required 
-          * @uiEnum ["option1","option2","option3"]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "stringEnumSelectRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName String required with no default
-          * @required
-         */
-        "stringRequired"?: string;
-        /**
-          * Description here
-          * @uiName Text Area Input
-          * @uiWidget textArea with default
-         */
-        "textAreaInput"?: string;
-        /**
-          * Description here
-          * @uiName Text Area Input
-          * @uiWidget textArea with no default
-         */
-        "textAreaInputNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Text Area Input
-          * @uiWidget textArea required with no default
-          * @required
-         */
-        "textAreaInputRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Text Input with default
-         */
-        "textInput"?: string;
-        /**
-          * Description here
-          * @uiName Text Input with no default
-         */
-        "textInputNoDefault"?: string;
-    }
-    interface SqmQaReferralCard {
-        /**
-          * @uiName Vertical Aligment
-          * @uiType string
-          * @uiEnum ["start", "center", "end"]
-          * @uiEnumNames ["Top", "Center", "Bottom"]
-         */
-        "verticalAlignment": "start" | "center" | "end";
-    }
-    interface SqmQaTabs {
-        /**
-          * Used to specify the placement of the tabs
-          * @uiName Tabs Placement
-          * @uiType string
-          * @uiEnum ["left", "right", "bottom", "top"]
-          * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
-         */
-        "placement"?: "left" | "right" | "bottom" | "top";
-    }
-    interface SqmReferralCard {
-        /**
-          * @uiName Vertical Aligment
-          * @uiType string
-          * @uiEnum ["start", "center", "end"]
-          * @uiEnumNames ["Top", "Center", "Bottom"]
-         */
-        "verticalAlignment": "start" | "center" | "end";
-    }
-    interface SqmReferralIframe {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<ReferralIframeViewProps>;
-        /**
-          * Height of the iframe container
-          * @uiName Iframe Height
-         */
-        "iframeHeight": string;
-        /**
-          * URL of iframe to display
-          * @uiName Iframe Source
-          * @required
-         */
-        "iframeSrc": string;
-        /**
-          * Width of the iframe container
-          * @uiName Iframe Width
-         */
-        "iframeWidth": string;
-    }
-    interface SqmReferralTable {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<GenericTableViewProps>;
-        /**
-          * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
-          * @uiName Hidden Mobile Columns
-         */
-        "hiddenColumns"?: string;
-        /**
-          * @uiName Tablet Breakpoint
-         */
-        "mdBreakpoint"?: number;
-        /**
-          * @uiName View More Button Text
-         */
-        "moreLabel"?: string;
-        /**
-          * Number of referrals displayed per page
-          * @uiName Referrals Per Page
-         */
-        "perPage": number;
-        /**
-          * @uiName Previous Button Text
-         */
-        "prevLabel"?: string;
-        /**
-          * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs. If program ID is "classic", shows classic-only referrals
-          * @uiName Program
-          * @uiWidget programSelector
-         */
-        "programId": string;
-        /**
-          * @uiName Show Column Labels
-         */
-        "showLabels"?: boolean;
-        /**
-          * Show referred by user in table
-          * @uiName Show Referrer
-          * @default
-         */
-        "showReferrer"?: boolean;
-        /**
-          * @uiName Mobile Breakpoint
-         */
-        "smBreakpoint"?: number;
-    }
-    interface SqmReferralTableCell {
-        "innerTemplate": string;
-    }
-    interface SqmReferralTableColumn {
-        /**
-          * @uiName Column Title
-         */
-        "columnTitle": string;
-        "renderCell": (_: Referral) => Promise<any>;
-        "renderLabel": () => Promise<string>;
-    }
-    interface SqmReferralTableDateCell {
-        "date": number;
-        "locale": string;
-    }
-    interface SqmReferralTableDateColumn {
-        /**
-          * @uiName Date Column Title
-         */
-        "columnTitle": string;
-        /**
-          * @uiName Date Displayed
-          * @uiType string
-          * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
-          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended", "Date Referral Paid", "Date User Modified"]
-         */
-        "dateShown": ReferralDates;
-        "renderCell": (data: Referral, locale: string) => Promise<any>;
-        "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer) => Promise<any>;
-    }
-    interface SqmReferralTableRewardsCell {
-        "expiringText": string;
-        "fuelTankText": string;
-        "hideDetails": boolean;
-        "locale": string;
-        "pendingForText": string;
-        "rewardReceivedText": string;
-        "rewards": Reward[];
-        "statusLongText": string;
-        "statusText": string;
-    }
-    interface SqmReferralTableRewardsColumn {
-        /**
-          * @uiName Reward column title
-         */
-        "columnTitle": string;
-        /**
-          * Shown in the dropdown details when a reward has an expiry date.
-          * @uiName Reward Expiring Text
-         */
-        "expiringText": string;
-        /**
-          * Shown in the dropdown details when a reward has an associated fuel tank code.
-          * @uiName Fuel Tank Code Text
-         */
-        "fuelTankText": string;
-        /**
-          * @uiName Hide dropdown details of reward
-          * @default
-         */
-        "hideDetails": boolean;
-        /**
-          * Shown in the dropdown details when a reward is pending.
-          * @uiName Reward Pending Text
-         */
-        "pendingForText": string;
-        "renderCell": (data: Referral, locale: string) => Promise<any>;
-        "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer) => Promise<any>;
-        /**
-          * Shown in the dropdown details when a reward has been received.’
-          * @uiName Reward Received Text
-         */
-        "rewardReceivedText": string;
-        /**
-          * Additional status text shown in the details drop down.
-          * @uiName Reward Status Long Text
-          * @uiWidget textArea
-         */
-        "statusLongText": string;
-        /**
-          * Text shown in the reward status badge.
-          * @uiName Reward Status Text
-          * @uiWidget textArea
-         */
-        "statusText": string;
-    }
-    interface SqmReferralTableStatusCell {
-        "converted": boolean;
-        "statusText": string;
-    }
-    interface SqmReferralTableStatusColumn {
-        /**
-          * @uiName Column Title
-         */
-        "columnTitle": string;
-        /**
-          * @uiName Converted Status Text
-         */
-        "convertedStatusText": string;
-        /**
-          * @uiName In Progress Status Text
-         */
-        "inProgressStatusText": string;
-        "renderCell": (data: Referral) => Promise<any>;
-        "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer) => Promise<any>;
-    }
-    interface SqmReferralTableUserCell {
-        "name": string;
-    }
-    interface SqmReferralTableUserColumn {
-        /**
-          * Name displayed for unknown users
-          * @uiName Anonymous User Text
-         */
-        "anonymousUser": string;
-        /**
-          * @uiName User Column Title
-         */
-        "columnTitle": string;
-        /**
-          * Name displayed for deleted users
-          * @uiName Deleted User Text
-         */
-        "deletedUser": string;
-        "renderCell": (data: Referral) => Promise<any>;
-        "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer) => Promise<any>;
-    }
-    interface SqmRewardExchangeList {
-        /**
-          * @uiName Back Button Text
-         */
-        "backText": string;
-        /**
-          * @uiName Cancel Button Text
-         */
-        "cancelText": string;
-        /**
-          * @uiName Choose Amount Progress Title
-         */
-        "chooseAmountTitle": string;
-        /**
-          * @uiName Choose Reward Progress Title
-         */
-        "chooseRewardTitle": string;
-        /**
-          * @uiName Confirmation Progress Title
-         */
-        "confirmationTitle": string;
-        /**
-          * @uiName Continue Button Text
-         */
-        "continueText": string;
-        /**
-          * Displayed on the reward selection page.
-          * @uiName Continue to Confirmation Button Text
-         */
-        "continueToConfirmationText": string;
-        /**
-          * Shown in the confirmation state.
-          * @uiName Cost Row Title
-         */
-        "costTitle": string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<RewardExchangeViewProps>;
-        /**
-          * @uiName Done Text
-         */
-        "doneText": string;
-        /**
-          * Error message shown when reward is not available
-          * @uiName Not Available Error
-          * @uiWidget textArea
-         */
-        "notAvailableError": string;
-        /**
-          * @uiName Not Enough Error Message
-          * @uiWidget textArea
-         */
-        "notEnoughError": string;
-        /**
-          * @uiName Promo Code Text
-         */
-        "promoCode": string;
-        /**
-          * Shown if an error occurs when loading the reward exchange.
-          * @uiName Reward List Error Message
-          * @uiWidget textArea
-         */
-        "queryError": string;
-        /**
-          * @uiName Redeem Button Text
-         */
-        "redeemText": string;
-        /**
-          * Displayed as the header for the confirmation page.
-          * @uiName Confirmation Title Text
-         */
-        "redeemTitle": string;
-        /**
-          * Shown if an error occurs during the reward exchange.
-          * @uiName Redemption Error Message
-          * @uiWidget textArea
-         */
-        "redemptionError": string;
-        /**
-          * Displayed on the success screen when a user successfully exchanges for a reward.
-          * @uiName Redemption Success Message
-          * @uiWidget textArea
-         */
-        "redemptionSuccessText": string;
-        /**
-          * Shown in the confirmation state.
-          * @uiName Reward Amount Row Title
-         */
-        "rewardAmountTitle": string;
-        /**
-          * Shown in the confirmation state.
-          * @uiName Reward Row Title
-         */
-        "rewardNameTitle": string;
-        /**
-          * @uiName Reward Redeemed Text
-         */
-        "rewardRedeemedText": string;
-        /**
-          * @uiName Reward Title Text
-         */
-        "rewardTitle": string;
-        /**
-          * @uiName Select Amount Text
-          * @uiWidget textArea
-         */
-        "selectText": string;
-        /**
-          * Set the number of placeholder cards to be shown in loading state.
-          * @uiName Loading Cards
-         */
-        "skeletonCardNum": number;
-        /**
-          * Displayed on the reward exchange cards.
-          * @uiName Reward Exchange Amount Text
-          * @uiWidget textArea
-         */
-        "sourceAmountMessage": string;
-        /**
-          * Shown when a user copies a fuel tank code
-          * @uiName Tooltip Text
-         */
-        "tooltipText": string;
-    }
-    interface SqmRewardsTable {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<GenericTableViewProps>;
-        /**
-          * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
-          * @uiName Mobile Hidden Columns
-         */
-        "hiddenColumns"?: string;
-        /**
-          * @uiName Tablet Breakpoint
-         */
-        "mdBreakpoint"?: number;
-        /**
-          * @uiName View More button text
-         */
-        "moreLabel"?: string;
-        /**
-          * @uiName Number of rewards per page
-         */
-        "perPage": number;
-        /**
-          * @uiName Previous button text
-         */
-        "prevLabel"?: string;
-        /**
-          * Filters to only show rewards in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all rewards from all programs.
-          * @uiName Program
-          * @uiWidget programSelector
-         */
-        "programId": string;
-        /**
-          * @uiName Show column labels
-         */
-        "showLabels"?: boolean;
-        /**
-          * @uiName Mobile Breakpoint
-         */
-        "smBreakpoint"?: number;
-    }
-    interface SqmRewardsTableCustomerNoteCell {
-        "locale": string;
-        "note": string;
-    }
-    interface SqmRewardsTableCustomerNoteColumn {
-        /**
-          * @uiName Column Title
-         */
-        "columnTitle": string;
-        "renderCell": (data: Reward, locale: string) => Promise<any>;
-        "renderLabel": () => Promise<string>;
-    }
-    interface SqmRewardsTableDateCell {
-        "date": number;
-        "locale": string;
-    }
-    interface SqmRewardsTableDateColumn {
-        /**
-          * @uiName Date Column Title
-         */
-        "columnTitle": string;
-        /**
-          * @uiName Date Displayed
-          * @uiType string
-          * @uiEnum ["dateGiven", "dateExpires", "dateCancelled", "dateRedeemed", "dateScheduledFor"]
-          * @uiEnumNames ["Date Given", "Date Expires", "Date Cancelled", "Date Redeemed", "Date Scheduled For"]
-         */
-        "dateShown": string;
-        "renderCell": (data: Reward, locale: string) => Promise<any>;
-        "renderLabel": () => Promise<string>;
-    }
-    interface SqmRewardsTableRewardCell {
-        "availableText": string;
-        "copyText": string;
-        "locale": string;
-        "redeemedText": string;
-        "reward": Reward;
-    }
-    interface SqmRewardsTableRewardColumn {
-        /**
-          * @uiName Remaining Amount Text
-         */
-        "availableText": string;
-        /**
-          * @uiName Reward Column Title
-         */
-        "columnTitle": string;
-        /**
-          * @uiName Copied Fuel Tank Text
-         */
-        "copyText": string;
-        /**
-          * @uiName Redeemed Amount Text
-         */
-        "redeemedText": string;
-        "renderCell": (data: Reward, locale: string) => Promise<any>;
-        "renderLabel": () => Promise<string>;
-    }
-    interface SqmRewardsTableSourceCell {
-        "anonymousUserText": string;
-        "deletedUserText": string;
-        "locale": string;
-        "referralText": string;
-        "reward": Reward;
-        "rewardExchangeText": string;
-        "rewardSourceText": string;
-    }
-    interface SqmRewardsTableSourceColumn {
-        /**
-          * Name displayed for unknown users
-          * @uiName Anonymous User Text
-         */
-        "anonymousUser": string;
-        /**
-          * @uiName Soruce Column Title
-         */
-        "columnTitle": string;
-        /**
-          * Name displayed for deleted users
-          * @uiName Deleted User Text
-         */
-        "deletedUser": string;
-        /**
-          * Shown when a reward has been created by a referral
-          * @uiName Referral Text
-          * @uiWidget textArea
-         */
-        "referralText": string;
-        "renderCell": (data: Reward, locale: any) => Promise<any>;
-        "renderLabel": () => Promise<string>;
-        /**
-          * @uiName Reward Exchange Label
-         */
-        "rewardExchangeText": string;
-        /**
-          * Shown when a reward has been created by a source other than a referral.
-          * @uiName Reward Source Text
-          * @uiWidget textArea
-         */
-        "rewardSourceText": string;
-    }
-    interface SqmRewardsTableStatusCell {
-        "expiryText": string;
-        "locale": string;
-        "pendingScheduled": string;
-        "pendingUnhandled": string;
-        "pendingUsTax": string;
-        "reward": Reward;
-        "statusText": string;
-    }
-    interface SqmRewardsTableStatusColumn {
-        /**
-          * @uiName Column Title
-         */
-        "columnTitle": string;
-        /**
-          * Text shown before the date of an expiring reward.
-          * @uiName Expiry Date Prefix
-         */
-        "expiryText": string;
-        /**
-          * Text shown before the available date of a pending reward.
-          * @uiName Pending Date Prefix
-         */
-        "pendingScheduled": string;
-        /**
-          * Displayed when fulfillment error occured when creating a reward.
-          * @uiName Unhandled Error Text
-         */
-        "pendingUnhandled": string;
-        /**
-          * Displayed when a reward is pending due to W9 compliance.
-          * @uiName W9 Pending Text
-         */
-        "pendingUsTax": string;
-        "renderCell": (data: Reward, locale: string) => Promise<any>;
-        "renderLabel": () => Promise<string>;
-        /**
-          * @uiName Reward Status Text
-          * @uiWidget textArea
-         */
-        "statusText": string;
-    }
-    interface SqmRoute {
-        /**
-          * @uiName Navigation Path Name
-         */
-        "path": string;
-    }
-    interface SqmRouter {
-    }
-    interface SqmScroll {
-        /**
-          * @uiName Button Text
-         */
-        "buttonText": string;
-        /**
-          * @uiName Button Type
-          * @uiType string
-          * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
-          * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger", "Text"]
-         */
-        "buttonType": | "default"
-    | "primary"
-    | "success"
-    | "neutral"
-    | "warning"
-    | "danger"
-    | "text";
-        /**
-          * Draws a circle button.
-          * @uiName Circle
-         */
-        "circle": boolean;
-        /**
-          * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
-          * @uiName Icon
-         */
-        "iconName": string;
-        /**
-          * @uiName Icon Slot
-          * @uiType string
-          * @uiEnum ["prefix", "suffix"]
-          * @uiEnumNames ["Prefix", "Suffix"]
-         */
-        "iconSlot": string;
-        /**
-          * The button becomes full width if the screen size is smaller than 500px
-          * @uiName Full Width on Mobile
-         */
-        "mobile"?: boolean;
-        /**
-          * Draws an outlined button.
-          * @uiName Outline
-         */
-        "outline": boolean;
-        /**
-          * Draws a pill-style button with rounded edges.
-          * @uiName Pill
-         */
-        "pill": boolean;
-        /**
-          * @uiName Scroll Animation Style
-          * @uiType string
-          * @uiEnum ["smooth", "auto"]
-          * @uiEnumNames ["Smooth", "Auto"]
-         */
-        "scrollAnimation": "smooth" | "auto";
-        /**
-          * ID applied to the HTML tag you would like to scroll to. E.g tab-1
-          * @uiName Scroll Id
-         */
-        "scrollId"?: string;
-        /**
-          * The name of the HTML tag you would like to scroll to. E.g referral-table
-          * @uiName Scroll Tag Name
-         */
-        "scrollTagName"?: string;
-        /**
-          * @uiName Size
-          * @uiType string
-          * @uiEnum ["small", "medium", "large"]
-          * @uiEnumNames ["Small", "Medium", "Large"]
-         */
-        "size": string;
-    }
-    interface SqmShareButton {
-        /**
-          * @uiName Button Background Color
-          * @uiWidget color
-          * @format color
-         */
-        "backgroundcolor"?: string;
-        /**
-          * Configure border radius with pixel amount
-          * @uiName Border Radius
-         */
-        "borderradius"?: number;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<ShareButtonViewProps>;
-        /**
-          * @uiName Disabled
-         */
-        "disabled"?: boolean;
-        /**
-          * @uiName Hide Icon
-          * @default
-         */
-        "hideicon"?: boolean;
-        /**
-          * @uiName Hide Text
-          * @default
-         */
-        "hidetext"?: boolean;
-        /**
-          * Options available at https://shoelace.style/components/icon  Icon used in button. Will try to select an icon based on the share medium if left empty.
-          * @uiName Icon
-         */
-        "icon"?: string;
-        /**
-          * @uiName Icon Location
-          * @uiType string
-          * @uiEnum ["prefix", "suffix" ]
-          * @uiEnumNames ["Prefix", "Suffix"]
-         */
-        "iconslot"?: "prefix" | "suffix";
-        /**
-          * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
-          * @uiName Share Medium
-          * @uiType string
-          * @required 
-          * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
-          * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
-         */
-        "medium": | "facebook"
-    | "twitter"
-    | "email"
-    | "direct"
-    | "linkedin"
-    | "sms"
-    | "fbmessenger"
-    | "whatsapp"
-    | "linemessenger"
-    | "pinterest"
-    | "reminder"
-    | "unknown";
-        /**
-          * @uiName Display Pill
-         */
-        "pill"?: boolean;
-        /**
-          * Optional programId, or uses the programId context where this button is rendered.
-          * @uiName Program ID
-          * @uiWidget programSelector
-         */
-        "programId"?: string;
-        /**
-          * Text used for native sharing (mobile only)
-          * @uiName Share Text
-         */
-        "sharetext"?: string;
-        /**
-          * Title used for native sharing (mobile only)
-          * @uiName Share Title
-         */
-        "sharetitle"?: string;
-        /**
-          * @uiName Button Size
-          * @uiType string
-          * @uiEnum ["small", "medium", "large" ]
-          * @uiEnumNames ["Small", "Medium", "Large"]
-         */
-        "size"?: "small" | "medium" | "large";
-        /**
-          * @uiName Button Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "textcolor"?: string;
-        /**
-          * @uiType string
-          * @uiName Button Style
-          * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
-          * @uiEnumNames ["Primary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
-         */
-        "type"?: | "primary"
-    | "success"
-    | "info"
-    | "warning"
-    | "danger"
-    | "default"
-    | "text";
-    }
-    interface SqmShareCode {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<ShareLinkViewProps>;
-        /**
-          * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
-          * @uiName Program ID
-          * @uiWidget programSelector
-         */
-        "programId"?: string;
-        /**
-          * The number of milliseconds that the tooltip appears for
-          * @uiName Tooltip lifespan
-         */
-        "tooltiplifespan": number;
-        /**
-          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
-          * @uiName Tooltip Text
-         */
-        "tooltiptext": string;
-    }
-    interface SqmShareLink {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<ShareLinkViewProps>;
-        /**
-          * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
-          * @uiName Program ID
-          * @uiWidget programSelector
-         */
-        "programId"?: string;
-        /**
-          * The number of milliseconds that the tooltip appears for
-          * @uiName Tooltip Lifespan
-         */
-        "tooltiplifespan": number;
-        /**
-          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
-          * @uiName Tooltip Text
-         */
-        "tooltiptext": string;
-    }
-    interface SqmStatContainer {
-        /**
-          * @uiName Display
-          * @uiType string
-          * @uiEnum ["grid", "flex"]
-          * @uiEnumNames ["Grid", "Flex"]
-         */
-        "display": "grid" | "flex";
-        /**
-          * @uiName Space Between Stats
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "space": Spacing;
-    }
-    interface SqmStencilbook {
-    }
-    interface SqmTab {
-        /**
-          * @uiName Tab Title
-         */
-        "header": string;
-    }
-    interface SqmTableCell {
-        "colspan": number;
-        "padding": string;
-    }
-    interface SqmTableRow {
-        "border": string;
-    }
-    interface SqmTabs {
-        /**
-          * Used to specify the placement of the tabs
-          * @uiName Tabs Placement
-          * @uiType string
-          * @uiEnum ["left", "right", "bottom", "top"]
-          * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
-         */
-        "placement"?: "left" | "right" | "bottom" | "top";
-    }
-    interface SqmTaskCard {
-        /**
-          * @uiName Button Link
-          * @uiGroup Button
-         */
-        "buttonLink": string;
-        /**
-          * @uiName Button Text
-          * @uiGroup Button
-         */
-        "buttonText": string;
-        /**
-          * @uiName Title
-          * @uiGroup Task
-         */
-        "cardTitle": string;
-        /**
-          * Displays the amount of times that a user has completed a repeatable task.
-          * @uiName Completed Count Text
-          * @uiGroup Task
-          * @uiWidget textArea
-         */
-        "completedText": string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<TaskCardViewProps | BigStatViewProps>;
-        /**
-          * @uiName Description
-          * @uiGroup Task
-         */
-        "description": string;
-        /**
-          * Task cards are hidden from users outside of the duration. They are always displayed if no duration is configured.
-          * @uiName Display Duration
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @uiGroup Task
-         */
-        "displayDuration": string;
-        /**
-          * Shown to users after the end of the task duration.
-          * @uiName Ended Date Message
-          * @uiGroup Task
-         */
-        "endedMessage": string;
-        /**
-          * Optionally send an event to SaaSquatch when a user clicks the button. Enter your event key into this field.
-          * @uiName Task Card Button Event Key
-          * @uiGroup Button
-         */
-        "eventKey"?: string;
-        /**
-          * Displayed when a user views a task card after the reward duration interval.
-          * @uiName Expiry Date Message
-          * @uiGroup Task
-         */
-        "expiryMessage": string;
-        /**
-          * The number of times a reward can be earned.  Use zero for no limit (the default).
-          * @uiName Repeat Amount
-          * @uiGroup Reward
-         */
-        "finite": number;
-        /**
-          * Sets the goal for users progress to know when a task has been completed. If repeatable is checked, repeatable goals is an increment of this.
-          * @uiName Goal Completion Number
-          * @uiGroup Goal
-         */
-        "goal": number;
-        /**
-          * Button Link Opens in New Tab
-          * @uiName Open In New Tab
-          * @uiGroup Button
-          * @default
-         */
-        "openNewTab": boolean;
-        /**
-          * The ID of the program that is used to scope the task card. When no ID is specified, it defaults to the program context in which the component is rendered.
-          * @uiName Program ID Override
-          * @uiWidget programSelector
-          * @uiGroup Goal
-         */
-        "programId"?: string;
-        /**
-          * The unit displayed to the right of steps and progress numbers on the progress bar. Ex: $ for dollars
-          * @uiName Progress Bar Unit
-          * @uiGroup Goal
-         */
-        "progressBarUnit": string;
-        /**
-          * @uiName Goal Repeatable
-          * @uiGroup Goal
-          * @default
-         */
-        "repeatable": boolean;
-        /**
-          * @uiName Reward Amount
-          * @uiGroup Reward
-         */
-        "rewardAmount": string;
-        /**
-          * Task cards are disabled to users outside of the duration. They are not disabled if no duration is configured.
-          * @uiName Reward Duration
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @uiGroup Reward
-         */
-        "rewardDuration": string;
-        /**
-          * @uiName Reward Unit
-          * @uiGroup Reward
-         */
-        "rewardUnit": string;
-        /**
-          * @uiName Show Progress Bar
-          * @uiGroup Goal
-          * @default
-         */
-        "showProgressBar": boolean;
-        /**
-          * Shown to users before the start of the task duration.
-          * @uiName Start Date Message
-          * @uiGroup Task
-         */
-        "startsOnMessage": string;
-        /**
-          * Select what type of stat to display for the goal. Manual paths are also supported.
-          * @uiName Goal Progress Source
-          * @required 
-          * @minLength 1
-          * @uiWidget statTypeSelectWidget
-          * @uiWidgetOptions {"version": 1.1}
-          * @uiGroup Goal
-         */
-        "statType": string;
-        /**
-          * @uiName Progress Bar Steps
-          * @uiGroup Goal
-          * @default
-         */
-        "steps": boolean;
-    }
-    interface SqmText {
-    }
-    interface SqmTextSpan {
-        /**
-          * @uiName Text
-         */
-        "text": string;
-        /**
-          * @uiName Type
-          * @uiType string
-          * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
-          * @uiEnumNames ["Paragraph", "Subtext", "Header 1", "Header 2", "Header 3", "Header 4"]
-         */
-        "type": "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
-    }
-    interface SqmTimeline {
-        /**
-          * @uiName Icon
-          * @uiType string
-          * @uiEnum ["gift", "circle"]
-          * @uiEnumNames ["Gift", "Circle"]
-         */
-        "icon": "gift" | "circle";
-    }
-    interface SqmTimelineEntry {
-        /**
-          * @uiName Description
-         */
-        "desc": string;
-        /**
-          * @uiName Icon
-          * @uiType string
-          * @uiEnum ["gift", "circle"]
-          * @uiEnumNames ["Gift", "Circle"]
-         */
-        "icon": "gift" | "circle";
-        /**
-          * @uiName Reward Amount
-         */
-        "reward": string;
-        "setIcon": (value: "gift" | "circle") => Promise<void>;
-        /**
-          * @uiName Reward Unit
-         */
-        "unit": string;
-    }
-    interface SqmTitledSection {
-        /**
-          * Text value shown when there is no label slot declared.
-          * @uiName Label
-         */
-        "label": string;
-        /**
-          * Margin applied to the bottom of the label slot
-          * @uiName Label Bottom Margin
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "labelMargin": Spacing;
-        /**
-          * Padding applied to all 4 sides of the container
-          * @uiName Section Padding
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "padding": Spacing;
-        /**
-          * @uiName Text Alignment
-          * @uiType string
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "textAlign": "left" | "center" | "right";
-    }
-    interface SqmUserName {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<UserNameViewProps>;
-        /**
-          * Fallback name for unknown users
-          * @uiName Fallback Name
-         */
-        "fallback": string;
-        /**
-          * @uiName Loading Text
-         */
-        "loadingText": string;
-    }
+  interface RaisinsPlopTarget {
+    renderCell: () => Promise<any>;
+    renderLabel: (idx: any) => Promise<any>;
+  }
+  interface SqmAssetCard {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<AssetCardViewProps>;
+    /**
+     * @uiName Banner Image
+     */
+    imgUrl: string;
+    /**
+     * @uiName Banner Title
+     */
+    titleText: string;
+  }
+  interface SqmBigStat {
+    /**
+     * Controls the alignment of the flexbox
+     * @uiName Alignment
+     * @uiType string
+     * @uiEnum ["left", "right", "center"]
+     * @uiEnumNames ["Left", "Right", "Center"]
+     */
+    alignment?: "left" | "right" | "center";
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<BigStatViewProps>;
+    /**
+     * Controls the order of the stat value & description column
+     * @uiName Flex Reverse
+     * @default
+     */
+    flexReverse?: boolean;
+    /**
+     * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
+     * @uiName Program ID
+     * @uiWidget programSelector
+     */
+    programId?: string;
+    /**
+     * Select what type of stat to display. Manual paths are also supported.
+     * @uiWidget statTypeSelectWidget
+     * @uiName Stat Type
+     * @required
+     * @uiWidgetOptions {"version": 1.1}
+     */
+    statType: string;
+  }
+  interface SqmBrand {
+    /**
+     * Controls the primary brand color used in the Mint Components library.
+     * @uiName Brand Color
+     * @uiWidget color
+     * @format color
+     */
+    brandColor: string;
+    /**
+     * A font from the Google Fonts library used throughout the widget. This value is case sensitive.
+     * @uiName Brand Font
+     * @default "Nunito Sans"
+     */
+    brandFont: string;
+  }
+  interface SqmCardFeed {
+    /**
+     * @uiName Column Gap
+     * @uiType number
+     */
+    gap: number;
+    /**
+     * @uiName Card Width
+     */
+    width: number;
+  }
+  interface SqmCheckboxField {
+    /**
+     * @uiName Checkbox Label
+     */
+    checkboxLabel: string;
+    /**
+     * Used with link text if the checkbox label contains {labelLink}
+     * @uiName Checkbox Label Link
+     */
+    checkboxLabelLink: string;
+    /**
+     * @uiName Checkbox Label Link Text
+     */
+    checkboxLabelLinkText: string;
+    /**
+     * @uiName Checkbox Name Attribute
+     */
+    checkboxName: string;
+    /**
+     * @uiName Optional
+     * @default
+     */
+    checkboxOptional?: boolean;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<CheckboxFieldViewProps>;
+    /**
+     * @uiName Unchecked Error Message
+     */
+    errorMessage: string;
+  }
+  interface SqmDividedLayout {
+    /**
+     * @uiName Direction
+     * @uiType string
+     * @uiEnum ["row", "column"]
+     * @uiEnumNames ["Row", "Column"]
+     */
+    direction: "row" | "column";
+    /**
+     * Uses Shorthand CSS border syntax
+     * @uiName Border Style
+     */
+    dividerStyle: string;
+  }
+  interface SqmDropdownField {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<DropdownFieldViewProps>;
+    /**
+     * @uiName Dropdown Label
+     */
+    dropdownLabel: string;
+    /**
+     * @uiName Dropdown Name Attribute
+     */
+    dropdownName: string;
+    /**
+     * @uiName Optional
+     * @default
+     */
+    dropdownOptional?: boolean;
+    /**
+     * @uiName Unselected Error Message
+     */
+    errorMessage: string;
+  }
+  interface SqmEditProfile {
+    /**
+     * @uiName Cancel Button Text
+     */
+    canceltext: string;
+    /**
+     * @uiName Region Field Label
+     */
+    currentregiontext: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<EditProfileViewProps>;
+    /**
+     * @uiName Heading
+     */
+    editprofileheader: string;
+    /**
+     * Enable editing button text
+     * @uiName Edit Profile Text
+     */
+    editprofiletext: string;
+    /**
+     * @uiName First Name Label
+     */
+    firstnametext: string;
+    /**
+     * @uiName Last Name Label
+     */
+    lastnametext: string;
+    /**
+     * Show or hide current region
+     * @uiName Show Region
+     */
+    showregion: boolean;
+    /**
+     * @uiName Info Button Text
+     */
+    updatetext: string;
+  }
+  interface SqmEmpty {
+    /**
+     * @uiName Title
+     */
+    emptyStateHeader: string;
+    /**
+     * @uiWidget ImageUpload
+     * @format url
+     * @uiName Image
+     */
+    emptyStateImage: string;
+    /**
+     * @uiName Description
+     * @uiWidget textArea
+     */
+    emptyStateText: string;
+  }
+  interface SqmFormMessage {
+    /**
+     * Icon to use in alert
+     * @uiName Icon
+     */
+    icon?: string;
+    /**
+     * @uiName Alert Type
+     */
+    type: string;
+  }
+  interface SqmGraphqlClientProvider {
+    /**
+     * @uiName Domain
+     */
+    domain: string;
+  }
+  interface SqmHero {
+    /**
+     * Can be an image url, colour or Shoelace variable.
+     * @uiName Background
+     */
+    background?: string;
+    /**
+     * Number of columns in the layout
+     * @uiName Columns
+     */
+    columns: 1 | 2;
+    /**
+     * @uiName Padding Size
+     * @uiEnum ["none", "small", "medium","large"]
+     * @uiEnumNames ["None", "Small", "Medium", "Large"]
+     */
+    paddingSize: "none" | "small" | "medium" | "large";
+    /**
+     * Secondary background image or color (for use in the right column)
+     * @uiName Secondary Background
+     */
+    secondaryBackground?: string;
+    /**
+     * Flexbox wrap direction, accepts wrap or wrap-reverse
+     * @uiName Wrap Direction
+     * @uiEnum ["wrap", "wrap-reverse"]
+     * @uiEnumNames ["Wrap", "Wrap Reverse"]
+     */
+    wrapDirection: "wrap" | "wrap-reverse";
+  }
+  interface SqmHeroImage {
+    /**
+     * @uiName Background Color
+     * @uiWidget color
+     * @format color
+     */
+    backgroundColor?: string;
+    /**
+     * @uiName Button Link
+     */
+    buttonLink?: string;
+    /**
+     * @uiName Open Link in New Tab
+     * @default
+     */
+    buttonNewTab?: boolean;
+    /**
+     * @uiName Button Text
+     */
+    buttonText?: string;
+    /**
+     * @uiName Description
+     * @uiWidget textArea
+     */
+    description?: string;
+    /**
+     * @uiName Title
+     */
+    header?: string;
+    /**
+     * @uiName Image Mobile Position
+     * @uiType string
+     * @uiEnum ["top", "bottom"]
+     * @uiEnumNames ["Top", "Bottom"]
+     */
+    imageMobilePos: "top" | "bottom";
+    /**
+     * @uiName Image Percentage
+     * @uiType number
+     */
+    imagePercentage: number;
+    /**
+     * @uiName Image Position
+     * @uiType string
+     * @uiEnum ["left", "center", "right"]
+     * @uiEnumNames ["Left", "Center", "Right"]
+     */
+    imagePos: "left" | "center" | "right";
+    /**
+     * @uiWidget ImageUpload
+     * @format url
+     * @uiName Image
+     */
+    imageUrl: string;
+    /**
+     * @uiName Image Layout
+     * @uiType string
+     * @uiEnum ["overlay", "columns"]
+     * @uiEnumNames ["Overlay", "Two-column"]
+     */
+    layout: "overlay" | "columns";
+    /**
+     * @uiName Overlay Color
+     * @uiWidget color
+     * @format color
+     */
+    overlayColor?: string;
+    /**
+     * @uiName Overlay Opacity
+     */
+    overlayOpacity: string;
+    /**
+     * @uiName Image Padding
+     * @uiType string
+     * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+     * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+     */
+    paddingImage: Spacing;
+    /**
+     * @uiName Text Padding
+     * @uiType string
+     * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+     * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+     */
+    paddingText: Spacing;
+    /**
+     * @uiName Text Color
+     * @uiWidget color
+     * @format color
+     */
+    textColor?: string;
+  }
+  interface SqmHookStoryContainer {
+    hookStory: FunctionalComponent;
+  }
+  interface SqmImage {
+    /**
+     * @uiName Position Alignment
+     * @uiType string
+     * @uiEnum ["left", "center", "right"]
+     * @uiEnumNames ["Left", "Center", "Right"]
+     */
+    alignment: "left" | "center" | "right";
+    /**
+     * @uiName Background Color
+     * @uiWidget color
+     * @format
+     */
+    backgroundColor: string;
+    /**
+     * @uiWidget ImageUpload
+     * @format url
+     * @required
+     * @uiName Image Link
+     */
+    imageUrl: string;
+    /**
+     * (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
+     * @uiName Minimum Height
+     */
+    minHeight?: string;
+  }
+  interface SqmInputField {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<InputFieldViewProps>;
+    /**
+     * @uiName Required Error Message
+     */
+    errorMessage: string;
+    /**
+     * @uiName Input Label
+     */
+    fieldLabel: string;
+    /**
+     * Used as the key of the inputs value in form data.
+     * @uiName Input Name Attribute
+     */
+    fieldName: string;
+    /**
+     * @uiName Optional
+     * @default
+     */
+    fieldOptional?: boolean;
+    /**
+     * @uiName Input Type
+     * @uiType string
+     * @uiEnum ["text", "date", "tel"]
+     * @uiEnumNames ["Text", "Date", "Phone Number"]
+     */
+    fieldType: "text" | "date" | "tel";
+  }
+  interface SqmLeaderboard {
+    /**
+     * Title displayed for users without names
+     * @uiName Unknown User Text
+     */
+    anonymousUser: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<LeaderboardViewProps>;
+    /**
+     * Hide the viewer's leaderboard row if not in the top results.
+     * @uiName Hide Viewing User
+     * @default
+     */
+    hideViewer: boolean;
+    /**
+     * @uiName Leaderboard Time Interval
+     * @uiWidget dateRange
+     * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+     */
+    interval: string;
+    /**
+     * @uiName Leaderboard Type
+     * @uiType string
+     * @required
+     * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
+     * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
+     */
+    leaderboardType:
+      | "topStartedReferrers"
+      | "topConvertedReferrers"
+      | "topPointEarners";
+    /**
+     * Control the maximum amount of rows displayed on the leaderboard.
+     * @uiName Maximum Rows Number
+     */
+    maxRows: number;
+    /**
+     * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
+     * @uiName Program
+     * @uiWidget programSelector
+     */
+    programId?: string;
+    /**
+     * @uiName Rank Type
+     * @uiType string
+     * @uiEnum ["rowNumber", "rank", "denseRank"]
+     * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
+     */
+    rankType: "rowNumber" | "rank" | "denseRank";
+    /**
+     * @uiName Rank Column Heading
+     */
+    rankheading?: string;
+    /**
+     * @uiName Show Leaderboard Rank
+     */
+    showRank: boolean;
+    /**
+     * @uiName Stats Column Heading
+     */
+    statsheading: string;
+    /**
+     * @uiName User Column Heading
+     */
+    usersheading: string;
+  }
+  interface SqmLeaderboardRank {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<LeaderboardRankViewProps>;
+    /**
+     * @uiName Leaderboard Time Interval
+     * @uiWidget dateRange
+     * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+     */
+    interval: string;
+    /**
+     * @uiName Leaderboard Type
+     * @uiType string
+     * @required
+     * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
+     * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
+     */
+    leaderboardType:
+      | "topStartedReferrers"
+      | "topConvertedReferrers"
+      | "topPointEarners";
+    /**
+     * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
+     * @uiName Program
+     * @uiWidget programSelector
+     */
+    programId?: string;
+    /**
+     * @uiName Rank Text
+     * @uiWidget textArea
+     */
+    rankText: string;
+    /**
+     * @uiName Default Rank
+     * @uiType string
+     * @uiEnum ["rowNumber", "rank", "denseRank"]
+     * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
+     */
+    rankType: "rowNumber" | "rank" | "denseRank";
+    /**
+     * @uiName Unranked Text
+     */
+    unrankedText: string;
+  }
+  interface SqmNameFields {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<NameFieldsViewProps>;
+    /**
+     * @uiName First Name label
+     */
+    firstNameLabel: string;
+    /**
+     * @uiName Last Name label
+     */
+    lastNameLabel: string;
+  }
+  interface SqmNavigationMenu {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<NavigationMenuViewProps>;
+    /**
+     * @uiName Include Dropdown Menu
+     */
+    includeDropdown: boolean;
+    /**
+     * Label on the header menu
+     * @uiName Menu Label
+     */
+    menuLabel: string;
+  }
+  interface SqmNavigationSidebar {}
+  interface SqmNavigationSidebarItem {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<NavigationSidebarItemViewProps>;
+    /**
+     * Options available at https://shoelace.style/components/icon
+     * @uiName Icon
+     */
+    icon: string;
+    /**
+     * @uiName Label
+     */
+    label: string;
+    /**
+     * @uiName Navigation Path
+     */
+    path: string;
+  }
+  interface SqmPasswordField {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: PasswordFieldViewDemoProps;
+    /**
+     * Enable live password validation
+     * @uiName Enable Validation
+     */
+    enableValidation: boolean;
+    /**
+     * Label for password field
+     * @uiName Password Label
+     */
+    fieldLabel: string;
+  }
+  interface SqmPopupContainer {
+    /**
+     * Display a close button on the popup
+     * @uiName Show Close Button
+     */
+    closeButton: boolean;
+    /**
+     * Text inside the close button
+     * @uiName Close Button Text
+     */
+    closeButtonText: string;
+    /**
+     * Specify padding on the popup contents when in embedded mode
+     * @uiName Embed Padding
+     * @uiType string
+     * @uiEnum ["none", "small", "medium", "large"]
+     * @uiEnumNames ["None", "Small", "Medium", "Large"]
+     */
+    embedPadding?: "none" | "small" | "medium" | "large";
+    /**
+     * Specify padding on the popup contents when in popup mode
+     * @uiName Popup Padding
+     * @uiType string
+     * @uiEnum ["none", "small", "medium", "large"]
+     * @uiEnumNames ["None", "Small", "Medium", "Large"]
+     */
+    popupPadding?: "none" | "small" | "medium" | "large";
+    /**
+     * Show Powered By SaaSquatch link
+     * @uiName Show Powered By
+     */
+    poweredBy: boolean;
+  }
+  interface SqmPortalChangePassword {
+    /**
+     * Modal cancel button text
+     * @uiName Cancel Button Text
+     */
+    cancelText: string;
+    /**
+     * Modal change password button text
+     * @uiName Change Password Button Text
+     */
+    changePasswordButtonText: string;
+    /**
+     * Password confirmation input field label
+     * @uiName Confirm Password Label
+     */
+    confirmPasswordFieldLabel: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalChangePasswordViewProps>;
+    /**
+     * @uiName Change Password Modal Header
+     */
+    modalChangePasswordHeader: string;
+    /**
+     * Password input field label
+     * @uiName Password Label
+     */
+    passwordFieldLabel: string;
+    /**
+     * @uiName Change Password Button Text
+     */
+    portalChangePasswordButtonText: string;
+    /**
+     * Portal change password section header
+     * @uiName Change Password Header
+     */
+    portalChangePasswordHeader: string;
+    /**
+     * Successful password change message
+     * @uiName Successful Message
+     */
+    successMessage: string;
+  }
+  interface SqmPortalContainer {
+    /**
+     * @uiName Center Content
+     */
+    center?: boolean;
+    /**
+     * @uiName Direction
+     * @uiType string
+     * @uiEnum ["row", "column"]
+     * @uiEnumNames ["Row", "Column"]
+     */
+    direction: "row" | "column";
+    /**
+     * @uiName Display
+     * @uiType string
+     * @uiEnum ["grid", "flex"]
+     * @uiEnumNames ["Grid", "Flex"]
+     */
+    display: "grid" | "flex";
+    /**
+     * @uiName Gap
+     * @uiType string
+     * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+     * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+     */
+    gap: Spacing;
+    /**
+     * Define how this container distributes its contents along the main-axis.
+     * @uiName Justify Content
+     * @uiType string
+     * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
+     * @uiEnumNames ["Start", "Center", "End", "Space Between", "Space Around", "Space Evenly"]
+     */
+    justifyContent?:
+      | "start"
+      | "center"
+      | "end"
+      | "space-between"
+      | "space-around"
+      | "space-evenly";
+    /**
+     * @uiName Maximum width
+     */
+    maxWidth?: string;
+    /**
+     * @uiName Minimum Width
+     */
+    minWidth?: string;
+    /**
+     * @uiName Padding
+     * @uiType string
+     * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+     * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+     */
+    padding: Spacing;
+  }
+  interface SqmPortalEmailVerification {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalEmailVerificationViewProps>;
+    /**
+     * @uiName Email Verification Header Text
+     */
+    emailVerificationHeader: string;
+    /**
+     * The page that users are redirected to from the verification email.
+     * @uiName Email Redirection Base Path
+     */
+    redirectPath: string;
+    /**
+     * @uiName Re-send Email Button Text
+     */
+    resendEmailButtonText: string;
+    /**
+     * @uiName Email Verification Body Text
+     */
+    verifyMessage: string;
+  }
+  interface SqmPortalFooter {
+    /**
+     * @uiName FAQ Link
+     */
+    faqLink?: string;
+    /**
+     * @uiName FAQ Text
+     */
+    faqText?: string;
+    /**
+     * @uiName Padding Bottom
+     */
+    paddingBottom: string;
+    /**
+     * @uiName Padding Left
+     */
+    paddingLeft: string;
+    /**
+     * @uiName Padding Right
+     */
+    paddingRight: string;
+    /**
+     * @uiName Padding Top
+     */
+    paddingTop: string;
+    /**
+     * @uiName Powered By Link
+     */
+    poweredByLink: string;
+    /**
+     * @uiName Show Powered By SaaSquatch
+     */
+    showPoweredBy: boolean;
+    /**
+     * @uiName Support Email
+     */
+    supportEmail: string;
+    /**
+     * @uiName Support Text
+     */
+    supportText: string;
+    /**
+     * @uiName Terms and Conditions Link
+     */
+    termsLink?: string;
+    /**
+     * @uiName Terms and Conditions Text
+     */
+    termsText?: string;
+  }
+  interface SqmPortalForgotPassword {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalForgotPasswordViewProps>;
+    /**
+     * @uiName Email Label
+     */
+    emailLabel: string;
+    /**
+     * @uiName Login Page Routing Path
+     */
+    loginPath: string;
+    /**
+     * The page that users are redirected to from the password reset email.
+     * @uiName Email Redirection Base Path
+     */
+    redirectPath: string;
+    /**
+     * @uiName Password Reset Button Text
+     */
+    submitLabel: string;
+  }
+  interface SqmPortalFrame {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalFrameViewProps>;
+  }
+  interface SqmPortalLogin {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalLoginViewProps>;
+    /**
+     * Label for email field
+     * @uiName Email Label
+     */
+    emailLabel: string;
+    /**
+     * Label for forgotten password button
+     * @uiName Forgot Password Text
+     */
+    forgotPasswordLabel: string;
+    /**
+     * Forgot password redirect path
+     * @uiName Forgot Password Path
+     */
+    forgotPasswordPath: string;
+    /**
+     * Page navigated to after sign-in
+     * @uiName Next Page Path
+     */
+    nextPage: string;
+    /**
+     * @uiName Heading Label
+     */
+    pageLabel: string;
+    /**
+     * Label for password field
+     * @uiName Password Label
+     */
+    passwordLabel: string;
+    /**
+     * Label for register button
+     * @uiName Register Button Text
+     */
+    registerLabel: string;
+    /**
+     * Register redirect path
+     * @uiName Register Path
+     */
+    registerPath: string;
+    /**
+     * Label for submit button
+     * @uiName Submit Button Text
+     */
+    submitLabel: string;
+  }
+  interface SqmPortalLogout {
+    /**
+     * @uiName Next Page Path
+     */
+    nextPage: string;
+  }
+  interface SqmPortalProfile {
+    /**
+     * Country input field label
+     * @uiName Country Label
+     */
+    countrytext: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalProfileViewProps>;
+    /**
+     * @uiName Edit Profile Header
+     */
+    editProfileHeader: string;
+    /**
+     * @uiName Edit Profile Sub Header
+     */
+    editProfileSubHeader: string;
+    /**
+     * Email input field label
+     * @uiName Email Label
+     */
+    emailtext: string;
+    /**
+     * First name input field label
+     * @uiName First Name Label
+     */
+    firstnametext: string;
+    /**
+     * Last name input field label
+     * @uiName Last Name Label
+     */
+    lastnametext: string;
+    /**
+     * Show or hide the country field
+     * @uiName Show Country Field
+     */
+    showCountry: boolean;
+    /**
+     * @uiName Submit Changes Button Text
+     */
+    submitChangeButtonText: string;
+  }
+  interface SqmPortalProtectedRoute {
+    /**
+     * @uiName Redirect Path
+     */
+    redirectTo: string;
+    /**
+     * @uiName Redirect Unverified Users Path
+     */
+    redirectToUnverified: string;
+    /**
+     * @uiName Require Email Verification
+     * @default
+     */
+    requireEmailVerification: boolean;
+  }
+  interface SqmPortalRegister {
+    /**
+     * Show or hide the confirm password input
+     * @uiName Show Confirm Password Field
+     * @default
+     */
+    confirmPassword: boolean;
+    /**
+     * @uiName Confirm Password Label
+     */
+    confirmPasswordLabel: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalRegisterViewProps>;
+    /**
+     * @uiName Email Label
+     */
+    emailLabel: string;
+    /**
+     * @uiName Enable Password Validation
+     */
+    enablePasswordValidation: boolean;
+    /**
+     * Hide default input fields to use custom fields
+     * @uiName Hide Default Inputs
+     * @default
+     */
+    hideInputs: boolean;
+    /**
+     * @uiName Login Button Text
+     */
+    loginLabel: string;
+    /**
+     * Login button redirection path
+     * @uiName Login Path
+     */
+    loginPath: string;
+    /**
+     * Page navigated to after registration
+     * @uiName Next Page
+     */
+    nextPage: string;
+    /**
+     * @uiName Heading Label
+     */
+    pageLabel: string;
+    /**
+     * @uiName Password Label
+     */
+    passwordLabel: string;
+    /**
+     * The page that users are redirected to from the verification email.
+     * @uiName Email Redirection Base Path
+     */
+    redirectPath: string;
+    /**
+     * @uiName Submit Button Text
+     */
+    submitLabel: string;
+  }
+  interface SqmPortalResetPassword {
+    /**
+     * Show or hide confirm password field
+     * @uiName Show Confirm Password
+     * @default
+     */
+    confirmPassword: boolean;
+    /**
+     * @uiName Confirm Password Label
+     */
+    confirmPasswordFieldLabel: string;
+    /**
+     * Button text displayed after a successful password reset
+     * @uiName Continue Button Text
+     */
+    continueButtonText: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalResetPasswordViewProps>;
+    /**
+     * The page that users are redirected to if the reset fails due to outdated password reset attempt.
+     * @uiName Failed Page Path
+     */
+    failedPage: string;
+    /**
+     * The page that users are redirected to when the password reset succeeds.
+     * @uiName Next Page Path
+     */
+    nextPage: string;
+    /**
+     * @uiName Password Label
+     */
+    passwordFieldLabel: string;
+    /**
+     * Displayed after a successful password reset
+     * @uiName Successful Password Reset Text
+     */
+    passwordResetHeader: string;
+    /**
+     * @uiName Password Reset Button Text
+     */
+    resetPasswordButtonText: string;
+    /**
+     * @uiName Reset Password Header Text
+     */
+    resetPasswordHeader: string;
+  }
+  interface SqmPortalVerifyEmail {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalVerifyEmailViewProps>;
+    /**
+     * The page that users are redirected to if verification fails due to outdated verification attempt.
+     * @uiName Failed Page Path
+     */
+    failedPage: string;
+    /**
+     * The page that users are redirected to when the verification succeeds.
+     * @uiName Next Page Path
+     */
+    nextPage: string;
+  }
+  interface SqmProgramExplainer {
+    /**
+     * @uiName Header Background Color
+     * @uiWidget color
+     * @format color
+     */
+    backgroundColor: string;
+    /**
+     * @uiName Header Text
+     */
+    header: string;
+    /**
+     * @uiName Header Text Color
+     * @uiWidget color
+     * @format color
+     */
+    textColor: string;
+  }
+  interface SqmProgramExplainerStep {
+    /**
+     * @uiName Background Color
+     * @uiWidget color
+     * @format color
+     */
+    backgroundColor: string;
+    /**
+     * @uiName Description
+     * @uiWidget textArea
+     */
+    description: string;
+    /**
+     * @uiName Title
+     */
+    header: string;
+    /**
+     * Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive.
+     * @uiName Icon
+     */
+    icon?: string;
+    /**
+     * Displayed in place of an icon
+     * @uiName Image Url
+     * @uiWidget imageUpload
+     * @format url
+     */
+    imageUrl?: string;
+    /**
+     * @uiName Text Color
+     * @uiWidget color
+     * @format color
+     */
+    textColor: string;
+  }
+  interface SqmProgramMenu {}
+  interface SqmQa {
+    /**
+     * Description here
+     * @uiName Boolean Switch with default
+     */
+    booleanSwitch?: boolean;
+    /**
+     * Description here
+     * @uiName Boolean Switch with no default
+     */
+    booleanSwitchNoDefault?: boolean;
+    /**
+     * Description here
+     * @uiName Boolean Switch required with no default
+     * @required
+     */
+    booleanSwitchRequiredNoDefault?: boolean;
+    /**
+     * Description here
+     * @uiName Color with default
+     * @uiWidget color
+     * @format color
+     */
+    color?: string;
+    /**
+     * Description here
+     * @uiName Color with no default
+     * @uiWidget color
+     * @format color
+     */
+    colorNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Color required with no default
+     * @required
+     * @uiWidget color
+     * @format color
+     */
+    colorRequiredNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Date Interval with default
+     * @uiWidget dateRange
+     * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+     * @format date-interval
+     */
+    dateInterval?: string;
+    /**
+     * Description here
+     * @uiName Date Interval with no default
+     * @uiWidget dateRange
+     * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+     * @format date-interval
+     */
+    dateIntervalNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Date Interval required with no default
+     * @required
+     * @uiWidget dateRange
+     * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+     * @format date-interval
+     */
+    dateIntervalRequiredNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Image Upload with default
+     * @uiWidget ImageUpload
+     * @format url
+     */
+    imageUpload?: string;
+    /**
+     * Description here
+     * @uiName Image Upload with no default
+     * @uiWidget ImageUpload
+     * @format url
+     */
+    imageUploadNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Image Upload required with no default
+     * @required
+     * @uiWidget ImageUpload
+     * @format url
+     */
+    imageUploadRequiredNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Number Max 7
+     * @maximum 7
+     */
+    max?: number;
+    /**
+     * Description here
+     * @uiName String Max Length 10
+     * @maxLength 10
+     */
+    maxLength?: string;
+    /**
+     * Description here
+     * @uiName Number Min 7
+     * @minimum 7
+     */
+    min?: number;
+    /**
+     * Description here
+     * @uiName String Min Length 10
+     * @minLength 10
+     */
+    minLength?: string;
+    /**
+     * Description here
+     * @uiName Number Enum Select with default
+     * @uiEnum [1,2,3]
+     * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+     */
+    numberEnumSelect?: number;
+    /**
+     * Description here
+     * @uiName Number Enum Select with no default
+     * @uiEnum [1,2,3]
+     * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+     */
+    numberEnumSelectNoDefault?: number;
+    /**
+     * Description here
+     * @uiName Number Enum Select required with no default
+     * @required
+     * @uiEnum [1,2,3]
+     * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+     */
+    numberEnumSelectRequiredNoDefault?: number;
+    /**
+     * Description here
+     * @uiName Number Input with default
+     */
+    numberInput?: number;
+    /**
+     * Description here
+     * @uiName Number Input with no default
+     */
+    numberInputNoDefault?: number;
+    /**
+     * Description here
+     * @uiName Number required with no default
+     * @required
+     */
+    numberRequired?: number;
+    /**
+     * Description here
+     * @uiName Program Selector with default
+     * @uiWidget programSelector
+     */
+    programSelector?: string;
+    /**
+     * Description here
+     * @uiName Program Selector with no default
+     * @uiWidget programSelector
+     */
+    programSelectorNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Program Selector required with no default
+     * @required
+     * @uiWidget programSelector
+     */
+    programSelectorRequiredNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Stat Selector with default
+     * @uiWidget statTypeSelectWidget
+     */
+    statSelector?: string;
+    /**
+     * Description here
+     * @uiName Stat Selector with no default
+     * @uiWidget statTypeSelectWidget
+     */
+    statSelectorNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Stat Selector required with no default
+     * @required
+     * @uiWidget statTypeSelectWidget
+     */
+    statSelectorRequiredNoDefault?: string;
+    /**
+     * Description here
+     * @uiName String Enum Select with default
+     * @uiEnum ["option1","option2","option3"]
+     * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+     */
+    stringEnumSelect?: string;
+    /**
+     * Description here
+     * @uiName String Enum Select with no default
+     * @uiEnum ["option1","option2","option3"]
+     * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+     */
+    stringEnumSelectNoDefault?: string;
+    /**
+     * Description here
+     * @uiName String Enum Select required with no default
+     * @required
+     * @uiEnum ["option1","option2","option3"]
+     * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+     */
+    stringEnumSelectRequiredNoDefault?: string;
+    /**
+     * Description here
+     * @uiName String required with no default
+     * @required
+     */
+    stringRequired?: string;
+    /**
+     * Description here
+     * @uiName Text Area Input
+     * @uiWidget textArea with default
+     */
+    textAreaInput?: string;
+    /**
+     * Description here
+     * @uiName Text Area Input
+     * @uiWidget textArea with no default
+     */
+    textAreaInputNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Text Area Input
+     * @uiWidget textArea required with no default
+     * @required
+     */
+    textAreaInputRequiredNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Text Input with default
+     */
+    textInput?: string;
+    /**
+     * Description here
+     * @uiName Text Input with no default
+     */
+    textInputNoDefault?: string;
+  }
+  interface SqmQaReferralCard {
+    /**
+     * @uiName Vertical Aligment
+     * @uiType string
+     * @uiEnum ["start", "center", "end"]
+     * @uiEnumNames ["Top", "Center", "Bottom"]
+     */
+    verticalAlignment: "start" | "center" | "end";
+  }
+  interface SqmQaTabs {
+    /**
+     * Used to specify the placement of the tabs
+     * @uiName Tabs Placement
+     * @uiType string
+     * @uiEnum ["left", "right", "bottom", "top"]
+     * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
+     */
+    placement?: "left" | "right" | "bottom" | "top";
+  }
+  interface SqmReferralCard {
+    /**
+     * @uiName Vertical Aligment
+     * @uiType string
+     * @uiEnum ["start", "center", "end"]
+     * @uiEnumNames ["Top", "Center", "Bottom"]
+     */
+    verticalAlignment: "start" | "center" | "end";
+  }
+  interface SqmReferralIframe {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<ReferralIframeViewProps>;
+    /**
+     * Height of the iframe container
+     * @uiName Iframe Height
+     */
+    iframeHeight: string;
+    /**
+     * URL of iframe to display
+     * @uiName Iframe Source
+     * @required
+     */
+    iframeSrc: string;
+    /**
+     * Width of the iframe container
+     * @uiName Iframe Width
+     */
+    iframeWidth: string;
+  }
+  interface SqmReferralTable {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<GenericTableViewProps>;
+    /**
+     * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+     * @uiName Hidden Mobile Columns
+     */
+    hiddenColumns?: string;
+    /**
+     * @uiName Tablet Breakpoint
+     */
+    mdBreakpoint?: number;
+    /**
+     * @uiName View More Button Text
+     */
+    moreLabel?: string;
+    /**
+     * Number of referrals displayed per page
+     * @uiName Referrals Per Page
+     */
+    perPage: number;
+    /**
+     * @uiName Previous Button Text
+     */
+    prevLabel?: string;
+    /**
+     * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs. If program ID is "classic", shows classic-only referrals
+     * @uiName Program
+     * @uiWidget programSelector
+     */
+    programId: string;
+    /**
+     * @uiName Show Column Labels
+     */
+    showLabels?: boolean;
+    /**
+     * Show referred by user in table
+     * @uiName Show Referrer
+     * @default
+     */
+    showReferrer?: boolean;
+    /**
+     * @uiName Mobile Breakpoint
+     */
+    smBreakpoint?: number;
+  }
+  interface SqmReferralTableCell {
+    innerTemplate: string;
+  }
+  interface SqmReferralTableColumn {
+    /**
+     * @uiName Column Title
+     */
+    columnTitle: string;
+    renderCell: (_: Referral) => Promise<any>;
+    renderLabel: () => Promise<string>;
+  }
+  interface SqmReferralTableDateCell {
+    date: number;
+    locale: string;
+  }
+  interface SqmReferralTableDateColumn {
+    /**
+     * @uiName Date Column Title
+     */
+    columnTitle: string;
+    /**
+     * @uiName Date Displayed
+     * @uiType string
+     * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
+     * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended", "Date Referral Paid", "Date User Modified"]
+     */
+    dateShown: ReferralDates;
+    renderCell: (data: Referral, locale: string) => Promise<any>;
+    renderLabel: () => Promise<string>;
+    renderReferrerCell: (data: Referrer) => Promise<any>;
+  }
+  interface SqmReferralTableRewardsCell {
+    expiringText: string;
+    fuelTankText: string;
+    hideDetails: boolean;
+    locale: string;
+    pendingForText: string;
+    rewardReceivedText: string;
+    rewards: Reward[];
+    statusLongText: string;
+    statusText: string;
+  }
+  interface SqmReferralTableRewardsColumn {
+    /**
+     * @uiName Reward column title
+     */
+    columnTitle: string;
+    /**
+     * Shown in the dropdown details when a reward has an expiry date.
+     * @uiName Reward Expiring Text
+     */
+    expiringText: string;
+    /**
+     * Shown in the dropdown details when a reward has an associated fuel tank code.
+     * @uiName Fuel Tank Code Text
+     */
+    fuelTankText: string;
+    /**
+     * @uiName Hide dropdown details of reward
+     * @default
+     */
+    hideDetails: boolean;
+    /**
+     * Shown in the dropdown details when a reward is pending.
+     * @uiName Reward Pending Text
+     */
+    pendingForText: string;
+    renderCell: (data: Referral, locale: string) => Promise<any>;
+    renderLabel: () => Promise<string>;
+    renderReferrerCell: (data: Referrer) => Promise<any>;
+    /**
+     * Shown in the dropdown details when a reward has been received.’
+     * @uiName Reward Received Text
+     */
+    rewardReceivedText: string;
+    /**
+     * Additional status text shown in the details drop down.
+     * @uiName Reward Status Long Text
+     * @uiWidget textArea
+     */
+    statusLongText: string;
+    /**
+     * Text shown in the reward status badge.
+     * @uiName Reward Status Text
+     * @uiWidget textArea
+     */
+    statusText: string;
+  }
+  interface SqmReferralTableStatusCell {
+    converted: boolean;
+    statusText: string;
+  }
+  interface SqmReferralTableStatusColumn {
+    /**
+     * @uiName Column Title
+     */
+    columnTitle: string;
+    /**
+     * @uiName Converted Status Text
+     */
+    convertedStatusText: string;
+    /**
+     * @uiName In Progress Status Text
+     */
+    inProgressStatusText: string;
+    renderCell: (data: Referral) => Promise<any>;
+    renderLabel: () => Promise<string>;
+    renderReferrerCell: (data: Referrer) => Promise<any>;
+  }
+  interface SqmReferralTableUserCell {
+    name: string;
+  }
+  interface SqmReferralTableUserColumn {
+    /**
+     * Name displayed for unknown users
+     * @uiName Anonymous User Text
+     */
+    anonymousUser: string;
+    /**
+     * @uiName User Column Title
+     */
+    columnTitle: string;
+    /**
+     * Name displayed for deleted users
+     * @uiName Deleted User Text
+     */
+    deletedUser: string;
+    renderCell: (data: Referral) => Promise<any>;
+    renderLabel: () => Promise<string>;
+    renderReferrerCell: (data: Referrer) => Promise<any>;
+  }
+  interface SqmRewardExchangeList {
+    /**
+     * @uiName Back Button Text
+     */
+    backText: string;
+    /**
+     * @uiName Cancel Button Text
+     */
+    cancelText: string;
+    /**
+     * @uiName Choose Amount Progress Title
+     */
+    chooseAmountTitle: string;
+    /**
+     * @uiName Choose Reward Progress Title
+     */
+    chooseRewardTitle: string;
+    /**
+     * @uiName Confirmation Progress Title
+     */
+    confirmationTitle: string;
+    /**
+     * @uiName Continue Button Text
+     */
+    continueText: string;
+    /**
+     * Displayed on the reward selection page.
+     * @uiName Continue to Confirmation Button Text
+     */
+    continueToConfirmationText: string;
+    /**
+     * Shown in the confirmation state.
+     * @uiName Cost Row Title
+     */
+    costTitle: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<RewardExchangeViewProps>;
+    /**
+     * @uiName Done Text
+     */
+    doneText: string;
+    /**
+     * Error message shown when reward is not available
+     * @uiName Not Available Error
+     * @uiWidget textArea
+     */
+    notAvailableError: string;
+    /**
+     * @uiName Not Enough Error Message
+     * @uiWidget textArea
+     */
+    notEnoughError: string;
+    /**
+     * @uiName Promo Code Text
+     */
+    promoCode: string;
+    /**
+     * Shown if an error occurs when loading the reward exchange.
+     * @uiName Reward List Error Message
+     * @uiWidget textArea
+     */
+    queryError: string;
+    /**
+     * @uiName Redeem Button Text
+     */
+    redeemText: string;
+    /**
+     * Displayed as the header for the confirmation page.
+     * @uiName Confirmation Title Text
+     */
+    redeemTitle: string;
+    /**
+     * Shown if an error occurs during the reward exchange.
+     * @uiName Redemption Error Message
+     * @uiWidget textArea
+     */
+    redemptionError: string;
+    /**
+     * Displayed on the success screen when a user successfully exchanges for a reward.
+     * @uiName Redemption Success Message
+     * @uiWidget textArea
+     */
+    redemptionSuccessText: string;
+    /**
+     * Shown in the confirmation state.
+     * @uiName Reward Amount Row Title
+     */
+    rewardAmountTitle: string;
+    /**
+     * Shown in the confirmation state.
+     * @uiName Reward Row Title
+     */
+    rewardNameTitle: string;
+    /**
+     * @uiName Reward Redeemed Text
+     */
+    rewardRedeemedText: string;
+    /**
+     * @uiName Reward Title Text
+     */
+    rewardTitle: string;
+    /**
+     * @uiName Select Amount Text
+     * @uiWidget textArea
+     */
+    selectText: string;
+    /**
+     * Set the number of placeholder cards to be shown in loading state.
+     * @uiName Loading Cards
+     */
+    skeletonCardNum: number;
+    /**
+     * Displayed on the reward exchange cards.
+     * @uiName Reward Exchange Amount Text
+     * @uiWidget textArea
+     */
+    sourceAmountMessage: string;
+    /**
+     * Shown when a user copies a fuel tank code
+     * @uiName Tooltip Text
+     */
+    tooltipText: string;
+  }
+  interface SqmRewardsTable {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<GenericTableViewProps>;
+    /**
+     * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+     * @uiName Mobile Hidden Columns
+     */
+    hiddenColumns?: string;
+    /**
+     * @uiName Tablet Breakpoint
+     */
+    mdBreakpoint?: number;
+    /**
+     * @uiName View More button text
+     */
+    moreLabel?: string;
+    /**
+     * @uiName Number of rewards per page
+     */
+    perPage: number;
+    /**
+     * @uiName Previous button text
+     */
+    prevLabel?: string;
+    /**
+     * Filters to only show rewards in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all rewards from all programs.
+     * @uiName Program
+     * @uiWidget programSelector
+     */
+    programId: string;
+    /**
+     * @uiName Show column labels
+     */
+    showLabels?: boolean;
+    /**
+     * @uiName Mobile Breakpoint
+     */
+    smBreakpoint?: number;
+  }
+  interface SqmRewardsTableCustomerNoteCell {
+    locale: string;
+    note: string;
+  }
+  interface SqmRewardsTableCustomerNoteColumn {
+    /**
+     * @uiName Column Title
+     */
+    columnTitle: string;
+    renderCell: (data: Reward, locale: string) => Promise<any>;
+    renderLabel: () => Promise<string>;
+  }
+  interface SqmRewardsTableDateCell {
+    date: number;
+    locale: string;
+  }
+  interface SqmRewardsTableDateColumn {
+    /**
+     * @uiName Date Column Title
+     */
+    columnTitle: string;
+    /**
+     * @uiName Date Displayed
+     * @uiType string
+     * @uiEnum ["dateGiven", "dateExpires", "dateCancelled", "dateRedeemed", "dateScheduledFor"]
+     * @uiEnumNames ["Date Given", "Date Expires", "Date Cancelled", "Date Redeemed", "Date Scheduled For"]
+     */
+    dateShown: string;
+    renderCell: (data: Reward, locale: string) => Promise<any>;
+    renderLabel: () => Promise<string>;
+  }
+  interface SqmRewardsTableRewardCell {
+    availableText: string;
+    copyText: string;
+    locale: string;
+    redeemedText: string;
+    reward: Reward;
+  }
+  interface SqmRewardsTableRewardColumn {
+    /**
+     * @uiName Remaining Amount Text
+     */
+    availableText: string;
+    /**
+     * @uiName Reward Column Title
+     */
+    columnTitle: string;
+    /**
+     * @uiName Copied Fuel Tank Text
+     */
+    copyText: string;
+    /**
+     * @uiName Redeemed Amount Text
+     */
+    redeemedText: string;
+    renderCell: (data: Reward, locale: string) => Promise<any>;
+    renderLabel: () => Promise<string>;
+  }
+  interface SqmRewardsTableSourceCell {
+    anonymousUserText: string;
+    deletedUserText: string;
+    locale: string;
+    referralText: string;
+    reward: Reward;
+    rewardExchangeText: string;
+    rewardSourceText: string;
+  }
+  interface SqmRewardsTableSourceColumn {
+    /**
+     * Name displayed for unknown users
+     * @uiName Anonymous User Text
+     */
+    anonymousUser: string;
+    /**
+     * @uiName Soruce Column Title
+     */
+    columnTitle: string;
+    /**
+     * Name displayed for deleted users
+     * @uiName Deleted User Text
+     */
+    deletedUser: string;
+    /**
+     * Shown when a reward has been created by a referral
+     * @uiName Referral Text
+     * @uiWidget textArea
+     */
+    referralText: string;
+    renderCell: (data: Reward, locale: any) => Promise<any>;
+    renderLabel: () => Promise<string>;
+    /**
+     * @uiName Reward Exchange Label
+     */
+    rewardExchangeText: string;
+    /**
+     * Shown when a reward has been created by a source other than a referral.
+     * @uiName Reward Source Text
+     * @uiWidget textArea
+     */
+    rewardSourceText: string;
+  }
+  interface SqmRewardsTableStatusCell {
+    expiryText: string;
+    locale: string;
+    pendingScheduled: string;
+    pendingUnhandled: string;
+    pendingUsTax: string;
+    reward: Reward;
+    statusText: string;
+  }
+  interface SqmRewardsTableStatusColumn {
+    /**
+     * @uiName Column Title
+     */
+    columnTitle: string;
+    /**
+     * Text shown before the date of an expiring reward.
+     * @uiName Expiry Date Prefix
+     */
+    expiryText: string;
+    /**
+     * Text shown before the available date of a pending reward.
+     * @uiName Pending Date Prefix
+     */
+    pendingScheduled: string;
+    /**
+     * Displayed when fulfillment error occured when creating a reward.
+     * @uiName Unhandled Error Text
+     */
+    pendingUnhandled: string;
+    /**
+     * Displayed when a reward is pending due to W9 compliance.
+     * @uiName W9 Pending Text
+     */
+    pendingUsTax: string;
+    renderCell: (data: Reward, locale: string) => Promise<any>;
+    renderLabel: () => Promise<string>;
+    /**
+     * @uiName Reward Status Text
+     * @uiWidget textArea
+     */
+    statusText: string;
+  }
+  interface SqmRoute {
+    /**
+     * @uiName Navigation Path Name
+     */
+    path: string;
+  }
+  interface SqmRouter {}
+  interface SqmScroll {
+    /**
+     * @uiName Button Text
+     */
+    buttonText: string;
+    /**
+     * @uiName Button Type
+     * @uiType string
+     * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
+     * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger", "Text"]
+     */
+    buttonType:
+      | "default"
+      | "primary"
+      | "success"
+      | "neutral"
+      | "warning"
+      | "danger"
+      | "text";
+    /**
+     * Draws a circle button.
+     * @uiName Circle
+     */
+    circle: boolean;
+    /**
+     * Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive.
+     * @uiName Icon
+     */
+    iconName: string;
+    /**
+     * @uiName Icon Slot
+     * @uiType string
+     * @uiEnum ["prefix", "suffix"]
+     * @uiEnumNames ["Prefix", "Suffix"]
+     */
+    iconSlot: string;
+    /**
+     * The button becomes full width if the screen size is smaller than 500px
+     * @uiName Full Width on Mobile
+     */
+    mobile?: boolean;
+    /**
+     * Draws an outlined button.
+     * @uiName Outline
+     */
+    outline: boolean;
+    /**
+     * Draws a pill-style button with rounded edges.
+     * @uiName Pill
+     */
+    pill: boolean;
+    /**
+     * @uiName Scroll Animation Style
+     * @uiType string
+     * @uiEnum ["smooth", "auto"]
+     * @uiEnumNames ["Smooth", "Auto"]
+     */
+    scrollAnimation: "smooth" | "auto";
+    /**
+     * ID applied to the HTML tag you would like to scroll to. E.g tab-1
+     * @uiName Scroll Id
+     */
+    scrollId?: string;
+    /**
+     * The name of the HTML tag you would like to scroll to. E.g referral-table
+     * @uiName Scroll Tag Name
+     */
+    scrollTagName?: string;
+    /**
+     * @uiName Size
+     * @uiType string
+     * @uiEnum ["small", "medium", "large"]
+     * @uiEnumNames ["Small", "Medium", "Large"]
+     */
+    size: string;
+  }
+  interface SqmShareButton {
+    /**
+     * @uiName Button Background Color
+     * @uiWidget color
+     * @format color
+     */
+    backgroundcolor?: string;
+    /**
+     * Configure border radius with pixel amount
+     * @uiName Border Radius
+     */
+    borderradius?: number;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<ShareButtonViewProps>;
+    /**
+     * @uiName Disabled
+     */
+    disabled?: boolean;
+    /**
+     * @uiName Hide Icon
+     * @default
+     */
+    hideicon?: boolean;
+    /**
+     * @uiName Hide Text
+     * @default
+     */
+    hidetext?: boolean;
+    /**
+     * Options available at https://shoelace.style/components/icon  Icon used in button. Will try to select an icon based on the share medium if left empty.
+     * @uiName Icon
+     */
+    icon?: string;
+    /**
+     * @uiName Icon Location
+     * @uiType string
+     * @uiEnum ["prefix", "suffix" ]
+     * @uiEnumNames ["Prefix", "Suffix"]
+     */
+    iconslot?: "prefix" | "suffix";
+    /**
+     * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
+     * @uiName Share Medium
+     * @uiType string
+     * @required
+     * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
+     * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
+     */
+    medium:
+      | "facebook"
+      | "twitter"
+      | "email"
+      | "direct"
+      | "linkedin"
+      | "sms"
+      | "fbmessenger"
+      | "whatsapp"
+      | "linemessenger"
+      | "pinterest"
+      | "reminder"
+      | "unknown";
+    /**
+     * @uiName Display Pill
+     */
+    pill?: boolean;
+    /**
+     * Optional programId, or uses the programId context where this button is rendered.
+     * @uiName Program ID
+     * @uiWidget programSelector
+     */
+    programId?: string;
+    /**
+     * Text used for native sharing (mobile only)
+     * @uiName Share Text
+     */
+    sharetext?: string;
+    /**
+     * Title used for native sharing (mobile only)
+     * @uiName Share Title
+     */
+    sharetitle?: string;
+    /**
+     * @uiName Button Size
+     * @uiType string
+     * @uiEnum ["small", "medium", "large" ]
+     * @uiEnumNames ["Small", "Medium", "Large"]
+     */
+    size?: "small" | "medium" | "large";
+    /**
+     * @uiName Button Text Color
+     * @uiWidget color
+     * @format color
+     */
+    textcolor?: string;
+    /**
+     * @uiType string
+     * @uiName Button Style
+     * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
+     * @uiEnumNames ["Primary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
+     */
+    type?:
+      | "primary"
+      | "success"
+      | "info"
+      | "warning"
+      | "danger"
+      | "default"
+      | "text";
+  }
+  interface SqmShareCode {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<ShareLinkViewProps>;
+    /**
+     * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
+     * @uiName Program ID
+     * @uiWidget programSelector
+     */
+    programId?: string;
+    /**
+     * The number of milliseconds that the tooltip appears for
+     * @uiName Tooltip lifespan
+     */
+    tooltiplifespan: number;
+    /**
+     * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+     * @uiName Tooltip Text
+     */
+    tooltiptext: string;
+  }
+  interface SqmShareLink {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<ShareLinkViewProps>;
+    /**
+     * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
+     * @uiName Program ID
+     * @uiWidget programSelector
+     */
+    programId?: string;
+    /**
+     * The number of milliseconds that the tooltip appears for
+     * @uiName Tooltip Lifespan
+     */
+    tooltiplifespan: number;
+    /**
+     * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+     * @uiName Tooltip Text
+     */
+    tooltiptext: string;
+  }
+  interface SqmStatContainer {
+    /**
+     * @uiName Display
+     * @uiType string
+     * @uiEnum ["grid", "flex"]
+     * @uiEnumNames ["Grid", "Flex"]
+     */
+    display: "grid" | "flex";
+    /**
+     * @uiName Space Between Stats
+     * @uiType string
+     * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+     * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+     */
+    space: Spacing;
+  }
+  interface SqmStencilbook {}
+  interface SqmTab {
+    /**
+     * @uiName Tab Title
+     */
+    header: string;
+  }
+  interface SqmTableCell {
+    colspan: number;
+    padding: string;
+  }
+  interface SqmTableRow {
+    border: string;
+  }
+  interface SqmTabs {
+    /**
+     * Used to specify the placement of the tabs
+     * @uiName Tabs Placement
+     * @uiType string
+     * @uiEnum ["left", "right", "bottom", "top"]
+     * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
+     */
+    placement?: "left" | "right" | "bottom" | "top";
+  }
+  interface SqmTaskCard {
+    /**
+     * @uiName Button Link
+     * @uiGroup Button
+     */
+    buttonLink: string;
+    /**
+     * @uiName Button Text
+     * @uiGroup Button
+     */
+    buttonText: string;
+    /**
+     * @uiName Title
+     * @uiGroup Task
+     */
+    cardTitle: string;
+    /**
+     * Displays the amount of times that a user has completed a repeatable task.
+     * @uiName Completed Count Text
+     * @uiGroup Task
+     * @uiWidget textArea
+     */
+    completedText: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<TaskCardViewProps | BigStatViewProps>;
+    /**
+     * @uiName Description
+     * @uiGroup Task
+     */
+    description: string;
+    /**
+     * Task cards are hidden from users outside of the duration. They are always displayed if no duration is configured.
+     * @uiName Display Duration
+     * @uiWidget dateRange
+     * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+     * @uiGroup Task
+     */
+    displayDuration: string;
+    /**
+     * Shown to users after the end of the task duration.
+     * @uiName Ended Date Message
+     * @uiGroup Task
+     */
+    endedMessage: string;
+    /**
+     * Optionally send an event to SaaSquatch when a user clicks the button. Enter your event key into this field.
+     * @uiName Task Card Button Event Key
+     * @uiGroup Button
+     */
+    eventKey?: string;
+    /**
+     * Displayed when a user views a task card after the reward duration interval.
+     * @uiName Expiry Date Message
+     * @uiGroup Task
+     */
+    expiryMessage: string;
+    /**
+     * The number of times a reward can be earned.  Use zero for no limit (the default).
+     * @uiName Repeat Amount
+     * @uiGroup Reward
+     */
+    finite: number;
+    /**
+     * Sets the goal for users progress to know when a task has been completed. If repeatable is checked, repeatable goals is an increment of this.
+     * @uiName Goal Completion Number
+     * @uiGroup Goal
+     */
+    goal: number;
+    /**
+     * Button Link Opens in New Tab
+     * @uiName Open In New Tab
+     * @uiGroup Button
+     * @default
+     */
+    openNewTab: boolean;
+    /**
+     * The ID of the program that is used to scope the task card. When no ID is specified, it defaults to the program context in which the component is rendered.
+     * @uiName Program ID Override
+     * @uiWidget programSelector
+     * @uiGroup Goal
+     */
+    programId?: string;
+    /**
+     * The unit displayed to the right of steps and progress numbers on the progress bar. Ex: $ for dollars
+     * @uiName Progress Bar Unit
+     * @uiGroup Goal
+     */
+    progressBarUnit: string;
+    /**
+     * @uiName Goal Repeatable
+     * @uiGroup Goal
+     * @default
+     */
+    repeatable: boolean;
+    /**
+     * @uiName Reward Amount
+     * @uiGroup Reward
+     */
+    rewardAmount: string;
+    /**
+     * Task cards are disabled to users outside of the duration. They are not disabled if no duration is configured.
+     * @uiName Reward Duration
+     * @uiWidget dateRange
+     * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+     * @uiGroup Reward
+     */
+    rewardDuration: string;
+    /**
+     * @uiName Reward Unit
+     * @uiGroup Reward
+     */
+    rewardUnit: string;
+    /**
+     * @uiName Show Progress Bar
+     * @uiGroup Goal
+     * @default
+     */
+    showProgressBar: boolean;
+    /**
+     * Shown to users before the start of the task duration.
+     * @uiName Start Date Message
+     * @uiGroup Task
+     */
+    startsOnMessage: string;
+    /**
+     * Select what type of stat to display for the goal. Manual paths are also supported.
+     * @uiName Goal Progress Source
+     * @required
+     * @minLength 1
+     * @uiWidget statTypeSelectWidget
+     * @uiWidgetOptions {"version": 1.1}
+     * @uiGroup Goal
+     */
+    statType: string;
+    /**
+     * @uiName Progress Bar Steps
+     * @uiGroup Goal
+     * @default
+     */
+    steps: boolean;
+  }
+  interface SqmText {}
+  interface SqmTextSpan {
+    /**
+     * @uiName Text
+     */
+    text: string;
+    /**
+     * @uiName Type
+     * @uiType string
+     * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
+     * @uiEnumNames ["Paragraph", "Subtext", "Header 1", "Header 2", "Header 3", "Header 4"]
+     */
+    type: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
+  }
+  interface SqmTimeline {
+    /**
+     * @uiName Icon
+     * @uiType string
+     * @uiEnum ["gift", "circle"]
+     * @uiEnumNames ["Gift", "Circle"]
+     */
+    icon: "gift" | "circle";
+  }
+  interface SqmTimelineEntry {
+    /**
+     * @uiName Description
+     */
+    desc: string;
+    /**
+     * @uiName Icon
+     * @uiType string
+     * @uiEnum ["gift", "circle"]
+     * @uiEnumNames ["Gift", "Circle"]
+     */
+    icon: "gift" | "circle";
+    /**
+     * @uiName Reward Amount
+     */
+    reward: string;
+    setIcon: (value: "gift" | "circle") => Promise<void>;
+    /**
+     * @uiName Reward Unit
+     */
+    unit: string;
+  }
+  interface SqmTitledSection {
+    /**
+     * Text value shown when there is no label slot declared.
+     * @uiName Label
+     */
+    label: string;
+    /**
+     * Margin applied to the bottom of the label slot
+     * @uiName Label Bottom Margin
+     * @uiType string
+     * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+     * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+     */
+    labelMargin: Spacing;
+    /**
+     * Padding applied to all 4 sides of the container
+     * @uiName Section Padding
+     * @uiType string
+     * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+     * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+     */
+    padding: Spacing;
+    /**
+     * @uiName Text Alignment
+     * @uiType string
+     * @uiEnum ["left", "center", "right"]
+     * @uiEnumNames ["Left", "Center", "Right"]
+     */
+    textAlign: "left" | "center" | "right";
+  }
+  interface SqmUserName {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<UserNameViewProps>;
+    /**
+     * Fallback name for unknown users
+     * @uiName Fallback Name
+     */
+    fallback: string;
+    /**
+     * @uiName Loading Text
+     */
+    loadingText: string;
+  }
 }
 declare global {
-    interface HTMLRaisinsPlopTargetElement extends Components.RaisinsPlopTarget, HTMLStencilElement {
-    }
-    var HTMLRaisinsPlopTargetElement: {
-        prototype: HTMLRaisinsPlopTargetElement;
-        new (): HTMLRaisinsPlopTargetElement;
-    };
-    interface HTMLSqmAssetCardElement extends Components.SqmAssetCard, HTMLStencilElement {
-    }
-    var HTMLSqmAssetCardElement: {
-        prototype: HTMLSqmAssetCardElement;
-        new (): HTMLSqmAssetCardElement;
-    };
-    interface HTMLSqmBigStatElement extends Components.SqmBigStat, HTMLStencilElement {
-    }
-    var HTMLSqmBigStatElement: {
-        prototype: HTMLSqmBigStatElement;
-        new (): HTMLSqmBigStatElement;
-    };
-    interface HTMLSqmBrandElement extends Components.SqmBrand, HTMLStencilElement {
-    }
-    var HTMLSqmBrandElement: {
-        prototype: HTMLSqmBrandElement;
-        new (): HTMLSqmBrandElement;
-    };
-    interface HTMLSqmCardFeedElement extends Components.SqmCardFeed, HTMLStencilElement {
-    }
-    var HTMLSqmCardFeedElement: {
-        prototype: HTMLSqmCardFeedElement;
-        new (): HTMLSqmCardFeedElement;
-    };
-    interface HTMLSqmCheckboxFieldElement extends Components.SqmCheckboxField, HTMLStencilElement {
-    }
-    var HTMLSqmCheckboxFieldElement: {
-        prototype: HTMLSqmCheckboxFieldElement;
-        new (): HTMLSqmCheckboxFieldElement;
-    };
-    interface HTMLSqmDividedLayoutElement extends Components.SqmDividedLayout, HTMLStencilElement {
-    }
-    var HTMLSqmDividedLayoutElement: {
-        prototype: HTMLSqmDividedLayoutElement;
-        new (): HTMLSqmDividedLayoutElement;
-    };
-    interface HTMLSqmDropdownFieldElement extends Components.SqmDropdownField, HTMLStencilElement {
-    }
-    var HTMLSqmDropdownFieldElement: {
-        prototype: HTMLSqmDropdownFieldElement;
-        new (): HTMLSqmDropdownFieldElement;
-    };
-    interface HTMLSqmEditProfileElement extends Components.SqmEditProfile, HTMLStencilElement {
-    }
-    var HTMLSqmEditProfileElement: {
-        prototype: HTMLSqmEditProfileElement;
-        new (): HTMLSqmEditProfileElement;
-    };
-    interface HTMLSqmEmptyElement extends Components.SqmEmpty, HTMLStencilElement {
-    }
-    var HTMLSqmEmptyElement: {
-        prototype: HTMLSqmEmptyElement;
-        new (): HTMLSqmEmptyElement;
-    };
-    interface HTMLSqmFormMessageElement extends Components.SqmFormMessage, HTMLStencilElement {
-    }
-    var HTMLSqmFormMessageElement: {
-        prototype: HTMLSqmFormMessageElement;
-        new (): HTMLSqmFormMessageElement;
-    };
-    interface HTMLSqmGraphqlClientProviderElement extends Components.SqmGraphqlClientProvider, HTMLStencilElement {
-    }
-    var HTMLSqmGraphqlClientProviderElement: {
-        prototype: HTMLSqmGraphqlClientProviderElement;
-        new (): HTMLSqmGraphqlClientProviderElement;
-    };
-    interface HTMLSqmHeroElement extends Components.SqmHero, HTMLStencilElement {
-    }
-    var HTMLSqmHeroElement: {
-        prototype: HTMLSqmHeroElement;
-        new (): HTMLSqmHeroElement;
-    };
-    interface HTMLSqmHeroImageElement extends Components.SqmHeroImage, HTMLStencilElement {
-    }
-    var HTMLSqmHeroImageElement: {
-        prototype: HTMLSqmHeroImageElement;
-        new (): HTMLSqmHeroImageElement;
-    };
-    interface HTMLSqmHookStoryContainerElement extends Components.SqmHookStoryContainer, HTMLStencilElement {
-    }
-    var HTMLSqmHookStoryContainerElement: {
-        prototype: HTMLSqmHookStoryContainerElement;
-        new (): HTMLSqmHookStoryContainerElement;
-    };
-    interface HTMLSqmImageElement extends Components.SqmImage, HTMLStencilElement {
-    }
-    var HTMLSqmImageElement: {
-        prototype: HTMLSqmImageElement;
-        new (): HTMLSqmImageElement;
-    };
-    interface HTMLSqmInputFieldElement extends Components.SqmInputField, HTMLStencilElement {
-    }
-    var HTMLSqmInputFieldElement: {
-        prototype: HTMLSqmInputFieldElement;
-        new (): HTMLSqmInputFieldElement;
-    };
-    interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
-    }
-    var HTMLSqmLeaderboardElement: {
-        prototype: HTMLSqmLeaderboardElement;
-        new (): HTMLSqmLeaderboardElement;
-    };
-    interface HTMLSqmLeaderboardRankElement extends Components.SqmLeaderboardRank, HTMLStencilElement {
-    }
-    var HTMLSqmLeaderboardRankElement: {
-        prototype: HTMLSqmLeaderboardRankElement;
-        new (): HTMLSqmLeaderboardRankElement;
-    };
-    interface HTMLSqmNameFieldsElement extends Components.SqmNameFields, HTMLStencilElement {
-    }
-    var HTMLSqmNameFieldsElement: {
-        prototype: HTMLSqmNameFieldsElement;
-        new (): HTMLSqmNameFieldsElement;
-    };
-    interface HTMLSqmNavigationMenuElement extends Components.SqmNavigationMenu, HTMLStencilElement {
-    }
-    var HTMLSqmNavigationMenuElement: {
-        prototype: HTMLSqmNavigationMenuElement;
-        new (): HTMLSqmNavigationMenuElement;
-    };
-    interface HTMLSqmNavigationSidebarElement extends Components.SqmNavigationSidebar, HTMLStencilElement {
-    }
-    var HTMLSqmNavigationSidebarElement: {
-        prototype: HTMLSqmNavigationSidebarElement;
-        new (): HTMLSqmNavigationSidebarElement;
-    };
-    interface HTMLSqmNavigationSidebarItemElement extends Components.SqmNavigationSidebarItem, HTMLStencilElement {
-    }
-    var HTMLSqmNavigationSidebarItemElement: {
-        prototype: HTMLSqmNavigationSidebarItemElement;
-        new (): HTMLSqmNavigationSidebarItemElement;
-    };
-    interface HTMLSqmPasswordFieldElement extends Components.SqmPasswordField, HTMLStencilElement {
-    }
-    var HTMLSqmPasswordFieldElement: {
-        prototype: HTMLSqmPasswordFieldElement;
-        new (): HTMLSqmPasswordFieldElement;
-    };
-    interface HTMLSqmPopupContainerElement extends Components.SqmPopupContainer, HTMLStencilElement {
-    }
-    var HTMLSqmPopupContainerElement: {
-        prototype: HTMLSqmPopupContainerElement;
-        new (): HTMLSqmPopupContainerElement;
-    };
-    interface HTMLSqmPortalChangePasswordElement extends Components.SqmPortalChangePassword, HTMLStencilElement {
-    }
-    var HTMLSqmPortalChangePasswordElement: {
-        prototype: HTMLSqmPortalChangePasswordElement;
-        new (): HTMLSqmPortalChangePasswordElement;
-    };
-    interface HTMLSqmPortalContainerElement extends Components.SqmPortalContainer, HTMLStencilElement {
-    }
-    var HTMLSqmPortalContainerElement: {
-        prototype: HTMLSqmPortalContainerElement;
-        new (): HTMLSqmPortalContainerElement;
-    };
-    interface HTMLSqmPortalEmailVerificationElement extends Components.SqmPortalEmailVerification, HTMLStencilElement {
-    }
-    var HTMLSqmPortalEmailVerificationElement: {
-        prototype: HTMLSqmPortalEmailVerificationElement;
-        new (): HTMLSqmPortalEmailVerificationElement;
-    };
-    interface HTMLSqmPortalFooterElement extends Components.SqmPortalFooter, HTMLStencilElement {
-    }
-    var HTMLSqmPortalFooterElement: {
-        prototype: HTMLSqmPortalFooterElement;
-        new (): HTMLSqmPortalFooterElement;
-    };
-    interface HTMLSqmPortalForgotPasswordElement extends Components.SqmPortalForgotPassword, HTMLStencilElement {
-    }
-    var HTMLSqmPortalForgotPasswordElement: {
-        prototype: HTMLSqmPortalForgotPasswordElement;
-        new (): HTMLSqmPortalForgotPasswordElement;
-    };
-    interface HTMLSqmPortalFrameElement extends Components.SqmPortalFrame, HTMLStencilElement {
-    }
-    var HTMLSqmPortalFrameElement: {
-        prototype: HTMLSqmPortalFrameElement;
-        new (): HTMLSqmPortalFrameElement;
-    };
-    interface HTMLSqmPortalLoginElement extends Components.SqmPortalLogin, HTMLStencilElement {
-    }
-    var HTMLSqmPortalLoginElement: {
-        prototype: HTMLSqmPortalLoginElement;
-        new (): HTMLSqmPortalLoginElement;
-    };
-    interface HTMLSqmPortalLogoutElement extends Components.SqmPortalLogout, HTMLStencilElement {
-    }
-    var HTMLSqmPortalLogoutElement: {
-        prototype: HTMLSqmPortalLogoutElement;
-        new (): HTMLSqmPortalLogoutElement;
-    };
-    interface HTMLSqmPortalProfileElement extends Components.SqmPortalProfile, HTMLStencilElement {
-    }
-    var HTMLSqmPortalProfileElement: {
-        prototype: HTMLSqmPortalProfileElement;
-        new (): HTMLSqmPortalProfileElement;
-    };
-    interface HTMLSqmPortalProtectedRouteElement extends Components.SqmPortalProtectedRoute, HTMLStencilElement {
-    }
-    var HTMLSqmPortalProtectedRouteElement: {
-        prototype: HTMLSqmPortalProtectedRouteElement;
-        new (): HTMLSqmPortalProtectedRouteElement;
-    };
-    interface HTMLSqmPortalRegisterElement extends Components.SqmPortalRegister, HTMLStencilElement {
-    }
-    var HTMLSqmPortalRegisterElement: {
-        prototype: HTMLSqmPortalRegisterElement;
-        new (): HTMLSqmPortalRegisterElement;
-    };
-    interface HTMLSqmPortalResetPasswordElement extends Components.SqmPortalResetPassword, HTMLStencilElement {
-    }
-    var HTMLSqmPortalResetPasswordElement: {
-        prototype: HTMLSqmPortalResetPasswordElement;
-        new (): HTMLSqmPortalResetPasswordElement;
-    };
-    interface HTMLSqmPortalVerifyEmailElement extends Components.SqmPortalVerifyEmail, HTMLStencilElement {
-    }
-    var HTMLSqmPortalVerifyEmailElement: {
-        prototype: HTMLSqmPortalVerifyEmailElement;
-        new (): HTMLSqmPortalVerifyEmailElement;
-    };
-    interface HTMLSqmProgramExplainerElement extends Components.SqmProgramExplainer, HTMLStencilElement {
-    }
-    var HTMLSqmProgramExplainerElement: {
-        prototype: HTMLSqmProgramExplainerElement;
-        new (): HTMLSqmProgramExplainerElement;
-    };
-    interface HTMLSqmProgramExplainerStepElement extends Components.SqmProgramExplainerStep, HTMLStencilElement {
-    }
-    var HTMLSqmProgramExplainerStepElement: {
-        prototype: HTMLSqmProgramExplainerStepElement;
-        new (): HTMLSqmProgramExplainerStepElement;
-    };
-    interface HTMLSqmProgramMenuElement extends Components.SqmProgramMenu, HTMLStencilElement {
-    }
-    var HTMLSqmProgramMenuElement: {
-        prototype: HTMLSqmProgramMenuElement;
-        new (): HTMLSqmProgramMenuElement;
-    };
-    interface HTMLSqmQaElement extends Components.SqmQa, HTMLStencilElement {
-    }
-    var HTMLSqmQaElement: {
-        prototype: HTMLSqmQaElement;
-        new (): HTMLSqmQaElement;
-    };
-    interface HTMLSqmQaReferralCardElement extends Components.SqmQaReferralCard, HTMLStencilElement {
-    }
-    var HTMLSqmQaReferralCardElement: {
-        prototype: HTMLSqmQaReferralCardElement;
-        new (): HTMLSqmQaReferralCardElement;
-    };
-    interface HTMLSqmQaTabsElement extends Components.SqmQaTabs, HTMLStencilElement {
-    }
-    var HTMLSqmQaTabsElement: {
-        prototype: HTMLSqmQaTabsElement;
-        new (): HTMLSqmQaTabsElement;
-    };
-    interface HTMLSqmReferralCardElement extends Components.SqmReferralCard, HTMLStencilElement {
-    }
-    var HTMLSqmReferralCardElement: {
-        prototype: HTMLSqmReferralCardElement;
-        new (): HTMLSqmReferralCardElement;
-    };
-    interface HTMLSqmReferralIframeElement extends Components.SqmReferralIframe, HTMLStencilElement {
-    }
-    var HTMLSqmReferralIframeElement: {
-        prototype: HTMLSqmReferralIframeElement;
-        new (): HTMLSqmReferralIframeElement;
-    };
-    interface HTMLSqmReferralTableElement extends Components.SqmReferralTable, HTMLStencilElement {
-    }
-    var HTMLSqmReferralTableElement: {
-        prototype: HTMLSqmReferralTableElement;
-        new (): HTMLSqmReferralTableElement;
-    };
-    interface HTMLSqmReferralTableCellElement extends Components.SqmReferralTableCell, HTMLStencilElement {
-    }
-    var HTMLSqmReferralTableCellElement: {
-        prototype: HTMLSqmReferralTableCellElement;
-        new (): HTMLSqmReferralTableCellElement;
-    };
-    interface HTMLSqmReferralTableColumnElement extends Components.SqmReferralTableColumn, HTMLStencilElement {
-    }
-    var HTMLSqmReferralTableColumnElement: {
-        prototype: HTMLSqmReferralTableColumnElement;
-        new (): HTMLSqmReferralTableColumnElement;
-    };
-    interface HTMLSqmReferralTableDateCellElement extends Components.SqmReferralTableDateCell, HTMLStencilElement {
-    }
-    var HTMLSqmReferralTableDateCellElement: {
-        prototype: HTMLSqmReferralTableDateCellElement;
-        new (): HTMLSqmReferralTableDateCellElement;
-    };
-    interface HTMLSqmReferralTableDateColumnElement extends Components.SqmReferralTableDateColumn, HTMLStencilElement {
-    }
-    var HTMLSqmReferralTableDateColumnElement: {
-        prototype: HTMLSqmReferralTableDateColumnElement;
-        new (): HTMLSqmReferralTableDateColumnElement;
-    };
-    interface HTMLSqmReferralTableRewardsCellElement extends Components.SqmReferralTableRewardsCell, HTMLStencilElement {
-    }
-    var HTMLSqmReferralTableRewardsCellElement: {
-        prototype: HTMLSqmReferralTableRewardsCellElement;
-        new (): HTMLSqmReferralTableRewardsCellElement;
-    };
-    interface HTMLSqmReferralTableRewardsColumnElement extends Components.SqmReferralTableRewardsColumn, HTMLStencilElement {
-    }
-    var HTMLSqmReferralTableRewardsColumnElement: {
-        prototype: HTMLSqmReferralTableRewardsColumnElement;
-        new (): HTMLSqmReferralTableRewardsColumnElement;
-    };
-    interface HTMLSqmReferralTableStatusCellElement extends Components.SqmReferralTableStatusCell, HTMLStencilElement {
-    }
-    var HTMLSqmReferralTableStatusCellElement: {
-        prototype: HTMLSqmReferralTableStatusCellElement;
-        new (): HTMLSqmReferralTableStatusCellElement;
-    };
-    interface HTMLSqmReferralTableStatusColumnElement extends Components.SqmReferralTableStatusColumn, HTMLStencilElement {
-    }
-    var HTMLSqmReferralTableStatusColumnElement: {
-        prototype: HTMLSqmReferralTableStatusColumnElement;
-        new (): HTMLSqmReferralTableStatusColumnElement;
-    };
-    interface HTMLSqmReferralTableUserCellElement extends Components.SqmReferralTableUserCell, HTMLStencilElement {
-    }
-    var HTMLSqmReferralTableUserCellElement: {
-        prototype: HTMLSqmReferralTableUserCellElement;
-        new (): HTMLSqmReferralTableUserCellElement;
-    };
-    interface HTMLSqmReferralTableUserColumnElement extends Components.SqmReferralTableUserColumn, HTMLStencilElement {
-    }
-    var HTMLSqmReferralTableUserColumnElement: {
-        prototype: HTMLSqmReferralTableUserColumnElement;
-        new (): HTMLSqmReferralTableUserColumnElement;
-    };
-    interface HTMLSqmRewardExchangeListElement extends Components.SqmRewardExchangeList, HTMLStencilElement {
-    }
-    var HTMLSqmRewardExchangeListElement: {
-        prototype: HTMLSqmRewardExchangeListElement;
-        new (): HTMLSqmRewardExchangeListElement;
-    };
-    interface HTMLSqmRewardsTableElement extends Components.SqmRewardsTable, HTMLStencilElement {
-    }
-    var HTMLSqmRewardsTableElement: {
-        prototype: HTMLSqmRewardsTableElement;
-        new (): HTMLSqmRewardsTableElement;
-    };
-    interface HTMLSqmRewardsTableCustomerNoteCellElement extends Components.SqmRewardsTableCustomerNoteCell, HTMLStencilElement {
-    }
-    var HTMLSqmRewardsTableCustomerNoteCellElement: {
-        prototype: HTMLSqmRewardsTableCustomerNoteCellElement;
-        new (): HTMLSqmRewardsTableCustomerNoteCellElement;
-    };
-    interface HTMLSqmRewardsTableCustomerNoteColumnElement extends Components.SqmRewardsTableCustomerNoteColumn, HTMLStencilElement {
-    }
-    var HTMLSqmRewardsTableCustomerNoteColumnElement: {
-        prototype: HTMLSqmRewardsTableCustomerNoteColumnElement;
-        new (): HTMLSqmRewardsTableCustomerNoteColumnElement;
-    };
-    interface HTMLSqmRewardsTableDateCellElement extends Components.SqmRewardsTableDateCell, HTMLStencilElement {
-    }
-    var HTMLSqmRewardsTableDateCellElement: {
-        prototype: HTMLSqmRewardsTableDateCellElement;
-        new (): HTMLSqmRewardsTableDateCellElement;
-    };
-    interface HTMLSqmRewardsTableDateColumnElement extends Components.SqmRewardsTableDateColumn, HTMLStencilElement {
-    }
-    var HTMLSqmRewardsTableDateColumnElement: {
-        prototype: HTMLSqmRewardsTableDateColumnElement;
-        new (): HTMLSqmRewardsTableDateColumnElement;
-    };
-    interface HTMLSqmRewardsTableRewardCellElement extends Components.SqmRewardsTableRewardCell, HTMLStencilElement {
-    }
-    var HTMLSqmRewardsTableRewardCellElement: {
-        prototype: HTMLSqmRewardsTableRewardCellElement;
-        new (): HTMLSqmRewardsTableRewardCellElement;
-    };
-    interface HTMLSqmRewardsTableRewardColumnElement extends Components.SqmRewardsTableRewardColumn, HTMLStencilElement {
-    }
-    var HTMLSqmRewardsTableRewardColumnElement: {
-        prototype: HTMLSqmRewardsTableRewardColumnElement;
-        new (): HTMLSqmRewardsTableRewardColumnElement;
-    };
-    interface HTMLSqmRewardsTableSourceCellElement extends Components.SqmRewardsTableSourceCell, HTMLStencilElement {
-    }
-    var HTMLSqmRewardsTableSourceCellElement: {
-        prototype: HTMLSqmRewardsTableSourceCellElement;
-        new (): HTMLSqmRewardsTableSourceCellElement;
-    };
-    interface HTMLSqmRewardsTableSourceColumnElement extends Components.SqmRewardsTableSourceColumn, HTMLStencilElement {
-    }
-    var HTMLSqmRewardsTableSourceColumnElement: {
-        prototype: HTMLSqmRewardsTableSourceColumnElement;
-        new (): HTMLSqmRewardsTableSourceColumnElement;
-    };
-    interface HTMLSqmRewardsTableStatusCellElement extends Components.SqmRewardsTableStatusCell, HTMLStencilElement {
-    }
-    var HTMLSqmRewardsTableStatusCellElement: {
-        prototype: HTMLSqmRewardsTableStatusCellElement;
-        new (): HTMLSqmRewardsTableStatusCellElement;
-    };
-    interface HTMLSqmRewardsTableStatusColumnElement extends Components.SqmRewardsTableStatusColumn, HTMLStencilElement {
-    }
-    var HTMLSqmRewardsTableStatusColumnElement: {
-        prototype: HTMLSqmRewardsTableStatusColumnElement;
-        new (): HTMLSqmRewardsTableStatusColumnElement;
-    };
-    interface HTMLSqmRouteElement extends Components.SqmRoute, HTMLStencilElement {
-    }
-    var HTMLSqmRouteElement: {
-        prototype: HTMLSqmRouteElement;
-        new (): HTMLSqmRouteElement;
-    };
-    interface HTMLSqmRouterElement extends Components.SqmRouter, HTMLStencilElement {
-    }
-    var HTMLSqmRouterElement: {
-        prototype: HTMLSqmRouterElement;
-        new (): HTMLSqmRouterElement;
-    };
-    interface HTMLSqmScrollElement extends Components.SqmScroll, HTMLStencilElement {
-    }
-    var HTMLSqmScrollElement: {
-        prototype: HTMLSqmScrollElement;
-        new (): HTMLSqmScrollElement;
-    };
-    interface HTMLSqmShareButtonElement extends Components.SqmShareButton, HTMLStencilElement {
-    }
-    var HTMLSqmShareButtonElement: {
-        prototype: HTMLSqmShareButtonElement;
-        new (): HTMLSqmShareButtonElement;
-    };
-    interface HTMLSqmShareCodeElement extends Components.SqmShareCode, HTMLStencilElement {
-    }
-    var HTMLSqmShareCodeElement: {
-        prototype: HTMLSqmShareCodeElement;
-        new (): HTMLSqmShareCodeElement;
-    };
-    interface HTMLSqmShareLinkElement extends Components.SqmShareLink, HTMLStencilElement {
-    }
-    var HTMLSqmShareLinkElement: {
-        prototype: HTMLSqmShareLinkElement;
-        new (): HTMLSqmShareLinkElement;
-    };
-    interface HTMLSqmStatContainerElement extends Components.SqmStatContainer, HTMLStencilElement {
-    }
-    var HTMLSqmStatContainerElement: {
-        prototype: HTMLSqmStatContainerElement;
-        new (): HTMLSqmStatContainerElement;
-    };
-    interface HTMLSqmStencilbookElement extends Components.SqmStencilbook, HTMLStencilElement {
-    }
-    var HTMLSqmStencilbookElement: {
-        prototype: HTMLSqmStencilbookElement;
-        new (): HTMLSqmStencilbookElement;
-    };
-    interface HTMLSqmTabElement extends Components.SqmTab, HTMLStencilElement {
-    }
-    var HTMLSqmTabElement: {
-        prototype: HTMLSqmTabElement;
-        new (): HTMLSqmTabElement;
-    };
-    interface HTMLSqmTableCellElement extends Components.SqmTableCell, HTMLStencilElement {
-    }
-    var HTMLSqmTableCellElement: {
-        prototype: HTMLSqmTableCellElement;
-        new (): HTMLSqmTableCellElement;
-    };
-    interface HTMLSqmTableRowElement extends Components.SqmTableRow, HTMLStencilElement {
-    }
-    var HTMLSqmTableRowElement: {
-        prototype: HTMLSqmTableRowElement;
-        new (): HTMLSqmTableRowElement;
-    };
-    interface HTMLSqmTabsElement extends Components.SqmTabs, HTMLStencilElement {
-    }
-    var HTMLSqmTabsElement: {
-        prototype: HTMLSqmTabsElement;
-        new (): HTMLSqmTabsElement;
-    };
-    interface HTMLSqmTaskCardElement extends Components.SqmTaskCard, HTMLStencilElement {
-    }
-    var HTMLSqmTaskCardElement: {
-        prototype: HTMLSqmTaskCardElement;
-        new (): HTMLSqmTaskCardElement;
-    };
-    interface HTMLSqmTextElement extends Components.SqmText, HTMLStencilElement {
-    }
-    var HTMLSqmTextElement: {
-        prototype: HTMLSqmTextElement;
-        new (): HTMLSqmTextElement;
-    };
-    interface HTMLSqmTextSpanElement extends Components.SqmTextSpan, HTMLStencilElement {
-    }
-    var HTMLSqmTextSpanElement: {
-        prototype: HTMLSqmTextSpanElement;
-        new (): HTMLSqmTextSpanElement;
-    };
-    interface HTMLSqmTimelineElement extends Components.SqmTimeline, HTMLStencilElement {
-    }
-    var HTMLSqmTimelineElement: {
-        prototype: HTMLSqmTimelineElement;
-        new (): HTMLSqmTimelineElement;
-    };
-    interface HTMLSqmTimelineEntryElement extends Components.SqmTimelineEntry, HTMLStencilElement {
-    }
-    var HTMLSqmTimelineEntryElement: {
-        prototype: HTMLSqmTimelineEntryElement;
-        new (): HTMLSqmTimelineEntryElement;
-    };
-    interface HTMLSqmTitledSectionElement extends Components.SqmTitledSection, HTMLStencilElement {
-    }
-    var HTMLSqmTitledSectionElement: {
-        prototype: HTMLSqmTitledSectionElement;
-        new (): HTMLSqmTitledSectionElement;
-    };
-    interface HTMLSqmUserNameElement extends Components.SqmUserName, HTMLStencilElement {
-    }
-    var HTMLSqmUserNameElement: {
-        prototype: HTMLSqmUserNameElement;
-        new (): HTMLSqmUserNameElement;
-    };
-    interface HTMLElementTagNameMap {
-        "raisins-plop-target": HTMLRaisinsPlopTargetElement;
-        "sqm-asset-card": HTMLSqmAssetCardElement;
-        "sqm-big-stat": HTMLSqmBigStatElement;
-        "sqm-brand": HTMLSqmBrandElement;
-        "sqm-card-feed": HTMLSqmCardFeedElement;
-        "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
-        "sqm-divided-layout": HTMLSqmDividedLayoutElement;
-        "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
-        "sqm-edit-profile": HTMLSqmEditProfileElement;
-        "sqm-empty": HTMLSqmEmptyElement;
-        "sqm-form-message": HTMLSqmFormMessageElement;
-        "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
-        "sqm-hero": HTMLSqmHeroElement;
-        "sqm-hero-image": HTMLSqmHeroImageElement;
-        "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
-        "sqm-image": HTMLSqmImageElement;
-        "sqm-input-field": HTMLSqmInputFieldElement;
-        "sqm-leaderboard": HTMLSqmLeaderboardElement;
-        "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
-        "sqm-name-fields": HTMLSqmNameFieldsElement;
-        "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
-        "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
-        "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
-        "sqm-password-field": HTMLSqmPasswordFieldElement;
-        "sqm-popup-container": HTMLSqmPopupContainerElement;
-        "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
-        "sqm-portal-container": HTMLSqmPortalContainerElement;
-        "sqm-portal-email-verification": HTMLSqmPortalEmailVerificationElement;
-        "sqm-portal-footer": HTMLSqmPortalFooterElement;
-        "sqm-portal-forgot-password": HTMLSqmPortalForgotPasswordElement;
-        "sqm-portal-frame": HTMLSqmPortalFrameElement;
-        "sqm-portal-login": HTMLSqmPortalLoginElement;
-        "sqm-portal-logout": HTMLSqmPortalLogoutElement;
-        "sqm-portal-profile": HTMLSqmPortalProfileElement;
-        "sqm-portal-protected-route": HTMLSqmPortalProtectedRouteElement;
-        "sqm-portal-register": HTMLSqmPortalRegisterElement;
-        "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
-        "sqm-portal-verify-email": HTMLSqmPortalVerifyEmailElement;
-        "sqm-program-explainer": HTMLSqmProgramExplainerElement;
-        "sqm-program-explainer-step": HTMLSqmProgramExplainerStepElement;
-        "sqm-program-menu": HTMLSqmProgramMenuElement;
-        "sqm-qa": HTMLSqmQaElement;
-        "sqm-qa-referral-card": HTMLSqmQaReferralCardElement;
-        "sqm-qa-tabs": HTMLSqmQaTabsElement;
-        "sqm-referral-card": HTMLSqmReferralCardElement;
-        "sqm-referral-iframe": HTMLSqmReferralIframeElement;
-        "sqm-referral-table": HTMLSqmReferralTableElement;
-        "sqm-referral-table-cell": HTMLSqmReferralTableCellElement;
-        "sqm-referral-table-column": HTMLSqmReferralTableColumnElement;
-        "sqm-referral-table-date-cell": HTMLSqmReferralTableDateCellElement;
-        "sqm-referral-table-date-column": HTMLSqmReferralTableDateColumnElement;
-        "sqm-referral-table-rewards-cell": HTMLSqmReferralTableRewardsCellElement;
-        "sqm-referral-table-rewards-column": HTMLSqmReferralTableRewardsColumnElement;
-        "sqm-referral-table-status-cell": HTMLSqmReferralTableStatusCellElement;
-        "sqm-referral-table-status-column": HTMLSqmReferralTableStatusColumnElement;
-        "sqm-referral-table-user-cell": HTMLSqmReferralTableUserCellElement;
-        "sqm-referral-table-user-column": HTMLSqmReferralTableUserColumnElement;
-        "sqm-reward-exchange-list": HTMLSqmRewardExchangeListElement;
-        "sqm-rewards-table": HTMLSqmRewardsTableElement;
-        "sqm-rewards-table-customer-note-cell": HTMLSqmRewardsTableCustomerNoteCellElement;
-        "sqm-rewards-table-customer-note-column": HTMLSqmRewardsTableCustomerNoteColumnElement;
-        "sqm-rewards-table-date-cell": HTMLSqmRewardsTableDateCellElement;
-        "sqm-rewards-table-date-column": HTMLSqmRewardsTableDateColumnElement;
-        "sqm-rewards-table-reward-cell": HTMLSqmRewardsTableRewardCellElement;
-        "sqm-rewards-table-reward-column": HTMLSqmRewardsTableRewardColumnElement;
-        "sqm-rewards-table-source-cell": HTMLSqmRewardsTableSourceCellElement;
-        "sqm-rewards-table-source-column": HTMLSqmRewardsTableSourceColumnElement;
-        "sqm-rewards-table-status-cell": HTMLSqmRewardsTableStatusCellElement;
-        "sqm-rewards-table-status-column": HTMLSqmRewardsTableStatusColumnElement;
-        "sqm-route": HTMLSqmRouteElement;
-        "sqm-router": HTMLSqmRouterElement;
-        "sqm-scroll": HTMLSqmScrollElement;
-        "sqm-share-button": HTMLSqmShareButtonElement;
-        "sqm-share-code": HTMLSqmShareCodeElement;
-        "sqm-share-link": HTMLSqmShareLinkElement;
-        "sqm-stat-container": HTMLSqmStatContainerElement;
-        "sqm-stencilbook": HTMLSqmStencilbookElement;
-        "sqm-tab": HTMLSqmTabElement;
-        "sqm-table-cell": HTMLSqmTableCellElement;
-        "sqm-table-row": HTMLSqmTableRowElement;
-        "sqm-tabs": HTMLSqmTabsElement;
-        "sqm-task-card": HTMLSqmTaskCardElement;
-        "sqm-text": HTMLSqmTextElement;
-        "sqm-text-span": HTMLSqmTextSpanElement;
-        "sqm-timeline": HTMLSqmTimelineElement;
-        "sqm-timeline-entry": HTMLSqmTimelineEntryElement;
-        "sqm-titled-section": HTMLSqmTitledSectionElement;
-        "sqm-user-name": HTMLSqmUserNameElement;
-    }
+  interface HTMLRaisinsPlopTargetElement
+    extends Components.RaisinsPlopTarget,
+      HTMLStencilElement {}
+  var HTMLRaisinsPlopTargetElement: {
+    prototype: HTMLRaisinsPlopTargetElement;
+    new (): HTMLRaisinsPlopTargetElement;
+  };
+  interface HTMLSqmAssetCardElement
+    extends Components.SqmAssetCard,
+      HTMLStencilElement {}
+  var HTMLSqmAssetCardElement: {
+    prototype: HTMLSqmAssetCardElement;
+    new (): HTMLSqmAssetCardElement;
+  };
+  interface HTMLSqmBigStatElement
+    extends Components.SqmBigStat,
+      HTMLStencilElement {}
+  var HTMLSqmBigStatElement: {
+    prototype: HTMLSqmBigStatElement;
+    new (): HTMLSqmBigStatElement;
+  };
+  interface HTMLSqmBrandElement
+    extends Components.SqmBrand,
+      HTMLStencilElement {}
+  var HTMLSqmBrandElement: {
+    prototype: HTMLSqmBrandElement;
+    new (): HTMLSqmBrandElement;
+  };
+  interface HTMLSqmCardFeedElement
+    extends Components.SqmCardFeed,
+      HTMLStencilElement {}
+  var HTMLSqmCardFeedElement: {
+    prototype: HTMLSqmCardFeedElement;
+    new (): HTMLSqmCardFeedElement;
+  };
+  interface HTMLSqmCheckboxFieldElement
+    extends Components.SqmCheckboxField,
+      HTMLStencilElement {}
+  var HTMLSqmCheckboxFieldElement: {
+    prototype: HTMLSqmCheckboxFieldElement;
+    new (): HTMLSqmCheckboxFieldElement;
+  };
+  interface HTMLSqmDividedLayoutElement
+    extends Components.SqmDividedLayout,
+      HTMLStencilElement {}
+  var HTMLSqmDividedLayoutElement: {
+    prototype: HTMLSqmDividedLayoutElement;
+    new (): HTMLSqmDividedLayoutElement;
+  };
+  interface HTMLSqmDropdownFieldElement
+    extends Components.SqmDropdownField,
+      HTMLStencilElement {}
+  var HTMLSqmDropdownFieldElement: {
+    prototype: HTMLSqmDropdownFieldElement;
+    new (): HTMLSqmDropdownFieldElement;
+  };
+  interface HTMLSqmEditProfileElement
+    extends Components.SqmEditProfile,
+      HTMLStencilElement {}
+  var HTMLSqmEditProfileElement: {
+    prototype: HTMLSqmEditProfileElement;
+    new (): HTMLSqmEditProfileElement;
+  };
+  interface HTMLSqmEmptyElement
+    extends Components.SqmEmpty,
+      HTMLStencilElement {}
+  var HTMLSqmEmptyElement: {
+    prototype: HTMLSqmEmptyElement;
+    new (): HTMLSqmEmptyElement;
+  };
+  interface HTMLSqmFormMessageElement
+    extends Components.SqmFormMessage,
+      HTMLStencilElement {}
+  var HTMLSqmFormMessageElement: {
+    prototype: HTMLSqmFormMessageElement;
+    new (): HTMLSqmFormMessageElement;
+  };
+  interface HTMLSqmGraphqlClientProviderElement
+    extends Components.SqmGraphqlClientProvider,
+      HTMLStencilElement {}
+  var HTMLSqmGraphqlClientProviderElement: {
+    prototype: HTMLSqmGraphqlClientProviderElement;
+    new (): HTMLSqmGraphqlClientProviderElement;
+  };
+  interface HTMLSqmHeroElement extends Components.SqmHero, HTMLStencilElement {}
+  var HTMLSqmHeroElement: {
+    prototype: HTMLSqmHeroElement;
+    new (): HTMLSqmHeroElement;
+  };
+  interface HTMLSqmHeroImageElement
+    extends Components.SqmHeroImage,
+      HTMLStencilElement {}
+  var HTMLSqmHeroImageElement: {
+    prototype: HTMLSqmHeroImageElement;
+    new (): HTMLSqmHeroImageElement;
+  };
+  interface HTMLSqmHookStoryContainerElement
+    extends Components.SqmHookStoryContainer,
+      HTMLStencilElement {}
+  var HTMLSqmHookStoryContainerElement: {
+    prototype: HTMLSqmHookStoryContainerElement;
+    new (): HTMLSqmHookStoryContainerElement;
+  };
+  interface HTMLSqmImageElement
+    extends Components.SqmImage,
+      HTMLStencilElement {}
+  var HTMLSqmImageElement: {
+    prototype: HTMLSqmImageElement;
+    new (): HTMLSqmImageElement;
+  };
+  interface HTMLSqmInputFieldElement
+    extends Components.SqmInputField,
+      HTMLStencilElement {}
+  var HTMLSqmInputFieldElement: {
+    prototype: HTMLSqmInputFieldElement;
+    new (): HTMLSqmInputFieldElement;
+  };
+  interface HTMLSqmLeaderboardElement
+    extends Components.SqmLeaderboard,
+      HTMLStencilElement {}
+  var HTMLSqmLeaderboardElement: {
+    prototype: HTMLSqmLeaderboardElement;
+    new (): HTMLSqmLeaderboardElement;
+  };
+  interface HTMLSqmLeaderboardRankElement
+    extends Components.SqmLeaderboardRank,
+      HTMLStencilElement {}
+  var HTMLSqmLeaderboardRankElement: {
+    prototype: HTMLSqmLeaderboardRankElement;
+    new (): HTMLSqmLeaderboardRankElement;
+  };
+  interface HTMLSqmNameFieldsElement
+    extends Components.SqmNameFields,
+      HTMLStencilElement {}
+  var HTMLSqmNameFieldsElement: {
+    prototype: HTMLSqmNameFieldsElement;
+    new (): HTMLSqmNameFieldsElement;
+  };
+  interface HTMLSqmNavigationMenuElement
+    extends Components.SqmNavigationMenu,
+      HTMLStencilElement {}
+  var HTMLSqmNavigationMenuElement: {
+    prototype: HTMLSqmNavigationMenuElement;
+    new (): HTMLSqmNavigationMenuElement;
+  };
+  interface HTMLSqmNavigationSidebarElement
+    extends Components.SqmNavigationSidebar,
+      HTMLStencilElement {}
+  var HTMLSqmNavigationSidebarElement: {
+    prototype: HTMLSqmNavigationSidebarElement;
+    new (): HTMLSqmNavigationSidebarElement;
+  };
+  interface HTMLSqmNavigationSidebarItemElement
+    extends Components.SqmNavigationSidebarItem,
+      HTMLStencilElement {}
+  var HTMLSqmNavigationSidebarItemElement: {
+    prototype: HTMLSqmNavigationSidebarItemElement;
+    new (): HTMLSqmNavigationSidebarItemElement;
+  };
+  interface HTMLSqmPasswordFieldElement
+    extends Components.SqmPasswordField,
+      HTMLStencilElement {}
+  var HTMLSqmPasswordFieldElement: {
+    prototype: HTMLSqmPasswordFieldElement;
+    new (): HTMLSqmPasswordFieldElement;
+  };
+  interface HTMLSqmPopupContainerElement
+    extends Components.SqmPopupContainer,
+      HTMLStencilElement {}
+  var HTMLSqmPopupContainerElement: {
+    prototype: HTMLSqmPopupContainerElement;
+    new (): HTMLSqmPopupContainerElement;
+  };
+  interface HTMLSqmPortalChangePasswordElement
+    extends Components.SqmPortalChangePassword,
+      HTMLStencilElement {}
+  var HTMLSqmPortalChangePasswordElement: {
+    prototype: HTMLSqmPortalChangePasswordElement;
+    new (): HTMLSqmPortalChangePasswordElement;
+  };
+  interface HTMLSqmPortalContainerElement
+    extends Components.SqmPortalContainer,
+      HTMLStencilElement {}
+  var HTMLSqmPortalContainerElement: {
+    prototype: HTMLSqmPortalContainerElement;
+    new (): HTMLSqmPortalContainerElement;
+  };
+  interface HTMLSqmPortalEmailVerificationElement
+    extends Components.SqmPortalEmailVerification,
+      HTMLStencilElement {}
+  var HTMLSqmPortalEmailVerificationElement: {
+    prototype: HTMLSqmPortalEmailVerificationElement;
+    new (): HTMLSqmPortalEmailVerificationElement;
+  };
+  interface HTMLSqmPortalFooterElement
+    extends Components.SqmPortalFooter,
+      HTMLStencilElement {}
+  var HTMLSqmPortalFooterElement: {
+    prototype: HTMLSqmPortalFooterElement;
+    new (): HTMLSqmPortalFooterElement;
+  };
+  interface HTMLSqmPortalForgotPasswordElement
+    extends Components.SqmPortalForgotPassword,
+      HTMLStencilElement {}
+  var HTMLSqmPortalForgotPasswordElement: {
+    prototype: HTMLSqmPortalForgotPasswordElement;
+    new (): HTMLSqmPortalForgotPasswordElement;
+  };
+  interface HTMLSqmPortalFrameElement
+    extends Components.SqmPortalFrame,
+      HTMLStencilElement {}
+  var HTMLSqmPortalFrameElement: {
+    prototype: HTMLSqmPortalFrameElement;
+    new (): HTMLSqmPortalFrameElement;
+  };
+  interface HTMLSqmPortalLoginElement
+    extends Components.SqmPortalLogin,
+      HTMLStencilElement {}
+  var HTMLSqmPortalLoginElement: {
+    prototype: HTMLSqmPortalLoginElement;
+    new (): HTMLSqmPortalLoginElement;
+  };
+  interface HTMLSqmPortalLogoutElement
+    extends Components.SqmPortalLogout,
+      HTMLStencilElement {}
+  var HTMLSqmPortalLogoutElement: {
+    prototype: HTMLSqmPortalLogoutElement;
+    new (): HTMLSqmPortalLogoutElement;
+  };
+  interface HTMLSqmPortalProfileElement
+    extends Components.SqmPortalProfile,
+      HTMLStencilElement {}
+  var HTMLSqmPortalProfileElement: {
+    prototype: HTMLSqmPortalProfileElement;
+    new (): HTMLSqmPortalProfileElement;
+  };
+  interface HTMLSqmPortalProtectedRouteElement
+    extends Components.SqmPortalProtectedRoute,
+      HTMLStencilElement {}
+  var HTMLSqmPortalProtectedRouteElement: {
+    prototype: HTMLSqmPortalProtectedRouteElement;
+    new (): HTMLSqmPortalProtectedRouteElement;
+  };
+  interface HTMLSqmPortalRegisterElement
+    extends Components.SqmPortalRegister,
+      HTMLStencilElement {}
+  var HTMLSqmPortalRegisterElement: {
+    prototype: HTMLSqmPortalRegisterElement;
+    new (): HTMLSqmPortalRegisterElement;
+  };
+  interface HTMLSqmPortalResetPasswordElement
+    extends Components.SqmPortalResetPassword,
+      HTMLStencilElement {}
+  var HTMLSqmPortalResetPasswordElement: {
+    prototype: HTMLSqmPortalResetPasswordElement;
+    new (): HTMLSqmPortalResetPasswordElement;
+  };
+  interface HTMLSqmPortalVerifyEmailElement
+    extends Components.SqmPortalVerifyEmail,
+      HTMLStencilElement {}
+  var HTMLSqmPortalVerifyEmailElement: {
+    prototype: HTMLSqmPortalVerifyEmailElement;
+    new (): HTMLSqmPortalVerifyEmailElement;
+  };
+  interface HTMLSqmProgramExplainerElement
+    extends Components.SqmProgramExplainer,
+      HTMLStencilElement {}
+  var HTMLSqmProgramExplainerElement: {
+    prototype: HTMLSqmProgramExplainerElement;
+    new (): HTMLSqmProgramExplainerElement;
+  };
+  interface HTMLSqmProgramExplainerStepElement
+    extends Components.SqmProgramExplainerStep,
+      HTMLStencilElement {}
+  var HTMLSqmProgramExplainerStepElement: {
+    prototype: HTMLSqmProgramExplainerStepElement;
+    new (): HTMLSqmProgramExplainerStepElement;
+  };
+  interface HTMLSqmProgramMenuElement
+    extends Components.SqmProgramMenu,
+      HTMLStencilElement {}
+  var HTMLSqmProgramMenuElement: {
+    prototype: HTMLSqmProgramMenuElement;
+    new (): HTMLSqmProgramMenuElement;
+  };
+  interface HTMLSqmQaElement extends Components.SqmQa, HTMLStencilElement {}
+  var HTMLSqmQaElement: {
+    prototype: HTMLSqmQaElement;
+    new (): HTMLSqmQaElement;
+  };
+  interface HTMLSqmQaReferralCardElement
+    extends Components.SqmQaReferralCard,
+      HTMLStencilElement {}
+  var HTMLSqmQaReferralCardElement: {
+    prototype: HTMLSqmQaReferralCardElement;
+    new (): HTMLSqmQaReferralCardElement;
+  };
+  interface HTMLSqmQaTabsElement
+    extends Components.SqmQaTabs,
+      HTMLStencilElement {}
+  var HTMLSqmQaTabsElement: {
+    prototype: HTMLSqmQaTabsElement;
+    new (): HTMLSqmQaTabsElement;
+  };
+  interface HTMLSqmReferralCardElement
+    extends Components.SqmReferralCard,
+      HTMLStencilElement {}
+  var HTMLSqmReferralCardElement: {
+    prototype: HTMLSqmReferralCardElement;
+    new (): HTMLSqmReferralCardElement;
+  };
+  interface HTMLSqmReferralIframeElement
+    extends Components.SqmReferralIframe,
+      HTMLStencilElement {}
+  var HTMLSqmReferralIframeElement: {
+    prototype: HTMLSqmReferralIframeElement;
+    new (): HTMLSqmReferralIframeElement;
+  };
+  interface HTMLSqmReferralTableElement
+    extends Components.SqmReferralTable,
+      HTMLStencilElement {}
+  var HTMLSqmReferralTableElement: {
+    prototype: HTMLSqmReferralTableElement;
+    new (): HTMLSqmReferralTableElement;
+  };
+  interface HTMLSqmReferralTableCellElement
+    extends Components.SqmReferralTableCell,
+      HTMLStencilElement {}
+  var HTMLSqmReferralTableCellElement: {
+    prototype: HTMLSqmReferralTableCellElement;
+    new (): HTMLSqmReferralTableCellElement;
+  };
+  interface HTMLSqmReferralTableColumnElement
+    extends Components.SqmReferralTableColumn,
+      HTMLStencilElement {}
+  var HTMLSqmReferralTableColumnElement: {
+    prototype: HTMLSqmReferralTableColumnElement;
+    new (): HTMLSqmReferralTableColumnElement;
+  };
+  interface HTMLSqmReferralTableDateCellElement
+    extends Components.SqmReferralTableDateCell,
+      HTMLStencilElement {}
+  var HTMLSqmReferralTableDateCellElement: {
+    prototype: HTMLSqmReferralTableDateCellElement;
+    new (): HTMLSqmReferralTableDateCellElement;
+  };
+  interface HTMLSqmReferralTableDateColumnElement
+    extends Components.SqmReferralTableDateColumn,
+      HTMLStencilElement {}
+  var HTMLSqmReferralTableDateColumnElement: {
+    prototype: HTMLSqmReferralTableDateColumnElement;
+    new (): HTMLSqmReferralTableDateColumnElement;
+  };
+  interface HTMLSqmReferralTableRewardsCellElement
+    extends Components.SqmReferralTableRewardsCell,
+      HTMLStencilElement {}
+  var HTMLSqmReferralTableRewardsCellElement: {
+    prototype: HTMLSqmReferralTableRewardsCellElement;
+    new (): HTMLSqmReferralTableRewardsCellElement;
+  };
+  interface HTMLSqmReferralTableRewardsColumnElement
+    extends Components.SqmReferralTableRewardsColumn,
+      HTMLStencilElement {}
+  var HTMLSqmReferralTableRewardsColumnElement: {
+    prototype: HTMLSqmReferralTableRewardsColumnElement;
+    new (): HTMLSqmReferralTableRewardsColumnElement;
+  };
+  interface HTMLSqmReferralTableStatusCellElement
+    extends Components.SqmReferralTableStatusCell,
+      HTMLStencilElement {}
+  var HTMLSqmReferralTableStatusCellElement: {
+    prototype: HTMLSqmReferralTableStatusCellElement;
+    new (): HTMLSqmReferralTableStatusCellElement;
+  };
+  interface HTMLSqmReferralTableStatusColumnElement
+    extends Components.SqmReferralTableStatusColumn,
+      HTMLStencilElement {}
+  var HTMLSqmReferralTableStatusColumnElement: {
+    prototype: HTMLSqmReferralTableStatusColumnElement;
+    new (): HTMLSqmReferralTableStatusColumnElement;
+  };
+  interface HTMLSqmReferralTableUserCellElement
+    extends Components.SqmReferralTableUserCell,
+      HTMLStencilElement {}
+  var HTMLSqmReferralTableUserCellElement: {
+    prototype: HTMLSqmReferralTableUserCellElement;
+    new (): HTMLSqmReferralTableUserCellElement;
+  };
+  interface HTMLSqmReferralTableUserColumnElement
+    extends Components.SqmReferralTableUserColumn,
+      HTMLStencilElement {}
+  var HTMLSqmReferralTableUserColumnElement: {
+    prototype: HTMLSqmReferralTableUserColumnElement;
+    new (): HTMLSqmReferralTableUserColumnElement;
+  };
+  interface HTMLSqmRewardExchangeListElement
+    extends Components.SqmRewardExchangeList,
+      HTMLStencilElement {}
+  var HTMLSqmRewardExchangeListElement: {
+    prototype: HTMLSqmRewardExchangeListElement;
+    new (): HTMLSqmRewardExchangeListElement;
+  };
+  interface HTMLSqmRewardsTableElement
+    extends Components.SqmRewardsTable,
+      HTMLStencilElement {}
+  var HTMLSqmRewardsTableElement: {
+    prototype: HTMLSqmRewardsTableElement;
+    new (): HTMLSqmRewardsTableElement;
+  };
+  interface HTMLSqmRewardsTableCustomerNoteCellElement
+    extends Components.SqmRewardsTableCustomerNoteCell,
+      HTMLStencilElement {}
+  var HTMLSqmRewardsTableCustomerNoteCellElement: {
+    prototype: HTMLSqmRewardsTableCustomerNoteCellElement;
+    new (): HTMLSqmRewardsTableCustomerNoteCellElement;
+  };
+  interface HTMLSqmRewardsTableCustomerNoteColumnElement
+    extends Components.SqmRewardsTableCustomerNoteColumn,
+      HTMLStencilElement {}
+  var HTMLSqmRewardsTableCustomerNoteColumnElement: {
+    prototype: HTMLSqmRewardsTableCustomerNoteColumnElement;
+    new (): HTMLSqmRewardsTableCustomerNoteColumnElement;
+  };
+  interface HTMLSqmRewardsTableDateCellElement
+    extends Components.SqmRewardsTableDateCell,
+      HTMLStencilElement {}
+  var HTMLSqmRewardsTableDateCellElement: {
+    prototype: HTMLSqmRewardsTableDateCellElement;
+    new (): HTMLSqmRewardsTableDateCellElement;
+  };
+  interface HTMLSqmRewardsTableDateColumnElement
+    extends Components.SqmRewardsTableDateColumn,
+      HTMLStencilElement {}
+  var HTMLSqmRewardsTableDateColumnElement: {
+    prototype: HTMLSqmRewardsTableDateColumnElement;
+    new (): HTMLSqmRewardsTableDateColumnElement;
+  };
+  interface HTMLSqmRewardsTableRewardCellElement
+    extends Components.SqmRewardsTableRewardCell,
+      HTMLStencilElement {}
+  var HTMLSqmRewardsTableRewardCellElement: {
+    prototype: HTMLSqmRewardsTableRewardCellElement;
+    new (): HTMLSqmRewardsTableRewardCellElement;
+  };
+  interface HTMLSqmRewardsTableRewardColumnElement
+    extends Components.SqmRewardsTableRewardColumn,
+      HTMLStencilElement {}
+  var HTMLSqmRewardsTableRewardColumnElement: {
+    prototype: HTMLSqmRewardsTableRewardColumnElement;
+    new (): HTMLSqmRewardsTableRewardColumnElement;
+  };
+  interface HTMLSqmRewardsTableSourceCellElement
+    extends Components.SqmRewardsTableSourceCell,
+      HTMLStencilElement {}
+  var HTMLSqmRewardsTableSourceCellElement: {
+    prototype: HTMLSqmRewardsTableSourceCellElement;
+    new (): HTMLSqmRewardsTableSourceCellElement;
+  };
+  interface HTMLSqmRewardsTableSourceColumnElement
+    extends Components.SqmRewardsTableSourceColumn,
+      HTMLStencilElement {}
+  var HTMLSqmRewardsTableSourceColumnElement: {
+    prototype: HTMLSqmRewardsTableSourceColumnElement;
+    new (): HTMLSqmRewardsTableSourceColumnElement;
+  };
+  interface HTMLSqmRewardsTableStatusCellElement
+    extends Components.SqmRewardsTableStatusCell,
+      HTMLStencilElement {}
+  var HTMLSqmRewardsTableStatusCellElement: {
+    prototype: HTMLSqmRewardsTableStatusCellElement;
+    new (): HTMLSqmRewardsTableStatusCellElement;
+  };
+  interface HTMLSqmRewardsTableStatusColumnElement
+    extends Components.SqmRewardsTableStatusColumn,
+      HTMLStencilElement {}
+  var HTMLSqmRewardsTableStatusColumnElement: {
+    prototype: HTMLSqmRewardsTableStatusColumnElement;
+    new (): HTMLSqmRewardsTableStatusColumnElement;
+  };
+  interface HTMLSqmRouteElement
+    extends Components.SqmRoute,
+      HTMLStencilElement {}
+  var HTMLSqmRouteElement: {
+    prototype: HTMLSqmRouteElement;
+    new (): HTMLSqmRouteElement;
+  };
+  interface HTMLSqmRouterElement
+    extends Components.SqmRouter,
+      HTMLStencilElement {}
+  var HTMLSqmRouterElement: {
+    prototype: HTMLSqmRouterElement;
+    new (): HTMLSqmRouterElement;
+  };
+  interface HTMLSqmScrollElement
+    extends Components.SqmScroll,
+      HTMLStencilElement {}
+  var HTMLSqmScrollElement: {
+    prototype: HTMLSqmScrollElement;
+    new (): HTMLSqmScrollElement;
+  };
+  interface HTMLSqmShareButtonElement
+    extends Components.SqmShareButton,
+      HTMLStencilElement {}
+  var HTMLSqmShareButtonElement: {
+    prototype: HTMLSqmShareButtonElement;
+    new (): HTMLSqmShareButtonElement;
+  };
+  interface HTMLSqmShareCodeElement
+    extends Components.SqmShareCode,
+      HTMLStencilElement {}
+  var HTMLSqmShareCodeElement: {
+    prototype: HTMLSqmShareCodeElement;
+    new (): HTMLSqmShareCodeElement;
+  };
+  interface HTMLSqmShareLinkElement
+    extends Components.SqmShareLink,
+      HTMLStencilElement {}
+  var HTMLSqmShareLinkElement: {
+    prototype: HTMLSqmShareLinkElement;
+    new (): HTMLSqmShareLinkElement;
+  };
+  interface HTMLSqmStatContainerElement
+    extends Components.SqmStatContainer,
+      HTMLStencilElement {}
+  var HTMLSqmStatContainerElement: {
+    prototype: HTMLSqmStatContainerElement;
+    new (): HTMLSqmStatContainerElement;
+  };
+  interface HTMLSqmStencilbookElement
+    extends Components.SqmStencilbook,
+      HTMLStencilElement {}
+  var HTMLSqmStencilbookElement: {
+    prototype: HTMLSqmStencilbookElement;
+    new (): HTMLSqmStencilbookElement;
+  };
+  interface HTMLSqmTabElement extends Components.SqmTab, HTMLStencilElement {}
+  var HTMLSqmTabElement: {
+    prototype: HTMLSqmTabElement;
+    new (): HTMLSqmTabElement;
+  };
+  interface HTMLSqmTableCellElement
+    extends Components.SqmTableCell,
+      HTMLStencilElement {}
+  var HTMLSqmTableCellElement: {
+    prototype: HTMLSqmTableCellElement;
+    new (): HTMLSqmTableCellElement;
+  };
+  interface HTMLSqmTableRowElement
+    extends Components.SqmTableRow,
+      HTMLStencilElement {}
+  var HTMLSqmTableRowElement: {
+    prototype: HTMLSqmTableRowElement;
+    new (): HTMLSqmTableRowElement;
+  };
+  interface HTMLSqmTabsElement extends Components.SqmTabs, HTMLStencilElement {}
+  var HTMLSqmTabsElement: {
+    prototype: HTMLSqmTabsElement;
+    new (): HTMLSqmTabsElement;
+  };
+  interface HTMLSqmTaskCardElement
+    extends Components.SqmTaskCard,
+      HTMLStencilElement {}
+  var HTMLSqmTaskCardElement: {
+    prototype: HTMLSqmTaskCardElement;
+    new (): HTMLSqmTaskCardElement;
+  };
+  interface HTMLSqmTextElement extends Components.SqmText, HTMLStencilElement {}
+  var HTMLSqmTextElement: {
+    prototype: HTMLSqmTextElement;
+    new (): HTMLSqmTextElement;
+  };
+  interface HTMLSqmTextSpanElement
+    extends Components.SqmTextSpan,
+      HTMLStencilElement {}
+  var HTMLSqmTextSpanElement: {
+    prototype: HTMLSqmTextSpanElement;
+    new (): HTMLSqmTextSpanElement;
+  };
+  interface HTMLSqmTimelineElement
+    extends Components.SqmTimeline,
+      HTMLStencilElement {}
+  var HTMLSqmTimelineElement: {
+    prototype: HTMLSqmTimelineElement;
+    new (): HTMLSqmTimelineElement;
+  };
+  interface HTMLSqmTimelineEntryElement
+    extends Components.SqmTimelineEntry,
+      HTMLStencilElement {}
+  var HTMLSqmTimelineEntryElement: {
+    prototype: HTMLSqmTimelineEntryElement;
+    new (): HTMLSqmTimelineEntryElement;
+  };
+  interface HTMLSqmTitledSectionElement
+    extends Components.SqmTitledSection,
+      HTMLStencilElement {}
+  var HTMLSqmTitledSectionElement: {
+    prototype: HTMLSqmTitledSectionElement;
+    new (): HTMLSqmTitledSectionElement;
+  };
+  interface HTMLSqmUserNameElement
+    extends Components.SqmUserName,
+      HTMLStencilElement {}
+  var HTMLSqmUserNameElement: {
+    prototype: HTMLSqmUserNameElement;
+    new (): HTMLSqmUserNameElement;
+  };
+  interface HTMLElementTagNameMap {
+    "raisins-plop-target": HTMLRaisinsPlopTargetElement;
+    "sqm-asset-card": HTMLSqmAssetCardElement;
+    "sqm-big-stat": HTMLSqmBigStatElement;
+    "sqm-brand": HTMLSqmBrandElement;
+    "sqm-card-feed": HTMLSqmCardFeedElement;
+    "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
+    "sqm-divided-layout": HTMLSqmDividedLayoutElement;
+    "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
+    "sqm-edit-profile": HTMLSqmEditProfileElement;
+    "sqm-empty": HTMLSqmEmptyElement;
+    "sqm-form-message": HTMLSqmFormMessageElement;
+    "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
+    "sqm-hero": HTMLSqmHeroElement;
+    "sqm-hero-image": HTMLSqmHeroImageElement;
+    "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
+    "sqm-image": HTMLSqmImageElement;
+    "sqm-input-field": HTMLSqmInputFieldElement;
+    "sqm-leaderboard": HTMLSqmLeaderboardElement;
+    "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
+    "sqm-name-fields": HTMLSqmNameFieldsElement;
+    "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
+    "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
+    "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
+    "sqm-password-field": HTMLSqmPasswordFieldElement;
+    "sqm-popup-container": HTMLSqmPopupContainerElement;
+    "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
+    "sqm-portal-container": HTMLSqmPortalContainerElement;
+    "sqm-portal-email-verification": HTMLSqmPortalEmailVerificationElement;
+    "sqm-portal-footer": HTMLSqmPortalFooterElement;
+    "sqm-portal-forgot-password": HTMLSqmPortalForgotPasswordElement;
+    "sqm-portal-frame": HTMLSqmPortalFrameElement;
+    "sqm-portal-login": HTMLSqmPortalLoginElement;
+    "sqm-portal-logout": HTMLSqmPortalLogoutElement;
+    "sqm-portal-profile": HTMLSqmPortalProfileElement;
+    "sqm-portal-protected-route": HTMLSqmPortalProtectedRouteElement;
+    "sqm-portal-register": HTMLSqmPortalRegisterElement;
+    "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
+    "sqm-portal-verify-email": HTMLSqmPortalVerifyEmailElement;
+    "sqm-program-explainer": HTMLSqmProgramExplainerElement;
+    "sqm-program-explainer-step": HTMLSqmProgramExplainerStepElement;
+    "sqm-program-menu": HTMLSqmProgramMenuElement;
+    "sqm-qa": HTMLSqmQaElement;
+    "sqm-qa-referral-card": HTMLSqmQaReferralCardElement;
+    "sqm-qa-tabs": HTMLSqmQaTabsElement;
+    "sqm-referral-card": HTMLSqmReferralCardElement;
+    "sqm-referral-iframe": HTMLSqmReferralIframeElement;
+    "sqm-referral-table": HTMLSqmReferralTableElement;
+    "sqm-referral-table-cell": HTMLSqmReferralTableCellElement;
+    "sqm-referral-table-column": HTMLSqmReferralTableColumnElement;
+    "sqm-referral-table-date-cell": HTMLSqmReferralTableDateCellElement;
+    "sqm-referral-table-date-column": HTMLSqmReferralTableDateColumnElement;
+    "sqm-referral-table-rewards-cell": HTMLSqmReferralTableRewardsCellElement;
+    "sqm-referral-table-rewards-column": HTMLSqmReferralTableRewardsColumnElement;
+    "sqm-referral-table-status-cell": HTMLSqmReferralTableStatusCellElement;
+    "sqm-referral-table-status-column": HTMLSqmReferralTableStatusColumnElement;
+    "sqm-referral-table-user-cell": HTMLSqmReferralTableUserCellElement;
+    "sqm-referral-table-user-column": HTMLSqmReferralTableUserColumnElement;
+    "sqm-reward-exchange-list": HTMLSqmRewardExchangeListElement;
+    "sqm-rewards-table": HTMLSqmRewardsTableElement;
+    "sqm-rewards-table-customer-note-cell": HTMLSqmRewardsTableCustomerNoteCellElement;
+    "sqm-rewards-table-customer-note-column": HTMLSqmRewardsTableCustomerNoteColumnElement;
+    "sqm-rewards-table-date-cell": HTMLSqmRewardsTableDateCellElement;
+    "sqm-rewards-table-date-column": HTMLSqmRewardsTableDateColumnElement;
+    "sqm-rewards-table-reward-cell": HTMLSqmRewardsTableRewardCellElement;
+    "sqm-rewards-table-reward-column": HTMLSqmRewardsTableRewardColumnElement;
+    "sqm-rewards-table-source-cell": HTMLSqmRewardsTableSourceCellElement;
+    "sqm-rewards-table-source-column": HTMLSqmRewardsTableSourceColumnElement;
+    "sqm-rewards-table-status-cell": HTMLSqmRewardsTableStatusCellElement;
+    "sqm-rewards-table-status-column": HTMLSqmRewardsTableStatusColumnElement;
+    "sqm-route": HTMLSqmRouteElement;
+    "sqm-router": HTMLSqmRouterElement;
+    "sqm-scroll": HTMLSqmScrollElement;
+    "sqm-share-button": HTMLSqmShareButtonElement;
+    "sqm-share-code": HTMLSqmShareCodeElement;
+    "sqm-share-link": HTMLSqmShareLinkElement;
+    "sqm-stat-container": HTMLSqmStatContainerElement;
+    "sqm-stencilbook": HTMLSqmStencilbookElement;
+    "sqm-tab": HTMLSqmTabElement;
+    "sqm-table-cell": HTMLSqmTableCellElement;
+    "sqm-table-row": HTMLSqmTableRowElement;
+    "sqm-tabs": HTMLSqmTabsElement;
+    "sqm-task-card": HTMLSqmTaskCardElement;
+    "sqm-text": HTMLSqmTextElement;
+    "sqm-text-span": HTMLSqmTextSpanElement;
+    "sqm-timeline": HTMLSqmTimelineElement;
+    "sqm-timeline-entry": HTMLSqmTimelineEntryElement;
+    "sqm-titled-section": HTMLSqmTitledSectionElement;
+    "sqm-user-name": HTMLSqmUserNameElement;
+  }
 }
 declare namespace LocalJSX {
-    interface RaisinsPlopTarget {
-    }
-    interface SqmAssetCard {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<AssetCardViewProps>;
-        /**
-          * @uiName Banner Image
-         */
-        "imgUrl"?: string;
-        /**
-          * @uiName Banner Title
-         */
-        "titleText"?: string;
-    }
-    interface SqmBigStat {
-        /**
-          * Controls the alignment of the flexbox
-          * @uiName Alignment
-          * @uiType string
-          * @uiEnum ["left", "right", "center"]
-          * @uiEnumNames ["Left", "Right", "Center"]
-         */
-        "alignment"?: "left" | "right" | "center";
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<BigStatViewProps>;
-        /**
-          * Controls the order of the stat value & description column
-          * @uiName Flex Reverse
-          * @default
-         */
-        "flexReverse"?: boolean;
-        /**
-          * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
-          * @uiName Program ID
-          * @uiWidget programSelector
-         */
-        "programId"?: string;
-        /**
-          * Select what type of stat to display. Manual paths are also supported.
-          * @uiWidget statTypeSelectWidget
-          * @uiName Stat Type
-          * @required 
-          * @uiWidgetOptions {"version": 1.1}
-         */
-        "statType"?: string;
-    }
-    interface SqmBrand {
-        /**
-          * Controls the primary brand color used in the Mint Components library.
-          * @uiName Brand Color
-          * @uiWidget color
-          * @format color
-         */
-        "brandColor"?: string;
-        /**
-          * A font from the Google Fonts library used throughout the widget. This value is case sensitive.
-          * @uiName Brand Font
-          * @default "Nunito Sans"
-         */
-        "brandFont"?: string;
-    }
-    interface SqmCardFeed {
-        /**
-          * @uiName Column Gap
-          * @uiType number
-         */
-        "gap"?: number;
-        /**
-          * @uiName Card Width
-         */
-        "width"?: number;
-    }
-    interface SqmCheckboxField {
-        /**
-          * @uiName Checkbox Label
-         */
-        "checkboxLabel"?: string;
-        /**
-          * Used with link text if the checkbox label contains {labelLink}
-          * @uiName Checkbox Label Link
-         */
-        "checkboxLabelLink"?: string;
-        /**
-          * @uiName Checkbox Label Link Text
-         */
-        "checkboxLabelLinkText"?: string;
-        /**
-          * @uiName Checkbox Name Attribute
-         */
-        "checkboxName"?: string;
-        /**
-          * @uiName Optional
-          * @default
-         */
-        "checkboxOptional"?: boolean;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<CheckboxFieldViewProps>;
-        /**
-          * @uiName Unchecked Error Message
-         */
-        "errorMessage"?: string;
-    }
-    interface SqmDividedLayout {
-        /**
-          * @uiName Direction
-          * @uiType string
-          * @uiEnum ["row", "column"]
-          * @uiEnumNames ["Row", "Column"]
-         */
-        "direction"?: "row" | "column";
-        /**
-          * Uses Shorthand CSS border syntax
-          * @uiName Border Style
-         */
-        "dividerStyle"?: string;
-    }
-    interface SqmDropdownField {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<DropdownFieldViewProps>;
-        /**
-          * @uiName Dropdown Label
-         */
-        "dropdownLabel"?: string;
-        /**
-          * @uiName Dropdown Name Attribute
-         */
-        "dropdownName"?: string;
-        /**
-          * @uiName Optional
-          * @default
-         */
-        "dropdownOptional"?: boolean;
-        /**
-          * @uiName Unselected Error Message
-         */
-        "errorMessage"?: string;
-    }
-    interface SqmEditProfile {
-        /**
-          * @uiName Cancel Button Text
-         */
-        "canceltext"?: string;
-        /**
-          * @uiName Region Field Label
-         */
-        "currentregiontext"?: string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<EditProfileViewProps>;
-        /**
-          * @uiName Heading
-         */
-        "editprofileheader"?: string;
-        /**
-          * Enable editing button text
-          * @uiName Edit Profile Text
-         */
-        "editprofiletext"?: string;
-        /**
-          * @uiName First Name Label
-         */
-        "firstnametext"?: string;
-        /**
-          * @uiName Last Name Label
-         */
-        "lastnametext"?: string;
-        /**
-          * Show or hide current region
-          * @uiName Show Region
-         */
-        "showregion"?: boolean;
-        /**
-          * @uiName Info Button Text
-         */
-        "updatetext"?: string;
-    }
-    interface SqmEmpty {
-        /**
-          * @uiName Title
-         */
-        "emptyStateHeader"?: string;
-        /**
-          * @uiWidget ImageUpload
-          * @format url
-          * @uiName Image
-         */
-        "emptyStateImage"?: string;
-        /**
-          * @uiName Description
-          * @uiWidget textArea
-         */
-        "emptyStateText"?: string;
-    }
-    interface SqmFormMessage {
-        /**
-          * Icon to use in alert
-          * @uiName Icon
-         */
-        "icon"?: string;
-        /**
-          * @uiName Alert Type
-         */
-        "type"?: string;
-    }
-    interface SqmGraphqlClientProvider {
-        /**
-          * @uiName Domain
-         */
-        "domain"?: string;
-    }
-    interface SqmHero {
-        /**
-          * Can be an image url, colour or Shoelace variable.
-          * @uiName Background
-         */
-        "background"?: string;
-        /**
-          * Number of columns in the layout
-          * @uiName Columns
-         */
-        "columns"?: 1 | 2;
-        /**
-          * @uiName Padding Size
-          * @uiEnum ["none", "small", "medium","large"]
-          * @uiEnumNames ["None", "Small", "Medium", "Large"]
-         */
-        "paddingSize"?: "none" | "small" | "medium" | "large";
-        /**
-          * Secondary background image or color (for use in the right column)
-          * @uiName Secondary Background
-         */
-        "secondaryBackground"?: string;
-        /**
-          * Flexbox wrap direction, accepts wrap or wrap-reverse
-          * @uiName Wrap Direction
-          * @uiEnum ["wrap", "wrap-reverse"]
-          * @uiEnumNames ["Wrap", "Wrap Reverse"]
-         */
-        "wrapDirection"?: "wrap" | "wrap-reverse";
-    }
-    interface SqmHeroImage {
-        /**
-          * @uiName Background Color
-          * @uiWidget color
-          * @format color
-         */
-        "backgroundColor"?: string;
-        /**
-          * @uiName Button Link
-         */
-        "buttonLink"?: string;
-        /**
-          * @uiName Open Link in New Tab
-          * @default
-         */
-        "buttonNewTab"?: boolean;
-        /**
-          * @uiName Button Text
-         */
-        "buttonText"?: string;
-        /**
-          * @uiName Description
-          * @uiWidget textArea
-         */
-        "description"?: string;
-        /**
-          * @uiName Title
-         */
-        "header"?: string;
-        /**
-          * @uiName Image Mobile Position
-          * @uiType string
-          * @uiEnum ["top", "bottom"]
-          * @uiEnumNames ["Top", "Bottom"]
-         */
-        "imageMobilePos"?: "top" | "bottom";
-        /**
-          * @uiName Image Percentage
-          * @uiType number
-         */
-        "imagePercentage"?: number;
-        /**
-          * @uiName Image Position
-          * @uiType string
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "imagePos"?: "left" | "center" | "right";
-        /**
-          * @uiWidget ImageUpload
-          * @format url
-          * @uiName Image
-         */
-        "imageUrl"?: string;
-        /**
-          * @uiName Image Layout
-          * @uiType string
-          * @uiEnum ["overlay", "columns"]
-          * @uiEnumNames ["Overlay", "Two-column"]
-         */
-        "layout"?: "overlay" | "columns";
-        /**
-          * @uiName Overlay Color
-          * @uiWidget color
-          * @format color
-         */
-        "overlayColor"?: string;
-        /**
-          * @uiName Overlay Opacity
-         */
-        "overlayOpacity"?: string;
-        /**
-          * @uiName Image Padding
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "paddingImage"?: Spacing;
-        /**
-          * @uiName Text Padding
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "paddingText"?: Spacing;
-        /**
-          * @uiName Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "textColor"?: string;
-    }
-    interface SqmHookStoryContainer {
-        "hookStory"?: FunctionalComponent;
-    }
-    interface SqmImage {
-        /**
-          * @uiName Position Alignment
-          * @uiType string
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "alignment"?: "left" | "center" | "right";
-        /**
-          * @uiName Background Color
-          * @uiWidget color
-          * @format
-         */
-        "backgroundColor"?: string;
-        /**
-          * @uiWidget ImageUpload
-          * @format url
-          * @required 
-          * @uiName Image Link
-         */
-        "imageUrl"?: string;
-        /**
-          * (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
-          * @uiName Minimum Height
-         */
-        "minHeight"?: string;
-    }
-    interface SqmInputField {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<InputFieldViewProps>;
-        /**
-          * @uiName Required Error Message
-         */
-        "errorMessage"?: string;
-        /**
-          * @uiName Input Label
-         */
-        "fieldLabel"?: string;
-        /**
-          * Used as the key of the inputs value in form data.
-          * @uiName Input Name Attribute
-         */
-        "fieldName"?: string;
-        /**
-          * @uiName Optional
-          * @default
-         */
-        "fieldOptional"?: boolean;
-        /**
-          * @uiName Input Type
-          * @uiType string
-          * @uiEnum ["text", "date", "tel"]
-          * @uiEnumNames ["Text", "Date", "Phone Number"]
-         */
-        "fieldType"?: "text" | "date" | "tel";
-    }
-    interface SqmLeaderboard {
-        /**
-          * Title displayed for users without names
-          * @uiName Unknown User Text
-         */
-        "anonymousUser"?: string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<LeaderboardViewProps>;
-        /**
-          * Hide the viewer's leaderboard row if not in the top results.
-          * @uiName Hide Viewing User
-          * @default
-         */
-        "hideViewer"?: boolean;
-        /**
-          * @uiName Leaderboard Time Interval
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-         */
-        "interval"?: string;
-        /**
-          * @uiName Leaderboard Type
-          * @uiType string
-          * @required 
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
-          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
-         */
-        "leaderboardType"?: | "topStartedReferrers"
-    | "topConvertedReferrers"
-    | "topPointEarners";
-        /**
-          * Control the maximum amount of rows displayed on the leaderboard.
-          * @uiName Maximum Rows Number
-         */
-        "maxRows"?: number;
-        /**
-          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
-          * @uiName Program
-          * @uiWidget programSelector
-         */
-        "programId"?: string;
-        /**
-          * @uiName Rank Type
-          * @uiType string
-          * @uiEnum ["rowNumber", "rank", "denseRank"]
-          * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
-         */
-        "rankType"?: "rowNumber" | "rank" | "denseRank";
-        /**
-          * @uiName Rank Column Heading
-         */
-        "rankheading"?: string;
-        /**
-          * @uiName Show Leaderboard Rank
-         */
-        "showRank"?: boolean;
-        /**
-          * @uiName Stats Column Heading
-         */
-        "statsheading"?: string;
-        /**
-          * @uiName User Column Heading
-         */
-        "usersheading"?: string;
-    }
-    interface SqmLeaderboardRank {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<LeaderboardRankViewProps>;
-        /**
-          * @uiName Leaderboard Time Interval
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-         */
-        "interval"?: string;
-        /**
-          * @uiName Leaderboard Type
-          * @uiType string
-          * @required 
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
-          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
-         */
-        "leaderboardType"?: | "topStartedReferrers"
-    | "topConvertedReferrers"
-    | "topPointEarners";
-        /**
-          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
-          * @uiName Program
-          * @uiWidget programSelector
-         */
-        "programId"?: string;
-        /**
-          * @uiName Rank Text
-          * @uiWidget textArea
-         */
-        "rankText"?: string;
-        /**
-          * @uiName Default Rank
-          * @uiType string
-          * @uiEnum ["rowNumber", "rank", "denseRank"]
-          * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
-         */
-        "rankType"?: "rowNumber" | "rank" | "denseRank";
-        /**
-          * @uiName Unranked Text
-         */
-        "unrankedText"?: string;
-    }
-    interface SqmNameFields {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<NameFieldsViewProps>;
-        /**
-          * @uiName First Name label
-         */
-        "firstNameLabel"?: string;
-        /**
-          * @uiName Last Name label
-         */
-        "lastNameLabel"?: string;
-    }
-    interface SqmNavigationMenu {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<NavigationMenuViewProps>;
-        /**
-          * @uiName Include Dropdown Menu
-         */
-        "includeDropdown"?: boolean;
-        /**
-          * Label on the header menu
-          * @uiName Menu Label
-         */
-        "menuLabel"?: string;
-    }
-    interface SqmNavigationSidebar {
-    }
-    interface SqmNavigationSidebarItem {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<NavigationSidebarItemViewProps>;
-        /**
-          * Options available at https://shoelace.style/components/icon
-          * @uiName Icon
-         */
-        "icon"?: string;
-        /**
-          * @uiName Label
-         */
-        "label"?: string;
-        /**
-          * @uiName Navigation Path
-         */
-        "path"?: string;
-    }
-    interface SqmPasswordField {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: PasswordFieldViewDemoProps;
-        /**
-          * Enable live password validation
-          * @uiName Enable Validation
-         */
-        "enableValidation"?: boolean;
-        /**
-          * Label for password field
-          * @uiName Password Label
-         */
-        "fieldLabel"?: string;
-    }
-    interface SqmPopupContainer {
-        /**
-          * Display a close button on the popup
-          * @uiName Show Close Button
-         */
-        "closeButton"?: boolean;
-        /**
-          * Text inside the close button
-          * @uiName Close Button Text
-         */
-        "closeButtonText"?: string;
-        /**
-          * Specify padding on the popup contents when in embedded mode
-          * @uiName Embed Padding
-          * @uiType string
-          * @uiEnum ["none", "small", "medium", "large"]
-          * @uiEnumNames ["None", "Small", "Medium", "Large"]
-         */
-        "embedPadding"?: "none" | "small" | "medium" | "large";
-        /**
-          * Specify padding on the popup contents when in popup mode
-          * @uiName Popup Padding
-          * @uiType string
-          * @uiEnum ["none", "small", "medium", "large"]
-          * @uiEnumNames ["None", "Small", "Medium", "Large"]
-         */
-        "popupPadding"?: "none" | "small" | "medium" | "large";
-        /**
-          * Show Powered By SaaSquatch link
-          * @uiName Show Powered By
-         */
-        "poweredBy"?: boolean;
-    }
-    interface SqmPortalChangePassword {
-        /**
-          * Modal cancel button text
-          * @uiName Cancel Button Text
-         */
-        "cancelText"?: string;
-        /**
-          * Modal change password button text
-          * @uiName Change Password Button Text
-         */
-        "changePasswordButtonText"?: string;
-        /**
-          * Password confirmation input field label
-          * @uiName Confirm Password Label
-         */
-        "confirmPasswordFieldLabel"?: string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalChangePasswordViewProps>;
-        /**
-          * @uiName Change Password Modal Header
-         */
-        "modalChangePasswordHeader"?: string;
-        /**
-          * Password input field label
-          * @uiName Password Label
-         */
-        "passwordFieldLabel"?: string;
-        /**
-          * @uiName Change Password Button Text
-         */
-        "portalChangePasswordButtonText"?: string;
-        /**
-          * Portal change password section header
-          * @uiName Change Password Header
-         */
-        "portalChangePasswordHeader"?: string;
-        /**
-          * Successful password change message
-          * @uiName Successful Message
-         */
-        "successMessage"?: string;
-    }
-    interface SqmPortalContainer {
-        /**
-          * @uiName Center Content
-         */
-        "center"?: boolean;
-        /**
-          * @uiName Direction
-          * @uiType string
-          * @uiEnum ["row", "column"]
-          * @uiEnumNames ["Row", "Column"]
-         */
-        "direction"?: "row" | "column";
-        /**
-          * @uiName Display
-          * @uiType string
-          * @uiEnum ["grid", "flex"]
-          * @uiEnumNames ["Grid", "Flex"]
-         */
-        "display"?: "grid" | "flex";
-        /**
-          * @uiName Gap
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "gap"?: Spacing;
-        /**
-          * Define how this container distributes its contents along the main-axis.
-          * @uiName Justify Content
-          * @uiType string
-          * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
-          * @uiEnumNames ["Start", "Center", "End", "Space Between", "Space Around", "Space Evenly"]
-         */
-        "justifyContent"?: | "start"
-    | "center"
-    | "end"
-    | "space-between"
-    | "space-around"
-    | "space-evenly";
-        /**
-          * @uiName Maximum width
-         */
-        "maxWidth"?: string;
-        /**
-          * @uiName Minimum Width
-         */
-        "minWidth"?: string;
-        /**
-          * @uiName Padding
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "padding"?: Spacing;
-    }
-    interface SqmPortalEmailVerification {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalEmailVerificationViewProps>;
-        /**
-          * @uiName Email Verification Header Text
-         */
-        "emailVerificationHeader"?: string;
-        /**
-          * The page that users are redirected to from the verification email.
-          * @uiName Email Redirection Base Path
-         */
-        "redirectPath"?: string;
-        /**
-          * @uiName Re-send Email Button Text
-         */
-        "resendEmailButtonText"?: string;
-        /**
-          * @uiName Email Verification Body Text
-         */
-        "verifyMessage"?: string;
-    }
-    interface SqmPortalFooter {
-        /**
-          * @uiName FAQ Link
-         */
-        "faqLink"?: string;
-        /**
-          * @uiName FAQ Text
-         */
-        "faqText"?: string;
-        /**
-          * @uiName Padding Bottom
-         */
-        "paddingBottom"?: string;
-        /**
-          * @uiName Padding Left
-         */
-        "paddingLeft"?: string;
-        /**
-          * @uiName Padding Right
-         */
-        "paddingRight"?: string;
-        /**
-          * @uiName Padding Top
-         */
-        "paddingTop"?: string;
-        /**
-          * @uiName Powered By Link
-         */
-        "poweredByLink"?: string;
-        /**
-          * @uiName Show Powered By SaaSquatch
-         */
-        "showPoweredBy"?: boolean;
-        /**
-          * @uiName Support Email
-         */
-        "supportEmail"?: string;
-        /**
-          * @uiName Support Text
-         */
-        "supportText"?: string;
-        /**
-          * @uiName Terms and Conditions Link
-         */
-        "termsLink"?: string;
-        /**
-          * @uiName Terms and Conditions Text
-         */
-        "termsText"?: string;
-    }
-    interface SqmPortalForgotPassword {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalForgotPasswordViewProps>;
-        /**
-          * @uiName Email Label
-         */
-        "emailLabel"?: string;
-        /**
-          * @uiName Login Page Routing Path
-         */
-        "loginPath"?: string;
-        /**
-          * The page that users are redirected to from the password reset email.
-          * @uiName Email Redirection Base Path
-         */
-        "redirectPath"?: string;
-        /**
-          * @uiName Password Reset Button Text
-         */
-        "submitLabel"?: string;
-    }
-    interface SqmPortalFrame {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalFrameViewProps>;
-    }
-    interface SqmPortalLogin {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalLoginViewProps>;
-        /**
-          * Label for email field
-          * @uiName Email Label
-         */
-        "emailLabel"?: string;
-        /**
-          * Label for forgotten password button
-          * @uiName Forgot Password Text
-         */
-        "forgotPasswordLabel"?: string;
-        /**
-          * Forgot password redirect path
-          * @uiName Forgot Password Path
-         */
-        "forgotPasswordPath"?: string;
-        /**
-          * Page navigated to after sign-in
-          * @uiName Next Page Path
-         */
-        "nextPage"?: string;
-        /**
-          * @uiName Heading Label
-         */
-        "pageLabel"?: string;
-        /**
-          * Label for password field
-          * @uiName Password Label
-         */
-        "passwordLabel"?: string;
-        /**
-          * Label for register button
-          * @uiName Register Button Text
-         */
-        "registerLabel"?: string;
-        /**
-          * Register redirect path
-          * @uiName Register Path
-         */
-        "registerPath"?: string;
-        /**
-          * Label for submit button
-          * @uiName Submit Button Text
-         */
-        "submitLabel"?: string;
-    }
-    interface SqmPortalLogout {
-        /**
-          * @uiName Next Page Path
-         */
-        "nextPage"?: string;
-    }
-    interface SqmPortalProfile {
-        /**
-          * Country input field label
-          * @uiName Country Label
-         */
-        "countrytext"?: string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalProfileViewProps>;
-        /**
-          * @uiName Edit Profile Header
-         */
-        "editProfileHeader"?: string;
-        /**
-          * @uiName Edit Profile Sub Header
-         */
-        "editProfileSubHeader"?: string;
-        /**
-          * Email input field label
-          * @uiName Email Label
-         */
-        "emailtext"?: string;
-        /**
-          * First name input field label
-          * @uiName First Name Label
-         */
-        "firstnametext"?: string;
-        /**
-          * Last name input field label
-          * @uiName Last Name Label
-         */
-        "lastnametext"?: string;
-        /**
-          * Show or hide the country field
-          * @uiName Show Country Field
-         */
-        "showCountry"?: boolean;
-        /**
-          * @uiName Submit Changes Button Text
-         */
-        "submitChangeButtonText"?: string;
-    }
-    interface SqmPortalProtectedRoute {
-        /**
-          * @uiName Redirect Path
-         */
-        "redirectTo"?: string;
-        /**
-          * @uiName Redirect Unverified Users Path
-         */
-        "redirectToUnverified"?: string;
-        /**
-          * @uiName Require Email Verification
-          * @default
-         */
-        "requireEmailVerification"?: boolean;
-    }
-    interface SqmPortalRegister {
-        /**
-          * Show or hide the confirm password input
-          * @uiName Show Confirm Password Field
-          * @default
-         */
-        "confirmPassword"?: boolean;
-        /**
-          * @uiName Confirm Password Label
-         */
-        "confirmPasswordLabel"?: string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalRegisterViewProps>;
-        /**
-          * @uiName Email Label
-         */
-        "emailLabel"?: string;
-        /**
-          * @uiName Enable Password Validation
-         */
-        "enablePasswordValidation"?: boolean;
-        /**
-          * Hide default input fields to use custom fields
-          * @uiName Hide Default Inputs
-          * @default
-         */
-        "hideInputs"?: boolean;
-        /**
-          * @uiName Login Button Text
-         */
-        "loginLabel"?: string;
-        /**
-          * Login button redirection path
-          * @uiName Login Path
-         */
-        "loginPath"?: string;
-        /**
-          * Page navigated to after registration
-          * @uiName Next Page
-         */
-        "nextPage"?: string;
-        /**
-          * @uiName Heading Label
-         */
-        "pageLabel"?: string;
-        /**
-          * @uiName Password Label
-         */
-        "passwordLabel"?: string;
-        /**
-          * The page that users are redirected to from the verification email.
-          * @uiName Email Redirection Base Path
-         */
-        "redirectPath"?: string;
-        /**
-          * @uiName Submit Button Text
-         */
-        "submitLabel"?: string;
-    }
-    interface SqmPortalResetPassword {
-        /**
-          * Show or hide confirm password field
-          * @uiName Show Confirm Password
-          * @default
-         */
-        "confirmPassword"?: boolean;
-        /**
-          * @uiName Confirm Password Label
-         */
-        "confirmPasswordFieldLabel"?: string;
-        /**
-          * Button text displayed after a successful password reset
-          * @uiName Continue Button Text
-         */
-        "continueButtonText"?: string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalResetPasswordViewProps>;
-        /**
-          * The page that users are redirected to if the reset fails due to outdated password reset attempt.
-          * @uiName Failed Page Path
-         */
-        "failedPage"?: string;
-        /**
-          * The page that users are redirected to when the password reset succeeds.
-          * @uiName Next Page Path
-         */
-        "nextPage"?: string;
-        /**
-          * @uiName Password Label
-         */
-        "passwordFieldLabel"?: string;
-        /**
-          * Displayed after a successful password reset
-          * @uiName Successful Password Reset Text
-         */
-        "passwordResetHeader"?: string;
-        /**
-          * @uiName Password Reset Button Text
-         */
-        "resetPasswordButtonText"?: string;
-        /**
-          * @uiName Reset Password Header Text
-         */
-        "resetPasswordHeader"?: string;
-    }
-    interface SqmPortalVerifyEmail {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<PortalVerifyEmailViewProps>;
-        /**
-          * The page that users are redirected to if verification fails due to outdated verification attempt.
-          * @uiName Failed Page Path
-         */
-        "failedPage"?: string;
-        /**
-          * The page that users are redirected to when the verification succeeds.
-          * @uiName Next Page Path
-         */
-        "nextPage"?: string;
-    }
-    interface SqmProgramExplainer {
-        /**
-          * @uiName Header Background Color
-          * @uiWidget color
-          * @format color
-         */
-        "backgroundColor"?: string;
-        /**
-          * @uiName Header Text
-         */
-        "header"?: string;
-        /**
-          * @uiName Header Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "textColor"?: string;
-    }
-    interface SqmProgramExplainerStep {
-        /**
-          * @uiName Background Color
-          * @uiWidget color
-          * @format color
-         */
-        "backgroundColor"?: string;
-        /**
-          * @uiName Description
-          * @uiWidget textArea
-         */
-        "description"?: string;
-        /**
-          * @uiName Title
-         */
-        "header"?: string;
-        /**
-          * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
-          * @uiName Icon
-         */
-        "icon"?: string;
-        /**
-          * Displayed in place of an icon
-          * @uiName Image Url
-          * @uiWidget imageUpload
-          * @format url
-         */
-        "imageUrl"?: string;
-        /**
-          * @uiName Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "textColor"?: string;
-    }
-    interface SqmProgramMenu {
-    }
-    interface SqmQa {
-        /**
-          * Description here
-          * @uiName Boolean Switch with default
-         */
-        "booleanSwitch"?: boolean;
-        /**
-          * Description here
-          * @uiName Boolean Switch with no default
-         */
-        "booleanSwitchNoDefault"?: boolean;
-        /**
-          * Description here
-          * @uiName Boolean Switch required with no default
-          * @required
-         */
-        "booleanSwitchRequiredNoDefault"?: boolean;
-        /**
-          * Description here
-          * @uiName Color with default
-          * @uiWidget color
-          * @format color
-         */
-        "color"?: string;
-        /**
-          * Description here
-          * @uiName Color with no default
-          * @uiWidget color
-          * @format color
-         */
-        "colorNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Color required with no default
-          * @required 
-          * @uiWidget color
-          * @format color
-         */
-        "colorRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Date Interval with default
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @format date-interval
-         */
-        "dateInterval"?: string;
-        /**
-          * Description here
-          * @uiName Date Interval with no default
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @format date-interval
-         */
-        "dateIntervalNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Date Interval required with no default
-          * @required 
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @format date-interval
-         */
-        "dateIntervalRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Image Upload with default
-          * @uiWidget ImageUpload
-          * @format url
-         */
-        "imageUpload"?: string;
-        /**
-          * Description here
-          * @uiName Image Upload with no default
-          * @uiWidget ImageUpload
-          * @format url
-         */
-        "imageUploadNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Image Upload required with no default
-          * @required 
-          * @uiWidget ImageUpload
-          * @format url
-         */
-        "imageUploadRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Number Max 7
-          * @maximum 7
-         */
-        "max"?: number;
-        /**
-          * Description here
-          * @uiName String Max Length 10
-          * @maxLength 10
-         */
-        "maxLength"?: string;
-        /**
-          * Description here
-          * @uiName Number Min 7
-          * @minimum 7
-         */
-        "min"?: number;
-        /**
-          * Description here
-          * @uiName String Min Length 10
-          * @minLength 10
-         */
-        "minLength"?: string;
-        /**
-          * Description here
-          * @uiName Number Enum Select with default
-          * @uiEnum [1,2,3]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "numberEnumSelect"?: number;
-        /**
-          * Description here
-          * @uiName Number Enum Select with no default
-          * @uiEnum [1,2,3]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "numberEnumSelectNoDefault"?: number;
-        /**
-          * Description here
-          * @uiName Number Enum Select required with no default
-          * @required 
-          * @uiEnum [1,2,3]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "numberEnumSelectRequiredNoDefault"?: number;
-        /**
-          * Description here
-          * @uiName Number Input with default
-         */
-        "numberInput"?: number;
-        /**
-          * Description here
-          * @uiName Number Input with no default
-         */
-        "numberInputNoDefault"?: number;
-        /**
-          * Description here
-          * @uiName Number required with no default
-          * @required
-         */
-        "numberRequired"?: number;
-        /**
-          * Description here
-          * @uiName Program Selector with default
-          * @uiWidget programSelector
-         */
-        "programSelector"?: string;
-        /**
-          * Description here
-          * @uiName Program Selector with no default
-          * @uiWidget programSelector
-         */
-        "programSelectorNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Program Selector required with no default
-          * @required 
-          * @uiWidget programSelector
-         */
-        "programSelectorRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Stat Selector with default
-          * @uiWidget statTypeSelectWidget
-         */
-        "statSelector"?: string;
-        /**
-          * Description here
-          * @uiName Stat Selector with no default
-          * @uiWidget statTypeSelectWidget
-         */
-        "statSelectorNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Stat Selector required with no default
-          * @required 
-          * @uiWidget statTypeSelectWidget
-         */
-        "statSelectorRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName String Enum Select with default
-          * @uiEnum ["option1","option2","option3"]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "stringEnumSelect"?: string;
-        /**
-          * Description here
-          * @uiName String Enum Select with no default
-          * @uiEnum ["option1","option2","option3"]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "stringEnumSelectNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName String Enum Select required with no default
-          * @required 
-          * @uiEnum ["option1","option2","option3"]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "stringEnumSelectRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName String required with no default
-          * @required
-         */
-        "stringRequired"?: string;
-        /**
-          * Description here
-          * @uiName Text Area Input
-          * @uiWidget textArea with default
-         */
-        "textAreaInput"?: string;
-        /**
-          * Description here
-          * @uiName Text Area Input
-          * @uiWidget textArea with no default
-         */
-        "textAreaInputNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Text Area Input
-          * @uiWidget textArea required with no default
-          * @required
-         */
-        "textAreaInputRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Text Input with default
-         */
-        "textInput"?: string;
-        /**
-          * Description here
-          * @uiName Text Input with no default
-         */
-        "textInputNoDefault"?: string;
-    }
-    interface SqmQaReferralCard {
-        /**
-          * @uiName Vertical Aligment
-          * @uiType string
-          * @uiEnum ["start", "center", "end"]
-          * @uiEnumNames ["Top", "Center", "Bottom"]
-         */
-        "verticalAlignment"?: "start" | "center" | "end";
-    }
-    interface SqmQaTabs {
-        /**
-          * Used to specify the placement of the tabs
-          * @uiName Tabs Placement
-          * @uiType string
-          * @uiEnum ["left", "right", "bottom", "top"]
-          * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
-         */
-        "placement"?: "left" | "right" | "bottom" | "top";
-    }
-    interface SqmReferralCard {
-        /**
-          * @uiName Vertical Aligment
-          * @uiType string
-          * @uiEnum ["start", "center", "end"]
-          * @uiEnumNames ["Top", "Center", "Bottom"]
-         */
-        "verticalAlignment"?: "start" | "center" | "end";
-    }
-    interface SqmReferralIframe {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<ReferralIframeViewProps>;
-        /**
-          * Height of the iframe container
-          * @uiName Iframe Height
-         */
-        "iframeHeight"?: string;
-        /**
-          * URL of iframe to display
-          * @uiName Iframe Source
-          * @required
-         */
-        "iframeSrc"?: string;
-        /**
-          * Width of the iframe container
-          * @uiName Iframe Width
-         */
-        "iframeWidth"?: string;
-    }
-    interface SqmReferralTable {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<GenericTableViewProps>;
-        /**
-          * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
-          * @uiName Hidden Mobile Columns
-         */
-        "hiddenColumns"?: string;
-        /**
-          * @uiName Tablet Breakpoint
-         */
-        "mdBreakpoint"?: number;
-        /**
-          * @uiName View More Button Text
-         */
-        "moreLabel"?: string;
-        /**
-          * Number of referrals displayed per page
-          * @uiName Referrals Per Page
-         */
-        "perPage"?: number;
-        /**
-          * @uiName Previous Button Text
-         */
-        "prevLabel"?: string;
-        /**
-          * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs. If program ID is "classic", shows classic-only referrals
-          * @uiName Program
-          * @uiWidget programSelector
-         */
-        "programId"?: string;
-        /**
-          * @uiName Show Column Labels
-         */
-        "showLabels"?: boolean;
-        /**
-          * Show referred by user in table
-          * @uiName Show Referrer
-          * @default
-         */
-        "showReferrer"?: boolean;
-        /**
-          * @uiName Mobile Breakpoint
-         */
-        "smBreakpoint"?: number;
-    }
-    interface SqmReferralTableCell {
-        "innerTemplate"?: string;
-    }
-    interface SqmReferralTableColumn {
-        /**
-          * @uiName Column Title
-         */
-        "columnTitle"?: string;
-    }
-    interface SqmReferralTableDateCell {
-        "date"?: number;
-        "locale"?: string;
-    }
-    interface SqmReferralTableDateColumn {
-        /**
-          * @uiName Date Column Title
-         */
-        "columnTitle"?: string;
-        /**
-          * @uiName Date Displayed
-          * @uiType string
-          * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
-          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended", "Date Referral Paid", "Date User Modified"]
-         */
-        "dateShown"?: ReferralDates;
-    }
-    interface SqmReferralTableRewardsCell {
-        "expiringText"?: string;
-        "fuelTankText"?: string;
-        "hideDetails"?: boolean;
-        "locale"?: string;
-        "pendingForText"?: string;
-        "rewardReceivedText"?: string;
-        "rewards"?: Reward[];
-        "statusLongText"?: string;
-        "statusText"?: string;
-    }
-    interface SqmReferralTableRewardsColumn {
-        /**
-          * @uiName Reward column title
-         */
-        "columnTitle"?: string;
-        /**
-          * Shown in the dropdown details when a reward has an expiry date.
-          * @uiName Reward Expiring Text
-         */
-        "expiringText"?: string;
-        /**
-          * Shown in the dropdown details when a reward has an associated fuel tank code.
-          * @uiName Fuel Tank Code Text
-         */
-        "fuelTankText"?: string;
-        /**
-          * @uiName Hide dropdown details of reward
-          * @default
-         */
-        "hideDetails"?: boolean;
-        /**
-          * Shown in the dropdown details when a reward is pending.
-          * @uiName Reward Pending Text
-         */
-        "pendingForText"?: string;
-        /**
-          * Shown in the dropdown details when a reward has been received.’
-          * @uiName Reward Received Text
-         */
-        "rewardReceivedText"?: string;
-        /**
-          * Additional status text shown in the details drop down.
-          * @uiName Reward Status Long Text
-          * @uiWidget textArea
-         */
-        "statusLongText"?: string;
-        /**
-          * Text shown in the reward status badge.
-          * @uiName Reward Status Text
-          * @uiWidget textArea
-         */
-        "statusText"?: string;
-    }
-    interface SqmReferralTableStatusCell {
-        "converted"?: boolean;
-        "statusText"?: string;
-    }
-    interface SqmReferralTableStatusColumn {
-        /**
-          * @uiName Column Title
-         */
-        "columnTitle"?: string;
-        /**
-          * @uiName Converted Status Text
-         */
-        "convertedStatusText"?: string;
-        /**
-          * @uiName In Progress Status Text
-         */
-        "inProgressStatusText"?: string;
-    }
-    interface SqmReferralTableUserCell {
-        "name"?: string;
-    }
-    interface SqmReferralTableUserColumn {
-        /**
-          * Name displayed for unknown users
-          * @uiName Anonymous User Text
-         */
-        "anonymousUser"?: string;
-        /**
-          * @uiName User Column Title
-         */
-        "columnTitle"?: string;
-        /**
-          * Name displayed for deleted users
-          * @uiName Deleted User Text
-         */
-        "deletedUser"?: string;
-    }
-    interface SqmRewardExchangeList {
-        /**
-          * @uiName Back Button Text
-         */
-        "backText"?: string;
-        /**
-          * @uiName Cancel Button Text
-         */
-        "cancelText"?: string;
-        /**
-          * @uiName Choose Amount Progress Title
-         */
-        "chooseAmountTitle"?: string;
-        /**
-          * @uiName Choose Reward Progress Title
-         */
-        "chooseRewardTitle"?: string;
-        /**
-          * @uiName Confirmation Progress Title
-         */
-        "confirmationTitle"?: string;
-        /**
-          * @uiName Continue Button Text
-         */
-        "continueText"?: string;
-        /**
-          * Displayed on the reward selection page.
-          * @uiName Continue to Confirmation Button Text
-         */
-        "continueToConfirmationText"?: string;
-        /**
-          * Shown in the confirmation state.
-          * @uiName Cost Row Title
-         */
-        "costTitle"?: string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<RewardExchangeViewProps>;
-        /**
-          * @uiName Done Text
-         */
-        "doneText"?: string;
-        /**
-          * Error message shown when reward is not available
-          * @uiName Not Available Error
-          * @uiWidget textArea
-         */
-        "notAvailableError"?: string;
-        /**
-          * @uiName Not Enough Error Message
-          * @uiWidget textArea
-         */
-        "notEnoughError"?: string;
-        /**
-          * @uiName Promo Code Text
-         */
-        "promoCode"?: string;
-        /**
-          * Shown if an error occurs when loading the reward exchange.
-          * @uiName Reward List Error Message
-          * @uiWidget textArea
-         */
-        "queryError"?: string;
-        /**
-          * @uiName Redeem Button Text
-         */
-        "redeemText"?: string;
-        /**
-          * Displayed as the header for the confirmation page.
-          * @uiName Confirmation Title Text
-         */
-        "redeemTitle"?: string;
-        /**
-          * Shown if an error occurs during the reward exchange.
-          * @uiName Redemption Error Message
-          * @uiWidget textArea
-         */
-        "redemptionError"?: string;
-        /**
-          * Displayed on the success screen when a user successfully exchanges for a reward.
-          * @uiName Redemption Success Message
-          * @uiWidget textArea
-         */
-        "redemptionSuccessText"?: string;
-        /**
-          * Shown in the confirmation state.
-          * @uiName Reward Amount Row Title
-         */
-        "rewardAmountTitle"?: string;
-        /**
-          * Shown in the confirmation state.
-          * @uiName Reward Row Title
-         */
-        "rewardNameTitle"?: string;
-        /**
-          * @uiName Reward Redeemed Text
-         */
-        "rewardRedeemedText"?: string;
-        /**
-          * @uiName Reward Title Text
-         */
-        "rewardTitle"?: string;
-        /**
-          * @uiName Select Amount Text
-          * @uiWidget textArea
-         */
-        "selectText"?: string;
-        /**
-          * Set the number of placeholder cards to be shown in loading state.
-          * @uiName Loading Cards
-         */
-        "skeletonCardNum"?: number;
-        /**
-          * Displayed on the reward exchange cards.
-          * @uiName Reward Exchange Amount Text
-          * @uiWidget textArea
-         */
-        "sourceAmountMessage"?: string;
-        /**
-          * Shown when a user copies a fuel tank code
-          * @uiName Tooltip Text
-         */
-        "tooltipText"?: string;
-    }
-    interface SqmRewardsTable {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<GenericTableViewProps>;
-        /**
-          * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
-          * @uiName Mobile Hidden Columns
-         */
-        "hiddenColumns"?: string;
-        /**
-          * @uiName Tablet Breakpoint
-         */
-        "mdBreakpoint"?: number;
-        /**
-          * @uiName View More button text
-         */
-        "moreLabel"?: string;
-        /**
-          * @uiName Number of rewards per page
-         */
-        "perPage"?: number;
-        /**
-          * @uiName Previous button text
-         */
-        "prevLabel"?: string;
-        /**
-          * Filters to only show rewards in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all rewards from all programs.
-          * @uiName Program
-          * @uiWidget programSelector
-         */
-        "programId"?: string;
-        /**
-          * @uiName Show column labels
-         */
-        "showLabels"?: boolean;
-        /**
-          * @uiName Mobile Breakpoint
-         */
-        "smBreakpoint"?: number;
-    }
-    interface SqmRewardsTableCustomerNoteCell {
-        "locale"?: string;
-        "note"?: string;
-    }
-    interface SqmRewardsTableCustomerNoteColumn {
-        /**
-          * @uiName Column Title
-         */
-        "columnTitle"?: string;
-    }
-    interface SqmRewardsTableDateCell {
-        "date"?: number;
-        "locale"?: string;
-    }
-    interface SqmRewardsTableDateColumn {
-        /**
-          * @uiName Date Column Title
-         */
-        "columnTitle"?: string;
-        /**
-          * @uiName Date Displayed
-          * @uiType string
-          * @uiEnum ["dateGiven", "dateExpires", "dateCancelled", "dateRedeemed", "dateScheduledFor"]
-          * @uiEnumNames ["Date Given", "Date Expires", "Date Cancelled", "Date Redeemed", "Date Scheduled For"]
-         */
-        "dateShown"?: string;
-    }
-    interface SqmRewardsTableRewardCell {
-        "availableText"?: string;
-        "copyText"?: string;
-        "locale"?: string;
-        "redeemedText"?: string;
-        "reward"?: Reward;
-    }
-    interface SqmRewardsTableRewardColumn {
-        /**
-          * @uiName Remaining Amount Text
-         */
-        "availableText"?: string;
-        /**
-          * @uiName Reward Column Title
-         */
-        "columnTitle"?: string;
-        /**
-          * @uiName Copied Fuel Tank Text
-         */
-        "copyText"?: string;
-        /**
-          * @uiName Redeemed Amount Text
-         */
-        "redeemedText"?: string;
-    }
-    interface SqmRewardsTableSourceCell {
-        "anonymousUserText"?: string;
-        "deletedUserText"?: string;
-        "locale"?: string;
-        "referralText"?: string;
-        "reward"?: Reward;
-        "rewardExchangeText"?: string;
-        "rewardSourceText"?: string;
-    }
-    interface SqmRewardsTableSourceColumn {
-        /**
-          * Name displayed for unknown users
-          * @uiName Anonymous User Text
-         */
-        "anonymousUser"?: string;
-        /**
-          * @uiName Soruce Column Title
-         */
-        "columnTitle"?: string;
-        /**
-          * Name displayed for deleted users
-          * @uiName Deleted User Text
-         */
-        "deletedUser"?: string;
-        /**
-          * Shown when a reward has been created by a referral
-          * @uiName Referral Text
-          * @uiWidget textArea
-         */
-        "referralText"?: string;
-        /**
-          * @uiName Reward Exchange Label
-         */
-        "rewardExchangeText"?: string;
-        /**
-          * Shown when a reward has been created by a source other than a referral.
-          * @uiName Reward Source Text
-          * @uiWidget textArea
-         */
-        "rewardSourceText"?: string;
-    }
-    interface SqmRewardsTableStatusCell {
-        "expiryText"?: string;
-        "locale"?: string;
-        "pendingScheduled"?: string;
-        "pendingUnhandled"?: string;
-        "pendingUsTax"?: string;
-        "reward"?: Reward;
-        "statusText"?: string;
-    }
-    interface SqmRewardsTableStatusColumn {
-        /**
-          * @uiName Column Title
-         */
-        "columnTitle"?: string;
-        /**
-          * Text shown before the date of an expiring reward.
-          * @uiName Expiry Date Prefix
-         */
-        "expiryText"?: string;
-        /**
-          * Text shown before the available date of a pending reward.
-          * @uiName Pending Date Prefix
-         */
-        "pendingScheduled"?: string;
-        /**
-          * Displayed when fulfillment error occured when creating a reward.
-          * @uiName Unhandled Error Text
-         */
-        "pendingUnhandled"?: string;
-        /**
-          * Displayed when a reward is pending due to W9 compliance.
-          * @uiName W9 Pending Text
-         */
-        "pendingUsTax"?: string;
-        /**
-          * @uiName Reward Status Text
-          * @uiWidget textArea
-         */
-        "statusText"?: string;
-    }
-    interface SqmRoute {
-        /**
-          * @uiName Navigation Path Name
-         */
-        "path"?: string;
-    }
-    interface SqmRouter {
-    }
-    interface SqmScroll {
-        /**
-          * @uiName Button Text
-         */
-        "buttonText"?: string;
-        /**
-          * @uiName Button Type
-          * @uiType string
-          * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
-          * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger", "Text"]
-         */
-        "buttonType"?: | "default"
-    | "primary"
-    | "success"
-    | "neutral"
-    | "warning"
-    | "danger"
-    | "text";
-        /**
-          * Draws a circle button.
-          * @uiName Circle
-         */
-        "circle"?: boolean;
-        /**
-          * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
-          * @uiName Icon
-         */
-        "iconName"?: string;
-        /**
-          * @uiName Icon Slot
-          * @uiType string
-          * @uiEnum ["prefix", "suffix"]
-          * @uiEnumNames ["Prefix", "Suffix"]
-         */
-        "iconSlot"?: string;
-        /**
-          * The button becomes full width if the screen size is smaller than 500px
-          * @uiName Full Width on Mobile
-         */
-        "mobile"?: boolean;
-        /**
-          * Draws an outlined button.
-          * @uiName Outline
-         */
-        "outline"?: boolean;
-        /**
-          * Draws a pill-style button with rounded edges.
-          * @uiName Pill
-         */
-        "pill"?: boolean;
-        /**
-          * @uiName Scroll Animation Style
-          * @uiType string
-          * @uiEnum ["smooth", "auto"]
-          * @uiEnumNames ["Smooth", "Auto"]
-         */
-        "scrollAnimation"?: "smooth" | "auto";
-        /**
-          * ID applied to the HTML tag you would like to scroll to. E.g tab-1
-          * @uiName Scroll Id
-         */
-        "scrollId"?: string;
-        /**
-          * The name of the HTML tag you would like to scroll to. E.g referral-table
-          * @uiName Scroll Tag Name
-         */
-        "scrollTagName"?: string;
-        /**
-          * @uiName Size
-          * @uiType string
-          * @uiEnum ["small", "medium", "large"]
-          * @uiEnumNames ["Small", "Medium", "Large"]
-         */
-        "size"?: string;
-    }
-    interface SqmShareButton {
-        /**
-          * @uiName Button Background Color
-          * @uiWidget color
-          * @format color
-         */
-        "backgroundcolor"?: string;
-        /**
-          * Configure border radius with pixel amount
-          * @uiName Border Radius
-         */
-        "borderradius"?: number;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<ShareButtonViewProps>;
-        /**
-          * @uiName Disabled
-         */
-        "disabled"?: boolean;
-        /**
-          * @uiName Hide Icon
-          * @default
-         */
-        "hideicon"?: boolean;
-        /**
-          * @uiName Hide Text
-          * @default
-         */
-        "hidetext"?: boolean;
-        /**
-          * Options available at https://shoelace.style/components/icon  Icon used in button. Will try to select an icon based on the share medium if left empty.
-          * @uiName Icon
-         */
-        "icon"?: string;
-        /**
-          * @uiName Icon Location
-          * @uiType string
-          * @uiEnum ["prefix", "suffix" ]
-          * @uiEnumNames ["Prefix", "Suffix"]
-         */
-        "iconslot"?: "prefix" | "suffix";
-        /**
-          * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
-          * @uiName Share Medium
-          * @uiType string
-          * @required 
-          * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
-          * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
-         */
-        "medium"?: | "facebook"
-    | "twitter"
-    | "email"
-    | "direct"
-    | "linkedin"
-    | "sms"
-    | "fbmessenger"
-    | "whatsapp"
-    | "linemessenger"
-    | "pinterest"
-    | "reminder"
-    | "unknown";
-        /**
-          * @uiName Display Pill
-         */
-        "pill"?: boolean;
-        /**
-          * Optional programId, or uses the programId context where this button is rendered.
-          * @uiName Program ID
-          * @uiWidget programSelector
-         */
-        "programId"?: string;
-        /**
-          * Text used for native sharing (mobile only)
-          * @uiName Share Text
-         */
-        "sharetext"?: string;
-        /**
-          * Title used for native sharing (mobile only)
-          * @uiName Share Title
-         */
-        "sharetitle"?: string;
-        /**
-          * @uiName Button Size
-          * @uiType string
-          * @uiEnum ["small", "medium", "large" ]
-          * @uiEnumNames ["Small", "Medium", "Large"]
-         */
-        "size"?: "small" | "medium" | "large";
-        /**
-          * @uiName Button Text Color
-          * @uiWidget color
-          * @format color
-         */
-        "textcolor"?: string;
-        /**
-          * @uiType string
-          * @uiName Button Style
-          * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
-          * @uiEnumNames ["Primary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
-         */
-        "type"?: | "primary"
-    | "success"
-    | "info"
-    | "warning"
-    | "danger"
-    | "default"
-    | "text";
-    }
-    interface SqmShareCode {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<ShareLinkViewProps>;
-        /**
-          * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
-          * @uiName Program ID
-          * @uiWidget programSelector
-         */
-        "programId"?: string;
-        /**
-          * The number of milliseconds that the tooltip appears for
-          * @uiName Tooltip lifespan
-         */
-        "tooltiplifespan"?: number;
-        /**
-          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
-          * @uiName Tooltip Text
-         */
-        "tooltiptext"?: string;
-    }
-    interface SqmShareLink {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<ShareLinkViewProps>;
-        /**
-          * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
-          * @uiName Program ID
-          * @uiWidget programSelector
-         */
-        "programId"?: string;
-        /**
-          * The number of milliseconds that the tooltip appears for
-          * @uiName Tooltip Lifespan
-         */
-        "tooltiplifespan"?: number;
-        /**
-          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
-          * @uiName Tooltip Text
-         */
-        "tooltiptext"?: string;
-    }
-    interface SqmStatContainer {
-        /**
-          * @uiName Display
-          * @uiType string
-          * @uiEnum ["grid", "flex"]
-          * @uiEnumNames ["Grid", "Flex"]
-         */
-        "display"?: "grid" | "flex";
-        /**
-          * @uiName Space Between Stats
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "space"?: Spacing;
-    }
-    interface SqmStencilbook {
-    }
-    interface SqmTab {
-        /**
-          * @uiName Tab Title
-         */
-        "header"?: string;
-    }
-    interface SqmTableCell {
-        "colspan"?: number;
-        "padding"?: string;
-    }
-    interface SqmTableRow {
-        "border"?: string;
-    }
-    interface SqmTabs {
-        /**
-          * Used to specify the placement of the tabs
-          * @uiName Tabs Placement
-          * @uiType string
-          * @uiEnum ["left", "right", "bottom", "top"]
-          * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
-         */
-        "placement"?: "left" | "right" | "bottom" | "top";
-    }
-    interface SqmTaskCard {
-        /**
-          * @uiName Button Link
-          * @uiGroup Button
-         */
-        "buttonLink"?: string;
-        /**
-          * @uiName Button Text
-          * @uiGroup Button
-         */
-        "buttonText"?: string;
-        /**
-          * @uiName Title
-          * @uiGroup Task
-         */
-        "cardTitle"?: string;
-        /**
-          * Displays the amount of times that a user has completed a repeatable task.
-          * @uiName Completed Count Text
-          * @uiGroup Task
-          * @uiWidget textArea
-         */
-        "completedText"?: string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<TaskCardViewProps | BigStatViewProps>;
-        /**
-          * @uiName Description
-          * @uiGroup Task
-         */
-        "description"?: string;
-        /**
-          * Task cards are hidden from users outside of the duration. They are always displayed if no duration is configured.
-          * @uiName Display Duration
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @uiGroup Task
-         */
-        "displayDuration"?: string;
-        /**
-          * Shown to users after the end of the task duration.
-          * @uiName Ended Date Message
-          * @uiGroup Task
-         */
-        "endedMessage"?: string;
-        /**
-          * Optionally send an event to SaaSquatch when a user clicks the button. Enter your event key into this field.
-          * @uiName Task Card Button Event Key
-          * @uiGroup Button
-         */
-        "eventKey"?: string;
-        /**
-          * Displayed when a user views a task card after the reward duration interval.
-          * @uiName Expiry Date Message
-          * @uiGroup Task
-         */
-        "expiryMessage"?: string;
-        /**
-          * The number of times a reward can be earned.  Use zero for no limit (the default).
-          * @uiName Repeat Amount
-          * @uiGroup Reward
-         */
-        "finite"?: number;
-        /**
-          * Sets the goal for users progress to know when a task has been completed. If repeatable is checked, repeatable goals is an increment of this.
-          * @uiName Goal Completion Number
-          * @uiGroup Goal
-         */
-        "goal"?: number;
-        /**
-          * Button Link Opens in New Tab
-          * @uiName Open In New Tab
-          * @uiGroup Button
-          * @default
-         */
-        "openNewTab"?: boolean;
-        /**
-          * The ID of the program that is used to scope the task card. When no ID is specified, it defaults to the program context in which the component is rendered.
-          * @uiName Program ID Override
-          * @uiWidget programSelector
-          * @uiGroup Goal
-         */
-        "programId"?: string;
-        /**
-          * The unit displayed to the right of steps and progress numbers on the progress bar. Ex: $ for dollars
-          * @uiName Progress Bar Unit
-          * @uiGroup Goal
-         */
-        "progressBarUnit"?: string;
-        /**
-          * @uiName Goal Repeatable
-          * @uiGroup Goal
-          * @default
-         */
-        "repeatable"?: boolean;
-        /**
-          * @uiName Reward Amount
-          * @uiGroup Reward
-         */
-        "rewardAmount"?: string;
-        /**
-          * Task cards are disabled to users outside of the duration. They are not disabled if no duration is configured.
-          * @uiName Reward Duration
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @uiGroup Reward
-         */
-        "rewardDuration"?: string;
-        /**
-          * @uiName Reward Unit
-          * @uiGroup Reward
-         */
-        "rewardUnit"?: string;
-        /**
-          * @uiName Show Progress Bar
-          * @uiGroup Goal
-          * @default
-         */
-        "showProgressBar"?: boolean;
-        /**
-          * Shown to users before the start of the task duration.
-          * @uiName Start Date Message
-          * @uiGroup Task
-         */
-        "startsOnMessage"?: string;
-        /**
-          * Select what type of stat to display for the goal. Manual paths are also supported.
-          * @uiName Goal Progress Source
-          * @required 
-          * @minLength 1
-          * @uiWidget statTypeSelectWidget
-          * @uiWidgetOptions {"version": 1.1}
-          * @uiGroup Goal
-         */
-        "statType"?: string;
-        /**
-          * @uiName Progress Bar Steps
-          * @uiGroup Goal
-          * @default
-         */
-        "steps"?: boolean;
-    }
-    interface SqmText {
-    }
-    interface SqmTextSpan {
-        /**
-          * @uiName Text
-         */
-        "text"?: string;
-        /**
-          * @uiName Type
-          * @uiType string
-          * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
-          * @uiEnumNames ["Paragraph", "Subtext", "Header 1", "Header 2", "Header 3", "Header 4"]
-         */
-        "type"?: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
-    }
-    interface SqmTimeline {
-        /**
-          * @uiName Icon
-          * @uiType string
-          * @uiEnum ["gift", "circle"]
-          * @uiEnumNames ["Gift", "Circle"]
-         */
-        "icon"?: "gift" | "circle";
-    }
-    interface SqmTimelineEntry {
-        /**
-          * @uiName Description
-         */
-        "desc"?: string;
-        /**
-          * @uiName Icon
-          * @uiType string
-          * @uiEnum ["gift", "circle"]
-          * @uiEnumNames ["Gift", "Circle"]
-         */
-        "icon"?: "gift" | "circle";
-        /**
-          * @uiName Reward Amount
-         */
-        "reward"?: string;
-        /**
-          * @uiName Reward Unit
-         */
-        "unit"?: string;
-    }
-    interface SqmTitledSection {
-        /**
-          * Text value shown when there is no label slot declared.
-          * @uiName Label
-         */
-        "label"?: string;
-        /**
-          * Margin applied to the bottom of the label slot
-          * @uiName Label Bottom Margin
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "labelMargin"?: Spacing;
-        /**
-          * Padding applied to all 4 sides of the container
-          * @uiName Section Padding
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "padding"?: Spacing;
-        /**
-          * @uiName Text Alignment
-          * @uiType string
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "textAlign"?: "left" | "center" | "right";
-    }
-    interface SqmUserName {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<UserNameViewProps>;
-        /**
-          * Fallback name for unknown users
-          * @uiName Fallback Name
-         */
-        "fallback"?: string;
-        /**
-          * @uiName Loading Text
-         */
-        "loadingText"?: string;
-    }
-    interface IntrinsicElements {
-        "raisins-plop-target": RaisinsPlopTarget;
-        "sqm-asset-card": SqmAssetCard;
-        "sqm-big-stat": SqmBigStat;
-        "sqm-brand": SqmBrand;
-        "sqm-card-feed": SqmCardFeed;
-        "sqm-checkbox-field": SqmCheckboxField;
-        "sqm-divided-layout": SqmDividedLayout;
-        "sqm-dropdown-field": SqmDropdownField;
-        "sqm-edit-profile": SqmEditProfile;
-        "sqm-empty": SqmEmpty;
-        "sqm-form-message": SqmFormMessage;
-        "sqm-graphql-client-provider": SqmGraphqlClientProvider;
-        "sqm-hero": SqmHero;
-        "sqm-hero-image": SqmHeroImage;
-        "sqm-hook-story-container": SqmHookStoryContainer;
-        "sqm-image": SqmImage;
-        "sqm-input-field": SqmInputField;
-        "sqm-leaderboard": SqmLeaderboard;
-        "sqm-leaderboard-rank": SqmLeaderboardRank;
-        "sqm-name-fields": SqmNameFields;
-        "sqm-navigation-menu": SqmNavigationMenu;
-        "sqm-navigation-sidebar": SqmNavigationSidebar;
-        "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
-        "sqm-password-field": SqmPasswordField;
-        "sqm-popup-container": SqmPopupContainer;
-        "sqm-portal-change-password": SqmPortalChangePassword;
-        "sqm-portal-container": SqmPortalContainer;
-        "sqm-portal-email-verification": SqmPortalEmailVerification;
-        "sqm-portal-footer": SqmPortalFooter;
-        "sqm-portal-forgot-password": SqmPortalForgotPassword;
-        "sqm-portal-frame": SqmPortalFrame;
-        "sqm-portal-login": SqmPortalLogin;
-        "sqm-portal-logout": SqmPortalLogout;
-        "sqm-portal-profile": SqmPortalProfile;
-        "sqm-portal-protected-route": SqmPortalProtectedRoute;
-        "sqm-portal-register": SqmPortalRegister;
-        "sqm-portal-reset-password": SqmPortalResetPassword;
-        "sqm-portal-verify-email": SqmPortalVerifyEmail;
-        "sqm-program-explainer": SqmProgramExplainer;
-        "sqm-program-explainer-step": SqmProgramExplainerStep;
-        "sqm-program-menu": SqmProgramMenu;
-        "sqm-qa": SqmQa;
-        "sqm-qa-referral-card": SqmQaReferralCard;
-        "sqm-qa-tabs": SqmQaTabs;
-        "sqm-referral-card": SqmReferralCard;
-        "sqm-referral-iframe": SqmReferralIframe;
-        "sqm-referral-table": SqmReferralTable;
-        "sqm-referral-table-cell": SqmReferralTableCell;
-        "sqm-referral-table-column": SqmReferralTableColumn;
-        "sqm-referral-table-date-cell": SqmReferralTableDateCell;
-        "sqm-referral-table-date-column": SqmReferralTableDateColumn;
-        "sqm-referral-table-rewards-cell": SqmReferralTableRewardsCell;
-        "sqm-referral-table-rewards-column": SqmReferralTableRewardsColumn;
-        "sqm-referral-table-status-cell": SqmReferralTableStatusCell;
-        "sqm-referral-table-status-column": SqmReferralTableStatusColumn;
-        "sqm-referral-table-user-cell": SqmReferralTableUserCell;
-        "sqm-referral-table-user-column": SqmReferralTableUserColumn;
-        "sqm-reward-exchange-list": SqmRewardExchangeList;
-        "sqm-rewards-table": SqmRewardsTable;
-        "sqm-rewards-table-customer-note-cell": SqmRewardsTableCustomerNoteCell;
-        "sqm-rewards-table-customer-note-column": SqmRewardsTableCustomerNoteColumn;
-        "sqm-rewards-table-date-cell": SqmRewardsTableDateCell;
-        "sqm-rewards-table-date-column": SqmRewardsTableDateColumn;
-        "sqm-rewards-table-reward-cell": SqmRewardsTableRewardCell;
-        "sqm-rewards-table-reward-column": SqmRewardsTableRewardColumn;
-        "sqm-rewards-table-source-cell": SqmRewardsTableSourceCell;
-        "sqm-rewards-table-source-column": SqmRewardsTableSourceColumn;
-        "sqm-rewards-table-status-cell": SqmRewardsTableStatusCell;
-        "sqm-rewards-table-status-column": SqmRewardsTableStatusColumn;
-        "sqm-route": SqmRoute;
-        "sqm-router": SqmRouter;
-        "sqm-scroll": SqmScroll;
-        "sqm-share-button": SqmShareButton;
-        "sqm-share-code": SqmShareCode;
-        "sqm-share-link": SqmShareLink;
-        "sqm-stat-container": SqmStatContainer;
-        "sqm-stencilbook": SqmStencilbook;
-        "sqm-tab": SqmTab;
-        "sqm-table-cell": SqmTableCell;
-        "sqm-table-row": SqmTableRow;
-        "sqm-tabs": SqmTabs;
-        "sqm-task-card": SqmTaskCard;
-        "sqm-text": SqmText;
-        "sqm-text-span": SqmTextSpan;
-        "sqm-timeline": SqmTimeline;
-        "sqm-timeline-entry": SqmTimelineEntry;
-        "sqm-titled-section": SqmTitledSection;
-        "sqm-user-name": SqmUserName;
-    }
+  interface RaisinsPlopTarget {}
+  interface SqmAssetCard {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<AssetCardViewProps>;
+    /**
+     * @uiName Banner Image
+     */
+    imgUrl?: string;
+    /**
+     * @uiName Banner Title
+     */
+    titleText?: string;
+  }
+  interface SqmBigStat {
+    /**
+     * Controls the alignment of the flexbox
+     * @uiName Alignment
+     * @uiType string
+     * @uiEnum ["left", "right", "center"]
+     * @uiEnumNames ["Left", "Right", "Center"]
+     */
+    alignment?: "left" | "right" | "center";
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<BigStatViewProps>;
+    /**
+     * Controls the order of the stat value & description column
+     * @uiName Flex Reverse
+     * @default
+     */
+    flexReverse?: boolean;
+    /**
+     * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
+     * @uiName Program ID
+     * @uiWidget programSelector
+     */
+    programId?: string;
+    /**
+     * Select what type of stat to display. Manual paths are also supported.
+     * @uiWidget statTypeSelectWidget
+     * @uiName Stat Type
+     * @required
+     * @uiWidgetOptions {"version": 1.1}
+     */
+    statType?: string;
+  }
+  interface SqmBrand {
+    /**
+     * Controls the primary brand color used in the Mint Components library.
+     * @uiName Brand Color
+     * @uiWidget color
+     * @format color
+     */
+    brandColor?: string;
+    /**
+     * A font from the Google Fonts library used throughout the widget. This value is case sensitive.
+     * @uiName Brand Font
+     * @default "Nunito Sans"
+     */
+    brandFont?: string;
+  }
+  interface SqmCardFeed {
+    /**
+     * @uiName Column Gap
+     * @uiType number
+     */
+    gap?: number;
+    /**
+     * @uiName Card Width
+     */
+    width?: number;
+  }
+  interface SqmCheckboxField {
+    /**
+     * @uiName Checkbox Label
+     */
+    checkboxLabel?: string;
+    /**
+     * Used with link text if the checkbox label contains {labelLink}
+     * @uiName Checkbox Label Link
+     */
+    checkboxLabelLink?: string;
+    /**
+     * @uiName Checkbox Label Link Text
+     */
+    checkboxLabelLinkText?: string;
+    /**
+     * @uiName Checkbox Name Attribute
+     */
+    checkboxName?: string;
+    /**
+     * @uiName Optional
+     * @default
+     */
+    checkboxOptional?: boolean;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<CheckboxFieldViewProps>;
+    /**
+     * @uiName Unchecked Error Message
+     */
+    errorMessage?: string;
+  }
+  interface SqmDividedLayout {
+    /**
+     * @uiName Direction
+     * @uiType string
+     * @uiEnum ["row", "column"]
+     * @uiEnumNames ["Row", "Column"]
+     */
+    direction?: "row" | "column";
+    /**
+     * Uses Shorthand CSS border syntax
+     * @uiName Border Style
+     */
+    dividerStyle?: string;
+  }
+  interface SqmDropdownField {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<DropdownFieldViewProps>;
+    /**
+     * @uiName Dropdown Label
+     */
+    dropdownLabel?: string;
+    /**
+     * @uiName Dropdown Name Attribute
+     */
+    dropdownName?: string;
+    /**
+     * @uiName Optional
+     * @default
+     */
+    dropdownOptional?: boolean;
+    /**
+     * @uiName Unselected Error Message
+     */
+    errorMessage?: string;
+  }
+  interface SqmEditProfile {
+    /**
+     * @uiName Cancel Button Text
+     */
+    canceltext?: string;
+    /**
+     * @uiName Region Field Label
+     */
+    currentregiontext?: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<EditProfileViewProps>;
+    /**
+     * @uiName Heading
+     */
+    editprofileheader?: string;
+    /**
+     * Enable editing button text
+     * @uiName Edit Profile Text
+     */
+    editprofiletext?: string;
+    /**
+     * @uiName First Name Label
+     */
+    firstnametext?: string;
+    /**
+     * @uiName Last Name Label
+     */
+    lastnametext?: string;
+    /**
+     * Show or hide current region
+     * @uiName Show Region
+     */
+    showregion?: boolean;
+    /**
+     * @uiName Info Button Text
+     */
+    updatetext?: string;
+  }
+  interface SqmEmpty {
+    /**
+     * @uiName Title
+     */
+    emptyStateHeader?: string;
+    /**
+     * @uiWidget ImageUpload
+     * @format url
+     * @uiName Image
+     */
+    emptyStateImage?: string;
+    /**
+     * @uiName Description
+     * @uiWidget textArea
+     */
+    emptyStateText?: string;
+  }
+  interface SqmFormMessage {
+    /**
+     * Icon to use in alert
+     * @uiName Icon
+     */
+    icon?: string;
+    /**
+     * @uiName Alert Type
+     */
+    type?: string;
+  }
+  interface SqmGraphqlClientProvider {
+    /**
+     * @uiName Domain
+     */
+    domain?: string;
+  }
+  interface SqmHero {
+    /**
+     * Can be an image url, colour or Shoelace variable.
+     * @uiName Background
+     */
+    background?: string;
+    /**
+     * Number of columns in the layout
+     * @uiName Columns
+     */
+    columns?: 1 | 2;
+    /**
+     * @uiName Padding Size
+     * @uiEnum ["none", "small", "medium","large"]
+     * @uiEnumNames ["None", "Small", "Medium", "Large"]
+     */
+    paddingSize?: "none" | "small" | "medium" | "large";
+    /**
+     * Secondary background image or color (for use in the right column)
+     * @uiName Secondary Background
+     */
+    secondaryBackground?: string;
+    /**
+     * Flexbox wrap direction, accepts wrap or wrap-reverse
+     * @uiName Wrap Direction
+     * @uiEnum ["wrap", "wrap-reverse"]
+     * @uiEnumNames ["Wrap", "Wrap Reverse"]
+     */
+    wrapDirection?: "wrap" | "wrap-reverse";
+  }
+  interface SqmHeroImage {
+    /**
+     * @uiName Background Color
+     * @uiWidget color
+     * @format color
+     */
+    backgroundColor?: string;
+    /**
+     * @uiName Button Link
+     */
+    buttonLink?: string;
+    /**
+     * @uiName Open Link in New Tab
+     * @default
+     */
+    buttonNewTab?: boolean;
+    /**
+     * @uiName Button Text
+     */
+    buttonText?: string;
+    /**
+     * @uiName Description
+     * @uiWidget textArea
+     */
+    description?: string;
+    /**
+     * @uiName Title
+     */
+    header?: string;
+    /**
+     * @uiName Image Mobile Position
+     * @uiType string
+     * @uiEnum ["top", "bottom"]
+     * @uiEnumNames ["Top", "Bottom"]
+     */
+    imageMobilePos?: "top" | "bottom";
+    /**
+     * @uiName Image Percentage
+     * @uiType number
+     */
+    imagePercentage?: number;
+    /**
+     * @uiName Image Position
+     * @uiType string
+     * @uiEnum ["left", "center", "right"]
+     * @uiEnumNames ["Left", "Center", "Right"]
+     */
+    imagePos?: "left" | "center" | "right";
+    /**
+     * @uiWidget ImageUpload
+     * @format url
+     * @uiName Image
+     */
+    imageUrl?: string;
+    /**
+     * @uiName Image Layout
+     * @uiType string
+     * @uiEnum ["overlay", "columns"]
+     * @uiEnumNames ["Overlay", "Two-column"]
+     */
+    layout?: "overlay" | "columns";
+    /**
+     * @uiName Overlay Color
+     * @uiWidget color
+     * @format color
+     */
+    overlayColor?: string;
+    /**
+     * @uiName Overlay Opacity
+     */
+    overlayOpacity?: string;
+    /**
+     * @uiName Image Padding
+     * @uiType string
+     * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+     * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+     */
+    paddingImage?: Spacing;
+    /**
+     * @uiName Text Padding
+     * @uiType string
+     * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+     * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+     */
+    paddingText?: Spacing;
+    /**
+     * @uiName Text Color
+     * @uiWidget color
+     * @format color
+     */
+    textColor?: string;
+  }
+  interface SqmHookStoryContainer {
+    hookStory?: FunctionalComponent;
+  }
+  interface SqmImage {
+    /**
+     * @uiName Position Alignment
+     * @uiType string
+     * @uiEnum ["left", "center", "right"]
+     * @uiEnumNames ["Left", "Center", "Right"]
+     */
+    alignment?: "left" | "center" | "right";
+    /**
+     * @uiName Background Color
+     * @uiWidget color
+     * @format
+     */
+    backgroundColor?: string;
+    /**
+     * @uiWidget ImageUpload
+     * @format url
+     * @required
+     * @uiName Image Link
+     */
+    imageUrl?: string;
+    /**
+     * (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
+     * @uiName Minimum Height
+     */
+    minHeight?: string;
+  }
+  interface SqmInputField {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<InputFieldViewProps>;
+    /**
+     * @uiName Required Error Message
+     */
+    errorMessage?: string;
+    /**
+     * @uiName Input Label
+     */
+    fieldLabel?: string;
+    /**
+     * Used as the key of the inputs value in form data.
+     * @uiName Input Name Attribute
+     */
+    fieldName?: string;
+    /**
+     * @uiName Optional
+     * @default
+     */
+    fieldOptional?: boolean;
+    /**
+     * @uiName Input Type
+     * @uiType string
+     * @uiEnum ["text", "date", "tel"]
+     * @uiEnumNames ["Text", "Date", "Phone Number"]
+     */
+    fieldType?: "text" | "date" | "tel";
+  }
+  interface SqmLeaderboard {
+    /**
+     * Title displayed for users without names
+     * @uiName Unknown User Text
+     */
+    anonymousUser?: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<LeaderboardViewProps>;
+    /**
+     * Hide the viewer's leaderboard row if not in the top results.
+     * @uiName Hide Viewing User
+     * @default
+     */
+    hideViewer?: boolean;
+    /**
+     * @uiName Leaderboard Time Interval
+     * @uiWidget dateRange
+     * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+     */
+    interval?: string;
+    /**
+     * @uiName Leaderboard Type
+     * @uiType string
+     * @required
+     * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
+     * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
+     */
+    leaderboardType?:
+      | "topStartedReferrers"
+      | "topConvertedReferrers"
+      | "topPointEarners";
+    /**
+     * Control the maximum amount of rows displayed on the leaderboard.
+     * @uiName Maximum Rows Number
+     */
+    maxRows?: number;
+    /**
+     * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
+     * @uiName Program
+     * @uiWidget programSelector
+     */
+    programId?: string;
+    /**
+     * @uiName Rank Type
+     * @uiType string
+     * @uiEnum ["rowNumber", "rank", "denseRank"]
+     * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
+     */
+    rankType?: "rowNumber" | "rank" | "denseRank";
+    /**
+     * @uiName Rank Column Heading
+     */
+    rankheading?: string;
+    /**
+     * @uiName Show Leaderboard Rank
+     */
+    showRank?: boolean;
+    /**
+     * @uiName Stats Column Heading
+     */
+    statsheading?: string;
+    /**
+     * @uiName User Column Heading
+     */
+    usersheading?: string;
+  }
+  interface SqmLeaderboardRank {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<LeaderboardRankViewProps>;
+    /**
+     * @uiName Leaderboard Time Interval
+     * @uiWidget dateRange
+     * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+     */
+    interval?: string;
+    /**
+     * @uiName Leaderboard Type
+     * @uiType string
+     * @required
+     * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
+     * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
+     */
+    leaderboardType?:
+      | "topStartedReferrers"
+      | "topConvertedReferrers"
+      | "topPointEarners";
+    /**
+     * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
+     * @uiName Program
+     * @uiWidget programSelector
+     */
+    programId?: string;
+    /**
+     * @uiName Rank Text
+     * @uiWidget textArea
+     */
+    rankText?: string;
+    /**
+     * @uiName Default Rank
+     * @uiType string
+     * @uiEnum ["rowNumber", "rank", "denseRank"]
+     * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
+     */
+    rankType?: "rowNumber" | "rank" | "denseRank";
+    /**
+     * @uiName Unranked Text
+     */
+    unrankedText?: string;
+  }
+  interface SqmNameFields {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<NameFieldsViewProps>;
+    /**
+     * @uiName First Name label
+     */
+    firstNameLabel?: string;
+    /**
+     * @uiName Last Name label
+     */
+    lastNameLabel?: string;
+  }
+  interface SqmNavigationMenu {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<NavigationMenuViewProps>;
+    /**
+     * @uiName Include Dropdown Menu
+     */
+    includeDropdown?: boolean;
+    /**
+     * Label on the header menu
+     * @uiName Menu Label
+     */
+    menuLabel?: string;
+  }
+  interface SqmNavigationSidebar {}
+  interface SqmNavigationSidebarItem {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<NavigationSidebarItemViewProps>;
+    /**
+     * Options available at https://shoelace.style/components/icon
+     * @uiName Icon
+     */
+    icon?: string;
+    /**
+     * @uiName Label
+     */
+    label?: string;
+    /**
+     * @uiName Navigation Path
+     */
+    path?: string;
+  }
+  interface SqmPasswordField {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: PasswordFieldViewDemoProps;
+    /**
+     * Enable live password validation
+     * @uiName Enable Validation
+     */
+    enableValidation?: boolean;
+    /**
+     * Label for password field
+     * @uiName Password Label
+     */
+    fieldLabel?: string;
+  }
+  interface SqmPopupContainer {
+    /**
+     * Display a close button on the popup
+     * @uiName Show Close Button
+     */
+    closeButton?: boolean;
+    /**
+     * Text inside the close button
+     * @uiName Close Button Text
+     */
+    closeButtonText?: string;
+    /**
+     * Specify padding on the popup contents when in embedded mode
+     * @uiName Embed Padding
+     * @uiType string
+     * @uiEnum ["none", "small", "medium", "large"]
+     * @uiEnumNames ["None", "Small", "Medium", "Large"]
+     */
+    embedPadding?: "none" | "small" | "medium" | "large";
+    /**
+     * Specify padding on the popup contents when in popup mode
+     * @uiName Popup Padding
+     * @uiType string
+     * @uiEnum ["none", "small", "medium", "large"]
+     * @uiEnumNames ["None", "Small", "Medium", "Large"]
+     */
+    popupPadding?: "none" | "small" | "medium" | "large";
+    /**
+     * Show Powered By SaaSquatch link
+     * @uiName Show Powered By
+     */
+    poweredBy?: boolean;
+  }
+  interface SqmPortalChangePassword {
+    /**
+     * Modal cancel button text
+     * @uiName Cancel Button Text
+     */
+    cancelText?: string;
+    /**
+     * Modal change password button text
+     * @uiName Change Password Button Text
+     */
+    changePasswordButtonText?: string;
+    /**
+     * Password confirmation input field label
+     * @uiName Confirm Password Label
+     */
+    confirmPasswordFieldLabel?: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalChangePasswordViewProps>;
+    /**
+     * @uiName Change Password Modal Header
+     */
+    modalChangePasswordHeader?: string;
+    /**
+     * Password input field label
+     * @uiName Password Label
+     */
+    passwordFieldLabel?: string;
+    /**
+     * @uiName Change Password Button Text
+     */
+    portalChangePasswordButtonText?: string;
+    /**
+     * Portal change password section header
+     * @uiName Change Password Header
+     */
+    portalChangePasswordHeader?: string;
+    /**
+     * Successful password change message
+     * @uiName Successful Message
+     */
+    successMessage?: string;
+  }
+  interface SqmPortalContainer {
+    /**
+     * @uiName Center Content
+     */
+    center?: boolean;
+    /**
+     * @uiName Direction
+     * @uiType string
+     * @uiEnum ["row", "column"]
+     * @uiEnumNames ["Row", "Column"]
+     */
+    direction?: "row" | "column";
+    /**
+     * @uiName Display
+     * @uiType string
+     * @uiEnum ["grid", "flex"]
+     * @uiEnumNames ["Grid", "Flex"]
+     */
+    display?: "grid" | "flex";
+    /**
+     * @uiName Gap
+     * @uiType string
+     * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+     * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+     */
+    gap?: Spacing;
+    /**
+     * Define how this container distributes its contents along the main-axis.
+     * @uiName Justify Content
+     * @uiType string
+     * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
+     * @uiEnumNames ["Start", "Center", "End", "Space Between", "Space Around", "Space Evenly"]
+     */
+    justifyContent?:
+      | "start"
+      | "center"
+      | "end"
+      | "space-between"
+      | "space-around"
+      | "space-evenly";
+    /**
+     * @uiName Maximum width
+     */
+    maxWidth?: string;
+    /**
+     * @uiName Minimum Width
+     */
+    minWidth?: string;
+    /**
+     * @uiName Padding
+     * @uiType string
+     * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+     * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+     */
+    padding?: Spacing;
+  }
+  interface SqmPortalEmailVerification {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalEmailVerificationViewProps>;
+    /**
+     * @uiName Email Verification Header Text
+     */
+    emailVerificationHeader?: string;
+    /**
+     * The page that users are redirected to from the verification email.
+     * @uiName Email Redirection Base Path
+     */
+    redirectPath?: string;
+    /**
+     * @uiName Re-send Email Button Text
+     */
+    resendEmailButtonText?: string;
+    /**
+     * @uiName Email Verification Body Text
+     */
+    verifyMessage?: string;
+  }
+  interface SqmPortalFooter {
+    /**
+     * @uiName FAQ Link
+     */
+    faqLink?: string;
+    /**
+     * @uiName FAQ Text
+     */
+    faqText?: string;
+    /**
+     * @uiName Padding Bottom
+     */
+    paddingBottom?: string;
+    /**
+     * @uiName Padding Left
+     */
+    paddingLeft?: string;
+    /**
+     * @uiName Padding Right
+     */
+    paddingRight?: string;
+    /**
+     * @uiName Padding Top
+     */
+    paddingTop?: string;
+    /**
+     * @uiName Powered By Link
+     */
+    poweredByLink?: string;
+    /**
+     * @uiName Show Powered By SaaSquatch
+     */
+    showPoweredBy?: boolean;
+    /**
+     * @uiName Support Email
+     */
+    supportEmail?: string;
+    /**
+     * @uiName Support Text
+     */
+    supportText?: string;
+    /**
+     * @uiName Terms and Conditions Link
+     */
+    termsLink?: string;
+    /**
+     * @uiName Terms and Conditions Text
+     */
+    termsText?: string;
+  }
+  interface SqmPortalForgotPassword {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalForgotPasswordViewProps>;
+    /**
+     * @uiName Email Label
+     */
+    emailLabel?: string;
+    /**
+     * @uiName Login Page Routing Path
+     */
+    loginPath?: string;
+    /**
+     * The page that users are redirected to from the password reset email.
+     * @uiName Email Redirection Base Path
+     */
+    redirectPath?: string;
+    /**
+     * @uiName Password Reset Button Text
+     */
+    submitLabel?: string;
+  }
+  interface SqmPortalFrame {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalFrameViewProps>;
+  }
+  interface SqmPortalLogin {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalLoginViewProps>;
+    /**
+     * Label for email field
+     * @uiName Email Label
+     */
+    emailLabel?: string;
+    /**
+     * Label for forgotten password button
+     * @uiName Forgot Password Text
+     */
+    forgotPasswordLabel?: string;
+    /**
+     * Forgot password redirect path
+     * @uiName Forgot Password Path
+     */
+    forgotPasswordPath?: string;
+    /**
+     * Page navigated to after sign-in
+     * @uiName Next Page Path
+     */
+    nextPage?: string;
+    /**
+     * @uiName Heading Label
+     */
+    pageLabel?: string;
+    /**
+     * Label for password field
+     * @uiName Password Label
+     */
+    passwordLabel?: string;
+    /**
+     * Label for register button
+     * @uiName Register Button Text
+     */
+    registerLabel?: string;
+    /**
+     * Register redirect path
+     * @uiName Register Path
+     */
+    registerPath?: string;
+    /**
+     * Label for submit button
+     * @uiName Submit Button Text
+     */
+    submitLabel?: string;
+  }
+  interface SqmPortalLogout {
+    /**
+     * @uiName Next Page Path
+     */
+    nextPage?: string;
+  }
+  interface SqmPortalProfile {
+    /**
+     * Country input field label
+     * @uiName Country Label
+     */
+    countrytext?: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalProfileViewProps>;
+    /**
+     * @uiName Edit Profile Header
+     */
+    editProfileHeader?: string;
+    /**
+     * @uiName Edit Profile Sub Header
+     */
+    editProfileSubHeader?: string;
+    /**
+     * Email input field label
+     * @uiName Email Label
+     */
+    emailtext?: string;
+    /**
+     * First name input field label
+     * @uiName First Name Label
+     */
+    firstnametext?: string;
+    /**
+     * Last name input field label
+     * @uiName Last Name Label
+     */
+    lastnametext?: string;
+    /**
+     * Show or hide the country field
+     * @uiName Show Country Field
+     */
+    showCountry?: boolean;
+    /**
+     * @uiName Submit Changes Button Text
+     */
+    submitChangeButtonText?: string;
+  }
+  interface SqmPortalProtectedRoute {
+    /**
+     * @uiName Redirect Path
+     */
+    redirectTo?: string;
+    /**
+     * @uiName Redirect Unverified Users Path
+     */
+    redirectToUnverified?: string;
+    /**
+     * @uiName Require Email Verification
+     * @default
+     */
+    requireEmailVerification?: boolean;
+  }
+  interface SqmPortalRegister {
+    /**
+     * Show or hide the confirm password input
+     * @uiName Show Confirm Password Field
+     * @default
+     */
+    confirmPassword?: boolean;
+    /**
+     * @uiName Confirm Password Label
+     */
+    confirmPasswordLabel?: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalRegisterViewProps>;
+    /**
+     * @uiName Email Label
+     */
+    emailLabel?: string;
+    /**
+     * @uiName Enable Password Validation
+     */
+    enablePasswordValidation?: boolean;
+    /**
+     * Hide default input fields to use custom fields
+     * @uiName Hide Default Inputs
+     * @default
+     */
+    hideInputs?: boolean;
+    /**
+     * @uiName Login Button Text
+     */
+    loginLabel?: string;
+    /**
+     * Login button redirection path
+     * @uiName Login Path
+     */
+    loginPath?: string;
+    /**
+     * Page navigated to after registration
+     * @uiName Next Page
+     */
+    nextPage?: string;
+    /**
+     * @uiName Heading Label
+     */
+    pageLabel?: string;
+    /**
+     * @uiName Password Label
+     */
+    passwordLabel?: string;
+    /**
+     * The page that users are redirected to from the verification email.
+     * @uiName Email Redirection Base Path
+     */
+    redirectPath?: string;
+    /**
+     * @uiName Submit Button Text
+     */
+    submitLabel?: string;
+  }
+  interface SqmPortalResetPassword {
+    /**
+     * Show or hide confirm password field
+     * @uiName Show Confirm Password
+     * @default
+     */
+    confirmPassword?: boolean;
+    /**
+     * @uiName Confirm Password Label
+     */
+    confirmPasswordFieldLabel?: string;
+    /**
+     * Button text displayed after a successful password reset
+     * @uiName Continue Button Text
+     */
+    continueButtonText?: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalResetPasswordViewProps>;
+    /**
+     * The page that users are redirected to if the reset fails due to outdated password reset attempt.
+     * @uiName Failed Page Path
+     */
+    failedPage?: string;
+    /**
+     * The page that users are redirected to when the password reset succeeds.
+     * @uiName Next Page Path
+     */
+    nextPage?: string;
+    /**
+     * @uiName Password Label
+     */
+    passwordFieldLabel?: string;
+    /**
+     * Displayed after a successful password reset
+     * @uiName Successful Password Reset Text
+     */
+    passwordResetHeader?: string;
+    /**
+     * @uiName Password Reset Button Text
+     */
+    resetPasswordButtonText?: string;
+    /**
+     * @uiName Reset Password Header Text
+     */
+    resetPasswordHeader?: string;
+  }
+  interface SqmPortalVerifyEmail {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<PortalVerifyEmailViewProps>;
+    /**
+     * The page that users are redirected to if verification fails due to outdated verification attempt.
+     * @uiName Failed Page Path
+     */
+    failedPage?: string;
+    /**
+     * The page that users are redirected to when the verification succeeds.
+     * @uiName Next Page Path
+     */
+    nextPage?: string;
+  }
+  interface SqmProgramExplainer {
+    /**
+     * @uiName Header Background Color
+     * @uiWidget color
+     * @format color
+     */
+    backgroundColor?: string;
+    /**
+     * @uiName Header Text
+     */
+    header?: string;
+    /**
+     * @uiName Header Text Color
+     * @uiWidget color
+     * @format color
+     */
+    textColor?: string;
+  }
+  interface SqmProgramExplainerStep {
+    /**
+     * @uiName Background Color
+     * @uiWidget color
+     * @format color
+     */
+    backgroundColor?: string;
+    /**
+     * @uiName Description
+     * @uiWidget textArea
+     */
+    description?: string;
+    /**
+     * @uiName Title
+     */
+    header?: string;
+    /**
+     * Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive.
+     * @uiName Icon
+     */
+    icon?: string;
+    /**
+     * Displayed in place of an icon
+     * @uiName Image Url
+     * @uiWidget imageUpload
+     * @format url
+     */
+    imageUrl?: string;
+    /**
+     * @uiName Text Color
+     * @uiWidget color
+     * @format color
+     */
+    textColor?: string;
+  }
+  interface SqmProgramMenu {}
+  interface SqmQa {
+    /**
+     * Description here
+     * @uiName Boolean Switch with default
+     */
+    booleanSwitch?: boolean;
+    /**
+     * Description here
+     * @uiName Boolean Switch with no default
+     */
+    booleanSwitchNoDefault?: boolean;
+    /**
+     * Description here
+     * @uiName Boolean Switch required with no default
+     * @required
+     */
+    booleanSwitchRequiredNoDefault?: boolean;
+    /**
+     * Description here
+     * @uiName Color with default
+     * @uiWidget color
+     * @format color
+     */
+    color?: string;
+    /**
+     * Description here
+     * @uiName Color with no default
+     * @uiWidget color
+     * @format color
+     */
+    colorNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Color required with no default
+     * @required
+     * @uiWidget color
+     * @format color
+     */
+    colorRequiredNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Date Interval with default
+     * @uiWidget dateRange
+     * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+     * @format date-interval
+     */
+    dateInterval?: string;
+    /**
+     * Description here
+     * @uiName Date Interval with no default
+     * @uiWidget dateRange
+     * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+     * @format date-interval
+     */
+    dateIntervalNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Date Interval required with no default
+     * @required
+     * @uiWidget dateRange
+     * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+     * @format date-interval
+     */
+    dateIntervalRequiredNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Image Upload with default
+     * @uiWidget ImageUpload
+     * @format url
+     */
+    imageUpload?: string;
+    /**
+     * Description here
+     * @uiName Image Upload with no default
+     * @uiWidget ImageUpload
+     * @format url
+     */
+    imageUploadNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Image Upload required with no default
+     * @required
+     * @uiWidget ImageUpload
+     * @format url
+     */
+    imageUploadRequiredNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Number Max 7
+     * @maximum 7
+     */
+    max?: number;
+    /**
+     * Description here
+     * @uiName String Max Length 10
+     * @maxLength 10
+     */
+    maxLength?: string;
+    /**
+     * Description here
+     * @uiName Number Min 7
+     * @minimum 7
+     */
+    min?: number;
+    /**
+     * Description here
+     * @uiName String Min Length 10
+     * @minLength 10
+     */
+    minLength?: string;
+    /**
+     * Description here
+     * @uiName Number Enum Select with default
+     * @uiEnum [1,2,3]
+     * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+     */
+    numberEnumSelect?: number;
+    /**
+     * Description here
+     * @uiName Number Enum Select with no default
+     * @uiEnum [1,2,3]
+     * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+     */
+    numberEnumSelectNoDefault?: number;
+    /**
+     * Description here
+     * @uiName Number Enum Select required with no default
+     * @required
+     * @uiEnum [1,2,3]
+     * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+     */
+    numberEnumSelectRequiredNoDefault?: number;
+    /**
+     * Description here
+     * @uiName Number Input with default
+     */
+    numberInput?: number;
+    /**
+     * Description here
+     * @uiName Number Input with no default
+     */
+    numberInputNoDefault?: number;
+    /**
+     * Description here
+     * @uiName Number required with no default
+     * @required
+     */
+    numberRequired?: number;
+    /**
+     * Description here
+     * @uiName Program Selector with default
+     * @uiWidget programSelector
+     */
+    programSelector?: string;
+    /**
+     * Description here
+     * @uiName Program Selector with no default
+     * @uiWidget programSelector
+     */
+    programSelectorNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Program Selector required with no default
+     * @required
+     * @uiWidget programSelector
+     */
+    programSelectorRequiredNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Stat Selector with default
+     * @uiWidget statTypeSelectWidget
+     */
+    statSelector?: string;
+    /**
+     * Description here
+     * @uiName Stat Selector with no default
+     * @uiWidget statTypeSelectWidget
+     */
+    statSelectorNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Stat Selector required with no default
+     * @required
+     * @uiWidget statTypeSelectWidget
+     */
+    statSelectorRequiredNoDefault?: string;
+    /**
+     * Description here
+     * @uiName String Enum Select with default
+     * @uiEnum ["option1","option2","option3"]
+     * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+     */
+    stringEnumSelect?: string;
+    /**
+     * Description here
+     * @uiName String Enum Select with no default
+     * @uiEnum ["option1","option2","option3"]
+     * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+     */
+    stringEnumSelectNoDefault?: string;
+    /**
+     * Description here
+     * @uiName String Enum Select required with no default
+     * @required
+     * @uiEnum ["option1","option2","option3"]
+     * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+     */
+    stringEnumSelectRequiredNoDefault?: string;
+    /**
+     * Description here
+     * @uiName String required with no default
+     * @required
+     */
+    stringRequired?: string;
+    /**
+     * Description here
+     * @uiName Text Area Input
+     * @uiWidget textArea with default
+     */
+    textAreaInput?: string;
+    /**
+     * Description here
+     * @uiName Text Area Input
+     * @uiWidget textArea with no default
+     */
+    textAreaInputNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Text Area Input
+     * @uiWidget textArea required with no default
+     * @required
+     */
+    textAreaInputRequiredNoDefault?: string;
+    /**
+     * Description here
+     * @uiName Text Input with default
+     */
+    textInput?: string;
+    /**
+     * Description here
+     * @uiName Text Input with no default
+     */
+    textInputNoDefault?: string;
+  }
+  interface SqmQaReferralCard {
+    /**
+     * @uiName Vertical Aligment
+     * @uiType string
+     * @uiEnum ["start", "center", "end"]
+     * @uiEnumNames ["Top", "Center", "Bottom"]
+     */
+    verticalAlignment?: "start" | "center" | "end";
+  }
+  interface SqmQaTabs {
+    /**
+     * Used to specify the placement of the tabs
+     * @uiName Tabs Placement
+     * @uiType string
+     * @uiEnum ["left", "right", "bottom", "top"]
+     * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
+     */
+    placement?: "left" | "right" | "bottom" | "top";
+  }
+  interface SqmReferralCard {
+    /**
+     * @uiName Vertical Aligment
+     * @uiType string
+     * @uiEnum ["start", "center", "end"]
+     * @uiEnumNames ["Top", "Center", "Bottom"]
+     */
+    verticalAlignment?: "start" | "center" | "end";
+  }
+  interface SqmReferralIframe {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<ReferralIframeViewProps>;
+    /**
+     * Height of the iframe container
+     * @uiName Iframe Height
+     */
+    iframeHeight?: string;
+    /**
+     * URL of iframe to display
+     * @uiName Iframe Source
+     * @required
+     */
+    iframeSrc?: string;
+    /**
+     * Width of the iframe container
+     * @uiName Iframe Width
+     */
+    iframeWidth?: string;
+  }
+  interface SqmReferralTable {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<GenericTableViewProps>;
+    /**
+     * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+     * @uiName Hidden Mobile Columns
+     */
+    hiddenColumns?: string;
+    /**
+     * @uiName Tablet Breakpoint
+     */
+    mdBreakpoint?: number;
+    /**
+     * @uiName View More Button Text
+     */
+    moreLabel?: string;
+    /**
+     * Number of referrals displayed per page
+     * @uiName Referrals Per Page
+     */
+    perPage?: number;
+    /**
+     * @uiName Previous Button Text
+     */
+    prevLabel?: string;
+    /**
+     * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs. If program ID is "classic", shows classic-only referrals
+     * @uiName Program
+     * @uiWidget programSelector
+     */
+    programId?: string;
+    /**
+     * @uiName Show Column Labels
+     */
+    showLabels?: boolean;
+    /**
+     * Show referred by user in table
+     * @uiName Show Referrer
+     * @default
+     */
+    showReferrer?: boolean;
+    /**
+     * @uiName Mobile Breakpoint
+     */
+    smBreakpoint?: number;
+  }
+  interface SqmReferralTableCell {
+    innerTemplate?: string;
+  }
+  interface SqmReferralTableColumn {
+    /**
+     * @uiName Column Title
+     */
+    columnTitle?: string;
+  }
+  interface SqmReferralTableDateCell {
+    date?: number;
+    locale?: string;
+  }
+  interface SqmReferralTableDateColumn {
+    /**
+     * @uiName Date Column Title
+     */
+    columnTitle?: string;
+    /**
+     * @uiName Date Displayed
+     * @uiType string
+     * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
+     * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended", "Date Referral Paid", "Date User Modified"]
+     */
+    dateShown?: ReferralDates;
+  }
+  interface SqmReferralTableRewardsCell {
+    expiringText?: string;
+    fuelTankText?: string;
+    hideDetails?: boolean;
+    locale?: string;
+    pendingForText?: string;
+    rewardReceivedText?: string;
+    rewards?: Reward[];
+    statusLongText?: string;
+    statusText?: string;
+  }
+  interface SqmReferralTableRewardsColumn {
+    /**
+     * @uiName Reward column title
+     */
+    columnTitle?: string;
+    /**
+     * Shown in the dropdown details when a reward has an expiry date.
+     * @uiName Reward Expiring Text
+     */
+    expiringText?: string;
+    /**
+     * Shown in the dropdown details when a reward has an associated fuel tank code.
+     * @uiName Fuel Tank Code Text
+     */
+    fuelTankText?: string;
+    /**
+     * @uiName Hide dropdown details of reward
+     * @default
+     */
+    hideDetails?: boolean;
+    /**
+     * Shown in the dropdown details when a reward is pending.
+     * @uiName Reward Pending Text
+     */
+    pendingForText?: string;
+    /**
+     * Shown in the dropdown details when a reward has been received.’
+     * @uiName Reward Received Text
+     */
+    rewardReceivedText?: string;
+    /**
+     * Additional status text shown in the details drop down.
+     * @uiName Reward Status Long Text
+     * @uiWidget textArea
+     */
+    statusLongText?: string;
+    /**
+     * Text shown in the reward status badge.
+     * @uiName Reward Status Text
+     * @uiWidget textArea
+     */
+    statusText?: string;
+  }
+  interface SqmReferralTableStatusCell {
+    converted?: boolean;
+    statusText?: string;
+  }
+  interface SqmReferralTableStatusColumn {
+    /**
+     * @uiName Column Title
+     */
+    columnTitle?: string;
+    /**
+     * @uiName Converted Status Text
+     */
+    convertedStatusText?: string;
+    /**
+     * @uiName In Progress Status Text
+     */
+    inProgressStatusText?: string;
+  }
+  interface SqmReferralTableUserCell {
+    name?: string;
+  }
+  interface SqmReferralTableUserColumn {
+    /**
+     * Name displayed for unknown users
+     * @uiName Anonymous User Text
+     */
+    anonymousUser?: string;
+    /**
+     * @uiName User Column Title
+     */
+    columnTitle?: string;
+    /**
+     * Name displayed for deleted users
+     * @uiName Deleted User Text
+     */
+    deletedUser?: string;
+  }
+  interface SqmRewardExchangeList {
+    /**
+     * @uiName Back Button Text
+     */
+    backText?: string;
+    /**
+     * @uiName Cancel Button Text
+     */
+    cancelText?: string;
+    /**
+     * @uiName Choose Amount Progress Title
+     */
+    chooseAmountTitle?: string;
+    /**
+     * @uiName Choose Reward Progress Title
+     */
+    chooseRewardTitle?: string;
+    /**
+     * @uiName Confirmation Progress Title
+     */
+    confirmationTitle?: string;
+    /**
+     * @uiName Continue Button Text
+     */
+    continueText?: string;
+    /**
+     * Displayed on the reward selection page.
+     * @uiName Continue to Confirmation Button Text
+     */
+    continueToConfirmationText?: string;
+    /**
+     * Shown in the confirmation state.
+     * @uiName Cost Row Title
+     */
+    costTitle?: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<RewardExchangeViewProps>;
+    /**
+     * @uiName Done Text
+     */
+    doneText?: string;
+    /**
+     * Error message shown when reward is not available
+     * @uiName Not Available Error
+     * @uiWidget textArea
+     */
+    notAvailableError?: string;
+    /**
+     * @uiName Not Enough Error Message
+     * @uiWidget textArea
+     */
+    notEnoughError?: string;
+    /**
+     * @uiName Promo Code Text
+     */
+    promoCode?: string;
+    /**
+     * Shown if an error occurs when loading the reward exchange.
+     * @uiName Reward List Error Message
+     * @uiWidget textArea
+     */
+    queryError?: string;
+    /**
+     * @uiName Redeem Button Text
+     */
+    redeemText?: string;
+    /**
+     * Displayed as the header for the confirmation page.
+     * @uiName Confirmation Title Text
+     */
+    redeemTitle?: string;
+    /**
+     * Shown if an error occurs during the reward exchange.
+     * @uiName Redemption Error Message
+     * @uiWidget textArea
+     */
+    redemptionError?: string;
+    /**
+     * Displayed on the success screen when a user successfully exchanges for a reward.
+     * @uiName Redemption Success Message
+     * @uiWidget textArea
+     */
+    redemptionSuccessText?: string;
+    /**
+     * Shown in the confirmation state.
+     * @uiName Reward Amount Row Title
+     */
+    rewardAmountTitle?: string;
+    /**
+     * Shown in the confirmation state.
+     * @uiName Reward Row Title
+     */
+    rewardNameTitle?: string;
+    /**
+     * @uiName Reward Redeemed Text
+     */
+    rewardRedeemedText?: string;
+    /**
+     * @uiName Reward Title Text
+     */
+    rewardTitle?: string;
+    /**
+     * @uiName Select Amount Text
+     * @uiWidget textArea
+     */
+    selectText?: string;
+    /**
+     * Set the number of placeholder cards to be shown in loading state.
+     * @uiName Loading Cards
+     */
+    skeletonCardNum?: number;
+    /**
+     * Displayed on the reward exchange cards.
+     * @uiName Reward Exchange Amount Text
+     * @uiWidget textArea
+     */
+    sourceAmountMessage?: string;
+    /**
+     * Shown when a user copies a fuel tank code
+     * @uiName Tooltip Text
+     */
+    tooltipText?: string;
+  }
+  interface SqmRewardsTable {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<GenericTableViewProps>;
+    /**
+     * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+     * @uiName Mobile Hidden Columns
+     */
+    hiddenColumns?: string;
+    /**
+     * @uiName Tablet Breakpoint
+     */
+    mdBreakpoint?: number;
+    /**
+     * @uiName View More button text
+     */
+    moreLabel?: string;
+    /**
+     * @uiName Number of rewards per page
+     */
+    perPage?: number;
+    /**
+     * @uiName Previous button text
+     */
+    prevLabel?: string;
+    /**
+     * Filters to only show rewards in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all rewards from all programs.
+     * @uiName Program
+     * @uiWidget programSelector
+     */
+    programId?: string;
+    /**
+     * @uiName Show column labels
+     */
+    showLabels?: boolean;
+    /**
+     * @uiName Mobile Breakpoint
+     */
+    smBreakpoint?: number;
+  }
+  interface SqmRewardsTableCustomerNoteCell {
+    locale?: string;
+    note?: string;
+  }
+  interface SqmRewardsTableCustomerNoteColumn {
+    /**
+     * @uiName Column Title
+     */
+    columnTitle?: string;
+  }
+  interface SqmRewardsTableDateCell {
+    date?: number;
+    locale?: string;
+  }
+  interface SqmRewardsTableDateColumn {
+    /**
+     * @uiName Date Column Title
+     */
+    columnTitle?: string;
+    /**
+     * @uiName Date Displayed
+     * @uiType string
+     * @uiEnum ["dateGiven", "dateExpires", "dateCancelled", "dateRedeemed", "dateScheduledFor"]
+     * @uiEnumNames ["Date Given", "Date Expires", "Date Cancelled", "Date Redeemed", "Date Scheduled For"]
+     */
+    dateShown?: string;
+  }
+  interface SqmRewardsTableRewardCell {
+    availableText?: string;
+    copyText?: string;
+    locale?: string;
+    redeemedText?: string;
+    reward?: Reward;
+  }
+  interface SqmRewardsTableRewardColumn {
+    /**
+     * @uiName Remaining Amount Text
+     */
+    availableText?: string;
+    /**
+     * @uiName Reward Column Title
+     */
+    columnTitle?: string;
+    /**
+     * @uiName Copied Fuel Tank Text
+     */
+    copyText?: string;
+    /**
+     * @uiName Redeemed Amount Text
+     */
+    redeemedText?: string;
+  }
+  interface SqmRewardsTableSourceCell {
+    anonymousUserText?: string;
+    deletedUserText?: string;
+    locale?: string;
+    referralText?: string;
+    reward?: Reward;
+    rewardExchangeText?: string;
+    rewardSourceText?: string;
+  }
+  interface SqmRewardsTableSourceColumn {
+    /**
+     * Name displayed for unknown users
+     * @uiName Anonymous User Text
+     */
+    anonymousUser?: string;
+    /**
+     * @uiName Soruce Column Title
+     */
+    columnTitle?: string;
+    /**
+     * Name displayed for deleted users
+     * @uiName Deleted User Text
+     */
+    deletedUser?: string;
+    /**
+     * Shown when a reward has been created by a referral
+     * @uiName Referral Text
+     * @uiWidget textArea
+     */
+    referralText?: string;
+    /**
+     * @uiName Reward Exchange Label
+     */
+    rewardExchangeText?: string;
+    /**
+     * Shown when a reward has been created by a source other than a referral.
+     * @uiName Reward Source Text
+     * @uiWidget textArea
+     */
+    rewardSourceText?: string;
+  }
+  interface SqmRewardsTableStatusCell {
+    expiryText?: string;
+    locale?: string;
+    pendingScheduled?: string;
+    pendingUnhandled?: string;
+    pendingUsTax?: string;
+    reward?: Reward;
+    statusText?: string;
+  }
+  interface SqmRewardsTableStatusColumn {
+    /**
+     * @uiName Column Title
+     */
+    columnTitle?: string;
+    /**
+     * Text shown before the date of an expiring reward.
+     * @uiName Expiry Date Prefix
+     */
+    expiryText?: string;
+    /**
+     * Text shown before the available date of a pending reward.
+     * @uiName Pending Date Prefix
+     */
+    pendingScheduled?: string;
+    /**
+     * Displayed when fulfillment error occured when creating a reward.
+     * @uiName Unhandled Error Text
+     */
+    pendingUnhandled?: string;
+    /**
+     * Displayed when a reward is pending due to W9 compliance.
+     * @uiName W9 Pending Text
+     */
+    pendingUsTax?: string;
+    /**
+     * @uiName Reward Status Text
+     * @uiWidget textArea
+     */
+    statusText?: string;
+  }
+  interface SqmRoute {
+    /**
+     * @uiName Navigation Path Name
+     */
+    path?: string;
+  }
+  interface SqmRouter {}
+  interface SqmScroll {
+    /**
+     * @uiName Button Text
+     */
+    buttonText?: string;
+    /**
+     * @uiName Button Type
+     * @uiType string
+     * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
+     * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger", "Text"]
+     */
+    buttonType?:
+      | "default"
+      | "primary"
+      | "success"
+      | "neutral"
+      | "warning"
+      | "danger"
+      | "text";
+    /**
+     * Draws a circle button.
+     * @uiName Circle
+     */
+    circle?: boolean;
+    /**
+     * Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive.
+     * @uiName Icon
+     */
+    iconName?: string;
+    /**
+     * @uiName Icon Slot
+     * @uiType string
+     * @uiEnum ["prefix", "suffix"]
+     * @uiEnumNames ["Prefix", "Suffix"]
+     */
+    iconSlot?: string;
+    /**
+     * The button becomes full width if the screen size is smaller than 500px
+     * @uiName Full Width on Mobile
+     */
+    mobile?: boolean;
+    /**
+     * Draws an outlined button.
+     * @uiName Outline
+     */
+    outline?: boolean;
+    /**
+     * Draws a pill-style button with rounded edges.
+     * @uiName Pill
+     */
+    pill?: boolean;
+    /**
+     * @uiName Scroll Animation Style
+     * @uiType string
+     * @uiEnum ["smooth", "auto"]
+     * @uiEnumNames ["Smooth", "Auto"]
+     */
+    scrollAnimation?: "smooth" | "auto";
+    /**
+     * ID applied to the HTML tag you would like to scroll to. E.g tab-1
+     * @uiName Scroll Id
+     */
+    scrollId?: string;
+    /**
+     * The name of the HTML tag you would like to scroll to. E.g referral-table
+     * @uiName Scroll Tag Name
+     */
+    scrollTagName?: string;
+    /**
+     * @uiName Size
+     * @uiType string
+     * @uiEnum ["small", "medium", "large"]
+     * @uiEnumNames ["Small", "Medium", "Large"]
+     */
+    size?: string;
+  }
+  interface SqmShareButton {
+    /**
+     * @uiName Button Background Color
+     * @uiWidget color
+     * @format color
+     */
+    backgroundcolor?: string;
+    /**
+     * Configure border radius with pixel amount
+     * @uiName Border Radius
+     */
+    borderradius?: number;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<ShareButtonViewProps>;
+    /**
+     * @uiName Disabled
+     */
+    disabled?: boolean;
+    /**
+     * @uiName Hide Icon
+     * @default
+     */
+    hideicon?: boolean;
+    /**
+     * @uiName Hide Text
+     * @default
+     */
+    hidetext?: boolean;
+    /**
+     * Options available at https://shoelace.style/components/icon  Icon used in button. Will try to select an icon based on the share medium if left empty.
+     * @uiName Icon
+     */
+    icon?: string;
+    /**
+     * @uiName Icon Location
+     * @uiType string
+     * @uiEnum ["prefix", "suffix" ]
+     * @uiEnumNames ["Prefix", "Suffix"]
+     */
+    iconslot?: "prefix" | "suffix";
+    /**
+     * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
+     * @uiName Share Medium
+     * @uiType string
+     * @required
+     * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
+     * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
+     */
+    medium?:
+      | "facebook"
+      | "twitter"
+      | "email"
+      | "direct"
+      | "linkedin"
+      | "sms"
+      | "fbmessenger"
+      | "whatsapp"
+      | "linemessenger"
+      | "pinterest"
+      | "reminder"
+      | "unknown";
+    /**
+     * @uiName Display Pill
+     */
+    pill?: boolean;
+    /**
+     * Optional programId, or uses the programId context where this button is rendered.
+     * @uiName Program ID
+     * @uiWidget programSelector
+     */
+    programId?: string;
+    /**
+     * Text used for native sharing (mobile only)
+     * @uiName Share Text
+     */
+    sharetext?: string;
+    /**
+     * Title used for native sharing (mobile only)
+     * @uiName Share Title
+     */
+    sharetitle?: string;
+    /**
+     * @uiName Button Size
+     * @uiType string
+     * @uiEnum ["small", "medium", "large" ]
+     * @uiEnumNames ["Small", "Medium", "Large"]
+     */
+    size?: "small" | "medium" | "large";
+    /**
+     * @uiName Button Text Color
+     * @uiWidget color
+     * @format color
+     */
+    textcolor?: string;
+    /**
+     * @uiType string
+     * @uiName Button Style
+     * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
+     * @uiEnumNames ["Primary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
+     */
+    type?:
+      | "primary"
+      | "success"
+      | "info"
+      | "warning"
+      | "danger"
+      | "default"
+      | "text";
+  }
+  interface SqmShareCode {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<ShareLinkViewProps>;
+    /**
+     * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
+     * @uiName Program ID
+     * @uiWidget programSelector
+     */
+    programId?: string;
+    /**
+     * The number of milliseconds that the tooltip appears for
+     * @uiName Tooltip lifespan
+     */
+    tooltiplifespan?: number;
+    /**
+     * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+     * @uiName Tooltip Text
+     */
+    tooltiptext?: string;
+  }
+  interface SqmShareLink {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<ShareLinkViewProps>;
+    /**
+     * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
+     * @uiName Program ID
+     * @uiWidget programSelector
+     */
+    programId?: string;
+    /**
+     * The number of milliseconds that the tooltip appears for
+     * @uiName Tooltip Lifespan
+     */
+    tooltiplifespan?: number;
+    /**
+     * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+     * @uiName Tooltip Text
+     */
+    tooltiptext?: string;
+  }
+  interface SqmStatContainer {
+    /**
+     * @uiName Display
+     * @uiType string
+     * @uiEnum ["grid", "flex"]
+     * @uiEnumNames ["Grid", "Flex"]
+     */
+    display?: "grid" | "flex";
+    /**
+     * @uiName Space Between Stats
+     * @uiType string
+     * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+     * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+     */
+    space?: Spacing;
+  }
+  interface SqmStencilbook {}
+  interface SqmTab {
+    /**
+     * @uiName Tab Title
+     */
+    header?: string;
+  }
+  interface SqmTableCell {
+    colspan?: number;
+    padding?: string;
+  }
+  interface SqmTableRow {
+    border?: string;
+  }
+  interface SqmTabs {
+    /**
+     * Used to specify the placement of the tabs
+     * @uiName Tabs Placement
+     * @uiType string
+     * @uiEnum ["left", "right", "bottom", "top"]
+     * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
+     */
+    placement?: "left" | "right" | "bottom" | "top";
+  }
+  interface SqmTaskCard {
+    /**
+     * @uiName Button Link
+     * @uiGroup Button
+     */
+    buttonLink?: string;
+    /**
+     * @uiName Button Text
+     * @uiGroup Button
+     */
+    buttonText?: string;
+    /**
+     * @uiName Title
+     * @uiGroup Task
+     */
+    cardTitle?: string;
+    /**
+     * Displays the amount of times that a user has completed a repeatable task.
+     * @uiName Completed Count Text
+     * @uiGroup Task
+     * @uiWidget textArea
+     */
+    completedText?: string;
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<TaskCardViewProps | BigStatViewProps>;
+    /**
+     * @uiName Description
+     * @uiGroup Task
+     */
+    description?: string;
+    /**
+     * Task cards are hidden from users outside of the duration. They are always displayed if no duration is configured.
+     * @uiName Display Duration
+     * @uiWidget dateRange
+     * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+     * @uiGroup Task
+     */
+    displayDuration?: string;
+    /**
+     * Shown to users after the end of the task duration.
+     * @uiName Ended Date Message
+     * @uiGroup Task
+     */
+    endedMessage?: string;
+    /**
+     * Optionally send an event to SaaSquatch when a user clicks the button. Enter your event key into this field.
+     * @uiName Task Card Button Event Key
+     * @uiGroup Button
+     */
+    eventKey?: string;
+    /**
+     * Displayed when a user views a task card after the reward duration interval.
+     * @uiName Expiry Date Message
+     * @uiGroup Task
+     */
+    expiryMessage?: string;
+    /**
+     * The number of times a reward can be earned.  Use zero for no limit (the default).
+     * @uiName Repeat Amount
+     * @uiGroup Reward
+     */
+    finite?: number;
+    /**
+     * Sets the goal for users progress to know when a task has been completed. If repeatable is checked, repeatable goals is an increment of this.
+     * @uiName Goal Completion Number
+     * @uiGroup Goal
+     */
+    goal?: number;
+    /**
+     * Button Link Opens in New Tab
+     * @uiName Open In New Tab
+     * @uiGroup Button
+     * @default
+     */
+    openNewTab?: boolean;
+    /**
+     * The ID of the program that is used to scope the task card. When no ID is specified, it defaults to the program context in which the component is rendered.
+     * @uiName Program ID Override
+     * @uiWidget programSelector
+     * @uiGroup Goal
+     */
+    programId?: string;
+    /**
+     * The unit displayed to the right of steps and progress numbers on the progress bar. Ex: $ for dollars
+     * @uiName Progress Bar Unit
+     * @uiGroup Goal
+     */
+    progressBarUnit?: string;
+    /**
+     * @uiName Goal Repeatable
+     * @uiGroup Goal
+     * @default
+     */
+    repeatable?: boolean;
+    /**
+     * @uiName Reward Amount
+     * @uiGroup Reward
+     */
+    rewardAmount?: string;
+    /**
+     * Task cards are disabled to users outside of the duration. They are not disabled if no duration is configured.
+     * @uiName Reward Duration
+     * @uiWidget dateRange
+     * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+     * @uiGroup Reward
+     */
+    rewardDuration?: string;
+    /**
+     * @uiName Reward Unit
+     * @uiGroup Reward
+     */
+    rewardUnit?: string;
+    /**
+     * @uiName Show Progress Bar
+     * @uiGroup Goal
+     * @default
+     */
+    showProgressBar?: boolean;
+    /**
+     * Shown to users before the start of the task duration.
+     * @uiName Start Date Message
+     * @uiGroup Task
+     */
+    startsOnMessage?: string;
+    /**
+     * Select what type of stat to display for the goal. Manual paths are also supported.
+     * @uiName Goal Progress Source
+     * @required
+     * @minLength 1
+     * @uiWidget statTypeSelectWidget
+     * @uiWidgetOptions {"version": 1.1}
+     * @uiGroup Goal
+     */
+    statType?: string;
+    /**
+     * @uiName Progress Bar Steps
+     * @uiGroup Goal
+     * @default
+     */
+    steps?: boolean;
+  }
+  interface SqmText {}
+  interface SqmTextSpan {
+    /**
+     * @uiName Text
+     */
+    text?: string;
+    /**
+     * @uiName Type
+     * @uiType string
+     * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
+     * @uiEnumNames ["Paragraph", "Subtext", "Header 1", "Header 2", "Header 3", "Header 4"]
+     */
+    type?: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
+  }
+  interface SqmTimeline {
+    /**
+     * @uiName Icon
+     * @uiType string
+     * @uiEnum ["gift", "circle"]
+     * @uiEnumNames ["Gift", "Circle"]
+     */
+    icon?: "gift" | "circle";
+  }
+  interface SqmTimelineEntry {
+    /**
+     * @uiName Description
+     */
+    desc?: string;
+    /**
+     * @uiName Icon
+     * @uiType string
+     * @uiEnum ["gift", "circle"]
+     * @uiEnumNames ["Gift", "Circle"]
+     */
+    icon?: "gift" | "circle";
+    /**
+     * @uiName Reward Amount
+     */
+    reward?: string;
+    /**
+     * @uiName Reward Unit
+     */
+    unit?: string;
+  }
+  interface SqmTitledSection {
+    /**
+     * Text value shown when there is no label slot declared.
+     * @uiName Label
+     */
+    label?: string;
+    /**
+     * Margin applied to the bottom of the label slot
+     * @uiName Label Bottom Margin
+     * @uiType string
+     * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+     * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+     */
+    labelMargin?: Spacing;
+    /**
+     * Padding applied to all 4 sides of the container
+     * @uiName Section Padding
+     * @uiType string
+     * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+     * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+     */
+    padding?: Spacing;
+    /**
+     * @uiName Text Alignment
+     * @uiType string
+     * @uiEnum ["left", "center", "right"]
+     * @uiEnumNames ["Left", "Center", "Right"]
+     */
+    textAlign?: "left" | "center" | "right";
+  }
+  interface SqmUserName {
+    /**
+     * @undocumented
+     * @uiType object
+     */
+    demoData?: DemoData<UserNameViewProps>;
+    /**
+     * Fallback name for unknown users
+     * @uiName Fallback Name
+     */
+    fallback?: string;
+    /**
+     * @uiName Loading Text
+     */
+    loadingText?: string;
+  }
+  interface IntrinsicElements {
+    "raisins-plop-target": RaisinsPlopTarget;
+    "sqm-asset-card": SqmAssetCard;
+    "sqm-big-stat": SqmBigStat;
+    "sqm-brand": SqmBrand;
+    "sqm-card-feed": SqmCardFeed;
+    "sqm-checkbox-field": SqmCheckboxField;
+    "sqm-divided-layout": SqmDividedLayout;
+    "sqm-dropdown-field": SqmDropdownField;
+    "sqm-edit-profile": SqmEditProfile;
+    "sqm-empty": SqmEmpty;
+    "sqm-form-message": SqmFormMessage;
+    "sqm-graphql-client-provider": SqmGraphqlClientProvider;
+    "sqm-hero": SqmHero;
+    "sqm-hero-image": SqmHeroImage;
+    "sqm-hook-story-container": SqmHookStoryContainer;
+    "sqm-image": SqmImage;
+    "sqm-input-field": SqmInputField;
+    "sqm-leaderboard": SqmLeaderboard;
+    "sqm-leaderboard-rank": SqmLeaderboardRank;
+    "sqm-name-fields": SqmNameFields;
+    "sqm-navigation-menu": SqmNavigationMenu;
+    "sqm-navigation-sidebar": SqmNavigationSidebar;
+    "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
+    "sqm-password-field": SqmPasswordField;
+    "sqm-popup-container": SqmPopupContainer;
+    "sqm-portal-change-password": SqmPortalChangePassword;
+    "sqm-portal-container": SqmPortalContainer;
+    "sqm-portal-email-verification": SqmPortalEmailVerification;
+    "sqm-portal-footer": SqmPortalFooter;
+    "sqm-portal-forgot-password": SqmPortalForgotPassword;
+    "sqm-portal-frame": SqmPortalFrame;
+    "sqm-portal-login": SqmPortalLogin;
+    "sqm-portal-logout": SqmPortalLogout;
+    "sqm-portal-profile": SqmPortalProfile;
+    "sqm-portal-protected-route": SqmPortalProtectedRoute;
+    "sqm-portal-register": SqmPortalRegister;
+    "sqm-portal-reset-password": SqmPortalResetPassword;
+    "sqm-portal-verify-email": SqmPortalVerifyEmail;
+    "sqm-program-explainer": SqmProgramExplainer;
+    "sqm-program-explainer-step": SqmProgramExplainerStep;
+    "sqm-program-menu": SqmProgramMenu;
+    "sqm-qa": SqmQa;
+    "sqm-qa-referral-card": SqmQaReferralCard;
+    "sqm-qa-tabs": SqmQaTabs;
+    "sqm-referral-card": SqmReferralCard;
+    "sqm-referral-iframe": SqmReferralIframe;
+    "sqm-referral-table": SqmReferralTable;
+    "sqm-referral-table-cell": SqmReferralTableCell;
+    "sqm-referral-table-column": SqmReferralTableColumn;
+    "sqm-referral-table-date-cell": SqmReferralTableDateCell;
+    "sqm-referral-table-date-column": SqmReferralTableDateColumn;
+    "sqm-referral-table-rewards-cell": SqmReferralTableRewardsCell;
+    "sqm-referral-table-rewards-column": SqmReferralTableRewardsColumn;
+    "sqm-referral-table-status-cell": SqmReferralTableStatusCell;
+    "sqm-referral-table-status-column": SqmReferralTableStatusColumn;
+    "sqm-referral-table-user-cell": SqmReferralTableUserCell;
+    "sqm-referral-table-user-column": SqmReferralTableUserColumn;
+    "sqm-reward-exchange-list": SqmRewardExchangeList;
+    "sqm-rewards-table": SqmRewardsTable;
+    "sqm-rewards-table-customer-note-cell": SqmRewardsTableCustomerNoteCell;
+    "sqm-rewards-table-customer-note-column": SqmRewardsTableCustomerNoteColumn;
+    "sqm-rewards-table-date-cell": SqmRewardsTableDateCell;
+    "sqm-rewards-table-date-column": SqmRewardsTableDateColumn;
+    "sqm-rewards-table-reward-cell": SqmRewardsTableRewardCell;
+    "sqm-rewards-table-reward-column": SqmRewardsTableRewardColumn;
+    "sqm-rewards-table-source-cell": SqmRewardsTableSourceCell;
+    "sqm-rewards-table-source-column": SqmRewardsTableSourceColumn;
+    "sqm-rewards-table-status-cell": SqmRewardsTableStatusCell;
+    "sqm-rewards-table-status-column": SqmRewardsTableStatusColumn;
+    "sqm-route": SqmRoute;
+    "sqm-router": SqmRouter;
+    "sqm-scroll": SqmScroll;
+    "sqm-share-button": SqmShareButton;
+    "sqm-share-code": SqmShareCode;
+    "sqm-share-link": SqmShareLink;
+    "sqm-stat-container": SqmStatContainer;
+    "sqm-stencilbook": SqmStencilbook;
+    "sqm-tab": SqmTab;
+    "sqm-table-cell": SqmTableCell;
+    "sqm-table-row": SqmTableRow;
+    "sqm-tabs": SqmTabs;
+    "sqm-task-card": SqmTaskCard;
+    "sqm-text": SqmText;
+    "sqm-text-span": SqmTextSpan;
+    "sqm-timeline": SqmTimeline;
+    "sqm-timeline-entry": SqmTimelineEntry;
+    "sqm-titled-section": SqmTitledSection;
+    "sqm-user-name": SqmUserName;
+  }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
-    export namespace JSX {
-        interface IntrinsicElements {
-            "raisins-plop-target": LocalJSX.RaisinsPlopTarget & JSXBase.HTMLAttributes<HTMLRaisinsPlopTargetElement>;
-            "sqm-asset-card": LocalJSX.SqmAssetCard & JSXBase.HTMLAttributes<HTMLSqmAssetCardElement>;
-            "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
-            "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
-            "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
-            "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
-            "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
-            "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
-            "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
-            "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
-            "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
-            "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
-            "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
-            "sqm-hero-image": LocalJSX.SqmHeroImage & JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
-            "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
-            "sqm-image": LocalJSX.SqmImage & JSXBase.HTMLAttributes<HTMLSqmImageElement>;
-            "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
-            "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
-            "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
-            "sqm-name-fields": LocalJSX.SqmNameFields & JSXBase.HTMLAttributes<HTMLSqmNameFieldsElement>;
-            "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
-            "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
-            "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
-            "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
-            "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
-            "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
-            "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;
-            "sqm-portal-email-verification": LocalJSX.SqmPortalEmailVerification & JSXBase.HTMLAttributes<HTMLSqmPortalEmailVerificationElement>;
-            "sqm-portal-footer": LocalJSX.SqmPortalFooter & JSXBase.HTMLAttributes<HTMLSqmPortalFooterElement>;
-            "sqm-portal-forgot-password": LocalJSX.SqmPortalForgotPassword & JSXBase.HTMLAttributes<HTMLSqmPortalForgotPasswordElement>;
-            "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
-            "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
-            "sqm-portal-logout": LocalJSX.SqmPortalLogout & JSXBase.HTMLAttributes<HTMLSqmPortalLogoutElement>;
-            "sqm-portal-profile": LocalJSX.SqmPortalProfile & JSXBase.HTMLAttributes<HTMLSqmPortalProfileElement>;
-            "sqm-portal-protected-route": LocalJSX.SqmPortalProtectedRoute & JSXBase.HTMLAttributes<HTMLSqmPortalProtectedRouteElement>;
-            "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
-            "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
-            "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
-            "sqm-program-explainer": LocalJSX.SqmProgramExplainer & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerElement>;
-            "sqm-program-explainer-step": LocalJSX.SqmProgramExplainerStep & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerStepElement>;
-            "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
-            "sqm-qa": LocalJSX.SqmQa & JSXBase.HTMLAttributes<HTMLSqmQaElement>;
-            "sqm-qa-referral-card": LocalJSX.SqmQaReferralCard & JSXBase.HTMLAttributes<HTMLSqmQaReferralCardElement>;
-            "sqm-qa-tabs": LocalJSX.SqmQaTabs & JSXBase.HTMLAttributes<HTMLSqmQaTabsElement>;
-            "sqm-referral-card": LocalJSX.SqmReferralCard & JSXBase.HTMLAttributes<HTMLSqmReferralCardElement>;
-            "sqm-referral-iframe": LocalJSX.SqmReferralIframe & JSXBase.HTMLAttributes<HTMLSqmReferralIframeElement>;
-            "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;
-            "sqm-referral-table-cell": LocalJSX.SqmReferralTableCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableCellElement>;
-            "sqm-referral-table-column": LocalJSX.SqmReferralTableColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableColumnElement>;
-            "sqm-referral-table-date-cell": LocalJSX.SqmReferralTableDateCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableDateCellElement>;
-            "sqm-referral-table-date-column": LocalJSX.SqmReferralTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableDateColumnElement>;
-            "sqm-referral-table-rewards-cell": LocalJSX.SqmReferralTableRewardsCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableRewardsCellElement>;
-            "sqm-referral-table-rewards-column": LocalJSX.SqmReferralTableRewardsColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableRewardsColumnElement>;
-            "sqm-referral-table-status-cell": LocalJSX.SqmReferralTableStatusCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusCellElement>;
-            "sqm-referral-table-status-column": LocalJSX.SqmReferralTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusColumnElement>;
-            "sqm-referral-table-user-cell": LocalJSX.SqmReferralTableUserCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserCellElement>;
-            "sqm-referral-table-user-column": LocalJSX.SqmReferralTableUserColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserColumnElement>;
-            "sqm-reward-exchange-list": LocalJSX.SqmRewardExchangeList & JSXBase.HTMLAttributes<HTMLSqmRewardExchangeListElement>;
-            "sqm-rewards-table": LocalJSX.SqmRewardsTable & JSXBase.HTMLAttributes<HTMLSqmRewardsTableElement>;
-            "sqm-rewards-table-customer-note-cell": LocalJSX.SqmRewardsTableCustomerNoteCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableCustomerNoteCellElement>;
-            "sqm-rewards-table-customer-note-column": LocalJSX.SqmRewardsTableCustomerNoteColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableCustomerNoteColumnElement>;
-            "sqm-rewards-table-date-cell": LocalJSX.SqmRewardsTableDateCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableDateCellElement>;
-            "sqm-rewards-table-date-column": LocalJSX.SqmRewardsTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableDateColumnElement>;
-            "sqm-rewards-table-reward-cell": LocalJSX.SqmRewardsTableRewardCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableRewardCellElement>;
-            "sqm-rewards-table-reward-column": LocalJSX.SqmRewardsTableRewardColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableRewardColumnElement>;
-            "sqm-rewards-table-source-cell": LocalJSX.SqmRewardsTableSourceCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableSourceCellElement>;
-            "sqm-rewards-table-source-column": LocalJSX.SqmRewardsTableSourceColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableSourceColumnElement>;
-            "sqm-rewards-table-status-cell": LocalJSX.SqmRewardsTableStatusCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableStatusCellElement>;
-            "sqm-rewards-table-status-column": LocalJSX.SqmRewardsTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableStatusColumnElement>;
-            "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
-            "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
-            "sqm-scroll": LocalJSX.SqmScroll & JSXBase.HTMLAttributes<HTMLSqmScrollElement>;
-            "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
-            "sqm-share-code": LocalJSX.SqmShareCode & JSXBase.HTMLAttributes<HTMLSqmShareCodeElement>;
-            "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
-            "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
-            "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
-            "sqm-tab": LocalJSX.SqmTab & JSXBase.HTMLAttributes<HTMLSqmTabElement>;
-            "sqm-table-cell": LocalJSX.SqmTableCell & JSXBase.HTMLAttributes<HTMLSqmTableCellElement>;
-            "sqm-table-row": LocalJSX.SqmTableRow & JSXBase.HTMLAttributes<HTMLSqmTableRowElement>;
-            "sqm-tabs": LocalJSX.SqmTabs & JSXBase.HTMLAttributes<HTMLSqmTabsElement>;
-            "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
-            "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
-            "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
-            "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;
-            "sqm-timeline-entry": LocalJSX.SqmTimelineEntry & JSXBase.HTMLAttributes<HTMLSqmTimelineEntryElement>;
-            "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
-            "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
-        }
+  export namespace JSX {
+    interface IntrinsicElements {
+      "raisins-plop-target": LocalJSX.RaisinsPlopTarget &
+        JSXBase.HTMLAttributes<HTMLRaisinsPlopTargetElement>;
+      "sqm-asset-card": LocalJSX.SqmAssetCard &
+        JSXBase.HTMLAttributes<HTMLSqmAssetCardElement>;
+      "sqm-big-stat": LocalJSX.SqmBigStat &
+        JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
+      "sqm-brand": LocalJSX.SqmBrand &
+        JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
+      "sqm-card-feed": LocalJSX.SqmCardFeed &
+        JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
+      "sqm-checkbox-field": LocalJSX.SqmCheckboxField &
+        JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
+      "sqm-divided-layout": LocalJSX.SqmDividedLayout &
+        JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
+      "sqm-dropdown-field": LocalJSX.SqmDropdownField &
+        JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
+      "sqm-edit-profile": LocalJSX.SqmEditProfile &
+        JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
+      "sqm-empty": LocalJSX.SqmEmpty &
+        JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
+      "sqm-form-message": LocalJSX.SqmFormMessage &
+        JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
+      "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider &
+        JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
+      "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
+      "sqm-hero-image": LocalJSX.SqmHeroImage &
+        JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
+      "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer &
+        JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
+      "sqm-image": LocalJSX.SqmImage &
+        JSXBase.HTMLAttributes<HTMLSqmImageElement>;
+      "sqm-input-field": LocalJSX.SqmInputField &
+        JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
+      "sqm-leaderboard": LocalJSX.SqmLeaderboard &
+        JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
+      "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank &
+        JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
+      "sqm-name-fields": LocalJSX.SqmNameFields &
+        JSXBase.HTMLAttributes<HTMLSqmNameFieldsElement>;
+      "sqm-navigation-menu": LocalJSX.SqmNavigationMenu &
+        JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
+      "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar &
+        JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
+      "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem &
+        JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
+      "sqm-password-field": LocalJSX.SqmPasswordField &
+        JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
+      "sqm-popup-container": LocalJSX.SqmPopupContainer &
+        JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
+      "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword &
+        JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
+      "sqm-portal-container": LocalJSX.SqmPortalContainer &
+        JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;
+      "sqm-portal-email-verification": LocalJSX.SqmPortalEmailVerification &
+        JSXBase.HTMLAttributes<HTMLSqmPortalEmailVerificationElement>;
+      "sqm-portal-footer": LocalJSX.SqmPortalFooter &
+        JSXBase.HTMLAttributes<HTMLSqmPortalFooterElement>;
+      "sqm-portal-forgot-password": LocalJSX.SqmPortalForgotPassword &
+        JSXBase.HTMLAttributes<HTMLSqmPortalForgotPasswordElement>;
+      "sqm-portal-frame": LocalJSX.SqmPortalFrame &
+        JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
+      "sqm-portal-login": LocalJSX.SqmPortalLogin &
+        JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
+      "sqm-portal-logout": LocalJSX.SqmPortalLogout &
+        JSXBase.HTMLAttributes<HTMLSqmPortalLogoutElement>;
+      "sqm-portal-profile": LocalJSX.SqmPortalProfile &
+        JSXBase.HTMLAttributes<HTMLSqmPortalProfileElement>;
+      "sqm-portal-protected-route": LocalJSX.SqmPortalProtectedRoute &
+        JSXBase.HTMLAttributes<HTMLSqmPortalProtectedRouteElement>;
+      "sqm-portal-register": LocalJSX.SqmPortalRegister &
+        JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
+      "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword &
+        JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
+      "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail &
+        JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
+      "sqm-program-explainer": LocalJSX.SqmProgramExplainer &
+        JSXBase.HTMLAttributes<HTMLSqmProgramExplainerElement>;
+      "sqm-program-explainer-step": LocalJSX.SqmProgramExplainerStep &
+        JSXBase.HTMLAttributes<HTMLSqmProgramExplainerStepElement>;
+      "sqm-program-menu": LocalJSX.SqmProgramMenu &
+        JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
+      "sqm-qa": LocalJSX.SqmQa & JSXBase.HTMLAttributes<HTMLSqmQaElement>;
+      "sqm-qa-referral-card": LocalJSX.SqmQaReferralCard &
+        JSXBase.HTMLAttributes<HTMLSqmQaReferralCardElement>;
+      "sqm-qa-tabs": LocalJSX.SqmQaTabs &
+        JSXBase.HTMLAttributes<HTMLSqmQaTabsElement>;
+      "sqm-referral-card": LocalJSX.SqmReferralCard &
+        JSXBase.HTMLAttributes<HTMLSqmReferralCardElement>;
+      "sqm-referral-iframe": LocalJSX.SqmReferralIframe &
+        JSXBase.HTMLAttributes<HTMLSqmReferralIframeElement>;
+      "sqm-referral-table": LocalJSX.SqmReferralTable &
+        JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;
+      "sqm-referral-table-cell": LocalJSX.SqmReferralTableCell &
+        JSXBase.HTMLAttributes<HTMLSqmReferralTableCellElement>;
+      "sqm-referral-table-column": LocalJSX.SqmReferralTableColumn &
+        JSXBase.HTMLAttributes<HTMLSqmReferralTableColumnElement>;
+      "sqm-referral-table-date-cell": LocalJSX.SqmReferralTableDateCell &
+        JSXBase.HTMLAttributes<HTMLSqmReferralTableDateCellElement>;
+      "sqm-referral-table-date-column": LocalJSX.SqmReferralTableDateColumn &
+        JSXBase.HTMLAttributes<HTMLSqmReferralTableDateColumnElement>;
+      "sqm-referral-table-rewards-cell": LocalJSX.SqmReferralTableRewardsCell &
+        JSXBase.HTMLAttributes<HTMLSqmReferralTableRewardsCellElement>;
+      "sqm-referral-table-rewards-column": LocalJSX.SqmReferralTableRewardsColumn &
+        JSXBase.HTMLAttributes<HTMLSqmReferralTableRewardsColumnElement>;
+      "sqm-referral-table-status-cell": LocalJSX.SqmReferralTableStatusCell &
+        JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusCellElement>;
+      "sqm-referral-table-status-column": LocalJSX.SqmReferralTableStatusColumn &
+        JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusColumnElement>;
+      "sqm-referral-table-user-cell": LocalJSX.SqmReferralTableUserCell &
+        JSXBase.HTMLAttributes<HTMLSqmReferralTableUserCellElement>;
+      "sqm-referral-table-user-column": LocalJSX.SqmReferralTableUserColumn &
+        JSXBase.HTMLAttributes<HTMLSqmReferralTableUserColumnElement>;
+      "sqm-reward-exchange-list": LocalJSX.SqmRewardExchangeList &
+        JSXBase.HTMLAttributes<HTMLSqmRewardExchangeListElement>;
+      "sqm-rewards-table": LocalJSX.SqmRewardsTable &
+        JSXBase.HTMLAttributes<HTMLSqmRewardsTableElement>;
+      "sqm-rewards-table-customer-note-cell": LocalJSX.SqmRewardsTableCustomerNoteCell &
+        JSXBase.HTMLAttributes<HTMLSqmRewardsTableCustomerNoteCellElement>;
+      "sqm-rewards-table-customer-note-column": LocalJSX.SqmRewardsTableCustomerNoteColumn &
+        JSXBase.HTMLAttributes<HTMLSqmRewardsTableCustomerNoteColumnElement>;
+      "sqm-rewards-table-date-cell": LocalJSX.SqmRewardsTableDateCell &
+        JSXBase.HTMLAttributes<HTMLSqmRewardsTableDateCellElement>;
+      "sqm-rewards-table-date-column": LocalJSX.SqmRewardsTableDateColumn &
+        JSXBase.HTMLAttributes<HTMLSqmRewardsTableDateColumnElement>;
+      "sqm-rewards-table-reward-cell": LocalJSX.SqmRewardsTableRewardCell &
+        JSXBase.HTMLAttributes<HTMLSqmRewardsTableRewardCellElement>;
+      "sqm-rewards-table-reward-column": LocalJSX.SqmRewardsTableRewardColumn &
+        JSXBase.HTMLAttributes<HTMLSqmRewardsTableRewardColumnElement>;
+      "sqm-rewards-table-source-cell": LocalJSX.SqmRewardsTableSourceCell &
+        JSXBase.HTMLAttributes<HTMLSqmRewardsTableSourceCellElement>;
+      "sqm-rewards-table-source-column": LocalJSX.SqmRewardsTableSourceColumn &
+        JSXBase.HTMLAttributes<HTMLSqmRewardsTableSourceColumnElement>;
+      "sqm-rewards-table-status-cell": LocalJSX.SqmRewardsTableStatusCell &
+        JSXBase.HTMLAttributes<HTMLSqmRewardsTableStatusCellElement>;
+      "sqm-rewards-table-status-column": LocalJSX.SqmRewardsTableStatusColumn &
+        JSXBase.HTMLAttributes<HTMLSqmRewardsTableStatusColumnElement>;
+      "sqm-route": LocalJSX.SqmRoute &
+        JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
+      "sqm-router": LocalJSX.SqmRouter &
+        JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
+      "sqm-scroll": LocalJSX.SqmScroll &
+        JSXBase.HTMLAttributes<HTMLSqmScrollElement>;
+      "sqm-share-button": LocalJSX.SqmShareButton &
+        JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
+      "sqm-share-code": LocalJSX.SqmShareCode &
+        JSXBase.HTMLAttributes<HTMLSqmShareCodeElement>;
+      "sqm-share-link": LocalJSX.SqmShareLink &
+        JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
+      "sqm-stat-container": LocalJSX.SqmStatContainer &
+        JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
+      "sqm-stencilbook": LocalJSX.SqmStencilbook &
+        JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
+      "sqm-tab": LocalJSX.SqmTab & JSXBase.HTMLAttributes<HTMLSqmTabElement>;
+      "sqm-table-cell": LocalJSX.SqmTableCell &
+        JSXBase.HTMLAttributes<HTMLSqmTableCellElement>;
+      "sqm-table-row": LocalJSX.SqmTableRow &
+        JSXBase.HTMLAttributes<HTMLSqmTableRowElement>;
+      "sqm-tabs": LocalJSX.SqmTabs & JSXBase.HTMLAttributes<HTMLSqmTabsElement>;
+      "sqm-task-card": LocalJSX.SqmTaskCard &
+        JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
+      "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
+      "sqm-text-span": LocalJSX.SqmTextSpan &
+        JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
+      "sqm-timeline": LocalJSX.SqmTimeline &
+        JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;
+      "sqm-timeline-entry": LocalJSX.SqmTimelineEntry &
+        JSXBase.HTMLAttributes<HTMLSqmTimelineEntryElement>;
+      "sqm-titled-section": LocalJSX.SqmTitledSection &
+        JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
+      "sqm-user-name": LocalJSX.SqmUserName &
+        JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
     }
+  }
 }
