@@ -38,7 +38,7 @@ export class CTAComponent {
    */
   @Prop() fontsize: string;
   /**
-   * Top padding in pixels
+   * Define the top padding with a pixel amount.
    *
    * @uiName Padding Top
    */
@@ -49,7 +49,7 @@ export class CTAComponent {
    */
   @Prop() fontweight: string;
   /**
-   * Bottom padding in pixels
+   * Define the bottom padding with a pixel amount.
    *
    * @uiName Padding Bottom
    */
@@ -61,7 +61,9 @@ export class CTAComponent {
    */
   @Prop() textalign: string;
   /**
-   * @uiName Background
+   * @uiName Container Background Color
+   * @uiWidget color
+   * @format color
    */
   @Prop() background: string;
   /**
@@ -78,7 +80,7 @@ export class CTAComponent {
    */
   @Prop() height: string;
   /**
-   * Button width in pixels.
+   * Define the width of the button with a pixel amount.
    *
    * @uiName Button Width
    */
