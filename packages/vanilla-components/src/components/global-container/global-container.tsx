@@ -14,7 +14,7 @@ export class GlobalContainer {
    * @uiName Background Color
    * @uiWidget color
    * @format color
-   * @default "#ffffff"
+   * @default #ffffff
    */
   @Prop() background: string;
   /**
@@ -29,7 +29,7 @@ export class GlobalContainer {
    * Font family used inside the container.
    *
    * @uiName Font Family
-   * @default "Roboto"
+   * @default Roboto
    * @uiEnum ["Roboto", "Artifakt Element", "Helvetica Neue,Helvetica,Arial,sans-serif", "Lato,sans-serif", "Times New Roman", "Arial", "Courier", "Tahoma", "Verdana", "Georgia"]
    * @uiEnumNames ["Roboto","Artifakt Element","Helvetica Neue","Lato","Times New Roman","Arial","Courier","Tahoma","Verdana","Georgia"]
    */

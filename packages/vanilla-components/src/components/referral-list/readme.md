@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property               | Attribute              | Description                                                                                                                                       | Type      | Default     |
@@ -36,6 +37,7 @@
 | `usefirstreward`       | `usefirstreward`       | Show the value of the first earned reward inside the rewards column.                                                                              | `boolean` | `undefined` |
 | `valuecontent`         | `valuecontent`         | ICU message shown in the rewards column. See [ICU messages](https://unicode-org.github.io/icu/userguide/format_parse/messages/) for more details. | `string`  | `undefined` |
 
+
 ## Dependencies
 
 ### Depends on
@@ -43,13 +45,12 @@
 - [sqh-referral-component](../referral-component)
 
 ### Graph
-
 ```mermaid
 graph TD;
   sqh-referral-list --> sqh-referral-component
   style sqh-referral-list fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

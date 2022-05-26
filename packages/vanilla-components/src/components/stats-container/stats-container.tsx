@@ -26,14 +26,14 @@ export class StatsContainer {
    * Define the bottom padding of the container with a pixel amount.
    *
    * @uiName Padding Top
-   * @default "0"
+   * @default 0
    */
   @Prop() paddingtop: string;
   /**
    * Define the top padding of the container with a pixel amount.
    *
    * @uiName Padding Bottom
-   * @default "0"
+   * @default 0
    */
   @Prop() paddingbottom: string;
 

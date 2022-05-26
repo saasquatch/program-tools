@@ -24,13 +24,13 @@ export class ShareButtonContainer {
    * @uiGroup Email
    * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
    * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-   * @default "mobile-and-desktop"
+   * @default mobile-and-desktop
    */
   @Prop() emaildisplayrule: string;
   /**
    * @uiName Email Text
    * @uiGroup Email
-   * @default "Email"
+   * @default Email
    */
   @Prop() emailtext: string;
   /**
@@ -40,7 +40,7 @@ export class ShareButtonContainer {
    * @uiGroup Email
    * @uiWidget color
    * @format color
-   * @default "#4b4d50"
+   * @default #4b4d50
    */
   @Prop() emailbackgroundcolor: string;
   /**
@@ -48,7 +48,7 @@ export class ShareButtonContainer {
    * @uiGroup Email
    * @uiWidget color
    * @format color
-   * @default "#ffffff"
+   * @default #ffffff
    */
   @Prop() emailtextcolor: string;
   /**
@@ -91,13 +91,13 @@ export class ShareButtonContainer {
    * @uiGroup Facebook
    * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
    * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-   * @default "mobile-and-desktop"
+   * @default mobile-and-desktop
    */
   @Prop() facebookdisplayrule: string;
   /**
    * @uiName Facebook Text
    * @uiGroup Facebook
-   * @default "Facebook"
+   * @default Facebook
    */
   @Prop() facebooktext: string;
   /**
@@ -107,7 +107,7 @@ export class ShareButtonContainer {
    * @uiGroup Facebook
    * @uiWidget color
    * @format color
-   * @default "#234079"
+   * @default #234079
    */
   @Prop() facebookbackgroundcolor: string;
   /**
@@ -115,7 +115,7 @@ export class ShareButtonContainer {
    * @uiGroup Facebook
    * @uiWidget color
    * @format color
-   * @default "#ffffff"
+   * @default #ffffff
    */
   @Prop() facebooktextcolor: string;
   /**
@@ -159,13 +159,13 @@ export class ShareButtonContainer {
    * @uiGroup Twitter
    * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
    * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-   * @default "mobile-and-desktop"
+   * @default mobile-and-desktop
    */
   @Prop() twitterdisplayrule: string;
   /**
    * @uiName Twitter Text
    * @uiGroup Twitter
-   * @default "Twitter"
+   * @default Twitter
    */
   @Prop() twittertext: string;
   /**
@@ -175,7 +175,7 @@ export class ShareButtonContainer {
    * @uiGroup Twitter
    * @uiWidget color
    * @format color
-   * @default "#4797d2"
+   * @default #4797d2
    */
   @Prop() twitterbackgroundcolor: string;
   /**
@@ -183,7 +183,7 @@ export class ShareButtonContainer {
    * @uiGroup Twitter
    * @uiWidget color
    * @format color
-   * @default "#ffffff"
+   * @default #ffffff
    */
   @Prop() twittertextcolor: string;
   /**
@@ -227,13 +227,13 @@ export class ShareButtonContainer {
    * @uiGroup SMS
    * @uiEnum ["mobile-only","hidden"]
    * @uiEnumNames ["Mobile Only","Hide"]
-   * @default "mobile-only"
+   * @default mobile-only
    */
   @Prop() smsdisplayrule: string;
   /**
    * @uiName SMS Text
    * @uiGroup SMS
-   * @default "SMS"
+   * @default SMS
    */
   @Prop() smstext: string;
   /**
@@ -243,7 +243,7 @@ export class ShareButtonContainer {
    * @uiGroup SMS
    * @uiWidget color
    * @format color
-   * @default "#7bbf38"
+   * @default #7bbf38
    */
   @Prop() smsbackgroundcolor: string;
   /**
@@ -251,7 +251,7 @@ export class ShareButtonContainer {
    * @uiGroup SMS
    * @uiWidget color
    * @format color
-   * @default "#ffffff"
+   * @default #ffffff
    */
   @Prop() smstextcolor: string;
   /**
@@ -294,13 +294,13 @@ export class ShareButtonContainer {
    * @uiGroup WhatsApp
    * @uiEnum ["mobile-only","hidden"]
    * @uiEnumNames ["Mobile Only","Hide"]
-   * @default "mobile-only"
+   * @default mobile-only
    */
   @Prop() whatsappdisplayrule: string;
   /**
    * @uiName WhatsApp Text
    * @uiGroup WhatsApp
-   * @default "Whatspp"
+   * @default Whatspp
    */
   @Prop() whatsapptext: string;
   /**
@@ -310,7 +310,7 @@ export class ShareButtonContainer {
    * @uiGroup WhatsApp
    * @uiWidget color
    * @format color
-   * @default "#25D366"
+   * @default #25D366
    */
   @Prop() whatsappbackgroundcolor: string;
   /**
@@ -318,7 +318,7 @@ export class ShareButtonContainer {
    * @uiGroup WhatsApp
    * @uiWidget color
    * @format color
-   * @default "#ffffff"
+   * @default #ffffff
    */
   @Prop() whatsapptextcolor: string = "#fff";
   /**
@@ -362,13 +362,13 @@ export class ShareButtonContainer {
    * @uiGroup LinkedIn
    * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
    * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-   * @default "hidden"
+   * @default hidden
    */
   @Prop() linkedindisplayrule: string;
   /**
    * @uiName Linkedin Text
    * @uiGroup LinkedIn
-   * @default "LinkedIn"
+   * @default LinkedIn
    */
   @Prop() linkedintext: string;
   /**
@@ -378,7 +378,7 @@ export class ShareButtonContainer {
    * @uiGroup LinkedIn
    * @uiWidget color
    * @format color
-   * @default "#ffffff"
+   * @default #ffffff
    */
   @Prop() linkedinbackgroundcolor: string;
   /**
@@ -386,7 +386,7 @@ export class ShareButtonContainer {
    * @uiGroup LinkedIn
    * @uiWidget color
    * @format color
-   * @default "#0084b9"
+   * @default #0084b9
    */
   @Prop() linkedintextcolor: string;
   /**
@@ -429,13 +429,13 @@ export class ShareButtonContainer {
    * @uiGroup Pinterest
    * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
    * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-   * @default "hidden"
+   * @default hidden
    */
   @Prop() pinterestdisplayrule: string;
   /**
    * @uiName Pinterest Text
    * @uiGroup Pinterest
-   * @default "Pinterest"
+   * @default Pinterest
    */
   @Prop() pinteresttext: string;
   /**
@@ -445,7 +445,7 @@ export class ShareButtonContainer {
    * @uiGroup Pinterest
    * @uiWidget color
    * @format color
-   * @default "#cb2027"
+   * @default #cb2027
    */
   @Prop() pinterestbackgroundcolor: string;
   /**
@@ -453,7 +453,7 @@ export class ShareButtonContainer {
    * @uiGroup Pinterest
    * @uiWidget color
    * @format color
-   * @default "#ffffff"
+   * @default #ffffff
    */
   @Prop() pinteresttextcolor: string;
   /**
@@ -497,13 +497,13 @@ export class ShareButtonContainer {
    * @uiGroup Messenger
    * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
    * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-   * @default "hidden"
+   * @default hidden
    */
   @Prop() messengerdisplayrule: string;
   /**
    * @uiName Messenger Text
    * @uiGroup Messenger
-   * @default "Messenger"
+   * @default Messenger
    */
   @Prop() messengertext: string;
   /**
@@ -513,7 +513,7 @@ export class ShareButtonContainer {
    * @uiGroup Messenger
    * @uiWidget color
    * @format color
-   * @default "#0084ff"
+   * @default #0084ff
    */
   @Prop() messengerbackgroundcolor: string;
   /**
@@ -521,7 +521,7 @@ export class ShareButtonContainer {
    * @uiGroup Messenger
    * @uiWidget color
    * @format color
-   * @default "#ffffff"
+   * @default #ffffff
    */
   @Prop() messengertextcolor: string;
   /**
@@ -564,13 +564,13 @@ export class ShareButtonContainer {
    * @uiGroup Line Messenger
    * @uiEnum ["mobile-only","hidden"]
    * @uiEnumNames ["Mobile Only","Hide"]
-   * @default "mobile-only"
+   * @default mobile-only
    */
   @Prop() linedisplayrule: string;
   /**
    * @uiName Line Text
    * @uiGroup Line Messenger
-   * @default "Line Messenger"
+   * @default Line Messenger
    */
   @Prop() linetext: string;
   /**
@@ -580,7 +580,7 @@ export class ShareButtonContainer {
    * @uiGroup Line Messenger
    * @uiWidget color
    * @format color
-   * @default "#00c300"
+   * @default #00c300
    */
   @Prop() linebackgroundcolor: string;
   /**
@@ -588,7 +588,7 @@ export class ShareButtonContainer {
    * @uiGroup Line Messenger
    * @uiWidget color
    * @format color
-   * @default "#ffffff"
+   * @default #ffffff
    */
   @Prop() linetextcolor: string;
   /**
