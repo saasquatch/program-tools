@@ -38,7 +38,7 @@ export class ImageComponent {
    * @uiName Horizontal Alignment
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
-   * @default "center"
+   * @default center
    */
   @Prop() alignment: string;
   /**
@@ -46,7 +46,7 @@ export class ImageComponent {
    *
    * @uiName CSS
    * @uiWidget textArea
-   * @default "padding-top: 38px; padding-bottom: 7px;"
+   * @default padding-top: 38px; padding-bottom: 7px;
    */
   @Prop() css: string;
 

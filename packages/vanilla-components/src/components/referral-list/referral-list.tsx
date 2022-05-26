@@ -23,21 +23,21 @@ export class ReferralList {
    * Shown inside the paginate more button.
    *
    * @uiName Paginate More Text
-   * @default "View More"
+   * @default View More
    */
   @Prop() paginatemore: string;
   /**
    * Shown inside the paginate less button.
    *
    * @uiName Paginate Less Text
-   * @default "Previous"
+   * @default Previous
    */
   @Prop() paginateless: string;
   /**
    * Shown when referral list is empty.
    *
    * @uiName Empty Referrals Text
-   * @default "No Referrals Yet..."
+   * @default No Referrals Yet...
    */
   @Prop() noreferralsyet: string;
   /**
@@ -46,21 +46,21 @@ export class ReferralList {
    * @uiName Referral Name Color
    * @uiWidget color
    * @format color
-   * @default "darkslategray"
+   * @default darkslategray
    */
   @Prop() referralnamecolor: string;
   /**
    * @uiName Referral Status Text Color
    * @uiWidget color
    * @format color
-   * @default "lightgray"
+   * @default lightgray
    */
   @Prop() referraltextcolor: string;
   /**
    * Text shown when the referred user's name is unknown.
    *
    * @uiName Unknown User Text
-   * @default "Your Friend"
+   * @default Your Friend
    */
   @Prop() unknownuser: string;
   /**
@@ -76,7 +76,7 @@ export class ReferralList {
    *
    * @uiName Redeemed Text
    * @uiGroup Converted Referrals
-   * @default "Redeemed"
+   * @default Redeemed
    */
   @Prop() redeemedvalue: string;
   /**
@@ -84,7 +84,6 @@ export class ReferralList {
    *
    * @uiName Show Referred By
    * @uiGroup Referrer
-   * @default ""
    */
   @Prop() showreferrer: boolean;
   /**
@@ -92,7 +91,7 @@ export class ReferralList {
    *
    * @uiName Referrer Description
    * @uiGroup Referrer
-   * @default "Referred you {date}"
+   * @default Referred you {date}
    */
   @Prop() referrercontent: string;
   /**
@@ -100,7 +99,7 @@ export class ReferralList {
    *
    * @uiName Referrer Text
    * @uiGroup Referrer
-   * @default "Referred"
+   * @default Referred
    */
   @Prop() referrervalue: string;
   /**
@@ -110,7 +109,7 @@ export class ReferralList {
    * @uiGroup Converted Referrals
    * @uiWidget color
    * @format color
-   * @default "#4BB543"
+   * @default #4BB543
    */
   @Prop() rewardcolor: string;
   /**
@@ -132,16 +131,16 @@ export class ReferralList {
    *
    * @uiName Converted Description
    * @uiGroup Converted Referrals
-   * @default "Signed up, referred {date}"
+   * @default Signed up, referred {date}
    */
   @Prop() convertedcontent: string;
   /**
-   * ICU message shown in the rewards column. See {@link https://unicode-org.github.io/icu/userguide/format_parse/messages/ ICU messages} for more details.
+   * ICU message shown in the rewards column. See [ICU messages](https://unicode-org.github.io/icu/userguide/format_parse/messages/) for more details.
    *
    * @uiName Value Content
    * @uiGroup Converted Referrals
    * @uiWidget textArea
-   * @default "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}"
+   * @default and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}
    */
   @Prop() valuecontent: string;
   /**
@@ -151,7 +150,7 @@ export class ReferralList {
    * @uiGroup Pending Referrals
    * @uiWidget color
    * @format color
-   * @default "lightgray"
+   * @default lightgray
    */
   @Prop() pendingcolor: string;
   /**
@@ -159,7 +158,7 @@ export class ReferralList {
    *
    * @uiName Pending Description
    * @uiGroup Pending Referrals
-   * @default "Trial user, referred {date}"
+   * @default Trial user, referred {date}
    */
   @Prop() pendingcontent: string;
   /**
@@ -167,7 +166,7 @@ export class ReferralList {
    *
    * @uiName Pending Text
    * @uiGroup Pending Referrals
-   * @default "Referral pending"
+   * @default Referral pending
    */
   @Prop() pendingvalue: string;
   /**
@@ -177,7 +176,7 @@ export class ReferralList {
    * @uiGroup Expired Rewards
    * @uiWidget color
    * @format color
-   * @default "lightgray"
+   * @default lightgray
    */
   @Prop() expiredcolor: string;
   /**
@@ -185,7 +184,7 @@ export class ReferralList {
    *
    * @uiName Expired Description
    * @uiGroup Expired Rewards
-   * @default "Signed up, referred {date}"
+   * @default Signed up, referred {date}
    */
   @Prop() expiredcontent: string;
   /**
@@ -193,7 +192,7 @@ export class ReferralList {
    *
    * @uiName Expired Text
    * @uiGroup Expired Rewards
-   * @default "Expired Reward"
+   * @default Expired Reward
    */
   @Prop() expiredvalue: string;
   /**
@@ -210,7 +209,7 @@ export class ReferralList {
    * @uiGroup Cancelled Rewards
    * @uiWidget color
    * @format color
-   * @default "#C81D05"
+   * @default #C81D05
    */
   @Prop() cancelledcolor: string;
   /**
@@ -218,7 +217,7 @@ export class ReferralList {
    *
    * @uiName Cancelled Description
    * @uiGroup Cancelled Rewards
-   * @default "Signed up, referred {date}"
+   * @default Signed up, referred {date}
    */
   @Prop() cancelledcontent: string;
   /**
@@ -226,7 +225,7 @@ export class ReferralList {
    *
    * @uiName Cancelled Text
    * @uiGroup Cancelled Rewards
-   * @default "Cancelled Reward"
+   * @default Cancelled Reward
    */
   @Prop() cancelledvalue: string;
   /**

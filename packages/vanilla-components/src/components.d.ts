@@ -43,13 +43,13 @@ export namespace Components {
         /**
           * Shown when the button has failed to copy the code to the users clipboard.
           * @uiName Copy Failure Text
-          * @default "Press Ctrl+C to copy"
+          * @default Press Ctrl+C to copy
          */
         "copyfailure": string;
         /**
           * Shown when the code is successfully copied to the users clipboard.
           * @uiName Copy Success Text
-          * @default "copied!"
+          * @default copied!
          */
         "copysuccess": string;
         /**
@@ -65,12 +65,12 @@ export namespace Components {
         /**
           * The rewardKey of a fuel tank reward. This is used to get the fuel tank code for a user.
           * @uiName Reward Key
-          * @default "referredReward"
+          * @default referredReward
          */
         "rewardkey": string;
         /**
           * @uiName Button Text
-          * @default "COPY CODE"
+          * @default COPY CODE
          */
         "text": string;
         /**
@@ -91,19 +91,19 @@ export namespace Components {
           * @uiName Button Color
           * @uiWidget color
           * @format color
-          * @default "#5C6164"
+          * @default #5C6164
          */
         "buttoncolor": string;
         /**
           * Shown when the button has failed to copy the code to the users clipboard.
           * @uiName Copy Failure Text
-          * @default "Press Ctrl+C to copy"
+          * @default Press Ctrl+C to copy
          */
         "copyfailure": string;
         /**
           * Shown when the code is successfully copied to the users clipboard.
           * @uiName Copy Success Text
-          * @default "copied!"
+          * @default copied!
          */
         "copysuccess": string;
         /**
@@ -113,14 +113,14 @@ export namespace Components {
         "ishidden": boolean;
         /**
           * @uiName Button Text
-          * @default "Copy"
+          * @default Copy
          */
         "text": string;
         /**
           * @uiName Button Text Color
           * @uiWidget color
           * @format color
-          * @default "#FFFFFF"
+          * @default #FFFFFF
          */
         "textcolor": string;
     }
@@ -131,14 +131,14 @@ export namespace Components {
         "background": string;
         /**
           * @uiName Border Radius
-          * @default "8px"
+          * @default 8px
          */
         "borderradius": string;
         /**
           * @uiName Button Color
           * @uiWidget color
           * @format color
-          * @default '#F5A100'
+          * @default #F5A100
          */
         "buttonbackground": string;
         /**
@@ -169,7 +169,7 @@ export namespace Components {
          */
         "ishidden": boolean;
         /**
-          * Compile plain text into HTML. See {@link https://www.markdownguide.org/getting-started/ markdown} for more details.
+          * Compile plain text into HTML. See [markdown](https://www.markdownguide.org/getting-started/) for more details.
           * @uiName Use Markdown
          */
         "ismarkdown": boolean;
@@ -208,13 +208,13 @@ export namespace Components {
           * @uiName Background Color
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "background": string;
         /**
           * Font family used inside the container.
           * @uiName Font Family
-          * @default "Roboto"
+          * @default Roboto
           * @uiEnum ["Roboto", "Artifakt Element", "Helvetica Neue,Helvetica,Arial,sans-serif", "Lato,sans-serif", "Times New Roman", "Arial", "Courier", "Tahoma", "Verdana", "Georgia"]
           * @uiEnumNames ["Roboto","Artifakt Element","Helvetica Neue","Lato","Times New Roman","Arial","Courier","Tahoma","Verdana","Georgia"]
          */
@@ -241,7 +241,7 @@ export namespace Components {
           * @uiName Horizontal Alignment
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
-          * @default "center"
+          * @default center
          */
         "alignment": string;
         /**
@@ -253,7 +253,7 @@ export namespace Components {
           * Additional CSS applied to the image element
           * @uiName CSS
           * @uiWidget textArea
-          * @default "padding-top: 38px; padding-bottom: 7px;"
+          * @default padding-top: 38px; padding-bottom: 7px;
          */
         "css": string;
         /**
@@ -314,38 +314,42 @@ export namespace Components {
          */
         "align": string;
         /**
-          * Text to show how much credit has been earned.
+          * Text displayed before a user’s credit earned amount.
           * @uiName Credit Earned Text
          */
         "earned": string;
         /**
-          * @undocumented 
           * @uiName Hide Component
          */
         "ishidden": boolean;
         /**
-          * Color of the percentage text.
-          * @uiName Percentage Color
+          * @uiName Percentage Text Color
           * @uiWidget color
           * @format color
          */
         "percentagecolor": string;
         /**
-          * Font size of the percentage text.
+          * Define the font size of the percentage text in a pixel amount
           * @uiName Percentage Text Size
          */
         "percentagesize": string;
         /**
-          * Text to show a users progress.
+          * Text displayed below the completion percentage.
           * @uiName Progress Text
          */
         "progress": string;
+        /**
+          * Color of the progress bar
+          * @uiName Progress Color
+          * @uiWidget color
+          * @format color
+         */
         "progresscolor": string;
         /**
-          * Select the type of icon to display.
-          * @uiName Indicator Icon Type
-          * @uiEnum ["Path", "Cirlce", "SemiCircle", "Line"]
-          * @uiEnumNames ["Path", "Cirlce", "SemiCircle", "Line"]
+          * The type of icon used to display a user’s progress.
+          * @uiName Indicator Icon
+          * @uiEnum ["Path", "Circle", "SemiCircle", "Line"]
+          * @uiEnumNames ["Path", "Circle", "Semi Circle", "Line"]
          */
         "progresstype": string;
         /**
@@ -396,28 +400,28 @@ export namespace Components {
           * @uiGroup Cancelled Rewards
           * @uiWidget color
           * @format color
-          * @default "#C81D05"
+          * @default #C81D05
          */
         "cancelledcolor": string;
         /**
           * Content shown in the referral column for a cancelled reward.
           * @uiName Cancelled Description
           * @uiGroup Cancelled Rewards
-          * @default "Signed up, referred {date}"
+          * @default Signed up, referred {date}
          */
         "cancelledcontent": string;
         /**
           * Text shown alongside the icon in the referral column for a cancelled reward.
           * @uiName Cancelled Text
           * @uiGroup Cancelled Rewards
-          * @default "Cancelled Reward"
+          * @default Cancelled Reward
          */
         "cancelledvalue": string;
         /**
           * Description shown when a referral is converted.
           * @uiName Converted Description
           * @uiGroup Converted Referrals
-          * @default "Signed up, referred {date}"
+          * @default Signed up, referred {date}
          */
         "convertedcontent": string;
         /**
@@ -433,21 +437,21 @@ export namespace Components {
           * @uiGroup Expired Rewards
           * @uiWidget color
           * @format color
-          * @default "lightgray"
+          * @default lightgray
          */
         "expiredcolor": string;
         /**
           * Expired text shown in the referral column.
           * @uiName Expired Description
           * @uiGroup Expired Rewards
-          * @default "Signed up, referred {date}"
+          * @default Signed up, referred {date}
          */
         "expiredcontent": string;
         /**
           * Expired text shown alongside the icon in the referral column.
           * @uiName Expired Text
           * @uiGroup Expired Rewards
-          * @default "Expired Reward"
+          * @default Expired Reward
          */
         "expiredvalue": string;
         /**
@@ -469,19 +473,19 @@ export namespace Components {
         /**
           * Shown when referral list is empty.
           * @uiName Empty Referrals Text
-          * @default "No Referrals Yet..."
+          * @default No Referrals Yet...
          */
         "noreferralsyet": string;
         /**
           * Shown inside the paginate less button.
           * @uiName Paginate Less Text
-          * @default "Previous"
+          * @default Previous
          */
         "paginateless": string;
         /**
           * Shown inside the paginate more button.
           * @uiName Paginate More Text
-          * @default "View More"
+          * @default View More
          */
         "paginatemore": string;
         /**
@@ -490,28 +494,28 @@ export namespace Components {
           * @uiGroup Pending Referrals
           * @uiWidget color
           * @format color
-          * @default "lightgray"
+          * @default lightgray
          */
         "pendingcolor": string;
         /**
           * Pending description shown in the referral column.
           * @uiName Pending Description
           * @uiGroup Pending Referrals
-          * @default "Trial user, referred {date}"
+          * @default Trial user, referred {date}
          */
         "pendingcontent": string;
         /**
           * Pending text shown alongside the icon in the referral column.
           * @uiName Pending Text
           * @uiGroup Pending Referrals
-          * @default "Referral pending"
+          * @default Referral pending
          */
         "pendingvalue": string;
         /**
           * Shown when reward is redeemed.
           * @uiName Redeemed Text
           * @uiGroup Converted Referrals
-          * @default "Redeemed"
+          * @default Redeemed
          */
         "redeemedvalue": string;
         /**
@@ -519,28 +523,28 @@ export namespace Components {
           * @uiName Referral Name Color
           * @uiWidget color
           * @format color
-          * @default "darkslategray"
+          * @default darkslategray
          */
         "referralnamecolor": string;
         /**
           * @uiName Referral Status Text Color
           * @uiWidget color
           * @format color
-          * @default "lightgray"
+          * @default lightgray
          */
         "referraltextcolor": string;
         /**
           * Text explaining who referred you to the program.
           * @uiName Referrer Description
           * @uiGroup Referrer
-          * @default "Referred you {date}"
+          * @default Referred you {date}
          */
         "referrercontent": string;
         /**
           * Referred Text shown in reward column.
           * @uiName Referrer Text
           * @uiGroup Referrer
-          * @default "Referred"
+          * @default Referred
          */
         "referrervalue": string;
         /**
@@ -549,7 +553,7 @@ export namespace Components {
           * @uiGroup Converted Referrals
           * @uiWidget color
           * @format color
-          * @default "#4BB543"
+          * @default #4BB543
          */
         "rewardcolor": string;
         /**
@@ -564,13 +568,12 @@ export namespace Components {
           * Show referral and reward information on who referred you.
           * @uiName Show Referred By
           * @uiGroup Referrer
-          * @default ""
          */
         "showreferrer": boolean;
         /**
           * Text shown when the referred user's name is unknown.
           * @uiName Unknown User Text
-          * @default "Your Friend"
+          * @default Your Friend
          */
         "unknownuser": string;
         /**
@@ -580,11 +583,11 @@ export namespace Components {
          */
         "usefirstreward": boolean;
         /**
-          * ICU message shown in the rewards column. See {@link https://unicode-org.github.io/icu/userguide/format_parse/messages/ ICU messages} for more details.
+          * ICU message shown in the rewards column. See [ICU messages](https://unicode-org.github.io/icu/userguide/format_parse/messages/) for more details.
           * @uiName Value Content
           * @uiGroup Converted Referrals
           * @uiWidget textArea
-          * @default "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}"
+          * @default and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}
          */
         "valuecontent": string;
     }
@@ -624,7 +627,7 @@ export namespace Components {
          */
         "displayrule": string;
         /**
-          * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
+          * Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive.
           * @uiName Share Button Icon
          */
         "icon": string;
@@ -674,7 +677,7 @@ export namespace Components {
           * @uiGroup Email
           * @uiWidget color
           * @format color
-          * @default "#4b4d50"
+          * @default #4b4d50
          */
         "emailbackgroundcolor": string;
         /**
@@ -689,7 +692,7 @@ export namespace Components {
           * @uiGroup Email
           * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
           * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "mobile-and-desktop"
+          * @default mobile-and-desktop
          */
         "emaildisplayrule": string;
         /**
@@ -717,7 +720,7 @@ export namespace Components {
         /**
           * @uiName Email Text
           * @uiGroup Email
-          * @default "Email"
+          * @default Email
          */
         "emailtext": string;
         /**
@@ -725,7 +728,7 @@ export namespace Components {
           * @uiGroup Email
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "emailtextcolor": string;
         /**
@@ -734,7 +737,7 @@ export namespace Components {
           * @uiGroup Facebook
           * @uiWidget color
           * @format color
-          * @default "#234079"
+          * @default #234079
          */
         "facebookbackgroundcolor": string;
         /**
@@ -749,7 +752,7 @@ export namespace Components {
           * @uiGroup Facebook
           * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
           * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "mobile-and-desktop"
+          * @default mobile-and-desktop
          */
         "facebookdisplayrule": string;
         /**
@@ -777,7 +780,7 @@ export namespace Components {
         /**
           * @uiName Facebook Text
           * @uiGroup Facebook
-          * @default "Facebook"
+          * @default Facebook
          */
         "facebooktext": string;
         /**
@@ -785,7 +788,7 @@ export namespace Components {
           * @uiGroup Facebook
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "facebooktextcolor": string;
         /**
@@ -799,7 +802,7 @@ export namespace Components {
           * @uiGroup Line Messenger
           * @uiWidget color
           * @format color
-          * @default "#00c300"
+          * @default #00c300
          */
         "linebackgroundcolor": string;
         /**
@@ -814,7 +817,7 @@ export namespace Components {
           * @uiGroup Line Messenger
           * @uiEnum ["mobile-only","hidden"]
           * @uiEnumNames ["Mobile Only","Hide"]
-          * @default "mobile-only"
+          * @default mobile-only
          */
         "linedisplayrule": string;
         /**
@@ -842,7 +845,7 @@ export namespace Components {
         /**
           * @uiName Line Text
           * @uiGroup Line Messenger
-          * @default "Line Messenger"
+          * @default Line Messenger
          */
         "linetext": string;
         /**
@@ -850,7 +853,7 @@ export namespace Components {
           * @uiGroup Line Messenger
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "linetextcolor": string;
         /**
@@ -859,7 +862,7 @@ export namespace Components {
           * @uiGroup LinkedIn
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "linkedinbackgroundcolor": string;
         /**
@@ -874,7 +877,7 @@ export namespace Components {
           * @uiGroup LinkedIn
           * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
           * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "hidden"
+          * @default hidden
          */
         "linkedindisplayrule": string;
         /**
@@ -902,7 +905,7 @@ export namespace Components {
         /**
           * @uiName Linkedin Text
           * @uiGroup LinkedIn
-          * @default "LinkedIn"
+          * @default LinkedIn
          */
         "linkedintext": string;
         /**
@@ -910,7 +913,7 @@ export namespace Components {
           * @uiGroup LinkedIn
           * @uiWidget color
           * @format color
-          * @default "#0084b9"
+          * @default #0084b9
          */
         "linkedintextcolor": string;
         /**
@@ -919,7 +922,7 @@ export namespace Components {
           * @uiGroup Messenger
           * @uiWidget color
           * @format color
-          * @default "#0084ff"
+          * @default #0084ff
          */
         "messengerbackgroundcolor": string;
         /**
@@ -934,7 +937,7 @@ export namespace Components {
           * @uiGroup Messenger
           * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
           * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "hidden"
+          * @default hidden
          */
         "messengerdisplayrule": string;
         /**
@@ -962,7 +965,7 @@ export namespace Components {
         /**
           * @uiName Messenger Text
           * @uiGroup Messenger
-          * @default "Messenger"
+          * @default Messenger
          */
         "messengertext": string;
         /**
@@ -970,7 +973,7 @@ export namespace Components {
           * @uiGroup Messenger
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "messengertextcolor": string;
         /**
@@ -979,7 +982,7 @@ export namespace Components {
           * @uiGroup Pinterest
           * @uiWidget color
           * @format color
-          * @default "#cb2027"
+          * @default #cb2027
          */
         "pinterestbackgroundcolor": string;
         /**
@@ -994,7 +997,7 @@ export namespace Components {
           * @uiGroup Pinterest
           * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
           * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "hidden"
+          * @default hidden
          */
         "pinterestdisplayrule": string;
         /**
@@ -1022,7 +1025,7 @@ export namespace Components {
         /**
           * @uiName Pinterest Text
           * @uiGroup Pinterest
-          * @default "Pinterest"
+          * @default Pinterest
          */
         "pinteresttext": string;
         /**
@@ -1030,7 +1033,7 @@ export namespace Components {
           * @uiGroup Pinterest
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "pinteresttextcolor": string;
         /**
@@ -1039,7 +1042,7 @@ export namespace Components {
           * @uiGroup SMS
           * @uiWidget color
           * @format color
-          * @default "#7bbf38"
+          * @default #7bbf38
          */
         "smsbackgroundcolor": string;
         /**
@@ -1054,7 +1057,7 @@ export namespace Components {
           * @uiGroup SMS
           * @uiEnum ["mobile-only","hidden"]
           * @uiEnumNames ["Mobile Only","Hide"]
-          * @default "mobile-only"
+          * @default mobile-only
          */
         "smsdisplayrule": string;
         /**
@@ -1082,7 +1085,7 @@ export namespace Components {
         /**
           * @uiName SMS Text
           * @uiGroup SMS
-          * @default "SMS"
+          * @default SMS
          */
         "smstext": string;
         /**
@@ -1090,7 +1093,7 @@ export namespace Components {
           * @uiGroup SMS
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "smstextcolor": string;
         /**
@@ -1099,7 +1102,7 @@ export namespace Components {
           * @uiGroup Twitter
           * @uiWidget color
           * @format color
-          * @default "#4797d2"
+          * @default #4797d2
          */
         "twitterbackgroundcolor": string;
         /**
@@ -1114,7 +1117,7 @@ export namespace Components {
           * @uiGroup Twitter
           * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
           * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "mobile-and-desktop"
+          * @default mobile-and-desktop
          */
         "twitterdisplayrule": string;
         /**
@@ -1142,7 +1145,7 @@ export namespace Components {
         /**
           * @uiName Twitter Text
           * @uiGroup Twitter
-          * @default "Twitter"
+          * @default Twitter
          */
         "twittertext": string;
         /**
@@ -1150,7 +1153,7 @@ export namespace Components {
           * @uiGroup Twitter
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "twittertextcolor": string;
         /**
@@ -1159,7 +1162,7 @@ export namespace Components {
           * @uiGroup WhatsApp
           * @uiWidget color
           * @format color
-          * @default "#25D366"
+          * @default #25D366
          */
         "whatsappbackgroundcolor": string;
         /**
@@ -1174,7 +1177,7 @@ export namespace Components {
           * @uiGroup WhatsApp
           * @uiEnum ["mobile-only","hidden"]
           * @uiEnumNames ["Mobile Only","Hide"]
-          * @default "mobile-only"
+          * @default mobile-only
          */
         "whatsappdisplayrule": string;
         /**
@@ -1202,7 +1205,7 @@ export namespace Components {
         /**
           * @uiName WhatsApp Text
           * @uiGroup WhatsApp
-          * @default "Whatspp"
+          * @default Whatspp
          */
         "whatsapptext": string;
         /**
@@ -1210,7 +1213,7 @@ export namespace Components {
           * @uiGroup WhatsApp
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "whatsapptextcolor": string;
     }
@@ -1254,13 +1257,13 @@ export namespace Components {
         /**
           * Define the top padding of the container with a pixel amount.
           * @uiName Padding Bottom
-          * @default "0"
+          * @default 0
          */
         "paddingbottom": string;
         /**
           * Define the bottom padding of the container with a pixel amount.
           * @uiName Padding Top
-          * @default "0"
+          * @default 0
          */
         "paddingtop": string;
     }
@@ -1299,7 +1302,7 @@ export namespace Components {
          */
         "ishidden": boolean;
         /**
-          * Compile plain text into HTML. See {@link https://www.markdownguide.org/getting-started/ markdown} for more details.
+          * Compile plain text into HTML. See [markdown](https://www.markdownguide.org/getting-started/) for more details.
           * @uiName Use Markdown
          */
         "ismarkdown": boolean;
@@ -1486,13 +1489,13 @@ declare namespace LocalJSX {
         /**
           * Shown when the button has failed to copy the code to the users clipboard.
           * @uiName Copy Failure Text
-          * @default "Press Ctrl+C to copy"
+          * @default Press Ctrl+C to copy
          */
         "copyfailure"?: string;
         /**
           * Shown when the code is successfully copied to the users clipboard.
           * @uiName Copy Success Text
-          * @default "copied!"
+          * @default copied!
          */
         "copysuccess"?: string;
         /**
@@ -1508,12 +1511,12 @@ declare namespace LocalJSX {
         /**
           * The rewardKey of a fuel tank reward. This is used to get the fuel tank code for a user.
           * @uiName Reward Key
-          * @default "referredReward"
+          * @default referredReward
          */
         "rewardkey"?: string;
         /**
           * @uiName Button Text
-          * @default "COPY CODE"
+          * @default COPY CODE
          */
         "text"?: string;
         /**
@@ -1534,19 +1537,19 @@ declare namespace LocalJSX {
           * @uiName Button Color
           * @uiWidget color
           * @format color
-          * @default "#5C6164"
+          * @default #5C6164
          */
         "buttoncolor"?: string;
         /**
           * Shown when the button has failed to copy the code to the users clipboard.
           * @uiName Copy Failure Text
-          * @default "Press Ctrl+C to copy"
+          * @default Press Ctrl+C to copy
          */
         "copyfailure"?: string;
         /**
           * Shown when the code is successfully copied to the users clipboard.
           * @uiName Copy Success Text
-          * @default "copied!"
+          * @default copied!
          */
         "copysuccess"?: string;
         /**
@@ -1556,14 +1559,14 @@ declare namespace LocalJSX {
         "ishidden"?: boolean;
         /**
           * @uiName Button Text
-          * @default "Copy"
+          * @default Copy
          */
         "text"?: string;
         /**
           * @uiName Button Text Color
           * @uiWidget color
           * @format color
-          * @default "#FFFFFF"
+          * @default #FFFFFF
          */
         "textcolor"?: string;
     }
@@ -1574,14 +1577,14 @@ declare namespace LocalJSX {
         "background"?: string;
         /**
           * @uiName Border Radius
-          * @default "8px"
+          * @default 8px
          */
         "borderradius"?: string;
         /**
           * @uiName Button Color
           * @uiWidget color
           * @format color
-          * @default '#F5A100'
+          * @default #F5A100
          */
         "buttonbackground"?: string;
         /**
@@ -1612,7 +1615,7 @@ declare namespace LocalJSX {
          */
         "ishidden"?: boolean;
         /**
-          * Compile plain text into HTML. See {@link https://www.markdownguide.org/getting-started/ markdown} for more details.
+          * Compile plain text into HTML. See [markdown](https://www.markdownguide.org/getting-started/) for more details.
           * @uiName Use Markdown
          */
         "ismarkdown"?: boolean;
@@ -1651,13 +1654,13 @@ declare namespace LocalJSX {
           * @uiName Background Color
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "background"?: string;
         /**
           * Font family used inside the container.
           * @uiName Font Family
-          * @default "Roboto"
+          * @default Roboto
           * @uiEnum ["Roboto", "Artifakt Element", "Helvetica Neue,Helvetica,Arial,sans-serif", "Lato,sans-serif", "Times New Roman", "Arial", "Courier", "Tahoma", "Verdana", "Georgia"]
           * @uiEnumNames ["Roboto","Artifakt Element","Helvetica Neue","Lato","Times New Roman","Arial","Courier","Tahoma","Verdana","Georgia"]
          */
@@ -1684,7 +1687,7 @@ declare namespace LocalJSX {
           * @uiName Horizontal Alignment
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
-          * @default "center"
+          * @default center
          */
         "alignment"?: string;
         /**
@@ -1696,7 +1699,7 @@ declare namespace LocalJSX {
           * Additional CSS applied to the image element
           * @uiName CSS
           * @uiWidget textArea
-          * @default "padding-top: 38px; padding-bottom: 7px;"
+          * @default padding-top: 38px; padding-bottom: 7px;
          */
         "css"?: string;
         /**
@@ -1759,38 +1762,42 @@ declare namespace LocalJSX {
          */
         "align"?: string;
         /**
-          * Text to show how much credit has been earned.
+          * Text displayed before a user’s credit earned amount.
           * @uiName Credit Earned Text
          */
         "earned"?: string;
         /**
-          * @undocumented 
           * @uiName Hide Component
          */
         "ishidden"?: boolean;
         /**
-          * Color of the percentage text.
-          * @uiName Percentage Color
+          * @uiName Percentage Text Color
           * @uiWidget color
           * @format color
          */
         "percentagecolor"?: string;
         /**
-          * Font size of the percentage text.
+          * Define the font size of the percentage text in a pixel amount
           * @uiName Percentage Text Size
          */
         "percentagesize"?: string;
         /**
-          * Text to show a users progress.
+          * Text displayed below the completion percentage.
           * @uiName Progress Text
          */
         "progress"?: string;
+        /**
+          * Color of the progress bar
+          * @uiName Progress Color
+          * @uiWidget color
+          * @format color
+         */
         "progresscolor"?: string;
         /**
-          * Select the type of icon to display.
-          * @uiName Indicator Icon Type
-          * @uiEnum ["Path", "Cirlce", "SemiCircle", "Line"]
-          * @uiEnumNames ["Path", "Cirlce", "SemiCircle", "Line"]
+          * The type of icon used to display a user’s progress.
+          * @uiName Indicator Icon
+          * @uiEnum ["Path", "Circle", "SemiCircle", "Line"]
+          * @uiEnumNames ["Path", "Circle", "Semi Circle", "Line"]
          */
         "progresstype"?: string;
         /**
@@ -1841,28 +1848,28 @@ declare namespace LocalJSX {
           * @uiGroup Cancelled Rewards
           * @uiWidget color
           * @format color
-          * @default "#C81D05"
+          * @default #C81D05
          */
         "cancelledcolor"?: string;
         /**
           * Content shown in the referral column for a cancelled reward.
           * @uiName Cancelled Description
           * @uiGroup Cancelled Rewards
-          * @default "Signed up, referred {date}"
+          * @default Signed up, referred {date}
          */
         "cancelledcontent"?: string;
         /**
           * Text shown alongside the icon in the referral column for a cancelled reward.
           * @uiName Cancelled Text
           * @uiGroup Cancelled Rewards
-          * @default "Cancelled Reward"
+          * @default Cancelled Reward
          */
         "cancelledvalue"?: string;
         /**
           * Description shown when a referral is converted.
           * @uiName Converted Description
           * @uiGroup Converted Referrals
-          * @default "Signed up, referred {date}"
+          * @default Signed up, referred {date}
          */
         "convertedcontent"?: string;
         /**
@@ -1878,21 +1885,21 @@ declare namespace LocalJSX {
           * @uiGroup Expired Rewards
           * @uiWidget color
           * @format color
-          * @default "lightgray"
+          * @default lightgray
          */
         "expiredcolor"?: string;
         /**
           * Expired text shown in the referral column.
           * @uiName Expired Description
           * @uiGroup Expired Rewards
-          * @default "Signed up, referred {date}"
+          * @default Signed up, referred {date}
          */
         "expiredcontent"?: string;
         /**
           * Expired text shown alongside the icon in the referral column.
           * @uiName Expired Text
           * @uiGroup Expired Rewards
-          * @default "Expired Reward"
+          * @default Expired Reward
          */
         "expiredvalue"?: string;
         /**
@@ -1914,19 +1921,19 @@ declare namespace LocalJSX {
         /**
           * Shown when referral list is empty.
           * @uiName Empty Referrals Text
-          * @default "No Referrals Yet..."
+          * @default No Referrals Yet...
          */
         "noreferralsyet"?: string;
         /**
           * Shown inside the paginate less button.
           * @uiName Paginate Less Text
-          * @default "Previous"
+          * @default Previous
          */
         "paginateless"?: string;
         /**
           * Shown inside the paginate more button.
           * @uiName Paginate More Text
-          * @default "View More"
+          * @default View More
          */
         "paginatemore"?: string;
         /**
@@ -1935,28 +1942,28 @@ declare namespace LocalJSX {
           * @uiGroup Pending Referrals
           * @uiWidget color
           * @format color
-          * @default "lightgray"
+          * @default lightgray
          */
         "pendingcolor"?: string;
         /**
           * Pending description shown in the referral column.
           * @uiName Pending Description
           * @uiGroup Pending Referrals
-          * @default "Trial user, referred {date}"
+          * @default Trial user, referred {date}
          */
         "pendingcontent"?: string;
         /**
           * Pending text shown alongside the icon in the referral column.
           * @uiName Pending Text
           * @uiGroup Pending Referrals
-          * @default "Referral pending"
+          * @default Referral pending
          */
         "pendingvalue"?: string;
         /**
           * Shown when reward is redeemed.
           * @uiName Redeemed Text
           * @uiGroup Converted Referrals
-          * @default "Redeemed"
+          * @default Redeemed
          */
         "redeemedvalue"?: string;
         /**
@@ -1964,28 +1971,28 @@ declare namespace LocalJSX {
           * @uiName Referral Name Color
           * @uiWidget color
           * @format color
-          * @default "darkslategray"
+          * @default darkslategray
          */
         "referralnamecolor"?: string;
         /**
           * @uiName Referral Status Text Color
           * @uiWidget color
           * @format color
-          * @default "lightgray"
+          * @default lightgray
          */
         "referraltextcolor"?: string;
         /**
           * Text explaining who referred you to the program.
           * @uiName Referrer Description
           * @uiGroup Referrer
-          * @default "Referred you {date}"
+          * @default Referred you {date}
          */
         "referrercontent"?: string;
         /**
           * Referred Text shown in reward column.
           * @uiName Referrer Text
           * @uiGroup Referrer
-          * @default "Referred"
+          * @default Referred
          */
         "referrervalue"?: string;
         /**
@@ -1994,7 +2001,7 @@ declare namespace LocalJSX {
           * @uiGroup Converted Referrals
           * @uiWidget color
           * @format color
-          * @default "#4BB543"
+          * @default #4BB543
          */
         "rewardcolor"?: string;
         /**
@@ -2009,13 +2016,12 @@ declare namespace LocalJSX {
           * Show referral and reward information on who referred you.
           * @uiName Show Referred By
           * @uiGroup Referrer
-          * @default ""
          */
         "showreferrer"?: boolean;
         /**
           * Text shown when the referred user's name is unknown.
           * @uiName Unknown User Text
-          * @default "Your Friend"
+          * @default Your Friend
          */
         "unknownuser"?: string;
         /**
@@ -2025,11 +2031,11 @@ declare namespace LocalJSX {
          */
         "usefirstreward"?: boolean;
         /**
-          * ICU message shown in the rewards column. See {@link https://unicode-org.github.io/icu/userguide/format_parse/messages/ ICU messages} for more details.
+          * ICU message shown in the rewards column. See [ICU messages](https://unicode-org.github.io/icu/userguide/format_parse/messages/) for more details.
           * @uiName Value Content
           * @uiGroup Converted Referrals
           * @uiWidget textArea
-          * @default "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}"
+          * @default and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}
          */
         "valuecontent"?: string;
     }
@@ -2069,7 +2075,7 @@ declare namespace LocalJSX {
          */
         "displayrule"?: string;
         /**
-          * Full list of valid icon names available in the {@link https://shoelace.style/components/icon Shoelace Icon Library}. This value is case sensitive.
+          * Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive.
           * @uiName Share Button Icon
          */
         "icon"?: string;
@@ -2119,7 +2125,7 @@ declare namespace LocalJSX {
           * @uiGroup Email
           * @uiWidget color
           * @format color
-          * @default "#4b4d50"
+          * @default #4b4d50
          */
         "emailbackgroundcolor"?: string;
         /**
@@ -2134,7 +2140,7 @@ declare namespace LocalJSX {
           * @uiGroup Email
           * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
           * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "mobile-and-desktop"
+          * @default mobile-and-desktop
          */
         "emaildisplayrule"?: string;
         /**
@@ -2162,7 +2168,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Email Text
           * @uiGroup Email
-          * @default "Email"
+          * @default Email
          */
         "emailtext"?: string;
         /**
@@ -2170,7 +2176,7 @@ declare namespace LocalJSX {
           * @uiGroup Email
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "emailtextcolor"?: string;
         /**
@@ -2179,7 +2185,7 @@ declare namespace LocalJSX {
           * @uiGroup Facebook
           * @uiWidget color
           * @format color
-          * @default "#234079"
+          * @default #234079
          */
         "facebookbackgroundcolor"?: string;
         /**
@@ -2194,7 +2200,7 @@ declare namespace LocalJSX {
           * @uiGroup Facebook
           * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
           * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "mobile-and-desktop"
+          * @default mobile-and-desktop
          */
         "facebookdisplayrule"?: string;
         /**
@@ -2222,7 +2228,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Facebook Text
           * @uiGroup Facebook
-          * @default "Facebook"
+          * @default Facebook
          */
         "facebooktext"?: string;
         /**
@@ -2230,7 +2236,7 @@ declare namespace LocalJSX {
           * @uiGroup Facebook
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "facebooktextcolor"?: string;
         /**
@@ -2244,7 +2250,7 @@ declare namespace LocalJSX {
           * @uiGroup Line Messenger
           * @uiWidget color
           * @format color
-          * @default "#00c300"
+          * @default #00c300
          */
         "linebackgroundcolor"?: string;
         /**
@@ -2259,7 +2265,7 @@ declare namespace LocalJSX {
           * @uiGroup Line Messenger
           * @uiEnum ["mobile-only","hidden"]
           * @uiEnumNames ["Mobile Only","Hide"]
-          * @default "mobile-only"
+          * @default mobile-only
          */
         "linedisplayrule"?: string;
         /**
@@ -2287,7 +2293,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Line Text
           * @uiGroup Line Messenger
-          * @default "Line Messenger"
+          * @default Line Messenger
          */
         "linetext"?: string;
         /**
@@ -2295,7 +2301,7 @@ declare namespace LocalJSX {
           * @uiGroup Line Messenger
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "linetextcolor"?: string;
         /**
@@ -2304,7 +2310,7 @@ declare namespace LocalJSX {
           * @uiGroup LinkedIn
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "linkedinbackgroundcolor"?: string;
         /**
@@ -2319,7 +2325,7 @@ declare namespace LocalJSX {
           * @uiGroup LinkedIn
           * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
           * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "hidden"
+          * @default hidden
          */
         "linkedindisplayrule"?: string;
         /**
@@ -2347,7 +2353,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Linkedin Text
           * @uiGroup LinkedIn
-          * @default "LinkedIn"
+          * @default LinkedIn
          */
         "linkedintext"?: string;
         /**
@@ -2355,7 +2361,7 @@ declare namespace LocalJSX {
           * @uiGroup LinkedIn
           * @uiWidget color
           * @format color
-          * @default "#0084b9"
+          * @default #0084b9
          */
         "linkedintextcolor"?: string;
         /**
@@ -2364,7 +2370,7 @@ declare namespace LocalJSX {
           * @uiGroup Messenger
           * @uiWidget color
           * @format color
-          * @default "#0084ff"
+          * @default #0084ff
          */
         "messengerbackgroundcolor"?: string;
         /**
@@ -2379,7 +2385,7 @@ declare namespace LocalJSX {
           * @uiGroup Messenger
           * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
           * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "hidden"
+          * @default hidden
          */
         "messengerdisplayrule"?: string;
         /**
@@ -2407,7 +2413,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Messenger Text
           * @uiGroup Messenger
-          * @default "Messenger"
+          * @default Messenger
          */
         "messengertext"?: string;
         /**
@@ -2415,7 +2421,7 @@ declare namespace LocalJSX {
           * @uiGroup Messenger
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "messengertextcolor"?: string;
         /**
@@ -2424,7 +2430,7 @@ declare namespace LocalJSX {
           * @uiGroup Pinterest
           * @uiWidget color
           * @format color
-          * @default "#cb2027"
+          * @default #cb2027
          */
         "pinterestbackgroundcolor"?: string;
         /**
@@ -2439,7 +2445,7 @@ declare namespace LocalJSX {
           * @uiGroup Pinterest
           * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
           * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "hidden"
+          * @default hidden
          */
         "pinterestdisplayrule"?: string;
         /**
@@ -2467,7 +2473,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Pinterest Text
           * @uiGroup Pinterest
-          * @default "Pinterest"
+          * @default Pinterest
          */
         "pinteresttext"?: string;
         /**
@@ -2475,7 +2481,7 @@ declare namespace LocalJSX {
           * @uiGroup Pinterest
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "pinteresttextcolor"?: string;
         /**
@@ -2484,7 +2490,7 @@ declare namespace LocalJSX {
           * @uiGroup SMS
           * @uiWidget color
           * @format color
-          * @default "#7bbf38"
+          * @default #7bbf38
          */
         "smsbackgroundcolor"?: string;
         /**
@@ -2499,7 +2505,7 @@ declare namespace LocalJSX {
           * @uiGroup SMS
           * @uiEnum ["mobile-only","hidden"]
           * @uiEnumNames ["Mobile Only","Hide"]
-          * @default "mobile-only"
+          * @default mobile-only
          */
         "smsdisplayrule"?: string;
         /**
@@ -2527,7 +2533,7 @@ declare namespace LocalJSX {
         /**
           * @uiName SMS Text
           * @uiGroup SMS
-          * @default "SMS"
+          * @default SMS
          */
         "smstext"?: string;
         /**
@@ -2535,7 +2541,7 @@ declare namespace LocalJSX {
           * @uiGroup SMS
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "smstextcolor"?: string;
         /**
@@ -2544,7 +2550,7 @@ declare namespace LocalJSX {
           * @uiGroup Twitter
           * @uiWidget color
           * @format color
-          * @default "#4797d2"
+          * @default #4797d2
          */
         "twitterbackgroundcolor"?: string;
         /**
@@ -2559,7 +2565,7 @@ declare namespace LocalJSX {
           * @uiGroup Twitter
           * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
           * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
-          * @default "mobile-and-desktop"
+          * @default mobile-and-desktop
          */
         "twitterdisplayrule"?: string;
         /**
@@ -2587,7 +2593,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Twitter Text
           * @uiGroup Twitter
-          * @default "Twitter"
+          * @default Twitter
          */
         "twittertext"?: string;
         /**
@@ -2595,7 +2601,7 @@ declare namespace LocalJSX {
           * @uiGroup Twitter
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "twittertextcolor"?: string;
         /**
@@ -2604,7 +2610,7 @@ declare namespace LocalJSX {
           * @uiGroup WhatsApp
           * @uiWidget color
           * @format color
-          * @default "#25D366"
+          * @default #25D366
          */
         "whatsappbackgroundcolor"?: string;
         /**
@@ -2619,7 +2625,7 @@ declare namespace LocalJSX {
           * @uiGroup WhatsApp
           * @uiEnum ["mobile-only","hidden"]
           * @uiEnumNames ["Mobile Only","Hide"]
-          * @default "mobile-only"
+          * @default mobile-only
          */
         "whatsappdisplayrule"?: string;
         /**
@@ -2647,7 +2653,7 @@ declare namespace LocalJSX {
         /**
           * @uiName WhatsApp Text
           * @uiGroup WhatsApp
-          * @default "Whatspp"
+          * @default Whatspp
          */
         "whatsapptext"?: string;
         /**
@@ -2655,7 +2661,7 @@ declare namespace LocalJSX {
           * @uiGroup WhatsApp
           * @uiWidget color
           * @format color
-          * @default "#ffffff"
+          * @default #ffffff
          */
         "whatsapptextcolor"?: string;
     }
@@ -2701,13 +2707,13 @@ declare namespace LocalJSX {
         /**
           * Define the top padding of the container with a pixel amount.
           * @uiName Padding Bottom
-          * @default "0"
+          * @default 0
          */
         "paddingbottom"?: string;
         /**
           * Define the bottom padding of the container with a pixel amount.
           * @uiName Padding Top
-          * @default "0"
+          * @default 0
          */
         "paddingtop"?: string;
     }
@@ -2746,7 +2752,7 @@ declare namespace LocalJSX {
          */
         "ishidden"?: boolean;
         /**
-          * Compile plain text into HTML. See {@link https://www.markdownguide.org/getting-started/ markdown} for more details.
+          * Compile plain text into HTML. See [markdown](https://www.markdownguide.org/getting-started/) for more details.
           * @uiName Use Markdown
          */
         "ismarkdown"?: boolean;
