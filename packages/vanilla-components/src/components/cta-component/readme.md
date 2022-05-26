@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property           | Attribute          | Description                                                                                                    | Type      | Default     |
@@ -23,6 +24,7 @@
 | `url`              | `url`              |                                                                                                                | `string`  | `undefined` |
 | `width`            | `width`            | Button width in pixels.                                                                                        | `string`  | `undefined` |
 
----
 
-_Built with [StencilJS](https://stenciljs.com/)_
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*
