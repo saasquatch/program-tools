@@ -48,7 +48,7 @@ const CollapsibleDiv = styled.div<{ expanded: boolean }>`
 
   ${(props) =>
     props.expanded &&
-    "max-height: 2000px; transition: max-height 1s ease-in-out;"}
+    "max-height: fit-content; min-height: fit-content; transition: max-height 1s ease-in-out;"}
 `;
 
 const TitleH2 = styled.h2`

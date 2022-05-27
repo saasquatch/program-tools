@@ -27,3 +27,37 @@ export const Basic = () => {
     </div>
   );
 };
+
+export const WithItemToString = () => {
+  interface Islands {
+    text: string;
+    description: string;
+  }
+  const items: Array<Islands> = [
+    { text: "Salt Spring", description: "The big one" },
+    { text: "Gabriola", description: "Way up north" },
+    { text: "Mayne", description: "With a y" },
+    { text: "Pender", description: "There's actually two" },
+  ];
+  const itemToString = (item: Islands | null) => {
+    console.log("itemToString called");
+    return item ? item.text : "";
+  };
+  const functional = useSelect({ items, itemToString });
+  const props = { items, functional, itemToString };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <SelectView.ContainerView>
+        <SelectView.HandleView {...props} />
+        <SelectView.ListView {...props} />
+      </SelectView.ContainerView>
+    </div>
+  );
+};
