@@ -127,7 +127,7 @@ export class ReferralList {
    */
   @Prop() usefirstreward: boolean;
   /**
-   * Description shown when a referral is converted.
+   * Description shown in the referral column when a referral is converted.
    *
    * @uiName Converted Description
    * @uiGroup Converted Referrals
@@ -162,7 +162,7 @@ export class ReferralList {
    */
   @Prop() pendingcontent: string;
   /**
-   * Pending text shown alongside the icon in the referral column.
+   * Pending text shown alongside the icon in the rewards column.
    *
    * @uiName Pending Text
    * @uiGroup Pending Referrals
@@ -188,7 +188,7 @@ export class ReferralList {
    */
   @Prop() expiredcontent: string;
   /**
-   * Expired text shown alongside the icon in the referral column.
+   * Expired text shown alongside the icon in the rewards column.
    *
    * @uiName Expired Text
    * @uiGroup Expired Rewards
@@ -215,15 +215,15 @@ export class ReferralList {
   /**
    * Content shown in the referral column for a cancelled reward.
    *
-   * @uiName Cancelled Description
+   * @uiName Cancelled Referral Description
    * @uiGroup Cancelled Rewards
    * @default Signed up, referred {date}
    */
   @Prop() cancelledcontent: string;
   /**
-   * Text shown alongside the icon in the referral column for a cancelled reward.
+   * Text shown alongside the icon in the rewards column for a cancelled reward.
    *
-   * @uiName Cancelled Text
+   * @uiName Cancelled Reward Text
    * @uiGroup Cancelled Rewards
    * @default Cancelled Reward
    */
