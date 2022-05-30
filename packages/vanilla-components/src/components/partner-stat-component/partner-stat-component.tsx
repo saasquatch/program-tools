@@ -52,7 +52,6 @@ export class PartnerStatComponent {
    *
    * @uiName Color
    * @uiWidget color
-   * @format color
    */
   @Prop() statcolor: string;
   @Event() statTypeUpdated: EventEmitter;

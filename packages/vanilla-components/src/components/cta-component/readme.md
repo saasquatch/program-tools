@@ -17,12 +17,12 @@
 | `height`           | `height`           | Button height in pixels.                                                                                       | `string`  | `undefined` |
 | `ishidden`         | `ishidden`         |                                                                                                                | `boolean` | `undefined` |
 | `ismarkdown`       | `ismarkdown`       | Compile plain text into HTML. See [markdown](https://www.markdownguide.org/getting-started/) for more details. | `boolean` | `undefined` |
-| `paddingbottom`    | `paddingbottom`    | Bottom padding in pixels                                                                                       | `string`  | `undefined` |
-| `paddingtop`       | `paddingtop`       | Top padding in pixels                                                                                          | `string`  | `undefined` |
+| `paddingbottom`    | `paddingbottom`    | Define the bottom padding with a pixel amount.                                                                 | `string`  | `undefined` |
+| `paddingtop`       | `paddingtop`       | Define the top padding with a pixel amount.                                                                    | `string`  | `undefined` |
 | `text`             | `text`             |                                                                                                                | `string`  | `undefined` |
 | `textalign`        | `textalign`        |                                                                                                                | `string`  | `undefined` |
 | `url`              | `url`              |                                                                                                                | `string`  | `undefined` |
-| `width`            | `width`            | Button width in pixels.                                                                                        | `string`  | `undefined` |
+| `width`            | `width`            | Define the width of the button with a pixel amount.                                                            | `string`  | `undefined` |
 
 
 ----------------------------------------------

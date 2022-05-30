@@ -36,7 +36,6 @@ export class TextComponent {
   /**
    * @uiName Text Color
    * @uiWidget color
-   * @format color
    */
   @Prop() color: string;
   /**

@@ -17,7 +17,6 @@ export namespace Components {
         /**
           * @uiName Button Color
           * @uiWidget color
-          * @format color
           * @default #35b21e
          */
         "backgroundcolor": string;
@@ -30,7 +29,6 @@ export namespace Components {
         /**
           * @uiName Fuel Tank Code Color
           * @uiWidget color
-          * @format color
           * @default #000000
          */
         "codefontcolor": string;
@@ -76,7 +74,6 @@ export namespace Components {
         /**
           * @uiName Button Text Color
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "textcolor": string;
@@ -90,7 +87,6 @@ export namespace Components {
         /**
           * @uiName Button Color
           * @uiWidget color
-          * @format color
           * @default #5C6164
          */
         "buttoncolor": string;
@@ -119,14 +115,14 @@ export namespace Components {
         /**
           * @uiName Button Text Color
           * @uiWidget color
-          * @format color
           * @default #FFFFFF
          */
         "textcolor": string;
     }
     interface SqhCtaComponent {
         /**
-          * @uiName Background
+          * @uiName Container Background Color
+          * @uiWidget color
          */
         "background": string;
         /**
@@ -137,14 +133,12 @@ export namespace Components {
         /**
           * @uiName Button Color
           * @uiWidget color
-          * @format color
           * @default #F5A100
          */
         "buttonbackground": string;
         /**
           * @uiName Text Color
           * @uiWidget color
-          * @format color
          */
         "color": string;
         /**
@@ -174,12 +168,12 @@ export namespace Components {
          */
         "ismarkdown": boolean;
         /**
-          * Bottom padding in pixels
+          * Define the bottom padding with a pixel amount.
           * @uiName Padding Bottom
          */
         "paddingbottom": string;
         /**
-          * Top padding in pixels
+          * Define the top padding with a pixel amount.
           * @uiName Padding Top
          */
         "paddingtop": string;
@@ -198,7 +192,7 @@ export namespace Components {
          */
         "url": string;
         /**
-          * Button width in pixels.
+          * Define the width of the button with a pixel amount.
           * @uiName Button Width
          */
         "width": string;
@@ -207,23 +201,19 @@ export namespace Components {
         /**
           * @uiName Background Color
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "background": string;
         /**
-          * Font family used inside the container.
+          * A font from the Google Fonts library used inside the container.
           * @uiName Font Family
           * @default Roboto
-          * @uiEnum ["Roboto", "Artifakt Element", "Helvetica Neue,Helvetica,Arial,sans-serif", "Lato,sans-serif", "Times New Roman", "Arial", "Courier", "Tahoma", "Verdana", "Georgia"]
-          * @uiEnumNames ["Roboto","Artifakt Element","Helvetica Neue","Lato","Times New Roman","Arial","Courier","Tahoma","Verdana","Georgia"]
          */
         "fontfamily": string;
         /**
           * The background colour of the component while in the loading state.
           * @uiName Loading Color
           * @uiWidget color
-          * @format color
          */
         "loadingcolor": string;
         /**
@@ -264,7 +254,6 @@ export namespace Components {
         /**
           * @uiName Image URL
           * @uiWidget imageUpload
-          * @format url
          */
         "url": string;
         /**
@@ -283,7 +272,6 @@ export namespace Components {
           * Color of the stat value and description
           * @uiName Color
           * @uiWidget color
-          * @format color
          */
         "statcolor": string;
         /**
@@ -325,7 +313,6 @@ export namespace Components {
         /**
           * @uiName Percentage Text Color
           * @uiWidget color
-          * @format color
          */
         "percentagecolor": string;
         /**
@@ -342,7 +329,6 @@ export namespace Components {
           * Color of the progress bar
           * @uiName Progress Color
           * @uiWidget color
-          * @format color
          */
         "progresscolor": string;
         /**
@@ -360,7 +346,6 @@ export namespace Components {
         /**
           * @uiName Text Color
           * @uiWidget color
-          * @format color
          */
         "textcolor": string;
     }
@@ -399,26 +384,25 @@ export namespace Components {
           * @uiName Cancelled Color
           * @uiGroup Cancelled Rewards
           * @uiWidget color
-          * @format color
           * @default #C81D05
          */
         "cancelledcolor": string;
         /**
           * Content shown in the referral column for a cancelled reward.
-          * @uiName Cancelled Description
+          * @uiName Cancelled Referral Description
           * @uiGroup Cancelled Rewards
           * @default Signed up, referred {date}
          */
         "cancelledcontent": string;
         /**
-          * Text shown alongside the icon in the referral column for a cancelled reward.
-          * @uiName Cancelled Text
+          * Text shown alongside the icon in the rewards column for a cancelled reward.
+          * @uiName Cancelled Reward Text
           * @uiGroup Cancelled Rewards
           * @default Cancelled Reward
          */
         "cancelledvalue": string;
         /**
-          * Description shown when a referral is converted.
+          * Description shown in the referral column when a referral is converted.
           * @uiName Converted Description
           * @uiGroup Converted Referrals
           * @default Signed up, referred {date}
@@ -428,7 +412,6 @@ export namespace Components {
           * @uiName Customer Note Color
           * @uiGroup Converted Referrals
           * @uiWidget color
-          * @format color
          */
         "customernotecolor": string;
         /**
@@ -436,7 +419,6 @@ export namespace Components {
           * @uiName Expired Color
           * @uiGroup Expired Rewards
           * @uiWidget color
-          * @format color
           * @default lightgray
          */
         "expiredcolor": string;
@@ -448,7 +430,7 @@ export namespace Components {
          */
         "expiredcontent": string;
         /**
-          * Expired text shown alongside the icon in the referral column.
+          * Expired text shown alongside the icon in the rewards column.
           * @uiName Expired Text
           * @uiGroup Expired Rewards
           * @default Expired Reward
@@ -493,7 +475,6 @@ export namespace Components {
           * @uiName Pending Color
           * @uiGroup Pending Referrals
           * @uiWidget color
-          * @format color
           * @default lightgray
          */
         "pendingcolor": string;
@@ -505,7 +486,7 @@ export namespace Components {
          */
         "pendingcontent": string;
         /**
-          * Pending text shown alongside the icon in the referral column.
+          * Pending text shown alongside the icon in the rewards column.
           * @uiName Pending Text
           * @uiGroup Pending Referrals
           * @default Referral pending
@@ -522,14 +503,12 @@ export namespace Components {
           * Text color of the referred user's name.
           * @uiName Referral Name Color
           * @uiWidget color
-          * @format color
           * @default darkslategray
          */
         "referralnamecolor": string;
         /**
           * @uiName Referral Status Text Color
           * @uiWidget color
-          * @format color
           * @default lightgray
          */
         "referraltextcolor": string;
@@ -552,7 +531,6 @@ export namespace Components {
           * @uiName Reward Color
           * @uiGroup Converted Referrals
           * @uiWidget color
-          * @format color
           * @default #4BB543
          */
         "rewardcolor": string;
@@ -613,7 +591,6 @@ export namespace Components {
           * Background color of the share button
           * @uiName Share Button Background Color
           * @uiWidget color
-          * @format color
          */
         "backgroundcolor": string;
         /**
@@ -655,7 +632,6 @@ export namespace Components {
           * Color of the text inside the share button
           * @uiName Share Button Text Color
           * @uiWidget color
-          * @format color
          */
         "textcolor": string;
         /**
@@ -666,7 +642,6 @@ export namespace Components {
           * URL redirect location
           * @uiName URL
           * @uiWidget imageUpload
-          * @format url
          */
         "url": string;
     }
@@ -676,7 +651,6 @@ export namespace Components {
           * @uiName Email Background Color
           * @uiGroup Email
           * @uiWidget color
-          * @format color
           * @default #4b4d50
          */
         "emailbackgroundcolor": string;
@@ -727,7 +701,6 @@ export namespace Components {
           * @uiName Email Text Color
           * @uiGroup Email
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "emailtextcolor": string;
@@ -736,7 +709,6 @@ export namespace Components {
           * @uiName Facebook Background Color
           * @uiGroup Facebook
           * @uiWidget color
-          * @format color
           * @default #234079
          */
         "facebookbackgroundcolor": string;
@@ -787,7 +759,6 @@ export namespace Components {
           * @uiName Facebook Text Color
           * @uiGroup Facebook
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "facebooktextcolor": string;
@@ -801,7 +772,6 @@ export namespace Components {
           * @uiName Line Background Color
           * @uiGroup Line Messenger
           * @uiWidget color
-          * @format color
           * @default #00c300
          */
         "linebackgroundcolor": string;
@@ -852,7 +822,6 @@ export namespace Components {
           * @uiName Line Text Color
           * @uiGroup Line Messenger
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "linetextcolor": string;
@@ -861,7 +830,6 @@ export namespace Components {
           * @uiName Linkedin Background Color
           * @uiGroup LinkedIn
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "linkedinbackgroundcolor": string;
@@ -912,7 +880,6 @@ export namespace Components {
           * @uiName Linkedin Text Color
           * @uiGroup LinkedIn
           * @uiWidget color
-          * @format color
           * @default #0084b9
          */
         "linkedintextcolor": string;
@@ -921,7 +888,6 @@ export namespace Components {
           * @uiName Messenger Background Color
           * @uiGroup Messenger
           * @uiWidget color
-          * @format color
           * @default #0084ff
          */
         "messengerbackgroundcolor": string;
@@ -972,7 +938,6 @@ export namespace Components {
           * @uiName Messenger Text Color
           * @uiGroup Messenger
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "messengertextcolor": string;
@@ -981,7 +946,6 @@ export namespace Components {
           * @uiName Pinterest Background Color
           * @uiGroup Pinterest
           * @uiWidget color
-          * @format color
           * @default #cb2027
          */
         "pinterestbackgroundcolor": string;
@@ -1032,7 +996,6 @@ export namespace Components {
           * @uiName Pinterest Text Color
           * @uiGroup Pinterest
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "pinteresttextcolor": string;
@@ -1041,7 +1004,6 @@ export namespace Components {
           * @uiName SMS Background Color
           * @uiGroup SMS
           * @uiWidget color
-          * @format color
           * @default #7bbf38
          */
         "smsbackgroundcolor": string;
@@ -1092,7 +1054,6 @@ export namespace Components {
           * @uiName SMS Text Color
           * @uiGroup SMS
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "smstextcolor": string;
@@ -1101,7 +1062,6 @@ export namespace Components {
           * @uiName Twitter Background Color
           * @uiGroup Twitter
           * @uiWidget color
-          * @format color
           * @default #4797d2
          */
         "twitterbackgroundcolor": string;
@@ -1152,7 +1112,6 @@ export namespace Components {
           * @uiName Twitter Text Color
           * @uiGroup Twitter
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "twittertextcolor": string;
@@ -1161,7 +1120,6 @@ export namespace Components {
           * @uiName WhatsApp Background Color
           * @uiGroup WhatsApp
           * @uiWidget color
-          * @format color
           * @default #25D366
          */
         "whatsappbackgroundcolor": string;
@@ -1212,7 +1170,6 @@ export namespace Components {
           * @uiName WhatsApp Text Color
           * @uiGroup WhatsApp
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "whatsapptextcolor": string;
@@ -1226,7 +1183,6 @@ export namespace Components {
         /**
           * @uiName Color
           * @uiWidget color
-          * @format color
          */
         "statcolor": string;
         /**
@@ -1276,7 +1232,6 @@ export namespace Components {
         /**
           * @uiName Text Color
           * @uiWidget color
-          * @format color
          */
         "color": string;
         /**
@@ -1463,7 +1418,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Button Color
           * @uiWidget color
-          * @format color
           * @default #35b21e
          */
         "backgroundcolor"?: string;
@@ -1476,7 +1430,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Fuel Tank Code Color
           * @uiWidget color
-          * @format color
           * @default #000000
          */
         "codefontcolor"?: string;
@@ -1522,7 +1475,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Button Text Color
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "textcolor"?: string;
@@ -1536,7 +1488,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Button Color
           * @uiWidget color
-          * @format color
           * @default #5C6164
          */
         "buttoncolor"?: string;
@@ -1565,14 +1516,14 @@ declare namespace LocalJSX {
         /**
           * @uiName Button Text Color
           * @uiWidget color
-          * @format color
           * @default #FFFFFF
          */
         "textcolor"?: string;
     }
     interface SqhCtaComponent {
         /**
-          * @uiName Background
+          * @uiName Container Background Color
+          * @uiWidget color
          */
         "background"?: string;
         /**
@@ -1583,14 +1534,12 @@ declare namespace LocalJSX {
         /**
           * @uiName Button Color
           * @uiWidget color
-          * @format color
           * @default #F5A100
          */
         "buttonbackground"?: string;
         /**
           * @uiName Text Color
           * @uiWidget color
-          * @format color
          */
         "color"?: string;
         /**
@@ -1620,12 +1569,12 @@ declare namespace LocalJSX {
          */
         "ismarkdown"?: boolean;
         /**
-          * Bottom padding in pixels
+          * Define the bottom padding with a pixel amount.
           * @uiName Padding Bottom
          */
         "paddingbottom"?: string;
         /**
-          * Top padding in pixels
+          * Define the top padding with a pixel amount.
           * @uiName Padding Top
          */
         "paddingtop"?: string;
@@ -1644,7 +1593,7 @@ declare namespace LocalJSX {
          */
         "url"?: string;
         /**
-          * Button width in pixels.
+          * Define the width of the button with a pixel amount.
           * @uiName Button Width
          */
         "width"?: string;
@@ -1653,23 +1602,19 @@ declare namespace LocalJSX {
         /**
           * @uiName Background Color
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "background"?: string;
         /**
-          * Font family used inside the container.
+          * A font from the Google Fonts library used inside the container.
           * @uiName Font Family
           * @default Roboto
-          * @uiEnum ["Roboto", "Artifakt Element", "Helvetica Neue,Helvetica,Arial,sans-serif", "Lato,sans-serif", "Times New Roman", "Arial", "Courier", "Tahoma", "Verdana", "Georgia"]
-          * @uiEnumNames ["Roboto","Artifakt Element","Helvetica Neue","Lato","Times New Roman","Arial","Courier","Tahoma","Verdana","Georgia"]
          */
         "fontfamily"?: string;
         /**
           * The background colour of the component while in the loading state.
           * @uiName Loading Color
           * @uiWidget color
-          * @format color
          */
         "loadingcolor"?: string;
         /**
@@ -1710,7 +1655,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Image URL
           * @uiWidget imageUpload
-          * @format url
          */
         "url"?: string;
         /**
@@ -1731,7 +1675,6 @@ declare namespace LocalJSX {
           * Color of the stat value and description
           * @uiName Color
           * @uiWidget color
-          * @format color
          */
         "statcolor"?: string;
         /**
@@ -1773,7 +1716,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Percentage Text Color
           * @uiWidget color
-          * @format color
          */
         "percentagecolor"?: string;
         /**
@@ -1790,7 +1732,6 @@ declare namespace LocalJSX {
           * Color of the progress bar
           * @uiName Progress Color
           * @uiWidget color
-          * @format color
          */
         "progresscolor"?: string;
         /**
@@ -1808,7 +1749,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Text Color
           * @uiWidget color
-          * @format color
          */
         "textcolor"?: string;
     }
@@ -1847,26 +1787,25 @@ declare namespace LocalJSX {
           * @uiName Cancelled Color
           * @uiGroup Cancelled Rewards
           * @uiWidget color
-          * @format color
           * @default #C81D05
          */
         "cancelledcolor"?: string;
         /**
           * Content shown in the referral column for a cancelled reward.
-          * @uiName Cancelled Description
+          * @uiName Cancelled Referral Description
           * @uiGroup Cancelled Rewards
           * @default Signed up, referred {date}
          */
         "cancelledcontent"?: string;
         /**
-          * Text shown alongside the icon in the referral column for a cancelled reward.
-          * @uiName Cancelled Text
+          * Text shown alongside the icon in the rewards column for a cancelled reward.
+          * @uiName Cancelled Reward Text
           * @uiGroup Cancelled Rewards
           * @default Cancelled Reward
          */
         "cancelledvalue"?: string;
         /**
-          * Description shown when a referral is converted.
+          * Description shown in the referral column when a referral is converted.
           * @uiName Converted Description
           * @uiGroup Converted Referrals
           * @default Signed up, referred {date}
@@ -1876,7 +1815,6 @@ declare namespace LocalJSX {
           * @uiName Customer Note Color
           * @uiGroup Converted Referrals
           * @uiWidget color
-          * @format color
          */
         "customernotecolor"?: string;
         /**
@@ -1884,7 +1822,6 @@ declare namespace LocalJSX {
           * @uiName Expired Color
           * @uiGroup Expired Rewards
           * @uiWidget color
-          * @format color
           * @default lightgray
          */
         "expiredcolor"?: string;
@@ -1896,7 +1833,7 @@ declare namespace LocalJSX {
          */
         "expiredcontent"?: string;
         /**
-          * Expired text shown alongside the icon in the referral column.
+          * Expired text shown alongside the icon in the rewards column.
           * @uiName Expired Text
           * @uiGroup Expired Rewards
           * @default Expired Reward
@@ -1941,7 +1878,6 @@ declare namespace LocalJSX {
           * @uiName Pending Color
           * @uiGroup Pending Referrals
           * @uiWidget color
-          * @format color
           * @default lightgray
          */
         "pendingcolor"?: string;
@@ -1953,7 +1889,7 @@ declare namespace LocalJSX {
          */
         "pendingcontent"?: string;
         /**
-          * Pending text shown alongside the icon in the referral column.
+          * Pending text shown alongside the icon in the rewards column.
           * @uiName Pending Text
           * @uiGroup Pending Referrals
           * @default Referral pending
@@ -1970,14 +1906,12 @@ declare namespace LocalJSX {
           * Text color of the referred user's name.
           * @uiName Referral Name Color
           * @uiWidget color
-          * @format color
           * @default darkslategray
          */
         "referralnamecolor"?: string;
         /**
           * @uiName Referral Status Text Color
           * @uiWidget color
-          * @format color
           * @default lightgray
          */
         "referraltextcolor"?: string;
@@ -2000,7 +1934,6 @@ declare namespace LocalJSX {
           * @uiName Reward Color
           * @uiGroup Converted Referrals
           * @uiWidget color
-          * @format color
           * @default #4BB543
          */
         "rewardcolor"?: string;
@@ -2061,7 +1994,6 @@ declare namespace LocalJSX {
           * Background color of the share button
           * @uiName Share Button Background Color
           * @uiWidget color
-          * @format color
          */
         "backgroundcolor"?: string;
         /**
@@ -2103,7 +2035,6 @@ declare namespace LocalJSX {
           * Color of the text inside the share button
           * @uiName Share Button Text Color
           * @uiWidget color
-          * @format color
          */
         "textcolor"?: string;
         /**
@@ -2114,7 +2045,6 @@ declare namespace LocalJSX {
           * URL redirect location
           * @uiName URL
           * @uiWidget imageUpload
-          * @format url
          */
         "url"?: string;
     }
@@ -2124,7 +2054,6 @@ declare namespace LocalJSX {
           * @uiName Email Background Color
           * @uiGroup Email
           * @uiWidget color
-          * @format color
           * @default #4b4d50
          */
         "emailbackgroundcolor"?: string;
@@ -2175,7 +2104,6 @@ declare namespace LocalJSX {
           * @uiName Email Text Color
           * @uiGroup Email
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "emailtextcolor"?: string;
@@ -2184,7 +2112,6 @@ declare namespace LocalJSX {
           * @uiName Facebook Background Color
           * @uiGroup Facebook
           * @uiWidget color
-          * @format color
           * @default #234079
          */
         "facebookbackgroundcolor"?: string;
@@ -2235,7 +2162,6 @@ declare namespace LocalJSX {
           * @uiName Facebook Text Color
           * @uiGroup Facebook
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "facebooktextcolor"?: string;
@@ -2249,7 +2175,6 @@ declare namespace LocalJSX {
           * @uiName Line Background Color
           * @uiGroup Line Messenger
           * @uiWidget color
-          * @format color
           * @default #00c300
          */
         "linebackgroundcolor"?: string;
@@ -2300,7 +2225,6 @@ declare namespace LocalJSX {
           * @uiName Line Text Color
           * @uiGroup Line Messenger
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "linetextcolor"?: string;
@@ -2309,7 +2233,6 @@ declare namespace LocalJSX {
           * @uiName Linkedin Background Color
           * @uiGroup LinkedIn
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "linkedinbackgroundcolor"?: string;
@@ -2360,7 +2283,6 @@ declare namespace LocalJSX {
           * @uiName Linkedin Text Color
           * @uiGroup LinkedIn
           * @uiWidget color
-          * @format color
           * @default #0084b9
          */
         "linkedintextcolor"?: string;
@@ -2369,7 +2291,6 @@ declare namespace LocalJSX {
           * @uiName Messenger Background Color
           * @uiGroup Messenger
           * @uiWidget color
-          * @format color
           * @default #0084ff
          */
         "messengerbackgroundcolor"?: string;
@@ -2420,7 +2341,6 @@ declare namespace LocalJSX {
           * @uiName Messenger Text Color
           * @uiGroup Messenger
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "messengertextcolor"?: string;
@@ -2429,7 +2349,6 @@ declare namespace LocalJSX {
           * @uiName Pinterest Background Color
           * @uiGroup Pinterest
           * @uiWidget color
-          * @format color
           * @default #cb2027
          */
         "pinterestbackgroundcolor"?: string;
@@ -2480,7 +2399,6 @@ declare namespace LocalJSX {
           * @uiName Pinterest Text Color
           * @uiGroup Pinterest
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "pinteresttextcolor"?: string;
@@ -2489,7 +2407,6 @@ declare namespace LocalJSX {
           * @uiName SMS Background Color
           * @uiGroup SMS
           * @uiWidget color
-          * @format color
           * @default #7bbf38
          */
         "smsbackgroundcolor"?: string;
@@ -2540,7 +2457,6 @@ declare namespace LocalJSX {
           * @uiName SMS Text Color
           * @uiGroup SMS
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "smstextcolor"?: string;
@@ -2549,7 +2465,6 @@ declare namespace LocalJSX {
           * @uiName Twitter Background Color
           * @uiGroup Twitter
           * @uiWidget color
-          * @format color
           * @default #4797d2
          */
         "twitterbackgroundcolor"?: string;
@@ -2600,7 +2515,6 @@ declare namespace LocalJSX {
           * @uiName Twitter Text Color
           * @uiGroup Twitter
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "twittertextcolor"?: string;
@@ -2609,7 +2523,6 @@ declare namespace LocalJSX {
           * @uiName WhatsApp Background Color
           * @uiGroup WhatsApp
           * @uiWidget color
-          * @format color
           * @default #25D366
          */
         "whatsappbackgroundcolor"?: string;
@@ -2660,7 +2573,6 @@ declare namespace LocalJSX {
           * @uiName WhatsApp Text Color
           * @uiGroup WhatsApp
           * @uiWidget color
-          * @format color
           * @default #ffffff
          */
         "whatsapptextcolor"?: string;
@@ -2676,7 +2588,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Color
           * @uiWidget color
-          * @format color
          */
         "statcolor"?: string;
         /**
@@ -2726,7 +2637,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Text Color
           * @uiWidget color
-          * @format color
          */
         "color"?: string;
         /**

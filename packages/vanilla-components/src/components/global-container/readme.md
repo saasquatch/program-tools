@@ -8,7 +8,7 @@
 | Property       | Attribute      | Description                                                                  | Type      | Default     |
 | -------------- | -------------- | ---------------------------------------------------------------------------- | --------- | ----------- |
 | `background`   | `background`   |                                                                              | `string`  | `undefined` |
-| `fontfamily`   | `fontfamily`   | Font family used inside the container.                                       | `string`  | `undefined` |
+| `fontfamily`   | `fontfamily`   | A font from the Google Fonts library used inside the container.              | `string`  | `undefined` |
 | `loadingcolor` | `loadingcolor` | The background colour of the component while in the loading state.           | `string`  | `undefined` |
 | `maxwidth`     | `maxwidth`     |                                                                              | `string`  | `undefined` |
 | `poweredby`    | `poweredby`    | Show the Powered by SaaSquatch link. This can only be disabled on Pro plans. | `boolean` | `undefined` |

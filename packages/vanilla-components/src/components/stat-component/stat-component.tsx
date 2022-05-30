@@ -51,7 +51,6 @@ export class StatComponent {
   /**
    * @uiName Color
    * @uiWidget color
-   * @format color
    */
   @Prop() statcolor: string;
 

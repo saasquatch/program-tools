@@ -13,7 +13,6 @@ export class GlobalContainer {
   /**
    * @uiName Background Color
    * @uiWidget color
-   * @format color
    * @default #ffffff
    */
   @Prop() background: string;
@@ -22,7 +21,6 @@ export class GlobalContainer {
    *
    * @uiName Loading Color
    * @uiWidget color
-   * @format color
    */
   @Prop() loadingcolor: string;
   /**

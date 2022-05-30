@@ -45,14 +45,12 @@ export class ReferralList {
    *
    * @uiName Referral Name Color
    * @uiWidget color
-   * @format color
    * @default darkslategray
    */
   @Prop() referralnamecolor: string;
   /**
    * @uiName Referral Status Text Color
    * @uiWidget color
-   * @format color
    * @default lightgray
    */
   @Prop() referraltextcolor: string;
@@ -108,7 +106,6 @@ export class ReferralList {
    * @uiName Reward Color
    * @uiGroup Converted Referrals
    * @uiWidget color
-   * @format color
    * @default #4BB543
    */
   @Prop() rewardcolor: string;
@@ -116,7 +113,6 @@ export class ReferralList {
    * @uiName Customer Note Color
    * @uiGroup Converted Referrals
    * @uiWidget color
-   * @format color
    */
   @Prop() customernotecolor: string;
   /**
@@ -149,7 +145,6 @@ export class ReferralList {
    * @uiName Pending Color
    * @uiGroup Pending Referrals
    * @uiWidget color
-   * @format color
    * @default lightgray
    */
   @Prop() pendingcolor: string;
@@ -175,7 +170,6 @@ export class ReferralList {
    * @uiName Expired Color
    * @uiGroup Expired Rewards
    * @uiWidget color
-   * @format color
    * @default lightgray
    */
   @Prop() expiredcolor: string;
@@ -208,7 +202,6 @@ export class ReferralList {
    * @uiName Cancelled Color
    * @uiGroup Cancelled Rewards
    * @uiWidget color
-   * @format color
    * @default #C81D05
    */
   @Prop() cancelledcolor: string;

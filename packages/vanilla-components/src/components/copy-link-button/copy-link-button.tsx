@@ -41,14 +41,12 @@ export class CopyLinkButton {
   /**
    * @uiName Button Color
    * @uiWidget color
-   * @format color
    * @default #5C6164
    */
   @Prop() buttoncolor: string;
   /**
    * @uiName Button Text Color
    * @uiWidget color
-   * @format color
    * @default #FFFFFF
    */
   @Prop() textcolor: string;

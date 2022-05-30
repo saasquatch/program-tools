@@ -30,7 +30,6 @@ export class CTAComponent {
   /**
    * @uiName Text Color
    * @uiWidget color
-   * @format color
    */
   @Prop() color: string;
   /**
@@ -63,13 +62,11 @@ export class CTAComponent {
   /**
    * @uiName Container Background Color
    * @uiWidget color
-   * @format color
    */
    @Prop() background: string;
    /**
     * @uiName Button Color
     * @uiWidget color
-    * @format color
     * @default #F5A100
     */
   @Prop() buttonbackground: string;

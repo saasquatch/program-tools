@@ -32,7 +32,6 @@ export class CopyButton {
   /**
    * @uiName Button Color
    * @uiWidget color
-   * @format color
    * @default #35b21e
    */
   @Prop() backgroundcolor: string;
@@ -46,7 +45,6 @@ export class CopyButton {
   /**
    * @uiName Button Text Color
    * @uiWidget color
-   * @format color
    * @default #ffffff
    */
   @Prop() textcolor: string;
@@ -86,7 +84,6 @@ export class CopyButton {
   /**
    * @uiName Fuel Tank Code Color
    * @uiWidget color
-   * @format color
    * @default #000000
    */
   @Prop() codefontcolor: string;

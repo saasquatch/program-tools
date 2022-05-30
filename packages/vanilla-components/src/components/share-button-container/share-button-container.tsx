@@ -39,7 +39,6 @@ export class ShareButtonContainer {
    * @uiName Email Background Color
    * @uiGroup Email
    * @uiWidget color
-   * @format color
    * @default #4b4d50
    */
   @Prop() emailbackgroundcolor: string;
@@ -47,7 +46,6 @@ export class ShareButtonContainer {
    * @uiName Email Text Color
    * @uiGroup Email
    * @uiWidget color
-   * @format color
    * @default #ffffff
    */
   @Prop() emailtextcolor: string;
@@ -106,7 +104,6 @@ export class ShareButtonContainer {
    * @uiName Facebook Background Color
    * @uiGroup Facebook
    * @uiWidget color
-   * @format color
    * @default #234079
    */
   @Prop() facebookbackgroundcolor: string;
@@ -114,7 +111,6 @@ export class ShareButtonContainer {
    * @uiName Facebook Text Color
    * @uiGroup Facebook
    * @uiWidget color
-   * @format color
    * @default #ffffff
    */
   @Prop() facebooktextcolor: string;
@@ -174,7 +170,6 @@ export class ShareButtonContainer {
    * @uiName Twitter Background Color
    * @uiGroup Twitter
    * @uiWidget color
-   * @format color
    * @default #4797d2
    */
   @Prop() twitterbackgroundcolor: string;
@@ -182,7 +177,6 @@ export class ShareButtonContainer {
    * @uiName Twitter Text Color
    * @uiGroup Twitter
    * @uiWidget color
-   * @format color
    * @default #ffffff
    */
   @Prop() twittertextcolor: string;
@@ -242,7 +236,6 @@ export class ShareButtonContainer {
    * @uiName SMS Background Color
    * @uiGroup SMS
    * @uiWidget color
-   * @format color
    * @default #7bbf38
    */
   @Prop() smsbackgroundcolor: string;
@@ -250,7 +243,6 @@ export class ShareButtonContainer {
    * @uiName SMS Text Color
    * @uiGroup SMS
    * @uiWidget color
-   * @format color
    * @default #ffffff
    */
   @Prop() smstextcolor: string;
@@ -309,7 +301,6 @@ export class ShareButtonContainer {
    * @uiName WhatsApp Background Color
    * @uiGroup WhatsApp
    * @uiWidget color
-   * @format color
    * @default #25D366
    */
   @Prop() whatsappbackgroundcolor: string;
@@ -317,7 +308,6 @@ export class ShareButtonContainer {
    * @uiName WhatsApp Text Color
    * @uiGroup WhatsApp
    * @uiWidget color
-   * @format color
    * @default #ffffff
    */
   @Prop() whatsapptextcolor: string = "#fff";
@@ -377,7 +367,6 @@ export class ShareButtonContainer {
    * @uiName Linkedin Background Color
    * @uiGroup LinkedIn
    * @uiWidget color
-   * @format color
    * @default #ffffff
    */
   @Prop() linkedinbackgroundcolor: string;
@@ -385,7 +374,6 @@ export class ShareButtonContainer {
    * @uiName Linkedin Text Color
    * @uiGroup LinkedIn
    * @uiWidget color
-   * @format color
    * @default #0084b9
    */
   @Prop() linkedintextcolor: string;
@@ -444,7 +432,6 @@ export class ShareButtonContainer {
    * @uiName Pinterest Background Color
    * @uiGroup Pinterest
    * @uiWidget color
-   * @format color
    * @default #cb2027
    */
   @Prop() pinterestbackgroundcolor: string;
@@ -452,7 +439,6 @@ export class ShareButtonContainer {
    * @uiName Pinterest Text Color
    * @uiGroup Pinterest
    * @uiWidget color
-   * @format color
    * @default #ffffff
    */
   @Prop() pinteresttextcolor: string;
@@ -512,7 +498,6 @@ export class ShareButtonContainer {
    * @uiName Messenger Background Color
    * @uiGroup Messenger
    * @uiWidget color
-   * @format color
    * @default #0084ff
    */
   @Prop() messengerbackgroundcolor: string;
@@ -520,7 +505,6 @@ export class ShareButtonContainer {
    * @uiName Messenger Text Color
    * @uiGroup Messenger
    * @uiWidget color
-   * @format color
    * @default #ffffff
    */
   @Prop() messengertextcolor: string;
@@ -579,7 +563,6 @@ export class ShareButtonContainer {
    * @uiName Line Background Color
    * @uiGroup Line Messenger
    * @uiWidget color
-   * @format color
    * @default #00c300
    */
   @Prop() linebackgroundcolor: string;
@@ -587,7 +570,6 @@ export class ShareButtonContainer {
    * @uiName Line Text Color
    * @uiGroup Line Messenger
    * @uiWidget color
-   * @format color
    * @default #ffffff
    */
   @Prop() linetextcolor: string;

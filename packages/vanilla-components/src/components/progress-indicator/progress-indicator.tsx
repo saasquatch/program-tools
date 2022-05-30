@@ -70,7 +70,6 @@ export class ProgressIndicator {
   /**
    * @uiName Text Color
    * @uiWidget color
-   * @format color
    */
   @Prop() textcolor: string;
   /**
@@ -109,7 +108,6 @@ export class ProgressIndicator {
   /**
    * @uiName Percentage Text Color
    * @uiWidget color
-   * @format color
    */
   @Prop() percentagecolor: string;
   /**
@@ -123,7 +121,6 @@ export class ProgressIndicator {
    *
    * @uiName Progress Color
    * @uiWidget color
-   * @format color
    */
   @Prop() progresscolor: string;
   @State() stats: stats;

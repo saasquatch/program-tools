@@ -18,7 +18,6 @@ export class ImageComponent {
   /**
    * @uiName Image URL
    * @uiWidget imageUpload
-   * @format url
    * 
    */
   @Prop() url: string;
