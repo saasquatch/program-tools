@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property          | Attribute          | Description                                                                                                                                   | Type                                                                                  | Default     |
@@ -19,20 +20,20 @@
 | `scrollTagName`   | `scroll-tag-name`  | The name of the HTML tag you would like to scroll to. E.g referral-table                                                                      | `string`                                                                              | `undefined` |
 | `size`            | `size`             |                                                                                                                                               | `string`                                                                              | `undefined` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [sqm-stencilbook](../sqm-stencilbook)
+ - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Graph
-
 ```mermaid
 graph TD;
   sqm-stencilbook --> sqm-scroll
   style sqm-scroll fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

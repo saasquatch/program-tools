@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property          | Attribute          | Description                                                                                                                                   | Type     | Default     |
@@ -13,20 +14,20 @@
 | `imageUrl`        | `image-url`        | Displayed in place of an icon                                                                                                                 | `string` | `undefined` |
 | `textColor`       | `text-color`       |                                                                                                                                               | `string` | `undefined` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [sqm-stencilbook](../sqm-stencilbook)
+ - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Graph
-
 ```mermaid
 graph TD;
   sqm-stencilbook --> sqm-program-explainer-step
   style sqm-program-explainer-step fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

@@ -12,6 +12,7 @@
 | `booleanSwitch`                     | `boolean-switch`                         | Description here | `boolean` | `true`                                                                                        |
 | `booleanSwitchNoDefault`            | `boolean-switch-no-default`              | Description here | `boolean` | `undefined`                                                                                   |
 | `booleanSwitchRequiredNoDefault`    | `boolean-switch-required-no-default`     | Description here | `boolean` | `undefined`                                                                                   |
+| `booleanSwitchfalse`                | `boolean-switchfalse`                    | Description here | `boolean` | `false`                                                                                       |
 | `color`                             | `color`                                  | Description here | `string`  | `"blue"`                                                                                      |
 | `colorNoDefault`                    | `color-no-default`                       | Description here | `string`  | `undefined`                                                                                   |
 | `colorRequiredNoDefault`            | `color-required-no-default`              | Description here | `string`  | `undefined`                                                                                   |
@@ -34,7 +35,7 @@
 | `programSelector`                   | `program-selector`                       | Description here | `string`  | `"program1"`                                                                                  |
 | `programSelectorNoDefault`          | `program-selector-no-default`            | Description here | `string`  | `undefined`                                                                                   |
 | `programSelectorRequiredNoDefault`  | `program-selector-required-no-default`   | Description here | `string`  | `undefined`                                                                                   |
-| `statSelector`                      | `stat-selector`                          | Description here | `string`  | `"/referralCount"`                                                                            |
+| `statSelector`                      | `stat-selector`                          | Description here | `string`  | `"/referralsCount"`                                                                           |
 | `statSelectorNoDefault`             | `stat-selector-no-default`               | Description here | `string`  | `undefined`                                                                                   |
 | `statSelectorRequiredNoDefault`     | `stat-selector-required-no-default`      | Description here | `string`  | `undefined`                                                                                   |
 | `stringEnumSelect`                  | `string-enum-select`                     | Description here | `string`  | `"option2"`                                                                                   |

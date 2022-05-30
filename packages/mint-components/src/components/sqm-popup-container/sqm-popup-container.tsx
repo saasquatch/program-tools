@@ -5,7 +5,8 @@ import { usePopupContainer } from "./usePopupContainer";
 import { getProps } from "../../utils/utils";
 
 /**
- * @uiName Popup Container For Widgets
+ * @uiName Popup Container
+ * @slots [{"name":"","title":"Content"}]
  */
 @Component({
   tag: "sqm-popup-container",

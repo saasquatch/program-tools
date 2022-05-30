@@ -26,12 +26,10 @@ export class GlobalContainer {
    */
   @Prop() loadingcolor: string;
   /**
-   * Font family used inside the container.
+   * A font from the Google Fonts library used inside the container.
    *
    * @uiName Font Family
    * @default Roboto
-   * @uiEnum ["Roboto", "Artifakt Element", "Helvetica Neue,Helvetica,Arial,sans-serif", "Lato,sans-serif", "Times New Roman", "Arial", "Courier", "Tahoma", "Verdana", "Georgia"]
-   * @uiEnumNames ["Roboto","Artifakt Element","Helvetica Neue","Lato","Times New Roman","Arial","Courier","Tahoma","Verdana","Georgia"]
    */
   @Prop() fontfamily: string;
   /**

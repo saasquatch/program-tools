@@ -23,9 +23,15 @@ export class ShareButton {
 
   /**
    * Description here
-   * @uiName Boolean Switch with default
+   * @uiName Boolean Switch with default - true
    */
   @Prop() booleanSwitch?: boolean = true;
+
+  /**
+   * Description here
+   * @uiName Boolean Switch with default - false
+   */
+   @Prop() booleanSwitchfalse?: boolean = false;
 
   /**
    * Description here
@@ -82,7 +88,7 @@ export class ShareButton {
    * @uiName Stat Selector with default
    * @uiWidget statTypeSelectWidget
    */
-  @Prop() statSelector?: string = "/referralCount";
+  @Prop() statSelector?: string = "/referralsCount";
 
   /**
    * Description here
