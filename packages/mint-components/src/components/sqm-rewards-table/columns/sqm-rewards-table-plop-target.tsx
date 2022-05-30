@@ -8,7 +8,7 @@ import { RewardTableColumn } from "./RewardTableColumn";
 @Component({
   tag: "raisins-plop-target",
 })
-export class RewardTablePlopTarget implements RewardTableColumn {
+export class RaisinsPlopTarget implements RewardTableColumn {
   constructor() {
     withHooks(this);
   }
