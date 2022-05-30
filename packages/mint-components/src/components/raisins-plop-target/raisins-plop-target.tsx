@@ -1,6 +1,6 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Method } from "@stencil/core";
-import { RewardTableColumn } from "./RewardTableColumn";
+import { RewardTableColumn } from "../sqm-rewards-table/columns/RewardTableColumn";
 
 /**
  * @undocumented
