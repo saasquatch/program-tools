@@ -52,7 +52,7 @@ function useAssetCardDemo(props: AssetCard): AssetCardViewProps {
       text: {
         titleText: "Marketing Banner",
       },
-      imgUrl: "../../assets/saasquatch-logo.png",
+      imgUrl: "https://res.cloudinary.com/saasquatch/image/upload/v1634255445/squatch-assets/Copy_of_saasquatch-logo-tree-large-horizontal.png",
       callbacks: {},
     },
     props.demoData || {},

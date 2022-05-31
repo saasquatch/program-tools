@@ -1,21 +1,15 @@
 import { E2EPage, newE2EPage } from "@stencil/core/testing";
 
 function newColumn(id) {
-  return /*html*/ `
-  <sqm-referral-table-date-column id=${id}>
-  </sqm-referral-table-date-column>`;
+  return /*html*/ `<sqm-rewards-table-date-column id="${id}"></sqm-rewards-table-date-column>`;
 }
 
 function newElement(id) {
-  return /*html*/ `
-  <sqm-big-stat id=${id}></sqm-big-stat>`;
+  return /*html*/ `<sqm-big-stat id="${id}"></sqm-big-stat>`;
 }
 
-function newPlopTarget(id: string) {
-  return /*html*/ `
-  <raisins-plop-target>
-    <div id=${id}>plop target</div>
-  </raisins-plop-target>`;
+function newPlopTarget(id) {
+  return /*html*/ `<raisins-plop-target id="${id}"></raisins-plop-target>`;
 }
 
 function newPageFunctions(page: Readonly<E2EPage>) {
@@ -28,21 +22,28 @@ function newPageFunctions(page: Readonly<E2EPage>) {
   };
 }
 
+async function createDemoPage(html: string) {
+  // @ts-ignore
+  window.widgetIdent = { env: "demo" };
+  const page = await newE2EPage();
+  await page.setContent(html);
+
+  const { expectElement, dontExpectElement } = newPageFunctions(page);
+  return { page, expectElement, dontExpectElement };
+}
+
 describe("sqm-rewards-table", () => {
   test("Default table", async () => {
     const html = /*html*/ `
-    <sqm-referral-table>
+    <sqm-rewards-table>
       ${newColumn("column-A")}
+      ${newElement("plop-A")}
       ${newColumn("column-B")}
-    </sqm-referral-table>
+    </sqm-rewards-table>
     `;
+    const { page, expectElement } = await createDemoPage(html);
 
-    const page = await newE2EPage();
-    await page.setContent(html);
-
-    const { expectElement } = newPageFunctions(page);
-
-    await expectElement("sqm-referral-table");
+    await expectElement("sqm-rewards-table");
     await expectElement("#column-A");
     await expectElement("#column-B");
 
@@ -51,53 +52,87 @@ describe("sqm-rewards-table", () => {
 
   test("Adding a plop target", async () => {
     const html = /*html*/ `
-    <sqm-referral-table>
+    <sqm-rewards-table>
       ${newColumn("column-A")}
+      ${newPlopTarget("plop-A")}
       ${newColumn("column-B")}
-    </sqm-referral-table>
+    </sqm-rewards-table>
     `;
+    const { page, expectElement } = await createDemoPage(html);
 
+    await expectElement("#column-A");
+    await expectElement("#plop-A");
+    await expectElement("#column-B");
+    page.close();
   });
 
-  test("Removing a plop target", async () => {
-    const html = /*html*/ `
-    <sqm-referral-table>
-      ${newColumn("column-A")}
-      ${newColumn("column-B")}
-    </sqm-referral-table>
-    `;
+  // test("Removing a plop target", async () => {
+  //   const html = /*html*/ `
+  //   <sqm-rewards-table>
+  //     ${newColumn("column-A")}
+  //     ${newPlopTarget("plop-A")}
+  //     ${newColumn("column-B")}
+  //   </sqm-rewards-table>
+  //   `;
+  //   const { page, expectElement, dontExpectElement } = await createDemoPage(
+  //     html
+  //   );
 
-  });
+  //   await expectElement("#column-A");
+  //   await expectElement("#plop-A");
+  //   await expectElement("#column-B");
 
-  test("Adding and then removing plop target", async () => {
-    const html = /*html*/ `
-    <sqm-referral-table>
-      ${newColumn("column-A")}
-      ${newColumn("column-B")}
-    </sqm-referral-table>
-    `;
+  //   const noPlop = /*html*/ `
+  //   <sqm-rewards-table>
+  //     ${newColumn("column-A")}
+  //     ${newColumn("column-B")}
+  //   </sqm-rewards-table>
+  //   `;
 
-  });
+  //   await page.setContent(noPlop);
 
-  test("Adding non-table column plop target", async () => {
-    const html = /*html*/ `
-    <sqm-referral-table>
-      ${newColumn("column-A")}
-      ${newColumn("column-B")}
-    </sqm-referral-table>
-    `;
+  //   await dontExpectElement("#plop-A");
+  //   page.close();
+  // });
 
-  });
+  // TODO: Don't actually have all of the functions available to test these properly
+  //   test("Adding and then removing plop target", async () => {
+  //     const html = /*html*/ `
+  //     <sqm-rewards-table>
+  //       ${newColumn("column-A")}
+  //       ${newColumn("column-B")}
+  //     </sqm-rewards-table>
+  //     `;
 
-  test("Adding non-table column plop target and cancelling, then add column", async () => {
-    const html = /*html*/ `
-    <sqm-referral-table>
-      ${newColumn("column-A")}
-      ${newColumn("column-B")}
-    </sqm-referral-table>
-    `;
+  //     const { page, expectElement } = await createDemoPage(html);
 
-  });
+  //     page.close();
+  //   });
+
+  //   test("Adding non-table column plop target", async () => {
+  //     const html = /*html*/ `
+  //     <sqm-rewards-table>
+  //       ${newColumn("column-A")}
+  //       ${newColumn("column-B")}
+  //     </sqm-rewards-table>
+  //     `;
+
+  //     const { page, expectElement } = await createDemoPage(html);
+
+  //     page.close();
+  //   });
+
+  //   test("Adding non-table column plop target and cancelling, then add column", async () => {
+  //     const html = /*html*/ `
+  //     <sqm-rewards-table>
+  //       ${newColumn("column-A")}
+  //       ${newColumn("column-B")}
+  //     </sqm-rewards-table>
+  //     `;
+  //     const { page, expectElement } = await createDemoPage(html);
+
+  //     page.close();
+  //   });
 });
 
 // nice debugging tool

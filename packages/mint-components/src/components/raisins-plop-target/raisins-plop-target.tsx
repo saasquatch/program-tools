@@ -1,4 +1,3 @@
-import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Method } from "@stencil/core";
 import { RewardTableColumn } from "../sqm-rewards-table/columns/RewardTableColumn";
 
@@ -9,11 +8,6 @@ import { RewardTableColumn } from "../sqm-rewards-table/columns/RewardTableColum
   tag: "raisins-plop-target",
 })
 export class RaisinsPlopTarget implements RewardTableColumn {
-  constructor() {
-    withHooks(this);
-  }
-  disconnectedCallback() {}
-
   @Method()
   async renderCell() {
     return <span></span>;
