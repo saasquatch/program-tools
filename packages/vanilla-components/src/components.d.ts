@@ -126,8 +126,10 @@ export namespace Components {
          */
         "background": string;
         /**
+          * Define the border radius of the button with a pixel amount.
           * @uiName Border Radius
-          * @default 8px
+          * @default 8
+          * @uiWidget number
          */
         "borderradius": string;
         /**
@@ -146,15 +148,17 @@ export namespace Components {
          */
         "fontfamily": string;
         /**
+          * Define the font size of the button text with pixel amount.
           * @uiName Font Size
          */
         "fontsize": string;
         /**
+          * Define the font weight of the button text.
           * @uiName Font Weight
          */
         "fontweight": string;
         /**
-          * Button height in pixels.
+          * Define the height of the container with a pixel amount.
           * @uiName Button Height
          */
         "height": string;
@@ -178,11 +182,11 @@ export namespace Components {
          */
         "paddingtop": string;
         /**
-          * @uiName Text
+          * @uiName Button Text
          */
         "text": string;
         /**
-          * @uiName Text Alignment
+          * @uiName Button Alignment
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
          */
@@ -1526,8 +1530,10 @@ declare namespace LocalJSX {
          */
         "background"?: string;
         /**
+          * Define the border radius of the button with a pixel amount.
           * @uiName Border Radius
-          * @default 8px
+          * @default 8
+          * @uiWidget number
          */
         "borderradius"?: string;
         /**
@@ -1546,15 +1552,17 @@ declare namespace LocalJSX {
          */
         "fontfamily"?: string;
         /**
+          * Define the font size of the button text with pixel amount.
           * @uiName Font Size
          */
         "fontsize"?: string;
         /**
+          * Define the font weight of the button text.
           * @uiName Font Weight
          */
         "fontweight"?: string;
         /**
-          * Button height in pixels.
+          * Define the height of the container with a pixel amount.
           * @uiName Button Height
          */
         "height"?: string;
@@ -1578,11 +1586,11 @@ declare namespace LocalJSX {
          */
         "paddingtop"?: string;
         /**
-          * @uiName Text
+          * @uiName Button Text
          */
         "text"?: string;
         /**
-          * @uiName Text Alignment
+          * @uiName Button Alignment
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
          */

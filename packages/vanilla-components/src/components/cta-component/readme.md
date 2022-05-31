@@ -8,13 +8,13 @@
 | Property           | Attribute          | Description                                                                                                    | Type      | Default     |
 | ------------------ | ------------------ | -------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
 | `background`       | `background`       |                                                                                                                | `string`  | `undefined` |
-| `borderradius`     | `borderradius`     |                                                                                                                | `string`  | `undefined` |
+| `borderradius`     | `borderradius`     | Define the border radius of the button with a pixel amount.                                                    | `string`  | `undefined` |
 | `buttonbackground` | `buttonbackground` |                                                                                                                | `string`  | `undefined` |
 | `color`            | `color`            |                                                                                                                | `string`  | `undefined` |
 | `fontfamily`       | `fontfamily`       |                                                                                                                | `string`  | `undefined` |
-| `fontsize`         | `fontsize`         |                                                                                                                | `string`  | `undefined` |
-| `fontweight`       | `fontweight`       |                                                                                                                | `string`  | `undefined` |
-| `height`           | `height`           | Button height in pixels.                                                                                       | `string`  | `undefined` |
+| `fontsize`         | `fontsize`         | Define the font size of the button text with pixel amount.                                                     | `string`  | `undefined` |
+| `fontweight`       | `fontweight`       | Define the font weight of the button text.                                                                     | `string`  | `undefined` |
+| `height`           | `height`           | Define the height of the container with a pixel amount.                                                        | `string`  | `undefined` |
 | `ishidden`         | `ishidden`         |                                                                                                                | `boolean` | `undefined` |
 | `ismarkdown`       | `ismarkdown`       | Compile plain text into HTML. See [markdown](https://www.markdownguide.org/getting-started/) for more details. | `boolean` | `undefined` |
 | `paddingbottom`    | `paddingbottom`    | Define the bottom padding with a pixel amount.                                                                 | `string`  | `undefined` |
