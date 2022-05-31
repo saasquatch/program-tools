@@ -171,19 +171,21 @@ function useRewardsTableDemo(
       async (c: any, idx: number) => {
         const slot = c?.firstElementChild?.getAttribute("slot");
         // Custom plop targets
-        if (
-          c.tagName === "RAISINS-PLOP-TARGET" &&
-          slot !== "loading" &&
-          slot !== "empty"
-        ) {
-          c.style.position = "absolute";
-          c.setAttribute("slot", "column-" + idx);
-          // Replace add text with a simple + button
-          const plopTarget = c.firstElementChild.childNodes[1];
-          plopTarget.innerHTML = "＋";
-          (plopTarget as HTMLElement).style.lineHeight = "20px";
-          return tryMethod(c, () => c.renderLabel(idx));
-        }
+        try {
+          if (
+            c.tagName === "RAISINS-PLOP-TARGET" &&
+            slot !== "loading" &&
+            slot !== "empty"
+          ) {
+            c.style.position = "absolute";
+            c.setAttribute("slot", "column-" + idx);
+            // Replace add text with a simple + button
+            const plopTarget = c.firstElementChild.childNodes[1];
+            plopTarget.innerHTML = "＋";
+            (plopTarget as HTMLElement).style.lineHeight = "20px";
+            return tryMethod(c, () => c.renderLabel(idx));
+          }
+        } catch {}
         return tryMethod(c, () => c.renderLabel());
       }
     );
