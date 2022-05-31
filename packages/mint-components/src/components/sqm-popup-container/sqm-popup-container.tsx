@@ -7,6 +7,7 @@ import { getProps } from "../../utils/utils";
 /**
  * @uiName Popup Container
  * @slots [{"name":"","title":"Content"}]
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqm-popup-container",
