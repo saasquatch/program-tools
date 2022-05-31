@@ -5,172 +5,87 @@ interface Window {
   };
 }
 
-interface Layout {
-  key: string;
-  html: string;
+interface RenderMicrositePageResponse {
+  renderMicrositePage: {
+    micrositePageConfig: {
+      urlPath: string;
+      values: {
+        title: string;
+        html: string;
+      };
+    };
+    micrositeLayoutConfigs: {
+      key: string;
+      values: {
+        html: string;
+      };
+    }[];
+  };
 }
 
-interface Page {
-  html: string;
-  layouts: Layout[];
-}
+const query = `
+  query RenderMicrositePage($urlPath: String!) {
+    renderMicrositePage(urlPath: $urlPath) {
+      micrositePageConfig {
+        urlPath
+        values
+      }
+      micrositeLayoutConfigs {
+        key
+        values
+      }
+    }
+  }
+`;
 
-const rootLayout = {
-  key: "root",
-  html: `
-  <div style="width: 100%; background-color: teal; padding: 12px;">
-    <button onClick="window.history.pushState(undefined, '', '/');">
-      Index
-    </button>
-    <button onClick="window.history.pushState(undefined, '', '/route1');">
-      Route1
-    </button>
-    <button onClick="window.history.pushState(undefined, '', '/route2');">
-      Route2
-    </button>
-    <button onClick="window.history.pushState(undefined, '', '/route3');">
-      Route3
-    </button>
-    <button onClick="window.history.pushState(undefined, '', '/different');">
-      Different Hierarchy
-    </button>
-  </div>
-  <div style="width: 100%; background-color: pink; padding: 12px; font-size: 16px; font-weight: bold">
-    Header
-  </div>
-  <div style="width: 100%; background-color: beige; padding: 12px; font-size: 16px; font-weight: bold">
-    <slot></slot>
-  </div>
-  <div style="width: 100%; background-color: cornflowerblue; padding: 12px; font-size: 16px; font-weight: bold">
-    Footer
-  </div>
-`,
-};
-
-const innerLayout = {
-  key: "inner",
-  html: `
-  <div style="width: 75%; background-color: peachpuff; padding: 25px; position: relative">
-    <span style="position: absolute; top: 0; left: 0; text-transform: uppercase; font-size: 10px; color: #999">inner layout</span>
-    <slot></slot>
-  </div>
-`,
-};
-
-const anotherLayout = {
-  key: "another",
-  html: `
-  <div style="width: 50%; background-color: mediumspringgreen; padding: 25px; position: relative">
-    <span style="position: absolute; top: 0; left: 0; text-transform: uppercase; font-size: 10px; color: #999">another layout</span>
-    <slot></slot>
-  </div>
-`,
-};
-
-const differentHierarchy1 = {
-  key: "diff1",
-  html: `
-    <button onClick="window.history.pushState(undefined, '', '/');">
-      Back
-    </button>
-  <div style="width: 100%; background-color: mediumspringgreen; padding: 25px; position: relative">
-    <span style="position: absolute; top: 0; left: 0; text-transform: uppercase; font-size: 10px; color: #999">different hierarchy 1</span>
-    <slot></slot>
-  </div>
-  `,
-};
-
-const differentHierarchy2 = {
-  key: "diff2",
-  html: `
-  <div style="width: 80%; background-color: pink; padding: 25px; position: relative">
-    <span style="position: absolute; top: 0; left: 0; text-transform: uppercase; font-size: 10px; color: #999">different hierarchy 2</span>
-    <slot></slot>
-  </div>
-  `,
-};
-
-const differentHierarchy3 = {
-  key: "diff3",
-  html: `
-  <div style="width: 80%; background-color: teal; padding: 25px; position: relative">
-    <span style="position: absolute; top: 0; left: 0; text-transform: uppercase; font-size: 10px; color: #999">different hierarchy 3</span>
-    <slot></slot>
-  </div>
-  `,
-};
-
-const differentHierarchy4 = {
-  key: "diff4",
-  html: `
-  <div style="width: 80%; background-color: salmon; padding: 25px; position: relative">
-    <span style="position: absolute; top: 0; left: 0; text-transform: uppercase; font-size: 10px; color: #999">different hierarchy 4</span>
-    <slot></slot>
-  </div>
-  `,
-};
-
-const pages: Record<string, Page> = {
-  "/": {
-    html: `
-      <div style="width: 100%; padding: 25px; position: relative; background-color: whitesmoke">
-        <span style="position: absolute; top: 0; left: 0; text-transform: uppercase; font-size: 10px; color: #999">page</span>
-        I am the root page.
-      </div>
-    `,
-    layouts: [innerLayout, rootLayout],
-  },
-  "/route1": {
-    html: `
-      <div style="width: 100%; padding: 25px; position: relative; background-color: whitesmoke">
-        <span style="position: absolute; top: 0; left: 0; text-transform: uppercase; font-size: 10px; color: #999">page</span>
-        I am the <span style="color: red">/route1</span> page.
-      </div>
-    `,
-    layouts: [innerLayout, rootLayout],
-  },
-  "/route2": {
-    html: `
-      <div style="width: 100%; padding: 25px; position: relative; background-color: whitesmoke">
-        <span style="position: absolute; top: 0; left: 0; text-transform: uppercase; font-size: 10px; color: #999">page</span>
-        I am the <span style="color: blue">/route2</span> page.
-      </div>
-    `,
-    layouts: [innerLayout, rootLayout],
-  },
-  "/route3": {
-    html: `
-      <div style="width: 100%; padding: 25px; position: relative; background-color: whitesmoke">
-        <span style="position: absolute; top: 0; left: 0; text-transform: uppercase; font-size: 10px; color: #999">page</span>
-        And one more for good measure, with another layout.
-      </div>
-    `,
-    layouts: [anotherLayout, innerLayout, rootLayout],
-  },
-  "/different": {
-    html: `
-      <div style="width: 100%; padding: 25px; position: relative; background-color: whitesmoke">
-        <span style="position: absolute; top: 0; left: 0; text-transform: uppercase; font-size: 10px; color: #999">page</span>
-        A totally different layout hierarchy
-      </div>
-    `,
-    layouts: [
-      differentHierarchy4,
-      differentHierarchy3,
-      differentHierarchy2,
-      differentHierarchy1,
-    ],
-  },
-};
+const pageCache: Record<string, RenderMicrositePageResponse> = {};
 
 type LayoutPath = { key: string; element: HTMLElement }[];
 let lastRenderedLayoutPath: LayoutPath = [];
 
+async function fetchPage(urlPath: string) {
+  if (pageCache[urlPath]) {
+    console.log("Avoiding GraphQL call in lieu of cache for ", urlPath);
+    return pageCache[urlPath];
+  }
+
+  try {
+    const result = await fetch(
+      `${window.SquatchPortal.appDomain}/api/v1/${window.SquatchPortal.tenantAlias}/graphql`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          operationName: "RenderMicrositePage",
+          query,
+          variables: { urlPath },
+        }),
+      }
+    );
+
+    if (!result.ok) {
+      throw new Error("something bad happened");
+    }
+
+    const json = await result.json();
+    if (json.errors) {
+      throw new Error(JSON.stringify(json.errors, null, 2));
+    }
+
+    const response = json.data as RenderMicrositePageResponse;
+    pageCache[urlPath] = response;
+    return response;
+  } catch (e: any) {
+    // TODO: Handle missing page, backend should probably return a 404 page
+    document.body.innerHTML = `<h1>404</h1><code><pre>${e.message}</pre></code>`;
+    throw e;
+  }
+}
+
 async function render(pathname: string) {
   console.log("RENDER", pathname);
 
-  // TODO: Here is where we fetch the page from GraphQL and get given all the layouts
-  const page = pages[pathname];
+  const page = await fetchPage(pathname);
 
   const layoutPath: LayoutPath = [];
   let parentElement = document.body;
@@ -184,7 +99,7 @@ async function render(pathname: string) {
   }
 
   // Apply the layouts in reverse
-  let layouts = [...page.layouts].reverse();
+  let layouts = [...page.renderMicrositePage.micrositeLayoutConfigs].reverse();
 
   layouts.forEach((layout, i) => {
     if (lastRenderedLayoutPath[i]?.key === layout.key) {
@@ -206,7 +121,7 @@ async function render(pathname: string) {
 
       // Attach a shadow root and set the layout
       element.attachShadow({ mode: "open" });
-      element.shadowRoot!.innerHTML = layout.html;
+      element.shadowRoot!.innerHTML = layout.values.html;
 
       // Append to the parent
       parentElement.appendChild(element);
@@ -220,7 +135,9 @@ async function render(pathname: string) {
   });
 
   // Finally, the innerHTML of the last element gets set to the page's html
-  parentElement.innerHTML = page.html;
+  parentElement.innerHTML =
+    page.renderMicrositePage.micrositePageConfig.values.html;
+  document.title = page.renderMicrositePage.micrositePageConfig.values.title;
 
   lastRenderedLayoutPath = layoutPath;
 }
