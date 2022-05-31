@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/visual-dev",
-  "version": "0.2.1-51",
+  "version": "0.2.1-52",
   "description": "SaaSquatch visual dev",
   "main": "dist/index.js",
   "module": "dist/visual-dev.esm.js",
@@ -67,9 +67,6 @@
     "jsonata-visual-editor": "^0.4.0"
   },
   "peerDependenciesMeta": {
-    "downshift": {
-      "optional": true
-    },
     "jsonata": {
       "optional": true
     },
