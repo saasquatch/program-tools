@@ -1,0 +1,21 @@
+{
+  "name": "@saasquatch/microsite-renderer",
+  "version": "0.0.1",
+  "description": "Microsite page renderer",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "rollup --config rollup.config.ts --configPlugin typescript --watch",
+    "build": "rollup --config rollup.config.ts --configPlugin typescript",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Johan Venter",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.7.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.2",
+    "rollup": "^2.75.4",
+    "rollup-plugin-serve": "^1.1.0"
+  }
+}
