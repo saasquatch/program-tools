@@ -158,7 +158,7 @@ export function GenericTableView(props: GenericTableViewProps) {
                   part="table-row"
                 >
                   {row.map((cell, j) => {
-                    return (
+                    return typeof columns[j] === "string" ? (
                       <td
                         class={hiddenCols?.includes(j) ? "hidden" : ""}
                         data-label={columns[j] + ":"}
@@ -170,6 +170,8 @@ export function GenericTableView(props: GenericTableViewProps) {
                       >
                         {cell}
                       </td>
+                    ) : (
+                      <td></td>
                     );
                   })}
                 </tr>
