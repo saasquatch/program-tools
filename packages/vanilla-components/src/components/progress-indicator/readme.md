@@ -15,7 +15,7 @@
 | `percentagecolor` | `percentagecolor` |                                                               | `string`  | `undefined` |
 | `percentagesize`  | `percentagesize`  | Define the font size of the percentage text in a pixel amount | `string`  | `undefined` |
 | `progress`        | `progress`        | Text displayed below the completion percentage.               | `string`  | `undefined` |
-| `progresscolor`   | `progresscolor`   | Color of the progress bar                                     | `string`  | `undefined` |
+| `progresscolor`   | `progresscolor`   |                                                               | `string`  | `undefined` |
 | `progresstype`    | `progresstype`    | The type of icon used to display a user’s progress.           | `string`  | `undefined` |
 | `progresswidth`   | `progresswidth`   | Width of the progress bar.                                    | `string`  | `undefined` |
 | `textcolor`       | `textcolor`       |                                                               | `string`  | `undefined` |

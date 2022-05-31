@@ -117,8 +117,6 @@ export class ProgressIndicator {
    */
   @Prop() percentagesize: string;
   /**
-   * Color of the progress bar
-   *
    * @uiName Progress Color
    * @uiWidget color
    */

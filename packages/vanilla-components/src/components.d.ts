@@ -281,7 +281,7 @@ export namespace Components {
         /**
           * Determines what type of stat is displayed. Manual paths are also supported.
           * @uiName Stat Type
-          * @uiWidget statTypeSelector
+          * @uiWidget statTypeSelectorWidget
           * @required 
           * @minLength 1
          */
@@ -326,7 +326,6 @@ export namespace Components {
          */
         "progress": string;
         /**
-          * Color of the progress bar
           * @uiName Progress Color
           * @uiWidget color
          */
@@ -1193,7 +1192,7 @@ export namespace Components {
         /**
           * Type of stat being displayed. e.g /rewardsCount
           * @uiName Stat Type
-          * @uiWidget statTypeSelector
+          * @uiWidget statTypeSelectorWidget
           * @required 
           * @minLength 1
          */
@@ -1684,7 +1683,7 @@ declare namespace LocalJSX {
         /**
           * Determines what type of stat is displayed. Manual paths are also supported.
           * @uiName Stat Type
-          * @uiWidget statTypeSelector
+          * @uiWidget statTypeSelectorWidget
           * @required 
           * @minLength 1
          */
@@ -1729,7 +1728,6 @@ declare namespace LocalJSX {
          */
         "progress"?: string;
         /**
-          * Color of the progress bar
           * @uiName Progress Color
           * @uiWidget color
          */
@@ -2598,7 +2596,7 @@ declare namespace LocalJSX {
         /**
           * Type of stat being displayed. e.g /rewardsCount
           * @uiName Stat Type
-          * @uiWidget statTypeSelector
+          * @uiWidget statTypeSelectorWidget
           * @required 
           * @minLength 1
          */
