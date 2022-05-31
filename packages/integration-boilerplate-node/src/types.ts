@@ -47,6 +47,7 @@ export interface FormInitialDataRequestContext<IntegrationConfig, FormConfig>
 export interface FormSubmissionResult {
   success: boolean;
   message: string;
+  data?: Record<string, any>;
 }
 
 export interface FormSubmissionResponse {
