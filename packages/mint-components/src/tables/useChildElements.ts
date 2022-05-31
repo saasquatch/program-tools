@@ -7,14 +7,20 @@ export function useChildElements<T>(): T[] {
     ? (Array.from(host.children) as T[] & Element[])
     : [];
   const [childElements, setChildElements] = useState<T[]>(initialState);
-
+  let observer: MutationObserver;
   useEffect(() => {
-    const observer = new MutationObserver(() => {
+    observer = new MutationObserver(() => {
       const children = Array.from(host.children) as T[] & Element[];
       setChildElements([...children]);
     });
+  }, []);
+
+  useEffect(() => {
+    if (!observer) return;
     observer.observe(host, { childList: true });
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+    };
   }, [host]);
 
   return childElements;

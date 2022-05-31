@@ -2224,10 +2224,19 @@ export namespace Components {
         "header": string;
     }
     interface SqmTableCell {
+        /**
+          * @uiName Column Span
+         */
         "colspan": number;
+        /**
+          * @uiName Padding}
+         */
         "padding": string;
     }
     interface SqmTableRow {
+        /**
+          * @uiName Border
+         */
         "border": string;
     }
     interface SqmTabs {
@@ -5258,10 +5267,19 @@ declare namespace LocalJSX {
         "header"?: string;
     }
     interface SqmTableCell {
+        /**
+          * @uiName Column Span
+         */
         "colspan"?: number;
+        /**
+          * @uiName Padding}
+         */
         "padding"?: string;
     }
     interface SqmTableRow {
+        /**
+          * @uiName Border
+         */
         "border"?: string;
     }
     interface SqmTabs {
