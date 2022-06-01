@@ -190,9 +190,9 @@ export class ReferralList {
    */
   @Prop() expiredvalue: string;
   /**
-   * Reward expiry ICU message
+   * ICU message shown in the rewards column for expiring rewards. See [ICU messages](https://unicode-org.github.io/icu/userguide/format_parse/messages/) for more details.
    *
-   * @uiName Expires Text
+   * @uiName Expiring Text
    * @uiGroup Expired Rewards
    */
   @Prop() expiresvalue: string;
