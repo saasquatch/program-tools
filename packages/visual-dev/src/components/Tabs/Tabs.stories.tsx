@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TabsView } from ".";
+import { Tabs, TabsView } from ".";
 import styled, { css } from "styled-components";
 
 export default {
@@ -33,29 +33,31 @@ export const FunctionalTabs = () => {
 
   return (
     <>
-      <TabsView selected={selected} onTabClick={setSelected}>
+      <Tabs selected={selected} onTabClick={setSelected}>
         <TabsView.TabView id="first">First</TabsView.TabView>
         <TabsView.TabView id="second">Second</TabsView.TabView>
-      </TabsView>
+      </Tabs>
       <div style={{ marginTop: "32px" }}>Tab selected: {selected}</div>
     </>
   );
 };
 
 export const DisabledTabs = () => {
-  const [selected, setSelected] = React.useState<string>("second")
+  const [selected, setSelected] = React.useState<string>("second");
 
   return (
     <>
       <TabsView selected={selected} onTabClick={setSelected}>
-        <TabsView.TabView disabled id="first">First</TabsView.TabView>
+        <TabsView.TabView disabled id="first">
+          First
+        </TabsView.TabView>
         <TabsView.TabView id="second">Second</TabsView.TabView>
         <TabsView.TabView id="third">Third</TabsView.TabView>
       </TabsView>
       <div style={{ marginTop: "32px" }}>Tab selected: {selected}</div>
     </>
   );
-}
+};
 
 export const NavigationTabs = () => {
   const [selected, setSelected] = React.useState<string>("programs");

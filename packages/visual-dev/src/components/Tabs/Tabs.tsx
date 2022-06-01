@@ -91,6 +91,9 @@ const TabsNamespace = Object.assign(TabsView, {
   TabView: TabView,
 });
 
+/**
+ * @deprecated use {@link TabsView} instead
+ */
 const TabsNamespaceDeprecated = Object.assign(TabsView, {
   Tab: TabView,
 });
