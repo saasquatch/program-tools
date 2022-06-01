@@ -83,8 +83,8 @@ export class ProgressIndicator {
    * The type of icon used to display a user’s progress.
    *
    * @uiName Indicator Icon
-   * @uiEnum ["Path", "Circle", "SemiCircle", "Line"]
-   * @uiEnumNames ["Path", "Circle", "Semi Circle", "Line"]
+   * @uiEnum ["Path"]
+   * @uiEnumNames ["Path"]
    */
   @Prop() progresstype: string;
   /**
@@ -187,7 +187,7 @@ export class ProgressIndicator {
     };
 
     this.progressMessage = FormatJS.format(
-      this.progress,
+      this.progress || "",
       formatVariables,
       this.locale
     );
