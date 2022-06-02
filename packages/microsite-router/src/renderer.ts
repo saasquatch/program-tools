@@ -1,4 +1,5 @@
 import { FetchPageResult } from "./pages";
+import { debug } from "./debug";
 
 type LayoutPath = { key: string; element: HTMLElement }[];
 
@@ -22,13 +23,13 @@ export function render(pageResult: FetchPageResult) {
   layouts.forEach((layout, i) => {
     if (lastRenderedLayoutPath[i]?.key === layout.key) {
       // If this is the same layout in the same position as last time, we can reuse the element
-      console.log(" - Reusing element for layout", layout.key);
+      debug("render", `reusing element for layout [${layout.key}]`);
       parentElement = lastRenderedLayoutPath[i].element;
       layoutPath.push({ key: layout.key, element: parentElement });
     } else {
       // Otherwise we have to remove everything from i onwards
       lastRenderedLayoutPath.splice(i).forEach((layout) => {
-        console.log(" - Removing element for layout", layout.key);
+        debug("render", `removing element for layout [${layout.key}]`);
         layout.element.remove();
       });
 
@@ -48,7 +49,7 @@ export function render(pageResult: FetchPageResult) {
       // Record the layout path
       layoutPath.push({ key: layout.key, element });
 
-      console.log(" - Created element for layout", layout.key);
+      debug("render", `created element for layout [${layout.key}]`);
     }
   });
 

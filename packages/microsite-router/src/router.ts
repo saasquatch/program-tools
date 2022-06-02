@@ -1,6 +1,7 @@
 import { getUserIdentity } from "./auth";
 import { fetchPage } from "./pages";
 import { render } from "./renderer";
+import { debug } from "./debug";
 
 /*
 Scenario Outline: Logged in users can view PUBLIC pages, as long as there's no disallowedUrlPath
@@ -19,14 +20,14 @@ Scenario Outline: Logged in users can view PUBLIC pages, as long as there's no d
   | VERIFIED   |                   | render the page        |
   | VERIFIED   | /somewhere        | redirect to /somewhere |
   
-Secnario Outline: Users who do not match allowedUsers are redirected to 
+Secnario Outline: Users who do not match allowedUsers are redirected to disallowedUrlPath if it exists
 */
 
 export async function route(pathname: string) {
-  console.log("ROUTE", pathname);
-
   const pageResult = await fetchPage(pathname);
   const user = getUserIdentity();
+
+  debug("router", `routing to ${pathname}"`);
 
   const allowedUsers = pageResult.page.allowedUsers;
   const disallowedUrlPath = pageResult.page.disallowedUrlPath;
@@ -37,14 +38,15 @@ export async function route(pathname: string) {
     ? "VERIFIED"
     : "UNVERIFIED";
 
-  console.log(" - USER TYPE:", userType);
-  console.log(" - ALLOWED USERS:", allowedUsers);
-  console.log(" - DISALLOWED URL PATH:", disallowedUrlPath);
+  debug(
+    `router`,
+    `pathname[${pathname}] userType[${userType}] allowedUsers[${allowedUsers}] disallowedUrlPath:[${disallowedUrlPath}]`
+  );
 
   if (userType != allowedUsers && disallowedUrlPath) {
-    console.log(
-      " - User is not correct type, redirecting to",
-      disallowedUrlPath
+    debug(
+      `router`,
+      `pathname[${pathname}] user is ${userType}, but expected ${allowedUsers}, redirecting to ${disallowedUrlPath}`
     );
     window.history.pushState(undefined, "", disallowedUrlPath);
   } else {

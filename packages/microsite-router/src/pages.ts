@@ -1,3 +1,5 @@
+import { debug } from "./debug";
+
 type AllowedUsers = "PUBLIC" | "VERIFIED" | "UNVERIFIED";
 
 type PageConfig = {
@@ -50,7 +52,10 @@ export async function fetchPage(
   locale?: string
 ): Promise<FetchPageResult> {
   if (pageCache[urlPath]) {
-    console.log("Avoiding GraphQL call in lieu of cache for ", urlPath);
+    debug(
+      "fetchPage",
+      `avoiding GraphQL call in lieu of cache for [${urlPath}]`
+    );
     return pageCache[urlPath];
   }
 
@@ -86,8 +91,13 @@ export async function fetchPage(
 
     return pageResult;
   } catch (e: any) {
-    // TODO: Handle missing page, backend should probably return a 404 page
-    document.body.innerHTML = `<h1>404</h1><code><pre>${e.message}</pre></code>`;
+    document.body.innerHTML = `
+      <div style="padding: 12px;">
+        <h3>Sorry, something went wrong</h3>
+        <p>Please contact <a href="mailto:success@saasquatch.com">success@saasquatch.com</a>.</p>
+        <p style="background-color: pink; padding: 12px; font-family: monospace; font-size: 12px;">${e.message}</p>
+      </div>
+    `;
     throw e;
   }
 }
