@@ -26,6 +26,16 @@ Feature: Conditional Section
     Then "Hello" is shown
 
   @motivating
+  Scenario: Content can be hidden or shown depending on user's countryCode
+    Given the component's condition prop is set to "user.countryCode = 'US'"
+    And the component contains the text "Hello"
+    And the user's country code is "CA"
+    When the widget is loaded
+    Then "Hello" is not shown
+    When the user's country code is "US"
+    Then "Hello" is shown
+
+  @motivating
   Scenario: Content can be hidden or shown depending on user's email
     Given the component's condition prop is set to "$not('example.com' in $substringAfter(user.email, '@'))"
     And the component contains the text "Hello"

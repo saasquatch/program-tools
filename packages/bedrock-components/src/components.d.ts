@@ -10,7 +10,7 @@ import { DemoData } from "./global/demo";
 export namespace Components {
     interface SqbConditionalSection {
         /**
-          * Only show this section when a user meets the following conditions.  Can use `user.segments` and `user.customFields`.   - `"VIP" in user.segments`  - `user.customFields.age > 19`
+          * Only show this section when a user meets the following conditions.  Can use `user.segments` and `user.customFields`.   - `"VIP" in user.segments`  - `user.customFields.age > 19`  - `user.countryCode = "US"`
           * @uiName Condition
          */
         "condition": string;
@@ -101,7 +101,7 @@ declare global {
 declare namespace LocalJSX {
     interface SqbConditionalSection {
         /**
-          * Only show this section when a user meets the following conditions.  Can use `user.segments` and `user.customFields`.   - `"VIP" in user.segments`  - `user.customFields.age > 19`
+          * Only show this section when a user meets the following conditions.  Can use `user.segments` and `user.customFields`.   - `"VIP" in user.segments`  - `user.customFields.age > 19`  - `user.countryCode = "US"`
           * @uiName Condition
          */
         "condition"?: string;

@@ -20,6 +20,7 @@ export class SqbConditionalSection {
    *
    *  - `"VIP" in user.segments`
    *  - `user.customFields.age > 19`
+   *  - `user.countryCode = "US"`
    *
    * @uiName Condition
    */
