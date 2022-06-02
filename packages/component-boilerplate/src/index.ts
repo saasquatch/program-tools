@@ -25,6 +25,7 @@ export {
 } from "./environment";
 export { useAuthenticateWithEmailAndPasswordMutation } from "./hooks/managedIdentity/useAuthenticateWithEmailAndPasswordMutation";
 export { useRegisterWithEmailAndPasswordMutation } from "./hooks/managedIdentity/useRegisterWithEmailAndPasswordMutation";
+export { useRegisterViaRegistrationFormMutation } from "./hooks/managedIdentity/useRegisterViaRegistrationFormMutation";
 export { useChangePasswordMutation } from "./hooks/managedIdentity/useChangePasswordMutation";
 export { useResetPasswordMutation } from "./hooks/managedIdentity/useResetPasswordMutation";
 export { useVerifyPasswordResetCodeMutation } from "./hooks/managedIdentity/useVerifyPasswordResetCodeMutation";
