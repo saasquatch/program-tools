@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/microsite-router",
-  "version": "0.0.1",
+  "version": "1.0.0-0",
   "description": "SaaSquatch microsite client-side router and hierarchical layout renderer.",
   "main": "dist/bundle.js",
   "module": "dist/bundle.js",
