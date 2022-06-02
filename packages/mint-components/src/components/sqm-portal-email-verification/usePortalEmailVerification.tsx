@@ -19,6 +19,7 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
   const submit = async () => {
     if (!email) return;
     setError("");
+    setSuccess(false);
     const urlParams = nextPage ? { nextPage } : null;
     const redirectPath = props.redirectPath;
     const variables = { email, urlParams, redirectPath };
@@ -41,7 +42,10 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
   return {
     states: {
       loading,
-      error: errors?.response?.errors?.[0]?.message || error,
+      error:
+        errors?.response?.errors?.[0]?.extensions?.message ||
+        errors?.response?.errors?.[0]?.message ||
+        error,
       success,
     },
     callbacks: {

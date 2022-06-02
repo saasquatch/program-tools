@@ -17,7 +17,7 @@ Feature: Portal Login
     Then the login button enters a loading state
     When they are not logged in
     And they are not redirected
-    And an error banner is shown stating that they should try again
+    And an error banner is shown
 
   @motivating
   Scenario: User's must provide an email and password to login
@@ -27,7 +27,7 @@ Feature: Portal Login
     When they click "Login"
     Then the login button enters a loading state
     When they are not logged in
-    And the missing field is highlighted with a validation error
+    And the missing field shows a validation error
 
   @motivating
   Scenario: Users are redirected to the verification page if they login with an unverified email address

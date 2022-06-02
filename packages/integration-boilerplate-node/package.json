@@ -1,9 +1,9 @@
 {
   "name": "@saasquatch/integration-boilerplate-node",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Node/Express boilerplate for building SaaSquatch integrations",
   "engines": {
-    "node": "^14"
+    "node": ">=14"
   },
   "files": [
     "dist/"

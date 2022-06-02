@@ -83,6 +83,79 @@ const users = [
   },
 ];
 
+const pointsUsers = [
+  {
+    firstName: "",
+    lastInitial: "",
+    textValue: "82 Points",
+    rank: 1,
+    rowNumber: 1,
+  },
+  {
+    firstName: "MF",
+    lastInitial: "D",
+    textValue: "73 Points",
+    rank: 2,
+    rowNumber: 2,
+  },
+  {
+    firstName: "Freddie",
+    lastInitial: "G",
+    textValue: "64 Points",
+    rank: 3,
+    rowNumber: 3,
+  },
+  {
+    firstName: "Benny",
+    lastInitial: "B",
+    textValue: "55 Points",
+    rank: 4,
+    rowNumber: 4,
+  },
+  {
+    firstName: "Mos",
+    lastInitial: "D",
+    textValue: "46 Points",
+    rank: 5,
+    rowNumber: 5,
+  },
+  {
+    firstName: "Joe",
+    lastInitial: "S",
+    textValue: "42 Points",
+    rank: 6,
+    rowNumber: 6,
+  },
+  {
+    firstName: "Zach",
+    lastInitial: "H",
+    textValue: "41 Points",
+    rank: 7,
+    rowNumber: 7,
+  },
+  {
+    firstName: "Sarah",
+    lastInitial: "S",
+    textValue: "39 Points",
+    rank: 8,
+    rowNumber: 8,
+  },
+  {
+    firstName: "James",
+    lastInitial: "",
+    textValue: "33 Points",
+    rank: 9,
+    rowNumber: 9,
+  },
+  {
+    firstName: "",
+    lastInitial: "J",
+    textValue: "29 Points",
+    rank: 10,
+    rowNumber: 10,
+  },
+];
+
 const defaultStyles = {
   usersheading: "User",
   statsheading: "Referrals",
@@ -311,12 +384,12 @@ export const PointsLeaderboard = () => {
     },
     data: {
       rankType: "rowNumber",
-      leaderboard: users,
+      leaderboard: pointsUsers,
       rowNumber: 10,
       viewerRank: {
         firstName: "Viktor",
         lastInitial: "V",
-        textValue: "82",
+        textValue: "82 Points",
         rank: 1,
         rowNumber: 1,
       },

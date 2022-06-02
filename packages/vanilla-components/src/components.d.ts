@@ -337,8 +337,8 @@ export namespace Components {
         /**
           * The type of icon used to display a user’s progress.
           * @uiName Indicator Icon
-          * @uiEnum ["Path", "Circle", "SemiCircle", "Line"]
-          * @uiEnumNames ["Path", "Circle", "Semi Circle", "Line"]
+          * @uiEnum ["Path"]
+          * @uiEnumNames ["Path"]
          */
         "progresstype": string;
         /**
@@ -440,8 +440,8 @@ export namespace Components {
          */
         "expiredvalue": string;
         /**
-          * Reward expiry ICU message
-          * @uiName Expires Text
+          * ICU message shown in the rewards column for expiring rewards. See [ICU messages](https://unicode-org.github.io/icu/userguide/format_parse/messages/) for more details.
+          * @uiName Expiring Text
           * @uiGroup Expired Rewards
          */
         "expiresvalue": string;
@@ -1743,8 +1743,8 @@ declare namespace LocalJSX {
         /**
           * The type of icon used to display a user’s progress.
           * @uiName Indicator Icon
-          * @uiEnum ["Path", "Circle", "SemiCircle", "Line"]
-          * @uiEnumNames ["Path", "Circle", "Semi Circle", "Line"]
+          * @uiEnum ["Path"]
+          * @uiEnumNames ["Path"]
          */
         "progresstype"?: string;
         /**
@@ -1846,8 +1846,8 @@ declare namespace LocalJSX {
          */
         "expiredvalue"?: string;
         /**
-          * Reward expiry ICU message
-          * @uiName Expires Text
+          * ICU message shown in the rewards column for expiring rewards. See [ICU messages](https://unicode-org.github.io/icu/userguide/format_parse/messages/) for more details.
+          * @uiName Expiring Text
           * @uiGroup Expired Rewards
          */
         "expiresvalue"?: string;

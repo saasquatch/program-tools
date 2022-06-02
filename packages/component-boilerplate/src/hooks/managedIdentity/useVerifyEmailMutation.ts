@@ -3,7 +3,7 @@ import { useEffect } from "@saasquatch/universal-hooks";
 
 import { BaseQueryData } from "../graphql/useBaseQuery";
 import { useMutation } from "../graphql/useMutation";
-import { useManagedIdentityQuery } from "./useManagedIdentityQuery";
+import { useManagedIdentitySessionQuery } from "./useManagedIdentitySessionQuery";
 
 const VerifyEmailMutation = gql`
   mutation VerifyEmail($oobCode: String!) {
@@ -25,13 +25,13 @@ export function useVerifyEmailMutation(): [
   (e: { oobCode: string }) => unknown,
   BaseQueryData<VerifyEmailResult>
 ] {
-  const [refreshManagedIdentity] = useManagedIdentityQuery();
+  const [refreshManagedIdentitySession] = useManagedIdentitySessionQuery();
   const [request, { loading, data, errors }] =
     useMutation<VerifyEmailResult>(VerifyEmailMutation);
 
   useEffect(() => {
     if (data?.verifyManagedIdentityEmail?.success) {
-      refreshManagedIdentity();
+      refreshManagedIdentitySession();
     }
   }, [data?.verifyManagedIdentityEmail?.success]);
 
