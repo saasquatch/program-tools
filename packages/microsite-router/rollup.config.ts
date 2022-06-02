@@ -3,10 +3,7 @@ import typescript from "@rollup/plugin-typescript";
 //@ts-ignore
 import serve from "rollup-plugin-serve";
 import { terser } from "rollup-plugin-terser";
-
-const buildPlugins = [typescript, terser];
-const watchPlugins = [typescript, serve];
-const plugins = process.env.ROLLUP_WATCH ? watchPlugins : buildPlugins;
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 
 export default defineConfig({
   input: "src/main.ts",
@@ -14,5 +11,17 @@ export default defineConfig({
     file: "dist/bundle.js",
     format: "es",
   },
-  plugins: plugins.map((f) => f()),
+  plugins: [
+    typescript(),
+    nodeResolve(),
+    ...(process.env.ROLLUP_WATCH
+      ? [
+          serve({
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+            },
+          }),
+        ]
+      : [terser()]),
+  ],
 });

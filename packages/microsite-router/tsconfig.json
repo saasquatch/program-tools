@@ -1,0 +1,11 @@
+{
+  "include": ["src/**/*", "rollup.config.ts"],
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "es2015",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node"
+  }
+}

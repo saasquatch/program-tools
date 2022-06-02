@@ -1,0 +1,268 @@
+# ========================================
+# PORTAL DEMO
+# ========================================
+
+mutation deletePages {
+  activity: deleteMicrositePageConfig(key: "activity") {
+    deletedCount
+  }
+  editProfile: deleteMicrositePageConfig(key: "edit-profile") {
+    deletedCount
+  }
+  emailVerification: deleteMicrositePageConfig(key: "email-verification") {
+    deletedCount
+  }
+  forgotPassword: deleteMicrositePageConfig(key: "forgot-password") {
+    deletedCount
+  }
+  logout: deleteMicrositePageConfig(key: "logout") {
+    deletedCount
+  }
+  unverifiedLogout: deleteMicrositePageConfig(key: "unverified-logout") {
+    deletedCount
+  }
+  register: deleteMicrositePageConfig(key: "register") {
+    deletedCount
+  }
+  resetPassword: deleteMicrositePageConfig(key: "reset-password") {
+    deletedCount
+  }
+  root: deleteMicrositePageConfig(key: "root") {
+    deletedCount
+  }
+  verifyEmail: deleteMicrositePageConfig(key: "verify-email") {
+    deletedCount
+  }
+  publicVerifyEmail: deleteMicrositePageConfig(key: "public-verify-email") {
+    deletedCount
+  }
+  login: deleteMicrositePageConfig(key: "login") {
+    deletedCount
+  }
+}
+
+mutation deleteLayouts {
+  portal: deleteMicrositeLayoutConfig(key: "portal") {
+    deletedCount
+  }
+  loggedOut: deleteMicrositeLayoutConfig(key: "loggedOut") {
+    deletedCount
+  }
+  loggedIn: deleteMicrositeLayoutConfig(key: "loggedIn") {
+    deletedCount
+  }
+}
+
+mutation createLayouts {
+  portal: createMicrositeLayoutConfig(
+    micrositeLayoutConfigInput: {
+      key: "portal"
+      name: "Portal Layout"
+      values: {
+        html: "<sqm-portal-frame>\n  <a slot=\"header\" href=\"/\">\n    <sqm-text style=\"height: 60px\">\n      <img\n        style=\"height: 60px\"\n        src=\"https://res.cloudinary.com/saasquatch/image/upload/v1634255445/squatch-assets/Copy_of_saasquatch-logo-tree-large-horizontal.png\"\n      />\n    </sqm-text>\n  </a>\n  <sqb-program-section program-id=\"referral-program\">\n    <slot></slot>\n  </sqb-program-section>\n  <sqm-portal-footer\n    slot=\"footer\"\n    support-email=\"support@example.com\"\n    terms-link=\"https://example.com\"\n    faq-link=\"https://example.com\"\n    terms-text=\"Terms And Conditions\"\n    faq-text=\"FAQ\"\n    show-powered-by=\"true\"\n  ></sqm-portal-footer>\n</sqm-portal-frame>\n"
+      }
+    }
+  ) {
+    key
+  }
+
+  loggedOut: createMicrositeLayoutConfig(
+    micrositeLayoutConfigInput: {
+      key: "logged-out"
+      name: "Logged Out Layout"
+      parentKey: "portal"
+      values: {
+        html: "<sqm-hero\n  background=\"https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80\"\n>\n  <slot></slot>\n</sqm-hero>\n"
+      }
+    }
+  ) {
+    key
+  }
+
+  loggedIn: createMicrositeLayoutConfig(
+    micrositeLayoutConfigInput: {
+      key: "logged-in"
+      name: "Logged In Layout"
+      parentKey: "portal"
+      values: {
+        html: "<sqm-divided-layout\n  direction=\"row\"\n  style=\"border-top: 1px solid #eaeaea; border-bottom: 1px solid #eaeaea\"\n>\n  <sqm-navigation-sidebar>\n    <sqm-navigation-sidebar-item\n      path=\"/\"\n      icon=\"house\"\n      label=\"Dashboard\"\n    ></sqm-navigation-sidebar-item>\n    <sqm-navigation-sidebar-item\n      path=\"/activity\"\n      icon=\"bar-chart\"\n      label=\"Activity\"\n    ></sqm-navigation-sidebar-item>\n    <sqm-navigation-sidebar-item\n      path=\"/editProfile\"\n      icon=\"person\"\n      label=\"Edit Profile\"\n    ></sqm-navigation-sidebar-item>\n    <sqm-navigation-sidebar-item\n      path=\"/logout\"\n      icon=\"box-arrow-right\"\n      label=\"Logout\"\n    ></sqm-navigation-sidebar-item>\n  </sqm-navigation-sidebar>\n  <sqm-divided-layout direction=\"column\">\n    <slot></slot>\n  </sqm-divided-layout>\n</sqm-divided-layout>\n"
+      }
+    }
+  ) {
+    key
+  }
+}
+
+mutation createPages {
+  ####
+  # VERIFIED only
+  ####
+
+  root: createMicrositePageConfig(
+    micrositePageConfigInput: {
+      key: "root"
+      layoutKey: "logged-in"
+      urlPath: "/"
+      allowedUsers: VERIFIED
+      disallowedUrlPath: "/emailVerification"
+      values: {
+        title: "Microsite"
+        html: "<sqb-widget\n  widget-type=\"p/ref/w/referrerWidget\"\n  track-loads=\"true\"\n></sqb-widget>\n"
+      }
+    }
+  ) {
+    key
+  }
+
+  activity: createMicrositePageConfig(
+    micrositePageConfigInput: {
+      key: "activity"
+      layoutKey: "logged-in"
+      urlPath: "/activity"
+      allowedUsers: VERIFIED
+      disallowedUrlPath: "/emailVerification"
+      values: {
+        title: "Activity"
+        html: "<sqm-portal-container direction=\"column\" padding=\"xxx-large\" gap=\"xxx-large\">\n  <sqm-text> <h1>Activity</h1></sqm-text>\n  <sqm-stat-container space=\"xxxx-large\"\n    ><sqm-big-stat\n      flex-reverse=\"true\"\n      alignment=\"left\"\n      stat-type=\"/referralsCount\"\n      ><sqm-text><p>Referrals</p></sqm-text></sqm-big-stat\n    >\n    <sqm-big-stat\n      flex-reverse=\"true\"\n      alignment=\"left\"\n      stat-type=\"/rewardsCountFiltered/AVAILABLE\"\n      ><sqm-text><p>Rewards Earned</p></sqm-text></sqm-big-stat\n    >\n    <sqm-big-stat\n      flex-reverse=\"true\"\n      alignment=\"left\"\n      stat-type=\"/rewardBalance/CREDIT/CENTS\"\n      ><sqm-text><p>Reward Balance</p></sqm-text></sqm-big-stat\n    >\n  </sqm-stat-container>\n  <sqm-referral-table>\n    <sqm-referral-table-user-column></sqm-referral-table-user-column>\n    <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>\n    <sqm-referral-table-status-column></sqm-referral-table-status-column>\n    <sqm-referral-table-date-column\n      column-title=\"Referred\"\n      date-shown=\"dateReferralStarted\"\n    ></sqm-referral-table-date-column> </sqm-referral-table\n></sqm-portal-container>\n"
+      }
+    }
+  ) {
+    key
+  }
+
+  editProfile: createMicrositePageConfig(
+    micrositePageConfigInput: {
+      key: "edit-profile"
+      layoutKey: "logged-in"
+      urlPath: "/editProfile"
+      allowedUsers: VERIFIED
+      disallowedUrlPath: "/emailVerification"
+      values: {
+        title: "Edit Profile"
+        html: "<sqm-portal-container direction=\"column\" gap=\"xxx-large\">\n  <sqm-portal-profile></sqm-portal-profile> </sqm-portal-container\n><sqm-portal-container direction=\"column\" gap=\"xxx-large\">\n  <sqm-portal-change-password></sqm-portal-change-password>\n</sqm-portal-container>\n"
+      }
+    }
+  ) {
+    key
+  }
+
+  ####
+  # UNVERIFIED only
+  ####
+
+  emailVerification: createMicrositePageConfig(
+    micrositePageConfigInput: {
+      key: "email-verification"
+      layoutKey: "logged-out"
+      urlPath: "/emailVerification"
+      allowedUsers: UNVERIFIED
+      disallowedUrlPath: "/login"
+      values: {
+        title: "Email Verification"
+        html: "<sqm-portal-email-verification></sqm-portal-email-verification>"
+      }
+    }
+  ) {
+    key
+  }
+
+  ####
+  # PUBLIC, but redirect logged in users
+  ####
+
+  forgotPassword: createMicrositePageConfig(
+    micrositePageConfigInput: {
+      key: "forgot-password"
+      layoutKey: "logged-out"
+      urlPath: "/forgotPassword"
+      allowedUsers: PUBLIC
+      disallowedUrlPath: "/"
+      values: {
+        title: "Forgot Password"
+        html: "<sqm-portal-forgot-password\n  email-label=\"Business Email\"\n></sqm-portal-forgot-password>\n"
+      }
+    }
+  ) {
+    key
+  }
+
+  register: createMicrositePageConfig(
+    micrositePageConfigInput: {
+      key: "register"
+      layoutKey: "logged-out"
+      urlPath: "/register"
+      allowedUsers: PUBLIC
+      disallowedUrlPath: "/"
+      values: {
+        title: "Register"
+        html: "<sqm-portal-register>\n  <sqm-name-fields slot=\"formData\"></sqm-name-fields>\n</sqm-portal-register>\n"
+      }
+    }
+  ) {
+    key
+  }
+
+  login: createMicrositePageConfig(
+    micrositePageConfigInput: {
+      key: "login"
+      layoutKey: "logged-out"
+      urlPath: "/login"
+      allowedUsers: PUBLIC
+      disallowedUrlPath: "/"
+      values: { title: "Login", html: "<sqm-portal-login></sqm-portal-login>" }
+    }
+  ) {
+    key
+  }
+
+  ####
+  # PUBLIC, allow everyone
+  ####
+
+  logout: createMicrositePageConfig(
+    micrositePageConfigInput: {
+      key: "logout"
+      layoutKey: "logged-out"
+      urlPath: "/logout"
+      allowedUsers: PUBLIC
+      values: {
+        title: "Logout"
+        html: "<sqm-portal-logout next-page=\"/login\"></sqm-portal-logout>"
+      }
+    }
+  ) {
+    key
+  }
+
+  # This page errors if you don't provide an oob code, so can be PUBLIC
+  verifyEmail: createMicrositePageConfig(
+    micrositePageConfigInput: {
+      key: "verify-email"
+      layoutKey: "logged-out"
+      urlPath: "/verifyEmail"
+      allowedUsers: PUBLIC
+      values: {
+        title: "Verify Email"
+        html: "<sqm-portal-verify-email></sqm-portal-verify-email>"
+      }
+    }
+  ) {
+    key
+  }
+
+  # This page errors if you don't provide an oob code, so can be PUBLIC
+  resetPassword: createMicrositePageConfig(
+    micrositePageConfigInput: {
+      key: "reset-password"
+      layoutKey: "logged-out"
+      urlPath: "/resetPassword"
+      allowedUsers: PUBLIC
+      values: {
+        title: "Reset Password"
+        html: "<sqm-portal-reset-password confirm-password=\"true\"></sqm-portal-reset-password>\n"
+      }
+    }
+  ) {
+    key
+  }
+}
