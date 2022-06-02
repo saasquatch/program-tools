@@ -27,8 +27,8 @@ interface RenderMicrositePageResponse {
 export type FetchPageResult = { page: PageConfig; layouts: LayoutConfig[] };
 
 const RENDER_MICROSITE_PAGE_QUERY = `
-  query RenderMicrositePage($urlPath: String!) {
-    renderMicrositePage(urlPath: $urlPath) {
+  query RenderMicrositePage($urlPath: String!, $locale: RSLocale) {
+    renderMicrositePage(urlPath: $urlPath, locale: $locale) {
       micrositePageConfig {
         urlPath
         values
@@ -45,7 +45,10 @@ const RENDER_MICROSITE_PAGE_QUERY = `
 
 const pageCache: Record<string, FetchPageResult> = {};
 
-export async function fetchPage(urlPath: string): Promise<FetchPageResult> {
+export async function fetchPage(
+  urlPath: string,
+  locale?: string
+): Promise<FetchPageResult> {
   if (pageCache[urlPath]) {
     console.log("Avoiding GraphQL call in lieu of cache for ", urlPath);
     return pageCache[urlPath];
@@ -60,7 +63,7 @@ export async function fetchPage(urlPath: string): Promise<FetchPageResult> {
         body: JSON.stringify({
           operationName: "RenderMicrositePage",
           query: RENDER_MICROSITE_PAGE_QUERY,
-          variables: { urlPath },
+          variables: { urlPath, locale },
         }),
       }
     );
