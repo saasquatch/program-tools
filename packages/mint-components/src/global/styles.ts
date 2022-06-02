@@ -578,10 +578,6 @@ html {
 :root {
   --sqm-header-background: var(--sl-color-white);
   --sqm-footer-background: var(--sl-color-white);
-
-  // --st-color-text-error, --st-content-max-width, --st-content-background, and --st-portal-background are no longer provided by mint-component
-  // These variables should be supplied by the Service Titan project
-
   --sqm-color-text-error: #e63717;
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
@@ -590,6 +586,7 @@ html {
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 1280px;
 }
+
 body {
   font-family: var(--sl-font-sans);
   font-size: var(--sl-font-size-medium);
@@ -600,14 +597,7 @@ body {
   margin: 0;
   background-color: var(--sqm-portal-background);
 }
-a,
-a:visited {
-  text-decoration: none;
-  color: var(--sl-color-primary-500);
-}
-a:hover {
-  color: var(--sl-color-primary-600);
-}
+
 // .terms-link,
 // .terms-link:visited {
 //   color: var(--sl-color-gray-500);
