@@ -24,6 +24,18 @@ export class BrandComponent {
   @Prop() brandColor: string;
 
   /**
+   * @uiName Background Color
+   * @uiWidget color
+   */
+  @Prop() backgroundColor?: string;
+
+  /**
+   * @uiName Font Color
+   * @uiWidget color
+   */
+  @Prop() fontColor?: string;
+
+  /**
    * The brand font that you want to use
    *
    * @uiName Brand Font
@@ -60,6 +72,7 @@ export class BrandComponent {
 
           :host{
             display: contents;
+            
           }
           /* 
           Selects any element placed inside a slot
@@ -73,6 +86,8 @@ export class BrandComponent {
             font-family:  "${font}", arial;
 			
             ${this.brandColor && css}
+            ${this.backgroundColor && `background: ${this.backgroundColor};`}
+            ${this.fontColor && `color: ${this.fontColor};`}
             --sl-focus-ring-color-primary: var(--sl-color-primary-100);
             --sl-input-border-color-focus: var(--sl-color-primary-500);
             --sl-color-primary-hue: var(--sl-color-primary-500);

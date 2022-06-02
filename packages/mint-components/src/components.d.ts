@@ -85,6 +85,11 @@ export namespace Components {
     }
     interface SqmBrand {
         /**
+          * @uiName Background Color
+          * @uiWidget color
+         */
+        "backgroundColor"?: string;
+        /**
           * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
           * @uiName Brand Color
           * @uiWidget color
@@ -95,6 +100,11 @@ export namespace Components {
           * @uiName Brand Font
          */
         "brandFont": string;
+        /**
+          * @uiName Font Color
+          * @uiWidget color
+         */
+        "fontColor"?: string;
     }
     interface SqmCardFeed {
         /**
@@ -2677,6 +2687,11 @@ declare namespace LocalJSX {
     }
     interface SqmBrand {
         /**
+          * @uiName Background Color
+          * @uiWidget color
+         */
+        "backgroundColor"?: string;
+        /**
           * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
           * @uiName Brand Color
           * @uiWidget color
@@ -2687,6 +2702,11 @@ declare namespace LocalJSX {
           * @uiName Brand Font
          */
         "brandFont"?: string;
+        /**
+          * @uiName Font Color
+          * @uiWidget color
+         */
+        "fontColor"?: string;
     }
     interface SqmCardFeed {
         /**
