@@ -68,6 +68,7 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     formData = { ...formData };
     const redirectPath = props.redirectPath;
     const variables = {
+      key: props.formKey,
       email,
       password,
       formData,

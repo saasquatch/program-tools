@@ -103,6 +103,13 @@ export class PortalRegistrationForm {
   @Prop() loginPath: string = "/login";
 
   /**
+   * Microsite Registration Form Key
+   *
+   * @uiName Form Key
+   */
+  @Prop() formKey: string = "microsite-registration-form";
+
+  /**
    * @undocumented
    * @uiType object
    */

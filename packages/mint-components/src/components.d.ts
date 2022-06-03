@@ -1074,6 +1074,11 @@ export namespace Components {
          */
         "enablePasswordValidation": boolean;
         /**
+          * Microsite Registration Form Key
+          * @uiName Form Key
+         */
+        "formKey": string;
+        /**
           * Hide default input fields to use custom fields
           * @uiName Hide Default Inputs
           * @default
@@ -3920,6 +3925,11 @@ declare namespace LocalJSX {
           * @uiName Enable Password Validation
          */
         "enablePasswordValidation"?: boolean;
+        /**
+          * Microsite Registration Form Key
+          * @uiName Form Key
+         */
+        "formKey"?: string;
         /**
           * Hide default input fields to use custom fields
           * @uiName Hide Default Inputs
