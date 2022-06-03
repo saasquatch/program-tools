@@ -17,7 +17,7 @@ const RegisterViaRegistrationFormMutation = gql`
     $redirectPath: String
   ) {
     submitForm(
-      formInput: {
+      formSubmissionInput: {
         formData: {
           email: $email
           password: $password
