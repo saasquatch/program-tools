@@ -30,6 +30,9 @@ const RegisterViaRegistrationFormMutation = gql`
       results {
         ... on FormHandlerSubmissionResult {
           result
+          formHandler {
+            namespace
+          }
         }
         ... on FormHandlerError {
           errorCode
@@ -67,6 +70,9 @@ interface RegisterViaRegistrationFormResult {
       result: {
         results: Array<RegistrationResult>;
       };
+      formHandler: {
+        namespace: string;
+      };
     }>;
   };
 }
@@ -89,39 +95,35 @@ export function useRegisterViaRegistrationFormMutation(): [
   const [formError, setFormError] = useState<string | undefined>();
 
   useEffect(() => {
-    const registrationResult: null | RegistrationResult =
-      data?.submitForm?.results.reduce(
-        (
-          prev: null | RegistrationResult,
-          curr: RegisterViaRegistrationFormResult["submitForm"]["results"][number]
-        ) => {
-          // not really sure how to only get the registration result...
-          const result = curr.result.results.find((result) =>
-            result.hasOwnProperty("success")
-          );
-
-          return result || prev;
-        },
-        null
-      );
-    if (registrationResult && registrationResult.success) {
-      // if success handle setUserIdentity
-      setFormError(undefined);
-      const jwt = registrationResult.data.token;
-      const { user } = decode<DecodedSquatchJWT>(jwt);
-      setUserIdentity({
-        jwt,
-        id: user.id,
-        accountId: user.accountId,
-        managedIdentity: {
-          email: registrationResult.data.email,
-          emailVerified: registrationResult.data.emailVerified,
-          sessionData: registrationResult.data.sessionData,
-        },
-      });
-    } else if (registrationResult && !registrationResult.success) {
-      // handle errors
-      setFormError(registrationResult.message);
+    const managedIdentityResponse:
+      | undefined
+      | RegisterViaRegistrationFormResult["submitForm"]["results"][number] = data?.submitForm?.results.find(
+      (result) => result.formHandler.namespace === "identity"
+    );
+    if (
+      managedIdentityResponse &&
+      managedIdentityResponse.result.results.length
+    ) {
+      const registrationResult = managedIdentityResponse.result.results[0];
+      if (registrationResult.success) {
+        // if success handle setUserIdentity
+        setFormError(undefined);
+        const jwt = registrationResult.data.token;
+        const { user } = decode<DecodedSquatchJWT>(jwt);
+        setUserIdentity({
+          jwt,
+          id: user.id,
+          accountId: user.accountId,
+          managedIdentity: {
+            email: registrationResult.data.email,
+            emailVerified: registrationResult.data.emailVerified,
+            sessionData: registrationResult.data.sessionData,
+          },
+        });
+      } else {
+        // handle errors
+        setFormError(registrationResult.message);
+      }
     }
   }, [data?.submitForm]);
 
