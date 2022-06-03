@@ -44,8 +44,8 @@ export class ReferralTable {
    */
   @Prop() perPage: number = 4;
 
-  /** @uiName Show Column Labels */
-  @Prop() showLabels?: boolean = true;
+  /** @uiName Hide Column Labels */
+  @Prop() hideLabels?: boolean = false;
 
   /** @uiName Previous Button Text  */
   @Prop() prevLabel?: string = "Prev";
@@ -264,7 +264,7 @@ function useReferralTableDemo(
       },
       data: {
         textOverrides: {
-          showLabels: props.showLabels,
+          showLabels: !props.hideLabels,
           prevLabel: props.prevLabel,
           moreLabel: props.moreLabel,
         },

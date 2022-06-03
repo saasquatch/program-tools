@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.1] - 2022-06-03
+
+### Changed
+
+- BREAKING CHANGES: showLabels replaced with hideLabels for `<sqm-referral-table>` and `<sqm-rewards-table>`
+
 ## [1.6.0] - 2022-05-09
 
 ### Changed
@@ -450,7 +456,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.5...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.1...HEAD
+[1.6.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.1
+[1.6.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.0
 [1.5.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.5
 [1.5.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.4
 [1.5.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.3

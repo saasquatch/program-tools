@@ -40,8 +40,8 @@ export class RewardsTable {
   /** @uiName Number of rewards per page */
   @Prop() perPage: number = 4;
 
-  /** @uiName Show column labels */
-  @Prop() showLabels?: boolean = true;
+  /** @uiName Hide Column Labels */
+  @Prop() hideLabels?: boolean = false;
 
   /** @uiName Previous button text  */
   @Prop() prevLabel?: string = "Prev";
@@ -229,7 +229,7 @@ function useRewardsTableDemo(
       },
       data: {
         textOverrides: {
-          showLabels: props.showLabels,
+          showLabels: !props.hideLabels,
           prevLabel: props.prevLabel,
           moreLabel: props.moreLabel,
         },
