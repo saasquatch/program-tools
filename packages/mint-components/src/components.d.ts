@@ -27,6 +27,7 @@ import { PortalFrameViewProps } from "./components/sqm-portal-frame/sqm-portal-f
 import { PortalLoginViewProps } from "./components/sqm-portal-login/sqm-portal-login-view";
 import { PortalProfileViewProps } from "./components/sqm-portal-profile/sqm-portal-profile-view";
 import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-portal-register-view";
+import { PortalRegistrationFormViewProps } from "./components/sqm-portal-registration-form/sqm-portal-registration-form-view";
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
 import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
@@ -1002,6 +1003,68 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<PortalRegisterViewProps>;
+        /**
+          * @uiName Email Label
+         */
+        "emailLabel": string;
+        /**
+          * @uiName Enable Password Validation
+         */
+        "enablePasswordValidation": boolean;
+        /**
+          * Hide default input fields to use custom fields
+          * @uiName Hide Default Inputs
+          * @default
+         */
+        "hideInputs": boolean;
+        /**
+          * @uiName Login Button Text
+         */
+        "loginLabel": string;
+        /**
+          * Login button redirection path
+          * @uiName Login Path
+         */
+        "loginPath": string;
+        /**
+          * Page navigated to after registration
+          * @uiName Next Page
+         */
+        "nextPage": string;
+        /**
+          * @uiName Heading Label
+         */
+        "pageLabel": string;
+        /**
+          * @uiName Password Label
+         */
+        "passwordLabel": string;
+        /**
+          * The page that users are redirected to from the verification email.
+          * @uiName Email Redirection Base Path
+         */
+        "redirectPath": string;
+        /**
+          * @uiName Submit Button Text
+         */
+        "submitLabel": string;
+    }
+    interface SqmPortalRegistrationForm {
+        /**
+          * Show or hide the confirm password input
+          * @uiName Show Confirm Password Field
+          * @default
+         */
+        "confirmPassword": boolean;
+        /**
+          * @uiName Confirm Password Label
+         */
+        "confirmPasswordLabel": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PortalRegistrationFormViewProps>;
         /**
           * @uiName Email Label
          */
@@ -2435,6 +2498,12 @@ declare global {
         prototype: HTMLSqmPortalRegisterElement;
         new (): HTMLSqmPortalRegisterElement;
     };
+    interface HTMLSqmPortalRegistrationFormElement extends Components.SqmPortalRegistrationForm, HTMLStencilElement {
+    }
+    var HTMLSqmPortalRegistrationFormElement: {
+        prototype: HTMLSqmPortalRegistrationFormElement;
+        new (): HTMLSqmPortalRegistrationFormElement;
+    };
     interface HTMLSqmPortalResetPasswordElement extends Components.SqmPortalResetPassword, HTMLStencilElement {
     }
     var HTMLSqmPortalResetPasswordElement: {
@@ -2766,6 +2835,7 @@ declare global {
         "sqm-portal-profile": HTMLSqmPortalProfileElement;
         "sqm-portal-protected-route": HTMLSqmPortalProtectedRouteElement;
         "sqm-portal-register": HTMLSqmPortalRegisterElement;
+        "sqm-portal-registration-form": HTMLSqmPortalRegistrationFormElement;
         "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
         "sqm-portal-verify-email": HTMLSqmPortalVerifyEmailElement;
         "sqm-program-explainer": HTMLSqmProgramExplainerElement;
@@ -3780,6 +3850,68 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<PortalRegisterViewProps>;
+        /**
+          * @uiName Email Label
+         */
+        "emailLabel"?: string;
+        /**
+          * @uiName Enable Password Validation
+         */
+        "enablePasswordValidation"?: boolean;
+        /**
+          * Hide default input fields to use custom fields
+          * @uiName Hide Default Inputs
+          * @default
+         */
+        "hideInputs"?: boolean;
+        /**
+          * @uiName Login Button Text
+         */
+        "loginLabel"?: string;
+        /**
+          * Login button redirection path
+          * @uiName Login Path
+         */
+        "loginPath"?: string;
+        /**
+          * Page navigated to after registration
+          * @uiName Next Page
+         */
+        "nextPage"?: string;
+        /**
+          * @uiName Heading Label
+         */
+        "pageLabel"?: string;
+        /**
+          * @uiName Password Label
+         */
+        "passwordLabel"?: string;
+        /**
+          * The page that users are redirected to from the verification email.
+          * @uiName Email Redirection Base Path
+         */
+        "redirectPath"?: string;
+        /**
+          * @uiName Submit Button Text
+         */
+        "submitLabel"?: string;
+    }
+    interface SqmPortalRegistrationForm {
+        /**
+          * Show or hide the confirm password input
+          * @uiName Show Confirm Password Field
+          * @default
+         */
+        "confirmPassword"?: boolean;
+        /**
+          * @uiName Confirm Password Label
+         */
+        "confirmPasswordLabel"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PortalRegistrationFormViewProps>;
         /**
           * @uiName Email Label
          */
@@ -5007,6 +5139,7 @@ declare namespace LocalJSX {
         "sqm-portal-profile": SqmPortalProfile;
         "sqm-portal-protected-route": SqmPortalProtectedRoute;
         "sqm-portal-register": SqmPortalRegister;
+        "sqm-portal-registration-form": SqmPortalRegistrationForm;
         "sqm-portal-reset-password": SqmPortalResetPassword;
         "sqm-portal-verify-email": SqmPortalVerifyEmail;
         "sqm-program-explainer": SqmProgramExplainer;
@@ -5098,6 +5231,7 @@ declare module "@stencil/core" {
             "sqm-portal-profile": LocalJSX.SqmPortalProfile & JSXBase.HTMLAttributes<HTMLSqmPortalProfileElement>;
             "sqm-portal-protected-route": LocalJSX.SqmPortalProtectedRoute & JSXBase.HTMLAttributes<HTMLSqmPortalProtectedRouteElement>;
             "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
+            "sqm-portal-registration-form": LocalJSX.SqmPortalRegistrationForm & JSXBase.HTMLAttributes<HTMLSqmPortalRegistrationFormElement>;
             "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
             "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
             "sqm-program-explainer": LocalJSX.SqmProgramExplainer & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerElement>;
