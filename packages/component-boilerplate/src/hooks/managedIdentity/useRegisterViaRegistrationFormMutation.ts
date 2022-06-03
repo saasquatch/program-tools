@@ -11,6 +11,7 @@ import { useMutation } from "../graphql/useMutation";
 
 const RegisterViaRegistrationFormMutation = gql`
   mutation RegisterViaRegistrationForm(
+    $key: String!
     $email: String!
     $password: String!
     $formData: RSJsonNode
@@ -18,6 +19,7 @@ const RegisterViaRegistrationFormMutation = gql`
   ) {
     submitForm(
       formSubmissionInput: {
+        key: $key
         formData: {
           email: $email
           password: $password
@@ -81,6 +83,7 @@ interface RegistrationFormResponseData<T> extends BaseQueryData<T> {
 
 export function useRegisterViaRegistrationFormMutation(): [
   (e: {
+    key: string;
     email: string;
     password: string;
     formData?: Record<string, any>;
