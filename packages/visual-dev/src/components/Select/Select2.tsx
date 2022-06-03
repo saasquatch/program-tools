@@ -484,6 +484,7 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
             }
             key={`${itemToString(item)}-${index}`}
             {...functional.getItemProps({ item, index })}
+            onMouseMove={() => {}}
           >
             {itemToNode(item)}
           </ListItem>
