@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 import decode from "jwt-decode";
-import { useEffect } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 
 import { BaseQueryData } from "../graphql/useBaseQuery";
 import {
@@ -8,7 +8,6 @@ import {
   DecodedSquatchJWT,
 } from "../../environment/UserIdentityContext";
 import { useMutation } from "../graphql/useMutation";
-import { useState } from "react";
 
 const RegisterViaRegistrationFormMutation = gql`
   mutation RegisterViaRegistrationForm(
@@ -92,7 +91,7 @@ export function useRegisterViaRegistrationFormMutation(): [
     useMutation<RegisterViaRegistrationFormResult>(
       RegisterViaRegistrationFormMutation
     );
-  const [formError, setFormError] = useState<string | undefined>();
+  const [formError, setFormError] = useState<string | null>(null);
 
   useEffect(() => {
     const managedIdentityResponse:
@@ -107,7 +106,7 @@ export function useRegisterViaRegistrationFormMutation(): [
       const registrationResult = managedIdentityResponse.result.results[0];
       if (registrationResult.success) {
         // if success handle setUserIdentity
-        setFormError(undefined);
+        setFormError(null);
         const jwt = registrationResult.data.token;
         const { user } = decode<DecodedSquatchJWT>(jwt);
         setUserIdentity({
