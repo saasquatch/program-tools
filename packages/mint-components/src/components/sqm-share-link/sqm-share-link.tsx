@@ -43,6 +43,37 @@ export class ShareLink {
   tooltiplifespan: number = DEFAULT_TOOLTIP_LIFESPAN;
 
   /**
+   * @uiName Background Color
+   * @uiWidget color
+   */
+  @Prop() backgroundColor?: string;
+
+  /**
+   * @uiName Text Color
+   * @uiWidget color
+   */
+  @Prop() textColor?: string;
+
+  /**
+   * @uiName Border Color
+   * @uiWidget color
+   */
+  @Prop() borderColor?: string;
+
+  /**
+   * @uiName Input Size
+   * @uiType string
+   * @uiEnum ["small", "medium", "large" ]
+   * @uiEnumNames ["Small", "Medium", "Large"]
+   */
+  @Prop() size?: "small" | "medium" | "large";
+
+  /**
+   * @uiName Configure border radius with pixel amount
+   */
+  @Prop() borderRadius?: number;
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -70,6 +101,11 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
       shareString,
       tooltiptext: props.tooltiptext,
       open,
+      backgroundColor: props.backgroundColor,
+      textColor: props.textColor,
+      borderColor: props.borderColor,
+      size: props.size,
+      borderRadius: props.borderRadius,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
         // Only if called from a user-initiated event

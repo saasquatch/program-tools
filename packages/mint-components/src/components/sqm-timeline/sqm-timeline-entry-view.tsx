@@ -8,11 +8,11 @@ export interface TimelineEntryProps {
   desc: string;
   icon: string;
   iconState: string;
+  textColor?: string;
 }
 
 const style = {
   TimelineReward: {
-    color: "var(--sl-color-neutral-900)",
     lineHeight: "var(--sl-line-height-dense)",
     "& .container": {
       display: "flex",
@@ -71,7 +71,10 @@ export function TimelineEntryView(props: TimelineEntryProps): VNode {
   const timeline_icon = props.icon ?? props.iconState;
 
   return (
-    <div class={sheet.classes.TimelineReward}>
+    <div
+      class={sheet.classes.TimelineReward}
+      style={{ color: props.textColor || "var(--sl-color-neutral-900)" }}
+    >
       <style type="text/css">
         {styleString}
         {vanillaStyle}

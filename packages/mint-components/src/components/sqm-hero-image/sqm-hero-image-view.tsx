@@ -19,6 +19,7 @@ export interface HeroImageViewProps {
   paddingImage?: Spacing;
   imagePos: "left" | "center" | "right";
   imageMobilePos: "top" | "bottom";
+  borderRadius?: number;
 }
 
 export function HeroImageView(props: HeroImageViewProps, children: VNode) {
@@ -40,6 +41,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       },
     },
     Image: {
+      borderRadius: props.borderRadius ? props.borderRadius : "none",
       display: "block",
       width: "100%",
       height: "100%",
@@ -71,6 +73,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       },
     },
     Column: {
+      borderRadius: props.borderRadius ? props.borderRadius : "none",
       display: "flex",
       background: props.backgroundColor || "",
       flexDirection: props.imagePos === "right" ? "row-reverse" : "row",

@@ -242,6 +242,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
 	:host{
 		display: block;
 		margin-bottom: var(--sl-spacing-large);
+    
 	}
   `;
 

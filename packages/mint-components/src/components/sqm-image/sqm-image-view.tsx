@@ -7,6 +7,7 @@ export interface ImageViewProps {
   right?: string;
   alignment?: "left" | "center" | "right";
   backgroundColor?: string;
+  borderRadius?: number;
   minHeight?: string; // helps with constraining minimum size
 }
 
@@ -16,6 +17,7 @@ export function ImageView(props: ImageViewProps) {
     Container: {
       display: "flex",
       width: "100%",
+      borderRadius: `${props.borderRadius}px` || "none",
       justifyContent: props.alignment || "center",
       background: props.backgroundColor || "",
     },

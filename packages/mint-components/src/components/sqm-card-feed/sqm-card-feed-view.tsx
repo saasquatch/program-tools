@@ -4,6 +4,9 @@ import { createStyleSheet } from "../../styling/JSS";
 export interface CardFeedViewProps {
   width: number;
   gap: number;
+  cardBackgroundColor?: string;
+  cardTextColor?: string;
+  cardBorderColor?: string;
 }
 
 export function CardFeedView(props: CardFeedViewProps, children: VNode) {
@@ -24,6 +27,26 @@ export function CardFeedView(props: CardFeedViewProps, children: VNode) {
   const vanillaStyle = `
     :host{
       display: block;   
+      ${
+        props.cardBackgroundColor &&
+        `--sl-color-neutral-0: ${props.cardBackgroundColor};`
+      }
+      ${
+        props.cardBackgroundColor &&
+        `--sl-color-neutral-950: ${props.cardTextColor};`
+      }
+      ${
+        props.cardBackgroundColor &&
+        `--sl-color-neutral-600: ${props.cardTextColor};`
+      }
+      ${
+        props.cardBackgroundColor &&
+        `--sl-color-neutral-700: ${props.cardTextColor};`
+      }
+      ${
+        props.cardBorderColor &&
+        `--sl-color-neutral-200: ${props.cardBorderColor};`
+      }
     }
 
   `;

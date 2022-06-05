@@ -13,9 +13,10 @@
   </head>
   <body>
     <sqm-brand
+      border-radius="50"
       brand-color="#4225c4"
       brand-font="Nunito Sans"
-      background-color="#333"
+      background-color="black"
       font-color="#fff"
     >
       <sqm-portal-container
@@ -33,6 +34,7 @@
           max-width="100%"
         >
           <sqm-hero-image
+            border-radius="25"
             image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"
             header="MyCompany Rewards"
             description="Refer a friend and earn up to $1200 in rewards"
@@ -44,23 +46,33 @@
         </sqm-portal-container>
         <sqm-portal-container
           direction="column"
-          padding="none"
+          padding="large"
           gap="xxx-large"
-          max-width="770px"
+          max-width="1000px"
           center
           display="grid"
+          background-color="lightblue"
+          border-radius="30"
         >
-          <sqm-stat-container space="xxx-large" display="flex">
+          <sqm-stat-container
+            show-border="false"
+            space="xxx-large"
+            display="flex"
+          >
             <sqm-big-stat
+              stat-font-size="xxx-large"
+              stat-color="blue"
               flex-reverse="true"
-              alignment="left"
+              alignment="center"
               stat-type="/referralsCount"
             >
               <p>Referrals</p>
             </sqm-big-stat>
             <sqm-big-stat
+              stat-font-size="xxx-large"
+              stat-color="slateblue"
               flex-reverse="true"
-              alignment="left"
+              alignment="center"
               stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"
             >
               <p>Giftcards</p>
@@ -82,7 +94,14 @@
                 Get rewarded when your friend uses our product
               </h3>
             </sqm-titled-section>
-            <sqm-referral-card vertical-alignment="start">
+            <sqm-referral-card
+              border-radius="25"
+              vertical-alignment="start"
+              background-color="#3248a8"
+              padding="large"
+              border-color="transparent"
+              text-color="white"
+            >
               <sqm-portal-container
                 gap="large"
                 slot="left"
@@ -95,6 +114,7 @@
                 you&#x2019;ll get:
                 <sqm-timeline icon="circle">
                   <sqm-timeline-entry
+                    text-color="white"
                     reward="$50"
                     unit="visa giftcard"
                     desc="Your friend purchases a Business plan"
@@ -102,6 +122,7 @@
                   >
                   </sqm-timeline-entry>
                   <sqm-timeline-entry
+                    text-color="white"
                     reward="$200"
                     unit="visa giftcard"
                     desc="Our sales team qualifies your friend as a good fit for our Enterprise plan"
@@ -109,6 +130,7 @@
                   >
                   </sqm-timeline-entry>
                   <sqm-timeline-entry
+                    text-color="white"
                     reward="$1000"
                     unit="visa giftcard"
                     desc="Your friend purchases an Enterprise plan"
@@ -128,8 +150,12 @@
                 Choose how you want to share
                 <sub>Your unique referral link:</sub>
                 <sqm-share-link
+                  size="large"
+                  background-color="lightblue"
+                  text-color="darkblue"
                   tooltip-text="Copied to Clipboard"
                   tooltip-lifespan="1000"
+                  border-color="darkblue"
                 >
                 </sqm-share-link>
                 <sqm-portal-container
@@ -166,6 +192,76 @@
                 </sqm-portal-container>
               </sqm-portal-container>
             </sqm-referral-card>
+            <sqm-card-feed
+              gap="24"
+              width="347"
+              card-background-color="#3248a8"
+              card-text-color="white"
+              card-border-color="transparent"
+            >
+              <sqm-task-card
+                reward-amount="20"
+                goal="1"
+                card-title="Complete a Survey"
+                description="Fill out our NPS survey and get 100 points for giving us honest feedback."
+                button-text="Take survey"
+                reward-unit="Points"
+                completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
+                ended-message="Ended {endDate}"
+                expiry-message="Ends {endDate}"
+                finite="0"
+                starts-on-message="Starts {startDate}"
+              >
+              </sqm-task-card>
+              <sqm-task-card
+                reward-amount="250"
+                goal="500"
+                show-progress-bar
+                card-title="Spend $500"
+                description="Earn 150 points when you spend $500 or more."
+                button-text="See plans"
+                completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
+                ended-message="Ended {endDate}"
+                expiry-message="Ends {endDate}"
+                progress-bar-unit="$"
+                finite="0"
+                reward-unit="Points"
+                starts-on-message="Starts {startDate}"
+              >
+              </sqm-task-card>
+              <sqm-task-card
+                goal="1"
+                reward-amount="50"
+                card-title="Follow Us on Twitter"
+                description="Earn 50 points when you follow us on Twitter!"
+                button-text="Follow"
+                button-link="https://twitter.com/"
+                open-new-tab="true"
+                event-key="socialFollow"
+                completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
+                ended-message="Ended {endDate}"
+                expiry-message="Ends {endDate}"
+                finite="0"
+                reward-unit="Points"
+                starts-on-message="Starts {startDate}"
+              >
+              </sqm-task-card>
+              <sqm-task-card
+                reward-amount="1"
+                reward-unit="Free Month"
+                goal="1"
+                card-title="Upgrade Your Plan"
+                description="Receive one free month for being a committed customer when you upgrade your plan."
+                button-text="Upgrade"
+                completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
+                ended-message="Ended {endDate}"
+                expiry-message="Ends {endDate}"
+                open-new-tab="false"
+                finite="0"
+                starts-on-message="Starts {startDate}"
+              >
+              </sqm-task-card>
+            </sqm-card-feed>
           </sqm-portal-container>
           <sqm-portal-container
             gap="large"

@@ -18,6 +18,10 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
         loading: false,
         flexReverse: false,
         alignment: "center" as const,
+        statColor: "slateblue" as const,
+        statDescriptionColor: "white" as const,
+        statFontSize: "x-large",
+        statDescriptionFontSize: "small",
       },
       label: "BAD PROP TYPE",
     };
@@ -34,6 +38,10 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
         value: 0,
         flexReverse: false,
         alignment: "center" as const,
+        statColor: "slateblue" as const,
+        statDescriptionColor: "white" as const,
+        statFontSize: "x-large",
+        statDescriptionFontSize: "small",
       },
       props.demoData || {},
       { arrayMerge: (_, a) => a }

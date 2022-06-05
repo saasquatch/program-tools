@@ -7,11 +7,11 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
+import { FontSize, Spacing } from "./global/mixins";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
-import { Spacing } from "./global/mixins";
 import { FunctionalComponent } from "@stencil/core";
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
@@ -76,6 +76,30 @@ export namespace Components {
          */
         "programId"?: string;
         /**
+          * @uiName Stat Color
+          * @uiWidget color
+         */
+        "statColor"?: string;
+        /**
+          * @uiName Stat Description Color
+          * @uiWidget color
+         */
+        "statDescriptionColor"?: string;
+        /**
+          * @uiName Stat Description Font Size
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "statDescriptionFontSize"?: FontSize;
+        /**
+          * @uiName Stat Font Size
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "statFontSize"?: FontSize;
+        /**
           * Select what type of stat to display. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
@@ -89,6 +113,10 @@ export namespace Components {
           * @uiWidget color
          */
         "backgroundColor"?: string;
+        /**
+          * @uiName Configure border radius with pixel amount
+         */
+        "borderRadius"?: number;
         /**
           * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
           * @uiName Brand Color
@@ -107,6 +135,21 @@ export namespace Components {
         "fontColor"?: string;
     }
     interface SqmCardFeed {
+        /**
+          * @uiName Card Background Color
+          * @uiType color
+         */
+        "cardBackgroundColor"?: string;
+        /**
+          * @uiName Card Border Color
+          * @uiType color
+         */
+        "cardBorderColor"?: string;
+        /**
+          * @uiName Card Text Color
+          * @uiType color
+         */
+        "cardTextColor"?: string;
         /**
           * @uiName Column Gap
           * @uiType number
@@ -285,6 +328,10 @@ export namespace Components {
          */
         "backgroundColor"?: string;
         /**
+          * @uiName Configure border radius with pixel amount
+         */
+        "borderRadius"?: number;
+        /**
           * @uiName CTA Button Link
          */
         "buttonLink"?: string;
@@ -380,6 +427,10 @@ export namespace Components {
           * @uiWidget color
          */
         "backgroundColor": string;
+        /**
+          * @uiName Configure border radius with pixel amount
+         */
+        "borderRadius"?: number;
         /**
           * @uiWidget ImageUpload
           * @uiName Image Link
@@ -665,6 +716,15 @@ export namespace Components {
         "successMessage": string;
     }
     interface SqmPortalContainer {
+        /**
+          * @uiName Background Color
+          * @uiWidget color
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName Configure border radius with pixel amount
+         */
+        "borderRadius"?: number;
         /**
           * @uiName Center content
          */
@@ -1094,6 +1154,32 @@ export namespace Components {
     interface SqmProgramMenu {
     }
     interface SqmReferralCard {
+        /**
+          * @uiName Background Color
+          * @uiWidget color
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName Border Color
+          * @uiWidget color
+         */
+        "borderColor"?: string;
+        /**
+          * @uiName Configure border radius with pixel amount
+         */
+        "borderRadius"?: number;
+        /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "padding"?: Spacing;
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+         */
+        "textColor"?: string;
         /**
           * @uiName Vertical Aligment
           * @uiType string
@@ -1786,6 +1872,20 @@ export namespace Components {
     }
     interface SqmShareLink {
         /**
+          * @uiName Background Color
+          * @uiWidget color
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName Border Color
+          * @uiWidget color
+         */
+        "borderColor"?: string;
+        /**
+          * @uiName Configure border radius with pixel amount
+         */
+        "borderRadius"?: number;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -1795,6 +1895,18 @@ export namespace Components {
           * @uiName Program ID
          */
         "programId"?: string;
+        /**
+          * @uiName Input Size
+          * @uiType string
+          * @uiEnum ["small", "medium", "large" ]
+          * @uiEnumNames ["Small", "Medium", "Large"]
+         */
+        "size"?: "small" | "medium" | "large";
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+         */
+        "textColor"?: string;
         /**
           * The number of milliseconds that the tooltip will appear for
           * @uiName Tooltip lifespan
@@ -1808,12 +1920,21 @@ export namespace Components {
     }
     interface SqmStatContainer {
         /**
+          * @uiName Border Color
+          * @uiWidget color
+         */
+        "borderColor"?: string;
+        /**
           * @uiName Display
           * @uiType string
           * @uiEnum ["grid", "flex"]
           * @uiEnumNames ["Grid", "Flex"]
          */
         "display": "grid" | "flex";
+        /**
+          * @uiName Show Border
+         */
+        "showBorder"?: boolean;
         /**
           * @uiName Space between stats
           * @uiType string
@@ -1998,6 +2119,11 @@ export namespace Components {
          */
         "reward": string;
         "setIcon": (value: "gift" | "circle") => Promise<void>;
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+         */
+        "textColor"?: string;
         /**
           * @uiName Reward Unit
          */
@@ -2678,6 +2804,30 @@ declare namespace LocalJSX {
          */
         "programId"?: string;
         /**
+          * @uiName Stat Color
+          * @uiWidget color
+         */
+        "statColor"?: string;
+        /**
+          * @uiName Stat Description Color
+          * @uiWidget color
+         */
+        "statDescriptionColor"?: string;
+        /**
+          * @uiName Stat Description Font Size
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "statDescriptionFontSize"?: FontSize;
+        /**
+          * @uiName Stat Font Size
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "statFontSize"?: FontSize;
+        /**
           * Select what type of stat to display. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
@@ -2691,6 +2841,10 @@ declare namespace LocalJSX {
           * @uiWidget color
          */
         "backgroundColor"?: string;
+        /**
+          * @uiName Configure border radius with pixel amount
+         */
+        "borderRadius"?: number;
         /**
           * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
           * @uiName Brand Color
@@ -2709,6 +2863,21 @@ declare namespace LocalJSX {
         "fontColor"?: string;
     }
     interface SqmCardFeed {
+        /**
+          * @uiName Card Background Color
+          * @uiType color
+         */
+        "cardBackgroundColor"?: string;
+        /**
+          * @uiName Card Border Color
+          * @uiType color
+         */
+        "cardBorderColor"?: string;
+        /**
+          * @uiName Card Text Color
+          * @uiType color
+         */
+        "cardTextColor"?: string;
         /**
           * @uiName Column Gap
           * @uiType number
@@ -2887,6 +3056,10 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
+          * @uiName Configure border radius with pixel amount
+         */
+        "borderRadius"?: number;
+        /**
           * @uiName CTA Button Link
          */
         "buttonLink"?: string;
@@ -2982,6 +3155,10 @@ declare namespace LocalJSX {
           * @uiWidget color
          */
         "backgroundColor"?: string;
+        /**
+          * @uiName Configure border radius with pixel amount
+         */
+        "borderRadius"?: number;
         /**
           * @uiWidget ImageUpload
           * @uiName Image Link
@@ -3267,6 +3444,15 @@ declare namespace LocalJSX {
         "successMessage"?: string;
     }
     interface SqmPortalContainer {
+        /**
+          * @uiName Background Color
+          * @uiWidget color
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName Configure border radius with pixel amount
+         */
+        "borderRadius"?: number;
         /**
           * @uiName Center content
          */
@@ -3696,6 +3882,32 @@ declare namespace LocalJSX {
     interface SqmProgramMenu {
     }
     interface SqmReferralCard {
+        /**
+          * @uiName Background Color
+          * @uiWidget color
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName Border Color
+          * @uiWidget color
+         */
+        "borderColor"?: string;
+        /**
+          * @uiName Configure border radius with pixel amount
+         */
+        "borderRadius"?: number;
+        /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "padding"?: Spacing;
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+         */
+        "textColor"?: string;
         /**
           * @uiName Vertical Aligment
           * @uiType string
@@ -4364,6 +4576,20 @@ declare namespace LocalJSX {
     }
     interface SqmShareLink {
         /**
+          * @uiName Background Color
+          * @uiWidget color
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName Border Color
+          * @uiWidget color
+         */
+        "borderColor"?: string;
+        /**
+          * @uiName Configure border radius with pixel amount
+         */
+        "borderRadius"?: number;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -4373,6 +4599,18 @@ declare namespace LocalJSX {
           * @uiName Program ID
          */
         "programId"?: string;
+        /**
+          * @uiName Input Size
+          * @uiType string
+          * @uiEnum ["small", "medium", "large" ]
+          * @uiEnumNames ["Small", "Medium", "Large"]
+         */
+        "size"?: "small" | "medium" | "large";
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+         */
+        "textColor"?: string;
         /**
           * The number of milliseconds that the tooltip will appear for
           * @uiName Tooltip lifespan
@@ -4386,12 +4624,21 @@ declare namespace LocalJSX {
     }
     interface SqmStatContainer {
         /**
+          * @uiName Border Color
+          * @uiWidget color
+         */
+        "borderColor"?: string;
+        /**
           * @uiName Display
           * @uiType string
           * @uiEnum ["grid", "flex"]
           * @uiEnumNames ["Grid", "Flex"]
          */
         "display"?: "grid" | "flex";
+        /**
+          * @uiName Show Border
+         */
+        "showBorder"?: boolean;
         /**
           * @uiName Space between stats
           * @uiType string
@@ -4575,6 +4822,11 @@ declare namespace LocalJSX {
           * @uiName Reward Amount
          */
         "reward"?: string;
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+         */
+        "textColor"?: string;
         /**
           * @uiName Reward Unit
          */

@@ -7,10 +7,12 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type                                                                                                                                           | Default       |
-| --------- | --------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `display` | `display` |             | `"flex" \| "grid"`                                                                                                                             | `"grid"`      |
-| `space`   | `space`   |             | `"large" \| "medium" \| "none" \| "small" \| "x-large" \| "x-small" \| "xx-large" \| "xx-small" \| "xxx-large" \| "xxx-small" \| "xxxx-large"` | `"xxx-large"` |
+| Property      | Attribute      | Description | Type                                                                                                                                           | Default       |
+| ------------- | -------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `borderColor` | `border-color` |             | `string`                                                                                                                                       | `undefined`   |
+| `display`     | `display`      |             | `"flex" \| "grid"`                                                                                                                             | `"grid"`      |
+| `showBorder`  | `show-border`  |             | `boolean`                                                                                                                                      | `true`        |
+| `space`       | `space`        |             | `"large" \| "medium" \| "none" \| "small" \| "x-large" \| "x-small" \| "xx-large" \| "xx-small" \| "xxx-large" \| "xxx-small" \| "xxxx-large"` | `"xxx-large"` |
 
 
 ## Dependencies

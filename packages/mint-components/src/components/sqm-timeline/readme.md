@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                 | Default     |
-| -------- | --------- | ----------- | -------------------- | ----------- |
-| `desc`   | `desc`    |             | `string`             | `undefined` |
-| `icon`   | `icon`    |             | `"circle" \| "gift"` | `undefined` |
-| `reward` | `reward`  |             | `string`             | `undefined` |
-| `unit`   | `unit`    |             | `string`             | `undefined` |
+| Property    | Attribute    | Description | Type                 | Default     |
+| ----------- | ------------ | ----------- | -------------------- | ----------- |
+| `desc`      | `desc`       |             | `string`             | `undefined` |
+| `icon`      | `icon`       |             | `"circle" \| "gift"` | `undefined` |
+| `reward`    | `reward`     |             | `string`             | `undefined` |
+| `textColor` | `text-color` |             | `string`             | `undefined` |
+| `unit`      | `unit`       |             | `string`             | `undefined` |
 
 
 ## Methods

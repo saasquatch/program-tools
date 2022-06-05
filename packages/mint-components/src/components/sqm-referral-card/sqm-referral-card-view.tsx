@@ -4,6 +4,11 @@ import { createStyleSheet } from "../../styling/JSS";
 
 export interface ReferralCardViewProps {
   verticalAlignment: "start" | "center" | "end";
+  padding?: Spacing;
+  backgroundColor?: string;
+  borderColor?: string;
+  textColor?: string;
+  borderRadius?: number;
   slots: {
     left: VNode;
     right: VNode;
@@ -12,8 +17,6 @@ export interface ReferralCardViewProps {
 const style = {
   Container: {
     display: "flex",
-    color: "var(--sl-color-neutral-900)",
-    background: "var(--sl-color-neutral-0)",
     "& .left": {
       boxSizing: "border-box",
       width: "50%",
@@ -36,7 +39,6 @@ const style = {
       },
     },
     border: "1px solid var(--sl-color-neutral-300)",
-    borderRadius: "var(--sl-border-radius-large)",
     "@media (max-width: 499px)": {
       flexDirection: "column",
       border: "none",
@@ -54,13 +56,25 @@ const vanillaStyle = `
   `;
 
 export function ReferralCardView(props: ReferralCardViewProps) {
+  console.log(props.padding);
   return (
     <div>
       <style type="text/css">
         {styleString}
         {vanillaStyle}
       </style>
-      <div class={sheet.classes.Container}>
+      <div
+        class={sheet.classes.Container}
+        style={{
+          color: props.textColor || "var(--sl-color-neutral-900)",
+          padding: props.padding ? `var(--sl-spacing-${props.padding})` : "0",
+          borderColor: props.borderColor || "var(--sl-color-neutral-300)",
+          borderRadius: props.borderRadius
+            ? `${props.borderRadius}px`
+            : "var(--sl-border-radius-large)",
+          backgroundColor: props.backgroundColor || "var(--sl-color-neutral-0)",
+        }}
+      >
         <div
           class="left"
           style={{

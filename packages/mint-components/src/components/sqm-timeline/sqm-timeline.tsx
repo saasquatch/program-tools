@@ -28,7 +28,6 @@ export class Timeline {
   disconnectedCallback() {}
 
   render() {
- 
     const rewards = useChildElements<TimelineReward>();
 
     rewards.forEach((reward) => {

@@ -4,6 +4,8 @@ import { createStyleSheet } from "../../styling/JSS";
 export interface StatContainerProps {
   space: string;
   display?: "grid" | "flex";
+  showBorder?: boolean;
+  borderColor?: string;
 }
 
 export function StatContainerView(props: StatContainerProps, children: VNode) {
@@ -23,14 +25,18 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
       gap: divideSpace(),
       // First set of styles applies when shadow DOM is disabled, second set applies when shadow DOM is enabled
       "& > *": {
-        "border-right": "1px solid #EAEAEA",
+        "border-right": props.showBorder
+          ? `1px solid ${props.borderColor ? props.borderColor : "#EAEAEA"}`
+          : "none",
         "padding-right": divideSpace(),
       },
       "& > :last-child": {
         "border-right": "none",
       },
       "& > ::slotted(*)": {
-        "border-right": "1px solid #EAEAEA",
+        "border-right": props.showBorder
+          ? `1px solid ${props.borderColor ? props.borderColor : "#EAEAEA"}`
+          : "none",
         "padding-right": divideSpace(),
         height: "100%",
       },

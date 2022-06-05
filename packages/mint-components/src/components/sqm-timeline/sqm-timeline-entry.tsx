@@ -31,6 +31,12 @@ export class TimelineReward {
   @Prop() desc: string;
 
   /**
+   * @uiName Text Color
+   * @uiWidget color
+   */
+  @Prop() textColor?: string;
+
+  /**
    * @uiName Icon
    * @uiType string
    * @uiEnum ["gift", "circle"]

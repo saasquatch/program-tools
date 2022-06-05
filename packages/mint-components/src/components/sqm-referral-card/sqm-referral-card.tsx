@@ -23,6 +23,45 @@ export class ReferralCard {
    */
   @Prop() verticalAlignment: "start" | "center" | "end" = "start";
 
+  /**
+   * @uiName Background Color
+   * @uiWidget color
+   */
+  @Prop() backgroundColor?: string;
+
+  /**
+   * @uiName Text Color
+   * @uiWidget color
+   */
+  @Prop() textColor?: string;
+
+  /**
+   * @uiName Configure border radius with pixel amount
+   */
+  @Prop() borderRadius?: number;
+
+  /**
+   * @uiName Padding
+   * @uiType string
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+   */
+  @Prop() padding?: Spacing;
+
+  /**
+   * @uiName Border Color
+   * @uiWidget color
+   */
+  @Prop() borderColor?: string;
+
+  // /**
+  //  * @uiName Mobile Padding
+  //  * @uiType string
+  //  * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+  //  * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+  //  */
+  // @Prop() mobilePadding?: Spacing;
+
   constructor() {
     withHooks(this);
   }

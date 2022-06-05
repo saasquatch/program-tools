@@ -718,6 +718,7 @@ export function useBigStat(props: BigStat): BigStatHook {
     statType,
     flexReverse,
     alignment,
+    statColor,
     programId = useProgramId(),
   } = props;
 
@@ -735,6 +736,7 @@ export function useBigStat(props: BigStat): BigStatHook {
         statvalue: "!!!",
         flexReverse,
         alignment,
+        statColor,
         loading: false,
       },
       label: "BAD PROP TYPE",
@@ -775,6 +777,7 @@ export function useBigStat(props: BigStat): BigStatHook {
       loading: stat?.loading,
       flexReverse,
       alignment,
+      statColor,
     },
     label,
   };

@@ -5,6 +5,7 @@ import { useBigStat } from "./useBigStat";
 import { useDemoBigStat } from "./useDemoBigStat";
 import { isDemo, useHost } from "@saasquatch/component-boilerplate";
 import { DemoData } from "../../global/demo";
+import { FontSize } from "../../global/mixins";
 
 /**
  *
@@ -38,6 +39,34 @@ export class BigStat {
   @Prop() alignment?: "left" | "right" | "center";
 
   /**
+   * @uiName Stat Color
+   * @uiWidget color
+   */
+  @Prop() statColor?: string;
+
+  /**
+   * @uiName Stat Description Color
+   * @uiWidget color
+   */
+  @Prop() statDescriptionColor?: string;
+
+  /**
+   * @uiName Stat Font Size
+   * @uiType string
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+   */
+  @Prop() statFontSize?: FontSize = "x-large";
+
+  /**
+   * @uiName Stat Description Font Size
+   * @uiType string
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+   */
+  @Prop() statDescriptionFontSize?: FontSize = "small";
+
+  /**
    * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
    *
    * @uiName Program ID
@@ -60,6 +89,7 @@ export class BigStat {
 
   render() {
     const { props, label } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
+    console.log(props);
     const host = useHost();
     const hasLabel = !!host.innerHTML?.trim();
     const labelSlot = <slot name="label">{hasLabel ? <slot /> : label}</slot>;

@@ -10,6 +10,7 @@
 | Property          | Attribute          | Description | Type                                                                                                                                           | Default        |
 | ----------------- | ------------------ | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
 | `backgroundColor` | `background-color` |             | `string`                                                                                                                                       | `undefined`    |
+| `borderRadius`    | `border-radius`    |             | `number`                                                                                                                                       | `undefined`    |
 | `buttonLink`      | `button-link`      |             | `string`                                                                                                                                       | `undefined`    |
 | `buttonNewTab`    | `button-new-tab`   |             | `boolean`                                                                                                                                      | `false`        |
 | `buttonText`      | `button-text`      |             | `string`                                                                                                                                       | `undefined`    |

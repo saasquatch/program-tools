@@ -36,11 +36,18 @@ export class BrandComponent {
   @Prop() fontColor?: string;
 
   /**
+   * @uiName Configure border radius with pixel amount
+   */
+   @Prop() borderRadius?: number;
+
+  /**
    * The brand font that you want to use
    *
    * @uiName Brand Font
    */
   @Prop() brandFont: string;
+
+  
 
   constructor() {
     withHooks(this);
@@ -86,6 +93,7 @@ export class BrandComponent {
             font-family:  "${font}", arial;
 			
             ${this.brandColor && css}
+            ${this.borderRadius && `border-radius: ${this.borderRadius};`}
             ${this.backgroundColor && `background: ${this.backgroundColor};`}
             ${this.fontColor && `color: ${this.fontColor};`}
             --sl-focus-ring-color-primary: var(--sl-color-primary-100);

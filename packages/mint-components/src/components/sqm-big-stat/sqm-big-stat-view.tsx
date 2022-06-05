@@ -1,4 +1,5 @@
 import { h, VNode } from "@stencil/core";
+import { FontSize } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 
 export interface BigStatViewProps {
@@ -8,11 +9,22 @@ export interface BigStatViewProps {
   flexReverse?: boolean;
   alignment?: "left" | "right" | "center";
   labelSlot?: VNode;
+  statColor?: string;
+  statDescriptionColor?: string;
+  statFontSize?: FontSize;
+  statDescriptionFontSize?: FontSize;
 }
 
 export function BigStatView(props: BigStatViewProps) {
-  const { statvalue, flexReverse, alignment } = props;
-
+  const {
+    statvalue,
+    statColor,
+    statFontSize,
+    flexReverse,
+    alignment,
+    statDescriptionColor,
+    statDescriptionFontSize,
+  } = props;
   // Dependent on props, not feasiable to move out
   const style = {
     Container: {
@@ -29,15 +41,21 @@ export function BigStatView(props: BigStatViewProps) {
       }`,
     },
     Stat: {
-      "font-size": "var(--sl-font-size-x-large)",
-      "text-align": alignment,
+      fontSize: statFontSize ? statFontSize : "var(--sl-font-size-x-large)",
+      textAlign: alignment,
+      color: statColor,
     },
     Description: {
-      "font-size": "var(--sl-font-size-small)",
-      "font-weight": "var(--sl-font-weight-normal)",
-      color: "var(--sl-color-gray-600)",
-      "text-transform": "uppercase",
-      "text-align": alignment,
+      fontSize: statDescriptionFontSize
+        ? statDescriptionFontSize
+        : "var(--sl-font-size-small)",
+      fontWeight: "var(--sl-font-weight-normal)",
+
+      color: statDescriptionColor
+        ? statDescriptionColor
+        : "var(--sl-color-gray-600)",
+      textTransform: "uppercase",
+      textAlign: alignment,
     },
   };
 

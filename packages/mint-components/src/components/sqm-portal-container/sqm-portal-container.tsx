@@ -36,6 +36,17 @@ export class PortalContainer {
    */
   @Prop() gap: Spacing = "xxx-large";
 
+  /**
+   * @uiName Background Color
+   * @uiWidget color
+   */
+  @Prop() backgroundColor?: string;
+
+  /**
+   * @uiName Configure border radius with pixel amount
+   */
+  @Prop() borderRadius?: number;
+
   /** @uiName Minimum width */
   @Prop() minWidth?: string;
 

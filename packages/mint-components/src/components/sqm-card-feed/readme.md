@@ -7,10 +7,13 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default |
-| -------- | --------- | ----------- | -------- | ------- |
-| `gap`    | `gap`     |             | `number` | `24`    |
-| `width`  | `width`   |             | `number` | `347`   |
+| Property              | Attribute               | Description | Type     | Default     |
+| --------------------- | ----------------------- | ----------- | -------- | ----------- |
+| `cardBackgroundColor` | `card-background-color` |             | `string` | `undefined` |
+| `cardBorderColor`     | `card-border-color`     |             | `string` | `undefined` |
+| `cardTextColor`       | `card-text-color`       |             | `string` | `undefined` |
+| `gap`                 | `gap`                   |             | `number` | `24`        |
+| `width`               | `width`                 |             | `number` | `347`       |
 
 
 ## Dependencies

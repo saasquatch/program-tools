@@ -11,6 +11,7 @@
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ----------- |
 | `alignment`       | `alignment`        |                                                                                                                           | `"center" \| "left" \| "right"` | `"center"`  |
 | `backgroundColor` | `background-color` |                                                                                                                           | `string`                        | `undefined` |
+| `borderRadius`    | `border-radius`    |                                                                                                                           | `number`                        | `undefined` |
 | `imageUrl`        | `image-url`        |                                                                                                                           | `string`                        | `undefined` |
 | `minHeight`       | `min-height`       | (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc. | `string`                        | `undefined` |
 

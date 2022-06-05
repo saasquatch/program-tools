@@ -17,6 +17,8 @@ interface PortalContainerViewProps {
     | "space-between"
     | "space-around"
     | "space-evenly";
+  backgroundColor?: string;
+  borderRadius?: number;
 }
 
 export function PortalContainerView(
@@ -38,6 +40,8 @@ export function PortalContainerView(
       maxWidth: props.maxWidth,
       margin: props.center && "auto",
       justifyContent: props.justifyContent,
+      background: props.backgroundColor ? props.backgroundColor : "transparent",
+      borderRadius: props.borderRadius ? props.borderRadius : 0,
     },
   };
 
