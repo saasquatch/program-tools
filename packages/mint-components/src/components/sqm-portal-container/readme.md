@@ -7,18 +7,18 @@
 
 ## Properties
 
-| Property          | Attribute          | Description | Type                                                                                                                                           | Default       |
-| ----------------- | ------------------ | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `backgroundColor` | `background-color` |             | `string`                                                                                                                                       | `undefined`   |
-| `borderRadius`    | `border-radius`    |             | `number`                                                                                                                                       | `undefined`   |
-| `center`          | `center`           |             | `boolean`                                                                                                                                      | `undefined`   |
-| `direction`       | `direction`        |             | `"column" \| "row"`                                                                                                                            | `"column"`    |
-| `display`         | `display`          |             | `"flex" \| "grid"`                                                                                                                             | `"grid"`      |
-| `gap`             | `gap`              |             | `"large" \| "medium" \| "none" \| "small" \| "x-large" \| "x-small" \| "xx-large" \| "xx-small" \| "xxx-large" \| "xxx-small" \| "xxxx-large"` | `"xxx-large"` |
-| `justifyContent`  | `justify-content`  |             | `"center" \| "end" \| "space-around" \| "space-between" \| "space-evenly" \| "start"`                                                          | `undefined`   |
-| `maxWidth`        | `max-width`        |             | `string`                                                                                                                                       | `"100%"`      |
-| `minWidth`        | `min-width`        |             | `string`                                                                                                                                       | `undefined`   |
-| `padding`         | `padding`          |             | `"large" \| "medium" \| "none" \| "small" \| "x-large" \| "x-small" \| "xx-large" \| "xx-small" \| "xxx-large" \| "xxx-small" \| "xxxx-large"` | `undefined`   |
+| Property          | Attribute          | Description                                                             | Type                                                                                                                                           | Default       |
+| ----------------- | ------------------ | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `backgroundColor` | `background-color` |                                                                         | `string`                                                                                                                                       | `undefined`   |
+| `borderRadius`    | `border-radius`    |                                                                         | `number`                                                                                                                                       | `undefined`   |
+| `center`          | `center`           |                                                                         | `boolean`                                                                                                                                      | `undefined`   |
+| `direction`       | `direction`        |                                                                         | `"column" \| "row"`                                                                                                                            | `"column"`    |
+| `display`         | `display`          |                                                                         | `"flex" \| "grid"`                                                                                                                             | `"grid"`      |
+| `gap`             | `gap`              |                                                                         | `"large" \| "medium" \| "none" \| "small" \| "x-large" \| "x-small" \| "xx-large" \| "xx-small" \| "xxx-large" \| "xxx-small" \| "xxxx-large"` | `"xxx-large"` |
+| `justifyContent`  | `justify-content`  | Define how this container distributes its contents along the main-axis. | `"center" \| "end" \| "space-around" \| "space-between" \| "space-evenly" \| "start"`                                                          | `undefined`   |
+| `maxWidth`        | `max-width`        |                                                                         | `string`                                                                                                                                       | `"100%"`      |
+| `minWidth`        | `min-width`        |                                                                         | `string`                                                                                                                                       | `undefined`   |
+| `padding`         | `padding`          |                                                                         | `"large" \| "medium" \| "none" \| "small" \| "x-large" \| "x-small" \| "xx-large" \| "xx-small" \| "xxx-large" \| "xxx-small" \| "xxxx-large"` | `undefined`   |
 
 
 ## Dependencies

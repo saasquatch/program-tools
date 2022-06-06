@@ -1,7 +1,8 @@
 import { useMemo } from "@saasquatch/universal-hooks";
 import deepmerge from "deepmerge";
+import { useChildElements } from "../../tables/useChildElements";
 import { BigStat } from "./sqm-big-stat";
-import { BigStatHook, queries, StatPaths, StatPatterns } from "./useBigStat";
+import { BigStatHook, queries, StatPatterns } from "./useBigStat";
 
 export function useDemoBigStat(props: BigStat): BigStatHook {
   const { statType } = props;
@@ -9,6 +10,8 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
     () => StatPatterns.find((re) => re.exec(statType)),
     [statType]
   );
+  // triggers a re-render if the label is manually changed
+  useChildElements();
 
   if (!re?.exec(statType)) {
     return {
@@ -18,8 +21,8 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
         loading: false,
         flexReverse: false,
         alignment: "center" as const,
-        statColor: "slateblue" as const,
-        statDescriptionColor: "white" as const,
+        statColor: "var(--sl-color-gray-800)" as const,
+        statDescriptionColor: "var(--sl-color-gray-600)" as const,
         statFontSize: "x-large",
         statDescriptionFontSize: "small",
       },
@@ -38,8 +41,8 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
         value: 0,
         flexReverse: false,
         alignment: "center" as const,
-        statColor: "slateblue" as const,
-        statDescriptionColor: "white" as const,
+        statColor: "var(--sl-color-gray-800)" as const,
+        statDescriptionColor: "var(--sl-color-gray-600)" as const,
         statFontSize: "x-large",
         statDescriptionFontSize: "small",
       },

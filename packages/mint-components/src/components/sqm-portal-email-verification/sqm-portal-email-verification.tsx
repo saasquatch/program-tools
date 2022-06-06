@@ -23,23 +23,23 @@ export class PortalEmailVerification {
   /**
    * The page that users are redirected to from the verification email.
    *
-   * @uiName Email redirection base path
+   * @uiName Email Redirection Base Path
    */
   @Prop()
   redirectPath: string = "/verifyEmail";
 
   /**
-   * @uiName Email verification header text
+   * @uiName Email Verification Header Text
    */
   @Prop() emailVerificationHeader: string = "Verify your email";
 
   /**
-   * @uiName Re-send email button text
+   * @uiName Re-send Email Button Text
    */
   @Prop() resendEmailButtonText: string = "Re-send Email";
 
   /**
-   * @uiName Email verification body text
+   * @uiName Email Verification Body Text
    */
   @Prop() verifyMessage: string =
     "A verification email was sent to {email}. Please verify your email to continue to the portal.";

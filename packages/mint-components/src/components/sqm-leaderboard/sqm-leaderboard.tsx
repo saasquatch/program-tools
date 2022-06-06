@@ -9,6 +9,7 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 
 /**
  * @uiName Leaderboard
+ * @slots [{"name":"empty", "title":"Empty State"}]
  */
 @Component({
   tag: "sqm-leaderboard",
@@ -20,6 +21,7 @@ export class Leaderboard {
    * If no program ID is set or provided by context, then a global leaderboard is shown.
    *
    * @uiName Program
+   * @uiWidget programSelector
    */
   @Prop() programId?: string;
 
@@ -36,14 +38,15 @@ export class Leaderboard {
    */
   @Prop() rankheading?: string;
   /**
-   * @uiName Show Rank Column
+   * @uiName Show Leaderboard Rank
    */
   @Prop() showRank: boolean;
 
   /**
-   * Hide the viewer's leaderboard row if not in the top 10.
+   * Hide the viewer's leaderboard row if not in the top results.
    *
    * @uiName Hide Viewing User
+   * @default
    */
   @Prop() hideViewer: boolean = false;
 
@@ -58,6 +61,7 @@ export class Leaderboard {
   /**
    * @uiName Leaderboard Type
    * @uiType string
+   * @required
    * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
    * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
    */
@@ -67,18 +71,15 @@ export class Leaderboard {
     | "topPointEarners";
 
   /**
-   * Text displayed for users without names in the leaderboard
-   * 
-   * @uiName Anonymous User Name
+   * Title displayed for users without names
+   * @uiName Unknown User Text
    */
   @Prop() anonymousUser: string = "Anonymous User";
 
   /**
-   * Only count leaderboard activity within a given interval
-   * 
    * @uiName Leaderboard Time Interval
-   * @uiWidget DateRange
-   * @uiOptions {"allowPastDates":true, "months": 1}
+   * @uiWidget dateRange
+   * @uiWidgetOptions {"allowPastDates":true, "months": 1}
    */
   @Prop() interval: string;
 

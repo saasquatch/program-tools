@@ -3,24 +3,91 @@ import { shadeColor, addClass, removeClass } from "../../utilities";
 import { css } from "emotion";
 import { API } from "../../services/WidgetHost";
 import Clipboard from "clipboard";
-
+/**
+ * @uiName Copy Button
+ * @canvasRenderer always-replace
+ * @exampleGroup Common Components
+ * @example Fuel Tank Copy Button - <sqh-copy-button ishidden="false" copysuccess="copied!" copyfailure="Press Ctrl+C to copy" codefontcolor="#000000" codefontsize="14" text="COPY CODE" fontsize="14" width="170" backgroundcolor="#35b21e" textcolor="#ffffff" borderradius="4" rewardkey="referredReward" codefontsize="14" codefontcolor="#000000"></sqh-copy-button>
+ */
 @Component({
   tag: "sqh-copy-button",
   styleUrl: "copy-button.scss",
 })
 export class CopyButton {
+  /**
+   * @uiName Hide Button
+   * @undocumented
+   */
   @Prop() ishidden: boolean;
+  /**
+   * @uiName Button Text
+   * @default COPY CODE
+   */
   @Prop() text: string;
+  /**
+   * @uiName Button Max Width
+   * @default 170
+   */
   @Prop() width: number;
+  /**
+   * @uiName Button Color
+   * @uiWidget color
+   * @default #35b21e
+   */
   @Prop() backgroundcolor: string;
+  /**
+   * Define the radius of the corners with a pixel amount.
+   *
+   * @uiName Border Radius
+   * @default 4
+   */
   @Prop() borderradius: number;
+  /**
+   * @uiName Button Text Color
+   * @uiWidget color
+   * @default #ffffff
+   */
   @Prop() textcolor: string;
+  /**
+   * @uiName Font Size
+   * @default 14
+   */
   @Prop() fontsize: number;
+  /**
+   * Shown when the code is successfully copied to the users clipboard.
+   *
+   * @uiName Copy Success Text
+   * @default copied!
+   */
   @Prop() copysuccess: string;
+  /**
+   * Shown when the button has failed to copy the code to the users clipboard.
+   *
+   * @uiName Copy Failure Text
+   * @default Press Ctrl+C to copy
+   */
   @Prop() copyfailure: string;
+  /**
+   * The rewardKey of a fuel tank reward. This is used to get the fuel tank code for a user.
+   *
+   * @uiName Reward Key
+   * @default referredReward
+   */
   @Prop() rewardkey: string;
+  /**
+   * Font size of the fuel tank code.
+   *
+   * @uiName Code Font Size
+   * @default 14
+   */
   @Prop() codefontsize: number;
+  /**
+   * @uiName Fuel Tank Code Color
+   * @uiWidget color
+   * @default #000000
+   */
   @Prop() codefontcolor: string;
+
   @State() fueltankcode: string;
 
   componentWillLoad() {

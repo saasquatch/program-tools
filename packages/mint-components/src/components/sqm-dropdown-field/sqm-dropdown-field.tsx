@@ -22,21 +22,22 @@ export class DropdownField {
   ignored = true;
 
   /**
-   * @uiName Dropdown name attribute
+   * @uiName Dropdown Name Attribute
    */
   @Prop() dropdownName: string;
 
   /**
-   * @uiName Dropdown label
+   * @uiName Dropdown Label
    */
   @Prop() dropdownLabel: string = "Select an option";
   /**
-   * @uiName Unselected error message
+   * @uiName Unselected Error Message
    */
   @Prop() errorMessage: string = "Select an option";
 
   /**
    * @uiName Optional
+   * @default
    */
   @Prop() dropdownOptional?: boolean = false;
 

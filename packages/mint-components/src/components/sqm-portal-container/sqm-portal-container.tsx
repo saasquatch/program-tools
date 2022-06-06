@@ -5,7 +5,11 @@ import { getProps } from "../../utils/utils";
 import { Spacing } from "../../global/mixins";
 
 /**
- * @uiName Portal Container
+ * @uiName Container
+ * @slots [{"name":"", "title":"Widget Content"}]
+ * @exampleGroup Layout
+ * @example Row Layout Container - <sqm-portal-container direction="row" padding="none" gap="xxx-large" display="flex" max-width="100%"><p>Add your column content above or below!</p></sqm-portal-container>
+ * @example Column Layout Container - <sqm-portal-container direction="column" padding="none" gap="xxx-large" display="grid" max-width="100%"><p>Add your column content to the left or right!</p></sqm-portal-container>
  */
 @Component({
   tag: "sqm-portal-container",
@@ -59,7 +63,9 @@ export class PortalContainer {
   @Prop() display: "grid" | "flex" = "grid";
 
   /**
-   * @uiName Justify content
+   * Define how this container distributes its contents along the main-axis.
+   *
+   * @uiName Justify Content
    * @uiType string
    * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
    * @uiEnumNames ["Start", "Center", "End", "Space Between", "Space Around", "Space Evenly"]
@@ -78,7 +84,7 @@ export class PortalContainer {
   @Prop() maxWidth?: string = "100%";
 
   /**
-   * @uiName Center content
+   * @uiName Center Content
    */
   @Prop() center?: boolean;
 

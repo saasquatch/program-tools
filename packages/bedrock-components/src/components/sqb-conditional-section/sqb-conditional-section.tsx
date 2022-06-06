@@ -7,6 +7,10 @@ import { useConditionalSection, UseConditionalSection } from './useConditonalSec
  * Only displayed for certain users. Hides content if not available.
  *
  * @uiName Conditional Section
+ * @exampleGroup Advanced
+ * @slots [{"name":"","title":"Section Content"}]
+ * @example Conditional Section On Segment - <sqb-conditional-section condition="'vip' in user.segments"><p>Add your conditional content here!</p></sqb-conditional-section>
+ * @example Conditional Section On Custom Field - <sqb-conditional-section condition="user.customFields.foo = true"><p>Add your conditional content here!</p></sqb-conditional-section>
  */
 @Component({
   tag: 'sqb-conditional-section',
@@ -14,14 +18,12 @@ import { useConditionalSection, UseConditionalSection } from './useConditonalSec
 })
 export class SqbConditionalSection {
   /**
-   * Only show this section when a user meets the following conditions.
-   *
-   * Can use `user.segments` and `user.customFields`.
-   *
-   *  - `"VIP" in user.segments`
-   *  - `user.customFields.age > 19`
+   * Show child content when a user meets specified criteria. Logic is created with JSONata. A user's segments, customField and email can be used.
    *
    * @uiName Condition
+   * @uiWidget textArea
+   * @required
+   * @minLength 1
    */
   @Prop()
   condition: string;

@@ -51,6 +51,16 @@ const vanillaStyle = `
 
 /**
  * @uiName Text
+ * @slots [{"name":"", "title":"Text"}]
+ * @slotEditor richText
+ * @canvasRenderer always-replace
+ * @exampleGroup Typography
+ * @example H1 - <sqm-text><h1>H1 Header Text</h1></sqm-text>
+ * @example H2 - <sqm-text><h2>H2 Header Text</h2></sqm-text>
+ * @example H3 - <sqm-text><h3>H3 Header Text</h3></sqm-text>
+ * @example H4 - <sqm-text><h4>H4 Header Text</h4></sqm-text>
+ * @example Paragraph - <sqm-text><p>Paragraph Text</p></sqm-text>
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqm-text",

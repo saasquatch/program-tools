@@ -6,6 +6,9 @@ import { HeroImageView } from "./sqm-hero-image-view";
 
 /**
  * @uiName Hero Image
+ * @exampleGroup Common Components
+ * @example Two Column Layout - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="columns" image-pos="right" background-color="#F9F9F9"></sqm-hero-image>
+ * @example Overlay - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="overlay" image-pos="center" background-color="#F9F9F9" button-link="https://www.example.com" button-new-tab button-text="Earn!" image-percentage="45" overlay-opacity=".5" padding-image="small" padding-text="xxxx-large"></sqm-hero-image>
  */
 @Component({
   tag: "sqm-hero-image",
@@ -14,13 +17,15 @@ import { HeroImageView } from "./sqm-hero-image-view";
 export class HeroImage {
   /**
    * @uiWidget ImageUpload
-   * @uiName Image Link
+   * @format url
+   * @uiName Image
    */
   @Prop() imageUrl: string;
 
   /**
    * @uiName Overlay Color
    * @uiWidget color
+   * @format color
    */
   @Prop() overlayColor?: string;
 
@@ -32,12 +37,14 @@ export class HeroImage {
   /**
    * @uiName Text Color
    * @uiWidget color
+   * @format color
    */
   @Prop() textColor?: string;
 
   /**
    * @uiName Background Color
    * @uiWidget color
+   * @format color
    */
   @Prop() backgroundColor?: string;
 
@@ -72,27 +79,29 @@ export class HeroImage {
   @Prop() imageMobilePos: "top" | "bottom" = "top";
 
   /**
-   * @uiName Title Text
+   * @uiName Title
    */
   @Prop() header?: string;
 
   /**
-   * @uiName Description Text
+   * @uiName Description
+   * @uiWidget textArea
    */
   @Prop() description?: string;
 
   /**
-   * @uiName CTA Button Text
+   * @uiName Button Text
    */
   @Prop() buttonText?: string;
 
   /**
-   * @uiName CTA Button Link
+   * @uiName Button Link
    */
   @Prop() buttonLink?: string;
 
   /**
-   * @uiName CTA Button Link Open in New Tab
+   * @uiName Open Link in New Tab
+   * @default
    */
   @Prop() buttonNewTab?: boolean = false;
 

@@ -9,7 +9,20 @@ import deepmerge from "deepmerge";
 
 /**
  * @uiName Share Button
+ * @slots [{"name":"", "title":"Button Content"}]
+ * @slotEditor richText
  * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
+ * @exampleGroup Sharing
+ * @example Facebook Share Button - <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
+ * @example Twitter Share Button - <sqm-share-button medium="twitter">Share via Tweet</sqm-share-button>
+ * @example Email Share Button - <sqm-share-button medium="email">Share via Email</sqm-share-button>
+ * @example Web Share Sheet Share Button - <sqm-share-button medium="direct">Share</sqm-share-button>
+ * @example LinkedIn Share Button - <sqm-share-button medium="linkedin">Share on LinkedIn</sqm-share-button>
+ * @example SMS Share Button - <sqm-share-button medium="sms">Text a friend</sqm-share-button>
+ * @example Facebook Messenger Share Button - <sqm-share-button medium="fbmessenger">Share via Messenger</sqm-share-button>
+ * @example WhatsApp Share Button - <sqm-share-button medium="whatsapp">Share via WhatsApp</sqm-share-button>
+ * @example Line Messenger Share Button - <sqm-share-button medium="linemessenger">Share via Line Messenger</sqm-share-button>
+ * @example Pinterest Share Button - <sqm-share-button medium="pinterest">Share on Pinterest</sqm-share-button>
  */
 @Component({
   tag: "sqm-share-button",
@@ -17,11 +30,6 @@ import deepmerge from "deepmerge";
   shadow: true,
 })
 export class ShareButton {
-  //
-  //  Required attrs to make it work
-  //
-  /// TOOD: Add all the share mediums
-  // Should be a REQUIRED prop
 
   /**
    * The social medium to share on. Share messages and links
@@ -29,6 +37,7 @@ export class ShareButton {
    *
    * @uiName Share Medium
    * @uiType string
+   * @required
    * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
    * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
    */
@@ -49,6 +58,7 @@ export class ShareButton {
    * Optional programId, or uses the programId context where this button is rendered.
    *
    * @uiName Program ID
+   * @uiWidget programSelector
    */
   @Prop() programId?: string;
 
@@ -57,21 +67,24 @@ export class ShareButton {
   //
 
   /**
-   * @uiName Configure border radius with pixel amount
+   * Configure border radius with pixel amount
+   * @uiName Border Radius
    */
   @Prop() borderradius?: number;
   /**
-   * @uiName Button background color
+   * @uiName Button Background Color
    * @uiWidget color
+   * @format color
    */
   @Prop() backgroundcolor?: string;
   /**
-   * @uiName Button text color
+   * @uiName Button Text Color
    * @uiWidget color
+   * @format color
    */
   @Prop() textcolor?: string;
   /**
-   * @uiName Display as pill
+   * @uiName Display Pill
    */
   @Prop() pill?: boolean;
   /**
@@ -109,23 +122,29 @@ export class ShareButton {
   /**
    * Options available at https://shoelace.style/components/icon
    *
-   * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
+   * Icon used in button. Will try to select an icon based on the share medium if left empty.
+   *
+   * @uiName Icon
    */
   @Prop() icon?: string;
   /**
-   * @uiName Hide the icon
+   * @uiName Hide Icon
+   * @default
    */
   @Prop() hideicon?: boolean = false;
   /**
-   * @uiName Hide the text
+   * @uiName Hide Text
+   * @default
    */
   @Prop() hidetext?: boolean = false;
   /**
-   * @uiName Title used for native sharing (mobile only)
+   * Title used for native sharing (mobile only)
+   * @uiName Share Title
    */
   @Prop() sharetitle?: string;
   /**
-   * @uiName Text used for native sharing (mobile only)
+   * Text used for native sharing (mobile only)
+   * @uiName Share Text
    */
   @Prop() sharetext?: string;
 

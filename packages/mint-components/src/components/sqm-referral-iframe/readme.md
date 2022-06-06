@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property       | Attribute       | Description | Type                                                                                                                           | Default     |
-| -------------- | --------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| `demoData`     | --              |             | `{ states?: { content: { iframeSrc: string; iframeHeight: string; iframeWidth: string; }; }; data?: { shareCode: string; }; }` | `undefined` |
-| `iframeHeight` | `iframe-height` |             | `string`                                                                                                                       | `"100%"`    |
-| `iframeSrc`    | `iframe-src`    |             | `string`                                                                                                                       | `undefined` |
-| `iframeWidth`  | `iframe-width`  |             | `string`                                                                                                                       | `"100%"`    |
+| Property       | Attribute       | Description                    | Type                                                                                                                           | Default     |
+| -------------- | --------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| `demoData`     | --              |                                | `{ states?: { content: { iframeSrc: string; iframeHeight: string; iframeWidth: string; }; }; data?: { shareCode: string; }; }` | `undefined` |
+| `iframeHeight` | `iframe-height` | Height of the iframe container | `string`                                                                                                                       | `"100%"`    |
+| `iframeSrc`    | `iframe-src`    | URL of iframe to display       | `string`                                                                                                                       | `undefined` |
+| `iframeWidth`  | `iframe-width`  | Width of the iframe container  | `string`                                                                                                                       | `"100%"`    |
 
 
 ## Dependencies

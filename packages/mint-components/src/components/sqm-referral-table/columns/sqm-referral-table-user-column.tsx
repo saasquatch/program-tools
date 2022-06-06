@@ -5,6 +5,9 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
 
 /**
  * @uiName Referral Table User Column
+ * @validParents ["sqm-referral-table"]
+ * @exampleGroup Referrals
+ * @example Referral Table User Column - <sqm-referral-table-user-column column-title="Customer" anonymous-user="Anonymous User" deleted-user="Deleted User"></sqm-referral-table-user-column>
  */
 @Component({
   tag: "sqm-referral-table-user-column",
@@ -16,11 +19,15 @@ export class ReferralTableUserColumn implements ReferralTableColumn {
    */
   @Prop() columnTitle: string = "Customer";
   /**
-   * @uiName Name displayed for anonymous users
+   * Name displayed for unknown users
+   *
+   * @uiName Anonymous User Text
    */
   @Prop() anonymousUser: string = "Anonymous User";
   /**
-   * @uiName Name displayed for deleted users
+   * Name displayed for deleted users
+   *
+   * @uiName Deleted User Text
    */
   @Prop() deletedUser: string = "Deleted User";
 

@@ -17,12 +17,12 @@ export class NameFields {
   ignored = true;
 
   /**
-   * @uiName First name field label
+   * @uiName First Name label
    */
   @Prop() firstNameLabel: string = "First Name";
 
   /**
-   * @uiName Last name field label
+   * @uiName Last Name label
    */
   @Prop() lastNameLabel: string = "Last Name";
 

@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `icon`   | `icon`    |             | `string` | `undefined` |
-| `type`   | `type`    |             | `string` | `undefined` |
+| Property | Attribute | Description          | Type     | Default     |
+| -------- | --------- | -------------------- | -------- | ----------- |
+| `icon`   | `icon`    | Icon to use in alert | `string` | `undefined` |
+| `type`   | `type`    |                      | `string` | `undefined` |
 
 
 ## Dependencies

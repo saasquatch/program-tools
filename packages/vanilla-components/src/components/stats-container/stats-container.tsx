@@ -3,16 +3,42 @@ import { API } from "../../services/WidgetHost";
 import { pathToRegexp } from "path-to-regexp";
 import { css } from "emotion";
 
+/**
+ * @uiName Stats Container
+ * @canvasRenderer always-replace
+ * @slots [{"name":"","title":"Stats"}]
+ * @exampleGroup Statistics
+ * @example Referral Stat Group - <sqh-stats-container ishidden="false" paddingtop="0" paddingbottom="0"><sqh-stat-component ishidden="false" statcolor="#4caf50" stattype="/referralsCount" statdescription="Friends Referred" paddingtop="10" paddingbottom="10"></sqh-stat-component><sqh-stat-component ishidden="false" stattype="/rewardsCount" statdescription="Total Rewards" paddingtop="10" paddingbottom="10" statcolor="#000000"></sqh-stat-component><sqh-stat-component ishidden="false" stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit" statdescription="Credit earned" paddingtop="10" paddingbottom="10" statcolor="#000000"></sqh-stat-component></sqh-stats-container>
+ * @example Partner Stat Group - <sqh-stats-container ishidden="false" paddingtop="0" paddingbottom="0"><sqh-partner-stat-component ishidden="false" statcolor="#000000" stattype="/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit" statdescription="Pending Balance" paddingtop="10" paddingbottom="10"></sqh-partner-stat-component><sqh-partner-stat-component ishidden="false" stattype="/rewardBalance/CREDIT/CASH_CAD/prettyValue" statdescription="Available Balance" paddingtop="10" paddingbottom="10" statcolor="#4caf50"></sqh-partner-stat-component><sqh-partner-stat-component ishidden="false" stattype="/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit" statdescription="Redeemed Balance" paddingtop="10" paddingbottom="10" statcolor="#000000"></sqh-partner-stat-component></sqh-stats-container>
+ */
 @Component({
   tag: "sqh-stats-container",
   styleUrl: "stats-container.scss",
 })
 export class StatsContainer {
   @Element() container: HTMLElement;
+  /**
+   * @undocumented
+   * @uiName Hide stats
+   */
   @Prop() ishidden: boolean = false;
+  /**
+   * Define the bottom padding of the container with a pixel amount.
+   *
+   * @uiName Padding Top
+   * @default 0
+   */
   @Prop() paddingtop: string;
+  /**
+   * Define the top padding of the container with a pixel amount.
+   *
+   * @uiName Padding Bottom
+   * @default 0
+   */
   @Prop() paddingbottom: string;
+
   @State() loading: boolean;
+
   @State() stats: object;
 
   constructor() {

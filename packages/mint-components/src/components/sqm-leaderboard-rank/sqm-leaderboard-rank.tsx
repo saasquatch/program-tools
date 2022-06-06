@@ -20,8 +20,11 @@ import { intl } from "../../global/global";
   shadow: true,
 })
 export class LeaderboardRank {
+  //Todo: Give this component a proper loading state
+
+
   /**
-   * @uiName Default rank
+   * @uiName Default Rank
    * @uiType string
    * @uiEnum ["rowNumber", "rank", "denseRank"]
    * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
@@ -30,13 +33,15 @@ export class LeaderboardRank {
 
   /**
    * @uiName Rank Text
+   * @uiWidget textArea
    */
   @Prop() rankText: string =
     "You are currently in {rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th} } place!";
 
   /**
-   * @uiName Leaderboard type
+   * @uiName Leaderboard Type
    * @uiType string
+   * @required
    * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
    * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
    */
@@ -51,9 +56,9 @@ export class LeaderboardRank {
   @Prop() unrankedText: string;
 
   /**
-   * @uiName Leaderboard time interval
-   * @uiWidget DateRange
-   * @uiOptions {"allowPastDates":true, "months": 1}
+   * @uiName Leaderboard Time Interval
+   * @uiWidget dateRange
+   * @uiWidgetOptions {"allowPastDates":true, "months": 1}
    */
   @Prop() interval: string;
 
@@ -62,6 +67,7 @@ export class LeaderboardRank {
    * If no program ID is set or provided by context, then a global leaderboard is shown.
    *
    * @uiName Program
+   * @uiWidget programSelector
    */
   @Prop() programId?: string;
 

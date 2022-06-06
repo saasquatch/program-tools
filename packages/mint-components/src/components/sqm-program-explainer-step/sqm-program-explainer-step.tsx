@@ -5,6 +5,9 @@ import { ProgramExplainerStepView } from "./sqm-program-explainer-step-view";
 
 /**
  * @uiName Program Explainer Step
+ * @exampleGroup Common Components
+ * @example Program Explainer Step - <sqm-program-explainer-step description="Complete tasks like uploading your first video or sharing videos with friends" header="Earn points" icon="cash-stack" text-color="#000000"></sqm-program-explainer-step>
+ * @validParents ["sqm-program-explainer"]
  */
 @Component({
   tag: "sqm-program-explainer-step",
@@ -18,31 +21,36 @@ export class ProgramExplainerStep {
 
   /**
    * @uiName Description
+   * @uiWidget textArea
    */
   @Prop() description: string;
 
   /**
    * @uiName Text Color
    * @uiWidget color
+   * @format color
    */
   @Prop() textColor: string;
 
   /**
    * @uiName Background Color
    * @uiWidget color
+   * @format color
    */
   @Prop() backgroundColor: string;
 
   /**
    * Displayed in place of an icon
-   * 
+   *
    * @uiName Image Url
+   * @uiWidget imageUpload
+   * @format url
    */
   @Prop() imageUrl?: string;
 
   /**
-   * Options available at https://shoelace.style/components/icon 
-   * 
+   * Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive.
+   *
    * @uiName Icon
    */
   @Prop() icon?: string;

@@ -1,12 +1,31 @@
 import { h, Component, Prop } from "@stencil/core";
 
+/**
+ * @uiName Reward Actions
+ * @canvasRenderer always-replace
+ */
 @Component({
   tag: "sqh-rewards-actions",
   styleUrl: "rewards-actions.scss",
 })
 export class RewardsActions {
+  /**
+   * Text inside the previous button
+   *
+   * @uiName Previous Button Text
+   */
   @Prop() previoustext: string = "Previous";
+  /**
+   * Text inside the hide button
+   *
+   * @uiName Hide Button Text
+   */
   @Prop() hidetext: string = "Hide";
+  /**
+   * Text inside the next button
+   *
+   * @uiName Next Button Text
+   */
   @Prop() nexttext: string = "Next";
 
   render() {

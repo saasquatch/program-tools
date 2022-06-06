@@ -10,10 +10,10 @@ import { useShareCode } from "./useShareCode";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
 
-const DEFAULT_TOOLTIP_LIFESPAN = 1000;
-
 /**
  * @uiName Share Code
+ * @exampleGroup Referrals
+ * @example Share Code - <sqm-share-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-code>
  */
 @Component({
   tag: "sqm-share-code",
@@ -24,26 +24,27 @@ export class ShareCode {
    * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
    *
    * @uiName Program ID
+   * @uiWidget programSelector
    */
   @Prop() programId?: string;
   /**
-   * This is shown after someone has successfully copied the cpde to the clipboard.
+   * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
    *
-   * @uiName Tooltip text
+   * @uiName Tooltip Text
    */
   @Prop({
     attribute: "tooltip-text",
   })
   tooltiptext: string = "Copied to Clipboard";
   /**
-   * The number of milliseconds that the tooltip will appear for
+   * The number of milliseconds that the tooltip appears for
    *
    * @uiName Tooltip lifespan
    */
   @Prop({
     attribute: "tooltip-lifespan",
   })
-  tooltiplifespan: number = DEFAULT_TOOLTIP_LIFESPAN;
+  tooltiplifespan: number = 1000;
   /**
    * @undocumented
    * @uiType object

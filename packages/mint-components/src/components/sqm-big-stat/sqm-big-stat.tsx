@@ -9,8 +9,13 @@ import { FontSize } from "../../global/mixins";
 
 /**
  *
- * @uiName Big Stat
- * @slot the description of the component
+ * @uiName User Stat
+ * @slots [{"name":"","title":"Stat Text"}]
+ * @slotEditor richText
+ * @exampleGroup Statistics
+ * @example Points Balance - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat>
+ * @example GiftCards Earned - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat>
+ * @example Referrals - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat>
  */
 @Component({
   tag: "sqm-big-stat",
@@ -20,18 +25,24 @@ export class BigStat {
   /**
    * Select what type of stat to display. Manual paths are also supported.
    *
-   * @uiWidget StatTypeSelectWidget
+   * @uiWidget statTypeSelectWidget
    * @uiName Stat Type
-   * @uiOptions {"version": 1.1}
+   * @required
+   * @uiWidgetOptions {"version": 1.1}
    */
   @Prop() statType: string;
 
   /**
-   * @uiName Flex Reverse - controls the order of the stat value & description column
+   * Controls the order of the stat value & description column
+   *
+   * @uiName Flex Reverse
+   * @default
    */
   @Prop() flexReverse?: boolean = false;
   /**
-   * @uiName Alignment - controls the alignment of the flexbox
+   * Controls the alignment of the flexbox
+   *
+   * @uiName Alignment
    * @uiType string
    * @uiEnum ["left", "right", "center"]
    * @uiEnumNames ["Left", "Right", "Center"]
@@ -70,6 +81,7 @@ export class BigStat {
    * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
    *
    * @uiName Program ID
+   * @uiWidget programSelector
    */
   @Prop() programId?: string;
 

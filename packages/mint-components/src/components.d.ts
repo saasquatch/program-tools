@@ -38,6 +38,10 @@ import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-v
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
+    interface RaisinsPlopTarget {
+        "renderCell": () => Promise<any>;
+        "renderLabel": (idx: any) => Promise<any>;
+    }
     interface SqmAssetCard {
         /**
           * @undocumented 
@@ -45,17 +49,18 @@ export namespace Components {
          */
         "demoData"?: DemoData<AssetCardViewProps>;
         /**
-          * @uiName Banner image
+          * @uiName Banner Image
          */
         "imgUrl": string;
         /**
-          * @uiName Banner title
+          * @uiName Banner Title
          */
         "titleText": string;
     }
     interface SqmBigStat {
         /**
-          * @uiName Alignment - controls the alignment of the flexbox
+          * Controls the alignment of the flexbox
+          * @uiName Alignment
           * @uiType string
           * @uiEnum ["left", "right", "center"]
           * @uiEnumNames ["Left", "Right", "Center"]
@@ -67,12 +72,15 @@ export namespace Components {
          */
         "demoData"?: DemoData<BigStatViewProps>;
         /**
-          * @uiName Flex Reverse - controls the order of the stat value & description column
+          * Controls the order of the stat value & description column
+          * @uiName Flex Reverse
+          * @default
          */
         "flexReverse"?: boolean;
         /**
           * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
@@ -101,9 +109,10 @@ export namespace Components {
         "statFontSize"?: FontSize;
         /**
           * Select what type of stat to display. Manual paths are also supported.
-          * @uiWidget StatTypeSelectWidget
+          * @uiWidget statTypeSelectWidget
           * @uiName Stat Type
-          * @uiOptions {"version": 1.1}
+          * @required 
+          * @uiWidgetOptions {"version": 1.1}
          */
         "statType": string;
     }
@@ -118,14 +127,16 @@ export namespace Components {
          */
         "borderRadius"?: number;
         /**
-          * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
+          * Controls the primary brand color used in the Mint Components library.
           * @uiName Brand Color
           * @uiWidget color
+          * @format color
          */
         "brandColor": string;
         /**
           * The brand font that you want to use
           * @uiName Brand Font
+          * @default "Nunito Sans"
          */
         "brandFont": string;
         /**
@@ -162,23 +173,25 @@ export namespace Components {
     }
     interface SqmCheckboxField {
         /**
-          * @uiName Checkbox label
+          * @uiName Checkbox Label
          */
         "checkboxLabel": string;
         /**
-          * @uiName Checkbox label link Used with link text if the checkbox label contains {labelLink}
+          * Used with link text if the checkbox label contains {labelLink}
+          * @uiName Checkbox Label Link
          */
         "checkboxLabelLink": string;
         /**
-          * @uiName Checkbox label link text
+          * @uiName Checkbox Label Link Text
          */
         "checkboxLabelLinkText": string;
         /**
-          * @uiName Checkbox name attribute
+          * @uiName Checkbox Name Attribute
          */
         "checkboxName": string;
         /**
           * @uiName Optional
+          * @default
          */
         "checkboxOptional"?: boolean;
         /**
@@ -187,7 +200,7 @@ export namespace Components {
          */
         "demoData"?: DemoData<CheckboxFieldViewProps>;
         /**
-          * @uiName Unchecked error message
+          * @uiName Unchecked Error Message
          */
         "errorMessage": string;
     }
@@ -200,8 +213,8 @@ export namespace Components {
          */
         "direction": "row" | "column";
         /**
-          * Uses CSS border style syntax
-          * @uiName Border style
+          * Uses Shorthand CSS border syntax
+          * @uiName Border Style
          */
         "dividerStyle": string;
     }
@@ -212,29 +225,30 @@ export namespace Components {
          */
         "demoData"?: DemoData<DropdownFieldViewProps>;
         /**
-          * @uiName Dropdown label
+          * @uiName Dropdown Label
          */
         "dropdownLabel": string;
         /**
-          * @uiName Dropdown name attribute
+          * @uiName Dropdown Name Attribute
          */
         "dropdownName": string;
         /**
           * @uiName Optional
+          * @default
          */
         "dropdownOptional"?: boolean;
         /**
-          * @uiName Unselected error message
+          * @uiName Unselected Error Message
          */
         "errorMessage": string;
     }
     interface SqmEditProfile {
         /**
-          * @uiName Cancel button text
+          * @uiName Cancel Button Text
          */
         "canceltext": string;
         /**
-          * @uiName Region field label
+          * @uiName Region Field Label
          */
         "currentregiontext": string;
         /**
@@ -247,48 +261,53 @@ export namespace Components {
          */
         "editprofileheader": string;
         /**
-          * @uiName Enable editing button text
+          * Enable editing button text
+          * @uiName Edit Profile Text
          */
         "editprofiletext": string;
         /**
-          * @uiName First name field label
+          * @uiName First Name Label
          */
         "firstnametext": string;
         /**
-          * @uiName Last name field label
+          * @uiName Last Name Label
          */
         "lastnametext": string;
         /**
-          * @uiName Show or hide current region
+          * Show or hide current region
+          * @uiName Show Region
          */
         "showregion": boolean;
         /**
-          * @uiName Update info button text
+          * @uiName Info Button Text
          */
         "updatetext": string;
     }
     interface SqmEmpty {
         /**
-          * @uiName Empty State Title
+          * @uiName Title
          */
         "emptyStateHeader": string;
         /**
           * @uiWidget ImageUpload
-          * @uiName Empty State Image Link
+          * @format url
+          * @uiName Image
          */
         "emptyStateImage": string;
         /**
-          * @uiName Empty State Text
+          * @uiName Description
+          * @uiWidget textArea
          */
         "emptyStateText": string;
     }
     interface SqmFormMessage {
         /**
-          * @uiName Icon to use in alert
+          * Icon to use in alert
+          * @uiName Icon
          */
         "icon"?: string;
         /**
-          * @uiName Type of alert
+          * @uiName Alert Type
          */
         "type": string;
     }
@@ -300,24 +319,31 @@ export namespace Components {
     }
     interface SqmHero {
         /**
-          * Can either be an image url, colour or Shoelace variable.
+          * Can be an image url, colour or Shoelace variable.
           * @uiName Background
          */
         "background"?: string;
         /**
-          * @uiName Number of columns in the layout
+          * Number of columns in the layout
+          * @uiName Columns
          */
         "columns": 1 | 2;
         /**
-          * @uiName Padding size
+          * @uiName Padding Size
+          * @uiEnum ["none", "small", "medium","large"]
+          * @uiEnumNames ["None", "Small", "Medium", "Large"]
          */
         "paddingSize": "none" | "small" | "medium" | "large";
         /**
-          * @uiName Secondary background image or color (for use in right column)
+          * Secondary background image or color (for use in the right column)
+          * @uiName Secondary Background
          */
         "secondaryBackground"?: string;
         /**
-          * @uiName Wrap direction
+          * Flexbox wrap direction, accepts wrap or wrap-reverse
+          * @uiName Wrap Direction
+          * @uiEnum ["wrap", "wrap-reverse"]
+          * @uiEnumNames ["Wrap", "Wrap Reverse"]
          */
         "wrapDirection": "wrap" | "wrap-reverse";
     }
@@ -325,6 +351,7 @@ export namespace Components {
         /**
           * @uiName Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundColor"?: string;
         /**
@@ -332,23 +359,25 @@ export namespace Components {
          */
         "borderRadius"?: number;
         /**
-          * @uiName CTA Button Link
+          * @uiName Button Link
          */
         "buttonLink"?: string;
         /**
-          * @uiName CTA Button Link Open in New Tab
+          * @uiName Open Link in New Tab
+          * @default
          */
         "buttonNewTab"?: boolean;
         /**
-          * @uiName CTA Button Text
+          * @uiName Button Text
          */
         "buttonText"?: string;
         /**
-          * @uiName Description Text
+          * @uiName Description
+          * @uiWidget textArea
          */
         "description"?: string;
         /**
-          * @uiName Title Text
+          * @uiName Title
          */
         "header"?: string;
         /**
@@ -372,7 +401,8 @@ export namespace Components {
         "imagePos": "left" | "center" | "right";
         /**
           * @uiWidget ImageUpload
-          * @uiName Image Link
+          * @format url
+          * @uiName Image
          */
         "imageUrl": string;
         /**
@@ -385,6 +415,7 @@ export namespace Components {
         /**
           * @uiName Overlay Color
           * @uiWidget color
+          * @format color
          */
         "overlayColor"?: string;
         /**
@@ -408,6 +439,7 @@ export namespace Components {
         /**
           * @uiName Text Color
           * @uiWidget color
+          * @format color
          */
         "textColor"?: string;
     }
@@ -425,6 +457,7 @@ export namespace Components {
         /**
           * @uiName Background Color
           * @uiWidget color
+          * @format
          */
         "backgroundColor": string;
         /**
@@ -433,6 +466,8 @@ export namespace Components {
         "borderRadius"?: number;
         /**
           * @uiWidget ImageUpload
+          * @format url
+          * @required 
           * @uiName Image Link
          */
         "imageUrl": string;
@@ -463,6 +498,7 @@ export namespace Components {
         "fieldName": string;
         /**
           * @uiName Optional
+          * @default
          */
         "fieldOptional"?: boolean;
         /**
@@ -475,8 +511,8 @@ export namespace Components {
     }
     interface SqmLeaderboard {
         /**
-          * Text displayed for users without names in the leaderboard
-          * @uiName Anonymous User Name
+          * Title displayed for users without names
+          * @uiName Unknown User Text
          */
         "anonymousUser": string;
         /**
@@ -485,20 +521,21 @@ export namespace Components {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * Hide the viewer's leaderboard row if not in the top 10.
+          * Hide the viewer's leaderboard row if not in the top results.
           * @uiName Hide Viewing User
+          * @default
          */
         "hideViewer": boolean;
         /**
-          * Only count leaderboard activity within a given interval
           * @uiName Leaderboard Time Interval
-          * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
          */
         "interval": string;
         /**
           * @uiName Leaderboard Type
           * @uiType string
+          * @required 
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
           * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
@@ -513,6 +550,7 @@ export namespace Components {
         /**
           * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
@@ -527,7 +565,7 @@ export namespace Components {
          */
         "rankheading"?: string;
         /**
-          * @uiName Show Rank Column
+          * @uiName Show Leaderboard Rank
          */
         "showRank": boolean;
         /**
@@ -546,14 +584,15 @@ export namespace Components {
          */
         "demoData"?: DemoData<LeaderboardRankViewProps>;
         /**
-          * @uiName Leaderboard time interval
-          * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiName Leaderboard Time Interval
+          * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
          */
         "interval": string;
         /**
-          * @uiName Leaderboard type
+          * @uiName Leaderboard Type
           * @uiType string
+          * @required 
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
           * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
@@ -563,14 +602,16 @@ export namespace Components {
         /**
           * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
           * @uiName Rank Text
+          * @uiWidget textArea
          */
         "rankText": string;
         /**
-          * @uiName Default rank
+          * @uiName Default Rank
           * @uiType string
           * @uiEnum ["rowNumber", "rank", "denseRank"]
           * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
@@ -588,11 +629,11 @@ export namespace Components {
          */
         "demoData"?: DemoData<NameFieldsViewProps>;
         /**
-          * @uiName First name field label
+          * @uiName First Name label
          */
         "firstNameLabel": string;
         /**
-          * @uiName Last name field label
+          * @uiName Last Name label
          */
         "lastNameLabel": string;
     }
@@ -603,11 +644,12 @@ export namespace Components {
          */
         "demoData"?: DemoData<NavigationMenuViewProps>;
         /**
-          * @uiName Include dropdown menu
+          * @uiName Include Dropdown Menu
          */
         "includeDropdown": boolean;
         /**
-          * @uiName Label on the header menu
+          * Label on the header menu
+          * @uiName Menu Label
          */
         "menuLabel": string;
     }
@@ -629,7 +671,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * @uiName Navigation path
+          * @uiName Navigation Path
          */
         "path": string;
     }
@@ -640,53 +682,63 @@ export namespace Components {
          */
         "demoData"?: PasswordFieldViewDemoProps;
         /**
-          * @uiName Enable live password validation
+          * Enable live password validation
+          * @uiName Enable Validation
          */
         "enableValidation": boolean;
         /**
-          * @uiName Label for password field
+          * Label for password field
+          * @uiName Password Label
          */
         "fieldLabel": string;
     }
     interface SqmPopupContainer {
         /**
-          * @uiName Display a close button on the popup
+          * Display a close button on the popup
+          * @uiName Show Close Button
          */
         "closeButton": boolean;
         /**
-          * @uiName Text to be used as the close button
+          * Text inside the close button
+          * @uiName Close Button Text
          */
         "closeButtonText": string;
         /**
-          * @uiName Specify padding on the popup contents when in embedded mode
+          * Specify padding on the popup contents when in embedded mode
+          * @uiName Embed Padding
           * @uiType string
           * @uiEnum ["none", "small", "medium", "large"]
           * @uiEnumNames ["None", "Small", "Medium", "Large"]
          */
         "embedPadding"?: "none" | "small" | "medium" | "large";
         /**
-          * @uiName Specify padding on the popup contents when in popup mode
+          * Specify padding on the popup contents when in popup mode
+          * @uiName Popup Padding
           * @uiType string
           * @uiEnum ["none", "small", "medium", "large"]
           * @uiEnumNames ["None", "Small", "Medium", "Large"]
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**
-          * @uiName Show SaaSquatch Powered By messaging
+          * Show Powered By SaaSquatch link
+          * @uiName Show Powered By
          */
         "poweredBy": boolean;
     }
     interface SqmPortalChangePassword {
         /**
-          * @uiName Modal cancel password change button text
+          * Modal cancel button text
+          * @uiName Cancel Button Text
          */
         "cancelText": string;
         /**
-          * @uiName Modal change password button text
+          * Modal change password button text
+          * @uiName Change Password Button Text
          */
         "changePasswordButtonText": string;
         /**
-          * @uiName Password confirmation input field label
+          * Password confirmation input field label
+          * @uiName Confirm Password Label
          */
         "confirmPasswordFieldLabel": string;
         /**
@@ -695,23 +747,26 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
         /**
-          * @uiName Change password modal header
+          * @uiName Change Password Modal Header
          */
         "modalChangePasswordHeader": string;
         /**
-          * @uiName Password input field label
+          * Password input field label
+          * @uiName Password Label
          */
         "passwordFieldLabel": string;
         /**
-          * @uiName Portal change password button text
+          * @uiName Change Password Button Text
          */
         "portalChangePasswordButtonText": string;
         /**
-          * @uiName Portal change password section header
+          * Portal change password section header
+          * @uiName Change Password Header
          */
         "portalChangePasswordHeader": string;
         /**
-          * @uiName Successful password change message
+          * Successful password change message
+          * @uiName Successful Message
          */
         "successMessage": string;
     }
@@ -726,7 +781,7 @@ export namespace Components {
          */
         "borderRadius"?: number;
         /**
-          * @uiName Center content
+          * @uiName Center Content
          */
         "center"?: boolean;
         /**
@@ -751,7 +806,8 @@ export namespace Components {
          */
         "gap": Spacing;
         /**
-          * @uiName Justify content
+          * Define how this container distributes its contents along the main-axis.
+          * @uiName Justify Content
           * @uiType string
           * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
           * @uiEnumNames ["Start", "Center", "End", "Space Between", "Space Around", "Space Evenly"]
@@ -785,20 +841,20 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalEmailVerificationViewProps>;
         /**
-          * @uiName Email verification header text
+          * @uiName Email Verification Header Text
          */
         "emailVerificationHeader": string;
         /**
           * The page that users are redirected to from the verification email.
-          * @uiName Email redirection base path
+          * @uiName Email Redirection Base Path
          */
         "redirectPath": string;
         /**
-          * @uiName Re-send email button text
+          * @uiName Re-send Email Button Text
          */
         "resendEmailButtonText": string;
         /**
-          * @uiName Email verification body text
+          * @uiName Email Verification Body Text
          */
         "verifyMessage": string;
     }
@@ -841,6 +897,7 @@ export namespace Components {
         "supportEmail": string;
         /**
           * @uiName Support Text
+          * @uiWidget textArea
          */
         "supportText": string;
         /**
@@ -859,20 +916,20 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalForgotPasswordViewProps>;
         /**
-          * @uiName Email label
+          * @uiName Email Label
          */
         "emailLabel": string;
         /**
-          * @uiName Routing path to login page
+          * @uiName Login Page Routing Path
          */
         "loginPath": string;
         /**
           * The page that users are redirected to from the password reset email.
-          * @uiName Email redirection base path
+          * @uiName Email Redirection Base Path
          */
         "redirectPath": string;
         /**
-          * @uiName Password reset button text
+          * @uiName Password Reset Button Text
          */
         "submitLabel": string;
     }
@@ -890,51 +947,60 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalLoginViewProps>;
         /**
-          * @uiName Label for email field
+          * Label for email field
+          * @uiName Email Label
          */
         "emailLabel": string;
         /**
-          * @uiName Label for forgotten password button
+          * Label for forgotten password button
+          * @uiName Forgot Password Text
          */
         "forgotPasswordLabel": string;
         /**
-          * @uiName Forgot password button redirect path
+          * Forgot password redirect path
+          * @uiName Forgot Password Path
          */
         "forgotPasswordPath": string;
         /**
-          * @uiName Page navigated to after sign-in
+          * Page navigated to after sign-in
+          * @uiName Next Page Path
          */
         "nextPage": string;
         /**
-          * @uiName Heading label
+          * @uiName Heading Label
          */
         "pageLabel": string;
         /**
-          * @uiName Label for password field
+          * Label for password field
+          * @uiName Password Label
          */
         "passwordLabel": string;
         /**
-          * @uiName Label for register navigation button
+          * Label for register button
+          * @uiName Register Button Text
          */
         "registerLabel": string;
         /**
-          * @uiName Register button redirection path
+          * Register redirect path
+          * @uiName Register Path
          */
         "registerPath": string;
         /**
-          * @uiName Label for submit button
+          * Label for submit button
+          * @uiName Submit Button Text
          */
         "submitLabel": string;
     }
     interface SqmPortalLogout {
         /**
-          * @uiName Next Page path
+          * @uiName Next Page Path
          */
         "nextPage": string;
     }
     interface SqmPortalProfile {
         /**
-          * @uiName Country input field label
+          * Country input field label
+          * @uiName Country Label
          */
         "countrytext": string;
         /**
@@ -943,31 +1009,35 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalProfileViewProps>;
         /**
-          * @uiName Edit profile header
+          * @uiName Edit Profile Header
          */
         "editProfileHeader": string;
         /**
-          * @uiName Edit profile sub header
+          * @uiName Edit Profile Sub Header
          */
         "editProfileSubHeader": string;
         /**
-          * @uiName Email input field label
+          * Email input field label
+          * @uiName Email Label
          */
         "emailtext": string;
         /**
-          * @uiName First name input field label
+          * First name input field label
+          * @uiName First Name Label
          */
         "firstnametext": string;
         /**
-          * @uiName Last name input field label
+          * Last name input field label
+          * @uiName Last Name Label
          */
         "lastnametext": string;
         /**
-          * @uiName Show or hide country field
+          * Show or hide the country field
+          * @uiName Show Country Field
          */
         "showCountry": boolean;
         /**
-          * @uiName Text for the submit changes button
+          * @uiName Submit Changes Button Text
          */
         "submitChangeButtonText": string;
     }
@@ -977,21 +1047,24 @@ export namespace Components {
          */
         "redirectTo": string;
         /**
-          * @uiName Redirect unverified users path
+          * @uiName Redirect Unverified Users Path
          */
         "redirectToUnverified": string;
         /**
           * @uiName Require Email Verification
+          * @default
          */
         "requireEmailVerification": boolean;
     }
     interface SqmPortalRegister {
         /**
-          * @uiName Show confirm password field
+          * Show or hide the confirm password input
+          * @uiName Show Confirm Password Field
+          * @default
          */
         "confirmPassword": boolean;
         /**
-          * @uiName Label for confirm password field
+          * @uiName Confirm Password Label
          */
         "confirmPasswordLabel": string;
         /**
@@ -1000,59 +1073,65 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalRegisterViewProps>;
         /**
-          * @uiName Label for email field
+          * @uiName Email Label
          */
         "emailLabel": string;
         /**
-          * @uiName Use password field with live validation
+          * @uiName Enable Password Validation
          */
         "enablePasswordValidation": boolean;
         /**
-          * @uiName Hide default input fields to use custom fields
+          * Hide default input fields to use custom fields
+          * @uiName Hide Default Inputs
+          * @default
          */
         "hideInputs": boolean;
         /**
-          * @uiName Label for login navigation button
+          * @uiName Login Button Text
          */
         "loginLabel": string;
         /**
-          * @uiName Sign in button redirection path
+          * Login button redirection path
+          * @uiName Login Path
          */
         "loginPath": string;
         /**
-          * @uiName Page navigated to after registration
+          * Page navigated to after registration
+          * @uiName Next Page
          */
         "nextPage": string;
         /**
-          * @uiName Heading label
+          * @uiName Heading Label
          */
         "pageLabel": string;
         /**
-          * @uiName Label for password field
+          * @uiName Password Label
          */
         "passwordLabel": string;
         /**
           * The page that users are redirected to from the verification email.
-          * @uiName Email redirection base path
+          * @uiName Email Redirection Base Path
          */
         "redirectPath": string;
         /**
-          * @uiName Label for submit button
+          * @uiName Submit Button Text
          */
         "submitLabel": string;
     }
     interface SqmPortalResetPassword {
         /**
-          * @uiName Show confirm password
+          * Show or hide confirm password field
+          * @uiName Show Confirm Password
+          * @default
          */
         "confirmPassword": boolean;
         /**
-          * @uiName Confirm password field label
+          * @uiName Confirm Password Label
          */
         "confirmPasswordFieldLabel": string;
         /**
-          * Displayed after a successful password reset
-          * @uiName Continue button text
+          * Button text displayed after a successful password reset
+          * @uiName Continue Button Text
          */
         "continueButtonText": string;
         /**
@@ -1062,29 +1141,29 @@ export namespace Components {
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
           * The page that users are redirected to if the reset fails due to outdated password reset attempt.
-          * @uiName Failed page redirection path
+          * @uiName Failed Page Path
          */
         "failedPage": string;
         /**
           * The page that users are redirected to when the password reset succeeds.
-          * @uiName Next page path
+          * @uiName Next Page Path
          */
         "nextPage": string;
         /**
-          * @uiName Password field label
+          * @uiName Password Label
          */
         "passwordFieldLabel": string;
         /**
           * Displayed after a successful password reset
-          * @uiName Password reset header text
+          * @uiName Successful Password Reset Text
          */
         "passwordResetHeader": string;
         /**
-          * @uiName Password reset button text
+          * @uiName Password Reset Button Text
          */
         "resetPasswordButtonText": string;
         /**
-          * @uiName Password reset header text
+          * @uiName Reset Password Header Text
          */
         "resetPasswordHeader": string;
     }
@@ -1096,12 +1175,12 @@ export namespace Components {
         "demoData"?: DemoData<PortalVerifyEmailViewProps>;
         /**
           * The page that users are redirected to if verification fails due to outdated verification attempt.
-          * @uiName Failed page redirection path
+          * @uiName Failed Page Path
          */
         "failedPage": string;
         /**
           * The page that users are redirected to when the verification succeeds.
-          * @uiName Next page path
+          * @uiName Next Page Path
          */
         "nextPage": string;
     }
@@ -1109,6 +1188,7 @@ export namespace Components {
         /**
           * @uiName Header Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundColor": string;
         /**
@@ -1118,6 +1198,7 @@ export namespace Components {
         /**
           * @uiName Header Text Color
           * @uiWidget color
+          * @format color
          */
         "textColor": string;
     }
@@ -1125,10 +1206,12 @@ export namespace Components {
         /**
           * @uiName Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundColor": string;
         /**
           * @uiName Description
+          * @uiWidget textArea
          */
         "description": string;
         /**
@@ -1136,22 +1219,293 @@ export namespace Components {
          */
         "header": string;
         /**
-          * Options available at https://shoelace.style/components/icon
+          * Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive.
           * @uiName Icon
          */
         "icon"?: string;
         /**
           * Displayed in place of an icon
           * @uiName Image Url
+          * @uiWidget imageUpload
+          * @format url
          */
         "imageUrl"?: string;
         /**
           * @uiName Text Color
           * @uiWidget color
+          * @format color
          */
         "textColor": string;
     }
     interface SqmProgramMenu {
+    }
+    interface SqmQa {
+        /**
+          * Description here
+          * @uiName Boolean Switch with default - true
+         */
+        "booleanSwitch"?: boolean;
+        /**
+          * Description here
+          * @uiName Boolean Switch with no default
+         */
+        "booleanSwitchNoDefault"?: boolean;
+        /**
+          * Description here
+          * @uiName Boolean Switch required with no default
+          * @required
+         */
+        "booleanSwitchRequiredNoDefault"?: boolean;
+        /**
+          * Description here
+          * @uiName Boolean Switch with default - false
+         */
+        "booleanSwitchfalse"?: boolean;
+        /**
+          * Description here
+          * @uiName Color with default
+          * @uiWidget color
+          * @format color
+         */
+        "color"?: string;
+        /**
+          * Description here
+          * @uiName Color with no default
+          * @uiWidget color
+          * @format color
+         */
+        "colorNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Color required with no default
+          * @required 
+          * @uiWidget color
+          * @format color
+         */
+        "colorRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Date Interval with default
+          * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+          * @format date-interval
+         */
+        "dateInterval"?: string;
+        /**
+          * Description here
+          * @uiName Date Interval with no default
+          * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+          * @format date-interval
+         */
+        "dateIntervalNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Date Interval required with no default
+          * @required 
+          * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+          * @format date-interval
+         */
+        "dateIntervalRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Image Upload with default
+          * @uiWidget ImageUpload
+          * @format url
+         */
+        "imageUpload"?: string;
+        /**
+          * Description here
+          * @uiName Image Upload with no default
+          * @uiWidget ImageUpload
+          * @format url
+         */
+        "imageUploadNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Image Upload required with no default
+          * @required 
+          * @uiWidget ImageUpload
+          * @format url
+         */
+        "imageUploadRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Number Max 7
+          * @maximum 7
+         */
+        "max"?: number;
+        /**
+          * Description here
+          * @uiName String Max Length 10
+          * @maxLength 10
+         */
+        "maxLength"?: string;
+        /**
+          * Description here
+          * @uiName Number Min 7
+          * @minimum 7
+         */
+        "min"?: number;
+        /**
+          * Description here
+          * @uiName String Min Length 10
+          * @minLength 10
+         */
+        "minLength"?: string;
+        /**
+          * Description here
+          * @uiName Number Enum Select with default
+          * @uiEnum [1,2,3]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "numberEnumSelect"?: number;
+        /**
+          * Description here
+          * @uiName Number Enum Select with no default
+          * @uiEnum [1,2,3]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "numberEnumSelectNoDefault"?: number;
+        /**
+          * Description here
+          * @uiName Number Enum Select required with no default
+          * @required 
+          * @uiEnum [1,2,3]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "numberEnumSelectRequiredNoDefault"?: number;
+        /**
+          * Description here
+          * @uiName Number Input with default
+         */
+        "numberInput"?: number;
+        /**
+          * Description here
+          * @uiName Number Input with no default
+         */
+        "numberInputNoDefault"?: number;
+        /**
+          * Description here
+          * @uiName Number required with no default
+          * @required
+         */
+        "numberRequired"?: number;
+        /**
+          * Description here
+          * @uiName Program Selector with default
+          * @uiWidget programSelector
+         */
+        "programSelector"?: string;
+        /**
+          * Description here
+          * @uiName Program Selector with no default
+          * @uiWidget programSelector
+         */
+        "programSelectorNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Program Selector required with no default
+          * @required 
+          * @uiWidget programSelector
+         */
+        "programSelectorRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Stat Selector with default
+          * @uiWidget statTypeSelectWidget
+         */
+        "statSelector"?: string;
+        /**
+          * Description here
+          * @uiName Stat Selector with no default
+          * @uiWidget statTypeSelectWidget
+         */
+        "statSelectorNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Stat Selector required with no default
+          * @required 
+          * @uiWidget statTypeSelectWidget
+         */
+        "statSelectorRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName String Enum Select with default
+          * @uiEnum ["option1","option2","option3"]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "stringEnumSelect"?: string;
+        /**
+          * Description here
+          * @uiName String Enum Select with no default
+          * @uiEnum ["option1","option2","option3"]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "stringEnumSelectNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName String Enum Select required with no default
+          * @required 
+          * @uiEnum ["option1","option2","option3"]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "stringEnumSelectRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName String required with no default
+          * @required
+         */
+        "stringRequired"?: string;
+        /**
+          * Description here
+          * @uiName Text Area Input
+          * @uiWidget textArea with default
+         */
+        "textAreaInput"?: string;
+        /**
+          * Description here
+          * @uiName Text Area Input
+          * @uiWidget textArea with no default
+         */
+        "textAreaInputNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Text Area Input
+          * @uiWidget textArea required with no default
+          * @required
+         */
+        "textAreaInputRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Text Input with default
+         */
+        "textInput"?: string;
+        /**
+          * Description here
+          * @uiName Text Input with no default
+         */
+        "textInputNoDefault"?: string;
+    }
+    interface SqmQaReferralCard {
+        /**
+          * @uiName Vertical Aligment
+          * @uiType string
+          * @uiEnum ["start", "center", "end"]
+          * @uiEnumNames ["Top", "Center", "Bottom"]
+         */
+        "verticalAlignment": "start" | "center" | "end";
+    }
+    interface SqmQaTabs {
+        /**
+          * Used to specify the placement of the tabs
+          * @uiName Tabs Placement
+          * @uiType string
+          * @uiEnum ["left", "right", "bottom", "top"]
+          * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
+         */
+        "placement"?: "left" | "right" | "bottom" | "top";
     }
     interface SqmReferralCard {
         /**
@@ -1184,7 +1538,7 @@ export namespace Components {
           * @uiName Vertical Aligment
           * @uiType string
           * @uiEnum ["start", "center", "end"]
-          * @uiEnumNames ["Start", "Center", "End"]
+          * @uiEnumNames ["Top", "Center", "Bottom"]
          */
         "verticalAlignment": "start" | "center" | "end";
     }
@@ -1195,16 +1549,19 @@ export namespace Components {
          */
         "demoData"?: DemoData<ReferralIframeViewProps>;
         /**
-          * @uiName Height of the iframe container
+          * Height of the iframe container
+          * @uiName Iframe Height
          */
         "iframeHeight": string;
         /**
-          * @uiName URL of iframe to display
-          * @uiRequired
+          * URL of iframe to display
+          * @uiName Iframe Source
+          * @required
          */
         "iframeSrc": string;
         /**
-          * @uiName Width of the iframe container
+          * Width of the iframe container
+          * @uiName Iframe Width
          */
         "iframeWidth": string;
     }
@@ -1216,36 +1573,40 @@ export namespace Components {
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
-          * @uiName Mobile Hidden Columns
+          * @uiName Hidden Mobile Columns
          */
         "hiddenColumns"?: string;
+        /**
+          * @uiName Hide Column Labels
+         */
+        "hideLabels"?: boolean;
         /**
           * @uiName Tablet Breakpoint
          */
         "mdBreakpoint"?: number;
         /**
-          * @uiName View More button text
+          * @uiName View More Button Text
          */
         "moreLabel"?: string;
         /**
-          * @uiName Number of referrals per page
+          * Number of referrals displayed per page
+          * @uiName Referrals Per Page
          */
         "perPage": number;
         /**
-          * @uiName Previous button text
+          * @uiName Previous Button Text
          */
         "prevLabel"?: string;
         /**
           * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs. If program ID is "classic", shows classic-only referrals
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId": string;
         /**
-          * @uiName Show column labels
-         */
-        "showLabels"?: boolean;
-        /**
-          * @uiName Show Referred by user in table
+          * Show referred by user in table
+          * @uiName Show Referrer
+          * @default
          */
         "showReferrer"?: boolean;
         /**
@@ -1301,18 +1662,22 @@ export namespace Components {
          */
         "columnTitle": string;
         /**
+          * Shown in the dropdown details when a reward has an expiry date.
           * @uiName Reward Expiring Text
          */
         "expiringText": string;
         /**
+          * Shown in the dropdown details when a reward has an associated fuel tank code.
           * @uiName Fuel Tank Code Text
          */
         "fuelTankText": string;
         /**
           * @uiName Hide dropdown details of reward
+          * @default
          */
         "hideDetails": boolean;
         /**
+          * Shown in the dropdown details when a reward is pending.
           * @uiName Reward Pending Text
          */
         "pendingForText": string;
@@ -1320,15 +1685,20 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
         /**
+          * Shown in the dropdown details when a reward has been received.’
           * @uiName Reward Received Text
          */
         "rewardReceivedText": string;
         /**
+          * Additional status text shown in the details drop down.
           * @uiName Reward Status Long Text
+          * @uiWidget textArea
          */
         "statusLongText": string;
         /**
+          * Text shown in the reward status badge.
           * @uiName Reward Status Text
+          * @uiWidget textArea
          */
         "statusText": string;
     }
@@ -1358,7 +1728,8 @@ export namespace Components {
     }
     interface SqmReferralTableUserColumn {
         /**
-          * @uiName Name displayed for anonymous users
+          * Name displayed for unknown users
+          * @uiName Anonymous User Text
          */
         "anonymousUser": string;
         /**
@@ -1366,7 +1737,8 @@ export namespace Components {
          */
         "columnTitle": string;
         /**
-          * @uiName Name displayed for deleted users
+          * Name displayed for deleted users
+          * @uiName Deleted User Text
          */
         "deletedUser": string;
         "renderCell": (data: Referral) => Promise<any>;
@@ -1418,11 +1790,14 @@ export namespace Components {
          */
         "doneText": string;
         /**
-          * @uiName Exchange button text
+          * Error message shown when reward is not available
+          * @uiName Not Available Error
+          * @uiWidget textArea
          */
         "notAvailableError": string;
         /**
-          * @uiName Not Enough Available Error Message
+          * @uiName Not Enough Error Message
+          * @uiWidget textArea
          */
         "notEnoughError": string;
         /**
@@ -1432,6 +1807,7 @@ export namespace Components {
         /**
           * Shown if an error occurs when loading the reward exchange.
           * @uiName Reward List Error Message
+          * @uiWidget textArea
          */
         "queryError": string;
         /**
@@ -1446,11 +1822,13 @@ export namespace Components {
         /**
           * Shown if an error occurs during the reward exchange.
           * @uiName Redemption Error Message
+          * @uiWidget textArea
          */
         "redemptionError": string;
         /**
           * Displayed on the success screen when a user successfully exchanges for a reward.
           * @uiName Redemption Success Message
+          * @uiWidget textArea
          */
         "redemptionSuccessText": string;
         /**
@@ -1473,16 +1851,18 @@ export namespace Components {
         "rewardTitle": string;
         /**
           * @uiName Select Amount Text
+          * @uiWidget textArea
          */
         "selectText": string;
         /**
           * Set the number of placeholder cards to be shown in loading state.
-          * @undocumented Loading Cards
+          * @uiName Loading Cards
          */
         "skeletonCardNum": number;
         /**
           * Displayed on the reward exchange cards.
           * @uiName Reward Exchange Amount Text
+          * @uiWidget textArea
          */
         "sourceAmountMessage": string;
         /**
@@ -1503,6 +1883,10 @@ export namespace Components {
          */
         "hiddenColumns"?: string;
         /**
+          * @uiName Hide Column Labels
+         */
+        "hideLabels"?: boolean;
+        /**
           * @uiName Tablet Breakpoint
          */
         "mdBreakpoint"?: number;
@@ -1521,12 +1905,9 @@ export namespace Components {
         /**
           * Filters to only show rewards in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all rewards from all programs.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId": string;
-        /**
-          * @uiName Show column labels
-         */
-        "showLabels"?: boolean;
         /**
           * @uiName Mobile Breakpoint
          */
@@ -1538,7 +1919,7 @@ export namespace Components {
     }
     interface SqmRewardsTableCustomerNoteColumn {
         /**
-          * @uiName Customer Note Column Title
+          * @uiName Column Title
          */
         "columnTitle": string;
         "renderCell": (data: Reward, locale: string) => Promise<any>;
@@ -1576,7 +1957,7 @@ export namespace Components {
          */
         "availableText": string;
         /**
-          * @uiName Reward column title
+          * @uiName Reward Column Title
          */
         "columnTitle": string;
         /**
@@ -1601,7 +1982,8 @@ export namespace Components {
     }
     interface SqmRewardsTableSourceColumn {
         /**
-          * @uiName Name displayed for anonymous users
+          * Name displayed for unknown users
+          * @uiName Anonymous User Text
          */
         "anonymousUser": string;
         /**
@@ -1609,22 +1991,26 @@ export namespace Components {
          */
         "columnTitle": string;
         /**
-          * @uiName Name displayed for deleted users
+          * Name displayed for deleted users
+          * @uiName Deleted User Text
          */
         "deletedUser": string;
         /**
           * Shown when a reward has been created by a referral
           * @uiName Referral Text
+          * @uiWidget textArea
          */
         "referralText": string;
         "renderCell": (data: Reward, locale: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
-          * @uiName Reward Exchange label
+          * @uiName Reward Exchange Label
          */
         "rewardExchangeText": string;
         /**
+          * Shown when a reward has been created by a source other than a referral.
           * @uiName Reward Source Text
+          * @uiWidget textArea
          */
         "rewardSourceText": string;
     }
@@ -1643,11 +2029,13 @@ export namespace Components {
          */
         "columnTitle": string;
         /**
-          * @uiName Expired Status Text
+          * Text shown before the date of an expiring reward.
+          * @uiName Expiry Date Prefix
          */
         "expiryText": string;
         /**
-          * @uiName Expiry Date Prefix
+          * Text shown before the available date of a pending reward.
+          * @uiName Pending Date Prefix
          */
         "pendingScheduled": string;
         /**
@@ -1664,12 +2052,13 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward Status Text
+          * @uiWidget textArea
          */
         "statusText": string;
     }
     interface SqmRoute {
         /**
-          * @uiName Navigation path name
+          * @uiName Navigation Path Name
          */
         "path": string;
     }
@@ -1699,7 +2088,8 @@ export namespace Components {
          */
         "circle": boolean;
         /**
-          * @uiName Icon Name
+          * Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive.
+          * @uiName Icon
          */
         "iconName": string;
         /**
@@ -1732,10 +2122,12 @@ export namespace Components {
          */
         "scrollAnimation": "smooth" | "auto";
         /**
+          * ID applied to the HTML tag you would like to scroll to. E.g tab-1
           * @uiName Scroll Id
          */
         "scrollId"?: string;
         /**
+          * The name of the HTML tag you would like to scroll to. E.g referral-table
           * @uiName Scroll Tag Name
          */
         "scrollTagName"?: string;
@@ -1749,12 +2141,14 @@ export namespace Components {
     }
     interface SqmShareButton {
         /**
-          * @uiName Button background color
+          * @uiName Button Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundcolor"?: string;
         /**
-          * @uiName Configure border radius with pixel amount
+          * Configure border radius with pixel amount
+          * @uiName Border Radius
          */
         "borderradius"?: number;
         /**
@@ -1767,16 +2161,18 @@ export namespace Components {
          */
         "disabled"?: boolean;
         /**
-          * @uiName Hide the icon
+          * @uiName Hide Icon
+          * @default
          */
         "hideicon"?: boolean;
         /**
-          * @uiName Hide the text
+          * @uiName Hide Text
+          * @default
          */
         "hidetext"?: boolean;
         /**
-          * Options available at https://shoelace.style/components/icon
-          * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
+          * Options available at https://shoelace.style/components/icon  Icon used in button. Will try to select an icon based on the share medium if left empty.
+          * @uiName Icon
          */
         "icon"?: string;
         /**
@@ -1790,6 +2186,7 @@ export namespace Components {
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
           * @uiType string
+          * @required 
           * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
           * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
          */
@@ -1806,20 +2203,23 @@ export namespace Components {
     | "reminder"
     | "unknown";
         /**
-          * @uiName Display as pill
+          * @uiName Display Pill
          */
         "pill"?: boolean;
         /**
           * Optional programId, or uses the programId context where this button is rendered.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
-          * @uiName Text used for native sharing (mobile only)
+          * Text used for native sharing (mobile only)
+          * @uiName Share Text
          */
         "sharetext"?: string;
         /**
-          * @uiName Title used for native sharing (mobile only)
+          * Title used for native sharing (mobile only)
+          * @uiName Share Title
          */
         "sharetitle"?: string;
         /**
@@ -1830,8 +2230,9 @@ export namespace Components {
          */
         "size"?: "small" | "medium" | "large";
         /**
-          * @uiName Button text color
+          * @uiName Button Text Color
           * @uiWidget color
+          * @format color
          */
         "textcolor"?: string;
         /**
@@ -1857,16 +2258,17 @@ export namespace Components {
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
-          * The number of milliseconds that the tooltip will appear for
+          * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
          */
         "tooltiplifespan": number;
         /**
-          * This is shown after someone has successfully copied the cpde to the clipboard.
-          * @uiName Tooltip text
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+          * @uiName Tooltip Text
          */
         "tooltiptext": string;
     }
@@ -1893,6 +2295,7 @@ export namespace Components {
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
@@ -1908,13 +2311,13 @@ export namespace Components {
          */
         "textColor"?: string;
         /**
-          * The number of milliseconds that the tooltip will appear for
-          * @uiName Tooltip lifespan
+          * The number of milliseconds that the tooltip appears for
+          * @uiName Tooltip Lifespan
          */
         "tooltiplifespan": number;
         /**
-          * This is shown after someone has successfully copied the link to the clipboard.
-          * @uiName Tooltip text
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+          * @uiName Tooltip Text
          */
         "tooltiptext": string;
     }
@@ -1936,7 +2339,7 @@ export namespace Components {
          */
         "showBorder"?: boolean;
         /**
-          * @uiName Space between stats
+          * @uiName Space Between Stats
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
@@ -1952,10 +2355,19 @@ export namespace Components {
         "header": string;
     }
     interface SqmTableCell {
+        /**
+          * @uiName Column Span
+         */
         "colspan": number;
+        /**
+          * @uiName Padding}
+         */
         "padding": string;
     }
     interface SqmTableRow {
+        /**
+          * @uiName Border
+         */
         "border": string;
     }
     interface SqmTabs {
@@ -1970,20 +2382,25 @@ export namespace Components {
     }
     interface SqmTaskCard {
         /**
-          * @uiName CTA Button Link
+          * @uiName Button Link
+          * @uiGroup Button
          */
         "buttonLink": string;
         /**
-          * @uiName CTA Button Text
+          * @uiName Button Text
+          * @uiGroup Button
          */
         "buttonText": string;
         /**
-          * @uiName Title Text
+          * @uiName Title
+          * @uiGroup Task
          */
         "cardTitle": string;
         /**
           * Displays the amount of times that a user has completed a repeatable task.
           * @uiName Completed Count Text
+          * @uiGroup Task
+          * @uiWidget textArea
          */
         "completedText": string;
         /**
@@ -1992,89 +2409,118 @@ export namespace Components {
          */
         "demoData"?: DemoData<TaskCardViewProps | BigStatViewProps>;
         /**
-          * @uiName Description Text
+          * @uiName Description
+          * @uiGroup Task
          */
         "description": string;
         /**
-          * Timeframe that the task card will be shown
+          * Task cards are hidden from users outside of the duration. They are always displayed if no duration is configured.
           * @uiName Display Duration
-          * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+          * @uiGroup Task
          */
         "displayDuration": string;
         /**
           * Shown to users after the end of the task duration.
           * @uiName Ended Date Message
+          * @uiGroup Task
          */
         "endedMessage": string;
         /**
-          * Optionally send an event to SaaSquatch when a user clicks the CTA. This field configured what key of the event sent is.
-          * @uiName Event key of task card button
+          * Optionally send an event to SaaSquatch when a user clicks the button. Enter your event key into this field.
+          * @uiName Task Card Button Event Key
+          * @uiGroup Button
          */
         "eventKey"?: string;
         /**
+          * Displayed when a user views a task card after the reward duration interval.
           * @uiName Expiry Date Message
+          * @uiGroup Task
          */
         "expiryMessage": string;
         /**
           * The number of times a reward can be earned.  Use zero for no limit (the default).
           * @uiName Repeat Amount
+          * @uiGroup Reward
          */
         "finite": number;
         /**
           * Sets the goal for users progress to know when a task has been completed. If repeatable is checked, repeatable goals is an increment of this.
           * @uiName Goal Completion Number
+          * @uiGroup Goal
          */
         "goal": number;
         /**
-          * @uiName CTA Button Link Open in New Tab
+          * Button Link Opens in New Tab
+          * @uiName Open In New Tab
+          * @uiGroup Button
+          * @default
          */
         "openNewTab": boolean;
         /**
-          * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
-          * @uiName Program ID override
+          * The ID of the program that is used to scope the task card. When no ID is specified, it defaults to the program context in which the component is rendered.
+          * @uiName Program ID Override
+          * @uiWidget programSelector
+          * @uiGroup Goal
          */
         "programId"?: string;
         /**
+          * The unit displayed to the right of steps and progress numbers on the progress bar. Ex: $ for dollars
           * @uiName Progress Bar Unit
+          * @uiGroup Goal
          */
         "progressBarUnit": string;
         /**
           * @uiName Goal Repeatable
+          * @uiGroup Goal
+          * @default
          */
         "repeatable": boolean;
         /**
           * @uiName Reward Amount
+          * @uiGroup Reward
          */
         "rewardAmount": string;
         /**
+          * Task cards are disabled to users outside of the duration. They are not disabled if no duration is configured.
           * @uiName Reward Duration
-          * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+          * @uiGroup Reward
          */
         "rewardDuration": string;
         /**
           * @uiName Reward Unit
+          * @uiGroup Reward
          */
         "rewardUnit": string;
         /**
           * @uiName Show Progress Bar
+          * @uiGroup Goal
+          * @default
          */
         "showProgressBar": boolean;
         /**
           * Shown to users before the start of the task duration.
           * @uiName Start Date Message
+          * @uiGroup Task
          */
         "startsOnMessage": string;
         /**
           * Select what type of stat to display for the goal. Manual paths are also supported.
-          * @uiWidget StatTypeSelectWidget
           * @uiName Goal Progress Source
-          * @uiOptions {"version": 1.1}
+          * @required 
+          * @minLength 1
+          * @uiWidget statTypeSelectWidget
+          * @uiWidgetOptions {"version": 1.1}
+          * @uiGroup Goal
          */
         "statType": string;
         /**
           * @uiName Progress Bar Steps
+          * @uiGroup Goal
+          * @default
          */
         "steps": boolean;
     }
@@ -2086,7 +2532,7 @@ export namespace Components {
          */
         "text": string;
         /**
-          * @uiName Text
+          * @uiName Type
           * @uiType string
           * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
           * @uiEnumNames ["Paragraph", "Subtext", "Header 1", "Header 2", "Header 3", "Header 4"]
@@ -2131,26 +2577,28 @@ export namespace Components {
     }
     interface SqmTitledSection {
         /**
-          * Label for the section unless overwritten via the label slot.
+          * Text value shown when there is no label slot declared.
           * @uiName Label
          */
         "label": string;
         /**
-          * @uiName Label margin style
+          * Margin applied to the bottom of the label slot
+          * @uiName Label Bottom Margin
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "labelMargin": Spacing;
         /**
-          * @uiName Section padding
+          * Padding applied to all 4 sides of the container
+          * @uiName Section Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "padding": Spacing;
         /**
-          * @uiName Text Align
+          * @uiName Text Alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
@@ -2164,16 +2612,23 @@ export namespace Components {
          */
         "demoData"?: DemoData<UserNameViewProps>;
         /**
-          * @uiName Fallback name for nameless users
+          * Fallback name for unknown users
+          * @uiName Fallback Name
          */
         "fallback": string;
         /**
-          * @uiName Loading text
+          * @uiName Loading Text
          */
         "loadingText": string;
     }
 }
 declare global {
+    interface HTMLRaisinsPlopTargetElement extends Components.RaisinsPlopTarget, HTMLStencilElement {
+    }
+    var HTMLRaisinsPlopTargetElement: {
+        prototype: HTMLRaisinsPlopTargetElement;
+        new (): HTMLRaisinsPlopTargetElement;
+    };
     interface HTMLSqmAssetCardElement extends Components.SqmAssetCard, HTMLStencilElement {
     }
     var HTMLSqmAssetCardElement: {
@@ -2413,6 +2868,24 @@ declare global {
     var HTMLSqmProgramMenuElement: {
         prototype: HTMLSqmProgramMenuElement;
         new (): HTMLSqmProgramMenuElement;
+    };
+    interface HTMLSqmQaElement extends Components.SqmQa, HTMLStencilElement {
+    }
+    var HTMLSqmQaElement: {
+        prototype: HTMLSqmQaElement;
+        new (): HTMLSqmQaElement;
+    };
+    interface HTMLSqmQaReferralCardElement extends Components.SqmQaReferralCard, HTMLStencilElement {
+    }
+    var HTMLSqmQaReferralCardElement: {
+        prototype: HTMLSqmQaReferralCardElement;
+        new (): HTMLSqmQaReferralCardElement;
+    };
+    interface HTMLSqmQaTabsElement extends Components.SqmQaTabs, HTMLStencilElement {
+    }
+    var HTMLSqmQaTabsElement: {
+        prototype: HTMLSqmQaTabsElement;
+        new (): HTMLSqmQaTabsElement;
     };
     interface HTMLSqmReferralCardElement extends Components.SqmReferralCard, HTMLStencilElement {
     }
@@ -2679,6 +3152,7 @@ declare global {
         new (): HTMLSqmUserNameElement;
     };
     interface HTMLElementTagNameMap {
+        "raisins-plop-target": HTMLRaisinsPlopTargetElement;
         "sqm-asset-card": HTMLSqmAssetCardElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-brand": HTMLSqmBrandElement;
@@ -2719,6 +3193,9 @@ declare global {
         "sqm-program-explainer": HTMLSqmProgramExplainerElement;
         "sqm-program-explainer-step": HTMLSqmProgramExplainerStepElement;
         "sqm-program-menu": HTMLSqmProgramMenuElement;
+        "sqm-qa": HTMLSqmQaElement;
+        "sqm-qa-referral-card": HTMLSqmQaReferralCardElement;
+        "sqm-qa-tabs": HTMLSqmQaTabsElement;
         "sqm-referral-card": HTMLSqmReferralCardElement;
         "sqm-referral-iframe": HTMLSqmReferralIframeElement;
         "sqm-referral-table": HTMLSqmReferralTableElement;
@@ -2766,6 +3243,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface RaisinsPlopTarget {
+    }
     interface SqmAssetCard {
         /**
           * @undocumented 
@@ -2773,17 +3252,18 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<AssetCardViewProps>;
         /**
-          * @uiName Banner image
+          * @uiName Banner Image
          */
         "imgUrl"?: string;
         /**
-          * @uiName Banner title
+          * @uiName Banner Title
          */
         "titleText"?: string;
     }
     interface SqmBigStat {
         /**
-          * @uiName Alignment - controls the alignment of the flexbox
+          * Controls the alignment of the flexbox
+          * @uiName Alignment
           * @uiType string
           * @uiEnum ["left", "right", "center"]
           * @uiEnumNames ["Left", "Right", "Center"]
@@ -2795,12 +3275,15 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<BigStatViewProps>;
         /**
-          * @uiName Flex Reverse - controls the order of the stat value & description column
+          * Controls the order of the stat value & description column
+          * @uiName Flex Reverse
+          * @default
          */
         "flexReverse"?: boolean;
         /**
           * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
@@ -2829,9 +3312,10 @@ declare namespace LocalJSX {
         "statFontSize"?: FontSize;
         /**
           * Select what type of stat to display. Manual paths are also supported.
-          * @uiWidget StatTypeSelectWidget
+          * @uiWidget statTypeSelectWidget
           * @uiName Stat Type
-          * @uiOptions {"version": 1.1}
+          * @required 
+          * @uiWidgetOptions {"version": 1.1}
          */
         "statType"?: string;
     }
@@ -2846,14 +3330,16 @@ declare namespace LocalJSX {
          */
         "borderRadius"?: number;
         /**
-          * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
+          * Controls the primary brand color used in the Mint Components library.
           * @uiName Brand Color
           * @uiWidget color
+          * @format color
          */
         "brandColor"?: string;
         /**
           * The brand font that you want to use
           * @uiName Brand Font
+          * @default "Nunito Sans"
          */
         "brandFont"?: string;
         /**
@@ -2890,23 +3376,25 @@ declare namespace LocalJSX {
     }
     interface SqmCheckboxField {
         /**
-          * @uiName Checkbox label
+          * @uiName Checkbox Label
          */
         "checkboxLabel"?: string;
         /**
-          * @uiName Checkbox label link Used with link text if the checkbox label contains {labelLink}
+          * Used with link text if the checkbox label contains {labelLink}
+          * @uiName Checkbox Label Link
          */
         "checkboxLabelLink"?: string;
         /**
-          * @uiName Checkbox label link text
+          * @uiName Checkbox Label Link Text
          */
         "checkboxLabelLinkText"?: string;
         /**
-          * @uiName Checkbox name attribute
+          * @uiName Checkbox Name Attribute
          */
         "checkboxName"?: string;
         /**
           * @uiName Optional
+          * @default
          */
         "checkboxOptional"?: boolean;
         /**
@@ -2915,7 +3403,7 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CheckboxFieldViewProps>;
         /**
-          * @uiName Unchecked error message
+          * @uiName Unchecked Error Message
          */
         "errorMessage"?: string;
     }
@@ -2928,8 +3416,8 @@ declare namespace LocalJSX {
          */
         "direction"?: "row" | "column";
         /**
-          * Uses CSS border style syntax
-          * @uiName Border style
+          * Uses Shorthand CSS border syntax
+          * @uiName Border Style
          */
         "dividerStyle"?: string;
     }
@@ -2940,29 +3428,30 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<DropdownFieldViewProps>;
         /**
-          * @uiName Dropdown label
+          * @uiName Dropdown Label
          */
         "dropdownLabel"?: string;
         /**
-          * @uiName Dropdown name attribute
+          * @uiName Dropdown Name Attribute
          */
         "dropdownName"?: string;
         /**
           * @uiName Optional
+          * @default
          */
         "dropdownOptional"?: boolean;
         /**
-          * @uiName Unselected error message
+          * @uiName Unselected Error Message
          */
         "errorMessage"?: string;
     }
     interface SqmEditProfile {
         /**
-          * @uiName Cancel button text
+          * @uiName Cancel Button Text
          */
         "canceltext"?: string;
         /**
-          * @uiName Region field label
+          * @uiName Region Field Label
          */
         "currentregiontext"?: string;
         /**
@@ -2975,48 +3464,53 @@ declare namespace LocalJSX {
          */
         "editprofileheader"?: string;
         /**
-          * @uiName Enable editing button text
+          * Enable editing button text
+          * @uiName Edit Profile Text
          */
         "editprofiletext"?: string;
         /**
-          * @uiName First name field label
+          * @uiName First Name Label
          */
         "firstnametext"?: string;
         /**
-          * @uiName Last name field label
+          * @uiName Last Name Label
          */
         "lastnametext"?: string;
         /**
-          * @uiName Show or hide current region
+          * Show or hide current region
+          * @uiName Show Region
          */
         "showregion"?: boolean;
         /**
-          * @uiName Update info button text
+          * @uiName Info Button Text
          */
         "updatetext"?: string;
     }
     interface SqmEmpty {
         /**
-          * @uiName Empty State Title
+          * @uiName Title
          */
         "emptyStateHeader"?: string;
         /**
           * @uiWidget ImageUpload
-          * @uiName Empty State Image Link
+          * @format url
+          * @uiName Image
          */
         "emptyStateImage"?: string;
         /**
-          * @uiName Empty State Text
+          * @uiName Description
+          * @uiWidget textArea
          */
         "emptyStateText"?: string;
     }
     interface SqmFormMessage {
         /**
-          * @uiName Icon to use in alert
+          * Icon to use in alert
+          * @uiName Icon
          */
         "icon"?: string;
         /**
-          * @uiName Type of alert
+          * @uiName Alert Type
          */
         "type"?: string;
     }
@@ -3028,24 +3522,31 @@ declare namespace LocalJSX {
     }
     interface SqmHero {
         /**
-          * Can either be an image url, colour or Shoelace variable.
+          * Can be an image url, colour or Shoelace variable.
           * @uiName Background
          */
         "background"?: string;
         /**
-          * @uiName Number of columns in the layout
+          * Number of columns in the layout
+          * @uiName Columns
          */
         "columns"?: 1 | 2;
         /**
-          * @uiName Padding size
+          * @uiName Padding Size
+          * @uiEnum ["none", "small", "medium","large"]
+          * @uiEnumNames ["None", "Small", "Medium", "Large"]
          */
         "paddingSize"?: "none" | "small" | "medium" | "large";
         /**
-          * @uiName Secondary background image or color (for use in right column)
+          * Secondary background image or color (for use in the right column)
+          * @uiName Secondary Background
          */
         "secondaryBackground"?: string;
         /**
-          * @uiName Wrap direction
+          * Flexbox wrap direction, accepts wrap or wrap-reverse
+          * @uiName Wrap Direction
+          * @uiEnum ["wrap", "wrap-reverse"]
+          * @uiEnumNames ["Wrap", "Wrap Reverse"]
          */
         "wrapDirection"?: "wrap" | "wrap-reverse";
     }
@@ -3053,6 +3554,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundColor"?: string;
         /**
@@ -3060,23 +3562,25 @@ declare namespace LocalJSX {
          */
         "borderRadius"?: number;
         /**
-          * @uiName CTA Button Link
+          * @uiName Button Link
          */
         "buttonLink"?: string;
         /**
-          * @uiName CTA Button Link Open in New Tab
+          * @uiName Open Link in New Tab
+          * @default
          */
         "buttonNewTab"?: boolean;
         /**
-          * @uiName CTA Button Text
+          * @uiName Button Text
          */
         "buttonText"?: string;
         /**
-          * @uiName Description Text
+          * @uiName Description
+          * @uiWidget textArea
          */
         "description"?: string;
         /**
-          * @uiName Title Text
+          * @uiName Title
          */
         "header"?: string;
         /**
@@ -3100,7 +3604,8 @@ declare namespace LocalJSX {
         "imagePos"?: "left" | "center" | "right";
         /**
           * @uiWidget ImageUpload
-          * @uiName Image Link
+          * @format url
+          * @uiName Image
          */
         "imageUrl"?: string;
         /**
@@ -3113,6 +3618,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Overlay Color
           * @uiWidget color
+          * @format color
          */
         "overlayColor"?: string;
         /**
@@ -3136,6 +3642,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Text Color
           * @uiWidget color
+          * @format color
          */
         "textColor"?: string;
     }
@@ -3153,6 +3660,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Background Color
           * @uiWidget color
+          * @format
          */
         "backgroundColor"?: string;
         /**
@@ -3161,6 +3669,8 @@ declare namespace LocalJSX {
         "borderRadius"?: number;
         /**
           * @uiWidget ImageUpload
+          * @format url
+          * @required 
           * @uiName Image Link
          */
         "imageUrl"?: string;
@@ -3191,6 +3701,7 @@ declare namespace LocalJSX {
         "fieldName"?: string;
         /**
           * @uiName Optional
+          * @default
          */
         "fieldOptional"?: boolean;
         /**
@@ -3203,8 +3714,8 @@ declare namespace LocalJSX {
     }
     interface SqmLeaderboard {
         /**
-          * Text displayed for users without names in the leaderboard
-          * @uiName Anonymous User Name
+          * Title displayed for users without names
+          * @uiName Unknown User Text
          */
         "anonymousUser"?: string;
         /**
@@ -3213,20 +3724,21 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * Hide the viewer's leaderboard row if not in the top 10.
+          * Hide the viewer's leaderboard row if not in the top results.
           * @uiName Hide Viewing User
+          * @default
          */
         "hideViewer"?: boolean;
         /**
-          * Only count leaderboard activity within a given interval
           * @uiName Leaderboard Time Interval
-          * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
          */
         "interval"?: string;
         /**
           * @uiName Leaderboard Type
           * @uiType string
+          * @required 
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
           * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
@@ -3241,6 +3753,7 @@ declare namespace LocalJSX {
         /**
           * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
@@ -3255,7 +3768,7 @@ declare namespace LocalJSX {
          */
         "rankheading"?: string;
         /**
-          * @uiName Show Rank Column
+          * @uiName Show Leaderboard Rank
          */
         "showRank"?: boolean;
         /**
@@ -3274,14 +3787,15 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<LeaderboardRankViewProps>;
         /**
-          * @uiName Leaderboard time interval
-          * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiName Leaderboard Time Interval
+          * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
          */
         "interval"?: string;
         /**
-          * @uiName Leaderboard type
+          * @uiName Leaderboard Type
           * @uiType string
+          * @required 
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
           * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
@@ -3291,14 +3805,16 @@ declare namespace LocalJSX {
         /**
           * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
           * @uiName Rank Text
+          * @uiWidget textArea
          */
         "rankText"?: string;
         /**
-          * @uiName Default rank
+          * @uiName Default Rank
           * @uiType string
           * @uiEnum ["rowNumber", "rank", "denseRank"]
           * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
@@ -3316,11 +3832,11 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<NameFieldsViewProps>;
         /**
-          * @uiName First name field label
+          * @uiName First Name label
          */
         "firstNameLabel"?: string;
         /**
-          * @uiName Last name field label
+          * @uiName Last Name label
          */
         "lastNameLabel"?: string;
     }
@@ -3331,11 +3847,12 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<NavigationMenuViewProps>;
         /**
-          * @uiName Include dropdown menu
+          * @uiName Include Dropdown Menu
          */
         "includeDropdown"?: boolean;
         /**
-          * @uiName Label on the header menu
+          * Label on the header menu
+          * @uiName Menu Label
          */
         "menuLabel"?: string;
     }
@@ -3357,7 +3874,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * @uiName Navigation path
+          * @uiName Navigation Path
          */
         "path"?: string;
     }
@@ -3368,53 +3885,63 @@ declare namespace LocalJSX {
          */
         "demoData"?: PasswordFieldViewDemoProps;
         /**
-          * @uiName Enable live password validation
+          * Enable live password validation
+          * @uiName Enable Validation
          */
         "enableValidation"?: boolean;
         /**
-          * @uiName Label for password field
+          * Label for password field
+          * @uiName Password Label
          */
         "fieldLabel"?: string;
     }
     interface SqmPopupContainer {
         /**
-          * @uiName Display a close button on the popup
+          * Display a close button on the popup
+          * @uiName Show Close Button
          */
         "closeButton"?: boolean;
         /**
-          * @uiName Text to be used as the close button
+          * Text inside the close button
+          * @uiName Close Button Text
          */
         "closeButtonText"?: string;
         /**
-          * @uiName Specify padding on the popup contents when in embedded mode
+          * Specify padding on the popup contents when in embedded mode
+          * @uiName Embed Padding
           * @uiType string
           * @uiEnum ["none", "small", "medium", "large"]
           * @uiEnumNames ["None", "Small", "Medium", "Large"]
          */
         "embedPadding"?: "none" | "small" | "medium" | "large";
         /**
-          * @uiName Specify padding on the popup contents when in popup mode
+          * Specify padding on the popup contents when in popup mode
+          * @uiName Popup Padding
           * @uiType string
           * @uiEnum ["none", "small", "medium", "large"]
           * @uiEnumNames ["None", "Small", "Medium", "Large"]
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**
-          * @uiName Show SaaSquatch Powered By messaging
+          * Show Powered By SaaSquatch link
+          * @uiName Show Powered By
          */
         "poweredBy"?: boolean;
     }
     interface SqmPortalChangePassword {
         /**
-          * @uiName Modal cancel password change button text
+          * Modal cancel button text
+          * @uiName Cancel Button Text
          */
         "cancelText"?: string;
         /**
-          * @uiName Modal change password button text
+          * Modal change password button text
+          * @uiName Change Password Button Text
          */
         "changePasswordButtonText"?: string;
         /**
-          * @uiName Password confirmation input field label
+          * Password confirmation input field label
+          * @uiName Confirm Password Label
          */
         "confirmPasswordFieldLabel"?: string;
         /**
@@ -3423,23 +3950,26 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
         /**
-          * @uiName Change password modal header
+          * @uiName Change Password Modal Header
          */
         "modalChangePasswordHeader"?: string;
         /**
-          * @uiName Password input field label
+          * Password input field label
+          * @uiName Password Label
          */
         "passwordFieldLabel"?: string;
         /**
-          * @uiName Portal change password button text
+          * @uiName Change Password Button Text
          */
         "portalChangePasswordButtonText"?: string;
         /**
-          * @uiName Portal change password section header
+          * Portal change password section header
+          * @uiName Change Password Header
          */
         "portalChangePasswordHeader"?: string;
         /**
-          * @uiName Successful password change message
+          * Successful password change message
+          * @uiName Successful Message
          */
         "successMessage"?: string;
     }
@@ -3454,7 +3984,7 @@ declare namespace LocalJSX {
          */
         "borderRadius"?: number;
         /**
-          * @uiName Center content
+          * @uiName Center Content
          */
         "center"?: boolean;
         /**
@@ -3479,7 +4009,8 @@ declare namespace LocalJSX {
          */
         "gap"?: Spacing;
         /**
-          * @uiName Justify content
+          * Define how this container distributes its contents along the main-axis.
+          * @uiName Justify Content
           * @uiType string
           * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
           * @uiEnumNames ["Start", "Center", "End", "Space Between", "Space Around", "Space Evenly"]
@@ -3513,20 +4044,20 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalEmailVerificationViewProps>;
         /**
-          * @uiName Email verification header text
+          * @uiName Email Verification Header Text
          */
         "emailVerificationHeader"?: string;
         /**
           * The page that users are redirected to from the verification email.
-          * @uiName Email redirection base path
+          * @uiName Email Redirection Base Path
          */
         "redirectPath"?: string;
         /**
-          * @uiName Re-send email button text
+          * @uiName Re-send Email Button Text
          */
         "resendEmailButtonText"?: string;
         /**
-          * @uiName Email verification body text
+          * @uiName Email Verification Body Text
          */
         "verifyMessage"?: string;
     }
@@ -3569,6 +4100,7 @@ declare namespace LocalJSX {
         "supportEmail"?: string;
         /**
           * @uiName Support Text
+          * @uiWidget textArea
          */
         "supportText"?: string;
         /**
@@ -3587,20 +4119,20 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalForgotPasswordViewProps>;
         /**
-          * @uiName Email label
+          * @uiName Email Label
          */
         "emailLabel"?: string;
         /**
-          * @uiName Routing path to login page
+          * @uiName Login Page Routing Path
          */
         "loginPath"?: string;
         /**
           * The page that users are redirected to from the password reset email.
-          * @uiName Email redirection base path
+          * @uiName Email Redirection Base Path
          */
         "redirectPath"?: string;
         /**
-          * @uiName Password reset button text
+          * @uiName Password Reset Button Text
          */
         "submitLabel"?: string;
     }
@@ -3618,51 +4150,60 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalLoginViewProps>;
         /**
-          * @uiName Label for email field
+          * Label for email field
+          * @uiName Email Label
          */
         "emailLabel"?: string;
         /**
-          * @uiName Label for forgotten password button
+          * Label for forgotten password button
+          * @uiName Forgot Password Text
          */
         "forgotPasswordLabel"?: string;
         /**
-          * @uiName Forgot password button redirect path
+          * Forgot password redirect path
+          * @uiName Forgot Password Path
          */
         "forgotPasswordPath"?: string;
         /**
-          * @uiName Page navigated to after sign-in
+          * Page navigated to after sign-in
+          * @uiName Next Page Path
          */
         "nextPage"?: string;
         /**
-          * @uiName Heading label
+          * @uiName Heading Label
          */
         "pageLabel"?: string;
         /**
-          * @uiName Label for password field
+          * Label for password field
+          * @uiName Password Label
          */
         "passwordLabel"?: string;
         /**
-          * @uiName Label for register navigation button
+          * Label for register button
+          * @uiName Register Button Text
          */
         "registerLabel"?: string;
         /**
-          * @uiName Register button redirection path
+          * Register redirect path
+          * @uiName Register Path
          */
         "registerPath"?: string;
         /**
-          * @uiName Label for submit button
+          * Label for submit button
+          * @uiName Submit Button Text
          */
         "submitLabel"?: string;
     }
     interface SqmPortalLogout {
         /**
-          * @uiName Next Page path
+          * @uiName Next Page Path
          */
         "nextPage"?: string;
     }
     interface SqmPortalProfile {
         /**
-          * @uiName Country input field label
+          * Country input field label
+          * @uiName Country Label
          */
         "countrytext"?: string;
         /**
@@ -3671,31 +4212,35 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalProfileViewProps>;
         /**
-          * @uiName Edit profile header
+          * @uiName Edit Profile Header
          */
         "editProfileHeader"?: string;
         /**
-          * @uiName Edit profile sub header
+          * @uiName Edit Profile Sub Header
          */
         "editProfileSubHeader"?: string;
         /**
-          * @uiName Email input field label
+          * Email input field label
+          * @uiName Email Label
          */
         "emailtext"?: string;
         /**
-          * @uiName First name input field label
+          * First name input field label
+          * @uiName First Name Label
          */
         "firstnametext"?: string;
         /**
-          * @uiName Last name input field label
+          * Last name input field label
+          * @uiName Last Name Label
          */
         "lastnametext"?: string;
         /**
-          * @uiName Show or hide country field
+          * Show or hide the country field
+          * @uiName Show Country Field
          */
         "showCountry"?: boolean;
         /**
-          * @uiName Text for the submit changes button
+          * @uiName Submit Changes Button Text
          */
         "submitChangeButtonText"?: string;
     }
@@ -3705,21 +4250,24 @@ declare namespace LocalJSX {
          */
         "redirectTo"?: string;
         /**
-          * @uiName Redirect unverified users path
+          * @uiName Redirect Unverified Users Path
          */
         "redirectToUnverified"?: string;
         /**
           * @uiName Require Email Verification
+          * @default
          */
         "requireEmailVerification"?: boolean;
     }
     interface SqmPortalRegister {
         /**
-          * @uiName Show confirm password field
+          * Show or hide the confirm password input
+          * @uiName Show Confirm Password Field
+          * @default
          */
         "confirmPassword"?: boolean;
         /**
-          * @uiName Label for confirm password field
+          * @uiName Confirm Password Label
          */
         "confirmPasswordLabel"?: string;
         /**
@@ -3728,59 +4276,65 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalRegisterViewProps>;
         /**
-          * @uiName Label for email field
+          * @uiName Email Label
          */
         "emailLabel"?: string;
         /**
-          * @uiName Use password field with live validation
+          * @uiName Enable Password Validation
          */
         "enablePasswordValidation"?: boolean;
         /**
-          * @uiName Hide default input fields to use custom fields
+          * Hide default input fields to use custom fields
+          * @uiName Hide Default Inputs
+          * @default
          */
         "hideInputs"?: boolean;
         /**
-          * @uiName Label for login navigation button
+          * @uiName Login Button Text
          */
         "loginLabel"?: string;
         /**
-          * @uiName Sign in button redirection path
+          * Login button redirection path
+          * @uiName Login Path
          */
         "loginPath"?: string;
         /**
-          * @uiName Page navigated to after registration
+          * Page navigated to after registration
+          * @uiName Next Page
          */
         "nextPage"?: string;
         /**
-          * @uiName Heading label
+          * @uiName Heading Label
          */
         "pageLabel"?: string;
         /**
-          * @uiName Label for password field
+          * @uiName Password Label
          */
         "passwordLabel"?: string;
         /**
           * The page that users are redirected to from the verification email.
-          * @uiName Email redirection base path
+          * @uiName Email Redirection Base Path
          */
         "redirectPath"?: string;
         /**
-          * @uiName Label for submit button
+          * @uiName Submit Button Text
          */
         "submitLabel"?: string;
     }
     interface SqmPortalResetPassword {
         /**
-          * @uiName Show confirm password
+          * Show or hide confirm password field
+          * @uiName Show Confirm Password
+          * @default
          */
         "confirmPassword"?: boolean;
         /**
-          * @uiName Confirm password field label
+          * @uiName Confirm Password Label
          */
         "confirmPasswordFieldLabel"?: string;
         /**
-          * Displayed after a successful password reset
-          * @uiName Continue button text
+          * Button text displayed after a successful password reset
+          * @uiName Continue Button Text
          */
         "continueButtonText"?: string;
         /**
@@ -3790,29 +4344,29 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
           * The page that users are redirected to if the reset fails due to outdated password reset attempt.
-          * @uiName Failed page redirection path
+          * @uiName Failed Page Path
          */
         "failedPage"?: string;
         /**
           * The page that users are redirected to when the password reset succeeds.
-          * @uiName Next page path
+          * @uiName Next Page Path
          */
         "nextPage"?: string;
         /**
-          * @uiName Password field label
+          * @uiName Password Label
          */
         "passwordFieldLabel"?: string;
         /**
           * Displayed after a successful password reset
-          * @uiName Password reset header text
+          * @uiName Successful Password Reset Text
          */
         "passwordResetHeader"?: string;
         /**
-          * @uiName Password reset button text
+          * @uiName Password Reset Button Text
          */
         "resetPasswordButtonText"?: string;
         /**
-          * @uiName Password reset header text
+          * @uiName Reset Password Header Text
          */
         "resetPasswordHeader"?: string;
     }
@@ -3824,12 +4378,12 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<PortalVerifyEmailViewProps>;
         /**
           * The page that users are redirected to if verification fails due to outdated verification attempt.
-          * @uiName Failed page redirection path
+          * @uiName Failed Page Path
          */
         "failedPage"?: string;
         /**
           * The page that users are redirected to when the verification succeeds.
-          * @uiName Next page path
+          * @uiName Next Page Path
          */
         "nextPage"?: string;
     }
@@ -3837,6 +4391,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Header Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundColor"?: string;
         /**
@@ -3846,6 +4401,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Header Text Color
           * @uiWidget color
+          * @format color
          */
         "textColor"?: string;
     }
@@ -3853,10 +4409,12 @@ declare namespace LocalJSX {
         /**
           * @uiName Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundColor"?: string;
         /**
           * @uiName Description
+          * @uiWidget textArea
          */
         "description"?: string;
         /**
@@ -3864,22 +4422,293 @@ declare namespace LocalJSX {
          */
         "header"?: string;
         /**
-          * Options available at https://shoelace.style/components/icon
+          * Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive.
           * @uiName Icon
          */
         "icon"?: string;
         /**
           * Displayed in place of an icon
           * @uiName Image Url
+          * @uiWidget imageUpload
+          * @format url
          */
         "imageUrl"?: string;
         /**
           * @uiName Text Color
           * @uiWidget color
+          * @format color
          */
         "textColor"?: string;
     }
     interface SqmProgramMenu {
+    }
+    interface SqmQa {
+        /**
+          * Description here
+          * @uiName Boolean Switch with default - true
+         */
+        "booleanSwitch"?: boolean;
+        /**
+          * Description here
+          * @uiName Boolean Switch with no default
+         */
+        "booleanSwitchNoDefault"?: boolean;
+        /**
+          * Description here
+          * @uiName Boolean Switch required with no default
+          * @required
+         */
+        "booleanSwitchRequiredNoDefault"?: boolean;
+        /**
+          * Description here
+          * @uiName Boolean Switch with default - false
+         */
+        "booleanSwitchfalse"?: boolean;
+        /**
+          * Description here
+          * @uiName Color with default
+          * @uiWidget color
+          * @format color
+         */
+        "color"?: string;
+        /**
+          * Description here
+          * @uiName Color with no default
+          * @uiWidget color
+          * @format color
+         */
+        "colorNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Color required with no default
+          * @required 
+          * @uiWidget color
+          * @format color
+         */
+        "colorRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Date Interval with default
+          * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+          * @format date-interval
+         */
+        "dateInterval"?: string;
+        /**
+          * Description here
+          * @uiName Date Interval with no default
+          * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+          * @format date-interval
+         */
+        "dateIntervalNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Date Interval required with no default
+          * @required 
+          * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+          * @format date-interval
+         */
+        "dateIntervalRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Image Upload with default
+          * @uiWidget ImageUpload
+          * @format url
+         */
+        "imageUpload"?: string;
+        /**
+          * Description here
+          * @uiName Image Upload with no default
+          * @uiWidget ImageUpload
+          * @format url
+         */
+        "imageUploadNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Image Upload required with no default
+          * @required 
+          * @uiWidget ImageUpload
+          * @format url
+         */
+        "imageUploadRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Number Max 7
+          * @maximum 7
+         */
+        "max"?: number;
+        /**
+          * Description here
+          * @uiName String Max Length 10
+          * @maxLength 10
+         */
+        "maxLength"?: string;
+        /**
+          * Description here
+          * @uiName Number Min 7
+          * @minimum 7
+         */
+        "min"?: number;
+        /**
+          * Description here
+          * @uiName String Min Length 10
+          * @minLength 10
+         */
+        "minLength"?: string;
+        /**
+          * Description here
+          * @uiName Number Enum Select with default
+          * @uiEnum [1,2,3]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "numberEnumSelect"?: number;
+        /**
+          * Description here
+          * @uiName Number Enum Select with no default
+          * @uiEnum [1,2,3]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "numberEnumSelectNoDefault"?: number;
+        /**
+          * Description here
+          * @uiName Number Enum Select required with no default
+          * @required 
+          * @uiEnum [1,2,3]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "numberEnumSelectRequiredNoDefault"?: number;
+        /**
+          * Description here
+          * @uiName Number Input with default
+         */
+        "numberInput"?: number;
+        /**
+          * Description here
+          * @uiName Number Input with no default
+         */
+        "numberInputNoDefault"?: number;
+        /**
+          * Description here
+          * @uiName Number required with no default
+          * @required
+         */
+        "numberRequired"?: number;
+        /**
+          * Description here
+          * @uiName Program Selector with default
+          * @uiWidget programSelector
+         */
+        "programSelector"?: string;
+        /**
+          * Description here
+          * @uiName Program Selector with no default
+          * @uiWidget programSelector
+         */
+        "programSelectorNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Program Selector required with no default
+          * @required 
+          * @uiWidget programSelector
+         */
+        "programSelectorRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Stat Selector with default
+          * @uiWidget statTypeSelectWidget
+         */
+        "statSelector"?: string;
+        /**
+          * Description here
+          * @uiName Stat Selector with no default
+          * @uiWidget statTypeSelectWidget
+         */
+        "statSelectorNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Stat Selector required with no default
+          * @required 
+          * @uiWidget statTypeSelectWidget
+         */
+        "statSelectorRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName String Enum Select with default
+          * @uiEnum ["option1","option2","option3"]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "stringEnumSelect"?: string;
+        /**
+          * Description here
+          * @uiName String Enum Select with no default
+          * @uiEnum ["option1","option2","option3"]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "stringEnumSelectNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName String Enum Select required with no default
+          * @required 
+          * @uiEnum ["option1","option2","option3"]
+          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
+         */
+        "stringEnumSelectRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName String required with no default
+          * @required
+         */
+        "stringRequired"?: string;
+        /**
+          * Description here
+          * @uiName Text Area Input
+          * @uiWidget textArea with default
+         */
+        "textAreaInput"?: string;
+        /**
+          * Description here
+          * @uiName Text Area Input
+          * @uiWidget textArea with no default
+         */
+        "textAreaInputNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Text Area Input
+          * @uiWidget textArea required with no default
+          * @required
+         */
+        "textAreaInputRequiredNoDefault"?: string;
+        /**
+          * Description here
+          * @uiName Text Input with default
+         */
+        "textInput"?: string;
+        /**
+          * Description here
+          * @uiName Text Input with no default
+         */
+        "textInputNoDefault"?: string;
+    }
+    interface SqmQaReferralCard {
+        /**
+          * @uiName Vertical Aligment
+          * @uiType string
+          * @uiEnum ["start", "center", "end"]
+          * @uiEnumNames ["Top", "Center", "Bottom"]
+         */
+        "verticalAlignment"?: "start" | "center" | "end";
+    }
+    interface SqmQaTabs {
+        /**
+          * Used to specify the placement of the tabs
+          * @uiName Tabs Placement
+          * @uiType string
+          * @uiEnum ["left", "right", "bottom", "top"]
+          * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
+         */
+        "placement"?: "left" | "right" | "bottom" | "top";
     }
     interface SqmReferralCard {
         /**
@@ -3912,7 +4741,7 @@ declare namespace LocalJSX {
           * @uiName Vertical Aligment
           * @uiType string
           * @uiEnum ["start", "center", "end"]
-          * @uiEnumNames ["Start", "Center", "End"]
+          * @uiEnumNames ["Top", "Center", "Bottom"]
          */
         "verticalAlignment"?: "start" | "center" | "end";
     }
@@ -3923,16 +4752,19 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<ReferralIframeViewProps>;
         /**
-          * @uiName Height of the iframe container
+          * Height of the iframe container
+          * @uiName Iframe Height
          */
         "iframeHeight"?: string;
         /**
-          * @uiName URL of iframe to display
-          * @uiRequired
+          * URL of iframe to display
+          * @uiName Iframe Source
+          * @required
          */
         "iframeSrc"?: string;
         /**
-          * @uiName Width of the iframe container
+          * Width of the iframe container
+          * @uiName Iframe Width
          */
         "iframeWidth"?: string;
     }
@@ -3944,36 +4776,40 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
-          * @uiName Mobile Hidden Columns
+          * @uiName Hidden Mobile Columns
          */
         "hiddenColumns"?: string;
+        /**
+          * @uiName Hide Column Labels
+         */
+        "hideLabels"?: boolean;
         /**
           * @uiName Tablet Breakpoint
          */
         "mdBreakpoint"?: number;
         /**
-          * @uiName View More button text
+          * @uiName View More Button Text
          */
         "moreLabel"?: string;
         /**
-          * @uiName Number of referrals per page
+          * Number of referrals displayed per page
+          * @uiName Referrals Per Page
          */
         "perPage"?: number;
         /**
-          * @uiName Previous button text
+          * @uiName Previous Button Text
          */
         "prevLabel"?: string;
         /**
           * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs. If program ID is "classic", shows classic-only referrals
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
-          * @uiName Show column labels
-         */
-        "showLabels"?: boolean;
-        /**
-          * @uiName Show Referred by user in table
+          * Show referred by user in table
+          * @uiName Show Referrer
+          * @default
          */
         "showReferrer"?: boolean;
         /**
@@ -4024,31 +4860,40 @@ declare namespace LocalJSX {
          */
         "columnTitle"?: string;
         /**
+          * Shown in the dropdown details when a reward has an expiry date.
           * @uiName Reward Expiring Text
          */
         "expiringText"?: string;
         /**
+          * Shown in the dropdown details when a reward has an associated fuel tank code.
           * @uiName Fuel Tank Code Text
          */
         "fuelTankText"?: string;
         /**
           * @uiName Hide dropdown details of reward
+          * @default
          */
         "hideDetails"?: boolean;
         /**
+          * Shown in the dropdown details when a reward is pending.
           * @uiName Reward Pending Text
          */
         "pendingForText"?: string;
         /**
+          * Shown in the dropdown details when a reward has been received.’
           * @uiName Reward Received Text
          */
         "rewardReceivedText"?: string;
         /**
+          * Additional status text shown in the details drop down.
           * @uiName Reward Status Long Text
+          * @uiWidget textArea
          */
         "statusLongText"?: string;
         /**
+          * Text shown in the reward status badge.
           * @uiName Reward Status Text
+          * @uiWidget textArea
          */
         "statusText"?: string;
     }
@@ -4075,7 +4920,8 @@ declare namespace LocalJSX {
     }
     interface SqmReferralTableUserColumn {
         /**
-          * @uiName Name displayed for anonymous users
+          * Name displayed for unknown users
+          * @uiName Anonymous User Text
          */
         "anonymousUser"?: string;
         /**
@@ -4083,7 +4929,8 @@ declare namespace LocalJSX {
          */
         "columnTitle"?: string;
         /**
-          * @uiName Name displayed for deleted users
+          * Name displayed for deleted users
+          * @uiName Deleted User Text
          */
         "deletedUser"?: string;
     }
@@ -4132,11 +4979,14 @@ declare namespace LocalJSX {
          */
         "doneText"?: string;
         /**
-          * @uiName Exchange button text
+          * Error message shown when reward is not available
+          * @uiName Not Available Error
+          * @uiWidget textArea
          */
         "notAvailableError"?: string;
         /**
-          * @uiName Not Enough Available Error Message
+          * @uiName Not Enough Error Message
+          * @uiWidget textArea
          */
         "notEnoughError"?: string;
         /**
@@ -4146,6 +4996,7 @@ declare namespace LocalJSX {
         /**
           * Shown if an error occurs when loading the reward exchange.
           * @uiName Reward List Error Message
+          * @uiWidget textArea
          */
         "queryError"?: string;
         /**
@@ -4160,11 +5011,13 @@ declare namespace LocalJSX {
         /**
           * Shown if an error occurs during the reward exchange.
           * @uiName Redemption Error Message
+          * @uiWidget textArea
          */
         "redemptionError"?: string;
         /**
           * Displayed on the success screen when a user successfully exchanges for a reward.
           * @uiName Redemption Success Message
+          * @uiWidget textArea
          */
         "redemptionSuccessText"?: string;
         /**
@@ -4187,16 +5040,18 @@ declare namespace LocalJSX {
         "rewardTitle"?: string;
         /**
           * @uiName Select Amount Text
+          * @uiWidget textArea
          */
         "selectText"?: string;
         /**
           * Set the number of placeholder cards to be shown in loading state.
-          * @undocumented Loading Cards
+          * @uiName Loading Cards
          */
         "skeletonCardNum"?: number;
         /**
           * Displayed on the reward exchange cards.
           * @uiName Reward Exchange Amount Text
+          * @uiWidget textArea
          */
         "sourceAmountMessage"?: string;
         /**
@@ -4217,6 +5072,10 @@ declare namespace LocalJSX {
          */
         "hiddenColumns"?: string;
         /**
+          * @uiName Hide Column Labels
+         */
+        "hideLabels"?: boolean;
+        /**
           * @uiName Tablet Breakpoint
          */
         "mdBreakpoint"?: number;
@@ -4235,12 +5094,9 @@ declare namespace LocalJSX {
         /**
           * Filters to only show rewards in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all rewards from all programs.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId"?: string;
-        /**
-          * @uiName Show column labels
-         */
-        "showLabels"?: boolean;
         /**
           * @uiName Mobile Breakpoint
          */
@@ -4252,7 +5108,7 @@ declare namespace LocalJSX {
     }
     interface SqmRewardsTableCustomerNoteColumn {
         /**
-          * @uiName Customer Note Column Title
+          * @uiName Column Title
          */
         "columnTitle"?: string;
     }
@@ -4286,7 +5142,7 @@ declare namespace LocalJSX {
          */
         "availableText"?: string;
         /**
-          * @uiName Reward column title
+          * @uiName Reward Column Title
          */
         "columnTitle"?: string;
         /**
@@ -4309,7 +5165,8 @@ declare namespace LocalJSX {
     }
     interface SqmRewardsTableSourceColumn {
         /**
-          * @uiName Name displayed for anonymous users
+          * Name displayed for unknown users
+          * @uiName Anonymous User Text
          */
         "anonymousUser"?: string;
         /**
@@ -4317,20 +5174,24 @@ declare namespace LocalJSX {
          */
         "columnTitle"?: string;
         /**
-          * @uiName Name displayed for deleted users
+          * Name displayed for deleted users
+          * @uiName Deleted User Text
          */
         "deletedUser"?: string;
         /**
           * Shown when a reward has been created by a referral
           * @uiName Referral Text
+          * @uiWidget textArea
          */
         "referralText"?: string;
         /**
-          * @uiName Reward Exchange label
+          * @uiName Reward Exchange Label
          */
         "rewardExchangeText"?: string;
         /**
+          * Shown when a reward has been created by a source other than a referral.
           * @uiName Reward Source Text
+          * @uiWidget textArea
          */
         "rewardSourceText"?: string;
     }
@@ -4349,11 +5210,13 @@ declare namespace LocalJSX {
          */
         "columnTitle"?: string;
         /**
-          * @uiName Expired Status Text
+          * Text shown before the date of an expiring reward.
+          * @uiName Expiry Date Prefix
          */
         "expiryText"?: string;
         /**
-          * @uiName Expiry Date Prefix
+          * Text shown before the available date of a pending reward.
+          * @uiName Pending Date Prefix
          */
         "pendingScheduled"?: string;
         /**
@@ -4368,12 +5231,13 @@ declare namespace LocalJSX {
         "pendingUsTax"?: string;
         /**
           * @uiName Reward Status Text
+          * @uiWidget textArea
          */
         "statusText"?: string;
     }
     interface SqmRoute {
         /**
-          * @uiName Navigation path name
+          * @uiName Navigation Path Name
          */
         "path"?: string;
     }
@@ -4403,7 +5267,8 @@ declare namespace LocalJSX {
          */
         "circle"?: boolean;
         /**
-          * @uiName Icon Name
+          * Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive.
+          * @uiName Icon
          */
         "iconName"?: string;
         /**
@@ -4436,10 +5301,12 @@ declare namespace LocalJSX {
          */
         "scrollAnimation"?: "smooth" | "auto";
         /**
+          * ID applied to the HTML tag you would like to scroll to. E.g tab-1
           * @uiName Scroll Id
          */
         "scrollId"?: string;
         /**
+          * The name of the HTML tag you would like to scroll to. E.g referral-table
           * @uiName Scroll Tag Name
          */
         "scrollTagName"?: string;
@@ -4453,12 +5320,14 @@ declare namespace LocalJSX {
     }
     interface SqmShareButton {
         /**
-          * @uiName Button background color
+          * @uiName Button Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundcolor"?: string;
         /**
-          * @uiName Configure border radius with pixel amount
+          * Configure border radius with pixel amount
+          * @uiName Border Radius
          */
         "borderradius"?: number;
         /**
@@ -4471,16 +5340,18 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * @uiName Hide the icon
+          * @uiName Hide Icon
+          * @default
          */
         "hideicon"?: boolean;
         /**
-          * @uiName Hide the text
+          * @uiName Hide Text
+          * @default
          */
         "hidetext"?: boolean;
         /**
-          * Options available at https://shoelace.style/components/icon
-          * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
+          * Options available at https://shoelace.style/components/icon  Icon used in button. Will try to select an icon based on the share medium if left empty.
+          * @uiName Icon
          */
         "icon"?: string;
         /**
@@ -4494,6 +5365,7 @@ declare namespace LocalJSX {
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
           * @uiType string
+          * @required 
           * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
           * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
          */
@@ -4510,20 +5382,23 @@ declare namespace LocalJSX {
     | "reminder"
     | "unknown";
         /**
-          * @uiName Display as pill
+          * @uiName Display Pill
          */
         "pill"?: boolean;
         /**
           * Optional programId, or uses the programId context where this button is rendered.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
-          * @uiName Text used for native sharing (mobile only)
+          * Text used for native sharing (mobile only)
+          * @uiName Share Text
          */
         "sharetext"?: string;
         /**
-          * @uiName Title used for native sharing (mobile only)
+          * Title used for native sharing (mobile only)
+          * @uiName Share Title
          */
         "sharetitle"?: string;
         /**
@@ -4534,8 +5409,9 @@ declare namespace LocalJSX {
          */
         "size"?: "small" | "medium" | "large";
         /**
-          * @uiName Button text color
+          * @uiName Button Text Color
           * @uiWidget color
+          * @format color
          */
         "textcolor"?: string;
         /**
@@ -4561,16 +5437,17 @@ declare namespace LocalJSX {
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
-          * The number of milliseconds that the tooltip will appear for
+          * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
          */
         "tooltiplifespan"?: number;
         /**
-          * This is shown after someone has successfully copied the cpde to the clipboard.
-          * @uiName Tooltip text
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+          * @uiName Tooltip Text
          */
         "tooltiptext"?: string;
     }
@@ -4597,6 +5474,7 @@ declare namespace LocalJSX {
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
@@ -4612,13 +5490,13 @@ declare namespace LocalJSX {
          */
         "textColor"?: string;
         /**
-          * The number of milliseconds that the tooltip will appear for
-          * @uiName Tooltip lifespan
+          * The number of milliseconds that the tooltip appears for
+          * @uiName Tooltip Lifespan
          */
         "tooltiplifespan"?: number;
         /**
-          * This is shown after someone has successfully copied the link to the clipboard.
-          * @uiName Tooltip text
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+          * @uiName Tooltip Text
          */
         "tooltiptext"?: string;
     }
@@ -4640,7 +5518,7 @@ declare namespace LocalJSX {
          */
         "showBorder"?: boolean;
         /**
-          * @uiName Space between stats
+          * @uiName Space Between Stats
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
@@ -4656,10 +5534,19 @@ declare namespace LocalJSX {
         "header"?: string;
     }
     interface SqmTableCell {
+        /**
+          * @uiName Column Span
+         */
         "colspan"?: number;
+        /**
+          * @uiName Padding}
+         */
         "padding"?: string;
     }
     interface SqmTableRow {
+        /**
+          * @uiName Border
+         */
         "border"?: string;
     }
     interface SqmTabs {
@@ -4674,20 +5561,25 @@ declare namespace LocalJSX {
     }
     interface SqmTaskCard {
         /**
-          * @uiName CTA Button Link
+          * @uiName Button Link
+          * @uiGroup Button
          */
         "buttonLink"?: string;
         /**
-          * @uiName CTA Button Text
+          * @uiName Button Text
+          * @uiGroup Button
          */
         "buttonText"?: string;
         /**
-          * @uiName Title Text
+          * @uiName Title
+          * @uiGroup Task
          */
         "cardTitle"?: string;
         /**
           * Displays the amount of times that a user has completed a repeatable task.
           * @uiName Completed Count Text
+          * @uiGroup Task
+          * @uiWidget textArea
          */
         "completedText"?: string;
         /**
@@ -4696,89 +5588,118 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<TaskCardViewProps | BigStatViewProps>;
         /**
-          * @uiName Description Text
+          * @uiName Description
+          * @uiGroup Task
          */
         "description"?: string;
         /**
-          * Timeframe that the task card will be shown
+          * Task cards are hidden from users outside of the duration. They are always displayed if no duration is configured.
           * @uiName Display Duration
-          * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+          * @uiGroup Task
          */
         "displayDuration"?: string;
         /**
           * Shown to users after the end of the task duration.
           * @uiName Ended Date Message
+          * @uiGroup Task
          */
         "endedMessage"?: string;
         /**
-          * Optionally send an event to SaaSquatch when a user clicks the CTA. This field configured what key of the event sent is.
-          * @uiName Event key of task card button
+          * Optionally send an event to SaaSquatch when a user clicks the button. Enter your event key into this field.
+          * @uiName Task Card Button Event Key
+          * @uiGroup Button
          */
         "eventKey"?: string;
         /**
+          * Displayed when a user views a task card after the reward duration interval.
           * @uiName Expiry Date Message
+          * @uiGroup Task
          */
         "expiryMessage"?: string;
         /**
           * The number of times a reward can be earned.  Use zero for no limit (the default).
           * @uiName Repeat Amount
+          * @uiGroup Reward
          */
         "finite"?: number;
         /**
           * Sets the goal for users progress to know when a task has been completed. If repeatable is checked, repeatable goals is an increment of this.
           * @uiName Goal Completion Number
+          * @uiGroup Goal
          */
         "goal"?: number;
         /**
-          * @uiName CTA Button Link Open in New Tab
+          * Button Link Opens in New Tab
+          * @uiName Open In New Tab
+          * @uiGroup Button
+          * @default
          */
         "openNewTab"?: boolean;
         /**
-          * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
-          * @uiName Program ID override
+          * The ID of the program that is used to scope the task card. When no ID is specified, it defaults to the program context in which the component is rendered.
+          * @uiName Program ID Override
+          * @uiWidget programSelector
+          * @uiGroup Goal
          */
         "programId"?: string;
         /**
+          * The unit displayed to the right of steps and progress numbers on the progress bar. Ex: $ for dollars
           * @uiName Progress Bar Unit
+          * @uiGroup Goal
          */
         "progressBarUnit"?: string;
         /**
           * @uiName Goal Repeatable
+          * @uiGroup Goal
+          * @default
          */
         "repeatable"?: boolean;
         /**
           * @uiName Reward Amount
+          * @uiGroup Reward
          */
         "rewardAmount"?: string;
         /**
+          * Task cards are disabled to users outside of the duration. They are not disabled if no duration is configured.
           * @uiName Reward Duration
-          * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiWidget dateRange
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+          * @uiGroup Reward
          */
         "rewardDuration"?: string;
         /**
           * @uiName Reward Unit
+          * @uiGroup Reward
          */
         "rewardUnit"?: string;
         /**
           * @uiName Show Progress Bar
+          * @uiGroup Goal
+          * @default
          */
         "showProgressBar"?: boolean;
         /**
           * Shown to users before the start of the task duration.
           * @uiName Start Date Message
+          * @uiGroup Task
          */
         "startsOnMessage"?: string;
         /**
           * Select what type of stat to display for the goal. Manual paths are also supported.
-          * @uiWidget StatTypeSelectWidget
           * @uiName Goal Progress Source
-          * @uiOptions {"version": 1.1}
+          * @required 
+          * @minLength 1
+          * @uiWidget statTypeSelectWidget
+          * @uiWidgetOptions {"version": 1.1}
+          * @uiGroup Goal
          */
         "statType"?: string;
         /**
           * @uiName Progress Bar Steps
+          * @uiGroup Goal
+          * @default
          */
         "steps"?: boolean;
     }
@@ -4790,7 +5711,7 @@ declare namespace LocalJSX {
          */
         "text"?: string;
         /**
-          * @uiName Text
+          * @uiName Type
           * @uiType string
           * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
           * @uiEnumNames ["Paragraph", "Subtext", "Header 1", "Header 2", "Header 3", "Header 4"]
@@ -4834,26 +5755,28 @@ declare namespace LocalJSX {
     }
     interface SqmTitledSection {
         /**
-          * Label for the section unless overwritten via the label slot.
+          * Text value shown when there is no label slot declared.
           * @uiName Label
          */
         "label"?: string;
         /**
-          * @uiName Label margin style
+          * Margin applied to the bottom of the label slot
+          * @uiName Label Bottom Margin
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "labelMargin"?: Spacing;
         /**
-          * @uiName Section padding
+          * Padding applied to all 4 sides of the container
+          * @uiName Section Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "padding"?: Spacing;
         /**
-          * @uiName Text Align
+          * @uiName Text Alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
@@ -4867,15 +5790,17 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UserNameViewProps>;
         /**
-          * @uiName Fallback name for nameless users
+          * Fallback name for unknown users
+          * @uiName Fallback Name
          */
         "fallback"?: string;
         /**
-          * @uiName Loading text
+          * @uiName Loading Text
          */
         "loadingText"?: string;
     }
     interface IntrinsicElements {
+        "raisins-plop-target": RaisinsPlopTarget;
         "sqm-asset-card": SqmAssetCard;
         "sqm-big-stat": SqmBigStat;
         "sqm-brand": SqmBrand;
@@ -4916,6 +5841,9 @@ declare namespace LocalJSX {
         "sqm-program-explainer": SqmProgramExplainer;
         "sqm-program-explainer-step": SqmProgramExplainerStep;
         "sqm-program-menu": SqmProgramMenu;
+        "sqm-qa": SqmQa;
+        "sqm-qa-referral-card": SqmQaReferralCard;
+        "sqm-qa-tabs": SqmQaTabs;
         "sqm-referral-card": SqmReferralCard;
         "sqm-referral-iframe": SqmReferralIframe;
         "sqm-referral-table": SqmReferralTable;
@@ -4966,6 +5894,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "raisins-plop-target": LocalJSX.RaisinsPlopTarget & JSXBase.HTMLAttributes<HTMLRaisinsPlopTargetElement>;
             "sqm-asset-card": LocalJSX.SqmAssetCard & JSXBase.HTMLAttributes<HTMLSqmAssetCardElement>;
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
@@ -5006,6 +5935,9 @@ declare module "@stencil/core" {
             "sqm-program-explainer": LocalJSX.SqmProgramExplainer & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerElement>;
             "sqm-program-explainer-step": LocalJSX.SqmProgramExplainerStep & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerStepElement>;
             "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
+            "sqm-qa": LocalJSX.SqmQa & JSXBase.HTMLAttributes<HTMLSqmQaElement>;
+            "sqm-qa-referral-card": LocalJSX.SqmQaReferralCard & JSXBase.HTMLAttributes<HTMLSqmQaReferralCardElement>;
+            "sqm-qa-tabs": LocalJSX.SqmQaTabs & JSXBase.HTMLAttributes<HTMLSqmQaTabsElement>;
             "sqm-referral-card": LocalJSX.SqmReferralCard & JSXBase.HTMLAttributes<HTMLSqmReferralCardElement>;
             "sqm-referral-iframe": LocalJSX.SqmReferralIframe & JSXBase.HTMLAttributes<HTMLSqmReferralIframeElement>;
             "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;

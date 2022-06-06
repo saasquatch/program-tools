@@ -4,7 +4,8 @@ export interface RouteProps {
 }
 
 /**
- * @uiName Route (for pages)
+ * @uiName Route
+ * @slots [{"name":"","title":"Content"}]
  */
 @Component({
   tag: "sqm-route",
@@ -15,7 +16,7 @@ export class SqmRoute {
   ignored = true;
 
   /**
-   * @uiName Navigation path name
+   * @uiName Navigation Path Name
    */
   @Prop() path: string;
 

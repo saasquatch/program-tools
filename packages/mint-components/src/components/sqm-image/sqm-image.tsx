@@ -5,6 +5,8 @@ import { ImageView } from "./sqm-image-view";
 
 /**
  * @uiName Image
+ * @exampleGroup Common Components
+ * @example Image - <sqm-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png" alignment="center"></sqm-image>
  */
 @Component({
   tag: "sqm-image",
@@ -13,6 +15,8 @@ import { ImageView } from "./sqm-image-view";
 export class Image {
   /**
    * @uiWidget ImageUpload
+   * @format url
+   * @required
    * @uiName Image Link
    */
   @Prop() imageUrl: string;
@@ -28,6 +32,7 @@ export class Image {
   /**
    * @uiName Background Color
    * @uiWidget color
+   * @format
    */
   @Prop() backgroundColor: string;
 

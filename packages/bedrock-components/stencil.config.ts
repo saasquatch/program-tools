@@ -4,6 +4,7 @@ import { grapesJsOutput } from '@saasquatch/stencil-grapes-plugin';
 import { OutputTarget } from '@stencil/core/internal';
 import { string } from 'rollup-plugin-string';
 import path from 'path';
+import plugin from '@raisins/stencil-docs-target';
 
 const useGrapesjs: OutputTarget = grapesJsOutput({
   outDir: 'grapesjs',
@@ -18,9 +19,6 @@ export const config: Config = {
       type: 'dist',
     },
     {
-      type: 'dist-custom-elements-bundle',
-    },
-    {
       type: 'docs-readme',
     },
     {
@@ -28,6 +26,9 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
     useGrapesjs,
+    plugin({
+      outDir: 'docs',
+    }),
   ],
   plugins: [string({ include: '**/*.feature' })],
   rollupPlugins: {

@@ -6,6 +6,9 @@ import { PortalSectionView } from "./sqm-portal-section-view";
 
 /**
  * @uiName Titled Section
+ * @slots [{"name":"label", "title":"Label"},{"name":"content", "title":"Content"}]
+ * @exampleGroup Layout
+ * @example Titled Section - <sqm-titled-section text-align="center" label-margin="small" padding="none"><div slot="label">Section Label</div><div slot="content">Add your section content here!</div></sqm-titled-section>
  */
 @Component({
   tag: "sqm-titled-section",
@@ -13,14 +16,14 @@ import { PortalSectionView } from "./sqm-portal-section-view";
 })
 export class TitledSection {
   /**
-   * Label for the section unless overwritten via the label slot.
+   * Text value shown when there is no label slot declared.
    *
    * @uiName Label
    */
   @Prop() label: string;
 
   /**
-   * @uiName Text Align
+   * @uiName Text Alignment
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
@@ -28,14 +31,18 @@ export class TitledSection {
   @Prop() textAlign: "left" | "center" | "right" = "left";
 
   /**
-   * @uiName Label margin style
+   * Margin applied to the bottom of the label slot
+   *
+   * @uiName Label Bottom Margin
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() labelMargin: Spacing = "small";
   /**
-   * @uiName Section padding
+   * Padding applied to all 4 sides of the container
+   *
+   * @uiName Section Padding
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]

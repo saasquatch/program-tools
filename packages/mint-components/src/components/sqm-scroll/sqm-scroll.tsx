@@ -4,7 +4,9 @@ import { useScroll } from "./useScroll";
 import { createStyleSheet } from "../../styling/JSS";
 
 /**
- * @uiName Scroll
+ * @uiName Scroll Button
+ * @slots [{"name":"", "title":"Button Content"}]
+ * @slotEditor richText
  */
 @Component({
   tag: "sqm-scroll",
@@ -36,11 +38,15 @@ export class Scroll {
   @Prop() buttonText: string;
 
   /**
+   * The name of the HTML tag you would like to scroll to. E.g referral-table
+   *
    * @uiName Scroll Tag Name
    */
   @Prop() scrollTagName?: string;
 
   /**
+   * ID applied to the HTML tag you would like to scroll to. E.g tab-1
+   *
    * @uiName Scroll Id
    */
   @Prop() scrollId?: string;
@@ -91,7 +97,8 @@ export class Scroll {
   @Prop() iconSlot: string;
 
   /**
-   * @uiName Icon Name
+   * Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive.
+   * @uiName Icon
    */
   @Prop() iconName: string;
 
@@ -128,7 +135,7 @@ export class Scroll {
             color: "var(--sl-color-primary-text)",
             background: "var(--sl-color-neutral-500)",
             "&:hover": {
-              opacity:"0.8"
+              opacity: "0.8",
             },
           },
         },
