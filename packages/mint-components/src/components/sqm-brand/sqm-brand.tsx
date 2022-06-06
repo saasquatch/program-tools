@@ -82,7 +82,8 @@ export class BrandComponent {
 
           :host{
             display: contents;
-            
+            ${this.borderRadius && `border-radius: ${this.borderRadius};`}
+            ${this.backgroundColor && `background: ${this.backgroundColor};`}
           }
           /* 
           Selects any element placed inside a slot
@@ -96,8 +97,6 @@ export class BrandComponent {
             font-family:  "${font}", arial;
 			
             ${this.brandColor && css}
-            ${this.borderRadius && `border-radius: ${this.borderRadius};`}
-            ${this.backgroundColor && `background: ${this.backgroundColor};`}
             ${this.fontColor && `color: ${this.fontColor};`}
             --sl-focus-ring-color-primary: var(--sl-color-primary-100);
             --sl-input-border-color-focus: var(--sl-color-primary-500);

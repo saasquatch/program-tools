@@ -32,15 +32,15 @@ export function CardFeedView(props: CardFeedViewProps, children: VNode) {
         `--sl-color-neutral-0: ${props.cardBackgroundColor};`
       }
       ${
-        props.cardBackgroundColor &&
+        props.cardTextColor &&
         `--sl-color-neutral-950: ${props.cardTextColor};`
       }
       ${
-        props.cardBackgroundColor &&
+        props.cardTextColor &&
         `--sl-color-neutral-600: ${props.cardTextColor};`
       }
       ${
-        props.cardBackgroundColor &&
+        props.cardTextColor &&
         `--sl-color-neutral-700: ${props.cardTextColor};`
       }
       ${
