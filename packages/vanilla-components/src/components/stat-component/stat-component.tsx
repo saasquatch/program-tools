@@ -32,7 +32,7 @@ export class StatComponent {
   /**
    * Type of stat being displayed. e.g /rewardsCount
    * @uiName Stat Type
-   * @uiWidget statTypeSelectorWidget
+   * @uiWidget statTypeSelectWidget
    * @required
    * @minLength 1
    */

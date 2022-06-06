@@ -31,7 +31,7 @@ export class PartnerStatComponent {
    * Determines what type of stat is displayed. Manual paths are also supported.
    *
    * @uiName Stat Type
-   * @uiWidget statTypeSelectorWidget
+   * @uiWidget statTypeSelectWidget
    * @required
    * @minLength 1
    */
