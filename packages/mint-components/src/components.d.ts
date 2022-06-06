@@ -1481,6 +1481,10 @@ export namespace Components {
          */
         "hiddenColumns"?: string;
         /**
+          * @uiName Hide Column Labels
+         */
+        "hideLabels"?: boolean;
+        /**
           * @uiName Tablet Breakpoint
          */
         "mdBreakpoint"?: number;
@@ -1503,10 +1507,6 @@ export namespace Components {
           * @uiWidget programSelector
          */
         "programId": string;
-        /**
-          * @uiName Show Column Labels
-         */
-        "showLabels"?: boolean;
         /**
           * Show referred by user in table
           * @uiName Show Referrer
@@ -1787,6 +1787,10 @@ export namespace Components {
          */
         "hiddenColumns"?: string;
         /**
+          * @uiName Hide Column Labels
+         */
+        "hideLabels"?: boolean;
+        /**
           * @uiName Tablet Breakpoint
          */
         "mdBreakpoint"?: number;
@@ -1808,10 +1812,6 @@ export namespace Components {
           * @uiWidget programSelector
          */
         "programId": string;
-        /**
-          * @uiName Show column labels
-         */
-        "showLabels"?: boolean;
         /**
           * @uiName Mobile Breakpoint
          */
@@ -4548,6 +4548,10 @@ declare namespace LocalJSX {
          */
         "hiddenColumns"?: string;
         /**
+          * @uiName Hide Column Labels
+         */
+        "hideLabels"?: boolean;
+        /**
           * @uiName Tablet Breakpoint
          */
         "mdBreakpoint"?: number;
@@ -4570,10 +4574,6 @@ declare namespace LocalJSX {
           * @uiWidget programSelector
          */
         "programId"?: string;
-        /**
-          * @uiName Show Column Labels
-         */
-        "showLabels"?: boolean;
         /**
           * Show referred by user in table
           * @uiName Show Referrer
@@ -4840,6 +4840,10 @@ declare namespace LocalJSX {
          */
         "hiddenColumns"?: string;
         /**
+          * @uiName Hide Column Labels
+         */
+        "hideLabels"?: boolean;
+        /**
           * @uiName Tablet Breakpoint
          */
         "mdBreakpoint"?: number;
@@ -4861,10 +4865,6 @@ declare namespace LocalJSX {
           * @uiWidget programSelector
          */
         "programId"?: string;
-        /**
-          * @uiName Show column labels
-         */
-        "showLabels"?: boolean;
         /**
           * @uiName Mobile Breakpoint
          */
