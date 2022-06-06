@@ -285,7 +285,7 @@ export namespace Components {
         /**
           * Determines what type of stat is displayed. Manual paths are also supported.
           * @uiName Stat Type
-          * @uiWidget statTypeSelectorWidget
+          * @uiWidget statTypeSelectWidget
           * @required 
           * @minLength 1
          */
@@ -1196,7 +1196,7 @@ export namespace Components {
         /**
           * Type of stat being displayed. e.g /rewardsCount
           * @uiName Stat Type
-          * @uiWidget statTypeSelectorWidget
+          * @uiWidget statTypeSelectWidget
           * @required 
           * @minLength 1
          */
@@ -1691,7 +1691,7 @@ declare namespace LocalJSX {
         /**
           * Determines what type of stat is displayed. Manual paths are also supported.
           * @uiName Stat Type
-          * @uiWidget statTypeSelectorWidget
+          * @uiWidget statTypeSelectWidget
           * @required 
           * @minLength 1
          */
@@ -2604,7 +2604,7 @@ declare namespace LocalJSX {
         /**
           * Type of stat being displayed. e.g /rewardsCount
           * @uiName Stat Type
-          * @uiWidget statTypeSelectorWidget
+          * @uiWidget statTypeSelectWidget
           * @required 
           * @minLength 1
          */
