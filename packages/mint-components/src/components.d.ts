@@ -118,15 +118,6 @@ export namespace Components {
     }
     interface SqmBrand {
         /**
-          * @uiName Background Color
-          * @uiWidget color
-         */
-        "backgroundColor"?: string;
-        /**
-          * @uiName Configure border radius with pixel amount
-         */
-        "borderRadius"?: number;
-        /**
           * Controls the primary brand color used in the Mint Components library.
           * @uiName Brand Color
           * @uiWidget color
@@ -146,21 +137,6 @@ export namespace Components {
         "fontColor"?: string;
     }
     interface SqmCardFeed {
-        /**
-          * @uiName Card Background Color
-          * @uiType color
-         */
-        "cardBackgroundColor"?: string;
-        /**
-          * @uiName Card Border Color
-          * @uiType color
-         */
-        "cardBorderColor"?: string;
-        /**
-          * @uiName Card Text Color
-          * @uiType color
-         */
-        "cardTextColor"?: string;
         /**
           * @uiName Column Gap
           * @uiType number
@@ -355,7 +331,8 @@ export namespace Components {
          */
         "backgroundColor"?: string;
         /**
-          * @uiName Configure border radius with pixel amount
+          * Configure border radius with pixel amount.
+          * @uiName Border Radius
          */
         "borderRadius"?: number;
         /**
@@ -461,7 +438,8 @@ export namespace Components {
          */
         "backgroundColor": string;
         /**
-          * @uiName Configure border radius with pixel amount
+          * Configure border radius with pixel amount.
+          * @uiName Border Radius
          */
         "borderRadius"?: number;
         /**
@@ -777,7 +755,8 @@ export namespace Components {
          */
         "backgroundColor"?: string;
         /**
-          * @uiName Configure border radius with pixel amount
+          * Configure border radius with pixel amount.
+          * @uiName Border Radius
          */
         "borderRadius"?: number;
         /**
@@ -1519,7 +1498,8 @@ export namespace Components {
          */
         "borderColor"?: string;
         /**
-          * @uiName Configure border radius with pixel amount
+          * Configure border radius with pixel amount.
+          * @uiName Border Radius
          */
         "borderRadius"?: number;
         /**
@@ -2284,7 +2264,8 @@ export namespace Components {
          */
         "borderColor"?: string;
         /**
-          * @uiName Configure border radius with pixel amount
+          * Configure border radius with pixel amount.
+          * @uiName Border Radius
          */
         "borderRadius"?: number;
         /**
@@ -2335,9 +2316,9 @@ export namespace Components {
          */
         "display": "grid" | "flex";
         /**
-          * @uiName Show Border
+          * @uiName Hide Border
          */
-        "showBorder"?: boolean;
+        "hideBorder"?: boolean;
         /**
           * @uiName Space Between Stats
           * @uiType string
@@ -3321,15 +3302,6 @@ declare namespace LocalJSX {
     }
     interface SqmBrand {
         /**
-          * @uiName Background Color
-          * @uiWidget color
-         */
-        "backgroundColor"?: string;
-        /**
-          * @uiName Configure border radius with pixel amount
-         */
-        "borderRadius"?: number;
-        /**
           * Controls the primary brand color used in the Mint Components library.
           * @uiName Brand Color
           * @uiWidget color
@@ -3349,21 +3321,6 @@ declare namespace LocalJSX {
         "fontColor"?: string;
     }
     interface SqmCardFeed {
-        /**
-          * @uiName Card Background Color
-          * @uiType color
-         */
-        "cardBackgroundColor"?: string;
-        /**
-          * @uiName Card Border Color
-          * @uiType color
-         */
-        "cardBorderColor"?: string;
-        /**
-          * @uiName Card Text Color
-          * @uiType color
-         */
-        "cardTextColor"?: string;
         /**
           * @uiName Column Gap
           * @uiType number
@@ -3558,7 +3515,8 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * @uiName Configure border radius with pixel amount
+          * Configure border radius with pixel amount.
+          * @uiName Border Radius
          */
         "borderRadius"?: number;
         /**
@@ -3664,7 +3622,8 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * @uiName Configure border radius with pixel amount
+          * Configure border radius with pixel amount.
+          * @uiName Border Radius
          */
         "borderRadius"?: number;
         /**
@@ -3980,7 +3939,8 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * @uiName Configure border radius with pixel amount
+          * Configure border radius with pixel amount.
+          * @uiName Border Radius
          */
         "borderRadius"?: number;
         /**
@@ -4722,7 +4682,8 @@ declare namespace LocalJSX {
          */
         "borderColor"?: string;
         /**
-          * @uiName Configure border radius with pixel amount
+          * Configure border radius with pixel amount.
+          * @uiName Border Radius
          */
         "borderRadius"?: number;
         /**
@@ -5463,7 +5424,8 @@ declare namespace LocalJSX {
          */
         "borderColor"?: string;
         /**
-          * @uiName Configure border radius with pixel amount
+          * Configure border radius with pixel amount.
+          * @uiName Border Radius
          */
         "borderRadius"?: number;
         /**
@@ -5514,9 +5476,9 @@ declare namespace LocalJSX {
          */
         "display"?: "grid" | "flex";
         /**
-          * @uiName Show Border
+          * @uiName Hide Border
          */
-        "showBorder"?: boolean;
+        "hideBorder"?: boolean;
         /**
           * @uiName Space Between Stats
           * @uiType string

@@ -122,7 +122,8 @@ export class HeroImage {
   @Prop() paddingImage: Spacing = "none";
 
   /**
-   * @uiName Configure border radius with pixel amount
+   * Configure border radius with pixel amount.
+   * @uiName Border Radius
    */
   @Prop() borderRadius?: number;
 

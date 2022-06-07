@@ -39,12 +39,12 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
       {
         statvalue: "12345",
         value: 0,
-        flexReverse: false,
-        alignment: "center" as const,
-        statColor: "var(--sl-color-gray-800)" as const,
-        statDescriptionColor: "var(--sl-color-gray-600)" as const,
-        statFontSize: "x-large",
-        statDescriptionFontSize: "small",
+        flexReverse: props.flexReverse,
+        alignment: props.alignment,
+        statColor: props.statColor,
+        statDescriptionColor: props.statDescriptionColor,
+        statFontSize: props.statFontSize,
+        statDescriptionFontSize: props.statDescriptionFontSize,
       },
       props.demoData || {},
       { arrayMerge: (_, a) => a }

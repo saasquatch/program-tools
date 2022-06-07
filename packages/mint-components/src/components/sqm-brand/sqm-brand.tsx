@@ -25,22 +25,10 @@ export class BrandComponent {
   @Prop() brandColor: string;
 
   /**
-   * @uiName Background Color
-   * @uiWidget color
-   */
-  @Prop() backgroundColor?: string;
-
-  /**
    * @uiName Font Color
    * @uiWidget color
    */
   @Prop() fontColor?: string;
-
-  /**
-   * Configure border radius with pixel amount
-   * @uiName Border Radius
-   */
-   @Prop() borderRadius?: number;
 
   /**
    * The brand font that you want to use
@@ -82,8 +70,6 @@ export class BrandComponent {
 
           :host{
             display: contents;
-            ${this.borderRadius && `border-radius: ${this.borderRadius};`}
-            ${this.backgroundColor && `background: ${this.backgroundColor};`}
           }
           /* 
           Selects any element placed inside a slot
@@ -99,6 +85,10 @@ export class BrandComponent {
             ${this.brandColor && css}
             ${this.fontColor && `color: ${this.fontColor};`}
             --sl-focus-ring-color-primary: var(--sl-color-primary-100);
+            --sl-color-gray-200: ${this.fontColor};
+            --sl-color-gray-400: ${this.fontColor};
+            --sl-color-gray-600: ${this.fontColor};
+            --sl-color-gray-800: ${this.fontColor};
             --sl-input-border-color-focus: var(--sl-color-primary-500);
             --sl-color-primary-hue: var(--sl-color-primary-500);
           }`}</style>

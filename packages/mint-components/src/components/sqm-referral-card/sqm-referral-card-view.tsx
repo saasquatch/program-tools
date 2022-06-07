@@ -63,6 +63,16 @@ export function ReferralCardView(props: ReferralCardViewProps) {
         {styleString}
         {vanillaStyle}
       </style>
+      <style>{`
+
+          /* 
+          Selects any element placed inside a slot
+           - resets css variable inheritence for fonts
+          */
+          ::slotted(*) {
+            ${props.textColor && `color: ${props.textColor};`}
+            --sl-color-neutral-900: ${props.textColor};
+          }`}</style>
       <div
         class={sheet.classes.Container}
         style={{

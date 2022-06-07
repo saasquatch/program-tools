@@ -11,7 +11,7 @@
 | ------------- | -------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | `borderColor` | `border-color` |             | `string`                                                                                                                                       | `undefined`   |
 | `display`     | `display`      |             | `"flex" \| "grid"`                                                                                                                             | `"grid"`      |
-| `showBorder`  | `show-border`  |             | `boolean`                                                                                                                                      | `true`        |
+| `hideBorder`  | `hide-border`  |             | `boolean`                                                                                                                                      | `false`       |
 | `space`       | `space`        |             | `"large" \| "medium" \| "none" \| "small" \| "x-large" \| "x-small" \| "xx-large" \| "xx-small" \| "xxx-large" \| "xxx-small" \| "xxxx-large"` | `"xxx-large"` |
 
 

@@ -39,7 +39,8 @@ export class ReferralCard {
   @Prop() textColor?: string;
 
   /**
-   * @uiName Configure border radius with pixel amount
+   * Configure border radius with pixel amount.
+   * @uiName Border Radius
    */
   @Prop() borderRadius?: number;
 

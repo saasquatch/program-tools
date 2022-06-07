@@ -70,7 +70,8 @@ export class ShareLink {
   @Prop() size?: "small" | "medium" | "large";
 
   /**
-   * @uiName Configure border radius with pixel amount
+   * Configure border radius with pixel amount.
+   * @uiName Border Radius
    */
   @Prop() borderRadius?: number;
 

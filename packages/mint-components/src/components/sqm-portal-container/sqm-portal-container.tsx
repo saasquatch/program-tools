@@ -47,7 +47,8 @@ export class PortalContainer {
   @Prop() backgroundColor?: string;
 
   /**
-   * @uiName Configure border radius with pixel amount
+   * Configure border radius with pixel amount.
+   * @uiName Border Radius
    */
   @Prop() borderRadius?: number;
 

@@ -53,13 +53,13 @@ export class BigStat {
    * @uiName Stat Color
    * @uiWidget color
    */
-  @Prop() statColor?: string;
+  @Prop() statColor?: string = "var(--sl-color-gray-800)";
 
   /**
    * @uiName Stat Description Color
    * @uiWidget color
    */
-  @Prop() statDescriptionColor?: string;
+  @Prop() statDescriptionColor?: string = "var(--sl-color-gray-600)";
 
   /**
    * @uiName Stat Font Size

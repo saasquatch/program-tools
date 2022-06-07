@@ -29,23 +29,23 @@ export class CardFeed {
    */
   @Prop() gap: number = 24;
 
-  /**
-   * @uiName Card Background Color
-   * @uiType color
-   */
-  @Prop() cardBackgroundColor?: string;
+  // /**
+  //  * @uiName Card Background Color
+  //  * @uiType color
+  //  */
+  // @Prop() cardBackgroundColor?: string;
 
-  /**
-   * @uiName Card Text Color
-   * @uiType color
-   */
-  @Prop() cardTextColor?: string;
+  // /**
+  //  * @uiName Card Text Color
+  //  * @uiType color
+  //  */
+  // @Prop() cardTextColor?: string;
 
-  /**
-   * @uiName Card Border Color
-   * @uiType color
-   */
-  @Prop() cardBorderColor?: string;
+  // /**
+  //  * @uiName Card Border Color
+  //  * @uiType color
+  //  */
+  // @Prop() cardBorderColor?: string;
 
   constructor() {
     withHooks(this);

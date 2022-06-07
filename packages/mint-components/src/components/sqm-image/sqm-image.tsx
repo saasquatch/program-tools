@@ -43,7 +43,8 @@ export class Image {
   @Prop() minHeight?: string;
 
   /**
-   * @uiName Configure border radius with pixel amount
+   * Configure border radius with pixel amount.
+   * @uiName Border Radius
    */
   @Prop() borderRadius?: number;
 

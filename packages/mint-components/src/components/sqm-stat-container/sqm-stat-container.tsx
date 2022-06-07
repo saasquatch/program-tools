@@ -35,9 +35,9 @@ export class StatContainer {
   @Prop() display: "grid" | "flex" = "grid";
 
   /**
-   * @uiName Show Border
+   * @uiName Hide Border
    */
-  @Prop() showBorder?: boolean = true;
+  @Prop() hideBorder?: boolean = false;
 
   /**
    * @uiName Border Color
