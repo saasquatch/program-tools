@@ -1,6 +1,7 @@
 import { useHost } from "@saasquatch/component-boilerplate";
 import { useEffect, useMemo } from "@saasquatch/universal-hooks";
 import { SlTabGroup } from "@shoelace-style/shoelace";
+import { useRerenderListener } from "../../tables/re-render";
 import { useChildElements } from "../../tables/useChildElements";
 
 const REVEAL_EVENT = "sq:reveal";
@@ -13,6 +14,7 @@ export interface TabElement extends Element {
 export function useTabs() {
   const rawTabs = useChildElements<TabElement>();
   const host = useHost();
+  const tick = useRerenderListener();
   const tabs = useMemo(
     () =>
       rawTabs
@@ -35,7 +37,7 @@ export function useTabs() {
           tab.setAttribute("id", "tab-" + i);
           return tab;
         }),
-    [rawTabs]
+    [rawTabs, tick]
   );
 
   useEffect(() => {

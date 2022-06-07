@@ -1,4 +1,6 @@
+import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
+import { useRequestRerender } from "../../tables/re-render";
 import { TabView } from "./sqm-tab-view";
 
 /**
@@ -15,7 +17,15 @@ export class Tab {
   /** @uiName Tab Title  */
   @Prop() header: string;
 
+  constructor() {
+    withHooks(this);
+  }
+
+  disconnectedCallback() {}
+
   render() {
+    useRequestRerender([this.header]);
+
     return (
       <TabView>
         <slot />
