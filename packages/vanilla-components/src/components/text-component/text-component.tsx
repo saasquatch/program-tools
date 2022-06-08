@@ -27,6 +27,7 @@ export class TextComponent {
   @Prop() ismarkdown: boolean;
   /**
    * @uiName Text
+   * @uiWidget textArea
    */
   @Prop() text: string;
   /**

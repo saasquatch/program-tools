@@ -15,7 +15,6 @@ import { css } from "emotion";
  * @exampleGroup Statistics
  * @example Referral Count - <sqh-stat-component ishidden="false" statcolor="#4caf50" stattype="/referralsCount" statdescription="Friends Referred" paddingtop="10" paddingbottom="10"></sqh-stat-component>
  * @example Reward Count - <sqh-stat-component ishidden="false" stattype="/rewardsCount" statdescription="Total Rewards" paddingtop="10" paddingbottom="10" statcolor="#000000"></sqh-stat-component>
- * @example Credit Earned - <sqh-stat-component ishidden="false" stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit" statdescription="Credit earned" paddingtop="10" paddingbottom="10" statcolor="#000000"></sqh-stat-component>
  * @example Points Earned - <sqh-stat-component statcolor="#000000" stattype="/rewardBalance/CREDIT/POINT/totalAssignedCredit" statdescription="Points Earned" paddingtop="10" paddingbottom="10"></sqh-stat-component>
  */
 @Component({

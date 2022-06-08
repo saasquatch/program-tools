@@ -32,7 +32,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \<sqh-referral-list> show-referrer prop now prevents referrer from being queried when set to "false"
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/vanilla-components@1.2.3...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/vanilla-components@1.2.4...HEAD
+[1.2.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.4
 [1.2.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.3
 [1.0.14]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.0.14
 [1.0.13]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.0.13
