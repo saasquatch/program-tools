@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.3] - 2022-06-08
+
+### Changed
+- Added [jsDocs](https://jsdoc.app/) to the following components to improve the editability experience in our new Raisins widget editor.
+- Changed components:
+  - \<sqb-conditional-section>
+  - \<sqb-program-section>
+
+## [1.3.2] - 2022-06-01
+
+### Changed
+
+- Changed components:
+  - \<sqb-conditional-section>
+    - A users country code is now accessible in the JSONata context
+
 ## [1.3.1] - 2022-02-23
 
 ### Changed
@@ -71,7 +87,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqb-conditional-section>
   - \<sqb-program-section>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.3.1...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.3.3...HEAD
+[1.3.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.3
+[1.3.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.2
 [1.3.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.1
 [1.3.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.0
 [1.2.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.2.1
