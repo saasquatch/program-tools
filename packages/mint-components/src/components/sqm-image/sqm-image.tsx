@@ -32,7 +32,7 @@ export class Image {
   /**
    * @uiName Background Color
    * @uiWidget color
-   * @format
+   * @format color
    */
   @Prop() backgroundColor: string;
 
