@@ -58,7 +58,6 @@
     "jest-cli": "^26.2.2",
     "marked": "^1.1.1",
     "path-to-regexp": "^6.1.0",
-    "progressbar.js": "^1.0.1",
     "puppeteer": "3.0.3",
     "ts-node": "^8.10.1",
     "uuid": "^8.3.0",

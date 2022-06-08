@@ -12,7 +12,7 @@ export interface WidgetIdent {
   engagementMedium: "POPUP" | "EMBED" | string;
   programId: string;
   locale: string;
-  env?:string;
+  env?: string;
 }
 
 /**
@@ -587,107 +587,7 @@ const API = {
         .then((res) => res.data.user);
     },
 
-    getBalanceDetails() {
-      const widgetId = widgetIdent();
-
-      if (widgetId["env"] === "demo" || !widgetId) {
-        const {
-          rewardBalanceDetails
-        } = demoUser;
-        const user = {
-          rewardBalanceDetails
-        };
-        return Promise.resolve(user);
-      }
-
-      const { userId, accountId, programId = null, locale } = widgetId;
-
-      const variables = {
-        userId,
-        accountId,
-        programId,
-        locale
-      };
-
-      return this.getClient().query({
-        query: gql`
-        query(
-          $userId: String!,
-          $accountId: String!,
-          $programId: ID,
-          $locale: String!
-        ) {
-          user(id: $userId, accountId: $accountId) {
-            rewardBalanceDetails(programId: $programId) {
-              prettyAvailableValue
-              unit
-              ... on CreditRewardBalance {
-                prettyAssignedCredit
-                prettyRedeemedCredit
-                rewardUnit {
-                  currency {
-                    displayName(locale: $locale)
-                    symbol(locale: $locale)
-                    currencyCode
-                  }
-                }
-              }
-            }
-          }
-        }
-        `,
-        variables
-      }).then(res => res.data.user);
-    },
-
-    getRewardExpiries() {
-      const widgetId = widgetIdent();
-
-      if (widgetId["env"] === "demo" || !widgetId) {
-        const {
-          rewardBalanceDetails
-        } = demoUser;
-        const user = {
-          rewardBalanceDetails
-        };
-        return Promise.resolve(user);
-      }
-
-      const { userId, accountId, programId = null, locale } = widgetId;
-
-      const variables = {
-        userId,
-        accountId,
-        programId,
-        locale
-      };
-
-      return this.getClient().query({
-        query: gql`
-        query(
-          $userId: String!,
-          $accountId: String!,
-          $programId: ID,
-          $locale: String!
-        ) {
-          user(id: $userId, accountId: $accountId) {
-            rewards(programId_eq: $programId) {
-              data {
-                dateCreated
-                dateScheduledFor
-                dateExpires
-                prettyValue
-                unit
-              }
-            }
-          }
-        }
-        `,
-        variables
-      }).then(res => res.data.user);
-    },
-
-    async getReferralCode ():Promise<string> {
+    async getReferralCode(): Promise<string> {
       const widgetId = widgetIdent();
 
       if (widgetId["env"] === "demo" || !widgetId) return demoUser.referralcode;
@@ -805,80 +705,6 @@ const API = {
         })
         .then((res) => res.data.user);
     },
-    getUserProgress(){
-      const widgetId = widgetIdent();
-
-      if (widgetId["env"] === "demo" || !widgetId) {
-        const demoData = {
-          customFields: {demo_totalValue:16},
-          rewardBalanceDetails:[{
-            prettyAvailableValue:"$10.00"
-          }],
-          rewards:{count:1}
-        }
-        return Promise.resolve(demoData);
-      }
-       const { userId, accountId, programId } = widgetId;
-       const variables = {
-        userId,
-        accountId,
-        programId,
-      };
-      return this.getClient().query({
-        query: gql`
-          query($userId: String!, $accountId: String!, $programId: ID) {
-            user(id: $userId, accountId: $accountId){
-              customFields
-              locale
-              rewardBalanceDetails(programId: $programId) {
-                prettyAvailableValue(formatType:UNIT_FORMATTED)
-              }
-              rewards(limit:1000,offset:0, filter:{programId_eq: $programId}){
-                count
-              }
-            }
-          }
-          `,
-          variables
-        }).then(res => res.data.user);
-    },
-    getProgramRules(){
-      const widgetId = widgetIdent();
-
-      if (widgetId["env"] === "demo" || !widgetId) {
-        const demoData = {
-          id:"demo",
-          name:"Demo Program",
-          rules: {
-            programWindow:"",
-            rewardRules: {
-              rewardRulesType: 1,
-              rewardGoal: 24,
-              isRecurring: 1,
-              defaultCurrency: "CAD"
-            }
-          }
-        }
-        return Promise.resolve(demoData);
-      }
-       const { programId } = widgetId;
-       const variables = {
-        programId
-      };
-      return this.getClient().query({
-        query: gql`
-          query($programId: ID!) {
-            program(id:$programId){
-              id
-              name
-              rules
-            }
-          }
-          `,
-          variables
-        }).then(res => res.data.program);
-    },
-
   },
   ui: squatchJsApi,
 };
