@@ -1,19 +1,16 @@
 import { gql } from "graphql-request";
 import { pathToRegexp } from "path-to-regexp";
-import { useEffect, useMemo } from "@saasquatch/universal-hooks";
+import { useMemo } from "@saasquatch/universal-hooks";
 import {
   useQuery,
   useProgramId,
   useUserIdentity,
   useLocale,
-  useHost,
-  useTick,
 } from "@saasquatch/component-boilerplate";
 import { QueryData } from "@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery";
 import debugFn from "debug";
 import { BigStat } from "./sqm-big-stat";
 import { BigStatViewProps } from "./sqm-big-stat-view";
-import { useRerenderListener } from "../../tables/re-render";
 import { useChildElements } from "../../tables/useChildElements";
 
 const debug = debugFn("sq:useBigStat");
