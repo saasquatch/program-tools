@@ -15,7 +15,7 @@ import { useTaskCard } from "./useTaskCard";
  * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "ended-message", "expiry-message", "starts-on-message", "event-key", "*"]
  * @exampleGroup Rewards
  * @example One Time Task Card - <sqm-task-card reward-amount="1" reward-unit="Free Month" goal="1" card-title="Upgrade Your Plan" description="Receive one free month for being a committed customer when you upgrade your plan." button-text="Upgrade" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" open-new-tab="false" finite="0" starts-on-message="Starts {startDate}"></sqm-task-card>
- * @example Repeatable Task Card - <sqm-task-card reward-amount="250" goal="500" show-progress-bar card-title="Spend $500" description="Earn 150 points when you spend $500 or more." button-text="See plans" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" progress-bar-unit="$" finite="0" repeatable="" reward-unit="Points" starts-on-message="Starts {startDate}"></sqm-task-card>
+ * @example Repeatable Task Card - <sqm-task-card reward-amount="250" goal="500" show-progress-bar card-title="Spend $500" description="Earn 250 points when you spend $500 or more." button-text="See plans" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" progress-bar-unit="$" finite="0" repeatable="" reward-unit="Points" starts-on-message="Starts {startDate}"></sqm-task-card>
  * @example Event Sending Task Card - <sqm-task-card goal="1" reward-amount="50" card-title="Follow Us on Twitter" description="Earn 50 points when you follow us on Twitter!" button-text="Follow" button-link="https://twitter.com/" open-new-tab="true" event-key="socialFollow" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}"></sqm-task-card>
  */
 @Component({
@@ -63,7 +63,7 @@ export class TaskCard {
   repeatable: boolean = false;
 
   /**
-   * The number of times a reward can be earned.  Use zero for no limit (the default).
+   * The number of times a task can be completed when repeatable.  Use zero for no limit (the default).
    *
    * @uiName Repeat Amount
    * @uiGroup Reward

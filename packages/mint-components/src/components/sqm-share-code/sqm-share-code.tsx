@@ -12,7 +12,7 @@ import deepmerge from "deepmerge";
 
 /**
  * @uiName Share Code
- * @exampleGroup Referrals
+ * @exampleGroup Sharing
  * @example Share Code - <sqm-share-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-code>
  */
 @Component({

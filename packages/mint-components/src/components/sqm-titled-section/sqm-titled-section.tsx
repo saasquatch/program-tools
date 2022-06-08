@@ -8,7 +8,7 @@ import { PortalSectionView } from "./sqm-portal-section-view";
  * @uiName Titled Section
  * @slots [{"name":"label", "title":"Label"},{"name":"content", "title":"Content"}]
  * @exampleGroup Layout
- * @example Titled Section - <sqm-titled-section text-align="center" label-margin="small" padding="none"><div slot="label">Section Label</div><div slot="content">Add your section content here!</div></sqm-titled-section>
+ * @example Titled Section - <sqm-titled-section text-align="center" label-margin="small" padding="none"><div slot="label"><h2>Section Label</h2></div><div slot="content"><p>Add your section content here!</p></div></sqm-titled-section>
  */
 @Component({
   tag: "sqm-titled-section",

@@ -9,7 +9,7 @@ import { useUserName } from "./useUserName";
 /**
  * @uiName User Name
  * @exampleGroup Common Components
- * @example User Name Display - <sqm-user-name fallback="Anonymous User"></sqm-user-name>
+ * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
  */
 @Component({
   tag: "sqm-user-name",
