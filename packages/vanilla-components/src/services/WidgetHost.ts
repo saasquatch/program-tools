@@ -11,8 +11,6 @@ export interface WidgetIdent {
   accountId: string;
   engagementMedium: "POPUP" | "EMBED" | string;
   programId: string;
-  locale: string;
-  env?: string;
 }
 
 /**
