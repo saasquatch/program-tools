@@ -163,7 +163,11 @@ function useRewardsTableDemo(
 
     // filter out loading and empty states from columns array
     const columnComponents = components.filter(
-      (component) => component.slot !== "loading" && component.slot !== "empty"
+      (component) =>
+        component.slot !== "loading" &&
+        component.slot !== "empty" &&
+        component?.firstElementChild?.getAttribute("slot") !== "loading" &&
+        component?.firstElementChild?.getAttribute("slot") !== "empty"
     );
 
     // get the column titles (renderLabel is asynchronous)
@@ -171,21 +175,20 @@ function useRewardsTableDemo(
       async (c: any, idx: number) => {
         const slot = c?.firstElementChild?.getAttribute("slot");
         // Custom plop targets
-        try {
-          if (
-            c.tagName === "RAISINS-PLOP-TARGET" &&
-            slot !== "loading" &&
-            slot !== "empty"
-          ) {
-            c.style.position = "absolute";
-            c.setAttribute("slot", "column-" + idx);
-            // Replace add text with a simple + button
-            const plopTarget = c.firstElementChild.childNodes[1];
-            plopTarget.innerHTML = "＋";
-            (plopTarget as HTMLElement).style.lineHeight = "20px";
-            return tryMethod(c, () => c.renderLabel(idx));
-          }
-        } catch {}
+
+        if (
+          c.tagName === "RAISINS-PLOP-TARGET" &&
+          slot !== "loading" &&
+          slot !== "empty"
+        ) {
+          c.style.position = "absolute";
+          c.setAttribute("slot", "column-" + idx);
+          // Replace add text with a simple + button
+          const plopTarget = c.firstElementChild.childNodes[1];
+          plopTarget.innerHTML = "＋";
+          (plopTarget as HTMLElement).style.lineHeight = "20px";
+          return tryMethod(c, () => c.renderLabel(idx));
+        }
         return tryMethod(c, () => c.renderLabel());
       }
     );

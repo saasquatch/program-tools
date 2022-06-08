@@ -138,7 +138,6 @@ export function GenericTableView(props: GenericTableViewProps) {
             <tr>
               {columns?.map((column) => {
                 if (typeof column === "string") return <th>{column}</th>;
-
                 return <th style={{ width: "30px" }}>{column}</th>;
               })}
             </tr>
