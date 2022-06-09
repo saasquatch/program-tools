@@ -400,7 +400,7 @@ export namespace Components {
         /**
           * @uiName Background Color
           * @uiWidget color
-          * @format
+          * @format color
          */
         "backgroundColor": string;
         /**
@@ -1168,274 +1168,6 @@ export namespace Components {
         "textColor": string;
     }
     interface SqmProgramMenu {
-    }
-    interface SqmQa {
-        /**
-          * Description here
-          * @uiName Boolean Switch with default - true
-         */
-        "booleanSwitch"?: boolean;
-        /**
-          * Description here
-          * @uiName Boolean Switch with no default
-         */
-        "booleanSwitchNoDefault"?: boolean;
-        /**
-          * Description here
-          * @uiName Boolean Switch required with no default
-          * @required
-         */
-        "booleanSwitchRequiredNoDefault"?: boolean;
-        /**
-          * Description here
-          * @uiName Boolean Switch with default - false
-         */
-        "booleanSwitchfalse"?: boolean;
-        /**
-          * Description here
-          * @uiName Color with default
-          * @uiWidget color
-          * @format color
-         */
-        "color"?: string;
-        /**
-          * Description here
-          * @uiName Color with no default
-          * @uiWidget color
-          * @format color
-         */
-        "colorNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Color required with no default
-          * @required 
-          * @uiWidget color
-          * @format color
-         */
-        "colorRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Date Interval with default
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @format date-interval
-         */
-        "dateInterval"?: string;
-        /**
-          * Description here
-          * @uiName Date Interval with no default
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @format date-interval
-         */
-        "dateIntervalNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Date Interval required with no default
-          * @required 
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @format date-interval
-         */
-        "dateIntervalRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Image Upload with default
-          * @uiWidget ImageUpload
-          * @format url
-         */
-        "imageUpload"?: string;
-        /**
-          * Description here
-          * @uiName Image Upload with no default
-          * @uiWidget ImageUpload
-          * @format url
-         */
-        "imageUploadNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Image Upload required with no default
-          * @required 
-          * @uiWidget ImageUpload
-          * @format url
-         */
-        "imageUploadRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Number Max 7
-          * @maximum 7
-         */
-        "max"?: number;
-        /**
-          * Description here
-          * @uiName String Max Length 10
-          * @maxLength 10
-         */
-        "maxLength"?: string;
-        /**
-          * Description here
-          * @uiName Number Min 7
-          * @minimum 7
-         */
-        "min"?: number;
-        /**
-          * Description here
-          * @uiName String Min Length 10
-          * @minLength 10
-         */
-        "minLength"?: string;
-        /**
-          * Description here
-          * @uiName Number Enum Select with default
-          * @uiEnum [1,2,3]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "numberEnumSelect"?: number;
-        /**
-          * Description here
-          * @uiName Number Enum Select with no default
-          * @uiEnum [1,2,3]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "numberEnumSelectNoDefault"?: number;
-        /**
-          * Description here
-          * @uiName Number Enum Select required with no default
-          * @required 
-          * @uiEnum [1,2,3]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "numberEnumSelectRequiredNoDefault"?: number;
-        /**
-          * Description here
-          * @uiName Number Input with default
-         */
-        "numberInput"?: number;
-        /**
-          * Description here
-          * @uiName Number Input with no default
-         */
-        "numberInputNoDefault"?: number;
-        /**
-          * Description here
-          * @uiName Number required with no default
-          * @required
-         */
-        "numberRequired"?: number;
-        /**
-          * Description here
-          * @uiName Program Selector with default
-          * @uiWidget programSelector
-         */
-        "programSelector"?: string;
-        /**
-          * Description here
-          * @uiName Program Selector with no default
-          * @uiWidget programSelector
-         */
-        "programSelectorNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Program Selector required with no default
-          * @required 
-          * @uiWidget programSelector
-         */
-        "programSelectorRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Stat Selector with default
-          * @uiWidget statTypeSelectWidget
-         */
-        "statSelector"?: string;
-        /**
-          * Description here
-          * @uiName Stat Selector with no default
-          * @uiWidget statTypeSelectWidget
-         */
-        "statSelectorNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Stat Selector required with no default
-          * @required 
-          * @uiWidget statTypeSelectWidget
-         */
-        "statSelectorRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName String Enum Select with default
-          * @uiEnum ["option1","option2","option3"]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "stringEnumSelect"?: string;
-        /**
-          * Description here
-          * @uiName String Enum Select with no default
-          * @uiEnum ["option1","option2","option3"]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "stringEnumSelectNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName String Enum Select required with no default
-          * @required 
-          * @uiEnum ["option1","option2","option3"]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "stringEnumSelectRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName String required with no default
-          * @required
-         */
-        "stringRequired"?: string;
-        /**
-          * Description here
-          * @uiName Text Area Input
-          * @uiWidget textArea with default
-         */
-        "textAreaInput"?: string;
-        /**
-          * Description here
-          * @uiName Text Area Input
-          * @uiWidget textArea with no default
-         */
-        "textAreaInputNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Text Area Input
-          * @uiWidget textArea required with no default
-          * @required
-         */
-        "textAreaInputRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Text Input with default
-         */
-        "textInput"?: string;
-        /**
-          * Description here
-          * @uiName Text Input with no default
-         */
-        "textInputNoDefault"?: string;
-    }
-    interface SqmQaReferralCard {
-        /**
-          * @uiName Vertical Aligment
-          * @uiType string
-          * @uiEnum ["start", "center", "end"]
-          * @uiEnumNames ["Top", "Center", "Bottom"]
-         */
-        "verticalAlignment": "start" | "center" | "end";
-    }
-    interface SqmQaTabs {
-        /**
-          * Used to specify the placement of the tabs
-          * @uiName Tabs Placement
-          * @uiType string
-          * @uiEnum ["left", "right", "bottom", "top"]
-          * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
-         */
-        "placement"?: "left" | "right" | "bottom" | "top";
     }
     interface SqmReferralCard {
         /**
@@ -2229,7 +1961,7 @@ export namespace Components {
          */
         "colspan": number;
         /**
-          * @uiName Padding}
+          * @uiName Padding
          */
         "padding": string;
     }
@@ -2309,7 +2041,7 @@ export namespace Components {
          */
         "expiryMessage": string;
         /**
-          * The number of times a reward can be earned.  Use zero for no limit (the default).
+          * The number of times a task can be completed when repeatable.  Use zero for no limit (the default).
           * @uiName Repeat Amount
           * @uiGroup Reward
          */
@@ -2733,24 +2465,6 @@ declare global {
         prototype: HTMLSqmProgramMenuElement;
         new (): HTMLSqmProgramMenuElement;
     };
-    interface HTMLSqmQaElement extends Components.SqmQa, HTMLStencilElement {
-    }
-    var HTMLSqmQaElement: {
-        prototype: HTMLSqmQaElement;
-        new (): HTMLSqmQaElement;
-    };
-    interface HTMLSqmQaReferralCardElement extends Components.SqmQaReferralCard, HTMLStencilElement {
-    }
-    var HTMLSqmQaReferralCardElement: {
-        prototype: HTMLSqmQaReferralCardElement;
-        new (): HTMLSqmQaReferralCardElement;
-    };
-    interface HTMLSqmQaTabsElement extends Components.SqmQaTabs, HTMLStencilElement {
-    }
-    var HTMLSqmQaTabsElement: {
-        prototype: HTMLSqmQaTabsElement;
-        new (): HTMLSqmQaTabsElement;
-    };
     interface HTMLSqmReferralCardElement extends Components.SqmReferralCard, HTMLStencilElement {
     }
     var HTMLSqmReferralCardElement: {
@@ -3057,9 +2771,6 @@ declare global {
         "sqm-program-explainer": HTMLSqmProgramExplainerElement;
         "sqm-program-explainer-step": HTMLSqmProgramExplainerStepElement;
         "sqm-program-menu": HTMLSqmProgramMenuElement;
-        "sqm-qa": HTMLSqmQaElement;
-        "sqm-qa-referral-card": HTMLSqmQaReferralCardElement;
-        "sqm-qa-tabs": HTMLSqmQaTabsElement;
         "sqm-referral-card": HTMLSqmReferralCardElement;
         "sqm-referral-iframe": HTMLSqmReferralIframeElement;
         "sqm-referral-table": HTMLSqmReferralTableElement;
@@ -3467,7 +3178,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Background Color
           * @uiWidget color
-          * @format
+          * @format color
          */
         "backgroundColor"?: string;
         /**
@@ -4235,274 +3946,6 @@ declare namespace LocalJSX {
         "textColor"?: string;
     }
     interface SqmProgramMenu {
-    }
-    interface SqmQa {
-        /**
-          * Description here
-          * @uiName Boolean Switch with default - true
-         */
-        "booleanSwitch"?: boolean;
-        /**
-          * Description here
-          * @uiName Boolean Switch with no default
-         */
-        "booleanSwitchNoDefault"?: boolean;
-        /**
-          * Description here
-          * @uiName Boolean Switch required with no default
-          * @required
-         */
-        "booleanSwitchRequiredNoDefault"?: boolean;
-        /**
-          * Description here
-          * @uiName Boolean Switch with default - false
-         */
-        "booleanSwitchfalse"?: boolean;
-        /**
-          * Description here
-          * @uiName Color with default
-          * @uiWidget color
-          * @format color
-         */
-        "color"?: string;
-        /**
-          * Description here
-          * @uiName Color with no default
-          * @uiWidget color
-          * @format color
-         */
-        "colorNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Color required with no default
-          * @required 
-          * @uiWidget color
-          * @format color
-         */
-        "colorRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Date Interval with default
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @format date-interval
-         */
-        "dateInterval"?: string;
-        /**
-          * Description here
-          * @uiName Date Interval with no default
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @format date-interval
-         */
-        "dateIntervalNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Date Interval required with no default
-          * @required 
-          * @uiWidget dateRange
-          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
-          * @format date-interval
-         */
-        "dateIntervalRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Image Upload with default
-          * @uiWidget ImageUpload
-          * @format url
-         */
-        "imageUpload"?: string;
-        /**
-          * Description here
-          * @uiName Image Upload with no default
-          * @uiWidget ImageUpload
-          * @format url
-         */
-        "imageUploadNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Image Upload required with no default
-          * @required 
-          * @uiWidget ImageUpload
-          * @format url
-         */
-        "imageUploadRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Number Max 7
-          * @maximum 7
-         */
-        "max"?: number;
-        /**
-          * Description here
-          * @uiName String Max Length 10
-          * @maxLength 10
-         */
-        "maxLength"?: string;
-        /**
-          * Description here
-          * @uiName Number Min 7
-          * @minimum 7
-         */
-        "min"?: number;
-        /**
-          * Description here
-          * @uiName String Min Length 10
-          * @minLength 10
-         */
-        "minLength"?: string;
-        /**
-          * Description here
-          * @uiName Number Enum Select with default
-          * @uiEnum [1,2,3]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "numberEnumSelect"?: number;
-        /**
-          * Description here
-          * @uiName Number Enum Select with no default
-          * @uiEnum [1,2,3]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "numberEnumSelectNoDefault"?: number;
-        /**
-          * Description here
-          * @uiName Number Enum Select required with no default
-          * @required 
-          * @uiEnum [1,2,3]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "numberEnumSelectRequiredNoDefault"?: number;
-        /**
-          * Description here
-          * @uiName Number Input with default
-         */
-        "numberInput"?: number;
-        /**
-          * Description here
-          * @uiName Number Input with no default
-         */
-        "numberInputNoDefault"?: number;
-        /**
-          * Description here
-          * @uiName Number required with no default
-          * @required
-         */
-        "numberRequired"?: number;
-        /**
-          * Description here
-          * @uiName Program Selector with default
-          * @uiWidget programSelector
-         */
-        "programSelector"?: string;
-        /**
-          * Description here
-          * @uiName Program Selector with no default
-          * @uiWidget programSelector
-         */
-        "programSelectorNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Program Selector required with no default
-          * @required 
-          * @uiWidget programSelector
-         */
-        "programSelectorRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Stat Selector with default
-          * @uiWidget statTypeSelectWidget
-         */
-        "statSelector"?: string;
-        /**
-          * Description here
-          * @uiName Stat Selector with no default
-          * @uiWidget statTypeSelectWidget
-         */
-        "statSelectorNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Stat Selector required with no default
-          * @required 
-          * @uiWidget statTypeSelectWidget
-         */
-        "statSelectorRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName String Enum Select with default
-          * @uiEnum ["option1","option2","option3"]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "stringEnumSelect"?: string;
-        /**
-          * Description here
-          * @uiName String Enum Select with no default
-          * @uiEnum ["option1","option2","option3"]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "stringEnumSelectNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName String Enum Select required with no default
-          * @required 
-          * @uiEnum ["option1","option2","option3"]
-          * @uiEnumNames ["Option 1", "Option 2", "Option 3"]
-         */
-        "stringEnumSelectRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName String required with no default
-          * @required
-         */
-        "stringRequired"?: string;
-        /**
-          * Description here
-          * @uiName Text Area Input
-          * @uiWidget textArea with default
-         */
-        "textAreaInput"?: string;
-        /**
-          * Description here
-          * @uiName Text Area Input
-          * @uiWidget textArea with no default
-         */
-        "textAreaInputNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Text Area Input
-          * @uiWidget textArea required with no default
-          * @required
-         */
-        "textAreaInputRequiredNoDefault"?: string;
-        /**
-          * Description here
-          * @uiName Text Input with default
-         */
-        "textInput"?: string;
-        /**
-          * Description here
-          * @uiName Text Input with no default
-         */
-        "textInputNoDefault"?: string;
-    }
-    interface SqmQaReferralCard {
-        /**
-          * @uiName Vertical Aligment
-          * @uiType string
-          * @uiEnum ["start", "center", "end"]
-          * @uiEnumNames ["Top", "Center", "Bottom"]
-         */
-        "verticalAlignment"?: "start" | "center" | "end";
-    }
-    interface SqmQaTabs {
-        /**
-          * Used to specify the placement of the tabs
-          * @uiName Tabs Placement
-          * @uiType string
-          * @uiEnum ["left", "right", "bottom", "top"]
-          * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
-         */
-        "placement"?: "left" | "right" | "bottom" | "top";
     }
     interface SqmReferralCard {
         /**
@@ -5272,7 +4715,7 @@ declare namespace LocalJSX {
          */
         "colspan"?: number;
         /**
-          * @uiName Padding}
+          * @uiName Padding
          */
         "padding"?: string;
     }
@@ -5352,7 +4795,7 @@ declare namespace LocalJSX {
          */
         "expiryMessage"?: string;
         /**
-          * The number of times a reward can be earned.  Use zero for no limit (the default).
+          * The number of times a task can be completed when repeatable.  Use zero for no limit (the default).
           * @uiName Repeat Amount
           * @uiGroup Reward
          */
@@ -5569,9 +5012,6 @@ declare namespace LocalJSX {
         "sqm-program-explainer": SqmProgramExplainer;
         "sqm-program-explainer-step": SqmProgramExplainerStep;
         "sqm-program-menu": SqmProgramMenu;
-        "sqm-qa": SqmQa;
-        "sqm-qa-referral-card": SqmQaReferralCard;
-        "sqm-qa-tabs": SqmQaTabs;
         "sqm-referral-card": SqmReferralCard;
         "sqm-referral-iframe": SqmReferralIframe;
         "sqm-referral-table": SqmReferralTable;
@@ -5663,9 +5103,6 @@ declare module "@stencil/core" {
             "sqm-program-explainer": LocalJSX.SqmProgramExplainer & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerElement>;
             "sqm-program-explainer-step": LocalJSX.SqmProgramExplainerStep & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerStepElement>;
             "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
-            "sqm-qa": LocalJSX.SqmQa & JSXBase.HTMLAttributes<HTMLSqmQaElement>;
-            "sqm-qa-referral-card": LocalJSX.SqmQaReferralCard & JSXBase.HTMLAttributes<HTMLSqmQaReferralCardElement>;
-            "sqm-qa-tabs": LocalJSX.SqmQaTabs & JSXBase.HTMLAttributes<HTMLSqmQaTabsElement>;
             "sqm-referral-card": LocalJSX.SqmReferralCard & JSXBase.HTMLAttributes<HTMLSqmReferralCardElement>;
             "sqm-referral-iframe": LocalJSX.SqmReferralIframe & JSXBase.HTMLAttributes<HTMLSqmReferralIframeElement>;
             "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;

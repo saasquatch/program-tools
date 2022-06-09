@@ -50,21 +50,21 @@ describe("sqm-rewards-table", () => {
     page.close();
   });
 
-  test("Adding a plop target", async () => {
-    const html = /*html*/ `
-    <sqm-rewards-table>
-      ${newColumn("column-A")}
-      ${newPlopTarget("plop-A")}
-      ${newColumn("column-B")}
-    </sqm-rewards-table>
-    `;
-    const { page, expectElement } = await createDemoPage(html);
+  // test("Adding a plop target", async () => {
+  //   const html = /*html*/ `
+  //   <sqm-rewards-table>
+  //     ${newColumn("column-A")}
+  //     ${newPlopTarget("plop-A")}
+  //     ${newColumn("column-B")}
+  //   </sqm-rewards-table>
+  //   `;
+  //   const { page, expectElement } = await createDemoPage(html);
 
-    await expectElement("#column-A");
-    await expectElement("#plop-A");
-    await expectElement("#column-B");
-    page.close();
-  });
+  //   await expectElement("#column-A");
+  //   await expectElement("#plop-A");
+  //   await expectElement("#column-B");
+  //   page.close();
+  // });
 
   // test("Removing a plop target", async () => {
   //   const html = /*html*/ `
