@@ -79,7 +79,7 @@ export const config: Config = {
           useDocx,
           useGrapesjs,
           plugin({
-            outDir: "docs",
+            outDir: "docs"
           }),
         ]
       : [
@@ -92,7 +92,7 @@ export const config: Config = {
             file: "docs/stats.json", // optional
           },
           plugin({
-            outDir: "docs",
+            outDir: "docs"
           }),
           useDocx,
           useGrapesjs,
