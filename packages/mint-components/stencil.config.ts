@@ -26,6 +26,90 @@ const useGrapesjs: OutputTarget = grapesJsOutput({
   components: ShoelaceComponents,
 });
 
+type canvasRenderer = "always-replace" | "in-place-update";
+
+const extraModules = [
+  {
+    tags: [
+      {
+        tagName: "h1",
+        title: "Text",
+        slots: [{ name: "", title: "Text" }],
+        attributes: [],
+        exampleGroup: "Typography",
+        examples: [
+          {
+            title: "H1",
+            content: "<h1>H1 Header Text</h1>",
+          },
+        ],
+        slotEditor: "richText",
+        canvasRenderer: "always-replace" as canvasRenderer,
+      },
+      {
+        tagName: "h1",
+        title: "Text",
+        slots: [{ name: "", title: "Text" }],
+        attributes: [],
+        exampleGroup: "Typography",
+        examples: [
+          {
+            title: "H2",
+            content: "<sqm-text><h2>H2 Header Text</h2></sqm-text>",
+          },
+        ],
+        slotEditor: "richText",
+        canvasRenderer: "always-replace" as canvasRenderer,
+      },
+      {
+        tagName: "h3",
+        title: "Text",
+        slots: [{ name: "", title: "Text" }],
+        attributes: [],
+        exampleGroup: "Typography",
+        examples: [
+          {
+            title: "H3",
+            content: "<h3>H3 Header Text</h3>",
+          },
+        ],
+        slotEditor: "richText",
+        canvasRenderer: "always-replace" as canvasRenderer,
+      },
+      {
+        tagName: "h4",
+        title: "Text",
+        slots: [{ name: "", title: "Text" }],
+        attributes: [],
+        exampleGroup: "Typography",
+        examples: [
+          {
+            title: "H4",
+            content: "<h4>H4 Header Text</h4>",
+          },
+        ],
+        slotEditor: "richText",
+        canvasRenderer: "always-replace" as canvasRenderer,
+      },
+      {
+        tagName: "p",
+        title: "Text",
+        slots: [{ name: "", title: "Text" }],
+        attributes: [],
+        exampleGroup: "Typography",
+        examples: [
+          {
+            title: "Paragraph",
+            content: "<p>Paragraph Header Text</p>",
+          },
+        ],
+        slotEditor: "richText",
+        canvasRenderer: "always-replace" as canvasRenderer,
+      },
+    ],
+  },
+];
+
 export const config: Config = {
   namespace: "mint-components",
   devServer: {
@@ -80,6 +164,7 @@ export const config: Config = {
           useGrapesjs,
           plugin({
             outDir: "docs",
+            extraModules
           }),
         ]
       : [
@@ -93,6 +178,7 @@ export const config: Config = {
           },
           plugin({
             outDir: "docs",
+            extraModules
           }),
           useDocx,
           useGrapesjs,
