@@ -8,7 +8,7 @@ import { Spacing } from "../../global/mixins";
  * @uiName Container
  * @slots [{"name":"", "title":"Widget Content"}]
  * @exampleGroup Layout
- * @example Row Layout Container - <sqm-portal-container direction="row" padding="none" gap="xxx-large" display="flex" max-width="100%"><p>Add your row content</p></sqm-portal-container>
+ * @example Row Layout Container - <sqm-portal-container direction="row" padding="none" gap="xxx-large" display="flex" max-width="100%"><p>Add your row content!</p></sqm-portal-container>
  * @example Column Layout Container - <sqm-portal-container direction="column" padding="none" gap="xxx-large" display="grid" max-width="100%"><p>Add your column content!</p></sqm-portal-container>
  */
 @Component({
