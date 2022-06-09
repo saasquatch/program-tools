@@ -119,88 +119,6 @@ export namespace Components {
          */
         "textcolor": string;
     }
-    interface SqhCtaComponent {
-        /**
-          * @uiName Container Background Color
-          * @uiWidget color
-         */
-        "background": string;
-        /**
-          * Define the border radius of the button with a pixel amount.
-          * @uiName Border Radius
-          * @default 8
-          * @uiWidget number
-         */
-        "borderradius": string;
-        /**
-          * @uiName Button Color
-          * @uiWidget color
-          * @default #F5A100
-         */
-        "buttonbackground": string;
-        /**
-          * @uiName Text Color
-          * @uiWidget color
-         */
-        "color": string;
-        /**
-          * @uiName Font Family
-         */
-        "fontfamily": string;
-        /**
-          * Define the font size of the button text with pixel amount.
-          * @uiName Font Size
-         */
-        "fontsize": string;
-        /**
-          * Define the font weight of the button text.
-          * @uiName Font Weight
-         */
-        "fontweight": string;
-        /**
-          * Define the height of the container with a pixel amount.
-          * @uiName Button Height
-         */
-        "height": string;
-        /**
-          * @uiName Hide Text
-         */
-        "ishidden": boolean;
-        /**
-          * Compile plain text into HTML. See [markdown](https://www.markdownguide.org/getting-started/) for more details.
-          * @uiName Use Markdown
-         */
-        "ismarkdown": boolean;
-        /**
-          * Define the bottom padding with a pixel amount.
-          * @uiName Padding Bottom
-         */
-        "paddingbottom": string;
-        /**
-          * Define the top padding with a pixel amount.
-          * @uiName Padding Top
-         */
-        "paddingtop": string;
-        /**
-          * @uiName Button Text
-         */
-        "text": string;
-        /**
-          * @uiName Button Alignment
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "textalign": string;
-        /**
-          * @uiName Button Link
-         */
-        "url": string;
-        /**
-          * Define the width of the button with a pixel amount.
-          * @uiName Button Width
-         */
-        "width": string;
-    }
     interface SqhGlobalContainer {
         /**
           * @uiName Background Color
@@ -296,61 +214,6 @@ export namespace Components {
           * @undocumented
          */
         "statvalue": string;
-    }
-    interface SqhProgressIndicator {
-        /**
-          * @undocumented 
-          * @uiName Text Alignment
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "align": string;
-        /**
-          * Text displayed before a user’s credit earned amount.
-          * @uiName Credit Earned Text
-         */
-        "earned": string;
-        /**
-          * @uiName Hide Component
-         */
-        "ishidden": boolean;
-        /**
-          * @uiName Percentage Text Color
-          * @uiWidget color
-         */
-        "percentagecolor": string;
-        /**
-          * Define the font size of the percentage text in a pixel amount
-          * @uiName Percentage Text Size
-         */
-        "percentagesize": string;
-        /**
-          * Text displayed below the completion percentage.
-          * @uiName Progress Text
-         */
-        "progress": string;
-        /**
-          * @uiName Progress Color
-          * @uiWidget color
-         */
-        "progresscolor": string;
-        /**
-          * The type of icon used to display a user’s progress.
-          * @uiName Indicator Icon
-          * @uiEnum ["Path"]
-          * @uiEnumNames ["Path"]
-         */
-        "progresstype": string;
-        /**
-          * Width of the progress bar.
-          * @uiName Progress Width
-         */
-        "progresswidth": string;
-        /**
-          * @uiName Text Color
-          * @uiWidget color
-         */
-        "textcolor": string;
     }
     interface SqhReferralCode {
     }
@@ -1276,6 +1139,7 @@ export namespace Components {
         "paddingtop": string;
         /**
           * @uiName Text
+          * @uiWidget textArea
          */
         "text": string;
         /**
@@ -1305,12 +1169,6 @@ declare global {
         prototype: HTMLSqhCopyLinkButtonElement;
         new (): HTMLSqhCopyLinkButtonElement;
     };
-    interface HTMLSqhCtaComponentElement extends Components.SqhCtaComponent, HTMLStencilElement {
-    }
-    var HTMLSqhCtaComponentElement: {
-        prototype: HTMLSqhCtaComponentElement;
-        new (): HTMLSqhCtaComponentElement;
-    };
     interface HTMLSqhGlobalContainerElement extends Components.SqhGlobalContainer, HTMLStencilElement {
     }
     var HTMLSqhGlobalContainerElement: {
@@ -1328,12 +1186,6 @@ declare global {
     var HTMLSqhPartnerStatComponentElement: {
         prototype: HTMLSqhPartnerStatComponentElement;
         new (): HTMLSqhPartnerStatComponentElement;
-    };
-    interface HTMLSqhProgressIndicatorElement extends Components.SqhProgressIndicator, HTMLStencilElement {
-    }
-    var HTMLSqhProgressIndicatorElement: {
-        prototype: HTMLSqhProgressIndicatorElement;
-        new (): HTMLSqhProgressIndicatorElement;
     };
     interface HTMLSqhReferralCodeElement extends Components.SqhReferralCode, HTMLStencilElement {
     }
@@ -1393,11 +1245,9 @@ declare global {
         "sqh-close-button": HTMLSqhCloseButtonElement;
         "sqh-copy-button": HTMLSqhCopyButtonElement;
         "sqh-copy-link-button": HTMLSqhCopyLinkButtonElement;
-        "sqh-cta-component": HTMLSqhCtaComponentElement;
         "sqh-global-container": HTMLSqhGlobalContainerElement;
         "sqh-image-component": HTMLSqhImageComponentElement;
         "sqh-partner-stat-component": HTMLSqhPartnerStatComponentElement;
-        "sqh-progress-indicator": HTMLSqhProgressIndicatorElement;
         "sqh-referral-code": HTMLSqhReferralCodeElement;
         "sqh-referral-component": HTMLSqhReferralComponentElement;
         "sqh-referral-list": HTMLSqhReferralListElement;
@@ -1523,88 +1373,6 @@ declare namespace LocalJSX {
          */
         "textcolor"?: string;
     }
-    interface SqhCtaComponent {
-        /**
-          * @uiName Container Background Color
-          * @uiWidget color
-         */
-        "background"?: string;
-        /**
-          * Define the border radius of the button with a pixel amount.
-          * @uiName Border Radius
-          * @default 8
-          * @uiWidget number
-         */
-        "borderradius"?: string;
-        /**
-          * @uiName Button Color
-          * @uiWidget color
-          * @default #F5A100
-         */
-        "buttonbackground"?: string;
-        /**
-          * @uiName Text Color
-          * @uiWidget color
-         */
-        "color"?: string;
-        /**
-          * @uiName Font Family
-         */
-        "fontfamily"?: string;
-        /**
-          * Define the font size of the button text with pixel amount.
-          * @uiName Font Size
-         */
-        "fontsize"?: string;
-        /**
-          * Define the font weight of the button text.
-          * @uiName Font Weight
-         */
-        "fontweight"?: string;
-        /**
-          * Define the height of the container with a pixel amount.
-          * @uiName Button Height
-         */
-        "height"?: string;
-        /**
-          * @uiName Hide Text
-         */
-        "ishidden"?: boolean;
-        /**
-          * Compile plain text into HTML. See [markdown](https://www.markdownguide.org/getting-started/) for more details.
-          * @uiName Use Markdown
-         */
-        "ismarkdown"?: boolean;
-        /**
-          * Define the bottom padding with a pixel amount.
-          * @uiName Padding Bottom
-         */
-        "paddingbottom"?: string;
-        /**
-          * Define the top padding with a pixel amount.
-          * @uiName Padding Top
-         */
-        "paddingtop"?: string;
-        /**
-          * @uiName Button Text
-         */
-        "text"?: string;
-        /**
-          * @uiName Button Alignment
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "textalign"?: string;
-        /**
-          * @uiName Button Link
-         */
-        "url"?: string;
-        /**
-          * Define the width of the button with a pixel amount.
-          * @uiName Button Width
-         */
-        "width"?: string;
-    }
     interface SqhGlobalContainer {
         /**
           * @uiName Background Color
@@ -1702,61 +1470,6 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "statvalue"?: string;
-    }
-    interface SqhProgressIndicator {
-        /**
-          * @undocumented 
-          * @uiName Text Alignment
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "align"?: string;
-        /**
-          * Text displayed before a user’s credit earned amount.
-          * @uiName Credit Earned Text
-         */
-        "earned"?: string;
-        /**
-          * @uiName Hide Component
-         */
-        "ishidden"?: boolean;
-        /**
-          * @uiName Percentage Text Color
-          * @uiWidget color
-         */
-        "percentagecolor"?: string;
-        /**
-          * Define the font size of the percentage text in a pixel amount
-          * @uiName Percentage Text Size
-         */
-        "percentagesize"?: string;
-        /**
-          * Text displayed below the completion percentage.
-          * @uiName Progress Text
-         */
-        "progress"?: string;
-        /**
-          * @uiName Progress Color
-          * @uiWidget color
-         */
-        "progresscolor"?: string;
-        /**
-          * The type of icon used to display a user’s progress.
-          * @uiName Indicator Icon
-          * @uiEnum ["Path"]
-          * @uiEnumNames ["Path"]
-         */
-        "progresstype"?: string;
-        /**
-          * Width of the progress bar.
-          * @uiName Progress Width
-         */
-        "progresswidth"?: string;
-        /**
-          * @uiName Text Color
-          * @uiWidget color
-         */
-        "textcolor"?: string;
     }
     interface SqhReferralCode {
     }
@@ -2684,6 +2397,7 @@ declare namespace LocalJSX {
         "paddingtop"?: string;
         /**
           * @uiName Text
+          * @uiWidget textArea
          */
         "text"?: string;
         /**
@@ -2697,11 +2411,9 @@ declare namespace LocalJSX {
         "sqh-close-button": SqhCloseButton;
         "sqh-copy-button": SqhCopyButton;
         "sqh-copy-link-button": SqhCopyLinkButton;
-        "sqh-cta-component": SqhCtaComponent;
         "sqh-global-container": SqhGlobalContainer;
         "sqh-image-component": SqhImageComponent;
         "sqh-partner-stat-component": SqhPartnerStatComponent;
-        "sqh-progress-indicator": SqhProgressIndicator;
         "sqh-referral-code": SqhReferralCode;
         "sqh-referral-component": SqhReferralComponent;
         "sqh-referral-list": SqhReferralList;
@@ -2720,11 +2432,9 @@ declare module "@stencil/core" {
             "sqh-close-button": LocalJSX.SqhCloseButton & JSXBase.HTMLAttributes<HTMLSqhCloseButtonElement>;
             "sqh-copy-button": LocalJSX.SqhCopyButton & JSXBase.HTMLAttributes<HTMLSqhCopyButtonElement>;
             "sqh-copy-link-button": LocalJSX.SqhCopyLinkButton & JSXBase.HTMLAttributes<HTMLSqhCopyLinkButtonElement>;
-            "sqh-cta-component": LocalJSX.SqhCtaComponent & JSXBase.HTMLAttributes<HTMLSqhCtaComponentElement>;
             "sqh-global-container": LocalJSX.SqhGlobalContainer & JSXBase.HTMLAttributes<HTMLSqhGlobalContainerElement>;
             "sqh-image-component": LocalJSX.SqhImageComponent & JSXBase.HTMLAttributes<HTMLSqhImageComponentElement>;
             "sqh-partner-stat-component": LocalJSX.SqhPartnerStatComponent & JSXBase.HTMLAttributes<HTMLSqhPartnerStatComponentElement>;
-            "sqh-progress-indicator": LocalJSX.SqhProgressIndicator & JSXBase.HTMLAttributes<HTMLSqhProgressIndicatorElement>;
             "sqh-referral-code": LocalJSX.SqhReferralCode & JSXBase.HTMLAttributes<HTMLSqhReferralCodeElement>;
             "sqh-referral-component": LocalJSX.SqhReferralComponent & JSXBase.HTMLAttributes<HTMLSqhReferralComponentElement>;
             "sqh-referral-list": LocalJSX.SqhReferralList & JSXBase.HTMLAttributes<HTMLSqhReferralListElement>;
