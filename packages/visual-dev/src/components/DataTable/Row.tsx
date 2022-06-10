@@ -13,6 +13,25 @@ export interface OptionProps {
   children?: any;
 }
 
+export interface CellProps {
+  /**
+   * Cell content
+   */
+  text: string | React.ReactNode;
+  /**
+   * Width of the cell as a valid CSS size (px, em, rem)
+   */
+  width?: string;
+  /**
+   * Flex basis value of the cell
+   */
+  flex?: number;
+  /**
+   * Centers the cell content in the cell
+   */
+  center?: boolean;
+}
+
 export interface StyleProps {
   /**
    * Row variant [default "row"]
