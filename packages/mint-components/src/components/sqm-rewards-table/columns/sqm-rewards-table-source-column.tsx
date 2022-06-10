@@ -5,6 +5,9 @@ import { RewardTableColumn } from "./RewardTableColumn";
 
 /**
  * @uiName Reward Table Source Column
+ * @validParents ["sqm-rewards-table"]
+ * @exampleGroup Rewards
+ * @example Reward Table Source Column - <sqm-rewards-table-source-column column-title="Source" anonymous-user="Anonymous User" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-rext="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"></sqm-rewards-table-source-column>
  */
 @Component({
   tag: "sqm-rewards-table-source-column",
@@ -17,17 +20,20 @@ export class RewardTableUserColumn implements RewardTableColumn {
   @Prop() columnTitle: string = "Source";
 
   /**
-   * @uiName Name displayed for anonymous users
+   * Name displayed for unknown users
+   *
+   * @uiName Anonymous User Text
    */
   @Prop() anonymousUser: string = "Anonymous User";
-
   /**
-   * @uiName Name displayed for deleted users
+   * Name displayed for deleted users
+   *
+   * @uiName Deleted User Text
    */
   @Prop() deletedUser: string = "Deleted User";
 
   /**
-   * @uiName Reward Exchange label
+   * @uiName Reward Exchange Label
    */
   @Prop() rewardExchangeText: string = "Reward Exchange";
 
@@ -35,12 +41,16 @@ export class RewardTableUserColumn implements RewardTableColumn {
    * Shown when a reward has been created by a referral
    *
    * @uiName Referral Text
+   * @uiWidget textArea
    */
   @Prop() referralText: string =
     "{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}";
 
   /**
+   * Shown when a reward has been created by a source other than a referral.
+   * 
    * @uiName Reward Source Text
+   * @uiWidget textArea
    */
   @Prop() rewardSourceText: string =
     "{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}";

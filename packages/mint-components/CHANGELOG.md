@@ -7,6 +7,63 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.1] - 2022-06-09
+
+### Changed
+- Removed brand color application to `<a>` tags
+- Update templates to portal templates to remove `<sqm-graphql-provider>`
+- Update Referral, Loyalty and Mono widget templates for SSW launch
+- Added [jsDocs](https://jsdoc.app/) to the following components to improve the editability experience in our new Raisins widget editor.
+- Changed components:
+  - \<sqm-big-stat>
+  - \<sqm-brand>
+  - \<sqm-card-feed>
+  - \<sqm-divided-layout>
+  - \<sqm-empty>
+  - \<sqm-hero>
+  - \<sqm-hero-image>
+  - \<sqm-image>
+  - \<sqm-leaderboard>
+  - \<sqm-leaderboard-rank>
+  - \<sqm-popup-container>
+  - \<sqm-portal-container>
+  - \<sqm-portal-footer>
+  - \<sqm-program-explainer>
+  - \<sqm-program-explainer-step>
+  - \<sqm-referral-card>
+  - \<sqm-referral-table>
+  - \<sqm-referral-table-date-column>
+  - \<sqm-referral-table-rewards-column>
+  - \<sqm-referral-table-status-column>
+  - \<sqm-referral-table-user-column>
+  - \<sqm-reward-exchange-list>
+  - \<sqm-rewards-table>
+  - \<sqm-rewards-table-date-column>
+  - \<sqm-rewards-table-note-column>
+  - \<sqm-rewards-table-source-column>
+  - \<sqm-rewards-table-status-column>
+  - \<sqm-route>
+  - \<sqm-router>
+  - \<sqm-scroll>
+  - \<sqm-share-button>
+  - \<sqm-share-code>
+  - \<sqm-share-link>
+  - \<sqm-stat-container>
+  - \<sqm-tab>
+  - \<sqm-table-cell>
+  - \<sqm-table-row>
+  - \<sqm-tabs>
+  - \<sqm-task-card>
+  - \<sqm-text>
+  - \<sqm-timeline>
+  - \<sqm-timeline-entry>
+  - \<sqm-titled-section>
+  - \<sqm-user-name>
+
+## Breaking Changes
+
+- `showLabels` props with `true` default replaced with `hideLabels` prop with `false` default for `<sqm-referral-table>` and `<sqm-rewards-table>`
+
 ## [1.6.0] - 2022-05-09
 
 ### Changed
@@ -450,7 +507,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.5...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.1...HEAD
+[1.6.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.1
+[1.6.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.0
 [1.5.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.5
 [1.5.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.4
 [1.5.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.3

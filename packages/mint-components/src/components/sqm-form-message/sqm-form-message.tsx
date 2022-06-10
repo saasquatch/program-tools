@@ -13,9 +13,15 @@ export class FormMessage {
   @State()
   ignored = true;
 
-  /** @uiName Type of alert */
+  /**
+   * @uiName Alert Type
+   */
   @Prop() type: string;
-  /** @uiName Icon to use in alert */
+  /**
+   * Icon to use in alert
+   *
+   * @uiName Icon
+   */
   @Prop() icon?: string;
 
   constructor() {

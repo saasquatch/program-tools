@@ -1,5 +1,5 @@
 import { useHost } from "@saasquatch/component-boilerplate";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useMemo, useState } from "@saasquatch/universal-hooks";
 
 export function useChildElements<T>(): T[] {
   const host = useHost();
@@ -7,14 +7,23 @@ export function useChildElements<T>(): T[] {
     ? (Array.from(host.children) as T[] & Element[])
     : [];
   const [childElements, setChildElements] = useState<T[]>(initialState);
+  let observer: MutationObserver;
 
-  useEffect(() => {
-    const observer = new MutationObserver(() => {
+  // Create observer once
+  useMemo(() => {
+    observer = new MutationObserver(() => {
       const children = Array.from(host.children) as T[] & Element[];
       setChildElements([...children]);
     });
+  }, []);
+
+  // Listen to host and observe / disconnect
+  useMemo(() => {
+    if (!observer) return;
     observer.observe(host, { childList: true });
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+    };
   }, [host]);
 
   return childElements;

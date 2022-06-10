@@ -5,6 +5,7 @@ import { getProps } from "../../utils/utils";
 
 /**
  * @uiName Portal Menu
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqm-program-menu",

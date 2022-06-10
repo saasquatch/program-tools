@@ -23,7 +23,7 @@ export class PortalResetPassword {
   /**
    * The page that users are redirected to when the password reset succeeds.
    *
-   * @uiName Next page path
+   * @uiName Next Page Path
    */
   @Prop()
   nextPage: string = "/";
@@ -31,48 +31,51 @@ export class PortalResetPassword {
   /**
    * The page that users are redirected to if the reset fails due to outdated password reset attempt.
    *
-   * @uiName Failed page redirection path
+   * @uiName Failed Page Path
    */
   @Prop()
   failedPage: string = "/";
 
   /**
-   * @uiName Show confirm password
+   * Show or hide confirm password field
+   *
+   * @uiName Show Confirm Password
+   * @default
    */
   @Prop()
   confirmPassword: boolean = false;
 
   /**
-   * @uiName Password reset header text
+   * @uiName Reset Password Header Text
    */
   @Prop() resetPasswordHeader: string = "Reset your password";
 
   /**
    * Displayed after a successful password reset
    *
-   * @uiName Password reset header text
+   * @uiName Successful Password Reset Text
    */
   @Prop() passwordResetHeader: string = "Password reset";
 
   /**
-   * @uiName Password reset button text
+   * @uiName Password Reset Button Text
    */
   @Prop() resetPasswordButtonText: string = "Reset Password";
 
   /**
-   * Displayed after a successful password reset
+   * Button text displayed after a successful password reset
    *
-   * @uiName Continue button text
+   * @uiName Continue Button Text
    */
   @Prop() continueButtonText: string = "Continue";
 
   /**
-   * @uiName Confirm password field label
+   * @uiName Confirm Password Label
    */
   @Prop() confirmPasswordFieldLabel: string = "Confirm Password";
 
   /**
-   * @uiName Password field label
+   * @uiName Password Label
    */
   @Prop() passwordFieldLabel: string = "New Password";
   /**

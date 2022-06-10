@@ -15,7 +15,7 @@ export class PortalLogout {
   ignored = true;
 
   /**
-   * @uiName Next Page path
+   * @uiName Next Page Path
    */
   @Prop()
   nextPage: string = "/";

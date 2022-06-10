@@ -11,6 +11,7 @@ import { QueryData } from "@saasquatch/component-boilerplate/dist/hooks/graphql/
 import debugFn from "debug";
 import { BigStat } from "./sqm-big-stat";
 import { BigStatViewProps } from "./sqm-big-stat-view";
+import { useChildElements } from "../../tables/useChildElements";
 
 const debug = debugFn("sq:useBigStat");
 const LOADING = "...";
@@ -116,7 +117,7 @@ const programGoalsQuery = (
 };
 
 const customFieldsQuery = (
-  _programId:string,
+  _programId: string,
   locale: string,
   fieldName: string,
   goalId: string
@@ -131,7 +132,7 @@ const customFieldsQuery = (
         }
       }
     `,
-    {  fieldName, goalId, locale },
+    { fieldName, goalId, locale },
     (res) => {
       const customField = res.data?.viewer?.customFields?.[fieldName];
       return {
@@ -720,6 +721,9 @@ export function useBigStat(props: BigStat): BigStatHook {
     alignment,
     programId = useProgramId(),
   } = props;
+
+  // triggers a re-render if the label is manually changed
+  useChildElements();
 
   const locale = useLocale();
   const userIdent = useUserIdentity();

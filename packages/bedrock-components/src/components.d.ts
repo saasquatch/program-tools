@@ -10,8 +10,11 @@ import { DemoData } from "./global/demo";
 export namespace Components {
     interface SqbConditionalSection {
         /**
-          * Only show this section when a user meets the following conditions.  Can use `user.segments` and `user.customFields`.   - `"VIP" in user.segments`  - `user.customFields.age > 19`  - `user.countryCode = "US"`
+          * Show child content when a user meets specified criteria. Logic is created with JSONata. A user's segments, country code, custom fields and email can be used.
           * @uiName Condition
+          * @uiWidget textArea
+          * @required 
+          * @minLength 1
          */
         "condition": string;
     }
@@ -20,8 +23,9 @@ export namespace Components {
     }
     interface SqbProgramSection {
         /**
-          * The program that everything in this section should use
+          * Overwrite the program context used by child components with the selected program.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId": string;
     }
@@ -101,8 +105,11 @@ declare global {
 declare namespace LocalJSX {
     interface SqbConditionalSection {
         /**
-          * Only show this section when a user meets the following conditions.  Can use `user.segments` and `user.customFields`.   - `"VIP" in user.segments`  - `user.customFields.age > 19`  - `user.countryCode = "US"`
+          * Show child content when a user meets specified criteria. Logic is created with JSONata. A user's segments, country code, custom fields and email can be used.
           * @uiName Condition
+          * @uiWidget textArea
+          * @required 
+          * @minLength 1
          */
         "condition"?: string;
     }
@@ -111,8 +118,9 @@ declare namespace LocalJSX {
     }
     interface SqbProgramSection {
         /**
-          * The program that everything in this section should use
+          * Overwrite the program context used by child components with the selected program.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId"?: string;
     }

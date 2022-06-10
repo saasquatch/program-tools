@@ -1,12 +1,10 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, State } from "@stencil/core";
-import {
-  NavigationSidebarView
-} from "./sqm-navigation-sidebar-view";
+import { NavigationSidebarView } from "./sqm-navigation-sidebar-view";
 
 /**
- * A holder for navigation menu items
- * 
+ * A container for navigation menu items
+ *
  * @uiName Navigation Sidebar
  */
 @Component({

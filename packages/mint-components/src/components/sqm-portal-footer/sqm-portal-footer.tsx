@@ -4,7 +4,7 @@ import { getProps } from "../../utils/utils";
 import { PortalFooterView } from "./sqm-portal-footer-view";
 
 /**
- * @uiName Portal Footer
+ * @uiName Footer
  */
 @Component({
   tag: "sqm-portal-footer",
@@ -21,6 +21,7 @@ export class PortalFooter {
   @Prop() supportEmail: string = "support@example.com";
   /**
    * @uiName Support Text
+   * @uiWidget textArea
    */
   @Prop() supportText: string = "For program support, contact {email}";
   /**

@@ -19,6 +19,9 @@ import { tryMethod, useRewardsTable } from "./useRewardsTable";
 
 /**
  * @uiName Reward Table
+ * @exampleGroup Rewards
+ * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
+ * @example Reward Table - <sqm-rewards-table per-page="4" prev-label="Prev" more-label="Next" hidden-columns="0" sm-breakpoint="599" md-breakpoint="799"><sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error"></sqm-rewards-table-status-column><sqm-rewards-table-source-column column-title="Source" anonymous-user="Anonymous User" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-rext="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"></sqm-rewards-table-source-column><sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!"></sqm-rewards-table-reward-column><sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven"></sqm-rewards-table-date-column><sqm-rewards-table-customer-note-column column-title="Note"></sqm-rewards-table-customer-note-column><sqm-empty slot="empty" empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png" empty-state-header="View your rewards" empty-state-text="Complete program tasks to view the details of your rewards"></sqm-empty></sqm-rewards-table>
  */
 @Component({
   tag: "sqm-rewards-table",
@@ -30,14 +33,15 @@ export class RewardsTable {
    * this table lives. If no program ID is set or provided by context, then shows all rewards from all programs.
    *
    * @uiName Program
+   * @uiWidget programSelector
    */
   @Prop() programId: string;
 
   /** @uiName Number of rewards per page */
   @Prop() perPage: number = 4;
 
-  /** @uiName Show column labels */
-  @Prop() showLabels?: boolean = true;
+  /** @uiName Hide Column Labels */
+  @Prop() hideLabels?: boolean = false;
 
   /** @uiName Previous button text  */
   @Prop() prevLabel?: string = "Prev";
@@ -159,11 +163,34 @@ function useRewardsTableDemo(
 
     // filter out loading and empty states from columns array
     const columnComponents = components.filter(
-      (component) => component.slot !== "loading" && component.slot !== "empty"
+      (component) =>
+        component.slot !== "loading" &&
+        component.slot !== "empty" &&
+        component?.firstElementChild?.getAttribute("slot") !== "loading" &&
+        component?.firstElementChild?.getAttribute("slot") !== "empty"
     );
+
     // get the column titles (renderLabel is asynchronous)
-    const columnsPromise = columnComponents?.map(async (c: any) =>
-      tryMethod(c, () => c.renderLabel())
+    const columnsPromise = columnComponents?.map(
+      async (c: any, idx: number) => {
+        const slot = c?.firstElementChild?.getAttribute("slot");
+        // Custom plop targets
+
+        if (
+          c.tagName === "RAISINS-PLOP-TARGET" &&
+          slot !== "loading" &&
+          slot !== "empty"
+        ) {
+          c.style.position = "absolute";
+          c.setAttribute("slot", "column-" + idx);
+          // Replace add text with a simple + button
+          const plopTarget = c.firstElementChild.childNodes[1];
+          plopTarget.innerHTML = "＋";
+          (plopTarget as HTMLElement).style.lineHeight = "20px";
+          return tryMethod(c, () => c.renderLabel(idx));
+        }
+        return tryMethod(c, () => c.renderLabel());
+      }
     );
 
     // get the column cells (renderCell is asynchronous)
@@ -205,13 +232,13 @@ function useRewardsTableDemo(
       },
       data: {
         textOverrides: {
-          showLabels: props.showLabels,
+          showLabels: !props.hideLabels,
           prevLabel: props.prevLabel,
           moreLabel: props.moreLabel,
         },
         referralData: [],
-		mdBreakpoint: 799,
-		smBreakpoint: 599,
+        mdBreakpoint: 799,
+        smBreakpoint: 599,
       },
       elements: {
         columns: content.columns,
@@ -223,6 +250,5 @@ function useRewardsTableDemo(
     props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
-
   return demoProps;
 }

@@ -5,9 +5,10 @@ import { buildFontsCssUrl } from "../../fonts/GoogleFonts";
 import { autoColorScaleCss } from "../sqm-stencilbook/AutoColor";
 
 /**
- *
  * @uiName Brand Container
- * @slot Controls the brand color and font of Mint Components wrapped by the container.
+ * @slots [{"name":"","title":"Branded Content"}]
+ * @exampleGroup Common Components
+ * @example Brand Container - <sqm-brand brand="Nunito Sans"><p>Add your branded content here!</p></sqm-brand>
  */
 @Component({
   tag: "sqm-brand",
@@ -15,18 +16,19 @@ import { autoColorScaleCss } from "../sqm-stencilbook/AutoColor";
 })
 export class BrandComponent {
   /**
-   * Controls the primary brand color used in the Mint Components library. Note that this
-   * does not affect vanilla components or other component libraries.
+   * Controls the primary brand color used in the Mint Components library.
    *
    * @uiName Brand Color
    * @uiWidget color
+   * @format color
    */
   @Prop() brandColor: string;
 
   /**
-   * The brand font that you want to use
+   * A font from the Google Fonts library used throughout the widget. This value is case sensitive.
    *
    * @uiName Brand Font
+   * @default "Nunito Sans"
    */
   @Prop() brandFont: string;
 

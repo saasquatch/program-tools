@@ -1,16 +1,21 @@
 {
   "name": "@saasquatch/vanilla-components",
-  "version": "1.2.3",
-  "description": "Vanilla component library for the SaaSquatch platform",
+  "title": "Vanilla Components",
+  "version": "1.2.4",
+  "description": "A minimal design library with components for referral and loyalty experiences.",
+  "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1652219900/squatch-assets/For_Vanilla.svg",
+  "raisins": "docs/raisins.json",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "unpkg": "dist/widget-components/entrypoint.js",
+  "module": "dist/widget-components/entrypoint.js",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
   "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "files": [
-    "dist/"
+    "dist/",
+    "docs/"
   ],
   "scripts": {
     "build": "stencil build --docs",
@@ -20,7 +25,9 @@
     "generate": "stencil generate",
     "storybook": "start-storybook -p 6006 -s ./dist",
     "build-storybook": "build-storybook -o docs -c .storybook-prod",
-    "contentful": "ts-node templates/build-contentful.ts"
+    "contentful": "ts-node templates/build-contentful.ts",
+    "serve:package": "serve . --cors",
+    "start:raisins": "run-p start serve:package"
   },
   "devDependencies": {
     "@formatjs/intl-relativetimeformat": "^4.5.15",
@@ -71,7 +78,8 @@
   "homepage": "https://github.com/saasquatch/program-tools",
   "gitHead": "8bb7593d8b46310071835017f0cd63c8c36013b4",
   "dependencies": {
-    "@formatjs/intl-pluralrules": "^1.5.8"
+    "@formatjs/intl-pluralrules": "^1.5.8",
+    "@raisins/stencil-docs-target": "^1.0.0"
   },
   "jest": {
     "transform": {

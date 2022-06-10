@@ -100,4 +100,6 @@ interface RewardBalance {
   prettyValue: string;
 }
 
-declare module "react";
+declare module 'react';
+
+declare module 'progress.js'

@@ -3,6 +3,7 @@ import { EmptyStateView } from "./sqm-empty-view";
 
 /**
  * @uiName Empty State Content
+ * @validParents ["sqm-referral-table","sqm-rewards-table","sqm-leaderboard","sqm-reward-exchange-list"]
  */
 @Component({
   tag: "sqm-empty",
@@ -11,13 +12,17 @@ import { EmptyStateView } from "./sqm-empty-view";
 export class HeroImage {
   /**
    * @uiWidget ImageUpload
-   * @uiName Empty State Image Link  */
+   * @format url
+   * @uiName Image */
   @Prop() emptyStateImage: string;
 
-  /** @uiName Empty State Title  */
+  /** @uiName Title  */
   @Prop() emptyStateHeader: string;
 
-  /** @uiName Empty State Text  */
+  /**
+   * @uiName Description
+   * @uiWidget textArea
+   */
   @Prop() emptyStateText: string;
 
   render() {

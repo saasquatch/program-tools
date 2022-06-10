@@ -1,6 +1,9 @@
 import { h, Component, State, Prop, FunctionalComponent } from "@stencil/core";
 import * as hooks from "@saasquatch/stencil-hooks";
 
+/**
+ * @undocumented
+ */
 @Component({
   tag: "sqm-hook-story-container",
 })
