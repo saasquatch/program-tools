@@ -122,14 +122,15 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     delete formData.email;
     delete formData.password;
     delete formData.confirmPassword;
-    formData = { ...formData };
     const redirectPath = props.redirectPath;
     const variables = {
       key: props.formKey,
-      email,
-      password,
-      formData,
-      redirectPath,
+      formData: {
+        email,
+        password,
+        redirectPath,
+        ...formData,
+      },
     };
     try {
       await request(variables);
