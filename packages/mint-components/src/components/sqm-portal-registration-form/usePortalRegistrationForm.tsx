@@ -63,7 +63,7 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
   const formLoading = loading || queryResponse.loading;
   useEffect(() => {
     const initialData = queryResponse?.data?.form.initialData.initialData;
-    const disabled = !queryResponse?.data?.form.initialData.isEnabled;
+    const disabled = queryResponse?.data?.form.initialData.isEnabled === false;
     const disabledMessage =
       queryResponse?.data?.form.initialData.isEnabledErrorMessage ||
       "The registration form is currently disabled.";
