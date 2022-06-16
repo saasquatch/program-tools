@@ -15,7 +15,11 @@ export interface FormRequestContext<IntegrationConfig, FormConfig> {
   formData: Record<string, any>;
   formSubmissionRecordId: string;
   dateSubmitted: number;
-  form: { key: string; integrationConfig?: FormConfig };
+  form: {
+    key: string;
+    integrationConfig?: FormConfig;
+    globalConfig?: Record<string, any>;
+  };
   integrationConfig?: IntegrationConfig;
   user?: {
     id: string;
