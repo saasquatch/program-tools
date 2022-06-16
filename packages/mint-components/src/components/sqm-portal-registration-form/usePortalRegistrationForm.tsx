@@ -2,11 +2,17 @@ import jsonpointer from "jsonpointer";
 import { useCallback, useEffect, useRef } from "@saasquatch/universal-hooks";
 import {
   navigation,
+  useQuery,
   useRegisterViaRegistrationFormMutation,
 } from "@saasquatch/component-boilerplate";
 import { PortalRegistrationForm } from "./sqm-portal-registration-form";
 import { AsYouType } from "libphonenumber-js";
 import { useValidationState } from "../sqm-portal-register/useValidationState";
+import { gql } from "graphql-request";
+import {
+  RegistrationFormState,
+  useRegistrationFormState,
+} from "./useRegistrationFormState";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -15,22 +21,73 @@ export type ValidationErrorFunction = (input: {
   value;
 }) => string | undefined;
 
+const RegistrationFormQuery = gql`
+  query RegistrationFormQuery($key: String!) {
+    form(key: $key) {
+      key
+      type
+      initialData {
+        initialData
+        isEnabled
+        isEnabledErrorMessage
+      }
+    }
+  }
+`;
+
+interface RegistrationFormQueryData {
+  form: {
+    key: string;
+    type: "REGISTRATION" | "CUSTOM";
+    initialData: {
+      initialData: Record<string, string> | null;
+      isEnabled: boolean;
+      isEnabledErrorMessage: string | null;
+    };
+  };
+}
+
 export function usePortalRegistrationForm(props: PortalRegistrationForm) {
   const formRef = useRef<HTMLFormElement>(null);
+
+  const { registrationFormState, setRegistrationFormState } =
+    useRegistrationFormState({});
   const { validationState, setValidationState } = useValidationState({});
   const [request, { loading, errors, data, formError }] =
     useRegisterViaRegistrationFormMutation();
+
+  const queryResponse = useQuery<RegistrationFormQueryData>(
+    RegistrationFormQuery,
+    { key: props.formKey }
+  );
+  const formLoading = loading || queryResponse.loading;
+  useEffect(() => {
+    const initialData = queryResponse?.data?.form.initialData.initialData;
+    const disabled = !queryResponse?.data?.form.initialData.isEnabled;
+    const disabledMessage =
+      queryResponse?.data?.form.initialData.isEnabledErrorMessage ||
+      "The registration form is currently disabled.";
+    const formState: RegistrationFormState = {
+      loading: formLoading,
+      disabled,
+      disabledMessage,
+      initialData,
+    };
+    setRegistrationFormState(formState);
+  }, [queryResponse?.data?.form.initialData, formLoading]);
 
   const submit = async (event: any) => {
     let formControls = event.target.getFormControls();
 
     let formData: Record<string, any> = {};
     let validationErrors: Record<string, string> = {};
-    formControls?.forEach((control) => {
-      if (!control.name) return;
 
+    formControls?.forEach((control) => {
+      console.log({ control }, control.name);
+      if (!control.name) return;
       const key = control.name;
       const value = control.value;
+      // control.value = initialData[key] || control.value;
 
       jsonpointer.set(formData, key, value);
       // required validation
@@ -112,22 +169,28 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
   }, [formRef.current]);
 
   let errorMessage = "";
-  if (errors?.response?.["error"]) {
+  if (queryResponse?.data?.form.initialData.isEnabled === false) {
+    errorMessage =
+      queryResponse?.data?.form.initialData.isEnabledErrorMessage ||
+      "The registration form is disabled";
+  } else if (errors?.response?.["error"]) {
     errorMessage = "Network request failed";
   } else if (errors?.message && !errors?.response?.errors.length) {
     errorMessage = "Network request failed";
   } else {
     errorMessage =
       formError ||
+      queryResponse?.errors?.response?.errors?.[0]?.message ||
       errors?.response?.errors?.[0]?.extensions?.message ||
       errors?.response?.errors?.[0]?.message ||
       validationState?.error;
   }
   return {
     states: {
-      loading,
+      loading: loading || queryResponse.loading,
       error: errorMessage,
       validationState,
+      registrationFormState,
       confirmPassword: props.confirmPassword,
       hideInputs: props.hideInputs,
       loginPath: props.loginPath,

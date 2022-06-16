@@ -9,6 +9,7 @@ import {
 import { createStyleSheet } from "../../styling/JSS";
 import { FormState } from "../sqm-portal-register/useValidationState";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
+import { RegistrationFormState } from "./useRegistrationFormState";
 
 export interface PortalRegistrationFormViewProps {
   states: {
@@ -17,6 +18,7 @@ export interface PortalRegistrationFormViewProps {
     confirmPassword: boolean;
     hideInputs: boolean;
     validationState?: FormState;
+    registrationFormState?: RegistrationFormState;
     enablePasswordValidation?: boolean;
     loginPath: string;
   };
@@ -95,10 +97,18 @@ export function PortalRegistrationFormView(
         ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
         novalidate
       >
-        {states.error && (
+        {states.registrationFormState?.disabled ? (
           <sqm-form-message type="error" exportparts="erroralert-icon">
-            <div part="erroralert-text">{props.states.error}</div>
+            <div part="erroralert-text">
+              {states.registrationFormState.disabledMessage}
+            </div>
           </sqm-form-message>
+        ) : (
+          states.error && (
+            <sqm-form-message type="error" exportparts="erroralert-icon">
+              <div part="erroralert-text">{props.states.error}</div>
+            </sqm-form-message>
+          )
         )}
         {/* Must use inline styling to target slotted element here */}
         {content.formData}
@@ -108,7 +118,7 @@ export function PortalRegistrationFormView(
             type="email"
             name="/email"
             label={content.emailLabel || "Email"}
-            disabled={states.loading}
+            disabled={states.loading || states.registrationFormState?.disabled}
             required
             validationError={({ value }: { value: string }) => {
               if (!value) {
@@ -119,6 +129,11 @@ export function PortalRegistrationFormView(
                 return "Must be a valid email address";
               }
             }}
+            {...(states.registrationFormState?.initialData?.email
+              ? {
+                  value: states.registrationFormState?.initialData?.email,
+                }
+              : {})}
             {...(states.validationState?.validationErrors?.email
               ? {
                   class: sheet.classes.ErrorStyle,
@@ -144,6 +159,12 @@ export function PortalRegistrationFormView(
             label={content.confirmPasswordLabel}
             disabled={states.loading}
             required
+            {...(states.registrationFormState?.initialData?.confirmPassword
+              ? {
+                  value:
+                    states.registrationFormState?.initialData?.confirmPassword,
+                }
+              : {})}
             {...(states.validationState?.validationErrors?.confirmPassword
               ? {
                   class: sheet.classes.ErrorStyle,
@@ -159,6 +180,7 @@ export function PortalRegistrationFormView(
           <sl-button
             submit
             loading={states.loading}
+            disabled={states.registrationFormState?.disabled}
             exportparts="base: primarybutton-base"
             type="primary"
           >

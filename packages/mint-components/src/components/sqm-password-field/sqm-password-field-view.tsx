@@ -1,11 +1,13 @@
 import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { ErrorStyles } from "../../global/mixins";
+import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export interface PortalPasswordFieldViewProps {
   states: {
     enableValidation: boolean;
     dynamicValidation: VNode | string;
+    registrationFormState: RegistrationFormState;
     validationErrors: Record<string, string>;
     content: {
       fieldLabel: string;
@@ -54,11 +56,20 @@ export function PortalResetPasswordView(props: PortalPasswordFieldViewProps) {
         name="/password"
         label={states.content.fieldLabel || "Password"}
         required
+        disabled={
+          states.registrationFormState?.loading ||
+          states.registrationFormState?.disabled
+        }
         validationError={({ value }) => {
           if (!value) {
             return "Cannot be empty";
           }
         }}
+        {...(states.registrationFormState?.initialData?.password
+          ? {
+              value: states.registrationFormState?.initialData?.password,
+            }
+          : {})}
         {...(states.validationErrors?.password
           ? {
               class: sheet.classes.ErrorStyle,
