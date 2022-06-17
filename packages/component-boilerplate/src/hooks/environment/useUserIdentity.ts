@@ -5,7 +5,6 @@ import {
   USER_CONTEXT_NAME,
   lazilyStartUserContext,
   setUserIdentity,
-  setLocale,
   userIdentityFromJwt,
 } from "@saasquatch/component-environment";
 
@@ -37,7 +36,6 @@ export function useUserIdentity(): UserIdentity | undefined {
   if (identity && !validIdentity) {
     // Likely that the JWT has expired
     setUserIdentity(undefined);
-    setLocale(undefined);
     return undefined;
   }
   return identity;
