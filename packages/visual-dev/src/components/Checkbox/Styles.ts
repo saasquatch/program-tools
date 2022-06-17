@@ -36,7 +36,7 @@ export const CheckboxTickStyle = css`
 export const CheckboxInputStyle = css`
   display: none;
 
-  &:checked + div > div {
+  &:checked + div > span {
     transform: scale(1);
   }
 `;
