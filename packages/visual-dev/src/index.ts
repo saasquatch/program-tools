@@ -42,7 +42,12 @@ import { Icon, IconView } from "./components/Icon";
 import { RJSFTextarea, Textarea, TextareaView } from "./components/TextArea";
 import { RJSFSelect } from "./components/Select/rjsf-Select";
 import { RJSFRadioActionWidget } from "./components/RadioAction/rjsf-RadioAction";
-import { RadioAction, RadioActionView } from "./components/RadioAction";
+import {
+  RadioAction,
+  RadioActionGroup,
+  RadioActionGroupView,
+  RadioActionView,
+} from "./components/RadioAction";
 import { List, ListView } from "./components/List";
 import { Accordion, AccordionView } from "./components/Accordion";
 import { DataGraphic } from "./components/Graphics";
@@ -115,6 +120,8 @@ export {
   Radio,
   RadioActionView,
   RadioAction,
+  RadioActionGroup,
+  RadioActionGroupView,
   RadioCardView,
   RadioCard,
   RJSFCancellableInput,
