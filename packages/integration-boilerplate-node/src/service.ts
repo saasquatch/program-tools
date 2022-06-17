@@ -314,23 +314,32 @@ export class IntegrationService<
       this.logger
     );
 
-    server.post("/webhook", requireSaaSquatchSignature, async (req, res) => {
-      await webhookHandler(
-        req,
-        res,
-        this,
-        this.getTenantScopedGraphQL(req.body.tenantAlias)
-      );
-    });
+    if (this.options?.handlers?.webhookHandler) {
+      server.post("/webhook", requireSaaSquatchSignature, async (req, res) => {
+        await webhookHandler(
+          req,
+          res,
+          this,
+          this.getTenantScopedGraphQL(req.body.tenantAlias)
+        );
+      });
+    }
 
-    server.post("/form", requireSaaSquatchSignature, async (req, res) => {
-      await formHandler(
-        req,
-        res,
-        this,
-        this.getTenantScopedGraphQL(req.body.tenantAlias)
-      );
-    });
+    if (
+      this.options?.handlers?.formInitialDataHandler ||
+      this.options?.handlers?.formIntrospectionHandler ||
+      this.options?.handlers?.formSubmitHandler ||
+      this.options?.handlers?.formValidateHandler
+    ) {
+      server.post("/form", requireSaaSquatchSignature, async (req, res) => {
+        await formHandler(
+          req,
+          res,
+          this,
+          this.getTenantScopedGraphQL(req.body.tenantAlias)
+        );
+      });
+    }
 
     server.use("/", this.router);
 
@@ -343,7 +352,7 @@ export class IntegrationService<
           changeOrigin: true,
         })
       );
-    } else {
+    } else if (this.config.staticFrontendPath) {
       const frontendPath = path.join(
         require.main!.path,
         this.config.staticFrontendPath
@@ -357,6 +366,10 @@ export class IntegrationService<
             if (err) next();
           }
         );
+      });
+    } else {
+      server.get("/", (_req, res) => {
+        res.sendStatus(204);
       });
     }
 
