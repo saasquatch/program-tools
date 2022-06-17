@@ -8,7 +8,7 @@ import { IconView } from "../Icon";
 import { LoadingSpinner } from "../LoadingSpinner";
 
 export type SelectHandleViewProps<ItemType> = HandleOptionProps<ItemType> &
-  Omit<React.ComponentProps<"input">, "css">;
+  Omit<React.ComponentProps<"input">, "translate" | "css">;
 
 export interface SelectContainerViewProps {
   /**

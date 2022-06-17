@@ -5,7 +5,7 @@ import { IconKey, IconView } from "../Icon";
 import React from "react";
 
 type InputProps = OptionProps &
-  Omit<React.ComponentProps<"input">, "value" | "css">;
+  Omit<React.ComponentProps<"input">, "translate" | "value" | "css">;
 
 type InputWidthType = boolean | string;
 

@@ -4,7 +4,7 @@ import * as Styles from "./Styles";
 import React from "react";
 
 type TextareaProps = OptionProps &
-  Omit<React.ComponentProps<"textarea">, "value" | "css">;
+  Omit<React.ComponentProps<"textarea">, "translate" | "value" | "css">;
 
 type TextareaSizeType = boolean | string;
 
