@@ -1,9 +1,12 @@
 {
   "name": "@saasquatch/component-environment",
-  "version": "1.0.0-2",
+  "version": "1.0.0-4",
   "description": "Environment and contexts for SaaSquatch components",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts",
     "test": "echo \"Error: no test specified\" && exit 1"
