@@ -16,8 +16,6 @@ export function usePortalVerifyEmail({ nextPage, failedPage }) {
   const oobCode = urlParams.get("oobCode");
   const nextPageOverride = urlParams.get("nextPage");
 
-  urlParams.delete("oobCode");
-
   const failed = () => {
     return navigation.push({
       pathname: failedPage,

@@ -3,6 +3,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { useState } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, State, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
+import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 import { validateNewPassword } from "./passwordValidation";
 import {
   PortalPasswordFieldViewProps,
@@ -15,6 +16,7 @@ export interface PasswordFieldViewDemoProps {
   states: {
     enableValidation: boolean;
     validationErrors: Record<string, string>;
+    registrationFormState: RegistrationFormState;
     content: {
       fieldLabel: string;
     };
@@ -92,6 +94,7 @@ function usePasswordFieldDemo(
         enableValidation: true,
         dynamicValidation,
         validationErrors: props?.demoData?.states?.validationErrors || {},
+        registrationFormState: {},
         content: {
           fieldLabel: "Password",
         },

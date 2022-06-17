@@ -20,6 +20,7 @@
 
  - [sqm-portal-change-password](../sqm-portal-change-password)
  - [sqm-portal-register](../sqm-portal-register)
+ - [sqm-portal-registration-form](../sqm-portal-registration-form)
  - [sqm-portal-reset-password](../sqm-portal-reset-password)
  - [sqm-stencilbook](../sqm-stencilbook)
 
@@ -28,6 +29,7 @@
 graph TD;
   sqm-portal-change-password --> sqm-password-field
   sqm-portal-register --> sqm-password-field
+  sqm-portal-registration-form --> sqm-password-field
   sqm-portal-reset-password --> sqm-password-field
   sqm-stencilbook --> sqm-password-field
   style sqm-password-field fill:#f9f,stroke:#333,stroke-width:4px
