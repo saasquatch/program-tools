@@ -6,7 +6,7 @@ import { BaseQueryData } from "../graphql/useBaseQuery";
 import {
   setUserIdentity,
   DecodedSquatchJWT,
-} from "../../environment/UserIdentityContext";
+} from "@saasquatch/component-environment";
 import { useMutation } from "../graphql/useMutation";
 
 const RegisterViaRegistrationFormMutation = gql`
