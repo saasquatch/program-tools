@@ -36,6 +36,7 @@ export const DoubleChevronRight = () => (
   <IconView icon={"double_chevron_right"} />
 );
 export const mail = () => <IconView icon={"mail"} />;
+export const envelope = () => <IconView icon={"envelope"} />;
 export const action = () => <IconView icon={"action"} />;
 export const arrowDropdown = () => <IconView icon={"arrow_dropdown"} />;
 export const help = () => <IconView icon={"help"} />;
