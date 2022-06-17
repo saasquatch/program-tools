@@ -44,7 +44,6 @@ const userContextListenerForLocale = new ContextListener<
     debug(`Setting locale context to [${newLocale}]`);
     localeProvider.context = newLocale;
   },
-  onStatus: (status) => debug("STATUS", status),
 });
 
 export function startUserContextListenerForLocale() {
