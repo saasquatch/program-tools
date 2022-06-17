@@ -3,10 +3,7 @@ import decode from "jwt-decode";
 import { useEffect } from "@saasquatch/universal-hooks";
 
 import { BaseQueryData } from "../graphql/useBaseQuery";
-import {
-  setUserIdentity,
-  DecodedSquatchJWT,
-} from "../../environment/UserIdentityContext";
+import { setUserIdentity, DecodedSquatchJWT } from "../environment";
 import { useMutation } from "../graphql/useMutation";
 
 const AuthenticateWithEmailAndPasswordMutation = gql`

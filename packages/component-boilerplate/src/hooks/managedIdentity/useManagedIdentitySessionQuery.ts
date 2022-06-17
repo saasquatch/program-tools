@@ -2,10 +2,7 @@ import gql from "graphql-tag";
 import { useEffect, useCallback } from "@saasquatch/universal-hooks";
 
 import { QueryData } from "../graphql/useBaseQuery";
-import {
-  useUserIdentity,
-  setUserIdentity,
-} from "../../environment/UserIdentityContext";
+import { useUserIdentity, setUserIdentity } from "../environment";
 import { useLazyQuery } from "../graphql/useLazyQuery";
 
 const ManagedIdentitySessionQuery = gql`

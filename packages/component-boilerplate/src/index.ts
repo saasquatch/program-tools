@@ -1,28 +1,11 @@
-/**
- * Identity and environment
- */
-export {
-  /*
-   * Identity
-   */
-  useUserIdentity,
-  setUserIdentity,
-  useToken,
-  /*
-   * Core environment
-   */
-  getEnvironmentSDK,
-  useTenantAlias,
-  useProgramId,
-  setProgramId,
-  useAppDomain,
-  isDemo,
-  /*
-   * Personalization environment
-   */
-  useEngagementMedium,
-  useLocale,
-} from "./environment";
+//
+//      Identity and environment
+//
+export * from "./hooks/environment";
+
+//
+//      Managed Identity
+//
 export { useAuthenticateWithEmailAndPasswordMutation } from "./hooks/managedIdentity/useAuthenticateWithEmailAndPasswordMutation";
 export { useRegisterWithEmailAndPasswordMutation } from "./hooks/managedIdentity/useRegisterWithEmailAndPasswordMutation";
 export { useRegisterViaRegistrationFormMutation } from "./hooks/managedIdentity/useRegisterViaRegistrationFormMutation";
@@ -37,7 +20,7 @@ export { useManagedIdentitySessionQuery } from "./hooks/managedIdentity/useManag
 //
 //      GraphQL API
 //
-export { BatchedGraphQLClient } from "./environment/BatchedGraphQLClient";
+export { BatchedGraphQLClient } from "./BatchedGraphQLClient";
 export { useQuery } from "./hooks/graphql/useQuery";
 export { useMutation } from "./hooks/graphql/useMutation";
 export { useLazyQuery } from "./hooks/graphql/useLazyQuery";
