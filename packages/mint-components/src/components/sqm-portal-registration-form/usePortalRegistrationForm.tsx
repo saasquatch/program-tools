@@ -83,7 +83,6 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     let validationErrors: Record<string, string> = {};
 
     formControls?.forEach((control) => {
-      console.log({ control }, control.name);
       if (!control.name) return;
       const key = control.name;
       const value = control.value;
