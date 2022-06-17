@@ -101,3 +101,4 @@ export const trash_alt = () => <IconView icon={"trash_alt"} />;
 export const paintbrush = () => <IconView icon={"paintbrush"} />;
 export const alert_alt = () => <IconView icon={"alert_alt"} />;
 export const templates = () => <IconView icon={"templates"} />;
+export const shuffle = () => <IconView icon={"shuffle"} />;
