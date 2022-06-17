@@ -41,9 +41,10 @@
   },
   "dependencies": {
     "@formatjs/intl": "^1.8.2",
+    "@saasquatch/component-environment": "^1.0.0-0",
     "@saasquatch/dom-context-hooks": "^1.0.0",
     "@saasquatch/universal-hooks": "^1.0.0",
-    "@wry/equality": "^0.3.3",
+    "@wry/equality": "^0.5.2",
     "debounce": "^1.2.0",
     "dom-context": "^1.2.0",
     "fast-memoize": "^2.5.2",

@@ -6,8 +6,8 @@ import {
   Location as HistLocation,
   To,
 } from "history";
-import { getEnvironmentSDK } from "../environment/environment";
 import { useTick } from "./useTick";
+import { getEnvironmentSDK } from "../hooks/environment";
 
 /**
  * Instatiates a global `history` object that everything will connect to.

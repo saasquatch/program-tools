@@ -3,7 +3,7 @@ import {
   useEngagementMedium,
   useProgramId,
   useUserIdentity,
-} from "../environment";
+} from "../hooks/environment";
 import { useMutation } from "./graphql/useMutation";
 
 const FIRE_EVENT = gql`
