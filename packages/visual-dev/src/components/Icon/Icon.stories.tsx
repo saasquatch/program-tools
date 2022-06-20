@@ -102,3 +102,5 @@ export const paintbrush = () => <IconView icon={"paintbrush"} />;
 export const alert_alt = () => <IconView icon={"alert_alt"} />;
 export const templates = () => <IconView icon={"templates"} />;
 export const shuffle = () => <IconView icon={"shuffle"} />;
+export const microsite = () => <IconView icon={"microsite"} />;
+export const widgets = () => <IconView icon={"widgets"} />;
