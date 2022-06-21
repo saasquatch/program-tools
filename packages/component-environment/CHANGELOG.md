@@ -9,5 +9,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial version.
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/component-environment@1.0.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fcomponent-environment%401.0.0...HEAD
 [1.0.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-environment%401.0.0
