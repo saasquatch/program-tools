@@ -5,8 +5,7 @@ import * as Styles from "./Styles";
 
 type GroupProps = React.ComponentProps<"input"> & GroupOptions;
 
-type InputProps = OptionProps &
-  Omit<React.ComponentProps<"input">, "translate" | "value" | "css">;
+type InputProps = OptionProps & Partial<React.ComponentProps<"input">>;
 
 export interface GroupOptions {
   /**

@@ -6,7 +6,7 @@ import * as Styles from "./Styles";
 // type Position = "top" | "bottom" | "right" | "left";
 
 export type PopoverProps = PopoverOptions &
-  Omit<React.ComponentProps<"div">, "translate" | "css">;
+  Partial<React.ComponentProps<"div">>;
 export interface PopoverOptions {
   /**
    * Choose if popover is rendered

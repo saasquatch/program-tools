@@ -8,12 +8,9 @@ export default {
 
 export const functional = () => {
   const [value, setValue] = useState(false);
-  const options = {
-    text: "Checkbox",
-  };
   return (
     <CheckboxView
-      options={options}
+      label={"Checkbox"}
       value={value}
       onChange={() => console.log("change!")}
       onClick={() => setValue(!value)}
@@ -22,26 +19,24 @@ export const functional = () => {
 };
 
 export const checkbox = () => {
-  const options = {
-    text: "Checkbox",
-  };
-  return <CheckboxView options={options} value={false} onChange={undefined} />;
+  return <CheckboxView label={"Checkbox"} value={false} onChange={undefined} />;
 };
 
 export const checkboxChecked = () => {
-  const options = {
-    text: "Checked",
-  };
-  return <CheckboxView options={options} value={true} onChange={undefined} />;
+  return (
+    <CheckboxView
+      label={"Checked"}
+      checked={true}
+      value={true}
+      onChange={undefined}
+    />
+  );
 };
 
 export const Disabled = () => {
-  const options = {
-    text: "Disabled",
-  };
   return (
     <CheckboxView
-      options={options}
+      label={"Disabled"}
       value={false}
       disabled={true}
       onChange={undefined}
@@ -50,12 +45,9 @@ export const Disabled = () => {
 };
 
 export const DisabledChecked = () => {
-  const options = {
-    text: "Checked",
-  };
   return (
     <CheckboxView
-      options={options}
+      label={"Checked"}
       value={true}
       disabled={true}
       onChange={undefined}
@@ -64,12 +56,9 @@ export const DisabledChecked = () => {
 };
 
 export const CustomCSS = () => {
-  const options = {
-    text: "Checked",
-  };
   return (
     <CheckboxView
-      options={options}
+      label={"Checked"}
       value={true}
       disabled={true}
       onChange={undefined}

@@ -3,9 +3,7 @@ import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { IconView } from "../Icon";
 
-type TagProps = OptionProps &
-  StyleProps &
-  Omit<React.ComponentProps<"div">, "translate" | "css">;
+type TagProps = OptionProps & StyleProps & Partial<React.ComponentProps<"div">>;
 
 export interface OptionProps {
   /**

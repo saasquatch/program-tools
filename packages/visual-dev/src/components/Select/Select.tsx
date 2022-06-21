@@ -8,7 +8,7 @@ import { IconView } from "../Icon";
 import { LoadingSpinner } from "../LoadingSpinner";
 
 export type SelectProps<ItemType> = OptionProps<ItemType> &
-  Omit<React.ComponentProps<"input">, "translate" | "css">;
+  Partial<React.ComponentProps<"input">>;
 
 export interface OptionProps<ItemType> {
   /**

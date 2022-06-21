@@ -4,7 +4,7 @@ import * as Styles from "./Styles";
 
 type CardProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate" | "css">;
+  Partial<React.ComponentProps<"div">>;
 
 interface OptionProps {
   /**

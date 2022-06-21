@@ -5,7 +5,7 @@ import * as Styles from "./Styles";
 
 type ModalActionProps = ActionOptions &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate" | "css">;
+  Partial<React.ComponentProps<"div">>;
 
 export interface ActionOptions {
   primaryAction?: any;
@@ -61,7 +61,7 @@ export const ModalContentActionView = React.forwardRef<
 
 type ModalContentProps = ContentOptions &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Partial<React.ComponentProps<"div">>;
 
 export interface ContentOptions {
   children?: React.ReactNode;

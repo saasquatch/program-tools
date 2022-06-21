@@ -3,7 +3,7 @@ import styled, { CSSProp } from "styled-components";
 
 type FilterProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate" | "css">;
+  Partial<React.ComponentProps<"div">>;
 
 export interface OptionProps {
   /**

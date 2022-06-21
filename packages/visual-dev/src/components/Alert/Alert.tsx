@@ -5,7 +5,7 @@ import * as Styles from "./Styles";
 
 export type AlertProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate" | "css">;
+  Partial<React.ComponentProps<"div">>;
 
 export interface OptionProps {
   /**

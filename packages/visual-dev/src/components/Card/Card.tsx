@@ -6,7 +6,7 @@ import { Button } from "../Button";
 
 type CardProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate" | "css">;
+  Partial<React.ComponentProps<"div">>;
 
 export interface OptionProps {
   /**

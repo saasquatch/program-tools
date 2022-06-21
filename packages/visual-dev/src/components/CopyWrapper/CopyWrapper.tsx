@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-type CopyWrapperProps = OptionProps &
-  Omit<React.ComponentProps<"div">, "translate" | "css">;
+type CopyWrapperProps = OptionProps & Partial<React.ComponentProps<"div">>;
 
 export interface OptionProps {
   /**

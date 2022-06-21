@@ -3,8 +3,7 @@ import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import React from "react";
 
-type TextareaProps = OptionProps &
-  Omit<React.ComponentProps<"textarea">, "translate" | "value" | "css">;
+type TextareaProps = OptionProps & Partial<React.ComponentProps<"textarea">>;
 
 type TextareaSizeType = boolean | string;
 

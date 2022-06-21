@@ -4,7 +4,7 @@ import * as Styles from "./Styles";
 
 type PopoverProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate" | "customCSS">;
+  Partial<React.ComponentProps<"div">>;
 
 export interface OptionProps {
   /**

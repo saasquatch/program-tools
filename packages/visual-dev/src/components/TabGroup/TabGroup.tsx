@@ -4,7 +4,7 @@ import * as Styles from "./Styles";
 
 type TabGroupProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate" | "css">;
+  Partial<React.ComponentProps<"div">>;
 
 export interface OptionProps {
   /**
@@ -60,9 +60,7 @@ export const TabGroup = React.forwardRef<
   );
 });
 
-type TabProps = OptionProps &
-  StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+type TabProps = OptionProps & StyleProps & Partial<React.ComponentProps<"div">>;
 
 export const Tab = React.forwardRef<React.ElementRef<"div">, TabProps>(
   (props, forwardedRef) => {

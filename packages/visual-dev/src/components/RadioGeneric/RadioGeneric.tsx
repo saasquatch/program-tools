@@ -5,7 +5,7 @@ import * as Styles from "./Styles";
 
 type RadioGenericProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"input">, "translate" | "value" | "css">;
+  Partial<React.ComponentProps<"input">>;
 
 export interface RadioOption {
   value: any;

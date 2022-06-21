@@ -5,7 +5,7 @@ import * as Styles from "./Styles";
 
 type ButtonProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"button">, "translate" | "css">;
+  Partial<React.ComponentProps<"button">>;
 
 export interface OptionProps {
   /**
