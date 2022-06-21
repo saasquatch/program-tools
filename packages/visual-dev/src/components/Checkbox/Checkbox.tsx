@@ -5,7 +5,7 @@ import { IconView } from "../Icon";
 import * as Styles from "./Styles";
 
 type InputProps = OptionProps &
-  Omit<React.ComponentProps<"input">, "value" | "css" | "label">;
+  Omit<Partial<React.ComponentProps<"input">>, "value">;
 
 export interface OptionProps {
   /**

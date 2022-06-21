@@ -5,7 +5,7 @@ import * as Styles from "./Styles";
 
 type RadioProps = OptionProps &
   StyleProps &
-  Partial<React.ComponentProps<"input">>;
+  Omit<Partial<React.ComponentProps<"input">>, "value">;
 
 export interface OptionProps {
   /**
