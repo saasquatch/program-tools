@@ -16,7 +16,7 @@ const initialLazyQueryState: BaseQueryData = {
 const NOTLOADED = Symbol();
 export function useLazyQuery<T = any>(
   query: GqlType
-): [(e: unknown) => unknown, QueryData<T>] {
+): [(e: unknown) => Promise<T | Error>, QueryData<T>] {
   const [state, update] = useBaseQuery<T>(
     query,
     initialLazyQueryState as BaseQueryData<T>

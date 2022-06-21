@@ -88,7 +88,7 @@ export function useBaseQuery<T = any>(
   initialState: BaseQueryData<T>
 ): [
   BaseQueryData<T>,
-  (variables: unknown, skipLoading?: boolean) => Promise<void>
+  (variables: unknown, skipLoading?: boolean) => Promise<T | Error>
 ] {
   const client: GraphQLClient = useGraphQLClient();
   const [state, dispatch] = useReducer<BaseQueryData<T>, Action<T>>(
@@ -98,21 +98,24 @@ export function useBaseQuery<T = any>(
   const update = useCallback(
     async function (variables: unknown, skipLoading = false) {
       if (!client) {
+        const error = new Error("No GraphQL client found");
         // Hook will return an error state when no client exists (used to be a loading state)
         dispatch({
           type: "errors",
           // @ts-expect-error -- Need to fix this
-          payload: new Error("No GraphQL client found"),
+          payload: error,
         });
-        return;
+        return error;
       }
       try {
         // Skips showing a "loading" state before the data appears
         if (!skipLoading) dispatch({ type: "loading" });
         const res = await client.request<T>(query, variables);
         dispatch({ type: "data", payload: res });
+        return res;
       } catch (error) {
         dispatch({ type: "errors", payload: error });
+        return error;
       }
     },
     [client, query, dispatch]
