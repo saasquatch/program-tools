@@ -1,4 +1,5 @@
 import { useRef } from "@saasquatch/universal-hooks";
+import { useCallback } from "react";
 import { useRefreshListener } from "./Refresh";
 import {
   BaseQueryData,
@@ -31,15 +32,20 @@ export function useLazyQuery<T = any>(
     variables: variablesRef.current,
   });
 
+  // can override props when refetching for new pagination, offset, etc
+  const refetch = useCallback(
+    (variables) => {
+      variablesRef.current = variables;
+      return update(variables);
+    },
+    [update]
+  );
+
   return [
     update,
     {
       ...state,
-      // can override props when refetching for new pagination, offset, etc
-      refetch: (variables) => {
-        variablesRef.current = variables;
-        update(variables);
-      },
+      refetch,
     },
   ];
 }
