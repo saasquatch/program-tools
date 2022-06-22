@@ -35,7 +35,10 @@ interface AuthenticateWithEmailAndPasswordResult {
 }
 
 export function useAuthenticateWithEmailAndPasswordMutation(): [
-  (e: { email: string; password: string }) => unknown,
+  (e: {
+    email: string;
+    password: string;
+  }) => Promise<AuthenticateWithEmailAndPasswordResult | Error>,
   BaseQueryData<AuthenticateWithEmailAndPasswordResult>
 ] {
   const [request, { loading, data, errors }] =

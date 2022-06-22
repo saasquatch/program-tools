@@ -20,7 +20,7 @@ interface VerifyPasswordResetCodeResult {
 }
 
 export function useVerifyPasswordResetCodeMutation(): [
-  (e: { oobCode: string }) => unknown,
+  (e: { oobCode: string }) => Promise<VerifyPasswordResetCodeResult | Error>,
   BaseQueryData<VerifyPasswordResetCodeResult>
 ] {
   return useMutation<VerifyPasswordResetCodeResult>(

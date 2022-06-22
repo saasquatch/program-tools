@@ -43,7 +43,7 @@ export function useRegisterWithEmailAndPasswordMutation(): [
     email: string;
     password: string;
     formData?: Record<string, any>;
-  }) => unknown,
+  }) => Promise<RegisterWithEmailAndPasswordResult | Error>,
   BaseQueryData<RegisterWithEmailAndPasswordResult>
 ] {
   const [request, { loading, data, errors }] =

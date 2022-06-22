@@ -24,7 +24,7 @@ interface ManagedIdentitySessionResult {
 }
 
 export function useManagedIdentitySessionQuery(): [
-  () => unknown,
+  () => Promise<ManagedIdentitySessionResult | Error>,
   QueryData<ManagedIdentitySessionResult>
 ] {
   const userIdentity = useUserIdentity();

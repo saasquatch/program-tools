@@ -28,7 +28,10 @@ interface RequestVerificationEmailResult {
 }
 
 export function useRequestVerificationEmailMutation(): [
-  (e: { email: string; urlParams?: Record<string, any> }) => unknown,
+  (e: {
+    email: string;
+    urlParams?: Record<string, any>;
+  }) => Promise<RequestVerificationEmailResult | Error>,
   BaseQueryData<RequestVerificationEmailResult>
 ] {
   return useMutation<RequestVerificationEmailResult>(

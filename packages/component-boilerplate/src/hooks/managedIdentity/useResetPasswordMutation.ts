@@ -32,7 +32,10 @@ interface ResetPasswordResult {
 }
 
 export function useResetPasswordMutation(): [
-  (e: { oobCode: string; password: string }) => unknown,
+  (e: {
+    oobCode: string;
+    password: string;
+  }) => Promise<ResetPasswordResult | Error>,
   BaseQueryData<ResetPasswordResult>
 ] {
   const [request, { loading, data, errors }] = useMutation<ResetPasswordResult>(

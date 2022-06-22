@@ -22,7 +22,7 @@ interface VerifyEmailResult {
 }
 
 export function useVerifyEmailMutation(): [
-  (e: { oobCode: string }) => unknown,
+  (e: { oobCode: string }) => Promise<VerifyEmailResult | Error>,
   BaseQueryData<VerifyEmailResult>
 ] {
   const [refreshManagedIdentitySession] = useManagedIdentitySessionQuery();

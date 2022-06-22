@@ -74,7 +74,7 @@ export function useRegisterViaRegistrationFormMutation(): [
       redirectUrl?: string;
       [field: string]: any;
     };
-  }) => unknown,
+  }) => Promise<RegisterViaRegistrationFormResult | Error>,
   RegistrationFormResponseData<RegisterViaRegistrationFormResult>
 ] {
   const [request, { loading, data, errors }] =
