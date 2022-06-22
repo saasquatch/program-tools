@@ -1,5 +1,4 @@
-import { useRef } from "@saasquatch/universal-hooks";
-import { useCallback } from "react";
+import { useRef, useCallback } from "@saasquatch/universal-hooks";
 import { useRefreshListener } from "./Refresh";
 import {
   BaseQueryData,
