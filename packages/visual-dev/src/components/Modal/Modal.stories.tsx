@@ -584,10 +584,12 @@ export const WithCodeBlockOverflow = () => {
             primaryAction={{
               text: "Add",
               onAction: handleChange,
+              pill: false,
             }}
             secondaryAction={{
               text: "Cancel",
               onAction: handleChange,
+              buttonType: "text",
             }}
           />
         </ModalView.ModalContentView>

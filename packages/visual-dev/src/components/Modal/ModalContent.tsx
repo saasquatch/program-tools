@@ -1,15 +1,21 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import { Button } from "../Button";
+import { Button, ButtonProps } from "../Button";
 import * as Styles from "./Styles";
 
 type ModalActionProps = ActionOptions &
   StyleProps &
   Partial<React.ComponentProps<"div">>;
 
+interface ActionProps {
+  onAction?: any;
+  text?: any;
+  danger?: any;
+}
+
 export interface ActionOptions {
-  primaryAction?: any;
-  secondaryAction?: any;
+  primaryAction?: ActionProps & Omit<ButtonProps, "ref">;
+  secondaryAction?: ActionProps & Omit<ButtonProps, "ref">;
 }
 
 export interface StyleProps {
@@ -33,26 +39,42 @@ export const ModalContentActionView = React.forwardRef<
     ...rest
   } = props;
 
+  const {
+    onAction: primaryOnAction,
+    text: primaryText,
+    danger: primaryDanger,
+    ...primaryOptions
+  } = primaryAction || {};
+
+  const {
+    onAction: secondaryOnAction,
+    text: secondaryText,
+    danger: secondaryDanger,
+    ...secondaryOptions
+  } = secondaryAction || {};
+
   return (
     <ModalActionDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
       {secondaryAction && (
         <Button
           buttonType="secondary"
           pill
-          onClick={secondaryAction.onAction}
+          onClick={secondaryOnAction}
           style={{ marginRight: 25 }}
+          {...secondaryOptions}
         >
-          {secondaryAction.text}
+          {secondaryText}
         </Button>
       )}
       {primaryAction && (
         <Button
           buttonType="primary"
           pill
-          onClick={primaryAction.onAction}
-          critical={primaryAction.danger}
+          onClick={primaryOnAction}
+          critical={primaryDanger}
+          {...primaryOptions}
         >
-          {primaryAction.text}
+          {primaryText}
         </Button>
       )}
     </ModalActionDiv>
