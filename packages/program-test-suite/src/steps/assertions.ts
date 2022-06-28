@@ -83,8 +83,8 @@ const assertionSteps: StepDefinitions = ({ then }) => {
     data.forEach((row: MutationStepRow) => {
       switch (row.type) {
         case "reward":
-          const relevantRewards = getWorld().state.programTriggerResult.mutations.filter(
-            (m: any) => {
+          const relevantRewards =
+            getWorld().state.programTriggerResult.mutations.filter((m: any) => {
               return (
                 m.type === "CREATE_REWARD" &&
                 m.data.user.id === `${row.user.toUpperCase()}ID` &&
@@ -92,14 +92,13 @@ const assertionSteps: StepDefinitions = ({ then }) => {
                   `${row.user.toUpperCase()}ACCOUNTID` &&
                 m.data.key === row.key
               );
-            }
-          );
+            });
 
           assert.strictEqual(relevantRewards.length, Number(row.count));
           break;
         case "email":
-          const relevantEmails = getWorld().state.programTriggerResult.mutations.filter(
-            (m: any) => {
+          const relevantEmails =
+            getWorld().state.programTriggerResult.mutations.filter((m: any) => {
               return (
                 m.type === "SEND_EMAIL" &&
                 m.data.user.id === `${row.user.toUpperCase()}ID` &&
@@ -107,8 +106,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
                   `${row.user.toUpperCase()}ACCOUNTID` &&
                 m.data.key === row.key
               );
-            }
-          );
+            });
 
           assert.strictEqual(relevantEmails.length, Number(row.count));
           break;
@@ -120,15 +118,14 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   then(
     /^there will not be a "?([^"]+)"? analytic for the "?([^"]+)"? user$/,
     (type: string, user: string) => {
-      const relevantAnalytics = getWorld().state.programTriggerResult.analytics.filter(
-        (a: any) => {
+      const relevantAnalytics =
+        getWorld().state.programTriggerResult.analytics.filter((a: any) => {
           return (
             a.eventType === type &&
             a.data.user.id === `${user.toUpperCase()}ID` &&
             a.data.user.accountId === `${user.toUpperCase()}ACCOUNTID`
           );
-        }
-      );
+        });
 
       assert.strictEqual(relevantAnalytics.length, 0);
     }
@@ -136,8 +133,8 @@ const assertionSteps: StepDefinitions = ({ then }) => {
 
   then("the following analytics will exist:", (data: any) => {
     data.forEach((row: AnalyticsStepRow) => {
-      const relevantAnalytics = getWorld().state.programTriggerResult.analytics.filter(
-        (a: any) => {
+      const relevantAnalytics =
+        getWorld().state.programTriggerResult.analytics.filter((a: any) => {
           return (
             a.eventType === row.type &&
             a.data.user.id === `${row.user.toUpperCase()}ID` &&
@@ -146,8 +143,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
             (!row.isConversion ||
               a.data.isConversion === inferType(row.isConversion))
           );
-        }
-      );
+        });
 
       assert.strictEqual(relevantAnalytics.length, Number(row.count));
     });
@@ -170,27 +166,25 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   then(
     /^there will be (\d+) "?([^"]+)"? reward(s) for the "?([^"]+)"? user$/,
     (count: number, key: string, user: string) => {
-      const relevantRewards = getWorld().state.programTriggerResult.mutations.filter(
-        (m: any) => {
+      const relevantRewards =
+        getWorld().state.programTriggerResult.mutations.filter((m: any) => {
           return (
             m.type === "CREATE_REWARD" &&
             m.data.user.id === `${user.toUpperCase()}ID` &&
             m.data.user.accountId === `${user.toUpperCase()}ACCOUNTID` &&
             m.data.key === key
           );
-        }
-      );
+        });
 
       assert.strictEqual(relevantRewards.length, count);
     }
   );
 
   then(/^there will be no reward "?([^"]+)"?$/, (rewardKey: string) => {
-    const relevantRewards = getWorld().state.programTriggerResult.mutations.filter(
-      (m: any) => {
+    const relevantRewards =
+      getWorld().state.programTriggerResult.mutations.filter((m: any) => {
         return m.type === "CREATE_REWARD" && m.data.key === rewardKey;
-      }
-    );
+      });
 
     assert.strictEqual(relevantRewards.length, 0);
   });
@@ -198,16 +192,15 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   then(
     /^there will be (\d+) "?([^"]+)"? email(s) for the "?([^"]+)"? user$/,
     (count: number, key: string, user: string) => {
-      const relevantRewards = getWorld().state.programTriggerResult.mutations.filter(
-        (m: any) => {
+      const relevantRewards =
+        getWorld().state.programTriggerResult.mutations.filter((m: any) => {
           return (
             m.type === "SEND_EMAIL" &&
             m.data.user.id === `${user.toUpperCase()}ID` &&
             m.data.user.accountId === `${user.toUpperCase()}ACCOUNTID` &&
             m.data.key === key
           );
-        }
-      );
+        });
 
       assert.strictEqual(relevantRewards.length, count);
     }
@@ -264,10 +257,10 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   );
 
   then(
-    /^the following (CREATE_REWARD|MODERATE_GRAPH_NODES) mutation will exist:$/,
+    /^the following (CREATE_REWARD|MODERATE_GRAPH_NODES|EXCHANGE_REWARD) mutation will exist:$/,
     (type: string, filters: any) => {
-      const matchingMutations = getWorld().state.programTriggerResult.mutations.filter(
-        (m: any) => {
+      const matchingMutations =
+        getWorld().state.programTriggerResult.mutations.filter((m: any) => {
           const correctType = m.type === type;
           const passesFilters = filters.every((row: FieldValueRow) => {
             const expected = inferType(row.value);
@@ -285,8 +278,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
             return actual === expected;
           });
           return correctType && passesFilters;
-        }
-      );
+        });
       assert.strictEqual(matchingMutations.length, 1);
     }
   );
