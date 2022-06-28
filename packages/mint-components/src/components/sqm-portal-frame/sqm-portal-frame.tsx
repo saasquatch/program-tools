@@ -7,7 +7,8 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 
 /**
- * @uiName Portal Frame
+ * @uiName Microsite Frame
+ * @slots [{"name":"header","title":"Header Content"},{"name":"footer","title":"Footer Content"},{"name":"","title":"Body Content"}]
  */
 @Component({
   tag: "sqm-portal-frame",

@@ -4,9 +4,8 @@ import { HeroView } from "./sqm-hero-view";
 import { getProps } from "../../utils/utils";
 
 /**
- * The hero container
- *
  * @uiName Hero Layout
+ * @slots [{"name":"","title":"Primary Column Content"},{"name":"secondary-column","title":"Secondary Column Content"}]
  */
 @Component({
   tag: "sqm-hero",
@@ -17,6 +16,8 @@ export class Hero {
    * Number of columns in the layout
    *
    * @uiName Columns
+   * @uiEnum [1, 2]
+   * @uiEnumNames ["One", "Two"]
    */
   @Prop() columns: 1 | 2 = 1;
   /**

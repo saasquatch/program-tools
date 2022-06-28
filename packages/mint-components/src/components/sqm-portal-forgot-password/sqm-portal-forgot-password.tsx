@@ -10,7 +10,7 @@ import {
 import { usePortalForgotPassword } from "./usePortalForgotPassword";
 
 /**
- * @uiName Portal Forgot Password
+ * @uiName Microsite Forgot Password
  */
 @Component({
   tag: "sqm-portal-forgot-password",
@@ -21,15 +21,15 @@ export class PortalForgotPassword {
   ignored = true;
 
   /**
-   * The page that users are redirected to from the password reset email.
+   * The microsite page that participants are redirected to from the password reset email.
    *
-   * @uiName Email Redirection Base Path
+   * @uiName Email Redirection Path
    */
   @Prop()
   redirectPath: string = "/resetPassword";
 
   /**
-   * @uiName Email Label
+   * @uiName Email Field Label
    */
   @Prop()
   emailLabel: string = "Email";
@@ -41,9 +41,20 @@ export class PortalForgotPassword {
   submitLabel: string = "Request Password Reset";
 
   /**
-   * @uiName Login Page Routing Path
+   * @uiName Login Redirect Path
    */
   @Prop() loginPath: string = "/login";
+
+  /**
+   * @uiName Header Text
+   * @uiWidget textArea
+   */
+  @Prop() headerText: string = "Enter your email below to receive a password reset link.";
+
+  /**
+   * Sign In Link Text
+   */
+  @Prop() loginText: string = "Sign In";
 
   /**
    * @undocumented

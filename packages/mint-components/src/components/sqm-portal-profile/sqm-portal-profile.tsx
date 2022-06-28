@@ -11,7 +11,7 @@ import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
 
 /**
- * @uiName Portal Profile
+ * @uiName Microsite Participant Profile
  */
 @Component({
   tag: "sqm-portal-profile",
@@ -22,30 +22,22 @@ export class PortalProfile {
   ignored = true;
 
   /**
-   * First name input field label
-   *
    * @uiName First Name Label
    */
   @Prop() firstnametext: string = "First Name";
 
   /**
-   * Last name input field label
-   *
-   * @uiName Last Name Label
+   * @uiName Last Name Field Label
    */
   @Prop() lastnametext: string = "Last Name";
 
   /**
-   * Email input field label
-   *
-   * @uiName Email Label
+   * @uiName Email Field Label
    */
   @Prop() emailtext: string = "Email";
 
   /**
-   * Country input field label
-   *
-   * @uiName Country Label
+   * @uiName Country Field Label
    */
   @Prop() countrytext: string = "Country";
 
@@ -65,7 +57,7 @@ export class PortalProfile {
   @Prop() submitChangeButtonText: string = "Submit Changes";
 
   /**
-   * Show or hide the country field
+   * Show or hide the country field.
    *
    * @uiName Show Country Field
    */

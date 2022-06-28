@@ -3,6 +3,7 @@ import { Component, h, Prop, State } from "@stencil/core";
 
 /**
  * @uiName Form Message
+ * @slots [{"name":"","title":"Message Content"}]
  */
 @Component({
   tag: "sqm-form-message",

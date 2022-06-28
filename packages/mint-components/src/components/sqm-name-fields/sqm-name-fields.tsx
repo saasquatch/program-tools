@@ -7,7 +7,10 @@ import { NameFieldsView, NameFieldsViewProps } from "./sqm-name-fields-view";
 import { useNameFields } from "./useNameFields";
 
 /**
- * @uiName Name Fields
+ * @uiName Form Name Fields
+ * @validParents ["sqm-portal-register","sqm-portal-registration-form"]
+ * @exampleGroup Microsite Components
+ * @example Form Name Fields - <sqm-name-fields first-name-label="First Name" last-name-label="Last Name"></sqm-name-fields>
  */
 @Component({
   tag: "sqm-name-fields",

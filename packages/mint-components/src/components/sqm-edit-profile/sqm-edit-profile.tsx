@@ -8,7 +8,7 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 
 /**
- * @uiName Edit Profile
+ * @uiName Microsite Edit Profile
  */
 @Component({
   tag: "sqm-edit-profile",

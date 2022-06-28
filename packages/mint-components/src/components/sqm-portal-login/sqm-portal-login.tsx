@@ -7,7 +7,7 @@ import { PortalLoginView, PortalLoginViewProps } from "./sqm-portal-login-view";
 import { usePortalLogin } from "./usePortalLogin";
 
 /**
- * @uiName Portal Login
+ * @uiName Microsite Login
  */
 @Component({
   tag: "sqm-portal-login",
@@ -18,72 +18,58 @@ export class PortalLogin {
   ignored = true;
 
   /**
-   * Page navigated to after sign-in
+   * Page participants are navigated to after login.
    *
-   * @uiName Next Page Path
+   * @uiName Login Redirect Path
    */
   @Prop()
   nextPage: string = "/";
 
   /**
-   * Label for email field
-   *
-   * @uiName Email Label
+   * @uiName Email Field Label
    */
   @Prop()
   emailLabel: string = "Email";
 
   /**
-   * Label for password field
-   *
-   * @uiName Password Label
+   * @uiName Password Field Label
    */
   @Prop()
   passwordLabel: string = "Password";
 
   /**
-   * Label for submit button
-   *
    * @uiName Submit Button Text
    */
   @Prop()
   submitLabel: string = "Sign In";
 
   /**
-   * Label for forgotten password button
-   *
+   * @uiName Forgot Password Redirect Path
+   */
+  @Prop() forgotPasswordPath: string = "/forgotPassword";
+
+  /**
    * @uiName Forgot Password Text
    */
   @Prop()
   forgotPasswordLabel: string = "Forgot Password?";
 
   /**
-   * Label for register button
-   *
    * @uiName Register Button Text
    */
   @Prop()
   registerLabel: string = "Register";
 
   /**
-   * @uiName Heading Label
-   */
-  @Prop()
-  pageLabel: string = "Sign in to your account";
-
-  /**
-   * Register redirect path
-   *
-   * @uiName Register Path
+   * @uiName Register Button Redirect Path
    */
   @Prop() registerPath: string = "/register";
 
   /**
-   * Forgot password redirect path
-   *
-   * @uiName Forgot Password Path
+   * @uiName Heading Label
+   * @uiWidget textArea
    */
-  @Prop() forgotPasswordPath: string = "/forgotPassword";
+  @Prop() pageLabel: string = "Sign in to your account";
 
   /**
    * @undocumented

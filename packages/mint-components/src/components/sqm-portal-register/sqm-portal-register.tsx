@@ -10,7 +10,8 @@ import {
 import { usePortalRegister } from "./usePortalRegister";
 
 /**
- * @uiName Portal Register
+ * @uiName Microsite Registration
+ * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
  */
 @Component({
   tag: "sqm-portal-register",
@@ -21,29 +22,29 @@ export class PortalRegister {
   ignored = true;
 
   /**
-   * Page navigated to after registration
+   * Page participants are navigated to after registration.
    *
-   * @uiName Next Page
+   * @uiName Registration Redirect Path
    */
   @Prop()
   nextPage: string = "/";
 
   /**
-   * The page that users are redirected to from the verification email.
+   * The page that participants are redirected to from the verification email.
    *
-   * @uiName Email Redirection Base Path
+   * @uiName Email Redirection Path
    */
   @Prop()
   redirectPath: string = "/verifyEmail";
 
   /**
-   * @uiName Email Label
+   * @uiName Email Field Label
    */
   @Prop()
   emailLabel: string = "Email";
 
   /**
-   * @uiName Password Label
+   * @uiName Password Field Label
    */
   @Prop()
   passwordLabel: string = "Password";
@@ -66,10 +67,9 @@ export class PortalRegister {
   @Prop() confirmPasswordLabel: string = "Confirm Password";
 
   /**
-   * Show or hide the confirm password input
+   * Show or hide the confirm password input.
    *
    * @uiName Show Confirm Password Field
-   * @default
    */
   @Prop()
   confirmPassword: boolean = false;
@@ -81,24 +81,23 @@ export class PortalRegister {
   enablePasswordValidation: boolean = true;
 
   /**
-   * Hide default input fields to use custom fields
+   * Hide default input fields to use custom fields.
    *
    * @uiName Hide Default Inputs
-   * @default
    */
   @Prop()
   hideInputs: boolean = false;
 
   /**
-   * @uiName Heading Label
+   * @uiName Header Text
    */
   @Prop()
   pageLabel: string = "Register";
 
   /**
-   * Login button redirection path
+   * Login button redirection path.
    *
-   * @uiName Login Path
+   * @uiName Login Redirect Path
    */
   @Prop() loginPath: string = "/login";
 

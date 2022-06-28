@@ -3,9 +3,8 @@ import { Component, h, State } from "@stencil/core";
 import { NavigationSidebarView } from "./sqm-navigation-sidebar-view";
 
 /**
- * A container for navigation menu items
- *
- * @uiName Navigation Sidebar
+ * @uiName Microsite Sidebar
+ * @slots [{"name":"", "title":"Sidebar Content", "validChildren":["sqm-navigation-sidebar-item"]}]
  */
 @Component({
   tag: "sqm-navigation-sidebar",

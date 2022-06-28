@@ -10,7 +10,7 @@ import {
 import { usePortalResetPassword } from "./usePortalResetPassword";
 
 /**
- * @uiName Portal Reset Password
+ * @uiName Microsite Reset Password
  */
 @Component({
   tag: "sqm-portal-reset-password",
@@ -21,26 +21,25 @@ export class PortalResetPassword {
   ignored = true;
 
   /**
-   * The page that users are redirected to when the password reset succeeds.
+   * The page that participants are redirected to when the password reset succeeds.
    *
-   * @uiName Next Page Path
+   * @uiName Reset Successful Redirect Path
    */
   @Prop()
   nextPage: string = "/";
 
   /**
-   * The page that users are redirected to if the reset fails due to outdated password reset attempt.
+   * The page that participants are redirected to if the reset fails due to outdated password reset attempt.
    *
-   * @uiName Failed Page Path
+   * @uiName Reset Failed Redirect Path
    */
   @Prop()
   failedPage: string = "/";
 
   /**
-   * Show or hide confirm password field
+   * Show or hide confirm password field.
    *
    * @uiName Show Confirm Password
-   * @default
    */
   @Prop()
   confirmPassword: boolean = false;
@@ -51,9 +50,10 @@ export class PortalResetPassword {
   @Prop() resetPasswordHeader: string = "Reset your password";
 
   /**
-   * Displayed after a successful password reset
+   * Displayed after a successful password reset.
    *
    * @uiName Successful Password Reset Text
+   * @uiWidget textArea
    */
   @Prop() passwordResetHeader: string = "Password reset";
 
@@ -63,14 +63,14 @@ export class PortalResetPassword {
   @Prop() resetPasswordButtonText: string = "Reset Password";
 
   /**
-   * Button text displayed after a successful password reset
+   * Button text displayed after a successful password reset.
    *
    * @uiName Continue Button Text
    */
   @Prop() continueButtonText: string = "Continue";
 
   /**
-   * @uiName Confirm Password Label
+   * @uiName Password Comfirmation Label
    */
   @Prop() confirmPasswordFieldLabel: string = "Confirm Password";
 
@@ -78,6 +78,7 @@ export class PortalResetPassword {
    * @uiName Password Label
    */
   @Prop() passwordFieldLabel: string = "New Password";
+  
   /**
    * @undocumented
    * @uiType object

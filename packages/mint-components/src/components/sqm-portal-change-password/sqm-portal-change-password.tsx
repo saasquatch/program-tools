@@ -10,7 +10,7 @@ import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
 
 /**
- * @uiName Portal Profile
+ * @uiName Microsite Password Change
  */
 @Component({
   tag: "sqm-portal-change-password",
@@ -57,7 +57,8 @@ export class PortalChangePassword {
   /**
    * Successful password change message
    *
-   * @uiName Successful Message
+   * @uiName Successful Password Change Message
+   * @uiWidget textArea
    */
   @Prop() successMessage: string = "Your password has been updated.";
 

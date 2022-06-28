@@ -48,6 +48,8 @@ export function usePortalForgotPassword(props: PortalForgotPassword) {
         error,
       success,
       loginPath: props.loginPath,
+      headerText: props.headerText,
+      loginText: props.loginText,
     },
     callbacks: {
       submit,
