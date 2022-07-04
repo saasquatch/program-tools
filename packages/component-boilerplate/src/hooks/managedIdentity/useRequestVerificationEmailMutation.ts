@@ -28,7 +28,7 @@ interface RequestVerificationEmailResult {
 }
 
 export function useRequestVerificationEmailMutation(): [
-  (e: {
+  (variables: {
     email: string;
     urlParams?: Record<string, any>;
   }) => Promise<RequestVerificationEmailResult | Error>,

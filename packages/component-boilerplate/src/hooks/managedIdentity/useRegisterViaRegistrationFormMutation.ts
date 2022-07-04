@@ -66,7 +66,7 @@ interface RegistrationFormResponseData<T> extends BaseQueryData<T> {
 }
 
 export function useRegisterViaRegistrationFormMutation(): [
-  (e: {
+  (variables: {
     key: string;
     formData: {
       email: string;
@@ -83,7 +83,19 @@ export function useRegisterViaRegistrationFormMutation(): [
     );
   const [formError, setFormError] = useState<string | null>(null);
 
-  useEffect(() => {
+  const requestAndSetUserIdentityOrFormError = async (v: {
+    key: string;
+    formData: {
+      email: string;
+      password: string;
+      redirectUrl?: string;
+      [field: string]: any;
+    };
+  }) => {
+    const result = await request(v);
+    if (result instanceof Error) {
+      return result;
+    }
     const managedIdentityResponse:
       | undefined
       | RegisterViaRegistrationFormResult["submitForm"]["results"][number] = data?.submitForm?.results.find(
@@ -114,7 +126,11 @@ export function useRegisterViaRegistrationFormMutation(): [
         setFormError(registrationResult.message);
       }
     }
-  }, [data?.submitForm]);
+    return result;
+  };
 
-  return [request, { loading, data, errors, formError }];
+  return [
+    requestAndSetUserIdentityOrFormError,
+    { loading, data, errors, formError },
+  ];
 }

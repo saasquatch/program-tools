@@ -39,7 +39,7 @@ interface RegisterWithEmailAndPasswordResult {
 }
 
 export function useRegisterWithEmailAndPasswordMutation(): [
-  (e: {
+  (variables: {
     email: string;
     password: string;
     formData?: Record<string, any>;
@@ -51,23 +51,33 @@ export function useRegisterWithEmailAndPasswordMutation(): [
       RegisterWithEmailAndPasswordMutation
     );
 
-  useEffect(() => {
-    if (data?.registerManagedIdentityWithEmailAndPassword) {
-      const { registerManagedIdentityWithEmailAndPassword: res } = data;
-      const jwt = res.token;
+  const requestAndSetUserIdentity = async (v: {
+    email: string;
+    password: string;
+    formData?: Record<string, any>;
+  }) => {
+    const result = await request(v);
+    if (
+      !(result instanceof Error) &&
+      result.registerManagedIdentityWithEmailAndPassword
+    ) {
+      const jwt = result.registerManagedIdentityWithEmailAndPassword.token;
       const { user } = decode<DecodedSquatchJWT>(jwt);
       setUserIdentity({
         jwt,
         id: user.id,
         accountId: user.accountId,
         managedIdentity: {
-          email: res.email,
-          emailVerified: res.emailVerified,
-          sessionData: res.sessionData,
+          email: result.registerManagedIdentityWithEmailAndPassword.email,
+          emailVerified:
+            result.registerManagedIdentityWithEmailAndPassword.emailVerified,
+          sessionData:
+            result.registerManagedIdentityWithEmailAndPassword.sessionData,
         },
       });
     }
-  }, [data?.registerManagedIdentityWithEmailAndPassword]);
+    return result;
+  };
 
-  return [request, { loading, data, errors }];
+  return [requestAndSetUserIdentity, { loading, data, errors }];
 }
