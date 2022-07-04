@@ -98,7 +98,7 @@ export function useRegisterViaRegistrationFormMutation(): [
     }
     const managedIdentityResponse:
       | undefined
-      | RegisterViaRegistrationFormResult["submitForm"]["results"][number] = data?.submitForm?.results.find(
+      | RegisterViaRegistrationFormResult["submitForm"]["results"][number] = result.submitForm.results.find(
       (result) => result.formHandler.namespace === "identity"
     );
     if (

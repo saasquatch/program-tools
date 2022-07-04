@@ -34,7 +34,7 @@ export function useVerifyEmailMutation(): [
     const result = await request(e);
     if (
       !(result instanceof Error) &&
-      result?.verifyManagedIdentityEmail?.success
+      result.verifyManagedIdentityEmail.success
     ) {
       await refreshManagedIdentitySession();
     }
