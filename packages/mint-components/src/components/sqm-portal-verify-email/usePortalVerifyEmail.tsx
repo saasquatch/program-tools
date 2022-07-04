@@ -1,4 +1,4 @@
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useEffect } from "@saasquatch/universal-hooks";
 import {
   navigation,
   useUserIdentity,
@@ -33,7 +33,8 @@ export function usePortalVerifyEmail({ nextPage, failedPage }) {
   const gotoNextPage = () => {
     urlParams.delete("nextPage");
     const url = sanitizeUrlPath(nextPageOverride || nextPage);
-    window.history.pushState(undefined, "", url.href);
+    // window.history.pushState(undefined, "", url.href);
+    navigation.push(url.href);
   };
 
   const submit = async () => {
