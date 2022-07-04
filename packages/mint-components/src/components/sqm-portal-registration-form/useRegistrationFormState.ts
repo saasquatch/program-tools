@@ -1,14 +1,7 @@
 import { useHost } from "@saasquatch/component-boilerplate";
-import { ContextProvider } from "dom-context";
 import { useDomContextState } from "@saasquatch/dom-context-hooks";
 
 export const REGISTRATION_FORM_STATE_CONTEXT = "sq:registration-form-state";
-
-declare global {
-  interface Window {
-    squatchValidationState: ContextProvider<any>;
-  }
-}
 
 export type RegistrationFormState = {
   loading?: boolean;
