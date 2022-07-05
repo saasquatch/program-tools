@@ -1,4 +1,4 @@
-const debugEnabled = localStorage.getItem("debug");
+const debugEnabled = window?.localStorage?.getItem("debug");
 
 export function debug(ns: string, ...args: any[]) {
   if (debugEnabled) {
