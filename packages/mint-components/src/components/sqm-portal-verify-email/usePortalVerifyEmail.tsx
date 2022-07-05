@@ -9,7 +9,7 @@ import { sanitizeUrlPath } from "../../utils/utils";
 export function usePortalVerifyEmail({ nextPage, failedPage }) {
   const userIdent = useUserIdentity();
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
-  const urlParams = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(navigation.location.search);
   const oobCode = urlParams.get("oobCode");
   const nextPageOverride = urlParams.get("nextPage");
 

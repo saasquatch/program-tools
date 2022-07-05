@@ -10,7 +10,7 @@ export function usePortalLogin(props) {
   const [request, { loading, errors, data }] =
     useAuthenticateWithEmailAndPasswordMutation();
   const [error, setError] = useState("");
-  const urlParams = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(navigation.location.search);
   const nextPageOverride = urlParams.get("nextPage");
 
   const submit = async (event: any) => {

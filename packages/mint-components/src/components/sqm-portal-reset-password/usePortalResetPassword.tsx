@@ -19,7 +19,7 @@ export function usePortalResetPassword(
 
   const [resetPassword, resetPasswordState] = useResetPasswordMutation();
 
-  const urlParams = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(navigation.location.search);
   const oobCode = urlParams.get("oobCode");
   urlParams.delete("oobCode");
 

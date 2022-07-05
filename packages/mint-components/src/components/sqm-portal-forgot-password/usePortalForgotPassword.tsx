@@ -1,6 +1,9 @@
 import jsonpointer from "jsonpointer";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { useRequestPasswordResetEmailMutation } from "@saasquatch/component-boilerplate";
+import {
+  navigation,
+  useRequestPasswordResetEmailMutation,
+} from "@saasquatch/component-boilerplate";
 import { PortalForgotPassword } from "./sqm-portal-forgot-password";
 
 export function usePortalForgotPassword(props: PortalForgotPassword) {
@@ -9,7 +12,7 @@ export function usePortalForgotPassword(props: PortalForgotPassword) {
   const [request, { loading, data, errors }] =
     useRequestPasswordResetEmailMutation();
 
-  const urlParams = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(navigation.location.search);
   const nextPage = urlParams.get("nextPage");
 
   const submit = async (event: any) => {
