@@ -123,12 +123,6 @@ export class MemoryHistory implements ListenableHistory {
     return this.history[this.index];
   }
 
-  private addAndClamp(delta: number) {
-    this.index += delta;
-    if (this.index < 0) this.index = 0;
-    if (this.index >= this.history.length) this.index = this.history.length - 1;
-  }
-
   back() {
     this.go(-1);
   }
@@ -138,7 +132,9 @@ export class MemoryHistory implements ListenableHistory {
   }
 
   go(delta: number) {
-    this.addAndClamp(delta);
+    this.index += delta;
+    if (this.index < 0) this.index = 0;
+    if (this.index >= this.history.length) this.index = this.history.length - 1;
     this.notify();
   }
 
