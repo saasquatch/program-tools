@@ -162,8 +162,8 @@ export class MemoryHistory implements ListenableHistory {
     if (typeof to === "string") {
       this.history[this.index] = {
         pathname: to,
-        search: this.history[this.index].search,
-        hash: this.history[this.index].hash,
+        search: "",
+        hash: "",
         state,
       };
     } else {
