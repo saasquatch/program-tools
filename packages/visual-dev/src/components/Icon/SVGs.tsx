@@ -1,5 +1,9 @@
 import * as React from "react";
 
+// Tips for adding SVGS
+// - SVGs should not have a defined height or width property, that's done by the IconView component
+// - All SVG paths/shapes should have a full of "currentColor", the colour is also set by the IconView component
+
 export const placeholder = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -1047,35 +1051,23 @@ export const shuffle = (
 );
 
 export const microsite = (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M0.75 1.3125C0.75 1.00184 1.00184 0.75 1.3125 0.75H22.6875C22.9982 0.75 23.25 1.00184 23.25 1.3125V6.80515C23.25 7.11581 22.9982 7.36765 22.6875 7.36765H1.3125C1.00184 7.36765 0.75 7.11581 0.75 6.80515V1.3125Z"
-      fill="#575757"
+      fill="currentColor"
     />
     <path
       d="M0.75 10.5772C0.75 10.2665 1.00184 10.0147 1.3125 10.0147H22.6875C22.9982 10.0147 23.25 10.2665 23.25 10.5772V22.6875C23.25 22.9982 22.9982 23.25 22.6875 23.25H1.3125C1.00184 23.25 0.75 22.9982 0.75 22.6875V10.5772Z"
-      fill="#575757"
+      fill="currentColor"
     />
   </svg>
 );
 
 export const widgets = (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M12.396 13.9216V23.2384H21.7127V13.9216H12.396ZM0.75 23.2384H10.0668V13.9216H0.75V23.2384ZM0.75 2.27562V11.5924H10.0668V2.27562H0.75ZM16.6584 0.75L10.0668 7.32997L16.6584 13.9216L23.25 7.32997L16.6584 0.75Z"
-      fill="#575757"
+      fill="currentColor"
     />
   </svg>
 );

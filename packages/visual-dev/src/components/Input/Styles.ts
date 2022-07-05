@@ -5,7 +5,7 @@ export const InputBoxStyle = css`
   width: 100%;
   box-sizing: border-box;
   height: 36px;
-  text-indent: 6px;
+  text-indent: var(--sq-spacing-small);
   color: var(--sq-text);
   background: var(--sq-surface);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
@@ -15,6 +15,11 @@ export const InputBoxStyle = css`
 
   border: 2px solid var(--sq-border);
   border-radius: 4px;
+
+  &[type="date"] {
+    text-indent: 6px;
+    padding-right: var(--sq-spacing-small);
+  }
 
   &::placeholder {
     color: var(--sq-text-input-disabled);
@@ -45,7 +50,6 @@ export const ExtrasDiv = css`
 `;
 
 export const invalid = css`
-  background: var(--sq-surface-critical-subdued);
   border: 2px solid var(--sq-border-critical);
   border-radius: 4px;
 

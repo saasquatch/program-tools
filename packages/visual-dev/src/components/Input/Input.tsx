@@ -68,13 +68,13 @@ const StyledInput = styled.input<{
   ${Styles.InputBoxStyle}
   ${(props) => (props.isInvalid ? Styles.invalid : "")}
   ${(props) => props.hasIcon && "padding-right: var(--sq-spacing-xxx-large);"}
-  ${(props) => (props.position == "left" ? "text-indent: 40px;" : "")}
+  ${(props) => (props.position == "left" ? "text-indent: 46px;" : "")}
   ${(props) => props.customCSS}
 `;
 
 const ExtrasDiv = styled.div<{ position: string }>`
   ${Styles.ExtrasDiv}
-  ${(props) => (props.position == "left" ? "left: 1px;" : "right: 10px;")}
+  ${(props) => (props.position == "left" ? "left: 12px;" : "right: 12px;")}
 `;
 
 const ContainerDiv = styled.div<{
