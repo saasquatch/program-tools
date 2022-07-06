@@ -27,20 +27,15 @@ export function usePortalForgotPassword(props: PortalForgotPassword) {
     const redirectPath = props.redirectPath;
     const variables = { email: formData.email, urlParams, redirectPath };
 
-    await request(variables);
-  };
-
-  useEffect(() => {
-    if (data?.requestManagedIdentityPasswordResetEmail?.success) {
+    const result = await request(variables);
+    if (result instanceof Error) {
+      if (result.message) setError("Network request failed.");
+      return;
+    }
+    if (result.requestManagedIdentityPasswordResetEmail?.success) {
       setSuccess(true);
     }
-  }, [data?.requestManagedIdentityPasswordResetEmail?.success]);
-
-  useEffect(() => {
-    if (errors?.message) {
-      setError("Network request failed.");
-    }
-  }, [errors]);
+  };
 
   return {
     states: {

@@ -25,20 +25,14 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
     const redirectPath = props.redirectPath;
     const variables = { email, urlParams, redirectPath };
 
-    await request(variables);
-  };
-
-  useEffect(() => {
-    if (data?.requestManagedIdentityVerificationEmail?.success) {
+    const result = await request(variables);
+    if (result instanceof Error) {
+      if (result.message) setError("Network request failed.");
+      return;
+    }
+    if (result.requestManagedIdentityVerificationEmail?.success)
       setSuccess(true);
-    }
-  }, [data?.requestManagedIdentityVerificationEmail?.success]);
-
-  useEffect(() => {
-    if (errors?.message) {
-      setError("Network request failed.");
-    }
-  }, [errors]);
+  };
 
   return {
     states: {

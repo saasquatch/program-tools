@@ -40,7 +40,6 @@ export function usePortalVerifyEmail({ nextPage, failedPage }) {
   const submit = async () => {
     if (oobCode) {
       const result = await request({ oobCode });
-      console.log({ result });
       if (
         (result instanceof Error ||
           !result.verifyManagedIdentityEmail.success) &&

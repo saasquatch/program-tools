@@ -25,6 +25,17 @@ export function usePortalResetPassword(
 
   const nextPageOverride = urlParams.get("nextPage");
 
+  const verifyPasswordResetCodeAndHandleResponse = async () => {
+    const result = await verifyPasswordResetCode({ oobCode });
+    if (result instanceof Error) {
+      setError("Network request failed.");
+    }
+  };
+
+  useEffect(() => {
+    verifyPasswordResetCodeAndHandleResponse();
+  }, []);
+
   const submit = async (event: any) => {
     setError("");
     let formData = event.detail.formData;
@@ -39,7 +50,16 @@ export function usePortalResetPassword(
       return;
     }
 
-    await resetPassword(variables);
+    const result = await resetPassword(variables);
+    if (result instanceof Error) {
+      return setError("Network request failed.");
+    }
+    if (result.resetManagedIdentityPassword) {
+      setReset(true);
+      setTimeout(() => {
+        gotoNextPage();
+      }, 5000);
+    }
   };
 
   const gotoNextPage = () => {
@@ -54,31 +74,6 @@ export function usePortalResetPassword(
       search: urlParams.toString() && "?" + urlParams.toString(),
     });
   };
-
-  useEffect(() => {
-    if (resetPasswordState.data?.resetManagedIdentityPassword) {
-      setReset(true);
-      setTimeout(() => {
-        gotoNextPage();
-      }, 5000);
-    }
-  }, [resetPasswordState.data?.resetManagedIdentityPassword]);
-
-  useEffect(() => {
-    verifyPasswordResetCode({ oobCode });
-  }, [oobCode]);
-
-  useEffect(() => {
-    if (verifyPasswordResetCodeState?.errors?.message) {
-      setError("Network request failed.");
-    }
-  }, [verifyPasswordResetCodeState?.errors]);
-
-  useEffect(() => {
-    if (resetPasswordState?.errors?.message) {
-      setError("Network request failed.");
-    }
-  }, [resetPasswordState?.errors]);
 
   return {
     states: {
