@@ -1071,3 +1071,12 @@ export const widgets = (
     />
   </svg>
 );
+
+export const file = (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M6 6.125C6 4.95127 6.95127 4 8.125 4H13.4375V8.25C13.4375 8.8377 13.9123 9.3125 14.5 9.3125H18.75V18.875C18.75 20.0471 17.7971 21 16.625 21H8.125C6.95127 21 6 20.0471 6 18.875V6.125ZM14.5 8.25V4L18.75 8.25H14.5Z"
+      fill="currentColor"
+    />
+  </svg>
+);
