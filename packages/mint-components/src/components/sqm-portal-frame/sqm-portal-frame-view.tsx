@@ -13,12 +13,8 @@ export interface PortalFrameViewProps {
 
 const style = {
   HostBlock: HostBlock,
-  ":host": {
-    "min-height": "100vh",
-  },
 
   Frame: {
-    "min-height": "100vh",
     display: "flex",
     "flex-direction": "column",
     "box-sizing": "border-box",
