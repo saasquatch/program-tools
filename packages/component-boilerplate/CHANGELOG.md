@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Environment code has been refactored out to a new package @saasquatch/component-environment
-- The function useBaseQuery returns for performing a query/mutation now returns the result of the client request
+- The function useBaseQuery for performing a query/mutation now returns the result of the client request
 
 ## [1.4.0] - 2022-05-09
 
