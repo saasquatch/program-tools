@@ -24,6 +24,7 @@ export class PortalVerifyEmail {
    * The page that participants are redirected to when the verification succeeds.
    *
    * @uiName Verification Redirect Path
+   * @uiWidget pageSelect
    */
   @Prop()
   nextPage: string = "/";
@@ -32,6 +33,7 @@ export class PortalVerifyEmail {
    * The page that participants are redirected to if verification fails due to outdated verification attempt.
    *
    * @uiName Verification Failed Redirect Path
+   * @uiWidget pageSelect
    */
   @Prop()
   failedPage: string = "/";

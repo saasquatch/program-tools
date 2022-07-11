@@ -16,8 +16,9 @@ export class PortalLogout {
 
   /**
    * Redirect participants to this path when they log out
-   * 
-   *  @uiName Logout Redirect Path
+   *
+   * @uiName Logout Redirect Path
+   * @uiWidget pageSelect
    */
   @Prop()
   nextPage: string = "/";

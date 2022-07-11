@@ -25,6 +25,7 @@ export class PortalRegister {
    * Page participants are navigated to after registration.
    *
    * @uiName Registration Redirect Path
+   * @uiWidget pageSelect
    */
   @Prop()
   nextPage: string = "/";
@@ -33,6 +34,7 @@ export class PortalRegister {
    * The page that participants are redirected to from the verification email.
    *
    * @uiName Email Redirection Path
+   * @uiWidget pageSelect
    */
   @Prop()
   redirectPath: string = "/verifyEmail";
@@ -98,6 +100,7 @@ export class PortalRegister {
    * Login button redirection path.
    *
    * @uiName Login Redirect Path
+   * @uiWidget pageSelect
    */
   @Prop() loginPath: string = "/login";
 

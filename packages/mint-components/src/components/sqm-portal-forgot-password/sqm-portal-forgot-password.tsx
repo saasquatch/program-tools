@@ -24,6 +24,7 @@ export class PortalForgotPassword {
    * The microsite page that participants are redirected to from the password reset email.
    *
    * @uiName Email Redirection Path
+   * @uiWidget pageSelect
    */
   @Prop()
   redirectPath: string = "/resetPassword";
@@ -42,6 +43,7 @@ export class PortalForgotPassword {
 
   /**
    * @uiName Login Redirect Path
+   * @uiWidget pageSelect
    */
   @Prop() loginPath: string = "/login";
 
@@ -49,7 +51,8 @@ export class PortalForgotPassword {
    * @uiName Header Text
    * @uiWidget textArea
    */
-  @Prop() headerText: string = "Enter your email below to receive a password reset link.";
+  @Prop() headerText: string =
+    "Enter your email below to receive a password reset link.";
 
   /**
    * Sign In Link Text

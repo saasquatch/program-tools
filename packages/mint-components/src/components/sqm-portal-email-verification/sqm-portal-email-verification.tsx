@@ -24,6 +24,7 @@ export class PortalEmailVerification {
    * The microsite page that participants are redirected to from the verification email.
    *
    * @uiName Email Redirection Path
+   * @uiWidget pageSelect
    */
   @Prop()
   redirectPath: string = "/verifyEmail";

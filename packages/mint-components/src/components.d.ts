@@ -781,6 +781,7 @@ export namespace Components {
         /**
           * The microsite page that participants are redirected to from the verification email.
           * @uiName Email Redirection Path
+          * @uiWidget pageSelect
          */
         "redirectPath": string;
         /**
@@ -869,6 +870,7 @@ export namespace Components {
         "headerText": string;
         /**
           * @uiName Login Redirect Path
+          * @uiWidget pageSelect
          */
         "loginPath": string;
         /**
@@ -878,6 +880,7 @@ export namespace Components {
         /**
           * The microsite page that participants are redirected to from the password reset email.
           * @uiName Email Redirection Path
+          * @uiWidget pageSelect
          */
         "redirectPath": string;
         /**
@@ -908,11 +911,13 @@ export namespace Components {
         "forgotPasswordLabel": string;
         /**
           * @uiName Forgot Password Redirect Path
+          * @uiWidget pageSelect
          */
         "forgotPasswordPath": string;
         /**
           * Page participants are navigated to after login.
           * @uiName Login Redirect Path
+          * @uiWidget pageSelect
          */
         "nextPage": string;
         /**
@@ -930,6 +935,7 @@ export namespace Components {
         "registerLabel": string;
         /**
           * @uiName Register Button Redirect Path
+          * @uiWidget pageSelect
          */
         "registerPath": string;
         /**
@@ -941,6 +947,7 @@ export namespace Components {
         /**
           * Redirect participants to this path when they log out
           * @uiName Logout Redirect Path
+          * @uiWidget pageSelect
          */
         "nextPage": string;
     }
@@ -1035,11 +1042,13 @@ export namespace Components {
         /**
           * Login button redirection path.
           * @uiName Login Redirect Path
+          * @uiWidget pageSelect
          */
         "loginPath": string;
         /**
           * Page participants are navigated to after registration.
           * @uiName Registration Redirect Path
+          * @uiWidget pageSelect
          */
         "nextPage": string;
         /**
@@ -1053,6 +1062,7 @@ export namespace Components {
         /**
           * The page that participants are redirected to from the verification email.
           * @uiName Email Redirection Path
+          * @uiWidget pageSelect
          */
         "redirectPath": string;
         /**
@@ -1100,11 +1110,13 @@ export namespace Components {
         /**
           * Login button redirection path.
           * @uiName Login Redirect Path
+          * @uiWidget pageSelect
          */
         "loginPath": string;
         /**
           * Page participants are navigated to after registration.
           * @uiName Registration Redirect Path
+          * @uiWidget pageSelect
          */
         "nextPage": string;
         /**
@@ -1118,6 +1130,7 @@ export namespace Components {
         /**
           * The page that participants are redirected to from the verification email.
           * @uiName Email Redirection Path
+          * @uiWidget pageSelect
          */
         "redirectPath": string;
         /**
@@ -1148,11 +1161,13 @@ export namespace Components {
         /**
           * The page that participants are redirected to if the reset fails due to outdated password reset attempt.
           * @uiName Reset Failed Redirect Path
+          * @uiWidget pageSelect
          */
         "failedPage": string;
         /**
           * The page that participants are redirected to when the password reset succeeds.
           * @uiName Reset Successful Redirect Path
+          * @uiWidget pageSelect
          */
         "nextPage": string;
         /**
@@ -1183,11 +1198,13 @@ export namespace Components {
         /**
           * The page that participants are redirected to if verification fails due to outdated verification attempt.
           * @uiName Verification Failed Redirect Path
+          * @uiWidget pageSelect
          */
         "failedPage": string;
         /**
           * The page that participants are redirected to when the verification succeeds.
           * @uiName Verification Redirect Path
+          * @uiWidget pageSelect
          */
         "nextPage": string;
     }
@@ -3642,6 +3659,7 @@ declare namespace LocalJSX {
         /**
           * The microsite page that participants are redirected to from the verification email.
           * @uiName Email Redirection Path
+          * @uiWidget pageSelect
          */
         "redirectPath"?: string;
         /**
@@ -3730,6 +3748,7 @@ declare namespace LocalJSX {
         "headerText"?: string;
         /**
           * @uiName Login Redirect Path
+          * @uiWidget pageSelect
          */
         "loginPath"?: string;
         /**
@@ -3739,6 +3758,7 @@ declare namespace LocalJSX {
         /**
           * The microsite page that participants are redirected to from the password reset email.
           * @uiName Email Redirection Path
+          * @uiWidget pageSelect
          */
         "redirectPath"?: string;
         /**
@@ -3769,11 +3789,13 @@ declare namespace LocalJSX {
         "forgotPasswordLabel"?: string;
         /**
           * @uiName Forgot Password Redirect Path
+          * @uiWidget pageSelect
          */
         "forgotPasswordPath"?: string;
         /**
           * Page participants are navigated to after login.
           * @uiName Login Redirect Path
+          * @uiWidget pageSelect
          */
         "nextPage"?: string;
         /**
@@ -3791,6 +3813,7 @@ declare namespace LocalJSX {
         "registerLabel"?: string;
         /**
           * @uiName Register Button Redirect Path
+          * @uiWidget pageSelect
          */
         "registerPath"?: string;
         /**
@@ -3802,6 +3825,7 @@ declare namespace LocalJSX {
         /**
           * Redirect participants to this path when they log out
           * @uiName Logout Redirect Path
+          * @uiWidget pageSelect
          */
         "nextPage"?: string;
     }
@@ -3896,11 +3920,13 @@ declare namespace LocalJSX {
         /**
           * Login button redirection path.
           * @uiName Login Redirect Path
+          * @uiWidget pageSelect
          */
         "loginPath"?: string;
         /**
           * Page participants are navigated to after registration.
           * @uiName Registration Redirect Path
+          * @uiWidget pageSelect
          */
         "nextPage"?: string;
         /**
@@ -3914,6 +3940,7 @@ declare namespace LocalJSX {
         /**
           * The page that participants are redirected to from the verification email.
           * @uiName Email Redirection Path
+          * @uiWidget pageSelect
          */
         "redirectPath"?: string;
         /**
@@ -3961,11 +3988,13 @@ declare namespace LocalJSX {
         /**
           * Login button redirection path.
           * @uiName Login Redirect Path
+          * @uiWidget pageSelect
          */
         "loginPath"?: string;
         /**
           * Page participants are navigated to after registration.
           * @uiName Registration Redirect Path
+          * @uiWidget pageSelect
          */
         "nextPage"?: string;
         /**
@@ -3979,6 +4008,7 @@ declare namespace LocalJSX {
         /**
           * The page that participants are redirected to from the verification email.
           * @uiName Email Redirection Path
+          * @uiWidget pageSelect
          */
         "redirectPath"?: string;
         /**
@@ -4009,11 +4039,13 @@ declare namespace LocalJSX {
         /**
           * The page that participants are redirected to if the reset fails due to outdated password reset attempt.
           * @uiName Reset Failed Redirect Path
+          * @uiWidget pageSelect
          */
         "failedPage"?: string;
         /**
           * The page that participants are redirected to when the password reset succeeds.
           * @uiName Reset Successful Redirect Path
+          * @uiWidget pageSelect
          */
         "nextPage"?: string;
         /**
@@ -4044,11 +4076,13 @@ declare namespace LocalJSX {
         /**
           * The page that participants are redirected to if verification fails due to outdated verification attempt.
           * @uiName Verification Failed Redirect Path
+          * @uiWidget pageSelect
          */
         "failedPage"?: string;
         /**
           * The page that participants are redirected to when the verification succeeds.
           * @uiName Verification Redirect Path
+          * @uiWidget pageSelect
          */
         "nextPage"?: string;
     }

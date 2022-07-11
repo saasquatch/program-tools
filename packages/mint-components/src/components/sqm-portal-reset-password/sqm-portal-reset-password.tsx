@@ -24,6 +24,7 @@ export class PortalResetPassword {
    * The page that participants are redirected to when the password reset succeeds.
    *
    * @uiName Reset Successful Redirect Path
+   * @uiWidget pageSelect
    */
   @Prop()
   nextPage: string = "/";
@@ -32,6 +33,7 @@ export class PortalResetPassword {
    * The page that participants are redirected to if the reset fails due to outdated password reset attempt.
    *
    * @uiName Reset Failed Redirect Path
+   * @uiWidget pageSelect
    */
   @Prop()
   failedPage: string = "/";
@@ -78,7 +80,7 @@ export class PortalResetPassword {
    * @uiName Password Label
    */
   @Prop() passwordFieldLabel: string = "New Password";
-  
+
   /**
    * @undocumented
    * @uiType object
