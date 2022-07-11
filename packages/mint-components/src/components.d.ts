@@ -971,14 +971,14 @@ export namespace Components {
          */
         "firstnametext": string;
         /**
+          * Show or hide the country field.
+          * @uiName Hide Country Field
+         */
+        "hideCountry": boolean;
+        /**
           * @uiName Last Name Field Label
          */
         "lastnametext": string;
-        /**
-          * Show or hide the country field.
-          * @uiName Show Country Field
-         */
-        "showCountry": boolean;
         /**
           * @uiName Submit Changes Button Text
          */
@@ -3832,14 +3832,14 @@ declare namespace LocalJSX {
          */
         "firstnametext"?: string;
         /**
+          * Show or hide the country field.
+          * @uiName Hide Country Field
+         */
+        "hideCountry"?: boolean;
+        /**
           * @uiName Last Name Field Label
          */
         "lastnametext"?: string;
-        /**
-          * Show or hide the country field.
-          * @uiName Show Country Field
-         */
-        "showCountry"?: boolean;
         /**
           * @uiName Submit Changes Button Text
          */

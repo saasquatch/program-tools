@@ -8,6 +8,7 @@ import { usePortalChangePassword } from "./usePortalChangePassword";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
+import { useState } from "@saasquatch/universal-hooks";
 
 /**
  * @uiName Microsite Password Change
@@ -94,24 +95,26 @@ export class PortalChangePassword {
 }
 
 function usePortalChangePasswordDemo(props: PortalChangePassword) {
+  const [open, setOpen] = useState(false);
+
   return deepmerge(
     {
       states: {
-        open: true,
+        open,
         error: "",
         content: {
-          modalChangePasswordHeader: "Change Password",
-          cancelText: "Cancel",
-          changePasswordButtonText: "Change Password",
-          passwordFieldLabel: "New Password",
-          confirmPasswordFieldLabel: "Confirm new password",
-          successMessage: "Your password has been updated.",
-          portalChangePasswordHeader: "Password",
-          portalChangePasswordButtonText: "Change your password...",
+          modalChangePasswordHeader: props.modalChangePasswordHeader,
+          cancelText: props.cancelText,
+          changePasswordButtonText: props.changePasswordButtonText,
+          passwordFieldLabel: props.passwordFieldLabel,
+          confirmPasswordFieldLabel: props.confirmPasswordFieldLabel,
+          successMessage: props.successMessage,
+          portalChangePasswordHeader: props.portalChangePasswordHeader,
+          portalChangePasswordButtonText: props.portalChangePasswordButtonText,
         },
       },
       callbacks: {
-        setOpen: (o) => console.log(o),
+        setOpen: (update) => setOpen(update),
         submit: (e) => console.log("Submit", e),
       },
     },

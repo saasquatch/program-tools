@@ -59,9 +59,9 @@ export class PortalProfile {
   /**
    * Show or hide the country field.
    *
-   * @uiName Show Country Field
+   * @uiName Hide Country Field
    */
-  @Prop() showCountry: boolean = true;
+  @Prop() hideCountry: boolean = false;
 
   /**
    * @undocumented
@@ -89,7 +89,7 @@ function usePortalProfileDemo(props: PortalProfile): PortalProfileViewProps {
         success: false,
         loading: false,
         submitDisabled: false,
-        showCountry: true,
+        showCountry: !props.hideCountry,
         user: {
           id: "01",
           accountId: "111100000",
@@ -99,13 +99,13 @@ function usePortalProfileDemo(props: PortalProfile): PortalProfileViewProps {
           countryCode: "CA",
         },
         text: {
-          firstnametext: "First Name",
-          lastnametext: "Last Name",
-          emailtext: "Email",
-          countrytext: "Country",
-          editProfileHeader: "Edit your profile",
-          editProfileSubHeader: "Personal Information",
-          submitChangeButtonText: "Submit Changes",
+          firstnametext: props.firstnametext,
+          lastnametext: props.lastnametext,
+          emailtext: props.emailtext,
+          countrytext: props.countrytext,
+          editProfileHeader: props.editProfileHeader,
+          editProfileSubHeader: props.editProfileSubHeader,
+          submitChangeButtonText: props.submitChangeButtonText,
         },
         formState: {
           country: "Canada",
