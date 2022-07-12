@@ -105,3 +105,7 @@ export const shuffle = () => <IconView icon={"shuffle"} />;
 export const microsite = () => <IconView icon={"microsite"} />;
 export const widgets = () => <IconView icon={"widgets"} />;
 export const file = () => <IconView icon={"file"} />;
+export const edit_square = () => <IconView icon={"edit_square"} />;
+export const filled_package_logo = () => (
+  <IconView icon={"filled_package_logo"} />
+);
