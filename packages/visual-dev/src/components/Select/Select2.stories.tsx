@@ -61,3 +61,24 @@ export const WithItemToString = () => {
     </div>
   );
 };
+
+export const FullWidth = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const functional = useSelect({ items });
+  const props = { limitWidth: false, items, functional };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <SelectView.ContainerView {...props}>
+        <SelectView.HandleView {...props} />
+        <SelectView.ListView {...props} />
+      </SelectView.ContainerView>
+    </div>
+  );
+};

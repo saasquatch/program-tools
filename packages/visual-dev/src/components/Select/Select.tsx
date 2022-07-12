@@ -267,8 +267,8 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
               icon_css={{
                 color: arrowColor,
                 margin: "auto",
-                height: "12px",
-                width: "12px",
+                height: "16px",
+                width: "16px",
               }}
               color={
                 errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
