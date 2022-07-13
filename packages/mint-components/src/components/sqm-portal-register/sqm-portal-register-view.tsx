@@ -17,7 +17,7 @@ export interface PortalRegisterViewProps {
     confirmPassword: boolean;
     hideInputs: boolean;
     validationState?: FormState;
-    enablePasswordValidation?: boolean;
+    disablePasswordValidation?: boolean;
     loginPath: string;
   };
   callbacks: {
@@ -130,7 +130,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
         {!states.hideInputs && (
           <sqm-password-field
             fieldLabel={content.passwordLabel}
-            enable-validation={states.enablePasswordValidation}
+            disable-validation={states.disablePasswordValidation}
           ></sqm-password-field>
         )}
         {content.passwordField}

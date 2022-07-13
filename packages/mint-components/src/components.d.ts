@@ -624,10 +624,10 @@ export namespace Components {
          */
         "demoData"?: PasswordFieldViewDemoProps;
         /**
-          * Enable live password validation
-          * @uiName Enable Validation
+          * Disable live password validation
+          * @uiName Disable Validation
          */
-        "enableValidation": boolean;
+        "disableValidation": boolean;
         /**
           * Label for password field
           * @uiName Password Label
@@ -804,6 +804,10 @@ export namespace Components {
          */
         "faqText"?: string;
         /**
+          * @uiName Hide Powered By SaaSquatch
+         */
+        "hidePoweredBy": boolean;
+        /**
           * @uiName Padding Bottom
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
@@ -831,10 +835,6 @@ export namespace Components {
           * @uiName Powered By Link
          */
         "poweredByLink": string;
-        /**
-          * @uiName Show Powered By SaaSquatch
-         */
-        "showPoweredBy": boolean;
         /**
           * @uiName Support Email
          */
@@ -1023,13 +1023,13 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalRegisterViewProps>;
         /**
+          * @uiName Disable Password Validation
+         */
+        "disablePasswordValidation": boolean;
+        /**
           * @uiName Email Field Label
          */
         "emailLabel": string;
-        /**
-          * @uiName Enable Password Validation
-         */
-        "enablePasswordValidation": boolean;
         /**
           * Hide default input fields to use custom fields.
           * @uiName Hide Default Inputs
@@ -1086,13 +1086,13 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalRegistrationFormViewProps>;
         /**
+          * @uiName Disable Password Validation
+         */
+        "disablePasswordValidation": boolean;
+        /**
           * @uiName Email Field Label
          */
         "emailLabel": string;
-        /**
-          * @uiName Enable Password Validation
-         */
-        "enablePasswordValidation": boolean;
         /**
           * Microsite Registration Form Key
           * @uiName Form Key
@@ -3502,10 +3502,10 @@ declare namespace LocalJSX {
          */
         "demoData"?: PasswordFieldViewDemoProps;
         /**
-          * Enable live password validation
-          * @uiName Enable Validation
+          * Disable live password validation
+          * @uiName Disable Validation
          */
-        "enableValidation"?: boolean;
+        "disableValidation"?: boolean;
         /**
           * Label for password field
           * @uiName Password Label
@@ -3682,6 +3682,10 @@ declare namespace LocalJSX {
          */
         "faqText"?: string;
         /**
+          * @uiName Hide Powered By SaaSquatch
+         */
+        "hidePoweredBy"?: boolean;
+        /**
           * @uiName Padding Bottom
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
@@ -3709,10 +3713,6 @@ declare namespace LocalJSX {
           * @uiName Powered By Link
          */
         "poweredByLink"?: string;
-        /**
-          * @uiName Show Powered By SaaSquatch
-         */
-        "showPoweredBy"?: boolean;
         /**
           * @uiName Support Email
          */
@@ -3901,13 +3901,13 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalRegisterViewProps>;
         /**
+          * @uiName Disable Password Validation
+         */
+        "disablePasswordValidation"?: boolean;
+        /**
           * @uiName Email Field Label
          */
         "emailLabel"?: string;
-        /**
-          * @uiName Enable Password Validation
-         */
-        "enablePasswordValidation"?: boolean;
         /**
           * Hide default input fields to use custom fields.
           * @uiName Hide Default Inputs
@@ -3964,13 +3964,13 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalRegistrationFormViewProps>;
         /**
+          * @uiName Disable Password Validation
+         */
+        "disablePasswordValidation"?: boolean;
+        /**
           * @uiName Email Field Label
          */
         "emailLabel"?: string;
-        /**
-          * @uiName Enable Password Validation
-         */
-        "enablePasswordValidation"?: boolean;
         /**
           * Microsite Registration Form Key
           * @uiName Form Key

@@ -121,6 +121,7 @@ export function usePortalRegister(props: PortalRegister) {
       confirmPassword: props.confirmPassword,
       hideInputs: props.hideInputs,
       loginPath: props.loginPath,
+      disablePasswordValidation: !props.disablePasswordValidation,
     },
     callbacks: {
       submit,

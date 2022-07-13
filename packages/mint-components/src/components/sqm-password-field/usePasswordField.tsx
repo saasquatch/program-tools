@@ -32,7 +32,7 @@ export function usePasswordField(
 
   return {
     states: {
-      enableValidation: props.enableValidation,
+      enableValidation: !props.disableValidation,
       dynamicValidation,
       registrationFormState,
       validationErrors: validationState?.validationErrors,

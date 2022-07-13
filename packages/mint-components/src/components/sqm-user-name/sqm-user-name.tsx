@@ -16,7 +16,7 @@ import { useUserName } from "./useUserName";
   shadow: true,
 })
 export class UserName {
-  @State() _ignored: boolean = true;
+  @State() ignored = true;
 
   /**
    * Fallback name for unknown users

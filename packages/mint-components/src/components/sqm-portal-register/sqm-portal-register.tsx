@@ -77,10 +77,10 @@ export class PortalRegister {
   confirmPassword: boolean = false;
 
   /**
-   * @uiName Enable Password Validation
+   * @uiName Disable Password Validation
    */
   @Prop()
-  enablePasswordValidation: boolean = true;
+  disablePasswordValidation: boolean = false;
 
   /**
    * Hide default input fields to use custom fields.
@@ -162,7 +162,8 @@ function useRegisterDemo(
         confirmPassword: true,
         hideInputs: props.hideInputs || false,
         customPasswordField: false,
-        loginPath: "/login",
+        loginPath: props.loginPath,
+        disablePasswordValidation: props.disablePasswordValidation,
       },
       callbacks: {
         submit: async (_event) => {

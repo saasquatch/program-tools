@@ -77,10 +77,10 @@ export class PortalRegistrationForm {
   confirmPassword: boolean = false;
 
   /**
-   * @uiName Enable Password Validation
+   * @uiName Disable Password Validation
    */
   @Prop()
-  enablePasswordValidation: boolean = true;
+  disablePasswordValidation: boolean = false;
 
   /**
    * Hide default input fields to use custom fields.

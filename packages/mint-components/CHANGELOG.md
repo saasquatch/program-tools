@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Breaking Changes
 
 - `showCountry` prop with `true` default replaced with `hideCountry` prop with `false` default for `<sqm-portal-profile>`
+- `enableValidation` prop with `true` default replaced with `disableValidation` prop with `false` default for `<sqm-password-field>`
+- `showPoweredBy` prop with `true` default replaced with `hidePoweredBy` prop with `false` default for `<sqm-portal-footer>`
+- `enablePasswordValidation` prop with `true` default replaced with `disablePasswordValidation` prop with `false` default for `<sqm-portal-register>`
+- `enablePasswordValidation` prop with `true` default replaced with `disablePasswordValidation` prop with `false` default for `<sqm-portal-registration-form>`
+
 
 ## [1.6.1] - 2022-06-09
 

@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property           | Attribute           | Description                     | Type                         | Default      |
-| ------------------ | ------------------- | ------------------------------- | ---------------------------- | ------------ |
-| `demoData`         | --                  |                                 | `PasswordFieldViewDemoProps` | `undefined`  |
-| `enableValidation` | `enable-validation` | Enable live password validation | `boolean`                    | `true`       |
-| `fieldLabel`       | `field-label`       | Label for password field        | `string`                     | `"Password"` |
+| Property            | Attribute            | Description                      | Type                         | Default      |
+| ------------------- | -------------------- | -------------------------------- | ---------------------------- | ------------ |
+| `demoData`          | --                   |                                  | `PasswordFieldViewDemoProps` | `undefined`  |
+| `disableValidation` | `disable-validation` | Disable live password validation | `boolean`                    | `false`      |
+| `fieldLabel`        | `field-label`        | Label for password field         | `string`                     | `"Password"` |
 
 
 ## Dependencies

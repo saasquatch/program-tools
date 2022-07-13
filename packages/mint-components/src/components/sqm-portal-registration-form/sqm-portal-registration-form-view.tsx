@@ -147,7 +147,7 @@ export function PortalRegistrationFormView(
         {!states.hideInputs && (
           <sqm-password-field
             fieldLabel={content.passwordLabel}
-            enable-validation={states.enablePasswordValidation}
+            disable-validation={!states.enablePasswordValidation}
           ></sqm-password-field>
         )}
         {content.passwordField}

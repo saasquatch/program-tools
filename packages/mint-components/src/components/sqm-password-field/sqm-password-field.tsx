@@ -45,10 +45,10 @@ export class PortalPasswordField {
   fieldLabel: string = "Password";
 
   /**
-   * Enable live password validation
-   * @uiName Enable Validation
+   * Disable live password validation
+   * @uiName Disable Validation
    */
-  @Prop() enableValidation: boolean = true;
+  @Prop() disableValidation: boolean = false;
 
   /**
    * @undocumented
@@ -94,7 +94,7 @@ function usePasswordFieldDemo(
   return deepmerge(
     {
       states: {
-        enableValidation: true,
+        enableValidation: !props.disableValidation,
         dynamicValidation,
         validationErrors: props?.demoData?.states?.validationErrors || {},
         registrationFormState: {},

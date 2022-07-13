@@ -194,6 +194,7 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
       confirmPassword: props.confirmPassword,
       hideInputs: props.hideInputs,
       loginPath: props.loginPath,
+      enablePasswordValidation: !props.disablePasswordValidation,
     },
     callbacks: {
       submit,
