@@ -21,6 +21,7 @@ export class PortalLogin {
    * Page participants are navigated to after login.
    *
    * @uiName Login Redirect Path
+   * @uiWidget pageSelect
    */
   @Prop()
   nextPage: string = "/";
@@ -45,6 +46,7 @@ export class PortalLogin {
 
   /**
    * @uiName Forgot Password Redirect Path
+   * @uiWidget pageSelect
    */
   @Prop() forgotPasswordPath: string = "/forgotPassword";
 
@@ -62,6 +64,7 @@ export class PortalLogin {
 
   /**
    * @uiName Register Button Redirect Path
+   * @uiWidget pageSelect
    */
   @Prop() registerPath: string = "/register";
 

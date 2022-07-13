@@ -1,4 +1,4 @@
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useEffect } from "@saasquatch/universal-hooks";
 import {
   navigation,
   useUserIdentity,
@@ -7,14 +7,21 @@ import {
 import { sanitizeUrlPath } from "../../utils/utils";
 
 export function usePortalVerifyEmail({ nextPage, failedPage }) {
-  const [verified, setVerified] = useState(false);
-  const [disableContinue, setDisableContinue] = useState(true);
   const userIdent = useUserIdentity();
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
-  const [error, setError] = useState("");
-  const urlParams = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(navigation.location.search);
   const oobCode = urlParams.get("oobCode");
   const nextPageOverride = urlParams.get("nextPage");
+
+  // derived from useMutation in component boilerplate initialState
+  const disableContinue =
+    data === undefined && errors === undefined && !!oobCode;
+
+  // if logged out, userIdent?.managedIdentity?.emailVerified will be falsey, even if verification was successful
+  const verified = !!(
+    userIdent?.managedIdentity?.emailVerified ||
+    data?.verifyManagedIdentityEmail.success
+  );
 
   const failed = () => {
     return navigation.push({
@@ -26,50 +33,30 @@ export function usePortalVerifyEmail({ nextPage, failedPage }) {
   const gotoNextPage = () => {
     urlParams.delete("nextPage");
     const url = sanitizeUrlPath(nextPageOverride || nextPage);
+    // window.history.pushState(undefined, "", url.href);
     navigation.push(url.href);
   };
 
   const submit = async () => {
     if (oobCode) {
-      setError("");
-      await request({ oobCode });
+      const result = await request({ oobCode });
+      if (
+        (result instanceof Error ||
+          !result.verifyManagedIdentityEmail.success) &&
+        !userIdent?.managedIdentity?.emailVerified
+      ) {
+        // pause on error if logged out/unverified
+        return;
+      }
+      setTimeout(() => {
+        gotoNextPage();
+      }, 3000);
     }
   };
 
   useEffect(() => {
-    if (data?.verifyManagedIdentityEmail?.success) {
-      setVerified(true);
-    }
-  }, [data?.verifyManagedIdentityEmail?.success]);
-
-  useEffect(() => {
     submit();
   }, []);
-
-  useEffect(() => {
-    if (userIdent?.managedIdentity?.emailVerified) {
-      setDisableContinue(false);
-      setTimeout(() => {
-        gotoNextPage();
-      }, 3000);
-    } else if (
-      !oobCode ||
-      data?.verifyManagedIdentityEmail?.success === false
-    ) {
-      setDisableContinue(false);
-    } else if (!userIdent) {
-      setDisableContinue(false);
-      setTimeout(() => {
-        gotoNextPage();
-      }, 3000);
-    }
-  }, [userIdent?.managedIdentity?.emailVerified]);
-
-  useEffect(() => {
-    if (errors?.message) {
-      setError("Network request failed.");
-    }
-  }, [errors]);
 
   return {
     states: {
@@ -77,7 +64,7 @@ export function usePortalVerifyEmail({ nextPage, failedPage }) {
       error:
         errors?.response?.errors?.[0]?.extensions?.message ||
         errors?.response?.errors?.[0]?.message ||
-        error,
+        (errors?.message && "Network request failed."),
       verified,
     },
     data: {

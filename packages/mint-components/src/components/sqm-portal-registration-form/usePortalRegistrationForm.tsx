@@ -74,7 +74,16 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
       initialData,
     };
     setRegistrationFormState(formState);
-  }, [queryResponse?.data?.form.initialData, formLoading]);
+  }, [queryResponse?.data?.form.initialData]);
+
+  useEffect(() => {
+    if (!formRef.current) return;
+    const form = formRef.current;
+    form.addEventListener("sl-input", inputFunction);
+    return () => {
+      form.removeEventListener("sl-input", inputFunction);
+    };
+  }, [formRef.current]);
 
   const submit = async (event: any) => {
     let formControls = event.target.getFormControls();
@@ -132,7 +141,21 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
       },
     };
     try {
-      await request(variables);
+      const result = await request(variables);
+      if (result instanceof Error) {
+        throw result;
+      }
+      const managedIdentityResponse = result.submitForm?.results.find(
+        (result) => result.formHandler.namespace === "identity"
+      );
+      if (
+        managedIdentityResponse &&
+        managedIdentityResponse.result.results.length &&
+        managedIdentityResponse.result.results[0].success &&
+        managedIdentityResponse.result.results[0].data.token
+      ) {
+        navigation.push(props.nextPage);
+      }
     } catch (error) {
       setValidationState({ error: "Network request failed." });
     }
@@ -144,29 +167,6 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     const asYouType = new AsYouType("US");
     e.target.value = asYouType.input(e.target.value);
   }, []);
-
-  useEffect(() => {
-    const managedIdentityResponse = data?.submitForm?.results.find(
-      (result) => result.formHandler.namespace === "identity"
-    );
-    if (
-      managedIdentityResponse &&
-      managedIdentityResponse.result.results.length &&
-      managedIdentityResponse.result.results[0].success &&
-      managedIdentityResponse.result.results[0].data.token
-    ) {
-      navigation.push(props.nextPage);
-    }
-  }, [data?.submitForm]);
-
-  useEffect(() => {
-    if (!formRef.current) return;
-    const form = formRef.current;
-    form.addEventListener("sl-input", inputFunction);
-    return () => {
-      form.removeEventListener("sl-input", inputFunction);
-    };
-  }, [formRef.current]);
 
   let errorMessage = "";
   if (queryResponse?.data?.form.initialData.isEnabled === false) {

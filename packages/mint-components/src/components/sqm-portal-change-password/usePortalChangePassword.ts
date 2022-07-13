@@ -35,14 +35,14 @@ export function usePortalChangePassword(props: PortalChangePassword) {
       password: formData.password,
     };
 
-    await request(variables);
-  };
-
-  useEffect(() => {
-    if (data?.changeManagedIdentityPassword?.success) {
+    const result = await request(variables);
+    if (
+      !(result instanceof Error) &&
+      result.changeManagedIdentityPassword?.success
+    ) {
       setSuccess(true);
     }
-  }, [data?.changeManagedIdentityPassword?.success]);
+  };
 
   return {
     states: {

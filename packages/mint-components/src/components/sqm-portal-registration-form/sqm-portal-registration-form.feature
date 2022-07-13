@@ -106,3 +106,17 @@ Feature: Portal Register
             """
         Then the terms and conditions slotted content is shown above the register button
         And the link opens in a new tab
+
+    @motivating
+    Scenario: Registration form initialData is loaded into formState
+        Given a registration form "microsite-registration" is configured
+        And the registration form has the initialData
+            """
+            {
+                "firstName": "Test",
+                "lastName": "Testerson",
+                "email": "test.testerson@example.com"
+            }
+            """
+        When the registration form loads
+        Then the firstName, lastName, and email fields will be populated with the initialData values

@@ -52,8 +52,8 @@ function useNameFieldsDemo(props: NameFields): Partial<NameFieldsViewProps> {
       states: {
         validationErrors: [],
         content: {
-          firstNameLabel: "First Name",
-          lastNameLabel: "Last Name",
+          firstNameLabel: props.firstNameLabel,
+          lastNameLabel: props.lastNameLabel,
         },
       },
     },

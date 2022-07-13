@@ -21,6 +21,15 @@ export function usePortalRegister(props: PortalRegister) {
   const [request, { loading, errors, data }] =
     useRegisterWithEmailAndPasswordMutation();
 
+  useEffect(() => {
+    if (!formRef.current) return;
+    const form = formRef.current;
+    form.addEventListener("sl-input", inputFunction);
+    return () => {
+      form.removeEventListener("sl-input", inputFunction);
+    };
+  }, [formRef.current]);
+
   const submit = async (event: any) => {
     let formControls = event.target.getFormControls();
 
@@ -74,7 +83,13 @@ export function usePortalRegister(props: PortalRegister) {
       redirectPath,
     };
     try {
-      await request(variables);
+      const result = await request(variables);
+      if (result instanceof Error) {
+        throw result;
+      }
+      if (result.registerManagedIdentityWithEmailAndPassword?.token) {
+        navigation.push(props.nextPage);
+      }
     } catch (error) {
       setValidationState({ error: "Network request failed." });
     }
@@ -86,21 +101,6 @@ export function usePortalRegister(props: PortalRegister) {
     const asYouType = new AsYouType("US");
     e.target.value = asYouType.input(e.target.value);
   }, []);
-
-  useEffect(() => {
-    if (data?.registerManagedIdentityWithEmailAndPassword?.token) {
-      navigation.push(props.nextPage);
-    }
-  }, [data?.registerManagedIdentityWithEmailAndPassword?.token]);
-
-  useEffect(() => {
-    if (!formRef.current) return;
-    const form = formRef.current;
-    form.addEventListener("sl-input", inputFunction);
-    return () => {
-      form.removeEventListener("sl-input", inputFunction);
-    };
-  }, [formRef.current]);
 
   let errorMessage = "";
   if (errors?.response?.["error"]) {

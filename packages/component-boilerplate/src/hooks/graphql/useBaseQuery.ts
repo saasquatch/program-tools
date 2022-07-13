@@ -17,7 +17,7 @@ export interface BaseQueryData<T = unknown> {
 }
 
 export type QueryData<T> = BaseQueryData<T> & {
-  refetch: (variables?: unknown) => unknown;
+  refetch: (variables?: unknown) => Promise<T | Error>;
 };
 
 /**

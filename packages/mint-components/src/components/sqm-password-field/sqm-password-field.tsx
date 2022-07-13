@@ -99,7 +99,7 @@ function usePasswordFieldDemo(
         validationErrors: props?.demoData?.states?.validationErrors || {},
         registrationFormState: {},
         content: {
-          fieldLabel: "Password",
+          fieldLabel: props.fieldLabel,
         },
       },
       callbacks: {

@@ -10,7 +10,7 @@ export function usePortalLogin(props) {
   const [request, { loading, errors, data }] =
     useAuthenticateWithEmailAndPasswordMutation();
   const [error, setError] = useState("");
-  const urlParams = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(navigation.location.search);
   const nextPageOverride = urlParams.get("nextPage");
 
   const submit = async (event: any) => {
@@ -22,22 +22,18 @@ export function usePortalLogin(props) {
     });
     const variables = { email: formData.email, password: formData.password };
 
-    await request(variables);
-  };
-
-  useEffect(() => {
-    if (data?.authenticateManagedIdentityWithEmailAndPassword?.token) {
+    const result = await request(variables);
+    if (result instanceof Error) {
+      if (result?.message || result?.["response"]?.["error"])
+        setError("Network request failed.");
+      return;
+    }
+    if (result.authenticateManagedIdentityWithEmailAndPassword?.token) {
       urlParams.delete("nextPage");
       const url = sanitizeUrlPath(nextPageOverride || props.nextPage);
       navigation.push(url.href);
     }
-  }, [data?.authenticateManagedIdentityWithEmailAndPassword?.token]);
-
-  useEffect(() => {
-    if (errors?.message || errors?.response?.["error"]) {
-      setError("Network request failed.");
-    }
-  }, [errors]);
+  };
 
   const errorMessage =
     errors?.response?.errors?.[0]?.extensions?.message ||

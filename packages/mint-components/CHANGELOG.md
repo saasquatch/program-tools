@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.2] - 2022-07-11
+
+### Breaking Changes
+
+- `showCountry` prop with `true` default replaced with `hideCountry` prop with `false` default for `<sqm-portal-profile>`
+
 ## [1.6.1] - 2022-06-09
 
 ### Changed
+
 - Removed brand color application to `<a>` tags
 - Update templates to portal templates to remove `<sqm-graphql-provider>`
 - Update Referral, Loyalty and Mono widget templates for SSW launch

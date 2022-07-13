@@ -19,7 +19,7 @@ interface ChangePasswordResult {
 }
 
 export function useChangePasswordMutation(): [
-  (e: { password: string }) => Promise<ChangePasswordResult | Error>,
+  (variables: { password: string }) => Promise<ChangePasswordResult | Error>,
   BaseQueryData<ChangePasswordResult>
 ] {
   const [request, { loading, data, errors }] =

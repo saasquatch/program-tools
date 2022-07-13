@@ -28,7 +28,7 @@ interface RequestPasswordResetEmailResult {
 }
 
 export function useRequestPasswordResetEmailMutation(): [
-  (e: {
+  (variables: {
     email: string;
     urlParams?: Record<string, any>;
   }) => Promise<RequestPasswordResetEmailResult | Error>,

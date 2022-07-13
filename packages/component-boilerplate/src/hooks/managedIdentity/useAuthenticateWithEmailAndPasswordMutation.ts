@@ -35,7 +35,7 @@ interface AuthenticateWithEmailAndPasswordResult {
 }
 
 export function useAuthenticateWithEmailAndPasswordMutation(): [
-  (e: {
+  (variables: {
     email: string;
     password: string;
   }) => Promise<AuthenticateWithEmailAndPasswordResult | Error>,
@@ -46,23 +46,33 @@ export function useAuthenticateWithEmailAndPasswordMutation(): [
       AuthenticateWithEmailAndPasswordMutation
     );
 
-  useEffect(() => {
-    if (data?.authenticateManagedIdentityWithEmailAndPassword) {
-      const { authenticateManagedIdentityWithEmailAndPassword: res } = data;
-      const jwt = res.token;
+  const requestAndSetUserIdentity = async (v: {
+    email: string;
+    password: string;
+  }) => {
+    const result = await request(v);
+    if (
+      !(result instanceof Error) &&
+      result.authenticateManagedIdentityWithEmailAndPassword
+    ) {
+      const jwt = result.authenticateManagedIdentityWithEmailAndPassword.token;
       const { user } = decode<DecodedSquatchJWT>(jwt);
       setUserIdentity({
         jwt,
         id: user.id,
         accountId: user.accountId,
         managedIdentity: {
-          email: res.email,
-          emailVerified: res.emailVerified,
-          sessionData: res.sessionData,
+          email: result.authenticateManagedIdentityWithEmailAndPassword.email,
+          emailVerified:
+            result.authenticateManagedIdentityWithEmailAndPassword
+              .emailVerified,
+          sessionData:
+            result.authenticateManagedIdentityWithEmailAndPassword.sessionData,
         },
       });
     }
-  }, [data?.authenticateManagedIdentityWithEmailAndPassword]);
+    return result;
+  };
 
-  return [request, { loading, data, errors }];
+  return [requestAndSetUserIdentity, { loading, data, errors }];
 }

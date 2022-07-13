@@ -1,5 +1,4 @@
 import gql from "graphql-tag";
-import { useEffect, useCallback } from "@saasquatch/universal-hooks";
 
 import { QueryData } from "../graphql/useBaseQuery";
 import { useUserIdentity, setUserIdentity } from "../environment";
@@ -31,17 +30,29 @@ export function useManagedIdentitySessionQuery(): [
   const [request, { loading, data, errors, refetch }] =
     useLazyQuery<ManagedIdentitySessionResult>(ManagedIdentitySessionQuery);
 
-  useEffect(() => {
-    if (data?.managedIdentitySession) {
-      const { managedIdentitySession: res } = data;
+  const updateUserIdentity = (result: ManagedIdentitySessionResult | Error) => {
+    if (!(result instanceof Error) && result.managedIdentitySession) {
       setUserIdentity({
         ...userIdentity,
-        managedIdentity: res,
+        managedIdentity: result.managedIdentitySession,
       });
     }
-  }, [data?.managedIdentitySession]);
+  };
 
-  const requestNoParams = useCallback(() => request({}), [request]);
+  const requestAndSetUserIdentity = async () => {
+    const result = await request({});
+    updateUserIdentity(result);
+    return result;
+  };
 
-  return [requestNoParams, { loading, data, errors, refetch }];
+  const refetchAndSetUserIdentity = async () => {
+    const result = await refetch();
+    updateUserIdentity(result);
+    return result;
+  };
+
+  return [
+    requestAndSetUserIdentity,
+    { loading, data, errors, refetch: refetchAndSetUserIdentity },
+  ];
 }
