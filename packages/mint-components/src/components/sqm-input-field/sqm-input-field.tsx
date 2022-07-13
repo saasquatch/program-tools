@@ -12,7 +12,7 @@ import { useInputField } from "./useInputField";
  * @uiName Form Input Field
  * @validParents ["sqm-portal-register","sqm-portal-registration-form"]
  * @exampleGroup Microsite Components
- * @example Form Input Field - <sqm-input-field slot="formData" input-label="Field Label" field-type="text" error-message="Cannot be empty"></sqm-input-field>
+ * @example Form Input Field - <sqm-input-field input-label="Field Label" field-type="text" error-message="Cannot be empty"></sqm-input-field>
  */
 @Component({
   tag: "sqm-input-field",
