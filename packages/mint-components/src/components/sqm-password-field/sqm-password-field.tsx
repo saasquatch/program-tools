@@ -27,7 +27,7 @@ export interface PasswordFieldViewDemoProps {
  * @uiName Form Password Field
  * @validParents ["sqm-portal-register","sqm-portal-registration-form"]
  * @exampleGroup Microsite Components
- * @example Form Password Field - <sqm-password-field field-label="Password" enable-validation></sqm-password-field>
+ * @example Form Password Field - <sqm-password-field field-label="Password"></sqm-password-field>
  */
 @Component({
   tag: "sqm-password-field",

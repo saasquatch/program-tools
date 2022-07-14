@@ -26,6 +26,7 @@ export class CheckboxField {
 
   /**
    * @uiName Checkbox Name Attribute
+   * @required
    */
   @Prop() checkboxName: string;
 

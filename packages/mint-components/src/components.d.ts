@@ -136,6 +136,7 @@ export namespace Components {
         "checkboxLabelLinkText": string;
         /**
           * @uiName Checkbox Name Attribute
+          * @required
          */
         "checkboxName": string;
         /**
@@ -178,6 +179,7 @@ export namespace Components {
         "dropdownLabel": string;
         /**
           * @uiName Dropdown Name Attribute
+          * @required
          */
         "dropdownName": string;
         /**
@@ -264,6 +266,24 @@ export namespace Components {
           * @uiName Domain
          */
         "domain": string;
+    }
+    interface SqmHeaderLogo {
+        /**
+          * @uiName Logo Height
+         */
+        "height": number;
+        /**
+          * @uiWidget ImageUpload
+          * @format url
+          * @uiName Logo Image
+         */
+        "imageUrl": string;
+        /**
+          * Page participants are navigated to after clicking the header logo.
+          * @uiName Redirect Path
+          * @uiWidget pageSelect
+         */
+        "nextPage": string;
     }
     interface SqmHero {
         /**
@@ -436,6 +456,7 @@ export namespace Components {
         /**
           * Used as the key of the inputs value in form data.
           * @uiName Input Name Attribute
+          * @required
          */
         "fieldName": string;
         /**
@@ -614,6 +635,7 @@ export namespace Components {
         "label": string;
         /**
           * @uiName Navigation Path
+          * @uiWidget pageSelect
          */
         "path": string;
     }
@@ -1096,6 +1118,7 @@ export namespace Components {
         /**
           * Microsite Registration Form Key
           * @uiName Form Key
+          * @required
          */
         "formKey": string;
         /**
@@ -2385,6 +2408,12 @@ declare global {
         prototype: HTMLSqmGraphqlClientProviderElement;
         new (): HTMLSqmGraphqlClientProviderElement;
     };
+    interface HTMLSqmHeaderLogoElement extends Components.SqmHeaderLogo, HTMLStencilElement {
+    }
+    var HTMLSqmHeaderLogoElement: {
+        prototype: HTMLSqmHeaderLogoElement;
+        new (): HTMLSqmHeaderLogoElement;
+    };
     interface HTMLSqmHeroElement extends Components.SqmHero, HTMLStencilElement {
     }
     var HTMLSqmHeroElement: {
@@ -2842,6 +2871,7 @@ declare global {
         "sqm-empty": HTMLSqmEmptyElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
+        "sqm-header-logo": HTMLSqmHeaderLogoElement;
         "sqm-hero": HTMLSqmHeroElement;
         "sqm-hero-image": HTMLSqmHeroImageElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
@@ -3014,6 +3044,7 @@ declare namespace LocalJSX {
         "checkboxLabelLinkText"?: string;
         /**
           * @uiName Checkbox Name Attribute
+          * @required
          */
         "checkboxName"?: string;
         /**
@@ -3056,6 +3087,7 @@ declare namespace LocalJSX {
         "dropdownLabel"?: string;
         /**
           * @uiName Dropdown Name Attribute
+          * @required
          */
         "dropdownName"?: string;
         /**
@@ -3142,6 +3174,24 @@ declare namespace LocalJSX {
           * @uiName Domain
          */
         "domain"?: string;
+    }
+    interface SqmHeaderLogo {
+        /**
+          * @uiName Logo Height
+         */
+        "height"?: number;
+        /**
+          * @uiWidget ImageUpload
+          * @format url
+          * @uiName Logo Image
+         */
+        "imageUrl"?: string;
+        /**
+          * Page participants are navigated to after clicking the header logo.
+          * @uiName Redirect Path
+          * @uiWidget pageSelect
+         */
+        "nextPage"?: string;
     }
     interface SqmHero {
         /**
@@ -3314,6 +3364,7 @@ declare namespace LocalJSX {
         /**
           * Used as the key of the inputs value in form data.
           * @uiName Input Name Attribute
+          * @required
          */
         "fieldName"?: string;
         /**
@@ -3492,6 +3543,7 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * @uiName Navigation Path
+          * @uiWidget pageSelect
          */
         "path"?: string;
     }
@@ -3974,6 +4026,7 @@ declare namespace LocalJSX {
         /**
           * Microsite Registration Form Key
           * @uiName Form Key
+          * @required
          */
         "formKey"?: string;
         /**
@@ -5177,6 +5230,7 @@ declare namespace LocalJSX {
         "sqm-empty": SqmEmpty;
         "sqm-form-message": SqmFormMessage;
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
+        "sqm-header-logo": SqmHeaderLogo;
         "sqm-hero": SqmHero;
         "sqm-hero-image": SqmHeroImage;
         "sqm-hook-story-container": SqmHookStoryContainer;
@@ -5269,6 +5323,7 @@ declare module "@stencil/core" {
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
+            "sqm-header-logo": LocalJSX.SqmHeaderLogo & JSXBase.HTMLAttributes<HTMLSqmHeaderLogoElement>;
             "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
             "sqm-hero-image": LocalJSX.SqmHeroImage & JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;

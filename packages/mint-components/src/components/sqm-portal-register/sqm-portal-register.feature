@@ -91,7 +91,7 @@ Feature: Portal Register
             | has          | /verifyMyEmail | /verifyMyEmail |
 
     @ui
-    Scenario Outline: Slotted content can be included above the register button
+    Scenario: Slotted content can be included above the register button
         Given a user viewing the register component
         And the registration component contains the following html
             """
@@ -106,3 +106,16 @@ Feature: Portal Register
             """
         Then the terms and conditions slotted content is shown above the register button
         And the link opens in a new tab
+
+    @motivating
+    Scenario Outline: Password Validation is enabled by default
+        Given the registration component <mayHaveProp> "disable-validation" with <value>
+        And a user viewing the registration component
+        Then they <maySee> the password validation
+        Examples:
+            | mayHaveProp       | value | maySee    |
+            | has prop          | true  | don't see |
+            | has prop          | false | see       |
+            | has prop          | test  | don't see |
+            | has prop          |       | don't see |
+            | doesn't have prop |       | see       |

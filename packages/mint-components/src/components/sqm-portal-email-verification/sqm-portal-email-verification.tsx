@@ -44,7 +44,7 @@ export class PortalEmailVerification {
    * @uiWidget textArea
    */
   @Prop() verifyMessage: string =
-    "A verification email was sent to {email}. Please verify your email to continue to the portal.";
+    "A verification email was sent to {email}. Please verify your email to continue to the portal. Resending an email with invalidate the previous email.";
 
   /**
    * @undocumented

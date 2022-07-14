@@ -27,6 +27,7 @@ export class DropdownField {
 
   /**
    * @uiName Dropdown Name Attribute
+   * @required
    */
   @Prop() dropdownName: string;
 

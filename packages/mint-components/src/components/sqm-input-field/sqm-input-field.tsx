@@ -25,6 +25,7 @@ export class InputField {
    * Used as the key of the inputs value in form data.
    * 
    * @uiName Input Name Attribute
+   * @required
    */
   @Prop() fieldName: string;
 

@@ -91,7 +91,7 @@ Feature: Portal Register
             | has          | /verifyMyEmail | /verifyMyEmail |
 
     @ui
-    Scenario Outline: Slotted content can be included above the register button
+    Scenario: Slotted content can be included above the register button
         Given a user viewing the register component
         And the registration component contains the following html
             """
@@ -108,6 +108,19 @@ Feature: Portal Register
         And the link opens in a new tab
 
     @motivating
+    Scenario Outline: Password Validation is enabled by default
+        Given the registration component <mayHaveProp> "disable-validation" with <value>
+        And a user viewing the registration component
+        Then they <maySee> the password validation
+        Examples:
+            | mayHaveProp       | value | maySee    |
+            | has prop          | true  | don't see |
+            | has prop          | false | see       |
+            | has prop          | test  | don't see |
+            | has prop          |       | don't see |
+            | doesn't have prop |       | see       |
+
+    @motivating
     Scenario: Registration form initialData is loaded into formState
         Given a registration form "microsite-registration" is configured
         And the registration form has the initialData
@@ -120,3 +133,11 @@ Feature: Portal Register
             """
         When the registration form loads
         Then the firstName, lastName, and email fields will be populated with the initialData values
+
+    @motivating
+    Scenario: The Registration form key maps to a SaaSquatch form and makes a submission
+        Given a SaaSquatch registration form with key "microsite-registration"
+        And the registration component has prop "form-key" with value "microsite-registration"
+        When a user submits the registration form
+        Then a "microsite-registration" form submission is recorded in SaaSquatch
+        And all form fields are recorded in the submission expect for the password

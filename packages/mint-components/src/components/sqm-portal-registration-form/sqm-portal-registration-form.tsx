@@ -108,8 +108,9 @@ export class PortalRegistrationForm {
    * Microsite Registration Form Key
    *
    * @uiName Form Key
+   * @required
    */
-  @Prop() formKey: string = "microsite-registration";
+  @Prop() formKey: string;
 
   /**
    * @undocumented
