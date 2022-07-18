@@ -21,9 +21,9 @@ export class PortalEmailVerification {
   ignored = true;
 
   /**
-   * The microsite page that participants are redirected to from the verification email.
+   * Redirect participants to this page from their verification email.
    *
-   * @uiName Email Redirection Path
+   * @uiName Email Redirect
    * @uiWidget pageSelect
    */
   @Prop()

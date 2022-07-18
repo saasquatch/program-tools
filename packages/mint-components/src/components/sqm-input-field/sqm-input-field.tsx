@@ -22,7 +22,7 @@ export class InputField {
   ignored = true;
 
   /**
-   * Used as the key of the inputs value in form data.
+   * This name is used as the key for this form field on submission. The name must be unique within this specific form.
    * 
    * @uiName Input Name Attribute
    * @required

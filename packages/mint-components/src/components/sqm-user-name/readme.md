@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property      | Attribute      | Description                     | Type                                                              | Default            |
-| ------------- | -------------- | ------------------------------- | ----------------------------------------------------------------- | ------------------ |
-| `demoData`    | --             |                                 | `{ loading?: boolean; loadingText?: string; username?: string; }` | `undefined`        |
-| `fallback`    | `fallback`     | Fallback name for unknown users | `string`                                                          | `"Anonymous User"` |
-| `loadingText` | `loading-text` |                                 | `string`                                                          | `"..."`            |
+| Property      | Attribute      | Description                                             | Type                                                              | Default            |
+| ------------- | -------------- | ------------------------------------------------------- | ----------------------------------------------------------------- | ------------------ |
+| `demoData`    | --             |                                                         | `{ loading?: boolean; loadingText?: string; username?: string; }` | `undefined`        |
+| `fallback`    | `fallback`     |                                                         | `string`                                                          | `"Anonymous User"` |
+| `loadingText` | `loading-text` | Text displayed while the participant’s name is loading. | `string`                                                          | `"..."`            |
 
 
 ## Dependencies

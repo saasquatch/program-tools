@@ -25,6 +25,7 @@ export class CheckboxField {
   ignored = true;
 
   /**
+   * This name is used as the key for this form field on submission. The name must be unique within this specific form.
    * @uiName Checkbox Name Attribute
    * @required
    */

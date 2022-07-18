@@ -27,28 +27,28 @@ export class PortalChangePassword {
   @Prop() modalChangePasswordHeader: string = "Change Password";
 
   /**
-   * Modal cancel button text
+   * Found in modal
    *
    * @uiName Cancel Button Text
    */
   @Prop() cancelText: string = "Cancel";
 
   /**
-   * Modal change password button text
+   * Found in modal
    *
    * @uiName Change Password Button Text
    */
   @Prop() changePasswordButtonText: string = "Change Password";
 
   /**
-   * Password input field label
+   * Found in modal
    *
-   * @uiName Password Label
+   * @uiName New Password Field Label
    */
   @Prop() passwordFieldLabel: string = "New Password";
 
   /**
-   * Password confirmation input field label
+   * Found in modal
    *
    * @uiName Confirm Password Label
    */

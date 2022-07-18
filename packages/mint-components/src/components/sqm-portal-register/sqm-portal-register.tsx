@@ -22,7 +22,7 @@ export class PortalRegister {
   ignored = true;
 
   /**
-   * Redirect participants to this page after they successfully register.
+   * Redirect participants to this page from their verification email
    *
    * @uiName Registration Redirect
    * @uiWidget pageSelect
@@ -81,9 +81,9 @@ export class PortalRegister {
   disablePasswordValidation: boolean = false;
 
   /**
-   * Hide default input fields to use custom fields.
+   * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
    *
-   * @uiName Hide Default Inputs
+   * @uiName Hide Default Fields
    */
   @Prop()
   hideInputs: boolean = false;

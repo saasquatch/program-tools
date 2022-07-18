@@ -16,6 +16,7 @@ export class SqmRoute {
   ignored = true;
 
   /**
+   * Page Path URL for this route.
    * @uiName Navigation Path Name
    */
   @Prop() path: string;

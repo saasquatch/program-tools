@@ -16,7 +16,7 @@ export class PortalProtectedRoute {
   ignored = true;
 
   /**
-   * Redirect participants to this path they are not logged in.
+   * Redirect participants to this page they are not logged in.
    * 
    * @uiName Redirect Path
    */

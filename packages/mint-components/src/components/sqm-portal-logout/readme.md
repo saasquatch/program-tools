@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property   | Attribute   | Description                                          | Type     | Default |
-| ---------- | ----------- | ---------------------------------------------------- | -------- | ------- |
-| `nextPage` | `next-page` | Redirect participants to this path when they log out | `string` | `"/"`   |
+| Property   | Attribute   | Description                                           | Type     | Default |
+| ---------- | ----------- | ----------------------------------------------------- | -------- | ------- |
+| `nextPage` | `next-page` | Redirect participants to this page when they log out. | `string` | `"/"`   |
 
 
 ----------------------------------------------
