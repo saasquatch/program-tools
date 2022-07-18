@@ -57,8 +57,6 @@ export class PortalProfile {
   @Prop() submitChangeButtonText: string = "Submit Changes";
 
   /**
-   * Show or hide the country field.
-   *
    * @uiName Hide Country Field
    */
   @Prop() hideCountry: boolean = false;

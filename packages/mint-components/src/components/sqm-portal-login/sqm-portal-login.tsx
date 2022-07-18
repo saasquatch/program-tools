@@ -18,9 +18,9 @@ export class PortalLogin {
   ignored = true;
 
   /**
-   * Page participants are navigated to after login.
+   * Redirect participants to this page after they successfully login.
    *
-   * @uiName Login Redirect Path
+   * @uiName Login Redirect
    * @uiWidget pageSelect
    */
   @Prop()
@@ -45,7 +45,8 @@ export class PortalLogin {
   submitLabel: string = "Sign In";
 
   /**
-   * @uiName Forgot Password Redirect Path
+   * Redirect participants to this page to reset their password
+   * @uiName Forgot Password Redirect
    * @uiWidget pageSelect
    */
   @Prop() forgotPasswordPath: string = "/forgotPassword";
@@ -63,7 +64,8 @@ export class PortalLogin {
   registerLabel: string = "Register";
 
   /**
-   * @uiName Register Button Redirect Path
+   * Redirect participants to this page to start registration.
+   * @uiName Register Button Redirect
    * @uiWidget pageSelect
    */
   @Prop() registerPath: string = "/register";

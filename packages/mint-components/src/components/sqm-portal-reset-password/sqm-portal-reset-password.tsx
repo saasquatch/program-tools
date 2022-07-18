@@ -21,27 +21,25 @@ export class PortalResetPassword {
   ignored = true;
 
   /**
-   * The page that participants are redirected to when the password reset succeeds.
+   * Redirect participants to this page when they successfully reset their password.
    *
-   * @uiName Reset Successful Redirect Path
+   * @uiName Successful Reset Redirect
    * @uiWidget pageSelect
    */
   @Prop()
   nextPage: string = "/";
 
   /**
-   * The page that participants are redirected to if the reset fails due to outdated password reset attempt.
+   * Redirect participants to this page if password reset fails due to an outdated reset attempt.
    *
-   * @uiName Reset Failed Redirect Path
+   * @uiName Failed Reset Redirect
    * @uiWidget pageSelect
    */
   @Prop()
   failedPage: string = "/";
 
   /**
-   * Show or hide confirm password field.
-   *
-   * @uiName Show Confirm Password
+   * @uiName Show Confirm Password Field
    */
   @Prop()
   confirmPassword: boolean = false;
@@ -72,12 +70,12 @@ export class PortalResetPassword {
   @Prop() continueButtonText: string = "Continue";
 
   /**
-   * @uiName Password Comfirmation Label
+   * @uiName Password Confirmation Field Label
    */
   @Prop() confirmPasswordFieldLabel: string = "Confirm Password";
 
   /**
-   * @uiName Password Label
+   * @uiName Password Field Label
    */
   @Prop() passwordFieldLabel: string = "New Password";
 

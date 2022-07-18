@@ -21,9 +21,9 @@ export class PortalForgotPassword {
   ignored = true;
 
   /**
-   * The microsite page that participants are redirected to from the password reset email.
+   * Redirect participants to this page after they verify their email.
    *
-   * @uiName Email Redirection Path
+   * @uiName Email Redirect
    * @uiWidget pageSelect
    */
   @Prop()

@@ -30,7 +30,7 @@ export class PortalProtectedRoute {
   requireEmailVerification: boolean = false;
 
   /**
-   * Redirect participants to this path when email verification is required but they have not verified their email.
+   * Redirect participants to this page when email verification is required but they have not verified their email.
    * 
    * @uiName Unverified Participant Redirect Path
    */

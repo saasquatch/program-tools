@@ -21,18 +21,18 @@ export class PortalVerifyEmail {
   ignored = true;
 
   /**
-   * The page that participants are redirected to when the verification succeeds.
+   * Redirect participants to this page when they successfully verify their email.
    *
-   * @uiName Verification Redirect Path
+   * @uiName Successful Verification Redirect
    * @uiWidget pageSelect
    */
   @Prop()
   nextPage: string = "/";
 
   /**
-   * The page that participants are redirected to if verification fails due to outdated verification attempt.
+   * Redirect participants to this page if verification fails due to an outdated verification attempt.
    *
-   * @uiName Verification Failed Redirect Path
+   * @uiName Failed Verification Redirect
    * @uiWidget pageSelect
    */
   @Prop()

@@ -22,9 +22,9 @@ export class PortalRegistrationForm {
   ignored = true;
 
   /**
-   * Page participants are navigated to after registration.
+   * Redirect participants to this page after they successfully register.
    *
-   * @uiName Registration Redirect Path
+   * @uiName Registration Redirect
    * @uiWidget pageSelect
    */
   @Prop()
@@ -33,7 +33,7 @@ export class PortalRegistrationForm {
   /**
    * The page that participants are redirected to from the verification email.
    *
-   * @uiName Email Redirection Path
+   * @uiName Email Verification Redirect
    * @uiWidget pageSelect
    */
   @Prop()
@@ -64,13 +64,11 @@ export class PortalRegistrationForm {
   loginLabel: string = "Sign in";
 
   /**
-   * @uiName Confirm Password Label
+   * @uiName Confirm Password Field Label
    */
   @Prop() confirmPasswordLabel: string = "Confirm Password";
 
   /**
-   * Show or hide the confirm password input.
-   *
    * @uiName Show Confirm Password Field
    */
   @Prop()
@@ -97,15 +95,15 @@ export class PortalRegistrationForm {
   pageLabel: string = "Register";
 
   /**
-   * Login button redirection path.
+   * Redirect participants to this page after clicking the login button.
    *
-   * @uiName Login Redirect Path
+   * @uiName Login Redirect
    * @uiWidget pageSelect
    */
   @Prop() loginPath: string = "/login";
 
   /**
-   * Microsite Registration Form Key
+   * The key of the registration form used for this microsite. 
    *
    * @uiName Form Key
    * @required

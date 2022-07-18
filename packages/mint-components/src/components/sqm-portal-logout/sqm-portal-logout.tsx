@@ -15,7 +15,7 @@ export class PortalLogout {
   ignored = true;
 
   /**
-   * Redirect participants to this path when they log out
+   * Redirect participants to this page when they log out.
    *
    * @uiName Logout Redirect Path
    * @uiWidget pageSelect
