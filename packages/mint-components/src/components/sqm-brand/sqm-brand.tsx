@@ -39,7 +39,12 @@ export class BrandComponent {
 
   render() {
     const brandColor = this.brandColor ?? "#FFF";
-    const css = autoColorScaleCss(brandColor);
+    let css;
+    try {
+      css = autoColorScaleCss(brandColor);
+    } catch {
+      css = autoColorScaleCss("#FFF");
+    }
     const sanitizedFont = (this.brandFont ?? "Nunito Sans").trim() || undefined;
 
     useEffect(() => {
