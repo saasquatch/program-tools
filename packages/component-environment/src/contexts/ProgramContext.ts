@@ -46,5 +46,5 @@ export function setProgramId(programId: string | undefined) {
  * Get the current value of the program context
  */
 export function getProgramId() {
-  return window.squatchLocale?.context;
+  return window.squatchProgramId?.context;
 }
