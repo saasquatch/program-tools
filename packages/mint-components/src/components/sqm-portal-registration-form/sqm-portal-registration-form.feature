@@ -121,18 +121,73 @@ Feature: Portal Register
             | doesn't have prop |       | see       |
 
     @motivating
-    Scenario: Registration form initialData is loaded into formState
+    Scenario Outline: Registration form initialData is loaded into formState
         Given a registration form "microsite-registration" is configured
-        And the registration form has the initialData
-            """
-            {
-                "firstName": "Test",
-                "lastName": "Testerson",
-                "email": "test.testerson@example.com"
-            }
-            """
+        And there is a <slottedComponent> slotted with <fieldName>
+        And the registration form has the initialData <initialData>
         When the registration form loads
-        Then the firstName, lastName, and email fields will be populated with the initialData values
+        Then the email field and <slottedComponent> are prefilled with <initialData>
+
+        Examples:
+            | slottedComponent   | fieldName           | initialData                                                                      |
+            | sqm-name-fields    | firstName, lastName | { "email": "test@example.com" , "firstName": "Test", "lastName": "Testerson"}    |
+            | sqm-password-field | password            | { "email": "test@example.com" , "password": "Test1234", "lastName": "Testerson"} |
+            | sqm-input-field    | testInput           | { "email": "test@example.com" , "testInput": "Test"}                             |
+            | sqm-checkbox-field | testCheckbox        | { "email": "test@example.com" , "testCheckbox": true}                            |
+            | sqm-dropdown-field | testDropdown        | { "email": "test@example.com" , "testCheckbox": "Test"}                          |
+
+    @motivating
+    Scenario Outline: Slotted content displays validation states through form context
+        Given a user viewing the registration form component
+        And the registration form component has <slottedContent>
+        And it is required
+        When the form is submitted
+        Then they see the <slottedField> is outlined in red
+        And they see the error text below the <slottedField>
+        Examples:
+            | slottedContent     | slottedField    |
+            | N/A                | email           |
+            | N/A                | password        |
+            | sqm-name-fields    | First Name      |
+            | sqm-name-fields    | Last Name       |
+            | sqm-input-field    | Custom Input    |
+            | sqm-checkbox-field | Custom Checkbox |
+            | sqm-dropdown-field | Custom Dropdown |
+            | sqm-password-field | Custom Password |
+
+    @motivating
+    Scenario Outline: Slotted content fields are disable during submission through form context
+        Given a user viewing the registration form component
+        And the registration form component has <slottedContent>
+        When the form is submitted
+        Then they see the <slottedField> is disabled during submission
+        Examples:
+            | slottedContent     | slottedField    |
+            | N/A                | email           |
+            | N/A                | password        |
+            | sqm-name-fields    | First Name      |
+            | sqm-name-fields    | Last Name       |
+            | sqm-input-field    | Custom Input    |
+            | sqm-checkbox-field | Custom Checkbox |
+            | sqm-dropdown-field | Custom Dropdown |
+            | sqm-password-field | Custom Password |
+
+    @motivating
+    Scenario Outline: Slotted content fields are disabled if registration form is disbabled
+        Given a user viewing the registration form component
+        And the registration form is disabled
+        And the registration form component has <slottedContent>
+        Then they see the <slottedField> is disabled on load
+        Examples:
+            | slottedContent     | slottedField    |
+            | N/A                | email           |
+            | N/A                | password        |
+            | sqm-name-fields    | First Name      |
+            | sqm-name-fields    | Last Name       |
+            | sqm-input-field    | Custom Input    |
+            | sqm-checkbox-field | Custom Checkbox |
+            | sqm-dropdown-field | Custom Dropdown |
+            | sqm-password-field | Custom Password |
 
     @motivating
     Scenario: The Registration form key maps to a SaaSquatch form and makes a submission

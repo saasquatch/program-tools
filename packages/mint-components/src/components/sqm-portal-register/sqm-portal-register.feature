@@ -108,6 +108,42 @@ Feature: Portal Register
         And the link opens in a new tab
 
     @motivating
+    Scenario Outline: Slotted content fields are disable during submission through form context
+        Given a user viewing the register component
+        And the register component has <slottedContent>
+        When the form is submitted
+        Then they see the <slottedField> is disabled during submission
+        Examples:
+            | slottedContent     | slottedField    |
+            | N/A                | email           |
+            | N/A                | password        |
+            | sqm-name-fields    | First Name      |
+            | sqm-name-fields    | Last Name       |
+            | sqm-input-field    | Custom Input    |
+            | sqm-checkbox-field | Custom Checkbox |
+            | sqm-dropdown-field | Custom Dropdown |
+            | sqm-password-field | Custom Password |
+
+    @motivating
+    Scenario Outline: Slotted content displays validation states through form context
+        Given a user viewing the register component
+        And the register component has <slottedContent>
+        And it is required
+        When the form is submitted
+        Then they see the <slottedField> is outlined in red
+        And they see the error text below the <slottedField>
+        Examples:
+            | slottedContent     | slottedField    |
+            | N/A                | email           |
+            | N/A                | password        |
+            | sqm-name-fields    | First Name      |
+            | sqm-name-fields    | Last Name       |
+            | sqm-input-field    | Custom Input    |
+            | sqm-checkbox-field | Custom Checkbox |
+            | sqm-dropdown-field | Custom Dropdown |
+            |                    | Custom Password |
+
+    @motivating
     Scenario Outline: Password Validation is enabled by default
         Given the registration component <mayHaveProp> "disable-validation" with <value>
         And a user viewing the registration component
