@@ -10,7 +10,7 @@ export default {
 
 const defaultProps: DropdownFieldViewProps = {
   states: {
-    validationErrors: {},
+    registrationFormState: {},
   },
   content: {
     dropdownName: "options",
@@ -43,8 +43,10 @@ export const Error = createHookStory(() => (
     {...defaultProps}
     states={{
       ...defaultProps.states,
-      validationErrors: {
-        options: "Must select an option",
+      registrationFormState: {
+        validationErrors: {
+          options: "Must select an option",
+        },
       },
     }}
   />
@@ -53,11 +55,16 @@ export const Error = createHookStory(() => (
 export const CustomError = createHookStory(() => (
   <DropdownFieldView
     {...defaultProps}
-    content={{...defaultProps.content, errorMessage: "An option must be selected to continue",}}
+    content={{
+      ...defaultProps.content,
+      errorMessage: "An option must be selected to continue",
+    }}
     states={{
       ...defaultProps.states,
-      validationErrors: {
-       options: "Must select an option",
+      registrationFormState: {
+        validationErrors: {
+          options: "Must select an option",
+        },
       },
     }}
   />

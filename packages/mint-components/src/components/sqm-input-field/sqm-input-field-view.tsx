@@ -3,11 +3,11 @@ import jss from "jss";
 import preset from "jss-preset-default";
 import { intl } from "../../global/global";
 import { ErrorStyles } from "../../global/mixins";
-import { ValidationErrors } from "../sqm-portal-register/useValidationState";
+import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export interface InputFieldViewProps {
   states: {
-    validationErrors?: ValidationErrors;
+    registrationFormState?: RegistrationFormState;
   };
   content: {
     fieldName: string;
@@ -39,7 +39,7 @@ const styleString = sheet.toString();
 
 export function InputFieldView(props: InputFieldViewProps) {
   const { states, content } = props;
-  const validationErrors = states?.validationErrors;
+  const validationErrors = states?.registrationFormState?.validationErrors;
 
   return (
     <div class={sheet.classes.FieldContainer}>
@@ -53,6 +53,16 @@ export function InputFieldView(props: InputFieldViewProps) {
         type={content.fieldType}
         label={content.fieldLabel}
         {...(!content.fieldOptional ? { required: true } : [])}
+        disabled={
+          states.registrationFormState?.loading ||
+          states.registrationFormState?.disabled
+        }
+        {...(states.registrationFormState?.initialData?.[content.fieldName]
+          ? {
+              value:
+                states.registrationFormState?.initialData?.[content.fieldName],
+            }
+          : {})}
         {...(validationErrors?.[content.fieldName]
           ? {
               class: sheet.classes.ErrorStyle,

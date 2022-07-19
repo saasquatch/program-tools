@@ -7,7 +7,6 @@ import {
   HostBlock,
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
-import { FormState } from "../sqm-portal-register/useValidationState";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 import { RegistrationFormState } from "./useRegistrationFormState";
 
@@ -17,7 +16,6 @@ export interface PortalRegistrationFormViewProps {
     loading: boolean;
     confirmPassword: boolean;
     hideInputs: boolean;
-    validationState?: FormState;
     registrationFormState?: RegistrationFormState;
     enablePasswordValidation?: boolean;
     loginPath: string;
@@ -134,11 +132,11 @@ export function PortalRegistrationFormView(
                   value: states.registrationFormState?.initialData?.email,
                 }
               : {})}
-            {...(states.validationState?.validationErrors?.email
+            {...(states.registrationFormState?.validationErrors?.email
               ? {
                   class: sheet.classes.ErrorStyle,
                   helpText:
-                    states.validationState?.validationErrors?.email ||
+                    states.registrationFormState?.validationErrors?.email ||
                     "Cannot be empty",
                 }
               : [])}
@@ -165,12 +163,12 @@ export function PortalRegistrationFormView(
                     states.registrationFormState?.initialData?.confirmPassword,
                 }
               : {})}
-            {...(states.validationState?.validationErrors?.confirmPassword
+            {...(states.registrationFormState?.validationErrors?.confirmPassword
               ? {
                   class: sheet.classes.ErrorStyle,
                   helpText:
-                    states.validationState?.validationErrors?.confirmPassword ||
-                    "Cannot be empty",
+                    states.registrationFormState?.validationErrors
+                      ?.confirmPassword || "Cannot be empty",
                 }
               : [])}
           ></sl-input>

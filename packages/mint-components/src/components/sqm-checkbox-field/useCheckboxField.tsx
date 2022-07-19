@@ -1,16 +1,18 @@
 import { useDomContext } from "@saasquatch/stencil-hooks";
 import { useState } from "@saasquatch/universal-hooks";
 import {
-  FormState,
-  FORM_VALIDATION_CONTEXT,
-} from "../sqm-portal-register/useValidationState";
+  RegistrationFormState,
+  REGISTRATION_FORM_STATE_CONTEXT,
+} from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export function useCheckboxField() {
-  const validationState = useDomContext<FormState>(FORM_VALIDATION_CONTEXT);
+  const registrationFormState = useDomContext<RegistrationFormState>(
+    REGISTRATION_FORM_STATE_CONTEXT
+  );
   const [checked, setChecked] = useState(false);
   return {
     states: {
-      validationErrors: validationState?.validationErrors,
+      registrationFormState,
       checked,
     },
     callbacks: {

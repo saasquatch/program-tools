@@ -1,12 +1,10 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { ErrorStyles } from "../../global/mixins";
-import { ValidationErrors } from "../sqm-portal-register/useValidationState";
 import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export interface NameFieldsViewProps {
   states: {
-    validationErrors?: ValidationErrors;
     registrationFormState?: RegistrationFormState;
     content: {
       firstNameLabel: string;
@@ -42,7 +40,7 @@ const styleString = sheet.toString();
 
 export function NameFieldsView(props: NameFieldsViewProps) {
   const { states } = props;
-  const validationErrors = states?.validationErrors;
+  const validationErrors = states?.registrationFormState?.validationErrors;
   return (
     <div class={sheet.classes.FieldsContainer}>
       <style type="text/css">

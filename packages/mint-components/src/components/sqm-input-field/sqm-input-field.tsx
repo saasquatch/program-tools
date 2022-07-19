@@ -23,7 +23,7 @@ export class InputField {
 
   /**
    * Used as the key of the inputs value in form data.
-   * 
+   *
    * @uiName Input Name Attribute
    * @required
    */
@@ -97,7 +97,7 @@ function useInputFieldDemo(props: InputField): Partial<InputFieldViewProps> {
   return deepmerge(
     {
       states: {
-        validationErrors: [],
+        registrationFormState: {},
       },
     },
     props.demoData || {},

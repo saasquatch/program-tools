@@ -1,15 +1,17 @@
 import { useDomContext } from "@saasquatch/stencil-hooks";
 import {
-  FormState,
-  FORM_VALIDATION_CONTEXT,
-} from "../sqm-portal-register/useValidationState";
+  RegistrationFormState,
+  REGISTRATION_FORM_STATE_CONTEXT,
+} from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export function useInputField() {
-  const validationState = useDomContext<FormState>(FORM_VALIDATION_CONTEXT);
+  const registrationFormState = useDomContext<RegistrationFormState>(
+    REGISTRATION_FORM_STATE_CONTEXT
+  );
 
   return {
     states: {
-      validationErrors: validationState?.validationErrors,
+      registrationFormState: registrationFormState,
     },
   };
 }

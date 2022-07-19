@@ -4,9 +4,9 @@ import {
   navigation,
   useRegisterWithEmailAndPasswordMutation,
 } from "@saasquatch/component-boilerplate";
-import { useValidationState } from "./useValidationState";
 import { PortalRegister } from "./sqm-portal-register";
 import { AsYouType } from "libphonenumber-js";
+import { useRegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -17,7 +17,8 @@ export type ValidationErrorFunction = (input: {
 
 export function usePortalRegister(props: PortalRegister) {
   const formRef = useRef<HTMLFormElement>(null);
-  const { validationState, setValidationState } = useValidationState({});
+  const { registrationFormState, setRegistrationFormState } =
+    useRegistrationFormState({});
   const [request, { loading, errors, data }] =
     useRegisterWithEmailAndPasswordMutation();
 
@@ -65,11 +66,17 @@ export function usePortalRegister(props: PortalRegister) {
       };
     }
 
-    setValidationState({ error: "", validationErrors });
     if (Object.keys(validationErrors).length) {
+      setRegistrationFormState({ loading: false, error: "", validationErrors });
       // early return for validation errors
       return;
     }
+
+    setRegistrationFormState({
+      loading: true,
+      error: "",
+      validationErrors: {},
+    });
     const { email, password } = formData;
     delete formData.email;
     delete formData.password;
@@ -87,11 +94,20 @@ export function usePortalRegister(props: PortalRegister) {
       if (result instanceof Error) {
         throw result;
       }
+      setRegistrationFormState({
+        loading: false,
+        error: "",
+        validationErrors: {},
+      });
       if (result.registerManagedIdentityWithEmailAndPassword?.token) {
         navigation.push(props.nextPage);
       }
     } catch (error) {
-      setValidationState({ error: "Network request failed." });
+      setRegistrationFormState({
+        loading: false,
+        error: "Network request failed.",
+        validationErrors: {},
+      });
     }
   };
 
@@ -111,13 +127,13 @@ export function usePortalRegister(props: PortalRegister) {
     errorMessage =
       errors?.response?.errors?.[0]?.extensions?.message ||
       errors?.response?.errors?.[0]?.message ||
-      validationState?.error;
+      registrationFormState?.error;
   }
   return {
     states: {
       loading,
       error: errorMessage,
-      validationState,
+      registrationFormState,
       confirmPassword: props.confirmPassword,
       hideInputs: props.hideInputs,
       loginPath: props.loginPath,

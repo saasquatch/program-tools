@@ -118,6 +118,7 @@ export const FieldsHidden = () => {
         states: {
           error: "",
           loading: true,
+          registrationFormState: {},
           confirmPassword: true,
           hideInputs: true,
           loginPath: "/login",

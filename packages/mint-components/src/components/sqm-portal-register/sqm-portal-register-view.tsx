@@ -7,8 +7,8 @@ import {
   HostBlock,
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
+import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
-import { FormState } from "./useValidationState";
 
 export interface PortalRegisterViewProps {
   states: {
@@ -16,7 +16,7 @@ export interface PortalRegisterViewProps {
     loading: boolean;
     confirmPassword: boolean;
     hideInputs: boolean;
-    validationState?: FormState;
+    registrationFormState: RegistrationFormState;
     disablePasswordValidation?: boolean;
     loginPath: string;
   };
@@ -117,11 +117,11 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
                 return "Must be a valid email address";
               }
             }}
-            {...(states.validationState?.validationErrors?.email
+            {...(states.registrationFormState?.validationErrors?.email
               ? {
                   class: sheet.classes.ErrorStyle,
                   helpText:
-                    states.validationState?.validationErrors?.email ||
+                    states.registrationFormState?.validationErrors?.email ||
                     "Cannot be empty",
                 }
               : [])}
@@ -142,12 +142,12 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             label={content.confirmPasswordLabel}
             disabled={states.loading}
             required
-            {...(states.validationState?.validationErrors?.confirmPassword
+            {...(states.registrationFormState?.validationErrors?.confirmPassword
               ? {
                   class: sheet.classes.ErrorStyle,
                   helpText:
-                    states.validationState?.validationErrors?.confirmPassword ||
-                    "Cannot be empty",
+                    states.registrationFormState?.validationErrors
+                      ?.confirmPassword || "Cannot be empty",
                 }
               : [])}
           ></sl-input>

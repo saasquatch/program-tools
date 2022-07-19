@@ -15,7 +15,6 @@ export interface PasswordFieldViewDemoProps {
   initValue: string;
   states: {
     enableValidation: boolean;
-    validationErrors: Record<string, string>;
     registrationFormState: RegistrationFormState;
     content: {
       fieldLabel: string;
@@ -96,8 +95,8 @@ function usePasswordFieldDemo(
       states: {
         enableValidation: !props.disableValidation,
         dynamicValidation,
-        validationErrors: props?.demoData?.states?.validationErrors || {},
-        registrationFormState: {},
+        registrationFormState:
+          props?.demoData?.states?.registrationFormState || {},
         content: {
           fieldLabel: props.fieldLabel,
         },
