@@ -92,6 +92,7 @@ export function useRegisterViaRegistrationFormMutation(): [
       [field: string]: any;
     };
   }) => {
+    setFormError(null);
     const result = await request(v);
     if (result instanceof Error) {
       return result;
@@ -108,7 +109,6 @@ export function useRegisterViaRegistrationFormMutation(): [
       const registrationResult = managedIdentityResponse.result.results[0];
       if (registrationResult.success) {
         // if success handle setUserIdentity
-        setFormError(null);
         const jwt = registrationResult.data.token;
         const { user } = decode<DecodedSquatchJWT>(jwt);
         setUserIdentity({
