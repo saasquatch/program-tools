@@ -98,12 +98,12 @@ export function useRegisterViaRegistrationFormMutation(): [
     }
     const managedIdentityResponse:
       | undefined
-      | RegisterViaRegistrationFormResult["submitForm"]["results"][number] = result.submitForm.results.find(
-      (result) => result.formHandler.namespace === "identity"
+      | RegisterViaRegistrationFormResult["submitForm"]["results"][number] = result.submitForm?.results?.find(
+      (result) => result?.formHandler?.namespace === "identity"
     );
     if (
       managedIdentityResponse &&
-      managedIdentityResponse.result.results.length
+      managedIdentityResponse.result?.results?.length
     ) {
       const registrationResult = managedIdentityResponse.result.results[0];
       if (registrationResult.success) {
