@@ -101,7 +101,7 @@ function useDropdownFieldDemo(
   return deepmerge(
     {
       states: {
-        validationErrors: [],
+        registrationFormState: {},
       },
     },
     props.demoData || {},

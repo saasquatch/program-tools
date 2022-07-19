@@ -1,8 +1,4 @@
 import { useState } from "@saasquatch/universal-hooks";
-import {
-  FormState,
-  FORM_VALIDATION_CONTEXT,
-} from "../sqm-portal-register/useValidationState";
 import { PortalPasswordField } from "./sqm-password-field";
 import { PortalPasswordFieldViewProps } from "./sqm-password-field-view";
 import { validateNewPassword } from "./passwordValidation";
@@ -16,7 +12,6 @@ import {
 export function usePasswordField(
   props: PortalPasswordField
 ): PortalPasswordFieldViewProps {
-  const validationState = useDomContext<FormState>(FORM_VALIDATION_CONTEXT);
   const registrationFormState = useDomContext<RegistrationFormState>(
     REGISTRATION_FORM_STATE_CONTEXT
   );
@@ -35,7 +30,6 @@ export function usePasswordField(
       enableValidation: !props.disableValidation,
       dynamicValidation,
       registrationFormState,
-      validationErrors: validationState?.validationErrors,
       content: {
         fieldLabel: props.fieldLabel,
       },

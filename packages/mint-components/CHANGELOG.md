@@ -9,6 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.6.2] - 2022-07-11
 
+### Added
+
+- `<sqm-portal-registration-form>` component added to handle registration form submissions
+
+### Changed
+
+- replaced useValidationState with useRegistrationFormState for `<sqm-portal-registration-form>` and `<sqm-portal-register>`
+- useRegistrationFormState allows passing loading, disabled, and initialData states in addition to validationErrors and network errors
+- implemented useRegistrationFormState in the registration form slotted components
+  - `<sqm-password-field>`
+  - `<sqm-name-fields>`
+  - `<sqm-input-field>`
+  - `<sqm-dropdown-field>`
+  - `<sqm-checkbox-field>`
+
 ### Breaking Changes
 
 - `showCountry` prop with `true` default replaced with `hideCountry` prop with `false` default for `<sqm-portal-profile>`
@@ -16,7 +31,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `showPoweredBy` prop with `true` default replaced with `hidePoweredBy` prop with `false` default for `<sqm-portal-footer>`
 - `enablePasswordValidation` prop with `true` default replaced with `disablePasswordValidation` prop with `false` default for `<sqm-portal-register>`
 - `enablePasswordValidation` prop with `true` default replaced with `disablePasswordValidation` prop with `false` default for `<sqm-portal-registration-form>`
-
 
 ## [1.6.1] - 2022-06-09
 

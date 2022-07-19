@@ -11,8 +11,9 @@ export const Start = () => {
         initValue: "",
         states: {
           enableValidation: true,
-          registrationFormState: {},
-          validationErrors: {},
+          registrationFormState: {
+            validationErrors: {},
+          },
           content: {
             fieldLabel: "Password",
           },
@@ -29,8 +30,9 @@ export const EmptyError = () => {
         initValue: "",
         states: {
           enableValidation: true,
-          validationErrors: { password: "Cannot be empty" },
-          registrationFormState: {},
+          registrationFormState: {
+            validationErrors: { password: "Cannot be empty" },
+          },
           content: {
             fieldLabel: "Password",
           },
@@ -47,8 +49,9 @@ export const ValidationError = () => {
         initValue: "asdf",
         states: {
           enableValidation: true,
-          registrationFormState: {},
-          validationErrors: { password: "Incomplete" },
+          registrationFormState: {
+            validationErrors: { password: "Incomplete" },
+          },
           content: {
             fieldLabel: "Password",
           },

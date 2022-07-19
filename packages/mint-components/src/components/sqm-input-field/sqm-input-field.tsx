@@ -97,7 +97,7 @@ function useInputFieldDemo(props: InputField): Partial<InputFieldViewProps> {
   return deepmerge(
     {
       states: {
-        validationErrors: [],
+        registrationFormState: {},
       },
     },
     props.demoData || {},

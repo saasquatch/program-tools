@@ -7,7 +7,6 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { PortalRegistrationForm } from "./sqm-portal-registration-form";
 import { AsYouType } from "libphonenumber-js";
-import { useValidationState } from "../sqm-portal-register/useValidationState";
 import { gql } from "graphql-request";
 import {
   RegistrationFormState,
@@ -52,7 +51,6 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
 
   const { registrationFormState, setRegistrationFormState } =
     useRegistrationFormState({});
-  const { validationState, setValidationState } = useValidationState({});
   const [request, { loading, errors, data, formError }] =
     useRegisterViaRegistrationFormMutation();
 
@@ -121,11 +119,22 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
       };
     }
 
-    setValidationState({ error: "", validationErrors });
     if (Object.keys(validationErrors).length) {
       // early return for validation errors
+      setRegistrationFormState({
+        ...registrationFormState,
+        loading: false,
+        error: "",
+        validationErrors,
+      });
       return;
     }
+    setRegistrationFormState({
+      ...registrationFormState,
+      loading: true,
+      error: "",
+      validationErrors: {},
+    });
     const { email, password } = formData;
     delete formData.email;
     delete formData.password;
@@ -145,6 +154,12 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
       if (result instanceof Error) {
         throw result;
       }
+      setRegistrationFormState({
+        ...registrationFormState,
+        loading: false,
+        error: "",
+        validationErrors: {},
+      });
       const managedIdentityResponse = result.submitForm?.results.find(
         (result) => result.formHandler.namespace === "identity"
       );
@@ -157,7 +172,11 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
         navigation.push(props.nextPage);
       }
     } catch (error) {
-      setValidationState({ error: "Network request failed." });
+      setRegistrationFormState({
+        ...registrationFormState,
+        loading: false,
+        error: "Network request failed.",
+      });
     }
   };
 
@@ -183,13 +202,12 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
       queryResponse?.errors?.response?.errors?.[0]?.message ||
       errors?.response?.errors?.[0]?.extensions?.message ||
       errors?.response?.errors?.[0]?.message ||
-      validationState?.error;
+      registrationFormState?.error;
   }
   return {
     states: {
       loading: loading || queryResponse.loading,
       error: errorMessage,
-      validationState,
       registrationFormState,
       confirmPassword: props.confirmPassword,
       hideInputs: props.hideInputs,

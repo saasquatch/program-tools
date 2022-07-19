@@ -4,6 +4,8 @@ import { useDomContextState } from "@saasquatch/dom-context-hooks";
 export const REGISTRATION_FORM_STATE_CONTEXT = "sq:registration-form-state";
 
 export type RegistrationFormState = {
+  error?: string;
+  validationErrors?: ValidationErrors;
   loading?: boolean;
   disabled?: boolean;
   disabledMessage?: string;

@@ -2,11 +2,11 @@ import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { intl } from "../../global/global";
-import { ValidationErrors } from "../sqm-portal-register/useValidationState";
+import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export interface DropdownFieldViewProps {
   states: {
-    validationErrors?: ValidationErrors;
+    registrationFormState?: RegistrationFormState;
   };
   content: {
     dropdownName: string;
@@ -52,7 +52,7 @@ const styleString = sheet.toString();
 
 export function DropdownFieldView(props: DropdownFieldViewProps) {
   const { states, content } = props;
-  const validationErrors = states?.validationErrors;
+  const validationErrors = states?.registrationFormState?.validationErrors;
   return (
     <div class={sheet.classes.FieldContainer}>
       <style type="text/css">
@@ -64,6 +64,18 @@ export function DropdownFieldView(props: DropdownFieldViewProps) {
         label={content.dropdownLabel}
         name={`/${content.dropdownName}`}
         {...(!content.dropdownOptional ? { required: true } : [])}
+        disabled={
+          states.registrationFormState?.loading ||
+          states.registrationFormState?.disabled
+        }
+        {...(states.registrationFormState?.initialData?.[content.dropdownName]
+          ? {
+              value:
+                states.registrationFormState?.initialData?.[
+                  content.dropdownName
+                ],
+            }
+          : {})}
         {...(validationErrors?.[content.dropdownName]
           ? {
               class: sheet.classes.ErrorStyle,

@@ -48,7 +48,7 @@ export class CheckboxField {
    * @uiName Checkbox Label Link Text
    */
   @Prop() checkboxLabelLinkText: string = "Terms and Conditions";
-  
+
   /**
    * @uiName Unchecked Error Message
    */
@@ -114,7 +114,7 @@ function useCheckboxFieldDemo(
   return deepmerge(
     {
       states: {
-        validationErrors: [],
+        registrationFormState: {},
         checked: false,
       },
       callbacks: {

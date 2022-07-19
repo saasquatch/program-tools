@@ -8,7 +8,6 @@ export interface PortalPasswordFieldViewProps {
     enableValidation: boolean;
     dynamicValidation: VNode | string;
     registrationFormState: RegistrationFormState;
-    validationErrors: Record<string, string>;
     content: {
       fieldLabel: string;
     };
@@ -70,10 +69,12 @@ export function PortalResetPasswordView(props: PortalPasswordFieldViewProps) {
               value: states.registrationFormState?.initialData?.password,
             }
           : {})}
-        {...(states.validationErrors?.password
+        {...(states.registrationFormState?.validationErrors?.password
           ? {
               class: sheet.classes.ErrorStyle,
-              helpText: states.validationErrors?.password || "Cannot be empty",
+              helpText:
+                states.registrationFormState?.validationErrors?.password ||
+                "Cannot be empty",
             }
           : [])}
         onInput={(input) => states.enableValidation && callbacks.onInput(input)}
