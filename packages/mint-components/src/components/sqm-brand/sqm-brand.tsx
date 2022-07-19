@@ -79,7 +79,8 @@ export class BrandComponent {
             --sl-tooltip-font-family: "${font}", arial;
             font-family:  "${font}", arial;
 			
-            ${this.brandColor && css}
+            ${css}
+
             --sl-focus-ring-color-primary: var(--sl-color-primary-100);
             --sl-input-border-color-focus: var(--sl-color-primary-500);
             --sl-color-primary-hue: var(--sl-color-primary-500);
