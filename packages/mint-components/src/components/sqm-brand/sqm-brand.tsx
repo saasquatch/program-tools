@@ -38,13 +38,16 @@ export class BrandComponent {
   disconnectedCallback() {}
 
   render() {
-    const brandColor = this.brandColor ?? "#FFF";
-    let css;
-    try {
-      css = autoColorScaleCss(brandColor);
-    } catch {
-      css = autoColorScaleCss("#FFF");
+    function getCss(brandColor?: string) {
+      if (this.brandColor) {
+        try {
+          return autoColorScaleCss(brandColor);
+        } catch {}
+      }
+      return undefined;
     }
+
+    const css = getCss(this.brandColor) ?? "";
     const sanitizedFont = (this.brandFont ?? "Nunito Sans").trim() || undefined;
 
     useEffect(() => {
