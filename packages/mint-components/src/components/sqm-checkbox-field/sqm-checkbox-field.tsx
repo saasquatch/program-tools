@@ -98,7 +98,7 @@ export class CheckboxField {
 
     const { states, callbacks } = isDemo()
       ? useCheckboxFieldDemo(this)
-      : useCheckboxField();
+      : useCheckboxField(this);
     return (
       <CheckboxFieldView
         states={states}
