@@ -330,8 +330,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           color={
             errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
           }
-          onClick={(e: React.MouseEvent<HTMLElement>) => {
-            e.stopPropagation();
+          onClick={() => {
             functional.selectItem((null as unknown) as ItemType);
           }}
         />
@@ -393,8 +392,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           color={
             errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
           }
-          onClick={(e: React.MouseEvent<HTMLElement>) => {
-            e.stopPropagation();
+          onClick={() => {
             functional.selectItem((null as unknown) as ItemType);
           }}
         />
