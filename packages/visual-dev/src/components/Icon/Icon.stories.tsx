@@ -36,7 +36,6 @@ export const DoubleChevronRight = () => (
   <IconView icon={"double_chevron_right"} />
 );
 export const mail = () => <IconView icon={"mail"} />;
-export const envelope = () => <IconView icon={"envelope"} />;
 export const action = () => <IconView icon={"action"} />;
 export const arrowDropdown = () => <IconView icon={"arrow_dropdown"} />;
 export const help = () => <IconView icon={"help"} />;
@@ -106,6 +105,7 @@ export const microsite = () => <IconView icon={"microsite"} />;
 export const widgets = () => <IconView icon={"widgets"} />;
 export const file = () => <IconView icon={"file"} />;
 export const edit_square = () => <IconView icon={"edit_square"} />;
+export const envelope = () => <IconView icon={"envelope"} />;
 export const filled_package_logo = () => (
   <IconView icon={"filled_package_logo"} />
 );
