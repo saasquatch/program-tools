@@ -135,6 +135,7 @@ export namespace Components {
          */
         "checkboxLabelLinkText": string;
         /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
           * @uiName Checkbox Name Attribute
           * @required
          */
@@ -162,7 +163,7 @@ export namespace Components {
          */
         "direction": "row" | "column";
         /**
-          * Uses Shorthand CSS border syntax
+          * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
           * @uiName Border Style
          */
         "dividerStyle": string;
@@ -178,6 +179,7 @@ export namespace Components {
          */
         "dropdownLabel": string;
         /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
           * @uiName Dropdown Name Attribute
           * @required
          */
@@ -454,7 +456,7 @@ export namespace Components {
          */
         "fieldLabel": string;
         /**
-          * Used as the key of the inputs value in form data.
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
           * @uiName Input Name Attribute
           * @required
          */
@@ -691,17 +693,17 @@ export namespace Components {
     }
     interface SqmPortalChangePassword {
         /**
-          * Modal cancel button text
+          * Found in modal
           * @uiName Cancel Button Text
          */
         "cancelText": string;
         /**
-          * Modal change password button text
+          * Found in modal
           * @uiName Change Password Button Text
          */
         "changePasswordButtonText": string;
         /**
-          * Password confirmation input field label
+          * Found in modal
           * @uiName Confirm Password Label
          */
         "confirmPasswordFieldLabel": string;
@@ -715,8 +717,8 @@ export namespace Components {
          */
         "modalChangePasswordHeader": string;
         /**
-          * Password input field label
-          * @uiName Password Label
+          * Found in modal
+          * @uiName New Password Field Label
          */
         "passwordFieldLabel": string;
         /**
@@ -801,8 +803,8 @@ export namespace Components {
          */
         "emailVerificationHeader": string;
         /**
-          * The microsite page that participants are redirected to from the verification email.
-          * @uiName Email Redirection Path
+          * Redirect participants to this page from their verification email.
+          * @uiName Email Redirect
           * @uiWidget pageSelect
          */
         "redirectPath": string;
@@ -1016,7 +1018,7 @@ export namespace Components {
     }
     interface SqmPortalProtectedRoute {
         /**
-          * Redirect participants to this path they are not logged in.
+          * Redirect participants to this page they are not logged in.
           * @uiName Redirect Path
          */
         "redirectTo": string;
@@ -1053,8 +1055,8 @@ export namespace Components {
          */
         "emailLabel": string;
         /**
-          * Hide default input fields to use custom fields.
-          * @uiName Hide Default Inputs
+          * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
+          * @uiName Hide Default Fields
          */
         "hideInputs": boolean;
         /**
@@ -1068,7 +1070,7 @@ export namespace Components {
          */
         "loginPath": string;
         /**
-          * Redirect participants to this page after they successfully register.
+          * Redirect participants to this page from their verification email
           * @uiName Registration Redirect
           * @uiWidget pageSelect
          */
@@ -1121,8 +1123,8 @@ export namespace Components {
          */
         "formKey": string;
         /**
-          * Hide default input fields to use custom fields.
-          * @uiName Hide Default Inputs
+          * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
+          * @uiName Hide Default Fields
          */
         "hideInputs": boolean;
         /**
@@ -1150,7 +1152,7 @@ export namespace Components {
          */
         "passwordLabel": string;
         /**
-          * The page that participants are redirected to from the verification email.
+          * Redirect participants to this page from their verification email
           * @uiName Email Verification Redirect
           * @uiWidget pageSelect
          */
@@ -1300,7 +1302,7 @@ export namespace Components {
          */
         "demoData"?: DemoData<ReferralIframeViewProps>;
         /**
-          * Height of the iframe container
+          * Define the height of the iframe with any valid CSS height value. Example: 100px, 5rem, or auto.
           * @uiName Iframe Height
          */
         "iframeHeight": string;
@@ -1311,7 +1313,7 @@ export namespace Components {
          */
         "iframeSrc": string;
         /**
-          * Width of the iframe container
+          * Width of the iframe container  to Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
           * @uiName Iframe Width
          */
         "iframeWidth": string;
@@ -1809,6 +1811,7 @@ export namespace Components {
     }
     interface SqmRoute {
         /**
+          * Page Path URL for this route.
           * @uiName Navigation Path Name
          */
         "path": string;
@@ -3041,6 +3044,7 @@ declare namespace LocalJSX {
          */
         "checkboxLabelLinkText"?: string;
         /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
           * @uiName Checkbox Name Attribute
           * @required
          */
@@ -3068,7 +3072,7 @@ declare namespace LocalJSX {
          */
         "direction"?: "row" | "column";
         /**
-          * Uses Shorthand CSS border syntax
+          * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
           * @uiName Border Style
          */
         "dividerStyle"?: string;
@@ -3084,6 +3088,7 @@ declare namespace LocalJSX {
          */
         "dropdownLabel"?: string;
         /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
           * @uiName Dropdown Name Attribute
           * @required
          */
@@ -3360,7 +3365,7 @@ declare namespace LocalJSX {
          */
         "fieldLabel"?: string;
         /**
-          * Used as the key of the inputs value in form data.
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
           * @uiName Input Name Attribute
           * @required
          */
@@ -3597,17 +3602,17 @@ declare namespace LocalJSX {
     }
     interface SqmPortalChangePassword {
         /**
-          * Modal cancel button text
+          * Found in modal
           * @uiName Cancel Button Text
          */
         "cancelText"?: string;
         /**
-          * Modal change password button text
+          * Found in modal
           * @uiName Change Password Button Text
          */
         "changePasswordButtonText"?: string;
         /**
-          * Password confirmation input field label
+          * Found in modal
           * @uiName Confirm Password Label
          */
         "confirmPasswordFieldLabel"?: string;
@@ -3621,8 +3626,8 @@ declare namespace LocalJSX {
          */
         "modalChangePasswordHeader"?: string;
         /**
-          * Password input field label
-          * @uiName Password Label
+          * Found in modal
+          * @uiName New Password Field Label
          */
         "passwordFieldLabel"?: string;
         /**
@@ -3707,8 +3712,8 @@ declare namespace LocalJSX {
          */
         "emailVerificationHeader"?: string;
         /**
-          * The microsite page that participants are redirected to from the verification email.
-          * @uiName Email Redirection Path
+          * Redirect participants to this page from their verification email.
+          * @uiName Email Redirect
           * @uiWidget pageSelect
          */
         "redirectPath"?: string;
@@ -3922,7 +3927,7 @@ declare namespace LocalJSX {
     }
     interface SqmPortalProtectedRoute {
         /**
-          * Redirect participants to this path they are not logged in.
+          * Redirect participants to this page they are not logged in.
           * @uiName Redirect Path
          */
         "redirectTo"?: string;
@@ -3959,8 +3964,8 @@ declare namespace LocalJSX {
          */
         "emailLabel"?: string;
         /**
-          * Hide default input fields to use custom fields.
-          * @uiName Hide Default Inputs
+          * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
+          * @uiName Hide Default Fields
          */
         "hideInputs"?: boolean;
         /**
@@ -3974,7 +3979,7 @@ declare namespace LocalJSX {
          */
         "loginPath"?: string;
         /**
-          * Redirect participants to this page after they successfully register.
+          * Redirect participants to this page from their verification email
           * @uiName Registration Redirect
           * @uiWidget pageSelect
          */
@@ -4027,8 +4032,8 @@ declare namespace LocalJSX {
          */
         "formKey"?: string;
         /**
-          * Hide default input fields to use custom fields.
-          * @uiName Hide Default Inputs
+          * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
+          * @uiName Hide Default Fields
          */
         "hideInputs"?: boolean;
         /**
@@ -4056,7 +4061,7 @@ declare namespace LocalJSX {
          */
         "passwordLabel"?: string;
         /**
-          * The page that participants are redirected to from the verification email.
+          * Redirect participants to this page from their verification email
           * @uiName Email Verification Redirect
           * @uiWidget pageSelect
          */
@@ -4206,7 +4211,7 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<ReferralIframeViewProps>;
         /**
-          * Height of the iframe container
+          * Define the height of the iframe with any valid CSS height value. Example: 100px, 5rem, or auto.
           * @uiName Iframe Height
          */
         "iframeHeight"?: string;
@@ -4217,7 +4222,7 @@ declare namespace LocalJSX {
          */
         "iframeSrc"?: string;
         /**
-          * Width of the iframe container
+          * Width of the iframe container  to Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
           * @uiName Iframe Width
          */
         "iframeWidth"?: string;
@@ -4691,6 +4696,7 @@ declare namespace LocalJSX {
     }
     interface SqmRoute {
         /**
+          * Page Path URL for this route.
           * @uiName Navigation Path Name
          */
         "path"?: string;
