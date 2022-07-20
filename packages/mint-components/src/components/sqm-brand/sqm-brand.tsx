@@ -39,7 +39,7 @@ export class BrandComponent {
 
   render() {
     function getCss(brandColor?: string) {
-      if (this.brandColor) {
+      if (brandColor) {
         try {
           return autoColorScaleCss(brandColor);
         } catch {}
