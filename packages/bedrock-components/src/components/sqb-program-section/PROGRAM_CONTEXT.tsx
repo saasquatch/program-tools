@@ -2,7 +2,7 @@ import { useDomContextState } from '@saasquatch/stencil-hooks';
 import { useEffect } from '@saasquatch/universal-hooks';
 import { useHost } from '@saasquatch/component-boilerplate';
 /**
- * Matches @saasquatch/component-boilerplate
+ * Matches @saasquatch/component-environment
  */
 const PROGRAM_CONTEXT = 'sq:program-id';
 
