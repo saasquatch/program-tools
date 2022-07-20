@@ -12,7 +12,7 @@ export interface OptionProps {
   /**
    * Text displayed inside the tooltip
    */
-  text?: string;
+  text?: string | React.ReactNode;
   /**
    * Where the tooltip appears in relation to the element it is attached to
    */
