@@ -157,7 +157,7 @@ function useRegisterDemo(
       states: {
         error: "",
         loading: false,
-        confirmPassword: true,
+        confirmPassword: props.confirmPassword,
         hideInputs: props.hideInputs || false,
         customPasswordField: false,
         loginPath: props.loginPath,
