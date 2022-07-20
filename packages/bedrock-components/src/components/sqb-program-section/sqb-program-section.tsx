@@ -1,6 +1,6 @@
 import { withHooks } from '@saasquatch/stencil-hooks';
 import { Component, Host, h, Prop, State } from '@stencil/core';
-import { useProgramProvider } from './PROGRAM_CONTEXT';
+import { useProgramSection } from './useProgramSection';
 
 /**
  * Use this with other components like share buttons, referral lists
@@ -34,7 +34,7 @@ export class SqbProgramSection {
 
   render() {
     const { programId } = this;
-    useProgramProvider(programId);
+    useProgramSection(programId);
 
     return (
       <Host style={{ display: 'contents' }}>
