@@ -134,7 +134,28 @@ Feature: Portal Register
             | sqm-password-field | password            | { "email": "test@example.com" , "password": "Test1234", "lastName": "Testerson"} |
             | sqm-input-field    | testInput           | { "email": "test@example.com" , "testInput": "Test"}                             |
             | sqm-checkbox-field | testCheckbox        | { "email": "test@example.com" , "testCheckbox": true}                            |
-            | sqm-dropdown-field | testDropdown        | { "email": "test@example.com" , "testCheckbox": "Test"}                          |
+            | sqm-dropdown-field | testDropdown        | { "email": "test@example.com" , "testDropdown": "Test"}                          |
+
+    @motivating
+    Scenario: Blocked emails are shown an error
+        Given a registration form "microsite-registration" is configured
+        And "0-mail.com" is a blocked email domain
+        And the email field has been filled out to "test@0-mail.com"
+        When the registration form is submitted
+        Then the email field shows the error "Must be a valid email address"
+
+    @motivating
+    Scenario Outline: Invalid emails are shown an error
+        Given a registration form "microsite-registration" is configured
+        And the email field has been filled out to <invalidEmail>
+        When the registration form is submitted
+        Then the email field shows the error "Must be a valid email address"
+
+        Examples:
+            | invalidEmail    |
+            | test            |
+            | test@           |
+            | test@google.con |
 
     @motivating
     Scenario Outline: Slotted content displays validation states through form context

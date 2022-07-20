@@ -92,23 +92,23 @@ export function useRegisterViaRegistrationFormMutation(): [
       [field: string]: any;
     };
   }) => {
+    setFormError(null);
     const result = await request(v);
     if (result instanceof Error) {
       return result;
     }
     const managedIdentityResponse:
       | undefined
-      | RegisterViaRegistrationFormResult["submitForm"]["results"][number] = result.submitForm.results.find(
-      (result) => result.formHandler.namespace === "identity"
+      | RegisterViaRegistrationFormResult["submitForm"]["results"][number] = result.submitForm?.results?.find(
+      (result) => result?.formHandler?.namespace === "identity"
     );
     if (
       managedIdentityResponse &&
-      managedIdentityResponse.result.results.length
+      managedIdentityResponse.result?.results?.length
     ) {
       const registrationResult = managedIdentityResponse.result.results[0];
       if (registrationResult.success) {
         // if success handle setUserIdentity
-        setFormError(null);
         const jwt = registrationResult.data.token;
         const { user } = decode<DecodedSquatchJWT>(jwt);
         setUserIdentity({
