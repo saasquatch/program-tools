@@ -90,14 +90,6 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
           states.registrationFormState?.loading ||
           states.registrationFormState?.disabled
         }
-        {...(states.registrationFormState?.initialData?.[content.checkboxName]
-          ? {
-              value:
-                states.registrationFormState?.initialData?.[
-                  content.checkboxName
-                ],
-            }
-          : {})}
         {...(!states.checked && validationErrors?.[content.checkboxName]
           ? {
               class: sheet.classes.ErrorStyle,

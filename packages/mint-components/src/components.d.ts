@@ -1019,12 +1019,12 @@ export namespace Components {
     interface SqmPortalProtectedRoute {
         /**
           * Redirect participants to this page they are not logged in.
-          * @uiName Redirect Path
+          * @uiName Unauthenticated Participant Redirect
          */
         "redirectTo": string;
         /**
           * Redirect participants to this page when email verification is required but they have not verified their email.
-          * @uiName Unverified Participant Redirect Path
+          * @uiName Unverified Participant Redirect
          */
         "redirectToUnverified": string;
         /**
@@ -1313,7 +1313,7 @@ export namespace Components {
          */
         "iframeSrc": string;
         /**
-          * Width of the iframe container  to Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
+          * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
           * @uiName Iframe Width
          */
         "iframeWidth": string;
@@ -3928,12 +3928,12 @@ declare namespace LocalJSX {
     interface SqmPortalProtectedRoute {
         /**
           * Redirect participants to this page they are not logged in.
-          * @uiName Redirect Path
+          * @uiName Unauthenticated Participant Redirect
          */
         "redirectTo"?: string;
         /**
           * Redirect participants to this page when email verification is required but they have not verified their email.
-          * @uiName Unverified Participant Redirect Path
+          * @uiName Unverified Participant Redirect
          */
         "redirectToUnverified"?: string;
         /**
@@ -4222,7 +4222,7 @@ declare namespace LocalJSX {
          */
         "iframeSrc"?: string;
         /**
-          * Width of the iframe container  to Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
+          * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
           * @uiName Iframe Width
          */
         "iframeWidth"?: string;

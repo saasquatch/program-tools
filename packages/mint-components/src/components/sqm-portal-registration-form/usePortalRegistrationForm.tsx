@@ -161,7 +161,7 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
         validationErrors: {},
       });
       const managedIdentityResponse = result.submitForm?.results.find(
-        (result) => result.formHandler.namespace === "identity"
+        (result) => result?.formHandler?.namespace === "identity"
       );
       if (
         managedIdentityResponse &&
@@ -170,13 +170,42 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
         managedIdentityResponse.result.results[0].data.token
       ) {
         navigation.push(props.nextPage);
+      } else if (
+        // check for blocked email error response
+        result.submitForm?.results.length === 1 &&
+        result.submitForm?.results[0]?.result?.results?.length === 1 &&
+        result.submitForm?.results[0]?.result?.results?.[0]?.success ===
+          false &&
+        result.submitForm?.results[0]?.result?.results?.[0]?.message?.startsWith(
+          "Blocked email"
+        )
+      ) {
+        setRegistrationFormState({
+          ...registrationFormState,
+          loading: false,
+          error: "",
+          validationErrors: {
+            email: "Must be a valid email address",
+          },
+        });
       }
     } catch (error) {
-      setRegistrationFormState({
-        ...registrationFormState,
-        loading: false,
-        error: "Network request failed.",
-      });
+      // check for invalid email
+      if (error?.message?.includes("is not a valid email address")) {
+        setRegistrationFormState({
+          ...registrationFormState,
+          loading: false,
+          error: "",
+          validationErrors: { email: "Must be a valid email address" },
+        });
+      } else {
+        setRegistrationFormState({
+          ...registrationFormState,
+          loading: false,
+          error: "Network request failed.",
+          validationErrors: {},
+        });
+      }
     }
   };
 
@@ -200,8 +229,6 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     errorMessage =
       formError ||
       queryResponse?.errors?.response?.errors?.[0]?.message ||
-      errors?.response?.errors?.[0]?.extensions?.message ||
-      errors?.response?.errors?.[0]?.message ||
       registrationFormState?.error;
   }
   return {

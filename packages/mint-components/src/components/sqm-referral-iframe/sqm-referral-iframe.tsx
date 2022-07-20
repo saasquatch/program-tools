@@ -33,7 +33,7 @@ export class SqmReferralIframe {
    */
   @Prop() iframeHeight: string = "100%";
   /**
-   * Width of the iframe container  to Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
+   * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
    * @uiName Iframe Width
    */
   @Prop() iframeWidth: string = "100%";
