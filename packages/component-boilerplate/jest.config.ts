@@ -8,7 +8,7 @@ import type { Config } from "@jest/types";
 const config: Config.InitialOptions = {
   testMatch: ["**/test/main.ts"],
   transform: {
-    "^.+\\.(ts|tsx|js|jsx)$": "ts-jest",
+    "^.+\\.(ts|tsx)$": "ts-jest",
     // "^.+\\.(ts|tsx|js|jsx)$": "esbuild-jest",
   },
   // transformIgnorePatterns: [`node_modules/(?!(${esModules})/)`]

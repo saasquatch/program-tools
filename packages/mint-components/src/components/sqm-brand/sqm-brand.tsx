@@ -38,8 +38,16 @@ export class BrandComponent {
   disconnectedCallback() {}
 
   render() {
-    const brandColor = this.brandColor ?? "#FFF";
-    const css = autoColorScaleCss(brandColor);
+    function getCss(brandColor?: string) {
+      if (brandColor) {
+        try {
+          return autoColorScaleCss(brandColor);
+        } catch {}
+      }
+      return undefined;
+    }
+
+    const css = getCss(this.brandColor) ?? "";
     const sanitizedFont = (this.brandFont ?? "Nunito Sans").trim() || undefined;
 
     useEffect(() => {
@@ -74,7 +82,8 @@ export class BrandComponent {
             --sl-tooltip-font-family: "${font}", arial;
             font-family:  "${font}", arial;
 			
-            ${this.brandColor && css}
+            ${css}
+
             --sl-focus-ring-color-primary: var(--sl-color-primary-100);
             --sl-input-border-color-focus: var(--sl-color-primary-500);
             --sl-color-primary-hue: var(--sl-color-primary-500);

@@ -8,9 +8,10 @@ import { usePortalChangePassword } from "./usePortalChangePassword";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
+import { useState } from "@saasquatch/universal-hooks";
 
 /**
- * @uiName Portal Profile
+ * @uiName Microsite Password Change
  */
 @Component({
   tag: "sqm-portal-change-password",
@@ -26,28 +27,28 @@ export class PortalChangePassword {
   @Prop() modalChangePasswordHeader: string = "Change Password";
 
   /**
-   * Modal cancel button text
+   * Found in modal
    *
    * @uiName Cancel Button Text
    */
   @Prop() cancelText: string = "Cancel";
 
   /**
-   * Modal change password button text
+   * Found in modal
    *
    * @uiName Change Password Button Text
    */
   @Prop() changePasswordButtonText: string = "Change Password";
 
   /**
-   * Password input field label
+   * Found in modal
    *
-   * @uiName Password Label
+   * @uiName New Password Field Label
    */
   @Prop() passwordFieldLabel: string = "New Password";
 
   /**
-   * Password confirmation input field label
+   * Found in modal
    *
    * @uiName Confirm Password Label
    */
@@ -57,7 +58,8 @@ export class PortalChangePassword {
   /**
    * Successful password change message
    *
-   * @uiName Successful Message
+   * @uiName Successful Password Change Message
+   * @uiWidget textArea
    */
   @Prop() successMessage: string = "Your password has been updated.";
 
@@ -93,24 +95,26 @@ export class PortalChangePassword {
 }
 
 function usePortalChangePasswordDemo(props: PortalChangePassword) {
+  const [open, setOpen] = useState(false);
+
   return deepmerge(
     {
       states: {
-        open: true,
+        open,
         error: "",
         content: {
-          modalChangePasswordHeader: "Change Password",
-          cancelText: "Cancel",
-          changePasswordButtonText: "Change Password",
-          passwordFieldLabel: "New Password",
-          confirmPasswordFieldLabel: "Confirm new password",
-          successMessage: "Your password has been updated.",
-          portalChangePasswordHeader: "Password",
-          portalChangePasswordButtonText: "Change your password...",
+          modalChangePasswordHeader: props.modalChangePasswordHeader,
+          cancelText: props.cancelText,
+          changePasswordButtonText: props.changePasswordButtonText,
+          passwordFieldLabel: props.passwordFieldLabel,
+          confirmPasswordFieldLabel: props.confirmPasswordFieldLabel,
+          successMessage: props.successMessage,
+          portalChangePasswordHeader: props.portalChangePasswordHeader,
+          portalChangePasswordButtonText: props.portalChangePasswordButtonText,
         },
       },
       callbacks: {
-        setOpen: (o) => console.log(o),
+        setOpen: (update) => setOpen(update),
         submit: (e) => console.log("Submit", e),
       },
     },

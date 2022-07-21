@@ -4,7 +4,8 @@ import { h, Component, Prop, State, Host } from "@stencil/core";
 import { usePortalProtectedRoute } from "./usePortalProtectedRoute";
 
 /**
- * @uiName Portal Protected Route
+ * @uiName Microsite Protected Route
+ * @slots [{"name":"","title":"Route Content"}]
  */
 @Component({
   tag: "sqm-portal-protected-route",
@@ -15,20 +16,23 @@ export class PortalProtectedRoute {
   ignored = true;
 
   /**
-   * @uiName Redirect Path
+   * Redirect participants to this page they are not logged in.
+   *
+   * @uiName Unauthenticated Participant Redirect 
    */
   @Prop()
   redirectTo: string = "/";
 
   /**
    * @uiName Require Email Verification
-   * @default
    */
   @Prop()
   requireEmailVerification: boolean = false;
 
   /**
-   * @uiName Redirect Unverified Users Path
+   * Redirect participants to this page when email verification is required but they have not verified their email.
+   *
+   * @uiName Unverified Participant Redirect 
    */
   @Prop()
   redirectToUnverified: string = "/emailVerification";

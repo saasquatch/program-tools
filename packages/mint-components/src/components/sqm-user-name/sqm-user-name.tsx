@@ -16,15 +16,15 @@ import { useUserName } from "./useUserName";
   shadow: true,
 })
 export class UserName {
-  @State() _ignored: boolean = true;
+  @State() ignored = true;
 
   /**
-   * Fallback name for unknown users
-   * @uiName Fallback Name
+   * @uiName Unknown User Name
    */
   @Prop() fallback: string = "Anonymous User";
 
   /**
+   * Text displayed while the participant’s name is loading.
    * @uiName Loading Text
    */
   @Prop() loadingText: string = "...";

@@ -10,7 +10,7 @@ import {
 import { usePortalVerifyEmail } from "./usePortalVerifyEmail";
 
 /**
- * @uiName Portal Verify Email
+ * @uiName Microsite Verify Email
  */
 @Component({
   tag: "sqm-portal-verify-email",
@@ -21,17 +21,19 @@ export class PortalVerifyEmail {
   ignored = true;
 
   /**
-   * The page that users are redirected to when the verification succeeds.
+   * Redirect participants to this page when they successfully verify their email.
    *
-   * @uiName Next Page Path
+   * @uiName Successful Verification Redirect
+   * @uiWidget pageSelect
    */
   @Prop()
   nextPage: string = "/";
 
   /**
-   * The page that users are redirected to if verification fails due to outdated verification attempt.
+   * Redirect participants to this page if verification fails due to an outdated verification attempt.
    *
-   * @uiName Failed Page Path
+   * @uiName Failed Verification Redirect
+   * @uiWidget pageSelect
    */
   @Prop()
   failedPage: string = "/";

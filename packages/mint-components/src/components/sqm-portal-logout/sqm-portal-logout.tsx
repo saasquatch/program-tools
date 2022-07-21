@@ -4,7 +4,7 @@ import { Component, Prop, State } from "@stencil/core";
 import { usePortalLogout } from "./usePortalLogout";
 
 /**
- * @uiName Portal Logout
+ * @uiName Microsite Logout
  */
 @Component({
   tag: "sqm-portal-logout",
@@ -15,7 +15,10 @@ export class PortalLogout {
   ignored = true;
 
   /**
-   * @uiName Next Page Path
+   * Redirect participants to this page when they log out.
+   *
+   * @uiName Logout Redirect Path
+   * @uiWidget pageSelect
    */
   @Prop()
   nextPage: string = "/";

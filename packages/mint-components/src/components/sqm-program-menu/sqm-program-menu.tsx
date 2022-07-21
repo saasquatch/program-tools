@@ -4,7 +4,8 @@ import { useProgramMenu } from "./useProgramMenu";
 import { getProps } from "../../utils/utils";
 
 /**
- * @uiName Portal Menu
+ * @uiName Microsite Program Menu
+ * @slots [{"name":"","title":"Menu Content"}]
  * @canvasRenderer always-replace
  */
 @Component({

@@ -19,7 +19,9 @@ export default {
 
 const defaultProps: CheckboxFieldViewProps = {
   states: {
-    validationErrors: {},
+    registrationFormState: {
+      validationErrors: {},
+    },
     checked: false,
   },
   content: {
@@ -36,6 +38,7 @@ const defaultProps: CheckboxFieldViewProps = {
 
 const defaultRegisterProps: PortalRegisterViewProps = {
   states: {
+    registrationFormState: {},
     error: "",
     loading: false,
     confirmPassword: true,
@@ -81,8 +84,10 @@ export const Error = createHookStory(() => (
     {...defaultProps}
     states={{
       ...defaultProps.states,
-      validationErrors: {
-        agree: "Must be checked",
+      registrationFormState: {
+        validationErrors: {
+          agree: "Must be checked",
+        },
       },
     }}
   />
@@ -93,8 +98,10 @@ export const CustomError = createHookStory(() => (
     {...defaultProps}
     states={{
       ...defaultProps.states,
-      validationErrors: {
-        agree: "Must be checked",
+      registrationFormState: {
+        validationErrors: {
+          agree: "Must be checked",
+        },
       },
     }}
     content={{

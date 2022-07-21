@@ -2,11 +2,11 @@ import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { intl } from "../../global/global";
-import { ValidationErrors } from "../sqm-portal-register/useValidationState";
+import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export interface CheckboxFieldViewProps {
   states: {
-    validationErrors?: ValidationErrors;
+    registrationFormState?: RegistrationFormState;
     checked: boolean;
   };
   content: {
@@ -69,7 +69,7 @@ const styleString = sheet.toString();
 
 export function CheckboxFieldView(props: CheckboxFieldViewProps) {
   const { states, content, callbacks } = props;
-  const validationErrors = states?.validationErrors;
+  const validationErrors = states?.registrationFormState?.validationErrors;
 
   return (
     <div class={sheet.classes.FieldContainer}>
@@ -86,6 +86,10 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
           callbacks.setChecked(e.target.value);
         }}
         {...(!content.checkboxOptional ? { required: true } : [])}
+        disabled={
+          states.registrationFormState?.loading ||
+          states.registrationFormState?.disabled
+        }
         {...(!states.checked && validationErrors?.[content.checkboxName]
           ? {
               class: sheet.classes.ErrorStyle,

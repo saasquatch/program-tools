@@ -15,7 +15,7 @@ export interface PortalProfileProps {
   editProfileHeader: string;
   editProfileSubHeader: string;
   submitChangeButtonText: string;
-  showCountry: boolean;
+  hideCountry: boolean;
 }
 
 const GET_USER = gql`
@@ -162,7 +162,7 @@ export function usePortalProfile(
       success,
       loading: userDataResponse?.loading || upsertUserResponse.loading,
       submitDisabled: false,
-      showCountry: props.showCountry,
+      showCountry: !props.hideCountry,
       formState,
       user: userData,
       text: {

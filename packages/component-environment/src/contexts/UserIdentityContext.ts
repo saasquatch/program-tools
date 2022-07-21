@@ -1,58 +1,42 @@
 import decode from "jwt-decode";
-import { useDomContext } from "@saasquatch/dom-context-hooks";
 import { ContextProvider } from "dom-context";
-import { getEnvironmentSDK } from "./environment";
-import { useHost } from "../hooks/useHost";
 import { equal } from "@wry/equality";
-import debugFn from "debug";
-import { setLocale } from "./LocaleContext";
-export const debug = debugFn("sq:user-identity");
+import { getEnvironmentSDK } from "../environment";
+import {
+  USER_CONTEXT_NAME,
+  UserIdentity,
+  DecodedSquatchJWT,
+  DecodedWidgetAPIJWT,
+} from "../types";
+import { startUserContextListenerForLocale } from "../listeners";
+import { debug as _debug } from "../debug";
 
-const CONTEXT_NAME = "sq:user-identity";
-const USER_LOCAL_STORAGE_KEY = CONTEXT_NAME;
+const debug = (...args: any[]) => _debug(USER_CONTEXT_NAME, ...args);
 
-export type UserIdentity = {
-  id: string;
-  accountId: string;
-  jwt?: string;
-  managedIdentity?: {
-    email: string;
-    emailVerified: boolean;
-    sessionData?: { [key: string]: any };
-  };
-};
+/**
+ * Lazily start the user context provider. If it already exists, the existing provider is
+ * returned. This function is safe to call multiple times.
+ *
+ * @returns The global user context provider
+ */
+export function lazilyStartUserContext() {
+  let globalProvider = window.squatchUserIdentity;
 
-export interface DecodedSquatchJWT {
-  exp?: number;
-  user?: {
-    accountId: string;
-    id: string;
-  };
-}
-
-// NOTE: Classic theme-engine JWT's do not have a typical payload,
-// they have a sub in the form base64(accountId):base64(userId)@tenantAlias:users
-export interface DecodedWidgetAPIJWT {
-  exp?: number;
-  sub?: string;
-}
-
-declare global {
-  interface Window {
-    squatchUserIdentity: ContextProvider<UserIdentity>;
-  }
-}
-
-function _lazilyStartGlobally() {
-  const globalProvider = window.squatchUserIdentity;
   if (!globalProvider) {
+    debug("Creating user context provider");
+
     // Lazily creates a global provider
-    window.squatchUserIdentity = new ContextProvider<UserIdentity>({
+    globalProvider = new ContextProvider<UserIdentity | undefined>({
       element: document.documentElement,
       initialState: _getInitialValue(),
-      contextName: CONTEXT_NAME,
+      contextName: USER_CONTEXT_NAME,
     }).start();
+
+    window.squatchUserIdentity = globalProvider;
+    startUserContextListenerForLocale();
   }
+
+  return globalProvider;
 }
 
 function isDecodedSquatchJWT(decoded: any): decoded is DecodedSquatchJWT {
@@ -63,21 +47,28 @@ function isDecodedWidgetAPIJWT(decoded: any): decoded is DecodedWidgetAPIJWT {
   return decoded.sub && /.*:.*@.*:users/.test(decoded.sub);
 }
 
-function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
+/**
+ * Extract a user identity from a JWT
+ *
+ * @param jwt The JWT to extract a user identity from
+ * @returns The user identity or undefined if the JWT is not valid
+ */
+export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
   if (!jwt) return undefined;
 
   try {
     const decoded = decode<DecodedSquatchJWT | DecodedWidgetAPIJWT>(jwt);
     const exp = decoded.exp;
 
-    let userId: string, accountId: string;
+    let userId: string | undefined = undefined;
+    let accountId: string | undefined = undefined;
 
     if (isDecodedWidgetAPIJWT(decoded)) {
       // Pull the accountId and userId from the subject and Base64-decode them
       // NOTE: This is to support classic theme engine widget token generation
       const matches = decoded.sub.match(/(.*):(.*)@(.*):users/);
-      accountId = atob(matches[1]);
-      userId = atob(matches[2]);
+      if (matches?.[1]) accountId = atob(matches[1]);
+      if (matches?.[2]) userId = atob(matches[2]);
     } else if (isDecodedSquatchJWT(decoded)) {
       accountId = decoded.user.accountId;
       userId = decoded.user.id;
@@ -117,11 +108,11 @@ function _getInitialValue(): UserIdentity | undefined {
       // Portals can have the jwt provided as a URL parameter, so look for that first
       const searchParams = new URLSearchParams(document.location.search);
       if (searchParams.has("jwt")) {
-        return userIdentityFromJwt(searchParams.get("jwt"));
+        return userIdentityFromJwt(searchParams.get("jwt")!);
       }
 
       // Look for user identity in local storage
-      const stored = localStorage.getItem(USER_LOCAL_STORAGE_KEY);
+      const stored = localStorage.getItem(USER_CONTEXT_NAME);
       if (!stored) return undefined;
       try {
         const potentialUserIdent = JSON.parse(stored) as UserIdentity;
@@ -150,53 +141,24 @@ function _getInitialValue(): UserIdentity | undefined {
  * @param identity the new identity of the user, or undefined if logged out
  */
 export function setUserIdentity(identity?: UserIdentity) {
-  _lazilyStartGlobally();
-  const globalProvider = window.squatchUserIdentity;
+  const globalProvider = lazilyStartUserContext();
 
   if (!equal(globalProvider.context, identity)) {
-    setLocale(undefined);
+    debug(`Setting user context value [${JSON.stringify(identity)}]`);
     globalProvider.context = identity;
   }
 
   // Portals store identity in local storage
   if (identity && getEnvironmentSDK().type === "SquatchPortal") {
-    localStorage.setItem(USER_LOCAL_STORAGE_KEY, JSON.stringify(identity));
+    localStorage.setItem(USER_CONTEXT_NAME, JSON.stringify(identity));
   } else if (!identity) {
-    debug("Deleting user from localStorage");
-    localStorage.removeItem(USER_LOCAL_STORAGE_KEY);
+    localStorage.removeItem(USER_CONTEXT_NAME);
   }
 }
 
 /**
- * Gets the SessionData of the current user, or undefined if logged out
+ * Get the current value of the user context
  */
-export function useSessionData(): { [key: string]: any } | undefined {
-  return useUserIdentity()?.managedIdentity?.sessionData;
-}
-
-/**
- * Gets the JWT of the current user, or undefined if logged out
- */
-export function useToken(): string | undefined {
-  return useUserIdentity()?.jwt;
-}
-
-/**
- * Get the IDs and JWT of the current user, or undefined if logged out
- */
-export function useUserIdentity(): UserIdentity | undefined {
-  _lazilyStartGlobally();
-  const host = useHost();
-  const identity = useDomContext(host, CONTEXT_NAME) as
-    | UserIdentity
-    | undefined;
-
-  const validIdentity = userIdentityFromJwt(identity?.jwt);
-  if (identity && !validIdentity) {
-    // Likely that the JWT has expired
-    setUserIdentity(undefined);
-    setLocale(undefined);
-    return undefined;
-  }
-  return identity;
+export function getUserIdentity() {
+  return window.squatchUserIdentity?.context;
 }

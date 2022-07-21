@@ -28,12 +28,12 @@ export class SqmReferralIframe {
    */
   @Prop() iframeSrc: string;
   /**
-   * Height of the iframe container
+   * Define the height of the iframe with any valid CSS height value. Example: 100px, 5rem, or auto.
    * @uiName Iframe Height
    */
   @Prop() iframeHeight: string = "100%";
   /**
-   * Width of the iframe container
+   * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
    * @uiName Iframe Width
    */
   @Prop() iframeWidth: string = "100%";

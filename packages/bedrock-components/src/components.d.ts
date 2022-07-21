@@ -10,7 +10,7 @@ import { DemoData } from "./global/demo";
 export namespace Components {
     interface SqbConditionalSection {
         /**
-          * Show child content when a user meets specified criteria. Logic is created with JSONata. A user's segments, country code, custom fields and email can be used.
+          * Show child content when a user meets specified criteria. <a href="http://docs.jsonata.org/overview.html" target="_blank">JSONata expression</a> is used to define this logic. A participant’s segments, country code, custom fields and email can be used.
           * @uiName Condition
           * @uiWidget textArea
           * @required 
@@ -105,7 +105,7 @@ declare global {
 declare namespace LocalJSX {
     interface SqbConditionalSection {
         /**
-          * Show child content when a user meets specified criteria. Logic is created with JSONata. A user's segments, country code, custom fields and email can be used.
+          * Show child content when a user meets specified criteria. <a href="http://docs.jsonata.org/overview.html" target="_blank">JSONata expression</a> is used to define this logic. A participant’s segments, country code, custom fields and email can be used.
           * @uiName Condition
           * @uiWidget textArea
           * @required 

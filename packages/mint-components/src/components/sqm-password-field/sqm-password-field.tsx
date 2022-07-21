@@ -3,6 +3,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { useState } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, State, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
+import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 import { validateNewPassword } from "./passwordValidation";
 import {
   PortalPasswordFieldViewProps,
@@ -14,7 +15,7 @@ export interface PasswordFieldViewDemoProps {
   initValue: string;
   states: {
     enableValidation: boolean;
-    validationErrors: Record<string, string>;
+    registrationFormState: RegistrationFormState;
     content: {
       fieldLabel: string;
     };
@@ -22,7 +23,10 @@ export interface PasswordFieldViewDemoProps {
 }
 
 /**
- * @uiName Portal Password Field
+ * @uiName Form Password Field
+ * @validParents ["sqm-portal-register","sqm-portal-registration-form"]
+ * @exampleGroup Microsite Components
+ * @example Form Password Field - <sqm-password-field field-label="Password"></sqm-password-field>
  */
 @Component({
   tag: "sqm-password-field",
@@ -40,10 +44,10 @@ export class PortalPasswordField {
   fieldLabel: string = "Password";
 
   /**
-   * Enable live password validation
-   * @uiName Enable Validation
+   * Disable live password validation
+   * @uiName Disable Validation
    */
-  @Prop() enableValidation: boolean = true;
+  @Prop() disableValidation: boolean = false;
 
   /**
    * @undocumented
@@ -89,11 +93,12 @@ function usePasswordFieldDemo(
   return deepmerge(
     {
       states: {
-        enableValidation: true,
+        enableValidation: !props.disableValidation,
         dynamicValidation,
-        validationErrors: props?.demoData?.states?.validationErrors || {},
+        registrationFormState:
+          props?.demoData?.states?.registrationFormState || {},
         content: {
-          fieldLabel: "Password",
+          fieldLabel: props.fieldLabel,
         },
       },
       callbacks: {

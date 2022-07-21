@@ -15,7 +15,7 @@ import axios from "axios";
 
 import useGraphQLClient from "../src/hooks/graphql/useGraphQLClient";
 import { RequestDocument } from "graphql-request/dist/types";
-import { BatchedGraphQLClient } from "../src/environment/BatchedGraphQLClient";
+import { BatchedGraphQLClient } from "../src/BatchedGraphQLClient";
 import {
   FragmentDefinitionNode,
   FragmentSpreadNode,
@@ -127,13 +127,8 @@ describe("Mock Service Workers", () => {
     let waitFor: (f: () => boolean | void) => Promise<void>;
     await act(async () => {
       const ret = renderHook(hook);
-      ({
-        result,
-        rerender,
-        waitForNextUpdate,
-        waitForValueToChange,
-        waitFor,
-      } = ret);
+      ({ result, rerender, waitForNextUpdate, waitForValueToChange, waitFor } =
+        ret);
       await waitForNextUpdate();
     });
 

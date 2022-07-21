@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `path`   | `path`    |             | `string` | `undefined` |
+| Property | Attribute | Description                   | Type     | Default     |
+| -------- | --------- | ----------------------------- | -------- | ----------- |
+| `path`   | `path`    | Page Path URL for this route. | `string` | `undefined` |
 
 
 ----------------------------------------------

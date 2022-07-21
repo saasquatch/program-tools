@@ -10,7 +10,7 @@ import {
 import { usePortalEmailVerification } from "./usePortalEmailVerification";
 
 /**
- * @uiName Portal Email Verification
+ * @uiName Microsite Email Verification
  */
 @Component({
   tag: "sqm-portal-email-verification",
@@ -21,9 +21,10 @@ export class PortalEmailVerification {
   ignored = true;
 
   /**
-   * The page that users are redirected to from the verification email.
+   * Redirect participants to this page from their verification email.
    *
-   * @uiName Email Redirection Base Path
+   * @uiName Email Redirect
+   * @uiWidget pageSelect
    */
   @Prop()
   redirectPath: string = "/verifyEmail";
@@ -40,9 +41,10 @@ export class PortalEmailVerification {
 
   /**
    * @uiName Email Verification Body Text
+   * @uiWidget textArea
    */
   @Prop() verifyMessage: string =
-    "A verification email was sent to {email}. Please verify your email to continue to the portal.";
+    "A verification email was sent to {email}. Please verify your email to continue to the portal. Resending an email will invalidate the previous email.";
 
   /**
    * @undocumented

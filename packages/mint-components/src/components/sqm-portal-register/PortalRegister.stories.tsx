@@ -10,6 +10,7 @@ export default {
 
 const defaultProps: PortalRegisterViewProps = {
   states: {
+    registrationFormState: {},
     error: "",
     loading: false,
     confirmPassword: true,
@@ -29,6 +30,7 @@ const defaultProps: PortalRegisterViewProps = {
 const errorProps: PortalRegisterViewProps = {
   states: {
     error: "Something went wrong. Please try again.",
+    registrationFormState: {},
     loading: false,
     confirmPassword: true,
     hideInputs: false,
@@ -49,6 +51,7 @@ const errorProps: PortalRegisterViewProps = {
 
 const loadingProps: PortalRegisterViewProps = {
   states: {
+    registrationFormState: {},
     error: "",
     loading: true,
     confirmPassword: true,
@@ -67,6 +70,7 @@ const loadingProps: PortalRegisterViewProps = {
 
 const slottedProps: PortalRegisterViewProps = {
   states: {
+    registrationFormState: {},
     error: "",
     loading: false,
     confirmPassword: true,
@@ -112,6 +116,7 @@ export const FieldsHidden = () => {
     <sqm-portal-register
       demoData={{
         states: {
+          registrationFormState: {},
           error: "",
           loading: true,
           confirmPassword: true,

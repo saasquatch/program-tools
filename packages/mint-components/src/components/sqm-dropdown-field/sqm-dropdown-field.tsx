@@ -12,7 +12,11 @@ import {
 import { useDropdownField } from "./useDropdownField";
 
 /**
- * @uiName Dropdown Field
+ * @uiName Form Dropdown Field
+ * @validParents ["sqm-portal-register","sqm-portal-registration-form"]
+ * @slots [{"name":"", "title":"Drop Down Option"}]
+ * @exampleGroup Microsite Components
+ * @example Form Dropdown Field - <sqm-dropdown-field dropdown-label="Select an option" error-message="Select an option"><sl-menu-item value="option-1">Option 1</sl-menu-item><sl-menu-item value="option-2">Option 2</sl-menu-item><sl-menu-item value="option-3">Option 3</sl-menu-item></sqm-dropdown-field>
  */
 @Component({
   tag: "sqm-dropdown-field",
@@ -22,7 +26,9 @@ export class DropdownField {
   ignored = true;
 
   /**
+   * This name is used as the key for this form field on submission. The name must be unique within this specific form.
    * @uiName Dropdown Name Attribute
+   * @required
    */
   @Prop() dropdownName: string;
 
@@ -95,7 +101,7 @@ function useDropdownFieldDemo(
   return deepmerge(
     {
       states: {
-        validationErrors: [],
+        registrationFormState: {},
       },
     },
     props.demoData || {},

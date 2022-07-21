@@ -8,6 +8,7 @@ import { getProps } from "../../utils/utils";
  * Spacing is left up to the child
  *
  * @uiName Divided Layout
+ * @slots [{"name":"", "title":"Layout Content"}]
  */
 @Component({
   tag: "sqm-divided-layout",
@@ -23,7 +24,7 @@ export class DividedLayout {
   @Prop() direction: "row" | "column";
 
   /**
-   * Uses Shorthand CSS border syntax
+   * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
    * @uiName Border Style
    */
   @Prop() dividerStyle: string = "1px solid #EAEAEA";

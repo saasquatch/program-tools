@@ -27,6 +27,7 @@ import { PortalFrameViewProps } from "./components/sqm-portal-frame/sqm-portal-f
 import { PortalLoginViewProps } from "./components/sqm-portal-login/sqm-portal-login-view";
 import { PortalProfileViewProps } from "./components/sqm-portal-profile/sqm-portal-profile-view";
 import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-portal-register-view";
+import { PortalRegistrationFormViewProps } from "./components/sqm-portal-registration-form/sqm-portal-registration-form-view";
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
 import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
@@ -121,6 +122,7 @@ export namespace Components {
     interface SqmCheckboxField {
         /**
           * @uiName Checkbox Label
+          * @uiWidget textArea
          */
         "checkboxLabel": string;
         /**
@@ -133,12 +135,13 @@ export namespace Components {
          */
         "checkboxLabelLinkText": string;
         /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
           * @uiName Checkbox Name Attribute
+          * @required
          */
         "checkboxName": string;
         /**
           * @uiName Optional
-          * @default
          */
         "checkboxOptional"?: boolean;
         /**
@@ -160,7 +163,7 @@ export namespace Components {
          */
         "direction": "row" | "column";
         /**
-          * Uses Shorthand CSS border syntax
+          * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
           * @uiName Border Style
          */
         "dividerStyle": string;
@@ -176,7 +179,9 @@ export namespace Components {
          */
         "dropdownLabel": string;
         /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
           * @uiName Dropdown Name Attribute
+          * @required
          */
         "dropdownName": string;
         /**
@@ -264,6 +269,24 @@ export namespace Components {
          */
         "domain": string;
     }
+    interface SqmHeaderLogo {
+        /**
+          * @uiName Logo Height
+         */
+        "height": number;
+        /**
+          * @uiWidget ImageUpload
+          * @format url
+          * @uiName Logo Image
+         */
+        "imageUrl": string;
+        /**
+          * Page participants are navigated to after clicking the header logo.
+          * @uiName Redirect Path
+          * @uiWidget pageSelect
+         */
+        "nextPage": string;
+    }
     interface SqmHero {
         /**
           * Can be an image url, colour or Shoelace variable.
@@ -273,6 +296,8 @@ export namespace Components {
         /**
           * Number of columns in the layout
           * @uiName Columns
+          * @uiEnum [1, 2]
+          * @uiEnumNames ["One", "Two"]
          */
         "columns": 1 | 2;
         /**
@@ -431,8 +456,9 @@ export namespace Components {
          */
         "fieldLabel": string;
         /**
-          * Used as the key of the inputs value in form data.
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
           * @uiName Input Name Attribute
+          * @required
          */
         "fieldName": string;
         /**
@@ -611,6 +637,7 @@ export namespace Components {
         "label": string;
         /**
           * @uiName Navigation Path
+          * @uiWidget pageSelect
          */
         "path": string;
     }
@@ -621,10 +648,10 @@ export namespace Components {
          */
         "demoData"?: PasswordFieldViewDemoProps;
         /**
-          * Enable live password validation
-          * @uiName Enable Validation
+          * Disable live password validation
+          * @uiName Disable Validation
          */
-        "enableValidation": boolean;
+        "disableValidation": boolean;
         /**
           * Label for password field
           * @uiName Password Label
@@ -666,17 +693,17 @@ export namespace Components {
     }
     interface SqmPortalChangePassword {
         /**
-          * Modal cancel button text
+          * Found in modal
           * @uiName Cancel Button Text
          */
         "cancelText": string;
         /**
-          * Modal change password button text
+          * Found in modal
           * @uiName Change Password Button Text
          */
         "changePasswordButtonText": string;
         /**
-          * Password confirmation input field label
+          * Found in modal
           * @uiName Confirm Password Label
          */
         "confirmPasswordFieldLabel": string;
@@ -690,8 +717,8 @@ export namespace Components {
          */
         "modalChangePasswordHeader": string;
         /**
-          * Password input field label
-          * @uiName Password Label
+          * Found in modal
+          * @uiName New Password Field Label
          */
         "passwordFieldLabel": string;
         /**
@@ -705,7 +732,8 @@ export namespace Components {
         "portalChangePasswordHeader": string;
         /**
           * Successful password change message
-          * @uiName Successful Message
+          * @uiName Successful Password Change Message
+          * @uiWidget textArea
          */
         "successMessage": string;
     }
@@ -775,8 +803,9 @@ export namespace Components {
          */
         "emailVerificationHeader": string;
         /**
-          * The page that users are redirected to from the verification email.
-          * @uiName Email Redirection Base Path
+          * Redirect participants to this page from their verification email.
+          * @uiName Email Redirect
+          * @uiWidget pageSelect
          */
         "redirectPath": string;
         /**
@@ -785,6 +814,7 @@ export namespace Components {
         "resendEmailButtonText": string;
         /**
           * @uiName Email Verification Body Text
+          * @uiWidget textArea
          */
         "verifyMessage": string;
     }
@@ -798,29 +828,37 @@ export namespace Components {
          */
         "faqText"?: string;
         /**
+          * @uiName Hide Powered By SaaSquatch
+         */
+        "hidePoweredBy": boolean;
+        /**
           * @uiName Padding Bottom
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom": string;
         /**
           * @uiName Padding Left
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft": string;
         /**
           * @uiName Padding Right
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight": string;
         /**
           * @uiName Padding Top
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingTop": string;
         /**
           * @uiName Powered By Link
          */
         "poweredByLink": string;
-        /**
-          * @uiName Show Powered By SaaSquatch
-         */
-        "showPoweredBy": boolean;
         /**
           * @uiName Support Email
          */
@@ -846,16 +884,27 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalForgotPasswordViewProps>;
         /**
-          * @uiName Email Label
+          * @uiName Email Field Label
          */
         "emailLabel": string;
         /**
-          * @uiName Login Page Routing Path
+          * @uiName Header Text
+          * @uiWidget textArea
+         */
+        "headerText": string;
+        /**
+          * @uiName Login Redirect Path
+          * @uiWidget pageSelect
          */
         "loginPath": string;
         /**
-          * The page that users are redirected to from the password reset email.
-          * @uiName Email Redirection Base Path
+          * Sign In Link Text
+         */
+        "loginText": string;
+        /**
+          * Redirect participants to this page after they verify their email.
+          * @uiName Email Redirect
+          * @uiWidget pageSelect
          */
         "redirectPath": string;
         /**
@@ -869,6 +918,10 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<PortalFrameViewProps>;
+        /**
+          * @undocumented
+         */
+        "notFullScreen"?: boolean;
     }
     interface SqmPortalLogin {
         /**
@@ -877,60 +930,60 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalLoginViewProps>;
         /**
-          * Label for email field
-          * @uiName Email Label
+          * @uiName Email Field Label
          */
         "emailLabel": string;
         /**
-          * Label for forgotten password button
           * @uiName Forgot Password Text
          */
         "forgotPasswordLabel": string;
         /**
-          * Forgot password redirect path
-          * @uiName Forgot Password Path
+          * Redirect participants to this page to reset their password
+          * @uiName Forgot Password Redirect
+          * @uiWidget pageSelect
          */
         "forgotPasswordPath": string;
         /**
-          * Page navigated to after sign-in
-          * @uiName Next Page Path
+          * Redirect participants to this page after they successfully login.
+          * @uiName Login Redirect
+          * @uiWidget pageSelect
          */
         "nextPage": string;
         /**
           * @uiName Heading Label
+          * @uiWidget textArea
          */
         "pageLabel": string;
         /**
-          * Label for password field
-          * @uiName Password Label
+          * @uiName Password Field Label
          */
         "passwordLabel": string;
         /**
-          * Label for register button
           * @uiName Register Button Text
          */
         "registerLabel": string;
         /**
-          * Register redirect path
-          * @uiName Register Path
+          * Redirect participants to this page to start registration.
+          * @uiName Register Button Redirect
+          * @uiWidget pageSelect
          */
         "registerPath": string;
         /**
-          * Label for submit button
           * @uiName Submit Button Text
          */
         "submitLabel": string;
     }
     interface SqmPortalLogout {
         /**
-          * @uiName Next Page Path
+          * Redirect participants to this page when they log out.
+          * @uiName Logout Redirect Path
+          * @uiWidget pageSelect
          */
         "nextPage": string;
     }
     interface SqmPortalProfile {
         /**
-          * Country input field label
-          * @uiName Country Label
+          * @uiName Country Field Label
          */
         "countrytext": string;
         /**
@@ -947,25 +1000,21 @@ export namespace Components {
          */
         "editProfileSubHeader": string;
         /**
-          * Email input field label
-          * @uiName Email Label
+          * @uiName Email Field Label
          */
         "emailtext": string;
         /**
-          * First name input field label
           * @uiName First Name Label
          */
         "firstnametext": string;
         /**
-          * Last name input field label
-          * @uiName Last Name Label
+          * @uiName Hide Country Field
+         */
+        "hideCountry": boolean;
+        /**
+          * @uiName Last Name Field Label
          */
         "lastnametext": string;
-        /**
-          * Show or hide the country field
-          * @uiName Show Country Field
-         */
-        "showCountry": boolean;
         /**
           * @uiName Submit Changes Button Text
          */
@@ -973,28 +1022,27 @@ export namespace Components {
     }
     interface SqmPortalProtectedRoute {
         /**
-          * @uiName Redirect Path
+          * Redirect participants to this page they are not logged in.
+          * @uiName Unauthenticated Participant Redirect
          */
         "redirectTo": string;
         /**
-          * @uiName Redirect Unverified Users Path
+          * Redirect participants to this page when email verification is required but they have not verified their email.
+          * @uiName Unverified Participant Redirect
          */
         "redirectToUnverified": string;
         /**
           * @uiName Require Email Verification
-          * @default
          */
         "requireEmailVerification": boolean;
     }
     interface SqmPortalRegister {
         /**
-          * Show or hide the confirm password input
           * @uiName Show Confirm Password Field
-          * @default
          */
         "confirmPassword": boolean;
         /**
-          * @uiName Confirm Password Label
+          * @uiName Confirm Password Field Label
          */
         "confirmPasswordLabel": string;
         /**
@@ -1003,17 +1051,16 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalRegisterViewProps>;
         /**
-          * @uiName Email Label
+          * @uiName Disable Password Validation
+         */
+        "disablePasswordValidation": boolean;
+        /**
+          * @uiName Email Field Label
          */
         "emailLabel": string;
         /**
-          * @uiName Enable Password Validation
-         */
-        "enablePasswordValidation": boolean;
-        /**
-          * Hide default input fields to use custom fields
-          * @uiName Hide Default Inputs
-          * @default
+          * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
+          * @uiName Hide Default Fields
          */
         "hideInputs": boolean;
         /**
@@ -1021,26 +1068,29 @@ export namespace Components {
          */
         "loginLabel": string;
         /**
-          * Login button redirection path
-          * @uiName Login Path
+          * Redirect participants to this page after clicking the login button.
+          * @uiName Login Redirect
+          * @uiWidget pageSelect
          */
         "loginPath": string;
         /**
-          * Page navigated to after registration
-          * @uiName Next Page
+          * Redirect participants to this page from their verification email
+          * @uiName Registration Redirect
+          * @uiWidget pageSelect
          */
         "nextPage": string;
         /**
-          * @uiName Heading Label
+          * @uiName Header Text
          */
         "pageLabel": string;
         /**
-          * @uiName Password Label
+          * @uiName Password Field Label
          */
         "passwordLabel": string;
         /**
-          * The page that users are redirected to from the verification email.
-          * @uiName Email Redirection Base Path
+          * The page that participants are redirected to from the verification email.
+          * @uiName Email Verification Redirect
+          * @uiWidget pageSelect
          */
         "redirectPath": string;
         /**
@@ -1048,19 +1098,115 @@ export namespace Components {
          */
         "submitLabel": string;
     }
-    interface SqmPortalResetPassword {
+    interface SqmPortalRegistrationForm {
         /**
-          * Show or hide confirm password field
-          * @uiName Show Confirm Password
-          * @default
+          * @uiName Show Confirm Password Field
          */
         "confirmPassword": boolean;
         /**
-          * @uiName Confirm Password Label
+          * @uiName Confirm Password Field Label
+         */
+        "confirmPasswordLabel": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PortalRegistrationFormViewProps>;
+        /**
+          * @uiName Disable Password Validation
+         */
+        "disablePasswordValidation": boolean;
+        /**
+          * @uiName Email Field Label
+         */
+        "emailLabel": string;
+        /**
+          * The message to be displayed when the registration form is disabled.
+          * @uiName Form Disabled Message
+          * @uiWidget textArea
+         */
+        "formDisabledErrorMessage": string;
+        /**
+          * The key of the registration form used for this microsite.
+          * @uiName Form Key
+          * @required
+         */
+        "formKey": string;
+        /**
+          * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
+          * @uiName Hide Default Fields
+         */
+        "hideInputs": boolean;
+        /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage": string;
+        /**
+          * @uiName Login Button Text
+         */
+        "loginLabel": string;
+        /**
+          * Redirect participants to this page after clicking the login button.
+          * @uiName Login Redirect
+          * @uiWidget pageSelect
+         */
+        "loginPath": string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network Error Message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage": string;
+        /**
+          * Redirect participants to this page after they successfully register.
+          * @uiName Registration Redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage": string;
+        /**
+          * @uiName Header Text
+         */
+        "pageLabel": string;
+        /**
+          * @uiName Password Field Label
+         */
+        "passwordLabel": string;
+        /**
+          * The message to be displayed when password inputs do not match.
+          * @uiName Password Mismatch Message
+          * @uiWidget textArea
+         */
+        "passwordMismatchErrorMessage": string;
+        /**
+          * Redirect participants to this page from their verification email
+          * @uiName Email Verification Redirect
+          * @uiWidget pageSelect
+         */
+        "redirectPath": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
+        /**
+          * @uiName Submit Button Text
+         */
+        "submitLabel": string;
+    }
+    interface SqmPortalResetPassword {
+        /**
+          * @uiName Show Confirm Password Field
+         */
+        "confirmPassword": boolean;
+        /**
+          * @uiName Password Confirmation Field Label
          */
         "confirmPasswordFieldLabel": string;
         /**
-          * Button text displayed after a successful password reset
+          * Button text displayed after a successful password reset.
           * @uiName Continue Button Text
          */
         "continueButtonText": string;
@@ -1070,22 +1216,25 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
-          * The page that users are redirected to if the reset fails due to outdated password reset attempt.
-          * @uiName Failed Page Path
+          * Redirect participants to this page if password reset fails due to an outdated reset attempt.
+          * @uiName Failed Reset Redirect
+          * @uiWidget pageSelect
          */
         "failedPage": string;
         /**
-          * The page that users are redirected to when the password reset succeeds.
-          * @uiName Next Page Path
+          * Redirect participants to this page when they successfully reset their password.
+          * @uiName Successful Reset Redirect
+          * @uiWidget pageSelect
          */
         "nextPage": string;
         /**
-          * @uiName Password Label
+          * @uiName Password Field Label
          */
         "passwordFieldLabel": string;
         /**
-          * Displayed after a successful password reset
+          * Displayed after a successful password reset.
           * @uiName Successful Password Reset Text
+          * @uiWidget textArea
          */
         "passwordResetHeader": string;
         /**
@@ -1104,13 +1253,15 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalVerifyEmailViewProps>;
         /**
-          * The page that users are redirected to if verification fails due to outdated verification attempt.
-          * @uiName Failed Page Path
+          * Redirect participants to this page if verification fails due to an outdated verification attempt.
+          * @uiName Failed Verification Redirect
+          * @uiWidget pageSelect
          */
         "failedPage": string;
         /**
-          * The page that users are redirected to when the verification succeeds.
-          * @uiName Next Page Path
+          * Redirect participants to this page when they successfully verify their email.
+          * @uiName Successful Verification Redirect
+          * @uiWidget pageSelect
          */
         "nextPage": string;
     }
@@ -1185,7 +1336,7 @@ export namespace Components {
          */
         "demoData"?: DemoData<ReferralIframeViewProps>;
         /**
-          * Height of the iframe container
+          * Define the height of the iframe with any valid CSS height value. Example: 100px, 5rem, or auto.
           * @uiName Iframe Height
          */
         "iframeHeight": string;
@@ -1196,7 +1347,7 @@ export namespace Components {
          */
         "iframeSrc": string;
         /**
-          * Width of the iframe container
+          * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
           * @uiName Iframe Width
          */
         "iframeWidth": string;
@@ -1694,6 +1845,7 @@ export namespace Components {
     }
     interface SqmRoute {
         /**
+          * Page Path URL for this route.
           * @uiName Navigation Path Name
          */
         "path": string;
@@ -2208,11 +2360,11 @@ export namespace Components {
          */
         "demoData"?: DemoData<UserNameViewProps>;
         /**
-          * Fallback name for unknown users
-          * @uiName Fallback Name
+          * @uiName Unknown User Name
          */
         "fallback": string;
         /**
+          * Text displayed while the participant’s name is loading.
           * @uiName Loading Text
          */
         "loadingText": string;
@@ -2290,6 +2442,12 @@ declare global {
     var HTMLSqmGraphqlClientProviderElement: {
         prototype: HTMLSqmGraphqlClientProviderElement;
         new (): HTMLSqmGraphqlClientProviderElement;
+    };
+    interface HTMLSqmHeaderLogoElement extends Components.SqmHeaderLogo, HTMLStencilElement {
+    }
+    var HTMLSqmHeaderLogoElement: {
+        prototype: HTMLSqmHeaderLogoElement;
+        new (): HTMLSqmHeaderLogoElement;
     };
     interface HTMLSqmHeroElement extends Components.SqmHero, HTMLStencilElement {
     }
@@ -2434,6 +2592,12 @@ declare global {
     var HTMLSqmPortalRegisterElement: {
         prototype: HTMLSqmPortalRegisterElement;
         new (): HTMLSqmPortalRegisterElement;
+    };
+    interface HTMLSqmPortalRegistrationFormElement extends Components.SqmPortalRegistrationForm, HTMLStencilElement {
+    }
+    var HTMLSqmPortalRegistrationFormElement: {
+        prototype: HTMLSqmPortalRegistrationFormElement;
+        new (): HTMLSqmPortalRegistrationFormElement;
     };
     interface HTMLSqmPortalResetPasswordElement extends Components.SqmPortalResetPassword, HTMLStencilElement {
     }
@@ -2742,6 +2906,7 @@ declare global {
         "sqm-empty": HTMLSqmEmptyElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
+        "sqm-header-logo": HTMLSqmHeaderLogoElement;
         "sqm-hero": HTMLSqmHeroElement;
         "sqm-hero-image": HTMLSqmHeroImageElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
@@ -2766,6 +2931,7 @@ declare global {
         "sqm-portal-profile": HTMLSqmPortalProfileElement;
         "sqm-portal-protected-route": HTMLSqmPortalProtectedRouteElement;
         "sqm-portal-register": HTMLSqmPortalRegisterElement;
+        "sqm-portal-registration-form": HTMLSqmPortalRegistrationFormElement;
         "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
         "sqm-portal-verify-email": HTMLSqmPortalVerifyEmailElement;
         "sqm-program-explainer": HTMLSqmProgramExplainerElement;
@@ -2899,6 +3065,7 @@ declare namespace LocalJSX {
     interface SqmCheckboxField {
         /**
           * @uiName Checkbox Label
+          * @uiWidget textArea
          */
         "checkboxLabel"?: string;
         /**
@@ -2911,12 +3078,13 @@ declare namespace LocalJSX {
          */
         "checkboxLabelLinkText"?: string;
         /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
           * @uiName Checkbox Name Attribute
+          * @required
          */
         "checkboxName"?: string;
         /**
           * @uiName Optional
-          * @default
          */
         "checkboxOptional"?: boolean;
         /**
@@ -2938,7 +3106,7 @@ declare namespace LocalJSX {
          */
         "direction"?: "row" | "column";
         /**
-          * Uses Shorthand CSS border syntax
+          * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
           * @uiName Border Style
          */
         "dividerStyle"?: string;
@@ -2954,7 +3122,9 @@ declare namespace LocalJSX {
          */
         "dropdownLabel"?: string;
         /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
           * @uiName Dropdown Name Attribute
+          * @required
          */
         "dropdownName"?: string;
         /**
@@ -3042,6 +3212,24 @@ declare namespace LocalJSX {
          */
         "domain"?: string;
     }
+    interface SqmHeaderLogo {
+        /**
+          * @uiName Logo Height
+         */
+        "height"?: number;
+        /**
+          * @uiWidget ImageUpload
+          * @format url
+          * @uiName Logo Image
+         */
+        "imageUrl"?: string;
+        /**
+          * Page participants are navigated to after clicking the header logo.
+          * @uiName Redirect Path
+          * @uiWidget pageSelect
+         */
+        "nextPage"?: string;
+    }
     interface SqmHero {
         /**
           * Can be an image url, colour or Shoelace variable.
@@ -3051,6 +3239,8 @@ declare namespace LocalJSX {
         /**
           * Number of columns in the layout
           * @uiName Columns
+          * @uiEnum [1, 2]
+          * @uiEnumNames ["One", "Two"]
          */
         "columns"?: 1 | 2;
         /**
@@ -3209,8 +3399,9 @@ declare namespace LocalJSX {
          */
         "fieldLabel"?: string;
         /**
-          * Used as the key of the inputs value in form data.
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
           * @uiName Input Name Attribute
+          * @required
          */
         "fieldName"?: string;
         /**
@@ -3389,6 +3580,7 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * @uiName Navigation Path
+          * @uiWidget pageSelect
          */
         "path"?: string;
     }
@@ -3399,10 +3591,10 @@ declare namespace LocalJSX {
          */
         "demoData"?: PasswordFieldViewDemoProps;
         /**
-          * Enable live password validation
-          * @uiName Enable Validation
+          * Disable live password validation
+          * @uiName Disable Validation
          */
-        "enableValidation"?: boolean;
+        "disableValidation"?: boolean;
         /**
           * Label for password field
           * @uiName Password Label
@@ -3444,17 +3636,17 @@ declare namespace LocalJSX {
     }
     interface SqmPortalChangePassword {
         /**
-          * Modal cancel button text
+          * Found in modal
           * @uiName Cancel Button Text
          */
         "cancelText"?: string;
         /**
-          * Modal change password button text
+          * Found in modal
           * @uiName Change Password Button Text
          */
         "changePasswordButtonText"?: string;
         /**
-          * Password confirmation input field label
+          * Found in modal
           * @uiName Confirm Password Label
          */
         "confirmPasswordFieldLabel"?: string;
@@ -3468,8 +3660,8 @@ declare namespace LocalJSX {
          */
         "modalChangePasswordHeader"?: string;
         /**
-          * Password input field label
-          * @uiName Password Label
+          * Found in modal
+          * @uiName New Password Field Label
          */
         "passwordFieldLabel"?: string;
         /**
@@ -3483,7 +3675,8 @@ declare namespace LocalJSX {
         "portalChangePasswordHeader"?: string;
         /**
           * Successful password change message
-          * @uiName Successful Message
+          * @uiName Successful Password Change Message
+          * @uiWidget textArea
          */
         "successMessage"?: string;
     }
@@ -3553,8 +3746,9 @@ declare namespace LocalJSX {
          */
         "emailVerificationHeader"?: string;
         /**
-          * The page that users are redirected to from the verification email.
-          * @uiName Email Redirection Base Path
+          * Redirect participants to this page from their verification email.
+          * @uiName Email Redirect
+          * @uiWidget pageSelect
          */
         "redirectPath"?: string;
         /**
@@ -3563,6 +3757,7 @@ declare namespace LocalJSX {
         "resendEmailButtonText"?: string;
         /**
           * @uiName Email Verification Body Text
+          * @uiWidget textArea
          */
         "verifyMessage"?: string;
     }
@@ -3576,29 +3771,37 @@ declare namespace LocalJSX {
          */
         "faqText"?: string;
         /**
+          * @uiName Hide Powered By SaaSquatch
+         */
+        "hidePoweredBy"?: boolean;
+        /**
           * @uiName Padding Bottom
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom"?: string;
         /**
           * @uiName Padding Left
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft"?: string;
         /**
           * @uiName Padding Right
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight"?: string;
         /**
           * @uiName Padding Top
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingTop"?: string;
         /**
           * @uiName Powered By Link
          */
         "poweredByLink"?: string;
-        /**
-          * @uiName Show Powered By SaaSquatch
-         */
-        "showPoweredBy"?: boolean;
         /**
           * @uiName Support Email
          */
@@ -3624,16 +3827,27 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalForgotPasswordViewProps>;
         /**
-          * @uiName Email Label
+          * @uiName Email Field Label
          */
         "emailLabel"?: string;
         /**
-          * @uiName Login Page Routing Path
+          * @uiName Header Text
+          * @uiWidget textArea
+         */
+        "headerText"?: string;
+        /**
+          * @uiName Login Redirect Path
+          * @uiWidget pageSelect
          */
         "loginPath"?: string;
         /**
-          * The page that users are redirected to from the password reset email.
-          * @uiName Email Redirection Base Path
+          * Sign In Link Text
+         */
+        "loginText"?: string;
+        /**
+          * Redirect participants to this page after they verify their email.
+          * @uiName Email Redirect
+          * @uiWidget pageSelect
          */
         "redirectPath"?: string;
         /**
@@ -3647,6 +3861,10 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<PortalFrameViewProps>;
+        /**
+          * @undocumented
+         */
+        "notFullScreen"?: boolean;
     }
     interface SqmPortalLogin {
         /**
@@ -3655,60 +3873,60 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalLoginViewProps>;
         /**
-          * Label for email field
-          * @uiName Email Label
+          * @uiName Email Field Label
          */
         "emailLabel"?: string;
         /**
-          * Label for forgotten password button
           * @uiName Forgot Password Text
          */
         "forgotPasswordLabel"?: string;
         /**
-          * Forgot password redirect path
-          * @uiName Forgot Password Path
+          * Redirect participants to this page to reset their password
+          * @uiName Forgot Password Redirect
+          * @uiWidget pageSelect
          */
         "forgotPasswordPath"?: string;
         /**
-          * Page navigated to after sign-in
-          * @uiName Next Page Path
+          * Redirect participants to this page after they successfully login.
+          * @uiName Login Redirect
+          * @uiWidget pageSelect
          */
         "nextPage"?: string;
         /**
           * @uiName Heading Label
+          * @uiWidget textArea
          */
         "pageLabel"?: string;
         /**
-          * Label for password field
-          * @uiName Password Label
+          * @uiName Password Field Label
          */
         "passwordLabel"?: string;
         /**
-          * Label for register button
           * @uiName Register Button Text
          */
         "registerLabel"?: string;
         /**
-          * Register redirect path
-          * @uiName Register Path
+          * Redirect participants to this page to start registration.
+          * @uiName Register Button Redirect
+          * @uiWidget pageSelect
          */
         "registerPath"?: string;
         /**
-          * Label for submit button
           * @uiName Submit Button Text
          */
         "submitLabel"?: string;
     }
     interface SqmPortalLogout {
         /**
-          * @uiName Next Page Path
+          * Redirect participants to this page when they log out.
+          * @uiName Logout Redirect Path
+          * @uiWidget pageSelect
          */
         "nextPage"?: string;
     }
     interface SqmPortalProfile {
         /**
-          * Country input field label
-          * @uiName Country Label
+          * @uiName Country Field Label
          */
         "countrytext"?: string;
         /**
@@ -3725,25 +3943,21 @@ declare namespace LocalJSX {
          */
         "editProfileSubHeader"?: string;
         /**
-          * Email input field label
-          * @uiName Email Label
+          * @uiName Email Field Label
          */
         "emailtext"?: string;
         /**
-          * First name input field label
           * @uiName First Name Label
          */
         "firstnametext"?: string;
         /**
-          * Last name input field label
-          * @uiName Last Name Label
+          * @uiName Hide Country Field
+         */
+        "hideCountry"?: boolean;
+        /**
+          * @uiName Last Name Field Label
          */
         "lastnametext"?: string;
-        /**
-          * Show or hide the country field
-          * @uiName Show Country Field
-         */
-        "showCountry"?: boolean;
         /**
           * @uiName Submit Changes Button Text
          */
@@ -3751,28 +3965,27 @@ declare namespace LocalJSX {
     }
     interface SqmPortalProtectedRoute {
         /**
-          * @uiName Redirect Path
+          * Redirect participants to this page they are not logged in.
+          * @uiName Unauthenticated Participant Redirect
          */
         "redirectTo"?: string;
         /**
-          * @uiName Redirect Unverified Users Path
+          * Redirect participants to this page when email verification is required but they have not verified their email.
+          * @uiName Unverified Participant Redirect
          */
         "redirectToUnverified"?: string;
         /**
           * @uiName Require Email Verification
-          * @default
          */
         "requireEmailVerification"?: boolean;
     }
     interface SqmPortalRegister {
         /**
-          * Show or hide the confirm password input
           * @uiName Show Confirm Password Field
-          * @default
          */
         "confirmPassword"?: boolean;
         /**
-          * @uiName Confirm Password Label
+          * @uiName Confirm Password Field Label
          */
         "confirmPasswordLabel"?: string;
         /**
@@ -3781,17 +3994,16 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalRegisterViewProps>;
         /**
-          * @uiName Email Label
+          * @uiName Disable Password Validation
+         */
+        "disablePasswordValidation"?: boolean;
+        /**
+          * @uiName Email Field Label
          */
         "emailLabel"?: string;
         /**
-          * @uiName Enable Password Validation
-         */
-        "enablePasswordValidation"?: boolean;
-        /**
-          * Hide default input fields to use custom fields
-          * @uiName Hide Default Inputs
-          * @default
+          * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
+          * @uiName Hide Default Fields
          */
         "hideInputs"?: boolean;
         /**
@@ -3799,26 +4011,29 @@ declare namespace LocalJSX {
          */
         "loginLabel"?: string;
         /**
-          * Login button redirection path
-          * @uiName Login Path
+          * Redirect participants to this page after clicking the login button.
+          * @uiName Login Redirect
+          * @uiWidget pageSelect
          */
         "loginPath"?: string;
         /**
-          * Page navigated to after registration
-          * @uiName Next Page
+          * Redirect participants to this page from their verification email
+          * @uiName Registration Redirect
+          * @uiWidget pageSelect
          */
         "nextPage"?: string;
         /**
-          * @uiName Heading Label
+          * @uiName Header Text
          */
         "pageLabel"?: string;
         /**
-          * @uiName Password Label
+          * @uiName Password Field Label
          */
         "passwordLabel"?: string;
         /**
-          * The page that users are redirected to from the verification email.
-          * @uiName Email Redirection Base Path
+          * The page that participants are redirected to from the verification email.
+          * @uiName Email Verification Redirect
+          * @uiWidget pageSelect
          */
         "redirectPath"?: string;
         /**
@@ -3826,19 +4041,115 @@ declare namespace LocalJSX {
          */
         "submitLabel"?: string;
     }
-    interface SqmPortalResetPassword {
+    interface SqmPortalRegistrationForm {
         /**
-          * Show or hide confirm password field
-          * @uiName Show Confirm Password
-          * @default
+          * @uiName Show Confirm Password Field
          */
         "confirmPassword"?: boolean;
         /**
-          * @uiName Confirm Password Label
+          * @uiName Confirm Password Field Label
+         */
+        "confirmPasswordLabel"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PortalRegistrationFormViewProps>;
+        /**
+          * @uiName Disable Password Validation
+         */
+        "disablePasswordValidation"?: boolean;
+        /**
+          * @uiName Email Field Label
+         */
+        "emailLabel"?: string;
+        /**
+          * The message to be displayed when the registration form is disabled.
+          * @uiName Form Disabled Message
+          * @uiWidget textArea
+         */
+        "formDisabledErrorMessage"?: string;
+        /**
+          * The key of the registration form used for this microsite.
+          * @uiName Form Key
+          * @required
+         */
+        "formKey"?: string;
+        /**
+          * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
+          * @uiName Hide Default Fields
+         */
+        "hideInputs"?: boolean;
+        /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
+          * @uiName Login Button Text
+         */
+        "loginLabel"?: string;
+        /**
+          * Redirect participants to this page after clicking the login button.
+          * @uiName Login Redirect
+          * @uiWidget pageSelect
+         */
+        "loginPath"?: string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network Error Message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage"?: string;
+        /**
+          * Redirect participants to this page after they successfully register.
+          * @uiName Registration Redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage"?: string;
+        /**
+          * @uiName Header Text
+         */
+        "pageLabel"?: string;
+        /**
+          * @uiName Password Field Label
+         */
+        "passwordLabel"?: string;
+        /**
+          * The message to be displayed when password inputs do not match.
+          * @uiName Password Mismatch Message
+          * @uiWidget textArea
+         */
+        "passwordMismatchErrorMessage"?: string;
+        /**
+          * Redirect participants to this page from their verification email
+          * @uiName Email Verification Redirect
+          * @uiWidget pageSelect
+         */
+        "redirectPath"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
+        /**
+          * @uiName Submit Button Text
+         */
+        "submitLabel"?: string;
+    }
+    interface SqmPortalResetPassword {
+        /**
+          * @uiName Show Confirm Password Field
+         */
+        "confirmPassword"?: boolean;
+        /**
+          * @uiName Password Confirmation Field Label
          */
         "confirmPasswordFieldLabel"?: string;
         /**
-          * Button text displayed after a successful password reset
+          * Button text displayed after a successful password reset.
           * @uiName Continue Button Text
          */
         "continueButtonText"?: string;
@@ -3848,22 +4159,25 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
-          * The page that users are redirected to if the reset fails due to outdated password reset attempt.
-          * @uiName Failed Page Path
+          * Redirect participants to this page if password reset fails due to an outdated reset attempt.
+          * @uiName Failed Reset Redirect
+          * @uiWidget pageSelect
          */
         "failedPage"?: string;
         /**
-          * The page that users are redirected to when the password reset succeeds.
-          * @uiName Next Page Path
+          * Redirect participants to this page when they successfully reset their password.
+          * @uiName Successful Reset Redirect
+          * @uiWidget pageSelect
          */
         "nextPage"?: string;
         /**
-          * @uiName Password Label
+          * @uiName Password Field Label
          */
         "passwordFieldLabel"?: string;
         /**
-          * Displayed after a successful password reset
+          * Displayed after a successful password reset.
           * @uiName Successful Password Reset Text
+          * @uiWidget textArea
          */
         "passwordResetHeader"?: string;
         /**
@@ -3882,13 +4196,15 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalVerifyEmailViewProps>;
         /**
-          * The page that users are redirected to if verification fails due to outdated verification attempt.
-          * @uiName Failed Page Path
+          * Redirect participants to this page if verification fails due to an outdated verification attempt.
+          * @uiName Failed Verification Redirect
+          * @uiWidget pageSelect
          */
         "failedPage"?: string;
         /**
-          * The page that users are redirected to when the verification succeeds.
-          * @uiName Next Page Path
+          * Redirect participants to this page when they successfully verify their email.
+          * @uiName Successful Verification Redirect
+          * @uiWidget pageSelect
          */
         "nextPage"?: string;
     }
@@ -3963,7 +4279,7 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<ReferralIframeViewProps>;
         /**
-          * Height of the iframe container
+          * Define the height of the iframe with any valid CSS height value. Example: 100px, 5rem, or auto.
           * @uiName Iframe Height
          */
         "iframeHeight"?: string;
@@ -3974,7 +4290,7 @@ declare namespace LocalJSX {
          */
         "iframeSrc"?: string;
         /**
-          * Width of the iframe container
+          * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
           * @uiName Iframe Width
          */
         "iframeWidth"?: string;
@@ -4448,6 +4764,7 @@ declare namespace LocalJSX {
     }
     interface SqmRoute {
         /**
+          * Page Path URL for this route.
           * @uiName Navigation Path Name
          */
         "path"?: string;
@@ -4961,11 +5278,11 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UserNameViewProps>;
         /**
-          * Fallback name for unknown users
-          * @uiName Fallback Name
+          * @uiName Unknown User Name
          */
         "fallback"?: string;
         /**
+          * Text displayed while the participant’s name is loading.
           * @uiName Loading Text
          */
         "loadingText"?: string;
@@ -4983,6 +5300,7 @@ declare namespace LocalJSX {
         "sqm-empty": SqmEmpty;
         "sqm-form-message": SqmFormMessage;
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
+        "sqm-header-logo": SqmHeaderLogo;
         "sqm-hero": SqmHero;
         "sqm-hero-image": SqmHeroImage;
         "sqm-hook-story-container": SqmHookStoryContainer;
@@ -5007,6 +5325,7 @@ declare namespace LocalJSX {
         "sqm-portal-profile": SqmPortalProfile;
         "sqm-portal-protected-route": SqmPortalProtectedRoute;
         "sqm-portal-register": SqmPortalRegister;
+        "sqm-portal-registration-form": SqmPortalRegistrationForm;
         "sqm-portal-reset-password": SqmPortalResetPassword;
         "sqm-portal-verify-email": SqmPortalVerifyEmail;
         "sqm-program-explainer": SqmProgramExplainer;
@@ -5074,6 +5393,7 @@ declare module "@stencil/core" {
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
+            "sqm-header-logo": LocalJSX.SqmHeaderLogo & JSXBase.HTMLAttributes<HTMLSqmHeaderLogoElement>;
             "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
             "sqm-hero-image": LocalJSX.SqmHeroImage & JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
@@ -5098,6 +5418,7 @@ declare module "@stencil/core" {
             "sqm-portal-profile": LocalJSX.SqmPortalProfile & JSXBase.HTMLAttributes<HTMLSqmPortalProfileElement>;
             "sqm-portal-protected-route": LocalJSX.SqmPortalProtectedRoute & JSXBase.HTMLAttributes<HTMLSqmPortalProtectedRouteElement>;
             "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
+            "sqm-portal-registration-form": LocalJSX.SqmPortalRegistrationForm & JSXBase.HTMLAttributes<HTMLSqmPortalRegistrationFormElement>;
             "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
             "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
             "sqm-program-explainer": LocalJSX.SqmProgramExplainer & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerElement>;

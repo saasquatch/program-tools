@@ -12,7 +12,7 @@ export default {
 const defaultProps = {
   supportEmail: "support@example.com",
   supportText: "For program support, contact {email}",
-  showPoweredBy: true,
+  hidePoweredBy: false,
   poweredByLink: "https://saasquatch.com",
   paddingTop: "large",
   paddingRight: "large",
@@ -55,6 +55,6 @@ export const FooterNoPoweredBy = () => (
     termsText="Terms and Conditions"
     faqLink="https://example.com"
     faqText="FAQ"
-    showPoweredBy={false}
+    hidePoweredBy={true}
   />
 );

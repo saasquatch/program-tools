@@ -9,16 +9,13 @@ export interface PortalFrameViewProps {
   callbacks: {
     rerender: Function;
   };
+  notFullScreen?: boolean;
 }
 
 const style = {
   HostBlock: HostBlock,
-  ":host": {
-    "min-height": "100vh",
-  },
 
   Frame: {
-    "min-height": "100vh",
     display: "flex",
     "flex-direction": "column",
     "box-sizing": "border-box",
@@ -60,9 +57,9 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function PortalFrameView(props: PortalFrameViewProps, children: VNode) {
-  const { data } = props;
+  const { data, notFullScreen } = props;
   return (
-    <div class={sheet.classes.Frame}>
+    <div style={{minHeight: notFullScreen ? "100%" : "100vh"}} class={sheet.classes.Frame}>
       <style type="text/css">{styleString}</style>
       <div class={sheet.classes.HeaderWrapper}>
         {data.header}
