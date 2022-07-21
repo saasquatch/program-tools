@@ -584,7 +584,7 @@ html {
   --sqm-portal-background: transparent;
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
-  --sqm-max-width: 1280px;
+  --sqm-max-width: 100%;
 }
 
 body {
