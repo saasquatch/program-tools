@@ -1117,6 +1117,11 @@ export namespace Components {
          */
         "emailLabel": string;
         /**
+          * The message to be displayed when the registration form is disabled.
+          * @uiName Form Disabled Message
+         */
+        "formDisabledErrorMessage": string;
+        /**
           * The key of the registration form used for this microsite.
           * @uiName Form Key
           * @required
@@ -1128,6 +1133,11 @@ export namespace Components {
          */
         "hideInputs": boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+         */
+        "invalidEmailErrorMessage": string;
+        /**
           * @uiName Login Button Text
          */
         "loginLabel": string;
@@ -1137,6 +1147,11 @@ export namespace Components {
           * @uiWidget pageSelect
          */
         "loginPath": string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network Error Message
+         */
+        "networkErrorMessage": string;
         /**
           * Redirect participants to this page after they successfully register.
           * @uiName Registration Redirect
@@ -1152,11 +1167,21 @@ export namespace Components {
          */
         "passwordLabel": string;
         /**
+          * The message to be displayed when password inputs do not match.
+          * @uiName Password Mismatch Message
+         */
+        "passwordMismatchErrorMessage": string;
+        /**
           * Redirect participants to this page from their verification email
           * @uiName Email Verification Redirect
           * @uiWidget pageSelect
          */
         "redirectPath": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+         */
+        "requiredFieldErrorMessage": string;
         /**
           * @uiName Submit Button Text
          */
@@ -4026,6 +4051,11 @@ declare namespace LocalJSX {
          */
         "emailLabel"?: string;
         /**
+          * The message to be displayed when the registration form is disabled.
+          * @uiName Form Disabled Message
+         */
+        "formDisabledErrorMessage"?: string;
+        /**
           * The key of the registration form used for this microsite.
           * @uiName Form Key
           * @required
@@ -4037,6 +4067,11 @@ declare namespace LocalJSX {
          */
         "hideInputs"?: boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
           * @uiName Login Button Text
          */
         "loginLabel"?: string;
@@ -4046,6 +4081,11 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "loginPath"?: string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network Error Message
+         */
+        "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page after they successfully register.
           * @uiName Registration Redirect
@@ -4061,11 +4101,21 @@ declare namespace LocalJSX {
          */
         "passwordLabel"?: string;
         /**
+          * The message to be displayed when password inputs do not match.
+          * @uiName Password Mismatch Message
+         */
+        "passwordMismatchErrorMessage"?: string;
+        /**
           * Redirect participants to this page from their verification email
           * @uiName Email Verification Redirect
           * @uiWidget pageSelect
          */
         "redirectPath"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+         */
+        "requiredFieldErrorMessage"?: string;
         /**
           * @uiName Submit Button Text
          */

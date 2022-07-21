@@ -103,6 +103,42 @@ export class PortalRegistrationForm {
   @Prop() loginPath: string = "/login";
 
   /**
+   * The message to be displayed when a required field is not filled.
+   *
+   * @uiName Required Field Message
+   */
+  @Prop() requiredFieldErrorMessage: string = "Cannot be empty";
+
+  /**
+   * The message to be displayed when a the form submission fails unexpectedly.
+   *
+   * @uiName Network Error Message
+   */
+  @Prop() networkErrorMessage: string = "Network request failed.";
+
+  /**
+   * The message to be displayed when password inputs do not match.
+   *
+   * @uiName Password Mismatch Message
+   */
+  @Prop() passwordMismatchErrorMessage: string = "Passwords do not match.";
+
+  /**
+   * The message to be displayed when the email used is invalid or blocked.
+   *
+   * @uiName Invalid Email Message
+   */
+  @Prop() invalidEmailErrorMessage: string = "Must be a valid email address";
+
+  /**
+   * The message to be displayed when the registration form is disabled.
+   *
+   * @uiName Form Disabled Message
+   */
+  @Prop() formDisabledErrorMessage: string =
+    "The registration form is currently disabled.";
+
+  /**
    * The key of the registration form used for this microsite.
    *
    * @uiName Form Key
