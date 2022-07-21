@@ -52,8 +52,10 @@ const SVGStyleSpan = styled.span<Required<StyleProps>>`
   ${(props) => props.customCSS}
 
   & > svg {
-    width: 100%;
-    height: 100%;
+    width: ${(props) =>
+      default_size.hasOwnProperty(props.size)
+        ? default_size[props.size as Size]
+        : props.size};
   }
 `;
 
