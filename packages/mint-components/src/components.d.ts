@@ -918,6 +918,10 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<PortalFrameViewProps>;
+        /**
+          * @undocumented
+         */
+        "notFullScreen"?: boolean;
     }
     interface SqmPortalLogin {
         /**
@@ -3857,6 +3861,10 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<PortalFrameViewProps>;
+        /**
+          * @undocumented
+         */
+        "notFullScreen"?: boolean;
     }
     interface SqmPortalLogin {
         /**

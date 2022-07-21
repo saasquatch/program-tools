@@ -20,6 +20,11 @@ export class PortalFrame {
 
   /**
    * @undocumented
+   */
+  @Prop() notFullScreen?: boolean = false;
+
+  /**
+   * @undocumented
    * @uiType object
    */
   @Prop() demoData?: DemoData<PortalFrameViewProps>;
@@ -50,6 +55,7 @@ function usePortalFrameDemo(
 ): PortalFrameViewProps {
   return deepmerge(
     {
+      notFullScreen: true,
       data: {
         footer: footerContent ? (
           footerContent
