@@ -64,7 +64,7 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     const disabled = queryResponse?.data?.form.initialData.isEnabled === false;
     const disabledMessage =
       queryResponse?.data?.form.initialData.isEnabledErrorMessage ||
-      "The registration form is currently disabled.";
+      props.formDisabledErrorMessage;
     const formState: RegistrationFormState = {
       loading: formLoading,
       disabled,
@@ -98,7 +98,7 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
       jsonpointer.set(formData, key, value);
       // required validation
       if (control.required && !value) {
-        jsonpointer.set(validationErrors, key, "Cannot be empty");
+        jsonpointer.set(validationErrors, key, props.requiredFieldErrorMessage);
       }
       // custom validation
       if (typeof control.validationError === "function") {
@@ -115,7 +115,7 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     ) {
       validationErrors = {
         ...validationErrors,
-        confirmPassword: "Passwords do not match.",
+        confirmPassword: props.passwordMismatchErrorMessage,
       };
     }
 
@@ -185,7 +185,7 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
           loading: false,
           error: "",
           validationErrors: {
-            email: "Must be a valid email address",
+            email: props.invalidEmailErrorMessage,
           },
         });
       }
@@ -196,13 +196,13 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
           ...registrationFormState,
           loading: false,
           error: "",
-          validationErrors: { email: "Must be a valid email address" },
+          validationErrors: { email: props.invalidEmailErrorMessage },
         });
       } else {
         setRegistrationFormState({
           ...registrationFormState,
           loading: false,
-          error: "Network request failed.",
+          error: props.networkErrorMessage,
           validationErrors: {},
         });
       }
@@ -220,11 +220,11 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
   if (queryResponse?.data?.form.initialData.isEnabled === false) {
     errorMessage =
       queryResponse?.data?.form.initialData.isEnabledErrorMessage ||
-      "The registration form is disabled";
+      props.formDisabledErrorMessage;
   } else if (errors?.response?.["error"]) {
-    errorMessage = "Network request failed";
+    errorMessage = props.networkErrorMessage;
   } else if (errors?.message && !errors?.response?.errors.length) {
-    errorMessage = "Network request failed";
+    errorMessage = props.networkErrorMessage;
   } else {
     errorMessage =
       formError ||
