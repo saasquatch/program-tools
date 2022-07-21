@@ -7,22 +7,64 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.6.2] - 2022-07-11
+## [1.6.2] - 2022-07-21
 
 ### Added
 
-- `<sqm-portal-registration-form>` component added to handle registration form submissions
+- Added Components:
+  - \<sqm-portal-registration-form> component added to handle registration form submissions
+  - Has all features of existing \<sqm-portal-register> but uses registration forms instead
+    - Features include:
+      - Pre-fill
+      - Form Protection
+      - Domain Blocking
+  - \<sqm-header-logo> displays a logo and redirects participants when they click on it
+    - Designed to be used in Microsite headers
 
 ### Changed
 
 - replaced useValidationState with useRegistrationFormState for `<sqm-portal-registration-form>` and `<sqm-portal-register>`
 - useRegistrationFormState allows passing loading, disabled, and initialData states in addition to validationErrors and network errors
-- implemented useRegistrationFormState in the registration form slotted components
+- implemented useRegistrationFormState in the registration form slotted components to improve form loading and validation
   - `<sqm-password-field>`
   - `<sqm-name-fields>`
   - `<sqm-input-field>`
   - `<sqm-dropdown-field>`
   - `<sqm-checkbox-field>`
+- Fixed missing null check on \<sqm-brand>
+- Fixed `program-id` prop overwrite on \<sqm-share-code>
+- Updated `--sqm-max-width` to be `100%`, this affects the \<sqm-hero> and the component will now be full width on larger screens
+- Added [jsDocs](https://jsdoc.app/) to the following components to improve the editability experience in our new Raisins widget editor.
+- Changed components:
+  - \<sqm-checkbox-field>
+  - \<sqm-divided-layout>
+  - \<sqm-dropdown-field>
+  - \<sqm-edit-profile>
+  - \<sqm-form-message>
+  - \<sqm-header-logo>
+  - \<sqm-hero>
+  - \<sqm-input-field>
+  - \<sqm-name-fields>
+  - \<sqm-navigation-sidebar-item>
+  - \<sqm-navigation-sidebar>
+  - \<sqm-password-field>
+  - \<sqm-portal-change-password>
+  - \<sqm-portal-email-verification>
+  - \<sqm-portal-forgot-password>
+  - \<sqm-portal-frame>
+  - \<sqm-portal-login>
+  - \<sqm-portal-logout>
+  - \<sqm-portal-profile>
+  - \<sqm-portal-protected-route>
+  - \<sqm-portal-register>
+  - \<sqm-portal-registration-form>
+  - \<sqm-portal-reset-password>
+  - \<sqm-portal-verify-email>
+  - \<sqm-program-menu>
+  - \<sqm-route>
+  - \<sqm-share-code>
+  - \<sqm-user-name>
+
 
 ### Breaking Changes
 
