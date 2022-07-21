@@ -58,7 +58,6 @@ const styleString = sheet.toString();
 
 export function PortalFrameView(props: PortalFrameViewProps, children: VNode) {
   const { data, notFullScreen } = props;
-  console.log(notFullScreen)
   return (
     <div style={{minHeight: notFullScreen ? "100%" : "100vh"}} class={sheet.classes.Frame}>
       <style type="text/css">{styleString}</style>
