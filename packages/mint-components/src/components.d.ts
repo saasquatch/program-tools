@@ -1119,6 +1119,7 @@ export namespace Components {
         /**
           * The message to be displayed when the registration form is disabled.
           * @uiName Form Disabled Message
+          * @uiWidget textArea
          */
         "formDisabledErrorMessage": string;
         /**
@@ -1135,6 +1136,7 @@ export namespace Components {
         /**
           * The message to be displayed when the email used is invalid or blocked.
           * @uiName Invalid Email Message
+          * @uiWidget textArea
          */
         "invalidEmailErrorMessage": string;
         /**
@@ -1150,6 +1152,7 @@ export namespace Components {
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network Error Message
+          * @uiWidget textArea
          */
         "networkErrorMessage": string;
         /**
@@ -1169,6 +1172,7 @@ export namespace Components {
         /**
           * The message to be displayed when password inputs do not match.
           * @uiName Password Mismatch Message
+          * @uiWidget textArea
          */
         "passwordMismatchErrorMessage": string;
         /**
@@ -1180,6 +1184,7 @@ export namespace Components {
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required Field Message
+          * @uiWidget textArea
          */
         "requiredFieldErrorMessage": string;
         /**
@@ -4053,6 +4058,7 @@ declare namespace LocalJSX {
         /**
           * The message to be displayed when the registration form is disabled.
           * @uiName Form Disabled Message
+          * @uiWidget textArea
          */
         "formDisabledErrorMessage"?: string;
         /**
@@ -4069,6 +4075,7 @@ declare namespace LocalJSX {
         /**
           * The message to be displayed when the email used is invalid or blocked.
           * @uiName Invalid Email Message
+          * @uiWidget textArea
          */
         "invalidEmailErrorMessage"?: string;
         /**
@@ -4084,6 +4091,7 @@ declare namespace LocalJSX {
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network Error Message
+          * @uiWidget textArea
          */
         "networkErrorMessage"?: string;
         /**
@@ -4103,6 +4111,7 @@ declare namespace LocalJSX {
         /**
           * The message to be displayed when password inputs do not match.
           * @uiName Password Mismatch Message
+          * @uiWidget textArea
          */
         "passwordMismatchErrorMessage"?: string;
         /**
@@ -4114,6 +4123,7 @@ declare namespace LocalJSX {
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required Field Message
+          * @uiWidget textArea
          */
         "requiredFieldErrorMessage"?: string;
         /**

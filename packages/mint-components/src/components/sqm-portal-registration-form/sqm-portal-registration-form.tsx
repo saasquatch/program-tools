@@ -106,6 +106,7 @@ export class PortalRegistrationForm {
    * The message to be displayed when a required field is not filled.
    *
    * @uiName Required Field Message
+   * @uiWidget textArea
    */
   @Prop() requiredFieldErrorMessage: string = "Cannot be empty";
 
@@ -113,6 +114,7 @@ export class PortalRegistrationForm {
    * The message to be displayed when a the form submission fails unexpectedly.
    *
    * @uiName Network Error Message
+   * @uiWidget textArea
    */
   @Prop() networkErrorMessage: string = "Network request failed.";
 
@@ -120,6 +122,7 @@ export class PortalRegistrationForm {
    * The message to be displayed when password inputs do not match.
    *
    * @uiName Password Mismatch Message
+   * @uiWidget textArea
    */
   @Prop() passwordMismatchErrorMessage: string = "Passwords do not match.";
 
@@ -127,6 +130,7 @@ export class PortalRegistrationForm {
    * The message to be displayed when the email used is invalid or blocked.
    *
    * @uiName Invalid Email Message
+   * @uiWidget textArea
    */
   @Prop() invalidEmailErrorMessage: string = "Must be a valid email address";
 
@@ -134,6 +138,7 @@ export class PortalRegistrationForm {
    * The message to be displayed when the registration form is disabled.
    *
    * @uiName Form Disabled Message
+   * @uiWidget textArea
    */
   @Prop() formDisabledErrorMessage: string =
     "The registration form is currently disabled.";

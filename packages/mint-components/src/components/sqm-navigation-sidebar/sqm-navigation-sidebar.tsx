@@ -4,7 +4,7 @@ import { NavigationSidebarView } from "./sqm-navigation-sidebar-view";
 
 /**
  * @uiName Microsite Sidebar
- * @slots [{"name":"", "title":"Sidebar Content", "validChildren":["sqm-navigation-sidebar-item"]}]
+ * @slots [{"name":"", "title":"Sidebar Content"]}]
  */
 @Component({
   tag: "sqm-navigation-sidebar",
