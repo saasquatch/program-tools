@@ -33,7 +33,12 @@ export interface PortalRegistrationFormViewProps {
     passwordLabel?: string;
     submitLabel?: string;
     pageLabel?: string;
-    confirmPasswordLabel: string;
+    confirmPasswordLabel?: string;
+    networkErrorMessage?: string;
+    passwordMismatchErrorMessage?: string;
+    invalidEmailErrorMessage?: string;
+    formDisabledErrorMessage?: string;
+    requiredFieldErrorMessage?: string;
   };
   refs: {
     formRef: any;
@@ -120,11 +125,11 @@ export function PortalRegistrationFormView(
             required
             validationError={({ value }: { value: string }) => {
               if (!value) {
-                return "Cannot be empty";
+                return content.requiredFieldErrorMessage;
               }
               // this matches shoelace validation, but could be better
               if (!value.includes("@")) {
-                return "Must be a valid email address";
+                return content.invalidEmailErrorMessage;
               }
             }}
             {...(states.registrationFormState?.initialData?.email
@@ -137,7 +142,7 @@ export function PortalRegistrationFormView(
                   class: sheet.classes.ErrorStyle,
                   helpText:
                     states.registrationFormState?.validationErrors?.email ||
-                    "Cannot be empty",
+                    content.requiredFieldErrorMessage,
                 }
               : [])}
           ></sl-input>
@@ -155,7 +160,7 @@ export function PortalRegistrationFormView(
             type="password"
             name="/confirmPassword"
             label={content.confirmPasswordLabel}
-            disabled={states.loading}
+            disabled={states.loading || states.registrationFormState?.disabled}
             required
             {...(states.registrationFormState?.initialData?.confirmPassword
               ? {
@@ -168,7 +173,7 @@ export function PortalRegistrationFormView(
                   class: sheet.classes.ErrorStyle,
                   helpText:
                     states.registrationFormState?.validationErrors
-                      ?.confirmPassword || "Cannot be empty",
+                      ?.confirmPassword || content.requiredFieldErrorMessage,
                 }
               : [])}
           ></sl-input>
