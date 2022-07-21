@@ -68,7 +68,7 @@ export const arrow_down = (
       fillRule="evenodd"
       clipRule="evenodd"
       d="M.146 1.483L1.25.6 5 3.6l3.75-3 1.104.883L5 5.366.146 1.483z"
-      fill="#858585"
+      fill="currentColor"
     />
   </svg>
 );
