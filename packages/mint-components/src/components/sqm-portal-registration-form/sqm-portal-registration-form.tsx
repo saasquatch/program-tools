@@ -103,7 +103,7 @@ export class PortalRegistrationForm {
   @Prop() loginPath: string = "/login";
 
   /**
-   * The key of the registration form used for this microsite. 
+   * The key of the registration form used for this microsite.
    *
    * @uiName Form Key
    * @required
@@ -165,7 +165,7 @@ function useRegisterDemo(
       states: {
         error: "",
         loading: false,
-        confirmPassword: true,
+        confirmPassword: props.confirmPassword,
         hideInputs: props.hideInputs || false,
         customPasswordField: false,
         loginPath: "/login",

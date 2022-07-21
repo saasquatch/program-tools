@@ -109,7 +109,7 @@ Feature: Portal Register
 
     @motivating
     Scenario Outline: Password Validation is enabled by default
-        Given the registration component <mayHaveProp> "disable-validation" with <value>
+        Given the registration component <mayHaveProp> "disable-password-validation" with <value>
         And a user viewing the registration component
         Then they <maySee> the password validation
         Examples:
@@ -194,7 +194,7 @@ Feature: Portal Register
             | sqm-password-field | Custom Password |
 
     @motivating
-    Scenario Outline: Slotted content fields are disabled if registration form is disbabled
+    Scenario Outline: Slotted content fields are disabled if registration form is disabled
         Given a user viewing the registration form component
         And the registration form is disabled
         And the registration form component has <slottedContent>

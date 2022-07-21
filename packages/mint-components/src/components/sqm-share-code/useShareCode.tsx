@@ -33,7 +33,7 @@ const WIDGET_ENGAGEMENT_EVENT = gql`
 `;
 
 export function useShareCode(props: ShareCodeProps): ShareLinkViewProps {
-  const programId = useProgramId();
+  const { programId = useProgramId() } = props;
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
 
