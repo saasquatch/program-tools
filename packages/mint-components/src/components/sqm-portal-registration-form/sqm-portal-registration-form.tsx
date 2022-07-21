@@ -186,6 +186,11 @@ export class PortalRegistrationForm {
       submitLabel: this.submitLabel,
       pageLabel: this.pageLabel,
       confirmPasswordLabel: this.confirmPasswordLabel,
+      networkErrorMessage: this.networkErrorMessage,
+      passwordMismatchErrorMessage: this.passwordMismatchErrorMessage,
+      invalidEmailErrorMessage: this.invalidEmailErrorMessage,
+      formDisabledErrorMessage: this.formDisabledErrorMessage,
+      requiredFieldErrorMessage: this.requiredFieldErrorMessage,
     };
 
     return (

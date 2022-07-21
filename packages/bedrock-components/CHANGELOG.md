@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.3.4] - 2022-07-21
+## [1.3.5] - 2022-07-21
 
 ### Changed
 - \<sqb-program-section> updated to stop using flawed DOM context state hook in favour of directly creating a DOM context provider
