@@ -211,6 +211,18 @@ Feature: Portal Register
             | sqm-password-field | Custom Password |
 
     @motivating
+    Scenario Outline: The registration form can be disabled by form protection
+        Given a user viewing the registration form component
+        And the registration form protection returns <return>
+        Then they <maySee> an error banner at the top of the form with <text>
+        And they <maySee> that the form inputs are disabled
+        Examples:
+            | return | maySee    | text                                         |
+            | false  | see       | The registration form is currently disabled. |
+            | "test" | see       | "test"                                       |
+            | true   | don't see |                                              |
+
+    @motivating
     Scenario: The Registration form key maps to a SaaSquatch form and makes a submission
         Given a SaaSquatch registration form with key "microsite-registration"
         And the registration component has prop "form-key" with value "microsite-registration"
