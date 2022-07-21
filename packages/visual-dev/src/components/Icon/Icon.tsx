@@ -50,6 +50,13 @@ const SVGStyleSpan = styled.span<Required<StyleProps>>`
       ? default_size[props.size as Size]
       : props.size};
   ${(props) => props.customCSS}
+
+  & > svg {
+    width: ${(props) =>
+      default_size.hasOwnProperty(props.size)
+        ? default_size[props.size as Size]
+        : props.size};
+  }
 `;
 
 export type IconKey = keyof typeof SVGs;
