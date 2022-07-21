@@ -33,7 +33,6 @@ export function usePortalVerifyEmail({ nextPage, failedPage }) {
   const gotoNextPage = () => {
     urlParams.delete("nextPage");
     const url = sanitizeUrlPath(nextPageOverride || nextPage);
-    // window.history.pushState(undefined, "", url.href);
     navigation.push(url.href);
   };
 
