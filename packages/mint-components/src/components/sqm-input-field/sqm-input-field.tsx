@@ -9,7 +9,10 @@ import { InputFieldView, InputFieldViewProps } from "./sqm-input-field-view";
 import { useInputField } from "./useInputField";
 
 /**
- * @uiName Input Field
+ * @uiName Form Input Field
+ * @validParents ["sqm-portal-register","sqm-portal-registration-form"]
+ * @exampleGroup Microsite Components
+ * @example Form Input Field - <sqm-input-field input-label="Field Label" field-type="text" error-message="Cannot be empty"></sqm-input-field>
  */
 @Component({
   tag: "sqm-input-field",
@@ -19,9 +22,10 @@ export class InputField {
   ignored = true;
 
   /**
-   * Used as the key of the inputs value in form data.
+   * This name is used as the key for this form field on submission. The name must be unique within this specific form.
    * 
    * @uiName Input Name Attribute
+   * @required
    */
   @Prop() fieldName: string;
 
@@ -45,6 +49,7 @@ export class InputField {
 
   /**
    * @uiName Optional
+   * @default
    */
   @Prop() fieldOptional?: boolean = false;
 
@@ -92,7 +97,7 @@ function useInputFieldDemo(props: InputField): Partial<InputFieldViewProps> {
   return deepmerge(
     {
       states: {
-        validationErrors: [],
+        registrationFormState: {},
       },
     },
     props.demoData || {},

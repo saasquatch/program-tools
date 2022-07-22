@@ -7,7 +7,10 @@ import { NameFieldsView, NameFieldsViewProps } from "./sqm-name-fields-view";
 import { useNameFields } from "./useNameFields";
 
 /**
- * @uiName Name Fields
+ * @uiName Form Name Fields
+ * @validParents ["sqm-portal-register","sqm-portal-registration-form"]
+ * @exampleGroup Microsite Components
+ * @example Form Name Fields - <sqm-name-fields first-name-label="First Name" last-name-label="Last Name"></sqm-name-fields>
  */
 @Component({
   tag: "sqm-name-fields",
@@ -17,12 +20,12 @@ export class NameFields {
   ignored = true;
 
   /**
-   * @uiName First name field label
+   * @uiName First Name label
    */
   @Prop() firstNameLabel: string = "First Name";
 
   /**
-   * @uiName Last name field label
+   * @uiName Last Name label
    */
   @Prop() lastNameLabel: string = "Last Name";
 
@@ -49,8 +52,8 @@ function useNameFieldsDemo(props: NameFields): Partial<NameFieldsViewProps> {
       states: {
         validationErrors: [],
         content: {
-          firstNameLabel: "First Name",
-          lastNameLabel: "Last Name",
+          firstNameLabel: props.firstNameLabel,
+          lastNameLabel: props.lastNameLabel,
         },
       },
     },

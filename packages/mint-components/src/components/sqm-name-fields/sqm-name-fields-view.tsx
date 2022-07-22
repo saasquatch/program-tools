@@ -1,11 +1,11 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { ErrorStyles } from "../../global/mixins";
-import { ValidationErrors } from "../sqm-portal-register/useValidationState";
+import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export interface NameFieldsViewProps {
   states: {
-    validationErrors?: ValidationErrors;
+    registrationFormState?: RegistrationFormState;
     content: {
       firstNameLabel: string;
       lastNameLabel: string;
@@ -40,7 +40,7 @@ const styleString = sheet.toString();
 
 export function NameFieldsView(props: NameFieldsViewProps) {
   const { states } = props;
-  const validationErrors = states?.validationErrors;
+  const validationErrors = states?.registrationFormState?.validationErrors;
   return (
     <div class={sheet.classes.FieldsContainer}>
       <style type="text/css">
@@ -53,6 +53,15 @@ export function NameFieldsView(props: NameFieldsViewProps) {
         type="text"
         label={states.content.firstNameLabel}
         required
+        disabled={
+          states.registrationFormState?.loading ||
+          states.registrationFormState?.disabled
+        }
+        {...(states.registrationFormState?.initialData?.firstName
+          ? {
+              value: states.registrationFormState?.initialData?.firstName,
+            }
+          : {})}
         {...(validationErrors?.firstName
           ? {
               class: sheet.classes.ErrorStyle,
@@ -66,6 +75,15 @@ export function NameFieldsView(props: NameFieldsViewProps) {
         type="text"
         label={states.content.lastNameLabel}
         required
+        disabled={
+          states.registrationFormState?.loading ||
+          states.registrationFormState?.disabled
+        }
+        {...(states.registrationFormState?.initialData?.lastName
+          ? {
+              value: states.registrationFormState?.initialData?.lastName,
+            }
+          : {})}
         {...(validationErrors?.lastName
           ? {
               class: sheet.classes.ErrorStyle,

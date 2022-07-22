@@ -7,7 +7,7 @@ import { PortalLoginView, PortalLoginViewProps } from "./sqm-portal-login-view";
 import { usePortalLogin } from "./usePortalLogin";
 
 /**
- * @uiName Portal Login
+ * @uiName Microsite Login
  */
 @Component({
   tag: "sqm-portal-login",
@@ -18,56 +18,63 @@ export class PortalLogin {
   ignored = true;
 
   /**
-   * @uiName Page navigated to after sign-in
+   * Redirect participants to this page after they successfully login.
+   *
+   * @uiName Login Redirect
+   * @uiWidget pageSelect
    */
   @Prop()
   nextPage: string = "/";
 
   /**
-   * @uiName Label for email field
+   * @uiName Email Field Label
    */
   @Prop()
   emailLabel: string = "Email";
 
   /**
-   * @uiName Label for password field
+   * @uiName Password Field Label
    */
   @Prop()
   passwordLabel: string = "Password";
 
   /**
-   * @uiName Label for submit button
+   * @uiName Submit Button Text
    */
   @Prop()
   submitLabel: string = "Sign In";
 
   /**
-   * @uiName Label for forgotten password button
+   * Redirect participants to this page to reset their password
+   * @uiName Forgot Password Redirect
+   * @uiWidget pageSelect
+   */
+  @Prop() forgotPasswordPath: string = "/forgotPassword";
+
+  /**
+   * @uiName Forgot Password Text
    */
   @Prop()
   forgotPasswordLabel: string = "Forgot Password?";
 
   /**
-   * @uiName Label for register navigation button
+   * @uiName Register Button Text
    */
   @Prop()
   registerLabel: string = "Register";
 
   /**
-   * @uiName Heading label
-   */
-  @Prop()
-  pageLabel: string = "Sign in to your account";
-
-  /**
-   * @uiName Register button redirection path
+   * Redirect participants to this page to start registration.
+   * @uiName Register Button Redirect
+   * @uiWidget pageSelect
    */
   @Prop() registerPath: string = "/register";
 
   /**
-   * @uiName Forgot password button redirect path
+   * @uiName Heading Label
+   * @uiWidget textArea
    */
-  @Prop() forgotPasswordPath: string = "/forgotPassword";
+  @Prop() pageLabel: string = "Sign in to your account";
 
   /**
    * @undocumented

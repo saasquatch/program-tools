@@ -8,7 +8,7 @@ const initialMutationState: BaseQueryData = {
 
 export function useMutation<T = any>(
   query: GqlType
-): [(e: unknown) => unknown, BaseQueryData<T>] {
+): [(e: unknown) => Promise<T | Error>, BaseQueryData<T>] {
   const [state, update] = useBaseQuery<T>(
     query,
     initialMutationState as BaseQueryData<T>

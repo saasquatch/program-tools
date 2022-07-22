@@ -15,7 +15,9 @@ export default {
 
 const defaultProps: InputFieldViewProps = {
   states: {
-    validationErrors: {},
+    registrationFormState: {
+      validationErrors: {},
+    },
   },
   content: {
     fieldName: "field",
@@ -28,6 +30,7 @@ const defaultProps: InputFieldViewProps = {
 
 const defaultRegisterProps: PortalRegisterViewProps = {
   states: {
+    registrationFormState: {},
     error: "",
     loading: false,
     confirmPassword: true,
@@ -58,8 +61,11 @@ export const Error = () => (
     {...defaultProps}
     states={{
       ...defaultProps.states,
-      validationErrors: {
-        field: "Cannot be empty",
+
+      registrationFormState: {
+        validationErrors: {
+          field: "Cannot be empty",
+        },
       },
     }}
   />
@@ -74,8 +80,10 @@ export const CustomError = () => (
     }}
     states={{
       ...defaultProps.states,
-      validationErrors: {
-        field: "Cannot be empty",
+      registrationFormState: {
+        validationErrors: {
+          field: "Cannot be empty",
+        },
       },
     }}
   />

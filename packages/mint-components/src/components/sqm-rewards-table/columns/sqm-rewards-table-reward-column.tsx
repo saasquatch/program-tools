@@ -4,6 +4,9 @@ import { useRequestRerender } from "../../../tables/re-render";
 import { RewardTableColumn } from "./RewardTableColumn";
 /**
  * @uiName Rewards Table Reward Column
+ * @validParents ["sqm-rewards-table"]
+ * @exampleGroup Rewards
+ * @example Rewards Table Reward Column - <sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!"></sqm-rewards-table-reward-column>
  */
 @Component({
   tag: "sqm-rewards-table-reward-column",
@@ -11,7 +14,7 @@ import { RewardTableColumn } from "./RewardTableColumn";
 })
 export class RewardsTableColumn implements RewardTableColumn {
   /**
-   * @uiName Reward column title
+   * @uiName Reward Column Title
    */
   @Prop() columnTitle: string = "Reward";
 

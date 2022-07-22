@@ -5,11 +5,11 @@
 
 ## Properties
 
-| Property       | Attribute      | Description | Type     | Default      |
-| -------------- | -------------- | ----------- | -------- | ------------ |
-| `hidetext`     | `hidetext`     |             | `string` | `"Hide"`     |
-| `nexttext`     | `nexttext`     |             | `string` | `"Next"`     |
-| `previoustext` | `previoustext` |             | `string` | `"Previous"` |
+| Property       | Attribute      | Description                     | Type     | Default      |
+| -------------- | -------------- | ------------------------------- | -------- | ------------ |
+| `hidetext`     | `hidetext`     | Text inside the hide button     | `string` | `"Hide"`     |
+| `nexttext`     | `nexttext`     | Text inside the next button     | `string` | `"Next"`     |
+| `previoustext` | `previoustext` | Text inside the previous button | `string` | `"Previous"` |
 
 
 ----------------------------------------------

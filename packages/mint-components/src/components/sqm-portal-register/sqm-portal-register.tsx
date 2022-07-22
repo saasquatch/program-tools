@@ -10,7 +10,8 @@ import {
 import { usePortalRegister } from "./usePortalRegister";
 
 /**
- * @uiName Portal Register
+ * @uiName Microsite Registration
+ * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
  */
 @Component({
   tag: "sqm-portal-register",
@@ -21,74 +22,83 @@ export class PortalRegister {
   ignored = true;
 
   /**
-   * @uiName Page navigated to after registration
+   * Redirect participants to this page from their verification email
+   *
+   * @uiName Registration Redirect
+   * @uiWidget pageSelect
    */
   @Prop()
   nextPage: string = "/";
 
   /**
-   * The page that users are redirected to from the verification email.
+   * The page that participants are redirected to from the verification email.
    *
-   * @uiName Email redirection base path
+   * @uiName Email Verification Redirect
+   * @uiWidget pageSelect
    */
   @Prop()
   redirectPath: string = "/verifyEmail";
 
   /**
-   * @uiName Label for email field
+   * @uiName Email Field Label
    */
   @Prop()
   emailLabel: string = "Email";
 
   /**
-   * @uiName Label for password field
+   * @uiName Password Field Label
    */
   @Prop()
   passwordLabel: string = "Password";
 
   /**
-   * @uiName Label for submit button
+   * @uiName Submit Button Text
    */
   @Prop()
   submitLabel: string = "Register";
 
   /**
-   * @uiName Label for login navigation button
+   * @uiName Login Button Text
    */
   @Prop()
   loginLabel: string = "Sign in";
 
   /**
-   * @uiName Label for confirm password field
+   * @uiName Confirm Password Field Label
    */
   @Prop() confirmPasswordLabel: string = "Confirm Password";
 
   /**
-   * @uiName Show confirm password field
+   * @uiName Show Confirm Password Field
    */
   @Prop()
   confirmPassword: boolean = false;
 
   /**
-   * @uiName Use password field with live validation
+   * @uiName Disable Password Validation
    */
   @Prop()
-  enablePasswordValidation: boolean = true;
+  disablePasswordValidation: boolean = false;
 
   /**
-   * @uiName Hide default input fields to use custom fields
+   * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
+   *
+   * @uiName Hide Default Fields
    */
   @Prop()
   hideInputs: boolean = false;
 
   /**
-   * @uiName Heading label
+   * @uiName Header Text
    */
   @Prop()
   pageLabel: string = "Register";
 
   /**
-   * @uiName Sign in button redirection path
+   * Redirect participants to this page after clicking the login button.
+   *
+   * @uiName Login Redirect
+   * @uiWidget pageSelect
    */
   @Prop() loginPath: string = "/login";
 
@@ -147,10 +157,11 @@ function useRegisterDemo(
       states: {
         error: "",
         loading: false,
-        confirmPassword: true,
+        confirmPassword: props.confirmPassword,
         hideInputs: props.hideInputs || false,
         customPasswordField: false,
-        loginPath: "/login",
+        loginPath: props.loginPath,
+        disablePasswordValidation: props.disablePasswordValidation,
       },
       callbacks: {
         submit: async (_event) => {

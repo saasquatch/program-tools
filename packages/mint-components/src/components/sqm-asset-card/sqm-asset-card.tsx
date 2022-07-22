@@ -16,12 +16,12 @@ import deepmerge from "deepmerge";
 })
 export class AssetCard {
   /**
-   * @uiName Banner title
+   * @uiName Banner Title
    */
   @Prop() titleText: string;
 
   /**
-   * @uiName Banner image
+   * @uiName Banner Image
    */
   @Prop() imgUrl: string;
 
@@ -52,7 +52,7 @@ function useAssetCardDemo(props: AssetCard): AssetCardViewProps {
       text: {
         titleText: "Marketing Banner",
       },
-      imgUrl: "../../assets/saasquatch-logo.png",
+      imgUrl: "https://res.cloudinary.com/saasquatch/image/upload/v1634255445/squatch-assets/Copy_of_saasquatch-logo-tree-large-horizontal.png",
       callbacks: {},
     },
     props.demoData || {},

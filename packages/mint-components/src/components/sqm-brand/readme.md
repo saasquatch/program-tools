@@ -7,17 +7,10 @@
 
 ## Properties
 
-| Property     | Attribute     | Description                                                                                                                                           | Type     | Default     |
-| ------------ | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `brandColor` | `brand-color` | Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries. | `string` | `undefined` |
-| `brandFont`  | `brand-font`  | The brand font that you want to use                                                                                                                   | `string` | `undefined` |
-
-
-## Slots
-
-| Slot                                                                               | Description |
-| ---------------------------------------------------------------------------------- | ----------- |
-| `"Controls the brand color and font of Mint Components wrapped by the container."` |             |
+| Property     | Attribute     | Description                                                                                    | Type     | Default     |
+| ------------ | ------------- | ---------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `brandColor` | `brand-color` | Controls the primary brand color used in the Mint Components library.                          | `string` | `undefined` |
+| `brandFont`  | `brand-font`  | A font from the Google Fonts library used throughout the widget. This value is case sensitive. | `string` | `undefined` |
 
 
 ## Dependencies

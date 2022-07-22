@@ -1,19 +1,24 @@
 {
   "name": "@saasquatch/mint-components",
-  "version": "1.6.0",
-  "description": "Mint Components - Built with Shoelace Components",
+  "title": "Mint Components",
+  "version": "1.6.2",
+  "description": "A minimal design library with components for referral and loyalty experiences. Built with Shoelace components by Saasquatch.",
+  "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1652219900/squatch-assets/For_Mint.svg",
+  "raisins": "docs/raisins.json",
   "main": "dist/index.cjs.js",
   "es2015": "dist/esm/index.js",
   "es2017": "dist/esm/index.js",
   "types": "dist/types/components.d.ts",
-  "module": "dist/index.js",
+  "module": "dist/mint-components/mint-components.esm.js",
+  "unpkg": "dist/mint-components/mint-components.js",
   "jsnext:main": "dist/esm/index.js",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "files": [
     "dist/",
     "grapesjs/",
-    "shoelace/"
+    "shoelace/",
+    "docs/"
   ],
   "scripts": {
     "build": "stencil build --docs",
@@ -24,7 +29,9 @@
     "test": "stencil test --spec --e2e --verbose",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "specs": "picklesdoc xlsx src docs --testers=2"
+    "specs": "picklesdoc xlsx src docs --testers=2",
+    "serve:package": "serve . --cors",
+    "start:raisins": "run-p start serve:package"
   },
   "devDependencies": {
     "@formatjs/intl": "1.8.4",
@@ -61,7 +68,8 @@
     "workbox-build": "4.3.1"
   },
   "dependencies": {
-    "@saasquatch/component-boilerplate": "^1.4.0",
+    "@raisins/stencil-docs-target": "^1.0.0",
+    "@saasquatch/component-boilerplate": "^1.5.0",
     "@saasquatch/stencil-hooks": "^2.0.2",
     "@saasquatch/stencilbook": "^1.0.0",
     "@saasquatch/universal-hooks": "^1.0.0",

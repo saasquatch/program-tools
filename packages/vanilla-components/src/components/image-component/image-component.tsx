@@ -1,16 +1,52 @@
 import { h, Component, Prop } from "@stencil/core";
 import { css } from "emotion";
 
+/**
+ * @uiName Image Component
+ * @canvasRenderer always-replace
+ */
 @Component({
   tag: "sqh-image-component",
   styleUrl: "image-component.scss",
 })
 export class ImageComponent {
+  /**
+   * @undocumented
+   * @uiName Hide Image
+   */
   @Prop() ishidden: boolean;
+  /**
+   * @uiName Image URL
+   * @uiWidget imageUpload
+   * 
+   */
   @Prop() url: string;
+  /**
+   * Define the width of the image with a pixel amount.
+   *
+   * @uiName Width
+   */
   @Prop() width: number;
+  /**
+   * Define the radius of the corners with a pixel amount.
+   *
+   * @uiName Border Radius
+   */
   @Prop() borderradius: number;
+  /**
+   * @uiName Horizontal Alignment
+   * @uiEnum ["left", "center", "right"]
+   * @uiEnumNames ["Left", "Center", "Right"]
+   * @default center
+   */
   @Prop() alignment: string;
+  /**
+   * Additional CSS applied to the image element
+   *
+   * @uiName CSS
+   * @uiWidget textArea
+   * @default padding-top: 38px; padding-bottom: 7px;
+   */
   @Prop() css: string;
 
   render() {

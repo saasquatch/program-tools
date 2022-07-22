@@ -5,6 +5,8 @@ import { useGraphQLClientProvider } from "./useGraphQLProvider";
 
 /**
  * @uiName GraphQL Client Provider
+ * @canvasRenderer always-replace
+ * @slots [{"name":"","title":"Provider Content"}]
  */
 @Component({
   tag: "sqm-graphql-client-provider",

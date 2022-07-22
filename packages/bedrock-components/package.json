@@ -1,18 +1,22 @@
 {
   "name": "@saasquatch/bedrock-components",
-  "version": "1.3.3-2",
-  "description": "Bedrock Components for SaaSquatch.",
+  "title": "Bedrock Components",
+  "version": "1.3.6-0",
+  "description": "Component library that adds advanced logic to your widgets and pages. Built and maintained by Saasquatch.",
+  "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1652219900/squatch-assets/For_Bedrock.svg",
   "main": "dist/index.cjs.js",
-  "module": "dist/custom-elements/index.js",
+  "module": "dist/bedrock-components/bedrock-components.esm.js",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
-  "types": "dist/custom-elements/index.d.ts",
+  "types": "dist/types/components.d.ts",
+  "raisins": "docs/raisins.json",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/bedrock-components/bedrock-components.esm.js",
+  "unpkg": "dist/bedrock-components/bedrock-components.js",
   "files": [
     "dist/",
-    "grapesjs/"
+    "grapesjs/",
+    "docs/"
   ],
   "license": "MIT",
   "author": "SaaSquatch Team",
@@ -26,15 +30,19 @@
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "serve:package": "serve . --cors"
   },
   "dependencies": {
-    "@saasquatch/component-boilerplate": "^1.3.1",
+    "@raisins/stencil-docs-target": "^1.0.0",
+    "@saasquatch/component-boilerplate": "^1.5.0",
     "@saasquatch/stencil-hooks": "^2.0.2",
     "@saasquatch/stencilbook": "^1.0.0",
     "@saasquatch/universal-hooks": "^1.0.0",
     "@stencil/core": "^2.8.1",
     "deepmerge": "^4.2.2",
+    "dom-context": "^1.2.0",
+    "graphql-request": "^4.3.0",
     "highlight.js": "^11.2.0",
     "jsonata": "^1.8.4"
   },

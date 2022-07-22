@@ -7,6 +7,131 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.2] - 2022-07-21
+
+### Added
+
+- Added Components:
+  - \<sqm-portal-registration-form> component added to handle registration form submissions
+  - Has all features of existing \<sqm-portal-register> but uses registration forms instead
+    - Features include:
+      - Pre-fill
+      - Form Protection
+      - Domain Blocking
+  - \<sqm-header-logo> displays a logo and redirects participants when they click on it
+    - Designed to be used in Microsite headers
+
+### Changed
+
+- replaced useValidationState with useRegistrationFormState for `<sqm-portal-registration-form>` and `<sqm-portal-register>`
+- useRegistrationFormState allows passing loading, disabled, and initialData states in addition to validationErrors and network errors
+- implemented useRegistrationFormState in the registration form slotted components to improve form loading and validation
+  - `<sqm-password-field>`
+  - `<sqm-name-fields>`
+  - `<sqm-input-field>`
+  - `<sqm-dropdown-field>`
+  - `<sqm-checkbox-field>`
+- Fixed missing null check on \<sqm-brand>
+- Fixed `program-id` prop overwrite on \<sqm-share-code>
+- Updated `--sqm-max-width` to be `100%`, this affects the \<sqm-hero> and the component will now be full width on larger screens
+- Added [jsDocs](https://jsdoc.app/) to the following components to improve the editability experience in our new Raisins widget editor.
+- Changed components:
+  - \<sqm-checkbox-field>
+  - \<sqm-divided-layout>
+  - \<sqm-dropdown-field>
+  - \<sqm-edit-profile>
+  - \<sqm-form-message>
+  - \<sqm-header-logo>
+  - \<sqm-hero>
+  - \<sqm-input-field>
+  - \<sqm-name-fields>
+  - \<sqm-navigation-sidebar-item>
+  - \<sqm-navigation-sidebar>
+  - \<sqm-password-field>
+  - \<sqm-portal-change-password>
+  - \<sqm-portal-email-verification>
+  - \<sqm-portal-forgot-password>
+  - \<sqm-portal-frame>
+  - \<sqm-portal-login>
+  - \<sqm-portal-logout>
+  - \<sqm-portal-profile>
+  - \<sqm-portal-protected-route>
+  - \<sqm-portal-register>
+  - \<sqm-portal-registration-form>
+  - \<sqm-portal-reset-password>
+  - \<sqm-portal-verify-email>
+  - \<sqm-program-menu>
+  - \<sqm-route>
+  - \<sqm-share-code>
+  - \<sqm-user-name>
+
+
+### Breaking Changes
+
+- `showCountry` prop with `true` default replaced with `hideCountry` prop with `false` default for `<sqm-portal-profile>`
+- `enableValidation` prop with `true` default replaced with `disableValidation` prop with `false` default for `<sqm-password-field>`
+- `showPoweredBy` prop with `true` default replaced with `hidePoweredBy` prop with `false` default for `<sqm-portal-footer>`
+- `enablePasswordValidation` prop with `true` default replaced with `disablePasswordValidation` prop with `false` default for `<sqm-portal-register>`
+- `enablePasswordValidation` prop with `true` default replaced with `disablePasswordValidation` prop with `false` default for `<sqm-portal-registration-form>`
+
+## [1.6.1] - 2022-06-09
+
+### Changed
+
+- Removed brand color application to `<a>` tags
+- Update templates to portal templates to remove `<sqm-graphql-provider>`
+- Update Referral, Loyalty and Mono widget templates for SSW launch
+- Added [jsDocs](https://jsdoc.app/) to the following components to improve the editability experience in our new Raisins widget editor.
+- Changed components:
+  - \<sqm-big-stat>
+  - \<sqm-brand>
+  - \<sqm-card-feed>
+  - \<sqm-divided-layout>
+  - \<sqm-empty>
+  - \<sqm-hero>
+  - \<sqm-hero-image>
+  - \<sqm-image>
+  - \<sqm-leaderboard>
+  - \<sqm-leaderboard-rank>
+  - \<sqm-popup-container>
+  - \<sqm-portal-container>
+  - \<sqm-portal-footer>
+  - \<sqm-program-explainer>
+  - \<sqm-program-explainer-step>
+  - \<sqm-referral-card>
+  - \<sqm-referral-table>
+  - \<sqm-referral-table-date-column>
+  - \<sqm-referral-table-rewards-column>
+  - \<sqm-referral-table-status-column>
+  - \<sqm-referral-table-user-column>
+  - \<sqm-reward-exchange-list>
+  - \<sqm-rewards-table>
+  - \<sqm-rewards-table-date-column>
+  - \<sqm-rewards-table-note-column>
+  - \<sqm-rewards-table-source-column>
+  - \<sqm-rewards-table-status-column>
+  - \<sqm-route>
+  - \<sqm-router>
+  - \<sqm-scroll>
+  - \<sqm-share-button>
+  - \<sqm-share-code>
+  - \<sqm-share-link>
+  - \<sqm-stat-container>
+  - \<sqm-tab>
+  - \<sqm-table-cell>
+  - \<sqm-table-row>
+  - \<sqm-tabs>
+  - \<sqm-task-card>
+  - \<sqm-text>
+  - \<sqm-timeline>
+  - \<sqm-timeline-entry>
+  - \<sqm-titled-section>
+  - \<sqm-user-name>
+
+## Breaking Changes
+
+- `showLabels` props with `true` default replaced with `hideLabels` prop with `false` default for `<sqm-referral-table>` and `<sqm-rewards-table>`
+
 ## [1.6.0] - 2022-05-09
 
 ### Changed
@@ -450,7 +575,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.5...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.2...HEAD
+[1.6.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.2
+[1.6.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.1
+[1.6.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.0
 [1.5.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.5
 [1.5.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.4
 [1.5.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.3

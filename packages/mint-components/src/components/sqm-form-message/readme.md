@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `icon`   | `icon`    |             | `string` | `undefined` |
-| `type`   | `type`    |             | `string` | `undefined` |
+| Property | Attribute | Description          | Type     | Default     |
+| -------- | --------- | -------------------- | -------- | ----------- |
+| `icon`   | `icon`    | Icon to use in alert | `string` | `undefined` |
+| `type`   | `type`    |                      | `string` | `undefined` |
 
 
 ## Dependencies
@@ -24,6 +24,7 @@
  - [sqm-portal-login](../sqm-portal-login)
  - [sqm-portal-profile](../sqm-portal-profile)
  - [sqm-portal-register](../sqm-portal-register)
+ - [sqm-portal-registration-form](../sqm-portal-registration-form)
  - [sqm-portal-reset-password](../sqm-portal-reset-password)
  - [sqm-portal-verify-email](../sqm-portal-verify-email)
  - [sqm-stencilbook](../sqm-stencilbook)
@@ -38,6 +39,7 @@ graph TD;
   sqm-portal-login --> sqm-form-message
   sqm-portal-profile --> sqm-form-message
   sqm-portal-register --> sqm-form-message
+  sqm-portal-registration-form --> sqm-form-message
   sqm-portal-reset-password --> sqm-form-message
   sqm-portal-verify-email --> sqm-form-message
   sqm-stencilbook --> sqm-form-message
