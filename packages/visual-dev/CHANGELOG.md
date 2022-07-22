@@ -12,10 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Fix icons in safari by adding width to svg
-- Make Modal buttons more configurable 
+- Make Modal buttons more configurable
 - More SVG icon options added
 - Remove stopPropagation from select list to prevent conflict with Popper.js
-
 
 ### Added
 
@@ -57,4 +56,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<Tooltip>
 
 [unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev@1.0.1...HEAD
-[1.1.1]: https://github.com/saasquatch/program-tools/releases/tag/visual-dev@1.0.1
+[1.0.1]: https://github.com/saasquatch/program-tools/releases/tag/visual-dev@1.0.1
