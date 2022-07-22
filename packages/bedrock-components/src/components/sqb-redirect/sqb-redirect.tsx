@@ -18,7 +18,7 @@ export class RedirectRoute {
    * @uiName Redirect Path
    */
   @Prop()
-  redirectTo: string = '/';
+  redirectTo: string = "/";
 
   constructor() {
     withHooks(this);
