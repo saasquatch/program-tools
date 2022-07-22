@@ -55,5 +55,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<TextArea>
   - \<Tooltip>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev@1.0.1...HEAD
-[1.0.1]: https://github.com/saasquatch/program-tools/releases/tag/visual-dev@1.0.1
+[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.0.1...HEAD
+[1.0.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.0.1
