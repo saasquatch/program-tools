@@ -8,6 +8,7 @@ interface RedirectRouteProps {
 
 export function useRedirect({ redirectTo }: RedirectRouteProps) {
   useEffect(() => {
+    if (!redirectTo) return;
     const pathname = sanitizeUrlPath(redirectTo)?.href;
     return navigation.push({
       pathname,
