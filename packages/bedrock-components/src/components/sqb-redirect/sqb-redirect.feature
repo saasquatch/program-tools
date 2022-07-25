@@ -4,8 +4,9 @@ Feature: Redirect
 
     @motivating
     Scenario Outline: Users are redirected to the value of the redirect path when the component is rendered
-        Given a redirect component with prop "redirect-to" <value>
-        When the component is loaded at <currentUrl>
+        Given a user
+        And a redirect component with prop "redirect-to" <value>
+        When they load the component at <currentUrl>
         And they are redirected to <url>
         Examples:
             | value                          | currentUrl                                               | url                                           |
@@ -24,7 +25,8 @@ Feature: Redirect
             | activity                       | http://1.1.1.1:1111                                      | http://1.1.1.1:1111/activity                  |
 
     @minutia
-    Scenario: Users are redirected to "/" by default
-        Given a redirect component with no "redirect-to" prop
-        When the component is loaded
-        Then they are redirected to "/" on the url the component is loaded at
+    Scenario: Users are not redirected if there is no "redirect-to" prop
+        Given a user
+        And a redirect component with no "redirect-to" prop
+        When they load the component
+        Then they are not redirected
