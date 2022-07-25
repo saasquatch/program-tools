@@ -34,6 +34,7 @@ export namespace Components {
     interface SqbRedirect {
         /**
           * @uiName Redirect Path
+          * @uiWidget pageSelect
          */
         "redirectTo": string;
     }
@@ -142,6 +143,7 @@ declare namespace LocalJSX {
     interface SqbRedirect {
         /**
           * @uiName Redirect Path
+          * @uiWidget pageSelect
          */
         "redirectTo"?: string;
     }

@@ -9,7 +9,7 @@
 
 | Property     | Attribute     | Description | Type     | Default |
 | ------------ | ------------- | ----------- | -------- | ------- |
-| `redirectTo` | `redirect-to` |             | `string` | `"/"`   |
+| `redirectTo` | `redirect-to` |             | `string` | `'/'`   |
 
 
 ----------------------------------------------

@@ -16,6 +16,7 @@ export class RedirectRoute {
 
   /**
    * @uiName Redirect Path
+   * @uiWidget pageSelect
    */
   @Prop()
   redirectTo: string = "/";

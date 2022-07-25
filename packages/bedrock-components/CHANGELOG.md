@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.6] - 2022-07-25
+
+### Added
+- \<sqb-redirect> - Automatically redirects the user to a given path when rendered
+
 ## [1.3.5] - 2022-07-21
 
 ### Changed
@@ -97,7 +102,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqb-conditional-section>
   - \<sqb-program-section>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.3.5...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.3.6...HEAD
+[1.3.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.6
 [1.3.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.5
 [1.3.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.4
 [1.3.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.2
