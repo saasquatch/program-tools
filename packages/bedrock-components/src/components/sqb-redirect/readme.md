@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property     | Attribute     | Description | Type     | Default |
-| ------------ | ------------- | ----------- | -------- | ------- |
-| `redirectTo` | `redirect-to` |             | `string` | `"/"`   |
+| Property     | Attribute     | Description | Type     | Default     |
+| ------------ | ------------- | ----------- | -------- | ----------- |
+| `redirectTo` | `redirect-to` |             | `string` | `undefined` |
 
 
 ----------------------------------------------

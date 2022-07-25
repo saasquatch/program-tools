@@ -19,7 +19,7 @@ export class RedirectRoute {
    * @uiWidget pageSelect
    */
   @Prop()
-  redirectTo: string = "/";
+  redirectTo: string;
 
   constructor() {
     withHooks(this);
