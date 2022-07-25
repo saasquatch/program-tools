@@ -31,6 +31,13 @@ export namespace Components {
     }
     interface SqbProgramSwitch {
     }
+    interface SqbRedirect {
+        /**
+          * @uiName Redirect Path
+          * @uiWidget pageSelect
+         */
+        "redirectTo": string;
+    }
     interface SqbStencilbook {
     }
     interface SqbWidget {
@@ -81,6 +88,12 @@ declare global {
         prototype: HTMLSqbProgramSwitchElement;
         new (): HTMLSqbProgramSwitchElement;
     };
+    interface HTMLSqbRedirectElement extends Components.SqbRedirect, HTMLStencilElement {
+    }
+    var HTMLSqbRedirectElement: {
+        prototype: HTMLSqbRedirectElement;
+        new (): HTMLSqbRedirectElement;
+    };
     interface HTMLSqbStencilbookElement extends Components.SqbStencilbook, HTMLStencilElement {
     }
     var HTMLSqbStencilbookElement: {
@@ -98,6 +111,7 @@ declare global {
         "sqb-hook-story-container": HTMLSqbHookStoryContainerElement;
         "sqb-program-section": HTMLSqbProgramSectionElement;
         "sqb-program-switch": HTMLSqbProgramSwitchElement;
+        "sqb-redirect": HTMLSqbRedirectElement;
         "sqb-stencilbook": HTMLSqbStencilbookElement;
         "sqb-widget": HTMLSqbWidgetElement;
     }
@@ -125,6 +139,13 @@ declare namespace LocalJSX {
         "programId"?: string;
     }
     interface SqbProgramSwitch {
+    }
+    interface SqbRedirect {
+        /**
+          * @uiName Redirect Path
+          * @uiWidget pageSelect
+         */
+        "redirectTo"?: string;
     }
     interface SqbStencilbook {
     }
@@ -155,6 +176,7 @@ declare namespace LocalJSX {
         "sqb-hook-story-container": SqbHookStoryContainer;
         "sqb-program-section": SqbProgramSection;
         "sqb-program-switch": SqbProgramSwitch;
+        "sqb-redirect": SqbRedirect;
         "sqb-stencilbook": SqbStencilbook;
         "sqb-widget": SqbWidget;
     }
@@ -167,6 +189,7 @@ declare module "@stencil/core" {
             "sqb-hook-story-container": LocalJSX.SqbHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqbHookStoryContainerElement>;
             "sqb-program-section": LocalJSX.SqbProgramSection & JSXBase.HTMLAttributes<HTMLSqbProgramSectionElement>;
             "sqb-program-switch": LocalJSX.SqbProgramSwitch & JSXBase.HTMLAttributes<HTMLSqbProgramSwitchElement>;
+            "sqb-redirect": LocalJSX.SqbRedirect & JSXBase.HTMLAttributes<HTMLSqbRedirectElement>;
             "sqb-stencilbook": LocalJSX.SqbStencilbook & JSXBase.HTMLAttributes<HTMLSqbStencilbookElement>;
             "sqb-widget": LocalJSX.SqbWidget & JSXBase.HTMLAttributes<HTMLSqbWidgetElement>;
         }
