@@ -59,9 +59,9 @@ export const CSSVariables = createGlobalStyle`
   --sq-on-surface-critical: #c71d06;
 
   /* Interactive */
-  --sq-text-interactive: #0088cc;
-  --sq-text-interactive-hovered: #005580;
-  --sq-text-interactive-visited: #310A8F;
+  --sq-text-interactive: #0088CC;
+  --sq-text-interactive-hovered: #016A9E;
+  --sq-text-interactive-visited: #681DA8;
   --sq-focused: #458edf;
   --sq-icon-interactive: #0275fb;
   --sq-surface-hover: #eef6ff;
