@@ -14,7 +14,7 @@ export const base = css`
 export const textSegment = css`
   box-sizing: border-box;
   border-left: 1px solid var(--sq-border);
-  padding: 3px 7px;
+  padding: var(--sq-spacing-xx-small) var(--sq-spacing-x-small);
   font-weight: 400;
   font-size: 14px;
   font-style: normal;

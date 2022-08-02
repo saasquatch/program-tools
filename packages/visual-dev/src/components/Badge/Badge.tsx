@@ -32,10 +32,6 @@ export interface StyleProps {
 const BadgeDiv = styled.div<StyleProps>`
   ${Styles.base}
   ${(props) => Styles[props.status]}
-  padding: ${(props) =>
-    props.pill
-      ? "var(--sq-spacing-xx-small) var(--sq-spacing-large)"
-      : "var(--sq-spacing-xx-small) 12px"};
   border-radius: ${(props) =>
     props.pill ? "var(--sq-spacing-xxx-large)" : "var(--sq-spacing-xx-small)"};
   ${(props) => props.customCSS}
@@ -65,8 +61,7 @@ export const BadgeView = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
             icon={icon}
             color="inherit"
             size="var(--sq-icon-size-badge)"
-            style={{ margin: -2 }}
-            customCSS="+ span { margin-left: 5px; }"
+            customCSS="+ span { margin-left: var(--sq-spacing-x-small); }"
           />
         )}
         {children && <span>{children}</span>}
