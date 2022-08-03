@@ -24,11 +24,11 @@ export const CSSVariables = createGlobalStyle`
   --sq-nav-text-on-primary-subdued: #999999;
   --sq-nav-surface-secondary: #ffffff;
   --sq-nav-text-on-secondary: #003b45;
-  --sq-nav-text-on-secondary-subdued: #7c7c7c;
+  --sq-nav-text-on-secondary-subdued: #999999;
 
   /* Primary */
-  --sq-action-primary: #f49c20;
-  --sq-action-primary-hovered: #dc8f32;
+  --sq-action-primary: #E79533;
+  --sq-action-primary-hovered: #DA8622;
   --sq-text-on-primary: #ffffff;
   --sq-action-primary-disabled: #e2e2e2;
 
@@ -38,32 +38,36 @@ export const CSSVariables = createGlobalStyle`
   --sq-action-secondary-border: #a6b9bd;
   --sq-text-on-secondary: #575757;
   --sq-text-on-secondary-hovered: #ffffff;
-  --sq-placeholder-text-on-secondary: #bdbdbd;
+  --sq-placeholder-text-on-secondary: #aaaaaa;
 
   /* Success */
   --sq-surface-success: #57ac59;
   --sq-surface-success-hovered: #479449;
   --sq-surface-success-subdued: #e4fce3;
   --sq-border-success: #57ac59;
+  --sq-badge-surface-success: #e6faf4;
+  --sq-badge-text-success: #146352;
 
   /* Warning */
   --sq-surface-warning: #f1c359;
   --sq-surface-warning-subdued: #fcf8e3;
   --sq-border-warning: #f1c359;
+  --sq-badge-surface-warning: #ffe3a1;
 
   /* Critical */
-  --sq-surface-critical: #fe6666;
-  --sq-surface-critical-hovered: #cb0000;
+  --sq-surface-critical: #D14040;
+  --sq-surface-critical-hovered: #C12F2F;
   --sq-surface-critical-subdued: #faf2ee;
   --sq-border-critical: #d14040;
-  --sq-on-surface-critical: #c71d06;
+  /* Deprecated */
+  --sq-on-surface-critical: #D14040;
 
   /* Interactive */
-  --sq-text-interactive: #0088cc;
-  --sq-text-interactive-hovered: #005580;
-  --sq-text-interactive-visited: #310A8F;
+  --sq-text-interactive: #0088CC;
+  --sq-text-interactive-hovered: #016A9E;
+  --sq-text-interactive-visited: #681DA8;
   --sq-focused: #458edf;
-  --sq-icon-interactive: #0275fb;
+  --sq-icon-interactive: #0088cc;
   --sq-surface-hover: #eef6ff;
 
   /* Typography */
@@ -124,7 +128,12 @@ export const CSSVariables = createGlobalStyle`
   --sq-spacing-xx-large: 32px;
   --sq-spacing-xxx-large: 48px;
   --sq-spacing-xxxx-large: 64px;
-}
+
+  /* Border Radii */
+  --sq-border-radius-normal: 4px;
+  --sq-border-radius-pill: 9999px;
+
+} 
 `;
 
 export const TextRules = createGlobalStyle`
