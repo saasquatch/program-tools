@@ -18,7 +18,7 @@ export const tooltip = css`
   user-select: none;
   position: absolute;
   padding: var(--sq-spacing-small);
-  border-radius: 4px;
+  border-radius: var(--sq-border-radius-normal);
   width: max-content;
   min-height: 20px;
   color: var(--sq-surface);

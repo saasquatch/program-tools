@@ -6,7 +6,7 @@ export const CardDiv = css`
   background: var(--sq-surface);
   border: 2px solid var(--sq-border);
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: var(--sq-border-radius-normal);
   color: var(--sq-text);
   padding: var(--sq-spacing-x-small);
 `;
@@ -46,7 +46,7 @@ export const CardLongDiv = css`
   background: var(--sq-surface);
   border: 2px solid var(--sq-border);
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: var(--sq-border-radius-normal);
   color: var(--sq-text);
   font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-regular);
@@ -82,7 +82,7 @@ export const CardEditDiv = css`
   background: var(--sq-surface);
   border: 2px solid var(--sq-border);
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: var(--sq-border-radius-normal);
   color: var(--sq-text);
   padding: var(--sq-spacing-medium);
 `;

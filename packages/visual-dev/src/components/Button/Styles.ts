@@ -38,7 +38,7 @@ export const universal_base = css`
   cursor: pointer;
 
   border: none;
-  border-radius: 4px;
+  border-radius: var(--sq-border-radius-normal);
 
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: var(--sq-font-weight-bold);
@@ -46,7 +46,7 @@ export const universal_base = css`
 // PILL VARIANTS
 
 export const pill = css`
-  border-radius: 100px;
+  border-radius: var(--sq-border-radius-pill);
 `;
 
 // SIZE VARIANTS
@@ -213,7 +213,7 @@ export const icon = {
     padding: 0;
 
     border: none;
-    border-radius: 4px;
+    border-radius: var(--sq-border-radius-normal);
     border: 1px solid var(--sq-action-secondary-border);
 
     color: var(--sq-text-on-secondary);
@@ -252,7 +252,7 @@ export const icon = {
   `,
 
   circle: css`
-    border-radius: 100px;
+    border-radius: var(--sq-border-radius-pill);
   `,
   borderless: css`
     border: none;

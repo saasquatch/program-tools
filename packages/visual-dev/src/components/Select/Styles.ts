@@ -24,7 +24,8 @@ export const ItemContainer = css`
   margin: 0;
   background: var(--sq-surface);
   border: 2px solid var(--sq-focused);
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 var(--sq-border-radius-normal)
+    var(--sq-border-radius-normal);
   border-top: none;
   top: 33px;
   outline: none;
@@ -76,7 +77,7 @@ export const SelectInputStyle = css`
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
   border: 2px solid var(--sq-border);
-  border-radius: 4px;
+  border-radius: var(--sq-border-radius-normal);
   padding: var(--sq-spacing-xxx-small) 0 var(--sq-spacing-xxx-small)
     var(--sq-spacing-small);
 

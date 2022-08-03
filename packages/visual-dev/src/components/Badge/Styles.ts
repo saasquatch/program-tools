@@ -11,10 +11,10 @@ export const base = css`
 `;
 
 export const pill_false = css`
-  border-radius: 4px;
+  border-radius: var(--sq-border-radius-normal);
 `;
 export const pill_true = css`
-  border-radius: 50px;
+  border-radius: var(--sq-border-radius-pill);
 `;
 
 export const info = css`

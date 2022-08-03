@@ -2,7 +2,6 @@ import { css } from "styled-components";
 
 export const base = css`
   background-color: var(--sq-background);
-  border-radius: 50%;
   width: 34px;
   height: 34px;
   text-align: center;
@@ -96,7 +95,7 @@ export const ContentDiv = css`
 export const SkeletonDiv = css`
   float: left;
   margin-right: var(--sq-spacing-x-small);
-  border-radius: 50px;
+  border-radius: var(--sq-border-radius-pill);
 `;
 
 export const PopoverDiv = css`

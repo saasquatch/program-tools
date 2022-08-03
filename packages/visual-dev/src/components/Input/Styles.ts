@@ -14,7 +14,7 @@ export const InputBoxStyle = css`
   line-height: var(--sq-line-height-regular);
 
   border: 2px solid var(--sq-border);
-  border-radius: 4px;
+  border-radius: var(--sq-border-radius-normal);
 
   &[type="date"] {
     text-indent: 6px;
@@ -51,7 +51,7 @@ export const ExtrasDiv = css`
 
 export const invalid = css`
   border: 2px solid var(--sq-border-critical);
-  border-radius: 4px;
+  border-radius: var(--sq-border-radius-normal);
 
   &:focus {
     outline: none;

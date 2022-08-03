@@ -102,7 +102,10 @@ const DropdownDiv = styled("div")<Required<StyleProps>>`
 
 const DropdownButtonDiv = styled("div")<Required<ButtonProps>>`
   ${Styles.ButtonDiv}
-  border-radius: ${(props) => (props.pill ? "100px" : "4px")};
+  border-radius: ${(props) =>
+    props.pill
+      ? "var(--sq-border-radius-pill)"
+      : "var(--sq-border-radius-normal)"};
   text-align: ${(props) => (props.center ? "center" : "left")};
   line-height: ${(props) => (props.narrow ? "10px" : "16px")};
   color: ${(props) =>
@@ -122,7 +125,10 @@ const DropdownContentDiv = styled("div")<
   Pick<DropdownProps, "pill" | "popUpwards">
 >`
   ${Styles.ContentDiv}
-  border-radius: ${(props) => (props.pill ? "20px" : "4px")};
+  border-radius: ${(props) =>
+    props.pill
+      ? "var(--sq-border-radius-pill)"
+      : "var(--sq-border-radius-normal)"};
 
   ${(props) =>
     props.popUpwards

@@ -85,7 +85,7 @@ export const CodeDivStyle = css`
   background: var(--sq-background);
   border: 1px solid var(--sq-border);
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: var(--sq-border-radius-normal);
   font-family: monospace;
   font-size: var(--sq-font-size-regular);
   font-weight: var(--sq-font-weight-regular);
