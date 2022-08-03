@@ -10,17 +10,17 @@ export const SublistDiv = css`
 `;
 
 export const subitem = css`
-  text-indent: 15px;
+  text-indent: var(--sq-spacing-x-large);
   border-radius: inherit;
 `;
 
 export const DropdownSublistDiv = css`
-  padding: 15px;
+  padding: var(--sq-spacing-x-small) var(--sq-spacing-small);
   border-radius: inherit;
   user-select: none;
   color: var(--sq-text);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  font-weight: var(--sq-font-weight-regular);
+  font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
 `;
@@ -37,12 +37,13 @@ export const ButtonDiv = css`
   display: flex;
   user-select: none;
   padding: 7px 12px;
-  border: 1px solid var(--sq-action-secondary-border);
+  border: 2px solid var(--sq-border);
   color: var(--sq-text);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
+  cursor: pointer;
 `;
 
 export const ContentDiv = css`
@@ -51,7 +52,7 @@ export const ContentDiv = css`
   min-width: inherit;
   z-index: 100;
   background: #ffffff;
-  border: 1px solid var(--sq-action-secondary-border);
+  border: 2px solid var(--sq-text-interactive);
   box-sizing: border-box;
   &:empty {
     border: none;
@@ -59,7 +60,7 @@ export const ContentDiv = css`
 `;
 
 export const ItemDiv = css`
-  padding: 15px;
+  padding: var(--sq-spacing-x-small) var(--sq-spacing-small);
   cursor: pointer;
   color: var(--sq-text);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
@@ -70,4 +71,30 @@ export const ItemDiv = css`
   &:hover {
     background: var(--sq-surface-hover);
   }
+`;
+
+export const ItemTitleContainerDiv = css`
+  display: flex;
+  align-items: center;
+  & > *:not(last-child) {
+    margin-right: var(--sq-spacing-xx-small);
+  }
+`;
+
+export const ItemSideDescriptionSpan = css`
+  font-size: var(--sq-font-size-regular);
+  color: var(--sq-placeholder-text-on-secondary);
+  margin-left: auto;
+`;
+
+export const ItemDescriptionP = css`
+  margin: 0;
+  font-size: var(--sq-font-size-small);
+  line-height: var(--sq-line-height-regular);
+  color: var(--sq-placeholder-text-on-secondary);
+`;
+
+export const PlaceHolderSpan = css`
+  color: var(--sq-placeholder-text-on-secondary);
+  font-size: inherit;
 `;

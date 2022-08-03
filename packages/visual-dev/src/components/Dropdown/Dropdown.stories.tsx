@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Dropdown } from ".";
+import { DropdownView } from ".";
 
 export default {
   title: "Components / Dropdown",
-  component: Dropdown,
+  component: DropdownView,
 };
 
 const exampleOnClick = () => alert("You clicked a dropdown item.");
@@ -12,24 +12,30 @@ export const Functional = () => {
   const [enabled, setEnable] = useState(true);
   return (
     <div style={{ height: 280 }}>
-      <Dropdown
+      <DropdownView
         text="Default Dropdown"
         onClickDropdown={() => setEnable(!enabled)}
         showMenu={enabled}
       >
-        <Dropdown.Item onClick={exampleOnClick}> Dropdown Item </Dropdown.Item>
-        <Dropdown.Item onClick={exampleOnClick}> Dropdown Item </Dropdown.Item>
-        <Dropdown.Sublist name="Dropdown Subtitle">
-          <Dropdown.Item onClick={exampleOnClick}>
+        <DropdownView.ItemView onClick={exampleOnClick}>
+          {" "}
+          Dropdown Item{" "}
+        </DropdownView.ItemView>
+        <DropdownView.ItemView onClick={exampleOnClick}>
+          {" "}
+          Dropdown Item{" "}
+        </DropdownView.ItemView>
+        <DropdownView.SublistView name="Dropdown Subtitle">
+          <DropdownView.ItemView onClick={exampleOnClick}>
             {" "}
             Dropdown Suboption{" "}
-          </Dropdown.Item>
-          <Dropdown.Item onClick={exampleOnClick}>
+          </DropdownView.ItemView>
+          <DropdownView.ItemView onClick={exampleOnClick}>
             {" "}
             Dropdown Suboption{" "}
-          </Dropdown.Item>
-        </Dropdown.Sublist>
-      </Dropdown>
+          </DropdownView.ItemView>
+        </DropdownView.SublistView>
+      </DropdownView>
     </div>
   );
 };
@@ -38,69 +44,75 @@ export const FunctionalUpwards = () => {
   const [enabled, setEnable] = useState(true);
   return (
     <div style={{ height: 280, paddingTop: 400 }}>
-      <Dropdown
+      <DropdownView
         popUpwards={true}
         text="Default Dropdown"
         onClickDropdown={() => setEnable(!enabled)}
         showMenu={enabled}
       >
-        <Dropdown.Item onClick={exampleOnClick}> Dropdown Item </Dropdown.Item>
-        <Dropdown.Item onClick={exampleOnClick}> Dropdown Item </Dropdown.Item>
-        <Dropdown.Sublist name="Dropdown Subtitle">
-          <Dropdown.Item onClick={exampleOnClick}>
+        <DropdownView.ItemView onClick={exampleOnClick}>
+          {" "}
+          Dropdown Item{" "}
+        </DropdownView.ItemView>
+        <DropdownView.ItemView onClick={exampleOnClick}>
+          {" "}
+          Dropdown Item{" "}
+        </DropdownView.ItemView>
+        <DropdownView.SublistView name="Dropdown Subtitle">
+          <DropdownView.ItemView onClick={exampleOnClick}>
             {" "}
             Dropdown Suboption{" "}
-          </Dropdown.Item>
-          <Dropdown.Item onClick={exampleOnClick}>
+          </DropdownView.ItemView>
+          <DropdownView.ItemView onClick={exampleOnClick}>
             {" "}
             Dropdown Suboption{" "}
-          </Dropdown.Item>
-        </Dropdown.Sublist>
-      </Dropdown>
+          </DropdownView.ItemView>
+        </DropdownView.SublistView>
+      </DropdownView>
     </div>
   );
 };
 
 export const DefaultClosed = () => (
-  <Dropdown text="Default Closed" showMenu={false} />
+  <DropdownView text="Default Closed" showMenu={false} />
 );
 
 export const DefaultOpen = () => (
-  <Dropdown text="Default Open" showMenu={true} />
+  <DropdownView text="Default Open" showMenu={true} />
 );
 
-export const Disabled = () => <Dropdown text="Disabled" disabled={true} />;
+export const Disabled = () => <DropdownView text="Disabled" disabled={true} />;
 
 export const CenterAlignedClosed = () => (
-  <Dropdown text="Center Align Closed" showMenu={false} center={true} />
+  <DropdownView text="Center Align Closed" showMenu={false} center={true} />
 );
 
 export const CenterAlignedOpen = () => (
-  <Dropdown text="Center Align Open" showMenu={true} center={true} />
+  <DropdownView text="Center Align Open" showMenu={true} center={true} />
 );
 
 export const IconClosed = () => (
-  <Dropdown text="Icon Closed" icon="calendar" showMenu={false} />
+  <DropdownView text="Icon Closed" icon="calendar" showMenu={false} />
 );
 
 export const IconOpen = () => (
-  <Dropdown text="Icon Open" icon="calendar" showMenu={true} />
+  <DropdownView text="Icon Open" icon="calendar" showMenu={true} />
 );
 
 export const PillClosed = () => (
-  <Dropdown text="Left Align Closed" showMenu={false} pill={true} />
+  <DropdownView text="Left Align Closed" showMenu={false} pill={true} />
 );
 
 export const PillOpen = () => (
-  <Dropdown text="Left Align Open" showMenu={true} pill={true} />
+  <DropdownView text="Left Align Open" showMenu={true} pill={true} />
 );
 
 export const PillDisabled = () => (
-  <Dropdown text="Disabled" disabled={true} pill={true} />
+  <DropdownView text="Disabled" disabled={true} pill={true} />
 );
 
 export const PillCenterAlignedClosed = () => (
-  <Dropdown
+  <DropdownView
     text="Center Align Closed"
     showMenu={false}
     center={true}
@@ -109,7 +121,7 @@ export const PillCenterAlignedClosed = () => (
 );
 
 export const PillCenterAlignedOpen = () => (
-  <Dropdown
+  <DropdownView
     text="Center Align Open"
     showMenu={true}
     center={true}
@@ -118,19 +130,24 @@ export const PillCenterAlignedOpen = () => (
 );
 
 export const PillIconClosed = () => (
-  <Dropdown text="Icon Closed" icon="calendar" showMenu={false} pill={true} />
+  <DropdownView
+    text="Icon Closed"
+    icon="calendar"
+    showMenu={false}
+    pill={true}
+  />
 );
 
 export const PillIconOpen = () => (
-  <Dropdown text="Icon Open" icon="calendar" showMenu={true} pill={true} />
+  <DropdownView text="Icon Open" icon="calendar" showMenu={true} pill={true} />
 );
 
 export const NarrowDefaultClosed = () => (
-  <Dropdown text="Default Closed" showMenu={false} narrow={true} />
+  <DropdownView text="Default Closed" showMenu={false} narrow={true} />
 );
 
 export const NarrowPillClosed = () => (
-  <Dropdown
+  <DropdownView
     text="Left Align Closed"
     showMenu={false}
     pill={true}
@@ -140,22 +157,98 @@ export const NarrowPillClosed = () => (
 
 export const MenuOptions = () => (
   <div style={{ height: 180 }}>
-    <Dropdown text="Menu Options" showMenu={true}>
-      <Dropdown.Item> Dropdown Item </Dropdown.Item>
-      <Dropdown.Item> Dropdown Item </Dropdown.Item>
-      <Dropdown.Item> Dropdown Item </Dropdown.Item>
-    </Dropdown>
+    <DropdownView text="Menu Options" showMenu={true}>
+      <DropdownView.ItemView> Dropdown Item </DropdownView.ItemView>
+      <DropdownView.ItemView> Dropdown Item </DropdownView.ItemView>
+      <DropdownView.ItemView> Dropdown Item </DropdownView.ItemView>
+    </DropdownView>
   </div>
 );
 
 export const MenuSuboptions = () => (
   <div style={{ height: 240 }}>
-    <Dropdown text="Menu Suboptions" showMenu={true}>
-      <Dropdown.Sublist name="Dropdown Subtitle">
-        <Dropdown.Item> Dropdown Suboption </Dropdown.Item>
-        <Dropdown.Item> Dropdown Suboption </Dropdown.Item>
-        <Dropdown.Item> Dropdown Suboption </Dropdown.Item>
-      </Dropdown.Sublist>
-    </Dropdown>
+    <DropdownView text="Menu Suboptions" showMenu={true}>
+      <DropdownView.SublistView name="Dropdown Subtitle">
+        <DropdownView.ItemView> Dropdown Suboption </DropdownView.ItemView>
+        <DropdownView.ItemView> Dropdown Suboption </DropdownView.ItemView>
+        <DropdownView.ItemView> Dropdown Suboption </DropdownView.ItemView>
+      </DropdownView.SublistView>
+    </DropdownView>
+  </div>
+);
+
+export const Description = () => (
+  <div style={{ height: 240 }}>
+    <DropdownView text="Menu Suboptions" showMenu={true}>
+      <DropdownView.ItemView description="description">
+        {" "}
+        Dropdown Item
+      </DropdownView.ItemView>
+      <DropdownView.ItemView description="description">
+        {" "}
+        Dropdown Item
+      </DropdownView.ItemView>
+    </DropdownView>
+  </div>
+);
+
+export const SideDescription = () => (
+  <div style={{ height: 240 }}>
+    <DropdownView text="Menu Suboptions" showMenu={true}>
+      <DropdownView.ItemView sideDescription="side">
+        {" "}
+        Dropdown Item
+      </DropdownView.ItemView>
+      <DropdownView.ItemView sideDescription="side">
+        {" "}
+        Dropdown Item
+      </DropdownView.ItemView>
+    </DropdownView>
+  </div>
+);
+
+export const BothDescriptions = () => (
+  <div style={{ height: 240 }}>
+    <DropdownView text="Menu Suboptions" showMenu={true}>
+      <DropdownView.ItemView description="description" sideDescription="side">
+        {" "}
+        Dropdown Item
+      </DropdownView.ItemView>
+      <DropdownView.ItemView description="description" sideDescription="side">
+        {" "}
+        Dropdown Item
+      </DropdownView.ItemView>
+    </DropdownView>
+  </div>
+);
+
+export const Checked = () => (
+  <div style={{ height: 240 }}>
+    <DropdownView text="Menu Suboptions" showMenu={true}>
+      <DropdownView.ItemView checked> Dropdown Item</DropdownView.ItemView>
+      <DropdownView.ItemView checked> Dropdown Item</DropdownView.ItemView>
+    </DropdownView>
+  </div>
+);
+
+export const PlaceholderWithoutText = () => (
+  <div style={{ height: 240 }}>
+    <DropdownView placeholder="Placeholder" showMenu={false}>
+      <DropdownView.ItemView checked> Dropdown Item</DropdownView.ItemView>
+      <DropdownView.ItemView checked> Dropdown Item</DropdownView.ItemView>
+    </DropdownView>
+  </div>
+);
+
+export const PlaceholderWithText = () => (
+  <div style={{ height: 240 }}>
+    <DropdownView
+      placeholder="Placeholder"
+      text="Menu Suboptions"
+      showMenu={false}
+    >
+      <DropdownView.ItemView checked> Dropdown Item</DropdownView.ItemView>
+      <DropdownView.ItemView checked> Dropdown Item</DropdownView.ItemView>
+    </DropdownView>
   </div>
 );
