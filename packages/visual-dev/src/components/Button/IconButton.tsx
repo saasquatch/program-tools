@@ -79,6 +79,7 @@ export const IconButtonView = React.forwardRef<
       <IconView
         icon={icon}
         size={Styles.icon_only_size[size]}
+        style={{ display: "block" }}
         customCSS={icon_css}
       />
     </StyledButton>
