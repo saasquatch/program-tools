@@ -46,6 +46,10 @@ export interface OptionProps {
    */
   onClickDropdown?: () => void;
   /**
+   * Text displayed in place of items if no items are provided
+   */
+  emptyText?: string;
+  /**
    * Dropdown content, almost always multiple Dropdown.Sublist or Dropdown.Item
    */
   children?: React.ReactNode;
@@ -235,9 +239,13 @@ const DropdownView = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
       onClickDropdown,
       children,
       placeholder,
+      emptyText,
       customCSS: customCSS = {},
       ...rest
     } = props;
+
+    console.log(children);
+    console.log(emptyText);
 
     return (
       <DropdownDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
@@ -281,7 +289,12 @@ const DropdownView = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
               ][showMenu ? "open" : "closed"]
             }
           >
-            {children}
+            {children ||
+              (emptyText && (
+                <ItemView>
+                  <i>{emptyText}</i>
+                </ItemView>
+              ))}
           </DropdownContentDiv>
         )}
       </DropdownDiv>

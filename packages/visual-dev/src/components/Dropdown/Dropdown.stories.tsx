@@ -247,8 +247,18 @@ export const PlaceholderWithText = () => (
       text="Menu Suboptions"
       showMenu={false}
     >
-      <DropdownView.ItemView checked> Dropdown Item</DropdownView.ItemView>
-      <DropdownView.ItemView checked> Dropdown Item</DropdownView.ItemView>
+      <DropdownView.ItemView checked>Dropdown Item</DropdownView.ItemView>
+      <DropdownView.ItemView checked>Dropdown Item</DropdownView.ItemView>
     </DropdownView>
+  </div>
+);
+
+export const NoItemsOpen = () => (
+  <div style={{ height: 240 }}>
+    <DropdownView
+      placeholder="Placeholder"
+      showMenu={true}
+      emptyText="Empty text"
+    ></DropdownView>
   </div>
 );
