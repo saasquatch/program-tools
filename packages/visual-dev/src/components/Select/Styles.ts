@@ -38,13 +38,13 @@ export const ItemContainer = css`
 
 export const ButtonContainer = css`
   position: absolute;
-  right: 100%;
   display: flex;
   align-items: center;
   text-indent: 0px;
   padding-right: var(--sq-spacing-small);
-  right: 4px;
-  top: 10px;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
   & > :not(:last-child) {
     margin-right: var(--sq-spacing-x-small);
   }
@@ -53,6 +53,7 @@ export const ButtonContainer = css`
 export const ItemDescription = css`
   color: var(--sq-text-subdued);
   font-size: var(--sq-font-size-small);
+  line-height: var(--sq-line-height-regular);
 `;
 
 export const Container = css`
@@ -100,7 +101,6 @@ export const ButtonDiv = css`
   align-items: center;
   text-indent: 0px;
   padding: 2px 4px 0px;
-  margin: auto 0;
 
   & > :not(:last-child) {
     margin-right: var(--sq-spacing-xx-small);

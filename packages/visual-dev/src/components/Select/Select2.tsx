@@ -320,35 +320,33 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           size="mini"
           customCSS={{
             display: showClear,
+            color: "var(--sq-text-subdued)",
           }}
           icon_css={{
-            color: arrowColor,
             margin: "auto",
-            height: "12px",
-            width: "12px",
+            height: "16px",
+            width: "16px",
           }}
-          color={
-            errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
-          }
-          onClick={() => {
+          color={"var(--sq-text-subdued)"}
+          onClick={(e: React.MouseEvent<HTMLElement>) => {
+            e.stopPropagation();
             functional.selectItem((null as unknown) as ItemType);
           }}
         />
         {loading ? (
-          <LoadingSpinner color={arrowColor} right="14px" bottom="12px" />
-        ) : isOpen ? (
-          <IconView
-            icon={"chevron_up"}
-            size={"small"}
-            customCSS={"padding: 8px; box-sizing: content-box;"}
-            color={arrowColor}
+          <LoadingSpinner
+            color={"var(--sq-text-subdued)"}
+            right="var(--sq-spacing-x-large)"
+            bottom="12px"
           />
         ) : (
           <IconView
-            icon={"chevron_down"}
+            icon={isOpen ? "chevron_up" : "chevron_down"}
             size={"small"}
-            customCSS={"padding: 8px; box-sizing: content-box;"}
-            color={arrowColor}
+            customCSS={
+              "padding: var(--sq-spacing-x-small) var(--sq-spacing-small) var(--sq-spacing-x-small) var(--sq-spacing-x-small); box-sizing: content-box;"
+            }
+            color={"var(--sq-text-subdued)"}
           />
         )}
       </ButtonDiv>
@@ -381,45 +379,31 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           borderless={true}
           size="mini"
           customCSS={{
+            color: "var(--sq-text-subdued)",
             display: showClear,
           }}
-          icon_css={{
-            margin: "auto",
-            color: arrowColor,
-            height: "12px",
-            width: "12px",
-          }}
-          color={
-            errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
-          }
-          onClick={() => {
+          icon_css={{ marginTop: "var(--sq-spacing-xxx-small)" }}
+          onClick={(e: React.MouseEvent<HTMLElement>) => {
+            e.stopPropagation();
             functional.selectItem((null as unknown) as ItemType);
           }}
         />
         {loading ? (
-          <LoadingSpinner color={arrowColor} right="16px" bottom="3px" />
-        ) : isOpen ? (
-          <IconButton
-            disabled={disabled}
-            icon={"chevron_up"}
-            borderless={true}
-            size="mini"
-            icon_css={{ color: arrowColor, height: "12px", width: "12px" }}
-            color={
-              errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
-            }
-            {...functional.getToggleButtonProps()}
+          <LoadingSpinner
+            color={"var(--sq-text-subdued)"}
+            right="16px"
+            bottom="9px"
           />
         ) : (
           <IconButton
             disabled={disabled}
-            icon={"chevron_down"}
+            icon={isOpen ? "chevron_up" : "chevron_down"}
             borderless={true}
-            size="mini"
-            icon_css={{ color: arrowColor, height: "12px", width: "12px" }}
-            color={
-              errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
-            }
+            size="small"
+            customCSS={{ padding: "var(--sq-spacing-x-small)" }}
+            icon_css={{
+              color: "var(--sq-text-subdued)",
+            }}
             {...functional.getToggleButtonProps()}
           />
         )}

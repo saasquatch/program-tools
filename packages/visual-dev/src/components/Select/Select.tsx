@@ -131,9 +131,7 @@ const SelectInputDiv = styled.div<{
   customCSS: CSSProp;
 }>`
   ${Styles.SelectInputStyle}
-  ${(props) =>
-    props.disabled &&
-    "background: var(--sq-surface-input-disabled); cursor: default;"}
+  ${(props) => props.disabled && "background: #E5E5E5; cursor: default;"}
   ${(props) =>
     props.isOpen && !props.disabled && "border-color: var(--sq-focused);"}
   ${(props) =>
@@ -164,7 +162,8 @@ const SelectedValueSpan = styled.span<{
   subdued: boolean;
 }>`
   ${Styles.SelectedValue}
-  ${(props) => props.subdued && "color: var(--sq-text-subdued)"}
+  ${(props) =>
+    props.subdued && "color: var(--sq-placeholder-text-on-secondary)"}
 `;
 
 const ButtonDiv = styled.div`
@@ -218,11 +217,6 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
   } = props;
 
   const showClear = clearable ? "inline-flex" : "none";
-  const arrowColor = errors
-    ? "var(--sq-border-critical)"
-    : disabled
-    ? "var(--sq-border)"
-    : "var(--sq-text)";
 
   function isCombobox(
     hook: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>
@@ -263,36 +257,28 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
               size="mini"
               customCSS={{
                 display: showClear,
+                color: "var(--sq-text-subdued)",
               }}
-              icon_css={{
-                color: arrowColor,
-                margin: "auto",
-                height: "16px",
-                width: "16px",
-              }}
-              color={
-                errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
-              }
+              icon_css={{ marginTop: "var(--sq-spacing-xxxx-small)" }}
               onClick={(e: React.MouseEvent<HTMLElement>) => {
                 e.stopPropagation();
                 functional.selectItem((null as unknown) as ItemType);
               }}
             />
             {loading ? (
-              <LoadingSpinner color={arrowColor} right="14px" bottom="12px" />
-            ) : isOpen ? (
-              <IconView
-                icon={"chevron_up"}
-                size={"small"}
-                customCSS={"padding: 8px; box-sizing: content-box;"}
-                color={arrowColor}
+              <LoadingSpinner
+                color={"var(--sq-text-subdued)"}
+                right="var(--sq-spacing-x-large)"
+                bottom="12px"
               />
             ) : (
               <IconView
-                icon={"chevron_down"}
+                icon={isOpen ? "chevron_up" : "chevron_down"}
                 size={"small"}
-                customCSS={"padding: 8px; box-sizing: content-box;"}
-                color={arrowColor}
+                customCSS={
+                  "padding: var(--sq-spacing-x-small) var(--sq-spacing-small) var(--sq-spacing-x-small) var(--sq-spacing-x-small); box-sizing: content-box;"
+                }
+                color={"var(--sq-text-subdued)"}
               />
             )}
           </ButtonDiv>
@@ -325,50 +311,34 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
               borderless={true}
               size="mini"
               customCSS={{
+                color: "var(--sq-text-subdued)",
                 display: showClear,
               }}
-              icon_css={{
-                margin: "auto",
-                color: arrowColor,
-                height: "12px",
-                width: "12px",
-              }}
-              color={
-                errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
-              }
+              icon_css={{ marginTop: "var(--sq-spacing-xxx-small)" }}
               onClick={(e: React.MouseEvent<HTMLElement>) => {
                 e.stopPropagation();
                 functional.selectItem((null as unknown) as ItemType);
               }}
             />
             {loading ? (
-              <LoadingSpinner color={arrowColor} right="16px" bottom="3px" />
-            ) : isOpen ? (
-              <IconButton
-                disabled={disabled}
-                icon={"chevron_up"}
-                borderless={true}
-                size="mini"
-                icon_css={{ color: arrowColor, height: "12px", width: "12px" }}
-                color={
-                  errors
-                    ? "var(--sq-border-critical)"
-                    : "var(--sq-text-subdued)"
-                }
-                {...functional.getToggleButtonProps()}
+              <LoadingSpinner
+                color={"var(--sq-text-subdued)"}
+                right="16px"
+                bottom="9px"
               />
             ) : (
               <IconButton
                 disabled={disabled}
-                icon={"chevron_down"}
+                icon={isOpen ? "chevron_up" : "chevron_down"}
                 borderless={true}
-                size="mini"
-                icon_css={{ color: arrowColor, height: "12px", width: "12px" }}
-                color={
-                  errors
-                    ? "var(--sq-border-critical)"
-                    : "var(--sq-text-subdued)"
-                }
+                size="small"
+                customCSS={{
+                  padding:
+                    "10px var(--sq-spacing-x-small) var(--sq-spacing-x-small)",
+                }}
+                icon_css={{
+                  color: "var(--sq-text-subdued)",
+                }}
                 {...functional.getToggleButtonProps()}
               />
             )}
