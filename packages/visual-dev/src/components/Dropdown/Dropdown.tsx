@@ -202,6 +202,10 @@ const PlaceHolderSpan = styled("span")`
   ${Styles.PlaceHolderSpan}
 `;
 
+const EmptyTextSpan = styled("span")`
+  ${Styles.EmptyTextSpan}
+`;
+
 const borderPresets = {
   pill: {
     top: {
@@ -292,7 +296,7 @@ const DropdownView = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
             {children ||
               (emptyText && (
                 <ItemView>
-                  <i>{emptyText}</i>
+                  <EmptyTextSpan>{emptyText}</EmptyTextSpan>
                 </ItemView>
               ))}
           </DropdownContentDiv>

@@ -91,10 +91,16 @@ export const ItemDescriptionP = css`
   margin: 0;
   font-size: var(--sq-font-size-small);
   line-height: var(--sq-line-height-regular);
-  color: var(--sq-placeholder-text-on-secondary);
+  color: var(--sq-text-subdued);
 `;
 
 export const PlaceHolderSpan = css`
-  color: var(--sq-placeholder-text-on-secondary);
-  font-size: inherit;
+  color: var(--sq-text-subdued);
+  font-size: var(--sq-font-size-regular);
+`;
+
+export const EmptyTextSpan = css`
+  color: var(--sq-text-subdued);
+  font-size: var(--sq-font-size-regular);
+  font-style: italic;
 `;
