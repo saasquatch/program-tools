@@ -26,6 +26,10 @@ export interface OptionProps {
    */
   hasNext?: boolean;
   /**
+   * Hide the "N Per Page" dropdown
+   */
+  hidePerPage?: boolean;
+  /**
    * Update pagination callback, for requesting a new page
    */
   updatePagination: (limit: number, offset: number) => void;
@@ -64,6 +68,7 @@ export const PaginationView = React.forwardRef<
     offset,
     limit,
     updatePagination,
+    hidePerPage = false,
     total = null,
     hasNext = false,
     customCSS = {},
@@ -119,46 +124,50 @@ export const PaginationView = React.forwardRef<
           size="mini"
           icon="chevron_right"
           borderless={true}
-          customCSS="margin: -3px; margin-right: var(--sq-spacing-x-large); &:hover{background: none;}"
+          customCSS={`margin: -3px; &:hover{background: none;} ${
+            !hidePerPage && "margin-right: var(--sq-spacing-x-large);"
+          }`}
           disabled={total != null ? offset + limit >= total : !hasNext}
           onClick={() => {
             updatePagination(limit, offset + limit);
           }}
         />
-        <Dropdown
-          onClickDropdown={() => setDropdown(!dropdown)}
-          showMenu={dropdown}
-          pill
-          center
-          popUpwards
-          text={`${limit} Per Page`}
-          customCSS="min-width: 165px; width: 165px; display: inline-block"
-        >
-          <Dropdown.Item
-            onClick={() => {
-              updatePagination(10, 0);
-              setDropdown(false);
-            }}
+        {!hidePerPage && (
+          <Dropdown
+            onClickDropdown={() => setDropdown(!dropdown)}
+            showMenu={dropdown}
+            pill
+            center
+            popUpwards
+            text={`${limit} Per Page`}
+            customCSS="min-width: 165px; width: 165px; display: inline-block"
           >
-            10 Per Page
-          </Dropdown.Item>
-          <Dropdown.Item
-            onClick={() => {
-              updatePagination(25, 0);
-              setDropdown(false);
-            }}
-          >
-            25 Per Page
-          </Dropdown.Item>
-          <Dropdown.Item
-            onClick={() => {
-              updatePagination(50, 0);
-              setDropdown(false);
-            }}
-          >
-            50 Per Page
-          </Dropdown.Item>
-        </Dropdown>
+            <Dropdown.Item
+              onClick={() => {
+                updatePagination(10, 0);
+                setDropdown(false);
+              }}
+            >
+              10 Per Page
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                updatePagination(25, 0);
+                setDropdown(false);
+              }}
+            >
+              25 Per Page
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                updatePagination(50, 0);
+                setDropdown(false);
+              }}
+            >
+              50 Per Page
+            </Dropdown.Item>
+          </Dropdown>
+        )}
       </ContainerDiv>
     </PaginationDiv>
   );

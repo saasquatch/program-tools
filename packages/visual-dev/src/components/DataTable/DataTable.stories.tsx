@@ -319,6 +319,16 @@ export const paginationFunctional = () => {
   );
 };
 
+export const paginationHidePerPage = () => (
+  <DataTable.Pagination
+    total={440}
+    limit={10}
+    offset={0}
+    hidePerPage
+    updatePagination={updatePaginationDummy}
+  />
+);
+
 export const paginationManyStart = () => (
   <DataTable.Pagination
     total={440}
