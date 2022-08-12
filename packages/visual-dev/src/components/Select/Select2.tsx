@@ -280,11 +280,6 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
   } = props;
 
   const showClear = clearable ? "inline-flex" : "none";
-  const arrowColor = errors
-    ? "var(--sq-border-critical)"
-    : disabled
-    ? "var(--sq-border)"
-    : "var(--sq-text)";
 
   function isCombobox(
     hook: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>
