@@ -30,7 +30,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "@saasquatch/jsonata-paths",
+  "name": "@saasquatch/jsonata-paths-extractor",
   "author": "ian hitchcock",
   "module": "dist/jsonata-paths.esm.js",
   "size-limit": [
