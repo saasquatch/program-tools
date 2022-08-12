@@ -24,6 +24,7 @@ import {
   setRewardSchedule,
   numToEquality,
   getTriggerSchema,
+  getUserCustomFieldsFromJsonata,
 } from "./utils";
 
 export { types };
@@ -45,6 +46,7 @@ export {
   inferType,
   numToEquality,
   getTriggerSchema,
+  getUserCustomFieldsFromJsonata,
   timeboxExpression,
   safeJsonata,
   getLogger,

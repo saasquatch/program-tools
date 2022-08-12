@@ -2,6 +2,8 @@ import { rewardScheduleQuery } from "./queries";
 import { ProgramTriggerBody, TriggerType } from "./types/rpc";
 import { User } from "./types/saasquatch";
 import { loggers } from "winston";
+import jsonata = require("jsonata");
+import getJsonataPaths from "@saasquatch/jsonata-paths";
 
 /**
  * Append a reward schedule to the template and return the new template
@@ -211,4 +213,41 @@ export function getTriggerSchema(body: ProgramTriggerBody): object[] {
     default:
       throw new Error("Trigger type did not match expected options");
   }
+}
+
+/**
+ * Parses JSONata expressions and finds user custom fields used in the expression(s)
+ *
+ * @param jsonataExpressions string | string[] input JSONata expression(s)
+ * @returns string[] a deduplicated list of user custom fields found in the input expression(s)
+ */
+export function getUserCustomFieldsFromJsonata(
+  jsonataExpressions: string | string[]
+): string[] {
+  const userCustomFields: string[] = [];
+  const getJsonataASTSafe = (
+    expression: string
+  ): jsonata.ExprNode | undefined => {
+    try {
+      return jsonata(expression).ast();
+    } catch (e) {}
+  };
+  if (typeof jsonataExpressions === "string") {
+    jsonataExpressions = [jsonataExpressions];
+  }
+  for (const expression of jsonataExpressions) {
+    const ast = getJsonataASTSafe(expression);
+    const allPaths = getJsonataPaths(ast);
+    const customFieldPaths: string[] = allPaths.filter((path) =>
+      path.startsWith("/user/customFields/")
+    );
+    for (const customFieldPath of customFieldPaths) {
+      //just get key
+      const key = customFieldPath.split("/")[3];
+      if (key) {
+        userCustomFields.push(key);
+      }
+    }
+  }
+  return userCustomFields;
 }
