@@ -20,7 +20,8 @@ export const circle = css`
 
 export const RowBase = css`
   display: flex;
-  padding: 20px;
+  min-height: 60px;
+  padding: var(--sq-spacing-xx-small) 20px;
   justify-content: space-between;
   align-items: center;
   font-family: var(--sq-font-family-sans);

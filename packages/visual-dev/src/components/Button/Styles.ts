@@ -42,6 +42,7 @@ export const universal_base = css`
 
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: var(--sq-font-weight-bold);
+  height: max-content;
 `;
 // PILL VARIANTS
 
