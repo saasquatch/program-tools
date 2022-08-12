@@ -249,5 +249,6 @@ export function getUserCustomFieldsFromJsonata(
       }
     }
   }
-  return userCustomFields;
+  //dedup
+  return Array.from(new Set(userCustomFields));
 }
