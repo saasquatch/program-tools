@@ -3,7 +3,7 @@ import { ProgramTriggerBody, TriggerType } from "./types/rpc";
 import { User } from "./types/saasquatch";
 import { loggers } from "winston";
 import jsonata = require("jsonata");
-import getJsonataPaths from "@saasquatch/jsonata-paths";
+import getJsonataPaths from "@saasquatch/jsonata-paths-extractor";
 
 /**
  * Append a reward schedule to the template and return the new template
@@ -224,7 +224,7 @@ export function getTriggerSchema(body: ProgramTriggerBody): object[] {
 export function getUserCustomFieldsFromJsonata(
   jsonataExpressions: string | string[]
 ): string[] {
-  const userCustomFields: string[] = [];
+  let userCustomFields: string[] = [];
   const getJsonataASTSafe = (
     expression: string
   ): jsonata.ExprNode | undefined => {
@@ -237,15 +237,22 @@ export function getUserCustomFieldsFromJsonata(
   }
   for (const expression of jsonataExpressions) {
     const ast = getJsonataASTSafe(expression);
+    if (!ast) continue;
     const allPaths = getJsonataPaths(ast);
-    const customFieldPaths: string[] = allPaths.filter((path) =>
-      path.startsWith("/user/customFields/")
-    );
-    for (const customFieldPath of customFieldPaths) {
-      //just get key
-      const key = customFieldPath.split("/")[3];
-      if (key) {
-        userCustomFields.push(key);
+    for (const path of allPaths) {
+      if (path.startsWith("/user/customFields/")) {
+        const key = path.split("/")[3];
+        if (key) userCustomFields.push(key);
+      }
+      if (
+        path.startsWith("/user/referredByReferral/referrerUser/customFields/")
+      ) {
+        const key = path.split("/")[5];
+        if (key) userCustomFields.push(key);
+      }
+      if (path.startsWith("/referral/referrerUser/customFields/")) {
+        const key = path.split("/")[4];
+        if (key) userCustomFields.push(key);
       }
     }
   }
