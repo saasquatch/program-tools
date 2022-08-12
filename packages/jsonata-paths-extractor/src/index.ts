@@ -1,4 +1,4 @@
-import jsonata from 'jsonata';
+import * as jsonata from 'jsonata';
 // import fs from 'node:fs';
 // import path from 'node:path';
 /**
