@@ -109,12 +109,6 @@ const getPathsFromPathContexts = (pathContexts: PathContext[]) => {
       continue;
     const pathString = reduceToPathString(pathContext);
     if (pathString === "") continue;
-    // console.log(pathString);
-    // console.log(JSON.stringify(pathContext, null, 2));
-    // console.log(
-    //   pathContext.pathId.toString(),
-    //   pathContext.parentPathId?.toString()
-    // );
     if (isParentRootContext(pathContext)) {
       paths.push(pathString);
     } else {
@@ -161,18 +155,11 @@ function getPathContextsFromAST(
         parentPathId: currentContext.pathId
       };
       pathContexts.push(newContext);
-      if (ast.steps?.[0]?.type === "variable" && ast.steps?.[0]?.value === "$")
-        pathContexts = getPathContextsFromAST(
-          ast.steps,
-          pathContexts,
-          createRootContext(ast)
-        );
-      else
-        pathContexts = getPathContextsFromAST(
-          ast.steps,
-          pathContexts,
-          newContext
-        );
+      pathContexts = getPathContextsFromAST(
+        ast.steps,
+        pathContexts,
+        newContext
+      );
       return getPathContextsFromAST(
         (ast as any)?.group?.lhs,
         pathContexts,
