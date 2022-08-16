@@ -74,7 +74,7 @@ Feature: JSONata paths extractor
 
     Examples:
       | expr                                                      | result                                                             |
-      | (before.wildcard.*.after[$$$.filter.nested=\""].wildcard) | ["/before/wildcard", "/filter/nested"]                             |
+      | (before.wildcard.*.after[$$$.filter.nested=""].wildcard) | ["/before/wildcard", "/filter/nested"]                             |
       | path.to.deeply.nested.field[$$$.filter = true]            | ["/path/to/deeply/nested/field","/filter"]                         |
       | path.to.deeply.nested{$$$.group : field}                  | ["/path/to/deeply/nested","/group","/path/to/deeply/nested/field"] |
       | ($foo := $$$.bar.bat;bar.buzz[$foo="test"].boom)          | ["/bar/bat","/bar/buzz/boom"]                                      |
