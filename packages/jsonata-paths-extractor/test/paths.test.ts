@@ -1,31 +1,30 @@
-import { loadFeature, autoBindSteps, StepDefinitions } from 'jest-cucumber';
-import jsonata, { ExprNode } from 'jsonata';
-import extractJSONataPaths from '../src';
+import { loadFeature, autoBindSteps, StepDefinitions } from "jest-cucumber";
+import extractJSONataPaths from "../src";
 
-const feature = loadFeature('test/paths.feature');
+const feature = loadFeature("test/paths.feature");
 
 const stepDefinitions: StepDefinitions[] = [
   ({ given, when, then }) => {
-    let currentAST: ExprNode | null;
+    let currentExpression: string | null;
     let currentResult: string[] = [];
     beforeEach(() => {
-      currentAST = null;
+      currentExpression = null;
       currentResult = [];
     });
-    given(/^the JSONata ast for the expression "(.*)"$/, expression => {
+    given(/^the JSONata expression "(.*)"$/, expression => {
       try {
-        currentAST = jsonata(expression).ast();
+        currentExpression = expression;
       } catch (e) {}
     });
 
-    when('the paths are extracted', () => {
-      currentResult = extractJSONataPaths(currentAST as ExprNode);
+    when("the paths are extracted", () => {
+      currentResult = extractJSONataPaths(currentExpression as string);
     });
 
     then(/^the result is (.*)$/, result => {
       expect(JSON.parse(result)).toStrictEqual(currentResult);
     });
-  },
+  }
 ];
 
 autoBindSteps([feature], stepDefinitions);
