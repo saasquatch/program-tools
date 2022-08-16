@@ -7,9 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.0] - TBD
+## [1.0.0] - TBD
 
-First release of the JSONata paths extractor library. A single function is exported that accepts JSONata ASTs and returns the paths found in the AST.
+First release of the JSONata paths extractor library. A single function is exported that accepts a JSONata expression and returns the paths found in the expression.
 
 ### Added
 
@@ -18,5 +18,5 @@ First release of the JSONata paths extractor library. A single function is expor
 - Support variables bound to paths
 - Handle wildcards, descendants, and parents
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fjsonata-paths-extractor%400.1.0...HEAD
-[0.1.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fjsonata-paths-extractor%400.1.0
+[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fjsonata-paths-extractor%401.0.0...HEAD
+[0.1.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fjsonata-paths-extractor%401.0.0
