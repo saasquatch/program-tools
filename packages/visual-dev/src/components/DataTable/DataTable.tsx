@@ -91,8 +91,6 @@ export const DataTableView = React.forwardRef<
     ...rest
   } = props;
 
-  console.log(loadingSlot);
-
   return (
     <DataTableDiv
       {...rest}

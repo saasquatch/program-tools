@@ -19,7 +19,7 @@ export interface OptionProps {
   /**
    * Label adjacent to checkbox
    */
-  label?: string | boolean;
+  label?: string | boolean | React.ReactNode;
   /**
    * Render in disabled state
    */
@@ -71,7 +71,13 @@ export const CheckboxView = React.forwardRef<
         <CheckboxDiv isDisabled={disabled}>
           <IconView icon="checkmark" customCSS={CheckboxTick} />
         </CheckboxDiv>
-        {label ? label : ""}
+        <div
+          style={{
+            marginTop: "calc(-1*var(--sq-spacing-xxx-small))",
+          }}
+        >
+          {label ? label : ""}
+        </div>
       </CheckboxLabel>
     </ShadowDom>
   );

@@ -16,7 +16,6 @@ export const disabled_bg = css`
 export const CheckboxLabelStyle = css`
   user-select: none;
   display: inline-flex;
-  align-items: center;
   cursor: pointer;
   color: var(--sq-text);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
