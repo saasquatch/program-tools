@@ -225,35 +225,30 @@ export function getUserCustomFieldsFromJsonata(
   jsonataExpressions: string | string[]
 ): string[] {
   let userCustomFields: string[] = [];
-  const getJsonataASTSafe = (
-    expression: string
-  ): jsonata.ExprNode | undefined => {
-    try {
-      return jsonata(expression).ast();
-    } catch (e) {}
-  };
   if (typeof jsonataExpressions === "string") {
     jsonataExpressions = [jsonataExpressions];
   }
   for (const expression of jsonataExpressions) {
-    const ast = getJsonataASTSafe(expression);
-    if (!ast) continue;
-    const allPaths = getJsonataPaths(ast);
-    for (const path of allPaths) {
-      if (path.startsWith("/user/customFields/")) {
-        const key = path.split("/")[3];
-        if (key) userCustomFields.push(key);
+    try {
+      const allPaths = getJsonataPaths(expression);
+      for (const path of allPaths) {
+        if (path.startsWith("/user/customFields/")) {
+          const key = path.split("/")[3];
+          if (key) userCustomFields.push(key);
+        }
+        if (
+          path.startsWith("/user/referredByReferral/referrerUser/customFields/")
+        ) {
+          const key = path.split("/")[5];
+          if (key) userCustomFields.push(key);
+        }
+        if (path.startsWith("/referral/referrerUser/customFields/")) {
+          const key = path.split("/")[4];
+          if (key) userCustomFields.push(key);
+        }
       }
-      if (
-        path.startsWith("/user/referredByReferral/referrerUser/customFields/")
-      ) {
-        const key = path.split("/")[5];
-        if (key) userCustomFields.push(key);
-      }
-      if (path.startsWith("/referral/referrerUser/customFields/")) {
-        const key = path.split("/")[4];
-        if (key) userCustomFields.push(key);
-      }
+    } catch (e) {
+      continue;
     }
   }
   //dedup
