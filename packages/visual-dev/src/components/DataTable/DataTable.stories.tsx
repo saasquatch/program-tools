@@ -156,6 +156,47 @@ export const FormSubmissionTable = () => {
   );
 };
 
+export const FormSubmissionTableWithControllerMapping = () => {
+  const headers = ["Form", "User", "Date Submitted", "Status"];
+  const rowMatrix = [
+    [text_a, text_b, text_c, text_d],
+    [text_a, text_b, text_c, text_d],
+    [text_a, text_b, text_c, text_d],
+  ];
+  return (
+    <>
+      <DataTableView
+        width="958px"
+        headerSlot={
+          <DataTableView.TableRowView variant="header">
+            {headers.map((header) => {
+              return header;
+            })}
+          </DataTableView.TableRowView>
+        }
+        footerSlot={
+          <DataTableView.PaginationView
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      >
+        {rowMatrix.map((row) => {
+          return (
+            <DataTableView.TableRowView>
+              {row.map((cell) => {
+                return cell;
+              })}
+            </DataTableView.TableRowView>
+          );
+        })}
+      </DataTableView>
+    </>
+  );
+};
+
 export const PopoverTest = () => {
   return (
     <>
