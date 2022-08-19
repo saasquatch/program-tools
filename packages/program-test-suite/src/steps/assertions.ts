@@ -3,7 +3,7 @@ import assert from "assert";
 import delve from "dlv";
 import { inferType } from "@saasquatch/program-boilerplate";
 
-import { World, getWorld } from "../world";
+import { getWorld } from "../world";
 import {
   MutationStepRow,
   AnalyticsStepRow,
@@ -286,7 +286,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   then("the output template will be unchanged", () => {
     assert.deepStrictEqual(
       getWorld().state.programTriggerResult,
-      World.defaultTemplate
+      getWorld().getDefaultTemplate()
     );
   });
 

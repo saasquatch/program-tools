@@ -2,7 +2,7 @@ import { sync as globSync } from "glob";
 import { loadFeature, autoBindSteps, StepDefinitions } from "jest-cucumber";
 import { types } from "@saasquatch/program-boilerplate";
 
-import { World } from "./world";
+import { getWorld } from "./world";
 import builtinSteps from "./steps";
 
 export { default as jestConfig } from "./jest.config";
@@ -17,8 +17,8 @@ export function runProgramTests(
   rulesFile: string,
   featureFilterTags?: string[]
 ) {
-  World.setProgram(program);
-  World.loadDefaults(templateFile, schemaFile, rulesFile);
+  getWorld().setProgram(program);
+  getWorld().loadDefaults(templateFile, schemaFile, rulesFile);
 
   const features: ReturnType<typeof loadFeature>[] = [];
   const featureFiles = globSync(`${featurePath}/**/*.feature`);
