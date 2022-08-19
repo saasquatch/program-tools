@@ -1,39 +1,58 @@
 [
   {
     "input": "event.fields.payments[method='CASHBACK'] ? (($sum(event.fields.products.(price*quantity))-$sum(event.fields.payments.discount))-$sum(event.fields.payments[method='CASHBACK'].total)+event.fields.coupon_total)*3\n:($sum(event.fields.products.(price*quantity))-$sum(event.fields.payments.discount)+event.fields.coupon_total)*3",
-    "expected": []
+    "expected": [
+      "/event/fields/payments",
+      "/event/fields/payments/method",
+      "/event/fields/products",
+      "/event/fields/products/price",
+      "/event/fields/products/quantity",
+      "/event/fields/payments/discount",
+      "/event/fields/payments/total",
+      "/event/fields/payments/method",
+      "/event/fields/coupon_total",
+      "/event/fields/products",
+      "/event/fields/products/price",
+      "/event/fields/products/quantity",
+      "/event/fields/payments/discount",
+      "/event/fields/coupon_total"
+    ]
   },
   {
     "input": "select = \"\" ? true",
-    "expected": []
+    "expected": ["/select"]
   },
   {
     "input": "$sum(event.fields.products.(price * quantity)) * 0.03",
-    "expected": []
+    "expected": [
+      "/event/fields/products",
+      "/event/fields/products/price",
+      "/event/fields/products/quantity"
+    ]
   },
   {
     "input": "goal.isFirstTime and (event.key = \"purchase\")",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/key"]
   },
   {
     "input": "event.key = \"purchase\"",
-    "expected": []
+    "expected": ["/event/key"]
   },
   {
     "input": "goal.isFirstTime and (event.fields.revenue >= 25)",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/fields/revenue"]
   },
   {
     "input": "event.fields.revenue >= 25",
-    "expected": []
+    "expected": ["/event/fields/revenue"]
   },
   {
     "input": "goal.isFirstTime and (user.referable = \"60days\")",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/user/referable"]
   },
   {
     "input": "user.referable = \"60days\"",
-    "expected": []
+    "expected": ["/user/referable"]
   },
   {
     "input": "10000",
@@ -41,47 +60,55 @@
   },
   {
     "input": "goal.isFirstTime and (user.customFields.totalHoursWorked >= 8)",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/user/customFields/totalHoursWorked"]
   },
   {
     "input": "user.customFields.totalHoursWorked >= 8",
-    "expected": []
+    "expected": ["/user/customFields/totalHoursWorked"]
   },
   {
     "input": "goal.isFirstTime and (user.customFields.totalHoursWorked >= 50)",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/user/customFields/totalHoursWorked"]
   },
   {
     "input": "goal.isFirstTime",
-    "expected": []
+    "expected": ["/goal/isFirstTime"]
   },
   {
     "input": "event.fields.lifecycle = \"Demo completed\" ? true",
-    "expected": []
+    "expected": ["/event/fields/lifecycle"]
   },
   {
     "input": "event.fields.lifecycle = \"Closed won\" ? true",
-    "expected": []
+    "expected": ["/event/fields/lifecycle"]
   },
   {
     "input": "goal.isFirstTime and (event.fields.userType = \"Buyer\" or event.fields.userType = \"Seller\")",
-    "expected": []
+    "expected": [
+      "/goal/isFirstTime",
+      "/event/fields/userType",
+      "/event/fields/userType"
+    ]
   },
   {
     "input": "event.fields.userType = \"Buyer\" or event.fields.userType = \"Seller\"",
-    "expected": []
+    "expected": ["/event/fields/userType", "/event/fields/userType"]
   },
   {
     "input": "goal.isFirstTime = true and event.fields.status = \"closedWon\" ? true",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/fields/status"]
   },
   {
     "input": "goal.isFirstTime = true and event.fields.salesCall = \"qualified\" ? true",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/fields/salesCall"]
   },
   {
     "input": "user.referredByReferral.referrerUser.customFields.eligibilityDate ?  time < $toMillis(user.referredByReferral.referrerUser.customFields.eligibilityDate) + (30 * 24 * 60 * 60 * 1000) : false",
-    "expected": []
+    "expected": [
+      "/user/referredByReferral/referrerUser/customFields/eligibilityDate",
+      "/time",
+      "/user/referredByReferral/referrerUser/customFields/eligibilityDate"
+    ]
   },
   {
     "input": "true",
@@ -89,23 +116,31 @@
   },
   {
     "input": "goal.isFirstTime = true and event.fields.status = \"Closed Won\" and $exists(event.fields.oppId) ? true",
-    "expected": []
+    "expected": [
+      "/goal/isFirstTime",
+      "/event/fields/status",
+      "/event/fields/oppId"
+    ]
   },
   {
     "input": "goal.isFirstTime = true and event.fields.status = \"Closed Lost\" ? true",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/fields/status"]
   },
   {
     "input": "goal.isFirstTime and (event.fields.revenue >= 1 and \"subscription\" in event.fields.products.category)",
-    "expected": []
+    "expected": [
+      "/goal/isFirstTime",
+      "/event/fields/revenue",
+      "/event/fields/products/category"
+    ]
   },
   {
     "input": "event.fields.revenue >= 1 and \"subscription\" in event.fields.products.category",
-    "expected": []
+    "expected": ["/event/fields/revenue", "/event/fields/products/category"]
   },
   {
     "input": "goal.isFirstTime = 0 ? true",
-    "expected": []
+    "expected": ["/goal/isFirstTime"]
   },
   {
     "input": "1000",
@@ -113,23 +148,23 @@
   },
   {
     "input": "goal.isFirstTime = true and event.fields.status = \"disqualified\" ? true",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/fields/status"]
   },
   {
     "input": "goal.isFirstTime = true and event.fields.status = \"completed\" ? true",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/fields/status"]
   },
   {
     "input": "goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/goal/isFirstTime"]
   },
   {
     "input": "goal.isFirstTime and (event.fields.revenue >= 600)",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/fields/revenue"]
   },
   {
     "input": "event.fields.revenue >= 600",
-    "expected": []
+    "expected": ["/event/fields/revenue"]
   },
   {
     "input": "20000",
@@ -137,347 +172,433 @@
   },
   {
     "input": "event.fields.revenue > 10 ? true",
-    "expected": []
+    "expected": ["/event/fields/revenue"]
   },
   {
     "input": "user.customFields.completedDemo = true and user.customFields.incentiveQualificationCriteria = \"Qualified - Office at GC/Sub 11+\" and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": [
+      "/user/customFields/completedDemo",
+      "/user/customFields/incentiveQualificationCriteria",
+      "/goal/isFirstTime"
+    ]
   },
   {
     "input": "goal.isFirstTime and (event.fields.revenue >= 1)",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/fields/revenue"]
   },
   {
     "input": "event.fields.revenue >= 1",
-    "expected": []
+    "expected": ["/event/fields/revenue"]
   },
   {
     "input": "goal.isFirstTime and (user.customFields.Registered = true)",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/user/customFields/Registered"]
   },
   {
     "input": "user.customFields.Registered = true",
-    "expected": []
+    "expected": ["/user/customFields/Registered"]
   },
   {
     "input": "goal.isFirstTime = true and $not(\"genericCode\" in user.referredByReferral.referrerUser.segments)",
-    "expected": []
+    "expected": [
+      "/goal/isFirstTime",
+      "/user/referredByReferral/referrerUser/segments"
+    ]
   },
   {
     "input": "event.fields.revenue * 100 * 0.02",
-    "expected": []
+    "expected": ["/event/fields/revenue"]
   },
   {
     "input": "$not(\"genericCode\" in user.referredByReferral.referrerUser.segments)",
-    "expected": []
+    "expected": ["/user/referredByReferral/referrerUser/segments"]
   },
   {
     "input": "goal.isFirstTime and (user.customFields.offersCompleted = 1)",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/user/customFields/offersCompleted"]
   },
   {
     "input": "user.customFields.offersCompleted = 1",
-    "expected": []
+    "expected": ["/user/customFields/offersCompleted"]
   },
   {
     "input": "goal.isFirstTime and (user.customFields.`worked_400_hours` = true)",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/user/customFields/worked_400_hours"]
   },
   {
     "input": "user.customFields.`worked_400_hours` = true",
-    "expected": []
+    "expected": ["/user/customFields/worked_400_hours"]
   },
   {
     "input": "(goal.referrals + 1) % 2 = 0 ? true",
-    "expected": []
+    "expected": ["/goal/referrals"]
   },
   {
     "input": "goal.referrals = 1 ? true",
-    "expected": []
+    "expected": ["/goal/referrals"]
   },
   {
     "input": "user.customFields.isSalesforceConnected = true and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": [
+      "/user/customFields/isSalesforceConnected",
+      "/goal/isFirstTime"
+    ]
   },
   {
     "input": "goal.referrals > 1 and goal.referrals < 5 and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/goal/referrals", "/goal/referrals", "/goal/isFirstTime"]
   },
   {
     "input": "goal.referrals > 3 and goal.referrals < 10 and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/goal/referrals", "/goal/referrals", "/goal/isFirstTime"]
   },
   {
     "input": "goal.referrals > 8 and goal.referrals < 25 and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/goal/referrals", "/goal/referrals", "/goal/isFirstTime"]
   },
   {
     "input": "goal.referrals > 24 and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/goal/referrals", "/goal/isFirstTime"]
   },
   {
     "input": "goal.referrals = 4 and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/goal/referrals", "/goal/isFirstTime"]
   },
   {
     "input": "goal.referrals = 9 and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/goal/referrals", "/goal/isFirstTime"]
   },
   {
     "input": "goal.referrals = 24 and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/goal/referrals", "/goal/isFirstTime"]
   },
   {
     "input": "(goal.referrals > 25 ? (goal.referrals - 25) % 10) = 0 and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/goal/referrals", "/goal/referrals", "/goal/isFirstTime"]
   },
   {
     "input": "goal.isFirstTime and (user.customFields.applicationCompleted = \"\")",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/user/customFields/applicationCompleted"]
   },
   {
     "input": "user.customFields.applicationCompleted = \"\"",
-    "expected": []
+    "expected": ["/user/customFields/applicationCompleted"]
   },
   {
     "input": "goal.isFirstTime and (event.key = \"referredProfileCompleted\")",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/key"]
   },
   {
     "input": "event.key = \"referredProfileCompleted\"",
-    "expected": []
+    "expected": ["/event/key"]
   },
   {
     "input": "user.customFields.purchaseTotal >= 500 and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/user/customFields/purchaseTotal", "/goal/isFirstTime"]
   },
   {
     "input": "user.customFields.videosShared >= 5 and user.customFields.videosShared % 5 = 0 and (user.customFields.videosShared / 5) > goal.count ? true",
-    "expected": []
+    "expected": [
+      "/user/customFields/videosShared",
+      "/user/customFields/videosShared",
+      "/user/customFields/videosShared",
+      "/goal/count"
+    ]
   },
   {
     "input": "user.customFields.seatCount >= 5 and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/user/customFields/seatCount", "/goal/isFirstTime"]
   },
   {
     "input": "user.customFields.videoHoursCount >= 1 and user.customFields.videoHoursCount % 1 = 0 and user.customFields.videoHoursCount > goal.count",
-    "expected": []
+    "expected": [
+      "/user/customFields/videoHoursCount",
+      "/user/customFields/videoHoursCount",
+      "/user/customFields/videoHoursCount",
+      "/goal/count"
+    ]
   },
   {
     "input": "goal.isFirstTime = true and \"champion\" in user.segments ? true",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/user/segments"]
   },
   {
     "input": "goal.isFirstTime and (user.customFields.applicationCompleted = \"yes\")",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/user/customFields/applicationCompleted"]
   },
   {
     "input": "user.customFields.applicationCompleted = \"yes\"",
-    "expected": []
+    "expected": ["/user/customFields/applicationCompleted"]
   },
   {
     "input": "event.fields.revenue > 1000 ? true",
-    "expected": []
+    "expected": ["/event/fields/revenue"]
   },
   {
     "input": "event.fields.totalPaymentsMade >= 6 and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/event/fields/totalPaymentsMade", "/goal/isFirstTime"]
   },
   {
     "input": "goal.isFirstTime and (event.fields.latestPaymentStatus = \"Succeeded\" and event.fields.status = \"active\")",
-    "expected": []
+    "expected": [
+      "/goal/isFirstTime",
+      "/event/fields/latestPaymentStatus",
+      "/event/fields/status"
+    ]
   },
   {
     "input": "event.fields.latestPaymentStatus = \"Succeeded\" and event.fields.status = \"active\"",
-    "expected": []
+    "expected": ["/event/fields/latestPaymentStatus", "/event/fields/status"]
   },
   {
     "input": "goal.isFirstTime and (user.customFields.lastPurchaseDate < \"01/01/2019\")",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/fields/lastPurchaseDate"]
   },
   {
     "input": "user.customFields.lastPurchaseDate < \"01/01/2019\"",
-    "expected": []
+    "expected": ["/event/fields/lastPurchaseDate"]
   },
   {
     "input": "goal.isFirstTime and (user.customFields.converted = true)",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/user/customFields/converted"]
   },
   {
     "input": "user.customFields.converted = true",
-    "expected": []
+    "expected": ["/user/customFields/converted"]
   },
   {
     "input": "($not($exists(user.customFields.signupType)) or user.customFields.signupType != \"salesContact\") ? true",
-    "expected": []
+    "expected": [
+      "/user/customFields/signupType",
+      "/user/customFields/signupType"
+    ]
   },
   {
     "input": "user.customFields.signupType = \"salesContact\" ? true",
-    "expected": []
+    "expected": ["/user/customFields/signupType"]
   },
   {
     "input": "goal.isFirstTime = true and event.fields.planType = \"business\" ? true",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/fields/planType"]
   },
   {
     "input": "goal.isFirstTime = true and event.fields.planType = \"enterprise\" ? true",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/fields/planType"]
   },
   {
     "input": "event.fields.revenue * 0.2",
-    "expected": []
+    "expected": ["/event/fields/revenue"]
   },
   {
     "input": "event.fields.Stage = \"Qualified\" and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/event/fields/Stage", "/goal/isFirstTime"]
   },
   {
     "input": "event.fields.Stage = \"Deal Signed\" ? true",
-    "expected": []
+    "expected": ["/event/fields/Stage"]
   },
   {
     "input": "goal.isFirstTime = true and event.fields.transaction.action = \"purchase\" and event.fields.transaction.status = \"success\" and event.fields.transaction.amount_in_cents > 0 ? true",
-    "expected": []
+    "expected": [
+      "/goal/isFirstTime",
+      "/event/fields/transaction/action",
+      "/event/fields/transaction/status",
+      "/event/fields/transaction/amount_in_cents"
+    ]
   },
   {
     "input": "event.fields.transaction.amount_in_cents ? event.fields.transaction.amount_in_cents*0.25 : 0",
-    "expected": []
+    "expected": [
+      "/event/fields/transaction/amount_in_cents",
+      "/event/fields/transaction/amount_in_cents"
+    ]
   },
   {
     "input": "user.referredByReferral.referrerUser.locale = \"en_US\" ? true",
-    "expected": []
+    "expected": ["/user/referredByReferral/referrerUser/locale"]
   },
   {
     "input": "event.dateTriggered < user.referredByReferral.dateConverted + (30 * 24 * 60 * 60 * 1000)",
-    "expected": []
+    "expected": [
+      "/event/dateTriggered",
+      "/user/referredByReferral/dateConverted"
+    ]
   },
   {
     "input": "goal.isFirstTime = true and $not(\"internationalAdvoCats\" in user.referredByReferral.referrerUser.segments) ? true",
-    "expected": []
+    "expected": [
+      "/goal/isFirstTime",
+      "/user/referredByReferral/referrerUser/segments"
+    ]
   },
   {
     "input": "goal.isFirstTime = true and \"internationalAdvoCats\" in user.referredByReferral.referrerUser.segments ? true",
-    "expected": []
+    "expected": [
+      "/goal/isFirstTime",
+      "/user/referredByReferral/referrerUser/segments"
+    ]
   },
   {
     "input": "goal.isFirstTime = true and $not(\"internationalUser\" in user.referredByReferral.referrerUser.segments) and $contains(event.fields.products.product_name, \"annual\") ? true",
-    "expected": []
+    "expected": [
+      "/goal/isFirstTime",
+      "/user/referredByReferral/referrerUser/segments",
+      "/event/fields/products/product_name"
+    ]
   },
   {
     "input": "goal.isFirstTime = true and $not(\"internationalAdvoCats\" in user.referredByReferral.referrerUser.segments) and $contains(event.fields.products.product_name, \"annual\") ? true",
-    "expected": []
+    "expected": [
+      "/goal/isFirstTime",
+      "/user/referredByReferral/referrerUser/segments",
+      "/event/fields/products/product_name"
+    ]
   },
   {
     "input": "user.accountId = \"new\" and user.accountId = \"unique\"",
-    "expected": []
+    "expected": ["/user/accountId", "/user/accountId"]
   },
   {
     "input": "\"internationalAdvoCats\" in user.referredByReferral.referrerUser.segments ? true",
-    "expected": []
+    "expected": ["/user/referredByReferral/referrerUser/segments"]
   },
   {
     "input": "event.fields.stage = \"SAO\" and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/event/fields/stage", "/goal/isFirstTime"]
   },
   {
     "input": "$not($contains(user.referredByReferral.referrerUser.email, \"bamboohr.com\")) and (user.referredByReferral.referrerUser.countryCode = \"CA\" or user.referredByReferral.referrerUser.countryCode = \"US\") ? true",
-    "expected": []
+    "expected": [
+      "/user/referredByReferral/referrerUser/email",
+      "/user/referredByReferral/referrerUser/countryCode",
+      "/user/referredByReferral/referrerUser/countryCode"
+    ]
   },
   {
     "input": "event.fields.stage = \"closedWon\" and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/event/fields/stage", "/goal/isFirstTime"]
   },
   {
     "input": "event.fields.Stage = \"Won\" and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/event/fields/Stage", "/goal/isFirstTime"]
   },
   {
     "input": "\"VIP\" in user.referredByReferral.referrerUser.segments ? true",
-    "expected": []
+    "expected": ["/user/referredByReferral/referrerUser/segments"]
   },
   {
     "input": "user.locale = \"en_US\" ? true",
-    "expected": []
+    "expected": ["/user/locale"]
   },
   {
     "input": "referral.dateReferralStarted >= $toMillis(\"2021-07-01T00:00:00.000Z\") and \nreferral.dateReferralStarted < $toMillis(\"2021-08-01T00:00:00.000Z\")",
-    "expected": []
+    "expected": [
+      "/referral/dateReferralStarted",
+      "/referral/dateReferralStarted"
+    ]
   },
   {
     "input": "event.fields.invoice.total_in_cents > 1900 or event.fields.Price > 19 ? true",
-    "expected": []
+    "expected": ["/event/fields/invoice/total_in_cents", "/event/fields/Price"]
   },
   {
     "input": "goal.isFirstTime = true and $not(“notReferrable” in user.segments) ? true",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/user/segments"]
   },
   {
     "input": "\"formSubmit\" in user.segments ? true",
-    "expected": []
+    "expected": ["/user/segments"]
   },
   {
     "input": "goal.isFirstTime and (user.customFields.totalPensionsTransferred = 1)",
-    "expected": []
+    "expected": [
+      "/goal/isFirstTime",
+      "/user/customFields/totalPensionsTransferred"
+    ]
   },
   {
     "input": "user.customFields.totalPensionsTransferred = 1",
-    "expected": []
+    "expected": ["/user/customFields/totalPensionsTransferred"]
   },
   {
     "input": "goal.isFirstTime and (user.customFields.planName = \"Grow\" or user.customFields.planName = \"Pro\" or user.customFields.planName = \"Platform\")",
-    "expected": []
+    "expected": [
+      "/goal/isFirstTime",
+      "/user/customFields/planName",
+      "/user/customFields/planName",
+      "/user/customFields/planName"
+    ]
   },
   {
     "input": "user.customFields.planName = \"Grow\" or user.customFields.planName = \"Pro\" or user.customFields.planName = \"Platform\"",
-    "expected": []
+    "expected": [
+      "/user/customFields/planName",
+      "/user/customFields/planName",
+      "/user/customFields/planName"
+    ]
   },
   {
     "input": "user.customFields.planName = \"Grow\"",
-    "expected": []
+    "expected": ["/user/customFields/planName"]
   },
   {
     "input": "user.customFields.planName = \"Pro\"",
-    "expected": []
+    "expected": ["/user/customFields/planName"]
   },
   {
     "input": "user.customFields.planName = \"Platform\"",
-    "expected": []
+    "expected": ["/user/customFields/planName"]
   },
   {
     "input": "$not($exists(user.customFields.giftedMember)) ? true",
-    "expected": []
+    "expected": ["/user/customFields/giftedMember"]
   },
   {
     "input": "$exists(user.customFields.memberType) ? true",
-    "expected": []
+    "expected": ["/user/customFields/memberType"]
   },
   {
     "input": "user.customFields.memberType = \"CHAPI\" or user.customFields.memberType = \"CHAPM\" or user.customFields.memberType = \"INTEM\" or user.customFields.memberType = \"NATIM\" ? true",
-    "expected": []
+    "expected": [
+      "/user/customFields/memberType",
+      "/user/customFields/memberType",
+      "/user/customFields/memberType",
+      "/user/customFields/memberType"
+    ]
   },
   {
     "input": "user.customFields.memberType = \"CHAP3\" or user.customFields.memberType = \"CHPI3\" or user.customFields.memberType = \"INTE3\" or user.customFields.memberType = \"NATI3\" ? true",
-    "expected": []
+    "expected": [
+      "/user/customFields/memberType",
+      "/user/customFields/memberType",
+      "/user/customFields/memberType",
+      "/user/customFields/memberType"
+    ]
   },
   {
     "input": "user.customFields.memberType = \"LIFIM\" or user.customFields.memberType = \"LIFIS\" or user.customFields.memberType = \"LIFME\" or user.customFields.memberType = \"LIFSR\" ? true",
-    "expected": []
+    "expected": [
+      "/user/customFields/memberType",
+      "/user/customFields/memberType",
+      "/user/customFields/memberType",
+      "/user/customFields/memberType"
+    ]
   },
   {
     "input": "user.customFields.giftedMember = true ? true",
-    "expected": []
+    "expected": ["/user/customFields/giftedMember"]
   },
   {
     "input": "event.fields.Stage = \"Closed Won\" ? true",
-    "expected": []
+    "expected": ["/event/fields/Stage"]
   },
   {
     "input": "goal.isFirstTime and (event.key = \"loanPaidBack\")",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/key"]
   },
   {
     "input": "event.key = \"loanPaidBack\"",
-    "expected": []
+    "expected": ["/event/key"]
   },
   {
     "input": "75000",
@@ -493,11 +614,11 @@
   },
   {
     "input": "goal.referrals = 10 ? true",
-    "expected": []
+    "expected": ["/goal/referrals"]
   },
   {
     "input": "user.customFields.`worked_400_hours` = true and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/user/customFields/worked_400_hours", "/goal/isFirstTime"]
   },
   {
     "input": "50000",
@@ -505,243 +626,303 @@
   },
   {
     "input": "user.customFields.HasListedLawSchool = true and user.customFields.GeoAreas = true and user.customFields.ProfilePicture = true and user.customFields.PracticeAreas = true and user.customFields.Verification = \"Verified\" and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": [
+      "/user/customFields/HasListedLawSchool",
+      "/user/customFields/GeoAreas",
+      "/user/customFields/ProfilePicture",
+      "/user/customFields/PracticeAreas",
+      "/user/customFields/Verification",
+      "/goal/isFirstTime"
+    ]
   },
   {
     "input": "goal.referrals = 0 ? true",
-    "expected": []
+    "expected": ["/goal/referrals"]
   },
   {
     "input": "goal.referrals = 4 ? true",
-    "expected": []
+    "expected": ["/goal/referrals"]
   },
   {
     "input": "goal.referrals = 9 ? true",
-    "expected": []
+    "expected": ["/goal/referrals"]
   },
   {
     "input": "goal.referrals = 24 ? true",
-    "expected": []
+    "expected": ["/goal/referrals"]
   },
   {
     "input": "goal.isFirstTime and (user.customFields.productIndicator = \"Household Employer \" or user.customFields.productIndicator = \"General\")",
-    "expected": []
+    "expected": [
+      "/goal/isFirstTime",
+      "/user/customFields/productIndicator",
+      "/user/customFields/productIndicator"
+    ]
   },
   {
     "input": "user.customFields.productIndicator = \"Household Employer \"",
-    "expected": []
+    "expected": ["/user/customFields/productIndicator"]
   },
   {
     "input": "user.customFields.productIndicator = \"General\"",
-    "expected": []
+    "expected": ["/user/customFields/productIndicator"]
   },
   {
     "input": "$not(\"noRewardEmployee\" in user.referredByReferral.referrerUser.segments)",
-    "expected": []
+    "expected": ["/user/referredByReferral/referrerUser/segments"]
   },
   {
     "input": "user.referredByReferral.referrerUser.locale = \"en_US\" and $not(\"noRewardEmployee\" in user.referredByReferral.referrerUser.segments) and $not(\"vipReward\" in user.referredByReferral.referrerUser.segments) ",
-    "expected": []
+    "expected": [
+      "/user/referredByReferral/referrerUser/locale",
+      "/user/referredByReferral/referrerUser/segments",
+      "/user/referredByReferral/referrerUser/segments"
+    ]
   },
   {
     "input": "goal.referrals >= 2 ? true",
-    "expected": []
+    "expected": ["/goal/referrals"]
   },
   {
     "input": "user.referredByReferral.referrerUser.locale in [\"en_CA\", \"fr_CA\"] and $not(\"noRewardEmployee\" in user.referredByReferral.referrerUser.segments) and $not(\"vipReward\" in user.referredByReferral.referrerUser.segments) ",
-    "expected": []
+    "expected": [
+      "/user/referredByReferral/referrerUser/locale",
+      "/user/referredByReferral/referrerUser/segments",
+      "/user/referredByReferral/referrerUser/segments"
+    ]
   },
   {
     "input": "$not(user.referredByReferral.referrerUser.locale in [\"en_US\", \"en_CA\", \"fr_CA\"]) and $not(\"noRewardEmployee\" in user.referredByReferral.referrerUser.segments) and $not(\"vipReward\" in user.referredByReferral.referrerUser.segments) ",
-    "expected": []
+    "expected": [
+      "/user/referredByReferral/referrerUser/locale",
+      "/user/referredByReferral/referrerUser/segments",
+      "/user/referredByReferral/referrerUser/segments"
+    ]
   },
   {
     "input": "\"vipReward\" in user.referredByReferral.referrerUser.segments",
-    "expected": []
+    "expected": ["/user/referredByReferral/referrerUser/segments"]
   },
   {
     "input": "goal.isFirstTime = true",
-    "expected": []
+    "expected": ["/goal/isFirstTime"]
   },
   {
     "input": "$not(\"noRewardEmployee\" in user.referredByReferral.referrerUser.segments) ",
-    "expected": []
+    "expected": ["/user/referredByReferral/referrerUser/segments"]
   },
   {
     "input": "$round(event.fields.revenue ? $min([event.fields.revenue*0.1,10000]) * 100 : 0)",
-    "expected": []
+    "expected": ["/event/fields/revenue", "/event/fields/revenue"]
   },
   {
     "input": "$round(event.fields.revenue ? $min([event.fields.revenue*0.15,10000]) * 100 : 0)",
-    "expected": []
+    "expected": ["/event/fields/revenue", "/event/fields/revenue"]
   },
   {
     "input": "$round(event.fields.revenue ? $min([event.fields.revenue*0.2,10000]) * 100 : 0)",
-    "expected": []
+    "expected": ["/event/fields/revenue", "/event/fields/revenue"]
   },
   {
     "input": "goal.isFirstTime and (user.customFields.bookingType = \"\")",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/user/customFields/bookingType"]
   },
   {
     "input": "user.customFields.bookingType = \"\"",
-    "expected": []
+    "expected": ["/user/customFields/bookingType"]
   },
   {
     "input": "event.fields.bookingType = \"\"",
-    "expected": []
+    "expected": ["/event/fields/bookingType"]
   },
   {
     "input": "goal.isFirstTime and (event.fields.senderAmount >= 100)",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/fields/senderAmount"]
   },
   {
     "input": "event.fields.senderAmount >= 100",
-    "expected": []
+    "expected": ["/event/fields/senderAmount"]
   },
   {
     "input": "goal.isFirstTime and (event.fields.senderAmount >= 100 and event.fields.recipientCountry = \"NG\")",
-    "expected": []
+    "expected": [
+      "/goal/isFirstTime",
+      "/event/fields/senderAmount",
+      "/event/fields/recipientCountry"
+    ]
   },
   {
     "input": "event.fields.senderAmount >= 100 and event.fields.recipientCountry = \"NG\"",
-    "expected": []
+    "expected": ["/event/fields/senderAmount", "/event/fields/recipientCountry"]
   },
   {
     "input": "user.customFields.totalShiftCompleted = 5 ? true",
-    "expected": []
+    "expected": ["/user/customFields/totalShiftCompleted"]
   },
   {
     "input": "user.id = user.id ? true",
-    "expected": []
+    "expected": ["/user/id", "/user/id"]
   },
   {
     "input": "(event.key = \"DaysWorkedUpdated\")",
-    "expected": []
+    "expected": ["/event/key"]
   },
   {
     "input": "event.key = \"DaysWorkedUpdated\"",
-    "expected": []
+    "expected": ["/event/key"]
   },
   {
     "input": "event.fields.daysWorkedDelta * 1",
-    "expected": []
+    "expected": ["/event/fields/daysWorkedDelta"]
   },
   {
     "input": "user.customFields.totalPurchaseCount = 1 ? true",
-    "expected": []
+    "expected": ["/user/customFields/totalPurchaseCount"]
   },
   {
     "input": "event.fields.memberType = \"CHAPI\" or event.fields.memberType = \"CHAPM\" or event.fields.memberType = \"INTEM\" or event.fields.memberType = \"NATIM\" ? true",
-    "expected": []
+    "expected": [
+      "/event/fields/memberType",
+      "/event/fields/memberType",
+      "/event/fields/memberType",
+      "/event/fields/memberType"
+    ]
   },
   {
     "input": "event.fields.memberType = \"CHAP3\" or event.fields.memberType = \"CHPI3\" or event.fields.memberType = \"INTE3\" or event.fields.memberType = \"NATI3\" ? true",
-    "expected": []
+    "expected": [
+      "/event/fields/memberType",
+      "/event/fields/memberType",
+      "/event/fields/memberType",
+      "/event/fields/memberType"
+    ]
   },
   {
     "input": "event.fields.memberType = \"LIFIM\" or event.fields.memberType = \"LIFIS\" or event.fields.memberType = \"LIFME\" or event.fields.memberType = \"LIFSR\" ? true",
-    "expected": []
+    "expected": [
+      "/event/fields/memberType",
+      "/event/fields/memberType",
+      "/event/fields/memberType",
+      "/event/fields/memberType"
+    ]
   },
   {
     "input": "goal.isFirstTime and (event.fields.loan_schedule_month = 1 and event.fields.loan_schedule_payment_status in [\"Paid\", \"Paid_Late\", \"Paid_Early\", \"Paid_Complete\"] and event.fields.product_category = \"CBL\")",
-    "expected": []
+    "expected": [
+      "/goal/isFirstTime",
+      "/event/fields/loan_schedule_month",
+      "/event/fields/loan_schedule_payment_status",
+      "/event/fields/product_category"
+    ]
   },
   {
     "input": "event.fields.loan_schedule_month = 1 and event.fields.loan_schedule_payment_status in [\"Paid\", \"Paid_Late\", \"Paid_Early\", \"Paid_Complete\"] and event.fields.product_category = \"CBL\"",
-    "expected": []
+    "expected": [
+      "/event/fields/loan_schedule_month",
+      "/event/fields/loan_schedule_payment_status",
+      "/event/fields/product_category"
+    ]
   },
   {
     "input": "$toMillis(user.customFields.cba_active_created_date) >= 1649116800000 and $toMillis(user.customFields.cba_active_created_date) <= 1651276800000",
-    "expected": []
+    "expected": [
+      "/event/fields/cba_active_created_date",
+      "/event/fields/cba_active_created_date"
+    ]
   },
   {
     "input": "(event.key = \"netNewOrder\") or (event.key = \"extendedOrder\") or (event.key = \"reorder\") or (event.key = \"hourSubmission\") or (event.key = \"usageBonus\")",
-    "expected": []
+    "expected": [
+      "/event/key",
+      "/event/key",
+      "/event/key",
+      "/event/key",
+      "/event/key"
+    ]
   },
   {
     "input": "event.key = \"netNewOrder\"",
-    "expected": []
+    "expected": ["/event/key"]
   },
   {
     "input": "event.fields.demandFilled * 3",
-    "expected": []
+    "expected": ["/event/fields/demandFilled"]
   },
   {
     "input": "event.key = \"extendedOrder\"",
-    "expected": []
+    "expected": ["/event/key"]
   },
   {
     "input": "event.key = \"reorder\"",
-    "expected": []
+    "expected": ["/event/key"]
   },
   {
     "input": "event.key = \"hourSubmission\"",
-    "expected": []
+    "expected": ["/event/key"]
   },
   {
     "input": "event.fields.hoursSubmitted * 2",
-    "expected": []
+    "expected": ["/event/fields/hoursSubmitted"]
   },
   {
     "input": "event.key = \"usageBonus\"",
-    "expected": []
+    "expected": ["/event/key"]
   },
   {
     "input": "event.fields.monthsValid * 1",
-    "expected": []
+    "expected": ["/event/fields/monthsValid"]
   },
   {
     "input": "goal.referrals = 2 ? true",
-    "expected": []
+    "expected": ["/goal/referrals"]
   },
   {
     "input": "event.fields.revenue ? event.fields.revenue*0.1 * 100 : 0",
-    "expected": []
+    "expected": ["/event/fields/revenue", "/event/fields/revenue"]
   },
   {
     "input": "goal.isFirstTime = true and user.customFields.closedWon = true ? true",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/user/customFields/closedWon"]
   },
   {
     "input": "goal.referrals != 25 ? true",
-    "expected": []
+    "expected": ["/goal/referrals"]
   },
   {
     "input": "goal.referrals = 25 ? true",
-    "expected": []
+    "expected": ["/goal/referrals"]
   },
   {
     "input": "\"bbbDrivingSchool\" in user.segments ? true",
-    "expected": []
+    "expected": ["/user/segments"]
   },
   {
     "input": "$not(\"advocate\" in user.referredByReferral.referrerUser.segments)",
-    "expected": []
+    "expected": ["/user/referredByReferral/referrerUser/segments"]
   },
   {
     "input": "goal.isFirstTime = true and event.fields.stage = \"closedWon\" ? true",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/fields/stage"]
   },
   {
     "input": "goal.isFirstTime = true and event.fields.stage = \"closedLost\" ? true",
-    "expected": []
+    "expected": ["/goal/isFirstTime", "/event/fields/stage"]
   },
   {
     "input": "user.referrals.totalCount = 1 ? true",
-    "expected": []
+    "expected": ["/user/referrals/totalCount"]
   },
   {
     "input": "user.referrals.totalCount = 2 ? true",
-    "expected": []
+    "expected": ["/user/referrals/totalCount"]
   },
   {
     "input": "user.referrals.totalCount >= \"\" ? true",
-    "expected": []
+    "expected": ["/user/referrals/totalCount"]
   },
   {
     "input": "event.fields.senderAmount >= 100 and goal.isFirstTime = true ? true",
-    "expected": []
+    "expected": ["/event/fields/senderAmount"]
   },
   {
     "input": "$not(\"vip\" in user.referredByReferral.referrerUser.segments)",
