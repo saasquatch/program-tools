@@ -20,19 +20,6 @@ const createUnknownContext = (
   };
 };
 
-// const createParentRootContext = (
-//   ast: jsonata.ExprNode,
-//   pathVariablesInScope: Record<string, PathContext>,
-//   pathId: Symbol
-// ) => {
-//   return {
-//     pathNode: ast,
-//     pathVariablesInScope: { ...pathVariablesInScope },
-//     pathId,
-//     parentPathId: RootContextId,
-//   };
-// };
-
 const createRootContext = (ast: jsonata.ExprNode) => {
   return {
     pathNode: ast,
@@ -41,15 +28,39 @@ const createRootContext = (ast: jsonata.ExprNode) => {
   };
 };
 
+const isParentRootContext = (ctx: PathContext) =>
+  ctx.parentPathId === RootContextId;
+
+const isRootContext = (ctx: PathContext) => ctx.pathId === RootContextId;
+
+// const isParentUnknownContext = (ctx: PathContext) =>
+//   ctx.parentPathId === UnknownContextId;
+
+const markContextAsUnaryUnlessRoot = (context: PathContext): PathContext => {
+  if (context.pathId !== RootContextId) context.pathId = Symbol("UNARY");
+  return context;
+};
+
+const isParentContextUnary = (context: PathContext) =>
+  context.parentPathId?.description === "UNARY";
+
 const reduceToPathString = (
   pathContext: PathContext,
-  stopAtPosition?: number
+  initialValue: string = "",
+  stopAtPosition?: number,
+  startAtPosition?: number
 ): string => {
   return (
     pathContext.pathNode.steps
+      // todo: fold filters into reduce
       ?.filter(step =>
         typeof stopAtPosition === "number" && typeof step.position === "number"
           ? step.position < stopAtPosition
+          : true
+      )
+      .filter(step =>
+        typeof startAtPosition === "number" && typeof step.position === "number"
+          ? step.position >= startAtPosition
           : true
       )
       .reduce((pathString, step, index, array) => {
@@ -84,47 +95,64 @@ const reduceToPathString = (
             return "";
           }
           return pathString;
+        } else if (step.type === "unary" && index !== array.length - 1) {
+          array.splice(index + 1);
+          return "";
+        } else if (step.type === "function") {
+          array.splice(index + 1);
+          return pathString;
         } else {
           return pathString;
         }
-      }, "") || ""
+      }, initialValue) || initialValue
   );
 };
 
-const isParentRootContext = (ctx: PathContext) =>
-  ctx.parentPathId === RootContextId;
-
-const isParentUnknownContext = (ctx: PathContext) =>
-  ctx.parentPathId === UnknownContextId;
+const getPathStringFromPathContext = (
+  pathContext: PathContext,
+  allPathContexts: PathContext[],
+  childPosition?: number,
+  isNested: boolean = false
+): string => {
+  let pathString = isNested
+    ? reduceToPathString(pathContext, undefined, childPosition)
+    : reduceToPathString(pathContext);
+  if (isParentRootContext(pathContext)) {
+    return pathString;
+  }
+  const parentPathContext = allPathContexts.find(
+    ctx => ctx.pathId === pathContext.parentPathId
+  );
+  if (!parentPathContext) return "";
+  const parentPrePathString = getPathStringFromPathContext(
+    parentPathContext,
+    allPathContexts,
+    childPosition,
+    true
+  );
+  if (!parentPrePathString && !!reduceToPathString(parentPathContext))
+    return "";
+  if (isParentContextUnary(pathContext)) {
+    const parentPostPathString = reduceToPathString(
+      parentPathContext,
+      undefined,
+      undefined,
+      childPosition
+    );
+    return parentPrePathString + pathString + parentPostPathString;
+  }
+  return parentPrePathString + pathString;
+};
 
 const getPathsFromPathContexts = (pathContexts: PathContext[]) => {
   const paths: string[] = [];
   for (const pathContext of pathContexts) {
-    if (
-      isParentUnknownContext(pathContext) &&
-      pathContext.pathNode?.steps?.[0]?.type !== "variable" &&
-      pathContext.pathNode?.steps?.[0]?.value !== "$"
-    )
-      // skip all unknown contexts unless there is a reset to root
-      continue;
-    const pathString = reduceToPathString(pathContext);
-    if (pathString === "") continue;
-    if (isParentRootContext(pathContext)) {
-      paths.push(pathString);
-    } else {
-      const parentPathContext = pathContexts.find(
-        ctx => ctx.pathId === pathContext.parentPathId
-      );
-      if (parentPathContext) {
-        // this can be optimized by storing parentPathString somewhere
-        const parentPathString = reduceToPathString(
-          parentPathContext,
-          pathContext.pathNode.steps?.[0]?.position
-        );
-        if (!parentPathString) continue;
-        paths.push(parentPathString + pathString);
-      }
-    }
+    const pathString = getPathStringFromPathContext(
+      pathContext,
+      pathContexts,
+      pathContext.pathNode.steps?.[0]?.position
+    );
+    if (pathString) paths.push(pathString);
   }
   return paths;
 };
@@ -199,7 +227,7 @@ function getPathContextsFromAST(
         return getPathContextsFromAST(
           ast.expressions,
           pathContexts,
-          currentContext
+          markContextAsUnaryUnlessRoot(currentContext)
         );
       } else if (ast.value === "{") {
         return getPathContextsFromAST(
@@ -275,8 +303,8 @@ function getPathContextsFromAST(
           currentContext.pathVariablesInScope
         )
       );
-    case "regex":
     case "variable":
+    case "regex":
     case "value":
     case "string":
     case "number":
@@ -294,6 +322,15 @@ function getPathContextsFromAST(
         currentContext
       );
     case "name":
+      if (isRootContext(currentContext)) {
+        const nameContext: PathContext = {
+          pathNode: { position: ast.position, type: "path", steps: [ast] },
+          pathVariablesInScope: { ...currentContext.pathVariablesInScope },
+          pathId: Symbol(),
+          parentPathId: currentContext.pathId
+        };
+        pathContexts.push(nameContext);
+      }
       return getPathContextsFromAST(ast.stages, pathContexts, currentContext);
   }
   return pathContexts;
@@ -314,3 +351,67 @@ export default function(expression: string): string[] {
   if (!ast) return [];
   return getPathsFromPathContexts(getPathContextsFromAST(ast));
 }
+
+const fs = require("node:fs");
+const path = require("node:path");
+var csv = require("ya-csv");
+import { serializer } from "jsonata-ui-core";
+import { migrationString } from "./objMigrationScript";
+import { pointsMigrationScript } from "./pointsMigration";
+
+function migrateRules(rules: any, migrationString: string) {
+  try {
+    const expression = jsonata.default(migrationString);
+    expression.registerFunction("parse", ex => jsonata.default(ex).ast());
+    expression.registerFunction("serialize", serializer);
+    return expression.evaluate(rules);
+  } catch (e) {
+    console.error(`Failed to migrate rules: ${e.message}`);
+    throw e;
+  }
+}
+
+let programRulesExpressions: string[] = [];
+console.log(JSON.stringify(csv, null, 2));
+var reader = csv.createCsvFileReader(path.join(__dirname, "../test/data.csv"), {
+  columnsFromHeader: true
+});
+reader.addListener("data", function(data: any) {
+  // supposing there are so named columns in the source file
+  if (data.rules) {
+    try {
+      let rules = JSON.parse(data.rules);
+      rules = migrateRules(
+        rules,
+        rules.conversionRule ? migrationString : pointsMigrationScript
+      );
+      for (const objective of rules.conversionRule?.objectives ||
+        rules.goals ||
+        []) {
+        if (objective.trigger?.condition)
+          programRulesExpressions.push(objective.trigger.condition);
+        for (const action of objective?.actions || []) {
+          if (action.reward?.value)
+            programRulesExpressions.push(action.reward.value);
+          if (action.condition) programRulesExpressions.push(action.condition);
+          for (const rewardTier of action?.rewardTiers || []) {
+            if (rewardTier.condition)
+              programRulesExpressions.push(rewardTier.condition);
+            if (rewardTier.reward?.value)
+              programRulesExpressions.push(rewardTier.reward.value);
+          }
+        }
+      }
+      programRulesExpressions = Array.from(new Set(programRulesExpressions));
+      fs.writeFileSync(
+        path.join(__dirname, "../test/programTests.json"),
+        JSON.stringify(
+          programRulesExpressions.map(ex => ({ input: ex, expected: [] })),
+          null,
+          2
+        )
+      );
+    } catch (e) {}
+  }
+  console.log(programRulesExpressions.length);
+});
