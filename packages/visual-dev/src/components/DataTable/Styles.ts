@@ -130,7 +130,7 @@ export const PopoverDividerDiv = css`
 
 export const PaginationDiv = css`
   display: flex;
-  padding: var(--sq-spacing-large);
+  padding: var(--sq-spacing-xx-small) 20px;
   align-items: center;
   background: var(--sq-background);
   border: 2px solid var(--sq-border);
