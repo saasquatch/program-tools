@@ -66,6 +66,7 @@ import {
 import { Dropdown, DropdownView } from "./components/Dropdown";
 import { Tabs, TabsView } from "./components/Tabs";
 import { ModalView } from "./components/Modal";
+import { SliderView } from "./components/Slider";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -149,4 +150,5 @@ export {
   Tooltip,
   Tabs,
   TabsView,
+  SliderView,
 };
