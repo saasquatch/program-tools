@@ -66,6 +66,7 @@ export const FullWidth = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const functional = useSelect({ items });
   const props = { limitWidth: false, items, functional };
+  console.log(props);
   return (
     <div
       style={{
