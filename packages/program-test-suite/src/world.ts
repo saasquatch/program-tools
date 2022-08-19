@@ -25,7 +25,7 @@ const deepCopy = (input: any) => JSON.parse(JSON.stringify(input));
 
 export class World {
   private program: types.rpc.Program | undefined;
-  defaultIntrospection = {};
+  private defaultIntrospection = {};
   private defaultRules = {};
   private defaultTemplate: any = {};
 
