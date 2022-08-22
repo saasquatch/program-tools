@@ -16,7 +16,13 @@ import {
   IconButtonView,
 } from "./components/Button";
 import { Checkbox, CheckboxView, RJSFCheckbox } from "./components/Checkbox";
-import { Radio, RadioView, RJSFRadio } from "./components/Radio";
+import {
+  Radio,
+  RadioGroup,
+  RadioGroupView,
+  RadioView,
+  RJSFRadio,
+} from "./components/Radio";
 import {
   Input,
   InputView,
@@ -119,6 +125,8 @@ export {
   Popover,
   RadioView,
   Radio,
+  RadioGroupView,
+  RadioGroup,
   RadioActionView,
   RadioAction,
   RadioActionGroup,
