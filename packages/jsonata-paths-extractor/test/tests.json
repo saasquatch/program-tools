@@ -73,22 +73,6 @@
     "expected": ["/foo/bar"]
   },
   {
-    "input": "Account.Order.Product^(>Price)",
-    "expected": ["/Account/Order/Product", "/Account/Order/Product/Price"]
-  },
-  {
-    "input": "Account.Order.Product^(>Price, <Quantity)",
-    "expected": [
-      "/Account/Order/Product",
-      "/Account/Order/Product/Price",
-      "/Account/Order/Product/Quantity"
-    ]
-  },
-  {
-    "input": "student[type='fulltime']^(DoB).name",
-    "expected": ["/student/name", "/student/type", "/student/DoB"]
-  },
-  {
     "input": "$.[value,epochSeconds][]",
     "expected": ["/value", "/epochSeconds"]
   },
@@ -113,6 +97,14 @@
     "expected": []
   },
   {
+    "input": "[1, 2]",
+    "expected": []
+  },
+  {
+    "input": "[1, 2,3]",
+    "expected": []
+  },
+  {
     "input": "[1, 2, [3, 4]]",
     "expected": []
   },
@@ -127,6 +119,18 @@
   {
     "input": "[\"foo.bar\", foo.bar, [\"foo.baz\", foo.blah.baz]]",
     "expected": ["/foo/bar", "/foo/blah/baz"]
+  },
+  {
+    "input": "[1, 2, 3][0]",
+    "expected": []
+  },
+  {
+    "input": "[1, 2, [3, 4]][-1]",
+    "expected": []
+  },
+  {
+    "input": "[1, 2, [3, 4]][-1][-1]",
+    "expected": []
   },
   {
     "input": "foo.blah.baz.[fud, fud]",
@@ -153,7 +157,27 @@
     "expected": ["/Address/City", "/Other/Alternative.Address/City"]
   },
   {
+    "input": "[0,1,2,3,4,5,6,7,8,9][$ % 2 = 0]",
+    "expected": []
+  },
+  {
+    "input": "[1, 2, 3].$",
+    "expected": []
+  },
+  {
     "input": "()",
+    "expected": []
+  },
+  {
+    "input": "(1; 2; 3)",
+    "expected": []
+  },
+  {
+    "input": "(1; 2; 3;)",
+    "expected": []
+  },
+  {
+    "input": "($a:=1; $b:=2; $c:=($a:=4; $a+$b); $a+$c)",
     "expected": []
   },
   {
@@ -162,6 +186,54 @@
   },
   {
     "input": "(  $func := function($arg) {$arg.Account.Order[0]};  $func($).OrderID)",
+    "expected": []
+  },
+  {
+    "input": "true",
+    "expected": []
+  },
+  {
+    "input": "false",
+    "expected": []
+  },
+  {
+    "input": "false or false",
+    "expected": []
+  },
+  {
+    "input": "false or true",
+    "expected": []
+  },
+  {
+    "input": "true or false",
+    "expected": []
+  },
+  {
+    "input": "true or true",
+    "expected": []
+  },
+  {
+    "input": "false and false",
+    "expected": []
+  },
+  {
+    "input": "false and true",
+    "expected": []
+  },
+  {
+    "input": "true and false",
+    "expected": []
+  },
+  {
+    "input": "true and true",
+    "expected": []
+  },
+  {
+    "input": "$not(false)",
+    "expected": []
+  },
+  {
+    "input": "$not(true)",
     "expected": []
   },
   {
@@ -205,6 +277,26 @@
     "expected": ["/foo", "/bar"]
   },
   {
+    "input": "true and foo",
+    "expected": ["/foo"]
+  },
+  {
+    "input": "foo and true",
+    "expected": ["/foo"]
+  },
+  {
+    "input": "false and foo",
+    "expected": ["/foo"]
+  },
+  {
+    "input": "foo and false",
+    "expected": ["/foo"]
+  },
+  {
+    "input": "foo and bar",
+    "expected": ["/foo", "/bar"]
+  },
+  {
     "input": "$not(nothing)",
     "expected": ["/nothing"]
   },
@@ -243,11 +335,47 @@
     ]
   },
   {
+    "input": "3>-3",
+    "expected": []
+  },
+  {
+    "input": "3>3",
+    "expected": []
+  },
+  {
+    "input": "3=3",
+    "expected": []
+  },
+  {
+    "input": "\"3\"=\"3\"",
+    "expected": []
+  },
+  {
     "input": "\"3\"=3",
     "expected": []
   },
   {
+    "input": "\"hello\" = \"hello\"",
+    "expected": []
+  },
+  {
+    "input": "\"hello\" != \"world\"",
+    "expected": []
+  },
+  {
+    "input": "\"hello\" < \"world\"",
+    "expected": []
+  },
+  {
+    "input": "\"32\" < 42",
+    "expected": []
+  },
+  {
     "input": "null <= \"world\"",
+    "expected": []
+  },
+  {
+    "input": "3 >= true",
     "expected": []
   },
   {
@@ -267,7 +395,35 @@
     "expected": ["/foo/bar", "/bar"]
   },
   {
+    "input": "bar>foo.bar",
+    "expected": ["/bar", "/foo/bar"]
+  },
+  {
+    "input": "bar < foo.bar",
+    "expected": ["/bar", "/foo/bar"]
+  },
+  {
+    "input": "foo.bar = bar",
+    "expected": ["/foo/bar", "/bar"]
+  },
+  {
+    "input": "foo.bar!= bar",
+    "expected": ["/foo/bar", "/bar"]
+  },
+  {
+    "input": "bar = foo.bar + 56",
+    "expected": ["/bar", "/foo/bar"]
+  },
+  {
+    "input": "bar !=foo.bar + 56",
+    "expected": ["/bar", "/foo/bar"]
+  },
+  {
     "input": "foo.blah.baz[fud = \"hello\"]",
+    "expected": ["/foo/blah/baz", "/foo/blah/baz/fud"]
+  },
+  {
+    "input": "foo.blah.baz[fud != \"world\"]",
     "expected": ["/foo/blah/baz", "/foo/blah/baz/fud"]
   },
   {
@@ -277,6 +433,42 @@
   {
     "input": "Account.Order.Product.Price[$<=35]",
     "expected": ["/Account/Order/Product/Price"]
+  },
+  {
+    "input": "false > 1",
+    "expected": []
+  },
+  {
+    "input": "false > $x",
+    "expected": []
+  },
+  {
+    "input": "3 > $x",
+    "expected": []
+  },
+  {
+    "input": "$x <= 'hello'",
+    "expected": []
+  },
+  {
+    "input": "[1,2,3,4] = [1, 2, 3, 4]",
+    "expected": []
+  },
+  {
+    "input": "[1,2] != [1, 2]",
+    "expected": []
+  },
+  {
+    "input": "[1,2,[3],4] = [1, 2, [3], 4]",
+    "expected": []
+  },
+  {
+    "input": "[1,2,3,4] = [1, 2, [3], 4]",
+    "expected": []
+  },
+  {
+    "input": "[1,2,3,4] = [2, 3, 4]",
+    "expected": []
   },
   {
     "input": "data = [1, 2, 3, 4]",
@@ -291,6 +483,18 @@
     "expected": []
   },
   {
+    "input": "{ 'one': 1, 'two': 2 } = { 'too': 2, 'one': 1 }",
+    "expected": []
+  },
+  {
+    "input": "{ 'one': 1, 'two': 3 } = { 'two': 2, 'one': 1 }",
+    "expected": []
+  },
+  {
+    "input": "{ 'one': 1, 'two': 2, 'three': 3 } = { 'two': 2, 'one': 1 }",
+    "expected": []
+  },
+  {
     "input": "two = 2",
     "expected": ["/two"]
   },
@@ -300,6 +504,10 @@
   },
   {
     "input": "null = null",
+    "expected": []
+  },
+  {
+    "input": "null != null",
     "expected": []
   },
   {
@@ -434,11 +642,23 @@
     "expected": []
   },
   {
+    "input": "$base64encode()",
+    "expected": []
+  },
+  {
     "input": "$base64decode(\"aGVsbG86d29ybGQ=\")",
     "expected": []
   },
   {
+    "input": "$base64decode()",
+    "expected": []
+  },
+  {
     "input": "\"s\" - 1",
+    "expected": []
+  },
+  {
+    "input": "1 + null",
     "expected": []
   },
   {
@@ -450,12 +670,16 @@
     "expected": []
   },
   {
-    "input": "unknown(function)",
+    "input": "- \"s\"",
     "expected": []
   },
   {
+    "input": "unknown(function)",
+    "expected": ["/function", "/unknown"]
+  },
+  {
     "input": "sum(Account.Order.OrderID)",
-    "expected": []
+    "expected": ["/Account/Order/OrderID", "/sum"]
   },
   {
     "input": "[1,2)",
@@ -470,12 +694,16 @@
     "expected": []
   },
   {
+    "input": "[1!2]",
+    "expected": []
+  },
+  {
     "input": "@ bar",
     "expected": []
   },
   {
     "input": "2(blah)",
-    "expected": []
+    "expected": ["/blah"]
   },
   {
     "input": "2()",
@@ -535,59 +763,59 @@
   },
   {
     "input": "foo.bar",
-    "expected": []
+    "expected": ["/foo/bar"]
   },
   {
     "input": "foo.blah",
-    "expected": []
+    "expected": ["/foo/blah"]
   },
   {
     "input": "foo.blah.bazz",
-    "expected": []
+    "expected": ["/foo/blah/bazz"]
   },
   {
     "input": "foo.blah.baz",
-    "expected": []
+    "expected": ["/foo/blah/baz"]
   },
   {
     "input": "foo.blah.baz.fud",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "Other.Misc",
-    "expected": []
+    "expected": ["/Other/Misc"]
   },
   {
     "input": "bazz",
-    "expected": []
+    "expected": ["/bazz"]
   },
   {
     "input": "fud",
-    "expected": []
+    "expected": ["/fud"]
   },
   {
     "input": "phone",
-    "expected": []
+    "expected": ["/phone"]
   },
   {
     "input": "phone[0]",
-    "expected": []
+    "expected": ["/phone"]
   },
   {
     "input": "phone[0][]",
-    "expected": []
+    "expected": ["/phone"]
   },
   {
     "input": "phone[0].number",
-    "expected": []
+    "expected": ["/phone/number"]
   },
   {
     "input": "(phone)[0].number",
-    "expected": []
+    "expected": ["/number"]
   },
   {
     "input": "$.phone[0].number",
-    "expected": []
+    "expected": ["/phone/number"]
   },
   {
     "input": "{'Hello':'World'}",
@@ -599,15 +827,15 @@
   },
   {
     "input": "Account.Order.[Product.Price]",
-    "expected": []
+    "expected": ["/Account/Order", "/Account/Order/Product/Price"]
   },
   {
     "input": "$.nest0",
-    "expected": []
+    "expected": ["/nest0"]
   },
   {
     "input": "nest0",
-    "expected": []
+    "expected": ["/nest0"]
   },
   {
     "input": "$[0]",
@@ -623,79 +851,56 @@
   },
   {
     "input": "$[0].nest0",
-    "expected": []
+    "expected": ["/nest0"]
   },
   {
     "input": "$[1].nest0",
-    "expected": []
+    "expected": ["/nest0"]
   },
   {
     "input": "$[0].nest0[0]",
-    "expected": []
+    "expected": ["/nest0"]
   },
   {
     "input": "nest0.[nest1.[nest2.[nest3]]]",
-    "expected": []
+    "expected": [
+      "/nest0",
+      "/nest0/nest1",
+      "/nest0/nest1/nest2",
+      "/nest0/nest1/nest2/nest3"
+    ]
   },
   {
     "input": "nest0.nest1.[nest2.[nest3]]",
-    "expected": []
+    "expected": [
+      "/nest0/nest1",
+      "/nest0/nest1/nest2",
+      "/nest0/nest1/nest2/nest3"
+    ]
   },
   {
     "input": "nest0.[nest1.nest2.[nest3]]",
-    "expected": []
+    "expected": ["/nest0", "/nest0/nest1/nest2", "/nest0/nest1/nest2/nest3"]
   },
   {
     "input": "nest0.[nest1.[nest2.nest3]]",
-    "expected": []
+    "expected": ["/nest0", "/nest0/nest1", "/nest0/nest1/nest2/nest3"]
   },
   {
     "input": "nest0.[nest1.nest2.nest3]",
-    "expected": []
+    "expected": ["/nest0", "/nest0/nest1/nest2/nest3"]
   },
   {
     "input": "nest0.nest1.[nest2.nest3]",
-    "expected": []
+    "expected": ["/nest0/nest1", "/nest0/nest1/nest2/nest3"]
   },
   {
     "input": "nest0.nest1.nest2.[nest3]",
-    "expected": []
+    "expected": ["/nest0/nest1/nest2", "/nest0/nest1/nest2/nest3"]
   },
   {
     "input": "nest0.nest1.nest2.nest3",
-    "expected": []
-  },
-  {
-    "input": "nest0.[nest1.[nest2.[nest3]]]",
-    "expected": []
-  },
-  {
-    "input": "nest0.nest1.[nest2.[nest3]]",
-    "expected": []
-  },
-  {
-    "input": "nest0.[nest1.nest2.[nest3]]",
-    "expected": []
-  },
-  {
-    "input": "nest0.[nest1.[nest2.nest3]]",
-    "expected": []
-  },
-  {
-    "input": "nest0.[nest1.nest2.nest3]",
-    "expected": []
-  },
-  {
-    "input": "nest0.nest1.[nest2.nest3]",
-    "expected": []
-  },
-  {
-    "input": "nest0.nest1.nest2.[nest3]",
-    "expected": []
-  },
-  {
-    "input": "nest0.nest1.nest2.nest3",
-    "expected": []
+    "expected": ["/nest0/nest1/nest2/nest3"]
   },
   {
     "input": "{\"a\": 1 }.a",
@@ -703,14 +908,10 @@
   },
   {
     "input": "a",
-    "expected": []
+    "expected": ["/a"]
   },
   {
     "input": "{\"a\": [1] }.a",
-    "expected": []
-  },
-  {
-    "input": "a",
     "expected": []
   },
   {
@@ -718,15 +919,7 @@
     "expected": []
   },
   {
-    "input": "a",
-    "expected": []
-  },
-  {
     "input": "[{\"a\":[1,2]}, {\"a\":[3]}].a",
-    "expected": []
-  },
-  {
-    "input": "a",
     "expected": []
   },
   {
@@ -735,39 +928,39 @@
   },
   {
     "input": "a[0].b",
-    "expected": []
+    "expected": ["/a/b"]
   },
   {
     "input": "$.a[0].b",
-    "expected": []
+    "expected": ["/a/b"]
   },
   {
     "input": "a.b[0]",
-    "expected": []
+    "expected": ["/a/b"]
   },
   {
     "input": "Phone[type=\"mobile\"].number",
-    "expected": []
+    "expected": ["/Phone/number", "/Phone/type"]
   },
   {
     "input": "Phone[type=\"mobile\"][].number",
-    "expected": []
+    "expected": ["/Phone/number", "/Phone/type"]
   },
   {
     "input": "Phone[][type=\"mobile\"].number",
-    "expected": []
+    "expected": ["/Phone/number", "/Phone/type"]
   },
   {
     "input": "Phone[type=\"office\"][].number",
-    "expected": []
+    "expected": ["/Phone/number", "/Phone/type"]
   },
   {
     "input": "Phone{type: number}",
-    "expected": []
+    "expected": ["/Phone", "/Phone/type", "/Phone/number"]
   },
   {
     "input": "Phone{type: number[]}",
-    "expected": []
+    "expected": ["/Phone", "/Phone/type", "/Phone/number"]
   },
   {
     "input": "$[type='command'][]",
@@ -783,7 +976,7 @@
   },
   {
     "input": "$.tags[title='example'][]",
-    "expected": []
+    "expected": ["/tags", "/tags/title"]
   },
   {
     "input": "( $data := { 'number': [1..2e5].$string() }; $values := $data.number; $count($values) )",
@@ -791,22 +984,6 @@
   },
   {
     "input": "( $data := { 'number': [1..2e5].$string() }; $values := $lookup($data, 'number'); $count($values) )",
-    "expected": []
-  },
-  {
-    "input": "$.[value,epochSeconds]",
-    "expected": []
-  },
-  {
-    "input": "$.[value,epochSeconds]",
-    "expected": []
-  },
-  {
-    "input": "$.[value,epochSeconds][]",
-    "expected": []
-  },
-  {
-    "input": "$.[value,epochSeconds][]",
     "expected": []
   },
   {
@@ -823,7 +1000,7 @@
   },
   {
     "input": "$abs(nothing)",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$append([1,2], [3,4])",
@@ -839,11 +1016,11 @@
   },
   {
     "input": "$append(1,notexist)",
-    "expected": []
+    "expected": ["/notexist"]
   },
   {
     "input": "$append(notexist, [2,3,4])",
-    "expected": []
+    "expected": ["/notexist"]
   },
   {
     "input": "($append($data.a, [2]); $data.a)",
@@ -851,23 +1028,27 @@
   },
   {
     "input": "Account.Order[0].OrderID ~> $uppercase()",
-    "expected": []
+    "expected": ["/Account/Order/OrderID"]
   },
   {
     "input": "Account.Order[0].OrderID ~> $uppercase() ~> $lowercase()",
-    "expected": []
+    "expected": ["/Account/Order/OrderID"]
   },
   {
     "input": "Account.Order.OrderID ~> $join()",
-    "expected": []
+    "expected": ["/Account/Order/OrderID"]
   },
   {
     "input": "Account.Order.OrderID ~> $join(\", \")",
-    "expected": []
+    "expected": ["/Account/Order/OrderID"]
   },
   {
     "input": "Account.Order.Product.(Price * Quantity) ~> $sum()",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "( $uppertrim := $trim ~> $uppercase;  $uppertrim(\"   Hello    World   \") )",
@@ -883,7 +1064,7 @@
   },
   {
     "input": "foo ~> $substringAfter(\"@\") ~> $substringBefore(\".\") ",
-    "expected": []
+    "expected": ["/foo"]
   },
   {
     "input": "( $domain := $substringAfter(?,\"@\") ~> $substringBefore(?,\".\"); $domain(\"john@example.com\") )",
@@ -927,7 +1108,10 @@
   },
   {
     "input": "($prices := Account.Order.Product.Price;$quantities := Account.Order.Product.Quantity;$product := λ($arr) { $arr[0] * $arr[1] };$zip($prices, $quantities) ~> $map($product) ~> $sum())",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "42 ~> \"hello\"",
@@ -935,23 +1119,26 @@
   },
   {
     "input": "Account.Order.Product[$.\"Product Name\" ~> /hat/i].ProductID",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product/ProductID",
+      "/Account/Order/Product/Product Name"
+    ]
   },
   {
     "input": "$assert(Account.Order[0].Product[0].Price < 34, 'Too Expensive')",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price"]
   },
   {
     "input": "$assert(Account.Order[0].Product[0].Price < 35, 'Too Expensive')",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price"]
   },
   {
     "input": "($assert(Account.Order[0].Product[0].Price < 35, 'Too Expensive'); Account.Order[0].Product[0].Price)",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price", "/Account/Order/Product/Price"]
   },
   {
     "input": "($assert(Account.Order[0].Product[0].Price < 34, 'Too Expensive'); Account.Order[0].Product[0].Price)",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price", "/Account/Order/Product/Price"]
   },
   {
     "input": "$assert(null)",
@@ -971,15 +1158,30 @@
   },
   {
     "input": "$average(Account.Order.Product.(Price * Quantity))",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "Account.Order.$average(Product.(Price * Quantity))",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "Account.Order.(OrderID & \": \" & $average(Product.(Price*Quantity)))",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/OrderID",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "$average([])",
@@ -1019,7 +1221,7 @@
   },
   {
     "input": "$average(undefined)",
-    "expected": []
+    "expected": ["/undefined"]
   },
   {
     "input": "$boolean(\"Hello World\")",
@@ -1095,15 +1297,15 @@
   },
   {
     "input": "$boolean(Account)",
-    "expected": []
+    "expected": ["/Account"]
   },
   {
     "input": "$boolean(Account.Order.Product.Price)",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price"]
   },
   {
     "input": "$boolean(Account.blah)",
-    "expected": []
+    "expected": ["/Account/blah"]
   },
   {
     "input": "$boolean($boolean)",
@@ -1131,7 +1333,7 @@
   },
   {
     "input": "$ceil(nothing)",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$contains(\"Hello World\", \"lo\")",
@@ -1151,7 +1353,7 @@
   },
   {
     "input": "$contains(nothing, \"World\")",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$contains(23, 3)",
@@ -1163,15 +1365,30 @@
   },
   {
     "input": "$count(Account.Order.Product.(Price * Quantity))",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "Account.Order.$count(Product.(Price * Quantity))",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "Account.Order.(OrderID & \": \" & $count(Product.(Price*Quantity)))",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/OrderID",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "$count([])",
@@ -1211,7 +1428,7 @@
   },
   {
     "input": "$count(undefined)",
-    "expected": []
+    "expected": ["/undefined"]
   },
   {
     "input": "$count([1,2,3,4]) / 2",
@@ -1223,7 +1440,7 @@
   },
   {
     "input": "$decodeUrl(blah)",
-    "expected": []
+    "expected": ["/blah"]
   },
   {
     "input": "$decodeUrl('%E0%A4%A')",
@@ -1235,7 +1452,7 @@
   },
   {
     "input": "$decodeUrlComponent(blah)",
-    "expected": []
+    "expected": ["/blah"]
   },
   {
     "input": "$decodeUrlComponent('%E0%A4%A')",
@@ -1251,7 +1468,7 @@
   },
   {
     "input": "$distinct(nothing)",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$distinct(null)",
@@ -1263,19 +1480,19 @@
   },
   {
     "input": "$distinct(Account.Order.Product.SKU)",
-    "expected": []
+    "expected": ["/Account/Order/Product/SKU"]
   },
   {
     "input": "$distinct(Account.Order.Product.`Product Name`)",
-    "expected": []
+    "expected": ["/Account/Order/Product/Product Name"]
   },
   {
     "input": "$distinct(Account.Order.Product.Description)",
-    "expected": []
+    "expected": ["/Account/Order/Product/Description"]
   },
   {
     "input": "$each(Address, λ($v, $k) {$k & \": \" & $v})",
-    "expected": []
+    "expected": ["/Address"]
   },
   {
     "input": "$each({'a': 'hello', 'b': 'world'}, $uppercase)",
@@ -1291,7 +1508,7 @@
   },
   {
     "input": "$encodeUrl(blah)",
-    "expected": []
+    "expected": ["/blah"]
   },
   {
     "input": "$encodeUrl('\ud800')",
@@ -1303,7 +1520,7 @@
   },
   {
     "input": "$encodeUrlComponent(blah)",
-    "expected": []
+    "expected": ["/blah"]
   },
   {
     "input": "$encodeUrlComponent('\ud800')",
@@ -1311,27 +1528,27 @@
   },
   {
     "input": "Account.Order[0].Product[0].Price > 35 ? Account.Order[0].Product[0].Price : $error('Too Expensive')",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price", "/Account/Order/Product/Price"]
   },
   {
     "input": "Account.Order[0].Product[0].Price > 34 ? Account.Order[0].Product[0].Price : $error('Too Expensive')",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price", "/Account/Order/Product/Price"]
   },
   {
     "input": "Account.Order[0].Product[0].Price > 35 ? $error('Too Expensive') : Account.Order[0].Product[0].Price",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price", "/Account/Order/Product/Price"]
   },
   {
     "input": "Account.Order[0].Product[0].Price > 34 ? $error('Too Expensive') : Account.Order[0].Product[0].Price",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price", "/Account/Order/Product/Price"]
   },
   {
     "input": "$count(Account.Order[0].Product) < 2 ? $error('Not enough products in orders')",
-    "expected": []
+    "expected": ["/Account/Order/Product"]
   },
   {
     "input": "$count(Account.Order[0].Product) < 3 ? $error('Not enough products in orders')",
-    "expected": []
+    "expected": ["/Account/Order/Product"]
   },
   {
     "input": "($msg:='My Message'; $error($msg); true)",
@@ -1351,7 +1568,7 @@
   },
   {
     "input": "$error(foo)",
-    "expected": []
+    "expected": ["/foo"]
   },
   {
     "input": "$eval('[1,2,3]')",
@@ -1359,7 +1576,7 @@
   },
   {
     "input": "$eval(nothing)",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$eval('[1,$string(2),3]')",
@@ -1371,11 +1588,18 @@
   },
   {
     "input": "Account.Order.Product.{'Name': `Product Name`, 'Total': $eval('Price * Quantity')}",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Product Name"
+    ]
   },
   {
     "input": "Account.Order.Product.{'Name': `Product Name`, 'Volume': $eval('Width*Height*Depth', Description)}",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Product Name",
+      "/Account/Order/Product/Description"
+    ]
   },
   {
     "input": "$eval('[1,string(2),3]')",
@@ -1395,10 +1619,6 @@
   },
   {
     "input": "$eval(\"{ 'test': 1 }\", [1,2,3])",
-    "expected": []
-  },
-  {
-    "input": "$eval(\"{ 'test': 1 }\")",
     "expected": []
   },
   {
@@ -1463,11 +1683,11 @@
   },
   {
     "input": "$exists(Account)",
-    "expected": []
+    "expected": ["/Account"]
   },
   {
     "input": "$exists(Account.Order.Product.Price)",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price"]
   },
   {
     "input": "$exists($exists)",
@@ -1479,19 +1699,19 @@
   },
   {
     "input": "$exists(blah)",
-    "expected": []
+    "expected": ["/blah"]
   },
   {
     "input": "$exists(Account.blah)",
-    "expected": []
+    "expected": ["/Account/blah"]
   },
   {
     "input": "$exists(Account.Order[2])",
-    "expected": []
+    "expected": ["/Account/Order"]
   },
   {
     "input": "$exists(Account.Order[0].blah)",
-    "expected": []
+    "expected": ["/Account/Order/blah"]
   },
   {
     "input": "$exists(2,3)",
@@ -1515,7 +1735,7 @@
   },
   {
     "input": "$floor(nothing)",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$formatBase(100)",
@@ -1523,7 +1743,7 @@
   },
   {
     "input": "$formatBase(nothing)",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$formatBase(100, 2)",
@@ -1551,7 +1771,7 @@
   },
   {
     "input": "$formatInteger(undefined, '0')",
-    "expected": []
+    "expected": ["/undefined"]
   },
   {
     "input": "$formatInteger(123, '000')",
@@ -1955,7 +2175,7 @@
   },
   {
     "input": "$formatNumber(foo, '#0.00')",
-    "expected": []
+    "expected": ["/foo"]
   },
   {
     "input": "$fromMillis(1)",
@@ -1967,11 +2187,11 @@
   },
   {
     "input": "$fromMillis(foo)",
-    "expected": []
+    "expected": ["/foo"]
   },
   {
     "input": "$fromMillis(undefined, 'undefined')",
-    "expected": []
+    "expected": ["/undefined"]
   },
   {
     "input": "$fromMillis(1521801216617, 'Hello')",
@@ -2343,15 +2563,15 @@
   },
   {
     "input": "$join(Account.Order.Product.Description.Colour, \", \")",
-    "expected": []
+    "expected": ["/Account/Order/Product/Description/Colour"]
   },
   {
     "input": "$join(Account.Order.Product.Description.Colour, no.sep)",
-    "expected": []
+    "expected": ["/Account/Order/Product/Description/Colour", "/no/sep"]
   },
   {
     "input": "$join(Account.blah.Product.Description.Colour, \", \")",
-    "expected": []
+    "expected": ["/Account/blah/Product/Description/Colour"]
   },
   {
     "input": "$join(true, \", \")",
@@ -2371,11 +2591,11 @@
   },
   {
     "input": "$keys(Account)",
-    "expected": []
+    "expected": ["/Account"]
   },
   {
     "input": "$keys(Account.Order.Product)",
-    "expected": []
+    "expected": ["/Account/Order/Product"]
   },
   {
     "input": "$keys({})",
@@ -2407,7 +2627,7 @@
   },
   {
     "input": "$length(missing)",
-    "expected": []
+    "expected": ["/missing"]
   },
   {
     "input": "$length(\"\\u03BB-calculus\")",
@@ -2454,10 +2674,6 @@
     "expected": []
   },
   {
-    "input": "$length()",
-    "expected": []
-  },
-  {
     "input": "$length(\"Hello\", \"World\")",
     "expected": []
   },
@@ -2467,15 +2683,15 @@
   },
   {
     "input": "$lookup(Account, \"Account Name\")",
-    "expected": []
+    "expected": ["/Account"]
   },
   {
     "input": "$lookup(Account.Order.Product, \"Product Name\")",
-    "expected": []
+    "expected": ["/Account/Order/Product"]
   },
   {
     "input": "$lookup(Account.Order.Product.ProductID, \"Product Name\")",
-    "expected": []
+    "expected": ["/Account/Order/Product/ProductID"]
   },
   {
     "input": "$lookup($$, \"gust\")",
@@ -2487,19 +2703,24 @@
   },
   {
     "input": "$lowercase(blah)",
-    "expected": []
+    "expected": ["/blah"]
   },
   {
     "input": "$max(Account.Order.Product.(Price * Quantity))",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "Account.Order.$max(Product.(Price * Quantity))",
-    "expected": []
-  },
-  {
-    "input": "Account.Order.(OrderID & \": \" & $count(Product.(Price*Quantity)))",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "$max([])",
@@ -2543,19 +2764,34 @@
   },
   {
     "input": "$max(undefined)",
-    "expected": []
+    "expected": ["/undefined"]
   },
   {
     "input": "$min(Account.Order.Product.(Price * Quantity))",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "Account.Order.$min(Product.(Price * Quantity))",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "Account.Order.(OrderID & \": \" & $min(Product.(Price*Quantity)))",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/OrderID",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "$min([])",
@@ -2595,11 +2831,11 @@
   },
   {
     "input": "$min(undefined)",
-    "expected": []
+    "expected": ["/undefined"]
   },
   {
     "input": "$merge(nothing)",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$merge({\"a\":1})",
@@ -2679,7 +2915,7 @@
   },
   {
     "input": "$number(Account.blah)",
-    "expected": []
+    "expected": ["/Account/blah"]
   },
   {
     "input": "$number(null)",
@@ -2779,7 +3015,7 @@
   },
   {
     "input": "$pad(nothing, 1)",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$pad('a𝄞💩', 7)",
@@ -2799,7 +3035,7 @@
   },
   {
     "input": "$parseInteger(undefined, '0')",
-    "expected": []
+    "expected": ["/undefined"]
   },
   {
     "input": "$parseInteger('123', '000')",
@@ -3059,7 +3295,7 @@
   },
   {
     "input": "$power(nothing, 3)",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$power(-2, 1/3)",
@@ -3087,7 +3323,7 @@
   },
   {
     "input": "$replace(nothing, \"at\", \"it\", 2)",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$replace(\"hello\")",
@@ -3127,7 +3363,7 @@
   },
   {
     "input": "$reverse(nothing)",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$reverse([1])",
@@ -3203,7 +3439,7 @@
   },
   {
     "input": "$round(unknown)",
-    "expected": []
+    "expected": ["/unknown"]
   },
   {
     "input": "$count($shuffle([1..10]))",
@@ -3215,7 +3451,7 @@
   },
   {
     "input": "$shuffle(nothing)",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$shuffle([1])",
@@ -3247,7 +3483,7 @@
   },
   {
     "input": "λ($arg)<b:b>{$not($arg)}(foo)",
-    "expected": []
+    "expected": ["/foo"]
   },
   {
     "input": "λ($arg)<x:b>{$not($arg)}(null)",
@@ -3267,7 +3503,7 @@
   },
   {
     "input": "Age.function($x,$y)<n-n:n>{$x+$y}(6)",
-    "expected": []
+    "expected": ["/Age"]
   },
   {
     "input": "λ($str)<s->{$uppercase($str)}(\"hello\")",
@@ -3275,7 +3511,7 @@
   },
   {
     "input": "Account.Order.Product.Description.Colour.λ($str)<s->{$uppercase($str)}()",
-    "expected": []
+    "expected": ["/Account/Order/Product/Description/Colour"]
   },
   {
     "input": "λ($str, $prefix)<s-s>{$prefix & $str}(\"World\", \"Hello \")",
@@ -3283,7 +3519,7 @@
   },
   {
     "input": "FirstName.λ($str, $prefix)<s-s>{$prefix & $str}(\"Hello \")",
-    "expected": []
+    "expected": ["/FirstName"]
   },
   {
     "input": "λ($arr, $sep)<a<s>s?:s>{$join($arr, $sep)}(\"a\")",
@@ -3315,7 +3551,7 @@
   },
   {
     "input": "λ($arr, $sep)<a<s>s?:s>{$join($arr, $sep)}(foo, \"-\")",
-    "expected": []
+    "expected": ["/foo"]
   },
   {
     "input": "λ($obj)<o>{$obj}({\"hello\": \"world\"})",
@@ -3383,7 +3619,7 @@
   },
   {
     "input": "$sort(nothing)",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$sort(1)",
@@ -3403,27 +3639,35 @@
   },
   {
     "input": "$sort(Account.Order.Product.Price)",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price"]
   },
   {
     "input": "$sort(Account.Order.Product.\"Product Name\")",
-    "expected": []
+    "expected": ["/Account/Order/Product/Product Name"]
   },
   {
     "input": "$sort(Account.Order.Product)",
-    "expected": []
+    "expected": ["/Account/Order/Product"]
   },
   {
     "input": "$sort(Account.Order.Product, function($a, $b) { $a.(Price * Quantity) > $b.(Price * Quantity) }).(Price & \" x \" & Quantity)",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Price",
+      "/Quantity",
+      "/Price",
+      "/Quantity",
+      "/Price",
+      "/Quantity"
+    ]
   },
   {
     "input": "$sort(Account.Order.Product, function($a, $b) { $a.Price > $b.Price }).SKU",
-    "expected": []
+    "expected": ["/Account/Order/Product"]
   },
   {
     "input": "\n                (Account.Order.Product\n                  ~> $sort(λ($a,$b){$a.Quantity < $b.Quantity})\n                  ~> $sort(λ($a,$b){$a.Price > $b.Price})\n                ).SKU\n            ",
-    "expected": []
+    "expected": ["/SKU"]
   },
   {
     "input": "$split(\"Hello World\", \" \")",
@@ -3467,7 +3711,7 @@
   },
   {
     "input": "$split(nothing, \" \")",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$split(\"a, b, c, d\", \", \", -3)",
@@ -3507,11 +3751,11 @@
   },
   {
     "input": "$spread((Account.Order.Product.Description))",
-    "expected": []
+    "expected": ["/Account/Order/Product/Description"]
   },
   {
     "input": "$spread(blah)",
-    "expected": []
+    "expected": ["/blah"]
   },
   {
     "input": "$string($spread(function($x){$x*$x}))",
@@ -3527,7 +3771,7 @@
   },
   {
     "input": "$sqrt(nothing)",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$sqrt(-2)",
@@ -3567,7 +3811,12 @@
   },
   {
     "input": "Account.Order.$string($sum(Product.(Price* Quantity)))",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "$string(true)",
@@ -3583,7 +3832,7 @@
   },
   {
     "input": "$string(blah)",
-    "expected": []
+    "expected": ["/blah"]
   },
   {
     "input": "$string($string)",
@@ -3650,10 +3899,6 @@
     "expected": []
   },
   {
-    "input": "$string()",
-    "expected": []
-  },
-  {
     "input": "$substring(\"hello world\", 0, 5)",
     "expected": []
   },
@@ -3667,7 +3912,7 @@
   },
   {
     "input": "$substring(blah, 6)",
-    "expected": []
+    "expected": ["/blah"]
   },
   {
     "input": "$substring('𝄞💩', 0, 2)",
@@ -3683,10 +3928,6 @@
   },
   {
     "input": "$substring(\"hello world\", -5)",
-    "expected": []
-  },
-  {
-    "input": "$substring(\"hello world\", -5, 5)",
     "expected": []
   },
   {
@@ -3747,7 +3988,7 @@
   },
   {
     "input": "$substringAfter(blah, \"ld\")",
-    "expected": []
+    "expected": ["/blah"]
   },
   {
     "input": "$substringBefore(\"Hello World\", \" \")",
@@ -3767,19 +4008,34 @@
   },
   {
     "input": "$substringBefore(blah, \"He\")",
-    "expected": []
+    "expected": ["/blah"]
   },
   {
     "input": "$sum(Account.Order.Product.(Price * Quantity))",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "Account.Order.$sum(Product.(Price * Quantity))",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "Account.Order.(OrderID & \": \" & $sum(Product.(Price*Quantity)))",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/OrderID",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "$sum()",
@@ -3791,11 +4047,11 @@
   },
   {
     "input": "$sum(Account.Order)",
-    "expected": []
+    "expected": ["/Account/Order"]
   },
   {
     "input": "$sum(undefined)",
-    "expected": []
+    "expected": ["/undefined"]
   },
   {
     "input": "$toMillis(\"1970-01-01T00:00:00.001Z\")",
@@ -3819,7 +4075,7 @@
   },
   {
     "input": "$toMillis(foo)",
-    "expected": []
+    "expected": ["/foo"]
   },
   {
     "input": "$toMillis(\"foo\")",
@@ -3847,7 +4103,7 @@
   },
   {
     "input": "$toMillis(undefined, 'pic')",
-    "expected": []
+    "expected": ["/undefined"]
   },
   {
     "input": "$toMillis('Hello', 'Hello')",
@@ -4043,7 +4299,7 @@
   },
   {
     "input": "($var:= undefined; $type($var))",
-    "expected": []
+    "expected": ["/undefined"]
   },
   {
     "input": "($var:= null; $type($var))",
@@ -4099,7 +4355,7 @@
   },
   {
     "input": "$uppercase(blah)",
-    "expected": []
+    "expected": ["/blah"]
   },
   {
     "input": "$zip([1,2,3],[4,5,6])",
@@ -4123,7 +4379,7 @@
   },
   {
     "input": "$zip([1,2,3], [4,5,6], nothing)",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "($twice:=function($f){function($x){$f($f($x))}}; $add3:=function($y){$y+3}; $add6:=$twice($add3); $add6(7))",
@@ -4139,15 +4395,15 @@
   },
   {
     "input": "(library.books~>$filter(λ($v, $i, $a) {$v.price = $max($a.price)})).isbn",
-    "expected": []
+    "expected": ["/isbn"]
   },
   {
     "input": "nothing~>$filter(λ($v, $i, $a) {$v.price = $max($a.price)})",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$filter(data, function($d) { true })",
-    "expected": []
+    "expected": ["/data"]
   },
   {
     "input": "$filter([0, 1, 2], $boolean)",
@@ -4167,27 +4423,23 @@
   },
   {
     "input": "Account.Order.Product ~> $map(λ($prod, $index) { $index+1 & \": \" & $prod.\"Product Name\" })",
-    "expected": []
+    "expected": ["/Account/Order/Product"]
   },
   {
     "input": "Account.Order.Product ~> $map(λ($prod, $index, $arr) { $index+1 & \"/\" & $count($arr) & \": \" & $prod.\"Product Name\" })",
-    "expected": []
+    "expected": ["/Account/Order/Product"]
   },
   {
     "input": "$map(Phone, function($v, $i) {$i[$v.type=\"office\"]})",
-    "expected": []
+    "expected": ["/Phone"]
   },
   {
     "input": "$map(Phone, function($v, $i) {$v.type=\"office\" ? $i})",
-    "expected": []
+    "expected": ["/Phone"]
   },
   {
     "input": "$map(Phone, function($v, $i) {$v.type=\"office\" ? $i: null})",
-    "expected": []
-  },
-  {
-    "input": "$map(Phone, function($v, $i) {$v.type=\"office\" ? $i: null})",
-    "expected": []
+    "expected": ["/Phone"]
   },
   {
     "input": "$map([0, 1, 2], $boolean)",
@@ -4210,16 +4462,8 @@
     "expected": []
   },
   {
-    "input": "(  $seq := 1;  $reduce($seq, function($x, $y){$x+$y}))",
-    "expected": []
-  },
-  {
     "input": "$reduce(Account.Order.Product.Quantity, $append)",
-    "expected": []
-  },
-  {
-    "input": "$reduce(Account.Order.Product.Quantity, $append)",
-    "expected": []
+    "expected": ["/Account/Order/Product/Quantity"]
   },
   {
     "input": "($product := function($a, $b) { $a * $b };$power := function($x, $n) { $n = 0 ? 1 : $reduce([1..$n].($x), $product) };[0..5].$power(2, $))",
@@ -4231,15 +4475,15 @@
   },
   {
     "input": "(library.books~>$single(λ($v, $i, $a) {$v.price = $max($a.price)})).isbn",
-    "expected": []
+    "expected": ["/isbn"]
   },
   {
     "input": "nothing~>$single(λ($v, $i, $a) {$v.price = $max($a.price)})",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "$single(data, function($d) { true })",
-    "expected": []
+    "expected": ["/data"]
   },
   {
     "input": "$single([0, 1, 2], $boolean)",
@@ -4271,7 +4515,7 @@
   },
   {
     "input": "Phone ~> $filter(function($p) {$p.type = 'home'}) ~> $single(function($p) {$p.number = '0203 544 1234'})",
-    "expected": []
+    "expected": ["/Phone"]
   },
   {
     "input": "(  $data := {    \"one\": [1,2,3,4,5],    \"two\": [5,4,3,2,1]  };  $map($zip($data.one, $data.two), $sum)) ",
@@ -4279,15 +4523,15 @@
   },
   {
     "input": "(  $data := {    \"one\": [1,2,3,4,5],    \"two\": [5,4,3,2,1]  };  $data.$zip(one, two) ~> $map($sum)) ",
-    "expected": []
+    "expected": ["/one", "/two"]
   },
   {
     "input": "(  $data := {    \"one\": [1],    \"two\": [5]  };  $data.$zip(one, two) ~> $map($sum)) ",
-    "expected": []
+    "expected": ["/one", "/two"]
   },
   {
     "input": "(  $data := {    \"one\": 1,    \"two\": 5  };  $data.$zip(one, two) ~> $map($sum)) ",
-    "expected": []
+    "expected": ["/one", "/two"]
   },
   {
     "input": "1 in [1,2]",
@@ -4307,11 +4551,11 @@
   },
   {
     "input": "in in [\"hello\", \"world\"]",
-    "expected": []
+    "expected": ["/in"]
   },
   {
     "input": "\"world\" in in",
-    "expected": []
+    "expected": ["/in"]
   },
   {
     "input": "\"hello\" in \"hello\"",
@@ -4319,55 +4563,136 @@
   },
   {
     "input": "library.books[\"Aho\" in authors].title",
-    "expected": []
+    "expected": ["/library/books/title", "/library/books/authors"]
   },
   {
     "input": "content.integration.$lowercase(name)",
-    "expected": []
+    "expected": ["/content/integration", "/content/integration/name"]
   },
   {
     "input": "Employee@$e.(Contact)[ssn = $e.SSN].{ 'name': $e.(FirstName & ' ' & Surname), 'phone': Phone[type='mobile'].number }",
-    "expected": []
+    "expected": [
+      "/Employee",
+      "/Employee/Contact",
+      "/Employee",
+      "/Employee/FirstName",
+      "/Employee/Surname",
+      "/Employee/Phone/number",
+      "/Employee/Phone/type"
+    ]
   },
   {
     "input": "Employee@$e.(Contact)[ssn = $e.SSN]{ $e.FirstName: Phone[type='mobile'].number }",
-    "expected": []
+    "expected": [
+      "/Employee",
+      "/Employee/Contact",
+      "/Employee",
+      "/Employee/Phone/number",
+      "/Employee/Phone/type"
+    ]
   },
   {
     "input": "Employee@$e.Contact@$c[$c.ssn = $e.SSN]{ $e.(FirstName & ' ' & Surname): $join($c.Phone.number, ', ') }",
-    "expected": []
+    "expected": [
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact/FirstName",
+      "/Employee/Contact/Surname",
+      "/Employee/Contact"
+    ]
   },
   {
     "input": "Employee@$e.Contact@$c[$c.ssn = $e.SSN]{ $e.(FirstName & ' ' & Surname): $c.Phone[type != 'home'].number ~> $join(', ') }",
-    "expected": []
+    "expected": [
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact/FirstName",
+      "/Employee/Contact/Surname",
+      "/Employee/Contact",
+      "/Employee/Contact/type"
+    ]
   },
   {
     "input": "Employee@$e.Contact@$c[$c.ssn = $e.SSN]{ $e.(FirstName & ' ' & Surname): $c.Phone[type != 'home'].number }",
-    "expected": []
+    "expected": [
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact/FirstName",
+      "/Employee/Contact/Surname",
+      "/Employee/Contact",
+      "/Employee/Contact/type"
+    ]
   },
   {
     "input": "Employee@$e.Contact@$c[$c.ssn = $e.SSN]{ $e.(FirstName & ' ' & Surname): $c.Phone[type != 'home'].number[] }",
-    "expected": []
+    "expected": [
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact/FirstName",
+      "/Employee/Contact/Surname",
+      "/Employee/Contact",
+      "/Employee/Contact/type"
+    ]
   },
   {
     "input": "Employee@$e.Contact@$c[$c.ssn = $e.SSN]{ $e.FirstName: $c.Phone.number }",
-    "expected": []
+    "expected": [
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact"
+    ]
   },
   {
     "input": "Employee@$e^($e.Surname).Contact@$c[$e.SSN=$c.ssn].{ 'name': $e.Surname, 'phone': $c.Phone.number }",
-    "expected": []
+    "expected": [
+      "/Employee/Contact",
+      "/Employee",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact"
+    ]
   },
   {
     "input": "Employee@$e^($e.FirstName).Contact@$c[$e.SSN=$c.ssn].{ 'name': $e.Surname, 'phone': $c.Phone.number }",
-    "expected": []
+    "expected": [
+      "/Employee/Contact",
+      "/Employee",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact"
+    ]
   },
   {
     "input": "Employee@$e.Contact@$c[$e.SSN=$c.ssn]{ $e.Surname: $c.Phone.number^($) }",
-    "expected": []
+    "expected": [
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact"
+    ]
   },
   {
     "input": "Employee@$e.Contact@$c[$e.SSN=$c.ssn]{ $e.Surname: $c.Phone.number^(>$) }",
-    "expected": []
+    "expected": [
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact",
+      "/Employee/Contact"
+    ]
   },
   {
     "input": "$@$i",
@@ -4443,19 +4768,23 @@
   },
   {
     "input": "Account.Order#$o.Product[ProductID=858383].{ 'Product': `Product Name`, 'Order Index': $o }",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/ProductID",
+      "/Account/Order/Product/Product Name"
+    ]
   },
   {
     "input": "Account.Order#$i.Missing",
-    "expected": []
+    "expected": ["/Account/Order/Missing"]
   },
   {
     "input": "Account.Order#$i.Product{ $string(ProductID): $i }",
-    "expected": []
+    "expected": ["/Account/Order/Product", "/Account/Order/Product/ProductID"]
   },
   {
     "input": "library.books#$pos.$[$substring(title,0,3) = 'The'].$pos",
-    "expected": []
+    "expected": ["/library/books"]
   },
   {
     "input": "function($x){$x*$x}(5)",
@@ -4479,7 +4808,7 @@
   },
   {
     "input": "($nth_price := function($n) { (Account.Order.Product.Price)[$n] }; $nth_price(1) )",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price"]
   },
   {
     "input": "            (              $even := function($n) { $n = 0 ? true : $odd($n-1) };              $odd := function($n) { $n = 0 ? false : $even($n-1) };              $even(82)            )",
@@ -4507,18 +4836,6 @@
   },
   {
     "input": "( $median := λ($x){$sort($x)[$count($x)/2]};  $median([5,4,3,2,1,6,7,8,1]) )",
-    "expected": []
-  },
-  {
-    "input": "{'fgFoo:0:hausnummer': {'type': 'de.example.api.PossibleValuesList', 'value': [{'label': '', 'value': ''}] }}",
-    "expected": []
-  },
-  {
-    "input": "{'fgFoo:0:hausnummer': {'type': 'de.example.api.PossibleValuesList', 'value': [{'label': '', 'value': ''}] }}",
-    "expected": []
-  },
-  {
-    "input": "{'fgFoo:0:hausnummer': {'type': 'de.example.api.PossibleValuesList', 'value': [{'label': '', 'value': ''}] }}",
     "expected": []
   },
   {
@@ -4611,23 +4928,23 @@
   },
   {
     "input": "fdf",
-    "expected": []
+    "expected": ["/fdf"]
   },
   {
     "input": "fdf.ett",
-    "expected": []
+    "expected": ["/fdf/ett"]
   },
   {
     "input": "fdf.ett[10]",
-    "expected": []
+    "expected": ["/fdf/ett"]
   },
   {
     "input": "fdf.ett[vc > 10]",
-    "expected": []
+    "expected": ["/fdf/ett", "/fdf/ett/vc"]
   },
   {
     "input": "fdf.ett + 27",
-    "expected": []
+    "expected": ["/fdf/ett"]
   },
   {
     "input": "$fdsd",
@@ -4662,72 +4979,64 @@
     "expected": []
   },
   {
-    "input": "null = null",
-    "expected": []
-  },
-  {
-    "input": "null != null",
-    "expected": []
-  },
-  {
     "input": "{\"true\": true, \"false\":false, \"null\": null}",
     "expected": []
   },
   {
     "input": "foo.bar + bar",
-    "expected": []
+    "expected": ["/foo/bar", "/bar"]
   },
   {
     "input": "bar + foo.bar",
-    "expected": []
+    "expected": ["/bar", "/foo/bar"]
   },
   {
     "input": "foo.bar - bar",
-    "expected": []
+    "expected": ["/foo/bar", "/bar"]
   },
   {
     "input": "bar - foo.bar",
-    "expected": []
+    "expected": ["/bar", "/foo/bar"]
   },
   {
     "input": "foo.bar * bar",
-    "expected": []
+    "expected": ["/foo/bar", "/bar"]
   },
   {
     "input": "bar * foo.bar",
-    "expected": []
+    "expected": ["/bar", "/foo/bar"]
   },
   {
     "input": "foo.bar / bar",
-    "expected": []
+    "expected": ["/foo/bar", "/bar"]
   },
   {
     "input": "bar / foo.bar",
-    "expected": []
+    "expected": ["/bar", "/foo/bar"]
   },
   {
     "input": "foo.bar % bar",
-    "expected": []
+    "expected": ["/foo/bar", "/bar"]
   },
   {
     "input": "bar % foo.bar",
-    "expected": []
+    "expected": ["/bar", "/foo/bar"]
   },
   {
     "input": "bar + foo.bar * bar",
-    "expected": []
+    "expected": ["/bar", "/foo/bar", "/bar"]
   },
   {
     "input": "foo.bar * bar + bar",
-    "expected": []
+    "expected": ["/foo/bar", "/bar", "/bar"]
   },
   {
     "input": "24 * notexist",
-    "expected": []
+    "expected": ["/notexist"]
   },
   {
     "input": "notexist + 1",
-    "expected": []
+    "expected": ["/notexist"]
   },
   {
     "input": "1/(10e300 * 10e100) ",
@@ -4739,7 +5048,7 @@
   },
   {
     "input": "- notexist",
-    "expected": []
+    "expected": ["/notexist"]
   },
   {
     "input": "false + 1",
@@ -4779,75 +5088,154 @@
   },
   {
     "input": "blah.{}",
-    "expected": []
+    "expected": ["/blah"]
   },
   {
     "input": "Account.Order{OrderID: Product.\"Product Name\"}",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/OrderID",
+      "/Account/Order/Product/Product Name"
+    ]
   },
   {
     "input": "Account.Order.{OrderID: Product.\"Product Name\"}",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/OrderID",
+      "/Account/Order/Product/Product Name"
+    ]
   },
   {
     "input": "Account.Order.Product{$string(ProductID): Price}",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/ProductID",
+      "/Account/Order/Product/Price"
+    ]
   },
   {
     "input": "Account.Order.Product{$string(ProductID): (Price)[0]}",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/ProductID",
+      "/Account/Order/Product/Price"
+    ]
   },
   {
     "input": "Account.Order.Product.{$string(ProductID): Price}",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/ProductID",
+      "/Account/Order/Product/Price"
+    ]
   },
   {
     "input": "Account.Order.Product{ProductID: \"Product Name\"}",
-    "expected": []
+    "expected": ["/Account/Order/Product", "/Account/Order/Product/ProductID"]
   },
   {
     "input": "Account.Order.Product.{ProductID: \"Product Name\"}",
-    "expected": []
+    "expected": ["/Account/Order/Product", "/Account/Order/Product/ProductID"]
   },
   {
     "input": "Account.Order{OrderID: $sum(Product.(Price*Quantity))}",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/OrderID",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "Account.Order.{OrderID: $sum(Product.(Price*Quantity))}",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/OrderID",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "Account.Order.Product{$.\"Product Name\": Price, $.\"Product Name\": Price}",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Product Name",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Product Name",
+      "/Account/Order/Product/Price"
+    ]
   },
   {
     "input": "Account.Order.Product{`Product Name`: Price, SKU: Price}",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Product Name",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/SKU",
+      "/Account/Order/Product/Price"
+    ]
   },
   {
     "input": "Account.Order{  OrderID: {    \"TotalPrice\":$sum(Product.(Price * Quantity)),    \"Items\": Product.\"Product Name\"  }}",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/OrderID",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity",
+      "/Account/Order/Product/Product Name"
+    ]
   },
   {
     "input": "{  \"Order\": Account.Order.{      \"ID\": OrderID,      \"Product\": Product.{          \"Name\": $.\"Product Name\",          \"SKU\": ProductID,          \"Details\": {            \"Weight\": Description.Weight,            \"Dimensions\": Description.(Width & \" x \" & Height & \" x \" & Depth)          }        },      \"Total Price\": $sum(Product.(Price * Quantity))    }}",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/OrderID",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Product Name",
+      "/Account/Order/Product/ProductID",
+      "/Account/Order/Product/Description/Weight",
+      "/Account/Order/Product/Description",
+      "/Account/Order/Product/Description/Width",
+      "/Account/Order/Product/Description/Height",
+      "/Account/Order/Product/Description/Depth",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "{  \"Order\": Account.Order.{      \"ID\": OrderID,      \"Product\": Product.{          \"Name\": `Product Name`,          \"SKU\": ProductID,          \"Details\": {            \"Weight\": Description.Weight,            \"Dimensions\": Description.(Width & \" x \" & Height & \" x \" & Depth)          }        },      \"Total Price\": $sum(Product.(Price * Quantity))    }}",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/OrderID",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Product Name",
+      "/Account/Order/Product/ProductID",
+      "/Account/Order/Product/Description/Weight",
+      "/Account/Order/Product/Description",
+      "/Account/Order/Product/Description/Width",
+      "/Account/Order/Product/Description/Height",
+      "/Account/Order/Product/Description/Depth",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "Phone{type: $join(number, \", \"), \"phone\":number}",
-    "expected": []
+    "expected": ["/Phone", "/Phone/type", "/Phone/number", "/Phone/number"]
   },
   {
     "input": "$.{ type: $average(value), kind: $sum(value) } ",
-    "expected": []
+    "expected": ["/type", "/value", "/kind", "/value"]
   },
   {
     "input": "{ type: $average(value), kind: $sum(value) } ",
-    "expected": []
+    "expected": ["/type", "/value", "/kind", "/value"]
   },
   {
     "input": "$${id:{'label':label,'value':value}}",
@@ -4903,131 +5291,199 @@
   },
   {
     "input": "library.(%%%)",
-    "expected": []
+    "expected": ["/library"]
   },
   {
     "input": "library.(%% %)",
-    "expected": []
+    "expected": ["/library"]
   },
   {
     "input": "library.(% %%)",
-    "expected": []
+    "expected": ["/library"]
   },
   {
     "input": "library.(% % %)",
-    "expected": []
+    "expected": ["/library"]
   },
   {
     "input": "Account.Order.Product.[`Product Name`, %.OrderID]",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Product Name",
+      "/Account/Order/Product/Account/Order/Product"
+    ]
   },
   {
     "input": "Account.Order.Product.{ `Product Name`: [Quantity, %.OrderID] }",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Quantity",
+      "/Account/Order/Product/Account/Order/Product"
+    ]
   },
   {
     "input": "Account.Order.Product.{ `Product Name`: [Quantity, (%.OrderID)] }",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Quantity",
+      "/Account/Order/Product/Account/Order/Product"
+    ]
   },
   {
     "input": "Account.Order.Product[%.OrderID='order104'].SKU",
-    "expected": []
+    "expected": ["/Account/Order/Product/SKU", "/Account/Order/Product/SKU"]
   },
   {
     "input": "Account.Order.Product[%.%.`Account Name`='Firefly'].SKU",
-    "expected": []
+    "expected": ["/Account/Order/Product/SKU", "/Account/Order/Product/SKU"]
   },
   {
     "input": "Account.Order.Product.Price[%.%.OrderID='order103']",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price", "/Account/Order/Product/Price"]
   },
   {
     "input": "Account.Order.Product.Price.%[%.OrderID='order103'].SKU",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price"]
   },
   {
     "input": "Account.Order.Product[%.OrderID='order104'][%.%.`Account Name`='Firefly'].SKU",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product/SKU",
+      "/Account/Order/Product/SKU",
+      "/Account/Order/Product/SKU"
+    ]
   },
   {
     "input": "(Account.Order.Product)[%.OrderID='order104'].SKU",
-    "expected": []
+    "expected": ["/SKU"]
   },
   {
     "input": "Account.Order.Product.{ %.OrderID: Price * Quantity }",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "Account.Order.().%",
-    "expected": []
+    "expected": ["/Account/Order"]
   },
   {
     "input": "Account.Order.Product.SKU^(%.Price)",
-    "expected": []
+    "expected": ["/Account/Order/Product/SKU", "/Account/Order/Product/SKU"]
   },
   {
     "input": "Account.Order.Product.SKU^(%.Price, >%.%.OrderID)",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product/SKU",
+      "/Account/Order/Product/SKU",
+      "/Account/Order/Product/SKU"
+    ]
   },
   {
     "input": "Account.Order.Product.Description.{ 'Colour': Colour, 'Total': %.Price * %.Quantity }",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product/Description",
+      "/Account/Order/Product/Description/Colour",
+      "/Account/Order/Product/Description",
+      "/Account/Order/Product/Description"
+    ]
   },
   {
     "input": "Account.Order.Product.Description.{ 'Item': Colour & ' ' & %.`Product Name`, 'Discounted': (%.%.OrderID = 'order103') ? %.Price / 2 : %.Price }",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product/Description",
+      "/Account/Order/Product/Description/Colour",
+      "/Account/Order/Product/Description",
+      "/Account/Order/Product/Description",
+      "/Account/Order/Product/Description",
+      "/Account/Order/Product/Description"
+    ]
   },
   {
     "input": "Account.Order.Product.( $parent := %; %.OrderID )",
-    "expected": []
+    "expected": ["/Account/Order/Product", "/Account/Order/Product"]
   },
   {
     "input": "Account.Order.Product.( $parent := %; $parent.OrderID )",
-    "expected": []
+    "expected": ["/Account/Order/Product", "/Account/Order/Product"]
   },
   {
     "input": "library.loans@$L.books@$B[$L.isbn=$B.isbn].{ 'book': $B.title, 'parent': $keys(%) }",
-    "expected": []
+    "expected": [
+      "/library/loans/books",
+      "/library/loans/books",
+      "/library/loans/books",
+      "/library/loans/books"
+    ]
   },
   {
     "input": "library.loans@$L.books@$B[$L.isbn=$B.isbn].customers[id=$L.customer].{ 'book': $B.title, 'customer': name, 'parent': $keys(%) }",
-    "expected": []
+    "expected": [
+      "/library/loans/books/customers",
+      "/library/loans/books",
+      "/library/loans/books",
+      "/library/loans/books/customers/id",
+      "/library/loans/books/customers",
+      "/library/loans/books/customers",
+      "/library/loans/books/customers/name"
+    ]
   },
   {
     "input": "library.loans@$L.books@$B[$L.isbn=$B.isbn].customers[id=$L.customer].{ 'book': $B.title, 'customer': name, 'parent': $keys(%.%) }",
-    "expected": []
+    "expected": [
+      "/library/loans/books/customers",
+      "/library/loans/books",
+      "/library/loans/books",
+      "/library/loans/books/customers/id",
+      "/library/loans/books/customers",
+      "/library/loans/books/customers",
+      "/library/loans/books/customers/name",
+      "/library/loans/books/customers"
+    ]
   },
   {
     "input": "library.loans@$L.books@$B[$L.isbn=$B.isbn].customers@$C[$C.id=$L.customer].{ 'book': $B.title, 'customer': $C.name, 'grandparent': $keys(%.%) }",
-    "expected": []
+    "expected": [
+      "/library/loans/books/customers",
+      "/library/loans/books",
+      "/library/loans/books",
+      "/library/loans/books/customers",
+      "/library/loans/books/customers",
+      "/library/loans/books/customers",
+      "/library/loans/books/customers",
+      "/library/loans/books/customers"
+    ]
   },
   {
     "input": "foo.(blah).baz.fud",
-    "expected": []
+    "expected": ["/foo/baz/fud", "/foo/blah"]
   },
   {
     "input": "foo.(blah.baz).fud",
-    "expected": []
+    "expected": ["/foo/fud", "/foo/blah/baz"]
   },
   {
     "input": "(foo.blah.baz).fud",
-    "expected": []
+    "expected": ["/fud"]
   },
   {
     "input": "foo.blah.(baz.fud)",
-    "expected": []
+    "expected": ["/foo/blah", "/foo/blah/baz/fud"]
   },
   {
     "input": "(foo.blah.baz.fud)",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "(foo).(blah).baz.(fud)",
-    "expected": []
+    "expected": ["/baz", "/baz/fud"]
   },
   {
     "input": "(foo.(blah).baz.fud)",
-    "expected": []
+    "expected": ["/foo/baz/fud", "/foo/blah"]
   },
   {
     "input": "(4 + 2) / 2",
@@ -5047,59 +5503,62 @@
   },
   {
     "input": "substring(?, 0, ?)",
-    "expected": []
+    "expected": ["/substring"]
   },
   {
     "input": "unknown(?)",
-    "expected": []
+    "expected": ["/unknown"]
   },
   {
     "input": "nothing[x=6][y=3].number",
-    "expected": []
+    "expected": ["/nothing/number", "/nothing/x", "/nothing/y"]
   },
   {
     "input": "clues[x=6][y=3].number",
-    "expected": []
+    "expected": ["/clues/number", "/clues/x", "/clues/y"]
   },
   {
     "input": "$[x=6][y=3].number",
-    "expected": []
+    "expected": ["/number"]
   },
   {
     "input": "Account.Order.Product[$lowercase(Description.Colour) = \"purple\"][0].Price",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Description/Colour"
+    ]
   },
   {
     "input": "foo.\"blah\"",
-    "expected": []
+    "expected": ["/foo/blah"]
   },
   {
     "input": "foo.\"blah\".baz.'fud'",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "\"foo\".\"blah\".\"baz\".\"fud\"",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "foo.\"blah.baz\"",
-    "expected": []
+    "expected": ["/foo/blah.baz"]
   },
   {
     "input": "foo.`blah`",
-    "expected": []
+    "expected": ["/foo/blah"]
   },
   {
     "input": "foo.`blah`.baz.'fud'",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "`foo`.`blah`.`baz`.`fud`",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "foo.`blah.baz`",
-    "expected": []
+    "expected": ["/foo/blah.baz"]
   },
   {
     "input": "[0..9]",
@@ -5131,11 +5590,11 @@
   },
   {
     "input": "[-2..blah]",
-    "expected": []
+    "expected": ["/blah"]
   },
   {
     "input": "[blah..5, 3, -2..blah]",
-    "expected": []
+    "expected": ["/blah", "/blah"]
   },
   {
     "input": "[1.1 .. 5]",
@@ -5223,11 +5682,17 @@
   },
   {
     "input": "Account.Order.Product[$contains($.\"Product Name\", /hat/)].ProductID",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product/ProductID",
+      "/Account/Order/Product/Product Name"
+    ]
   },
   {
     "input": "Account.Order.Product[$contains($.\"Product Name\", /hat/i)].ProductID",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product/ProductID",
+      "/Account/Order/Product/Product Name"
+    ]
   },
   {
     "input": "$replace(\"ababbxabbcc\",/b+/, \"yy\")",
@@ -5331,11 +5796,18 @@
   },
   {
     "input": "Account.Order.Product.$replace($.\"Product Name\", /hat/i, function($match) { \"foo\" })",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Product Name"
+    ]
   },
   {
     "input": "Account.Order.Product.$replace($.\"Product Name\", /(h)(at)/i, function($match) { $uppercase($match.match) })",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Product Name",
+      "/Account/Order/Product"
+    ]
   },
   {
     "input": "$replace(\"temperature = 68F today\", /(-?\\d+(?:\\.\\d*)?)F\\b/, function($m) { ($number($m.groups[0]) - 32) * 5/9 & \"C\" })",
@@ -5343,11 +5815,17 @@
   },
   {
     "input": "Account.Order.Product.$replace($.\"Product Name\", /hat/i, function($match) { true })",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Product Name"
+    ]
   },
   {
     "input": "Account.Order.Product.$replace($.\"Product Name\", /hat/i, function($match) { 42 })",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/Product Name"
+    ]
   },
   {
     "input": "$map($, $match(?, /^(\\w*\\s\\w*)/)).match",
@@ -5359,87 +5837,75 @@
   },
   {
     "input": "nest0.nest1[0]",
-    "expected": []
+    "expected": ["/nest0/nest1"]
   },
   {
     "input": "foo.blah[0].baz.fud",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "foo.blah[1].baz.fud",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "foo.blah[-1].bazz",
-    "expected": []
+    "expected": ["/foo/blah/bazz"]
   },
   {
     "input": "(foo.blah)[1].baz.fud",
-    "expected": []
+    "expected": ["/baz/fud"]
   },
   {
     "input": "foo.blah.baz.fud[0]",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "foo.blah.baz.fud[-1]",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "(foo.blah.baz.fud)[0]",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "(foo.blah.baz.fud)[1]",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "(foo.blah.baz.fud)[5 * 0.2]",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "(foo.blah.baz.fud)[-1]",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "(foo.blah.baz.fud)[-2]",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "(foo.blah.baz.fud)[2-4]",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "(foo.blah.baz.fud)[-(4-2)]",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "(foo.blah.baz.fud)[$$.foo.bar / 30]",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud"]
   },
   {
     "input": "foo.blah[0].baz",
-    "expected": []
+    "expected": ["/foo/blah/baz"]
   },
   {
     "input": "foo.blah.baz[0]",
-    "expected": []
+    "expected": ["/foo/blah/baz"]
   },
   {
     "input": "(foo.blah.baz)[0]",
-    "expected": []
-  },
-  {
-    "input": "$[0]",
-    "expected": []
-  },
-  {
-    "input": "$[1]",
-    "expected": []
-  },
-  {
-    "input": "$[-1]",
-    "expected": []
+    "expected": ["/foo/blah/baz"]
   },
   {
     "input": "$[1][0]",
@@ -5451,87 +5917,82 @@
   },
   {
     "input": "Account.Order.Product.Price^($)",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price"]
   },
   {
     "input": "Account.Order.Product.Price^(<$)",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price"]
   },
   {
     "input": "Account.Order.Product.Price^(>$)",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price"]
   },
   {
     "input": "Account.Order.Product^(Price).Description.Colour",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product/Description/Colour",
+      "/Account/Order/Product/Price"
+    ]
   },
   {
     "input": "Account.Order.Product^(Price).SKU",
-    "expected": []
+    "expected": ["/Account/Order/Product/SKU", "/Account/Order/Product/Price"]
   },
   {
     "input": "Account.Order.Product^(Price * Quantity).Description.Colour",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product/Description/Colour",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "Account.Order.Product^(Quantity, Description.Colour).Description.Colour",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product/Description/Colour",
+      "/Account/Order/Product/Quantity",
+      "/Account/Order/Product/Description/Colour"
+    ]
   },
   {
     "input": "Account.Order.Product^(Quantity, >Description.Colour).Description.Colour",
-    "expected": []
-  },
-  {
-    "input": "Account.Order.Product^(Price).SKU",
-    "expected": []
-  },
-  {
-    "input": "Account.Order.Product^(Price).SKU",
-    "expected": []
-  },
-  {
-    "input": "Account.Order.Product^(Price).SKU",
-    "expected": []
-  },
-  {
-    "input": "Account.Order.Product^(Price).SKU",
-    "expected": []
-  },
-  {
-    "input": "Account.Order.Product^(Price).SKU",
-    "expected": []
-  },
-  {
-    "input": "Account.Order.Product^(Price).SKU",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product/Description/Colour",
+      "/Account/Order/Product/Quantity",
+      "/Account/Order/Product/Description/Colour"
+    ]
   },
   {
     "input": "$^(age).name",
-    "expected": []
+    "expected": ["/name"]
   },
   {
     "input": "($^(age)).name",
-    "expected": []
+    "expected": ["/name", "/age"]
   },
   {
     "input": "$^(age)[0].name",
-    "expected": []
+    "expected": ["/name"]
   },
   {
     "input": "($^(age))[0].name",
-    "expected": []
+    "expected": ["/name", "/age"]
   },
   {
     "input": "($^(age)[0]).name",
-    "expected": []
+    "expected": ["/name", "/age"]
   },
   {
     "input": "$[0]^(age)",
-    "expected": []
+    "expected": ["/age"]
   },
   {
     "input": "Account.Order#$o.Product^(ProductID).{ 'Product': `Product Name`, 'Order Index': $o }",
-    "expected": []
+    "expected": [
+      "/Account/Order/Product",
+      "/Account/Order/Product/ProductID",
+      "/Account/Order/Product/Product Name"
+    ]
   },
   {
     "input": "\"foo\" & \"bar\"",
@@ -5543,19 +6004,19 @@
   },
   {
     "input": "foo.blah[0].baz.fud &foo.blah[1].baz.fud",
-    "expected": []
+    "expected": ["/foo/blah/baz/fud", "/foo/blah/baz/fud"]
   },
   {
     "input": "foo.(blah[0].baz.fud & blah[1].baz.fud)",
-    "expected": []
+    "expected": ["/foo", "/foo/blah/baz/fud", "/foo/blah/baz/fud"]
   },
   {
     "input": "foo.(blah[0].baz.fud & none)",
-    "expected": []
+    "expected": ["/foo", "/foo/blah/baz/fud", "/foo/none"]
   },
   {
     "input": "foo.(none.here & blah[1].baz.fud)",
-    "expected": []
+    "expected": ["/foo", "/foo/none/here", "/foo/blah/baz/fud"]
   },
   {
     "input": "[1,2]&[3,4]",
@@ -5579,7 +6040,7 @@
   },
   {
     "input": "\"Prices: \" & Account.Order.Product.Price",
-    "expected": []
+    "expected": ["/Account/Order/Product/Price"]
   },
   {
     "input": "            (              $f := function($n){()};              $f(1)            ) ",
@@ -5623,11 +6084,11 @@
   },
   {
     "input": "$.'7a'",
-    "expected": []
+    "expected": ["/7a"]
   },
   {
     "input": "$.'7'",
-    "expected": []
+    "expected": ["/7"]
   },
   {
     "input": "$.7a",
@@ -5639,11 +6100,30 @@
   },
   {
     "input": "{'Order': Account.Order.{  'ID': OrderID,  'Product': Product.{    'SKU': ProductID,    'Details': {      'Weight': Description.Weight,      'Dimensions': Description.(Width & ' x ' & Height & ' x ' & Depth)    }  },  'Total Price': $sum(Product.(Price * Quantity))}}",
-    "expected": []
+    "expected": [
+      "/Account/Order",
+      "/Account/Order/OrderID",
+      "/Account/Order/Product",
+      "/Account/Order/Product/ProductID",
+      "/Account/Order/Product/Description/Weight",
+      "/Account/Order/Product/Description",
+      "/Account/Order/Product/Description/Width",
+      "/Account/Order/Product/Description/Height",
+      "/Account/Order/Product/Description/Depth",
+      "/Account/Order/Product",
+      "/Account/Order/Product/Price",
+      "/Account/Order/Product/Quantity"
+    ]
   },
   {
     "input": "\n        (\n          $tempReadings := $count(state.tempReadings) = 5 ?\n              [state.tempReadings[[1..4]], event.t] :\n              [state.tempReadings, event.t];\n        \n          {\n            \"tempReadings\": $tempReadings,\n            \"sumTemperatures\": $sum($tempReadings),\n            \"avgTemperature\": $average($tempReadings) ~> $round(2),\n            \"maxTemperature\": $max($tempReadings),\n            \"minTemperature\": $min($tempReadings)\n          }\n        )",
-    "expected": []
+    "expected": [
+      "/state/tempReadings",
+      "/state/tempReadings",
+      "/event/t",
+      "/state/tempReadings",
+      "/event/t"
+    ]
   },
   {
     "input": "$",
@@ -5651,119 +6131,51 @@
   },
   {
     "input": "foo",
-    "expected": []
+    "expected": ["/foo"]
   },
   {
     "input": "baz",
-    "expected": []
+    "expected": ["/baz"]
   },
   {
     "input": "Foo",
-    "expected": []
+    "expected": ["/Foo"]
   },
   {
     "input": "food",
-    "expected": []
+    "expected": ["/food"]
   },
   {
     "input": "maz.rar",
-    "expected": []
+    "expected": ["/maz/rar"]
   },
   {
     "input": "jee.par.waa",
-    "expected": []
-  },
-  {
-    "input": "foo",
-    "expected": []
-  },
-  {
-    "input": "foo.bar",
-    "expected": []
-  },
-  {
-    "input": "$",
-    "expected": []
+    "expected": ["/jee/par/waa"]
   },
   {
     "input": "bar",
-    "expected": []
-  },
-  {
-    "input": "$",
-    "expected": []
-  },
-  {
-    "input": "$",
-    "expected": []
-  },
-  {
-    "input": "$",
-    "expected": []
-  },
-  {
-    "input": "bar",
-    "expected": []
-  },
-  {
-    "input": "$",
-    "expected": []
-  },
-  {
-    "input": "bar",
-    "expected": []
-  },
-  {
-    "input": "$",
-    "expected": []
-  },
-  {
-    "input": "bar",
-    "expected": []
-  },
-  {
-    "input": "bar",
-    "expected": []
-  },
-  {
-    "input": "$",
-    "expected": []
-  },
-  {
-    "input": "bar",
-    "expected": []
-  },
-  {
-    "input": "$",
-    "expected": []
-  },
-  {
-    "input": "bar",
-    "expected": []
-  },
-  {
-    "input": "$",
-    "expected": []
+    "expected": ["/bar"]
   },
   {
     "input": "$lowercase(Salutation)",
-    "expected": []
+    "expected": ["/Salutation"]
   },
   {
     "input": "$lowercase(敷)",
-    "expected": []
+    "expected": ["/敷"]
   },
   {
     "input": "$lowercase(Español)",
-    "expected": []
+    "expected": ["/Español"]
   },
   {
     "input": "$lowercase($.\"NI.Number\")",
-    "expected": []
+    "expected": ["/NI.Number"]
   },
   {
     "input": "$lowercase(\"COMPENSATION IS : \" & Employment.\"Executive.Compensation\")",
-    "expected": []
+    "expected": ["/Employment/Executive.Compensation"]
   },
   {
     "input": "\"Hello\"",
@@ -5771,11 +6183,7 @@
   },
   {
     "input": "$uppercase(Salutation)",
-    "expected": []
-  },
-  {
-    "input": "$uppercase(\"Hello World\")",
-    "expected": []
+    "expected": ["/Salutation"]
   },
   {
     "input": "$uppercase(\"鯵噂ソ竹\")",
@@ -5783,23 +6191,23 @@
   },
   {
     "input": "Employment.Name & \" is happy\"",
-    "expected": []
+    "expected": ["/Employment/Name"]
   },
   {
     "input": "Employment.Name & \" is pleased to employ \" & Salutation & \" \" & Surname",
-    "expected": []
+    "expected": ["/Employment/Name", "/Salutation", "/Surname"]
   },
   {
     "input": "$uppercase(\"Hello \" & Salutation & \" \" & Surname)",
-    "expected": []
+    "expected": ["/Salutation", "/Surname"]
   },
   {
     "input": "$uppercase(Salutation & \" \" & Surname & \" - has \" & Cars & \" registered cars\")",
-    "expected": []
+    "expected": ["/Salutation", "/Surname", "/Cars"]
   },
   {
     "input": "$uppercase(Employment.ContractType)",
-    "expected": []
+    "expected": ["/Employment/ContractType"]
   },
   {
     "input": "$substringBefore(\"Hola\", \"l\")",
@@ -5827,11 +6235,11 @@
   },
   {
     "input": "$substringAfter(Salutation & \" \" & MiddleName &\" \" & Surname, MiddleName)",
-    "expected": []
+    "expected": ["/Salutation", "/MiddleName", "/Surname", "/MiddleName"]
   },
   {
     "input": "$substringAfter(Salutation & \" \" & Employment.Role, Salutation)",
-    "expected": []
+    "expected": ["/Salutation", "/Employment/Role", "/Salutation"]
   },
   {
     "input": "$substringAfter(\"Hola\", 'l')",
@@ -5843,27 +6251,27 @@
   },
   {
     "input": "$lowercase(Employment.Role) & \" (\" & Employment.Role & \")\"",
-    "expected": []
+    "expected": ["/Employment/Role", "/Employment/Role"]
   },
   {
     "input": "Employment.Years & \" years of employment\"",
-    "expected": []
+    "expected": ["/Employment/Years"]
   },
   {
     "input": "$uppercase(Salutation & \" \" & Surname & \" - has \" & Employment.Years & \" years of employment\")",
-    "expected": []
+    "expected": ["/Salutation", "/Surname", "/Employment/Years"]
   },
   {
     "input": "$substring(Employment.Role, 7,4)",
-    "expected": []
+    "expected": ["/Employment/Role"]
   },
   {
     "input": "$substring(Employment.Role, -4,4)",
-    "expected": []
+    "expected": ["/Employment/Role"]
   },
   {
     "input": "$substring(\"Hello World\",Cars,5)",
-    "expected": []
+    "expected": ["/Cars"]
   },
   {
     "input": "$lowercase(\"Missing close brackets\"",
@@ -5871,23 +6279,27 @@
   },
   {
     "input": "$unknown(Salutation)",
-    "expected": []
+    "expected": ["/Salutation"]
   },
   {
     "input": "$decrypt(Salutation)",
-    "expected": []
+    "expected": ["/Salutation"]
   },
   {
     "input": "Employment.authentication(Salutation)",
-    "expected": []
+    "expected": [
+      "/Employment",
+      "/Employment/Salutation",
+      "/Employment/authentication"
+    ]
   },
   {
     "input": "$uppercase(Invalid)",
-    "expected": []
+    "expected": ["/Invalid"]
   },
   {
     "input": "$uppercase(Employment.Invalid)",
-    "expected": []
+    "expected": ["/Employment/Invalid"]
   },
   {
     "input": "$lowercase(\"Coca\", \"Cola\")",
@@ -5895,7 +6307,7 @@
   },
   {
     "input": "$lowercase(Salary)",
-    "expected": []
+    "expected": ["/Salary"]
   },
   {
     "input": "$lowercase(20)",
@@ -5907,11 +6319,11 @@
   },
   {
     "input": "$lowercase(Employment)",
-    "expected": []
+    "expected": ["/Employment"]
   },
   {
     "input": "$lowercase(Qualifications)",
-    "expected": []
+    "expected": ["/Qualifications"]
   },
   {
     "input": "$uppercase(\"Coca\", \"Cola\")",
@@ -5919,7 +6331,7 @@
   },
   {
     "input": "$uppercase(Salary)",
-    "expected": []
+    "expected": ["/Salary"]
   },
   {
     "input": "$uppercase(28)",
@@ -5931,15 +6343,15 @@
   },
   {
     "input": "$uppercase(Cars)",
-    "expected": []
+    "expected": ["/Cars"]
   },
   {
     "input": "$uppercase(Employment)",
-    "expected": []
+    "expected": ["/Employment"]
   },
   {
     "input": "$uppercase(Qualifications)",
-    "expected": []
+    "expected": ["/Qualifications"]
   },
   {
     "input": "$substringBefore(\"Coca\" & \"ca\")",
@@ -5947,7 +6359,7 @@
   },
   {
     "input": "$substringBefore(Salary,\"xx\")",
-    "expected": []
+    "expected": ["/Salary"]
   },
   {
     "input": "$substringBefore(22,\"xx\")",
@@ -5967,11 +6379,11 @@
   },
   {
     "input": "$substringBefore(Employment,\"xx\")",
-    "expected": []
+    "expected": ["/Employment"]
   },
   {
     "input": "$substringBefore(Qualifications,\"xx\")",
-    "expected": []
+    "expected": ["/Qualifications"]
   },
   {
     "input": "$substringAfter(\"Coca\" & \"ca\")",
@@ -5979,7 +6391,7 @@
   },
   {
     "input": "$substringAfter(Salary,\"xx\")",
-    "expected": []
+    "expected": ["/Salary"]
   },
   {
     "input": "$substringAfter(22,\"xx\")",
@@ -5999,11 +6411,11 @@
   },
   {
     "input": "$substringAfter(Employment,\"xx\")",
-    "expected": []
+    "expected": ["/Employment"]
   },
   {
     "input": "$substringAfter(Qualifications,\"xx\")",
-    "expected": []
+    "expected": ["/Qualifications"]
   },
   {
     "input": "$substring(\"Coca\" & \"ca\", 2, 4, 5)",
@@ -6019,7 +6431,7 @@
   },
   {
     "input": "$substring(Salary,2,4)",
-    "expected": []
+    "expected": ["/Salary"]
   },
   {
     "input": "$substring(\"Hello\",\"World\",5)",
@@ -6035,23 +6447,19 @@
   },
   {
     "input": "$substring(Employment,\"xx\")",
-    "expected": []
+    "expected": ["/Employment"]
   },
   {
     "input": "$substring(Qualifications,6,5)",
-    "expected": []
+    "expected": ["/Qualifications"]
   },
   {
     "input": "detail.contents",
-    "expected": []
+    "expected": ["/detail/contents"]
   },
   {
     "input": "detail.meta",
-    "expected": []
-  },
-  {
-    "input": "detail.meta",
-    "expected": []
+    "expected": ["/detail/meta"]
   },
   {
     "input": "$ ~> |Account.Order.Product|{\"Total\":Price*Quantity},[\"Description\", \"SKU\"]|",
@@ -6059,7 +6467,7 @@
   },
   {
     "input": "Account.Order ~> |Product|{\"Total\":Price*Quantity},[\"Description\", \"SKU\"]|",
-    "expected": []
+    "expected": ["/Account/Order"]
   },
   {
     "input": "$ ~> |Account.Order.Product|{\"Total\":Price*Quantity, \"Price\": Price * 1.2}|",
@@ -6083,23 +6491,19 @@
   },
   {
     "input": "Account ~> |Order|{\"Product\":\"blah\"},nomatch|",
-    "expected": []
+    "expected": ["/Account"]
   },
   {
     "input": "foo ~> |foo.bar|{\"Description\":\"blah\"}|",
-    "expected": []
+    "expected": ["/foo"]
   },
   {
     "input": "Account ~> |Order|5|",
-    "expected": []
+    "expected": ["/Account"]
   },
   {
     "input": "Account ~> |Order|{},5|",
-    "expected": []
-  },
-  {
-    "input": "Account ~> |Order|{\"Product\":\"blah\"},nomatch|",
-    "expected": []
+    "expected": ["/Account"]
   },
   {
     "input": "{} ~> |$|['one', 'two', 'three']|",
@@ -6118,15 +6522,7 @@
     "expected": []
   },
   {
-    "input": "$price.foo.bar",
-    "expected": []
-  },
-  {
     "input": "$var[1]",
-    "expected": []
-  },
-  {
-    "input": "$.foo.bar",
     "expected": []
   },
   {
@@ -6155,11 +6551,11 @@
   },
   {
     "input": "( $foo := \"defined\"; ( $foo := nothing ); $foo )",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "( $foo := \"defined\"; ( $foo := nothing; $foo ) )",
-    "expected": []
+    "expected": ["/nothing"]
   },
   {
     "input": "($a := [1,2]; $a[1]:=3; $a)",
@@ -6167,27 +6563,19 @@
   },
   {
     "input": "foo.*",
-    "expected": []
+    "expected": ["/foo"]
   },
   {
     "input": "foo.*.baz",
-    "expected": []
+    "expected": ["/foo"]
   },
   {
     "input": "foo.*.bazz",
-    "expected": []
+    "expected": ["/foo"]
   },
   {
     "input": "foo.*.baz.*",
-    "expected": []
-  },
-  {
-    "input": "foo.*.baz.*",
-    "expected": []
-  },
-  {
-    "input": "foo.*.baz.*",
-    "expected": []
+    "expected": ["/foo"]
   },
   {
     "input": "*[type=\"home\"]",
@@ -6195,14 +6583,6 @@
   },
   {
     "input": "Account[$$.Account.\"Account Name\" = \"Firefly\"].*[OrderID=\"order104\"].Product.Price",
-    "expected": []
-  },
-  {
-    "input": "Account[$$.Account.`Account Name` = \"Firefly\"].*[OrderID=\"order104\"].Product.Price",
-    "expected": []
-  },
-  {
-    "input": "*",
-    "expected": []
+    "expected": ["/Account", "/Account/Account Name"]
   }
 ]
