@@ -2,6 +2,8 @@ import * as jsonata from "jsonata";
 interface PathContext {
   pathNode: jsonata.ExprNode;
   pathVariablesInScope: Record<string, PathContext>;
+  stringVariablesInScope: Record<string, string>;
+  methodsInScope: Record<string, jsonata.ExprNode>;
   pathId: Symbol;
   parentPathId?: Symbol;
 }
@@ -11,11 +13,15 @@ const UnknownContextId = Symbol("UNKNOWN");
 
 const createUnknownContext = (
   ast: jsonata.ExprNode,
-  pathVariablesInScope: Record<string, PathContext>
+  pathVariablesInScope: Record<string, PathContext>,
+  stringVariablesInScope: Record<string, string>,
+  methodsInScope: Record<string, jsonata.ExprNode>
 ) => {
   return {
     pathNode: ast,
     pathVariablesInScope: { ...pathVariablesInScope },
+    stringVariablesInScope: { ...stringVariablesInScope },
+    methodsInScope: { ...methodsInScope },
     pathId: UnknownContextId
   };
 };
@@ -24,6 +30,8 @@ const createRootContext = (ast: jsonata.ExprNode) => {
   return {
     pathNode: ast,
     pathVariablesInScope: {},
+    stringVariablesInScope: {},
+    methodsInScope: {},
     pathId: RootContextId
   };
 };
@@ -179,6 +187,8 @@ function getPathContextsFromAST(
       const newContext: PathContext = {
         pathNode: ast,
         pathVariablesInScope: { ...currentContext.pathVariablesInScope },
+        stringVariablesInScope: { ...currentContext.stringVariablesInScope },
+        methodsInScope: { ...currentContext.methodsInScope },
         pathId: Symbol(),
         parentPathId: currentContext.pathId
       };
@@ -205,9 +215,33 @@ function getPathContextsFromAST(
           [ast.lhs.value]: {
             pathNode: ast.rhs,
             pathVariablesInScope: currentContext.pathVariablesInScope,
+            stringVariablesInScope: currentContext.stringVariablesInScope,
+            methodsInScope: currentContext.methodsInScope,
             pathId: Symbol(),
             parentPathId: currentContext.parentPathId
           }
+        };
+      }
+      if (
+        ast.lhs &&
+        ast.lhs.type === "variable" &&
+        ast.rhs &&
+        ast.rhs.type === "string"
+      ) {
+        currentContext.stringVariablesInScope = {
+          ...currentContext.stringVariablesInScope,
+          [ast.lhs.value]: ast.rhs.value
+        };
+      }
+      if (
+        ast.lhs &&
+        ast.lhs.type === "variable" &&
+        ast.rhs &&
+        ast.rhs.type === "lambda"
+      ) {
+        currentContext.methodsInScope = {
+          ...currentContext.methodsInScope,
+          [ast.lhs.value]: ast.rhs
         };
       }
       return getPathContextsFromAST(
@@ -252,6 +286,79 @@ function getPathContextsFromAST(
     case "lambda":
     case "partial":
     case "function":
+      if (
+        ast.procedure?.value === "lookup" &&
+        ast.arguments?.[0] &&
+        (ast.arguments?.[0]?.type === "path" ||
+          (ast.arguments?.[1]?.type === "variable" &&
+            currentContext.pathVariablesInScope[ast.arguments?.[0]?.value])) &&
+        ast.arguments?.[1] &&
+        (ast.arguments?.[1]?.type === "string" ||
+          (ast.arguments?.[1]?.type === "variable" &&
+            currentContext.stringVariablesInScope[ast.arguments?.[1]?.value]))
+      ) {
+        // special handling of lookup, construct the lookup into a path
+        const pathNode = {
+          ...(ast.arguments?.[0]?.type === "path"
+            ? ast.arguments?.[0]
+            : currentContext.pathVariablesInScope[ast.arguments?.[0]?.value]
+                ?.pathNode)
+        };
+        const fauxNameNode = {
+          type: "name",
+          position: ast.arguments?.[1]?.position,
+          value:
+            ast.arguments?.[1]?.type === "string"
+              ? ast.arguments?.[1]?.value
+              : currentContext.stringVariablesInScope[ast.arguments?.[1]?.value]
+        };
+        pathNode.steps = [...(pathNode.steps || []), fauxNameNode];
+        return getPathContextsFromAST(pathNode, pathContexts, currentContext);
+      }
+      if (currentContext.methodsInScope[ast.procedure?.value]) {
+        // remap variables
+        const lambdaDef = currentContext.methodsInScope[ast.procedure?.value];
+        const additionalPaths: Record<string, PathContext> = {};
+        const additionalStrings: Record<string, string> = {};
+        // todo additional methods
+        (ast.arguments || []).forEach((arg, index) => {
+          const variableName: string = lambdaDef.arguments?.[index]?.value;
+          if (!variableName) return;
+          if (arg.type === "path") {
+            additionalPaths[variableName] = {
+              pathNode: arg,
+              pathVariablesInScope: currentContext!.pathVariablesInScope,
+              stringVariablesInScope: currentContext!.stringVariablesInScope,
+              methodsInScope: currentContext!.methodsInScope,
+              pathId: Symbol(),
+              parentPathId: currentContext!.parentPathId
+            };
+          }
+          if (arg.type === "string") {
+            additionalStrings[variableName] = arg.value;
+          }
+        });
+        if (
+          Object.keys(additionalPaths).length ||
+          Object.keys(additionalStrings).length
+        ) {
+          pathContexts = getPathContextsFromAST(
+            (lambdaDef as any).body,
+            pathContexts,
+            {
+              ...currentContext,
+              pathVariablesInScope: {
+                ...currentContext.pathVariablesInScope,
+                ...additionalPaths
+              },
+              stringVariablesInScope: {
+                ...currentContext.stringVariablesInScope,
+                ...additionalStrings
+              }
+            }
+          );
+        }
+      }
       const ex = ast.type === "lambda" ? (ast as any).body : ast.procedure;
       return getPathContextsFromAST(
         ex,
@@ -300,7 +407,9 @@ function getPathContextsFromAST(
         pathContexts,
         createUnknownContext(
           currentContext.pathNode,
-          currentContext.pathVariablesInScope
+          currentContext.pathVariablesInScope,
+          currentContext.stringVariablesInScope,
+          currentContext.methodsInScope
         )
       );
     case "variable":
@@ -326,6 +435,8 @@ function getPathContextsFromAST(
         const nameContext: PathContext = {
           pathNode: { position: ast.position, type: "path", steps: [ast] },
           pathVariablesInScope: { ...currentContext.pathVariablesInScope },
+          stringVariablesInScope: { ...currentContext.stringVariablesInScope },
+          methodsInScope: { ...currentContext.methodsInScope },
           pathId: Symbol(),
           parentPathId: currentContext.pathId
         };
