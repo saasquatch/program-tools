@@ -36,7 +36,7 @@ export const critical = css`
 `;
 
 export const warning = css`
-  background-color: var(--sq-border-warning);
-  border-color: var(--sq-border-warning);
-  color: var(--sq-surface);
+  background-color: var(--sq-badge-surface-warning);
+  border-color: var(--sq-badge-surface-warning);
+  color: var(--sq-text);
 `;
