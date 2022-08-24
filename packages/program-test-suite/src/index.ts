@@ -1,9 +1,8 @@
-import { sync as globSync } from "glob";
-import { loadFeature, autoBindSteps, StepDefinitions } from "jest-cucumber";
 import { types } from "@saasquatch/program-boilerplate";
-
-import { getWorld } from "./world";
+import { sync as globSync } from "glob";
+import { autoBindSteps, loadFeature, StepDefinitions } from "jest-cucumber";
 import builtinSteps from "./steps";
+import { getWorld } from "./world";
 
 export { default as jestConfig } from "./jest.config";
 export { getWorld } from "./world";

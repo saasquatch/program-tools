@@ -1,16 +1,15 @@
-import { StepDefinitions } from "jest-cucumber";
+import { inferType } from "@saasquatch/program-boilerplate";
 import assert from "assert";
 import delve from "dlv";
-import { inferType } from "@saasquatch/program-boilerplate";
-
-import { getWorld } from "../world";
+import { StepDefinitions } from "jest-cucumber";
 import {
-  MutationStepRow,
   AnalyticsStepRow,
-  ValidationStepRow,
-  IntrospectionRow,
   FieldValueRow,
+  IntrospectionRow,
+  MutationStepRow,
+  ValidationStepRow,
 } from "../types";
+import { getWorld } from "../world";
 
 const assertionSteps: StepDefinitions = ({ then }) => {
   then(

@@ -1,5 +1,4 @@
 import { StepDefinitions } from "jest-cucumber";
-
 import { getWorld } from "../world";
 
 const rulesSteps: StepDefinitions = ({ given }) => {

@@ -1,7 +1,6 @@
-import { readFileSync } from "fs";
-import deepmerge from "deepmerge";
 import { types } from "@saasquatch/program-boilerplate";
-
+import deepmerge from "deepmerge";
+import { readFileSync } from "fs";
 import { getRandomUser } from "./faker";
 
 interface State {

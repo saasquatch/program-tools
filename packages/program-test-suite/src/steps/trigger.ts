@@ -1,16 +1,15 @@
-import { StepDefinitions } from "jest-cucumber";
 import { triggerProgram, types } from "@saasquatch/program-boilerplate";
 import deepmerge from "deepmerge";
-
-import { World, getWorld } from "../world";
+import { StepDefinitions } from "jest-cucumber";
 import {
-  getIntrospectionJson,
   getAUCOUTJson,
   getAUEPTJson,
-  getReferralJson,
+  getIntrospectionJson,
   getProgramTriggerJson,
+  getReferralJson,
   getValidationJson,
 } from "../faker";
+import { getWorld } from "../world";
 
 const triggerSteps: StepDefinitions = ({ when }) => {
   const triggerTypes = [
