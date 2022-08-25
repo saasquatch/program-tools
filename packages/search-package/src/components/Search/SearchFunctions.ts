@@ -18,7 +18,7 @@ export const getfullPath = (pathArray: Array<string>, index: number) => {
   return fullPath;
 };
 
-export const getBreadcrumbHook = (link: string) => {
+export const getBreadcrumb = (link: string) => {
   const fullPath: string = new URL(link).pathname;
   const noStartEndSlashes: string = fullPath.slice(1, -1);
   const pathArray: Array<string> = noStartEndSlashes.split("/");

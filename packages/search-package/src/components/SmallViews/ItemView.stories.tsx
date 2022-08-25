@@ -1,5 +1,5 @@
 import React from "react";
-import { getBreadcrumbHook } from "../Search/SearchFunctions";
+import { getBreadcrumb } from "../Search/SearchFunctions";
 import ItemView, { ItemViewProps } from "./ItemView";
 
 
@@ -21,7 +21,7 @@ const defaultProps: ItemViewProps = {
         snippet: "",
         title: ""
     },
-    onGetBreadcrumbs: getBreadcrumbHook
+    onGetBreadcrumbs: getBreadcrumb
 }
 
 export const OneItem = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import Search, { SearchProps } from "./Search";
-import { getBreadcrumbHook, isBlank } from './SearchFunctions'
+import { getBreadcrumb, isBlank } from './SearchFunctions'
 import { useSearch } from "./UseSearch";
 
 export default {
@@ -10,7 +10,7 @@ export default {
 
 export const Default = () => {
   const defaultProps: SearchProps = {
-    onGetBreadcrumbs: getBreadcrumbHook,
+    onGetBreadcrumbs: getBreadcrumb,
     onIsBlank: isBlank,
     useSearch: useSearch()
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Results, ResultsProps } from "./Results";
-import { getBreadcrumbHook, isBlank } from "./SearchFunctions";
+import { getBreadcrumb, isBlank } from "./SearchFunctions";
 
 export default {
   title: "Results",
@@ -55,7 +55,7 @@ const defaultProps: ResultsProps = {
   },
   setStartIndex: "",
   query: "test",
-  onGetBreadcrumbs: getBreadcrumbHook,
+  onGetBreadcrumbs: getBreadcrumb,
   onIsBlank: isBlank,
 };
 
