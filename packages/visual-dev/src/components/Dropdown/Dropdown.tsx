@@ -211,20 +211,26 @@ const borderPresets = {
     top: {
       open: "var(--sq-border-radius-pill) var(--sq-border-radius-pill) 0 0",
       closed: "var(--sq-border-radius-pill)",
+      content: "32px 32px 0 0",
     },
     bottom: {
       open: "0 0 var(--sq-border-radius-pill) var(--sq-border-radius-pill)",
       closed: "var(--sq-border-radius-pill)",
+      content: "0 0 32px 32px",
     },
   },
   normal: {
     top: {
       open: "var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0",
       closed: "var(--sq-border-radius-normal)",
+      content:
+        "var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0",
     },
     bottom: {
       open: "0 0 var(--sq-border-radius-normal) var(--sq-border-radius-normal)",
       closed: "var(--sq-border-radius-normal)",
+      content:
+        "0 0 var(--sq-border-radius-normal) var(--sq-border-radius-normal)",
     },
   },
 };
@@ -290,7 +296,7 @@ const DropdownView = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
             borderRadius={
               borderPresets[pill ? "pill" : "normal"][
                 popUpwards ? "top" : "bottom"
-              ][showMenu ? "open" : "closed"]
+              ]["content"]
             }
           >
             {children ||
