@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/squatch-search",
-  "version": "0.0.1",
+  "version": "0.1.0-1",
   "description": "SaaSquatch search",
   "main": "dist/index.js",
   "module": "dist/visual-dev.esm.js",

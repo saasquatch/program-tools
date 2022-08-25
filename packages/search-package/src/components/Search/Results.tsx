@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { BreadcrumbLinkProps } from "../SmallViews/BreadcrumbLink";
 import ItemView from "../SmallViews/ItemView";
-import { sanitizeGoogleSearchLink } from "./SearchFunctions";
 
 const ItemsContainerDiv = styled.div`
   max-width: 1000px;

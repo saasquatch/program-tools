@@ -1,11 +1,5 @@
 import { BreadcrumbLinkProps } from "../SmallViews/BreadcrumbLink";
 
-export function sanitizeGoogleSearchLink(link: string) {
-  return link
-    .replace("https://docs.referralsaasquatch.com", "")
-    .replace("https://docs.saasquatch.com", "");
-}
-
 export function isBlank(str?: string) {
   return !str || /^\s*$/.test(str);
 }

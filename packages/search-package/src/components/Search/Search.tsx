@@ -23,8 +23,17 @@ export interface useSearchProps {
 }
 
 export interface SearchProps {
+  /**
+   * Pass in getBreadcrum function, or a function to create a breadcrumb changed 
+   */
   onGetBreadcrumbs: (link: string) => Array<BreadcrumbLinkProps>;
+  /**
+   * Pass in isBlank function to check if query is blank
+   */
   onIsBlank: (str?: string) => boolean;
+  /**
+   * Pass in useSearch function in here
+   */
   useSearch: useSearchProps;
 }
 
