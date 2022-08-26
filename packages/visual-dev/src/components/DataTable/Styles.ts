@@ -29,7 +29,6 @@ export const RowBase = css`
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
   color: var(--sq-text-dark);
-  background-color: var(--sq-surface);
 `;
 
 export const DataTableDiv = css`
@@ -131,7 +130,7 @@ export const PopoverDividerDiv = css`
 
 export const PaginationDiv = css`
   display: flex;
-  background-color: var(--sq-surface);
+  background-color: var(--sq-background);
   padding: var(--sq-spacing-xx-small) 20px;
   align-items: center;
   background: var(--sq-background);
