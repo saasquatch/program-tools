@@ -145,7 +145,9 @@ const DropdownButtonDiv = styled("div")<
     "border-color: var(--sq-text-interactive);"}
   ${(props) =>
     props.showMenu &&
-    (props.popUpwards ? "border-top: none;" : "border-bottom: none;")}
+    (props.popUpwards
+      ? "border-top: 2px solid var(--sq-surface);"
+      : "border-bottom: 2px solid var(--sq-surface);")}
   ${(props) => `border-radius: ${props.borderRadius};`}
   &:hover {
     ${(props) => props.disabled && "cursor: not-allowed;"};
