@@ -17,6 +17,8 @@ First release of the JSONata paths extractor library. A single function is expor
 - Support paths in filters, sorts, and groups
 - Support variables bound to paths
 - Handle wildcards, descendants, and parents
+- Handle string lookups
+- Handle context of function
 
 [unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fjsonata-paths-extractor%401.0.0...HEAD
 [0.1.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fjsonata-paths-extractor%401.0.0
