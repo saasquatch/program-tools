@@ -41,9 +41,6 @@ const isParentRootContext = (ctx: PathContext) =>
 
 const isRootContext = (ctx: PathContext) => ctx.pathId === RootContextId;
 
-// const isParentUnknownContext = (ctx: PathContext) =>
-//   ctx.parentPathId === UnknownContextId;
-
 const markContextAsUnaryUnlessRoot = (context: PathContext): PathContext => {
   if (context.pathId !== RootContextId) context.pathId = Symbol("UNARY");
   return context;
@@ -60,17 +57,14 @@ const reduceToPathString = (
 ): string => {
   return (
     pathContext.pathNode.steps
-      // todo: fold filters into reduce
-      ?.filter(step =>
-        typeof stopAtPosition === "number" && typeof step.position === "number"
-          ? step.position < stopAtPosition
-          : true
-      )
-      .filter(step =>
-        typeof startAtPosition === "number" && typeof step.position === "number"
-          ? step.position >= startAtPosition
-          : true
-      )
+      ?.filter(step => {
+        if (typeof step.position !== "number") return true;
+        if (typeof stopAtPosition === "number")
+          return step.position < stopAtPosition;
+        if (typeof startAtPosition === "number")
+          return step.position >= startAtPosition;
+        return true;
+      })
       .reduce((pathString, step, index, array) => {
         if (index === 0 && step.type === "variable") {
           if (step.value === "$") {
@@ -320,7 +314,7 @@ function getPathContextsFromAST(
         const lambdaDef = currentContext.methodsInScope[ast.procedure?.value];
         const additionalPaths: Record<string, PathContext> = {};
         const additionalStrings: Record<string, string> = {};
-        // todo additional methods
+        // potential improvement: add support for nested methods
         (ast.arguments || []).forEach((arg, index) => {
           const variableName: string = lambdaDef.arguments?.[index]?.value;
           if (!variableName) return;
@@ -342,9 +336,9 @@ function getPathContextsFromAST(
           Object.keys(additionalPaths).length ||
           Object.keys(additionalStrings).length
         ) {
-          pathContexts = getPathContextsFromAST(
+          return getPathContextsFromAST(
             (lambdaDef as any).body,
-            pathContexts,
+            getPathContextsFromAST(ast.arguments, pathContexts, currentContext),
             {
               ...currentContext,
               pathVariablesInScope: {

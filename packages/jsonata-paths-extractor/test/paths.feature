@@ -1,4 +1,5 @@
 Feature: JSONata paths extractor
+  WARNING: auto formatting this file will cause the tests to break. $$$ is needed due to a bug in the parsing of the cucumber table string
 
   Scenario Outline: Paths are extracted as JSON pointers
     Given the JSONata expression "<expr>"
@@ -67,16 +68,46 @@ Feature: JSONata paths extractor
       | ($foo := bar; $foo.buzz)     | ["/bar","/bar/buzz"]         |
       | ($foo := bar.bat; $foo.buzz) | ["/bar/bat","/bar/bat/buzz"] |
 
+  Scenario Outline: $lookup() invocations with a second argument that is a string are constructed into a path
+    Given the JSONata expression "<expr>"
+    When the paths are extracted
+    Then the result is <result>
+
+    Examples:
+      | expr                         | result              |
+      | $lookup(some.path, "prop")   | ["/some/path/prop"] |
+      | $lookup(some.path, $unknown) | ["/some/path"]      |
+
+  Scenario Outline: Variables assigned to strings are tracked
+    Needed for $lookup evaluation
+    Given the JSONata expression "<expr>"
+    When the paths are extracted
+    Then the result is <result>
+
+    Examples:
+      | expr                                | result       |
+      | ($foo := "bar"; $lookup(foo, $foo)) | ["/foo/bar"] |
+
+  Scenario Outline: Function definitions are tracked and context reapplied when invoked
+    Given the JSONata expression "<expr>"
+    When the paths are extracted
+    Then the result is <result>
+
+    Examples:
+      | expr                                                                                 | result                            |
+      | ($customFunction := function($foo) { $foo.bar };  $customFunction(some.path))        | [ "/some/path", "/some/path/bar"] |
+      | ($customFunction := function($foo) { $lookup(path, $foo) };  $customFunction("str")) | ["/path","/path/str"]             |
+
   Scenario Outline: $$ resets the path to start from the root context
     Given the JSONata expression "<expr>"
     When the paths are extracted
     Then the result is <result>
 
     Examples:
-      | expr                                                      | result                                                             |
+      | expr                                                     | result                                                             |
       | (before.wildcard.*.after[$$$.filter.nested=""].wildcard) | ["/before/wildcard", "/filter/nested"]                             |
-      | path.to.deeply.nested.field[$$$.filter = true]            | ["/path/to/deeply/nested/field","/filter"]                         |
-      | path.to.deeply.nested{$$$.group : field}                  | ["/path/to/deeply/nested","/group","/path/to/deeply/nested/field"] |
-      | ($foo := $$$.bar.bat;bar.buzz[$foo="test"].boom)          | ["/bar/bat","/bar/buzz/boom"]                                      |
+      | path.to.deeply.nested.field[$$$.filter = true]           | ["/path/to/deeply/nested/field","/filter"]                         |
+      | path.to.deeply.nested{$$$.group : field}                 | ["/path/to/deeply/nested","/group","/path/to/deeply/nested/field"] |
+      | ($foo := $.bar.bat;bar.buzz[$$$foo="test"].boom)         | ["/bar/bat","/bar/buzz/boom"]                                      |
 
 

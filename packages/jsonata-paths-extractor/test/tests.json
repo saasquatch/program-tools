@@ -45,7 +45,7 @@
   },
   {
     "input": "(\n      $field := \"x\";\n      $fieldValue = $lookup(event.fields, $field);\n      $fieldValue > 0\n   )",
-    "expected": ["/event/fields"]
+    "expected": ["/event/fields/x"]
   },
   {
     "input": "(event.key = \"purchase\" ? (user.accountId = \"new\" and user.accountId = \"unique\" ?  $tier1))",
@@ -1602,6 +1602,10 @@
     ]
   },
   {
+    "input": "($foo := function($p) {($p.nested.field)}; $foo(some.path))",
+    "expected": ["/some/path", "/some/path/nested/field"]
+  },
+  {
     "input": "$eval('[1,string(2),3]')",
     "expected": []
   },
@@ -2683,15 +2687,15 @@
   },
   {
     "input": "$lookup(Account, \"Account Name\")",
-    "expected": ["/Account"]
+    "expected": ["/Account/Account Name"]
   },
   {
     "input": "$lookup(Account.Order.Product, \"Product Name\")",
-    "expected": ["/Account/Order/Product"]
+    "expected": ["/Account/Order/Product/Product Name"]
   },
   {
     "input": "$lookup(Account.Order.Product.ProductID, \"Product Name\")",
-    "expected": ["/Account/Order/Product/ProductID"]
+    "expected": ["/Account/Order/Product/ProductID/Product Name"]
   },
   {
     "input": "$lookup($$, \"gust\")",
