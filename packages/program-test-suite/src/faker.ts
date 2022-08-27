@@ -73,11 +73,11 @@ export function getProgramTriggerJson(
   };
 }
 
-export function getAUCOUTJson(prev?: any, events?: any[]): any {
+export function getAUCOUTJson(previous?: any, events?: any[]): any {
   return {
     activeTrigger: {
       events,
-      prev,
+      previous,
     },
   };
 }

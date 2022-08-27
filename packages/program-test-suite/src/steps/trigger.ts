@@ -57,7 +57,10 @@ const triggerSteps: StepDefinitions = ({ when }) => {
       case "AFTER_USER_CREATED_OR_UPDATED":
         body = deepmerge(
           body,
-          getAUCOUTJson(undefined, getWorld().state.current.events)
+          getAUCOUTJson(
+            getWorld().state.current.previous,
+            getWorld().state.current.events
+          )
         );
         break;
 
