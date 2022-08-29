@@ -98,107 +98,96 @@ export const PaginationView = React.forwardRef<
 
   return (
     <PaginationDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
-      {total !== null &&
-        (loading ? (
-          <DataTableView.SkeletonView size="91px" />
-        ) : (
-          `${offset + 1} - ${Math.min(offset + limit, total)} of ${total}`
-        ))}
-      <ContainerDiv>
-        {loading ? (
-          <DataTableView.SkeletonView circle />
-        ) : (
-          <IconButtonView
-            borderless={true}
-            size="mini"
-            icon="chevron_left"
-            customCSS="margin: -3px; &:hover{background: none;}"
-            disabled={offset == 0}
-            onClick={() => {
-              updatePagination(limit, Math.max(offset - limit, 0));
-            }}
-          />
-        )}
-        {loading ? (
-          <DataTableView.SkeletonView size="150px" />
-        ) : (
-          filteredPages.map((p: number, i: number) => (
-            <React.Fragment key={`page-${i}`}>
-              {i != 0 && filteredPages[i - 1] + 1 != p && (
-                <TextDiv style={{ cursor: "default" }}>...</TextDiv>
-              )}
-              <TextDiv
-                selected={current_page === p}
-                onClick={() => {
-                  updatePagination(limit, Math.max(limit * p, 0));
-                }}
+      {loading ? (
+        <DataTableView.SkeletonView
+          customCSS={{ marginLeft: "auto" }}
+          size="160px"
+        />
+      ) : (
+        <>
+          {total !== null &&
+            `${offset + 1} - ${Math.min(offset + limit, total)} of ${total}`}
+
+          <ContainerDiv>
+            <IconButtonView
+              borderless={true}
+              size="mini"
+              icon="chevron_left"
+              customCSS="margin: -3px; &:hover{background: none;}"
+              disabled={offset == 0}
+              onClick={() => {
+                updatePagination(limit, Math.max(offset - limit, 0));
+              }}
+            />
+
+            {filteredPages.map((p: number, i: number) => (
+              <React.Fragment key={`page-${i}`}>
+                {i != 0 && filteredPages[i - 1] + 1 != p && (
+                  <TextDiv style={{ cursor: "default" }}>...</TextDiv>
+                )}
+                <TextDiv
+                  selected={current_page === p}
+                  onClick={() => {
+                    updatePagination(limit, Math.max(limit * p, 0));
+                  }}
+                >
+                  {p + 1}
+                </TextDiv>
+              </React.Fragment>
+            ))}
+
+            <IconButtonView
+              size="mini"
+              icon="chevron_right"
+              borderless={true}
+              customCSS={`margin: -3px; &:hover{background: none;} ${
+                !hidePerPage && "margin-right: var(--sq-spacing-x-large);"
+              }`}
+              disabled={total != null ? offset + limit >= total : !hasNext}
+              onClick={() => {
+                updatePagination(limit, offset + limit);
+              }}
+            />
+
+            {!hidePerPage && (
+              <DropdownView
+                onClickDropdown={() => setDropdown(!dropdown)}
+                showMenu={dropdown}
+                pill
+                center
+                popUpwards
+                text={`${limit} Per Page`}
+                customCSS="min-width: 165px; width: 165px; display: inline-block"
               >
-                {p + 1}
-              </TextDiv>
-            </React.Fragment>
-          ))
-        )}
-        {loading ? (
-          <DataTableView.SkeletonView
-            circle
-            customCSS={`margin: -3px; ${
-              !hidePerPage && "margin-right: var(--sq-spacing-x-large);"
-            }`}
-          />
-        ) : (
-          <IconButtonView
-            size="mini"
-            icon="chevron_right"
-            borderless={true}
-            customCSS={`margin: -3px; &:hover{background: none;} ${
-              !hidePerPage && "margin-right: var(--sq-spacing-x-large);"
-            }`}
-            disabled={total != null ? offset + limit >= total : !hasNext}
-            onClick={() => {
-              updatePagination(limit, offset + limit);
-            }}
-          />
-        )}
-        {!hidePerPage &&
-          (loading ? (
-            <DataTableView.SkeletonView size="150px" />
-          ) : (
-            <DropdownView
-              onClickDropdown={() => setDropdown(!dropdown)}
-              showMenu={dropdown}
-              pill
-              center
-              popUpwards
-              text={`${limit} Per Page`}
-              customCSS="min-width: 165px; width: 165px; display: inline-block"
-            >
-              <DropdownView.ItemView
-                onClick={() => {
-                  updatePagination(10, 0);
-                  setDropdown(false);
-                }}
-              >
-                10 Per Page
-              </DropdownView.ItemView>
-              <DropdownView.ItemView
-                onClick={() => {
-                  updatePagination(25, 0);
-                  setDropdown(false);
-                }}
-              >
-                25 Per Page
-              </DropdownView.ItemView>
-              <DropdownView.ItemView
-                onClick={() => {
-                  updatePagination(50, 0);
-                  setDropdown(false);
-                }}
-              >
-                50 Per Page
-              </DropdownView.ItemView>
-            </DropdownView>
-          ))}
-      </ContainerDiv>
+                <DropdownView.ItemView
+                  onClick={() => {
+                    updatePagination(10, 0);
+                    setDropdown(false);
+                  }}
+                >
+                  10 Per Page
+                </DropdownView.ItemView>
+                <DropdownView.ItemView
+                  onClick={() => {
+                    updatePagination(25, 0);
+                    setDropdown(false);
+                  }}
+                >
+                  25 Per Page
+                </DropdownView.ItemView>
+                <DropdownView.ItemView
+                  onClick={() => {
+                    updatePagination(50, 0);
+                    setDropdown(false);
+                  }}
+                >
+                  50 Per Page
+                </DropdownView.ItemView>
+              </DropdownView>
+            )}
+          </ContainerDiv>
+        </>
+      )}
     </PaginationDiv>
   );
 });

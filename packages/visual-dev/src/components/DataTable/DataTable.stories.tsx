@@ -400,17 +400,6 @@ export const paginationHidePerPage = () => (
   />
 );
 
-export const paginationHidePerPageLoading = () => (
-  <DataTableView.PaginationView
-    total={440}
-    limit={10}
-    offset={0}
-    hidePerPage
-    loading
-    updatePagination={updatePaginationDummy}
-  />
-);
-
 export const paginationManyStart = () => (
   <DataTableView.PaginationView
     total={440}
@@ -460,15 +449,6 @@ export const paginationNoTotalEnd = () => (
   <DataTableView.PaginationView
     limit={10}
     offset={20}
-    updatePagination={updatePaginationDummy}
-  />
-);
-
-export const paginationNoTotalLoading = () => (
-  <DataTableView.PaginationView
-    limit={10}
-    offset={0}
-    hasNext={true}
     updatePagination={updatePaginationDummy}
   />
 );
