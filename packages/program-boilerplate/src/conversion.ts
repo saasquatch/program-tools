@@ -2,6 +2,9 @@
  * @module conversion
  */
 
+import * as assert from "assert";
+import * as jsonata from "jsonata";
+
 /**
  * A custom field based conversion rule
  */
@@ -64,6 +67,47 @@ function parseValue(value: string): RuleValue {
   }
 
   return value;
+}
+
+/**
+ * Checks whether any of the edge trigger conditions are met given
+ * a list of fields to check and the current context.
+ *
+ * @param {string[] | undefined} fields The list of edge trigger fields
+ * @param {any} activeTrigger The current program `activeTrigger`
+ *
+ * @return {boolean} Whether any of the edge fields have changed
+ */
+export function meetEdgeTriggerConditions(
+  fields: string[] | undefined,
+  activeTrigger: any
+): boolean {
+  if (fields === undefined || fields.length === 0) {
+    return true;
+  }
+
+  for (const field of fields) {
+    if (!field.startsWith("user.")) {
+      // TODO: what to do here? this is probably some kind of error case
+      continue;
+    }
+
+    const previousValue = jsonata(field.replace("user.", "previous.")).evaluate(
+      activeTrigger
+    );
+    const currentValue = jsonata(field).evaluate(activeTrigger);
+
+    try {
+      assert.deepStrictEqual(currentValue, previousValue);
+      // assertion passed -- field did not change
+      // continue on to other fields and see if any changed
+    } catch (_e) {
+      // assertion failed -- field must have changed
+      return true;
+    }
+  }
+
+  return false;
 }
 
 /**
