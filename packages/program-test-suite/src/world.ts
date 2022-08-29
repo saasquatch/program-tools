@@ -1,7 +1,6 @@
-import { readFileSync } from "fs";
-import deepmerge from "deepmerge";
 import { types } from "@saasquatch/program-boilerplate";
-
+import deepmerge from "deepmerge";
+import { readFileSync } from "fs";
 import { getRandomUser } from "./faker";
 
 interface State {
@@ -21,11 +20,13 @@ interface State {
   }>;
 }
 
+const deepCopy = (input: any) => JSON.parse(JSON.stringify(input));
+
 export class World {
-  static program: types.rpc.Program;
-  static defaultIntrospection = "{}";
-  static defaultRules = "{}";
-  static defaultTemplate: any = {};
+  private program: types.rpc.Program | undefined;
+  private defaultIntrospection = {};
+  private defaultRules = {};
+  private defaultTemplate: any = {};
 
   state: Readonly<State>;
 
@@ -33,11 +34,7 @@ export class World {
     this.state = this.reset();
   }
 
-  static loadDefaults(
-    schemaFile: string,
-    templateFile: string,
-    rulesFile: string
-  ) {
+  loadDefaults(schemaFile: string, templateFile: string, rulesFile: string) {
     this.defaultIntrospection = JSON.parse(
       readFileSync(templateFile).toString()
     );
@@ -46,13 +43,17 @@ export class World {
     this.defaultTemplate = deepmerge(this.defaultIntrospection, schema);
   }
 
-  static setProgram(program: types.rpc.Program) {
+  setProgram(program: types.rpc.Program) {
     this.program = program;
   }
 
-  static getProgram() {
+  getProgram() {
     if (!this.program) throw new Error("The program has to be set");
     return this.program;
+  }
+
+  getDefaultTemplate() {
+    return this.defaultTemplate;
   }
 
   setState(newState: Partial<State>) {
@@ -70,10 +71,11 @@ export class World {
         referral: {},
         programRewards: [],
         user: getRandomUser("REFERRED"),
-        rules: World.defaultRules,
-        template: World.defaultTemplate,
+        rules: deepCopy(this.defaultRules),
+        template: deepCopy(this.defaultTemplate),
       },
     };
+
     return this.state;
   }
 }
@@ -81,6 +83,9 @@ export class World {
 let world: World | undefined;
 
 export function getWorld() {
-  if (!world) world = new World();
+  if (world === undefined) {
+    world = new World();
+  }
+
   return world as World;
 }

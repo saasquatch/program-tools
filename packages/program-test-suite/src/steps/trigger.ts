@@ -1,76 +1,85 @@
-import { StepDefinitions } from "jest-cucumber";
 import { triggerProgram, types } from "@saasquatch/program-boilerplate";
 import deepmerge from "deepmerge";
-
-import { World, getWorld } from "../world";
+import { StepDefinitions } from "jest-cucumber";
 import {
-  getIntrospectionJson,
   getAUCOUTJson,
   getAUEPTJson,
-  getReferralJson,
+  getIntrospectionJson,
   getProgramTriggerJson,
+  getReferralJson,
   getValidationJson,
 } from "../faker";
+import { getWorld } from "../world";
 
 const triggerSteps: StepDefinitions = ({ when }) => {
-  when(
-    /^(?:the )?"?(PROGRAM_INTROSPECTION|PROGRAM_VALIDATION|AFTER_USER_CREATED_OR_UPDATED|AFTER_USER_EVENT_PROCESSED|REFERRAL)"?(?: trigger)? runs$/,
-    (type: types.rpc.TriggerType) => {
-      const currentState = getWorld().state.current || {};
-      const { template, rules, programRewards } = currentState;
+  const triggerTypes = [
+    "PROGRAM_INTROSPECTION",
+    "PROGRAM_VALIDATION",
+    "AFTER_USER_CREATED_OR_UPDATED",
+    "AFTER_USER_EVENT_PROCESSED",
+    "REFERRAL",
+    "SCHEDULED",
+    "REWARD_SCHEDULED",
+  ];
 
-      let body: any;
+  // prettier-ignore
+  const regexString = `^(?:the )?"?(${triggerTypes.join("|")})"?(?: trigger)? runs$`;
 
-      switch (type) {
-        case "PROGRAM_INTROSPECTION":
-          body = getIntrospectionJson(template, rules, programRewards);
-          break;
+  when(new RegExp(regexString), (type: types.rpc.TriggerType) => {
+    const currentState = getWorld().state.current ?? {};
+    const { template, rules, programRewards } = currentState;
 
-        case "PROGRAM_VALIDATION":
-          body = getValidationJson(
-            getWorld().state.validationReqs,
-            template.id,
-            rules
-          );
-          break;
+    let body: any;
 
-        default:
-          body = getProgramTriggerJson({
-            type,
-            user: getWorld().state.current.user,
-            rules: getWorld().state.current.rules,
-            time: getWorld().state.current.time,
-          });
-      }
+    switch (type) {
+      case "PROGRAM_INTROSPECTION":
+        body = getIntrospectionJson(template, rules, programRewards);
+        break;
 
-      switch (type) {
-        case "AFTER_USER_CREATED_OR_UPDATED":
-          body = deepmerge(
-            body,
-            getAUCOUTJson(undefined, getWorld().state.current.events)
-          );
-          break;
+      case "PROGRAM_VALIDATION":
+        body = getValidationJson(
+          getWorld().state.validationReqs,
+          template.id,
+          rules
+        );
+        break;
 
-        case "AFTER_USER_EVENT_PROCESSED":
-          body = deepmerge(body, getAUEPTJson(getWorld().state.current.events));
-          break;
-
-        case "REFERRAL":
-          body = deepmerge(
-            body,
-            getReferralJson(undefined, getWorld().state.current.referral)
-          );
-          break;
-
-        default:
-          break;
-      }
-
-      getWorld().setState({
-        programTriggerResult: triggerProgram(body, World.getProgram()).json,
-      });
+      default:
+        body = getProgramTriggerJson({
+          type,
+          user: getWorld().state.current.user,
+          rules: getWorld().state.current.rules,
+          time: getWorld().state.current.time,
+        });
     }
-  );
+
+    switch (type) {
+      case "AFTER_USER_CREATED_OR_UPDATED":
+        body = deepmerge(
+          body,
+          getAUCOUTJson(undefined, getWorld().state.current.events)
+        );
+        break;
+
+      case "AFTER_USER_EVENT_PROCESSED":
+        body = deepmerge(body, getAUEPTJson(getWorld().state.current.events));
+        break;
+
+      case "REFERRAL":
+        body = deepmerge(
+          body,
+          getReferralJson(undefined, getWorld().state.current.referral)
+        );
+        break;
+
+      default:
+        break;
+    }
+
+    getWorld().setState({
+      programTriggerResult: triggerProgram(body, getWorld().getProgram()).json,
+    });
+  });
 };
 
 export default triggerSteps;

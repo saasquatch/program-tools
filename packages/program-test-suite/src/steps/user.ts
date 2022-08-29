@@ -1,6 +1,5 @@
-import { StepDefinitions } from "jest-cucumber";
 import { inferType } from "@saasquatch/program-boilerplate";
-
+import { StepDefinitions } from "jest-cucumber";
 import { getWorld } from "../world";
 
 const userSteps: StepDefinitions = ({ given }) => {
@@ -32,9 +31,11 @@ const userSteps: StepDefinitions = ({ given }) => {
     }
   );
 
-  given(/^the segment rules include segment (S+)$/, (seg: string) => {
-    const segments = getWorld().state.current.rules.userSegmentation || [];
-    segments.push(seg);
+  given(/^the segment rules include segment "?([^"]+)"?$/, (seg: string) => {
+    const segments = getWorld().state.current.rules.userSegmentation ?? [];
+    if (!segments.includes(seg)) {
+      segments.push(seg);
+    }
 
     getWorld().setState({
       current: {
@@ -49,7 +50,9 @@ const userSteps: StepDefinitions = ({ given }) => {
     /^the (?:referred )?user belongs to segment "?([^"]+)"?$/,
     (segment: string) => {
       const segments = getWorld().state.current.user.segments || [];
-      segments.push(segment);
+      if (!segments.includes(segment)) {
+        segments.push(segment);
+      }
 
       getWorld().setState({
         current: {

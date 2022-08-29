@@ -1,9 +1,9 @@
+import assertionSteps from "./assertions";
 import eventSteps from "./events";
+import referralSteps from "./referral";
 import rulesSteps from "./rules";
 import triggerSteps from "./trigger";
 import userSteps from "./user";
-import assertionSteps from "./assertions";
-import referralSteps from "./referral";
 
 export default [
   eventSteps,

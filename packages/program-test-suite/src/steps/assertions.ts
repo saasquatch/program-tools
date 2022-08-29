@@ -1,16 +1,15 @@
-import { StepDefinitions } from "jest-cucumber";
+import { inferType } from "@saasquatch/program-boilerplate";
 import assert from "assert";
 import delve from "dlv";
-import { inferType } from "@saasquatch/program-boilerplate";
-
-import { World, getWorld } from "../world";
+import { StepDefinitions } from "jest-cucumber";
 import {
-  MutationStepRow,
   AnalyticsStepRow,
-  ValidationStepRow,
-  IntrospectionRow,
   FieldValueRow,
+  IntrospectionRow,
+  MutationStepRow,
+  ValidationStepRow,
 } from "../types";
+import { getWorld } from "../world";
 
 const assertionSteps: StepDefinitions = ({ then }) => {
   then(
@@ -19,7 +18,10 @@ const assertionSteps: StepDefinitions = ({ then }) => {
       const reqs = getWorld().state.programTriggerResult.requirements;
       const reqFound = reqs.find((r: any) => r.key === key);
       getWorld().setState({ assertionResults: { foundRequirement: reqFound } });
-      assert(reqFound);
+      assert(
+        reqFound,
+        `"${key}" requirement was not found in the requirements`
+      );
     }
   );
 
@@ -34,7 +36,10 @@ const assertionSteps: StepDefinitions = ({ then }) => {
     const results = getWorld().state.programTriggerResult.validationResults;
     data.forEach((row: ValidationStepRow) => {
       const relevantResult = results.find((r: any) => r.key === row.key);
-      assert(relevantResult);
+      assert(
+        relevantResult,
+        `Failed to locate validation result with key "${row.key}"`
+      );
 
       assert(
         relevantResult.results.some((r: any) => {
@@ -94,7 +99,11 @@ const assertionSteps: StepDefinitions = ({ then }) => {
               );
             });
 
-          assert.strictEqual(relevantRewards.length, Number(row.count));
+          assert.strictEqual(
+            relevantRewards.length,
+            Number(row.count),
+            `Expected to find ${row.count} rewards but only found ${relevantRewards.length}`
+          );
           break;
         case "email":
           const relevantEmails =
@@ -108,7 +117,11 @@ const assertionSteps: StepDefinitions = ({ then }) => {
               );
             });
 
-          assert.strictEqual(relevantEmails.length, Number(row.count));
+          assert.strictEqual(
+            relevantEmails.length,
+            Number(row.count),
+            `Expected to find ${row.count} emails but only found ${relevantEmails.length}`
+          );
           break;
         default:
       }
@@ -127,7 +140,11 @@ const assertionSteps: StepDefinitions = ({ then }) => {
           );
         });
 
-      assert.strictEqual(relevantAnalytics.length, 0);
+      assert.strictEqual(
+        relevantAnalytics.length,
+        0,
+        `Expected to find 0 "${type}" analytics for "${user}" but found ${relevantAnalytics.length}`
+      );
     }
   );
 
@@ -145,21 +162,29 @@ const assertionSteps: StepDefinitions = ({ then }) => {
           );
         });
 
-      assert.strictEqual(relevantAnalytics.length, Number(row.count));
+      assert.strictEqual(
+        relevantAnalytics.length,
+        Number(row.count),
+        `Expected to find ${row.count} analytics but only found ${relevantAnalytics.length}`
+      );
     });
   });
 
   then("there will be no mutations", () => {
+    const numMutations = getWorld().state.programTriggerResult.mutations.length;
     assert.strictEqual(
-      getWorld().state.programTriggerResult.mutations.length,
-      0
+      numMutations,
+      0,
+      `Expected 0 mutations but found ${numMutations}`
     );
   });
 
   then("there will be no analytics", () => {
+    const numAnalytics = getWorld().state.programTriggerResult.analytics.length;
     assert.strictEqual(
-      getWorld().state.programTriggerResult.analytics.length,
-      0
+      numAnalytics,
+      0,
+      `Expected 0 analytics but found ${numAnalytics}`
     );
   });
 
@@ -176,7 +201,11 @@ const assertionSteps: StepDefinitions = ({ then }) => {
           );
         });
 
-      assert.strictEqual(relevantRewards.length, count);
+      assert.strictEqual(
+        relevantRewards.length,
+        count,
+        `Expected to find ${count} "${key}" analytics for "${user}" but found ${relevantRewards.length}`
+      );
     }
   );
 
@@ -186,13 +215,17 @@ const assertionSteps: StepDefinitions = ({ then }) => {
         return m.type === "CREATE_REWARD" && m.data.key === rewardKey;
       });
 
-    assert.strictEqual(relevantRewards.length, 0);
+    assert.strictEqual(
+      relevantRewards.length,
+      0,
+      `Expected to find 0 "${rewardKey}" rewards but found ${relevantRewards.length}`
+    );
   });
 
   then(
     /^there will be (\d+) "?([^"]+)"? email(s) for the "?([^"]+)"? user$/,
     (count: number, key: string, user: string) => {
-      const relevantRewards =
+      const relevantEmails =
         getWorld().state.programTriggerResult.mutations.filter((m: any) => {
           return (
             m.type === "SEND_EMAIL" &&
@@ -202,42 +235,79 @@ const assertionSteps: StepDefinitions = ({ then }) => {
           );
         });
 
-      assert.strictEqual(relevantRewards.length, count);
+      assert.strictEqual(
+        relevantEmails.length,
+        count,
+        `Expected to find ${count} "${key}" emails for "${user}" but found ${relevantEmails.length}`
+      );
     }
   );
 
   then(/^the programId will be "?([^"]+)"?$/, (k: string) => {
-    assert.strictEqual(getWorld().state.programTriggerResult.programId, k);
+    assert.strictEqual(
+      getWorld().state.programTriggerResult.programId,
+      k,
+      "Incorrect program ID"
+    );
   });
 
   then(
     /^the output will include a "?([^"]+)"? event key trigger$/,
     (key: string) => {
       const trigger = getWorld().state.programTriggerResult.trigger;
-      assert(trigger.eventKeys.includes(key));
+      assert(
+        trigger.eventKeys.includes(key),
+        `Output didn't include a "${key}" event key trigger`
+      );
     }
   );
 
   then(/^the output will not include a "?([^"]+)"? email$/, (key: string) => {
-    const emails = getWorld().state.programTriggerResult.emails;
-    assert(!emails.some((e: any) => e.key === key));
+    const relevantEmails = getWorld().state.programTriggerResult.emails.filter(
+      (e: any) => e.key === key
+    );
+
+    assert.deepStrictEqual(
+      relevantEmails.length,
+      0,
+      `Expected no "${key}" emails but found ${relevantEmails.length}`
+    );
   });
 
   then(/^the output will include a "?([^"]+)"? email$/, (key: string) => {
-    const emails = getWorld().state.programTriggerResult.emails;
-    assert(emails.some((e: any) => e.key === key));
+    const relevantEmails = getWorld().state.programTriggerResult.emails.filter(
+      (e: any) => e.key === key
+    );
+    assert(
+      relevantEmails.length > 0,
+      `Expected to find "${key}" email but found none`
+    );
   });
 
   then(/^the output will include a "?([^"]+)"? reward key$/, (key: string) => {
-    const rewards = getWorld().state.programTriggerResult.rewards;
-    assert(rewards.some((e: any) => e.key === key));
+    const relevantRewards =
+      getWorld().state.programTriggerResult.rewards.filter(
+        (e: any) => e.key === key
+      );
+    assert(
+      relevantRewards.length > 0,
+      `Expected to find "${key}" reward but found none`
+    );
   });
 
   then(
     /^the output will not include a "?([^"]+)"? reward key$/,
     (key: string) => {
-      const rewards = getWorld().state.programTriggerResult.rewards;
-      assert(!rewards.some((e: any) => e.key === key));
+      const relevantRewards =
+        getWorld().state.programTriggerResult.rewards.filter(
+          (e: any) => e.key === key
+        );
+
+      assert.deepStrictEqual(
+        relevantRewards.length,
+        0,
+        `Expected 0 "${key}" rewards but found ${relevantRewards.length}`
+      );
     }
   );
 
@@ -286,7 +356,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   then("the output template will be unchanged", () => {
     assert.deepStrictEqual(
       getWorld().state.programTriggerResult,
-      World.defaultTemplate
+      getWorld().getDefaultTemplate()
     );
   });
 
@@ -299,7 +369,11 @@ const assertionSteps: StepDefinitions = ({ then }) => {
         }
       );
 
-      assert.strictEqual(matching.length, 0);
+      assert.strictEqual(
+        matching.length,
+        0,
+        `Expected no "${type}" analytics for "${key}" but found ${matching.length}`
+      );
     }
   );
 };
