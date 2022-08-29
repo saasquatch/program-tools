@@ -137,6 +137,7 @@ export const PaginationDiv = css`
   border: 2px solid var(--sq-border);
   border-top: 0px;
   box-sizing: border-box;
+  min-height: 42px;
   font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
