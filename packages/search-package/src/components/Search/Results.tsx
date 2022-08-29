@@ -37,7 +37,7 @@ const ContainerA = styled.a`
   flex-direction: column;
   margin: 0;
   text-decoration: none !important;
-  & div:hover {
+  &:hover > div {
     text-decoration: none !important;
   }
 `;
