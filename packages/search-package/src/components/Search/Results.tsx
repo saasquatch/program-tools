@@ -36,7 +36,10 @@ const ContainerA = styled.a`
   display: flex;
   flex-direction: column;
   margin: 0;
-  text-decoration: none;
+  text-decoration: none !important;
+  & div:hover {
+    text-decoration: none !important;
+  }
 `;
 
 export interface ResultsProps {
