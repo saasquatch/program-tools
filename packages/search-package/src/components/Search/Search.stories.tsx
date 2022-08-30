@@ -17,3 +17,14 @@ export const Default = () => {
 
   return <Search {...defaultProps}/>;
 };
+
+export const MiniSearch = () => {
+  const miniProps: SearchProps = {
+    onGetBreadcrumbs: getBreadcrumb,
+    onIsBlank: isBlank,
+    useSearch: useSearch(),
+    sidebar: true
+  }
+
+  return <Search {...miniProps}/>;
+};
