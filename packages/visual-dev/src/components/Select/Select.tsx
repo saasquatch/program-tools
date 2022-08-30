@@ -4,8 +4,8 @@ import { UseComboboxReturnValue, UseSelectReturnValue } from "downshift";
 import { InputView } from "../Input";
 import { IconButton } from "../Button";
 import React from "react";
-import { IconView } from "../Icon";
-import { LoadingSpinner } from "../LoadingSpinner";
+import { IconKey, IconView } from "../Icon";
+import { DataTableView } from "../DataTable";
 
 export type SelectProps<ItemType> = OptionProps<ItemType> &
   Partial<React.ComponentProps<"input">>;
@@ -63,6 +63,22 @@ export interface OptionProps<ItemType> {
    * Limit the height of the input in its expanded state with a valid CSS size (px, %) [default 200px]
    */
   limitHeight?: SizeType;
+  /**
+   * Render in empty state
+   */
+  empty?: boolean;
+  /**
+   * Content to display when in the empty state
+   */
+  emptySlot?: string | React.ReactNode;
+  /**
+   * Content to display when in the loading state
+   */
+  loadingSlot?: string | React.ReactNode;
+  /**
+   * Use a custom icon instead of a chevron
+   */
+  customIcon?: IconKey;
 }
 
 type SizeType = boolean | string;
@@ -188,9 +204,25 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
     errors = false,
     clearable = false,
     loading = false,
+    customIcon,
+    loadingSlot = (
+      <>
+        <ListItem style={{ height: "32px" }} key={`1`}>
+          <DataTableView.SkeletonView size="120px" />
+        </ListItem>
+        <ListItem style={{ height: "32px" }} key={`2`}>
+          <DataTableView.SkeletonView size="120px" />
+        </ListItem>
+        <ListItem style={{ height: "32px" }} key={`3`}>
+          <DataTableView.SkeletonView size="120px" />
+        </ListItem>
+      </>
+    ),
     placeholder = "",
     limitWidth = true,
     limitHeight = false,
+    empty = false,
+    emptySlot = "",
     functional,
     items,
     itemToString = (item: ItemType) => {
@@ -226,7 +258,7 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
     );
   }
 
-  const isOpen = disabled || loading ? false : functional.isOpen;
+  const isOpen = disabled ? false : functional.isOpen;
 
   return (
     <ContainerDiv
@@ -237,7 +269,7 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
         <SelectInputDiv
           {...rest}
           isOpen={functional.isOpen}
-          disabled={disabled || loading}
+          disabled={disabled}
           ref={ref}
           errors={errors}
           customCSS={customCSS}
@@ -265,11 +297,14 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
                 functional.selectItem((null as unknown) as ItemType);
               }}
             />
-            {loading ? (
-              <LoadingSpinner
+            {customIcon ? (
+              <IconView
+                icon={customIcon}
+                size={"small"}
+                customCSS={
+                  "padding: var(--sq-spacing-x-small) var(--sq-spacing-small) var(--sq-spacing-x-small) var(--sq-spacing-x-small); box-sizing: content-box;"
+                }
                 color={"var(--sq-text-subdued)"}
-                right="var(--sq-spacing-x-large)"
-                bottom="12px"
               />
             ) : (
               <IconView
@@ -301,7 +336,7 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
                   : "padding-right: var(--sq-spacing-xxx-large)"
               };
             `}
-            disabled={disabled || loading}
+            disabled={disabled}
             {...functional.getInputProps()}
           />
           <ButtonContainerDiv>
@@ -320,11 +355,20 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
                 functional.selectItem((null as unknown) as ItemType);
               }}
             />
-            {loading ? (
-              <LoadingSpinner
-                color={"var(--sq-text-subdued)"}
-                right="16px"
-                bottom="9px"
+            {customIcon ? (
+              <IconButton
+                disabled={disabled}
+                icon={customIcon}
+                borderless={true}
+                size="small"
+                customCSS={{
+                  padding:
+                    "10px var(--sq-spacing-x-small) var(--sq-spacing-x-small)",
+                }}
+                icon_css={{
+                  color: "var(--sq-text-subdued)",
+                }}
+                {...functional.getToggleButtonProps()}
               />
             ) : (
               <IconButton
@@ -352,18 +396,24 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
         {...functional.getMenuProps()}
       >
         {isOpen &&
-          items.map((item, index) => (
-            <ListItem
-              style={
-                functional.highlightedIndex === index
-                  ? { backgroundColor: "var(--sq-surface-hover)" }
-                  : {}
-              }
-              key={`${itemToString(item)}-${index}`}
-              {...functional.getItemProps({ item, index })}
-            >
-              {itemToNode(item)}
-            </ListItem>
+          (loading ? (
+            loadingSlot
+          ) : empty ? (
+            <ListItem key={`3`}>{emptySlot}</ListItem>
+          ) : (
+            items.map((item, index) => (
+              <ListItem
+                style={
+                  functional.highlightedIndex === index
+                    ? { backgroundColor: "var(--sq-surface-hover)" }
+                    : {}
+                }
+                key={`${itemToString(item)}-${index}`}
+                {...functional.getItemProps({ item, index })}
+              >
+                {itemToNode(item)}
+              </ListItem>
+            ))
           ))}
       </ItemContainerList>
     </ContainerDiv>
