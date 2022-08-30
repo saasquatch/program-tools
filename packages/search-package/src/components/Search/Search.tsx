@@ -5,13 +5,28 @@ import { Results } from "./Results";
 import { BreadcrumbLinkProps } from "../SmallViews/BreadcrumbLink";
 
 const SearchContainerDiv = styled.div<{sidebar: boolean}>`
-  max-width: ${(props) => (props.sidebar ? "300px" : "1000px")};
+  max-width: ${(props) => (props.sidebar ? "470px" : "1000px")};
 `;
 
 const RadioContainerDiv = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
+const WellDiv = styled.div<{sidebar: boolean}>`
+  min-height: ${(props) => (!props.sidebar && "20px")}; 
+  padding: ${(props) => (!props.sidebar && "19px;")};
+  text-align: center;
+  margin-bottom: ${(props) => (!props.sidebar && "20px;")};
+  background-color: ${(props) => (!props.sidebar && "#f5f5f5;")};
+  border: ${(props) => (!props.sidebar && "1px solid #e3e3e3;")};
+  -webkit-border-radius: ${(props) => (!props.sidebar && "4px;")};
+  -moz-border-radius: ${(props) => (!props.sidebar && "4px;")};
+  border-radius: ${(props) => (!props.sidebar && "4px;")};
+  -webkit-box-shadow: ${(props) => (!props.sidebar && "inset 0 1px 1px rgba(0, 0, 0, 0.05);")};
+  -moz-box-shadow: ${(props) => (!props.sidebar && "inset 0 1px 1px rgba(0, 0, 0, 0.05);")};
+  box-shadow: ${(props) => (!props.sidebar && "inset 0 1px 1px rgba(0, 0, 0, 0.05);")};
+`
 
 export interface useSearchProps {
   response: any;
@@ -48,11 +63,10 @@ export default function Search(props: SearchProps) {
   console.log(props.sidebar);
   return (
     <>
-      <section className="page" id="js-docs-search-results">
-        <div className="well search-page">
-          <div className="row-fluid text-center">
-          {!props.sidebar &&<h3>Help Center Search</h3>}
-            <form className="js-search-form form-search" action="/search/">
+      <section>
+        <WellDiv sidebar={props.sidebar}>
+          {!props.sidebar && <h3>Help Center Search</h3>}
+            <form action="/search/">
               <SearchContainerDiv sidebar={props.sidebar}>
                 <InputView
                   customCSS={"margin-bottom: var(--sq-spacing-medium);"}
@@ -103,18 +117,17 @@ export default function Search(props: SearchProps) {
                 )}
               </SearchContainerDiv>
             </form>
-          </div>
-          <div className="row-fluid">
-            <div id="pretty-results" className="search-results">
+          <div>
+            <div>
               {!props.sidebar && !props.useSearch.response && (
-                <div className="text-center search-spinner">
+                <div>
                   <h3>Searching Help Center...</h3>
-                  <i className="fa fa-spinner fa-spin fa-5x"></i>
+                  <i></i>
                 </div>
               )}
               {/* @ts-ignore */}
               {props.useSearch.response && props.useSearch.response.error && (
-                <div className="text-center">
+                <div>
                   {/* @ts-ignore */}
                   <h3>{props.useSearch.response.error.message}</h3>
                 </div>
@@ -132,7 +145,7 @@ export default function Search(props: SearchProps) {
               )}
             </div>
           </div>
-        </div>
+        </WellDiv>
       </section>
     </>
   );
