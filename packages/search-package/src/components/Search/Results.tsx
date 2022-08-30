@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { BreadcrumbLinkProps } from "../SmallViews/BreadcrumbLink";
 import ItemView from "../SmallViews/ItemView";
 
-const ItemsContainerDiv = styled.div<{sidebar?: boolean}>`
+const ItemsContainerDiv = styled.div<{sidebar: boolean}>`
   max-width: ${(props) => (props.sidebar ? "300px" : "1000px")};
   margin-top: var(--sq-spacing-large);
 `;
 
-const PrevNextDiv = styled.div<{ sidebar?: boolean }>`
+const PrevNextDiv = styled.div<{ sidebar: boolean }>`
   max-width: ${(props) => (props.sidebar ? "300px" : "1000px")};
   display: flex;
   flex-direction: row;
@@ -48,7 +48,7 @@ export interface ResultsProps {
   query: string;
   onGetBreadcrumbs: (link: string) => Array<BreadcrumbLinkProps>;
   onIsBlank: (str?: string) => boolean;
-  sidebar?: boolean;
+  sidebar: boolean;
 }
 
 // @ts-ignore

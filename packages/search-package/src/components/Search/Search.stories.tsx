@@ -12,7 +12,8 @@ export const Default = () => {
   const defaultProps: SearchProps = {
     onGetBreadcrumbs: getBreadcrumb,
     onIsBlank: isBlank,
-    useSearch: useSearch()
+    useSearch: useSearch(),
+    sidebar: false
   }
 
   return <Search {...defaultProps}/>;

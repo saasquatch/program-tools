@@ -4,7 +4,7 @@ import { InputView, RadioView } from "@saasquatch/visual-dev";
 import { Results } from "./Results";
 import { BreadcrumbLinkProps } from "../SmallViews/BreadcrumbLink";
 
-const SearchContainerDiv = styled.div<{sidebar?: boolean}>`
+const SearchContainerDiv = styled.div<{sidebar: boolean}>`
   max-width: ${(props) => (props.sidebar ? "300px" : "1000px")};
 `;
 
@@ -38,7 +38,7 @@ export interface SearchProps {
   /**
    * If sidebar is true, it'll be mini and remove radio buttons
    */
-  sidebar?: boolean;
+  sidebar: boolean;
 }
 
 export default function Search(props: SearchProps) {
