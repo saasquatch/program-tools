@@ -1,6 +1,5 @@
 import { rewardScheduleQuery } from "./queries";
 import { ProgramTriggerBody, TriggerType } from "./types/rpc";
-import jsonata = require("jsonata");
 import getJsonataPaths from "@saasquatch/jsonata-paths-extractor";
 
 /**
