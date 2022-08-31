@@ -4,6 +4,7 @@
 
 import * as assert from "assert";
 import * as jsonata from "jsonata";
+import { safeJsonata2 } from "./jsonata";
 
 /**
  * A custom field based conversion rule
@@ -88,14 +89,25 @@ export function meetEdgeTriggerConditions(
 
   for (const field of fields) {
     if (!field.startsWith("user.")) {
-      // TODO: what to do here? this is probably some kind of error case
-      continue;
+      // we consider a malformed edge field to be "not passing"
+      return false;
     }
 
-    const previousValue = jsonata(field.replace("user.", "previous.")).evaluate(
+    const { success: prevSuccess, result: previousValue } = safeJsonata2(
+      field.replace("user.", "previous."),
       activeTrigger
     );
-    const currentValue = jsonata(field).evaluate(activeTrigger);
+
+    const { success: currentSuccess, result: currentValue } = safeJsonata2(
+      field,
+      activeTrigger
+    );
+
+    // one of the JSONata expressions failed to evaluate -- edge field is considered
+    // "not passing"
+    if (!prevSuccess || !currentSuccess) {
+      return false;
+    }
 
     try {
       assert.deepStrictEqual(currentValue, previousValue);

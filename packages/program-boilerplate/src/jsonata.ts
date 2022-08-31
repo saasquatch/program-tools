@@ -64,3 +64,23 @@ export function safeJsonata(expression: string, inputData: any) {
     logger.warn(`Failed to evaluate JSONata expression: ${e.message}`);
   }
 }
+
+export function safeJsonata2(
+  expression: string,
+  inputData: any
+): {
+  success: boolean;
+  result: any;
+} {
+  try {
+    const jsonataQuery = jsonata(expression);
+    timeboxExpression(jsonataQuery);
+    const result = jsonataQuery.evaluate(inputData);
+    return { success: true, result };
+  } catch (e) {
+    if (e instanceof Error) {
+      logger.warn(`Failed to evaluate JSONata expression: ${e.message}`);
+    }
+    return { success: false, result: undefined };
+  }
+}
