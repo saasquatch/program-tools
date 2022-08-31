@@ -60,9 +60,17 @@ export const CheckboxView = React.forwardRef<
   React.ElementRef<"input">,
   InputProps
 >((props, forwardedRef) => {
-  const { id, value, onChange, label = "", disabled, name, ...rest } = props;
+  const {
+    id,
+    value,
+    onChange,
+    label = "",
+    disabled,
+    customContainerCSS = {},
+    ...rest
+  } = props;
   return (
-    <ShadowDom>
+    <ShadowDom customContainerCSS={customContainerCSS}>
       <CheckboxLabel htmlFor={id} isDisabled={disabled}>
         <CheckboxInput
           {...rest}
