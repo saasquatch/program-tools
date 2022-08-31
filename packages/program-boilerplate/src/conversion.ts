@@ -3,7 +3,6 @@
  */
 
 import * as assert from "assert";
-import * as jsonata from "jsonata";
 import { safeJsonata2 } from "./jsonata";
 
 /**
@@ -93,14 +92,21 @@ export function meetEdgeTriggerConditions(
       return false;
     }
 
+    // a simple query to retrieve the value of a field from the user should
+    // not take more than a few milliseconds. if it takes longer than 500ms
+    // something is definitely wrong with the query
+    const jsonataTimeoutMs = 500;
+
     const { success: prevSuccess, result: previousValue } = safeJsonata2(
       field.replace("user.", "previous."),
-      activeTrigger
+      activeTrigger,
+      jsonataTimeoutMs
     );
 
     const { success: currentSuccess, result: currentValue } = safeJsonata2(
       field,
-      activeTrigger
+      activeTrigger,
+      jsonataTimeoutMs
     );
 
     // one of the JSONata expressions failed to evaluate -- edge field is considered

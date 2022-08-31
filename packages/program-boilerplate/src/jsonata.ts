@@ -14,21 +14,28 @@ const logger = getLogger(process.env.PROGRAM_LOG_LEVEL || "debug");
  * @param {Number} timeout - max time in ms
  * @param {Number} maxDepth - max stack depth
  */
-export function timeboxExpression(expr: jsonata.Expression) {
-  let depth = 0;
-  const time = Date.now();
+export function timeboxExpression(
+  expr: jsonata.Expression,
+  timeout?: number,
+  maxDepth?: number
+) {
+  const startTime = Date.now();
+  const actualTimeout = timeout ?? TIMEOUT;
+  const actualMaxDepth = maxDepth ?? MAXDEPTH;
 
-  let checkRunnaway = function () {
-    if (depth > MAXDEPTH) {
+  let currentDepth = 0;
+
+  const checkRunnaway = function () {
+    if (currentDepth > actualMaxDepth) {
       // stack too deep
       throw {
         code: "U1001",
         message:
-          "Stack overflow error: Check for non-terminating recursive function.  Consider rewriting as tail-recursive.",
+          "Stack overflow error: Check for non-terminating recursive function. Consider rewriting as tail-recursive.",
         stack: new Error().stack,
       };
     }
-    if (Date.now() - time > TIMEOUT) {
+    if (Date.now() - startTime > actualTimeout) {
       // expression has run for too long
       throw {
         code: "U1002",
@@ -39,20 +46,14 @@ export function timeboxExpression(expr: jsonata.Expression) {
   };
 
   // register callbacks
-  expr.assign(
-    "__evaluate_entry",
-    function (expr: any, input: any, environment: any) {
-      depth++;
-      checkRunnaway();
-    }
-  );
-  expr.assign(
-    "__evaluate_exit",
-    function (expr: any, input: any, environment: any, result: any) {
-      depth--;
-      checkRunnaway();
-    }
-  );
+  expr.assign("__evaluate_entry", () => {
+    currentDepth++;
+    checkRunnaway();
+  });
+  expr.assign("__evaluate_exit", () => {
+    currentDepth--;
+    checkRunnaway();
+  });
 }
 
 export function safeJsonata(expression: string, inputData: any) {
@@ -67,14 +68,16 @@ export function safeJsonata(expression: string, inputData: any) {
 
 export function safeJsonata2(
   expression: string,
-  inputData: any
+  inputData: any,
+  timeout?: number,
+  maxDepth?: number
 ): {
   success: boolean;
   result: any;
 } {
   try {
     const jsonataQuery = jsonata(expression);
-    timeboxExpression(jsonataQuery);
+    timeboxExpression(jsonataQuery, timeout, maxDepth);
     const result = jsonataQuery.evaluate(inputData);
     return { success: true, result };
   } catch (e) {
