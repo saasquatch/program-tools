@@ -5,6 +5,9 @@ import { Results } from "./Results";
 
 const SearchContainerDiv = styled.div<{sidebar?: boolean}>`
   max-width: ${(props) => (props.sidebar ? "470px" : "1000px")};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const RadioContainerDiv = styled.div`

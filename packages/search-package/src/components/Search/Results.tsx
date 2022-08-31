@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { BreadcrumbLinkProps } from "../SmallViews/BreadcrumbLink";
 import ItemView from "../SmallViews/ItemView";
 
 const ItemsContainerDiv = styled.div<{sidebar?: boolean, query: string, background?: boolean}>`
@@ -66,7 +65,7 @@ export interface ResultsProps {
 // @ts-ignore
 export function Results(props: ResultsProps) {
   const { items, queries, searchInformation } = props.response;
-  const { background = true, linkComponent = ContainerA } = props;
+  const { background = true } = props;
 
   return (
     <>
