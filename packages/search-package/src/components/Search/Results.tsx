@@ -3,23 +3,23 @@ import styled from "styled-components";
 import { BreadcrumbLinkProps } from "../SmallViews/BreadcrumbLink";
 import ItemView from "../SmallViews/ItemView";
 
-const ItemsContainerDiv = styled.div<{sidebar: boolean, query: string}>`
+const ItemsContainerDiv = styled.div<{sidebar?: boolean, query: string, background?: boolean}>`
   max-width: ${(props) => (props.sidebar ? "470px" : "1000px")};
   margin-top: var(--sq-spacing-large);
-  min-height: ${(props) => (props.query && props.sidebar  && "20px")}; 
-  padding: ${(props) => (props.query && props.sidebar  && "19px;")};
-  margin-bottom: ${(props) => (props.query && props.sidebar  && "20px;")};
-  background-color: ${(props) => (props.query && props.sidebar  && "#f5f5f5;")};
-  border: ${(props) => (props.query && props.sidebar  && "1px solid #e3e3e3;")};
-  -webkit-border-radius: ${(props) => (props.query && props.sidebar  && "4px;")};
-  -moz-border-radius: ${(props) => (props.query && props.sidebar  && "4px;")};
-  border-radius: ${(props) => (props.query && props.sidebar  && "4px;")};
-  -webkit-box-shadow: ${(props) => (props.query && props.sidebar  && "inset 0 1px 1px rgba(0, 0, 0, 0.05);")};
-  -moz-box-shadow: ${(props) => (props.query && props.sidebar  && "inset 0 1px 1px rgba(0, 0, 0, 0.05);")};
-  box-shadow: ${(props) => (props.query && props.sidebar  && "inset 0 1px 1px rgba(0, 0, 0, 0.05);")};
+  min-height: ${(props) => (props.background && props.query && props.sidebar  && "20px")}; 
+  padding: ${(props) => (props.background && props.query && props.sidebar  && "19px;")};
+  margin-bottom: ${(props) => (props.background && props.query && props.sidebar  && "20px;")};
+  background-color: ${(props) => (props.background && props.query && props.sidebar  && "#f5f5f5;")};
+  border: ${(props) => (props.background && props.query && props.sidebar  && "1px solid #e3e3e3;")};
+  -webkit-border-radius: ${(props) => (props.background && props.query && props.sidebar  && "4px;")};
+  -moz-border-radius: ${(props) => (props.background && props.query && props.sidebar  && "4px;")};
+  border-radius: ${(props) => (props.background && props.query && props.sidebar  && "4px;")};
+  -webkit-box-shadow: ${(props) => (props.background && props.query && props.sidebar  && "inset 0 1px 1px rgba(0, 0, 0, 0.05);")};
+  -moz-box-shadow: ${(props) => (props.background && props.query && props.sidebar  && "inset 0 1px 1px rgba(0, 0, 0, 0.05);")};
+  box-shadow: ${(props) => (props.background && props.query && props.sidebar  && "inset 0 1px 1px rgba(0, 0, 0, 0.05);")};
 `;
 
-const PrevNextDiv = styled.div<{ sidebar: boolean }>`
+const PrevNextDiv = styled.div<{ sidebar?: boolean }>`
   max-width: ${(props) => (props.sidebar ? "470px" : "1000px")};
   display: flex;
   flex-direction: row;
@@ -57,20 +57,20 @@ export interface ResultsProps {
   response: any;
   setStartIndex: any;
   query: string;
-  onGetBreadcrumbs: (link: string) => Array<BreadcrumbLinkProps>;
   onIsBlank: (str?: string) => boolean;
-  sidebar: boolean;
+  sidebar?: boolean;
+  background?: boolean;
+  linkComponent?: React.ReactNode;
 }
 
 // @ts-ignore
 export function Results(props: ResultsProps) {
   const { items, queries, searchInformation } = props.response;
-  console.log(props.response);
+  const { background = true, linkComponent = ContainerA } = props;
 
-  console.log("query: ", props.query)
   return (
     <>
-      <ItemsContainerDiv sidebar={props.sidebar} query={props.query}>
+      <ItemsContainerDiv sidebar={props.sidebar} query={props.query} background={background}>
         {items &&
           items
             // @ts-ignore
@@ -81,7 +81,6 @@ export function Results(props: ResultsProps) {
               <ContainerA href={item.link}>
                 <ItemView
                   item={item}
-                  onGetBreadcrumbs={props.onGetBreadcrumbs}
                 />
               </ContainerA>
             ))}

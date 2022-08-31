@@ -1,6 +1,6 @@
 import React from "react";
 import Search, { SearchProps } from "./Search";
-import { getBreadcrumb, isBlank } from './SearchFunctions'
+import { isBlank } from './SearchFunctions'
 import { useSearch } from "./UseSearch";
 
 export default {
@@ -10,10 +10,18 @@ export default {
 
 export const Default = () => {
   const defaultProps: SearchProps = {
-    onGetBreadcrumbs: getBreadcrumb,
     onIsBlank: isBlank,
     useSearch: useSearch(),
-    sidebar: false
+    background: true
+  }
+
+  return <Search {...defaultProps}/>;
+};
+
+export const NoBackground = () => {
+  const defaultProps: SearchProps = {
+    onIsBlank: isBlank,
+    useSearch: useSearch(),
   }
 
   return <Search {...defaultProps}/>;
@@ -21,10 +29,20 @@ export const Default = () => {
 
 export const MiniSearch = () => {
   const miniProps: SearchProps = {
-    onGetBreadcrumbs: getBreadcrumb,
     onIsBlank: isBlank,
     useSearch: useSearch(),
-    sidebar: true
+    sidebar: true,
+  }
+
+  return <Search {...miniProps}/>;
+};
+
+export const MiniSearchNoBackground = () => {
+  const miniProps: SearchProps = {
+    onIsBlank: isBlank,
+    useSearch: useSearch(),
+    sidebar: true,
+    background: false
   }
 
   return <Search {...miniProps}/>;

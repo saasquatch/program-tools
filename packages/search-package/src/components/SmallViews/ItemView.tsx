@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import BreadcrumbLink, { BreadcrumbLinkProps } from "./BreadcrumbLink";
 
 export interface ItemViewProps {
   item: {
@@ -15,7 +14,6 @@ export interface ItemViewProps {
     snippet: string;
     title: string;
   };
-  onGetBreadcrumbs: (link: string) => Array<BreadcrumbLinkProps>;
 }
 
 const ItemContainerDiv = styled.div`
@@ -43,11 +41,11 @@ const DescriptionDiv = styled.div`
   color: var(--sq-text);
 `;
 
-const BreadcrumbContainerDiv = styled.div`
-  display: row;
-  flex-direction: column;
-  margin-bottom: var(--sq-spacing-small);
-`;
+// const BreadcrumbContainerDiv = styled.div`
+//   display: row;
+//   flex-direction: column;
+//   margin-bottom: var(--sq-spacing-small);
+// `;
 
 const ItemView = (props: ItemViewProps) => {
   return (
@@ -57,11 +55,11 @@ const ItemView = (props: ItemViewProps) => {
           __html: props.item.htmlTitle,
         }}
       ></TitleDiv>
-      <BreadcrumbContainerDiv>
+      {/* <BreadcrumbContainerDiv>
         {props.onGetBreadcrumbs(props.item.link).map((item) => {
           return <BreadcrumbLink {...item} />;
         })}
-      </BreadcrumbContainerDiv>
+      </BreadcrumbContainerDiv> */}
       <DescriptionDiv
         dangerouslySetInnerHTML={{
           __html: props.item.htmlSnippet,
