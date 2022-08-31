@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.6.0] - TBD
+
+### Added
+
+- Added getUserCustomFieldsFromJsonata util to return custom fields being used by programs
+- Added meetEdgeTriggerConditions util to check edge conditions of AFTER_USER_CREATED_OR_UPDATED trigger
+
 ## [3.5.11] - 2021-12-1
 
 - Set default payload size limit to 1mb
@@ -24,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch/program-boilerplate%403.5.11...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch/program-boilerplate%403.6.0...HEAD
+[3.6.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.6.0
 [3.5.11]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.5.11
 [3.5.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.5.9
