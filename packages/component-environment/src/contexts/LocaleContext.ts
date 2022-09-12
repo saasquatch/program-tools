@@ -16,10 +16,17 @@ export function lazilyStartLocaleContext() {
   if (!globalProvider) {
     debug("Creating locale context provider");
 
+    let locale = window.widgetIdent?.locale;
+    if (!locale) {
+      const browserLocale = navigator.language.replace("-", "_");
+      if (/[a-z]{2}_[A-Z]{2}/.test(browserLocale)) {
+        locale = browserLocale;
+      }
+    }
+
     globalProvider = new ContextProvider<string | undefined>({
       element: document.documentElement,
-      initialState:
-        window.widgetIdent?.locale || navigator.language.replace("-", "_"),
+      initialState: locale,
       contextName: LOCALE_CONTEXT_NAME,
     }).start();
 
