@@ -4,6 +4,12 @@ import { debug as _debug } from "../debug";
 
 const debug = (...args: any[]) => _debug(LOCALE_CONTEXT_NAME, ...args);
 
+export function validateLocale(locale?: string) {
+  if (locale && /^[a-z]{2}_(?:[A-Z]{2}|[0-9]{3})$/.test(locale)) {
+    return locale;
+  }
+}
+
 /**
  * Lazily start the locale context provider. If it already exists, the existing provider is
  * returned. This function is safe to call multiple times.
@@ -16,13 +22,9 @@ export function lazilyStartLocaleContext() {
   if (!globalProvider) {
     debug("Creating locale context provider");
 
-    let locale = window.widgetIdent?.locale;
-    if (!locale) {
-      const browserLocale = navigator.language.replace("-", "_");
-      if (/[a-z]{2}_[A-Z]{2}/.test(browserLocale)) {
-        locale = browserLocale;
-      }
-    }
+    const locale =
+      window.widgetIdent?.locale ??
+      validateLocale(navigator.language.replaceAll("-", "_"));
 
     globalProvider = new ContextProvider<string | undefined>({
       element: document.documentElement,
