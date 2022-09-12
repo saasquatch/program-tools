@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - master
-      # for testing
-      - jayden/deep-forest-multi-folder
   pull_request:
 
 env:
