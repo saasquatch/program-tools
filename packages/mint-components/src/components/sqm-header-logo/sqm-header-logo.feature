@@ -1,6 +1,6 @@
-    @author:derek
-    @owner:derek
-    Scenario: Header Logo
+@author:derek
+@owner:derek
+Feature: Header Logo
 
     @motivating
     Scenario: The header logo component displays an image with a set height
