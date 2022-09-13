@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - jayden/deep-forest-multi-folder
   pull_request:
 
 env:
@@ -29,7 +30,7 @@ jobs:
 
       - name: Install picklesdoc
         id: picklesdoc
-        run: npm install -g picklesdoc@latest
+        run: npm install -g picklesdoc@next
 
       - name: Generate pickles JSON
         id: picklesdoc_generate
