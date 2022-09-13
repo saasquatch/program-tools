@@ -4,7 +4,7 @@ Feature: Locale handling
         Given the locale context is started
         When the initial value is set
         And there is no widgetIdent locale
-        Then the initial value for the context will be the parsed navigator.language
+        Then the initial value for the context is the parsed navigator.language
 
     Scenario: navigator.language is converted to a locale the backend understands
         Given the locale context is started
