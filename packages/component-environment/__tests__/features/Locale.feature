@@ -1,17 +1,22 @@
+@author:johan
+@owner:johan
 Feature: Locale handling
 
+    @motivating
     Scenario: Initial locale is obtained from the browser
         Given the locale context is started
         When the initial value is set
         And there is no widgetIdent locale
         Then the initial value for the context is the parsed navigator.language
 
+    @motivating
     Scenario: navigator.language is converted to a locale the backend understands
         Given the locale context is started
         And the value of navigator.language is used as the initial value
         When the initial context value is set
         Then is the value of navigator.language with dashes replaced with underscores
 
+    @motivating
     Scenario Outline: Browser locale is validated to work with the backend
         Given the browser's navigator.language is <language>
         When the locale is validated
@@ -27,6 +32,7 @@ Feature: Locale handling
             | az-Arab-IR      | won't |
             | en-GB-oxendict  | won't |
 
+    @minutia
     Scenario: Locale is undefined if there is no valid initial value
         Given the locale context is started
         And the browser's locale is not valid
