@@ -31,4 +31,4 @@ Feature: Locale handling
         Given the locale context is started
         And the browser's locale is not valid
         And there is no widgetIdent locale
-        Then the initial value will be undefined
+        Then the initial value is undefined
