@@ -1,7 +1,10 @@
 import { ContextListener } from "dom-context";
 import { USER_CONTEXT_NAME, LOCALE_CONTEXT_NAME } from "./types";
 import { UserIdentity } from "./types";
-import { lazilyStartLocaleContext } from "./contexts/LocaleContext";
+import {
+  lazilyStartLocaleContext,
+  validateLocale,
+} from "./contexts/LocaleContext";
 import { fetchLocale } from "./fetchLocale";
 import { debug as _debug } from "./debug";
 
@@ -27,7 +30,8 @@ const userContextListenerForLocale = new ContextListener<
   onChange: async (next) => {
     const localeProvider = lazilyStartLocaleContext();
     const defaultLocale =
-      window.widgetIdent?.locale || navigator.language.replace("-", "_");
+      window.widgetIdent?.locale ??
+      validateLocale(navigator.language.replaceAll("-", "_"));
 
     let newLocale;
     if (next) {
