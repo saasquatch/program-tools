@@ -264,6 +264,7 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
     <ContainerDiv
       customContainerCSS={customContainerCSS}
       limitWidth={limitWidth}
+      onClick={() => functional.openMenu()}
     >
       {!isCombobox(functional) ? (
         <SelectInputDiv
