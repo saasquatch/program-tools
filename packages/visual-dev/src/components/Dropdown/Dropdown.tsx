@@ -256,9 +256,6 @@ const DropdownView = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
       ...rest
     } = props;
 
-    console.log(children);
-    console.log(emptyText);
-
     return (
       <DropdownDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
         <DropdownButtonDiv

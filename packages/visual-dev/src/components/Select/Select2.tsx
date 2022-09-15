@@ -230,7 +230,6 @@ declare module "react" {
 
 const SelectContainerView = (props: SelectContainerViewProps) => {
   const { limitWidth = true, customContainerCSS = ``, children } = props;
-  console.log(props);
   return (
     <ContainerDiv
       customContainerCSS={customContainerCSS}
