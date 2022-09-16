@@ -140,7 +140,7 @@ const ContainerDiv = styled("div")<{
   ${(props) => props.customContainerCSS}
 `;
 
-const SelectInputDiv = styled.div<{
+const SelectInputDiv = styled.button<{
   disabled: boolean | undefined;
   errors: any;
   isOpen: boolean;
@@ -292,6 +292,8 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
                 color: "var(--sq-text-subdued)",
               }}
               icon_css={{ marginTop: "var(--sq-spacing-xxxx-small)" }}
+              type={"button"}
+              role={"button"}
               onClick={(e: React.MouseEvent<HTMLElement>) => {
                 e.stopPropagation();
                 functional.selectItem((null as unknown) as ItemType);

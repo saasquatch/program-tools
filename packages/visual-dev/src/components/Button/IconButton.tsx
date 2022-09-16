@@ -74,6 +74,7 @@ export const IconButtonView = React.forwardRef<
       borderless={borderless}
       size={size}
       ref={forwardedRef}
+      tabIndex={0}
       customCSS={customCSS}
     >
       <IconView
