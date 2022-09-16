@@ -72,7 +72,7 @@ export class World {
         events: [],
         referral: {},
         programRewards: [],
-        previous: user,
+        previous: undefined,
         user: user,
         rules: deepCopy(this.defaultRules),
         template: deepCopy(this.defaultTemplate),
