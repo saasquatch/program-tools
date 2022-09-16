@@ -10,7 +10,7 @@ export interface OptionProps {
   /**
    * Value of the slider
    */
-  value?: any;
+  value?: number;
   /**
    * Callback triggered when the slider changes
    */

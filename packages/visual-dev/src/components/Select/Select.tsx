@@ -339,6 +339,7 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
               };
             `}
             disabled={disabled}
+            onClick={() => !isOpen && functional.toggleMenu()}
             {...functional.getInputProps()}
           />
           <ButtonContainerDiv>

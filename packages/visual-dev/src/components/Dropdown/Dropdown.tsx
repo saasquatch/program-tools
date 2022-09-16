@@ -162,8 +162,8 @@ const DropdownContentDiv = styled("div")<
 
   ${(props) =>
     props.popUpwards
-      ? `top: 0; transform: translateY(-100%); border-bottom: none;`
-      : `border-top: none`}
+      ? `top: 2px; transform: translateY(-100%); border-bottom: none;`
+      : `border-top: none;`}
 `;
 
 const DropdownItemDiv = styled("div")<Required<StyleProps>>`
@@ -255,9 +255,6 @@ const DropdownView = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
       customCSS: customCSS = {},
       ...rest
     } = props;
-
-    console.log(children);
-    console.log(emptyText);
 
     return (
       <DropdownDiv {...rest} ref={forwardedRef} customCSS={customCSS}>

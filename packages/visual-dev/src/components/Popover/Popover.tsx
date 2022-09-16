@@ -24,6 +24,10 @@ export interface PopoverOptions {
    * Y offset of the popover relative to the element it originates from
    */
   relativeY?: string;
+  /**
+   * Apply custom padding
+   */
+  padding?: string;
 }
 
 export interface SectionProps {
@@ -71,6 +75,7 @@ const PopoverView: React.FC<PopoverProps> = ({
   relativeY = "0px",
   relativeX = "0px",
   children,
+  padding = "8px 16px",
 }) => {
   if (React.Children.count(children) > 1) {
     return (
@@ -89,9 +94,7 @@ const PopoverView: React.FC<PopoverProps> = ({
         relativeX={relativeX}
         relativeY={relativeY}
       >
-        <StyledSectionDiv style={{ padding: "8px 16px" }}>
-          {children}
-        </StyledSectionDiv>
+        <StyledSectionDiv style={{ padding }}>{children}</StyledSectionDiv>
       </StyledContainerDiv>
     );
   }

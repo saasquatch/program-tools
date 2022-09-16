@@ -13,7 +13,6 @@ export const SliderStyle = css`
   &[type="range"]::-webkit-slider-runnable-track {
     height: 10px;
     -webkit-appearance: none;
-    color: #13bba4;
     margin-top: -1px;
   }
   &[type="range"]::-webkit-slider-thumb {
@@ -38,7 +37,7 @@ export const SliderStyle = css`
     border-radius: 50%;
     background: var(--sq-text);
     cursor: pointer;
-    margin-top: -4px;
+    margin-top: -5px;
   }
   &[type="range"]::-moz-range-thumb {
     -webkit-appearance: none;
@@ -47,7 +46,7 @@ export const SliderStyle = css`
     border-radius: 50%;
     background: var(--sq-text);
     cursor: pointer;
-    margin-top: -4px;
+    margin-top: -5px;
   }
   &[type="range"]::-ms-thumb {
     -webkit-appearance: none;
@@ -63,21 +62,21 @@ export const SliderStyle = css`
     width: 100%;
     height: 5px;
     cursor: pointer;
-    background: #e2e2e2;
+    background: var(--sq-border);
     border-radius: 4px;
   }
   &[type="range"]::-moz-range-track {
     width: 100%;
     height: 5px;
     cursor: pointer;
-    background: #e2e2e2;
+    background: var(--sq-border);
     border-radius: 4px;
   }
   &[type="range"]::-ms-track {
     width: 100%;
     height: 5px;
     cursor: pointer;
-    background: #e2e2e2;
+    background: var(--sq-border);
     border-radius: 4px;
   }
 `;
