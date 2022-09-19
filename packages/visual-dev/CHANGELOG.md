@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2022-09-
+
+### Changed
+
+- Updated components to use new CSS variables
+  - \<Alert>
+  - \<Badge>
+  - \<Button>
+  - \<Card>
+  - \<DataTable>
+  - \<Dropdown>
+  - \<Form>
+  - \<Input>
+  - \<Modal>
+  - \<RadioAction>
+  - \<Select>
+  - \<Select2>
+  - \<Switch>
+  - \<Tag>
+  - \<TextArea>
+  - \<Tooltip>
+
 ## [1.0.2] - 2022-08-02
 
 ### Changed
