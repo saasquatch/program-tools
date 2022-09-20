@@ -9,9 +9,73 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.3] - 2022-09-
 
+### Added
+
+- New components added
+
+  - \<Slider>
+  - \<TableRow>
+
+- Added / Updated props to the following components:
+
+  - \<Checkbox>
+
+    - `customContainerCSS` - used to overwrite existing styles on the checkbox container
+    - `label` - updated type to accept React nodes
+
+  - \<DataTable>
+
+    - `loading` - added a loading boolean
+    - `loadingSlot` - loading slot to show a custom loading view
+    - `headerSlot` - used to add custom header
+    - `footerSlot` - used to add custom footer
+
+  - \<Pagination>
+
+    - `loading` - loading boolean which renders a skeleton when true
+    - `hidePerPage` - configure how many items you would like to hide per page
+
+  - \<Dropdown>
+
+    - `emptyText` - text shown if no items are provided
+    - `description` - description that appears below an items child
+    - `sideDescription` - secondary item description that appears to the right of an items child
+    - `checked` - displays a checkmark before the item
+    - `placeholder` - displays text inside the button when no value is selected
+
+  - \<Icon>
+
+    - `cursor` - set the cursor property when icon is hovered (eg. "pointer")
+
+  - \<Popover>
+
+    - `padding` - apply a custom padding value
+
+  - \<Select>
+
+    - `empty` - added empty boolean
+    - `emptySlot` - empty slot to show custom empty views
+    - `emptySlot` - loading slot to show custom loading views
+    - `customIcon` - allow custom icons other than the chevron
+
 ### Changed
 
-- Updated components to use new CSS variables
+- Components changed
+  - \<Badge>
+  - \<Button>
+  - \<Checkbox>
+  - \<DataTable>
+  - \<Pagination>
+  - \<Row>
+  - \<Dropdown>
+  - \<Graphics>
+  - \<Icon>
+  - \<Input>
+  - \<Popover>
+  - \<Select>
+  - \<Select2>
+  
+- Updated the following components to use new CSS variables
   - \<Alert>
   - \<Badge>
   - \<Button>
@@ -43,8 +107,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Make Modal buttons more configurable
 - More SVG icon options added
 - Remove stopPropagation from select list to prevent conflict with Popper.js
-
-### Added
 
 ## [1.0.0] - 2022-06-01
 

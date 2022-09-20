@@ -80,7 +80,7 @@ export interface DropdownItemProps {
    */
   description?: string;
   /**
-   * Secondary item description that appears tot the right of the item's child
+   * Secondary item description that appears to the right of the item's child
    */
   sideDescription?: string;
   /**
