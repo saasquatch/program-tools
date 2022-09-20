@@ -40,7 +40,6 @@ export const WithItemToString = () => {
     { text: "Pender", description: "There's actually two" },
   ];
   const itemToString = (item: Islands | null) => {
-    console.log("itemToString called");
     return item ? item.text : "";
   };
   const functional = useSelect({ items, itemToString });
@@ -66,7 +65,6 @@ export const FullWidth = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const functional = useSelect({ items });
   const props = { limitWidth: false, items, functional };
-  console.log(props);
   return (
     <div
       style={{

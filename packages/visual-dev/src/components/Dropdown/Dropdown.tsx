@@ -237,6 +237,10 @@ const borderPresets = {
   },
 };
 
+/**
+ * ZH: When pill is set to true in the table pagination dropdown the view is totally broken. 
+ * This will need to be fixed at some point in the near future. 
+ */
 const DropdownView = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
   (props, forwardedRef) => {
     const {
