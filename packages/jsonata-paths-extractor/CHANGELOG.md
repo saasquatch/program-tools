@@ -7,9 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.0] - TBD
+## [1.0.0] - 2022-09-21
 
-First release of the JSONata paths extractor library. A single function is exported that accepts a JSONata expression and returns the paths found in the expression.
+First release of the JSONata paths extractor library. A single function is exported that
+accepts a JSONata expression and returns the paths found in the expression.
 
 ### Added
 
