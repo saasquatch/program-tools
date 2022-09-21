@@ -61,19 +61,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Components changed
-  - \<Badge>
+
   - \<Button>
+    - decreased the size of the button by a couple pixels
+    - added tab index to icon button for tabbing through form fields
+    - updated icon size by a few pixels
   - \<Checkbox>
+    - updated label prop
+    - added customContainerCSS prop
   - \<DataTable>
+    - added new props for empty, loading, header, & footer slots
+    - added a table row slot
   - \<Pagination>
+    - added new props for showing a specific number of items in the table as well as a loading boolean
   - \<Row>
+    - Updated props to be of the correct type
   - \<Dropdown>
+    - Updated to use correct naming pattern
+    - added new props
   - \<Graphics>
+    - added new id to fix graphics component
   - \<Icon>
+    - added new prop
+    - new svg's for link_box & open_tab
+  - \<LoadingSpinner>
+    - center aligned the spinner & added a width and height
   - \<Input>
   - \<Popover>
+    - added a new prop
   - \<Select>
-  - \<Select2>
+    - added new props
+    - changed the html element type of the container from div button to accomadate tabbing through inputs in a form
+  - <GlobalStyle>
+    - updated pixel sizing for our font sizing & line height CSS variables
 
 - Updated the following components to use new CSS variables
   - \<Alert>
