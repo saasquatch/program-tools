@@ -33,7 +33,7 @@ export function runProgramTests(
         ? featureFilterTags.every((tag) => feature.tags.includes(tag))
         : true;
       if (keep) features.push(feature);
-    } catch (e) {
+    } catch (e: any) {
       console.error(`Failed to load feature file "${featureFile}":`, e.message);
       throw e;
     }

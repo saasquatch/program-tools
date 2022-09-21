@@ -12,6 +12,7 @@ interface State {
   current: Partial<{
     events: any[];
     time: number;
+    previous: any;
     user: any;
     referral: any;
     programRewards: any[];
@@ -62,6 +63,7 @@ export class World {
   }
 
   reset() {
+    const user = getRandomUser("REFERRED");
     this.state = {
       programTriggerResult: {},
       validationReqs: [],
@@ -70,7 +72,8 @@ export class World {
         events: [],
         referral: {},
         programRewards: [],
-        user: getRandomUser("REFERRED"),
+        previous: undefined,
+        user: user,
         rules: deepCopy(this.defaultRules),
         template: deepCopy(this.defaultTemplate),
       },

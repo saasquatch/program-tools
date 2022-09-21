@@ -1,6 +1,10 @@
 import * as express from "express";
 
-import { meetCustomFieldRules, meetEventTriggerRules } from "./conversion";
+import {
+  meetCustomFieldRules,
+  meetEventTriggerRules,
+  meetEdgeTriggerConditions,
+} from "./conversion";
 import { rewardEmailQuery } from "./queries";
 import Transaction from "./transaction";
 import { triggerProgram } from "./trigger";
@@ -15,7 +19,7 @@ import {
   ProgramTriggerBody,
 } from "./types/rpc";
 
-import { timeboxExpression, safeJsonata } from "./jsonata";
+import { timeboxExpression, timeboxedJsonata, safeJsonata } from "./jsonata";
 
 import { ProgramType } from "./types/saasquatch";
 import {
@@ -24,6 +28,7 @@ import {
   setRewardSchedule,
   numToEquality,
   getTriggerSchema,
+  getUserCustomFieldsFromJsonata,
 } from "./utils";
 
 export { types };
@@ -38,6 +43,7 @@ export {
   ValidationProgramField,
   meetEventTriggerRules,
   meetCustomFieldRules,
+  meetEdgeTriggerConditions,
   rewardEmailQuery,
   setRewardSchedule,
   getGoalAnalyticTimestamp,
@@ -45,7 +51,9 @@ export {
   inferType,
   numToEquality,
   getTriggerSchema,
+  getUserCustomFieldsFromJsonata,
   timeboxExpression,
+  timeboxedJsonata,
   safeJsonata,
   getLogger,
   setLogLevel,
