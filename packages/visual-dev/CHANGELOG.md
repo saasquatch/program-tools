@@ -13,8 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - New components added
 
-  - \<Slider>
-  - \<TableRow>
+  - \<Slider> - slider style input
+  - \<TableRow> - alternate to <Row> that displays children cells directly (instead of mapping through an object)
 
 - Added / Updated props to the following components:
 
