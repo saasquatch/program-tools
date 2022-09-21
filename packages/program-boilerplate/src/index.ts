@@ -19,7 +19,7 @@ import {
   ProgramTriggerBody,
 } from "./types/rpc";
 
-import { timeboxExpression, safeJsonata } from "./jsonata";
+import { timeboxExpression, timeboxedJsonata, safeJsonata } from "./jsonata";
 
 import { ProgramType } from "./types/saasquatch";
 import {
@@ -53,6 +53,7 @@ export {
   getTriggerSchema,
   getUserCustomFieldsFromJsonata,
   timeboxExpression,
+  timeboxedJsonata,
   safeJsonata,
   getLogger,
   setLogLevel,
