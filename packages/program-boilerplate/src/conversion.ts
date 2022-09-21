@@ -3,7 +3,7 @@
  */
 
 import * as assert from "assert";
-import { safeJsonata2 } from "./jsonata";
+import { timeboxedJsonata } from "./jsonata";
 
 /**
  * A custom field based conversion rule
@@ -97,13 +97,13 @@ export function meetEdgeTriggerConditions(
     // something is definitely wrong with the query
     const jsonataTimeoutMs = 500;
 
-    const { success: prevSuccess, result: previousValue } = safeJsonata2(
+    const { success: prevSuccess, result: previousValue } = timeboxedJsonata(
       field.replace("user.", "previous."),
       activeTrigger,
       jsonataTimeoutMs
     );
 
-    const { success: currentSuccess, result: currentValue } = safeJsonata2(
+    const { success: currentSuccess, result: currentValue } = timeboxedJsonata(
       field,
       activeTrigger,
       jsonataTimeoutMs

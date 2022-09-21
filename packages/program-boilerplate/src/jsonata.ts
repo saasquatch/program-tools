@@ -56,6 +56,9 @@ export function timeboxExpression(
   });
 }
 
+/**
+ * @deprecated Use timeboxedJsonata instead
+ */
 export function safeJsonata(expression: string, inputData: any) {
   try {
     const jsonataQuery = jsonata(expression);
@@ -66,7 +69,7 @@ export function safeJsonata(expression: string, inputData: any) {
   }
 }
 
-export function safeJsonata2(
+export function timeboxedJsonata(
   expression: string,
   inputData: any,
   timeout?: number,
