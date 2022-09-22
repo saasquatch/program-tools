@@ -106,6 +106,12 @@ const RingLarge = styled(RingDefault)<RingProps>`
   left: ${(props) => props.left || `unset`};
   padding-right: ${(props) => props.paddingRight || `unset`};
 
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   div {
     width: 55px;
     height: 55px;

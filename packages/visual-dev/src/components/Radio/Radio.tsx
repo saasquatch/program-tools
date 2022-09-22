@@ -9,7 +9,7 @@ type RadioProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Value for form input
+   * Value for form input, generally should be true or false
    */
   value?: any;
   /**

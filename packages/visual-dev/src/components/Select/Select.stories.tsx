@@ -1,6 +1,7 @@
 import { useSelect } from "downshift";
 import React from "react";
 import { Select } from ".";
+import { IconKey } from "../Icon";
 
 export default {
   title: "Components / Select",
@@ -11,6 +12,24 @@ export const Basic = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const functional = useSelect({ items });
   const props = { items, functional };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <Select {...props}></Select>
+    </div>
+  );
+};
+
+export const CustomIcon = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const functional = useSelect({ items });
+  const props = { items, functional, customIcon: "add" as IconKey };
   return (
     <div
       style={{
@@ -133,6 +152,52 @@ export const Loading = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const hooks = useSelect({ items });
   const props = { loading: true, items, functional: hooks };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <Select {...props}></Select>
+    </div>
+  );
+};
+
+export const LoadingCustomSlotContent = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const hooks = useSelect({ items });
+  const props = {
+    loading: true,
+    loadingSlot: "Loading...",
+    items,
+    functional: hooks,
+  };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <Select {...props}></Select>
+    </div>
+  );
+};
+
+export const Empty = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const hooks = useSelect({ items });
+  const props = {
+    empty: true,
+    items,
+    functional: hooks,
+    emptySlot: "No items to display",
+  };
   return (
     <div
       style={{

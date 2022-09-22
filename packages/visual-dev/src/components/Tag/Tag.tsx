@@ -43,7 +43,7 @@ export const TagView = React.forwardRef<React.ElementRef<"div">, TagProps>(
     return (
       <TagDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
         <IconSegmentDiv onClick={onClickClose}>
-          {<IconView size="10px" icon="close" />}
+          {<IconView size="16px" icon="close" />}
         </IconSegmentDiv>
         <TextSegmentDiv>{children}</TextSegmentDiv>
       </TagDiv>

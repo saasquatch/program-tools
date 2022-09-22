@@ -9,10 +9,10 @@ export const DataGraphic = (
     fill="none"
     viewBox="0 0 126 91"
   >
-    <path fill="url(#pattern0)" d="M0 0H126V91H0z"></path>
+    <path fill="url(#sq-visual-dev-empty)" d="M0 0H126V91H0z"></path>
     <defs>
       <pattern
-        id="pattern0"
+        id="sq-visual-dev-empty"
         width="1"
         height="1"
         patternContentUnits="objectBoundingBox"

@@ -6,7 +6,7 @@ export const AlertDiv = css`
   align-items: flex-start;
   padding: var(--sq-spacing-medium);
   border: 1px solid;
-  border-radius: 5px;
+  border-radius: var(--sq-border-radius-normal);
   box-sizing: border-box;
   color: var(--sq-text);
   font-family: var(--sq-font-family-sans);

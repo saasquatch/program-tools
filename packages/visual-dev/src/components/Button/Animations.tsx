@@ -130,9 +130,9 @@ export const ButtonSpinnerStyle = styled(RingDefault)<{
 
   top: 2px;
 
-  ${(props) => (props.size == "12px" ? "margin-right: 13px;" : "")}
-  ${(props) => (props.size == "13px" ? "margin-right: 14px;" : "")}
-  ${(props) => (props.size == "18px" ? "margin-right: 18px;" : "")}
+  ${(props) => (props.size == "12px" ? "margin-right: 12px;" : "")}
+  ${(props) => (props.size == "12px" ? "margin-right: 12px;" : "")}
+  ${(props) => (props.size == "15px" ? "margin-right: 15px;" : "")}
 
   div {
     width: ${(props) => props.size};

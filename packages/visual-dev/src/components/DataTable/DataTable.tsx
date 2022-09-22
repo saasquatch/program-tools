@@ -13,9 +13,13 @@ export interface OptionProps {
    */
   children?: any;
   /**
-   * Render table in empty state
+   * Render table in the empty state
    */
   empty?: boolean;
+  /**
+   * Render table in the loading state
+   */
+  loading?: boolean;
   /**
    * Content at the top of the table, generally heading and banners
    */
@@ -36,6 +40,10 @@ export interface OptionProps {
    * Content to display in place of rows while the table is in the empty filter state
    */
   emptyFilterContent?: string | React.ReactNode;
+  /**
+   *
+   */
+  loadingSlot?: React.ReactNode | React.ReactNode[];
 }
 
 export interface StyleProps {
@@ -73,11 +81,13 @@ export const DataTableView = React.forwardRef<
     children,
     customCSS = {},
     empty = false,
+    loading = false,
     emptyFilter = false,
     emptyContent = "No submission found",
     emptyFilterContent = "No submissions that meet your filter criteria",
-    headerSlot: headerContent = <></>,
-    footerSlot: footerContent = <></>,
+    headerSlot = <></>,
+    footerSlot = <></>,
+    loadingSlot = <></>,
     ...rest
   } = props;
 
@@ -88,8 +98,9 @@ export const DataTableView = React.forwardRef<
       ref={forwardedRef}
       customCSS={customCSS}
     >
-      {headerContent}
-      {empty && (
+      {headerSlot}
+      {loading && loadingSlot}
+      {!loading && empty && (
         <RowDiv>
           <DataDiv>
             {DataGraphic}
@@ -98,7 +109,7 @@ export const DataTableView = React.forwardRef<
           </DataDiv>
         </RowDiv>
       )}
-      {!empty && emptyFilter && (
+      {!loading && !empty && emptyFilter && (
         <RowDiv>
           <DataDiv>
             {DataGraphic}
@@ -107,8 +118,8 @@ export const DataTableView = React.forwardRef<
           </DataDiv>
         </RowDiv>
       )}
-      {!empty && !emptyFilter && children}
-      {footerContent}
+      {!loading && !empty && !emptyFilter && children}
+      {footerSlot}
     </DataTableDiv>
   );
 });

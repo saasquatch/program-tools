@@ -1,7 +1,7 @@
 import { css } from "styled-components";
 
 export const base = css`
-  padding: var(--sq-spacing-xx-small) var(--sq-spacing-large);
+  padding: var(--sq-spacing-xxx-small) var(--sq-spacing-medium);
   color: var(--sq-text);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: var(--sq-font-weight-bold);
@@ -11,10 +11,10 @@ export const base = css`
 `;
 
 export const pill_false = css`
-  border-radius: 4px;
+  border-radius: var(--sq-border-radius-normal);
 `;
 export const pill_true = css`
-  border-radius: 50px;
+  border-radius: var(--sq-border-radius-pill);
 `;
 
 export const info = css`
@@ -36,7 +36,7 @@ export const critical = css`
 `;
 
 export const warning = css`
-  background-color: var(--sq-border-warning);
-  border-color: var(--sq-border-warning);
-  color: var(--sq-surface);
+  background-color: var(--sq-badge-surface-warning);
+  border-color: var(--sq-badge-surface-warning);
+  color: var(--sq-text);
 `;

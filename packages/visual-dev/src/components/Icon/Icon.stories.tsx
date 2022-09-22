@@ -51,6 +51,7 @@ export const search = () => <IconView icon={"search"} />;
 export const filter = () => <IconView icon={"filter"} />;
 export const trash = () => <IconView icon={"trash"} />;
 export const info = () => <IconView icon={"info"} />;
+export const link_box = () => <IconView icon={"link_box"} />;
 export const settings = () => <IconView icon={"settings"} />;
 export const avatar = () => <IconView icon={"avatar"} />;
 export const leftwardArrow = () => <IconView icon={"leftward_arrow"} />;
@@ -109,3 +110,4 @@ export const envelope = () => <IconView icon={"envelope"} />;
 export const filled_package_logo = () => (
   <IconView icon={"filled_package_logo"} />
 );
+export const open_tab = () => <IconView icon={"open_tab"} />;

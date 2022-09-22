@@ -2,9 +2,9 @@ import { css } from "styled-components";
 
 export const icon_size = {
   mini: "5px",
-  small: "14px",
+  small: "16px",
   medium: "16px",
-  large: "22px",
+  large: "20px",
 };
 
 export const icon_only_size = {
@@ -16,20 +16,20 @@ export const icon_only_size = {
 
 export const checkmark_anim = {
   small: "12px",
-  medium: "13px",
-  large: "18px",
+  medium: "12px",
+  large: "15px",
 };
 
 export const loading_anim = {
   small: "12px",
-  medium: "13px",
-  large: "18px",
+  medium: "12px",
+  large: "15px",
 };
 
 export const anim_padding = {
-  small: 2,
-  medium: 3,
-  large: 4,
+  small: "6px",
+  medium: "6px",
+  large: "6px",
 };
 
 // BASE BUTTON STYLING
@@ -38,33 +38,34 @@ export const universal_base = css`
   cursor: pointer;
 
   border: none;
-  border-radius: 4px;
+  border-radius: var(--sq-border-radius-normal);
 
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: var(--sq-font-weight-bold);
+  height: max-content;
 `;
 // PILL VARIANTS
 
 export const pill = css`
-  border-radius: 100px;
+  border-radius: var(--sq-border-radius-pill);
 `;
 
 // SIZE VARIANTS
 
 export const small = css`
-  padding: 3px 10.5px 2px;
+  padding: var(--sq-spacing-xxx-small) var(--sq-spacing-small);
   font-size: var(--sq-font-size-button-small);
   line-height: var(--sq-line-height-button-small);
 `;
 
 export const medium = css`
-  padding: 5px 16px;
+  padding: var(--sq-spacing-xxx-small) var(--sq-spacing-medium);
   font-size: var(--sq-font-size-button-medium);
   line-height: var(--sq-line-height-button-medium);
 `;
 
 export const large = css`
-  padding: 7.5px 21px;
+  padding: 5px var(--sq-spacing-large);
   font-size: var(--sq-font-size-button-large);
   line-height: var(--sq-line-height-button-large);
 `;
@@ -136,16 +137,16 @@ export const secondary = {
     }
   `,
   critical: css`
-    color: var(--sq-surface-critical-hovered);
-    box-shadow: inset 0 0 0 1px var(--sq-surface-critical-hovered);
+    color: var(--sq-surface-critical);
+    box-shadow: inset 0 0 0 1px var(--sq-surface-critical);
     &:hover {
       color: var(--sq-text-on-secondary-hovered);
       background: var(--sq-surface-critical-hovered);
     }
   `,
   success: css`
-    color: var(--sq-surface-success-hovered);
-    box-shadow: inset 0 0 0 1px var(--sq-surface-success-hovered);
+    color: var(--sq-surface-success);
+    box-shadow: inset 0 0 0 1px var(--sq-surface-success);
     &:hover {
       color: var(--sq-text-on-secondary-hovered);
       background: var(--sq-surface-success-hovered);
@@ -213,7 +214,7 @@ export const icon = {
     padding: 0;
 
     border: none;
-    border-radius: 4px;
+    border-radius: var(--sq-border-radius-normal);
     border: 1px solid var(--sq-action-secondary-border);
 
     color: var(--sq-text-on-secondary);
@@ -238,21 +239,9 @@ export const icon = {
     width: 20px;
     height: 20px;
   `,
-  small: css`
-    width: 36px;
-    height: 36px;
-  `,
-  medium: css`
-    width: 44px;
-    height: 44px;
-  `,
-  large: css`
-    width: 76px;
-    height: 76px;
-  `,
 
   circle: css`
-    border-radius: 100px;
+    border-radius: var(--sq-border-radius-pill);
   `,
   borderless: css`
     border: none;

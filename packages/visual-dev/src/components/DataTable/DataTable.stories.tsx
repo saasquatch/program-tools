@@ -5,13 +5,12 @@ import { Text } from "../Text";
 import { Dropdown } from "../Dropdown";
 import { HoverPopover, PopoverView } from "../Popover";
 import { BadgeView } from "../Badge";
-import { FilterView } from "./Filter";
 import { BannerView } from "./Banner";
-import { DataTable } from ".";
+import { DataTableView } from ".";
 
 export default {
   title: "Components / DataTable",
-  component: DataTable,
+  component: DataTableView,
 };
 
 const updatePaginationDummy = (limit: number, offset: number) => {
@@ -51,13 +50,15 @@ const text_c = "11 months ago";
 
 const text_d = (
   <>
-    <DataTable.Skeleton circle={true} size="8px" color="#57AC59" /> Success
+    <DataTableView.SkeletonView circle={true} size="8px" color="#57AC59" />{" "}
+    Success
   </>
 );
 
 const text_e = (
   <>
-    <DataTable.Skeleton circle={true} size="8px" color="#FE6666" /> Failed
+    <DataTableView.SkeletonView circle={true} size="8px" color="#FE6666" />{" "}
+    Failed
   </>
 );
 
@@ -65,7 +66,8 @@ const text_e_popover = (
   <HoverPopover
     handle={
       <div style={{ display: "flex", alignItems: "center" }}>
-        <DataTable.Skeleton circle={true} size="8px" color="#FE6666" /> Failed
+        <DataTableView.SkeletonView circle={true} size="8px" color="#FE6666" />{" "}
+        Failed
       </div>
     }
   >
@@ -119,7 +121,7 @@ const content_d = [
 export const FormSubmissionTable = () => {
   return (
     <>
-      <DataTable.Filter>
+      <DataTableView.FilterView>
         <Dropdown text="All Forms" customCSS="min-width: 112px;" />
         <Dropdown text="Any Status" customCSS="min-width: 116px;" />
         <Dropdown
@@ -127,12 +129,16 @@ export const FormSubmissionTable = () => {
           icon="calendar"
           customCSS="min-width: 142px;"
         />
-      </DataTable.Filter>
-      <DataTable
+      </DataTableView.FilterView>
+      <DataTableView
         width="958px"
-        headerSlot={<DataTable.Row variant="header">{content_a}</DataTable.Row>}
+        headerSlot={
+          <DataTableView.RowView variant="header">
+            {content_a}
+          </DataTableView.RowView>
+        }
         footerSlot={
-          <DataTable.Pagination
+          <DataTableView.PaginationView
             total={17}
             limit={10}
             offset={0}
@@ -140,12 +146,53 @@ export const FormSubmissionTable = () => {
           />
         }
       >
-        <DataTable.Row>{content_b}</DataTable.Row>
-        <DataTable.Row>{content_c}</DataTable.Row>
-        <DataTable.Row>{content_c}</DataTable.Row>
-        <DataTable.Row>{content_c}</DataTable.Row>
-        <DataTable.Row>{content_c}</DataTable.Row>
-      </DataTable>
+        <DataTableView.RowView>{content_b}</DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+      </DataTableView>
+    </>
+  );
+};
+
+export const FormSubmissionTableWithControllerMapping = () => {
+  const headers = ["Form", "User", "Date Submitted", "Status"];
+  const rowMatrix = [
+    [text_a, text_b, text_c, text_d],
+    [text_a, text_b, text_c, text_d],
+    [text_a, text_b, text_c, text_d],
+  ];
+  return (
+    <>
+      <DataTableView
+        width="958px"
+        headerSlot={
+          <DataTableView.TableRowView variant="header">
+            {headers.map((header) => {
+              return header;
+            })}
+          </DataTableView.TableRowView>
+        }
+        footerSlot={
+          <DataTableView.PaginationView
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      >
+        {rowMatrix.map((row) => {
+          return (
+            <DataTableView.TableRowView>
+              {row.map((cell) => {
+                return cell;
+              })}
+            </DataTableView.TableRowView>
+          );
+        })}
+      </DataTableView>
     </>
   );
 };
@@ -153,11 +200,15 @@ export const FormSubmissionTable = () => {
 export const PopoverTest = () => {
   return (
     <>
-      <DataTable
+      <DataTableView
         width="958px"
-        headerSlot={<DataTable.Row variant="header">{content_a}</DataTable.Row>}
+        headerSlot={
+          <DataTableView.RowView variant="header">
+            {content_a}
+          </DataTableView.RowView>
+        }
         footerSlot={
-          <DataTable.Pagination
+          <DataTableView.PaginationView
             total={17}
             limit={10}
             offset={0}
@@ -165,12 +216,12 @@ export const PopoverTest = () => {
           />
         }
       >
-        <DataTable.Row>{content_b}</DataTable.Row>
-        <DataTable.Row>{content_d}</DataTable.Row>
-        <DataTable.Row>{content_d}</DataTable.Row>
-        <DataTable.Row>{content_d}</DataTable.Row>
-        <DataTable.Row>{content_d}</DataTable.Row>
-      </DataTable>
+        <DataTableView.RowView>{content_b}</DataTableView.RowView>
+        <DataTableView.RowView>{content_d}</DataTableView.RowView>
+        <DataTableView.RowView>{content_d}</DataTableView.RowView>
+        <DataTableView.RowView>{content_d}</DataTableView.RowView>
+        <DataTableView.RowView>{content_d}</DataTableView.RowView>
+      </DataTableView>
     </>
   );
 };
@@ -178,7 +229,7 @@ export const PopoverTest = () => {
 export const FormSubmissionTableWithBanner = () => {
   return (
     <>
-      <DataTable.Filter>
+      <DataTableView.FilterView>
         <Dropdown text="All Forms" customCSS="min-width: 112px;" />
         <Dropdown text="Any Status" customCSS="min-width: 116px;" />
         <Dropdown
@@ -186,13 +237,13 @@ export const FormSubmissionTableWithBanner = () => {
           icon="calendar"
           customCSS="min-width: 142px;"
         />
-      </DataTable.Filter>
-      <DataTable
+      </DataTableView.FilterView>
+      <DataTableView
         width="958px"
         headerSlot={
           <>
             <BannerView>
-              Filter Rewards by Program
+              FilterView Rewards by Program
               <div
                 style={{
                   background: "white",
@@ -205,11 +256,13 @@ export const FormSubmissionTableWithBanner = () => {
               </div>
               5 rewards earned across all programs
             </BannerView>
-            <DataTable.Row variant="header">{content_a}</DataTable.Row>
+            <DataTableView.RowView variant="header">
+              {content_a}
+            </DataTableView.RowView>
           </>
         }
         footerSlot={
-          <DataTable.Pagination
+          <DataTableView.PaginationView
             total={17}
             limit={10}
             offset={0}
@@ -217,12 +270,12 @@ export const FormSubmissionTableWithBanner = () => {
           />
         }
       >
-        <DataTable.Row>{content_b}</DataTable.Row>
-        <DataTable.Row>{content_c}</DataTable.Row>
-        <DataTable.Row>{content_c}</DataTable.Row>
-        <DataTable.Row>{content_c}</DataTable.Row>
-        <DataTable.Row>{content_c}</DataTable.Row>
-      </DataTable>
+        <DataTableView.RowView>{content_b}</DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+      </DataTableView>
     </>
   );
 };
@@ -238,7 +291,7 @@ export const FormSubmissionTableEmpty = () => {
 
   return (
     <>
-      <DataTable.Filter>
+      <DataTableView.FilterView>
         <Dropdown text="All Forms" customCSS="min-width: 112px;" />
         <Dropdown text="Any Status" customCSS="min-width: 116px;" />
         <Dropdown
@@ -246,24 +299,28 @@ export const FormSubmissionTableEmpty = () => {
           icon="calendar"
           customCSS="min-width: 142px;"
         />
-      </DataTable.Filter>
-      <DataTable
+      </DataTableView.FilterView>
+      <DataTableView
         width="958px"
         empty
-        headerSlot={<DataTable.Row variant="header">{content_a}</DataTable.Row>}
+        headerSlot={
+          <DataTableView.RowView variant="header">
+            {content_a}
+          </DataTableView.RowView>
+        }
         footerSlot={
-          <DataTable.Pagination
+          <DataTableView.PaginationView
             total={17}
             limit={10}
             offset={0}
             updatePagination={updatePaginationDummy}
           />
         }
-      ></DataTable>
+      ></DataTableView>
     </>
   );
 };
-export const FormSubmissionTableFilter = () => {
+export const FormSubmissionTableFilterView = () => {
   const content_a = [
     { text: "Form" },
     { text: "User" },
@@ -274,7 +331,7 @@ export const FormSubmissionTableFilter = () => {
 
   return (
     <>
-      <DataTable.Filter>
+      <DataTableView.FilterView>
         <Dropdown text="All Forms" customCSS="min-width: 112px;" />
         <Dropdown text="Any Status" customCSS="min-width: 116px;" />
         <Dropdown
@@ -282,20 +339,24 @@ export const FormSubmissionTableFilter = () => {
           icon="calendar"
           customCSS="min-width: 142px;"
         />
-      </DataTable.Filter>
-      <DataTable
+      </DataTableView.FilterView>
+      <DataTableView
         width="958px"
         empty
-        headerSlot={<DataTable.Row variant="header">{content_a}</DataTable.Row>}
+        headerSlot={
+          <DataTableView.RowView variant="header">
+            {content_a}
+          </DataTableView.RowView>
+        }
         footerSlot={
-          <DataTable.Pagination
+          <DataTableView.PaginationView
             total={17}
             limit={10}
             offset={0}
             updatePagination={updatePaginationDummy}
           />
         }
-      ></DataTable>
+      ></DataTableView>
     </>
   );
 };
@@ -310,7 +371,7 @@ export const paginationFunctional = () => {
   };
 
   return (
-    <DataTable.Pagination
+    <DataTableView.PaginationView
       total={440}
       limit={limit}
       offset={offset}
@@ -319,8 +380,28 @@ export const paginationFunctional = () => {
   );
 };
 
+export const paginationLoading = () => (
+  <DataTableView.PaginationView
+    total={440}
+    limit={10}
+    offset={0}
+    loading
+    updatePagination={updatePaginationDummy}
+  />
+);
+
+export const paginationHidePerPage = () => (
+  <DataTableView.PaginationView
+    total={440}
+    limit={10}
+    offset={0}
+    hidePerPage
+    updatePagination={updatePaginationDummy}
+  />
+);
+
 export const paginationManyStart = () => (
-  <DataTable.Pagination
+  <DataTableView.PaginationView
     total={440}
     limit={10}
     offset={0}
@@ -329,7 +410,7 @@ export const paginationManyStart = () => (
 );
 
 export const paginationManyMiddle = () => (
-  <DataTable.Pagination
+  <DataTableView.PaginationView
     total={440}
     limit={10}
     offset={180}
@@ -338,7 +419,7 @@ export const paginationManyMiddle = () => (
 );
 
 export const paginationManyEnd = () => (
-  <DataTable.Pagination
+  <DataTableView.PaginationView
     total={440}
     limit={10}
     offset={430}
@@ -347,7 +428,7 @@ export const paginationManyEnd = () => (
 );
 
 export const paginationNoTotalStart = () => (
-  <DataTable.Pagination
+  <DataTableView.PaginationView
     limit={10}
     offset={0}
     hasNext={true}
@@ -356,7 +437,7 @@ export const paginationNoTotalStart = () => (
 );
 
 export const paginationNoTotalMiddle = () => (
-  <DataTable.Pagination
+  <DataTableView.PaginationView
     limit={10}
     offset={10}
     hasNext={true}
@@ -365,7 +446,7 @@ export const paginationNoTotalMiddle = () => (
 );
 
 export const paginationNoTotalEnd = () => (
-  <DataTable.Pagination
+  <DataTableView.PaginationView
     limit={10}
     offset={20}
     updatePagination={updatePaginationDummy}
@@ -380,7 +461,9 @@ export const header = () => {
     { text: "Heading D" },
   ];
 
-  return <DataTable.Row variant="header">{content}</DataTable.Row>;
+  return (
+    <DataTableView.RowView variant="header">{content}</DataTableView.RowView>
+  );
 };
 
 export const row = () => {
@@ -392,11 +475,11 @@ export const row = () => {
     { text: text },
   ];
 
-  return <DataTable.Row>{content}</DataTable.Row>;
+  return <DataTableView.RowView>{content}</DataTableView.RowView>;
 };
 
 export const rowSkeleton = () => {
-  const text = <DataTable.Skeleton size="91px" />;
+  const text = <DataTableView.SkeletonView size="91px" />;
   const content = [
     { text: text },
     { text: text },
@@ -404,7 +487,54 @@ export const rowSkeleton = () => {
     { text: text },
   ];
 
-  return <DataTable.Row>{content}</DataTable.Row>;
+  return <DataTableView.RowView>{content}</DataTableView.RowView>;
+};
+
+export const FormSubmissionTableLoading = () => {
+  return (
+    <>
+      <DataTableView.FilterView>
+        <Dropdown text="All Forms" customCSS="min-width: 112px;" />
+        <Dropdown text="Any Status" customCSS="min-width: 116px;" />
+        <Dropdown
+          text="30 Days"
+          icon="calendar"
+          customCSS="min-width: 142px;"
+        />
+      </DataTableView.FilterView>
+      <DataTableView
+        loading={true}
+        loadingSlot={
+          <>
+            {rowSkeleton()}
+            {rowSkeleton()}
+            {rowSkeleton()}
+            {rowSkeleton()}
+          </>
+        }
+        width="958px"
+        headerSlot={
+          <DataTableView.RowView variant="header">
+            {content_a}
+          </DataTableView.RowView>
+        }
+        footerSlot={
+          <DataTableView.PaginationView
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      >
+        <DataTableView.RowView>{content_b}</DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+      </DataTableView>
+    </>
+  );
 };
 
 export const headerActions = () => {
@@ -416,7 +546,9 @@ export const headerActions = () => {
     { text: "Actions", center: true },
   ];
 
-  return <DataTable.Row variant="header">{content}</DataTable.Row>;
+  return (
+    <DataTableView.RowView variant="header">{content}</DataTableView.RowView>
+  );
 };
 
 export const rowActions = () => {
@@ -436,17 +568,17 @@ export const rowActions = () => {
     { text: <IconView icon="actions" />, center: true },
   ];
 
-  return <DataTable.Row>{content}</DataTable.Row>;
+  return <DataTableView.RowView>{content}</DataTableView.RowView>;
 };
 
 export const rowActionsSkeleton = () => {
   const text_a = (
     <div>
-      <DataTable.Skeleton size="135px" /> <br />
-      <DataTable.Skeleton size="84px" />
+      <DataTableView.SkeletonView size="135px" /> <br />
+      <DataTableView.SkeletonView size="84px" />
     </div>
   );
-  const text_b = <DataTable.Skeleton size="91px" />;
+  const text_b = <DataTableView.SkeletonView size="91px" />;
 
   const content = [
     { text: text_a, flex: "10" },
@@ -456,7 +588,7 @@ export const rowActionsSkeleton = () => {
     { text: <IconView icon="actions" />, center: true },
   ];
 
-  return <DataTable.Row>{content}</DataTable.Row>;
+  return <DataTableView.RowView>{content}</DataTableView.RowView>;
 };
 
 export const header_arrow = () => {
@@ -468,7 +600,9 @@ export const header_arrow = () => {
     { text: "Heading D" },
   ];
 
-  return <DataTable.Row variant="header">{content}</DataTable.Row>;
+  return (
+    <DataTableView.RowView variant="header">{content}</DataTableView.RowView>
+  );
 };
 
 export const row_arrow = () => {
@@ -484,11 +618,7 @@ export const row_arrow = () => {
     {
       text: (
         <span style={{ textAlign: "center", width: "100%" }}>
-          <IconView
-            icon="arrow_dropdown"
-            size="40px"
-            customCSS="top: 8px; height: auto;"
-          />
+          <IconView icon="arrow_dropdown" size="40px" />
         </span>
       ),
       flex: 0.1,
@@ -500,5 +630,5 @@ export const row_arrow = () => {
     { text: text_b },
   ];
 
-  return <DataTable.Row>{content}</DataTable.Row>;
+  return <DataTableView.RowView>{content}</DataTableView.RowView>;
 };

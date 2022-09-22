@@ -55,6 +55,23 @@ export const DisabledChecked = () => {
   );
 };
 
+export const CustomLabel = () => {
+  return (
+    <CheckboxView
+      label={
+        <div>
+          Slot
+          <br />
+          Content
+        </div>
+      }
+      value={true}
+      disabled={true}
+      onChange={undefined}
+    />
+  );
+};
+
 export const CustomCSS = () => {
   return (
     <CheckboxView

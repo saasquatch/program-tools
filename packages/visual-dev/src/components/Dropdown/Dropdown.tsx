@@ -46,6 +46,10 @@ export interface OptionProps {
    */
   onClickDropdown?: () => void;
   /**
+   * Text displayed in place of items if no items are provided
+   */
+  emptyText?: string;
+  /**
    * Dropdown content, almost always multiple Dropdown.Sublist or Dropdown.Item
    */
   children?: React.ReactNode;
@@ -71,6 +75,22 @@ export interface DropdownItemProps {
    * Visual content of the item, often a span or div with text
    */
   children?: React.ReactNode;
+  /**
+   * Item description that appears below the item's child
+   */
+  description?: string;
+  /**
+   * Secondary item description that appears to the right of the item's child
+   */
+  sideDescription?: string;
+  /**
+   * Display a checkmark before the item
+   */
+  checked?: boolean;
+  /**
+   * Text display in button when no value is selected
+   */
+  placeholder?: string;
 }
 
 export interface DropdownSublistProps {
@@ -100,34 +120,50 @@ const DropdownDiv = styled("div")<Required<StyleProps>>`
   ${(props) => props.customCSS}
 `;
 
-const DropdownButtonDiv = styled("div")<Required<ButtonProps>>`
+const DropdownButtonDiv = styled("div")<
+  Required<
+    ButtonProps & {
+      showMenu: boolean;
+      popUpwards: boolean;
+      borderRadius: string;
+    }
+  >
+>`
   ${Styles.ButtonDiv}
-  border-radius: ${(props) => (props.pill ? "100px" : "4px")};
+  border-radius: ${(props) =>
+    props.pill
+      ? "var(--sq-border-radius-pill)"
+      : "var(--sq-border-radius-normal)"};
   text-align: ${(props) => (props.center ? "center" : "left")};
   line-height: ${(props) => (props.narrow ? "10px" : "16px")};
   color: ${(props) =>
-    props.disabled
-      ? "var(--sq-action-secondary-border)"
-      : "var(--sq-text-on-secondary)"};
-  background: ${(props) =>
-    props.disabled ? "var(--sq-surface-subdued)" : "var(--sq-surface)"};
+    props.disabled ? "var(--sq-text-subdued)" : "var(--sq-text-on-secondary)"};
+  background: ${(props) => (props.disabled ? "#e5e5e5" : "var(--sq-surface)")};
+  ${(props) =>
+    !props.disabled &&
+    props.showMenu &&
+    "border-color: var(--sq-text-interactive);"}
+  ${(props) =>
+    props.showMenu &&
+    (props.popUpwards
+      ? "border-top: 2px solid var(--sq-surface);"
+      : "border-bottom: 2px solid var(--sq-surface);")}
+  ${(props) => `border-radius: ${props.borderRadius};`}
   &:hover {
-    ${(props) =>
-      !props.disabled &&
-      "box-shadow: inset 0 0 0 1px var(--sq-action-secondary-hovered);"}
     ${(props) => props.disabled && "cursor: not-allowed;"};
   }
 `;
+
 const DropdownContentDiv = styled("div")<
-  Pick<DropdownProps, "pill" | "popUpwards">
+  Pick<DropdownProps, "pill" | "popUpwards"> & { borderRadius: string }
 >`
   ${Styles.ContentDiv}
-  border-radius: ${(props) => (props.pill ? "20px" : "4px")};
+  border-radius: ${(props) => props.borderRadius};
 
   ${(props) =>
     props.popUpwards
-      ? `margin-bottom: var(--sq-spacing-x-small); top: 0; transform: translateY(-100%) translateY(calc(var(--sq-spacing-x-small) * -1)); ;`
-      : "margin-top: var(--sq-spacing-x-small);"}
+      ? `top: 2px; transform: translateY(-100%); border-bottom: none;`
+      : `border-top: none;`}
 `;
 
 const DropdownItemDiv = styled("div")<Required<StyleProps>>`
@@ -152,6 +188,59 @@ const ArrowStyleSpan = styled("span")`
   ${Styles.arrow}
 `;
 
+const ItemTitleContainerDiv = styled("div")`
+  ${Styles.ItemTitleContainerDiv}
+`;
+
+const ItemSideDescriptionSpan = styled("span")`
+  ${Styles.ItemSideDescriptionSpan}
+`;
+
+const ItemDescriptionP = styled("p")`
+  ${Styles.ItemDescriptionP}
+`;
+
+const PlaceHolderSpan = styled("span")`
+  ${Styles.PlaceHolderSpan}
+`;
+
+const EmptyTextSpan = styled("span")`
+  ${Styles.EmptyTextSpan}
+`;
+
+const borderPresets = {
+  pill: {
+    top: {
+      open: "var(--sq-border-radius-pill) var(--sq-border-radius-pill) 0 0",
+      closed: "var(--sq-border-radius-pill)",
+      content: "32px 32px 0 0",
+    },
+    bottom: {
+      open: "0 0 var(--sq-border-radius-pill) var(--sq-border-radius-pill)",
+      closed: "var(--sq-border-radius-pill)",
+      content: "0 0 32px 32px",
+    },
+  },
+  normal: {
+    top: {
+      open: "var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0",
+      closed: "var(--sq-border-radius-normal)",
+      content:
+        "var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0",
+    },
+    bottom: {
+      open: "0 0 var(--sq-border-radius-normal) var(--sq-border-radius-normal)",
+      closed: "var(--sq-border-radius-normal)",
+      content:
+        "0 0 var(--sq-border-radius-normal) var(--sq-border-radius-normal)",
+    },
+  },
+};
+
+/**
+ * ZH: When pill is set to true in the table pagination dropdown the view is totally broken. 
+ * This will need to be fixed at some point in the near future. 
+ */
 const DropdownView = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
   (props, forwardedRef) => {
     const {
@@ -165,6 +254,8 @@ const DropdownView = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
       icon,
       onClickDropdown,
       children,
+      placeholder,
+      emptyText,
       customCSS: customCSS = {},
       ...rest
     } = props;
@@ -177,23 +268,46 @@ const DropdownView = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
           narrow={narrow}
           disabled={disabled}
           onClick={onClickDropdown}
+          showMenu={!disabled && showMenu}
+          popUpwards={popUpwards}
+          borderRadius={
+            borderPresets[pill ? "pill" : "normal"][
+              popUpwards ? "bottom" : "top"
+            ][showMenu ? "open" : "closed"]
+          }
         >
           {icon && (
             <IconView
               color="inherit"
               size="16px"
               icon={icon}
-              style={{ margin: -3, top: 2.5, marginRight: "8px" }}
+              style={{
+                margin: -3,
+                top: 2.5,
+                marginRight: "var(--sq-spacing-x-small)",
+              }}
             />
           )}
-          {text}{" "}
+          {text || <PlaceHolderSpan>{placeholder}</PlaceHolderSpan>}
           <ArrowStyleSpan>
             {showMenu ? chevron_up : chevron_down}
           </ArrowStyleSpan>
         </DropdownButtonDiv>
         {showMenu && (
-          <DropdownContentDiv pill={pill} popUpwards={popUpwards}>
-            {children}
+          <DropdownContentDiv
+            popUpwards={popUpwards}
+            borderRadius={
+              borderPresets[pill ? "pill" : "normal"][
+                popUpwards ? "top" : "bottom"
+              ]["content"]
+            }
+          >
+            {children ||
+              (emptyText && (
+                <ItemView>
+                  <EmptyTextSpan>{emptyText}</EmptyTextSpan>
+                </ItemView>
+              ))}
           </DropdownContentDiv>
         )}
       </DropdownDiv>
@@ -203,7 +317,15 @@ const DropdownView = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
 
 const ItemView = React.forwardRef<React.ElementRef<"div">, DropdownItemProps>(
   (props, forwardedRef) => {
-    const { onClick, children, customCSS = {}, ...rest } = props;
+    const {
+      onClick,
+      children,
+      checked,
+      description,
+      sideDescription,
+      customCSS = {},
+      ...rest
+    } = props;
 
     return (
       <DropdownItemDiv
@@ -212,7 +334,14 @@ const ItemView = React.forwardRef<React.ElementRef<"div">, DropdownItemProps>(
         ref={forwardedRef}
         customCSS={customCSS}
       >
-        {children}
+        <ItemTitleContainerDiv>
+          {checked && <IconView icon="checkmark" size="18px" />}
+          {children}
+          {sideDescription && (
+            <ItemSideDescriptionSpan>{sideDescription}</ItemSideDescriptionSpan>
+          )}
+        </ItemTitleContainerDiv>
+        {description && <ItemDescriptionP>{description}</ItemDescriptionP>}
       </DropdownItemDiv>
     );
   }
