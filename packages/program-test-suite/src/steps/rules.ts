@@ -10,6 +10,10 @@ const rulesSteps: StepDefinitions = ({ given }) => {
     });
   });
 
+  given("the program rules are:", (rules: any) => {
+    getWorld().setState({ current: { rules: JSON.parse(rules) } });
+  });
+
   given("there are no reward rules", () => {
     getWorld().setState({
       current: {
