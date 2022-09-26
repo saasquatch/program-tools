@@ -15,6 +15,19 @@ export function HamburgerMenuView(
       margin: 0;
       box-sizing: border-box;
     }
+
+    .container {
+      visibility:hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid red;
+      height: 30px;
+      width: 30px;
+      flex-direction: column;
+      z-index: 100;
+    }
     .menu-items { 
       display: none;
       padding: 30px;
@@ -26,8 +39,8 @@ export function HamburgerMenuView(
       min-width: 325px;
       position: absolute;
       top: 0;
-      right: ${props.position === "right" && "0"};
-      left: ${props.position === "left" && "0"};
+      right: 0;
+      left: 0px;
       margin: 0;
       animation: slideIn 500ms ease-in;
     }
@@ -50,6 +63,7 @@ export function HamburgerMenuView(
     }
 
     @media screen and (max-width: 599px) {
+      .container,
       .toggler,
       .hamburger {
         visibility: visible !important;
@@ -60,15 +74,21 @@ export function HamburgerMenuView(
       }
     }
 
+
     .toggler,
     .hamburger {
       visibility:hidden;
       position: absolute;
-      top: 25px;
-      width: 50px;
-      height: 50px;
-      right: ${props.position === "right" && "20px"};
-      left: ${props.position === "left" && "20px"};
+      width: 100%;
+      height: 100%;
+    }
+
+    .toggler {
+      z-index: 100;
+    }
+
+    .hamburger {
+      z-index: 10;
     }
 
     .toggler:checked ~ .menu-items {
@@ -96,18 +116,18 @@ export function HamburgerMenuView(
       margin: 0;
     }
 
-    .hamburger {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
+    // .hamburger {
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    //   flex-direction: column;
+    // }
 
     .hamburger > .line {
       visibility:hidden;
       z-index: 2;
       height: 4px;
-      width: 65%;
+      width: 100%;
       margin-bottom: 3px;
       border-bottom: 5px solid #444445;
     }
@@ -115,7 +135,7 @@ export function HamburgerMenuView(
   `;
 
   return (
-    <div>
+    <div class="container">
       <style>{vanillaStyle}</style>
       <input type="checkbox" class="toggler" />
       <div class="hamburger">
