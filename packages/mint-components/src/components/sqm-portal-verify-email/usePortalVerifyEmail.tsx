@@ -60,7 +60,7 @@ export function usePortalVerifyEmail({ nextPage, failedPage }) {
         gotoNextPage();
       }, 3000);
     }
-    submit();
+    !data && submit();
   }, [verified]);
 
   return {
