@@ -7,6 +7,9 @@
   "engines": {
     "node": ">=16"
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/saasquatch/program-tools.git"
