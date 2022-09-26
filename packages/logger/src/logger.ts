@@ -9,10 +9,41 @@ export const LOG_TYPE_MARKER = "__ssqt_log_type";
  * Return the initialized logger. If the logger has not
  * yet been initialized, this function returns undefined.
  *
- * @return {winston.Logger | undefined} The logger
+ * @return {winston.Logger} The logger
  */
-export function getLogger(): winston.Logger | undefined {
-  return _logger;
+export function getLogger(): winston.Logger {
+  if (_logger === undefined) {
+    initializeLogger();
+  }
+  return _logger!;
+}
+
+/**
+ * Convenience shorthand for getLogger().log
+ */
+export function log(): winston.LogMethod {
+  return getLogger().log;
+}
+
+/**
+ * Convenience shorthand for getLogger().info
+ */
+export function info(): winston.LeveledLogMethod {
+  return getLogger().info;
+}
+
+/**
+ * Convenience shorthand for getLogger().warn
+ */
+export function warn(): winston.LeveledLogMethod {
+  return getLogger().warn;
+}
+
+/**
+ * Convenience shorthand for getLogger().error
+ */
+export function error(): winston.LeveledLogMethod {
+  return getLogger().error;
 }
 
 /**
