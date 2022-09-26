@@ -10,8 +10,20 @@
     <script type="module" src="build/mint-components.esm.js"></script>
     <script nomodule src="build/mint-components.js"></script>
     <script src="https://fast.ssqt.io/npm/@saasquatch/bedrock-components@latest/dist/bedrock-components/bedrock-components.js"></script>
+
+    <script>
+      window.SquatchPortal = {
+        tenantAlias: "test_a8b41jotf8a1v",
+        appDomain: "https://staging.referralsaasquatch.com",
+      };
+    </script>
   </head>
   <body>
-    <sqm-stencilbook></sqm-stencilbook>
+    <sqm-portal-email-verification
+      email-verification-header="Verify your email"
+      redirect-path="/verifyEmail"
+      resend-email-button-text="Re-send Email"
+      verify-message="A verification email was sent to {email}. Please verify your email to continue to the portal."
+    ></sqm-portal-email-verification>
   </body>
 </html>
