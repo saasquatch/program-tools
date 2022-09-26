@@ -1,0 +1,37 @@
+{
+  "name": "@saasquatch/logger",
+  "version": "0.0.1",
+  "private": false,
+  "description": "Thin wrapper around Winston to provide unified logging across SaaSquatch NodeJS services",
+  "prettier": {},
+  "engines": {
+    "node": ">=16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saasquatch/program-tools.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/saasquatch/program-tools/issues"
+  },
+  "homepage": "https://github.com/saasquatch/program-tools/packages/logger#readme",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -b",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "16"
+  },
+  "peerDependencies": {
+    "express": "4",
+    "winston": "3"
+  },
+  "peerDependenciesMeta": {
+    "express": {
+      "optional": true
+    }
+  }
+}
