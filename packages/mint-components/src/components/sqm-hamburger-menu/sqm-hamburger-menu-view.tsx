@@ -17,26 +17,28 @@ export function HamburgerMenuView(
     }
 
     .container {
-      visibility:hidden;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid red;
-      height: 30px;
-      width: 30px;
+      height: 60px;
+      width: 60px;
       flex-direction: column;
       z-index: 100;
+      display: none;
     }
     .menu-items { 
       display: none;
-      padding: 30px;
-      border-radius: 12px;
-      border: 2px solid #eaeaea;
-      padding-top: 90px;
+      padding: 20px;
+      // border-radius: 12px;
+      // border: 2px solid #eaeaea;
+      border-right: 2px solid #eaeaea;
+      padding-top: 60px;
       background: white; 
-      max-width: 35%;
-      min-width: 325px;
+      // max-width: 35%;
+      // min-width: 325px;
+      width: 70vw;
+      height: 100vh;
       position: absolute;
       top: 0;
       right: 0;
@@ -63,10 +65,13 @@ export function HamburgerMenuView(
     }
 
     @media screen and (max-width: 599px) {
-      .container,
       .toggler,
       .hamburger {
         visibility: visible !important;
+      }
+
+      .container {
+        display: flex;
       }
 
       .hamburger > .line {
@@ -78,17 +83,21 @@ export function HamburgerMenuView(
     .toggler,
     .hamburger {
       visibility:hidden;
+      position: sticky;
       position: absolute;
-      width: 100%;
-      height: 100%;
+      padding: 20px 10px;
     }
 
     .toggler {
       z-index: 100;
+      width: 100%;
+      height: 100%;
     }
 
     .hamburger {
       z-index: 10;
+      width: 75%;
+      height: 100%;
     }
 
     .toggler:checked ~ .menu-items {
@@ -111,7 +120,7 @@ export function HamburgerMenuView(
     .toggler:checked ~ .hamburger > .line:nth-child(1),
     .toggler:checked ~ .hamburger > .line:nth-child(2),
     .toggler:checked ~ .hamburger > .line:nth-child(3) {
-      width: 40%;
+      width: 75%;
       border-bottom: 3px solid #444445;
       margin: 0;
     }
@@ -137,7 +146,7 @@ export function HamburgerMenuView(
   return (
     <div class="container">
       <style>{vanillaStyle}</style>
-      <input type="checkbox" class="toggler" />
+      <input type="checkbox" class="toggler" part="toggler" />
       <div class="hamburger">
         <div class="line"></div>
         <div class="line"></div>
