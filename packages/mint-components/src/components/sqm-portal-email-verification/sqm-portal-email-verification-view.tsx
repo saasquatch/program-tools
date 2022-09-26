@@ -9,6 +9,9 @@ export interface PortalEmailVerificationViewProps {
     error: string;
     loading: boolean;
     success: boolean;
+    isVerified?: boolean;
+    loadingVerification?: boolean;
+    countdown?: number;
   };
   callbacks: {
     submit: (event: any) => Promise<void>;
@@ -18,6 +21,8 @@ export interface PortalEmailVerificationViewProps {
     verifyMessage: string;
     emailVerificationHeader: string;
     resendEmailButtonText: string;
+    verificationStatusMessage?: string;
+    verificationLoadingMessage?: string;
   };
 }
 
@@ -49,6 +54,8 @@ export function PortalEmailVerificationView(
       verifyMessage,
       emailVerificationHeader,
       resendEmailButtonText,
+      verificationStatusMessage,
+      verificationLoadingMessage,
     },
   } = props;
   return (
@@ -95,6 +102,20 @@ export function PortalEmailVerificationView(
         >
           {resendEmailButtonText}
         </sl-button>
+
+        {states.loadingVerification ? (
+          <p>{verificationLoadingMessage}</p>
+        ) : (
+          <p>
+            {intl.formatMessage(
+              {
+                id: `verificationStatus`,
+                defaultMessage: verificationStatusMessage,
+              },
+              { countdown: states.countdown }
+            )}
+          </p>
+        )}
       </sl-form>
     </div>
   );

@@ -19,11 +19,192 @@
     </script>
   </head>
   <body>
-    <sqm-portal-email-verification
-      email-verification-header="Verify your email"
-      redirect-path="/verifyEmail"
-      resend-email-button-text="Re-send Email"
-      verify-message="A verification email was sent to {email}. Please verify your email to continue to the portal."
-    ></sqm-portal-email-verification>
+    <style>
+      /* *::part(primarybutton-base) {
+          --sl-color-primary-500: #30881e;
+          --sl-color-primary-400: #30881e;
+      } */
+      :root {
+          --sqm-max-width: 100%;
+      }
+      </style>
+      <sqm-brand brand-color="#B5C5EA">
+      <sqm-portal-frame>
+        <a slot="header" href="/">
+          <sqm-text style="height: 40px">
+            testing
+          </sqm-text>
+        </a>
+        <sqb-program-section program-id="customer-referral-program">
+          <sqm-router>
+            <template
+              path="/:path(\bregister\b|\bemailVerification\b|\blogin\b|\bverifyEmail\b|\bforgotPassword\b|\bresetPassword\b|\blogout\b)"
+            >
+            <div style="background:url(https://res.cloudinary.com/saasquatch/image/upload/v1657141047/tenant_test_aple0d4twep7y/kxhaoeow2t9pjseavfgj.jpg);background-repeat:no-repeat;background-size:cover;height:78vh;min-height:600px;">
+              <sqm-hero
+                columns="2"
+                background="transparent"
+              >
+                <sqm-program-explainer header="Program Description" background-color="#FFF">
+                    <sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack" text-color="#000000"></sqm-program-explainer-step>
+                    <sqm-program-explainer-step description="Use your points and redeem rewards like one free month of Enterprise or a visa giftcard" header="Redeem rewards" icon="people" text-color="#000000"></sqm-program-explainer-step>
+                  </sqm-program-explainer>
+                <sqm-router slot="secondary-column">
+                  <template path="/register">
+                    <sqm-portal-register>
+                      <sqm-name-fields slot="formData"></sqm-name-fields>
+                    </sqm-portal-register>
+                  </template>
+      
+                  <template path="/emailVerification">
+                    <sqm-portal-protected-route
+                      redirect-to="/login"
+                    ></sqm-portal-protected-route>
+                    <sqm-portal-email-verification></sqm-portal-email-verification>
+                  </template>
+      
+                  <template path="/login">
+                    <sqm-portal-login></sqm-portal-login>
+                  </template>
+      
+                  <template path="/verifyEmail">
+                    <sqm-portal-verify-email></sqm-portal-verify-email>
+                  </template>
+      
+                  <template path="/forgotPassword">
+                    <sqm-portal-forgot-password
+                      email-label="Business Email"
+                    ></sqm-portal-forgot-password>
+                  </template>
+      
+                  <template path="/resetPassword">
+                    <sqm-portal-reset-password
+                      confirm-password="true"
+                    ></sqm-portal-reset-password>
+                  </template>
+                  <template path="/logout">
+                    <sqm-portal-logout next-page="/login"></sqm-portal-logout>
+                  </template>
+                </sqm-router>
+              </sqm-hero>
+              </div>
+            </template>
+          </sqm-router>
+          <sqm-router>
+            <template path="/:path(\bactivity\b|\beditProfile\b)?">
+              <sqm-divided-layout
+                direction="row"
+                style="
+                  border-top: 1px solid #eaeaea;
+                  border-bottom: 1px solid #eaeaea;
+                "
+              >
+                <sqm-navigation-sidebar>
+                  <sqm-navigation-sidebar-item
+                    path="/"
+                    icon="house"
+                    label="Dashboard"
+                  ></sqm-navigation-sidebar-item>
+                  <sqm-navigation-sidebar-item
+                    path="/activity"
+                    icon="bar-chart"
+                    label="Activity"
+                  ></sqm-navigation-sidebar-item>
+                  <sqm-navigation-sidebar-item
+                    path="/editProfile"
+                    icon="person"
+                    label="Edit Profile"
+                  ></sqm-navigation-sidebar-item>
+                  <sqm-navigation-sidebar-item
+                    path="/logout"
+                    icon="box-arrow-right"
+                    label="Logout"
+                  ></sqm-navigation-sidebar-item>
+                </sqm-navigation-sidebar>
+                <sqm-divided-layout direction="column">
+                  <sqm-router>
+                    <template path="/">
+                      <sqm-portal-protected-route
+                        require-email-verification="true"
+                        redirect-to="/login"
+                        redirect-to-unverified="/emailVerification"
+                      ></sqm-portal-protected-route>
+                      <sqb-widget
+                        widget-type="p/customer-referral-program/w/referrerWidget"
+                        track-loads="true"
+                      ></sqb-widget>
+                    </template>
+                    <template path="/editProfile">
+                      <sqm-portal-protected-route
+                        require-email-verification="true"
+                        redirect-to="/login"
+                        redirect-to-unverified="/emailVerification"
+                      ></sqm-portal-protected-route>
+                      <sqm-portal-container direction="column" gap="xxx-large">
+                        <sqm-portal-profile></sqm-portal-profile> </sqm-portal-container
+                      ><sqm-portal-container direction="column" gap="xxx-large">
+                        <sqm-portal-change-password></sqm-portal-change-password>
+                      </sqm-portal-container>
+                    </template>
+      
+                    <template path="/activity">
+                      <sqm-portal-protected-route
+                        require-email-verification="true"
+                        redirect-to="/login"
+                        redirect-to-unverified="/emailVerification"
+                      ></sqm-portal-protected-route>
+                      <sqm-portal-container
+                        direction="column"
+                        padding="xxx-large"
+                        gap="xxx-large"
+                      >
+                        <sqm-text> <h1>Activity</h1></sqm-text>
+                        <sqm-stat-container space="xxxx-large"
+                          ><sqm-big-stat
+                            flex-reverse="true"
+                            alignment="left"
+                            stat-type="/referralsCount"
+                            ><sqm-text><p>Referrals</p></sqm-text></sqm-big-stat
+                          >
+                          <sqm-big-stat
+                            flex-reverse="true"
+                            alignment="left"
+                            stat-type="/rewardsCountFiltered/AVAILABLE"
+                            ><sqm-text><p>Rewards Earned</p></sqm-text></sqm-big-stat
+                          >
+                          <sqm-big-stat
+                            flex-reverse="true"
+                            alignment="left"
+                            stat-type="/rewardBalance/CREDIT/CENTS"
+                            ><sqm-text><p>Reward Balance</p></sqm-text></sqm-big-stat
+                          >
+                        </sqm-stat-container>
+                        <sqm-referral-table>
+                          <sqm-referral-table-user-column></sqm-referral-table-user-column>
+                          <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+                          <sqm-referral-table-status-column></sqm-referral-table-status-column>
+                          <sqm-referral-table-date-column
+                            column-title="Referred"
+                            date-shown="dateReferralStarted"
+                          ></sqm-referral-table-date-column> </sqm-referral-table
+                      ></sqm-portal-container>
+                    </template>
+                  </sqm-router>
+                </sqm-divided-layout>
+              </sqm-divided-layout>
+            </template>
+          </sqm-router>
+        </sqb-program-section>
+        <sqm-portal-footer
+          slot="footer"
+          support-email="support@example.com"
+          terms-link="https://example.com"
+          faq-link="https://example.com"
+          terms-text="Terms And Conditions"
+          faq-text="FAQ"
+          show-powered-by="true"
+        ></sqm-portal-footer>
+      </sqm-portal-frame>
+      </sqm-brand>
   </body>
 </html>
