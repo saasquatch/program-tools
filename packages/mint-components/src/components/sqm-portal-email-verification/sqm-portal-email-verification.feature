@@ -45,3 +45,28 @@ Feature: Email Verification
             | mayHave      | value          | redirectPath   |
             | doesn't have | N/A            | /verifyEmail   |
             | has          | /verifyMyEmail | /verifyMyEmail |
+
+    @motivating
+    Scenario: Verification status is refetched on refresh
+        Given a user viewing the email verification component
+        And they verified their account on another device
+        And the local storage verification state is outdated
+        When they refresh the page the component is on
+        Then their verification status is re-queried
+        And the local storage managed identity state is updated
+        And they are redirected to the components "redirectPath"
+
+    @motivating
+    Scenario: Verification status is refetched every 10 seconds
+        Given a user viewing the email verification component
+        Then they see text "Check verification status in 10" below the re-send verification button
+        And the time counts down from 10 to 0
+        When the counter hits 0
+        Then their verification status is re-queried
+        And the text displays a loading state
+        When they verify their account on another device
+        And the count down hits 0 again from 10
+        Then they see text "Checking verification status" below the re-send verification button with a spinner
+        And their verification status is re-queried
+        And the local storage managed identity state is updated
+        And they are redirected to the components "redirectPath"
