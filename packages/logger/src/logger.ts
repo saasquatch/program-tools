@@ -36,35 +36,38 @@ export function initializeLogger(
 
   const format = winston.format;
 
-  const formatResponseTime = format((info) => {
+  const formatHttpLog = format((info) => {
+    const message = info.message;
     if (info[LOG_TYPE_MARKER] === "HTTP") {
       const micros = Number(info.message.time);
       if (micros < 1000) {
-        info.message.time = `${micros} μs`;
+        message.time = `${micros} μs`;
       } else {
-        info.message.time = `${Math.round(micros / 1000)} ms`;
+        message.time = `${Math.round(micros / 1000)} ms`;
       }
+
+      info.message = friendlyHttpFormat(message);
+      info["http.url"] = message.url;
+      info["http.method"] = message.method;
+      info["http.status_code"] = message.status;
+      info["http.response_time"] = message.time;
     }
+    return info;
+  });
+
+  /*
+   * The `status` field of the JSON is reserved in Datadog for the severity
+   * level of the log.
+   */
+  const dataDogStatus = format((info) => {
+    info.status = info.level;
     return info;
   });
 
   const prettyDevFormat = format.printf((info) => {
     const message = info.message;
     if (typeof message === "object") {
-      // if this is an HTTP router log we'll use a custom format
-      if (info[LOG_TYPE_MARKER] === "HTTP") {
-        info[LOG_TYPE_MARKER] = undefined;
-        info.message = [
-          message.status,
-          message.method,
-          message.time.toString().padStart(6, " "),
-          message.url,
-        ].join(" ");
-      } else {
-        // Auto-stringify objects so you can write logger.info(myObject) instead
-        // of logger.info("%o", myObject). The latter format still works though
-        info.message = JSON.stringify(info.message);
-      }
+      info.message = JSON.stringify(info.message);
     }
 
     return `[${info.level}] ${info.message}`;
@@ -82,7 +85,8 @@ export function initializeLogger(
     format: format.combine(
       format.timestamp(),
       format.splat(),
-      formatResponseTime(),
+      formatHttpLog(),
+      dataDogStatus(),
       ...(conf.environment === "production"
         ? [cleanLogTypeMarker(), format.json()]
         : [format.colorize(), format.simple(), prettyDevFormat])
@@ -91,6 +95,20 @@ export function initializeLogger(
   });
 
   return _logger;
+}
+
+export function friendlyHttpFormat(message: {
+  method: string;
+  status: string;
+  time: BigInt;
+  url: string;
+}): string {
+  return [
+    message.status,
+    message.method,
+    message.time.toString().padStart(6, " "),
+    message.url,
+  ].join(" ");
 }
 
 function transportConfigToRealTransport(
