@@ -2,6 +2,9 @@
   "name": "@saasquatch/logger",
   "version": "0.0.1",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Thin wrapper around Winston to provide unified logging across SaaSquatch NodeJS services",
   "prettier": {},
   "engines": {
