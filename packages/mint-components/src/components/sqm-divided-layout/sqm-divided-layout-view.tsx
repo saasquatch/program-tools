@@ -4,6 +4,7 @@ import { createStyleSheet } from "../../styling/JSS";
 interface DividedLayoutViewProps {
   direction: "row" | "column";
   dividerStyle: string;
+  overflow: "initial" | "scroll" | "auto" | "hidden";
 }
 
 export function DividedLayoutView(
@@ -21,6 +22,7 @@ export function DividedLayoutView(
   const style = {
     LayoutContainer: {
       display: "contents",
+      maxWidth: "100%",
       // First style applies when shadow DOM is disabled, second applies when shadow DOM is enabled
       "& > :not(:last-child)": {
         ...getBorder(),
@@ -35,7 +37,7 @@ export function DividedLayoutView(
     display: flex;
     flex: 1;
     flex-direction: ${props.direction};
-    overflow: hidden;
+    overflow: ${props.overflow};
     background-color: var(--sqm-content-background);
     ${
       props.direction === "column"

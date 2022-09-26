@@ -17,7 +17,8 @@ export function HamburgerMenuView(
     }
 
     .container {
-      position: relative;
+      position: sticky;
+      top: 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -124,13 +125,6 @@ export function HamburgerMenuView(
       border-bottom: 3px solid #444445;
       margin: 0;
     }
-
-    // .hamburger {
-    //   display: flex;
-    //   align-items: center;
-    //   justify-content: center;
-    //   flex-direction: column;
-    // }
 
     .hamburger > .line {
       visibility:hidden;

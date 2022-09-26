@@ -117,6 +117,13 @@ export namespace Components {
           * @uiName Border style
          */
         "dividerStyle": string;
+        /**
+          * @uiName Overflow
+          * @uiType string
+          * @uiEnum ["initial", "scroll", "auto", "hidden"]
+          * @uiEnumNames ["Initial", "Scroll", "Auto", "Hidden"]
+         */
+        "overflow": "initial" | "scroll" | "auto" | "hidden";
     }
     interface SqmEditProfile {
         /**
@@ -2591,6 +2598,13 @@ declare namespace LocalJSX {
           * @uiName Border style
          */
         "dividerStyle"?: string;
+        /**
+          * @uiName Overflow
+          * @uiType string
+          * @uiEnum ["initial", "scroll", "auto", "hidden"]
+          * @uiEnumNames ["Initial", "Scroll", "Auto", "Hidden"]
+         */
+        "overflow"?: "initial" | "scroll" | "auto" | "hidden";
     }
     interface SqmEditProfile {
         /**
