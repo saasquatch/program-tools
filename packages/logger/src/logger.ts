@@ -1,5 +1,5 @@
 import winston from "winston";
-import { defaultConfig, LoggerConfig } from "./config";
+import { defaultConfig, LoggerConfig, Transport } from "./config";
 
 let _logger: winston.Logger | undefined;
 
@@ -87,8 +87,23 @@ export function initializeLogger(
         ? [cleanLogTypeMarker(), format.json()]
         : [format.colorize(), format.simple(), prettyDevFormat])
     ),
-    transports: [new winston.transports.Console()],
+    transports: conf.transports.map(transportConfigToRealTransport),
   });
 
   return _logger;
+}
+
+function transportConfigToRealTransport(
+  transport: Transport
+): winston.transport {
+  switch (transport.type) {
+    case "console":
+      return new winston.transports.Console(transport.options);
+    case "file":
+      return new winston.transports.File(transport.options);
+    case "http":
+      return new winston.transports.Http(transport.options);
+    case "stream":
+      return new winston.transports.Stream(transport.options);
+  }
 }
