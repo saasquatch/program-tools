@@ -49,3 +49,9 @@ Feature: Navigation Sidebar
         And they see a "X" icon in the top left hand corner
         When they click the "X" icon
         Then the sidebar collapses
+
+    @minutia
+    Scenario: The mobile sidebar is sticky
+        Given a user viewing the sidebar on a screen smaller than 800px
+        When they scroll down the page
+        Then the hamburger icon remains at the top of the sidebar as they scroll
