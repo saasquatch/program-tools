@@ -163,13 +163,11 @@ export namespace Components {
          */
         "direction": "row" | "column";
         /**
-          * Uses CSS border style syntax
-          * @uiName Border style ======= Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
-          * @uiName Border Style >>>>>>> master
+          * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
+          * @uiName Border Style
          */
         "dividerStyle": string;
         /**
-          * <<<<<<< HEAD
           * @uiName Overflow
           * @uiType string
           * @uiEnum ["initial", "scroll", "auto", "hidden"]
@@ -3125,13 +3123,11 @@ declare namespace LocalJSX {
          */
         "direction"?: "row" | "column";
         /**
-          * Uses CSS border style syntax
-          * @uiName Border style ======= Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
-          * @uiName Border Style >>>>>>> master
+          * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
+          * @uiName Border Style
          */
         "dividerStyle"?: string;
         /**
-          * <<<<<<< HEAD
           * @uiName Overflow
           * @uiType string
           * @uiEnum ["initial", "scroll", "auto", "hidden"]
