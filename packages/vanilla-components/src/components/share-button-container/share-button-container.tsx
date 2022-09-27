@@ -284,8 +284,8 @@ export class ShareButtonContainer {
    *
    * @uiName WhatsApp Display Rule
    * @uiGroup WhatsApp
-   * @uiEnum ["mobile-only","hidden"]
-   * @uiEnumNames ["Mobile Only","Hide"]
+   * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+   * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
    * @default mobile-only
    */
   @Prop() whatsappdisplayrule: string;
