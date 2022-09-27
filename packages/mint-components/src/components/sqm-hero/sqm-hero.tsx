@@ -4,32 +4,50 @@ import { HeroView } from "./sqm-hero-view";
 import { getProps } from "../../utils/utils";
 
 /**
- * The hero container
- *
  * @uiName Hero Layout
+ * @slots [{"name":"","title":"Primary Column Content"},{"name":"secondary-column","title":"Secondary Column Content"}]
  */
 @Component({
   tag: "sqm-hero",
   shadow: true,
 })
 export class Hero {
-  /** @uiName Number of columns in the layout */
-  @Prop() columns: 1 | 2 = 1;
-
   /**
-  * Can either be an image url, colour or Shoelace variable.
-  *  
-  * @uiName Background
-  */
+   * Number of columns in the layout
+   *
+   * @uiName Columns
+   * @uiEnum [1, 2]
+   * @uiEnumNames ["One", "Two"]
+   */
+  @Prop() columns: 1 | 2 = 1;
+  /**
+   * Can be an image url, colour or Shoelace variable.
+   *
+   * @uiName Background
+   */
   @Prop() background?: string = "var(--sl-color-gray-50)";
 
-  /** @uiName Padding size */
+  /**
+   * @uiName Padding Size
+   * @uiEnum ["none", "small", "medium","large"]
+   * @uiEnumNames ["None", "Small", "Medium", "Large"]
+   */
   @Prop() paddingSize: "none" | "small" | "medium" | "large" = "large";
 
-  /** @uiName Secondary background image or color (for use in right column)*/
+  /**
+   * Secondary background image or color (for use in the right column)
+   *
+   * @uiName Secondary Background
+   */
   @Prop() secondaryBackground?: string;
 
-  /** @uiName Wrap direction */
+  /**
+   * Flexbox wrap direction, accepts wrap or wrap-reverse
+   *
+   * @uiName Wrap Direction
+   * @uiEnum ["wrap", "wrap-reverse"]
+   * @uiEnumNames ["Wrap", "Wrap Reverse"]
+   */
   @Prop() wrapDirection: "wrap" | "wrap-reverse" = "wrap";
 
   constructor() {

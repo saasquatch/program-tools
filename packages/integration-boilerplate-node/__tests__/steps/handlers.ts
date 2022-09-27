@@ -1,9 +1,10 @@
 import http from "http";
-import { Router } from "express";
+import { Router, Application } from "express";
 import { StepDefinitions } from "jest-cucumber";
 import fetch, { Response, RequestInit } from "node-fetch";
 
 import { createIntegrationService } from "../../src";
+import { graphqlShouldError } from "../../mocks/graphql";
 
 const mockWebhookHandler = jest
   .fn()
@@ -42,6 +43,7 @@ const mockErrorFormHandler = jest.fn().mockImplementation(() => ({
 
 const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
   let server: http.Server;
+  let app: Application | null;
   let port: number;
   let url: string = "";
   let requestInit: RequestInit = {};
@@ -49,6 +51,7 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
 
   function setupService(service: any) {
     return new Promise<void>((resolve, _reject) => {
+      app = service.server;
       server = service.server.listen(() => {
         port = (server.address() as any).port;
         resolve();
@@ -57,12 +60,14 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
   }
 
   afterEach((done) => {
-    server.close(done);
+    app = null;
     url = "";
     requestInit = {};
+    graphqlShouldError.flag = false;
+    server.close(done);
   });
 
-  given("a default integration service", async () => {
+  given("a default integration service with no custom handlers", async () => {
     const service = await createIntegrationService();
     return setupService(service);
   });
@@ -169,7 +174,12 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
             req.tenantAlias!
           );
 
-          const response = await graphql("query tenantAlias { tenantAlias }");
+          let response;
+          try {
+            response = await graphql("query tenantAlias { tenantAlias }");
+          } catch (e) {
+            res.send(e.response);
+          }
 
           res.send(response);
         }
@@ -178,6 +188,10 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
       return setupService(service);
     }
   );
+
+  and("the GraphQL query returns an error", () => {
+    graphqlShouldError.flag = true;
+  });
 
   and(/there is a (.*) request to (.*)/, async (method, route) => {
     requestInit = {
@@ -201,6 +215,16 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
 
   when("the request is sent", async () => {
     response = await fetch(url, requestInit);
+  });
+
+  then(/^there is no "(.*)" route configured$/, async (route) => {
+    expect(app).not.toBeNull();
+    const routeIsConfigured = !!(app as Application)["_router"].stack.find(
+      (layer: any) => {
+        return layer?.route?.path === route;
+      }
+    );
+    expect(routeIsConfigured).toEqual(false);
   });
 
   then(/the response status will be (\d+)/, (status) => {

@@ -47,7 +47,7 @@ export function HamburgerMenuView(
       margin: 0;
       animation: slideIn 500ms ease-in;
     }
-    /*
+  /*
    @keyframes slideIn {
       0% {
         right: -350px;

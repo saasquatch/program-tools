@@ -35,7 +35,7 @@ Feature: Portal Register
         When they click "Register"
         Then the button enters a loading state
         When the registration fails
-        Then an error banner is shown stating that they should try again
+        Then an error banner is shown
 
     @motivating
     Scenario Outline: A user cannot register with an email linked to an existing account
@@ -65,17 +65,6 @@ Feature: Portal Register
         Then a verification email is sent to their email
         And they are redirected to "/verify"
 
-    @motivating
-    Scenario: Users are redirected from the verification email to the value of the nextPage url parameter if it exists
-        Given a user who is registering
-        And their url contains a "nextPage" query paramater with "/activity"
-        When they register
-        And they receive their verification email
-        When they click to verify their email
-        And they verify their email
-        And they click "Continue"
-        Then they are redirected to "/activity"
-
     @minutae
     Scenario Outline: Navigation back to the login page can be customized but defaults to "/login"
         Given a user viewing the register component
@@ -102,7 +91,7 @@ Feature: Portal Register
             | has          | /verifyMyEmail | /verifyMyEmail |
 
     @ui
-    Scenario Outline: Slotted content can be included above the register button
+    Scenario: Slotted content can be included above the register button
         Given a user viewing the register component
         And the registration component contains the following html
             """
@@ -117,3 +106,52 @@ Feature: Portal Register
             """
         Then the terms and conditions slotted content is shown above the register button
         And the link opens in a new tab
+
+    @motivating
+    Scenario Outline: Slotted content fields are disable during submission through form context
+        Given a user viewing the register component
+        And the register component has <slottedContent>
+        When the form is submitted
+        Then they see the <slottedField> is disabled during submission
+        Examples:
+            | slottedContent     | slottedField    |
+            | N/A                | email           |
+            | N/A                | password        |
+            | sqm-name-fields    | First Name      |
+            | sqm-name-fields    | Last Name       |
+            | sqm-input-field    | Custom Input    |
+            | sqm-checkbox-field | Custom Checkbox |
+            | sqm-dropdown-field | Custom Dropdown |
+            | sqm-password-field | Custom Password |
+
+    @motivating
+    Scenario Outline: Slotted content displays validation states through form context
+        Given a user viewing the register component
+        And the register component has <slottedContent>
+        And it is required
+        When the form is submitted
+        Then they see the <slottedField> is outlined in red
+        And they see the error text below the <slottedField>
+        Examples:
+            | slottedContent     | slottedField    |
+            | N/A                | email           |
+            | N/A                | password        |
+            | sqm-name-fields    | First Name      |
+            | sqm-name-fields    | Last Name       |
+            | sqm-input-field    | Custom Input    |
+            | sqm-checkbox-field | Custom Checkbox |
+            | sqm-dropdown-field | Custom Dropdown |
+            |                    | Custom Password |
+
+    @motivating
+    Scenario Outline: Password Validation is enabled by default
+        Given the registration component <mayHaveProp> "disable-password-validation" with <value>
+        And a user viewing the registration component
+        Then they <maySee> the password validation
+        Examples:
+            | mayHaveProp       | value | maySee    |
+            | has prop          | true  | don't see |
+            | has prop          | false | see       |
+            | has prop          | test  | don't see |
+            | has prop          |       | don't see |
+            | doesn't have prop |       | see       |

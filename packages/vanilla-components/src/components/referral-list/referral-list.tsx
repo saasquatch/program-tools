@@ -3,46 +3,229 @@ import { css } from "emotion";
 import { uuid } from "../../utilities";
 import { API } from "../../services/WidgetHost";
 
+/**
+ * @uiName Referral List
+ * @canvasRenderer always-replace
+ * @exampleGroup Referrals
+ * @example Referral List - <sqh-referral-list ishidden="false" expiresvalue="Expires {expiryDate}" showreferrer="true" usefirstreward="false" referralnamecolor="darkslategray" referraltextcolor="lightgray" rewardcolor="#4BB543" pendingcolor="lightgray" pendingvalue="Reward Pending" referrervalue="Referred" referrercontent="Referred you {date}" convertedcontent="Signed up, referred {date}" pendingcontent="Trial user, referred {date}" pendingvalue="Referral pending" valuecontent="and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}" expiredcolor="lightgray" expiredvalue="Expired Reward" expiredcontent="Signed up, referred {date}" cancelledcolor="#C81D05" cancelledvalue="Cancelled Reward" cancelledcontent="Signed up, referred {date}" paginatemore="View More" paginateless="Previous" noreferralsyet="No Referrals Yet..." unknownuser="Your Friend"></sqh-referral-list>
+ */
 @Component({
   tag: "sqh-referral-list",
   styleUrl: "referral-list.scss",
 })
 export class ReferralList {
-  // general in dropdown
+  /**
+   * @undocumented
+   * @uiName Hide Referral List
+   */
   @Prop() ishidden: boolean;
+  /**
+   * Shown inside the paginate more button.
+   *
+   * @uiName Paginate More Text
+   * @default View More
+   */
   @Prop() paginatemore: string;
+  /**
+   * Shown inside the paginate less button.
+   *
+   * @uiName Paginate Less Text
+   * @default Previous
+   */
   @Prop() paginateless: string;
+  /**
+   * Shown when referral list is empty.
+   *
+   * @uiName Empty Referrals Text
+   * @default No Referrals Yet...
+   */
   @Prop() noreferralsyet: string;
+  /**
+   * Text color of the referred user's name.
+   *
+   * @uiName Referral Name Color
+   * @uiWidget color
+   * @default darkslategray
+   */
   @Prop() referralnamecolor: string;
+  /**
+   * @uiName Referral Status Text Color
+   * @uiWidget color
+   * @default lightgray
+   */
   @Prop() referraltextcolor: string;
+  /**
+   * Text shown when the referred user's name is unknown.
+   *
+   * @uiName Unknown User Text
+   * @default Your Friend
+   */
   @Prop() unknownuser: string;
+  /**
+   * @uiName Show Expired Rewards
+   */
   @Prop() showexpiry: boolean;
+  /**
+   * @uiName Show Customer Note
+   */
   @Prop() shownotes: boolean;
+  /**
+   * Shown when reward is redeemed.
+   *
+   * @uiName Redeemed Text
+   * @uiGroup Converted Referrals
+   * @default Redeemed
+   */
   @Prop() redeemedvalue: string;
-  // referrer props
+  /**
+   * Show referral and reward information on who referred you.
+   *
+   * @uiName Show Referred By
+   * @uiGroup Referrer
+   */
   @Prop() showreferrer: boolean;
+  /**
+   * Text explaining who referred you to the program.
+   *
+   * @uiName Referrer Description
+   * @uiGroup Referrer
+   * @default Referred you {date}
+   */
   @Prop() referrercontent: string;
+  /**
+   * Referred Text shown in reward column.
+   *
+   * @uiName Referrer Text
+   * @uiGroup Referrer
+   * @default Referred
+   */
   @Prop() referrervalue: string;
-  // converted referral props
+  /**
+   * Color of the successful reward icon and text in the rewards column.
+   *
+   * @uiName Reward Color
+   * @uiGroup Converted Referrals
+   * @uiWidget color
+   * @default #4BB543
+   */
   @Prop() rewardcolor: string;
+  /**
+   * @uiName Customer Note Color
+   * @uiGroup Converted Referrals
+   * @uiWidget color
+   */
   @Prop() customernotecolor: string;
+  /**
+   * Show the value of the first earned reward inside the rewards column.
+   *
+   * @uiName Use First Reward
+   * @uiGroup Converted Referrals
+   */
   @Prop() usefirstreward: boolean;
+  /**
+   * Description shown in the referral column when a referral is converted.
+   *
+   * @uiName Converted Description
+   * @uiGroup Converted Referrals
+   * @default Signed up, referred {date}
+   */
   @Prop() convertedcontent: string;
+  /**
+   * ICU message shown in the rewards column. See [ICU messages](https://unicode-org.github.io/icu/userguide/format_parse/messages/) for more details.
+   *
+   * @uiName Value Content
+   * @uiGroup Converted Referrals
+   * @uiWidget textArea
+   * @default and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}
+   */
   @Prop() valuecontent: string;
-  // pending referral props
+  /**
+   * Color of the pending reward icon and text in the rewards column.
+   *
+   * @uiName Pending Color
+   * @uiGroup Pending Referrals
+   * @uiWidget color
+   * @default lightgray
+   */
   @Prop() pendingcolor: string;
+  /**
+   * Pending description shown in the referral column.
+   *
+   * @uiName Pending Description
+   * @uiGroup Pending Referrals
+   * @default Trial user, referred {date}
+   */
   @Prop() pendingcontent: string;
+  /**
+   * Pending text shown alongside the icon in the rewards column.
+   *
+   * @uiName Pending Text
+   * @uiGroup Pending Referrals
+   * @default Referral pending
+   */
   @Prop() pendingvalue: string;
-  // expired reward props
+  /**
+   * Color of the expired reward icon and text in the rewards column.
+   *
+   * @uiName Expired Color
+   * @uiGroup Expired Rewards
+   * @uiWidget color
+   * @default lightgray
+   */
   @Prop() expiredcolor: string;
+  /**
+   * Expired text shown in the referral column.
+   *
+   * @uiName Expired Description
+   * @uiGroup Expired Rewards
+   * @default Signed up, referred {date}
+   */
   @Prop() expiredcontent: string;
+  /**
+   * Expired text shown alongside the icon in the rewards column.
+   *
+   * @uiName Expired Text
+   * @uiGroup Expired Rewards
+   * @default Expired Reward
+   */
   @Prop() expiredvalue: string;
+  /**
+   * ICU message shown in the rewards column for expiring rewards. See [ICU messages](https://unicode-org.github.io/icu/userguide/format_parse/messages/) for more details.
+   *
+   * @uiName Expiring Text
+   * @uiGroup Expired Rewards
+   */
   @Prop() expiresvalue: string;
-  // cancelled reward props
+  /**
+   * Color of the cancelled icon and text in the rewards column.
+   *
+   * @uiName Cancelled Color
+   * @uiGroup Cancelled Rewards
+   * @uiWidget color
+   * @default #C81D05
+   */
   @Prop() cancelledcolor: string;
+  /**
+   * Content shown in the referral column for a cancelled reward.
+   *
+   * @uiName Cancelled Referral Description
+   * @uiGroup Cancelled Rewards
+   * @default Signed up, referred {date}
+   */
   @Prop() cancelledcontent: string;
+  /**
+   * Text shown alongside the icon in the rewards column for a cancelled reward.
+   *
+   * @uiName Cancelled Reward Text
+   * @uiGroup Cancelled Rewards
+   * @default Cancelled Reward
+   */
   @Prop() cancelledvalue: string;
-  //internationalization props
+  /**
+   * Use the value passed to the referral component to set the locale of the user.
+   *
+   * @uiName Internationalization
+   */
   @Prop() internationalization: boolean;
 
   @State() referrals: Referral[];
@@ -59,7 +242,7 @@ export class ReferralList {
 
   componentWillLoad() {
     if (!this.ishidden) {
-      return this.getReferrals()
+      return this.getReferrals(this.showreferrer)
         .then((res) => {
           this.referrals = res.referrals.data;
           this.referredBy = res.referredByReferral;
@@ -73,8 +256,8 @@ export class ReferralList {
     }
   }
 
-  getReferrals(offset = 0) {
-    return API.graphql.getReferrals(offset);
+  getReferrals(showReferrer: boolean, offset: number = 0) {
+    return API.graphql.getReferrals(showReferrer, offset);
   }
 
   paginate(offset, event) {
@@ -85,7 +268,7 @@ export class ReferralList {
     this.loading = true;
     const { target } = event;
     target.innerText = "...";
-    this.getReferrals(offset).then((res) => {
+    this.getReferrals(this.showreferrer, offset).then((res) => {
       target.innerText =
         offset > this.offset ? this.paginatemore : this.paginateless;
       this.referrals = res.referrals.data;

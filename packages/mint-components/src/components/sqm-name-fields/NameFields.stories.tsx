@@ -1,12 +1,9 @@
 import { h } from "@stencil/core";
-import {
-  NameFieldsView,
-  NameFieldsViewProps,
-} from "./sqm-name-fields-view";
+import { NameFieldsView, NameFieldsViewProps } from "./sqm-name-fields-view";
 import scenario from "../sqm-name-fields/sqm-name-fields.feature";
 
 export default {
-  title: "Name Fields",
+  title: "Components/Name Fields",
   parameters: {
     scenario,
   },
@@ -14,7 +11,9 @@ export default {
 
 const props: NameFieldsViewProps = {
   states: {
-    validationErrors: undefined,
+    registrationFormState: {
+      validationErrors: undefined,
+    },
     content: {
       firstNameLabel: "First Name",
       lastNameLabel: "Last Name",
@@ -24,9 +23,11 @@ const props: NameFieldsViewProps = {
 
 const errorProps: NameFieldsViewProps = {
   states: {
-    validationErrors: {
-      firstName: "Cannot be empty",
-      lastName: "Cannot be empty",
+    registrationFormState: {
+      validationErrors: {
+        firstName: "Cannot be empty",
+        lastName: "Cannot be empty",
+      },
     },
     content: {
       firstNameLabel: "First Name",

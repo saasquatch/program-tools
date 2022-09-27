@@ -1,9 +1,8 @@
-import { sync as globSync } from "glob";
-import { loadFeature, autoBindSteps, StepDefinitions } from "jest-cucumber";
 import { types } from "@saasquatch/program-boilerplate";
-
-import { World } from "./world";
+import { sync as globSync } from "glob";
+import { autoBindSteps, loadFeature, StepDefinitions } from "jest-cucumber";
 import builtinSteps from "./steps";
+import { getWorld } from "./world";
 
 export { default as jestConfig } from "./jest.config";
 export { getWorld } from "./world";
@@ -17,8 +16,8 @@ export function runProgramTests(
   rulesFile: string,
   featureFilterTags?: string[]
 ) {
-  World.setProgram(program);
-  World.loadDefaults(templateFile, schemaFile, rulesFile);
+  getWorld().setProgram(program);
+  getWorld().loadDefaults(templateFile, schemaFile, rulesFile);
 
   const features: ReturnType<typeof loadFeature>[] = [];
   const featureFiles = globSync(`${featurePath}/**/*.feature`);
@@ -34,7 +33,7 @@ export function runProgramTests(
         ? featureFilterTags.every((tag) => feature.tags.includes(tag))
         : true;
       if (keep) features.push(feature);
-    } catch (e) {
+    } catch (e: any) {
       console.error(`Failed to load feature file "${featureFile}":`, e.message);
       throw e;
     }

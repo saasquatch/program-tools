@@ -136,9 +136,10 @@ export function GenericTableView(props: GenericTableViewProps) {
         {data.textOverrides.showLabels && (
           <thead>
             <tr>
-              {columns?.map((column) => (
-                <th>{column}</th>
-              ))}
+              {columns?.map((column) => {
+                if (typeof column === "string") return <th>{column}</th>;
+                return <th style={{ width: "30px" }}>{column}</th>;
+              })}
             </tr>
           </thead>
         )}
@@ -156,7 +157,7 @@ export function GenericTableView(props: GenericTableViewProps) {
                   part="table-row"
                 >
                   {row.map((cell, j) => {
-                    return (
+                    return typeof columns[j] === "string" ? (
                       <td
                         class={hiddenCols?.includes(j) ? "hidden" : ""}
                         data-label={columns[j] + ":"}
@@ -168,6 +169,8 @@ export function GenericTableView(props: GenericTableViewProps) {
                       >
                         {cell}
                       </td>
+                    ) : (
+                      <td></td>
                     );
                   })}
                 </tr>

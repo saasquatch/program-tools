@@ -5,19 +5,19 @@
 
 ## Properties
 
-| Property          | Attribute           | Description | Type     | Default     |
-| ----------------- | ------------------- | ----------- | -------- | ----------- |
-| `backgroundcolor` | `backgroundcolor`   |             | `string` | `undefined` |
-| `buttonClassName` | `button-class-name` |             | `string` | `undefined` |
-| `displayrule`     | `displayrule`       |             | `string` | `undefined` |
-| `icon`            | `icon`              |             | `string` | `undefined` |
-| `iconhorizontal`  | `iconhorizontal`    |             | `number` | `undefined` |
-| `iconsize`        | `iconsize`          |             | `number` | `undefined` |
-| `iconvertical`    | `iconvertical`      |             | `number` | `undefined` |
-| `text`            | `text`              |             | `string` | `undefined` |
-| `textcolor`       | `textcolor`         |             | `string` | `undefined` |
-| `type`            | `type`              |             | `string` | `undefined` |
-| `url`             | `url`               |             | `string` | `undefined` |
+| Property          | Attribute           | Description                                                                                                                                   | Type     | Default     |
+| ----------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `backgroundcolor` | `backgroundcolor`   | Background color of the share button                                                                                                          | `string` | `undefined` |
+| `buttonClassName` | `button-class-name` | CSS Class name used to style the share button                                                                                                 | `string` | `undefined` |
+| `displayrule`     | `displayrule`       | Show or hide button depending on what type of device the user is on                                                                           | `string` | `undefined` |
+| `icon`            | `icon`              | Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive. | `string` | `undefined` |
+| `iconhorizontal`  | `iconhorizontal`    | Number to horizontally align the share button icon                                                                                            | `number` | `undefined` |
+| `iconsize`        | `iconsize`          | Size of the Share button icon in em units                                                                                                     | `number` | `undefined` |
+| `iconvertical`    | `iconvertical`      | Number to vertically align the share button icon                                                                                              | `number` | `undefined` |
+| `text`            | `text`              | Text inside the share button                                                                                                                  | `string` | `undefined` |
+| `textcolor`       | `textcolor`         | Color of the text inside the share button                                                                                                     | `string` | `undefined` |
+| `type`            | `type`              |                                                                                                                                               | `string` | `undefined` |
+| `url`             | `url`               | URL redirect location                                                                                                                         | `string` | `undefined` |
 
 
 ## Dependencies

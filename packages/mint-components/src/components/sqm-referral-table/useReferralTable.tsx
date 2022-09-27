@@ -361,7 +361,7 @@ export function useReferralTable(
     },
     data: {
       textOverrides: {
-        showLabels: props.showLabels,
+        showLabels: !props.hideLabels,
         prevLabel: props.prevLabel,
         moreLabel: props.moreLabel,
       },

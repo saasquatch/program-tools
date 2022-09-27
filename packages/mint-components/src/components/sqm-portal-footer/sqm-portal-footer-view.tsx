@@ -25,7 +25,7 @@ type PortalFooterViewProps = {
   termsText?: string;
   supportText?: string;
   supportEmail?: string;
-  showPoweredBy?: boolean;
+  hidePoweredBy?: boolean;
   poweredByLink?: string;
 };
 export function PortalFooterView(props: PortalFooterViewProps) {
@@ -100,7 +100,7 @@ export function PortalFooterView(props: PortalFooterViewProps) {
           }
         )}
       </p>
-      {props.showPoweredBy && (
+      {!props.hidePoweredBy && (
         <a
           class={sheet.classes.PoweredByLink}
           target="_blank"

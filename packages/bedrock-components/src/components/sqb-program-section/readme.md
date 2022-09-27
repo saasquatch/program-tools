@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property    | Attribute    | Description                                            | Type     | Default     |
-| ----------- | ------------ | ------------------------------------------------------ | -------- | ----------- |
-| `programId` | `program-id` | The program that everything in this section should use | `string` | `undefined` |
+| Property    | Attribute    | Description                                                                       | Type     | Default     |
+| ----------- | ------------ | --------------------------------------------------------------------------------- | -------- | ----------- |
+| `programId` | `program-id` | Overwrite the program context used by child components with the selected program. | `string` | `undefined` |
 
 
 ## Dependencies

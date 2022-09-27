@@ -14,7 +14,7 @@
       max-width="100%"
     >
       <sqm-hero-image
-        image-url="https://i.imgur.com/bTwu1Um.png"
+        image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"
         header="MyCompany Rewards"
         description="Complete tasks to earn rewards"
         layout="overlay"
@@ -64,29 +64,16 @@
               alignment="left"
               stat-type="/rewardsRedeemed/CREDIT/POINTS"
             >
-              <sqm-text>
-                <p>Points Redeemed</p>
-              </sqm-text>
+              <p>Points Redeemed</p>
             </sqm-big-stat>
             <sqm-big-stat
               flex-reverse="true"
               alignment="left"
               stat-type="/rewardBalance/CREDIT/POINT/value/global"
             >
-              <sqm-text>
-                <p>Points Balance</p>
-              </sqm-text>
+              <p>Points Balance</p>
             </sqm-big-stat>
           </sqm-stat-container>
-          <sqm-scroll
-            scroll-id="tab-2"
-            outline
-            button-type="primary"
-            button-text="Redeem your rewards"
-            mobile
-            size="medium"
-          >
-          </sqm-scroll>
         </sqm-portal-container>
         <sqm-portal-container
           direction="column"
@@ -98,16 +85,16 @@
           <sqm-titled-section
             label-margin="small"
             padding="none"
-            text-align="left"
+            text-align="center"
           >
-            <sqm-text>Earn points </sqm-text>
+            <h3 slot="label">Earn points</h3>
           </sqm-titled-section>
           <sqm-card-feed gap="24" width="347">
             <sqm-task-card
               reward-amount="20"
               goal="1"
               card-title="Complete a Survey"
-              description="Fill out our NPS survey and get 100 points for giving us honest feedback."
+              description="Fill out our NPS survey and get 20 points for giving us honest feedback."
               button-text="Take survey"
               reward-unit="Points"
               completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
@@ -122,7 +109,7 @@
               goal="500"
               show-progress-bar
               card-title="Spend $500"
-              description="Earn 150 points when you spend $500 or more."
+              description="Earn 250 points when you spend $500 or more."
               button-text="See plans"
               completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
               ended-message="Ended {endDate}"
@@ -166,91 +153,77 @@
             >
             </sqm-task-card>
           </sqm-card-feed>
-          <sqm-tabs placement="top">
-            <sqm-tab header="Reward history">
-              <sqm-rewards-table
-                per-page="4"
-                hidden-columns="0"
-                more-label="Next"
-                prev-label="Prev"
-                show-labels
-                sm-breakpoint="599"
-                md-breakpoint="799"
+          <sqm-portal-container
+            gap="large"
+            direction="column"
+            display="grid"
+            max-width="100%"
+            padding="none"
+          >
+            <sqm-titled-section
+              padding="none"
+              text-align="center"
+              label-margin="xx-small"
+            >
+              <h3 slot="label">Reward History</h3>
+            </sqm-titled-section>
+            <sqm-rewards-table
+              per-page="4"
+              hidden-columns="0"
+              more-label="Next"
+              prev-label="Prev"
+              sm-breakpoint="599"
+              md-breakpoint="799"
+            >
+              <sqm-rewards-table-reward-column
+                available-text="{availableAmount} remaining"
+                column-title="Reward"
+                copy-text="Copied!"
+                redeemed-text="{redeemedAmount} redeemed"
               >
-                <sqm-rewards-table-reward-column
-                  available-text="{availableAmount} remaining"
-                  column-title="Reward"
-                  copy-text="Copied!"
-                  redeemed-text="{redeemedAmount} redeemed"
-                >
-                </sqm-rewards-table-reward-column>
-                <sqm-rewards-table-source-column
-                  anonymous-user="Anonymous User"
-                  column-title="Source"
-                  deleted-user="Deleted User"
-                  referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}"
-                  reward-exchange-text="Reward Exchange"
-                  reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"
-                >
-                </sqm-rewards-table-source-column>
-                <sqm-rewards-table-status-column
-                  column-title="Status"
-                  expiry-text="Expires on "
-                  status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-                >
-                </sqm-rewards-table-status-column>
-                <sqm-rewards-table-date-column
-                  column-title="Date received"
-                  date-shown="dateGiven"
-                >
-                </sqm-rewards-table-date-column>
-                <sqm-empty
-                  empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png"
-                  empty-state-header="View your rewards"
-                  empty-state-text="Refer friends and complete tasks to view the details of your rewards"
-                >
-                </sqm-empty>
-              </sqm-rewards-table>
-            </sqm-tab>
-            <sqm-tab header="Redeem">
-              <sqm-reward-exchange-list
-                back-text="Back"
-                button-text="Exchange Rewards"
-                cancel-text="Cancel"
-                choose-amount-title="Select"
-                choose-reward-title="Rewards"
-                confirmation-title="Confirm"
-                continue-text="Continue"
-                continue-to-confirmation-text="Continue to confirmation"
-                done-text="Done"
-                reward-title="Choose a reward"
-                not-available-error="{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {unavailableReasonCode} }"
-                not-enough-error="Not enough {sourceUnit} to redeem for this reward"
-                query-error="Unable to load reward exchange list. Please try again"
-                redeem-text="Redeem"
-                redeem-title="Confirm and redeem"
-                redemption-error="An error occured trying to redeem this reward. Please try again"
-                redemption-success-text="Redeemed {sourceValue} for {destinationValue}"
-                select-text="Select amount to receive"
-                source-amount-message="{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}"
-                tooltiptext="Copied"
-                reward-name-title="Reward"
-                reward-amount-title="Reward Amount"
-                cost-title="Cost to Redeem"
-                reward-redeemed-text="Reward redeemed"
-                skeleton-card-num="8"
-                promo-code="Promo Code"
-                tooltip-text="Copied!"
+              </sqm-rewards-table-reward-column>
+              <sqm-rewards-table-source-column
+                anonymous-user="Anonymous User"
+                column-title="Source"
+                deleted-user="Deleted User"
+                referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}"
+                reward-exchange-text="Reward Exchange"
+                reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"
               >
-                <sqm-empty
-                  empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_exchange2.png"
-                  empty-state-header="Redeem rewards"
-                  empty-state-text="Use your points to redeem rewards once they become available"
-                ></sqm-empty>
-              </sqm-reward-exchange-list>
-            </sqm-tab>
-          </sqm-tabs>
+              </sqm-rewards-table-source-column>
+              <sqm-rewards-table-status-column
+                column-title="Status"
+                expiry-text="Expires on "
+                status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+              >
+              </sqm-rewards-table-status-column>
+              <sqm-rewards-table-date-column
+                column-title="Date received"
+                date-shown="dateGiven"
+              >
+              </sqm-rewards-table-date-column>
+              <sqm-empty
+                slot="empty"
+                empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png"
+                empty-state-header="View your rewards"
+                empty-state-text="Refer friends and complete tasks to view the details of your rewards"
+              >
+              </sqm-empty>
+            </sqm-rewards-table>
+          </sqm-portal-container>
         </sqm-portal-container>
+        <sqm-portal-footer
+          support-email="support@example.com"
+          terms-link="https://example.com"
+          faq-link="https://example.com"
+          terms-text="Terms And Conditions"
+          faq-text="FAQ"
+          show-powered-by="true"
+          padding-bottom="none"
+          padding-left="none"
+          padding-right="none"
+          padding-top="none"
+        ></sqm-portal-footer>
       </sqm-portal-container>
     </sqm-portal-container>
   </sqm-portal-container>

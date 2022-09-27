@@ -4,7 +4,7 @@ import { getProps } from "../../utils/utils";
 import { PortalFooterView } from "./sqm-portal-footer-view";
 
 /**
- * @uiName Portal Footer
+ * @uiName Footer
  */
 @Component({
   tag: "sqm-portal-footer",
@@ -21,6 +21,7 @@ export class PortalFooter {
   @Prop() supportEmail: string = "support@example.com";
   /**
    * @uiName Support Text
+   * @uiWidget textArea
    */
   @Prop() supportText: string = "For program support, contact {email}";
   /**
@@ -40,27 +41,35 @@ export class PortalFooter {
    */
   @Prop() faqText?: string;
   /**
-   * @uiName Show Powered By SaaSquatch
+   * @uiName Hide Powered By SaaSquatch
    */
-  @Prop() showPoweredBy: boolean = true;
+  @Prop() hidePoweredBy: boolean = false;
   /**
    * @uiName Powered By Link
    */
   @Prop() poweredByLink: string = "https://saasquatch.com";
   /**
    * @uiName Padding Top
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingTop: string = "large";
   /**
    * @uiName Padding Right
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingRight: string = "large";
   /**
    * @uiName Padding Bottom
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingBottom: string = "large";
   /**
    * @uiName Padding Left
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingLeft: string = "large";
 

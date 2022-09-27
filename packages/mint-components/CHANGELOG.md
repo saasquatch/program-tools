@@ -7,6 +7,229 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.2] - 2022-07-21
+
+### Added
+
+- Added Components:
+  - \<sqm-portal-registration-form> component added to handle registration form submissions
+  - Has all features of existing \<sqm-portal-register> but uses registration forms instead
+    - Features include:
+      - Pre-fill
+      - Form Protection
+      - Domain Blocking
+  - \<sqm-header-logo> displays a logo and redirects participants when they click on it
+    - Designed to be used in Microsite headers
+
+### Changed
+
+- replaced useValidationState with useRegistrationFormState for `<sqm-portal-registration-form>` and `<sqm-portal-register>`
+- useRegistrationFormState allows passing loading, disabled, and initialData states in addition to validationErrors and network errors
+- implemented useRegistrationFormState in the registration form slotted components to improve form loading and validation
+  - `<sqm-password-field>`
+  - `<sqm-name-fields>`
+  - `<sqm-input-field>`
+  - `<sqm-dropdown-field>`
+  - `<sqm-checkbox-field>`
+- Fixed missing null check on \<sqm-brand>
+- Fixed `program-id` prop overwrite on \<sqm-share-code>
+- Updated `--sqm-max-width` to be `100%`, this affects the \<sqm-hero> and the component will now be full width on larger screens
+- Added [jsDocs](https://jsdoc.app/) to the following components to improve the editability experience in our new Raisins widget editor.
+- Changed components:
+  - \<sqm-checkbox-field>
+  - \<sqm-divided-layout>
+  - \<sqm-dropdown-field>
+  - \<sqm-edit-profile>
+  - \<sqm-form-message>
+  - \<sqm-header-logo>
+  - \<sqm-hero>
+  - \<sqm-input-field>
+  - \<sqm-name-fields>
+  - \<sqm-navigation-sidebar-item>
+  - \<sqm-navigation-sidebar>
+  - \<sqm-password-field>
+  - \<sqm-portal-change-password>
+  - \<sqm-portal-email-verification>
+  - \<sqm-portal-forgot-password>
+  - \<sqm-portal-frame>
+  - \<sqm-portal-login>
+  - \<sqm-portal-logout>
+  - \<sqm-portal-profile>
+  - \<sqm-portal-protected-route>
+  - \<sqm-portal-register>
+  - \<sqm-portal-registration-form>
+  - \<sqm-portal-reset-password>
+  - \<sqm-portal-verify-email>
+  - \<sqm-program-menu>
+  - \<sqm-route>
+  - \<sqm-share-code>
+  - \<sqm-user-name>
+
+
+### Breaking Changes
+
+- `showCountry` prop with `true` default replaced with `hideCountry` prop with `false` default for `<sqm-portal-profile>`
+- `enableValidation` prop with `true` default replaced with `disableValidation` prop with `false` default for `<sqm-password-field>`
+- `showPoweredBy` prop with `true` default replaced with `hidePoweredBy` prop with `false` default for `<sqm-portal-footer>`
+- `enablePasswordValidation` prop with `true` default replaced with `disablePasswordValidation` prop with `false` default for `<sqm-portal-register>`
+- `enablePasswordValidation` prop with `true` default replaced with `disablePasswordValidation` prop with `false` default for `<sqm-portal-registration-form>`
+
+## [1.6.1] - 2022-06-09
+
+### Changed
+
+- Removed brand color application to `<a>` tags
+- Update templates to portal templates to remove `<sqm-graphql-provider>`
+- Update Referral, Loyalty and Mono widget templates for SSW launch
+- Added [jsDocs](https://jsdoc.app/) to the following components to improve the editability experience in our new Raisins widget editor.
+- Changed components:
+  - \<sqm-big-stat>
+  - \<sqm-brand>
+  - \<sqm-card-feed>
+  - \<sqm-divided-layout>
+  - \<sqm-empty>
+  - \<sqm-hero>
+  - \<sqm-hero-image>
+  - \<sqm-image>
+  - \<sqm-leaderboard>
+  - \<sqm-leaderboard-rank>
+  - \<sqm-popup-container>
+  - \<sqm-portal-container>
+  - \<sqm-portal-footer>
+  - \<sqm-program-explainer>
+  - \<sqm-program-explainer-step>
+  - \<sqm-referral-card>
+  - \<sqm-referral-table>
+  - \<sqm-referral-table-date-column>
+  - \<sqm-referral-table-rewards-column>
+  - \<sqm-referral-table-status-column>
+  - \<sqm-referral-table-user-column>
+  - \<sqm-reward-exchange-list>
+  - \<sqm-rewards-table>
+  - \<sqm-rewards-table-date-column>
+  - \<sqm-rewards-table-note-column>
+  - \<sqm-rewards-table-source-column>
+  - \<sqm-rewards-table-status-column>
+  - \<sqm-route>
+  - \<sqm-router>
+  - \<sqm-scroll>
+  - \<sqm-share-button>
+  - \<sqm-share-code>
+  - \<sqm-share-link>
+  - \<sqm-stat-container>
+  - \<sqm-tab>
+  - \<sqm-table-cell>
+  - \<sqm-table-row>
+  - \<sqm-tabs>
+  - \<sqm-task-card>
+  - \<sqm-text>
+  - \<sqm-timeline>
+  - \<sqm-timeline-entry>
+  - \<sqm-titled-section>
+  - \<sqm-user-name>
+
+## Breaking Changes
+
+- `showLabels` props with `true` default replaced with `hideLabels` prop with `false` default for `<sqm-referral-table>` and `<sqm-rewards-table>`
+
+## [1.6.0] - 2022-05-09
+
+### Changed
+
+- Update portal components to use managed identity v2 error responses
+- \<sqm-portal-forgot-password>
+  - clear success message on re-send
+- \<sqm-portal-email-verification>
+  - clear success message on re-send
+- \<sqm-portal-reset-password>
+  - handle network failure of reset password mutation
+
+## [1.5.5] - 2022-04-21
+
+- Fixed grapesJs from build by removing window.location.origin from stencil build file
+  - Grapes was broken in the previous build
+
+## [1.5.4] - 2022-04-13
+
+### Changed
+
+- Changed Component:
+  - /<sqm-leaderboard>
+    - Now supports a top point earners leaderboard, `topPointEarners`
+    - Added a `programId` prop to overwride program context
+      - If an empty string is passed, then a global leaderboard is displayed
+    - Max number of leaderboard rows displayed is now configurable via prop but defaults to 10
+  - /<sqm-leaderboard-rank>
+    - Now supports rank from top point earners leaderboard
+    - Added a `programId` prop to overwride program context
+      - If an empty string is passed, then a global leaderboard rank is displayed
+  - /<sqm-reward-exchange-list>
+    - Updated `not-available-error` default value to fix issue with error message fallback in ICU message
+
+## [1.5.3] - 2022-03-31
+
+### Added
+
+- Input component added for use in \<sqm-portal-register>
+- Added Component:
+  - \<sqm-input-field>
+    - Required by default but can be optional with the `field-optional` prop
+    - Field label and error message are configurable by prop
+    - Best used in `formData` slot inside \<sqm-portal-register>
+    - Form field name can be customized with the `field-name` prop
+      - `field-name` must be a unique string and is submitted as the key to the value submitted
+        - For example, with `field-name` set to `businessName` the result is `{"businessName":"SaaSquatch"}`
+      - An error is displayed if `field-name` prop is not included
+    - Input type can be customized with the `field-type` prop
+      - Supports `text`, `tel`, and `date` as types
+
+### Changed
+
+- Changed Components:
+  - \<sqm-dropdown-field>
+    - An error is now displayed if `dropdown-name` prop is not included
+    - `dropdown-required` prop deprecated, must use `dropdown-optional` instead
+      - Field is still required by default
+  - \<sqm-checkbox-field>
+    - Error is now displayed if `checkbox-name` prop is not included
+    - `checkbox-required` prop deprecated, must use `checkbox-optional` instead
+      - Field is still required by default
+  - \<sqm-referral-iframe>
+    - Updated fail fast state text
+
+## [1.5.2] - 2022-03-08
+
+### Changed
+
+- Changed Components:
+  - \<sqm-portal-login>
+    - Enforce that nextPage redirects are relative
+  - \<sqm-portal-reset-password>
+    - Enforce that nextPage redirects are relative
+  - \<sqm-portal-verify-email>
+    - Enforce that nextPage redirects are relative
+
+## [1.5.1] - 2022-03-03
+
+### Added
+
+- Checkbox and dropdown components added for use in \<sqm-portal-register>
+
+- Added Components:
+
+  - \<sqm-checkbox-field>
+    - Required by default but can be optional
+    - Allows for a link in checkbox text to support behaviour like linking out to terms and conditions
+    - All text is configurable by prop
+    - Best used in the register components `terms` or `formData` slots
+    - Form field name can be customized with the `checkbox-name` prop
+  - \<sqm-dropdown-field>
+    - Required by default but can be optional
+    - Dropdown options are \<sl-menu-items>
+    - All text is configurable by prop
+    - Best used in the register components `formData` slot
+    - Form field name can be customized with the `dropdown-name` prop
+
 ## [1.5.0] - 2022-02-23
 
 ### Added
@@ -104,7 +327,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Has a header prop to configure the label displayed by \<sqm-tabs>
   - \<sqm-referral-card>
     - Takes two slots and displays them within a card
-    - Slots are named `left` and `right` 
+    - Slots are named `left` and `right`
     - Vertical alignment can be configured by a prop, defaults to `start` but options for `center` and `end` also available
   - \<sqm-image>
     - Displays an image configured with an `imageUrl` prop
@@ -138,7 +361,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Added prop to customized anonymous user fallback
   - \<sqm-portal-container>
     - Added max width prop, defaults to 100%
-    - Added prop to center children 
+    - Added prop to center children
     - Added display prop, options are grid or flex but defaults to grid
   - \<sqm-referral-table>
     - Added new default empty state
@@ -161,7 +384,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Added default background colour which matches the previous `--sqm-portal-background` colour
   - \<sqm-text>
     - Added styling for subtitle (`sub`) elements
-
 
 ## [1.4.2] - 2022-01-14
 
@@ -353,7 +575,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.2...HEAD
+[1.6.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.2
+[1.6.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.1
+[1.6.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.0
+[1.5.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.5
+[1.5.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.4
+[1.5.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.3
+[1.5.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.2
+[1.5.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.1
 [1.5.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.0
 [1.4.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.4.2
 [1.4.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.4.1

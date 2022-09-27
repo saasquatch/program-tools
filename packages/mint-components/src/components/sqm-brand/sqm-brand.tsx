@@ -5,9 +5,10 @@ import { buildFontsCssUrl } from "../../fonts/GoogleFonts";
 import { autoColorScaleCss } from "../sqm-stencilbook/AutoColor";
 
 /**
- *
  * @uiName Brand Container
- * @slot Controls the brand color and font of Mint Components wrapped by the container.
+ * @slots [{"name":"","title":"Branded Content"}]
+ * @exampleGroup Common Components
+ * @example Brand Container - <sqm-brand brand="Nunito Sans"><p>Add your branded content here!</p></sqm-brand>
  */
 @Component({
   tag: "sqm-brand",
@@ -15,18 +16,19 @@ import { autoColorScaleCss } from "../sqm-stencilbook/AutoColor";
 })
 export class BrandComponent {
   /**
-   * Controls the primary brand color used in the Mint Components library. Note that this
-   * does not affect vanilla components or other component libraries.
+   * Controls the primary brand color used in the Mint Components library.
    *
    * @uiName Brand Color
    * @uiWidget color
+   * @format color
    */
   @Prop() brandColor: string;
 
   /**
-   * The brand font that you want to use
+   * A font from the Google Fonts library used throughout the widget. This value is case sensitive.
    *
    * @uiName Brand Font
+   * @default "Nunito Sans"
    */
   @Prop() brandFont: string;
 
@@ -36,8 +38,16 @@ export class BrandComponent {
   disconnectedCallback() {}
 
   render() {
-    const brandColor = this.brandColor ?? "#FFF";
-    const css = autoColorScaleCss(brandColor);
+    function getCss(brandColor?: string) {
+      if (brandColor) {
+        try {
+          return autoColorScaleCss(brandColor);
+        } catch {}
+      }
+      return undefined;
+    }
+
+    const css = getCss(this.brandColor) ?? "";
     const sanitizedFont = (this.brandFont ?? "Nunito Sans").trim() || undefined;
 
     useEffect(() => {
@@ -72,7 +82,8 @@ export class BrandComponent {
             --sl-tooltip-font-family: "${font}", arial;
             font-family:  "${font}", arial;
 			
-            ${this.brandColor && css}
+            ${css}
+
             --sl-focus-ring-color-primary: var(--sl-color-primary-100);
             --sl-input-border-color-focus: var(--sl-color-primary-500);
             --sl-color-primary-hue: var(--sl-color-primary-500);

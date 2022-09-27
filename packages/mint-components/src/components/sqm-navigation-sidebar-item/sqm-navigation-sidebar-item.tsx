@@ -11,7 +11,10 @@ import {
 import { useNavigationSidebarItem } from "./useNavigationSidebarItem";
 
 /**
- * @uiName Navigation Link
+ * @uiName Microsite Sidebar Item
+ * @validParents ["sqm-navigation-sidebar"]
+ * @exampleGroup Microsite Components
+ * @example Sidebar Item - <sqm-navigation-sidebar-item label="Sidebar Item" icon="house"></sqm-navigation-sidebar-item>
  */
 @Component({
   tag: "sqm-navigation-sidebar-item",
@@ -19,12 +22,13 @@ import { useNavigationSidebarItem } from "./useNavigationSidebarItem";
 })
 export class NavigationSidebarItem {
   /**
-   * @uiName Navigation path
+   * @uiName Navigation Path
+   * @uiWidget pageSelect
    */
   @Prop() path: string;
   /**
-   * Options available at https://shoelace.style/components/icon 
-   * 
+   * Options available at https://shoelace.style/components/icon
+   *
    * @uiName Icon
    */
   @Prop() icon: string;

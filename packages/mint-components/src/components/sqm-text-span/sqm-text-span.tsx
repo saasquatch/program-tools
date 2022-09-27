@@ -4,6 +4,7 @@ import { TextSpanView } from "./sqm-text-span-view";
 
 /**
  * @uiName Text Span
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqm-text-span",
@@ -19,7 +20,7 @@ export class Text {
   @Prop() text: string;
 
   /**
-   * @uiName Text
+   * @uiName Type
    * @uiType string
    * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
    * @uiEnumNames ["Paragraph", "Subtext", "Header 1", "Header 2", "Header 3", "Header 4"]

@@ -8,7 +8,7 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 
 /**
- * @uiName Edit Profile
+ * @uiName Microsite Edit Profile
  */
 @Component({
   tag: "sqm-edit-profile",
@@ -24,31 +24,34 @@ export class EditProfile {
    */
   @Prop() editprofileheader: string;
   /**
-   * @uiName Enable editing button text
+   * Enable editing button text
+   *
+   * @uiName Edit Profile Text
    */
   @Prop() editprofiletext: string;
   /**
-   * @uiName Cancel button text
+   * @uiName Cancel Button Text
    */
   @Prop() canceltext: string;
   /**
-   * @uiName Update info button text
+   * @uiName Info Button Text
    */
   @Prop() updatetext: string;
   /**
-   * @uiName First name field label
+   * @uiName First Name Label
    */
   @Prop() firstnametext: string;
   /**
-   * @uiName Last name field label
+   * @uiName Last Name Label
    */
   @Prop() lastnametext: string;
   /**
-   * @uiName Region field label
+   * @uiName Region Field Label
    */
   @Prop() currentregiontext: string;
   /**
-   * @uiName Show or hide current region
+   * Show or hide current region
+   * @uiName Show Region
    */
   @Prop() showregion: boolean;
 

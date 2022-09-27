@@ -57,7 +57,7 @@ export function getProgramTriggerJson(
     messageType: "PROGRAM_TRIGGER",
     activeTrigger: {
       type: info.type,
-      time: info.time || Date.now(),
+      time: info.time ?? Date.now(),
       user: info.user,
     },
     program: {
@@ -73,11 +73,11 @@ export function getProgramTriggerJson(
   };
 }
 
-export function getAUCOUTJson(prev?: any, events?: any[]): any {
+export function getAUCOUTJson(previous?: any, events?: any[]): any {
   return {
     activeTrigger: {
       events,
-      prev,
+      previous,
     },
   };
 }

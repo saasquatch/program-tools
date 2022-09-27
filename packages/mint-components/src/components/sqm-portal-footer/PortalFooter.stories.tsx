@@ -3,7 +3,7 @@ import { PortalFooterView } from "./sqm-portal-footer-view";
 import scenario from "../sqm-portal-footer/sqm-portal-footer.feature";
 
 export default {
-  title: "Portal Footer",
+  title: "Components/Portal Footer",
   parameters: {
     scenario,
   },
@@ -12,7 +12,7 @@ export default {
 const defaultProps = {
   supportEmail: "support@example.com",
   supportText: "For program support, contact {email}",
-  showPoweredBy: true,
+  hidePoweredBy: false,
   poweredByLink: "https://saasquatch.com",
   paddingTop: "large",
   paddingRight: "large",
@@ -55,6 +55,6 @@ export const FooterNoPoweredBy = () => (
     termsText="Terms and Conditions"
     faqLink="https://example.com"
     faqText="FAQ"
-    showPoweredBy={false}
+    hidePoweredBy={true}
   />
 );

@@ -3,6 +3,7 @@ import { Component, h, Prop, State } from "@stencil/core";
 
 /**
  * @uiName Form Message
+ * @slots [{"name":"","title":"Message Content"}]
  */
 @Component({
   tag: "sqm-form-message",
@@ -13,9 +14,15 @@ export class FormMessage {
   @State()
   ignored = true;
 
-  /** @uiName Type of alert */
+  /**
+   * @uiName Alert Type
+   */
   @Prop() type: string;
-  /** @uiName Icon to use in alert */
+  /**
+   * Icon to use in alert
+   *
+   * @uiName Icon
+   */
   @Prop() icon?: string;
 
   constructor() {

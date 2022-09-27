@@ -1,15 +1,44 @@
 import { h, Component, Prop } from "@stencil/core";
 import { css } from "emotion";
-
+/**
+ * @uiName Global Container
+ * @canvasRenderer always-replace
+ * @slots [{"name":"", "title":"Widget Content"}]
+ */
 @Component({
   tag: "sqh-global-container",
   styleUrl: "global-container.scss",
 })
 export class GlobalContainer {
+  /**
+   * @uiName Background Color
+   * @uiWidget color
+   * @default #ffffff
+   */
   @Prop() background: string;
+  /**
+   * The background colour of the component while in the loading state.
+   *
+   * @uiName Loading Color
+   * @uiWidget color
+   */
   @Prop() loadingcolor: string;
+  /**
+   * A font from the Google Fonts library used inside the container.
+   *
+   * @uiName Font Family
+   * @default Roboto
+   */
   @Prop() fontfamily: string;
+  /**
+   * @uiName Container Max Width
+   */
   @Prop() maxwidth: string;
+  /**
+   * Show the Powered by SaaSquatch link. This can only be disabled on Pro plans.
+   *
+   * @uiName Show Powered By
+   */
   @Prop() poweredby: boolean;
 
   LoadingState(props) {

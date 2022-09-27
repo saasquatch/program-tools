@@ -23,11 +23,13 @@ export class NavigationMenu {
   ignored = true;
 
   /**
-   * @uiName Include dropdown menu
+   * @uiName Include Dropdown Menu
    */
   @Prop() includeDropdown: boolean;
   /**
-   * @uiName Label on the header menu
+   * Label on the header menu
+   *
+   * @uiName Menu Label
    */
   @Prop() menuLabel: string;
 

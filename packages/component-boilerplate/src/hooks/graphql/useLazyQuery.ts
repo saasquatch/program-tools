@@ -1,4 +1,4 @@
-import { useRef } from "@saasquatch/universal-hooks";
+import { useRef, useCallback } from "@saasquatch/universal-hooks";
 import { useRefreshListener } from "./Refresh";
 import {
   BaseQueryData,
@@ -16,7 +16,7 @@ const initialLazyQueryState: BaseQueryData = {
 const NOTLOADED = Symbol();
 export function useLazyQuery<T = any>(
   query: GqlType
-): [(e: unknown) => unknown, QueryData<T>] {
+): [(e: unknown) => Promise<T | Error>, QueryData<T>] {
   const [state, update] = useBaseQuery<T>(
     query,
     initialLazyQueryState as BaseQueryData<T>
@@ -31,15 +31,20 @@ export function useLazyQuery<T = any>(
     variables: variablesRef.current,
   });
 
+  // can override props when refetching for new pagination, offset, etc
+  const refetch = useCallback(
+    (variables) => {
+      variablesRef.current = variables;
+      return update(variables);
+    },
+    [update]
+  );
+
   return [
     update,
     {
       ...state,
-      // can override props when refetching for new pagination, offset, etc
-      refetch: (variables) => {
-        variablesRef.current = variables;
-        update(variables);
-      },
+      refetch,
     },
   ];
 }

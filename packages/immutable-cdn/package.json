@@ -1,7 +1,7 @@
 {
   "name": "@saasquatch/immutable-cdn",
   "author": "Johan Venter <johan@saasquatch.com>",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "description": "Immutable web app CDN cookie management",
   "repository": "https://github.com/saasquatch/program-tools",
@@ -32,8 +32,8 @@
     "prepare": "tsdx build --format cjs,esm,umd",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "publish-prerelease": "np --no-cleanup --any-branch --tag=next prerelease",
-    "publish-release": "np --any-branch --tag=latest"
+    "publish-next": "np --no-cleanup --any-branch --tag=next",
+    "publish-latest": "np --any-branch --tag=latest"
   },
   "peerDependencies": {},
   "husky": {

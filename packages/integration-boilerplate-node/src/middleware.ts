@@ -12,7 +12,7 @@ export function createSaasquatchRequestMiddleware(auth: Auth, logger: Logger) {
         req.rawBody,
         req.header("x-hook-jws-rfc-7797")!
       );
-    } catch (e) {
+    } catch (e: any) {
       const error = `Permission denied - JWT validation failed: ${e.message}`;
       logger.error(error);
       res.status(403).send({ errorCode: "PERMISSION_DENIED", error });
@@ -55,7 +55,7 @@ export function createSaasquatchTokenMiddleware(auth: Auth, logger: Logger) {
 
     try {
       await auth.validateSaaSquatchToken(tenantScopedToken);
-    } catch (e) {
+    } catch (e: any) {
       logger.error("Tenant-scoped token JWT validation failed: %s", e.message);
       res
         .status(403)

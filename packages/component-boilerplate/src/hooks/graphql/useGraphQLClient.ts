@@ -1,6 +1,6 @@
 import memoize from "fast-memoize";
-import { BatchedGraphQLClient } from "../../environment/BatchedGraphQLClient";
-import { useAppDomain, useTenantAlias, useToken } from "../../environment";
+import { BatchedGraphQLClient } from "../../BatchedGraphQLClient";
+import { useAppDomain, useTenantAlias, useToken } from "../environment";
 import { useDomContext } from "@saasquatch/dom-context-hooks";
 import { useHost } from "../useHost";
 import { GraphQLClient } from "graphql-request";

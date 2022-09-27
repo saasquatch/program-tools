@@ -4,12 +4,13 @@ import {
   navigation,
   useAuthenticateWithEmailAndPasswordMutation,
 } from "@saasquatch/component-boilerplate";
+import { sanitizeUrlPath } from "../../utils/utils";
 
 export function usePortalLogin(props) {
   const [request, { loading, errors, data }] =
     useAuthenticateWithEmailAndPasswordMutation();
   const [error, setError] = useState("");
-  const urlParams = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(navigation.location.search);
   const nextPageOverride = urlParams.get("nextPage");
 
   const submit = async (event: any) => {
@@ -21,33 +22,30 @@ export function usePortalLogin(props) {
     });
     const variables = { email: formData.email, password: formData.password };
 
-    await request(variables);
+    const result = await request(variables);
+    if (result instanceof Error) {
+      if (result?.message || result?.["response"]?.["error"])
+        setError("Network request failed.");
+      return;
+    }
+    if (result.authenticateManagedIdentityWithEmailAndPassword?.token) {
+      urlParams.delete("nextPage");
+      const url = sanitizeUrlPath(nextPageOverride || props.nextPage);
+      navigation.push(url.href);
+    }
   };
 
-  useEffect(() => {
-    if (data?.authenticateManagedIdentityWithEmailAndPassword?.token) {
-      urlParams.delete("nextPage");
-      navigation.push({
-        pathname: nextPageOverride || props.nextPage,
-        search: urlParams.toString() && "?" + urlParams.toString(),
-      });
-    }
-  }, [data?.authenticateManagedIdentityWithEmailAndPassword?.token]);
-
-  useEffect(() => {
-    if (errors?.message || errors?.response?.["error"]) {
-      setError("Network request failed.");
-    }
-  }, [errors]);
-
-  const errorMessage = errors?.response?.errors?.[0]?.message || error;
+  const errorMessage =
+    errors?.response?.errors?.[0]?.extensions?.message ||
+    errors?.response?.errors?.[0]?.message ||
+    error;
 
   return {
     states: {
       loading,
       error: errorMessage,
-      registerPath:props.registerPath,
-      forgotPasswordPath:props.forgotPasswordPath
+      registerPath: props.registerPath,
+      forgotPasswordPath: props.forgotPasswordPath,
     },
     callbacks: {
       submit,

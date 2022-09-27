@@ -51,6 +51,9 @@ const vanillaStyle = `
 
 /**
  * @uiName Text
+ * @slots [{"name":"", "title":"Text"}]
+ * @slotEditor richText
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqm-text",

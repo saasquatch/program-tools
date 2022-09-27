@@ -8,21 +8,24 @@ import { useUserName } from "./useUserName";
 
 /**
  * @uiName User Name
+ * @exampleGroup Common Components
+ * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
  */
 @Component({
   tag: "sqm-user-name",
   shadow: true,
 })
 export class UserName {
-  @State() _ignored: boolean = true;
+  @State() ignored = true;
 
   /**
-   * @uiName Fallback name for nameless users
+   * @uiName Unknown User Name
    */
   @Prop() fallback: string = "Anonymous User";
 
   /**
-   * @uiName Loading text
+   * Text displayed while the participant’s name is loading.
+   * @uiName Loading Text
    */
   @Prop() loadingText: string = "...";
 
