@@ -44,11 +44,8 @@ Feature: Navigation Sidebar
         Given a user viewing the sidebar on a screen smaller than 800px
         Then they see the mobile sidebar with a hamburger menu icon at the top
         When they click the hamburger icon
-        Then the sidebar expands
+        Then the sidebar expands ontop of the microsite page content
         And they see all the sidebar items
         And they see a "X" icon in the top left hand corner
         When they click the "X" icon
         Then the sidebar collapses
-
-    @unknown
-    Scenario: How the expanding interact with the microsite page content
