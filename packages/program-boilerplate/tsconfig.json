@@ -1,10 +1,9 @@
 {
-  "include": [
-    "src/**/*.ts"
-  ],
+  "include": ["src/**/*.ts"],
   "compilerOptions": {
     "outDir": "dist",
     "module": "commonjs",
+    "esModuleInterop": true,
     "target": "es2015",
     "strict": true
   }
