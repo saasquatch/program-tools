@@ -2,7 +2,7 @@
 @owner:ian
 Feature: Email Verification
 
-    @minutae
+    @minutia
     Scenario: User's redirected from registration can re-send their verification email
         Given a user has registered
         And they have been sent a verification email
@@ -59,14 +59,27 @@ Feature: Email Verification
     @motivating
     Scenario: Verification status is refetched every 10 seconds
         Given a user viewing the email verification component
-        Then they see text "Check verification status in 10" below the re-send verification button
+        Then they see text "Check verification status: in 10" below the re-send verification button
         And the time counts down from 10 to 0
         When the counter hits 0
         Then their verification status is re-queried
-        And the text displays a loading state
+        And the text displays a spinner where the "in {seconds}" text was
         When they verify their account on another device
         And the count down hits 0 again from 10
-        Then they see text "Checking verification status" below the re-send verification button with a spinner
-        And their verification status is re-queried
+        Then their verification status is re-queried
         And the local storage managed identity state is updated
         And they are redirected to the components "redirectPath"
+
+    @minutia
+    Scenario Outline: Verification refetch text is customizable
+        Given the email verication has prop "verification-status-message" with <verificationPropValue>
+        And has prop "verification-loading-message" with <loadingPropValue>
+        And a user viewing the component
+        When it is counting down
+        Then they see <verificationTextValue>
+        When it is refetching their verification status
+        Examples:
+            | verificationPropValue                         | verificationTextValue                         | loadingPropValue             | loadingTextValue             |
+            | N/A                                           | Check verification status: in {countdown}     | N/A                          | Check verification status:   |
+            | {countdown} seconds till verification refresh | {countdown} seconds till verification refresh | Checking verification status | Checking verification status |
+
