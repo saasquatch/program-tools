@@ -49,3 +49,6 @@ Feature: Navigation Sidebar
         And they see a "X" icon in the top left hand corner
         When they click the "X" icon
         Then the sidebar collapses
+
+    @unknown
+    Scenario: How the expanding interact with the microsite page content
