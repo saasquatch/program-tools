@@ -47,7 +47,7 @@ Feature: Task Card
 			| false               | the same tab |
 			| N/A                 | the same tab |
 
-	@minutae
+	@minutia
 	@ui
 	Scenario: A loading state is displayed while the Task Card is loading
 		Given a Task Card component

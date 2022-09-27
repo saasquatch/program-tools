@@ -3,7 +3,6 @@
 
 Feature: Menu Navigation
 
-    @review
     @motivating
     Scenario: The menu in the header allows the user to navigate the portal
         Given the menu in the header is displayed
@@ -17,15 +16,13 @@ Feature: Menu Navigation
             | Edit Profile |
             | Logout       |
 
-    @review
     @motivating
     Scenario: The user can log out using the header menu
         Given the header menu is displayed
         And given the user has clicked the "Logout" menu item
         Then the user will be logged out of the portal
 
-    @review
-    @minutae
+    @minutia
     Scenario: The dashboard entry is hidden to unverified users
         Given the current user has not verified their email address
         And they are logged in

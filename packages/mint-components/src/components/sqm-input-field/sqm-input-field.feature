@@ -32,7 +32,7 @@ Feature: Form Input Field
         Then they see the input field
         And it has label "My Custom Input" above the input
 
-    @minutae
+    @minutia
     Scenario Outline: The validation error message is configurable
         The error message string is evaluated as an ICU string, but currently is provided no context
         Given the input is required
@@ -114,7 +114,7 @@ Feature: Form Input Field
             | date  | 05/07/2021     | 2021-05-07     |
             | tel   | (250) 234-9877 | (250) 234-9877 |
 
-    @minutae
+    @minutia
     Scenario Outline: The input field component fails fast if a field name isn't provided
         Given the input <mayHave> prop "field-name"
         And it <mayHavePropValue>

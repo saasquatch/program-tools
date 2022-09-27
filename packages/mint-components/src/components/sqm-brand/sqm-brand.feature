@@ -27,7 +27,7 @@ Feature: Brand Configuration
 		But they are not applied to any components outside of the brand component
 		And they are not applied to any vanilla components
 
-	@minutae
+	@minutia
 	Scenario Outline: The brand colour can be hex, HSL or rgb
 		Given a brand component with "brand-color" <colour>
 		And it is wrapping several mint components
