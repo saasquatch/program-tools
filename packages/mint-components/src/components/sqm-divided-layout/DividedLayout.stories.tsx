@@ -46,10 +46,11 @@ const item2Props = {
 
 const Sidebar = () => {
   return (
-    <NavigationSidebarView {...barProps}>
-      <NavigationSidebarItemView {...item1Props} />
-      <NavigationSidebarItemView {...item2Props} />
-    </NavigationSidebarView>
+    <div></div>
+    // <NavigationSidebarView {...barProps}>
+    //   <NavigationSidebarItemView {...item1Props} />
+    //   <NavigationSidebarItemView {...item2Props} />
+    // </NavigationSidebarView>
   );
 };
 
