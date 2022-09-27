@@ -629,6 +629,7 @@ export namespace Components {
         "menuLabel": string;
     }
     interface SqmNavigationSidebar {
+        "renderNavigationItem": (child: Element) => Promise<any>;
     }
     interface SqmNavigationSidebarItem {
         /**

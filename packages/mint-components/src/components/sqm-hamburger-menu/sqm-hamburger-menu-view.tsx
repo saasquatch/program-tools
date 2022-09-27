@@ -5,6 +5,7 @@ type HamburgerMenuViewProps = {
 };
 
 export function HamburgerMenuView(
+  // @ts-ignore - Stencil requires props (even if empty)
   props: HamburgerMenuViewProps,
   children: VNode
 ) {
@@ -31,13 +32,10 @@ export function HamburgerMenuView(
     .menu-items { 
       display: none;
       padding: 20px;
-      // border-radius: 12px;
-      // border: 2px solid #eaeaea;
       border-right: 2px solid #eaeaea;
       padding-top: 60px;
       background: white; 
-      // max-width: 35%;
-      // min-width: 325px;
+      max-width: 400px;
       width: 70vw;
       height: 100vh;
       position: absolute;
@@ -45,18 +43,18 @@ export function HamburgerMenuView(
       right: 0;
       left: 0px;
       margin: 0;
-      animation: slideIn 500ms ease-in;
+      animation: slideIn 500ms ease-in-out;
     }
-  /*
+  
    @keyframes slideIn {
       0% {
-        right: -350px;
+        left: -350px;
       }
       100% {
-        right: 0;
+        left: 0;
       }
     } 
-    */
+  
 
     .toggler {
       border: 2px solid #eee;
@@ -65,7 +63,7 @@ export function HamburgerMenuView(
       z-index: 5;
     }
 
-    @media screen and (max-width: 599px) {
+    @media screen and (max-width: 799px) {
       .toggler,
       .hamburger {
         visibility: visible !important;
@@ -83,8 +81,8 @@ export function HamburgerMenuView(
 
     .toggler,
     .hamburger {
+      user-select: none;
       visibility:hidden;
-      position: sticky;
       position: absolute;
       padding: 20px 10px;
     }

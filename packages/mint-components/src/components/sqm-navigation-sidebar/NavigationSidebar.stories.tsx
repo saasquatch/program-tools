@@ -42,9 +42,10 @@ export const DefaultNavigationSidebar = () => {
     },
   };
   return (
-    <NavigationSidebarView {...barProps}>
-      <NavigationSidebarItemView {...item1Props} />
-      <NavigationSidebarItemView {...item2Props} />
-    </NavigationSidebarView>
+    <div></div>
+    // <NavigationSidebarView {...barProps}>
+    //   <NavigationSidebarItemView {...item1Props} />
+    //   <NavigationSidebarItemView {...item2Props} />
+    // </NavigationSidebarView>
   );
 };
