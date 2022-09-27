@@ -7,6 +7,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { PortalResetPasswordViewProps } from "./sqm-portal-reset-password-view";
 import { PortalResetPassword } from "./sqm-portal-reset-password";
+import { sanitizeUrlPath } from "../../utils/utils";
 
 export function usePortalResetPassword(
   props: PortalResetPassword
@@ -18,11 +19,22 @@ export function usePortalResetPassword(
 
   const [resetPassword, resetPasswordState] = useResetPasswordMutation();
 
-  const urlParams = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(navigation.location.search);
   const oobCode = urlParams.get("oobCode");
   urlParams.delete("oobCode");
 
   const nextPageOverride = urlParams.get("nextPage");
+
+  const verifyPasswordResetCodeAndHandleResponse = async () => {
+    const result = await verifyPasswordResetCode({ oobCode });
+    if (result instanceof Error) {
+      setError("Network request failed.");
+    }
+  };
+
+  useEffect(() => {
+    verifyPasswordResetCodeAndHandleResponse();
+  }, []);
 
   const submit = async (event: any) => {
     setError("");
@@ -38,15 +50,22 @@ export function usePortalResetPassword(
       return;
     }
 
-    await resetPassword(variables);
+    const result = await resetPassword(variables);
+    if (result instanceof Error) {
+      return setError("Network request failed.");
+    }
+    if (result.resetManagedIdentityPassword) {
+      setReset(true);
+      setTimeout(() => {
+        gotoNextPage();
+      }, 5000);
+    }
   };
 
   const gotoNextPage = () => {
     urlParams.delete("nextPage");
-    navigation.push({
-      pathname: nextPageOverride || props.nextPage,
-      search: urlParams.toString() && "?" + urlParams.toString(),
-    });
+    const url = sanitizeUrlPath(nextPageOverride || props.nextPage);
+    navigation.push(url.href);
   };
 
   const failed = () => {
@@ -56,31 +75,15 @@ export function usePortalResetPassword(
     });
   };
 
-  useEffect(() => {
-    if (resetPasswordState.data?.resetManagedIdentityPassword) {
-      setReset(true);
-      setTimeout(() => {
-        gotoNextPage();
-      }, 5000);
-    }
-  }, [resetPasswordState.data?.resetManagedIdentityPassword]);
-
-  useEffect(() => {
-    verifyPasswordResetCode({ oobCode });
-  }, [oobCode]);
-
-  useEffect(() => {
-    if (verifyPasswordResetCodeState?.errors?.message) {
-      setError("Network request failed.");
-    }
-  }, [verifyPasswordResetCodeState?.errors]);
-
   return {
     states: {
       loading: resetPasswordState.loading,
       reset,
       confirmPassword: props.confirmPassword,
-      error: resetPasswordState.errors?.response?.errors?.[0]?.message || error,
+      error:
+        resetPasswordState.errors?.response?.errors?.[0]?.extensions?.message ||
+        resetPasswordState.errors?.response?.errors?.[0]?.message ||
+        error,
       oobCodeValidating: verifyPasswordResetCodeState.loading,
       oobCodeValid:
         verifyPasswordResetCodeState.data

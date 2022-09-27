@@ -4,6 +4,7 @@ import { useProgramSwitch } from './useProgramSwitch';
 
 /**
  * @uiName Program Switch
+ * @slots [{"name":"","title":"Switch Content"}]
  */
 @Component({
   tag: 'sqb-program-switch',

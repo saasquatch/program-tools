@@ -1,7 +1,6 @@
 import { rewardScheduleQuery } from "./queries";
 import { ProgramTriggerBody, TriggerType } from "./types/rpc";
-import { User } from "./types/saasquatch";
-import { loggers } from "winston";
+import getJsonataPaths from "@saasquatch/jsonata-paths-extractor";
 
 /**
  * Append a reward schedule to the template and return the new template
@@ -137,8 +136,8 @@ export function inferType(val: string): any {
 
 /**
  * Converts a number representation of a conversion operator set in program
- * rules to a string that can be user in a graphQL query
- * @param num the conversion criteria set in a program
+ * rules to a string that can be user in a GraphQL query
+ * @param {number} num conversion criteria set in a program
  * @return {string} the string representation of the conversion operator
  */
 export function numToEquality(num: number): string {
@@ -155,9 +154,9 @@ export function numToEquality(num: number): string {
 }
 
 /**
- * Converts a trigger context into the relavent information for the specified trigger type.
+ * Converts a trigger context into the relevant information for the specified trigger type.
  * @param body the body of the trigger
- * @return object[] The tranformed data that is relavent for the trigger type
+ * @return object[] The transformed data that is relevant for the trigger type
  */
 export function getTriggerSchema(body: ProgramTriggerBody): object[] {
   const activeTrigger = body.activeTrigger;
@@ -211,4 +210,44 @@ export function getTriggerSchema(body: ProgramTriggerBody): object[] {
     default:
       throw new Error("Trigger type did not match expected options");
   }
+}
+
+/**
+ * Parses JSONata expressions and finds user custom fields used in the expression(s)
+ *
+ * @param jsonataExpressions string | string[] input JSONata expression(s)
+ * @returns string[] a deduplicated list of user custom fields found in the input expression(s)
+ */
+export function getUserCustomFieldsFromJsonata(
+  jsonataExpressions: string | string[]
+): string[] {
+  let userCustomFields: string[] = [];
+  if (typeof jsonataExpressions === "string") {
+    jsonataExpressions = [jsonataExpressions];
+  }
+  for (const expression of jsonataExpressions) {
+    try {
+      const allPaths = getJsonataPaths(expression);
+      for (const path of allPaths) {
+        if (path.startsWith("/user/customFields/")) {
+          const key = path.split("/")[3];
+          if (key) userCustomFields.push(key);
+        }
+        if (
+          path.startsWith("/user/referredByReferral/referrerUser/customFields/")
+        ) {
+          const key = path.split("/")[5];
+          if (key) userCustomFields.push(key);
+        }
+        if (path.startsWith("/referral/referrerUser/customFields/")) {
+          const key = path.split("/")[4];
+          if (key) userCustomFields.push(key);
+        }
+      }
+    } catch (e) {
+      continue;
+    }
+  }
+  //dedup
+  return Array.from(new Set(userCustomFields));
 }

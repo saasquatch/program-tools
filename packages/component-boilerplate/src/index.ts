@@ -1,42 +1,26 @@
-/**
- * Identity and environment
- */
-export {
-  /*
-   * Identity
-   */
-  useUserIdentity,
-  setUserIdentity,
-  useToken,
-  /*
-   * Core environment
-   */
-  getEnvironmentSDK,
-  useTenantAlias,
-  useProgramId,
-  setProgramId,
-  useAppDomain,
-  isDemo,
-  /*
-   * Personalization environment
-   */
-  useEngagementMedium,
-  useLocale,
-} from "./environment";
+//
+//      Identity and environment
+//
+export * from "./hooks/environment";
+
+//
+//      Managed Identity
+//
 export { useAuthenticateWithEmailAndPasswordMutation } from "./hooks/managedIdentity/useAuthenticateWithEmailAndPasswordMutation";
 export { useRegisterWithEmailAndPasswordMutation } from "./hooks/managedIdentity/useRegisterWithEmailAndPasswordMutation";
+export { useRegisterViaRegistrationFormMutation } from "./hooks/managedIdentity/useRegisterViaRegistrationFormMutation";
 export { useChangePasswordMutation } from "./hooks/managedIdentity/useChangePasswordMutation";
 export { useResetPasswordMutation } from "./hooks/managedIdentity/useResetPasswordMutation";
 export { useVerifyPasswordResetCodeMutation } from "./hooks/managedIdentity/useVerifyPasswordResetCodeMutation";
 export { useVerifyEmailMutation } from "./hooks/managedIdentity/useVerifyEmailMutation";
 export { useRequestPasswordResetEmailMutation } from "./hooks/managedIdentity/useRequestPasswordResetEmailMutation";
 export { useRequestVerificationEmailMutation } from "./hooks/managedIdentity/useRequestVerificationEmailMutation";
-export { useManagedIdentityQuery } from "./hooks/managedIdentity/useManagedIdentityQuery";
+export { useManagedIdentitySessionQuery } from "./hooks/managedIdentity/useManagedIdentitySessionQuery";
 
 //
 //      GraphQL API
 //
-export { BatchedGraphQLClient } from "./environment/BatchedGraphQLClient";
+export { BatchedGraphQLClient } from "./BatchedGraphQLClient";
 export { useQuery } from "./hooks/graphql/useQuery";
 export { useMutation } from "./hooks/graphql/useMutation";
 export { useLazyQuery } from "./hooks/graphql/useLazyQuery";

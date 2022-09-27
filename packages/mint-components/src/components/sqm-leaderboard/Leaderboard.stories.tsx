@@ -12,72 +12,145 @@ export default {
 
 const users = [
   {
-    firstName: "Viktor",
-    lastInitial: "V",
-    value: 82,
+    firstName: "",
+    lastInitial: "",
+    textValue: "82",
     rank: 1,
     rowNumber: 1,
   },
   {
     firstName: "MF",
     lastInitial: "D",
-    value: 73,
+    textValue: "73",
     rank: 2,
     rowNumber: 2,
   },
   {
     firstName: "Freddie",
     lastInitial: "G",
-    value: 64,
+    textValue: "64",
     rank: 3,
     rowNumber: 3,
   },
   {
     firstName: "Benny",
     lastInitial: "B",
-    value: 55,
+    textValue: "55",
     rank: 4,
     rowNumber: 4,
   },
   {
     firstName: "Mos",
     lastInitial: "D",
-    value: 46,
+    textValue: "46",
     rank: 5,
     rowNumber: 5,
   },
   {
     firstName: "Joe",
     lastInitial: "S",
-    value: 42,
+    textValue: "42",
     rank: 6,
     rowNumber: 6,
   },
   {
     firstName: "Zach",
     lastInitial: "H",
-    value: 41,
+    textValue: "41",
     rank: 7,
     rowNumber: 7,
   },
   {
     firstName: "Sarah",
     lastInitial: "S",
-    value: 39,
+    textValue: "39",
     rank: 8,
     rowNumber: 8,
   },
   {
     firstName: "James",
     lastInitial: "",
-    value: 33,
+    textValue: "33",
     rank: 9,
     rowNumber: 9,
   },
   {
     firstName: "",
     lastInitial: "J",
-    value: 29,
+    textValue: "29",
+    rank: 10,
+    rowNumber: 10,
+  },
+];
+
+const pointsUsers = [
+  {
+    firstName: "",
+    lastInitial: "",
+    textValue: "82 Points",
+    rank: 1,
+    rowNumber: 1,
+  },
+  {
+    firstName: "MF",
+    lastInitial: "D",
+    textValue: "73 Points",
+    rank: 2,
+    rowNumber: 2,
+  },
+  {
+    firstName: "Freddie",
+    lastInitial: "G",
+    textValue: "64 Points",
+    rank: 3,
+    rowNumber: 3,
+  },
+  {
+    firstName: "Benny",
+    lastInitial: "B",
+    textValue: "55 Points",
+    rank: 4,
+    rowNumber: 4,
+  },
+  {
+    firstName: "Mos",
+    lastInitial: "D",
+    textValue: "46 Points",
+    rank: 5,
+    rowNumber: 5,
+  },
+  {
+    firstName: "Joe",
+    lastInitial: "S",
+    textValue: "42 Points",
+    rank: 6,
+    rowNumber: 6,
+  },
+  {
+    firstName: "Zach",
+    lastInitial: "H",
+    textValue: "41 Points",
+    rank: 7,
+    rowNumber: 7,
+  },
+  {
+    firstName: "Sarah",
+    lastInitial: "S",
+    textValue: "39 Points",
+    rank: 8,
+    rowNumber: 8,
+  },
+  {
+    firstName: "James",
+    lastInitial: "",
+    textValue: "33 Points",
+    rank: 9,
+    rowNumber: 9,
+  },
+  {
+    firstName: "",
+    lastInitial: "J",
+    textValue: "29 Points",
     rank: 10,
     rowNumber: 10,
   },
@@ -87,7 +160,7 @@ const defaultStyles = {
   usersheading: "User",
   statsheading: "Referrals",
   rankheading: "Rank",
-  anonymousUser: "Anonymous User"
+  anonymousUser: "Anonymous User",
 };
 
 const defaultElements = {
@@ -127,10 +200,11 @@ export const Empty = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: [],
+      rowNumber: 10,
       viewerRank: {
         firstName: "Kutay",
         lastInitial: "C",
-        value: 8,
+        textValue: "8",
         rowNumber: 11,
         rank: 23,
       },
@@ -153,6 +227,7 @@ export const Loading = () => {
     },
     data: {
       rankType: "rowNumber",
+      rowNumber: 10,
       leaderboard: [],
     },
     elements: {
@@ -173,11 +248,12 @@ export const One = () => {
     },
     data: {
       rankType: "rowNumber",
+      rowNumber: 1,
       leaderboard: [
         {
           firstName: "Viktor",
           lastInitial: "V",
-          value: 82,
+          textValue: "82",
           rank: 1,
           rowNumber: 1,
         },
@@ -185,7 +261,7 @@ export const One = () => {
       viewerRank: {
         firstName: "Viktor",
         lastInitial: "V",
-        value: 82,
+        textValue: "82",
         rank: 1,
         rowNumber: 1,
       },
@@ -208,33 +284,40 @@ export const Five = () => {
     },
     data: {
       rankType: "rowNumber",
+      rowNumber: 5,
       leaderboard: [
         {
           firstName: "Viktor",
           lastInitial: "V",
-          value: 82,
+          textValue: "82",
           rank: 1,
           rowNumber: 1,
         },
-        { firstName: "MF", lastInitial: "D", value: 73, rank: 2, rowNumber: 2 },
+        {
+          firstName: "MF",
+          lastInitial: "D",
+          textValue: "73",
+          rank: 2,
+          rowNumber: 2,
+        },
         {
           firstName: "Freddie",
           lastInitial: "G",
-          value: 64,
+          textValue: "64",
           rank: 3,
           rowNumber: 3,
         },
         {
           firstName: "Benny",
           lastInitial: "B",
-          value: 55,
+          textValue: "55",
           rank: 4,
           rowNumber: 4,
         },
         {
           firstName: "Mos",
           lastInitial: "D",
-          value: 46,
+          textValue: "46",
           rank: 5,
           rowNumber: 5,
         },
@@ -242,7 +325,7 @@ export const Five = () => {
       viewerRank: {
         firstName: "Viktor",
         lastInitial: "V",
-        value: 82,
+        textValue: "82",
         rank: 1,
         rowNumber: 1,
       },
@@ -254,12 +337,13 @@ export const Five = () => {
   return <LeaderboardView {...props} />;
 };
 
-export const Ten = () => {
+export const ReferralLeaderboard = () => {
   const props = {
     states: {
       loading: false,
       hasLeaders: true,
       styles: {
+        ...defaultStyles,
         rankheading: "Rank",
         usersheading: "User",
         statsheading: "Referrals",
@@ -269,10 +353,43 @@ export const Ten = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: users,
+      rowNumber: 10,
       viewerRank: {
         firstName: "Viktor",
         lastInitial: "V",
-        value: 82,
+        textValue: "82",
+        rank: 1,
+        rowNumber: 1,
+      },
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};
+
+export const PointsLeaderboard = () => {
+  const props = {
+    states: {
+      loading: false,
+      hasLeaders: true,
+      styles: {
+        ...defaultStyles,
+        rankheading: "Rank",
+        usersheading: "User",
+        statsheading: "Points",
+        showRank: false,
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: pointsUsers,
+      rowNumber: 10,
+      viewerRank: {
+        firstName: "Viktor",
+        lastInitial: "V",
+        textValue: "82 Points",
         rank: 1,
         rowNumber: 1,
       },
@@ -297,10 +414,11 @@ export const TenWithRank = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: users,
+      rowNumber: 10,
       viewerRank: {
         firstName: "Viktor",
         lastInitial: "V",
-        value: 82,
+        textValue: "82",
         rank: 1,
         rowNumber: 1,
       },
@@ -325,10 +443,11 @@ export const ViewerOutside = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: users,
+      rowNumber: 10,
       viewerRank: {
         firstName: "Kutay",
         lastInitial: "C",
-        value: 8,
+        textValue: "8",
         rowNumber: 11,
         rank: 23,
       },
@@ -353,6 +472,7 @@ export const ViewerAnonymous = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: users,
+      rowNumber: 10,
       viewerRank: null,
     },
     elements: {
@@ -367,6 +487,7 @@ export const HideViewer = () => {
     states: {
       loading: false,
       hasLeaders: true,
+      rowNumber: 10,
       styles: {
         ...defaultStyles,
         showRank: true,
@@ -376,10 +497,11 @@ export const HideViewer = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: users,
+      rowNumber: 10,
       viewerRank: {
         firstName: "Viktor",
         lastInitial: "V",
-        value: 82,
+        textValue: "82",
         rowNumber: 1,
         rank: 1,
       },

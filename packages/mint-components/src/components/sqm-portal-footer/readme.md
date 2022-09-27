@@ -11,12 +11,12 @@
 | --------------- | ----------------- | ----------- | --------- | ---------------------------------------- |
 | `faqLink`       | `faq-link`        |             | `string`  | `undefined`                              |
 | `faqText`       | `faq-text`        |             | `string`  | `undefined`                              |
+| `hidePoweredBy` | `hide-powered-by` |             | `boolean` | `false`                                  |
 | `paddingBottom` | `padding-bottom`  |             | `string`  | `"large"`                                |
 | `paddingLeft`   | `padding-left`    |             | `string`  | `"large"`                                |
 | `paddingRight`  | `padding-right`   |             | `string`  | `"large"`                                |
 | `paddingTop`    | `padding-top`     |             | `string`  | `"large"`                                |
 | `poweredByLink` | `powered-by-link` |             | `string`  | `"https://saasquatch.com"`               |
-| `showPoweredBy` | `show-powered-by` |             | `boolean` | `true`                                   |
 | `supportEmail`  | `support-email`   |             | `string`  | `"support@example.com"`                  |
 | `supportText`   | `support-text`    |             | `string`  | `"For program support, contact {email}"` |
 | `termsLink`     | `terms-link`      |             | `string`  | `undefined`                              |

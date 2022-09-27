@@ -8,6 +8,7 @@ import { getProps } from "../../utils/utils";
  * Spacing is left up to the child
  *
  * @uiName Divided Layout
+ * @slots [{"name":"", "title":"Layout Content"}]
  */
 @Component({
   tag: "sqm-divided-layout",
@@ -30,8 +31,8 @@ export class DividedLayout {
    */
   @Prop() overflow: "initial" | "scroll" | "auto" | "hidden" = "initial";
   /**
-   * Uses CSS border style syntax
-   * @uiName Border style
+   * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
+   * @uiName Border Style
    */
   @Prop() dividerStyle: string = "1px solid #EAEAEA";
 

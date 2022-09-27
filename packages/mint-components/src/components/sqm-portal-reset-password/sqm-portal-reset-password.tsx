@@ -10,7 +10,7 @@ import {
 import { usePortalResetPassword } from "./usePortalResetPassword";
 
 /**
- * @uiName Portal Reset Password
+ * @uiName Microsite Reset Password
  */
 @Component({
   tag: "sqm-portal-reset-password",
@@ -21,60 +21,64 @@ export class PortalResetPassword {
   ignored = true;
 
   /**
-   * The page that users are redirected to when the password reset succeeds.
+   * Redirect participants to this page when they successfully reset their password.
    *
-   * @uiName Next page path
+   * @uiName Successful Reset Redirect
+   * @uiWidget pageSelect
    */
   @Prop()
   nextPage: string = "/";
 
   /**
-   * The page that users are redirected to if the reset fails due to outdated password reset attempt.
+   * Redirect participants to this page if password reset fails due to an outdated reset attempt.
    *
-   * @uiName Failed page redirection path
+   * @uiName Failed Reset Redirect
+   * @uiWidget pageSelect
    */
   @Prop()
   failedPage: string = "/";
 
   /**
-   * @uiName Show confirm password
+   * @uiName Show Confirm Password Field
    */
   @Prop()
   confirmPassword: boolean = false;
 
   /**
-   * @uiName Password reset header text
+   * @uiName Reset Password Header Text
    */
   @Prop() resetPasswordHeader: string = "Reset your password";
 
   /**
-   * Displayed after a successful password reset
+   * Displayed after a successful password reset.
    *
-   * @uiName Password reset header text
+   * @uiName Successful Password Reset Text
+   * @uiWidget textArea
    */
   @Prop() passwordResetHeader: string = "Password reset";
 
   /**
-   * @uiName Password reset button text
+   * @uiName Password Reset Button Text
    */
   @Prop() resetPasswordButtonText: string = "Reset Password";
 
   /**
-   * Displayed after a successful password reset
+   * Button text displayed after a successful password reset.
    *
-   * @uiName Continue button text
+   * @uiName Continue Button Text
    */
   @Prop() continueButtonText: string = "Continue";
 
   /**
-   * @uiName Confirm password field label
+   * @uiName Password Confirmation Field Label
    */
   @Prop() confirmPasswordFieldLabel: string = "Confirm Password";
 
   /**
-   * @uiName Password field label
+   * @uiName Password Field Label
    */
   @Prop() passwordFieldLabel: string = "New Password";
+
   /**
    * @undocumented
    * @uiType object
@@ -103,16 +107,16 @@ function usePortalResetPasswordDemo(
         error: "",
         loading: false,
         reset: false,
-        confirmPassword: true,
+        confirmPassword: props.confirmPassword,
         oobCodeValidating: false,
         oobCodeValid: true,
         content: {
-          passwordResetHeader: "Password reset",
-          resetPasswordHeader: "Reset your password",
-          continueButtonText: "Continue",
-          resetPasswordButtonText: "Reset Password",
-          confirmPasswordFieldLabel: "Confirm Password",
-          passwordFieldLabel: "New Password",
+          passwordResetHeader: props.passwordResetHeader,
+          resetPasswordHeader: props.resetPasswordHeader,
+          continueButtonText: props.continueButtonText,
+          resetPasswordButtonText: props.resetPasswordButtonText,
+          confirmPasswordFieldLabel: props.confirmPasswordFieldLabel,
+          passwordFieldLabel: props.passwordFieldLabel,
         },
       },
       callbacks: {

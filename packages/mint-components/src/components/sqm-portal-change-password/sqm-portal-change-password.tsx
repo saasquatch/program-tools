@@ -8,9 +8,10 @@ import { usePortalChangePassword } from "./usePortalChangePassword";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
+import { useState } from "@saasquatch/universal-hooks";
 
 /**
- * @uiName Portal Profile
+ * @uiName Microsite Password Change
  */
 @Component({
   tag: "sqm-portal-change-password",
@@ -21,43 +22,56 @@ export class PortalChangePassword {
   ignored = true;
 
   /**
-   * @uiName Change password modal header
+   * @uiName Change Password Modal Header
    */
   @Prop() modalChangePasswordHeader: string = "Change Password";
 
   /**
-   * @uiName Modal cancel password change button text
+   * Found in modal
+   *
+   * @uiName Cancel Button Text
    */
   @Prop() cancelText: string = "Cancel";
 
   /**
-   * @uiName Modal change password button text
+   * Found in modal
+   *
+   * @uiName Change Password Button Text
    */
   @Prop() changePasswordButtonText: string = "Change Password";
 
   /**
-   * @uiName Password input field label
+   * Found in modal
+   *
+   * @uiName New Password Field Label
    */
   @Prop() passwordFieldLabel: string = "New Password";
 
   /**
-   * @uiName Password confirmation input field label
+   * Found in modal
+   *
+   * @uiName Confirm Password Label
    */
   @Prop()
   confirmPasswordFieldLabel: string = "Confirm New Password";
 
   /**
-   * @uiName Successful password change message
+   * Successful password change message
+   *
+   * @uiName Successful Password Change Message
+   * @uiWidget textArea
    */
   @Prop() successMessage: string = "Your password has been updated.";
 
   /**
-   * @uiName Portal change password section header
+   * Portal change password section header
+   *
+   * @uiName Change Password Header
    */
   @Prop() portalChangePasswordHeader: string = "Password";
 
   /**
-   * @uiName Portal change password button text
+   * @uiName Change Password Button Text
    */
   @Prop() portalChangePasswordButtonText: string = "Change your password...";
 
@@ -81,24 +95,26 @@ export class PortalChangePassword {
 }
 
 function usePortalChangePasswordDemo(props: PortalChangePassword) {
+  const [open, setOpen] = useState(false);
+
   return deepmerge(
     {
       states: {
-        open: true,
+        open,
         error: "",
         content: {
-          modalChangePasswordHeader: "Change Password",
-          cancelText: "Cancel",
-          changePasswordButtonText: "Change Password",
-          passwordFieldLabel: "New Password",
-          confirmPasswordFieldLabel: "Confirm new password",
-          successMessage: "Your password has been updated.",
-          portalChangePasswordHeader: "Password",
-          portalChangePasswordButtonText: "Change your password...",
+          modalChangePasswordHeader: props.modalChangePasswordHeader,
+          cancelText: props.cancelText,
+          changePasswordButtonText: props.changePasswordButtonText,
+          passwordFieldLabel: props.passwordFieldLabel,
+          confirmPasswordFieldLabel: props.confirmPasswordFieldLabel,
+          successMessage: props.successMessage,
+          portalChangePasswordHeader: props.portalChangePasswordHeader,
+          portalChangePasswordButtonText: props.portalChangePasswordButtonText,
         },
       },
       callbacks: {
-        setOpen: (o) => console.log(o),
+        setOpen: (update) => setOpen(update),
         submit: (e) => console.log("Submit", e),
       },
     },

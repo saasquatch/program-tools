@@ -10,8 +10,11 @@ import { DemoData } from "./global/demo";
 export namespace Components {
     interface SqbConditionalSection {
         /**
-          * Only show this section when a user meets the following conditions.  Can use `user.segments` and `user.customFields`.   - `"VIP" in user.segments`  - `user.customFields.age > 19`
+          * Show child content when a user meets specified criteria. <a href="http://docs.jsonata.org/overview.html" target="_blank">JSONata expression</a> is used to define this logic. A participant’s segments, country code, custom fields and email can be used.
           * @uiName Condition
+          * @uiWidget textArea
+          * @required 
+          * @minLength 1
          */
         "condition": string;
     }
@@ -20,12 +23,20 @@ export namespace Components {
     }
     interface SqbProgramSection {
         /**
-          * The program that everything in this section should use
+          * Overwrite the program context used by child components with the selected program.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId": string;
     }
     interface SqbProgramSwitch {
+    }
+    interface SqbRedirect {
+        /**
+          * @uiName Redirect Path
+          * @uiWidget pageSelect
+         */
+        "redirectTo": string;
     }
     interface SqbStencilbook {
     }
@@ -77,6 +88,12 @@ declare global {
         prototype: HTMLSqbProgramSwitchElement;
         new (): HTMLSqbProgramSwitchElement;
     };
+    interface HTMLSqbRedirectElement extends Components.SqbRedirect, HTMLStencilElement {
+    }
+    var HTMLSqbRedirectElement: {
+        prototype: HTMLSqbRedirectElement;
+        new (): HTMLSqbRedirectElement;
+    };
     interface HTMLSqbStencilbookElement extends Components.SqbStencilbook, HTMLStencilElement {
     }
     var HTMLSqbStencilbookElement: {
@@ -94,6 +111,7 @@ declare global {
         "sqb-hook-story-container": HTMLSqbHookStoryContainerElement;
         "sqb-program-section": HTMLSqbProgramSectionElement;
         "sqb-program-switch": HTMLSqbProgramSwitchElement;
+        "sqb-redirect": HTMLSqbRedirectElement;
         "sqb-stencilbook": HTMLSqbStencilbookElement;
         "sqb-widget": HTMLSqbWidgetElement;
     }
@@ -101,8 +119,11 @@ declare global {
 declare namespace LocalJSX {
     interface SqbConditionalSection {
         /**
-          * Only show this section when a user meets the following conditions.  Can use `user.segments` and `user.customFields`.   - `"VIP" in user.segments`  - `user.customFields.age > 19`
+          * Show child content when a user meets specified criteria. <a href="http://docs.jsonata.org/overview.html" target="_blank">JSONata expression</a> is used to define this logic. A participant’s segments, country code, custom fields and email can be used.
           * @uiName Condition
+          * @uiWidget textArea
+          * @required 
+          * @minLength 1
          */
         "condition"?: string;
     }
@@ -111,12 +132,20 @@ declare namespace LocalJSX {
     }
     interface SqbProgramSection {
         /**
-          * The program that everything in this section should use
+          * Overwrite the program context used by child components with the selected program.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId"?: string;
     }
     interface SqbProgramSwitch {
+    }
+    interface SqbRedirect {
+        /**
+          * @uiName Redirect Path
+          * @uiWidget pageSelect
+         */
+        "redirectTo"?: string;
     }
     interface SqbStencilbook {
     }
@@ -147,6 +176,7 @@ declare namespace LocalJSX {
         "sqb-hook-story-container": SqbHookStoryContainer;
         "sqb-program-section": SqbProgramSection;
         "sqb-program-switch": SqbProgramSwitch;
+        "sqb-redirect": SqbRedirect;
         "sqb-stencilbook": SqbStencilbook;
         "sqb-widget": SqbWidget;
     }
@@ -159,6 +189,7 @@ declare module "@stencil/core" {
             "sqb-hook-story-container": LocalJSX.SqbHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqbHookStoryContainerElement>;
             "sqb-program-section": LocalJSX.SqbProgramSection & JSXBase.HTMLAttributes<HTMLSqbProgramSectionElement>;
             "sqb-program-switch": LocalJSX.SqbProgramSwitch & JSXBase.HTMLAttributes<HTMLSqbProgramSwitchElement>;
+            "sqb-redirect": LocalJSX.SqbRedirect & JSXBase.HTMLAttributes<HTMLSqbRedirectElement>;
             "sqb-stencilbook": LocalJSX.SqbStencilbook & JSXBase.HTMLAttributes<HTMLSqbStencilbookElement>;
             "sqb-widget": LocalJSX.SqbWidget & JSXBase.HTMLAttributes<HTMLSqbWidgetElement>;
         }

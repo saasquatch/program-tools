@@ -1,5 +1,4 @@
 import { StepDefinitions } from "jest-cucumber";
-
 import { getWorld } from "../world";
 
 const rulesSteps: StepDefinitions = ({ given }) => {
@@ -21,10 +20,10 @@ const rulesSteps: StepDefinitions = ({ given }) => {
     });
   });
 
-  given(/^the current time is (\d+)$/, (time: number) => {
+  given(/^the current time is (\d+)$/, (time: string) => {
     getWorld().setState({
       current: {
-        time,
+        time: Number(time),
       },
     });
   });

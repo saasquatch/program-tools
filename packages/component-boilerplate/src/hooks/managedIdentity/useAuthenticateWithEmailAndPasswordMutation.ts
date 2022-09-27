@@ -3,10 +3,7 @@ import decode from "jwt-decode";
 import { useEffect } from "@saasquatch/universal-hooks";
 
 import { BaseQueryData } from "../graphql/useBaseQuery";
-import {
-  setUserIdentity,
-  DecodedSquatchJWT,
-} from "../../environment/UserIdentityContext";
+import { setUserIdentity, DecodedSquatchJWT } from "../environment";
 import { useMutation } from "../graphql/useMutation";
 
 const AuthenticateWithEmailAndPasswordMutation = gql`
@@ -38,7 +35,10 @@ interface AuthenticateWithEmailAndPasswordResult {
 }
 
 export function useAuthenticateWithEmailAndPasswordMutation(): [
-  (e: { email: string; password: string }) => unknown,
+  (variables: {
+    email: string;
+    password: string;
+  }) => Promise<AuthenticateWithEmailAndPasswordResult | Error>,
   BaseQueryData<AuthenticateWithEmailAndPasswordResult>
 ] {
   const [request, { loading, data, errors }] =
@@ -46,23 +46,33 @@ export function useAuthenticateWithEmailAndPasswordMutation(): [
       AuthenticateWithEmailAndPasswordMutation
     );
 
-  useEffect(() => {
-    if (data?.authenticateManagedIdentityWithEmailAndPassword) {
-      const { authenticateManagedIdentityWithEmailAndPassword: res } = data;
-      const jwt = res.token;
+  const requestAndSetUserIdentity = async (v: {
+    email: string;
+    password: string;
+  }) => {
+    const result = await request(v);
+    if (
+      !(result instanceof Error) &&
+      result.authenticateManagedIdentityWithEmailAndPassword
+    ) {
+      const jwt = result.authenticateManagedIdentityWithEmailAndPassword.token;
       const { user } = decode<DecodedSquatchJWT>(jwt);
       setUserIdentity({
         jwt,
         id: user.id,
         accountId: user.accountId,
         managedIdentity: {
-          email: res.email,
-          emailVerified: res.emailVerified,
-          sessionData: res.sessionData,
+          email: result.authenticateManagedIdentityWithEmailAndPassword.email,
+          emailVerified:
+            result.authenticateManagedIdentityWithEmailAndPassword
+              .emailVerified,
+          sessionData:
+            result.authenticateManagedIdentityWithEmailAndPassword.sessionData,
         },
       });
     }
-  }, [data?.authenticateManagedIdentityWithEmailAndPassword]);
+    return result;
+  };
 
-  return [request, { loading, data, errors }];
+  return [requestAndSetUserIdentity, { loading, data, errors }];
 }

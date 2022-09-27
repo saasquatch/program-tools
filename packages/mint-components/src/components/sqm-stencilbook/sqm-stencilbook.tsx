@@ -47,6 +47,12 @@ import * as PortalFooter from "../sqm-portal-footer/PortalFooter.stories";
 import * as Hero from "../sqm-hero/Hero.stories";
 import * as ReferralIframe from "../sqm-referral-iframe/ReferralIframe.stories";
 import * as NameFields from "../sqm-name-fields/NameFields.stories";
+import * as CheckboxField from "../sqm-checkbox-field/CheckboxField.stories";
+import * as UseCheckboxField from "../sqm-checkbox-field/UseCheckboxField.stories";
+import * as DropdownField from "../sqm-dropdown-field/DropdownField.stories";
+import * as UseDropdownField from "../sqm-dropdown-field/UseDropdownField.stories";
+import * as InputField from "../sqm-input-field/InputField.stories";
+import * as UseInputField from "../sqm-input-field/UseInputField.stories";
 import * as RewardExchangeList from "../sqm-reward-exchange-list/RewardExchangeList.stories";
 import * as ProgramExplainer from "../sqm-program-explainer/ProgramExplainer.stories";
 import * as ProgramExplainerStep from "../sqm-program-explainer-step/ProgramExplainerStep.stories";
@@ -84,6 +90,9 @@ const stories = [
   UseBigStat,
   UseEditProfile,
   UseLeaderboard,
+  UseCheckboxField,
+  UseDropdownField,
+  UseInputField,
   Router,
   PortalFrame,
   EditProfile,
@@ -115,6 +124,9 @@ const stories = [
   Hero,
   ReferralIframe,
   NameFields,
+  CheckboxField,
+  DropdownField,
+  InputField,
   RewardExchangeList,
   UseRewardExchangeList,
   UseTaskCard,
@@ -158,7 +170,7 @@ export class StencilStorybook {
     const { class: Style, children } = useStencilbook(stories, {
       h,
       title: "Mint Components",
-      addons: [CucumberAddon, ShadowViewAddon, HookStoryAddon],
+      addons: [HookStoryAddon, ShadowViewAddon, CucumberAddon],
     });
 
     const [selectedTheme, setSelected] = useState("Default");

@@ -5,6 +5,9 @@ import { RewardTableColumn } from "./RewardTableColumn";
 
 /**
  * @uiName Reward Table Status Column
+ * @validParents ["sqm-rewards-table"]
+ * @exampleGroup Rewards
+ * @example Reward Table Status Column - <sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error"></sqm-rewards-table-status-column>
  */
 @Component({
   tag: "sqm-rewards-table-status-column",
@@ -18,12 +21,15 @@ export class RewardTableStatusColumn implements RewardTableColumn {
 
   /**
    * @uiName Reward Status Text
+   * @uiWidget textArea
    */
   @Prop() statusText: string =
     "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
 
   /**
-   * @uiName Expired Status Text
+   * Text shown before the date of an expiring reward.
+   *
+   * @uiName Expiry Date Prefix
    */
   @Prop() expiryText: string = "Expires on ";
 
@@ -35,7 +41,9 @@ export class RewardTableStatusColumn implements RewardTableColumn {
   @Prop() pendingUsTax: string = "W-9 required";
 
   /**
-   * @uiName Expiry Date Prefix
+   * Text shown before the available date of a pending reward.
+   *
+   * @uiName Pending Date Prefix
    */
   @Prop() pendingScheduled: string = "Until";
 

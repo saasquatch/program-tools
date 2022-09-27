@@ -3,10 +3,7 @@ import decode from "jwt-decode";
 import { useEffect } from "@saasquatch/universal-hooks";
 
 import { BaseQueryData } from "../graphql/useBaseQuery";
-import {
-  setUserIdentity,
-  DecodedSquatchJWT,
-} from "../../environment/UserIdentityContext";
+import { setUserIdentity, DecodedSquatchJWT } from "../environment";
 import { useMutation } from "../graphql/useMutation";
 
 const ResetPasswordMutation = gql`
@@ -35,30 +32,37 @@ interface ResetPasswordResult {
 }
 
 export function useResetPasswordMutation(): [
-  (e: { oobCode: string; password: string }) => unknown,
+  (variables: {
+    oobCode: string;
+    password: string;
+  }) => Promise<ResetPasswordResult | Error>,
   BaseQueryData<ResetPasswordResult>
 ] {
   const [request, { loading, data, errors }] = useMutation<ResetPasswordResult>(
     ResetPasswordMutation
   );
 
-  useEffect(() => {
-    if (data?.resetManagedIdentityPassword) {
-      const { resetManagedIdentityPassword: res } = data;
-      const jwt = res.token;
+  const requestAndSetUserIdentity = async (v: {
+    oobCode: string;
+    password: string;
+  }) => {
+    const result = await request(v);
+    if (!(result instanceof Error) && result.resetManagedIdentityPassword) {
+      const jwt = result.resetManagedIdentityPassword.token;
       const { user } = decode<DecodedSquatchJWT>(jwt);
       setUserIdentity({
         jwt,
         id: user.id,
         accountId: user.accountId,
         managedIdentity: {
-          email: res.email,
-          emailVerified: res.emailVerified,
-          sessionData: res.sessionData,
+          email: result.resetManagedIdentityPassword.email,
+          emailVerified: result.resetManagedIdentityPassword.emailVerified,
+          sessionData: result.resetManagedIdentityPassword.sessionData,
         },
       });
     }
-  }, [data?.resetManagedIdentityPassword]);
+    return result;
+  };
 
-  return [request, { loading, data, errors }];
+  return [requestAndSetUserIdentity, { loading, data, errors }];
 }

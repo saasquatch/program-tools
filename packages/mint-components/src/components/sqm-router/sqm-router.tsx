@@ -3,7 +3,8 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { useRouter } from "./useRouter";
 
 /**
- * @uiName Router (for pages)
+ * @uiName Router
+ * @slots [{"name":"","title":"Routes"}]
  */
 @Component({
   tag: "sqm-router",

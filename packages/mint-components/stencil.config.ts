@@ -9,6 +9,8 @@ import { OutputTarget } from "@stencil/core/internal";
 import { grapesJsOutput } from "@saasquatch/stencil-grapes-plugin";
 import { ShoelaceComponents } from "./shoelace-definitions";
 import { string } from "rollup-plugin-string";
+import plugin from "@raisins/stencil-docs-target";
+
 const useDocx: OutputTarget = {
   type: "docs-custom",
   generator: createDocxGenerator({
@@ -26,9 +28,12 @@ const useGrapesjs: OutputTarget = grapesJsOutput({
 
 export const config: Config = {
   namespace: "mint-components",
+  devServer: {
+    // startupTimeout: 0,
+  },
   globalScript: "src/global/global.ts",
   globalStyle: "src/global/global.css",
-  buildEs5: process.env.NODE_ENV !== "dev",
+  buildEs5: true,
   bundles: [
     {
       components: [
@@ -73,6 +78,9 @@ export const config: Config = {
           },
           useDocx,
           useGrapesjs,
+          plugin({
+            outDir: "docs"
+          }),
         ]
       : [
           {
@@ -83,6 +91,9 @@ export const config: Config = {
             type: "stats",
             file: "docs/stats.json", // optional
           },
+          plugin({
+            outDir: "docs"
+          }),
           useDocx,
           useGrapesjs,
         ],

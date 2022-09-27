@@ -2,6 +2,9 @@
  * @module conversion
  */
 
+import * as assert from "assert";
+import { timeboxedJsonata } from "./jsonata";
+
 /**
  * A custom field based conversion rule
  */
@@ -64,6 +67,65 @@ function parseValue(value: string): RuleValue {
   }
 
   return value;
+}
+
+/**
+ * Checks whether any of the edge trigger conditions are met given
+ * a list of fields to check and the current context.
+ *
+ * @param {string[] | undefined} fields The list of edge trigger fields
+ * @param {any} activeTrigger The current program `activeTrigger`
+ *
+ * @return {boolean} Whether any of the edge fields have changed
+ */
+export function meetEdgeTriggerConditions(
+  fields: string[] | undefined,
+  activeTrigger: any
+): boolean {
+  if (fields === undefined || fields.length === 0) {
+    return true;
+  }
+
+  for (const field of fields) {
+    if (!field.startsWith("user.")) {
+      // we consider a malformed edge field to be "not passing"
+      return false;
+    }
+
+    // a simple query to retrieve the value of a field from the user should
+    // not take more than a few milliseconds. if it takes longer than 500ms
+    // something is definitely wrong with the query
+    const jsonataTimeoutMs = 500;
+
+    const { success: prevSuccess, result: previousValue } = timeboxedJsonata(
+      field.replace("user.", "previous."),
+      activeTrigger,
+      jsonataTimeoutMs
+    );
+
+    const { success: currentSuccess, result: currentValue } = timeboxedJsonata(
+      field,
+      activeTrigger,
+      jsonataTimeoutMs
+    );
+
+    // one of the JSONata expressions failed to evaluate -- edge field is considered
+    // "not passing"
+    if (!prevSuccess || !currentSuccess) {
+      return false;
+    }
+
+    try {
+      assert.deepStrictEqual(currentValue, previousValue);
+      // assertion passed -- field did not change
+      // continue on to other fields and see if any changed
+    } catch (_e) {
+      // assertion failed -- field must have changed
+      return true;
+    }
+  }
+
+  return false;
 }
 
 /**

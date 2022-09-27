@@ -1,9 +1,8 @@
 import gql from "graphql-tag";
-import { useEffect } from "@saasquatch/universal-hooks";
 
 import { BaseQueryData } from "../graphql/useBaseQuery";
 import { useMutation } from "../graphql/useMutation";
-import { useManagedIdentityQuery } from "./useManagedIdentityQuery";
+import { useManagedIdentitySessionQuery } from "./useManagedIdentitySessionQuery";
 
 const VerifyEmailMutation = gql`
   mutation VerifyEmail($oobCode: String!) {
@@ -22,18 +21,25 @@ interface VerifyEmailResult {
 }
 
 export function useVerifyEmailMutation(): [
-  (e: { oobCode: string }) => unknown,
+  (e: { oobCode: string }) => Promise<VerifyEmailResult | Error>,
   BaseQueryData<VerifyEmailResult>
 ] {
-  const [refreshManagedIdentity] = useManagedIdentityQuery();
+  const [refreshManagedIdentitySession] = useManagedIdentitySessionQuery();
   const [request, { loading, data, errors }] =
     useMutation<VerifyEmailResult>(VerifyEmailMutation);
 
-  useEffect(() => {
-    if (data?.verifyManagedIdentityEmail?.success) {
-      refreshManagedIdentity();
+  const requestAndRefreshManagedIdentitySession = async (e: {
+    oobCode: string;
+  }) => {
+    const result = await request(e);
+    if (
+      !(result instanceof Error) &&
+      result.verifyManagedIdentityEmail.success
+    ) {
+      await refreshManagedIdentitySession();
     }
-  }, [data?.verifyManagedIdentityEmail?.success]);
+    return result;
+  };
 
-  return [request, { loading, data, errors }];
+  return [requestAndRefreshManagedIdentitySession, { loading, data, errors }];
 }

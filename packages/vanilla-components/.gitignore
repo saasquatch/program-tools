@@ -3,6 +3,7 @@ loader/
 docs/
 !www/favicon.ico
 www/
+raisins/
 
 *~
 *.sw[mnpcod]

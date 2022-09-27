@@ -43,6 +43,15 @@ Feature: Reset Password
         And they can log in with their new password
 
     @motivating
+    Scenario: Users are notified if resetting their password fails
+        Given a user has a valid oob code as a url query parameter
+        When they enter their password twice
+        And they click "Update"
+        But the password reset fails
+        Then the user's password does not reset
+        And an error banner is shown
+
+    @motivating
     Scenario: Users are redirected to "/" by default
         Given the component does not have prop "nextPage"
         And the users url does not contain a "nextPage" query parameter
@@ -59,3 +68,35 @@ Feature: Reset Password
         When they click "Update"
         Then their password is updated
         And they are redirected to "/activity"
+
+    @motivating
+    Scenario Outline: Users are redirected to the value of the nextPage url parameter as if it were a relative path
+        Given the component is loaded at <currentUrl>
+        When they click "Update"
+        Then their password is updated
+        And they are redirected to <url>
+        Examples:
+            | currentUrl                                                                 | url                                           |
+            | https://www.example.com?nextPage=./activity                                | https://www.example.com/activity              |
+            | https://www.example.com?nextPage=activity                                  | https://www.example.com/activity              |
+            | https://www.example.com?nextPage=/activity                                 | https://www.example.com/activity              |
+            | https://www.example.com?nextPage=www.google.com                            | https://www.example.com/www.google.com        |
+            | https://www.example.com?nextPage=//foo.com                                 | https://www.example.com/                      |
+            | https://www.example.com?nextPage=https://malicious.example.com             | https://www.example.com/                      |
+            | http://www.example.com/nest/page?oob=123&other&nextPage=activity#heading-1 | http://www.example.com/activity               |
+            | https://www.example.com?nextPage=activity?foo=bar                          | https://www.example.com/activity?foo=bar      |
+            | https://www.example.com?nextPage=%2Factivity%3Ffoo%3Dbar                   | https://www.example.com/activity?foo=bar      |
+            | https://www.example.com?nextPage=%2Factivity%3Ffoo%3Dbar#hash              | https://www.example.com/activity?foo=bar      |
+            | https://www.example.com?nextPage=%2Factivity%3Ffoo%3Dbar%23hash            | https://www.example.com/activity?foo=bar#hash |
+            | https://www.example.com:1337?nextPage=activity                             | https://www.example.com:1337/activity         |
+            | http://1.1.1.1:1111?nextPage=activity                                      | http://1.1.1.1:1111/activity                  |
+
+    @landmine
+    Scenario Outline: Username and password are not persisted on redirects
+        Given the component is loaded at <currentUrl>
+        When they click "Update"
+        Then their password is updated
+        And they are redirected to <url>
+        Examples:
+            | currentUrl                                              | url                                  |
+            | https://user:pass@www.example.com:444?nextPage=activity | https://www.example.com:444/activity |

@@ -15,6 +15,7 @@ interface CdnOptions {
   defaultCdn: string;
   cookieName?: string;
   tags?: Tag[];
+  reloadToRoot?: boolean;
 }
 
 window.CDN = (() => {
@@ -145,7 +146,11 @@ window.CDN = (() => {
           }
 
           if (pending) {
-            window.location.reload();
+            if (options.reloadToRoot) {
+              window.location.href = "/";
+            } else {
+              window.location.reload();
+            }
           }
         }
 

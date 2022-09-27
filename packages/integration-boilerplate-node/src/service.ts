@@ -263,16 +263,17 @@ export class IntegrationService<
       const json = await response.json();
 
       if (response.status !== 200) {
-        throw new Error(JSON.stringify(json));
+        throw new GraphQLError(JSON.stringify(json), json);
       }
 
       if (json.errors) {
         const errors = json.errors.map((e: any) => e.message).join("\n");
-        throw new Error(errors);
+        throw new GraphQLError(errors, json);
       }
 
       return json;
     } catch (e) {
+      if (e instanceof GraphQLError) throw e;
       throw new GraphQLError((e as Error).message);
     }
   }
@@ -313,23 +314,32 @@ export class IntegrationService<
       this.logger
     );
 
-    server.post("/webhook", requireSaaSquatchSignature, async (req, res) => {
-      await webhookHandler(
-        req,
-        res,
-        this,
-        this.getTenantScopedGraphQL(req.body.tenantAlias)
-      );
-    });
+    if (this.options?.handlers?.webhookHandler) {
+      server.post("/webhook", requireSaaSquatchSignature, async (req, res) => {
+        await webhookHandler(
+          req,
+          res,
+          this,
+          this.getTenantScopedGraphQL(req.body.tenantAlias)
+        );
+      });
+    }
 
-    server.post("/form", requireSaaSquatchSignature, async (req, res) => {
-      await formHandler(
-        req,
-        res,
-        this,
-        this.getTenantScopedGraphQL(req.body.tenantAlias)
-      );
-    });
+    if (
+      this.options?.handlers?.formInitialDataHandler ||
+      this.options?.handlers?.formIntrospectionHandler ||
+      this.options?.handlers?.formSubmitHandler ||
+      this.options?.handlers?.formValidateHandler
+    ) {
+      server.post("/form", requireSaaSquatchSignature, async (req, res) => {
+        await formHandler(
+          req,
+          res,
+          this,
+          this.getTenantScopedGraphQL(req.body.tenantAlias)
+        );
+      });
+    }
 
     server.use("/", this.router);
 
@@ -342,7 +352,7 @@ export class IntegrationService<
           changeOrigin: true,
         })
       );
-    } else {
+    } else if (this.config.staticFrontendPath) {
       const frontendPath = path.join(
         require.main!.path,
         this.config.staticFrontendPath
@@ -356,6 +366,10 @@ export class IntegrationService<
             if (err) next();
           }
         );
+      });
+    } else {
+      server.get("/", (_req, res) => {
+        res.sendStatus(204);
       });
     }
 

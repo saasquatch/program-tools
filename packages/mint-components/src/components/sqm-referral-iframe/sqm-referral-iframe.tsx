@@ -22,16 +22,19 @@ export class SqmReferralIframe {
   ignored = true;
 
   /**
-   * @uiName URL of iframe to display
-   * @uiRequired
+   * URL of iframe to display
+   * @uiName Iframe Source
+   * @required
    */
   @Prop() iframeSrc: string;
   /**
-   * @uiName Height of the iframe container
+   * Define the height of the iframe with any valid CSS height value. Example: 100px, 5rem, or auto.
+   * @uiName Iframe Height
    */
   @Prop() iframeHeight: string = "100%";
   /**
-   * @uiName Width of the iframe container
+   * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
+   * @uiName Iframe Width
    */
   @Prop() iframeWidth: string = "100%";
   /**
@@ -55,7 +58,16 @@ export class SqmReferralIframe {
     ]);
 
     if (missingProps) {
-      return <RequiredPropsError missingProps={missingProps} />;
+      return (
+        <RequiredPropsError
+          missingProps={missingProps}
+          heading={"An error occured while loading this page"}
+          subheading={
+            "A technical problem prevented this iframe from loading. Please contact us with the link to this page."
+          }
+          description={"Values for the following attributes are missing:"}
+        />
+      );
     }
 
     const { states, data } = isDemo()

@@ -1,0 +1,57 @@
+name: Deep Forest Sync
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+env:
+  PICKLES_BRANCH_NAME: master
+  PICKLES_FEATURES_FOLDER: packages
+  PICKLES_REPO_NAME: saasquatch__program-tools
+  PICKLES_BUCKET_NAME: deep-forest-pickles.ssqt.io
+
+jobs:
+  deploy:
+    name: Deploy pickles JSONs to GCP Bucket
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Node Setup 16.x
+        id: setup_node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Install picklesdoc
+        id: picklesdoc
+        run: npm install -g picklesdoc@latest
+
+      - name: Generate pickles JSON
+        id: picklesdoc_generate
+        run: picklesdoc json "$PICKLES_FEATURES_FOLDER" "$PICKLES_REPO_NAME"__at__"$PICKLES_BRANCH_NAME".json
+
+      # We will only push the files to the bucket if this is a push event. This way
+      # pull requests can still run the parsing and generating steps as a kind of
+      # "unit test" to make sure the generation step will work correctly once the PR
+      # is merged.
+      - name: Authenticate with Google Cloud
+        if: ${{ github.event_name == 'push' }}
+        id: auth
+        uses: google-github-actions/auth@v0
+        with:
+          credentials_json: "${{ secrets.STATIC_SITE_ACTIONS_GCP_SERVICE_ACCOUNT }}"
+
+      - name: Setup GCP
+        if: ${{ github.event_name == 'push' }}
+        id: setup_gcp
+        uses: google-github-actions/setup-gcloud@v0
+
+      - name: Deploy to bucket
+        if: ${{ github.event_name == 'push' }}
+        id: gcp_rsync
+        run: gsutil cp "$PICKLES_REPO_NAME"__at__"$PICKLES_BRANCH_NAME".json gs://"$PICKLES_BUCKET_NAME"/

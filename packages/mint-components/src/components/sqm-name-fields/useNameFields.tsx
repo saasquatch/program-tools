@@ -1,21 +1,17 @@
 import { useDomContext } from "@saasquatch/stencil-hooks";
+import {
+  RegistrationFormState,
+  REGISTRATION_FORM_STATE_CONTEXT,
+} from "../sqm-portal-registration-form/useRegistrationFormState";
 import { NameFields } from "./sqm-name-fields";
-const CONTEXT_NAME = "sq:validation-state";
-
-type FormState = {
-  error?: string;
-  validationErrors?: ValidationErrors;
-};
-
-type ValidationErrors = {
-  [key: string]: string;
-};
 
 export function useNameFields(props: NameFields) {
-  const validationState = useDomContext<FormState>(CONTEXT_NAME);
+  const registrationFormState = useDomContext<RegistrationFormState>(
+    REGISTRATION_FORM_STATE_CONTEXT
+  );
   return {
     states: {
-      validationErrors: validationState?.validationErrors,
+      registrationFormState,
       content: {
         lastNameLabel: props.lastNameLabel,
         firstNameLabel: props.firstNameLabel,

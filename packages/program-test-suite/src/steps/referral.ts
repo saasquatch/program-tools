@@ -1,6 +1,5 @@
-import { StepDefinitions } from "jest-cucumber";
 import { inferType } from "@saasquatch/program-boilerplate";
-
+import { StepDefinitions } from "jest-cucumber";
 import { getWorld } from "../world";
 
 const referralSteps: StepDefinitions = ({ given }) => {

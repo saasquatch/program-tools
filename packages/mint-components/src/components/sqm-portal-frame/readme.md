@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute | Description | Type                                            | Default     |
-| ---------- | --------- | ----------- | ----------------------------------------------- | ----------- |
-| `demoData` | --        |             | `{ data?: { footer: VNode; header: VNode; }; }` | `undefined` |
+| Property        | Attribute         | Description | Type                                                                     | Default     |
+| --------------- | ----------------- | ----------- | ------------------------------------------------------------------------ | ----------- |
+| `demoData`      | --                |             | `{ data?: { footer: VNode; header: VNode; }; notFullScreen?: boolean; }` | `undefined` |
+| `notFullScreen` | `not-full-screen` |             | `boolean`                                                                | `false`     |
 
 
 ## Dependencies

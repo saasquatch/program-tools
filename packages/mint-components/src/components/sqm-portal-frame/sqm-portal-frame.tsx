@@ -7,7 +7,8 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 
 /**
- * @uiName Portal Frame
+ * @uiName Microsite Frame
+ * @slots [{"name":"header","title":"Header Content"},{"name":"footer","title":"Footer Content"},{"name":"","title":"Body Content"}]
  */
 @Component({
   tag: "sqm-portal-frame",
@@ -16,6 +17,11 @@ import { DemoData } from "../../global/demo";
 export class PortalFrame {
   @State()
   ignored = true;
+
+  /**
+   * @undocumented
+   */
+  @Prop() notFullScreen?: boolean = false;
 
   /**
    * @undocumented
@@ -49,6 +55,7 @@ function usePortalFrameDemo(
 ): PortalFrameViewProps {
   return deepmerge(
     {
+      notFullScreen: true,
       data: {
         footer: footerContent ? (
           footerContent

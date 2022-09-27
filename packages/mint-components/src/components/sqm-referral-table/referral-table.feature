@@ -125,5 +125,5 @@ Feature: Referral Table
     @minutae
     @ui
     Scenario: Column heading can be hidden
-        Given the table is configured with "show-labels" set to false
+        Given the table is configured with "hide-labels" set to "true"
         Then the table is displayed without column headings
