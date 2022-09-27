@@ -61,7 +61,7 @@ export function initializeLogger(
   }
 
   const conf: LoggerConfig = {
-    ...defaultConfig,
+    ...defaultConfig(),
     ...config,
   };
 
