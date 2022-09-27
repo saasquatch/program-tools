@@ -113,6 +113,7 @@ export function initializeLogger(
 
   _logger = winston.createLogger({
     level: conf.logLevel,
+    levels: winston.config.syslog.levels,
     format: format.combine(
       format.timestamp(),
       format.splat(),
