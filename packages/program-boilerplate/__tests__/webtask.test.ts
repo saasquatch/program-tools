@@ -1,15 +1,7 @@
-import * as request from "supertest";
+import request from "supertest";
 import { webtask } from "../src/index";
 
 describe("webtask express wrapper functionality", () => {
-  // hopefully can remove this once the console logs are cleaned up in trigger.ts
-  const cachedLogger = console.log;
-  beforeAll(() => {
-    console.log = () => {};
-  });
-  afterAll(() => {
-    console.log = cachedLogger;
-  });
   const testSuccessBody = {
     messageType: "PROGRAM_INTROSPECTION" as "PROGRAM_INTROSPECTION",
     template: { test: "template" },

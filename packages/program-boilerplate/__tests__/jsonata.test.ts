@@ -1,5 +1,4 @@
-import * as jsonata from "jsonata";
-import { setLogLevel } from "../src/logger";
+import jsonata from "jsonata";
 import { timeboxExpression, safeJsonata } from "../src/jsonata";
 
 describe("#timeboxExpression", () => {
@@ -22,10 +21,6 @@ describe("#timeboxExpression", () => {
 });
 
 describe("#safeJsonata", () => {
-  beforeAll(() => {
-    setLogLevel("error");
-  });
-
   const infExpr = "( $inf := function(){$inf()}; $inf())";
 
   const expr = "( event.key = 'purchase' ? 111 )";

@@ -13,7 +13,7 @@
     "prepush": "npm run format",
     "prepare": "npm run build",
     "deploy": "np",
-    "test": "jest"
+    "test": "SQQT_LOG_LEVEL=emerg jest"
   },
   "author": "",
   "license": "ISC",
