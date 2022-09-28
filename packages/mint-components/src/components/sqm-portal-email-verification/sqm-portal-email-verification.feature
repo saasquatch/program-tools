@@ -96,4 +96,4 @@ Feature: Email Verification
         When the countdown continues down to 3
         Then the refresh timer is triggered
         And the countdown is reset to 10
-        And the countdown will be in sync with the status refetch
+        And the countdown is in sync with the status refetch
