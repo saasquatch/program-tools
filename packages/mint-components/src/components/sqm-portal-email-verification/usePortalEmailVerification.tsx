@@ -4,12 +4,7 @@ import {
   useRequestVerificationEmailMutation,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "@saasquatch/universal-hooks";
+import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { PortalEmailVerification } from "./sqm-portal-email-verification";
 
 interface ManagedIdentitySessionResult {
@@ -54,38 +49,30 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
       setSuccess(true);
   };
 
-  function clearTimer() {
-    console.log("clearing!", timerRef.current);
-    clearInterval(timerRef.current);
-  }
-
-  const checkVerification = useCallback(async () => {
-    console.log("checking...", timerRef.current);
+  async function checkVerification() {
+    setCountdown(10);
     const data =
       (await getVerificationStatus()) as ManagedIdentitySessionResult;
+
     if (data?.managedIdentitySession?.emailVerified) {
-      console.log("verified!", timerRef.current);
-      clearTimer();
+      clearInterval(timerRef.current);
       return navigation.push({
         pathname: props.redirectPath,
         search: urlParams.toString() && "?" + urlParams.toString(),
       });
-    } else {
-      setCountdown(10);
     }
-  }, []);
+  }
 
+  // Refetch timer
   useEffect(() => {
     if (!timerRef.current) {
       checkVerification();
       timerRef.current = setInterval(checkVerification, 10000);
     }
-    return () => {
-      console.log("clear timer");
-      clearTimer();
-    };
+    return () => clearInterval(timerRef.current);
   }, []);
 
+  // Countdown timer
   useEffect(() => {
     const countdownTimer =
       countdown > 0 && setInterval(() => setCountdown(countdown - 1), 1000);

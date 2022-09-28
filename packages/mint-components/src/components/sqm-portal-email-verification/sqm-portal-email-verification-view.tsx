@@ -103,7 +103,9 @@ export function PortalEmailVerificationView(
             {intl.formatMessage(
               {
                 id: `verificationStatus`,
-                defaultMessage: verificationStatusMessage,
+                defaultMessage: states.loadingVerification
+                  ? verificationLoadingMessage + " {countdown}"
+                  : verificationStatusMessage,
               },
               {
                 countdown: states.loadingVerification ? (

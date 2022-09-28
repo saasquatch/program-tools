@@ -89,7 +89,7 @@ function usePortalEmailVerificationDemo(
 ): PortalEmailVerificationViewProps {
   return deepmerge(
     {
-      states: { error: "", loading: false, success: false },
+      states: { error: "", loading: false, success: false, countdown: 10 },
       callbacks: {
         submit: async (_event) => {},
       },
