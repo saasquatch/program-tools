@@ -21,29 +21,37 @@ export function getLogger(): winston.Logger {
 /**
  * Convenience shorthand for getLogger().log
  */
-export function log(): winston.LogMethod {
-  return getLogger().log;
+export function log(): void {
+  // @ts-ignore -- properly typing out these convenience functions is going to
+  // be a project in itself
+  getLogger().log.apply(null, arguments);
 }
 
 /**
  * Convenience shorthand for getLogger().info
  */
-export function info(): winston.LeveledLogMethod {
-  return getLogger().info;
+export function info(): void {
+  // @ts-ignore -- properly typing out these convenience functions is going to
+  // be a project in itself
+  getLogger().info.apply(null, arguments);
 }
 
 /**
  * Convenience shorthand for getLogger().warn
  */
-export function warn(): winston.LeveledLogMethod {
-  return getLogger().warn;
+export function warn(): void {
+  // @ts-ignore -- properly typing out these convenience functions is going to
+  // be a project in itself
+  getLogger().warn.apply(null, arguments);
 }
 
 /**
  * Convenience shorthand for getLogger().error
  */
-export function error(): winston.LeveledLogMethod {
-  return getLogger().error;
+export function error(): void {
+  // @ts-ignore -- properly typing out these convenience functions is going to
+  // be a project in itself
+  getLogger().error.apply(null, arguments);
 }
 
 /**
