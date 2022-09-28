@@ -32,6 +32,7 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
   const [error, setError] = useState("");
   const [countdown, setCountdown] = useState(10);
   const timerRef = useRef<any>(undefined);
+  const countdownRef = useRef<any>(undefined);
 
   const submit = async () => {
     if (!email) return;
@@ -53,7 +54,6 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
     setCountdown(10);
     const data =
       (await getVerificationStatus()) as ManagedIdentitySessionResult;
-
     if (data?.managedIdentitySession?.emailVerified) {
       clearInterval(timerRef.current);
       return navigation.push({
@@ -63,21 +63,38 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
     }
   }
 
-  // Refetch timer
+  const startTimer = () => setInterval(checkVerification, 10000);
+
+  function resyncTimers() {
+    clearInterval(countdownRef.current);
+    clearInterval(timerRef.current);
+    setCountdown(10);
+    timerRef.current = startTimer();
+  }
+
+  // Refetch validation status timer
   useEffect(() => {
     if (!timerRef.current) {
       checkVerification();
-      timerRef.current = setInterval(checkVerification, 10000);
+      timerRef.current = startTimer();
     }
-    return () => clearInterval(timerRef.current);
+    // Re-sync the timers if tab visibility has changed
+    document.addEventListener("visibilitychange", () => resyncTimers());
+    return () => {
+      clearInterval(timerRef.current);
+      document.removeEventListener("visibilitychange", () => resyncTimers());
+    };
   }, []);
 
   // Countdown timer
   useEffect(() => {
-    const countdownTimer =
-      countdown > 0 && setInterval(() => setCountdown(countdown - 1), 1000);
-    if (countdown === 0) clearInterval(countdownTimer);
-    return () => clearInterval(countdownTimer);
+    if (countdown > 0) {
+      countdownRef.current = setInterval(
+        () => setCountdown(countdown - 1),
+        1000
+      );
+    }
+    return () => clearInterval(countdownRef.current);
   }, [countdown]);
 
   return {

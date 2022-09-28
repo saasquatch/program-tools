@@ -84,16 +84,13 @@ Feature: Email Verification
             | {countdown} seconds till verification refresh | {countdown} seconds till verification refresh | Checking verification status | Checking verification status |
 
 
-    @landmine
-    # See https://stackoverflow.com/questions/67979609/how-to-prevent-timer-from-being-throttled-by-chrome-when-my-webpage-in-backgroun
-    Scenario: 10 second countdown pauses when tab is switched
+    @minutia
+    Scenario: 10 second countdown resets when minimizing or moving between tabs
         Given a user viewing the email verification component
         Then they see text "Check verification status: in 10" below the re-send verification button
         And the time counts down from 10 to 7
-        And the user changes to a different tab for 3 seconds
+        And the user changes to a different tab
         When the user goes back to the verification tab
-        Then the countdown is 6
-        When the countdown continues down to 3
-        Then the refresh timer is triggered
-        And the countdown is reset to 10
-        And the countdown is in sync with the status refetch
+        Then the countdown resets to 10
+        When the counter hits 0
+        Then their verification status is re-queried
