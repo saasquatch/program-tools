@@ -127,6 +127,14 @@ export function initializeLogger(
     return `[${info.level}] ${info.message}`;
   });
 
+  const addLoggerName =
+    name !== DEFAULT_LOGGER_NAME
+      ? format((info) => {
+          info["logger.name"] = name;
+          return info;
+        })
+      : format((info) => info);
+
   // clean up the log type marker which is only used for some of the previous
   // formatting middleware
   const cleanLogTypeMarker = format((info) => {
@@ -140,6 +148,7 @@ export function initializeLogger(
     format: format.combine(
       format.timestamp(),
       format.splat(),
+      addLoggerName(),
       formatHttpLog(),
       dataDogStatus(),
       ...(conf.environment === "production"
