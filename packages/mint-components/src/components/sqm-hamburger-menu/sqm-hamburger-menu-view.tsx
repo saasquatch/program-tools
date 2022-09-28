@@ -32,7 +32,7 @@ export function HamburgerMenuView(
     .menu-items { 
       display: none;
       padding: 20px;
-      border-right: 2px solid #eaeaea;
+      border-right: 1px solid #eaeaea;
       padding-top: 60px;
       background: white; 
       max-width: 400px;
