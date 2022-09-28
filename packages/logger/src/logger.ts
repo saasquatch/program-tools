@@ -1,9 +1,10 @@
 import winston from "winston";
 import { defaultConfig, LoggerConfig, Transport } from "./config";
 
-let _logger: winston.Logger | undefined;
+let _loggers: Record<string, winston.Logger> = {};
 
 export const LOG_TYPE_MARKER = "__ssqt_log_type";
+const DEFAULT_LOGGER_NAME = "_sqqt_default_logger";
 
 /**
  * Return the initialized logger. If the logger has not
@@ -11,11 +12,12 @@ export const LOG_TYPE_MARKER = "__ssqt_log_type";
  *
  * @return {winston.Logger} The logger
  */
-export function getLogger(): winston.Logger {
-  if (_logger === undefined) {
-    initializeLogger();
+export function getLogger(logger?: string): winston.Logger {
+  const name = logger ?? DEFAULT_LOGGER_NAME;
+  if (_loggers[name] === undefined) {
+    initializeLogger(name);
   }
-  return _logger!;
+  return _loggers[name];
 }
 
 /**
@@ -58,19 +60,32 @@ export function error(): void {
  * Initialize the logger, optionally with a custom configuration. Calling
  * this function when the logger has already been initialized will throw an error.
  *
- * @param {LoggerConfig | undefined} config - The logger config to use
+ * @param {LoggerConfig | string | undefined} nameOrConfig - The logger config
+ * to use, or the label of the logger to initialize
+ * @param {LoggerConfig} config - The logger config to use, if the first parameter was the logger label
  * @return {winston.Logger} The initialized logger
  */
 export function initializeLogger(
+  nameOrConfig?: Partial<LoggerConfig> | string,
   config?: Partial<LoggerConfig>
 ): winston.Logger {
-  if (_logger !== undefined) {
+  const name =
+    typeof nameOrConfig === "string" ? nameOrConfig : DEFAULT_LOGGER_NAME;
+
+  if (_loggers[name] !== undefined) {
     throw new Error("Logger has already been initialized");
+  }
+
+  let finalConfig: Partial<LoggerConfig> = defaultConfig();
+  if (config !== undefined) {
+    finalConfig = config;
+  } else if (nameOrConfig !== undefined && typeof nameOrConfig !== "string") {
+    finalConfig = nameOrConfig;
   }
 
   const conf: LoggerConfig = {
     ...defaultConfig(),
-    ...config,
+    ...finalConfig,
   };
 
   const format = winston.format;
@@ -119,7 +134,7 @@ export function initializeLogger(
     return info;
   });
 
-  _logger = winston.createLogger({
+  _loggers[name] = winston.createLogger({
     level: conf.logLevel,
     levels: winston.config.syslog.levels,
     format: format.combine(
@@ -134,7 +149,7 @@ export function initializeLogger(
     transports: conf.transports.map(transportConfigToRealTransport),
   });
 
-  return _logger;
+  return _loggers[name];
 }
 
 export function friendlyHttpFormat(message: {
