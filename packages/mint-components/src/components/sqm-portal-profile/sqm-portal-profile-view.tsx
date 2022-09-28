@@ -78,7 +78,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
   return (
     <PortalContainerView
       {...{
-        direction: "row",
+        direction: "column",
         padding: "xxx-large",
         gap: "xxx-large",
         minWidth: "600px",
