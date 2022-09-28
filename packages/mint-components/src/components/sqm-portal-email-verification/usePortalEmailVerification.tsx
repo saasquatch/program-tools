@@ -15,7 +15,6 @@ interface ManagedIdentitySessionResult {
   };
 }
 
-// var refreshTimer;
 export function usePortalEmailVerification(props: PortalEmailVerification) {
   const [request, { loading, data, errors }] =
     useRequestVerificationEmailMutation();
@@ -51,7 +50,6 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
   };
 
   async function checkVerification() {
-    setCountdown(10);
     const data =
       (await getVerificationStatus()) as ManagedIdentitySessionResult;
     if (data?.managedIdentitySession?.emailVerified) {
@@ -61,14 +59,19 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
         search: urlParams.toString() && "?" + urlParams.toString(),
       });
     }
+    resyncTimers();
   }
 
   const startTimer = () => setInterval(checkVerification, 10000);
+  const startCountdown = (countdown: number) =>
+    setInterval(() => setCountdown(countdown), 1000);
 
   function resyncTimers() {
     clearInterval(countdownRef.current);
     clearInterval(timerRef.current);
+
     setCountdown(10);
+    countdownRef.current = startCountdown(9);
     timerRef.current = startTimer();
   }
 
@@ -88,12 +91,7 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
 
   // Countdown timer
   useEffect(() => {
-    if (countdown > 0) {
-      countdownRef.current = setInterval(
-        () => setCountdown(countdown - 1),
-        1000
-      );
-    }
+    if (countdown > 0) countdownRef.current = startCountdown(countdown - 1);
     return () => clearInterval(countdownRef.current);
   }, [countdown]);
 
