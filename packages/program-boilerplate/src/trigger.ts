@@ -10,7 +10,7 @@ import {
   TriggerType,
   ValidationResult,
 } from "./types/rpc";
-import { getLogger } from "@saasquatch/logger";
+import { getLogger as sqqtLogger } from "@saasquatch/logger";
 
 /**
  * Triggers the program and returns the result (JSON + HTTP code)
@@ -53,7 +53,7 @@ export function triggerProgram(
       return handleProgramVariableSchemaRequest(body, program);
     default:
       const message = `Unrecognized messageType ${body.messageType}`;
-      getLogger("program-boilerplate").warn(message);
+      sqqtLogger("program-boilerplate").warn(message);
       return {
         json: { message },
         code: 501,
@@ -94,7 +94,7 @@ function handleProgramTrigger(
       message: e.stack,
     };
 
-    getLogger("program-boilerplate").error({
+    sqqtLogger("program-boilerplate").error({
       message: errorMes.error,
       ["error.message"]: e.message,
       ["error.stack"]: e.stack,
@@ -144,7 +144,7 @@ function handleProgramIntrospection(
       message: e.stack,
     };
 
-    getLogger("program-boilerplate").error({
+    sqqtLogger("program-boilerplate").error({
       message: "Error ocurred in a webtask",
       ["error.message"]: e.message,
       ["error.stack"]: e.stack,
@@ -225,7 +225,7 @@ function handleProgramVariableSchemaRequest(
         message: e.stack,
       };
 
-      getLogger("program-boilerplate").error({
+      sqqtLogger("program-boilerplate").error({
         message: errorMes.error,
         ["error.message"]: e.message,
         ["error.stack"]: e.stack,

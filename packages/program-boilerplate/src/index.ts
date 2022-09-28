@@ -9,6 +9,7 @@ import { rewardEmailQuery } from "./queries";
 import Transaction from "./transaction";
 import { triggerProgram } from "./trigger";
 import { getLogger, setLogLevel } from "./logger";
+import { getLogger as sqqtLogger } from "@saasquatch/logger";
 import * as types from "./types";
 
 import {
@@ -72,7 +73,7 @@ export function webtask(program: Program = {}): express.Application {
   const compression = require("compression");
 
   const app = express();
-  const logger = getLogger("program-boilerplate");
+  const logger = sqqtLogger("program-boilerplate");
 
   app.use(express.json({ limit: process.env.MAX_PAYLOAD_SIZE || "1mb" }));
   app.use(compression());
