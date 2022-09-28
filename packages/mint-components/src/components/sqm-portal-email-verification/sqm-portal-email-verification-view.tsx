@@ -94,28 +94,27 @@ export function PortalEmailVerificationView(
             }
           )}
         </TextSpanView>
-        <sl-button
-          submit
-          loading={states.loading}
-          exportparts="base: primarybutton-base"
-          type="primary"
-        >
+        <sl-button variant="default" submit loading={states.loading}>
           {resendEmailButtonText}
         </sl-button>
 
-        {states.loadingVerification ? (
-          <p>{verificationLoadingMessage}</p>
-        ) : (
-          <p>
+        {
+          <p style={{ color: "#BBBBBB" }}>
             {intl.formatMessage(
               {
                 id: `verificationStatus`,
                 defaultMessage: verificationStatusMessage,
               },
-              { countdown: states.countdown }
+              {
+                countdown: states.loadingVerification ? (
+                  <sl-spinner></sl-spinner>
+                ) : (
+                  states.countdown
+                ),
+              }
             )}
           </p>
-        )}
+        }
       </sl-form>
     </div>
   );
