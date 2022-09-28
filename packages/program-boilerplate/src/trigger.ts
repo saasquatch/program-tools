@@ -10,6 +10,7 @@ import {
   TriggerType,
   ValidationResult,
 } from "./types/rpc";
+import { getLogger } from "@saasquatch/logger";
 
 /**
  * Triggers the program and returns the result (JSON + HTTP code)
@@ -51,12 +52,10 @@ export function triggerProgram(
       body = body as ProgramVariableSchemaRequestBody;
       return handleProgramVariableSchemaRequest(body, program);
     default:
-      // use winston logger instead
-      console.log("UNREACHABLE CODE REACHED!!");
+      const message = `Unrecognized messageType ${body.messageType}`;
+      getLogger("program-boilerplate").warn(message);
       return {
-        json: {
-          message: `Unrecognized messageType ${body.messageType}`,
-        },
+        json: { message },
         code: 501,
       };
   }
@@ -95,8 +94,11 @@ function handleProgramTrigger(
       message: e.stack,
     };
 
-    // use winston logger instead
-    console.log(errorMes);
+    getLogger("program-boilerplate").error({
+      message: errorMes.error,
+      ["error.message"]: e.message,
+      ["error.stack"]: e.stack,
+    });
 
     return {
       json: errorMes,
@@ -142,8 +144,11 @@ function handleProgramIntrospection(
       message: e.stack,
     };
 
-    // use winston logger instead
-    console.log(errorMes);
+    getLogger("program-boilerplate").error({
+      message: "Error ocurred in a webtask",
+      ["error.message"]: e.message,
+      ["error.stack"]: e.stack,
+    });
 
     return {
       json: errorMes,
@@ -217,13 +222,23 @@ function handleProgramVariableSchemaRequest(
       const errorMes = {
         error:
           "An error occurred in a webtask (PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST)",
-        // consider not returning stack trace for security reasons
         message: e.stack,
       };
 
-      // use winston logger instead
-      console.log(errorMes);
+      getLogger("program-boilerplate").error({
+        message: errorMes.error,
+        ["error.message"]: e.message,
+        ["error.stack"]: e.stack,
+      });
+
+      // FIXME: This code wasn't actually returning a 500 before this, was that meant to be the case
+      // or did we just forget?
+      return {
+        json: errorMes,
+        code: 500,
+      };
     }
+
     if (!newSchema) {
       return {
         json: {},

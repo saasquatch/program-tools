@@ -30,6 +30,7 @@ import {
   getTriggerSchema,
   getUserCustomFieldsFromJsonata,
 } from "./utils";
+import { httpLogMiddleware } from "@saasquatch/logger";
 
 export { types };
 
@@ -71,9 +72,11 @@ export function webtask(program: Program = {}): express.Application {
   const compression = require("compression");
 
   const app = express();
+  const logger = getLogger("program-boilerplate");
 
   app.use(express.json({ limit: process.env.MAX_PAYLOAD_SIZE || "1mb" }));
   app.use(compression());
+  app.use(httpLogMiddleware(logger));
 
   // Enforce HTTPS. The server does not redirect http -> https
   // because OWASP advises not to
