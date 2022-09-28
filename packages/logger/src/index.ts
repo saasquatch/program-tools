@@ -1,12 +1,12 @@
 import { defaultConfig, LoggerConfig, LogLevel, LOG_LEVELS } from "./config";
 import {
-  getLogger,
-  initializeLogger,
-  LOG_TYPE_MARKER,
-  log,
-  info,
-  warn,
   error,
+  getLogger,
+  info,
+  initializeLogger,
+  log,
+  LOG_TYPE_MARKER,
+  warn,
 } from "./logger";
 import { httpLogMiddleware } from "./plugins";
 

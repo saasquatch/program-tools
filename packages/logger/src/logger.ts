@@ -10,6 +10,7 @@ const DEFAULT_LOGGER_NAME = "_sqqt_default_logger";
  * Return the initialized logger. If the logger has not
  * yet been initialized, this function returns undefined.
  *
+ * @param {string | undefined} logger - The label of the logger to get
  * @return {winston.Logger} The logger
  */
 export function getLogger(logger?: string): winston.Logger {
@@ -23,38 +24,34 @@ export function getLogger(logger?: string): winston.Logger {
 /**
  * Convenience shorthand for getLogger().log
  */
-export function log(): void {
-  // @ts-ignore -- properly typing out these convenience functions is going to
-  // be a project in itself
-  getLogger().log.apply(null, arguments);
-}
+// @ts-ignore
+export const log: winston.LeveledLogMethod = (...args): winston.Logger => {
+  return getLogger().log(...args);
+};
 
 /**
  * Convenience shorthand for getLogger().info
  */
-export function info(): void {
-  // @ts-ignore -- properly typing out these convenience functions is going to
-  // be a project in itself
-  getLogger().info.apply(null, arguments);
-}
+// @ts-ignore
+export const info: winston.LeveledLogMethod = (...args): winston.Logger => {
+  return getLogger().info(...args);
+};
 
 /**
  * Convenience shorthand for getLogger().warn
  */
-export function warn(): void {
-  // @ts-ignore -- properly typing out these convenience functions is going to
-  // be a project in itself
-  getLogger().warn.apply(null, arguments);
-}
+// @ts-ignore
+export const warn: winston.LeveledLogMethod = (...args): winston.Logger => {
+  return getLogger().warning(...args);
+};
 
 /**
  * Convenience shorthand for getLogger().error
  */
-export function error(): void {
-  // @ts-ignore -- properly typing out these convenience functions is going to
-  // be a project in itself
-  getLogger().error.apply(null, arguments);
-}
+// @ts-ignore
+export const error: winston.LeveledLogMethod = (...args): winston.Logger => {
+  return getLogger().error(...args);
+};
 
 /**
  * Initialize the logger, optionally with a custom configuration. Calling
