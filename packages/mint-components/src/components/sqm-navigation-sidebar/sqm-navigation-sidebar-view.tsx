@@ -15,6 +15,7 @@ const style = {
     padding: "20px 15px",
     ...gap({ direction: "column" as const, size: "4px" }),
     "@media screen and (max-width: 799px)": {
+      minWidth: "0px",
       display: "none",
     },
   },
@@ -23,12 +24,13 @@ const style = {
 const vanillaStyle = `
   @media screen and (max-width: 799px) {
     :host {
-     max-width: max-content;
+      max-width: max-content !important;
+      min-width: max-content !important;
     }
   }
   :host {    
     width: 30vw;
-    min-width: min-content;
+    min-width: max-content;
     max-width: 320px;
   }
 `;
@@ -165,23 +167,25 @@ export function NavigationSidebarView(
   props: NavigationSidebarViewProps,
   children: VNode
 ) {
-  return [
-    <div class="hamburger-container">
-      <input type="checkbox" class="toggler" part="toggler" />
-      <div class="hamburger">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
+  return (
+    <div>
+      <div class="hamburger-container">
+        <input type="checkbox" class="toggler" part="toggler" />
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <ul class="menu-items">{props.mobileItemsSlot}</ul>
       </div>
-      <ul class="menu-items">{props.mobileItemsSlot}</ul>
-    </div>,
-    <div class={sheet.classes.ItemsContainer}>
-      <style type="text/css">
-        {vanillaStyle}
-        {styleString}
-        {hamburgerStyle}
-      </style>
-      {<div>{children}</div>}
-    </div>,
-  ];
+      <div class={sheet.classes.ItemsContainer}>
+        <style type="text/css">
+          {vanillaStyle}
+          {styleString}
+          {hamburgerStyle}
+        </style>
+        {<div>{children}</div>}
+      </div>
+    </div>
+  );
 }
