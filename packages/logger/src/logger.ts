@@ -42,7 +42,7 @@ export const info: winston.LeveledLogMethod = (...args): winston.Logger => {
  */
 // @ts-ignore
 export const warn: winston.LeveledLogMethod = (...args): winston.Logger => {
-  return getLogger().warning(...args);
+  return getLogger().warn(...args);
 };
 
 /**
@@ -141,7 +141,17 @@ export function initializeLogger(
 
   _loggers[name] = winston.createLogger({
     level: conf.logLevel,
-    levels: winston.config.syslog.levels,
+    levels: {
+      emerg: 0,
+      alert: 1,
+      crit: 2,
+      error: 3,
+      warning: 4,
+      warn: 4,
+      notice: 5,
+      info: 6,
+      debug: 7,
+    },
     format: format.combine(
       format.timestamp(),
       format.splat(),

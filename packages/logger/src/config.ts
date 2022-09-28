@@ -21,6 +21,7 @@ export const LOG_LEVELS = [
   "crit",
   "error",
   "warning",
+  "warn",
   "notice",
   "info",
   "debug",
