@@ -276,9 +276,6 @@ export namespace Components {
          */
         "domain": string;
     }
-    interface SqmHamburgerMenu {
-        "position"?: string;
-    }
     interface SqmHeaderLogo {
         /**
           * @uiName Logo Height
@@ -629,7 +626,6 @@ export namespace Components {
         "menuLabel": string;
     }
     interface SqmNavigationSidebar {
-        "renderNavigationItem": (child: Element) => Promise<any>;
     }
     interface SqmNavigationSidebarItem {
         /**
@@ -2454,12 +2450,6 @@ declare global {
         prototype: HTMLSqmGraphqlClientProviderElement;
         new (): HTMLSqmGraphqlClientProviderElement;
     };
-    interface HTMLSqmHamburgerMenuElement extends Components.SqmHamburgerMenu, HTMLStencilElement {
-    }
-    var HTMLSqmHamburgerMenuElement: {
-        prototype: HTMLSqmHamburgerMenuElement;
-        new (): HTMLSqmHamburgerMenuElement;
-    };
     interface HTMLSqmHeaderLogoElement extends Components.SqmHeaderLogo, HTMLStencilElement {
     }
     var HTMLSqmHeaderLogoElement: {
@@ -2923,7 +2913,6 @@ declare global {
         "sqm-empty": HTMLSqmEmptyElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
-        "sqm-hamburger-menu": HTMLSqmHamburgerMenuElement;
         "sqm-header-logo": HTMLSqmHeaderLogoElement;
         "sqm-hero": HTMLSqmHeroElement;
         "sqm-hero-image": HTMLSqmHeroImageElement;
@@ -3236,9 +3225,6 @@ declare namespace LocalJSX {
           * @uiName Domain
          */
         "domain"?: string;
-    }
-    interface SqmHamburgerMenu {
-        "position"?: string;
     }
     interface SqmHeaderLogo {
         /**
@@ -5328,7 +5314,6 @@ declare namespace LocalJSX {
         "sqm-empty": SqmEmpty;
         "sqm-form-message": SqmFormMessage;
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
-        "sqm-hamburger-menu": SqmHamburgerMenu;
         "sqm-header-logo": SqmHeaderLogo;
         "sqm-hero": SqmHero;
         "sqm-hero-image": SqmHeroImage;
@@ -5422,7 +5407,6 @@ declare module "@stencil/core" {
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
-            "sqm-hamburger-menu": LocalJSX.SqmHamburgerMenu & JSXBase.HTMLAttributes<HTMLSqmHamburgerMenuElement>;
             "sqm-header-logo": LocalJSX.SqmHeaderLogo & JSXBase.HTMLAttributes<HTMLSqmHeaderLogoElement>;
             "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
             "sqm-hero-image": LocalJSX.SqmHeroImage & JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
