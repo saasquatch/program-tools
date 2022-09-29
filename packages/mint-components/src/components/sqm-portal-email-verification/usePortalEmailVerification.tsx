@@ -4,7 +4,12 @@ import {
   useRequestVerificationEmailMutation,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "@saasquatch/universal-hooks";
 import { PortalEmailVerification } from "./sqm-portal-email-verification";
 
 interface ManagedIdentitySessionResult {
@@ -59,21 +64,33 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
         search: urlParams.toString() && "?" + urlParams.toString(),
       });
     }
-    resyncTimers();
+    resyncTimers(10);
   }
 
-  const startTimer = () => setInterval(checkVerification, 10000);
+  const startTimer = (countdown: number = 10000) =>
+    setInterval(checkVerification, countdown);
   const startCountdown = (countdown: number) =>
     setInterval(() => setCountdown(countdown), 1000);
 
-  function resyncTimers() {
+  function resyncTimers(restartCountdown?: number) {
+    // Clear existing timers
     clearInterval(countdownRef.current);
     clearInterval(timerRef.current);
 
-    setCountdown(10);
-    countdownRef.current = startCountdown(9);
-    timerRef.current = startTimer();
+    // Do nothing if the tab is currently hidden
+    if (document.visibilityState === "hidden") return;
+
+    // Restart the timer if verification has just been checked
+    if (restartCountdown) setCountdown(restartCountdown);
+
+    // Start timers from either the beginning or based on the previous value
+    countdownRef.current = startCountdown(
+      restartCountdown - 1 || countdown - 1
+    );
+    timerRef.current = startTimer(restartCountdown * 1000 || countdown * 1000);
   }
+
+  const resyncTimersCallback = useCallback(() => resyncTimers(), [countdown]);
 
   // Refetch validation status timer
   useEffect(() => {
@@ -81,18 +98,20 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
       checkVerification();
       timerRef.current = startTimer();
     }
-    // Re-sync the timers if tab visibility has changed
-    document.addEventListener("visibilitychange", () => resyncTimers());
     return () => {
       clearInterval(timerRef.current);
-      document.removeEventListener("visibilitychange", () => resyncTimers());
     };
   }, []);
 
   // Countdown timer
   useEffect(() => {
     if (countdown > 0) countdownRef.current = startCountdown(countdown - 1);
-    return () => clearInterval(countdownRef.current);
+    // Re-sync the timers if tab visibility has changed
+    document.addEventListener("visibilitychange", resyncTimersCallback);
+    return () => {
+      clearInterval(countdownRef.current);
+      document.removeEventListener("visibilitychange", resyncTimersCallback);
+    };
   }, [countdown]);
 
   return {

@@ -85,12 +85,12 @@ Feature: Email Verification
 
 
     @minutia
-    Scenario: 10 second countdown resets when minimizing or moving between tabs
+    Scenario: 10 second countdown pauses when minimizing or moving between tabs
         Given a user viewing the email verification component
         Then they see text "Check verification status: in 10" below the re-send verification button
         And the time counts down from 10 to 7
         And the user changes to a different tab
         When the user goes back to the verification tab
-        Then the countdown resets to 10
+        Then the countdown will still be 7
         When the counter hits 0
         Then their verification status is re-queried
