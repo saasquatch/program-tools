@@ -99,7 +99,7 @@ export function PortalEmailVerificationView(
         </sl-button>
 
         {
-          <p style={{ color: "#BBBBBB" }}>
+          <p style={{ color: "var(--sl-color-gray-500)", fontSize: "14px" }}>
             {intl.formatMessage(
               {
                 id: `verificationStatus`,
