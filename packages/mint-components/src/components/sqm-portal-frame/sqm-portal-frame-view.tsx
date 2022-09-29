@@ -15,7 +15,8 @@ export interface PortalFrameViewProps {
 const style = {
   HostBlock: HostBlock,
   ":host": {
-    maxWidth: "fit-content"
+    maxWidth: "fit-content",
+    "box-sizing": "border-box",
   },
   Frame: {
     display: "flex",
@@ -61,7 +62,10 @@ const styleString = sheet.toString();
 export function PortalFrameView(props: PortalFrameViewProps, children: VNode) {
   const { data, notFullScreen } = props;
   return (
-    <div style={{minHeight: notFullScreen ? "100%" : "100vh"}} class={sheet.classes.Frame}>
+    <div
+      style={{ minHeight: notFullScreen ? "100%" : "100vh" }}
+      class={sheet.classes.Frame}
+    >
       <style type="text/css">{styleString}</style>
       <div class={sheet.classes.HeaderWrapper}>
         {data.header}

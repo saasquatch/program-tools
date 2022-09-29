@@ -150,7 +150,7 @@ export function NavigationSidebarView(
   return (
     <div class="container">
       <style>{vanillaStyle}</style>
-      <input type="checkbox" class="toggler" part="toggler" />
+      <input type="checkbox" class="toggler" />
       <div class="hamburger">
         <div class="line"></div>
         <div class="line"></div>

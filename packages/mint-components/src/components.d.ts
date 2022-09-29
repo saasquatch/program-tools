@@ -167,13 +167,6 @@ export namespace Components {
           * @uiName Border Style
          */
         "dividerStyle": string;
-        /**
-          * @uiName Overflow
-          * @uiType string
-          * @uiEnum ["initial", "scroll", "auto", "hidden"]
-          * @uiEnumNames ["Initial", "Scroll", "Auto", "Hidden"]
-         */
-        "overflow": "initial" | "scroll" | "auto" | "hidden";
     }
     interface SqmDropdownField {
         /**
@@ -3117,13 +3110,6 @@ declare namespace LocalJSX {
           * @uiName Border Style
          */
         "dividerStyle"?: string;
-        /**
-          * @uiName Overflow
-          * @uiType string
-          * @uiEnum ["initial", "scroll", "auto", "hidden"]
-          * @uiEnumNames ["Initial", "Scroll", "Auto", "Hidden"]
-         */
-        "overflow"?: "initial" | "scroll" | "auto" | "hidden";
     }
     interface SqmDropdownField {
         /**

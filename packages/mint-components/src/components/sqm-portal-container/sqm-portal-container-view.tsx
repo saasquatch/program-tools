@@ -25,6 +25,7 @@ export function PortalContainerView(
 ) {
   const style = {
     Container: {
+      boxSizing: "border-box",
       display: props.display || "grid",
       flexWrap: "wrap",
       "grid-template-columns":
@@ -38,13 +39,22 @@ export function PortalContainerView(
       maxWidth: props.maxWidth,
       margin: props.center && "auto",
       justifyContent: props.justifyContent,
+
+      "@media screen and (max-width: 420px)": {
+        padding:
+          props.padding != "none" &&
+          `calc(var(--sl-spacing-${props.padding}))` >= "40px"
+            ? `calc(var(--sl-spacing-${props.padding}) - 25px)`
+            : `var(--sl-spacing-${props.padding})`,
+      },
     },
   };
 
   const vanillaStyle = `
   :host{
-    width: 100%;
+    max-width: 100%;
     display: block;
+    box-sizing: border-box;
   }`;
 
   const sheet = createStyleSheet(style);

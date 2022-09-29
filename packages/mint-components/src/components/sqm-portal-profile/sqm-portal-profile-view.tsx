@@ -59,6 +59,12 @@ export function PortalProfileView(props: PortalProfileViewProps) {
         "margin-bottom": "32px",
       },
     },
+
+    Success: {
+      "&::part(successalert-base)": {
+        "margin-bottom": "32px",
+      },
+    },
     NameInputStyle: {
       "&:not(:last-child)": {
         "margin-right": "var(--sl-spacing-medium)",
@@ -91,7 +97,10 @@ export function PortalProfileView(props: PortalProfileViewProps) {
       </TextSpanView>
       <form class={sheet.classes.FormStyle} onSubmit={callbacks.onSubmit}>
         {states.success && (
-          <sqm-form-message exportparts="success-icon">
+          <sqm-form-message
+            class={sheet.classes.Success}
+            exportparts="success-icon"
+          >
             <div part="successalert-text">
               Your profile has been successfully updated.
             </div>

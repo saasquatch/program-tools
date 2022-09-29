@@ -22,14 +22,6 @@ export class DividedLayout {
    * @uiEnumNames ["Row", "Column"]
    */
   @Prop() direction: "row" | "column";
-
-  /**
-   * @uiName Overflow
-   * @uiType string
-   * @uiEnum ["initial", "scroll", "auto", "hidden"]
-   * @uiEnumNames ["Initial", "Scroll", "Auto", "Hidden"]
-   */
-  @Prop() overflow: "initial" | "scroll" | "auto" | "hidden" = "initial";
   /**
    * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
    * @uiName Border Style
