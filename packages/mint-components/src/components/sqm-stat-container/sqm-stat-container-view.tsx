@@ -37,6 +37,12 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
       "& > ::slotted(*:last-child)": {
         "border-right": "none",
       },
+
+      "@media screen and (max-width: 430px)": {
+        "& > ::slotted(*)": {
+          borderRight: "none",
+        },
+      },
     },
     StatFrame: {
       display: "flex",
