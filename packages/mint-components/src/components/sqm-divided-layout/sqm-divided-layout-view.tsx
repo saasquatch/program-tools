@@ -36,14 +36,10 @@ export function DividedLayoutView(
   const hostStyle = `
     display: flex;
     flex: 1;
+    // min-width: fit-content;
     flex-direction: ${props.direction};
     overflow: ${props.overflow};
     background-color: var(--sqm-content-background);
-    ${
-      props.direction === "column"
-        ? "width: 100%; max-width: var(--sqm-portal-main-width);"
-        : ""
-    }
   `;
 
   const vanillaStyle = `

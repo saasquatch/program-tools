@@ -20,6 +20,8 @@ const style = {
     },
   },
 };
+const sheet = createStyleSheet(style);
+const styleString = sheet.toString();
 
 const vanillaStyle = `
   @media screen and (max-width: 799px) {
@@ -43,25 +45,10 @@ const vanillaStyle = `
   }
 `;
 
-const sheet = createStyleSheet(style);
-const styleString = sheet.toString();
 
 export function NavigationSidebarView(
   props: NavigationSidebarViewProps,
   children: VNode
 ) {
-  return (
-    <div class="container">
-      <sqm-hamburger-menu>
-        <div>{props.mobileItemsSlot}</div>
-      </sqm-hamburger-menu>
-      <div class={sheet.classes.ItemsContainer}>
-        <style type="text/css">
-          {vanillaStyle}
-          {styleString}
-        </style>
-        <div>{children}</div>
-      </div>
-    </div>
-  );
+  return <sqm-hamburger-menu>{children}</sqm-hamburger-menu>;
 }

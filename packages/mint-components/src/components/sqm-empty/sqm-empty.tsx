@@ -9,7 +9,7 @@ import { EmptyStateView } from "./sqm-empty-view";
   tag: "sqm-empty",
   shadow: true,
 })
-export class HeroImage {
+export class Empty {
   /**
    * @uiWidget ImageUpload
    * @format url
