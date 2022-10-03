@@ -18,8 +18,8 @@
     </script>
   </head>
   <body>
-    <sqm-stencilbook></sqm-stencilbook>
-    <!-- <sqm-portal-frame>
+    <!-- <sqm-stencilbook></sqm-stencilbook> -->
+    <sqm-portal-frame>
       <a slot="header" href="/">
         <sqm-text style="height: 60px">
           <img
@@ -42,28 +42,28 @@
                     <sqm-name-fields slot="formData"></sqm-name-fields>
                   </sqm-portal-register>
                 </template>
-    
+
                 <template path="/emailVerification">
                   <sqm-portal-protected-route
                     redirect-to="/login"
                   ></sqm-portal-protected-route>
                   <sqm-portal-email-verification></sqm-portal-email-verification>
                 </template>
-    
+
                 <template path="/login">
                   <sqm-portal-login></sqm-portal-login>
                 </template>
-    
+
                 <template path="/verifyEmail">
                   <sqm-portal-verify-email></sqm-portal-verify-email>
                 </template>
-    
+
                 <template path="/forgotPassword">
                   <sqm-portal-forgot-password
                     email-label="Business Email"
                   ></sqm-portal-forgot-password>
                 </template>
-    
+
                 <template path="/resetPassword">
                   <sqm-portal-reset-password
                     confirm-password="true"
@@ -138,7 +138,9 @@
                           flex-reverse="true"
                           alignment="left"
                           stat-type="/rewardBalance/CREDIT/CENTS"
-                          ><sqm-text><p>Reward Balance</p></sqm-text></sqm-big-stat
+                          ><sqm-text
+                            ><p>Reward Balance</p></sqm-text
+                          ></sqm-big-stat
                         >
                       </sqm-stat-container> </sqm-portal-container
                     ><sqm-portal-container
@@ -152,8 +154,8 @@
                         ><sqm-text slot="content">
                           <p>
                             Get rewarded for referring potential customers to
-                            SaaSquatch. Earn commission for each successful lead you
-                            send our way
+                            SaaSquatch. Earn commission for each successful lead
+                            you send our way
                           </p>
                         </sqm-text></sqm-titled-section
                       >
@@ -209,7 +211,7 @@
                       <sqm-portal-change-password></sqm-portal-change-password>
                     </sqm-portal-container>
                   </template>
-    
+
                   <template path="/activity">
                     <sqm-portal-protected-route
                       require-email-verification="true"
@@ -233,13 +235,17 @@
                           flex-reverse="true"
                           alignment="left"
                           stat-type="/rewardsCountFiltered/AVAILABLE"
-                          ><sqm-text><p>Rewards Earned</p></sqm-text></sqm-big-stat
+                          ><sqm-text
+                            ><p>Rewards Earned</p></sqm-text
+                          ></sqm-big-stat
                         >
                         <sqm-big-stat
                           flex-reverse="true"
                           alignment="left"
                           stat-type="/rewardBalance/CREDIT/CENTS"
-                          ><sqm-text><p>Reward Balance</p></sqm-text></sqm-big-stat
+                          ><sqm-text
+                            ><p>Reward Balance</p></sqm-text
+                          ></sqm-big-stat
                         >
                       </sqm-stat-container>
                       <sqm-referral-table>
@@ -267,7 +273,6 @@
         faq-text="FAQ"
         show-powered-by="true"
       ></sqm-portal-footer>
-    </sqm-portal-frame> -->
-    
+    </sqm-portal-frame>
   </body>
 </html>
