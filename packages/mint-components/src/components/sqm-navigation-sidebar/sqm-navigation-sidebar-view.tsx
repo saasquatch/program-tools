@@ -23,6 +23,9 @@ const vanillaStyle = `
 } 
 
 @media screen and (min-width: 800px) {
+  :host {
+    max-width: 300px;
+  }
   .toggler,
   .hamburger {
      user-select: none;
