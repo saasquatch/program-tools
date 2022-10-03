@@ -51,7 +51,7 @@ export class PortalEmailVerification {
    * @uiWidget textArea
    */
   @Prop() verificationStatusMessage: string =
-    "Check verification status in: {countdown}";
+    "Checking verification status in {countdown}";
 
   /**
    * @uiName Email Verification Checking Text

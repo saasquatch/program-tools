@@ -45,19 +45,25 @@ Feature: Email Verification
             | has          | /verifyMyEmail | /verifyMyEmail |
 
     @motivating
-    Scenario: Verification status is refetched on refresh
+    Scenario Outline: Verification status is refetched on refresh
         Given a user viewing the email verification component
+        And the component <mayHave> "redirect-path" with <value>
         And they verified their account on another device
         And the local storage verification state is outdated
         When they refresh the page the component is on
         Then their verification status is re-queried
         And the local storage managed identity state is updated
-        And they are redirected to the components "redirectPath"
+        And they are redirected to <redirectPath>
+        Examples:
+            | mayHave      | value          | redirectPath   |
+            | doesn't have | N/A            | /verifyEmail   |
+            | has          | /verifyMyEmail | /verifyMyEmail |
 
     @motivating
-    Scenario: Verification status is refetched every 10 seconds
+    Scenario Outline: Verification status is refetched every 10 seconds
         Given a user viewing the email verification component
-        Then they see text "Check verification status in: 10" above the re-send verification text link
+        And the component <mayHave> "redirect-path" with <value>
+        Then they see text "Checking verification status in 10" above the re-send verification text link
         And the time counts down from 10 to 0
         When the counter hits 0
         Then their verification status is re-queried
@@ -66,7 +72,11 @@ Feature: Email Verification
         And the count down hits 0 again from 10
         Then their verification status is re-queried
         And the local storage managed identity state is updated
-        And they are redirected to the components "redirectPath"
+        And they are redirected to <redirectPath>
+        Examples:
+            | mayHave      | value          | redirectPath   |
+            | doesn't have | N/A            | /verifyEmail   |
+            | has          | /verifyMyEmail | /verifyMyEmail |
 
     @minutia
     Scenario Outline: Verification refetch text is customizable
@@ -78,14 +88,14 @@ Feature: Email Verification
         When it is refetching their verification status
         Examples:
             | verificationPropValue                         | verificationTextValue                         | loadingPropValue      | loadingTextValue             |
-            | N/A                                           | Check verification status in: {countdown}     | N/A                   | Checking verification status |
+            | N/A                                           | Checking verification status in {countdown}   | N/A                   | Checking verification status |
             | {countdown} seconds till verification refresh | {countdown} seconds till verification refresh | Checking verification | Checking verification        |
 
 
     @minutia
     Scenario: 10 second countdown pauses when minimizing or moving between tabs
         Given a user viewing the email verification component
-        Then they see text "Check verification status in: 10" above the re-send verification text link
+        Then they see text "Checking verification status in 10" above the re-send verification text link
         And the time counts down from 10 to 7
         And the user changes to a different tab
         When the user goes back to the verification tab
