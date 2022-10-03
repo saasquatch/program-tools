@@ -21,7 +21,6 @@ export function DividedLayoutView(
   const style = {
     LayoutContainer: {
       display: "contents",
-      maxWidth: "calc(100% - 60px)",
       // First style applies when shadow DOM is disabled, second applies when shadow DOM is enabled
       "& > :not(:last-child)": {
         ...getBorder(),
@@ -33,16 +32,12 @@ export function DividedLayoutView(
   };
 
   const hostStyle = `
-    display: grid;
-    grid-template-columns: ${
-      props.direction === "column" ? "auto" : "auto auto"
-    };
-    flex: 0;
-    min-width: fit-content;
-    width: auto;
-    box-sizing: border-box;
-    flex-direction: ${props.direction};
-    background-color: var(--sqm-content-background);
+  display: flex;
+  box-sizing: border-box;
+  max-width: 100%;
+  flex: 1;
+  flex-direction: ${props.direction};
+  background-color: var(--sqm-content-background);
   `;
 
   const vanillaStyle = `

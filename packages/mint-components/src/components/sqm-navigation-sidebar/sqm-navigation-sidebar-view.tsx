@@ -39,7 +39,7 @@ const vanillaStyle = `
     min-width: 290px;
     max-width: 320px;
     box-sizing: border-box;
-    padding: 20px 15px;
+    padding: 0px 15px;
   }
   .menu-items > :not(:last-child): {
     margin-bottom: 4px;
@@ -70,7 +70,7 @@ const vanillaStyle = `
     border-right: 1px solid #eaeaea;
     padding-top: 60px;
     background: white; 
-    width: 100vw;
+    width: 70vw;
     height: 100vh;
     position: absolute;
     top: 0;
