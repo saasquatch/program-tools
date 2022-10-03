@@ -7,16 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.6.3] - 2022-09-29
+## [1.6.3] - 2022-10-03
 
 ### Changed
 
 - Added a countdown timer to \<sqm-portal-email-validation> that automatically checks if a user's email has been verified on another screen or device
-
   - User will be redirected to the \<sqm-portal-verify-email> success screen by default
-
+- The Resend Email button in \<sqm-portal-email-validation> is now a text link
 - Verified users that navigate to a path containing \<sqm-portal-verify-email> will now be properly redirected to the portal instead of seeing a failure screen
-
 - Changed Components
   - \<sqm-portal-email-validation>
   - \<sqm-portal-verify-email>
