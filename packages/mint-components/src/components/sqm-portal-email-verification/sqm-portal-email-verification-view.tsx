@@ -29,6 +29,14 @@ export interface PortalEmailVerificationViewProps {
 const style = {
   Wrapper: AuthWrapper,
   Column: { ...AuthColumn },
+  ButtonLink: {
+    color: "var(--sl-color-primary-500)",
+    display: "inline-block !important",
+    "&:hover": {
+      cursor: "pointer",
+      textDecoration: "underline",
+    },
+  },
 };
 
 const vanillaStyle = `
@@ -94,10 +102,6 @@ export function PortalEmailVerificationView(
             }
           )}
         </TextSpanView>
-        <sl-button variant="default" submit loading={states.loading}>
-          {resendEmailButtonText}
-        </sl-button>
-
         {
           <p style={{ color: "var(--sl-color-gray-500)", fontSize: "14px" }}>
             {intl.formatMessage(
@@ -117,6 +121,9 @@ export function PortalEmailVerificationView(
             )}
           </p>
         }
+        <a class={sheet.classes.ButtonLink} onClick={callbacks.submit}>
+          {resendEmailButtonText}
+        </a>
       </sl-form>
     </div>
   );
