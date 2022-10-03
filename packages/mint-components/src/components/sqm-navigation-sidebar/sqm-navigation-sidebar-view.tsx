@@ -1,6 +1,9 @@
 import { h, VNode } from "@stencil/core";
 
-export interface NavigationSidebarViewProps {}
+export interface NavigationSidebarViewProps {
+  checked?: boolean;
+  onClick?: (e: MouseEvent) => void;
+}
 
 const vanillaStyle = `
 
@@ -150,7 +153,7 @@ export function NavigationSidebarView(
   return (
     <div class="container">
       <style>{vanillaStyle}</style>
-      <input type="checkbox" class="toggler" />
+      <input type="checkbox" class="toggler" {...props} />
       <div class="hamburger">
         <div class="line"></div>
         <div class="line"></div>
