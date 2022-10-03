@@ -51,13 +51,13 @@ export class PortalEmailVerification {
    * @uiWidget textArea
    */
   @Prop() verificationStatusMessage: string =
-    "Check verification status: in {countdown}";
+    "Check verification status in: {countdown}";
 
   /**
    * @uiName Email Verification Checking Text
    * @uiWidget textArea
    */
-  @Prop() verificationLoadingMessage: string = "Check verification status:";
+  @Prop() verificationLoadingMessage: string = "Checking verification status";
 
   /**
    * @undocumented

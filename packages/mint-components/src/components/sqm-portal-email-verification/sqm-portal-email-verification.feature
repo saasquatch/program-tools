@@ -57,7 +57,7 @@ Feature: Email Verification
     @motivating
     Scenario: Verification status is refetched every 10 seconds
         Given a user viewing the email verification component
-        Then they see text "Check verification status: in 10" above the re-send verification text link
+        Then they see text "Check verification status in: 10" above the re-send verification text link
         And the time counts down from 10 to 0
         When the counter hits 0
         Then their verification status is re-queried
@@ -77,15 +77,15 @@ Feature: Email Verification
         Then they see <verificationTextValue>
         When it is refetching their verification status
         Examples:
-            | verificationPropValue                         | verificationTextValue                         | loadingPropValue             | loadingTextValue             |
-            | N/A                                           | Check verification status: in {countdown}     | N/A                          | Check verification status:   |
-            | {countdown} seconds till verification refresh | {countdown} seconds till verification refresh | Checking verification status | Checking verification status |
+            | verificationPropValue                         | verificationTextValue                         | loadingPropValue      | loadingTextValue             |
+            | N/A                                           | Check verification status in: {countdown}     | N/A                   | Checking verification status |
+            | {countdown} seconds till verification refresh | {countdown} seconds till verification refresh | Checking verification | Checking verification        |
 
 
     @minutia
     Scenario: 10 second countdown pauses when minimizing or moving between tabs
         Given a user viewing the email verification component
-        Then they see text "Check verification status: in 10" above the re-send verification text link
+        Then they see text "Check verification status in: 10" above the re-send verification text link
         And the time counts down from 10 to 7
         And the user changes to a different tab
         When the user goes back to the verification tab
