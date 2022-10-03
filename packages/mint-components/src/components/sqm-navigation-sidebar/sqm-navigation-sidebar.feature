@@ -2,8 +2,6 @@
 @owner:derek
 Feature: Navigation Sidebar
 
-    #We will need specific prop editing specs
-
     Background: Navigation sidebar is populated with items
         Given the following navigation sidebar
             """
@@ -44,11 +42,21 @@ Feature: Navigation Sidebar
         Given a user viewing the sidebar on a screen smaller than 800px
         Then they see the mobile sidebar with a hamburger menu icon at the top
         When they click the hamburger icon
-        Then the sidebar expands ontop of the microsite page content
+        Then the sidebar expands to fill the screen
         And they see all the sidebar items
         And they see a "X" icon in the top left hand corner
         When they click the "X" icon
         Then the sidebar collapses
+
+    @landmine
+    Scenario: Clicking an item the mobile sidebar redirects but does not close the sidebar
+        Given a user viewing the sidebar on a screen smaller than 800px
+        And it is expanded
+        When they click on a sidebar item
+        Then they are redirect 
+        But the sidebar is not closed automatically
+        When they click "X"
+        Then they see the new page
 
     @minutia
     Scenario: The mobile sidebar is sticky
