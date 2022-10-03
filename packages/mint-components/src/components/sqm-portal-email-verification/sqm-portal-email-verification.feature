@@ -18,7 +18,8 @@ Feature: Email Verification
         Given a user viewing the email verification component
         And they have an email stored in session data from registration
         When they click to "Resend-Email"
-        But an error occurs trying to send the verification email
+        Then the text link is disabled
+        When an error occurs trying to send the verification email
         Then the user does not receive a verification email
         And an error banner is shown stating that they should try again
 
@@ -27,7 +28,8 @@ Feature: Email Verification
         Given a user viewing the email verification component
         And they have an email stored in session data from registration
         When they click to "Resend-Email"
-        And the email verification message sends
+        Then the text link is disabled
+        When the email verification message sends
         Then the user receives a verification email
         And a success banner is shown stating that their email was resent
 
