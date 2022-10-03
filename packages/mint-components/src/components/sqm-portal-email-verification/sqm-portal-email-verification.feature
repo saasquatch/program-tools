@@ -18,8 +18,7 @@ Feature: Email Verification
         Given a user viewing the email verification component
         And they have an email stored in session data from registration
         When they click to "Resend-Email"
-        Then the button enters a loading state
-        When an error occurs trying to send the verification email
+        But an error occurs trying to send the verification email
         Then the user does not receive a verification email
         And an error banner is shown stating that they should try again
 
@@ -28,8 +27,7 @@ Feature: Email Verification
         Given a user viewing the email verification component
         And they have an email stored in session data from registration
         When they click to "Resend-Email"
-        Then the button enters a loading state
-        When the email verification message sends
+        And the email verification message sends
         Then the user receives a verification email
         And a success banner is shown stating that their email was resent
 
@@ -59,7 +57,7 @@ Feature: Email Verification
     @motivating
     Scenario: Verification status is refetched every 10 seconds
         Given a user viewing the email verification component
-        Then they see text "Check verification status: in 10" below the re-send verification button
+        Then they see text "Check verification status: in 10" above the re-send verification text link
         And the time counts down from 10 to 0
         When the counter hits 0
         Then their verification status is re-queried
@@ -87,7 +85,7 @@ Feature: Email Verification
     @minutia
     Scenario: 10 second countdown pauses when minimizing or moving between tabs
         Given a user viewing the email verification component
-        Then they see text "Check verification status: in 10" below the re-send verification button
+        Then they see text "Check verification status: in 10" above the re-send verification text link
         And the time counts down from 10 to 7
         And the user changes to a different tab
         When the user goes back to the verification tab
