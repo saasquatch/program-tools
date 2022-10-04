@@ -46,8 +46,8 @@ const style = {
     textDecoration: "underline",
     "&:hover": {
       cursor: "not-allowed",
-    }, 
-  }
+    },
+  },
 };
 
 const vanillaStyle = `
@@ -132,7 +132,14 @@ export function PortalEmailVerificationView(
             )}
           </p>
         }
-        <a class={states.loading ? sheet.classes.ButtonLinkLoading : sheet.classes.ButtonLink} onClick={callbacks.submit}>
+        <a
+          class={
+            states.loading
+              ? sheet.classes.ButtonLinkLoading
+              : sheet.classes.ButtonLink
+          }
+          onClick={callbacks.submit}
+        >
           {resendEmailButtonText}
         </a>
       </sl-form>
