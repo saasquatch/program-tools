@@ -30,6 +30,7 @@ const style = {
   Wrapper: AuthWrapper,
   Column: { ...AuthColumn },
   ButtonLink: {
+    fontSize: "14px",
     color: "var(--sl-color-primary-500)",
     display: "inline-block !important",
     "&:hover": {
@@ -37,6 +38,16 @@ const style = {
       textDecoration: "underline",
     },
   },
+  ButtonLinkLoading: {
+    fontSize: "14px",
+    color: "var(--sl-color-gray-500)",
+    opacity: "0.6",
+    display: "inline-block !important",
+    textDecoration: "underline",
+    "&:hover": {
+      cursor: "not-allowed",
+    }, 
+  }
 };
 
 const vanillaStyle = `
@@ -121,7 +132,7 @@ export function PortalEmailVerificationView(
             )}
           </p>
         }
-        <a class={sheet.classes.ButtonLink} onClick={callbacks.submit}>
+        <a class={states.loading ? sheet.classes.ButtonLinkLoading : sheet.classes.ButtonLink} onClick={callbacks.submit}>
           {resendEmailButtonText}
         </a>
       </sl-form>
