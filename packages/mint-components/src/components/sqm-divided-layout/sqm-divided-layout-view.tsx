@@ -37,7 +37,7 @@ export function DividedLayoutView(
   max-width: 100vw;
   flex-direction: ${props.direction};
   background-color: var(--sqm-content-background);
-  overflow: hidden;
+  overflow-x: clip;
   `;
 
   const vanillaStyle = `
