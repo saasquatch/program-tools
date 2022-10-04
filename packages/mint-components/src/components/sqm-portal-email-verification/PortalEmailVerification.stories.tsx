@@ -12,119 +12,70 @@ export default {
   },
 };
 
+const defaultCallbacks = {
+  submit: async (e) => await e,
+};
+
+const defaultContent = {
+  email: "email@example.com",
+  verifyMessage:
+    "A verification email was sent to {email}. Please verify your email to continue to the portal.",
+  emailVerificationHeader: "Verify your email",
+  resendEmailButtonText: "Re-send Email",
+  verificationStatusMessage: "{countdown} seconds till verification refresh",
+  verificationLoadingMessage: "Checking verification",
+};
+
+const defaultStates = {
+  error: "",
+  loading: false,
+  success: false,
+  isVerified: false,
+  loadingVerification: false,
+  countdown: 10,
+};
+
 const defaultProps: PortalEmailVerificationViewProps = {
-  states: {
-    error: "",
-    loading: false,
-    success: false,
-    isVerified: false,
-    loadingVerification: false,
-    countdown: 10,
-  },
-  callbacks: {
-    submit: async (e) => await e,
-  },
-  content: {
-    email: "email@example.com",
-    verifyMessage:
-      "A verification email was sent to {email}. Please verify your email to continue to the portal.",
-    emailVerificationHeader: "Verify your email",
-    resendEmailButtonText: "Re-send Email",
-    verificationStatusMessage: "{countdown} seconds till verification refresh",
-    verificationLoadingMessage: "Checking verification",
-  },
+  states: defaultStates,
+  callbacks: defaultCallbacks,
+  content: defaultContent,
 };
 
 const errorProps: PortalEmailVerificationViewProps = {
   states: {
+    ...defaultStates,
     error: "Something went wrong. Please try again.",
-    loading: false,
-    success: false,
-    isVerified: false,
-    loadingVerification: false,
-    countdown: 10,
   },
-  callbacks: {
-    submit: async (e) => await e,
-  },
-  content: {
-    email: "email@example.com",
-    verifyMessage:
-      "A verification email was sent to {email}. Please verify your email to continue to the portal.",
-    emailVerificationHeader: "Verify your email",
-    resendEmailButtonText: "Re-send Email",
-    verificationStatusMessage: "{countdown} seconds till verification refresh",
-    verificationLoadingMessage: "Checking verification",
-  },
+  callbacks: defaultCallbacks,
+  content: defaultContent,
 };
 
 const loadingProps: PortalEmailVerificationViewProps = {
   states: {
-    error: "",
+    ...defaultStates,
     loading: true,
-    success: false,
-    isVerified: false,
-    loadingVerification: false,
-    countdown: 10,
   },
-  callbacks: {
-    submit: async (e) => await e,
-  },
-  content: {
-    email: "email@example.com",
-    verifyMessage:
-      "A verification email was sent to {email}. Please verify your email to continue to the portal.",
-    emailVerificationHeader: "Verify your email",
-    resendEmailButtonText: "Re-send Email",
-    verificationStatusMessage: "{countdown} seconds till verification refresh",
-    verificationLoadingMessage: "Checking verification",
-  },
+  callbacks: defaultCallbacks,
+  content: defaultContent,
 };
 
 const successProps: PortalEmailVerificationViewProps = {
   states: {
-    error: "",
-    loading: false,
+    ...defaultStates,
     success: true,
     isVerified: true,
-    loadingVerification: false,
-    countdown: 10,
   },
-  callbacks: {
-    submit: async (e) => await e,
-  },
-  content: {
-    email: "email@example.com",
-    verifyMessage:
-      "A verification email was sent to {email}. Please verify your email to continue to the portal.",
-    emailVerificationHeader: "Verify your email",
-    resendEmailButtonText: "Re-send Email",
-    verificationStatusMessage: "{countdown} seconds till verification refresh",
-    verificationLoadingMessage: "Checking verification",
-  },
+  callbacks: defaultCallbacks,
+  content: defaultContent,
 };
 
 const loadingVerificationProps: PortalEmailVerificationViewProps = {
   states: {
-    error: "",
-    loading: true,
-    success: false,
-    isVerified: false,
+    ...defaultStates,
     loadingVerification: true,
-    countdown: 10,
   },
-  callbacks: {
-    submit: async (e) => await e,
-  },
-  content: {
-    email: "email@example.com",
-    verifyMessage:
-      "A verification email was sent to {email}. Please verify your email to continue to the portal.",
-    emailVerificationHeader: "Verify your email",
-    resendEmailButtonText: "Re-send Email",
-    verificationStatusMessage: "{countdown} seconds till verification refresh",
-    verificationLoadingMessage: "Checking verification",
-  },
+  callbacks: defaultCallbacks,
+  content: defaultContent,
 };
 
 export const Default = () => <PortalEmailVerificationView {...defaultProps} />;
