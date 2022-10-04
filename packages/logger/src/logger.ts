@@ -112,6 +112,7 @@ export function initializeLogger(
       info.message = friendlyHttpFormat(message);
       info["http.url"] = message.url;
       info["http.method"] = message.method;
+      info["http.status_category"] = info.level;
       info["http.status_code"] = message.status;
       info["http.response_time"] = message.time;
     }
