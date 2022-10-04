@@ -14,10 +14,6 @@ export interface PortalFrameViewProps {
 
 const style = {
   HostBlock: HostBlock,
-  // ":host": {
-  //   maxWidth: "fit-content",
-  //   "box-sizing": "border-box",
-  // },
   Frame: {
     display: "flex",
     "flex-direction": "column",

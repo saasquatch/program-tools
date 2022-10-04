@@ -46,7 +46,6 @@ export function PortalContainerView(
   :host{
     width: 100%;
     display: block;
-    // box-sizing: border-box;
   }`;
 
   const sheet = createStyleSheet(style);

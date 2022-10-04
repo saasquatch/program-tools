@@ -70,7 +70,7 @@ const vanillaStyle = `
     border-right: 1px solid #eaeaea;
     padding-top: 60px;
     background: white; 
-    width: 70vw;
+    width: 100vw;
     height: 100vh;
     position: absolute;
     top: 0;
@@ -149,7 +149,6 @@ const vanillaStyle = `
 `;
 
 export function NavigationSidebarView(
-  // @ts-ignore
   props: NavigationSidebarViewProps,
   children: VNode
 ) {

@@ -25,21 +25,6 @@ const style = {
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-const barProps = {
-  data: {
-    programs: [
-      {
-        key: "program1",
-        label: "My Referral Program",
-      },
-      {
-        key: "program2",
-        label: "My Rewards Program",
-      },
-    ],
-  },
-};
-
 const item1Props = {
   states: {
     active: false,

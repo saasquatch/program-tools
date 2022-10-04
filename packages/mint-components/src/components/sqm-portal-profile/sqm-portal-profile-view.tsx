@@ -63,7 +63,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
       },
       "@media screen and (max-width: 1100px)": {
         minWidth: "100%",
-      }
+      },
     },
     Error: {
       "&::part(erroralert-base)": {
@@ -82,7 +82,6 @@ export function PortalProfileView(props: PortalProfileViewProps) {
         width: "100%",
         "margin-right": "0",
       },
-
     },
     NameInputContainer: {
       display: "flex",
@@ -90,8 +89,8 @@ export function PortalProfileView(props: PortalProfileViewProps) {
       width: "100%",
       "@media screen and (max-width: 860px)": {
         flexDirection: "column",
-      }
-    }
+      },
+    },
   };
 
   const sheet = createStyleSheet(style);
@@ -104,14 +103,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
     : "";
 
   return (
-    <div class={sheet.classes.Container}
-      // {...{
-      //   direction: "column",
-      //   padding: "xxx-large",
-      //   gap: "xxx-large",
-      //   minWidth: "600px",
-      // }}
-    >
+    <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
       <TextSpanView {...{ type: "h1" }}>{text.editProfileHeader}</TextSpanView>
       <TextSpanView {...{ type: "h2" }}>
@@ -138,14 +130,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
             <div part="erroralert-text">{error}</div>
           </sqm-form-message>
         )}
-        <div class={sheet.classes.NameInputContainer}
-          // {...{
-          //   direction: "row",
-          //   padding: "none",
-          //   gap: "32px",
-          //   minWidth: "50%",
-          // }}
-        >
+        <div class={sheet.classes.NameInputContainer}>
           <sl-input
             class={sheet.classes.NameInputStyle}
             exportparts="label: input-label"
