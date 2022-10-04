@@ -11,9 +11,10 @@ export interface ShareLinkViewProps {
 }
 
 const style = {
-  HostBlock: HostBlock,
+  Container: {maxWidth: "100%", boxSizing: "border-box"},
+  HostBlock: {...HostBlock, maxWidth: "100%", boxSizing: "border-box"},
   inputStyle: {
-    "&::part(base)": { background: "white", opacity: "1", cursor: "pointer" },
+    "&::part(base)": { boxSizing: "border-box", maxWidth: "100%", background: "white", opacity: "1", cursor: "pointer" },
   },
 };
 
@@ -22,7 +23,7 @@ const styleString = sheet.toString();
 
 export function ShareLinkView(props: ShareLinkViewProps) {
   return (
-    <div>
+    <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
       <sl-tooltip
         trigger="manual"
