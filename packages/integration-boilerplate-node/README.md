@@ -71,6 +71,7 @@ parameters common to all integrations. These are:
 | -------------------------- | ----------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | PORT                       | port                    | 10000                      | The port on which to run the microservice                                                                    |
 | SERVER_LOG_LEVEL           | serverLogLevel          | info                       | The log level for the default logger                                                                         |
+| SERVER_LOG_FILE            | serverLogFile           |                            | The optional path to write server logs to                                                                    |
 | ENFORCE_HTTPS              | enforceHttps            | true                       | Enforce HTTPS on the Express server                                                                          |
 | PROXY_FRONTEND             | proxyFrontend           | <none>                     | Proxy the integration frontend through the Express server, specify a URL like http://localhost:3000          |
 | STATIC_FRONTEND_PATH       | staticFrontendPath      | .../../frontend/build      | The location (relative to your main module) of the integration's frontend (ignored if PROXY_FRONTEND is set) |
