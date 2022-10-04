@@ -26,6 +26,14 @@ export interface StyleProps {
    */
   size?: Size | string;
   /**
+   * Set the mouse cursor
+   */
+  cursor?: string;
+  /**
+   * Align icon to center
+   */
+  center?: boolean;
+  /**
    * Custom CSS styles applied to icon
    */
   customCSS?: CSSProp;
@@ -40,6 +48,7 @@ const default_size = {
 
 const SVGStyleSpan = styled.span<Required<StyleProps>>`
   ${Styles.base}
+
   color: ${(props) => props.color};
   width: ${(props) =>
     default_size.hasOwnProperty(props.size)
@@ -51,7 +60,16 @@ const SVGStyleSpan = styled.span<Required<StyleProps>>`
       : props.size};
   ${(props) => props.customCSS}
 
+  ${(props) =>
+    props.center
+      ? `display: flex !important;
+         align-items: center;
+         justify-content: center;
+         `
+      : ""}
+
   & > svg {
+    cursor: ${(props) => (props.cursor ? props.cursor : "default")};
     width: ${(props) =>
       default_size.hasOwnProperty(props.size)
         ? default_size[props.size as Size]
@@ -67,6 +85,8 @@ export const IconView = React.forwardRef<React.ElementRef<"div">, IconProps>(
       icon,
       color = "inherit",
       size = "medium",
+      cursor = "default",
+      center = false,
       customCSS = {},
       ...rest
     } = props;
@@ -78,6 +98,8 @@ export const IconView = React.forwardRef<React.ElementRef<"div">, IconProps>(
         color={color}
         ref={forwardedRef}
         customCSS={customCSS}
+        cursor={cursor}
+        center={center}
       >
         {Object.keys(SVGs).includes(icon) ? SVGs[icon] : SVGs["placeholder"]}
       </SVGStyleSpan>

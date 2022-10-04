@@ -16,13 +16,13 @@ export const disabled_bg = css`
 export const CheckboxLabelStyle = css`
   user-select: none;
   display: inline-flex;
-  align-items: center;
   cursor: pointer;
   color: var(--sq-text);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: var(--sq-font-size-regular);
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
+  width: max-content;
 `;
 
 export const CheckboxTickStyle = css`

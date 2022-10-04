@@ -2,7 +2,7 @@ import * as React from "react";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 
-type PopoverProps = OptionProps &
+type RowViewProps = OptionProps &
   StyleProps &
   Partial<React.ComponentProps<"div">>;
 
@@ -43,7 +43,7 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const RowDiv = styled.div<Required<StyleProps>>`
+export const RowDiv = styled.div<Required<StyleProps>>`
   ${Styles.RowBase}
 
   ${(props) => Styles.Row[props.variant]}
@@ -58,7 +58,7 @@ const ContentDiv = styled.div<{ flex: string; center: boolean; width: string }>`
   width: ${(props) => props.width};
 `;
 
-export const RowView = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
+export const RowView = React.forwardRef<React.ElementRef<"div">, RowViewProps>(
   (props, forwardedRef) => {
     const {
       variant = "row",

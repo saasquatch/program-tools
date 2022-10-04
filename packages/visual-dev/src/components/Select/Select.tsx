@@ -4,8 +4,8 @@ import { UseComboboxReturnValue, UseSelectReturnValue } from "downshift";
 import { InputView } from "../Input";
 import { IconButton } from "../Button";
 import React from "react";
-import { IconView } from "../Icon";
-import { LoadingSpinner } from "../LoadingSpinner";
+import { IconKey, IconView } from "../Icon";
+import { DataTableView } from "../DataTable";
 
 export type SelectProps<ItemType> = OptionProps<ItemType> &
   Partial<React.ComponentProps<"input">>;
@@ -63,6 +63,22 @@ export interface OptionProps<ItemType> {
    * Limit the height of the input in its expanded state with a valid CSS size (px, %) [default 200px]
    */
   limitHeight?: SizeType;
+  /**
+   * Render in empty state
+   */
+  empty?: boolean;
+  /**
+   * Content to display when in the empty state
+   */
+  emptySlot?: string | React.ReactNode;
+  /**
+   * Content to display when in the loading state
+   */
+  loadingSlot?: string | React.ReactNode;
+  /**
+   * Use a custom icon instead of a chevron
+   */
+  customIcon?: IconKey;
 }
 
 type SizeType = boolean | string;
@@ -124,16 +140,14 @@ const ContainerDiv = styled("div")<{
   ${(props) => props.customContainerCSS}
 `;
 
-const SelectInputDiv = styled.div<{
+const SelectInputDiv = styled.button<{
   disabled: boolean | undefined;
   errors: any;
   isOpen: boolean;
   customCSS: CSSProp;
 }>`
   ${Styles.SelectInputStyle}
-  ${(props) =>
-    props.disabled &&
-    "background: var(--sq-surface-input-disabled); cursor: default;"}
+  ${(props) => props.disabled && "background: #E5E5E5; cursor: default;"}
   ${(props) =>
     props.isOpen && !props.disabled && "border-color: var(--sq-focused);"}
   ${(props) =>
@@ -164,7 +178,8 @@ const SelectedValueSpan = styled.span<{
   subdued: boolean;
 }>`
   ${Styles.SelectedValue}
-  ${(props) => props.subdued && "color: var(--sq-text-subdued)"}
+  ${(props) =>
+    props.subdued && "color: var(--sq-placeholder-text-on-secondary)"}
 `;
 
 const ButtonDiv = styled.div`
@@ -189,9 +204,25 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
     errors = false,
     clearable = false,
     loading = false,
+    customIcon,
+    loadingSlot = (
+      <>
+        <ListItem style={{ height: "32px" }} key={`1`}>
+          <DataTableView.SkeletonView size="120px" />
+        </ListItem>
+        <ListItem style={{ height: "32px" }} key={`2`}>
+          <DataTableView.SkeletonView size="120px" />
+        </ListItem>
+        <ListItem style={{ height: "32px" }} key={`3`}>
+          <DataTableView.SkeletonView size="120px" />
+        </ListItem>
+      </>
+    ),
     placeholder = "",
     limitWidth = true,
     limitHeight = false,
+    empty = false,
+    emptySlot = "",
     functional,
     items,
     itemToString = (item: ItemType) => {
@@ -218,11 +249,6 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
   } = props;
 
   const showClear = clearable ? "inline-flex" : "none";
-  const arrowColor = errors
-    ? "var(--sq-border-critical)"
-    : disabled
-    ? "var(--sq-border)"
-    : "var(--sq-text)";
 
   function isCombobox(
     hook: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>
@@ -232,7 +258,7 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
     );
   }
 
-  const isOpen = disabled || loading ? false : functional.isOpen;
+  const isOpen = disabled ? false : functional.isOpen;
 
   return (
     <ContainerDiv
@@ -243,7 +269,7 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
         <SelectInputDiv
           {...rest}
           isOpen={functional.isOpen}
-          disabled={disabled || loading}
+          disabled={disabled}
           ref={ref}
           errors={errors}
           customCSS={customCSS}
@@ -263,36 +289,33 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
               size="mini"
               customCSS={{
                 display: showClear,
+                color: "var(--sq-text-subdued)",
               }}
-              icon_css={{
-                color: arrowColor,
-                margin: "auto",
-                height: "16px",
-                width: "16px",
-              }}
-              color={
-                errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
-              }
+              icon_css={{ marginTop: "var(--sq-spacing-xxxx-small)" }}
+              type={"button"}
+              role={"button"}
               onClick={(e: React.MouseEvent<HTMLElement>) => {
                 e.stopPropagation();
                 functional.selectItem((null as unknown) as ItemType);
               }}
             />
-            {loading ? (
-              <LoadingSpinner color={arrowColor} right="14px" bottom="12px" />
-            ) : isOpen ? (
+            {customIcon ? (
               <IconView
-                icon={"chevron_up"}
+                icon={customIcon}
                 size={"small"}
-                customCSS={"padding: 8px; box-sizing: content-box;"}
-                color={arrowColor}
+                customCSS={
+                  "padding: var(--sq-spacing-x-small) var(--sq-spacing-small) var(--sq-spacing-x-small) var(--sq-spacing-x-small); box-sizing: content-box;"
+                }
+                color={"var(--sq-text-subdued)"}
               />
             ) : (
               <IconView
-                icon={"chevron_down"}
+                icon={isOpen ? "chevron_up" : "chevron_down"}
                 size={"small"}
-                customCSS={"padding: 8px; box-sizing: content-box;"}
-                color={arrowColor}
+                customCSS={
+                  "padding: var(--sq-spacing-x-small) var(--sq-spacing-small) var(--sq-spacing-x-small) var(--sq-spacing-x-small); box-sizing: content-box;"
+                }
+                color={"var(--sq-text-subdued)"}
               />
             )}
           </ButtonDiv>
@@ -315,7 +338,8 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
                   : "padding-right: var(--sq-spacing-xxx-large)"
               };
             `}
-            disabled={disabled || loading}
+            disabled={disabled}
+            onClick={() => !isOpen && functional.toggleMenu()}
             {...functional.getInputProps()}
           />
           <ButtonContainerDiv>
@@ -325,50 +349,43 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
               borderless={true}
               size="mini"
               customCSS={{
+                color: "var(--sq-text-subdued)",
                 display: showClear,
               }}
-              icon_css={{
-                margin: "auto",
-                color: arrowColor,
-                height: "12px",
-                width: "12px",
-              }}
-              color={
-                errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
-              }
+              icon_css={{ marginTop: "var(--sq-spacing-xxx-small)" }}
               onClick={(e: React.MouseEvent<HTMLElement>) => {
                 e.stopPropagation();
                 functional.selectItem((null as unknown) as ItemType);
               }}
             />
-            {loading ? (
-              <LoadingSpinner color={arrowColor} right="16px" bottom="3px" />
-            ) : isOpen ? (
+            {customIcon ? (
               <IconButton
                 disabled={disabled}
-                icon={"chevron_up"}
+                icon={customIcon}
                 borderless={true}
-                size="mini"
-                icon_css={{ color: arrowColor, height: "12px", width: "12px" }}
-                color={
-                  errors
-                    ? "var(--sq-border-critical)"
-                    : "var(--sq-text-subdued)"
-                }
+                size="small"
+                customCSS={{
+                  padding:
+                    "10px var(--sq-spacing-x-small) var(--sq-spacing-x-small)",
+                }}
+                icon_css={{
+                  color: "var(--sq-text-subdued)",
+                }}
                 {...functional.getToggleButtonProps()}
               />
             ) : (
               <IconButton
                 disabled={disabled}
-                icon={"chevron_down"}
+                icon={isOpen ? "chevron_up" : "chevron_down"}
                 borderless={true}
-                size="mini"
-                icon_css={{ color: arrowColor, height: "12px", width: "12px" }}
-                color={
-                  errors
-                    ? "var(--sq-border-critical)"
-                    : "var(--sq-text-subdued)"
-                }
+                size="small"
+                customCSS={{
+                  padding:
+                    "10px var(--sq-spacing-x-small) var(--sq-spacing-x-small)",
+                }}
+                icon_css={{
+                  color: "var(--sq-text-subdued)",
+                }}
                 {...functional.getToggleButtonProps()}
               />
             )}
@@ -382,18 +399,24 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
         {...functional.getMenuProps()}
       >
         {isOpen &&
-          items.map((item, index) => (
-            <ListItem
-              style={
-                functional.highlightedIndex === index
-                  ? { backgroundColor: "var(--sq-surface-hover)" }
-                  : {}
-              }
-              key={`${itemToString(item)}-${index}`}
-              {...functional.getItemProps({ item, index })}
-            >
-              {itemToNode(item)}
-            </ListItem>
+          (loading ? (
+            loadingSlot
+          ) : empty ? (
+            <ListItem key={`3`}>{emptySlot}</ListItem>
+          ) : (
+            items.map((item, index) => (
+              <ListItem
+                style={
+                  functional.highlightedIndex === index
+                    ? { backgroundColor: "var(--sq-surface-hover)" }
+                    : {}
+                }
+                key={`${itemToString(item)}-${index}`}
+                {...functional.getItemProps({ item, index })}
+              >
+                {itemToNode(item)}
+              </ListItem>
+            ))
           ))}
       </ItemContainerList>
     </ContainerDiv>

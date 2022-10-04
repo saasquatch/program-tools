@@ -94,10 +94,10 @@ export const CSSVariables = createGlobalStyle`
   /* Button */
   --sq-font-size-button-small: 12px;
   --sq-font-size-button-medium: 14px;
-  --sq-font-size-button-large: 18px;
+  --sq-font-size-button-large: 16px;
   --sq-line-height-button-small: 16px;
-  --sq-line-height-button-medium: 16px;
-  --sq-line-height-button-large: 18px;
+  --sq-line-height-button-medium: 20px;
+  --sq-line-height-button-large: 24px;
 
   /* Icon Sizes */
   --sq-icon-size-small: 12px;

@@ -1,11 +1,11 @@
 import * as React from "react";
 import root from "react-shadow/styled-components";
-import styled, { css } from "styled-components";
+import styled, { css, CSSProp } from "styled-components";
 import { IconView } from "../Icon";
 import * as Styles from "./Styles";
 
 type InputProps = OptionProps &
-  Omit<Partial<React.ComponentProps<"input">>, "value">;
+  Omit<Partial<React.ComponentProps<"input">>, "translate" | "value">;
 
 export interface OptionProps {
   /**
@@ -19,7 +19,7 @@ export interface OptionProps {
   /**
    * Label adjacent to checkbox
    */
-  label?: string | boolean;
+  label?: string | boolean | React.ReactNode;
   /**
    * Render in disabled state
    */
@@ -28,10 +28,15 @@ export interface OptionProps {
    * Checkbox element id
    */
   id?: string;
+  /**
+   * Custon CSS applied to the checkbox container
+   */
+  customContainerCSS?: CSSProp;
 }
 
-const ShadowDom = styled(root.div)`
+const ShadowDom = styled(root.div)<{ customContainerCSS?: CSSProp }>`
   display: contents;
+  ${(props) => props.customContainerCSS}
 `;
 
 const CheckboxLabel = styled.label<{ isDisabled?: any }>`
@@ -55,9 +60,17 @@ export const CheckboxView = React.forwardRef<
   React.ElementRef<"input">,
   InputProps
 >((props, forwardedRef) => {
-  const { id, value, onChange, label = "", disabled, name, ...rest } = props;
+  const {
+    id,
+    value,
+    onChange,
+    label = "",
+    disabled,
+    customContainerCSS = {},
+    ...rest
+  } = props;
   return (
-    <ShadowDom>
+    <ShadowDom customContainerCSS={customContainerCSS}>
       <CheckboxLabel htmlFor={id} isDisabled={disabled}>
         <CheckboxInput
           {...rest}
@@ -71,7 +84,13 @@ export const CheckboxView = React.forwardRef<
         <CheckboxDiv isDisabled={disabled}>
           <IconView icon="checkmark" customCSS={CheckboxTick} />
         </CheckboxDiv>
-        {label ? label : ""}
+        <div
+          style={{
+            marginTop: "calc(-1*var(--sq-spacing-xxx-small))",
+          }}
+        >
+          {label ? label : ""}
+        </div>
       </CheckboxLabel>
     </ShadowDom>
   );

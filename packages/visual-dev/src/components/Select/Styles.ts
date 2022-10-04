@@ -24,7 +24,8 @@ export const ItemContainer = css`
   margin: 0;
   background: var(--sq-surface);
   border: 2px solid var(--sq-focused);
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 var(--sq-border-radius-normal)
+    var(--sq-border-radius-normal);
   border-top: none;
   top: 33px;
   outline: none;
@@ -37,13 +38,13 @@ export const ItemContainer = css`
 
 export const ButtonContainer = css`
   position: absolute;
-  right: 100%;
   display: flex;
   align-items: center;
   text-indent: 0px;
   padding-right: var(--sq-spacing-small);
-  right: 4px;
-  top: 10px;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
   & > :not(:last-child) {
     margin-right: var(--sq-spacing-x-small);
   }
@@ -52,6 +53,7 @@ export const ButtonContainer = css`
 export const ItemDescription = css`
   color: var(--sq-text-subdued);
   font-size: var(--sq-font-size-small);
+  line-height: var(--sq-line-height-regular);
 `;
 
 export const Container = css`
@@ -76,7 +78,7 @@ export const SelectInputStyle = css`
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
   border: 2px solid var(--sq-border);
-  border-radius: 4px;
+  border-radius: var(--sq-border-radius-normal);
   padding: var(--sq-spacing-xxx-small) 0 var(--sq-spacing-xxx-small)
     var(--sq-spacing-small);
 
@@ -99,7 +101,6 @@ export const ButtonDiv = css`
   align-items: center;
   text-indent: 0px;
   padding: 2px 4px 0px;
-  margin: auto 0;
 
   & > :not(:last-child) {
     margin-right: var(--sq-spacing-xx-small);

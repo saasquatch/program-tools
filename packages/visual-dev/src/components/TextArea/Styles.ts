@@ -13,7 +13,7 @@ export const TextareaBoxStyle = css`
   line-height: var(--sq-line-height-regular);
 
   border: 2px solid var(--sq-border);
-  border-radius: 4px;
+  border-radius: var(--sq-border-radius-normal);
 
   &::placeholder {
     color: var(--sq-text-input-disabled);
@@ -40,7 +40,7 @@ export const TextareaBoxStyle = css`
 export const invalid = css`
   background: var(--sq-surface-critical-subdued);
   border: 2px solid var(--sq-border-critical);
-  border-radius: 4px;
+  border-radius: var(--sq-border-radius-normal);
 
   &:focus {
     outline: none;

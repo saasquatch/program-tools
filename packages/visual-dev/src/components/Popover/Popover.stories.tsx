@@ -94,7 +94,15 @@ export const WithPositionOffset = () => {
 export const OnlyAction = () => (
   <PopoverView show={true} relativeX="24px" relativeY="24px">
     <PopoverView.ActionView onClick={() => console.log("Hello")}>
-      Someting
+      Something
+    </PopoverView.ActionView>
+  </PopoverView>
+);
+
+export const CustomPadding = () => (
+  <PopoverView padding="100px" show={true} relativeX="24px" relativeY="24px">
+    <PopoverView.ActionView onClick={() => console.log("Hello")}>
+      Something
     </PopoverView.ActionView>
   </PopoverView>
 );

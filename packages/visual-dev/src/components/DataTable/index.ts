@@ -4,6 +4,7 @@ import { PaginationView } from "./Pagination";
 import { RowView } from "./Row";
 import { DataTableView } from "./DataTable";
 import { SkeletonView } from "./Skeleton";
+import { TableRowView } from "./TableRow";
 
 const DataTableNamespace = Object.assign(DataTableView, {
   RowView: RowView,
@@ -11,6 +12,7 @@ const DataTableNamespace = Object.assign(DataTableView, {
   BannerView: BannerView,
   FilterView: FilterView,
   SkeletonView: SkeletonView,
+  TableRowView: TableRowView,
 });
 
 /**
@@ -22,6 +24,7 @@ const DataTableNamespaceDeprecated = Object.assign(DataTableView, {
   Banner: BannerView,
   Filter: FilterView,
   Skeleton: SkeletonView,
+  TableRow: TableRowView,
 });
 
 export { DataTableNamespace as DataTableView };

@@ -2,7 +2,6 @@ import { css } from "styled-components";
 
 export const base = css`
   background-color: var(--sq-background);
-  border-radius: 50%;
   width: 34px;
   height: 34px;
   text-align: center;
@@ -21,7 +20,8 @@ export const circle = css`
 
 export const RowBase = css`
   display: flex;
-  padding: 20px;
+  min-height: 60px;
+  padding: var(--sq-spacing-xx-small) 20px;
   justify-content: space-between;
   align-items: center;
   font-family: var(--sq-font-family-sans);
@@ -96,7 +96,7 @@ export const ContentDiv = css`
 export const SkeletonDiv = css`
   float: left;
   margin-right: var(--sq-spacing-x-small);
-  border-radius: 50px;
+  border-radius: var(--sq-border-radius-pill);
 `;
 
 export const PopoverDiv = css`
@@ -130,12 +130,14 @@ export const PopoverDividerDiv = css`
 
 export const PaginationDiv = css`
   display: flex;
-  padding: var(--sq-spacing-large);
+  background-color: var(--sq-background);
+  padding: var(--sq-spacing-xx-small) 20px;
   align-items: center;
   background: var(--sq-background);
   border: 2px solid var(--sq-border);
   border-top: 0px;
   box-sizing: border-box;
+  min-height: 42px;
   font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);

@@ -16,7 +16,13 @@ import {
   IconButtonView,
 } from "./components/Button";
 import { Checkbox, CheckboxView, RJSFCheckbox } from "./components/Checkbox";
-import { Radio, RadioView, RJSFRadio } from "./components/Radio";
+import {
+  Radio,
+  RadioGroup,
+  RadioGroupView,
+  RadioView,
+  RJSFRadio,
+} from "./components/Radio";
 import {
   Input,
   InputView,
@@ -66,6 +72,7 @@ import {
 import { Dropdown, DropdownView } from "./components/Dropdown";
 import { Tabs, TabsView } from "./components/Tabs";
 import { ModalView } from "./components/Modal";
+import { SliderView } from "./components/Slider";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -118,6 +125,8 @@ export {
   Popover,
   RadioView,
   Radio,
+  RadioGroupView,
+  RadioGroup,
   RadioActionView,
   RadioAction,
   RadioActionGroup,
@@ -149,4 +158,5 @@ export {
   Tooltip,
   Tabs,
   TabsView,
+  SliderView,
 };

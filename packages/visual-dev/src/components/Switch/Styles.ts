@@ -5,7 +5,7 @@ export const base = css`
   width: 40px;
   height: 20px;
   border: 3px solid var(--sq-border);
-  border-radius: 100px;
+  border-radius: var(--sq-border-radius-pill);
   background: var(--sq-surface-input-disabled);
   cursor: pointer;
   transform: translateX(-100%);
@@ -47,7 +47,7 @@ export const critical = css`
 export const off = css`
   opacity: 0;
   z-index: 1;
-  border-radius: 15px;
+  border-radius: var(--sq-border-radius-pill);
   width: 40px;
   height: 20px;
   margin: 0;

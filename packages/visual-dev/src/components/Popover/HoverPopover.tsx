@@ -1,10 +1,9 @@
 import React from "react";
 import { useState } from "react";
 
-export type HoverPopoverProps = { handle: React.ReactNode } & Omit<
-  React.ComponentProps<"div">,
-  "translate" | "css"
->;
+export type HoverPopoverProps = {
+  handle: React.ReactNode;
+} & Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export const HoverPopover: React.FC<HoverPopoverProps> = ({
   handle,

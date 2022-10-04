@@ -4,7 +4,7 @@ import { getWorld } from "../world";
 
 const userSteps: StepDefinitions = ({ given }) => {
   given(
-    /^the (?:referred )?user has custom field "?([^"]+)"? equal to "?([^"]+)"?$/,
+    /^the (?:referred )?user (?:now )?has custom field "?([^"]+)"? equal to "?([^"]+)"?$/,
     (field: string, val: string) => {
       getWorld().setState({
         current: {
@@ -17,6 +17,33 @@ const userSteps: StepDefinitions = ({ given }) => {
       });
     }
   );
+
+  given(
+    /^the (?:referred )?user previously had custom field "?([^"]+)"? equal to "?([^"]+)"?$/,
+    (field: string, val: string) => {
+      if (getWorld().state.current.previous === undefined) {
+        const user = getWorld().state.current.user;
+        getWorld().setState({ current: { previous: user } });
+      }
+
+      getWorld().setState({
+        current: {
+          previous: {
+            customFields: {
+              [field]: inferType(val),
+            },
+          },
+        },
+      });
+    }
+  );
+
+  given("the user's custom fields didn't change", () => {
+    if (getWorld().state.current.previous === undefined) {
+      const user = getWorld().state.current.user;
+      getWorld().setState({ current: { previous: user } });
+    }
+  });
 
   given(
     /^the (?:referred )?user (is|is not|isn't) blocked$/,
