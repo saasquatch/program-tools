@@ -8,7 +8,8 @@ const DEFAULT_LOGGER_NAME = "_sqqt_default_logger";
 
 /**
  * Return the initialized logger. If the logger has not
- * yet been initialized, this function returns undefined.
+ * yet been initialized, it will be initialized with the
+ * default configuration
  *
  * @param {string | undefined} logger - The label of the logger to get
  * @return {winston.Logger} The logger
@@ -19,6 +20,17 @@ export function getLogger(logger?: string): winston.Logger {
     initializeLogger(name);
   }
   return _loggers[name];
+}
+
+/**
+ * Check if the given logger has been initialized yet
+ *
+ * @param {string | undefined} logger - The name of the logger
+ * @return {boolean} Whether the logger has been initialized
+ */
+export function isLoggerInitialized(logger?: string): boolean {
+  const name = logger ?? DEFAULT_LOGGER_NAME;
+  return _loggers[name] !== undefined;
 }
 
 /**
