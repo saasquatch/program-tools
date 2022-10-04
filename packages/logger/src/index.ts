@@ -1,4 +1,14 @@
-import { defaultConfig, LoggerConfig, LogLevel, LOG_LEVELS } from "./config";
+import {
+  defaultConfig,
+  LoggerConfig,
+  LogLevel,
+  LOG_LEVELS,
+  ConsoleTransport,
+  FileTransport,
+  HttpTransport,
+  StreamTransport,
+  Transport,
+} from "./config";
 import {
   error,
   getLogger,
@@ -11,10 +21,15 @@ import {
 import { httpLogMiddleware } from "./plugins";
 
 export {
+  ConsoleTransport,
+  FileTransport,
+  HttpTransport,
   LOG_LEVELS,
   LOG_TYPE_MARKER,
   LogLevel,
   LoggerConfig,
+  StreamTransport,
+  Transport,
   defaultConfig,
   error,
   getLogger,
