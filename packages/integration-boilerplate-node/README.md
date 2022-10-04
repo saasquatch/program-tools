@@ -25,7 +25,7 @@ import { createIntegrationService } from "@saasquatch/integration-boilerplate-no
 async function main() {
   const service = await createIntegrationService({
     handlers: {
-      webhookHandler(service, webhook, config, graphql, res) {
+      async webhookHandler(service, webhook, _config, _graphql, res) {
         service.logger.info("Handling a webhook! %o", webhook);
         res.sendStatus(200);
       },
