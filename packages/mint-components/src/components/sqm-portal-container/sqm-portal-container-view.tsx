@@ -44,9 +44,9 @@ export function PortalContainerView(
 
   const vanillaStyle = `
   :host{
-    max-width: 100%;
+    width: 100%;
     display: block;
-    box-sizing: border-box;
+    // box-sizing: border-box;
   }`;
 
   const sheet = createStyleSheet(style);

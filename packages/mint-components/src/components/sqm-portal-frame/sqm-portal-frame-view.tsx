@@ -14,10 +14,10 @@ export interface PortalFrameViewProps {
 
 const style = {
   HostBlock: HostBlock,
-  ":host": {
-    maxWidth: "fit-content",
-    "box-sizing": "border-box",
-  },
+  // ":host": {
+  //   maxWidth: "fit-content",
+  //   "box-sizing": "border-box",
+  // },
   Frame: {
     display: "flex",
     "flex-direction": "column",
@@ -43,7 +43,7 @@ const style = {
     "box-sizing": "border-box",
     display: "flex",
     "justify-content": "space-between",
-    // padding: "var(--sl-spacing-small) var(--sl-spacing-large)",
+    padding: "var(--sl-spacing-small) var(--sl-spacing-large)",
     "align-items": "center",
 
     "background-color": "var(--sqm-header-background)",

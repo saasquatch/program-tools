@@ -49,10 +49,24 @@ export function PortalProfileView(props: PortalProfileViewProps) {
   const { errors, error } = formState;
 
   const style = {
+    Container: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "var(--sl-spacing-xxx-large)",
+      padding: "var(--sl-spacing-xxx-large)",
+      "@media screen and (max-width: 499px)": {
+       padding: "var(--sl-spacing-medium)"
+      }
+    },
     FormStyle: {
+      width: "100%",
+      minWidth: "700px",
       "& >*:not(:last-child)": {
         "margin-bottom": "32px",
       },
+      "@media screen and (max-width: 1100px)": {
+        minWidth: "100%",
+      }
     },
     Error: {
       "&::part(erroralert-base)": {
@@ -66,10 +80,21 @@ export function PortalProfileView(props: PortalProfileViewProps) {
       },
     },
     NameInputStyle: {
-      "&:not(:last-child)": {
-        "margin-right": "var(--sl-spacing-medium)",
+      width: "50%",
+      "@media screen and (max-width: 860px)": {
+        width: "100%",
+        "margin-right": "0",
       },
+
     },
+    NameInputContainer: {
+      display: "flex",
+      gap: "32px",
+      width: "100%",
+      "@media screen and (max-width: 860px)": {
+        flexDirection: "column",
+      }
+    }
   };
 
   const sheet = createStyleSheet(style);
@@ -82,13 +107,13 @@ export function PortalProfileView(props: PortalProfileViewProps) {
     : "";
 
   return (
-    <PortalContainerView
-      {...{
-        direction: "column",
-        padding: "xxx-large",
-        gap: "xxx-large",
-        minWidth: "600px",
-      }}
+    <div class={sheet.classes.Container}
+      // {...{
+      //   direction: "column",
+      //   padding: "xxx-large",
+      //   gap: "xxx-large",
+      //   minWidth: "600px",
+      // }}
     >
       <style type="text/css">{styleString}</style>
       <TextSpanView {...{ type: "h1" }}>{text.editProfileHeader}</TextSpanView>
@@ -116,13 +141,13 @@ export function PortalProfileView(props: PortalProfileViewProps) {
             <div part="erroralert-text">{error}</div>
           </sqm-form-message>
         )}
-        <PortalContainerView
-          {...{
-            direction: "row",
-            padding: "none",
-            gap: "32px",
-            minWidth: "50%",
-          }}
+        <div class={sheet.classes.NameInputContainer}
+          // {...{
+          //   direction: "row",
+          //   padding: "none",
+          //   gap: "32px",
+          //   minWidth: "50%",
+          // }}
         >
           <sl-input
             class={sheet.classes.NameInputStyle}
@@ -160,7 +185,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
                 : undefined
             }
           ></sl-input>
-        </PortalContainerView>
+        </div>
         <sl-input
           label={text.emailtext}
           value={states.user?.email}
@@ -187,6 +212,6 @@ export function PortalProfileView(props: PortalProfileViewProps) {
           {text.submitChangeButtonText}
         </sl-button>
       </form>
-    </PortalContainerView>
+    </div>
   );
 }
