@@ -35,8 +35,8 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [countdown, setCountdown] = useState(10);
-  const timerRef = useRef<any>(undefined);
-  const countdownRef = useRef<any>(undefined);
+  const timerRef = useRef<NodeJS.Timer>(undefined);
+  const countdownRef = useRef<NodeJS.Timer>(undefined);
 
   const submit = async () => {
     if (!email) return;
