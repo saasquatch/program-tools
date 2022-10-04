@@ -54,9 +54,6 @@ export function PortalProfileView(props: PortalProfileViewProps) {
       flexDirection: "column",
       gap: "var(--sl-spacing-xxx-large)",
       padding: "var(--sl-spacing-xxx-large)",
-      "@media screen and (max-width: 499px)": {
-       padding: "var(--sl-spacing-medium)"
-      }
     },
     FormStyle: {
       width: "100%",

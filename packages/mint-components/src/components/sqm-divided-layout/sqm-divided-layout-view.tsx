@@ -33,11 +33,16 @@ export function DividedLayoutView(
 
   const hostStyle = `
   display: flex;
+  flex: 1;
   box-sizing: border-box;
-  max-width: 100vw;
   flex-direction: ${props.direction};
   background-color: var(--sqm-content-background);
   overflow-x: clip;
+  ${
+    props.direction === "column"
+      ? "width: 100%; max-width: var(--sqm-portal-main-width);"
+      : ""
+  }
   `;
 
   const vanillaStyle = `
