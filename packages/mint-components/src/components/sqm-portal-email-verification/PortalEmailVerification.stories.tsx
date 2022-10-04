@@ -22,8 +22,8 @@ const defaultContent = {
     "A verification email was sent to {email}. Please verify your email to continue to the portal.",
   emailVerificationHeader: "Verify your email",
   resendEmailButtonText: "Re-send Email",
-  verificationStatusMessage: "{countdown} seconds till verification refresh",
-  verificationLoadingMessage: "Checking verification",
+  verificationStatusMessage: "Checking verification status in {countdown}",
+  verificationLoadingMessage: "Checking verification status",
 };
 
 const defaultStates = {
