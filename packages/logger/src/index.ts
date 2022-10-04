@@ -14,6 +14,7 @@ import {
   getLogger,
   info,
   initializeLogger,
+  isLoggerInitialized,
   log,
   LOG_TYPE_MARKER,
   warn,
@@ -36,6 +37,7 @@ export {
   httpLogMiddleware,
   info,
   initializeLogger,
+  isLoggerInitialized,
   log,
   warn,
 };
