@@ -83,11 +83,16 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
     // Restart the timer if verification has just been checked
     if (restartCountdown) setCountdown(restartCountdown);
 
+    // Default back to 10 if the countdown got to zero
+    let newCountdown = countdown || 10;
+
     // Start timers from either the beginning or based on the previous value
     countdownRef.current = startCountdown(
-      restartCountdown - 1 || countdown - 1
+      restartCountdown - 1 || newCountdown - 1
     );
-    timerRef.current = startTimer(restartCountdown * 1000 || countdown * 1000);
+    timerRef.current = startTimer(
+      restartCountdown * 1000 || newCountdown * 1000
+    );
   }
 
   const resyncTimersCallback = useCallback(() => resyncTimers(), [countdown]);
@@ -105,7 +110,10 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
 
   // Countdown timer
   useEffect(() => {
-    if (countdown > 0) countdownRef.current = startCountdown(countdown - 1);
+    if (countdown > 0) {
+      clearInterval(countdownRef.current);
+      countdownRef.current = startCountdown(countdown - 1);
+    }
     // Re-sync the timers if tab visibility has changed
     document.addEventListener("visibilitychange", resyncTimersCallback);
     return () => {
