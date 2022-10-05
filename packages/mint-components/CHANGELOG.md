@@ -29,6 +29,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Added missing margin bottom to the success alert
   - \<sqm-stat-container>
     - Added media query to hide the stats right border when the screen size is 430px or less. 
+  - \<sqm-hero>
+    - Adding two column layout example for usage in the microsite/widget editor
+
 ## [1.6.2] - 2022-07-21
 
 ### Added
