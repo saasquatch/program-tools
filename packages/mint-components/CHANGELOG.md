@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.?] - 2022-10-?
+
+### Changed
+
 ## [1.6.2] - 2022-07-21
 
 ### Added
@@ -22,6 +26,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Designed to be used in Microsite headers
 
 ### Changed
+
+- Changed components: 
+  - \<sqm-divided-layout>
+    - Added `box-sizing: border-box` and `overflow-x: clip` to the root container element to remove horizontal scrollbar on mobile devices
+  - \<sqm-edit-profile>
+    - Added missing `)` to the end of CSS variable
+  - \<sqm-empty>
+    - Changed padding from `xxxx-large` to `large`
+    - Fixed the name of the exported class to accurately reflect the name of the component
+  - \<sqm-navigation-sidebar>
+    - Updated view to display a hamburger menu when the screen size is 799px or less
+    - Added `useNavigationSidebar` hook to automatically close the menu in mobile when navigating between routes
+  - \<sqm-portal-container>
+    - Added `box-sizing: border-box;` to container
+  - \<sqm-portal-profile>
+    - Replaced `<sqm-portal-containers>` used in the view in order to change the flex direction of the name inputs when in mobile view.
+    - Added missing margin bottom to the success alert
+  - \<sqm-stat-container>
+    - Added media query to hide the stats right border when the screen size is 430px or less. 
+
+
 
 - replaced useValidationState with useRegistrationFormState for `<sqm-portal-registration-form>` and `<sqm-portal-register>`
 - useRegistrationFormState allows passing loading, disabled, and initialData states in addition to validationErrors and network errors
