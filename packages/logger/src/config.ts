@@ -82,9 +82,9 @@ export type LoggerConfig = {
 export function defaultConfig(): LoggerConfig {
   let transports: Transport[] = [{ type: "console" }];
 
-  if (process.env["SQQT_LOG_TRANSPORTS"] !== undefined) {
+  if (process.env["SSQT_LOG_TRANSPORTS"] !== undefined) {
     try {
-      transports = JSON.parse(process.env["SQQT_LOG_TRANSPORTS"]);
+      transports = JSON.parse(process.env["SSQT_LOG_TRANSPORTS"]);
     } catch (e) {
       if (e instanceof Error) {
         console.error(e.message);
@@ -97,7 +97,7 @@ export function defaultConfig(): LoggerConfig {
   }
 
   let logLevel: LogLevel = "info";
-  const logEnv = process.env["SQQT_LOG_LEVEL"];
+  const logEnv = process.env["SSQT_LOG_LEVEL"];
   if (logEnv !== undefined) {
     if (LOG_LEVELS.includes(logEnv as LogLevel)) {
       logLevel = logEnv as LogLevel;

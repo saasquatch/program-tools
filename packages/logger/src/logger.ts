@@ -5,7 +5,7 @@ import { jsonFormat, prettyFormat } from "./format";
 let _loggers: Record<string, winston.Logger> = {};
 
 export const LOG_TYPE_MARKER = "__ssqt_log_type";
-export const DEFAULT_LOGGER_NAME = "_sqqt_default_logger";
+export const DEFAULT_LOGGER_NAME = "_ssqt_default_logger";
 
 export const SYSLOG_LOG_LEVELS = {
   emerg: 0,
