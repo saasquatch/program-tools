@@ -17,7 +17,7 @@ Feature: Share Link
     Then the link is copied to clipboard
     And a tooltip appears for ~1 second
 
-  @minutae
+  @minutia
   Scenario: Tooltip lifespan defaults to 2000
     Given the tooltip's lifespan is set to 2000
     And there is tooltip text
@@ -25,28 +25,28 @@ Feature: Share Link
     And the clipboard icon is clicked
     Then a tooltip appears for ~2 seconds
 
-  @minutae
+  @minutia
   Scenario: Demo
     Given isDemo() returns true
     Then the share link is "https://www.example.com/sharelink/abc"
     And the component won't be interactive
     And the tooltip is hidden
 
-  @minutae
+  @minutia
   Scenario: Program ID can be sourced from prop
     Given the programId prop is set to "program-a"
     And window.widgetIdent.programId is set to "program-b"
     When the component renders
     Then the share link is for "program-a"
 
-  @minutae
+  @minutia
   Scenario: Program ID can be sourced from window
     Given the programId prop is unset
     And window.widgetIdent.programId is set to "program-b"
     When the component renders
     Then the share link is for "program-b"
 
-  @minutae
+  @minutia
   Scenario: An analytic event is fired when a user copies their sharelink
     Given a user viewing the share link component
     And the component is rendered for "program-a"

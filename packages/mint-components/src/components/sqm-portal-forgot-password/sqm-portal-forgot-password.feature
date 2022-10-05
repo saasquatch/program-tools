@@ -51,7 +51,7 @@ Feature: Forgot Password
       | doesn't have | N/A              | /resetPassword   |
       | has          | /resetMyPassword | /resetMyPassword |
 
-  @minutae
+  @minutia
   Scenario Outline: Navigation back to the login page can be customized but defaults to "/login"
     Given a user viewing the password reset component
     And the component <mayHave> "login-path" with <value>

@@ -61,13 +61,13 @@ Feature: Portal Container
 			| xxxx-large | xxxx-large |
 			| N/A        | no padding |
 
-	@minutae
+	@minutia
 	@ui
 	Scenario: Content can be center aligned in horizontal view
 		Given I have supplied the prop "center"
 		Then the content is center aligned
 
-	@minutae
+	@minutia
 	@ui
 	Scenario: Content in the last row can span full width with display in horizontal view
 		Given I have `display` to "flex"

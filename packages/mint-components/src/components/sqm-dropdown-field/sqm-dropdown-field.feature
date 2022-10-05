@@ -19,7 +19,7 @@ Feature: Dropdown field
     And they see the dropdown bordered in red
     And below they see the validation error "Select an option"
 
-  @minutae
+  @minutia
   Scenario: The dropdown field can be optional
     Given the dropdown has prop "dropdown-optional" with value "true"
     When the user tries to register
@@ -37,7 +37,7 @@ Feature: Dropdown field
       |                 | Select an option |
       | My Custom Label | My Custom Label  |
 
-  @minutae
+  @minutia
   Scenario Outline: Validation error message is configurable
     The error message string is evaluated as an ICU string, but currently is provided no context
     Given the dropdown is required
@@ -85,7 +85,7 @@ Feature: Dropdown field
     And they register
     Then the value of their selected option is submitted under "myDropDown" field
 
-  @minutae
+  @minutia
   Scenario Outline: The dropdown field component fails fast if a dropdown name isn't provided
     Given the dropdown <mayHave> prop "dropdown-name"
     And it <mayHavePropValue>

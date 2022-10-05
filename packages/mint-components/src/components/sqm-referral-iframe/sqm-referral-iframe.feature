@@ -33,7 +33,7 @@ Feature: Referral Iframe
       | 500px       | 500px      |
       | 50%         | 50%        |
 
-  @minutae
+  @minutia
   Scenario Outline: The iFrame will fail fast if a iFrame source isn't provided
     Given "iframe-src" <mayBeAnAttribute>
     And it <mayHaveValue>

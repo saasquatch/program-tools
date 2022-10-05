@@ -47,6 +47,19 @@ export class PortalEmailVerification {
     "A verification email was sent to {email}. Please verify your email to continue to the portal. Resending an email will invalidate the previous email.";
 
   /**
+   * @uiName Email Verification Status Text
+   * @uiWidget textArea
+   */
+  @Prop() verificationStatusMessage: string =
+    "Checking verification status in {countdown}";
+
+  /**
+   * @uiName Email Verification Checking Text
+   * @uiWidget textArea
+   */
+  @Prop() verificationLoadingMessage: string = "Checking verification status";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -76,7 +89,7 @@ function usePortalEmailVerificationDemo(
 ): PortalEmailVerificationViewProps {
   return deepmerge(
     {
-      states: { error: "", loading: false, success: false },
+      states: { error: "", loading: false, success: false, countdown: 10 },
       callbacks: {
         submit: async (_event) => {},
       },
@@ -86,6 +99,8 @@ function usePortalEmailVerificationDemo(
           "A verification email was sent to {email}. Please verify your email to continue to the portal.",
         emailVerificationHeader: "Verify your email",
         resendEmailButtonText: "Re-send Email",
+        verificationLoadingMessage: props.verificationLoadingMessage,
+        verificationStatusMessage: props.verificationStatusMessage,
       },
     },
     props.demoData || {},

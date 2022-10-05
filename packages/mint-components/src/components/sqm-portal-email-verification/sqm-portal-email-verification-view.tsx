@@ -9,6 +9,9 @@ export interface PortalEmailVerificationViewProps {
     error: string;
     loading: boolean;
     success: boolean;
+    isVerified?: boolean;
+    loadingVerification?: boolean;
+    countdown?: number;
   };
   callbacks: {
     submit: (event: any) => Promise<void>;
@@ -18,12 +21,33 @@ export interface PortalEmailVerificationViewProps {
     verifyMessage: string;
     emailVerificationHeader: string;
     resendEmailButtonText: string;
+    verificationStatusMessage?: string;
+    verificationLoadingMessage?: string;
   };
 }
 
 const style = {
   Wrapper: AuthWrapper,
   Column: { ...AuthColumn },
+  ButtonLink: {
+    fontSize: "14px",
+    color: "var(--sl-color-primary-500)",
+    display: "inline-block !important",
+    "&:hover": {
+      cursor: "pointer",
+      textDecoration: "underline",
+    },
+  },
+  ButtonLinkLoading: {
+    fontSize: "14px",
+    color: "var(--sl-color-gray-500)",
+    opacity: "0.6",
+    display: "inline-block !important",
+    textDecoration: "underline",
+    "&:hover": {
+      cursor: "not-allowed",
+    },
+  },
 };
 
 const vanillaStyle = `
@@ -49,6 +73,8 @@ export function PortalEmailVerificationView(
       verifyMessage,
       emailVerificationHeader,
       resendEmailButtonText,
+      verificationStatusMessage,
+      verificationLoadingMessage,
     },
   } = props;
   return (
@@ -87,14 +113,35 @@ export function PortalEmailVerificationView(
             }
           )}
         </TextSpanView>
-        <sl-button
-          submit
-          loading={states.loading}
-          exportparts="base: primarybutton-base"
-          type="primary"
+        {
+          <p style={{ color: "var(--sl-color-gray-500)", fontSize: "14px" }}>
+            {intl.formatMessage(
+              {
+                id: `verificationStatus`,
+                defaultMessage: states.loadingVerification
+                  ? verificationLoadingMessage + " {countdown}"
+                  : verificationStatusMessage,
+              },
+              {
+                countdown: states.loadingVerification ? (
+                  <sl-spinner></sl-spinner>
+                ) : (
+                  states.countdown
+                ),
+              }
+            )}
+          </p>
+        }
+        <a
+          class={
+            states.loading
+              ? sheet.classes.ButtonLinkLoading
+              : sheet.classes.ButtonLink
+          }
+          onClick={callbacks.submit}
         >
           {resendEmailButtonText}
-        </sl-button>
+        </a>
       </sl-form>
     </div>
   );

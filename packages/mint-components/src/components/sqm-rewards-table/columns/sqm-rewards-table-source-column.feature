@@ -103,7 +103,7 @@ Feature: Reward Table Source Column
             | "FRIEND_SIGNUP" | referrer | Referral to |
             | "REFERRED"      | referred | Referred by |
 
-    @minutae
+    @minutia
     @ui
     Scenario Outline: Name fallbacks for referral users without names are customizable
         Given <prop> with <value>

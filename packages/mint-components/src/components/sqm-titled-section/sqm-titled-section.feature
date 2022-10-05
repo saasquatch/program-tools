@@ -21,7 +21,7 @@ Feature: Titled Section
             | right              | right   |
             |                    | left    |
 
-    @minutae
+    @minutia
     @ui
     Scenario: Label margin is configurable
         Given the titled section has "label-margin" <marginPropValue>
@@ -42,7 +42,7 @@ Feature: Titled Section
             | xxxx-large      | xxxx-large |
             |                 | no         |
 
-    @minutae
+    @minutia
     @ui
     Scenario Outline: Titled section padding is configurable
         Given the titled section has "padding" <paddingPropValue>

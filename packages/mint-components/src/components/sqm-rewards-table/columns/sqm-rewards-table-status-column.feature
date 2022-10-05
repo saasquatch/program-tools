@@ -65,7 +65,7 @@ Feature: Reward Table Status Column
             | EXPIRED   | Past due     | Red        |
             | REDEEMED  | Spent        | Blue       |
 
-    @minutae
+    @minutia
     @ui
     Scenario: Expiry status date text can be configured
         Given the "expiry-text" prop has <value>

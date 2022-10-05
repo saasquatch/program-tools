@@ -65,7 +65,7 @@ Feature: Portal Register
         Then a verification email is sent to their email
         And they are redirected to "/verify"
 
-    @minutae
+    @minutia
     Scenario Outline: Navigation back to the login page can be customized but defaults to "/login"
         Given a user viewing the register component
         And the component <mayHave> "login-path" with <value>
