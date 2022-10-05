@@ -15,7 +15,7 @@ Feature: Rewards Table
         And "See all the rewards you have earned from referring friends and completing tasks" below the bolded text
         And the pagination buttons are disabled
 
-    @minutae
+    @minutia
     @ui
     Scenario: A custom empty state can be provided
         Given a user with no rewards
@@ -23,7 +23,7 @@ Feature: Rewards Table
         When they view the reward table
         Then they see the custom empty state
 
-    @minutae
+    @minutia
     @ui
     Scenario: The loading state is shown while rewards are loading
         Given the table is loading
@@ -104,7 +104,7 @@ Feature: Rewards Table
         Then rewards from classic programs are shown
         And manual rewards are shown
 
-    @minutae
+    @minutia
     @ui
     Scenario: Column heading can be hidden
         Given the table is configured with "hide-labels" set to "true"

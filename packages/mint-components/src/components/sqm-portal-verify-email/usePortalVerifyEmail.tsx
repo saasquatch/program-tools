@@ -54,8 +54,14 @@ export function usePortalVerifyEmail({ nextPage, failedPage }) {
   };
 
   useEffect(() => {
-    submit();
-  }, []);
+    // Already verified, begin redirect
+    if (verified) {
+      setTimeout(() => {
+        gotoNextPage();
+      }, 3000);
+    }
+    !data && submit();
+  }, [verified]);
 
   return {
     states: {

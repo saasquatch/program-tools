@@ -813,6 +813,16 @@ export namespace Components {
          */
         "resendEmailButtonText": string;
         /**
+          * @uiName Email Verification Checking Text
+          * @uiWidget textArea
+         */
+        "verificationLoadingMessage": string;
+        /**
+          * @uiName Email Verification Status Text
+          * @uiWidget textArea
+         */
+        "verificationStatusMessage": string;
+        /**
           * @uiName Email Verification Body Text
           * @uiWidget textArea
          */
@@ -3755,6 +3765,16 @@ declare namespace LocalJSX {
           * @uiName Re-send Email Button Text
          */
         "resendEmailButtonText"?: string;
+        /**
+          * @uiName Email Verification Checking Text
+          * @uiWidget textArea
+         */
+        "verificationLoadingMessage"?: string;
+        /**
+          * @uiName Email Verification Status Text
+          * @uiWidget textArea
+         */
+        "verificationStatusMessage"?: string;
         /**
           * @uiName Email Verification Body Text
           * @uiWidget textArea

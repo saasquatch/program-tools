@@ -96,7 +96,7 @@ Feature: Checkbox Field
     When the user tries to register
     Then there is no error for the checkbox
 
-  @minutae
+  @minutia
   Scenario Outline: Validation error message is configurable
     The error message string is evaluated as an ICU string, but currently is provided no context
     Given the checkbox is required
@@ -133,7 +133,7 @@ Feature: Checkbox Field
     And they register
     Then the boolean value of the checkbox is submitted under "myCheckBox" field
 
-  @minutae
+  @minutia
   Scenario Outline: The checkbox field component fails fast if a checkbox name isn't provided
     Given the checkbox <mayHave> prop "checkbox-name"
     And it <mayHavePropValue>

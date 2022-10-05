@@ -4,7 +4,7 @@ Feature: Big Stat
 
   Big stat is a component for displaying a statistic as a large number with a label
 
-  @minutae
+  @minutia
   Scenario: Demo hook retrieves label using stat pattern
     Given isDemo() returns true
     And the component renders with props:
@@ -13,7 +13,7 @@ Feature: Big Stat
     Then the label is: "REFERRALS - COUNT"
     And the value is: "12345"
 
-  @minutae
+  @minutia
   Scenario: Demo hook falls back to default label on invalid path
     Given isDemo() returns true
     And the component renders with props:
@@ -64,7 +64,7 @@ Feature: Big Stat
     Then the label is: "Balance - Credit Earned"
     And the value is: "34 COFFEE"
 
-  @minutae
+  @minutia
   Scenario: Memoizes most recent query
     Given isDemo() returns false
     And the component's type prop is set to a variable named PATH

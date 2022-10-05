@@ -31,7 +31,7 @@ Feature: Referral Table
         And "View your referral history" in bold
         And "See your previous referrals and what you earned!" below the bolded text
 
-    @minutae
+    @minutia
     @ui
     Scenario: A custom empty state can be provided
         Given a user with no referrals
@@ -122,7 +122,7 @@ Feature: Referral Table
         Given the "program-id" of the table is set to "classic"
         Then only classic referrals are shown in the table
 
-    @minutae
+    @minutia
     @ui
     Scenario: Column heading can be hidden
         Given the table is configured with "hide-labels" set to "true"

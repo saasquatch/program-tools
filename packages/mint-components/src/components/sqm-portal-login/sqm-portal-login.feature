@@ -102,7 +102,7 @@ Feature: Portal Login
       | https://user:pass@www.example.com:444?nextPage=activity | https://www.example.com:444/activity |
 
 
-  @minutae
+  @minutia
   Scenario Outline: Navigation to the registration page can be customized but defaults to "/register"
     Given a user viewing the login component
     And the component <mayHave> "register-path" with <value>
@@ -114,7 +114,7 @@ Feature: Portal Login
       | doesn't have | N/A     | /register    |
       | has          | /signup | /signup      |
 
-  @minutae
+  @minutia
   Scenario Outline: Navigation to the forgot password page can be customized but defaults to "/forgotPassword"
     Given a user viewing the login component
     And the component <mayHave> "forgot-password-path" with <value>

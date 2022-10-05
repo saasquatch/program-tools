@@ -999,8 +999,8 @@ export namespace Components {
           * Show and hide button depending on what type of device the user is on
           * @uiName WhatsApp Display Rule
           * @uiGroup WhatsApp
-          * @uiEnum ["mobile-only","hidden"]
-          * @uiEnumNames ["Mobile Only","Hide"]
+          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
           * @default mobile-only
          */
         "whatsappdisplayrule": string;
@@ -2255,8 +2255,8 @@ declare namespace LocalJSX {
           * Show and hide button depending on what type of device the user is on
           * @uiName WhatsApp Display Rule
           * @uiGroup WhatsApp
-          * @uiEnum ["mobile-only","hidden"]
-          * @uiEnumNames ["Mobile Only","Hide"]
+          * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
+          * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
           * @default mobile-only
          */
         "whatsappdisplayrule"?: string;

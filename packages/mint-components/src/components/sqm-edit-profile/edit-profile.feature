@@ -19,8 +19,7 @@ Feature: Edit Profile
         Then their profile information will be updated
         And the edit profile page will return to the read only state
 
-    @review
-    @minutae
+    @minutia
     Scenario: Users can abandon updating their profile information
         Given the user has enabled editing of their profile information
         And they have input valid profile information
@@ -28,8 +27,7 @@ Feature: Edit Profile
         Then their profile information will not be updated
         And the edit profile page will return to the read only state
 
-    @review
-    @minutae
+    @minutia
     Scenario: Users cannot update their profile with invalid information
         Given the user has enabled editing of their profile information
         And they have input invalid profile information or have missing information

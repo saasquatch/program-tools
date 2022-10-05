@@ -32,6 +32,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-hero>
     - Adding two column layout example for usage in the microsite/widget editor
 
+## [1.6.3] - 2022-10-04
+
+### Changed
+
+- Added a countdown timer to \<sqm-portal-email-validation> that automatically checks if a user's email has been verified on another screen or device
+  - User will be redirected to the \<sqm-portal-verify-email> success screen by default
+- The Resend Email button in \<sqm-portal-email-validation> is now a text link
+- Verified users that navigate to a path containing \<sqm-portal-verify-email> will now be properly redirected to the portal instead of seeing a failure screen
+- Changed Components
+  - \<sqm-portal-email-validation>
+  - \<sqm-portal-verify-email>
+
 ## [1.6.2] - 2022-07-21
 
 ### Added
@@ -89,7 +101,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-route>
   - \<sqm-share-code>
   - \<sqm-user-name>
-
 
 ### Breaking Changes
 
@@ -600,7 +611,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.2...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.3...HEAD
+[1.6.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.3
 [1.6.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.2
 [1.6.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.1
 [1.6.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.0
