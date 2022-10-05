@@ -47,6 +47,9 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 const vanillaStyle = `
+    :host {
+      word-wrap: break-word;
+    }
     sqm-text-span {
       display: inline;
     }
