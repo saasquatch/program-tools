@@ -1,14 +1,15 @@
 import {
+  ConsoleTransport,
   defaultConfig,
+  FileTransport,
+  HttpTransport,
   LoggerConfig,
   LogLevel,
   LOG_LEVELS,
-  ConsoleTransport,
-  FileTransport,
-  HttpTransport,
   StreamTransport,
   Transport,
 } from "./config";
+import { jsonFormat, prettyFormat } from "./format";
 import {
   error,
   getLogger,
@@ -17,6 +18,7 @@ import {
   isLoggerInitialized,
   log,
   LOG_TYPE_MARKER,
+  SYSLOG_LOG_LEVELS,
   warn,
 } from "./logger";
 import { httpLogMiddleware } from "./plugins";
@@ -29,6 +31,7 @@ export {
   LOG_TYPE_MARKER,
   LogLevel,
   LoggerConfig,
+  SYSLOG_LOG_LEVELS,
   StreamTransport,
   Transport,
   defaultConfig,
@@ -38,6 +41,8 @@ export {
   info,
   initializeLogger,
   isLoggerInitialized,
+  jsonFormat,
+  prettyFormat,
   log,
   warn,
 };
