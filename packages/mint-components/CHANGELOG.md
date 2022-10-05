@@ -11,22 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-## [1.6.2] - 2022-07-21
-
-### Added
-
-- Added Components:
-  - \<sqm-portal-registration-form> component added to handle registration form submissions
-  - Has all features of existing \<sqm-portal-register> but uses registration forms instead
-    - Features include:
-      - Pre-fill
-      - Form Protection
-      - Domain Blocking
-  - \<sqm-header-logo> displays a logo and redirects participants when they click on it
-    - Designed to be used in Microsite headers
-
-### Changed
-
 - Changed components: 
   - \<sqm-divided-layout>
     - Added `box-sizing: border-box` and `overflow-x: clip` to the root container element to remove horizontal scrollbar on mobile devices
@@ -45,8 +29,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Added missing margin bottom to the success alert
   - \<sqm-stat-container>
     - Added media query to hide the stats right border when the screen size is 430px or less. 
+## [1.6.2] - 2022-07-21
 
+### Added
 
+- Added Components:
+  - \<sqm-portal-registration-form> component added to handle registration form submissions
+  - Has all features of existing \<sqm-portal-register> but uses registration forms instead
+    - Features include:
+      - Pre-fill
+      - Form Protection
+      - Domain Blocking
+  - \<sqm-header-logo> displays a logo and redirects participants when they click on it
+    - Designed to be used in Microsite headers
+
+### Changed
 
 - replaced useValidationState with useRegistrationFormState for `<sqm-portal-registration-form>` and `<sqm-portal-register>`
 - useRegistrationFormState allows passing loading, disabled, and initialData states in addition to validationErrors and network errors
