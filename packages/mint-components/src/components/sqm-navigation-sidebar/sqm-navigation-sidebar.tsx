@@ -1,4 +1,7 @@
-import { useCurrentPage } from "@saasquatch/component-boilerplate";
+import {
+  useCurrentPage,
+  useProgramId,
+} from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { Component, h, State } from "@stencil/core";
@@ -34,13 +37,14 @@ export class NavigationSidebar {
 
 function useNavigationSidebar() {
   const location = useCurrentPage();
+  const programId = useProgramId();
 
   const [checked, setChecked] = useState(false);
 
   // Close hamburger menu after navigation
   useEffect(() => {
     setChecked(false);
-  }, [location.pathname]);
+  }, [location.pathname, programId]);
 
   function onClick(e) {
     setChecked(e.target.checked);
