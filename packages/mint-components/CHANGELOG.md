@@ -25,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-portal-container>
     - Added `box-sizing: border-box;` to container
   - \<sqm-portal-profile>
-    - Replaced `<sqm-portal-containers>` used in the view in order to change the flex direction of the name inputs when in mobile view.
+    - Replaced `<sqm-portal-container>` used in the view in order to change the flex direction of the name inputs when in mobile view.
     - Added missing margin bottom to the success alert
   - \<sqm-stat-container>
     - Added media query to hide the stats right border when the screen size is 430px or less. 
