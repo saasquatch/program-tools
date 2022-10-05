@@ -1,10 +1,11 @@
 {
   "name": "@saasquatch/program-test-suite",
-  "version": "2.3.0",
+  "version": "2.4.1",
   "description": "A collection of utilities for creating program unit tests",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsc -w",
+    "prepare": "npm run build",
     "build": "tsc"
   },
   "files": [

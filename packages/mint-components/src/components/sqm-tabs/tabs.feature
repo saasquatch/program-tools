@@ -32,7 +32,7 @@ Feature: Tabs
       | bottom    | bottom of the content          |
 
 
-  @minutae
+  @minutia
   @ui
   Scenario Outline: Tabs are setup to use the brand color
     Given the brand color is set to darkblue

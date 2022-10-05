@@ -19,7 +19,7 @@ Feature: Reward Exchange List
         And "Use your points to redeem rewards once they become available" below the bolded text
         And the pagination buttons are disabled
 
-    @minutae
+    @minutia
     @ui
     Scenario: A custom empty state can be provided
         Given a user with no visible exchanges

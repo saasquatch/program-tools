@@ -27,7 +27,7 @@ Feature: Share Button
       | linemessenger | #00B300      | linemessenger logo |
       | pinterest     | #e60023      | pinterest logo     |
 
-  @minutae
+  @minutia
   @ui
   Scenario Outline: Default icons can be overwritten
     Given a share button for any medium with <iconPropValue>
@@ -51,7 +51,7 @@ Feature: Share Button
       | black                     |
       | green                     |
 
-  @minutae
+  @minutia
   @ui
   Scenario Outline: Share medium icons and text can be hidden
     Given a share button with <prop> <value>
@@ -62,7 +62,7 @@ Feature: Share Button
       | hideicon | true  | icon    |
       | hidetext | true  | text    |
 
-  @minutae
+  @minutia
   @ui
   Scenario Outline: Icons can be on either side of the text
     Given a share button with <iconslotPropValue>
@@ -74,13 +74,13 @@ Feature: Share Button
       | prefix            | left      |
       | prefix            | left      |
 
-  @minutae
+  @minutia
   Scenario: Unsupported browsers hide native share buttons
     Given the share button's medium prop is "direct"
     And your browser does not support the Web Share API
     Then the share button is hidden
 
-  @minutae
+  @minutia
   Scenario: SMS share buttons are hidden on non Android and iOS devices
     Given the share button's medium is "sms"
     And the share button is being viewed on a device which is not an Android or iOS device
@@ -102,12 +102,12 @@ Feature: Share Button
     Then tapping the share button opens the the Facebook mobile site in the device's browser
     And a share activity is opened with the share link prefilled
 
-  @minutae
+  @minutia
   Scenario: A supplied program ID is used if available
     Given the program id is supplied to the component in the "programId" prop
     Then the program ID in the "programId" prop is used to retrieve share links
 
-  @minutae
+  @minutia
   Scenario: The program ID is automatically fetched from context
     Given the program id is not supplied to the component in the "programId" prop
     Then the program ID is retrieved from context

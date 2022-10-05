@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.6.?] - 2022-10-?
+## [1.6.4] - 2022-10-05
 
 ### Changed
 
@@ -25,12 +25,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-portal-container>
     - Added `box-sizing: border-box;` to container
   - \<sqm-portal-profile>
-    - Replaced `<sqm-portal-containers>` used in the view in order to change the flex direction of the name inputs when in mobile view.
+    - Replaced `<sqm-portal-container>` used in the view in order to change the flex direction of the name inputs when in mobile view.
     - Added missing margin bottom to the success alert
   - \<sqm-stat-container>
     - Added media query to hide the stats right border when the screen size is 430px or less. 
   - \<sqm-hero>
     - Adding two column layout example for usage in the microsite/widget editor
+
+## [1.6.3] - 2022-10-04
+
+### Changed
+
+- Added a countdown timer to \<sqm-portal-email-validation> that automatically checks if a user's email has been verified on another screen or device
+  - User will be redirected to the \<sqm-portal-verify-email> success screen by default
+- The Resend Email button in \<sqm-portal-email-validation> is now a text link
+- Verified users that navigate to a path containing \<sqm-portal-verify-email> will now be properly redirected to the portal instead of seeing a failure screen
+- Changed Components
+  - \<sqm-portal-email-validation>
+  - \<sqm-portal-verify-email>
 
 ## [1.6.2] - 2022-07-21
 
@@ -89,7 +101,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-route>
   - \<sqm-share-code>
   - \<sqm-user-name>
-
 
 ### Breaking Changes
 
@@ -600,7 +611,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.2...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.4...HEAD
+[1.6.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.4
+[1.6.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.3
 [1.6.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.2
 [1.6.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.1
 [1.6.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.0
