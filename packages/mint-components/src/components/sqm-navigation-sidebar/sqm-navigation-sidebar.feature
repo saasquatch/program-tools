@@ -48,15 +48,22 @@ Feature: Navigation Sidebar
         When they click the "X" icon
         Then the sidebar collapses
 
-    @landmine
-    Scenario: Clicking an item the mobile sidebar redirects but does not close the sidebar
+    @motivating
+    Scenario: Clicking an item the mobile sidebar redirects and closes the sidebar
         Given a user viewing the sidebar on a screen smaller than 800px
         And it is expanded
         When they click on a sidebar item
-        Then they are redirect 
-        But the sidebar is not closed automatically
-        When they click "X"
-        Then they see the new page
+        Then they are redirect
+        And the sidebar is closed automatically
+
+    @motivating
+    Scenario: Changing the program in the sidebar changes the program and closes the sidebar
+        Given a user viewing the sidebar on a screen smaller than 800px
+        And it is expanded
+        And the sidebar has a "<sqm-program-menu>" component
+        When they change the program in the "<sqm-program-menu>"
+        Then the program context is updated
+        And the sidebar is closed automatically
 
     @minutia
     Scenario: The mobile sidebar is sticky
