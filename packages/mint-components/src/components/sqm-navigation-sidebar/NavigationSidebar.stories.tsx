@@ -42,7 +42,7 @@ export const DefaultNavigationSidebar = () => {
     },
   };
   return (
-    <NavigationSidebarView {...barProps}>
+    <NavigationSidebarView>
       <NavigationSidebarItemView {...item1Props} />
       <NavigationSidebarItemView {...item2Props} />
     </NavigationSidebarView>

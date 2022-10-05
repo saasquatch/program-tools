@@ -25,6 +25,7 @@ export function PortalContainerView(
 ) {
   const style = {
     Container: {
+      boxSizing: "border-box",
       display: props.display || "grid",
       flexWrap: "wrap",
       "grid-template-columns":

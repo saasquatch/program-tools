@@ -7,21 +7,6 @@ export default {
   title: "Components/Divided Layout",
 };
 
-const barProps = {
-  data: {
-    programs: [
-      {
-        key: "program1",
-        label: "My Referral Program",
-      },
-      {
-        key: "program2",
-        label: "My Rewards Program",
-      },
-    ],
-  },
-};
-
 const item1Props = {
   states: {
     active: false,
@@ -46,7 +31,7 @@ const item2Props = {
 
 const Sidebar = () => {
   return (
-    <NavigationSidebarView {...barProps}>
+    <NavigationSidebarView>
       <NavigationSidebarItemView {...item1Props} />
       <NavigationSidebarItemView {...item2Props} />
     </NavigationSidebarView>

@@ -137,7 +137,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
       <div class="FormSection">
         <h2
           style={{
-            fontSize: "var(--sl-font-size-x-large",
+            fontSize: "var(--sl-font-size-x-large)",
             marginBottom: "0px",
             textAlign: "center",
           }}

@@ -21,11 +21,6 @@ export function DividedLayoutView(
   const style = {
     LayoutContainer: {
       display: "contents",
-      // "min-width": "320px",
-
-      // "& > ::slotted(*)": {
-      //   "min-width": "320px",
-      // },
       // First style applies when shadow DOM is disabled, second applies when shadow DOM is enabled
       "& > :not(:last-child)": {
         ...getBorder(),
@@ -39,8 +34,10 @@ export function DividedLayoutView(
   const hostStyle = `
     display: flex;
     flex: 1;
+    box-sizing: border-box;
     flex-direction: ${props.direction};
     background-color: var(--sqm-content-background);
+    overflow-x: clip;
     ${
       props.direction === "column"
         ? "width: 100%; max-width: var(--sqm-portal-main-width);"
@@ -56,7 +53,6 @@ export function DividedLayoutView(
     ${hostStyle}
   }
   `;
-
 
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();

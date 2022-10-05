@@ -49,9 +49,20 @@ export function PortalProfileView(props: PortalProfileViewProps) {
   const { errors, error } = formState;
 
   const style = {
+    Container: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "var(--sl-spacing-xxx-large)",
+      padding: "var(--sl-spacing-xxx-large)",
+    },
     FormStyle: {
+      width: "100%",
+      minWidth: "700px",
       "& >*:not(:last-child)": {
         "margin-bottom": "32px",
+      },
+      "@media screen and (max-width: 1100px)": {
+        minWidth: "100%",
       },
     },
     Error: {
@@ -59,9 +70,25 @@ export function PortalProfileView(props: PortalProfileViewProps) {
         "margin-bottom": "32px",
       },
     },
+
+    Success: {
+      "&::part(successalert-base)": {
+        "margin-bottom": "32px",
+      },
+    },
     NameInputStyle: {
-      "&:not(:last-child)": {
-        "margin-right": "var(--sl-spacing-medium)",
+      width: "50%",
+      "@media screen and (max-width: 860px)": {
+        width: "100%",
+        "margin-right": "0",
+      },
+    },
+    NameInputContainer: {
+      display: "flex",
+      gap: "32px",
+      width: "100%",
+      "@media screen and (max-width: 860px)": {
+        flexDirection: "column",
       },
     },
   };
@@ -76,14 +103,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
     : "";
 
   return (
-    <PortalContainerView
-      {...{
-        direction: "row",
-        padding: "xxx-large",
-        gap: "xxx-large",
-        minWidth: "600px",
-      }}
-    >
+    <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
       <TextSpanView {...{ type: "h1" }}>{text.editProfileHeader}</TextSpanView>
       <TextSpanView {...{ type: "h2" }}>
@@ -91,7 +111,10 @@ export function PortalProfileView(props: PortalProfileViewProps) {
       </TextSpanView>
       <form class={sheet.classes.FormStyle} onSubmit={callbacks.onSubmit}>
         {states.success && (
-          <sqm-form-message exportparts="success-icon">
+          <sqm-form-message
+            class={sheet.classes.Success}
+            exportparts="success-icon"
+          >
             <div part="successalert-text">
               Your profile has been successfully updated.
             </div>
@@ -107,14 +130,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
             <div part="erroralert-text">{error}</div>
           </sqm-form-message>
         )}
-        <PortalContainerView
-          {...{
-            direction: "row",
-            padding: "none",
-            gap: "32px",
-            minWidth: "50%",
-          }}
-        >
+        <div class={sheet.classes.NameInputContainer}>
           <sl-input
             class={sheet.classes.NameInputStyle}
             exportparts="label: input-label"
@@ -151,7 +167,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
                 : undefined
             }
           ></sl-input>
-        </PortalContainerView>
+        </div>
         <sl-input
           label={text.emailtext}
           value={states.user?.email}
@@ -178,6 +194,6 @@ export function PortalProfileView(props: PortalProfileViewProps) {
           {text.submitChangeButtonText}
         </sl-button>
       </form>
-    </PortalContainerView>
+    </div>
   );
 }

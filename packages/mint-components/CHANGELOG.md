@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.4] - 2022-10-05
+
+### Changed
+
+- Changed components: 
+  - \<sqm-divided-layout>
+    - Added `box-sizing: border-box` and `overflow-x: clip` to the root container element to remove horizontal scrollbar on mobile devices
+  - \<sqm-edit-profile>
+    - Added missing `)` to the end of CSS variable
+  - \<sqm-empty>
+    - Changed padding from `xxxx-large` to `large`
+    - Fixed the name of the exported class to accurately reflect the name of the component
+  - \<sqm-navigation-sidebar>
+    - Updated view to display a hamburger menu when the screen size is 799px or less
+    - Added `useNavigationSidebar` hook to automatically close the menu in mobile when navigating between routes
+  - \<sqm-portal-container>
+    - Added `box-sizing: border-box;` to container
+  - \<sqm-portal-profile>
+    - Replaced `<sqm-portal-container>` used in the view in order to change the flex direction of the name inputs when in mobile view.
+    - Added missing margin bottom to the success alert
+  - \<sqm-stat-container>
+    - Added media query to hide the stats right border when the screen size is 430px or less. 
+  - \<sqm-hero>
+    - Adding two column layout example for usage in the microsite/widget editor
+
 ## [1.6.3] - 2022-10-04
 
 ### Changed
@@ -586,7 +611,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.3...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.4...HEAD
+[1.6.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.4
 [1.6.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.3
 [1.6.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.2
 [1.6.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.1
