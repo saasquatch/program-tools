@@ -4,13 +4,19 @@ import { UseComboboxReturnValue, UseSelectReturnValue } from "downshift";
 import { InputView } from "../Input";
 import { IconButton } from "../Button";
 import React from "react";
-import { IconView } from "../Icon";
-import { LoadingSpinner } from "../LoadingSpinner";
+import { IconKey, IconView } from "../Icon";
+import { DataTableView } from "../DataTable";
 
 export type SelectHandleViewProps<ItemType> = HandleOptionProps<ItemType> &
   Partial<React.ComponentProps<"input">>;
 
-export interface SelectContainerViewProps {
+export interface SelectContainerViewProps<ItemType> {
+  /**
+   * Downshift hook for component functionality (useSelect or useCombobox)
+   */
+  functional?:
+    | UseSelectReturnValue<ItemType>
+    | UseComboboxReturnValue<ItemType>;
   /**
    * Limit the width of the select with a valid CSS size (px, %) [default 300px]
    */
@@ -23,6 +29,26 @@ export interface SelectContainerViewProps {
    * Children of the container, generally SelectHandleView and SelectListView
    */
   children: React.ReactNode;
+  /**
+   * Render in empty state
+   */
+  empty?: boolean;
+  /**
+   * Content to display when in the empty state
+   */
+  emptySlot?: string | React.ReactNode;
+  /**
+   * Content to display when in the loading state
+   */
+  loadingSlot?: string | React.ReactNode;
+  /**
+   * Use a custom icon instead of a chevron
+   */
+  customIcon?: IconKey;
+  /**
+   * Disable the select
+   */
+  disabled?: boolean;
 }
 export interface HandleOptionProps<ItemType> {
   /**
@@ -74,6 +100,22 @@ export interface HandleOptionProps<ItemType> {
    * Limit the width of the select with a valid CSS size (px, %) [default 300px]
    */
   limitWidth?: SizeType;
+  /**
+   * Render in empty state
+   */
+  empty?: boolean;
+  /**
+   * Content to display when in the empty state
+   */
+  emptySlot?: string | React.ReactNode;
+  /**
+   * Content to display when in the loading state
+   */
+  loadingSlot?: string | React.ReactNode;
+  /**
+   * Use a custom icon instead of a chevron
+   */
+  customIcon?: IconKey;
 }
 
 export interface SelectListViewProps<ItemType> {
@@ -113,6 +155,22 @@ export interface SelectListViewProps<ItemType> {
    * Items to include in the select list
    */
   items: Array<any>;
+  /**
+   * Render in empty state
+   */
+  empty?: boolean;
+  /**
+   * Content to display when in the empty state
+   */
+  emptySlot?: string | React.ReactNode;
+  /**
+   * Content to display when in the loading state
+   */
+  loadingSlot?: string | React.ReactNode;
+  /**
+   * Use a custom icon instead of a chevron
+   */
+  customIcon?: IconKey;
 }
 
 type SizeType = boolean | string;
@@ -174,7 +232,7 @@ const ContainerDiv = styled("div")<{
   ${(props) => props.customContainerCSS}
 `;
 
-const SelectInputDiv = styled.div<{
+const SelectInputButton = styled.button<{
   disabled: boolean | undefined;
   errors: any;
   isOpen: boolean;
@@ -228,12 +286,23 @@ declare module "react" {
   ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
 }
 
-const SelectContainerView = (props: SelectContainerViewProps) => {
-  const { limitWidth = true, customContainerCSS = ``, children } = props;
+const SelectContainerView = <ItemType extends ItemTypeBase>(
+  props: SelectContainerViewProps<ItemType>
+) => {
+  const {
+    limitWidth = true,
+    customContainerCSS = ``,
+    functional,
+    children,
+    disabled,
+  } = props;
+
+  const isOpen = disabled ? false : functional?.isOpen;
   return (
     <ContainerDiv
       customContainerCSS={customContainerCSS}
       limitWidth={limitWidth}
+      onClick={() => !isOpen && functional?.toggleMenu()}
     >
       {children}
     </ContainerDiv>
@@ -253,6 +322,22 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
     placeholder = "",
     limitWidth = true,
     limitHeight = false,
+    customIcon,
+    loadingSlot = (
+      <>
+        <ListItem style={{ height: "32px" }} key={`1`}>
+          <DataTableView.SkeletonView size="120px" />
+        </ListItem>
+        <ListItem style={{ height: "32px" }} key={`2`}>
+          <DataTableView.SkeletonView size="120px" />
+        </ListItem>
+        <ListItem style={{ height: "32px" }} key={`3`}>
+          <DataTableView.SkeletonView size="120px" />
+        </ListItem>
+      </>
+    ),
+    empty = false,
+    emptySlot = "",
     functional,
     items,
     itemToString = (item: ItemType) => {
@@ -288,17 +373,18 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
     );
   }
 
-  const isOpen = disabled || loading ? false : functional.isOpen;
+  const isOpen = disabled ? false : functional.isOpen;
 
   return !isCombobox(functional) ? (
-    <SelectInputDiv
+    <SelectInputButton
       {...rest}
+      type={"button"}
+      role={"button"}
       isOpen={functional.isOpen}
-      disabled={disabled || loading}
+      disabled={disabled}
       ref={ref}
       errors={errors}
       customCSS={customCSS}
-      role="button"
       {...functional.getToggleButtonProps()}
     >
       <SelectedValueSpan subdued={functional.selectedItem ? false : true}>
@@ -327,11 +413,14 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             functional.selectItem((null as unknown) as ItemType);
           }}
         />
-        {loading ? (
-          <LoadingSpinner
+        {customIcon ? (
+          <IconView
+            icon={customIcon}
+            size={"small"}
+            customCSS={
+              "padding: var(--sq-spacing-x-small) var(--sq-spacing-small) var(--sq-spacing-x-small) var(--sq-spacing-x-small); box-sizing: content-box;"
+            }
             color={"var(--sq-text-subdued)"}
-            right="var(--sq-spacing-x-large)"
-            bottom="12px"
           />
         ) : (
           <IconView
@@ -344,7 +433,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           />
         )}
       </ButtonDiv>
-    </SelectInputDiv>
+    </SelectInputButton>
   ) : (
     <div {...functional.getComboboxProps()}>
       <InputView
@@ -363,7 +452,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
                   : "padding-right: var(--sq-spacing-xxx-large)"
               };
             `}
-        disabled={disabled || loading}
+        disabled={disabled}
         {...functional.getInputProps()}
       />
       <ButtonContainerDiv>
@@ -382,11 +471,20 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             functional.selectItem((null as unknown) as ItemType);
           }}
         />
-        {loading ? (
-          <LoadingSpinner
-            color={"var(--sq-text-subdued)"}
-            right="16px"
-            bottom="9px"
+        {customIcon ? (
+          <IconButton
+            disabled={disabled}
+            icon={customIcon}
+            borderless={true}
+            size="small"
+            customCSS={{
+              padding:
+                "10px var(--sq-spacing-x-small) var(--sq-spacing-x-small)",
+            }}
+            icon_css={{
+              color: "var(--sq-text-subdued)",
+            }}
+            {...functional.getToggleButtonProps()}
           />
         ) : (
           <IconButton
@@ -418,6 +516,21 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
     loading = false,
     functional,
     items,
+    loadingSlot = (
+      <>
+        <ListItem style={{ height: "32px" }} key={`1`}>
+          <DataTableView.SkeletonView size="120px" />
+        </ListItem>
+        <ListItem style={{ height: "32px" }} key={`2`}>
+          <DataTableView.SkeletonView size="120px" />
+        </ListItem>
+        <ListItem style={{ height: "32px" }} key={`3`}>
+          <DataTableView.SkeletonView size="120px" />
+        </ListItem>
+      </>
+    ),
+    empty = false,
+    emptySlot = "",
     itemToString = (item: ItemType) => {
       return item;
     },
@@ -452,20 +565,25 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
     >
       {/* Place the conditional render inside getMenuProps call to avoid downshift errors */}
       {isOpen ? (
-        items.map((item, index) => (
-          <ListItem
-            style={
-              functional.highlightedIndex === index
-                ? { backgroundColor: "var(--sq-surface-hover)" }
-                : {}
-            }
-            key={`${itemToString(item)}-${index}`}
-            {...functional.getItemProps({ item, index })}
-            onMouseMove={() => {}}
-          >
-            {itemToNode(item)}
-          </ListItem>
-        ))
+        loading ? (
+          loadingSlot
+        ) : empty ? (
+          <ListItem key={`3`}>{emptySlot}</ListItem>
+        ) : (
+          items.map((item, index) => (
+            <ListItem
+              style={
+                functional.highlightedIndex === index
+                  ? { backgroundColor: "var(--sq-surface-hover)" }
+                  : {}
+              }
+              key={`${itemToString(item)}-${index}`}
+              {...functional.getItemProps({ item, index })}
+            >
+              {itemToNode(item)}
+            </ListItem>
+          ))
+        )
       ) : (
         <></>
       )}
