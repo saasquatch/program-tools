@@ -1,38 +1,28 @@
-import {
-  useLocale,
-  usePaginatedQuery,
-  useProgramId,
-  useUserIdentity,
-} from "@saasquatch/component-boilerplate";
-import { useEffect, useReducer } from "@saasquatch/universal-hooks";
-import { h, VNode } from "@stencil/core";
-import { gql } from "graphql-request";
-import { useRerenderListener } from "../../tables/re-render";
-import { RewardsTable } from "./sqm-rewards-table";
-import { useChildElements } from "../../tables/useChildElements";
-import { GenericTableViewProps } from "../../tables/GenericTableView";
-import debugFn from "debug";
-import { generateUserError } from "../sqm-referral-table/useReferralTable";
-const debug = debugFn("sq:useRewardsTable");
+import { useLocale, usePaginatedQuery, useProgramId, useUserIdentity } from '@saasquatch/component-boilerplate';
+import { useEffect, useReducer } from '@saasquatch/universal-hooks';
+import { h, VNode } from '@stencil/core';
+import { gql } from 'graphql-request';
+import { useRerenderListener } from '../../tables/re-render';
+import { useChildElements } from '../../tables/useChildElements';
+import { GenericTableViewProps } from '../../tables/GenericTableView';
+import debugFn from 'debug';
+import { RewardsTable } from './sqp-rewards-table';
+const debug = debugFn('sq:useRewardsTable');
 
-export const CSS_NAMESPACE = "sqm-rewards-table";
-
+export const CSS_NAMESPACE = 'sqp-rewards-table';
+export function generateUserError(e: any) {
+  try {
+    return JSON.stringify(e);
+  } catch (e) {
+    return 'An unknown error';
+  }
+}
 const GET_REWARDS = gql`
-  query getRewards(
-    $limit: Int!
-    $offset: Int!
-    $rewardFilter: RewardFilterInput
-    $locale: RSLocale
-  ) {
+  query getRewards($limit: Int!, $offset: Int!, $rewardFilter: RewardFilterInput, $locale: RSLocale) {
     viewer {
       ... on User {
         id
-        rewards(
-          limit: $limit
-          offset: $offset
-          filter: $rewardFilter
-          sortBy: { field: "dateCreated", order: DESC }
-        ) {
+        rewards(limit: $limit, offset: $offset, filter: $rewardFilter, sortBy: { field: "dateCreated", order: DESC }) {
           totalCount
           count
           data {
@@ -54,18 +44,9 @@ const GET_REWARDS = gql`
             fuelTankType
             currency
             prettyValue(locale: $locale)
-            prettyValueNumber: prettyValue(
-              formatType: NUMBER_FORMATTED
-              locale: $locale
-            )
-            prettyAvailableNumber: prettyAvailableValue(
-              formatType: NUMBER_FORMATTED
-              locale: $locale
-            )
-            prettyRedeemedNumber: prettyRedeemedCredit(
-              formatType: NUMBER_FORMATTED
-              locale: $locale
-            )
+            prettyValueNumber: prettyValue(formatType: NUMBER_FORMATTED, locale: $locale)
+            prettyAvailableNumber: prettyAvailableValue(formatType: NUMBER_FORMATTED, locale: $locale)
+            prettyRedeemedNumber: prettyRedeemedCredit(formatType: NUMBER_FORMATTED, locale: $locale)
             programId
             program {
               name
@@ -117,11 +98,7 @@ const GET_REWARDS = gql`
   }
 `;
 
-export function useRewardsTable(
-  props: RewardsTable,
-  emptyElement: VNode,
-  loadingElement: VNode
-): GenericTableViewProps {
+export function useRewardsTable(props: RewardsTable, emptyElement: VNode, loadingElement: VNode): GenericTableViewProps {
   const user = useUserIdentity();
   const programIdContext = useProgramId();
   const locale = useLocale();
@@ -132,17 +109,10 @@ export function useRewardsTable(
     userId_eq: user?.id,
     accountId_eq: user?.accountId,
     // If no program ID, shows all programs
-    ...(programId
-      ? programId === "classic"
-        ? { programId_exists: false }
-        : { programId_eq: programId }
-      : {}),
+    ...(programId ? (programId === 'classic' ? { programId_exists: false } : { programId_eq: programId }) : {}),
   };
 
-  const [content, setContent] = useReducer<
-    GenericTableViewProps["elements"],
-    Partial<GenericTableViewProps["elements"]>
-  >(
+  const [content, setContent] = useReducer<GenericTableViewProps['elements'], Partial<GenericTableViewProps['elements']>>(
     (state, next) => ({
       ...state,
       ...next,
@@ -152,7 +122,7 @@ export function useRewardsTable(
       rows: [],
       loading: false,
       page: 0,
-    }
+    },
   );
 
   const {
@@ -161,7 +131,7 @@ export function useRewardsTable(
     callbacks,
   } = usePaginatedQuery<Reward>(
     GET_REWARDS,
-    (data) => data?.viewer?.rewards,
+    data => data?.viewer?.rewards,
     {
       limit: props.perPage,
       offset: 0,
@@ -170,7 +140,7 @@ export function useRewardsTable(
       rewardFilter,
       locale,
     },
-    !user?.jwt
+    !user?.jwt,
   );
 
   const tick = useRerenderListener();
@@ -180,29 +150,21 @@ export function useRewardsTable(
 
   async function getComponentData(components: Element[]) {
     // filter out loading and empty states from columns array
-    const columnComponents = components.filter(
-      (component) => component.slot !== "loading" && component.slot !== "empty"
-    );
+    const columnComponents = components.filter(component => component.slot !== 'loading' && component.slot !== 'empty');
     // get the column titles (renderLabel is asynchronous)
-    const columnsPromise = columnComponents?.map(async (c: any) =>
-      tryMethod(c, () => c.renderLabel())
-    );
+    const columnsPromise = columnComponents?.map(async (c: any) => tryMethod(c, () => c.renderLabel()));
 
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r: Reward) => {
-      const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, locale))
-      );
+      const cellPromise = columnComponents?.map(async (c: any) => tryMethod(c, () => c.renderCell(r, locale)));
       const cells = (await Promise.all(cellPromise)) as VNode[];
       return cells;
     });
 
-    const rows =
-      cellsPromise && (await Promise.all(cellsPromise)).filter((i) => i);
+    const rows = cellsPromise && (await Promise.all(cellsPromise)).filter(i => i);
 
     setContent({ rows });
-    const columns =
-      columnsPromise && ((await Promise.all(columnsPromise)) as string[]);
+    const columns = columnsPromise && ((await Promise.all(columnsPromise)) as string[]);
     // Set the content to render and finish loading components
     setContent({ columns, loading: false, page: states.currentPage });
   }
@@ -217,12 +179,12 @@ export function useRewardsTable(
   const show =
     // 1 - Loading if loading
     states.loading || content.loading
-      ? "loading"
+      ? 'loading'
       : // 2 - Empty if empty
       isEmpty
-      ? "empty"
+      ? 'empty'
       : // 3 - Then show rows
-        "rows";
+        'rows';
 
   return {
     states: {
@@ -257,10 +219,7 @@ export function useRewardsTable(
     },
   };
 }
-export async function tryMethod(
-  c: HTMLElement,
-  callback: () => Promise<string>
-): Promise<string | VNode> {
+export async function tryMethod(c: HTMLElement, callback: () => Promise<string>): Promise<string | VNode> {
   const tag = c.tagName.toLowerCase();
   await customElements.whenDefined(tag);
   let labelPromise: Promise<string>;
@@ -269,7 +228,7 @@ export async function tryMethod(
   } catch (e) {
     // renderLabel did not return a promise, so this method probably doesn't exist
     // therefore, we IGNORE the label
-    debug("label promise failed", e);
+    debug('label promise failed', e);
     return <span />;
   }
   try {
@@ -277,7 +236,7 @@ export async function tryMethod(
   } catch (e) {
     // The column returned a promise, and that promise failed.
     // This should not happen so we fail fast
-    debug("Error rendering label", e);
+    debug('Error rendering label', e);
     const userError = generateUserError(e);
     return (
       <details>

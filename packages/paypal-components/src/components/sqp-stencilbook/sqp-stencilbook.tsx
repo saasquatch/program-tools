@@ -26,7 +26,7 @@ export class SQPStencilbook {
   render() {
     const { class: Style, children } = useStencilbook(stories, {
       h,
-      title: 'Bedrock Components',
+      title: 'Paypal Components',
       addons: [HookStoryAddon, CucumberAddon],
     });
     return (

@@ -41,7 +41,10 @@
     "@saasquatch/universal-hooks": "^1.0.0",
     "@stencil/core": "^2.18.1",
     "graphql-request": "^4.3.0",
-    "highlight.js": "^11.2.0"
+    "highlight.js": "^11.2.0",
+    "jss": "^10.9.2",
+    "jss-preset-default": "^10.9.2",
+    "luxon": "^3.0.4"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.2",
