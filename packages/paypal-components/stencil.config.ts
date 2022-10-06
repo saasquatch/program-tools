@@ -1,36 +1,73 @@
 import { Config } from '@stencil/core';
+import { sass } from '@stencil/sass';
+import createDocxGenerator from 'stencil-docx-docs';
 import alias from '@rollup/plugin-alias';
-import { grapesJsOutput } from '@saasquatch/stencil-grapes-plugin';
-import { OutputTarget } from '@stencil/core/internal';
-import { string } from 'rollup-plugin-string';
+import copy from 'rollup-plugin-copy';
+import css from 'rollup-plugin-css-only';
 import path from 'path';
+import { OutputTarget } from '@stencil/core/internal';
+import { grapesJsOutput } from '@saasquatch/stencil-grapes-plugin';
+import { ShoelaceComponents } from './shoelace-definitions';
+import { string } from 'rollup-plugin-string';
 import plugin from '@raisins/stencil-docs-target';
 
+const useDocx: OutputTarget = {
+  type: 'docs-custom',
+  generator: createDocxGenerator({
+    outDir: 'docs',
+    textFont: 'Calibri',
+    excludeTags: ['undocumented'],
+    title: 'Mint Components',
+    author: 'SaaSquatch',
+  }),
+} as const;
 const useGrapesjs: OutputTarget = grapesJsOutput({
   outDir: 'grapesjs',
+  components: ShoelaceComponents,
 });
 
 export const config: Config = {
-  namespace: 'bedrock-components',
-  buildEs5: true,
+  namespace: 'paypal-components',
+  devServer: {
+    // startupTimeout: 0,
+  },
   globalScript: 'src/global/global.ts',
-  outputTargets: [
-    {
-      type: 'dist',
-    },
-    {
-      type: 'docs-readme',
-    },
-    {
-      type: 'www',
-      serviceWorker: null, // disable service workers
-    },
-    useGrapesjs,
-    plugin({
-      outDir: 'docs',
-    }),
-  ],
-  plugins: [string({ include: '**/*.feature' })],
+  globalStyle: 'src/global/global.css',
+  buildEs5: true,
+  outputTargets:
+    //@ts-ignore
+    process.env.NODE_ENV === 'dev'
+      ? [
+          {
+            type: 'dist',
+          },
+          {
+            type: 'www',
+            serviceWorker: null, // disable service workers
+            copy: [{ src: 'global/styles.ts' }],
+          },
+          useDocx,
+          useGrapesjs,
+          plugin({
+            outDir: 'docs',
+          }),
+        ]
+      : [
+          {
+            type: 'dist',
+            copy: [{ src: 'global/styles.ts' }],
+          },
+          {
+            type: 'stats',
+            file: 'docs/stats.json', // optional
+          },
+          plugin({
+            outDir: 'docs',
+          }),
+          useDocx,
+          useGrapesjs,
+        ],
+  plugins: [sass({ injectGlobalPaths: ['src/global/mixins.scss'] }), string({ include: '**/*.feature' }), string({ include: '**/*.md' })],
   rollupPlugins: {
     before: [
       alias({
@@ -41,14 +78,27 @@ export const config: Config = {
           },
         ],
       }),
+      css({
+        output: 'bundle.css',
+      }),
+      copy({
+        targets: [
+          {
+            src: 'node_modules/@shoelace-style/shoelace/dist/assets',
+            dest: 'shoelace',
+          },
+          {
+            src: 'node_modules/@shoelace-style/shoelace/dist/themes',
+            dest: 'shoelace/themes',
+          },
+        ],
+      }),
+      string({ include: 'src/templates/*.html' }),
     ],
   },
   extras: {
-    /** https://stenciljs.com/docs/config-extras#appendchildslotfix */
     appendChildSlotFix: true,
-    /** https://stenciljs.com/docs/config-extras#clonenodefix */
     cloneNodeFix: true,
-    /** https://stenciljs.com/docs/config-extras#slotchildnodesfix */
     slotChildNodesFix: true,
   },
 };
