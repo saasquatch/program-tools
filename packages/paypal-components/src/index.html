@@ -9,6 +9,19 @@
     <script src="build/paypal-components.js"></script>
   </head>
   <body>
+    <script>
+      window.SquatchPortal = { tenantAlias: 'test_a8b41jotf8a1v', appDomain: 'https://staging.referralsaasquatch.com' };
+    </script>
     <sqp-stencilbook></sqp-stencilbook>
+
+    <div style="position: static; bottom: 0; width: 100%; z-index: 9999; height: 400px; margin-left: 260px">
+      <hr />
+      sam's stuff
+      <hr />
+
+      <sqp-account-details>
+        <sqp-account-form></sqp-account-form>
+      </sqp-account-details>
+    </div>
   </body>
 </html>

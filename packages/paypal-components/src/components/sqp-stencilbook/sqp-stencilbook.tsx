@@ -3,9 +3,11 @@ import { useStencilbook } from '@saasquatch/stencilbook';
 import { withHooks } from '@saasquatch/stencil-hooks';
 import { HookStoryAddon } from './HookStoryAddon';
 import { CucumberAddon } from './CucumberAddon';
+import * as PayPalAccountForm from '../sqp-paypal-account-form/PayPalAccountForm.stories';
+import * as PayPalAccountDetails from '../sqp-account-details/PayPalAccountDetails.stories';
 
 // Import and add all stories to this array
-const stories = [];
+const stories = [PayPalAccountForm, PayPalAccountDetails];
 
 /**
  * For internal documentation
@@ -26,7 +28,7 @@ export class SQPStencilbook {
   render() {
     const { class: Style, children } = useStencilbook(stories, {
       h,
-      title: 'Paypal Components',
+      title: 'PayPal Components',
       addons: [HookStoryAddon, CucumberAddon],
     });
     return (
