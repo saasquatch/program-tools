@@ -11,6 +11,7 @@ import { useAccountForm } from "./useAccountForm";
  */
 @Component({
   tag: "sqp-account-form",
+  shadow: true
 })
 export class PaypalAccountForm {
   @State()

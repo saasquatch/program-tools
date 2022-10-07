@@ -13,6 +13,7 @@ import { useAccountDetails } from "./useAccountDetails";
  */
 @Component({
   tag: "sqp-account-details",
+  shadow: true
 })
 export class PaypalAccountDetails {
   @State()
