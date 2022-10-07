@@ -1,23 +1,25 @@
-import { h } from '@stencil/core';
-import { AccountFormView } from './sqp-account-form-view';
+import { h } from "@stencil/core";
+import { AccountFormView } from "./sqp-account-form-view";
 
 export default {
-  title: 'Components/PayPal Account Form',
+  title: "Components/PayPal Account Form",
   // parameters: {
   //   scenario,
   // },
 };
 
 const content = {
-  modalConnectPayPalAccountHeader: 'Connect PayPal account',
-  cancelText: 'Cancel',
-  connectPayPalAccountButtonText: 'Connect account',
-  payPalEmailLabel: 'PayPal email',
-  payPalEmailLabelHelpText: 'Enter the email used for your PayPal account.',
-  confirmPayPalEmailLabel: 'Confirm email',
-  successMessage: 'Success!',
-  payPalAccountHeaderText: 'PayPal account',
-  connectPayPalDescriptionText: 'Connect your PayPal account to automatically receive payments/cash rewards.',
+  modalConnectPayPalAccountHeader: "Connect PayPal account",
+  cancelText: "Cancel",
+  connectPayPalAccountButtonText: "Connect account",
+  submitPayPalAccountButtonText: "Connect account",
+  payPalEmailLabel: "PayPal email",
+  payPalEmailLabelHelpText: "Enter the email used for your PayPal account.",
+  confirmPayPalEmailLabel: "Confirm email",
+  successMessage: "Success!",
+  payPalAccountHeaderText: "PayPal account",
+  connectPayPalDescriptionText:
+    "Connect your PayPal account to automatically receive payments/cash rewards.",
 };
 
 const defaultProps = {
@@ -26,14 +28,14 @@ const defaultProps = {
     open: false,
     loading: false,
     success: false,
-    error: '',
+    error: "",
   },
   formContent: {
     ...content,
   },
   callbacks: {
-    setOpen: o => console.log(o),
-    submit: e => console.log('Submit', e),
+    setOpen: (o) => console.log(o),
+    submit: (e) => console.log("Submit", e),
   },
 };
 
@@ -43,14 +45,14 @@ const openProps = {
     open: true,
     loading: false,
     success: false,
-    error: '',
+    error: "",
   },
   formContent: {
     ...content,
   },
   callbacks: {
-    setOpen: o => console.log(o),
-    submit: e => console.log('Submit', e),
+    setOpen: (o) => console.log(o),
+    submit: (e) => console.log("Submit", e),
   },
 };
 
@@ -60,14 +62,14 @@ const errorProps = {
     open: true,
     loading: false,
     success: false,
-    error: 'Network error. Please try again.',
+    error: "Network error. Please try again.",
   },
   formContent: {
     ...content,
   },
   callbacks: {
-    setOpen: o => console.log(o),
-    submit: e => console.log('Submit', e),
+    setOpen: (o) => console.log(o),
+    submit: (e) => console.log("Submit", e),
   },
 };
 
@@ -77,14 +79,14 @@ const emailErrorProps = {
     open: true,
     loading: false,
     success: false,
-    error: 'Emails do not match.',
+    error: "Emails do not match.",
   },
   formContent: {
     ...content,
   },
   callbacks: {
-    setOpen: o => console.log(o),
-    submit: e => console.log('Submit', e),
+    setOpen: (o) => console.log(o),
+    submit: (e) => console.log("Submit", e),
   },
 };
 
@@ -94,14 +96,14 @@ const loadingProps = {
     open: true,
     loading: true,
     success: false,
-    error: '',
+    error: "",
   },
   formContent: {
     ...content,
   },
   callbacks: {
-    setOpen: o => console.log(o),
-    submit: e => console.log('Submit', e),
+    setOpen: (o) => console.log(o),
+    submit: (e) => console.log("Submit", e),
   },
 };
 
@@ -111,14 +113,14 @@ const successProps = {
     open: true,
     loading: false,
     success: true,
-    error: '',
+    error: "",
   },
   formContent: {
     ...content,
   },
   callbacks: {
-    setOpen: o => console.log(o),
-    submit: e => console.log('Submit', e),
+    setOpen: (o) => console.log(o),
+    submit: (e) => console.log("Submit", e),
   },
 };
 
