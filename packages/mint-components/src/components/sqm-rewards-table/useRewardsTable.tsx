@@ -37,7 +37,9 @@ const GET_REWARDS = gql`
           count
           data {
             meta {
-              integration
+              integration {
+                name
+              }
               message
             }
             id
