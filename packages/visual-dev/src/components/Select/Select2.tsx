@@ -30,22 +30,6 @@ export interface SelectContainerViewProps<ItemType> {
    */
   children: React.ReactNode;
   /**
-   * Render in empty state
-   */
-  empty?: boolean;
-  /**
-   * Content to display when in the empty state
-   */
-  emptySlot?: string | React.ReactNode;
-  /**
-   * Content to display when in the loading state
-   */
-  loadingSlot?: string | React.ReactNode;
-  /**
-   * Use a custom icon instead of a chevron
-   */
-  customIcon?: IconKey;
-  /**
    * Disable the select
    */
   disabled?: boolean;
@@ -72,22 +56,13 @@ export interface HandleOptionProps<ItemType> {
    */
   errors?: any;
   /**
-   * Items to include in the select list
-   */
-  items: Array<any>;
-  /**
    * Custom CSS for the select handle
    */
   customCSS?: CSSProp;
-
   /**
    * Allow the select value to be cleared
    */
   clearable?: boolean;
-  /**
-   * Render the handle in the loading state
-   */
-  loading?: boolean;
   /**
    * Placeholder displayed in the handle before a selection is made
    */
@@ -100,18 +75,6 @@ export interface HandleOptionProps<ItemType> {
    * Limit the width of the select with a valid CSS size (px, %) [default 300px]
    */
   limitWidth?: SizeType;
-  /**
-   * Render in empty state
-   */
-  empty?: boolean;
-  /**
-   * Content to display when in the empty state
-   */
-  emptySlot?: string | React.ReactNode;
-  /**
-   * Content to display when in the loading state
-   */
-  loadingSlot?: string | React.ReactNode;
   /**
    * Use a custom icon instead of a chevron
    */
@@ -167,10 +130,6 @@ export interface SelectListViewProps<ItemType> {
    * Content to display when in the loading state
    */
   loadingSlot?: string | React.ReactNode;
-  /**
-   * Use a custom icon instead of a chevron
-   */
-  customIcon?: IconKey;
 }
 
 type SizeType = boolean | string;
@@ -320,28 +279,11 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
     disabled = false,
     errors = false,
     clearable = false,
-    loading = false,
     placeholder = "",
     limitWidth = true,
     limitHeight = false,
     customIcon,
-    loadingSlot = (
-      <>
-        <ListItem style={{ height: "32px" }} key={`1`}>
-          <DataTableView.SkeletonView size="120px" />
-        </ListItem>
-        <ListItem style={{ height: "32px" }} key={`2`}>
-          <DataTableView.SkeletonView size="120px" />
-        </ListItem>
-        <ListItem style={{ height: "32px" }} key={`3`}>
-          <DataTableView.SkeletonView size="120px" />
-        </ListItem>
-      </>
-    ),
-    empty = false,
-    emptySlot = "",
     functional,
-    items,
     itemToString = (item: ItemType) => {
       return item;
     },
@@ -376,8 +318,6 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
   }
 
   const isOpen = disabled ? false : functional.isOpen;
-
-  console.log("isOpen", isOpen);
 
   return !isCombobox(functional) ? (
     <SelectInputButton
