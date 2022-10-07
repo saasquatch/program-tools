@@ -3,22 +3,23 @@ import { createStyleSheet } from '../../styling/JSS';
 import { PortalSectionView } from '../sqp-titled-section/sqp-portal-section-view';
 
 export interface AccountFormViewProps {
+  hasAccount: boolean;
   states: {
     open: boolean;
     error: string;
     loading: boolean;
     success: boolean;
-    content: {
-      modalConnectPayPalAccountHeader: string;
-      cancelText: string;
-      connectPayPalAccountButtonText: string;
-      payPalEmailLabel: string;
-      payPalEmailLabelHelpText: string;
-      confirmPayPalEmailLabel: string;
-      successMessage: string;
-      payPalAccountHeaderText: string;
-      connectPayPalDescriptionText: string;
-    };
+  };
+  formContent: {
+    modalConnectPayPalAccountHeader: string;
+    cancelText: string;
+    connectPayPalAccountButtonText: string;
+    payPalEmailLabel: string;
+    payPalEmailLabelHelpText: string;
+    confirmPayPalEmailLabel: string;
+    successMessage: string;
+    payPalAccountHeaderText: string;
+    connectPayPalDescriptionText: string;
   };
   callbacks: {
     setOpen: (open: boolean) => void;
@@ -27,7 +28,7 @@ export interface AccountFormViewProps {
 }
 
 export function AccountFormView(props: AccountFormViewProps) {
-  const { states, callbacks } = props;
+  const { formContent, states, callbacks } = props;
   const style = {
     Dialog: {
       'padding': '0',
@@ -80,8 +81,8 @@ export function AccountFormView(props: AccountFormViewProps) {
             label: (
               <div class={sheet.classes.HeaderContainer}>
                 <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665094610/tenant_test_ahsf8e6g2r1dh/brjh1v3anhzwvef6ntbj.svg" />
-                <h2>{states.content.modalConnectPayPalAccountHeader}</h2>
-                <p>{states.content.connectPayPalDescriptionText}</p>
+                <h2>{formContent.modalConnectPayPalAccountHeader}</h2>
+                <p>{formContent.connectPayPalDescriptionText}</p>
               </div>
             ),
             content: (
@@ -95,7 +96,7 @@ export function AccountFormView(props: AccountFormViewProps) {
                 )}
                 {states.success && (
                   <sqm-form-message class={sheet.classes.Success} type="success" exportparts="successalert-icon">
-                    <div part="successalert-text">{states.content.successMessage}</div>
+                    <div part="successalert-text">{formContent.successMessage}</div>
                   </sqm-form-message>
                 )}
                 <sl-form onSl-submit={callbacks.submit}>
@@ -104,17 +105,17 @@ export function AccountFormView(props: AccountFormViewProps) {
                       <sl-input
                         exportparts="label: input-label"
                         name="/email"
-                        label={states.content.payPalEmailLabel}
+                        label={formContent.payPalEmailLabel}
                         required
                         disabled={states.loading}
-                        help-text={states.content.payPalEmailLabelHelpText}
+                        help-text={formContent.payPalEmailLabelHelpText}
                         type="email"
                       ></sl-input>
                     </div>
                     <sl-input
                       exportparts="label: input-label"
                       name="/confirmEmail"
-                      label={states.content.confirmPayPalEmailLabel}
+                      label={formContent.confirmPayPalEmailLabel}
                       required
                       disabled={states.loading}
                       type="email"
@@ -125,10 +126,10 @@ export function AccountFormView(props: AccountFormViewProps) {
                   // {...{ direction: "row", padding: "none", gap: "20px" }}
                   >
                     <sl-button class={sheet.classes.ConnectPayPalAccount} type="primary" submit loading={states.loading}>
-                      {states.content.connectPayPalAccountButtonText}
+                      {formContent.connectPayPalAccountButtonText}
                     </sl-button>
                     <sl-button class={sheet.classes.CancelButton} type="text" onClick={() => callbacks.setOpen(false)}>
-                      {states.content.cancelText}
+                      {formContent.cancelText}
                     </sl-button>
                   </div>
                 </sl-form>
@@ -137,22 +138,24 @@ export function AccountFormView(props: AccountFormViewProps) {
           }}
         ></PortalSectionView>
       </sl-dialog>
-      <PortalSectionView
-        {...{
-          labelMargin: 'x-large',
-          padding: 'xxx-large',
-          label: (
-            <div class={sheet.classes.HeaderContainer}>
-              <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665094610/tenant_test_ahsf8e6g2r1dh/brjh1v3anhzwvef6ntbj.svg" />
-              <h2>{states.content.payPalAccountHeaderText}</h2>
-              <p>{states.content.connectPayPalDescriptionText}</p>
-            </div>
-          ),
-          content: <sl-button onClick={() => callbacks.setOpen(true)}>{states.content.connectPayPalAccountButtonText}</sl-button>,
-        }}
-      >
-        <style type="text/css">{styleString}</style>
-      </PortalSectionView>
+      {!props.hasAccount && (
+        <PortalSectionView
+          {...{
+            labelMargin: 'x-large',
+            padding: 'xxx-large',
+            label: (
+              <div class={sheet.classes.HeaderContainer}>
+                <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665094610/tenant_test_ahsf8e6g2r1dh/brjh1v3anhzwvef6ntbj.svg" />
+                <h2>{formContent.payPalAccountHeaderText}</h2>
+                <p>{formContent.connectPayPalDescriptionText}</p>
+              </div>
+            ),
+            content: <sl-button onClick={() => callbacks.setOpen(true)}>{formContent.connectPayPalAccountButtonText}</sl-button>,
+          }}
+        >
+          <style type="text/css">{styleString}</style>
+        </PortalSectionView>
+      )}
     </div>
   );
 }

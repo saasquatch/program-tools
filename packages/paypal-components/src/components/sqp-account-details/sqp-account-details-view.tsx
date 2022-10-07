@@ -2,13 +2,13 @@ import { h } from '@stencil/core';
 import { createStyleSheet } from '../../styling/JSS';
 
 export interface AccountDetailsViewProps {
+  setOpen: (open: boolean) => void;
   accountDetails: {
     email: string;
     recentPayment: { amount: number; date: number };
     nextPayment: { date: number };
   };
-
-  content: {
+  detailsContent: {
     headerText: string;
     accountLabel: string;
     recentPaymentLabel: string;
@@ -18,7 +18,7 @@ export interface AccountDetailsViewProps {
 }
 
 export function AccountDetailsView(props: AccountDetailsViewProps) {
-  const { content, accountDetails } = props;
+  const { detailsContent, accountDetails } = props;
   const FlexContainer = {
     display: 'flex',
     alignItems: 'flex-start',
@@ -64,20 +64,29 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
       <style type="text/css">{styleString}</style>
       <div class={classes.HeaderContainer}>
         <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665099915/tenant_test_ahsf8e6g2r1dh/d2ihkaexgwi6xwmtvkco.png" />
-        <h2>{content.headerText}</h2>
+        <h2>{detailsContent.headerText}</h2>
       </div>
       <div class={classes.AccountDetailsContainer}>
         <div class={classes.LabelContainer}>
-          <p class={classes.Label}>{content.accountLabel}:</p> <p>{accountDetails.email}</p> <a href="#">{content.editText}</a>
+          <p class={classes.Label}>{detailsContent.accountLabel}:</p> <p>{accountDetails.email}</p>{' '}
+          <a
+            href=""
+            onClick={e => {
+              e.preventDefault();
+              props.setOpen(true);
+            }}
+          >
+            {detailsContent.editText}
+          </a>
         </div>
         <div class={classes.LabelContainer}>
-          <p class={classes.Label}>{content.recentPaymentLabel}:</p>{' '}
+          <p class={classes.Label}>{detailsContent.recentPaymentLabel}:</p>{' '}
           <p>
             {accountDetails.recentPayment.amount} on {accountDetails.recentPayment.date}
           </p>
         </div>
         <div class={classes.LabelContainer}>
-          <p class={classes.Label}>{content.nextPaymentLabel}:</p> <p>{accountDetails.nextPayment.date}</p>
+          <p class={classes.Label}>{detailsContent.nextPaymentLabel}:</p> <p>{accountDetails.nextPayment.date}</p>
         </div>
       </div>
     </div>

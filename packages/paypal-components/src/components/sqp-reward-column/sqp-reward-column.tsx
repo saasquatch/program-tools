@@ -76,7 +76,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Referral, locale: string) {
+  async renderCell(_data: Referral, _locale: string) {
     return <sqp-reward-cell meta={{ integration: { name: "i'm a paypal reward" } }}></sqp-reward-cell>;
   }
 
@@ -86,7 +86,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   }
 
   @Method()
-  async renderReferrerCell(data: Referrer) {
+  async renderReferrerCell(_data: Referrer) {
     return <sqp-reward-cell meta={{ integration: { name: "i'm a paypal reward" } }}></sqp-reward-cell>;
   }
 

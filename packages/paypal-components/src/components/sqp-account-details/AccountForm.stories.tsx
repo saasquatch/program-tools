@@ -21,14 +21,15 @@ const content = {
 };
 
 const defaultProps = {
+  hasAccount: false,
   states: {
     open: false,
     loading: false,
     success: false,
     error: '',
-    content: {
-      ...content,
-    },
+  },
+  formContent: {
+    ...content,
   },
   callbacks: {
     setOpen: o => console.log(o),
@@ -37,14 +38,15 @@ const defaultProps = {
 };
 
 const openProps = {
+  hasAccount: false,
   states: {
     open: true,
     loading: false,
     success: false,
     error: '',
-    content: {
-      ...content,
-    },
+  },
+  formContent: {
+    ...content,
   },
   callbacks: {
     setOpen: o => console.log(o),
@@ -53,14 +55,15 @@ const openProps = {
 };
 
 const errorProps = {
+  hasAccount: false,
   states: {
     open: true,
     loading: false,
     success: false,
     error: 'Network error. Please try again.',
-    content: {
-      ...content,
-    },
+  },
+  formContent: {
+    ...content,
   },
   callbacks: {
     setOpen: o => console.log(o),
@@ -69,14 +72,15 @@ const errorProps = {
 };
 
 const emailErrorProps = {
+  hasAccount: false,
   states: {
     open: true,
     loading: false,
     success: false,
     error: 'Emails do not match.',
-    content: {
-      ...content,
-    },
+  },
+  formContent: {
+    ...content,
   },
   callbacks: {
     setOpen: o => console.log(o),
@@ -85,14 +89,15 @@ const emailErrorProps = {
 };
 
 const loadingProps = {
+  hasAccount: false,
   states: {
     open: true,
     loading: true,
     success: false,
     error: '',
-    content: {
-      ...content,
-    },
+  },
+  formContent: {
+    ...content,
   },
   callbacks: {
     setOpen: o => console.log(o),
@@ -101,14 +106,15 @@ const loadingProps = {
 };
 
 const successProps = {
+  hasAccount: false,
   states: {
     open: true,
     loading: false,
     success: true,
     error: '',
-    content: {
-      ...content,
-    },
+  },
+  formContent: {
+    ...content,
   },
   callbacks: {
     setOpen: o => console.log(o),

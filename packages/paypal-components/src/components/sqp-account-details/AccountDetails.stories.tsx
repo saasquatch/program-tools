@@ -9,25 +9,25 @@ export default {
 };
 
 const content = {
-      headerText: "PayPal account",
-      accountLabel:"Account",
-      recentPaymentLabel:"Recent payment",
-      nextPaymentLabel:"Next payment",
-      editText:"Edit",
+  headerText: 'PayPal account',
+  accountLabel: 'Account',
+  recentPaymentLabel: 'Recent payment',
+  nextPaymentLabel: 'Next payment',
+  editText: 'Edit',
 };
 
 const defaultProps = {
-
-    content: {
-      ...content,
+  setOpen: () => {},
+  detailsContent: {
+    ...content,
   },
   accountDetails: {
-    email: "jonsnow@gmail.com",
-         recentPayment: { amount: 10000, date: 12345678900 },
-      nextPayment: {
-        date: 12345678900,
-      },
-  }
+    email: 'jonsnow@gmail.com',
+    recentPayment: { amount: 10000, date: 12345678900 },
+    nextPayment: {
+      date: 12345678900,
+    },
+  },
 };
 
 export const Default = () => <AccountDetailsView {...defaultProps} />;
