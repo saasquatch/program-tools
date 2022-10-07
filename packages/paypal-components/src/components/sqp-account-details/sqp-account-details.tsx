@@ -1,9 +1,9 @@
-import { h, Component, State, Prop, Host } from '@stencil/core';
 import { withHooks } from '@saasquatch/stencil-hooks';
-import { isDemo } from '@saasquatch/component-boilerplate';
-import { useAccountDetails } from './useAccountDetails';
-import { PayPalAccountDetailsView } from './sqp-account-details-view';
+import { Component, h, Host, Prop, State } from '@stencil/core';
+import { useRequestRerender } from '../../tables/re-render';
 import { getProps } from '../../utils/utils';
+import { AccountDetailsView } from './sqp-account-details-view';
+import { useAccountDetails } from './useAccountDetails';
 
 @Component({
   tag: 'sqp-account-details',
@@ -27,16 +27,15 @@ export class PaypalAccountDetails {
     // isDemo() ? useAccountDetailsDemo() : useAccountDetails();
 
     console.log({ props });
+    useRequestRerender([props.hasAccount]);
+
+    const formSlot = <slot />;
+
     return (
       <Host>
-        {!props.hasAccount ? (
-          <slot name="test" />
-        ) : (
-          <div>
-            <slot name="test" />
-          </div>
-        )}
-        <PayPalAccountDetailsView {...props}></PayPalAccountDetailsView>
+        <div style={{ display: props.hasAccount ? 'none' : 'block' }}>{formSlot}</div>
+
+        <AccountDetailsView {...props}></AccountDetailsView>
       </Host>
     );
     // return props.hasAccount ? (

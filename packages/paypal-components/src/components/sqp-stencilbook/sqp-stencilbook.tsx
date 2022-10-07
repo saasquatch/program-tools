@@ -3,11 +3,11 @@ import { useStencilbook } from '@saasquatch/stencilbook';
 import { withHooks } from '@saasquatch/stencil-hooks';
 import { HookStoryAddon } from './HookStoryAddon';
 import { CucumberAddon } from './CucumberAddon';
-import * as PayPalAccountForm from '../sqp-paypal-account-form/PayPalAccountForm.stories';
-import * as PayPalAccountDetails from '../sqp-account-details/PayPalAccountDetails.stories';
+import * as AccountForm from '../sqp-account-form/AccountForm.stories';
+import * as AccountDetails from '../sqp-account-details/AccountDetails.stories';
 
 // Import and add all stories to this array
-const stories = [PayPalAccountForm, PayPalAccountDetails];
+const stories = [AccountForm, AccountDetails];
 
 /**
  * For internal documentation

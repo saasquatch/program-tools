@@ -1,5 +1,5 @@
 import { h } from '@stencil/core';
-import { PayPalAccountDetailsView } from './sqp-account-details-view';
+import { AccountDetailsView } from './sqp-account-details-view';
 
 export default {
   title: 'Components/PayPal Account Details',
@@ -30,4 +30,4 @@ const defaultProps = {
   }
 };
 
-export const Default = () => <PayPalAccountDetailsView {...defaultProps} />;
+export const Default = () => <AccountDetailsView {...defaultProps} />;

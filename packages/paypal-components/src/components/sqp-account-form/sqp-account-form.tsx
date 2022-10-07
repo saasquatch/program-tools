@@ -1,9 +1,8 @@
-import { h, Component, State, Prop } from '@stencil/core';
 import { withHooks } from '@saasquatch/stencil-hooks';
-import { isDemo } from '@saasquatch/component-boilerplate';
-import { useAccountForm } from './useAccountForm';
-import { PayPalAccountFormView } from '../sqp-paypal-account-form/sqp-paypal-account-form-view';
+import { Component, h, Prop, State } from '@stencil/core';
 import { getProps } from '../../utils/utils';
+import { AccountFormView } from './sqp-account-form-view';
+import { useAccountForm } from './useAccountForm';
 
 @Component({
   tag: 'sqp-account-form',
@@ -30,7 +29,7 @@ export class PaypalAccountForm {
     const props = useAccountForm(getProps(this));
     // isDemo() ? useAccountFormDemo() : useAccountForm();
 
-    return <PayPalAccountFormView {...props} />;
+    return <AccountFormView {...props} />;
   }
 }
 

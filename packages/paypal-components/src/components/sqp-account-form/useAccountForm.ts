@@ -1,4 +1,4 @@
-import { useMutation, useRefreshDispatcher, useUserIdentity } from '@saasquatch/component-boilerplate';
+import { useMutation, useQuery, useRefreshDispatcher, useUserIdentity } from '@saasquatch/component-boilerplate';
 import { useState } from '@saasquatch/universal-hooks';
 import { gql } from 'graphql-request';
 import jsonpointer from 'jsonpointer';
@@ -12,8 +12,21 @@ const SUBMIT_ACCOUNT = gql`
   }
 `;
 
+const ACCOUNT_DETAILS_QUERY = gql`
+  query {
+    viewer {
+      ... on User {
+        id
+        accountId
+        firstName
+        customFields
+      }
+    }
+  }
+`;
 export function useAccountForm(props) {
   const [fetch, { data, loading }] = useMutation(SUBMIT_ACCOUNT);
+
   const [error, setError] = useState('');
   const { refresh } = useRefreshDispatcher();
   console.log({ data });

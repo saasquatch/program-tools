@@ -1,5 +1,5 @@
 import { h } from '@stencil/core';
-import { PayPalAccountFormView } from './sqp-paypal-account-form-view';
+import { AccountFormView } from './sqp-account-form-view';
 
 export default {
   title: 'Components/PayPal Account Form',
@@ -116,9 +116,9 @@ const successProps = {
   },
 };
 
-export const Default = () => <PayPalAccountFormView {...defaultProps} />;
-export const Open = () => <PayPalAccountFormView {...openProps} />;
-export const Error = () => <PayPalAccountFormView {...errorProps} />;
-export const EmailError = () => <PayPalAccountFormView {...emailErrorProps} />;
-export const Loading = () => <PayPalAccountFormView {...loadingProps} />;
-export const Success = () => <PayPalAccountFormView {...successProps} />;
+export const Default = () => <AccountFormView {...defaultProps} />;
+export const Open = () => <AccountFormView {...openProps} />;
+export const Error = () => <AccountFormView {...errorProps} />;
+export const EmailError = () => <AccountFormView {...emailErrorProps} />;
+export const Loading = () => <AccountFormView {...loadingProps} />;
+export const Success = () => <AccountFormView {...successProps} />;
