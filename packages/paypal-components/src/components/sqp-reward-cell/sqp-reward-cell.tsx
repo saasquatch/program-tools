@@ -1,14 +1,14 @@
 import { Component, h, Prop } from "@stencil/core";
 
 @Component({
-  tag: "sqp-rewards-cell",
+  tag: "sqp-reward-cell",
   shadow: true,
 })
 export class ReferralTableRewardsCell {
-  @Prop() rewards: Reward[];
+  @Prop() meta: any;
 
   render() {
-    console.log({ rewards: this.rewards });
-    return <div>my reward</div>;
+    console.log(this.meta);
+    return <div>{this.meta?.integration?.name}</div>;
   }
 }

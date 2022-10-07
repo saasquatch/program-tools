@@ -6,6 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Spacing } from "./global/mixins";
+import { DemoData } from "./global/demo";
+import { AccountDetailsViewProps } from "./components/sqp-account-details/sqp-account-details-view";
+import { AccountFormViewProps } from "./components/sqp-account-details/sqp-account-form-view";
 import { FunctionalComponent } from "@stencil/core";
 export namespace Components {
     interface SqmTitledSection {
@@ -41,65 +44,90 @@ export namespace Components {
     interface SqpAccountDetails {
         /**
           * @uiName Account Label
+          * @uiGroup Details
          */
         "accountLabel": string;
         /**
-          * @uiName Edit Text
-         */
-        "editText": string;
-        /**
-          * @uiName Header Text
-         */
-        "headerText": string;
-        /**
-          * @uiName Next Payment Label
-         */
-        "nextPaymentLabel": string;
-        /**
-          * @uiName Recent Payment Label
-         */
-        "recentPaymentLabel": string;
-    }
-    interface SqpAccountForm {
-        /**
           * @uiName Cancel Text
+          * @uiGroup Form
          */
         "cancelText": string;
         /**
           * @uiName Confirmation Email Text
+          * @uiGroup Form
          */
         "confirmPayPalEmailLabel": string;
         /**
           * @uiName Connect Button Text
+          * @uiGroup Connect
          */
         "connectPayPalAccountButtonText": string;
         /**
           * @uiName Subheader Text
+          * @uiGroup Connect
          */
         "connectPayPalDescriptionText": string;
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<AccountDetailsViewProps & AccountFormViewProps>;
+        /**
+          * @uiName Edit Text
+          * @uiGroup Details
+         */
+        "editText": string;
+        /**
+          * @uiName Header Text
+          * @uiGroup Details
+         */
+        "headerText": string;
+        /**
           * @uiName Modal Header
+          * @uiGroup Form
          */
         "modalConnectPayPalAccountHeader": string;
         /**
+          * @uiName Next Payment Label
+          * @uiGroup Details
+         */
+        "nextPaymentLabel": string;
+        /**
           * @uiName Header Text
+          * @uiGroup Connect
          */
         "payPalAccountHeaderText": string;
         /**
           * @uiName Paypal Email Label
+          * @uiGroup Form
          */
         "payPalEmailLabel": string;
         /**
           * @uiName Email Help Text
+          * @uiGroup Form
          */
         "payPalEmailLabelHelpText": string;
         /**
+          * @uiName Recent Payment Label
+          * @uiGroup Details
+         */
+        "recentPaymentLabel": string;
+        /**
+          * @uiName Submit Button Text
+          * @uiGroup Form
+         */
+        "submitPayPalAccountButtonText": string;
+        /**
           * @uiName Success Message
+          * @uiGroup Form
          */
         "successMessage": string;
     }
     interface SqpHookStoryContainer {
         "hookStory": FunctionalComponent;
+    }
+    interface SqpRewardCell {
+        "meta": any;
     }
     interface SqpRewardColumn {
         /**
@@ -126,9 +154,9 @@ export namespace Components {
           * @uiName Reward Pending Text
          */
         "pendingForText": string;
-        "renderCell": (data: Referral, locale: string) => Promise<any>;
+        "renderCell": (_data: Referral, _locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer) => Promise<any>;
+        "renderReferrerCell": (_data: Referrer) => Promise<any>;
         /**
           * Shown in the dropdown details when a reward has been received.’
           * @uiName Reward Received Text
@@ -147,9 +175,6 @@ export namespace Components {
          */
         "statusText": string;
     }
-    interface SqpRewardsCell {
-        "rewards": Reward[];
-    }
     interface SqpStencilbook {
     }
 }
@@ -166,29 +191,23 @@ declare global {
         prototype: HTMLSqpAccountDetailsElement;
         new (): HTMLSqpAccountDetailsElement;
     };
-    interface HTMLSqpAccountFormElement extends Components.SqpAccountForm, HTMLStencilElement {
-    }
-    var HTMLSqpAccountFormElement: {
-        prototype: HTMLSqpAccountFormElement;
-        new (): HTMLSqpAccountFormElement;
-    };
     interface HTMLSqpHookStoryContainerElement extends Components.SqpHookStoryContainer, HTMLStencilElement {
     }
     var HTMLSqpHookStoryContainerElement: {
         prototype: HTMLSqpHookStoryContainerElement;
         new (): HTMLSqpHookStoryContainerElement;
     };
+    interface HTMLSqpRewardCellElement extends Components.SqpRewardCell, HTMLStencilElement {
+    }
+    var HTMLSqpRewardCellElement: {
+        prototype: HTMLSqpRewardCellElement;
+        new (): HTMLSqpRewardCellElement;
+    };
     interface HTMLSqpRewardColumnElement extends Components.SqpRewardColumn, HTMLStencilElement {
     }
     var HTMLSqpRewardColumnElement: {
         prototype: HTMLSqpRewardColumnElement;
         new (): HTMLSqpRewardColumnElement;
-    };
-    interface HTMLSqpRewardsCellElement extends Components.SqpRewardsCell, HTMLStencilElement {
-    }
-    var HTMLSqpRewardsCellElement: {
-        prototype: HTMLSqpRewardsCellElement;
-        new (): HTMLSqpRewardsCellElement;
     };
     interface HTMLSqpStencilbookElement extends Components.SqpStencilbook, HTMLStencilElement {
     }
@@ -199,10 +218,9 @@ declare global {
     interface HTMLElementTagNameMap {
         "sqm-titled-section": HTMLSqmTitledSectionElement;
         "sqp-account-details": HTMLSqpAccountDetailsElement;
-        "sqp-account-form": HTMLSqpAccountFormElement;
         "sqp-hook-story-container": HTMLSqpHookStoryContainerElement;
+        "sqp-reward-cell": HTMLSqpRewardCellElement;
         "sqp-reward-column": HTMLSqpRewardColumnElement;
-        "sqp-rewards-cell": HTMLSqpRewardsCellElement;
         "sqp-stencilbook": HTMLSqpStencilbookElement;
     }
 }
@@ -240,65 +258,90 @@ declare namespace LocalJSX {
     interface SqpAccountDetails {
         /**
           * @uiName Account Label
+          * @uiGroup Details
          */
         "accountLabel"?: string;
         /**
-          * @uiName Edit Text
-         */
-        "editText"?: string;
-        /**
-          * @uiName Header Text
-         */
-        "headerText"?: string;
-        /**
-          * @uiName Next Payment Label
-         */
-        "nextPaymentLabel"?: string;
-        /**
-          * @uiName Recent Payment Label
-         */
-        "recentPaymentLabel"?: string;
-    }
-    interface SqpAccountForm {
-        /**
           * @uiName Cancel Text
+          * @uiGroup Form
          */
         "cancelText"?: string;
         /**
           * @uiName Confirmation Email Text
+          * @uiGroup Form
          */
         "confirmPayPalEmailLabel"?: string;
         /**
           * @uiName Connect Button Text
+          * @uiGroup Connect
          */
         "connectPayPalAccountButtonText"?: string;
         /**
           * @uiName Subheader Text
+          * @uiGroup Connect
          */
         "connectPayPalDescriptionText"?: string;
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<AccountDetailsViewProps & AccountFormViewProps>;
+        /**
+          * @uiName Edit Text
+          * @uiGroup Details
+         */
+        "editText"?: string;
+        /**
+          * @uiName Header Text
+          * @uiGroup Details
+         */
+        "headerText"?: string;
+        /**
           * @uiName Modal Header
+          * @uiGroup Form
          */
         "modalConnectPayPalAccountHeader"?: string;
         /**
+          * @uiName Next Payment Label
+          * @uiGroup Details
+         */
+        "nextPaymentLabel"?: string;
+        /**
           * @uiName Header Text
+          * @uiGroup Connect
          */
         "payPalAccountHeaderText"?: string;
         /**
           * @uiName Paypal Email Label
+          * @uiGroup Form
          */
         "payPalEmailLabel"?: string;
         /**
           * @uiName Email Help Text
+          * @uiGroup Form
          */
         "payPalEmailLabelHelpText"?: string;
         /**
+          * @uiName Recent Payment Label
+          * @uiGroup Details
+         */
+        "recentPaymentLabel"?: string;
+        /**
+          * @uiName Submit Button Text
+          * @uiGroup Form
+         */
+        "submitPayPalAccountButtonText"?: string;
+        /**
           * @uiName Success Message
+          * @uiGroup Form
          */
         "successMessage"?: string;
     }
     interface SqpHookStoryContainer {
         "hookStory"?: FunctionalComponent;
+    }
+    interface SqpRewardCell {
+        "meta"?: any;
     }
     interface SqpRewardColumn {
         /**
@@ -343,18 +386,14 @@ declare namespace LocalJSX {
          */
         "statusText"?: string;
     }
-    interface SqpRewardsCell {
-        "rewards"?: Reward[];
-    }
     interface SqpStencilbook {
     }
     interface IntrinsicElements {
         "sqm-titled-section": SqmTitledSection;
         "sqp-account-details": SqpAccountDetails;
-        "sqp-account-form": SqpAccountForm;
         "sqp-hook-story-container": SqpHookStoryContainer;
+        "sqp-reward-cell": SqpRewardCell;
         "sqp-reward-column": SqpRewardColumn;
-        "sqp-rewards-cell": SqpRewardsCell;
         "sqp-stencilbook": SqpStencilbook;
     }
 }
@@ -364,10 +403,9 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
             "sqp-account-details": LocalJSX.SqpAccountDetails & JSXBase.HTMLAttributes<HTMLSqpAccountDetailsElement>;
-            "sqp-account-form": LocalJSX.SqpAccountForm & JSXBase.HTMLAttributes<HTMLSqpAccountFormElement>;
             "sqp-hook-story-container": LocalJSX.SqpHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqpHookStoryContainerElement>;
+            "sqp-reward-cell": LocalJSX.SqpRewardCell & JSXBase.HTMLAttributes<HTMLSqpRewardCellElement>;
             "sqp-reward-column": LocalJSX.SqpRewardColumn & JSXBase.HTMLAttributes<HTMLSqpRewardColumnElement>;
-            "sqp-rewards-cell": LocalJSX.SqpRewardsCell & JSXBase.HTMLAttributes<HTMLSqpRewardsCellElement>;
             "sqp-stencilbook": LocalJSX.SqpStencilbook & JSXBase.HTMLAttributes<HTMLSqpStencilbookElement>;
         }
     }

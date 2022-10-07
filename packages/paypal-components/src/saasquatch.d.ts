@@ -41,7 +41,12 @@ interface Reward {
   unit: string;
   name: string;
   dateGiven: number;
-  meta?: { message?: string };
+  meta?: {
+    message?: string;
+    integration?: {
+      name: string;
+    };
+  };
   dateScheduledFor: number;
   dateExpires: number;
   dateCancelled: number;
@@ -62,15 +67,7 @@ interface Reward {
   };
   statuses: string[];
   globalRewardKey?: string;
-  rewardSource?:
-    | "FRIEND_SIGNUP"
-    | "REFERRED"
-    | "MANUAL"
-    | "ACTIVATION"
-    | "ACQUISITION"
-    | "RETENTION"
-    | "REACTIVATION"
-    | "AUTOMATED";
+  rewardSource?: 'FRIEND_SIGNUP' | 'REFERRED' | 'MANUAL' | 'ACTIVATION' | 'ACQUISITION' | 'RETENTION' | 'REACTIVATION' | 'AUTOMATED';
   exchangedRewardRedemptionTransaction?: {
     id: string;
     creditRedeemed: number;
@@ -92,10 +89,10 @@ interface Reward {
               type: string;
               fuelTankCode: string;
               globalRewardKey?: string;
-            }
+            },
           ];
         };
-      }
+      },
     ];
   };
 }
@@ -128,5 +125,5 @@ interface RewardBalance {
   value: number;
   prettyValue: string;
 }
-declare module "*.md";
-declare module "react";
+declare module '*.md';
+declare module 'react';

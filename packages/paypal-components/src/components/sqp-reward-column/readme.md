@@ -21,7 +21,7 @@
 
 ## Methods
 
-### `renderCell(data: Referral, locale: string) => Promise<any>`
+### `renderCell(_data: Referral, _locale: string) => Promise<any>`
 
 
 
@@ -41,7 +41,7 @@ Type: `Promise<string>`
 
 
 
-### `renderReferrerCell(data: Referrer) => Promise<any>`
+### `renderReferrerCell(_data: Referrer) => Promise<any>`
 
 
 
@@ -51,6 +51,19 @@ Type: `Promise<any>`
 
 
 
+
+## Dependencies
+
+### Depends on
+
+- [sqp-reward-cell](../sqp-reward-cell)
+
+### Graph
+```mermaid
+graph TD;
+  sqp-reward-column --> sqp-reward-cell
+  style sqp-reward-column fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

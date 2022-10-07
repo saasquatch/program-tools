@@ -25,7 +25,8 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    * @uiName Reward Status Text
    * @uiWidget textArea
    */
-  @Prop() statusText: string = "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
+  @Prop() statusText: string =
+    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
 
   /**
    * Additional status text shown in the details drop down.
@@ -76,19 +77,10 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Referral, locale: string) {
-    // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
+  async renderCell(_data: Referral, _locale: string) {
     return (
       <sqp-reward-cell
-        rewards={data.rewards}
-        statusText={this.statusText}
-        statusLongText={this.statusLongText}
-        fuelTankText={this.fuelTankText}
-        rewardReceivedText={this.rewardReceivedText}
-        expiringText={this.expiringText}
-        pendingForText={this.pendingForText}
-        hideDetails={this.hideDetails}
-        locale={locale}
+        meta={{ integration: { name: "i'm a paypal reward" } }}
       ></sqp-reward-cell>
     );
   }
@@ -99,9 +91,12 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   }
 
   @Method()
-  async renderReferrerCell(data: Referrer) {
-    // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
-    return <sqp-reward-cell rewards={data.rewards}></sqp-reward-cell>;
+  async renderReferrerCell(_data: Referrer) {
+    return (
+      <sqp-reward-cell
+        meta={{ integration: { name: "i'm a paypal reward" } }}
+      ></sqp-reward-cell>
+    );
   }
 
   render() {
