@@ -1,16 +1,16 @@
 {
   "name": "@saasquatch/paypal-components",
-  "title": "Mint Components",
-  "version": "1.6.4",
-  "description": "A minimal design library with components for referral and loyalty experiences. Built with Shoelace components by Saasquatch.",
+  "title": "Paypal Components",
+  "version": "1.0.0-1",
+  "description": "A minimal design library with components that integrate with our Paypal Payouts integration. Built with Shoelace components by Saasquatch.",
   "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1652219900/squatch-assets/For_Mint.svg",
   "raisins": "docs/raisins.json",
   "main": "dist/index.cjs.js",
   "es2015": "dist/esm/index.js",
   "es2017": "dist/esm/index.js",
   "types": "dist/types/components.d.ts",
-  "module": "dist/mint-components/mint-components.esm.js",
-  "unpkg": "dist/mint-components/mint-components.js",
+  "module": "dist/paypal-components/paypal-components.esm.js",
+  "unpkg": "dist/paypal-components/paypal-components.js",
   "jsnext:main": "dist/esm/index.js",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
@@ -90,7 +90,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/saasquatch/program-tools.git",
-    "directory": "packages/mint-components"
+    "directory": "packages/paypal-components"
   },
   "author": "SaaSquatch Team",
   "bugs": {
