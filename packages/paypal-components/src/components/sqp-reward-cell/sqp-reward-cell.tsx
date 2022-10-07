@@ -1,7 +1,7 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop } from "@stencil/core";
 
 @Component({
-  tag: 'sqp-rewards-cell',
+  tag: "sqp-rewards-cell",
   shadow: true,
 })
 export class ReferralTableRewardsCell {

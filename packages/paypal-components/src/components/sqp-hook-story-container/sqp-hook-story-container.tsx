@@ -1,11 +1,11 @@
-import { h, Component, State, Prop, FunctionalComponent } from '@stencil/core';
-import { withHooks } from '@saasquatch/stencil-hooks';
+import { h, Component, State, Prop, FunctionalComponent } from "@stencil/core";
+import { withHooks } from "@saasquatch/stencil-hooks";
 
 /**
  *  @undocumented
  */
 @Component({
-  tag: 'sqp-hook-story-container',
+  tag: "sqp-hook-story-container",
 })
 export class SqpHookStoryContainer {
   @State()

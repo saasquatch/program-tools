@@ -1,10 +1,10 @@
-import { h, Component, Host, State } from '@stencil/core';
-import { useStencilbook } from '@saasquatch/stencilbook';
-import { withHooks } from '@saasquatch/stencil-hooks';
-import { HookStoryAddon } from './HookStoryAddon';
-import { CucumberAddon } from './CucumberAddon';
-import * as AccountForm from '../sqp-account-form/AccountForm.stories';
-import * as AccountDetails from '../sqp-account-details/AccountDetails.stories';
+import { h, Component, Host, State } from "@stencil/core";
+import { useStencilbook } from "@saasquatch/stencilbook";
+import { withHooks } from "@saasquatch/stencil-hooks";
+import { HookStoryAddon } from "./HookStoryAddon";
+import { CucumberAddon } from "./CucumberAddon";
+import * as AccountForm from "../sqp-account-form/AccountForm.stories";
+import * as AccountDetails from "../sqp-account-details/AccountDetails.stories";
 
 // Import and add all stories to this array
 const stories = [AccountForm, AccountDetails];
@@ -15,7 +15,7 @@ const stories = [AccountForm, AccountDetails];
  * @undocumented
  */
 @Component({
-  tag: 'sqp-stencilbook',
+  tag: "sqp-stencilbook",
 })
 export class SQPStencilbook {
   @State()
@@ -28,7 +28,7 @@ export class SQPStencilbook {
   render() {
     const { class: Style, children } = useStencilbook(stories, {
       h,
-      title: 'PayPal Components',
+      title: "PayPal Components",
       addons: [HookStoryAddon, CucumberAddon],
     });
     return (

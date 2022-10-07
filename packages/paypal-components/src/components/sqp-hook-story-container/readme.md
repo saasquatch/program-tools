@@ -16,13 +16,13 @@
 
 ### Used by
 
- - [sqb-stencilbook](../sqb-stencilbook)
+ - [sqp-stencilbook](../sqp-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqb-stencilbook --> sqb-hook-story-container
-  style sqb-hook-story-container fill:#f9f,stroke:#333,stroke-width:4px
+  sqp-stencilbook --> sqp-hook-story-container
+  style sqp-hook-story-container fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
