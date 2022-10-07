@@ -59,12 +59,12 @@ export namespace Components {
         "confirmPayPalEmailLabel": string;
         /**
           * @uiName Connect Button Text
-          * @uiGroup Form
+          * @uiGroup Connect
          */
         "connectPayPalAccountButtonText": string;
         /**
           * @uiName Subheader Text
-          * @uiGroup Form
+          * @uiGroup Connect
          */
         "connectPayPalDescriptionText": string;
         /**
@@ -94,7 +94,7 @@ export namespace Components {
         "nextPaymentLabel": string;
         /**
           * @uiName Header Text
-          * @uiGroup Form
+          * @uiGroup Connect
          */
         "payPalAccountHeaderText": string;
         /**
@@ -112,6 +112,11 @@ export namespace Components {
           * @uiGroup Details
          */
         "recentPaymentLabel": string;
+        /**
+          * @uiName Submit Button Text
+          * @uiGroup Form
+         */
+        "submitPayPalAccountButtonText": string;
         /**
           * @uiName Success Message
           * @uiGroup Form
@@ -268,12 +273,12 @@ declare namespace LocalJSX {
         "confirmPayPalEmailLabel"?: string;
         /**
           * @uiName Connect Button Text
-          * @uiGroup Form
+          * @uiGroup Connect
          */
         "connectPayPalAccountButtonText"?: string;
         /**
           * @uiName Subheader Text
-          * @uiGroup Form
+          * @uiGroup Connect
          */
         "connectPayPalDescriptionText"?: string;
         /**
@@ -303,7 +308,7 @@ declare namespace LocalJSX {
         "nextPaymentLabel"?: string;
         /**
           * @uiName Header Text
-          * @uiGroup Form
+          * @uiGroup Connect
          */
         "payPalAccountHeaderText"?: string;
         /**
@@ -321,6 +326,11 @@ declare namespace LocalJSX {
           * @uiGroup Details
          */
         "recentPaymentLabel"?: string;
+        /**
+          * @uiName Submit Button Text
+          * @uiGroup Form
+         */
+        "submitPayPalAccountButtonText"?: string;
         /**
           * @uiName Success Message
           * @uiGroup Form
