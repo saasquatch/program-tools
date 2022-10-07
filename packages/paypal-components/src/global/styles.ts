@@ -714,6 +714,11 @@ sl-input::part(label){
   color: var(--sl-color-gray-900);
 }
 
+.header {
+  background: rgb(23,44,112) !important;
+  background: linear-gradient(309deg, rgba(23,44,112,1) 29%, rgba(0,158,227,1) 71%) !important;
+}
+
 .FooterEmail{
   text-decoration: none;
   font-size: var(--sl-font-size-medium);
