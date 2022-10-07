@@ -56,6 +56,10 @@ const GET_REFERRER_DATA = gql`
             statuses
             globalRewardKey
             programRewardKey
+            meta {
+              integration
+              message
+            }
             rewardRedemptionTransactions {
               data {
                 exchangedRewards {
