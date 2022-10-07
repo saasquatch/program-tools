@@ -1,6 +1,6 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { useState } from "@saasquatch/universal-hooks";
+import { useRef, useState } from "@saasquatch/universal-hooks";
 import { Component, h, Host, Prop, State } from "@stencil/core";
 import { getProps } from "../../utils/utils";
 import {
@@ -135,9 +135,10 @@ export class PaypalAccountDetails {
 
 function useAccountDetailsDemo(props: PaypalAccountDetails) {
   const [open, setOpen] = useState(false);
-
+  const formRef = useRef<HTMLFormElement>(null);
   return deepmerge(
     {
+      formRef,
       setupAccount: () => {},
       hasAccount: false,
       accountDetails: {
