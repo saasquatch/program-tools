@@ -39,21 +39,63 @@ export namespace Components {
         "textAlign": "left" | "center" | "right";
     }
     interface SqpAccountDetails {
+        /**
+          * @uiName Account Label
+         */
         "accountLabel": string;
+        /**
+          * @uiName Edit Text
+         */
         "editText": string;
+        /**
+          * @uiName Header Text
+         */
         "headerText": string;
+        /**
+          * @uiName Next Payment Label
+         */
         "nextPaymentLabel": string;
+        /**
+          * @uiName Recent Payment Label
+         */
         "recentPaymentLabel": string;
     }
     interface SqpAccountForm {
+        /**
+          * @uiName Cancel Text
+         */
         "cancelText": string;
+        /**
+          * @uiName Confirmation Email Text
+         */
         "confirmPayPalEmailLabel": string;
+        /**
+          * @uiName Connect Button Text
+         */
         "connectPayPalAccountButtonText": string;
+        /**
+          * @uiName Subheader Text
+         */
         "connectPayPalDescriptionText": string;
+        /**
+          * @uiName Modal Header
+         */
         "modalConnectPayPalAccountHeader": string;
+        /**
+          * @uiName Header Text
+         */
         "payPalAccountHeaderText": string;
+        /**
+          * @uiName Paypal Email Label
+         */
         "payPalEmailLabel": string;
+        /**
+          * @uiName Email Help Text
+         */
         "payPalEmailLabelHelpText": string;
+        /**
+          * @uiName Success Message
+         */
         "successMessage": string;
     }
     interface SqpHookStoryContainer {
@@ -196,21 +238,63 @@ declare namespace LocalJSX {
         "textAlign"?: "left" | "center" | "right";
     }
     interface SqpAccountDetails {
+        /**
+          * @uiName Account Label
+         */
         "accountLabel"?: string;
+        /**
+          * @uiName Edit Text
+         */
         "editText"?: string;
+        /**
+          * @uiName Header Text
+         */
         "headerText"?: string;
+        /**
+          * @uiName Next Payment Label
+         */
         "nextPaymentLabel"?: string;
+        /**
+          * @uiName Recent Payment Label
+         */
         "recentPaymentLabel"?: string;
     }
     interface SqpAccountForm {
+        /**
+          * @uiName Cancel Text
+         */
         "cancelText"?: string;
+        /**
+          * @uiName Confirmation Email Text
+         */
         "confirmPayPalEmailLabel"?: string;
+        /**
+          * @uiName Connect Button Text
+         */
         "connectPayPalAccountButtonText"?: string;
+        /**
+          * @uiName Subheader Text
+         */
         "connectPayPalDescriptionText"?: string;
+        /**
+          * @uiName Modal Header
+         */
         "modalConnectPayPalAccountHeader"?: string;
+        /**
+          * @uiName Header Text
+         */
         "payPalAccountHeaderText"?: string;
+        /**
+          * @uiName Paypal Email Label
+         */
         "payPalEmailLabel"?: string;
+        /**
+          * @uiName Email Help Text
+         */
         "payPalEmailLabelHelpText"?: string;
+        /**
+          * @uiName Success Message
+         */
         "successMessage"?: string;
     }
     interface SqpHookStoryContainer {
