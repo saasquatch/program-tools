@@ -298,11 +298,13 @@ const SelectContainerView = <ItemType extends ItemTypeBase>(
   } = props;
 
   const isOpen = disabled ? false : functional?.isOpen;
+
+  console.log("isOpen", isOpen);
+
   return (
     <ContainerDiv
       customContainerCSS={customContainerCSS}
       limitWidth={limitWidth}
-      onClick={() => !isOpen && functional?.toggleMenu()}
     >
       {children}
     </ContainerDiv>
@@ -374,6 +376,8 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
   }
 
   const isOpen = disabled ? false : functional.isOpen;
+
+  console.log("isOpen", isOpen);
 
   return !isCombobox(functional) ? (
     <SelectInputButton
@@ -554,6 +558,8 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
   } = props;
 
   const isOpen = disabled || loading ? false : functional.isOpen;
+
+  console.log("isOpen", isOpen);
 
   return (
     <ItemContainerList

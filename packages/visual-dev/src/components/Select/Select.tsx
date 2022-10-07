@@ -1,5 +1,9 @@
 import { CSSProp } from "styled-components";
-import { UseComboboxReturnValue, UseSelectReturnValue } from "downshift";
+import {
+  UseComboboxReturnValue,
+  useSelect,
+  UseSelectReturnValue,
+} from "downshift";
 import React from "react";
 import { IconKey } from "../Icon";
 import { SelectView } from "./Select2";
@@ -93,7 +97,7 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
   props: SelectProps<ItemType>
 ) => {
   return (
-    <SelectView.ContainerView {...props}>
+    <SelectView.ContainerView>
       <SelectView.HandleView {...{ ...props, ref: undefined }} />
       <SelectView.ListView {...{ ...props, ref: undefined }} />
     </SelectView.ContainerView>
