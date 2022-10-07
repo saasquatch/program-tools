@@ -18,6 +18,7 @@ const content = {
 
 const defaultProps = {
   setOpen: () => {},
+  hasAccount: true,
   detailsContent: {
     ...content,
   },

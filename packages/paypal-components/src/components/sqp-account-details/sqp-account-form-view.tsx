@@ -4,6 +4,7 @@ import { PortalSectionView } from '../sqp-titled-section/sqp-portal-section-view
 
 export interface AccountFormViewProps {
   hasAccount: boolean;
+  formRef?: any;
   states: {
     open: boolean;
     error: string;
@@ -99,7 +100,7 @@ export function AccountFormView(props: AccountFormViewProps) {
                     <div part="successalert-text">{formContent.successMessage}</div>
                   </sqm-form-message>
                 )}
-                <sl-form onSl-submit={callbacks.submit}>
+                <sl-form onSl-submit={callbacks.submit} ref={(el: HTMLFormElement) => (props.formRef.current = el)}>
                   <div class={sheet.classes.InputContainer}>
                     <div>
                       <sl-input

@@ -6,6 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Spacing } from "./global/mixins";
+import { DemoData } from "./global/demo";
+import { AccountDetailsViewProps } from "./components/sqp-account-details/sqp-account-details-view";
+import { AccountFormViewProps } from "./components/sqp-account-details/sqp-account-form-view";
 import { FunctionalComponent } from "@stencil/core";
 export namespace Components {
     interface SqmTitledSection {
@@ -64,6 +67,11 @@ export namespace Components {
           * @uiGroup Form
          */
         "connectPayPalDescriptionText": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<AccountDetailsViewProps & AccountFormViewProps>;
         /**
           * @uiName Edit Text
           * @uiGroup Details
@@ -268,6 +276,11 @@ declare namespace LocalJSX {
           * @uiGroup Form
          */
         "connectPayPalDescriptionText"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<AccountDetailsViewProps & AccountFormViewProps>;
         /**
           * @uiName Edit Text
           * @uiGroup Details

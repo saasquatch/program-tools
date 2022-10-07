@@ -3,6 +3,7 @@ import { createStyleSheet } from '../../styling/JSS';
 
 export interface AccountDetailsViewProps {
   setOpen: (open: boolean) => void;
+  hasAccount: boolean;
   accountDetails: {
     email: string;
     recentPayment: { amount: number; date: number };
@@ -19,6 +20,8 @@ export interface AccountDetailsViewProps {
 
 export function AccountDetailsView(props: AccountDetailsViewProps) {
   const { detailsContent, accountDetails } = props;
+
+  if (!props.hasAccount) return '';
   const FlexContainer = {
     display: 'flex',
     alignItems: 'flex-start',
@@ -59,6 +62,7 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
   const { classes } = sheet;
+
   return (
     <div class={classes.Container}>
       <style type="text/css">{styleString}</style>

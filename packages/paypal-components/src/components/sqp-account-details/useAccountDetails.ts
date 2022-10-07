@@ -1,5 +1,5 @@
 import { setUserIdentity, useMutation, useQuery, useRefreshDispatcher, useUserIdentity } from '@saasquatch/component-boilerplate';
-import { useEffect, useState } from '@saasquatch/universal-hooks';
+import { useEffect, useRef, useState } from '@saasquatch/universal-hooks';
 import { gql } from 'graphql-request';
 import jsonpointer from 'jsonpointer';
 const ACCOUNT_DETAILS_QUERY = gql`
@@ -39,19 +39,18 @@ export function useAccountDetails(props) {
       },
     });
   }, []);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [error, setError] = useState('');
+  const [open, setOpen] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const { data } = useQuery(ACCOUNT_DETAILS_QUERY, {});
 
-  function setupAccount() {}
-
   const [fetch, { data: submissionData, loading }] = useMutation(SUBMIT_ACCOUNT);
 
-  const [error, setError] = useState('');
   const { refresh } = useRefreshDispatcher();
   console.log({ data });
   const { accountId, id } = useUserIdentity();
-
-  const [open, setOpen] = useState(false);
 
   const submit = async (event: any) => {
     setError('');
@@ -70,12 +69,29 @@ export function useAccountDetails(props) {
     if (result instanceof Error) {
       return setError('Network request failed.');
     } else {
+      setSuccess(true);
       refresh();
     }
   };
 
+  function resetForm() {
+    const formControls = formRef.current.getFormControls();
+    console.log({ stuff: formRef.current, formControls });
+    formControls?.forEach(control => {
+      control.value = '';
+    });
+    setSuccess(false);
+  }
+
+  function openModal(open: boolean) {
+    setOpen(open);
+    if (!open) {
+      resetForm();
+    }
+  }
+
   return {
-    setupAccount,
+    formRef,
     hasAccount: !!data?.viewer?.customFields?.paypalEmail,
     accountDetails: {
       email: data?.viewer?.customFields?.paypalEmail,
@@ -84,13 +100,12 @@ export function useAccountDetails(props) {
         date: 12345678900,
       },
     },
-    callbacks: { submit, setOpen },
+    callbacks: { submit, setOpen: openModal },
     states: {
       loading,
       error,
-      success: !!submissionData,
+      success,
       open,
-      content: {},
     },
     detailsContent: {
       headerText: props.headerText,

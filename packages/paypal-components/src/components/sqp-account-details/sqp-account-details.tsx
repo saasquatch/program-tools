@@ -1,11 +1,13 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { withHooks } from '@saasquatch/stencil-hooks';
 import { useState } from '@saasquatch/universal-hooks';
 import { Component, h, Host, Prop, State } from '@stencil/core';
 import { getProps } from '../../utils/utils';
-import { AccountDetailsView } from './sqp-account-details-view';
-import { AccountFormView } from './sqp-account-form-view';
+import { AccountDetailsView, AccountDetailsViewProps } from './sqp-account-details-view';
+import { AccountFormView, AccountFormViewProps } from './sqp-account-form-view';
 import { useAccountDetails } from './useAccountDetails';
-
+import deepmerge from 'deepmerge';
+import { DemoData } from '../../global/demo';
 /**
  * @uiName Paypal Account Details
  * @slots [{"name":"","title":"Form Slot"}]
@@ -91,32 +93,74 @@ export class PaypalAccountDetails {
    */
   @Prop() connectPayPalDescriptionText: string = 'Connect your PayPal account to automatically receive payments/cash rewards.';
 
+  /**
+   * @undocumented
+   * @uiType object
+   */
+  @Prop() demoData?: DemoData<AccountDetailsViewProps & AccountFormViewProps>;
+
   constructor() {
     withHooks(this);
   }
   disconnectedCallback() {}
   render() {
-    const props = useAccountDetails(getProps(this));
-    // isDemo() ? useAccountDetailsDemo(getProps(this)) : useAccountDetails(getProps(this));
+    const props = isDemo() ? useAccountDetailsDemo(getProps(this)) : useAccountDetails(getProps(this));
 
     return (
       <Host>
-        <AccountFormView states={props.states} callbacks={props.callbacks} formContent={props.formContent} hasAccount={props.hasAccount} />
-        <AccountDetailsView accountDetails={props.accountDetails} detailsContent={props.detailsContent} setOpen={props.callbacks.setOpen}></AccountDetailsView>
+        <AccountFormView formRef={props.formRef} states={props.states} callbacks={props.callbacks} formContent={props.formContent} hasAccount={props.hasAccount} />
+        <AccountDetailsView
+          hasAccount={props.hasAccount}
+          accountDetails={props.accountDetails}
+          detailsContent={props.detailsContent}
+          setOpen={props.callbacks.setOpen}
+        ></AccountDetailsView>
       </Host>
     );
   }
 }
 
-function useAccountDetailsDemo() {
+function useAccountDetailsDemo(props: PaypalAccountDetails) {
   const [open, setOpen] = useState(false);
-  return {
-    hasAccount: true,
-    states: {
-      open,
+
+  return deepmerge(
+    {
+      setupAccount: () => {},
+      hasAccount: false,
+      accountDetails: {
+        email: 'test@example.com',
+        recentPayment: { amount: 10000, date: 12345678900 },
+        nextPayment: {
+          date: 12345678900,
+        },
+      },
+      callbacks: { submit: () => {}, setOpen },
+      states: {
+        loading: false,
+        error: undefined,
+        success: false,
+        open,
+      },
+      detailsContent: {
+        headerText: props.headerText,
+        accountLabel: props.accountLabel,
+        recentPaymentLabel: props.recentPaymentLabel,
+        nextPaymentLabel: props.nextPaymentLabel,
+        editText: props.editText,
+      },
+      formContent: {
+        modalConnectPayPalAccountHeader: props.modalConnectPayPalAccountHeader,
+        cancelText: props.cancelText,
+        connectPayPalAccountButtonText: props.connectPayPalAccountButtonText,
+        payPalEmailLabel: props.payPalEmailLabel,
+        payPalEmailLabelHelpText: props.payPalEmailLabelHelpText,
+        confirmPayPalEmailLabel: props.confirmPayPalEmailLabel,
+        successMessage: props.successMessage,
+        payPalAccountHeaderText: props.payPalAccountHeaderText,
+        connectPayPalDescriptionText: props.connectPayPalDescriptionText,
+      },
     },
-    callbacks: {
-      setOpen,
-    },
-  };
+    props.demoData || {},
+    { arrayMerge: (_, a) => a },
+  );
 }
