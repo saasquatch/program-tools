@@ -26,9 +26,6 @@ export class PaypalAccountDetails {
     const props = useAccountDetails(getProps(this));
     // isDemo() ? useAccountDetailsDemo() : useAccountDetails();
 
-    console.log({ props });
-    useRequestRerender([props.hasAccount]);
-
     const formSlot = <slot />;
 
     return (
@@ -38,13 +35,6 @@ export class PaypalAccountDetails {
         <AccountDetailsView {...props}></AccountDetailsView>
       </Host>
     );
-    // return props.hasAccount ? (
-    //   <div>has account: {props.accountDetails?.email}</div>
-    // ) : (
-    //   <div>
-    //     <button>set up your account now</button>
-    //   </div>
-    // );
   }
 }
 
