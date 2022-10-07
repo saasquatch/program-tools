@@ -101,6 +101,9 @@ export namespace Components {
     interface SqpHookStoryContainer {
         "hookStory": FunctionalComponent;
     }
+    interface SqpRewardCell {
+        "meta": any;
+    }
     interface SqpRewardColumn {
         /**
           * @uiName Reward column title
@@ -147,9 +150,6 @@ export namespace Components {
          */
         "statusText": string;
     }
-    interface SqpRewardsCell {
-        "rewards": Reward[];
-    }
     interface SqpStencilbook {
     }
 }
@@ -178,17 +178,17 @@ declare global {
         prototype: HTMLSqpHookStoryContainerElement;
         new (): HTMLSqpHookStoryContainerElement;
     };
+    interface HTMLSqpRewardCellElement extends Components.SqpRewardCell, HTMLStencilElement {
+    }
+    var HTMLSqpRewardCellElement: {
+        prototype: HTMLSqpRewardCellElement;
+        new (): HTMLSqpRewardCellElement;
+    };
     interface HTMLSqpRewardColumnElement extends Components.SqpRewardColumn, HTMLStencilElement {
     }
     var HTMLSqpRewardColumnElement: {
         prototype: HTMLSqpRewardColumnElement;
         new (): HTMLSqpRewardColumnElement;
-    };
-    interface HTMLSqpRewardsCellElement extends Components.SqpRewardsCell, HTMLStencilElement {
-    }
-    var HTMLSqpRewardsCellElement: {
-        prototype: HTMLSqpRewardsCellElement;
-        new (): HTMLSqpRewardsCellElement;
     };
     interface HTMLSqpStencilbookElement extends Components.SqpStencilbook, HTMLStencilElement {
     }
@@ -201,8 +201,8 @@ declare global {
         "sqp-account-details": HTMLSqpAccountDetailsElement;
         "sqp-account-form": HTMLSqpAccountFormElement;
         "sqp-hook-story-container": HTMLSqpHookStoryContainerElement;
+        "sqp-reward-cell": HTMLSqpRewardCellElement;
         "sqp-reward-column": HTMLSqpRewardColumnElement;
-        "sqp-rewards-cell": HTMLSqpRewardsCellElement;
         "sqp-stencilbook": HTMLSqpStencilbookElement;
     }
 }
@@ -300,6 +300,9 @@ declare namespace LocalJSX {
     interface SqpHookStoryContainer {
         "hookStory"?: FunctionalComponent;
     }
+    interface SqpRewardCell {
+        "meta"?: any;
+    }
     interface SqpRewardColumn {
         /**
           * @uiName Reward column title
@@ -343,9 +346,6 @@ declare namespace LocalJSX {
          */
         "statusText"?: string;
     }
-    interface SqpRewardsCell {
-        "rewards"?: Reward[];
-    }
     interface SqpStencilbook {
     }
     interface IntrinsicElements {
@@ -353,8 +353,8 @@ declare namespace LocalJSX {
         "sqp-account-details": SqpAccountDetails;
         "sqp-account-form": SqpAccountForm;
         "sqp-hook-story-container": SqpHookStoryContainer;
+        "sqp-reward-cell": SqpRewardCell;
         "sqp-reward-column": SqpRewardColumn;
-        "sqp-rewards-cell": SqpRewardsCell;
         "sqp-stencilbook": SqpStencilbook;
     }
 }
@@ -366,8 +366,8 @@ declare module "@stencil/core" {
             "sqp-account-details": LocalJSX.SqpAccountDetails & JSXBase.HTMLAttributes<HTMLSqpAccountDetailsElement>;
             "sqp-account-form": LocalJSX.SqpAccountForm & JSXBase.HTMLAttributes<HTMLSqpAccountFormElement>;
             "sqp-hook-story-container": LocalJSX.SqpHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqpHookStoryContainerElement>;
+            "sqp-reward-cell": LocalJSX.SqpRewardCell & JSXBase.HTMLAttributes<HTMLSqpRewardCellElement>;
             "sqp-reward-column": LocalJSX.SqpRewardColumn & JSXBase.HTMLAttributes<HTMLSqpRewardColumnElement>;
-            "sqp-rewards-cell": LocalJSX.SqpRewardsCell & JSXBase.HTMLAttributes<HTMLSqpRewardsCellElement>;
             "sqp-stencilbook": LocalJSX.SqpStencilbook & JSXBase.HTMLAttributes<HTMLSqpStencilbookElement>;
         }
     }

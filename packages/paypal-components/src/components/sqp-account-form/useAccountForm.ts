@@ -12,18 +12,6 @@ const SUBMIT_ACCOUNT = gql`
   }
 `;
 
-const ACCOUNT_DETAILS_QUERY = gql`
-  query {
-    viewer {
-      ... on User {
-        id
-        accountId
-        firstName
-        customFields
-      }
-    }
-  }
-`;
 export function useAccountForm(props) {
   const [fetch, { data, loading }] = useMutation(SUBMIT_ACCOUNT);
 
