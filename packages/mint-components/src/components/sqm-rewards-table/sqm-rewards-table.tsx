@@ -65,8 +65,9 @@ export class RewardsTable {
    * @undocumented
    * @uiType object
    */
-  @Prop()
-  demoData?: DemoData<GenericTableViewProps>;
+  @Prop() demoData?: DemoData<GenericTableViewProps> & {
+    mockData: { data: Referral[] };
+  };
 
   constructor() {
     withHooks(this);
@@ -150,7 +151,7 @@ function useRewardsTableDemo(
   const tick = useRerenderListener();
 
   const { data } = useMemo(
-    () => mockRewardData(props.perPage),
+    () => props.demoData?.mockData || mockRewardData(props.perPage),
     [props.perPage]
   );
 

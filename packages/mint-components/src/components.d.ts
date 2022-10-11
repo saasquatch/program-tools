@@ -1675,7 +1675,9 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<GenericTableViewProps>;
+        "demoData"?: DemoData<GenericTableViewProps> & {
+    mockData: { data: Referral[] };
+  };
         /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
           * @uiName Mobile Hidden Columns
@@ -4616,7 +4618,9 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<GenericTableViewProps>;
+        "demoData"?: DemoData<GenericTableViewProps> & {
+    mockData: { data: Referral[] };
+  };
         /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
           * @uiName Mobile Hidden Columns
