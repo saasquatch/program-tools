@@ -51,6 +51,22 @@ export class PaypalAccountDetails {
    */
   @Prop() editText: string = "Edit";
   /**
+   * @uiName Connect Button Text
+   * @uiGroup Connect
+   */
+  @Prop() connectPayPalAccountButtonText: string = "Connect account";
+  /**
+   * @uiName Subheader Text
+   * @uiGroup Connect
+   */
+  @Prop() connectPayPalDescriptionText: string =
+    "Connect your PayPal account to automatically receive payments/cash rewards.";
+  /**
+   * @uiName Header Text
+   * @uiGroup Connect
+   */
+  @Prop() payPalAccountHeaderText: string = "PayPal account";
+  /**
    * @uiName Modal Header
    * @uiGroup Form
    */
@@ -61,10 +77,10 @@ export class PaypalAccountDetails {
    */
   @Prop() cancelText: string = "Cancel";
   /**
-   * @uiName Connect Button Text
+   * @uiName Submit Button Text
    * @uiGroup Form
    */
-  @Prop() connectPayPalAccountButtonText: string = "Connect account";
+  @Prop() submitPayPalAccountButtonText: string = "Connect account";
   /**
    * @uiName Paypal Email Label
    * @uiGroup Form
@@ -86,17 +102,6 @@ export class PaypalAccountDetails {
    * @uiGroup Form
    */
   @Prop() successMessage: string = "Success!";
-  /**
-   * @uiName Header Text
-   * @uiGroup Form
-   */
-  @Prop() payPalAccountHeaderText: string = "PayPal account";
-  /**
-   * @uiName Subheader Text
-   * @uiGroup Form
-   */
-  @Prop() connectPayPalDescriptionText: string =
-    "Connect your PayPal account to automatically receive payments/cash rewards.";
 
   /**
    * @undocumented
@@ -166,6 +171,7 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
         modalConnectPayPalAccountHeader: props.modalConnectPayPalAccountHeader,
         cancelText: props.cancelText,
         connectPayPalAccountButtonText: props.connectPayPalAccountButtonText,
+        submitPayPalAccountButtonText: props.submitPayPalAccountButtonText,
         payPalEmailLabel: props.payPalEmailLabel,
         payPalEmailLabelHelpText: props.payPalEmailLabelHelpText,
         confirmPayPalEmailLabel: props.confirmPayPalEmailLabel,
