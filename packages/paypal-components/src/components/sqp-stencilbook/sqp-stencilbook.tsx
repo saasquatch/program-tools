@@ -4,9 +4,9 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { HookStoryAddon } from "./HookStoryAddon";
 import { CucumberAddon } from "./CucumberAddon";
 import * as AccountDetails from "../sqp-account-details/AccountDetails.stories";
-
+import * as RewardColumn from "../sqp-reward-column/RewardColumn.stories";
 // Import and add all stories to this array
-const stories = [AccountDetails];
+const stories = [AccountDetails, RewardColumn];
 
 /**
  * For internal documentation
