@@ -1,9 +1,5 @@
 import { CSSProp } from "styled-components";
-import {
-  UseComboboxReturnValue,
-  useSelect,
-  UseSelectReturnValue,
-} from "downshift";
+import { UseComboboxReturnValue, UseSelectReturnValue } from "downshift";
 import React from "react";
 import { IconKey } from "../Icon";
 import { SelectView } from "./Select2";

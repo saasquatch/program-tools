@@ -80,7 +80,6 @@ export interface HandleOptionProps<ItemType> {
    */
   customIcon?: IconKey;
 }
-
 export interface SelectListViewProps<ItemType> {
   /**
    * Render the select with red border and background to indicate an error
