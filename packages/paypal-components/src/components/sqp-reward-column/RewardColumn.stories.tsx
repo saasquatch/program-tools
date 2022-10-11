@@ -1,4 +1,5 @@
 import { h } from "@stencil/core";
+import mockReferralData from "./mockReferralData";
 export default {
   title: "Components/PayPal Account Reward Column",
   // parameters: {
@@ -14,6 +15,7 @@ export const ReferralTable = () => (
     prev-label="Prev"
     sm-breakpoint="599"
     md-breakpoint="799"
+    demoData={{ mockData: mockReferralData(4) }}
   >
     <sqm-referral-table-user-column
       column-title="User"
@@ -38,6 +40,7 @@ export const ReferralTable = () => (
       column-title="Date referred"
       date-shown="dateReferralStarted"
     ></sqm-referral-table-date-column>
+    <sqp-reward-column column-title="PayPal"></sqp-reward-column>
     <sqm-empty
       slot="empty"
       empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png"

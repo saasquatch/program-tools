@@ -127,7 +127,7 @@ export namespace Components {
         "hookStory": FunctionalComponent;
     }
     interface SqpRewardCell {
-        "meta": any;
+        "referral": any;
     }
     interface SqpRewardColumn {
         /**
@@ -154,9 +154,9 @@ export namespace Components {
           * @uiName Reward Pending Text
          */
         "pendingForText": string;
-        "renderCell": (_data: Referral, _locale: string) => Promise<any>;
+        "renderCell": (referral: Referral, _locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (_data: Referrer) => Promise<any>;
+        "renderReferrerCell": (referral: Referrer) => Promise<any>;
         /**
           * Shown in the dropdown details when a reward has been received.’
           * @uiName Reward Received Text
@@ -341,7 +341,7 @@ declare namespace LocalJSX {
         "hookStory"?: FunctionalComponent;
     }
     interface SqpRewardCell {
-        "meta"?: any;
+        "referral"?: any;
     }
     interface SqpRewardColumn {
         /**
