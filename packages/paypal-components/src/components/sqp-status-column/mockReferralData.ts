@@ -51,14 +51,16 @@ const lastNames = [
   "Rogers",
 ];
 
-const getPaypalMeta = () => ({
-  status: "SUCCESS",
-  customMeta: {
-    datePaidOut: 1234567890,
-    dateLastAttempted: 12345678910,
-    dateFirstAttempted: 12345678910,
-  },
-});
+const getPaypalMeta = () =>
+  Math.floor(Math.random() * 10) >= 5
+    ? {
+        customMeta: {
+          datePaidOut: 1234567890,
+          dateLastAttempted: 12345678910,
+          dateFirstAttempted: 12345678910,
+        },
+      }
+    : null;
 
 const getMockData = () => {
   return {

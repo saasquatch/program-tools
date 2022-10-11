@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import mockReferralData from "./mockReferralData";
+import mockRewardData from "./mockRewardData";
 export default {
   title: "Components/Rewards Table Status Column",
   // parameters: {
@@ -16,6 +16,7 @@ export const RewardsTable = () => (
     prev-label="Prev"
     sm-breakpoint="599"
     md-breakpoint="799"
+    demoData={{ mockData: mockRewardData(4) }}
   >
     <sqm-rewards-table-reward-column
       available-text="{availableAmount} remaining"
@@ -34,7 +35,6 @@ export const RewardsTable = () => (
     <sqp-rewards-table-status-column
       column-title="Status"
       expiry-text="Expires on "
-      status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
     ></sqp-rewards-table-status-column>
     <sqm-rewards-table-date-column
       column-title="Date received"

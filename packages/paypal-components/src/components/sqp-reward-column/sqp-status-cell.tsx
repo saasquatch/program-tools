@@ -30,8 +30,11 @@ const style = {
 
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
+
+const paypalStatuses = ["TRANSFERRED", "FAILED", "INPROGRESS"];
+
 @Component({
-  tag: "sqm-rewards-table-status-cell",
+  tag: "sqp-status-cell",
   shadow: true,
 })
 export class RewardTableStatusCell {
@@ -43,12 +46,42 @@ export class RewardTableStatusCell {
   @Prop() pendingScheduled: string = "Until";
   @Prop() pendingUnhandled: string = "Fulfillment error";
 
+  /**
+ * 
+        Examples:
+            | status    | mayHaveBeenPaidOut                                                          | text        | pillColour | maySee    |
+            | AVAILABLE | hasn't been paid out                                                        | Available   | Green      | don’t see |
+            | REDEEMED  | has been paid out (datePaidOut)                                             | Transferred | Blue       | see       |
+            | AVAILABLE | failed to be paid out (meta status is FAILED)                               | Failed      | Red        | see       |
+            | AVAILABLE | is being paid out by the integration (dateLastAttempted but no datePaidOut) | In Progress | Orange     | see       |
+            | CANCELLED | N/A                                                                         | Cancelled   | Red        | don't see |
+            | PENDING   | N/A                                                                         | Pending     | Orange     | don't see |
+            | EXPIRED   | N/A                                                                         | Expired     | Red        | don't see |
+            | REDEEMED  | N/A                                                                         | Redeemed    | Blue       | don't see |
+
+ */
+
   rewardStatus(reward: Reward) {
     if (reward.dateCancelled) return "CANCELLED";
     if (reward.statuses && reward.statuses.includes("EXPIRED"))
       return "EXPIRED";
     if (reward.statuses && reward.statuses.includes("PENDING"))
       return "PENDING";
+    if (
+      reward.meta?.customMeta?.datePaidOut &&
+      reward.statuses.includes("REDEEMED")
+    ) {
+      return "TRANSFERRED";
+    }
+    if (reward.meta?.status === "ERROR") {
+      return "FAILED";
+    }
+    if (
+      reward.meta?.customMeta?.dateLastAttempted &&
+      !reward.meta?.customMeta?.datePaidOut
+    ) {
+      return "INPROGRESS";
+    }
     if (reward.type === "CREDIT") {
       if (reward.statuses.includes("REDEEMED")) return "REDEEMED";
       return "AVAILABLE";
@@ -72,6 +105,14 @@ export class RewardTableStatusCell {
     intl.locale = this.locale;
 
     const rewardStatus = this.rewardStatus(this.reward);
+    const PaypalBadge = () => (
+      <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665094610/tenant_test_ahsf8e6g2r1dh/brjh1v3anhzwvef6ntbj.svg" />
+    );
+    console.log({
+      reward: this.reward,
+      rewardStatus,
+      message: this.statusText,
+    });
     const statusText = intl.formatMessage(
       { id: "statusMessage", defaultMessage: this.statusText },
       {
@@ -82,9 +123,9 @@ export class RewardTableStatusCell {
     const badgeType =
       rewardStatus === "AVAILABLE"
         ? "success"
-        : rewardStatus === "REDEEMED"
+        : rewardStatus === "REDEEMED" || rewardStatus === "TRANSFERRED"
         ? "primary"
-        : rewardStatus === "PENDING"
+        : rewardStatus === "PENDING" || rewardStatus === "INPROGRESS"
         ? "warning"
         : "danger";
 
@@ -107,6 +148,8 @@ export class RewardTableStatusCell {
     const pendingReasons =
       rewardStatus === "PENDING" ? getRewardPendingReasons(this) : null;
 
+    const isPayPal = paypalStatuses.includes(rewardStatus);
+
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
@@ -121,6 +164,7 @@ export class RewardTableStatusCell {
         >
           {statusText}
         </sl-badge>
+        {isPayPal && <PaypalBadge />}
         <p class={sheet.classes.Date}>{pendingReasons || date}</p>
       </div>
     );
