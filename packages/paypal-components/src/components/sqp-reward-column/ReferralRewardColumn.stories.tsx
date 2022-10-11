@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 import mockReferralData from "./mockReferralData";
 export default {
-  title: "Components/PayPal Account Reward Column",
+  title: "Components/Referral Reward Column",
   // parameters: {
   //   scenario,
   // },
