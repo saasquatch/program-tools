@@ -32,18 +32,17 @@ const defaultAccountDetailsProps: AccountDetailsViewProps = {
 };
 
 const defaultAccountFormProps: AccountFormViewProps = {
-  formRef: {current:null},
+  formRef: { current: null },
   hasAccount: true,
   callbacks: { submit: () => {}, setOpen: () => {} },
   states: {
     loading: false,
     error: undefined,
     success: false,
-    open: true,
+    open: false,
   },
-  // @ts-ignore
   formContent: {
-    modalConnectPayPalAccountHeader: "Connect PayPal accoun",
+    modalConnectPayPalAccountHeader: "Connect PayPal account",
     cancelText: "Cancel",
     connectPayPalAccountButtonText: "Connect account",
     payPalEmailLabel: "PayPal email",
@@ -53,6 +52,7 @@ const defaultAccountFormProps: AccountFormViewProps = {
     payPalAccountHeaderText: "PayPal account",
     connectPayPalDescriptionText:
       "Connect your PayPal account to automatically receive payments/cash rewards",
+    submitPayPalAccountButtonText: "Connect account",
   },
 };
 
@@ -66,6 +66,17 @@ export const HasAccount = () => (
 export const NoAccount = () => (
   <div>
     <AccountFormView {...defaultAccountFormProps} hasAccount={false} />
+    <AccountDetailsView {...defaultAccountDetailsProps} hasAccount={false} />
+  </div>
+);
+
+export const NoAccountFormOpen = () => (
+  <div>
+    <AccountFormView
+      {...defaultAccountFormProps}
+      hasAccount={false}
+      states={{ ...defaultAccountFormProps.states, open: true }}
+    />
     <AccountDetailsView {...defaultAccountDetailsProps} hasAccount={false} />
   </div>
 );
