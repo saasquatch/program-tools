@@ -32,7 +32,7 @@ const defaultAccountDetailsProps: AccountDetailsViewProps = {
 };
 
 const defaultAccountFormProps: AccountFormViewProps = {
-  formRef: useRef<HTMLFormElement>(null),
+  formRef: {current:null},
   hasAccount: true,
   callbacks: { submit: () => {}, setOpen: () => {} },
   states: {
@@ -41,6 +41,7 @@ const defaultAccountFormProps: AccountFormViewProps = {
     success: false,
     open: true,
   },
+  // @ts-ignore
   formContent: {
     modalConnectPayPalAccountHeader: "Connect PayPal accoun",
     cancelText: "Cancel",
