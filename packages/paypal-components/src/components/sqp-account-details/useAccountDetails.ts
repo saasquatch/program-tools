@@ -44,7 +44,7 @@ export function useAccountDetails(props) {
 
   const { refresh } = useRefreshDispatcher();
   console.log({ data });
-  const { accountId, id } = useUserIdentity();
+  const { accountId, id } = useUserIdentity() || {accountId:null, id:null};
 
   const submit = async (event: any) => {
     setError("");
