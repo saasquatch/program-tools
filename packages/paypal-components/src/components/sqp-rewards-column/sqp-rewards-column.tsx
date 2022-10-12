@@ -79,6 +79,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   @Method()
   async renderCell(data: Referral, locale: string) {
     // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
+    console.log(data.rewards);
     return (
       <sqp-rewards-cell
         rewards={data.rewards}

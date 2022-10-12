@@ -4,6 +4,7 @@ import { intl } from "../../global/global";
 import { luxonLocale } from "../../utils/utils";
 import { createStyleSheet } from "../../styling/JSS";
 import { TextSpanView } from "./text-span-view";
+import { PaypalBadge } from "../../Icons/PaypalBadge";
 
 const paypalStatuses = ["TRANSFERRED", "FAILED", "INPROGRESS"];
 
@@ -62,9 +63,10 @@ export class ReferralTableRewardsCell {
       },
 
       BadgeContainer: {
-        "& > :not(:last-child)": {
-          "margin-right": "var(--sl-spacing-x-small)",
-        },
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        gap: "10px",
       },
 
       BoldText: {
@@ -149,13 +151,6 @@ export class ReferralTableRewardsCell {
         .replace("in", "")
         .trim();
     };
-    const PaypalBadge = () => (
-      <img
-        height="30"
-        width="30"
-        src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665094610/tenant_test_ahsf8e6g2r1dh/brjh1v3anhzwvef6ntbj.svg"
-      />
-    );
 
     return this.rewards?.map((reward) => {
       const state = getState(reward);

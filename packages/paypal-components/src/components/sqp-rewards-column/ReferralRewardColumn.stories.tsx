@@ -1,5 +1,16 @@
 import { h } from "@stencil/core";
 import mockReferralData from "./mockReferralData";
+import {
+  baseReward,
+  availableReward,
+  nullExpiresIn,
+  transferredReward,
+  cancelledReward,
+  failedPaypal,
+  pendingReward,
+  nullScheduledFor,
+  nullFuelTank,
+} from "./RewardData";
 export default {
   title: "Components/Referral Reward Column",
   // parameters: {
@@ -7,7 +18,102 @@ export default {
   // },
 };
 
-export const ReferralTable = () => (
+export const AvailableNoExpiry = () => {
+  return (
+    <sqp-rewards-cell
+      rewards={[{ ...baseReward }]}
+      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      fuelTankText="Your code is"
+      rewardReceivedText="Reward received on"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
+    ></sqp-rewards-cell>
+  );
+};
+
+export const Transferred = () => {
+  return (
+    <sqp-rewards-cell
+      rewards={[
+        {
+          ...baseReward,
+          ...nullExpiresIn,
+          ...nullScheduledFor,
+          ...nullFuelTank,
+        },
+      ]}
+      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      fuelTankText="Your code is"
+      rewardReceivedText="Reward received on"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
+    ></sqp-rewards-cell>
+  );
+};
+
+export const Failed = () => {
+  return (
+    <sqp-rewards-cell
+      rewards={[
+        {
+          id: "5cae6b16cc540e209db45cfa",
+          type: "CREDIT",
+          value: 1,
+          unit: "POINT",
+          name: "Partner Reward",
+          dateGiven: 1554934550726,
+          dateExpires: null,
+          dateCancelled: null,
+          dateRedeemed: 1637004373582,
+          dateScheduledFor: null,
+          fuelTankCode: null,
+          fuelTankType: null,
+          currency: null,
+          prettyValue: "1 Point",
+          statuses: ["REDEEMED"],
+          globalRewardKey: null,
+          meta: {
+            integration: {
+              name: "PayPal",
+            },
+            status: "ERROR",
+            customMeta: {
+              datePaidOut: null,
+              dateLastAttempted: null,
+              dateFirstAttempted: null,
+            },
+          },
+          rewardRedemptionTransactions: {
+            data: [
+              {
+                exchangedRewards: {
+                  data: [
+                    {
+                      prettyValue: "CAD10.00 Visa* Prepaid Card CAD",
+                      type: "INTEGRATION",
+                      fuelTankCode: null,
+                      globalRewardKey: "gc1",
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        },
+      ]}
+      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      fuelTankText="Your code is"
+      rewardReceivedText="Reward received on"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
+    ></sqp-rewards-cell>
+  );
+};
+
+export const FullReferralTable = () => (
   <sqm-referral-table
     per-page="4"
     hidden-columns="2"

@@ -1,10 +1,17 @@
 import { Component, h, Prop } from "@stencil/core";
 import { DateTime } from "luxon";
 import { intl } from "../../global/global";
+import { PaypalBadge } from "../../Icons/PaypalBadge";
 import { createStyleSheet } from "../../styling/JSS";
 import { luxonLocale } from "../../utils/utils";
 
 const style = {
+  BadgeContainer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    gap: "12px",
+  },
   Badge: {
     "&::part(base)": {
       fontSize: "var(--sl-font-size-small)",
@@ -90,9 +97,6 @@ export class RewardTableStatusCell {
     intl.locale = this.locale;
 
     const rewardStatus = this.rewardStatus(this.reward);
-    const PaypalBadge = () => (
-      <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665094610/tenant_test_ahsf8e6g2r1dh/brjh1v3anhzwvef6ntbj.svg" />
-    );
     console.log({
       reward: this.reward,
       rewardStatus,
@@ -138,18 +142,21 @@ export class RewardTableStatusCell {
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
-        <sl-badge
-          type={badgeType}
-          pill
-          class={
-            rewardStatus === "REDEEMED"
-              ? sheet.classes.RedeemBadge
-              : sheet.classes.Badge
-          }
-        >
-          {statusText}
-        </sl-badge>
-        {isPayPal && <PaypalBadge />}
+        <div class={sheet.classes.BadgeContainer}>
+          <sl-badge
+            type={badgeType}
+            pill
+            class={
+              rewardStatus === "REDEEMED"
+                ? sheet.classes.RedeemBadge
+                : sheet.classes.Badge
+            }
+          >
+            {statusText}
+          </sl-badge>
+          {isPayPal && <PaypalBadge />}
+        </div>
+
         <p class={sheet.classes.Date}>{pendingReasons || date}</p>
       </div>
     );
