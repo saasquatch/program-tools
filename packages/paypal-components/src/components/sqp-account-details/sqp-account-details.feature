@@ -16,7 +16,44 @@ Feature: Paypal Account Details
         And they click "Save"
         Then the modal closes
         And their email is saved on the participant as their "paypalEmail"
-        And they see payout information
+
+    @minutia
+    @ui
+    Scenario: Clicking the "Edit" button displays a modal to choose between editing email or disconnecting your email from the integration
+        Given a "<sqp-account-details>" component
+        And a participant with a "paypalEmail" custom field value
+        Then they see an "Edit" button beside the PayPal header
+        When they click "Edit"
+        Then they see a modal
+        And in the top of the modal they see their PayPal in a disabled input
+        And they see a brand colour button to change their email
+        And below the see a section to disconnect their account
+
+    @motivating
+    Scenario: Paypal Email can be changed after configuration 
+        Given a "<sqp-account-details>" component
+        And a participant with a "paypalEmail" custom field value
+        When click the "Edit" button
+        And click "change account" in the modal
+        Then they see the following inputs
+            | input         |
+            | PayPal Email  |
+            | Confirm Email |
+        When they change their email
+        And confirm
+        And click "Save"
+        Then the modal closes
+        And their new email is saved on the participant as their "paypalEmail"
+
+    @minutia
+    #Is there a big use case for this?
+    Scenario: Participants can disconnect themselves from the PayPal integration
+    Given a "<sqp-account-details>" component
+        And a participant with a "paypalEmail" custom field value
+        When click the "Edit" button
+        And click "Disconnect account" in the modal
+        Then the modal closes
+        And their PayPal email is wiped from their user in SSQT
 
     @minutia
     #details on validation pretty tbd
@@ -42,34 +79,35 @@ Feature: Paypal Account Details
     Scenario: Last payout and next payout are displayed when the participant has configured their paypal email
         Given a "<sqp-account-details>" component
         And a participant with a "paypalEmail" custom field value
+        And they have been paid out by the integration
+        And they have rewards that are going to be paid out by the integration
         When they view the component
-        Then they see the email linked to their account
-        And a "edit" text link to the right of the email
-        And they see the following information for their previous payout
-            | information      |
-            | amount payed out |
-            | date payed out   |
+        Then they see the following information for their previous payout
+            | information                                             | text                       |
+            | total amount paid out the last time the integration ran | {amount}$ on {datePaidOut} |
+            #questions here if this is the above or the last time the integration ran that resulted in the participant being paid out, and how much that was
         And they see the date of the next scheduled payout
 
     @minutia
-    Scenario: Empty state displayed when their is no previous payout
-
-    @motivating
-    Scenario: Paypal Email can be edited
-        Given a "<sqp-account-details>" component
+    Scenario: Previous payout is hidden if they have no previous payout
+       Given a "<sqp-account-details>" component
         And a participant with a "paypalEmail" custom field value
+        But they have not been paid out by the integration
         When they view the component
-        And click the "Edit" text link beside their email
-        Then the configuration modal opens
-        When they change their email
-        And confirm
-        And click "Save"
-        Then the modal closes
-        And their new email is saved on the participant as their "paypalEmail"
+        Then they do not see the "Recent Payment" section
+
+    @unknown
+    #Need detail of what is possible from the integration
+    Scenario: The "Next Payment" section displays ___ when the participant has nothing to be paid out
+
+    @minutia
+    Scenario: The component displays a disabled state if the integration is not configured/enabled
+        Given a "<sqp-account-details>" component
+        But the tenant has not configured/enabled the PayPal integration
+        When a participant views the component
+        Then they see text explaining that the integration is not configured/enabled
+        And they are unable to connect their email
 
     @minutia
     @ui
     Scenario: A loading state is displayed when the component is loading
-
-    @unknown
-    Scenario: Disconnecting/wiping the config? What if I don't want to be payed out with paypal anymore

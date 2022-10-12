@@ -1,6 +1,7 @@
 import { h } from "@stencil/core";
+import mockReferralData from "./mockReferralData";
 export default {
-  title: "Components/PayPal Account Reward Column",
+  title: "Components/Referral Reward Column",
   // parameters: {
   //   scenario,
   // },
@@ -14,6 +15,7 @@ export const ReferralTable = () => (
     prev-label="Prev"
     sm-breakpoint="599"
     md-breakpoint="799"
+    demoData={{ mockData: mockReferralData(4) }}
   >
     <sqm-referral-table-user-column
       column-title="User"
@@ -25,15 +27,13 @@ export const ReferralTable = () => (
       converted-status-text="Converted"
       in-progress-status-text="In Progress"
     ></sqm-referral-table-status-column>
-    <sqm-referral-table-rewards-column
+    <sqp-rewards-column
       column-title="Rewards"
       expiring-text="Expiring in"
       fuel-tank-text="Your code is"
       pending-for-text="{status} for {date}"
       reward-received-text="Reward received on"
-      status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }"
-      status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-    ></sqm-referral-table-rewards-column>
+    ></sqp-rewards-column>
     <sqm-referral-table-date-column
       column-title="Date referred"
       date-shown="dateReferralStarted"

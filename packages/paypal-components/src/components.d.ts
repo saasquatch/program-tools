@@ -151,10 +151,18 @@ export namespace Components {
     interface SqpHookStoryContainer {
         "hookStory": FunctionalComponent;
     }
-    interface SqpRewardCell {
-        "meta": any;
+    interface SqpRewardsCell {
+        "expiringText": string;
+        "fuelTankText": string;
+        "hideDetails": boolean;
+        "locale": string;
+        "pendingForText": string;
+        "rewardReceivedText": string;
+        "rewards": Reward[];
+        "statusLongText": string;
+        "statusText": string;
     }
-    interface SqpRewardColumn {
+    interface SqpRewardsColumn {
         /**
           * @uiName Reward column title
          */
@@ -179,9 +187,9 @@ export namespace Components {
           * @uiName Reward Pending Text
          */
         "pendingForText": string;
-        "renderCell": (_data: Referral, _locale: string) => Promise<any>;
+        "renderCell": (data: Referral, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (_data: Referrer) => Promise<any>;
+        "renderReferrerCell": (data: Referrer) => Promise<any>;
         /**
           * Shown in the dropdown details when a reward has been received.’
           * @uiName Reward Received Text
@@ -198,6 +206,48 @@ export namespace Components {
           * @uiName Reward Status Text
           * @uiWidget textArea
          */
+        "statusText": string;
+    }
+    interface SqpRewardsTableStatusColumn {
+        /**
+          * @uiName Column Title
+         */
+        "columnTitle": string;
+        /**
+          * Text shown before the date of an expiring reward.
+          * @uiName Expiry Date Prefix
+         */
+        "expiryText": string;
+        /**
+          * Text shown before the available date of a pending reward.
+          * @uiName Pending Date Prefix
+         */
+        "pendingScheduled": string;
+        /**
+          * Displayed when fulfillment error occured when creating a reward.
+          * @uiName Unhandled Error Text
+         */
+        "pendingUnhandled": string;
+        /**
+          * Displayed when a reward is pending due to W9 compliance.
+          * @uiName W9 Pending Text
+         */
+        "pendingUsTax": string;
+        "renderCell": (data: Reward, locale: string) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+        /**
+          * @uiName Reward Status Text
+          * @uiWidget textArea
+         */
+        "statusText": string;
+    }
+    interface SqpStatusCell {
+        "expiryText": string;
+        "locale": string;
+        "pendingScheduled": string;
+        "pendingUnhandled": string;
+        "pendingUsTax": string;
+        "reward": Reward;
         "statusText": string;
     }
     interface SqpStencilbook {
@@ -222,17 +272,29 @@ declare global {
         prototype: HTMLSqpHookStoryContainerElement;
         new (): HTMLSqpHookStoryContainerElement;
     };
-    interface HTMLSqpRewardCellElement extends Components.SqpRewardCell, HTMLStencilElement {
+    interface HTMLSqpRewardsCellElement extends Components.SqpRewardsCell, HTMLStencilElement {
     }
-    var HTMLSqpRewardCellElement: {
-        prototype: HTMLSqpRewardCellElement;
-        new (): HTMLSqpRewardCellElement;
+    var HTMLSqpRewardsCellElement: {
+        prototype: HTMLSqpRewardsCellElement;
+        new (): HTMLSqpRewardsCellElement;
     };
-    interface HTMLSqpRewardColumnElement extends Components.SqpRewardColumn, HTMLStencilElement {
+    interface HTMLSqpRewardsColumnElement extends Components.SqpRewardsColumn, HTMLStencilElement {
     }
-    var HTMLSqpRewardColumnElement: {
-        prototype: HTMLSqpRewardColumnElement;
-        new (): HTMLSqpRewardColumnElement;
+    var HTMLSqpRewardsColumnElement: {
+        prototype: HTMLSqpRewardsColumnElement;
+        new (): HTMLSqpRewardsColumnElement;
+    };
+    interface HTMLSqpRewardsTableStatusColumnElement extends Components.SqpRewardsTableStatusColumn, HTMLStencilElement {
+    }
+    var HTMLSqpRewardsTableStatusColumnElement: {
+        prototype: HTMLSqpRewardsTableStatusColumnElement;
+        new (): HTMLSqpRewardsTableStatusColumnElement;
+    };
+    interface HTMLSqpStatusCellElement extends Components.SqpStatusCell, HTMLStencilElement {
+    }
+    var HTMLSqpStatusCellElement: {
+        prototype: HTMLSqpStatusCellElement;
+        new (): HTMLSqpStatusCellElement;
     };
     interface HTMLSqpStencilbookElement extends Components.SqpStencilbook, HTMLStencilElement {
     }
@@ -244,8 +306,10 @@ declare global {
         "sqm-titled-section": HTMLSqmTitledSectionElement;
         "sqp-account-details": HTMLSqpAccountDetailsElement;
         "sqp-hook-story-container": HTMLSqpHookStoryContainerElement;
-        "sqp-reward-cell": HTMLSqpRewardCellElement;
-        "sqp-reward-column": HTMLSqpRewardColumnElement;
+        "sqp-rewards-cell": HTMLSqpRewardsCellElement;
+        "sqp-rewards-column": HTMLSqpRewardsColumnElement;
+        "sqp-rewards-table-status-column": HTMLSqpRewardsTableStatusColumnElement;
+        "sqp-status-cell": HTMLSqpStatusCellElement;
         "sqp-stencilbook": HTMLSqpStencilbookElement;
     }
 }
@@ -390,10 +454,18 @@ declare namespace LocalJSX {
     interface SqpHookStoryContainer {
         "hookStory"?: FunctionalComponent;
     }
-    interface SqpRewardCell {
-        "meta"?: any;
+    interface SqpRewardsCell {
+        "expiringText"?: string;
+        "fuelTankText"?: string;
+        "hideDetails"?: boolean;
+        "locale"?: string;
+        "pendingForText"?: string;
+        "rewardReceivedText"?: string;
+        "rewards"?: Reward[];
+        "statusLongText"?: string;
+        "statusText"?: string;
     }
-    interface SqpRewardColumn {
+    interface SqpRewardsColumn {
         /**
           * @uiName Reward column title
          */
@@ -436,14 +508,56 @@ declare namespace LocalJSX {
          */
         "statusText"?: string;
     }
+    interface SqpRewardsTableStatusColumn {
+        /**
+          * @uiName Column Title
+         */
+        "columnTitle"?: string;
+        /**
+          * Text shown before the date of an expiring reward.
+          * @uiName Expiry Date Prefix
+         */
+        "expiryText"?: string;
+        /**
+          * Text shown before the available date of a pending reward.
+          * @uiName Pending Date Prefix
+         */
+        "pendingScheduled"?: string;
+        /**
+          * Displayed when fulfillment error occured when creating a reward.
+          * @uiName Unhandled Error Text
+         */
+        "pendingUnhandled"?: string;
+        /**
+          * Displayed when a reward is pending due to W9 compliance.
+          * @uiName W9 Pending Text
+         */
+        "pendingUsTax"?: string;
+        /**
+          * @uiName Reward Status Text
+          * @uiWidget textArea
+         */
+        "statusText"?: string;
+    }
+    interface SqpStatusCell {
+        "expiryText"?: string;
+        "locale"?: string;
+        "pendingScheduled"?: string;
+        "pendingUnhandled"?: string;
+        "pendingUsTax"?: string;
+        "reward"?: Reward;
+        "statusText"?: string;
+    }
     interface SqpStencilbook {
     }
     interface IntrinsicElements {
         "sqm-titled-section": SqmTitledSection;
         "sqp-account-details": SqpAccountDetails;
         "sqp-hook-story-container": SqpHookStoryContainer;
-        "sqp-reward-cell": SqpRewardCell;
-        "sqp-reward-column": SqpRewardColumn;
+        "sqp-rewards-cell": SqpRewardsCell;
+        "sqp-rewards-column": SqpRewardsColumn;
+        "sqp-rewards-table-status-column": SqpRewardsTableStatusColumn;
+        "sqp-status-cell": SqpStatusCell;
         "sqp-stencilbook": SqpStencilbook;
     }
 }
@@ -454,8 +568,10 @@ declare module "@stencil/core" {
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
             "sqp-account-details": LocalJSX.SqpAccountDetails & JSXBase.HTMLAttributes<HTMLSqpAccountDetailsElement>;
             "sqp-hook-story-container": LocalJSX.SqpHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqpHookStoryContainerElement>;
-            "sqp-reward-cell": LocalJSX.SqpRewardCell & JSXBase.HTMLAttributes<HTMLSqpRewardCellElement>;
-            "sqp-reward-column": LocalJSX.SqpRewardColumn & JSXBase.HTMLAttributes<HTMLSqpRewardColumnElement>;
+            "sqp-rewards-cell": LocalJSX.SqpRewardsCell & JSXBase.HTMLAttributes<HTMLSqpRewardsCellElement>;
+            "sqp-rewards-column": LocalJSX.SqpRewardsColumn & JSXBase.HTMLAttributes<HTMLSqpRewardsColumnElement>;
+            "sqp-rewards-table-status-column": LocalJSX.SqpRewardsTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqpRewardsTableStatusColumnElement>;
+            "sqp-status-cell": LocalJSX.SqpStatusCell & JSXBase.HTMLAttributes<HTMLSqpStatusCellElement>;
             "sqp-stencilbook": LocalJSX.SqpStencilbook & JSXBase.HTMLAttributes<HTMLSqpStencilbookElement>;
         }
     }

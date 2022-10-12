@@ -5,12 +5,12 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
 
 /**
  * @uiName Referral Table Rewards Column
- * @validParents ["sqm-referral-table"]
+ * @validParents ["sqp-referral-table"]
  * @exampleGroup Referrals
- * @example Referral Table Rewards Column - <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}"></sqm-referral-table-rewards-column>
+ * @example Referral Table Rewards Column - <sqp-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}"></sqp-rewards-column>
  */
 @Component({
-  tag: "sqp-reward-column",
+  tag: "sqp-rewards-column",
   shadow: true,
 })
 export class ReferralTableRewardsColumn implements ReferralTableColumn {
@@ -26,7 +26,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    * @uiWidget textArea
    */
   @Prop() statusText: string =
-    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
+    "{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
 
   /**
    * Additional status text shown in the details drop down.
@@ -35,7 +35,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    * @uiWidget textArea
    */
   @Prop() statusLongText: string =
-    "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }";
+    "{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Failed} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }";
 
   /**
    * Shown in the dropdown details when a reward has an associated fuel tank code.
@@ -77,11 +77,20 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(_data: Referral, _locale: string) {
+  async renderCell(data: Referral, locale: string) {
+    // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
     return (
-      <sqp-reward-cell
-        meta={{ integration: { name: "i'm a paypal reward" } }}
-      ></sqp-reward-cell>
+      <sqp-rewards-cell
+        rewards={data.rewards}
+        statusText={this.statusText}
+        statusLongText={this.statusLongText}
+        fuelTankText={this.fuelTankText}
+        rewardReceivedText={this.rewardReceivedText}
+        expiringText={this.expiringText}
+        pendingForText={this.pendingForText}
+        hideDetails={this.hideDetails}
+        locale={locale}
+      ></sqp-rewards-cell>
     );
   }
 
@@ -91,12 +100,9 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   }
 
   @Method()
-  async renderReferrerCell(_data: Referrer) {
-    return (
-      <sqp-reward-cell
-        meta={{ integration: { name: "i'm a paypal reward" } }}
-      ></sqp-reward-cell>
-    );
+  async renderReferrerCell(data: Referrer) {
+    // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
+    return <sqp-rewards-cell rewards={data.rewards}></sqp-rewards-cell>;
   }
 
   render() {
