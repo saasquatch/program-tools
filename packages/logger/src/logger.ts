@@ -125,10 +125,7 @@ const transportConfigToRealTransport = (name: string) => {
   return (transport: Transport) => {
     switch (transport.type) {
       case "console":
-        return new winston.transports.Console({
-          format: prettyFormat(name),
-          ...transport.options,
-        });
+        return new winston.transports.Console(transport.options);
       case "file":
         return new winston.transports.File({
           format: jsonFormat(name),
