@@ -102,6 +102,34 @@ export class PaypalAccountDetails {
    * @uiGroup Form
    */
   @Prop() successMessage: string = "Success!";
+  /**
+   * @uiName Edit Account Form Header
+   * @uiGroup Form
+   */
+  @Prop() connectAccountModalHeaderText: string = "Connected account settings";
+
+  /**
+   * @uiName Change Account Button Text
+   * @uiGroup Form
+   */
+  @Prop() connectAccountModalButtonText: string = "Change account";
+  /**
+   * @uiName Disconnect Account Header Text
+   * @uiGroup Form
+   */
+  @Prop() disconnectAccountHeaderText: string = "Disconnect account";
+  /**
+   * @uiName Disconnect Account Description Text
+   * @uiGroup Form
+   */
+  @Prop() disconnectAccountDescriptionText: string =
+    "You will not be able to receive payments if you disconnect your PayPal account.";
+
+  /**
+   * @uiName Disconnect Account Button Text
+   * @uiGroup Form
+   */
+  @Prop() disconnectAccountButtonText: string = "Disconnect account";
 
   /**
    * @undocumented
@@ -128,6 +156,7 @@ export class PaypalAccountDetails {
           hasAccount={props.hasAccount}
         />
         <AccountDetailsView
+          loading={props.states.loading}
           hasAccount={props.hasAccount}
           accountDetails={props.accountDetails}
           detailsContent={props.detailsContent}
@@ -155,6 +184,7 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
       },
       callbacks: { submit: () => {}, setOpen },
       states: {
+        editingAccount: false,
         loading: false,
         error: undefined,
         success: false,
@@ -178,6 +208,12 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
         successMessage: props.successMessage,
         payPalAccountHeaderText: props.payPalAccountHeaderText,
         connectPayPalDescriptionText: props.connectPayPalDescriptionText,
+        connectAccountModalHeaderText: props.connectAccountModalHeaderText,
+        connectAccountModalButtonText: props.connectAccountModalButtonText,
+        disconnectAccountHeaderText: props.disconnectAccountHeaderText,
+        disconnectAccountDescriptionText:
+          props.disconnectAccountDescriptionText,
+        disconnectAccountButtonText: props.disconnectAccountButtonText,
       },
     },
     props.demoData || {},

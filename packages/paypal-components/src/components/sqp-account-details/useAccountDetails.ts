@@ -44,7 +44,7 @@ export function useAccountDetails(props) {
 
   const { refresh } = useRefreshDispatcher();
   console.log({ data });
-  const { accountId, id } = useUserIdentity() || {accountId:null, id:null};
+  const { accountId, id } = useUserIdentity() || { accountId: null, id: null };
 
   const submit = async (event: any) => {
     setError("");
@@ -123,6 +123,11 @@ export function useAccountDetails(props) {
       successMessage: props.successMessage,
       payPalAccountHeaderText: props.payPalAccountHeaderText,
       connectPayPalDescriptionText: props.connectPayPalDescriptionText,
+      connectAccountModalHeaderText: props.connectAccountModalHeaderText,
+      connectAccountModalButtonText: props.connectAccountModalButtonText,
+      disconnectAccountHeaderText: props.disconnectAccountHeaderText,
+      disconnectAccountDescriptionText: props.disconnectAccountDescriptionText,
+      disconnectAccountButtonText: props.disconnectAccountButtonText,
     },
   };
 }
