@@ -1,4 +1,4 @@
-# sqp-reward-column
+# sqp-status-column
 
 
 
@@ -7,21 +7,19 @@
 
 ## Properties
 
-| Property             | Attribute              | Description                                                                   | Type      | Default                                                                                                                                                        |
-| -------------------- | ---------------------- | ----------------------------------------------------------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `columnTitle`        | `column-title`         |                                                                               | `string`  | `"Rewards"`                                                                                                                                                    |
-| `expiringText`       | `expiring-text`        | Shown in the dropdown details when a reward has an expiry date.               | `string`  | `"Expiring in"`                                                                                                                                                |
-| `fuelTankText`       | `fuel-tank-text`       | Shown in the dropdown details when a reward has an associated fuel tank code. | `string`  | `"Your code is"`                                                                                                                                               |
-| `hideDetails`        | `hide-details`         |                                                                               | `boolean` | `false`                                                                                                                                                        |
-| `pendingForText`     | `pending-for-text`     | Shown in the dropdown details when a reward is pending.                       | `string`  | `"{status} for {date}"`                                                                                                                                        |
-| `rewardReceivedText` | `reward-received-text` | Shown in the dropdown details when a reward has been received.’               | `string`  | `"Reward received on"`                                                                                                                                         |
-| `statusLongText`     | `status-long-text`     | Additional status text shown in the details drop down.                        | `string`  | `"{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }"` |
-| `statusText`         | `status-text`          | Text shown in the reward status badge.                                        | `string`  | `"{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"`               |
+| Property           | Attribute           | Description                                                      | Type     | Default                                                                                                                                                                                                             |
+| ------------------ | ------------------- | ---------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `columnTitle`      | `column-title`      |                                                                  | `string` | `"Status"`                                                                                                                                                                                                          |
+| `expiryText`       | `expiry-text`       | Text shown before the date of an expiring reward.                | `string` | `"Expires on "`                                                                                                                                                                                                     |
+| `pendingScheduled` | `pending-scheduled` | Text shown before the available date of a pending reward.        | `string` | `"Until"`                                                                                                                                                                                                           |
+| `pendingUnhandled` | `pending-unhandled` | Displayed when fulfillment error occured when creating a reward. | `string` | `"Fulfillment error"`                                                                                                                                                                                               |
+| `pendingUsTax`     | `pending-us-tax`    | Displayed when a reward is pending due to W9 compliance.         | `string` | `"W-9 required"`                                                                                                                                                                                                    |
+| `statusText`       | `status-text`       |                                                                  | `string` | `"{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"` |
 
 
 ## Methods
 
-### `renderCell(_data: Referral, _locale: string) => Promise<any>`
+### `renderCell(data: Reward, locale: string) => Promise<any>`
 
 
 
@@ -41,28 +39,23 @@ Type: `Promise<string>`
 
 
 
-### `renderReferrerCell(_data: Referrer) => Promise<any>`
-
-
-
-#### Returns
-
-Type: `Promise<any>`
-
-
-
 
 ## Dependencies
 
+### Used by
+
+ - [sqp-stencilbook](../sqp-stencilbook)
+
 ### Depends on
 
-- [sqp-reward-cell](../sqp-reward-cell)
+- [sqp-status-cell](../sqp-status-cell)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqp-reward-column --> sqp-reward-cell
-  style sqp-reward-column fill:#f9f,stroke:#333,stroke-width:4px
+  sqp-rewards-table-status-column --> sqp-status-cell
+  sqp-stencilbook --> sqp-rewards-table-status-column
+  style sqp-rewards-table-status-column fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

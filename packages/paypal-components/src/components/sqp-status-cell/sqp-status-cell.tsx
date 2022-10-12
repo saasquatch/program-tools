@@ -46,21 +46,6 @@ export class RewardTableStatusCell {
   @Prop() pendingScheduled: string = "Until";
   @Prop() pendingUnhandled: string = "Fulfillment error";
 
-  /**
- * 
-        Examples:
-            | status    | mayHaveBeenPaidOut                                                          | text        | pillColour | maySee    |
-            | AVAILABLE | hasn't been paid out                                                        | Available   | Green      | don’t see |
-            | REDEEMED  | has been paid out (datePaidOut)                                             | Transferred | Blue       | see       |
-            | AVAILABLE | failed to be paid out (meta status is FAILED)                               | Failed      | Red        | see       |
-            | AVAILABLE | is being paid out by the integration (dateLastAttempted but no datePaidOut) | In Progress | Orange     | see       |
-            | CANCELLED | N/A                                                                         | Cancelled   | Red        | don't see |
-            | PENDING   | N/A                                                                         | Pending     | Orange     | don't see |
-            | EXPIRED   | N/A                                                                         | Expired     | Red        | don't see |
-            | REDEEMED  | N/A                                                                         | Redeemed    | Blue       | don't see |
-
- */
-
   rewardStatus(reward: Reward) {
     if (reward.dateCancelled) return "CANCELLED";
     if (reward.statuses && reward.statuses.includes("EXPIRED"))

@@ -7,22 +7,30 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type  | Default     |
-| -------- | --------- | ----------- | ----- | ----------- |
-| `meta`   | `meta`    |             | `any` | `undefined` |
+| Property             | Attribute              | Description | Type       | Default     |
+| -------------------- | ---------------------- | ----------- | ---------- | ----------- |
+| `expiringText`       | `expiring-text`        |             | `string`   | `undefined` |
+| `fuelTankText`       | `fuel-tank-text`       |             | `string`   | `undefined` |
+| `hideDetails`        | `hide-details`         |             | `boolean`  | `undefined` |
+| `locale`             | `locale`               |             | `string`   | `"en"`      |
+| `pendingForText`     | `pending-for-text`     |             | `string`   | `undefined` |
+| `rewardReceivedText` | `reward-received-text` |             | `string`   | `undefined` |
+| `rewards`            | --                     |             | `Reward[]` | `undefined` |
+| `statusLongText`     | `status-long-text`     |             | `string`   | `undefined` |
+| `statusText`         | `status-text`          |             | `string`   | `undefined` |
 
 
 ## Dependencies
 
 ### Used by
 
- - [sqp-reward-column](../sqp-reward-column)
+ - [sqp-rewards-column](../sqp-rewards-column)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqp-reward-column --> sqp-reward-cell
-  style sqp-reward-cell fill:#f9f,stroke:#333,stroke-width:4px
+  sqp-rewards-column --> sqp-rewards-cell
+  style sqp-rewards-cell fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
