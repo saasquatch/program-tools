@@ -42,10 +42,6 @@ Type: `Promise<string>`
 
 ## Dependencies
 
-### Used by
-
- - [sqp-stencilbook](../sqp-stencilbook)
-
 ### Depends on
 
 - [sqp-status-cell](../sqp-status-cell)
@@ -53,9 +49,8 @@ Type: `Promise<string>`
 ### Graph
 ```mermaid
 graph TD;
-  sqp-rewards-table-status-column --> sqp-status-cell
-  sqp-stencilbook --> sqp-rewards-table-status-column
-  style sqp-rewards-table-status-column fill:#f9f,stroke:#333,stroke-width:4px
+  sqp-status-column --> sqp-status-cell
+  style sqp-status-column fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
