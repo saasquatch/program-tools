@@ -6,7 +6,7 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
 /**
  * @uiName Referral Table Rewards Column
  * @validParents ["sqm-referral-table"]
- * @exampleGroup Referrals
+ * @exampleGroup Paypal Components
  * @example Referral Table Rewards Column - <sqp-rewards-column column-title="Rewards" status-text="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Failed} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}"></sqp-rewards-column>
  */
 @Component({
