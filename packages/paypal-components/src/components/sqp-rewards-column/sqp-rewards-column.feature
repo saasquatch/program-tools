@@ -25,7 +25,7 @@ Feature: Referral Table Reward Column
             | Redeemed                                                                                      | blue       | Redeemed    | don't see |
             | redeemed and paid out by the PayPal integration                                               | blue       | Transferred | see       |
             | available but being paid out by the PayPal integration (dateLastAttempted but no datePaidOut) | orange     | In Progress | see       |
-            | available and has failed to be paid out by the PayPal integration (meta status is FAILED)     | red        | Failed      | see       |
+            | available and has failed to be paid out by the PayPal integration (meta status is ERROR)      | red        | Failed      | see       |
 
     @motivating
     Scenario: The pending period of a referral reward is shown if it exists

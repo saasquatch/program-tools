@@ -30,7 +30,7 @@ Feature: Paypal Reward Status Column
             | status    | mayHaveBeenPaidOut                                                          | text        | pillColour | maySee    |
             | AVAILABLE | hasn't been paid out                                                        | Available   | Green      | don’t see |
             | REDEEMED  | has been paid out (datePaidOut)                                             | Transferred | Blue       | see       |
-            | AVAILABLE | failed to be paid out (meta status is FAILED)                               | Failed      | Red        | see       |
+            | AVAILABLE | failed to be paid out (meta status is ERROR)                                | Failed      | Red        | see       |
             | AVAILABLE | is being paid out by the integration (dateLastAttempted but no datePaidOut) | In Progress | Orange     | see       |
             | CANCELLED | N/A                                                                         | Cancelled   | Red        | don't see |
             | PENDING   | N/A                                                                         | Pending     | Orange     | don't see |
