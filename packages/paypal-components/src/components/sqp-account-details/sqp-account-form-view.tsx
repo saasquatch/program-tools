@@ -10,6 +10,7 @@ export interface AccountFormViewProps {
     error: string;
     loading: boolean;
     success: boolean;
+    editingAccount?: boolean;
   };
   formContent: {
     modalConnectPayPalAccountHeader: string;
@@ -22,6 +23,11 @@ export interface AccountFormViewProps {
     successMessage: string;
     payPalAccountHeaderText: string;
     connectPayPalDescriptionText: string;
+    connectAccountModalHeaderText: string;
+    connectAccountModalButtonText: string;
+    disconnectAccountHeaderText: string;
+    disconnectAccountDescriptionText: string;
+    disconnectAccountButtonText: string;
   };
   callbacks: {
     setOpen: (open: boolean) => void;
@@ -32,6 +38,22 @@ export interface AccountFormViewProps {
 export function AccountFormView(props: AccountFormViewProps) {
   const { formContent, states, callbacks } = props;
   const style = {
+    HeaderContainer: {
+      display: "flex",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      gap: "10px",
+
+      "& h2": {
+        fontWeight: "bold",
+      },
+    },
+    ButtonContainer: {
+      display: "flex",
+      flexDirection: "column",
+      width: "100%",
+    },
+    FormHeaderContainer: {},
     Dialog: {
       padding: "0",
       "&::part(close-button)": {
@@ -57,8 +79,15 @@ export function AccountFormView(props: AccountFormViewProps) {
     },
 
     InputContainer: {
-      "& > :not(:last-child)": {
-        "margin-bottom": "var(--sl-spacing-x-large)",
+      // "& > :not(:last-child)": {
+      //   "margin-bottom": "var(--sl-spacing-x-large)",
+      // },
+      display: "flex",
+      flexDirection: "column",
+      gap: "var(--sl-spacing-x-large)",
+
+      "& > :last-child": {
+        marginBottom: "var(--sl-spacing-x-large)",
       },
     },
 
@@ -67,7 +96,16 @@ export function AccountFormView(props: AccountFormViewProps) {
       margin: "var(--sl-spacing-large) auto",
     },
     ConnectPayPalAccount: {},
-    HeaderContainer: {},
+
+    FullWidthButton: {
+      width: "100%",
+    },
+
+    EditingFormContentContainer: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "20px",
+    },
   };
 
   const sheet = createStyleSheet(style);
@@ -76,6 +114,7 @@ export function AccountFormView(props: AccountFormViewProps) {
   return (
     <div>
       <style type="text/css">{styleString}</style>
+
       <sl-dialog
         class={sheet.classes.Dialog}
         open={states.open}
@@ -86,16 +125,79 @@ export function AccountFormView(props: AccountFormViewProps) {
             labelMargin: "x-large",
             padding: "none",
             label: (
-              <div class={sheet.classes.HeaderContainer}>
+              <div class={sheet.classes.FormHeaderContainer}>
                 <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665094610/tenant_test_ahsf8e6g2r1dh/brjh1v3anhzwvef6ntbj.svg" />
-                <h2>{formContent.modalConnectPayPalAccountHeader}</h2>
-                <p>{formContent.connectPayPalDescriptionText}</p>
+                <h2>
+                  {states.editingAccount
+                    ? formContent.connectAccountModalHeaderText
+                    : formContent.modalConnectPayPalAccountHeader}
+                </h2>
+                {!states.editingAccount && (
+                  <p>{formContent.connectPayPalDescriptionText}</p>
+                )}
               </div>
             ),
-            content: (
-              <div
-              // {...{ direction: "column", padding: "none", gap: "32px" }}
-              >
+            content: states.editingAccount ? (
+              <div>
+                {states.error && (
+                  <sqm-form-message
+                    class={sheet.classes.Error}
+                    type="error"
+                    exportparts="erroralert-icon"
+                  >
+                    <div part="erroralert-text">{states.error}</div>
+                  </sqm-form-message>
+                )}
+                {states.success && (
+                  <sqm-form-message
+                    class={sheet.classes.Success}
+                    type="success"
+                    exportparts="successalert-icon"
+                  >
+                    <div part="successalert-text">
+                      {formContent.successMessage}
+                    </div>
+                  </sqm-form-message>
+                )}
+                <div class={sheet.classes.EditingFormContentContainer}>
+                  <sl-input
+                    exportparts="label: input-label"
+                    name="/email"
+                    label={formContent.payPalEmailLabel}
+                    required
+                    disabled={true}
+                    help-text={formContent.payPalEmailLabelHelpText}
+                    type="email"
+                    value="email@example.com"
+                  ></sl-input>
+                  <sl-button
+                    class={sheet.classes.FullWidthButton}
+                    type="primary"
+                    submit
+                    loading={states.loading}
+                  >
+                    {formContent.connectAccountModalButtonText}
+                  </sl-button>
+                  <hr
+                    style={{
+                      width: "100%",
+                      borderTop: "none",
+                      color: "#E4E4E7",
+                    }}
+                  />
+                  <div>
+                    <h2>{formContent.disconnectAccountHeaderText}</h2>
+                    <p style={{ marginTop: "0px" }}>
+                      {formContent.disconnectAccountDescriptionText}
+                    </p>
+                    <sl-button class={sheet.classes.FullWidthButton}>
+                      {formContent.disconnectAccountButtonText}
+                    </sl-button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div>
                 {states.error && (
                   <sqm-form-message
                     class={sheet.classes.Error}
@@ -121,17 +223,15 @@ export function AccountFormView(props: AccountFormViewProps) {
                   ref={(el: HTMLFormElement) => (props.formRef.current = el)}
                 >
                   <div class={sheet.classes.InputContainer}>
-                    <div>
-                      <sl-input
-                        exportparts="label: input-label"
-                        name="/email"
-                        label={formContent.payPalEmailLabel}
-                        required
-                        disabled={states.loading}
-                        help-text={formContent.payPalEmailLabelHelpText}
-                        type="email"
-                      ></sl-input>
-                    </div>
+                    <sl-input
+                      exportparts="label: input-label"
+                      name="/email"
+                      label={formContent.payPalEmailLabel}
+                      required
+                      disabled={states.loading}
+                      help-text={formContent.payPalEmailLabelHelpText}
+                      type="email"
+                    ></sl-input>
                     <sl-input
                       exportparts="label: input-label"
                       name="/confirmEmail"
@@ -142,9 +242,7 @@ export function AccountFormView(props: AccountFormViewProps) {
                     ></sl-input>
                   </div>
 
-                  <div
-                  // {...{ direction: "row", padding: "none", gap: "20px" }}
-                  >
+                  <div class={sheet.classes.ButtonContainer}>
                     <sl-button
                       class={sheet.classes.ConnectPayPalAccount}
                       type="primary"
@@ -173,9 +271,11 @@ export function AccountFormView(props: AccountFormViewProps) {
             labelMargin: "x-large",
             padding: "xxx-large",
             label: (
-              <div class={sheet.classes.HeaderContainer}>
-                <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665094610/tenant_test_ahsf8e6g2r1dh/brjh1v3anhzwvef6ntbj.svg" />
-                <h2>{formContent.payPalAccountHeaderText}</h2>
+              <div>
+                <div class={sheet.classes.HeaderContainer}>
+                  <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665094610/tenant_test_ahsf8e6g2r1dh/brjh1v3anhzwvef6ntbj.svg" />
+                  <h2>{formContent.payPalAccountHeaderText}</h2>
+                </div>
                 <p>{formContent.connectPayPalDescriptionText}</p>
               </div>
             ),

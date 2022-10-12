@@ -58,6 +58,16 @@ export namespace Components {
          */
         "confirmPayPalEmailLabel": string;
         /**
+          * @uiName Change Account Button Text
+          * @uiGroup Form
+         */
+        "connectAccountModalButtonText": string;
+        /**
+          * @uiName Edit Account Form Header
+          * @uiGroup Form
+         */
+        "connectAccountModalHeaderText": string;
+        /**
           * @uiName Connect Button Text
           * @uiGroup Connect
          */
@@ -72,6 +82,21 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<AccountDetailsViewProps & AccountFormViewProps>;
+        /**
+          * @uiName Disconnect Account Button Text
+          * @uiGroup Form
+         */
+        "disconnectAccountButtonText": string;
+        /**
+          * @uiName Disconnect Account Description Text
+          * @uiGroup Form
+         */
+        "disconnectAccountDescriptionText": string;
+        /**
+          * @uiName Disconnect Account Header Text
+          * @uiGroup Form
+         */
+        "disconnectAccountHeaderText": string;
         /**
           * @uiName Edit Text
           * @uiGroup Details
@@ -272,6 +297,16 @@ declare namespace LocalJSX {
          */
         "confirmPayPalEmailLabel"?: string;
         /**
+          * @uiName Change Account Button Text
+          * @uiGroup Form
+         */
+        "connectAccountModalButtonText"?: string;
+        /**
+          * @uiName Edit Account Form Header
+          * @uiGroup Form
+         */
+        "connectAccountModalHeaderText"?: string;
+        /**
           * @uiName Connect Button Text
           * @uiGroup Connect
          */
@@ -286,6 +321,21 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<AccountDetailsViewProps & AccountFormViewProps>;
+        /**
+          * @uiName Disconnect Account Button Text
+          * @uiGroup Form
+         */
+        "disconnectAccountButtonText"?: string;
+        /**
+          * @uiName Disconnect Account Description Text
+          * @uiGroup Form
+         */
+        "disconnectAccountDescriptionText"?: string;
+        /**
+          * @uiName Disconnect Account Header Text
+          * @uiGroup Form
+         */
+        "disconnectAccountHeaderText"?: string;
         /**
           * @uiName Edit Text
           * @uiGroup Details

@@ -13,6 +13,7 @@ export default {
 };
 
 const defaultAccountDetailsProps: AccountDetailsViewProps = {
+  loading: false,
   setOpen: (open: boolean) => console.log(open),
   hasAccount: true,
   accountDetails: {
@@ -23,11 +24,11 @@ const defaultAccountDetailsProps: AccountDetailsViewProps = {
     },
   },
   detailsContent: {
-    headerText: "PayPal account",
+    headerText: "Payout",
     accountLabel: "Account",
     recentPaymentLabel: "Recent payment",
     nextPaymentLabel: "Next payment",
-    editText: "Edit",
+    editText: "Edit account",
   },
 };
 
@@ -36,6 +37,7 @@ const defaultAccountFormProps: AccountFormViewProps = {
   hasAccount: true,
   callbacks: { submit: () => {}, setOpen: () => {} },
   states: {
+    editingAccount: false,
     loading: false,
     error: undefined,
     success: false,
@@ -49,10 +51,16 @@ const defaultAccountFormProps: AccountFormViewProps = {
     payPalEmailLabelHelpText: "Enter the email used for your PayPal account.",
     confirmPayPalEmailLabel: "Confirm email",
     successMessage: "Success",
-    payPalAccountHeaderText: "PayPal account",
+    payPalAccountHeaderText: "Payout",
     connectPayPalDescriptionText:
       "Connect your PayPal account to automatically receive payments/cash rewards",
     submitPayPalAccountButtonText: "Connect account",
+    connectAccountModalHeaderText: "Connected account settings",
+    connectAccountModalButtonText: "Change account",
+    disconnectAccountHeaderText: "Disconnect account",
+    disconnectAccountDescriptionText:
+      "You will not be able to receive payments if you disconnect your PayPal account.",
+    disconnectAccountButtonText: "Disconnect account",
   },
 };
 
@@ -60,6 +68,13 @@ export const HasAccount = () => (
   <div>
     <AccountFormView {...defaultAccountFormProps} />
     <AccountDetailsView {...defaultAccountDetailsProps} />
+  </div>
+);
+
+export const HasAccountLoading = () => (
+  <div>
+    <AccountFormView {...defaultAccountFormProps} />
+    <AccountDetailsView {...defaultAccountDetailsProps} loading={true} />
   </div>
 );
 
@@ -76,6 +91,21 @@ export const NoAccountFormOpen = () => (
       {...defaultAccountFormProps}
       hasAccount={false}
       states={{ ...defaultAccountFormProps.states, open: true }}
+    />
+    <AccountDetailsView {...defaultAccountDetailsProps} hasAccount={false} />
+  </div>
+);
+
+export const EditAccountFormOpen = () => (
+  <div>
+    <AccountFormView
+      {...defaultAccountFormProps}
+      hasAccount={false}
+      states={{
+        ...defaultAccountFormProps.states,
+        open: true,
+        editingAccount: true,
+      }}
     />
     <AccountDetailsView {...defaultAccountDetailsProps} hasAccount={false} />
   </div>
