@@ -47,7 +47,7 @@ interface Reward {
     integration?: {
       name: string;
     };
-    customMeta: any;
+    customMeta?: any;
   };
   dateScheduledFor: number;
   dateExpires: number;

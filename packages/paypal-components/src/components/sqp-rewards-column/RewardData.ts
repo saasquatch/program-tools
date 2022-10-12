@@ -29,23 +29,23 @@ export const baseReward: Reward = {
   name: "test",
   dateGiven: 1627427794891,
   dateScheduledFor: getDays(),
-  dateExpires: getMonths(),
+  dateExpires: null,
   dateCancelled: 134400,
   dateRedeemed: 0,
   fuelTankCode: "ABC",
   fuelTankType: "Code",
   currency: "null",
   prettyValue: "19 Points",
-  statuses: ["REDEEMED"],
+  statuses: ["AVAILABLE"],
   meta: {
-    // integration: {
-    //   name: "PayPal",
-    // },
+    integration: {
+      name: "PayPal",
+    },
     status: "SUCCESS",
     customMeta: {
-      datePaidOut: 123456789,
-      dateLastAttempted: 123456789,
-      dateFirstAttempted: 123456789,
+      datePaidOut: null,
+      dateLastAttempted: null,
+      dateFirstAttempted: null,
     },
   },
   globalRewardKey: "Key",
@@ -117,6 +117,14 @@ export const availableReward = {
 
 export const transferredReward = {
   statuses: ["REDEEMED"],
+  meta: {
+    status: "SUCCESS",
+    customMeta: {
+      datePaidOut: 123456789,
+      dateLastAttempted: 123456789,
+      dateFirstAttempted: 123456789,
+    },
+  },
 };
 
 export const failedPaypal = {
