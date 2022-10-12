@@ -5,7 +5,7 @@ import { HookStoryAddon } from "./HookStoryAddon";
 import { CucumberAddon } from "./CucumberAddon";
 import * as AccountDetails from "../sqp-account-details/AccountDetails.stories";
 import * as RewardsTableColumn from "../sqp-status-column/StatusColumn.stories";
-import * as ReferralTableColumn from "../sqp-status-column/ReferralRewardColumn.stories";
+import * as ReferralTableColumn from "../sqp-rewards-column/ReferralRewardColumn.stories";
 // Import and add all stories to this array
 const stories = [AccountDetails, RewardsTableColumn, ReferralTableColumn];
 

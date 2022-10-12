@@ -27,20 +27,17 @@ export const ReferralTable = () => (
       converted-status-text="Converted"
       in-progress-status-text="In Progress"
     ></sqm-referral-table-status-column>
-    <sqm-referral-table-rewards-column
+    <sqp-rewards-column
       column-title="Rewards"
       expiring-text="Expiring in"
       fuel-tank-text="Your code is"
       pending-for-text="{status} for {date}"
       reward-received-text="Reward received on"
-      status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }"
-      status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-    ></sqm-referral-table-rewards-column>
+    ></sqp-rewards-column>
     <sqm-referral-table-date-column
       column-title="Date referred"
       date-shown="dateReferralStarted"
     ></sqm-referral-table-date-column>
-    <sqp-reward-column column-title="PayPal"></sqp-reward-column>
     <sqm-empty
       slot="empty"
       empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png"

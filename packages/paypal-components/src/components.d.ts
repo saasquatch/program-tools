@@ -126,10 +126,18 @@ export namespace Components {
     interface SqpHookStoryContainer {
         "hookStory": FunctionalComponent;
     }
-    interface SqpRewardCell {
-        "referral": any;
+    interface SqpRewardsCell {
+        "expiringText": string;
+        "fuelTankText": string;
+        "hideDetails": boolean;
+        "locale": string;
+        "pendingForText": string;
+        "rewardReceivedText": string;
+        "rewards": Reward[];
+        "statusLongText": string;
+        "statusText": string;
     }
-    interface SqpRewardColumn {
+    interface SqpRewardsColumn {
         /**
           * @uiName Reward column title
          */
@@ -154,9 +162,9 @@ export namespace Components {
           * @uiName Reward Pending Text
          */
         "pendingForText": string;
-        "renderCell": (referral: Referral, _locale: string) => Promise<any>;
+        "renderCell": (data: Referral, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (referral: Referrer) => Promise<any>;
+        "renderReferrerCell": (data: Referrer) => Promise<any>;
         /**
           * Shown in the dropdown details when a reward has been received.’
           * @uiName Reward Received Text
@@ -239,17 +247,17 @@ declare global {
         prototype: HTMLSqpHookStoryContainerElement;
         new (): HTMLSqpHookStoryContainerElement;
     };
-    interface HTMLSqpRewardCellElement extends Components.SqpRewardCell, HTMLStencilElement {
+    interface HTMLSqpRewardsCellElement extends Components.SqpRewardsCell, HTMLStencilElement {
     }
-    var HTMLSqpRewardCellElement: {
-        prototype: HTMLSqpRewardCellElement;
-        new (): HTMLSqpRewardCellElement;
+    var HTMLSqpRewardsCellElement: {
+        prototype: HTMLSqpRewardsCellElement;
+        new (): HTMLSqpRewardsCellElement;
     };
-    interface HTMLSqpRewardColumnElement extends Components.SqpRewardColumn, HTMLStencilElement {
+    interface HTMLSqpRewardsColumnElement extends Components.SqpRewardsColumn, HTMLStencilElement {
     }
-    var HTMLSqpRewardColumnElement: {
-        prototype: HTMLSqpRewardColumnElement;
-        new (): HTMLSqpRewardColumnElement;
+    var HTMLSqpRewardsColumnElement: {
+        prototype: HTMLSqpRewardsColumnElement;
+        new (): HTMLSqpRewardsColumnElement;
     };
     interface HTMLSqpRewardsTableStatusColumnElement extends Components.SqpRewardsTableStatusColumn, HTMLStencilElement {
     }
@@ -273,8 +281,8 @@ declare global {
         "sqm-titled-section": HTMLSqmTitledSectionElement;
         "sqp-account-details": HTMLSqpAccountDetailsElement;
         "sqp-hook-story-container": HTMLSqpHookStoryContainerElement;
-        "sqp-reward-cell": HTMLSqpRewardCellElement;
-        "sqp-reward-column": HTMLSqpRewardColumnElement;
+        "sqp-rewards-cell": HTMLSqpRewardsCellElement;
+        "sqp-rewards-column": HTMLSqpRewardsColumnElement;
         "sqp-rewards-table-status-column": HTMLSqpRewardsTableStatusColumnElement;
         "sqp-status-cell": HTMLSqpStatusCellElement;
         "sqp-stencilbook": HTMLSqpStencilbookElement;
@@ -396,10 +404,18 @@ declare namespace LocalJSX {
     interface SqpHookStoryContainer {
         "hookStory"?: FunctionalComponent;
     }
-    interface SqpRewardCell {
-        "referral"?: any;
+    interface SqpRewardsCell {
+        "expiringText"?: string;
+        "fuelTankText"?: string;
+        "hideDetails"?: boolean;
+        "locale"?: string;
+        "pendingForText"?: string;
+        "rewardReceivedText"?: string;
+        "rewards"?: Reward[];
+        "statusLongText"?: string;
+        "statusText"?: string;
     }
-    interface SqpRewardColumn {
+    interface SqpRewardsColumn {
         /**
           * @uiName Reward column title
          */
@@ -488,8 +504,8 @@ declare namespace LocalJSX {
         "sqm-titled-section": SqmTitledSection;
         "sqp-account-details": SqpAccountDetails;
         "sqp-hook-story-container": SqpHookStoryContainer;
-        "sqp-reward-cell": SqpRewardCell;
-        "sqp-reward-column": SqpRewardColumn;
+        "sqp-rewards-cell": SqpRewardsCell;
+        "sqp-rewards-column": SqpRewardsColumn;
         "sqp-rewards-table-status-column": SqpRewardsTableStatusColumn;
         "sqp-status-cell": SqpStatusCell;
         "sqp-stencilbook": SqpStencilbook;
@@ -502,8 +518,8 @@ declare module "@stencil/core" {
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
             "sqp-account-details": LocalJSX.SqpAccountDetails & JSXBase.HTMLAttributes<HTMLSqpAccountDetailsElement>;
             "sqp-hook-story-container": LocalJSX.SqpHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqpHookStoryContainerElement>;
-            "sqp-reward-cell": LocalJSX.SqpRewardCell & JSXBase.HTMLAttributes<HTMLSqpRewardCellElement>;
-            "sqp-reward-column": LocalJSX.SqpRewardColumn & JSXBase.HTMLAttributes<HTMLSqpRewardColumnElement>;
+            "sqp-rewards-cell": LocalJSX.SqpRewardsCell & JSXBase.HTMLAttributes<HTMLSqpRewardsCellElement>;
+            "sqp-rewards-column": LocalJSX.SqpRewardsColumn & JSXBase.HTMLAttributes<HTMLSqpRewardsColumnElement>;
             "sqp-rewards-table-status-column": LocalJSX.SqpRewardsTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqpRewardsTableStatusColumnElement>;
             "sqp-status-cell": LocalJSX.SqpStatusCell & JSXBase.HTMLAttributes<HTMLSqpStatusCellElement>;
             "sqp-stencilbook": LocalJSX.SqpStencilbook & JSXBase.HTMLAttributes<HTMLSqpStencilbookElement>;
