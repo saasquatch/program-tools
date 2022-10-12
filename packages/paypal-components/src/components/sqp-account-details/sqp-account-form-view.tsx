@@ -48,12 +48,19 @@ export function AccountFormView(props: AccountFormViewProps) {
         fontWeight: "bold",
       },
     },
+
     ButtonContainer: {
       display: "flex",
       flexDirection: "column",
       width: "100%",
     },
+
+    FullWidthButton: {
+      width: "100%",
+    },
+
     FormHeaderContainer: {},
+
     Dialog: {
       padding: "0",
       "&::part(close-button)": {
@@ -79,9 +86,6 @@ export function AccountFormView(props: AccountFormViewProps) {
     },
 
     InputContainer: {
-      // "& > :not(:last-child)": {
-      //   "margin-bottom": "var(--sl-spacing-x-large)",
-      // },
       display: "flex",
       flexDirection: "column",
       gap: "var(--sl-spacing-x-large)",
@@ -92,14 +96,11 @@ export function AccountFormView(props: AccountFormViewProps) {
     },
 
     CancelButton: {
-      width: "25%",
+      width: "100%",
       margin: "var(--sl-spacing-large) auto",
     },
-    ConnectPayPalAccount: {},
 
-    FullWidthButton: {
-      width: "100%",
-    },
+    ConnectPayPalAccount: {},
 
     EditingFormContentContainer: {
       display: "flex",
