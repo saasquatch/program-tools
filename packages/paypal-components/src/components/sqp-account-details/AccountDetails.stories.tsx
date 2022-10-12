@@ -64,20 +64,6 @@ const defaultAccountFormProps: AccountFormViewProps = {
   },
 };
 
-export const HasAccount = () => (
-  <div>
-    <AccountFormView {...defaultAccountFormProps} />
-    <AccountDetailsView {...defaultAccountDetailsProps} />
-  </div>
-);
-
-export const HasAccountLoading = () => (
-  <div>
-    <AccountFormView {...defaultAccountFormProps} />
-    <AccountDetailsView {...defaultAccountDetailsProps} loading={true} />
-  </div>
-);
-
 export const NoAccount = () => (
   <div>
     <AccountFormView {...defaultAccountFormProps} hasAccount={false} />
@@ -96,6 +82,20 @@ export const NoAccountFormOpen = () => (
   </div>
 );
 
+export const HasAccount = () => (
+  <div>
+    <AccountFormView {...defaultAccountFormProps} />
+    <AccountDetailsView {...defaultAccountDetailsProps} />
+  </div>
+);
+
+export const HasAccountLoading = () => (
+  <div>
+    <AccountFormView {...defaultAccountFormProps} />
+    <AccountDetailsView {...defaultAccountDetailsProps} loading={true} />
+  </div>
+);
+
 export const EditAccountFormOpen = () => (
   <div>
     <AccountFormView
@@ -110,3 +110,37 @@ export const EditAccountFormOpen = () => (
     <AccountDetailsView {...defaultAccountDetailsProps} hasAccount={false} />
   </div>
 );
+
+export const Error = () => {
+  return (
+    <div>
+      <AccountFormView
+        {...defaultAccountFormProps}
+        hasAccount={false}
+        states={{
+          ...defaultAccountFormProps.states,
+          open: true,
+          error: "Emails do not match",
+        }}
+      />
+      <AccountDetailsView {...defaultAccountDetailsProps} hasAccount={false} />
+    </div>
+  );
+};
+
+export const Success = () => {
+  return (
+    <div>
+      <AccountFormView
+        {...defaultAccountFormProps}
+        hasAccount={false}
+        states={{
+          ...defaultAccountFormProps.states,
+          open: true,
+          success: true,
+        }}
+      />
+      <AccountDetailsView {...defaultAccountDetailsProps} hasAccount={false} />
+    </div>
+  );
+};
