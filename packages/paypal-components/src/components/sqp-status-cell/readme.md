@@ -22,12 +22,12 @@
 
 ### Used by
 
- - [sqp-rewards-table-status-column](../sqp-status-column)
+ - [sqp-status-column](../sqp-status-column)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqp-rewards-table-status-column --> sqp-status-cell
+  sqp-status-column --> sqp-status-cell
   style sqp-status-cell fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
