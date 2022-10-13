@@ -127,7 +127,7 @@ export function AccountFormView(props: AccountFormViewProps) {
             padding: "none",
             label: (
               <div class={sheet.classes.FormHeaderContainer}>
-                <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665094610/tenant_test_ahsf8e6g2r1dh/brjh1v3anhzwvef6ntbj.svg" />
+                <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665703368/tenant_test_a8b41jotf8a1v/tjfxf0qxu2lwqzgtcghw.svg" />
                 <h2>
                   {states.editingAccount
                     ? formContent.connectAccountModalHeaderText
@@ -274,7 +274,7 @@ export function AccountFormView(props: AccountFormViewProps) {
             label: (
               <div>
                 <div class={sheet.classes.HeaderContainer}>
-                  <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665094610/tenant_test_ahsf8e6g2r1dh/brjh1v3anhzwvef6ntbj.svg" />
+                  <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665703368/tenant_test_a8b41jotf8a1v/tjfxf0qxu2lwqzgtcghw.svg" />
                   <h2>{formContent.payPalAccountHeaderText}</h2>
                 </div>
                 <p>{formContent.connectPayPalDescriptionText}</p>

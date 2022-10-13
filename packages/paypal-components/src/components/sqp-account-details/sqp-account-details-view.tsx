@@ -95,7 +95,7 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
     <div class={classes.Container}>
       <style type="text/css">{styleString}</style>
       <div class={classes.HeaderContainer}>
-        <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665094610/tenant_test_ahsf8e6g2r1dh/brjh1v3anhzwvef6ntbj.svg" />
+        <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665703368/tenant_test_a8b41jotf8a1v/tjfxf0qxu2lwqzgtcghw.svg" />
         <h2>{detailsContent.headerText}</h2>
         <sl-button
           class={classes.DesktopEditButton}
