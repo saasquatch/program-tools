@@ -52,6 +52,28 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   @Prop() rewardReceivedText: string = "Reward received on";
 
   /**
+   * Shown in the dropdown details when a reward has been received.’
+   *
+   * @uiName Reward Received Text
+   */
+  @Prop() rewardPaidOutText: string = "Sent via PayPal on";
+
+  /**
+   * Shown in the dropdown details when a reward has been received.’
+   *
+   * @uiName Reward Payout In Progress Text
+   */
+  @Prop() rewardPayoutInProgressText: string =
+    "PayPal payout processing started on";
+
+  /**
+   * Shown in the dropdown details when a reward has been received.’
+   *
+   * @uiName Reward Payout Failed Text
+   */
+  @Prop() rewardPayoutFailedText: string = "Payout last attempted on";
+
+  /**
    * Shown in the dropdown details when a reward has an expiry date.
    *
    * @uiName Reward Expiring Text
@@ -91,6 +113,9 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
         pendingForText={this.pendingForText}
         hideDetails={this.hideDetails}
         locale={locale}
+        rewardPaidOutText={this.rewardPaidOutText}
+        rewardPayoutInProgressText={this.rewardPayoutInProgressText}
+        rewardPayoutFailedText={this.rewardPayoutFailedText}
       ></sqp-rewards-cell>
     );
   }
@@ -103,7 +128,21 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   @Method()
   async renderReferrerCell(data: Referrer) {
     // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
-    return <sqp-rewards-cell rewards={data.rewards}></sqp-rewards-cell>;
+    return (
+      <sqp-rewards-cell
+        rewards={data.rewards}
+        statusText={this.statusText}
+        statusLongText={this.statusLongText}
+        fuelTankText={this.fuelTankText}
+        rewardReceivedText={this.rewardReceivedText}
+        expiringText={this.expiringText}
+        pendingForText={this.pendingForText}
+        hideDetails={this.hideDetails}
+        rewardPaidOutText={this.rewardPaidOutText}
+        rewardPayoutInProgressText={this.rewardPayoutInProgressText}
+        rewardPayoutFailedText={this.rewardPayoutFailedText}
+      ></sqp-rewards-cell>
+    );
   }
 
   render() {

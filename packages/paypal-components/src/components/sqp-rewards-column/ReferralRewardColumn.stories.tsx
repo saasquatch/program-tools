@@ -29,6 +29,9 @@ export const Available = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      rewardPaidOutText="Sent via PayPal on"
+      rewardPayoutInProgressText="PayPal payout processing started on"
+      rewardPayoutFailedText="Payout last attempted on"
     ></sqp-rewards-cell>
   );
 };
@@ -51,6 +54,9 @@ export const Transferred = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      rewardPaidOutText="Sent via PayPal on"
+      rewardPayoutInProgressText="PayPal payout processing started on"
+      rewardPayoutFailedText="Payout last attempted on"
     ></sqp-rewards-cell>
   );
 };
@@ -70,6 +76,9 @@ export const InProgress = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      rewardPaidOutText="Sent via PayPal on"
+      rewardPayoutInProgressText="PayPal payout processing started on"
+      rewardPayoutFailedText="Payout last attempted on"
     ></sqp-rewards-cell>
   );
 };
@@ -89,6 +98,9 @@ export const Failed = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      rewardPaidOutText="Sent via PayPal on"
+      rewardPayoutInProgressText="PayPal payout processing started on"
+      rewardPayoutFailedText="Payout last attempted on"
     ></sqp-rewards-cell>
   );
 };

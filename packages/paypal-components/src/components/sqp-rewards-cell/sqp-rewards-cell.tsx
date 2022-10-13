@@ -21,8 +21,17 @@ export class ReferralTableRewardsCell {
   @Prop() rewardReceivedText: string;
   @Prop() expiringText: string;
   @Prop() pendingForText: string;
+  @Prop() rewardPaidOutText: string;
+  @Prop() rewardPayoutInProgressText: string;
+  @Prop() rewardPayoutFailedText: string;
   @Prop() locale: string = "en";
   render() {
+    console.log(
+      "ye",
+      this.rewardPaidOutText,
+      this.rewardPayoutFailedText,
+      this.rewardPayoutFailedText
+    );
     intl.locale = this.locale;
     const style = {
       "@keyframes slideRight": {
@@ -172,6 +181,53 @@ export class ReferralTableRewardsCell {
         }
       );
 
+      const RewardGivenText = () =>
+        state === "INPROGRESS" ? (
+          <div>
+            <TextSpanView type="p">
+              {this.rewardPayoutInProgressText}{" "}
+              <span class={sheet.classes.BoldText}>
+                {DateTime.fromMillis(reward.dateGiven)
+                  .setLocale(luxonLocale(this.locale))
+                  .toLocaleString(DateTime.DATE_MED)}
+              </span>
+            </TextSpanView>
+          </div>
+        ) : state === "TRANSFERRED" ? (
+          <div>
+            <TextSpanView type="p">
+              {this.rewardPaidOutText}{" "}
+              <span class={sheet.classes.BoldText}>
+                {DateTime.fromMillis(reward.dateGiven)
+                  .setLocale(luxonLocale(this.locale))
+                  .toLocaleString(DateTime.DATE_MED)}
+              </span>
+            </TextSpanView>
+          </div>
+        ) : state === "FAILED" ? (
+          <div>
+            <TextSpanView type="p">
+              {this.rewardPayoutFailedText}{" "}
+              <span class={sheet.classes.BoldText}>
+                {DateTime.fromMillis(reward.dateGiven)
+                  .setLocale(luxonLocale(this.locale))
+                  .toLocaleString(DateTime.DATE_MED)}
+              </span>
+            </TextSpanView>
+          </div>
+        ) : (
+          <div>
+            <TextSpanView type="p">
+              {this.rewardReceivedText}{" "}
+              <span class={sheet.classes.BoldText}>
+                {DateTime.fromMillis(reward.dateGiven)
+                  .setLocale(luxonLocale(this.locale))
+                  .toLocaleString(DateTime.DATE_MED)}
+              </span>
+            </TextSpanView>
+          </div>
+        );
+
       return (
         <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>
           <style type="text/css">{styleString}</style>
@@ -234,18 +290,7 @@ export class ReferralTableRewardsCell {
             </div>
           </div>
           <div>
-            {reward.dateGiven && (
-              <div>
-                <TextSpanView type="p">
-                  {this.rewardReceivedText}{" "}
-                  <span class={sheet.classes.BoldText}>
-                    {DateTime.fromMillis(reward.dateGiven)
-                      .setLocale(luxonLocale(this.locale))
-                      .toLocaleString(DateTime.DATE_MED)}
-                  </span>
-                </TextSpanView>
-              </div>
-            )}
+            {reward.dateGiven && <RewardGivenText />}
             {state === "EXPIRED" && reward.dateExpires && (
               <div>
                 <TextSpanView type="p">

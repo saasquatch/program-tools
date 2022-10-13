@@ -157,6 +157,9 @@ export namespace Components {
         "hideDetails": boolean;
         "locale": string;
         "pendingForText": string;
+        "rewardPaidOutText": string;
+        "rewardPayoutFailedText": string;
+        "rewardPayoutInProgressText": string;
         "rewardReceivedText": string;
         "rewards": Reward[];
         "statusLongText": string;
@@ -190,6 +193,21 @@ export namespace Components {
         "renderCell": (data: Referral, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
+        /**
+          * Shown in the dropdown details when a reward has been received.’
+          * @uiName Reward Received Text
+         */
+        "rewardPaidOutText": string;
+        /**
+          * Shown in the dropdown details when a reward has been received.’
+          * @uiName Reward Payout Failed Text
+         */
+        "rewardPayoutFailedText": string;
+        /**
+          * Shown in the dropdown details when a reward has been received.’
+          * @uiName Reward Payout In Progress Text
+         */
+        "rewardPayoutInProgressText": string;
         /**
           * Shown in the dropdown details when a reward has been received.’
           * @uiName Reward Received Text
@@ -460,6 +478,9 @@ declare namespace LocalJSX {
         "hideDetails"?: boolean;
         "locale"?: string;
         "pendingForText"?: string;
+        "rewardPaidOutText"?: string;
+        "rewardPayoutFailedText"?: string;
+        "rewardPayoutInProgressText"?: string;
         "rewardReceivedText"?: string;
         "rewards"?: Reward[];
         "statusLongText"?: string;
@@ -490,6 +511,21 @@ declare namespace LocalJSX {
           * @uiName Reward Pending Text
          */
         "pendingForText"?: string;
+        /**
+          * Shown in the dropdown details when a reward has been received.’
+          * @uiName Reward Received Text
+         */
+        "rewardPaidOutText"?: string;
+        /**
+          * Shown in the dropdown details when a reward has been received.’
+          * @uiName Reward Payout Failed Text
+         */
+        "rewardPayoutFailedText"?: string;
+        /**
+          * Shown in the dropdown details when a reward has been received.’
+          * @uiName Reward Payout In Progress Text
+         */
+        "rewardPayoutInProgressText"?: string;
         /**
           * Shown in the dropdown details when a reward has been received.’
           * @uiName Reward Received Text
