@@ -30,7 +30,7 @@ export const baseReward: Reward = {
   dateGiven: 1627427794891,
   dateScheduledFor: getDays(),
   dateExpires: null,
-  dateCancelled: 134400,
+  dateCancelled: 0,
   dateRedeemed: 0,
   fuelTankCode: "ABC",
   fuelTankType: "Code",
@@ -126,8 +126,18 @@ export const transferredReward = {
     },
   },
 };
-
 export const failedPaypal = {
+  meta: {
+    status: "ERROR",
+    customMeta: {
+      datePaidOut: null,
+      dateLastAttempted: 123456789,
+      dateFirstAttempted: 123456789,
+    },
+  },
+};
+
+export const inProgressPaypal = {
   meta: {
     customMeta: {
       datePaidOut: null,

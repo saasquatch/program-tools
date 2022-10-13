@@ -10,6 +10,7 @@ import {
   pendingReward,
   nullScheduledFor,
   nullFuelTank,
+  inProgressPaypal,
 } from "./RewardData";
 export default {
   title: "Components/Referral Reward Column",
@@ -18,7 +19,7 @@ export default {
   // },
 };
 
-export const AvailableNoExpiry = () => {
+export const Available = () => {
   return (
     <sqp-rewards-cell
       rewards={[{ ...baseReward }]}
@@ -54,54 +55,32 @@ export const Transferred = () => {
   );
 };
 
+export const InProgress = () => {
+  return (
+    <sqp-rewards-cell
+      rewards={[
+        {
+          ...baseReward,
+          ...inProgressPaypal,
+        },
+      ]}
+      statusText="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+      statusLongText="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Failed} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }"
+      fuelTankText="Your code is"
+      rewardReceivedText="Reward received on"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
+    ></sqp-rewards-cell>
+  );
+};
+
 export const Failed = () => {
   return (
     <sqp-rewards-cell
       rewards={[
         {
-          id: "5cae6b16cc540e209db45cfa",
-          type: "CREDIT",
-          value: 1,
-          unit: "POINT",
-          name: "Partner Reward",
-          dateGiven: 1554934550726,
-          dateExpires: null,
-          dateCancelled: null,
-          dateRedeemed: 1637004373582,
-          dateScheduledFor: null,
-          fuelTankCode: null,
-          fuelTankType: null,
-          currency: null,
-          prettyValue: "1 Point",
-          statuses: ["REDEEMED"],
-          globalRewardKey: null,
-          meta: {
-            integration: {
-              name: "PayPal",
-            },
-            status: "ERROR",
-            customMeta: {
-              datePaidOut: null,
-              dateLastAttempted: null,
-              dateFirstAttempted: null,
-            },
-          },
-          rewardRedemptionTransactions: {
-            data: [
-              {
-                exchangedRewards: {
-                  data: [
-                    {
-                      prettyValue: "CAD10.00 Visa* Prepaid Card CAD",
-                      type: "INTEGRATION",
-                      fuelTankCode: null,
-                      globalRewardKey: "gc1",
-                    },
-                  ],
-                },
-              },
-            ],
-          },
+          ...baseReward,
+          ...failedPaypal,
         },
       ]}
       statusText="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"

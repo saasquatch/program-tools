@@ -54,6 +54,7 @@ export class RewardTableStatusCell {
   @Prop() pendingUnhandled: string = "Fulfillment error";
 
   rewardStatus(reward: Reward) {
+    console.log({ reward });
     if (reward.dateCancelled) return "CANCELLED";
     if (reward.statuses && reward.statuses.includes("EXPIRED"))
       return "EXPIRED";
