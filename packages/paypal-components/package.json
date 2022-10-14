@@ -1,7 +1,7 @@
 {
   "name": "@saasquatch/paypal-components",
   "title": "PayPal Components",
-  "version": "1.0.0-12",
+  "version": "1.0.0-13",
   "description": "A minimal design library with components that integrate with our Paypal Payouts integration. Built with Shoelace components by Saasquatch.",
   "icon": "https://res.cloudinary.com/saasquatch-staging/image/upload/v1665703550/tenant_test_a8b41jotf8a1v/m2zu10nybshsus3vrhzb.svg",
   "raisins": "docs/raisins.json",
