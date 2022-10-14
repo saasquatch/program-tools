@@ -22,7 +22,7 @@
 
 ## Methods
 
-### `renderCell(data: Reward, _locale: string) => Promise<any>`
+### `renderCell(data: Reward, locale: string) => Promise<any>`
 
 
 
@@ -49,9 +49,14 @@ Type: `Promise<string>`
 
  - [sqp-stencilbook](../sqp-stencilbook)
 
+### Depends on
+
+- [sqp-status-cell](../sqp-status-cell)
+
 ### Graph
 ```mermaid
 graph TD;
+  sqp-status-column --> sqp-status-cell
   sqp-stencilbook --> sqp-status-column
   style sqp-status-column fill:#f9f,stroke:#333,stroke-width:4px
 ```
