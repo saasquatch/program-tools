@@ -1368,7 +1368,7 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<GenericTableViewProps> & {
-    mockData: { data: Referral[] };
+    mockData?: { data: Referral[] };
   };
         /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
@@ -1676,7 +1676,7 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<GenericTableViewProps> & {
-    mockData: { data: Referral[] };
+    mockData?: { data: Referral[] };
   };
         /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
@@ -4325,7 +4325,7 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<GenericTableViewProps> & {
-    mockData: { data: Referral[] };
+    mockData?: { data: Referral[] };
   };
         /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
@@ -4619,7 +4619,7 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<GenericTableViewProps> & {
-    mockData: { data: Referral[] };
+    mockData?: { data: Referral[] };
   };
         /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3

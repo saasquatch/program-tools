@@ -66,7 +66,7 @@ export class RewardsTable {
    * @uiType object
    */
   @Prop() demoData?: DemoData<GenericTableViewProps> & {
-    mockData: { data: Referral[] };
+    mockData?: { data: Referral[] };
   };
 
   constructor() {

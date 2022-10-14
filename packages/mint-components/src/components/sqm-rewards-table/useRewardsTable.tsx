@@ -37,10 +37,12 @@ const GET_REWARDS = gql`
           count
           data {
             meta {
+              status
               integration {
                 name
               }
               message
+              customMeta
             }
             id
             type
