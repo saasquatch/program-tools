@@ -3,8 +3,9 @@ import {
   useQuery,
   useRefreshDispatcher,
   useUserIdentity,
+  setUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useRef, useState } from "@saasquatch/universal-hooks";
+import { useRef, useState, useEffect } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import jsonpointer from "jsonpointer";
 const ACCOUNT_DETAILS_QUERY = gql`
@@ -37,6 +38,19 @@ export function useAccountDetails(props) {
   const [success, setSuccess] = useState(false);
 
   const { data } = useQuery(ACCOUNT_DETAILS_QUERY, {});
+
+  useEffect(() => {
+    setUserIdentity({
+      jwt: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MzQ5OTQ4MjcwZmU0NTRhNjMxYWY4ODgiLCJpYXQiOjE2NjU3NjY1MzAsImV4cCI6MTY2NTg1MjkzMCwic3ViIjoiWkdWeVpXc3VjMmxsYldWdWN5dDBjRUJ5WldabGNuSmhiSE5oWVhOeGRXRjBZMmd1WTI5dDpaR1Z5WldzdWMybGxiV1Z1Y3l0MGNFQnlaV1psY25KaGJITmhZWE54ZFdGMFkyZ3VZMjl0QHRlc3RfYTYzN3Nybm5iNDhhNDp1c2VycyIsInVzZXIiOnsiaWQiOiJkZXJlay5zaWVtZW5zK3RwQHJlZmVycmFsc2Fhc3F1YXRjaC5jb20iLCJhY2NvdW50SWQiOiJkZXJlay5zaWVtZW5zK3RwQHJlZmVycmFsc2Fhc3F1YXRjaC5jb20iLCJkYXRlQmxvY2tlZCI6bnVsbH19.dtlKlNSnPVws9cAQzEp_b-TTVRjImoqx_wyFmRE_ErI",
+      id: "derek.siemens+tp@referralsaasquatch.com",
+      accountId: "derek.siemens+tp@referralsaasquatch.com",
+      managedIdentity: {
+        email: "derek.siemens+tp@referralsaasquatch.com",
+        emailVerified: true,
+        sessionData: {},
+      },
+    });
+  }, []);
 
   const [submitUser, { data: submissionData, loading }] =
     useMutation(SUBMIT_ACCOUNT);

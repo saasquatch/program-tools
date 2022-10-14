@@ -7,17 +7,17 @@ import { RewardTableColumn } from "./RewardTableColumn";
  * @uiName Reward Table Status Column
  * @validParents ["sqm-rewards-table"]
  * @exampleGroup PayPal Components
- * @example Reward Table Status Column - <sqp-status-column column-title="Status" status-text="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error"></sqp-status-column>
+ * @example Reward Table Status Column - <sqp-status-column column-title="PayPal Status" status-text="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error"></sqp-status-column>
  */
 @Component({
   tag: "sqp-status-column",
   shadow: true,
 })
-export class RewardTableStatusColumn implements RewardTableColumn {
+export class RewardTablePayPalStatusColumn implements RewardTableColumn {
   /**
    * @uiName Column Title
    */
-  @Prop() columnTitle: string = "Status";
+  @Prop() columnTitle: string = "PayPal Status";
 
   /**
    * @uiName Reward Status Text
@@ -55,14 +55,14 @@ export class RewardTableStatusColumn implements RewardTableColumn {
   @Prop() pendingUnhandled: string = "Fulfillment error";
 
   /**
-   * Shown in the dropdown details when a reward has been paid out.’
+   * Shown in the dropdown details when a reward has been paid out.
    *
    * @uiName Reward Paid Out Text
    */
   @Prop() rewardPaidOutText: string = "Sent via PayPal on";
 
   /**
-   * Shown in the dropdown details when a reward is being paid out.’
+   * Shown in the dropdown details when a reward is being paid out.
    *
    * @uiName Reward Payout In Progress Text
    */
@@ -70,7 +70,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
     "PayPal payout processing started on";
 
   /**
-   * Shown in the dropdown details when a reward payout has failed.’
+   * Shown in the dropdown details when a reward payout has failed.
    *
    * @uiName Reward Payout Failed Text
    */
@@ -112,6 +112,9 @@ export class RewardTableStatusColumn implements RewardTableColumn {
       this.pendingScheduled,
       this.pendingUsTax,
       this.pendingUnhandled,
+      this.rewardPaidOutText,
+      this.rewardPayoutInProgressText,
+      this.rewardPayoutFailedText,
     ]);
     return <Host style={{ display: "none" }} />;
   }

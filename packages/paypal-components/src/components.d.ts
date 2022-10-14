@@ -263,7 +263,7 @@ export namespace Components {
           * @uiName W9 Pending Text
          */
         "pendingUsTax": string;
-        "renderCell": (data: Reward, _locale: string) => Promise<any>;
+        "renderCell": (data: Reward, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * Shown in the dropdown details when a reward has been paid out.

@@ -10,9 +10,9 @@
   </head>
   <body>
     <script>
-      // window.SquatchPortal = { tenantAlias: 'test_a8b41jotf8a1v', appDomain: 'https://staging.referralsaasquatch.com' };
+      window.SquatchPortal = { tenantAlias: 'test_a637srnnb48a4', appDomain: 'https://staging.referralsaasquatch.com' };
     </script>
-    <sqp-stencilbook></sqp-stencilbook>
+    <!-- <sqp-stencilbook></sqp-stencilbook> -->
     <!-- <sqm-referral-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799">
       <sqm-referral-table-user-column column-title="User" anonymous-user="Anonymous User" deleted-user="Deleted User"> </sqm-referral-table-user-column>
       <sqm-referral-table-status-column column-title="Referral status" converted-status-text="Converted" in-progress-status-text="In Progress"> </sqm-referral-table-status-column>
@@ -35,7 +35,7 @@
         empty-state-text="Refer a friend to view the status of your referrals and rewards earned"
       >
       </sqm-empty>
-    </sqm-referral-table>
+    </sqm-referral-table> -->
     <sqm-rewards-table per-page="4" program-id hidden-columns="0" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799">
       <sqm-rewards-table-reward-column available-text="{availableAmount} remaining" column-title="Reward" copy-text="Copied!" redeemed-text="{redeemedAmount} redeemed">
       </sqm-rewards-table-reward-column>
@@ -54,6 +54,7 @@
         status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
       >
       </sqm-rewards-table-status-column>
+      <sqp-status-column column-title="Paypal Status"></sqp-status-column>
       <sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven"> </sqm-rewards-table-date-column>
       <sqm-empty
         slot="empty"
@@ -64,6 +65,6 @@
       </sqm-empty>
     </sqm-rewards-table>
 
-    <sqp-account-details></sqp-account-details> -->
+    <sqp-account-details></sqp-account-details>
   </body>
 </html>
