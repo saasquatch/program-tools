@@ -155,6 +155,9 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
       this.expiringText,
       this.pendingForText,
       this.hideDetails,
+      this.rewardPaidOutText,
+      this.rewardPayoutInProgressText,
+      this.rewardPayoutFailedText,
     ]);
     return <Host style={{ display: "none" }} />;
   }

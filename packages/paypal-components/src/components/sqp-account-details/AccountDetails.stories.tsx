@@ -3,7 +3,6 @@ import {
   AccountDetailsView,
   AccountDetailsViewProps,
 } from "./sqp-account-details-view";
-import { useRef } from "@saasquatch/universal-hooks";
 import { AccountFormView, AccountFormViewProps } from "./sqp-account-form-view";
 export default {
   title: "Components/PayPal Account Details",
@@ -35,7 +34,7 @@ const defaultAccountDetailsProps: AccountDetailsViewProps = {
 const defaultAccountFormProps: AccountFormViewProps = {
   formRef: { current: null },
   hasAccount: true,
-  callbacks: { submit: () => {}, setOpen: () => {} },
+  callbacks: { submit: () => {}, setOpen: () => {}, disconnect: () => {} },
   states: {
     editingAccount: false,
     loading: false,

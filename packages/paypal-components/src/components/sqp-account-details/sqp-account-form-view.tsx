@@ -32,6 +32,7 @@ export interface AccountFormViewProps {
   callbacks: {
     setOpen: (open: boolean) => void;
     submit: (event: MouseEvent) => void;
+    disconnect: () => void;
   };
 }
 
@@ -191,7 +192,10 @@ export function AccountFormView(props: AccountFormViewProps) {
                     <p style={{ marginTop: "0px" }}>
                       {formContent.disconnectAccountDescriptionText}
                     </p>
-                    <sl-button class={sheet.classes.FullWidthButton}>
+                    <sl-button
+                      class={sheet.classes.FullWidthButton}
+                      onClick={callbacks.disconnect}
+                    >
                       {formContent.disconnectAccountButtonText}
                     </sl-button>
                   </div>

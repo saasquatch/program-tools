@@ -263,20 +263,20 @@ export namespace Components {
           * @uiName W9 Pending Text
          */
         "pendingUsTax": string;
-        "renderCell": (data: Reward, locale: string) => Promise<any>;
+        "renderCell": (data: Reward, _locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
-          * Shown in the dropdown details when a reward has been paid out.’
+          * Shown in the dropdown details when a reward has been paid out.
           * @uiName Reward Paid Out Text
          */
         "rewardPaidOutText": string;
         /**
-          * Shown in the dropdown details when a reward payout has failed.’
+          * Shown in the dropdown details when a reward payout has failed.
           * @uiName Reward Payout Failed Text
          */
         "rewardPayoutFailedText": string;
         /**
-          * Shown in the dropdown details when a reward is being paid out.’
+          * Shown in the dropdown details when a reward is being paid out.
           * @uiName Reward Payout In Progress Text
          */
         "rewardPayoutInProgressText": string;
@@ -600,17 +600,17 @@ declare namespace LocalJSX {
          */
         "pendingUsTax"?: string;
         /**
-          * Shown in the dropdown details when a reward has been paid out.’
+          * Shown in the dropdown details when a reward has been paid out.
           * @uiName Reward Paid Out Text
          */
         "rewardPaidOutText"?: string;
         /**
-          * Shown in the dropdown details when a reward payout has failed.’
+          * Shown in the dropdown details when a reward payout has failed.
           * @uiName Reward Payout Failed Text
          */
         "rewardPayoutFailedText"?: string;
         /**
-          * Shown in the dropdown details when a reward is being paid out.’
+          * Shown in the dropdown details when a reward is being paid out.
           * @uiName Reward Payout In Progress Text
          */
         "rewardPayoutInProgressText"?: string;

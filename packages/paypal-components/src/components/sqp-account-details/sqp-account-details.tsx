@@ -182,7 +182,7 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
           date: 12345678900,
         },
       },
-      callbacks: { submit: () => {}, setOpen },
+      callbacks: { submit: () => {}, setOpen, disconnect: () => {} },
       states: {
         editingAccount: false,
         loading: false,

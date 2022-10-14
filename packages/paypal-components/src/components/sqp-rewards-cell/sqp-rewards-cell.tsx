@@ -26,12 +26,6 @@ export class ReferralTableRewardsCell {
   @Prop() rewardPayoutFailedText: string;
   @Prop() locale: string = "en";
   render() {
-    console.log(
-      "ye",
-      this.rewardPaidOutText,
-      this.rewardPayoutFailedText,
-      this.rewardPayoutFailedText
-    );
     intl.locale = this.locale;
     const style = {
       "@keyframes slideRight": {
@@ -181,13 +175,17 @@ export class ReferralTableRewardsCell {
         }
       );
 
+      console.log(reward.meta?.customMeta);
       const RewardGivenText = () =>
         state === "INPROGRESS" ? (
           <div>
             <TextSpanView type="p">
               {this.rewardPayoutInProgressText}{" "}
               <span class={sheet.classes.BoldText}>
-                {DateTime.fromMillis(reward.meta?.customMeta?.datePaidOut)
+                {DateTime.fromMillis(
+                  reward.meta?.customMeta?.dateLastAttempted ||
+                    reward.meta?.customMeta?.dateFirstAttempted
+                )
                   .setLocale(luxonLocale(this.locale))
                   .toLocaleString(DateTime.DATE_MED)}
               </span>
@@ -198,10 +196,7 @@ export class ReferralTableRewardsCell {
             <TextSpanView type="p">
               {this.rewardPaidOutText}{" "}
               <span class={sheet.classes.BoldText}>
-                {DateTime.fromMillis(
-                  reward.meta?.customMeta?.dateLastAttempted ||
-                    reward.meta?.customMeta?.dateFirstAttempted
-                )
+                {DateTime.fromMillis(reward.meta?.customMeta?.datePaidOut)
                   .setLocale(luxonLocale(this.locale))
                   .toLocaleString(DateTime.DATE_MED)}
               </span>

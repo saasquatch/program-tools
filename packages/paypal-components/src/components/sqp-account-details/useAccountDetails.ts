@@ -1,11 +1,10 @@
 import {
-  setUserIdentity,
   useMutation,
   useQuery,
   useRefreshDispatcher,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
+import { useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import jsonpointer from "jsonpointer";
 const ACCOUNT_DETAILS_QUERY = gql`
@@ -39,7 +38,7 @@ export function useAccountDetails(props) {
 
   const { data } = useQuery(ACCOUNT_DETAILS_QUERY, {});
 
-  const [fetch, { data: submissionData, loading }] =
+  const [submitUser, { data: submissionData, loading }] =
     useMutation(SUBMIT_ACCOUNT);
 
   const { refresh } = useRefreshDispatcher();
@@ -63,7 +62,7 @@ export function useAccountDetails(props) {
       accountId,
       customFields: { paypalEmail: formData.email },
     };
-    const result = await fetch({ userInput });
+    const result = await submitUser({ userInput });
     if (result instanceof Error) {
       return setError("Network request failed.");
     } else {
@@ -74,7 +73,6 @@ export function useAccountDetails(props) {
 
   function resetForm() {
     const formControls = formRef.current.getFormControls();
-    console.log({ stuff: formRef.current, formControls });
     formControls?.forEach((control) => {
       control.value = "";
     });
@@ -88,6 +86,21 @@ export function useAccountDetails(props) {
     }
   }
 
+  const disconnect = async () => {
+    const userInput = {
+      id,
+      accountId,
+      customFields: { paypalEmail: null },
+    };
+    const result = await submitUser({ userInput });
+    if (result instanceof Error) {
+      return setError("Network request failed.");
+    } else {
+      setSuccess(true);
+      refresh();
+    }
+  };
+
   return {
     formRef,
     hasAccount: !!data?.viewer?.customFields?.paypalEmail,
@@ -98,7 +111,7 @@ export function useAccountDetails(props) {
         date: 12345678900,
       },
     },
-    callbacks: { submit, setOpen: openModal },
+    callbacks: { submit, setOpen: openModal, disconnect },
     states: {
       loading,
       error,
