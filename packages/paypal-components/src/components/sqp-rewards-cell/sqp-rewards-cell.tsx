@@ -187,7 +187,7 @@ export class ReferralTableRewardsCell {
             <TextSpanView type="p">
               {this.rewardPayoutInProgressText}{" "}
               <span class={sheet.classes.BoldText}>
-                {DateTime.fromMillis(reward.dateGiven)
+                {DateTime.fromMillis(reward.meta?.customMeta?.datePaidOut)
                   .setLocale(luxonLocale(this.locale))
                   .toLocaleString(DateTime.DATE_MED)}
               </span>
@@ -198,7 +198,10 @@ export class ReferralTableRewardsCell {
             <TextSpanView type="p">
               {this.rewardPaidOutText}{" "}
               <span class={sheet.classes.BoldText}>
-                {DateTime.fromMillis(reward.dateGiven)
+                {DateTime.fromMillis(
+                  reward.meta?.customMeta?.dateLastAttempted ||
+                    reward.meta?.customMeta?.dateFirstAttempted
+                )
                   .setLocale(luxonLocale(this.locale))
                   .toLocaleString(DateTime.DATE_MED)}
               </span>
@@ -209,7 +212,10 @@ export class ReferralTableRewardsCell {
             <TextSpanView type="p">
               {this.rewardPayoutFailedText}{" "}
               <span class={sheet.classes.BoldText}>
-                {DateTime.fromMillis(reward.dateGiven)
+                {DateTime.fromMillis(
+                  reward.meta?.customMeta?.dateLastAttempted ||
+                    reward.meta?.customMeta?.dateFirstAttempted
+                )
                   .setLocale(luxonLocale(this.locale))
                   .toLocaleString(DateTime.DATE_MED)}
               </span>

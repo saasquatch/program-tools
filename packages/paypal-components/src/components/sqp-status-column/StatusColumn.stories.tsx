@@ -23,6 +23,9 @@ export const Available = () => {
       column-title="Status"
       expiry-text="Expires on "
       status-text="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+      rewardPaidOutText="Sent via PayPal on"
+      rewardPayoutInProgressText="PayPal payout processing started on"
+      rewardPayoutFailedText="Payout last attempted on"
     ></sqp-status-cell>
   );
 };
@@ -40,6 +43,9 @@ export const Transferred = () => {
       column-title="Status"
       expiry-text="Expires on "
       status-text="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+      rewardPaidOutText="Sent via PayPal on"
+      rewardPayoutInProgressText="PayPal payout processing started on"
+      rewardPayoutFailedText="Payout last attempted on"
     ></sqp-status-cell>
   );
 };
@@ -54,6 +60,9 @@ export const InProgress = () => {
       column-title="Status"
       expiry-text="Expires on "
       status-text="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+      rewardPaidOutText="Sent via PayPal on"
+      rewardPayoutInProgressText="PayPal payout processing started on"
+      rewardPayoutFailedText="Payout last attempted on"
     ></sqp-status-cell>
   );
 };
@@ -68,6 +77,9 @@ export const Failed = () => {
       column-title="Status"
       expiry-text="Expires on "
       status-text="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+      rewardPaidOutText="Sent via PayPal on"
+      rewardPayoutInProgressText="PayPal payout processing started on"
+      rewardPayoutFailedText="Payout last attempted on"
     ></sqp-status-cell>
   );
 };

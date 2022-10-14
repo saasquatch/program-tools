@@ -194,17 +194,17 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
         /**
-          * Shown in the dropdown details when a reward has been received.’
-          * @uiName Reward Received Text
+          * Shown in the dropdown details when a reward has been paid out.’
+          * @uiName Reward Paid Out Text
          */
         "rewardPaidOutText": string;
         /**
-          * Shown in the dropdown details when a reward has been received.’
+          * Shown in the dropdown details when a reward payout has failed.’
           * @uiName Reward Payout Failed Text
          */
         "rewardPayoutFailedText": string;
         /**
-          * Shown in the dropdown details when a reward has been received.’
+          * Shown in the dropdown details when a reward is being paid out.’
           * @uiName Reward Payout In Progress Text
          */
         "rewardPayoutInProgressText": string;
@@ -233,6 +233,9 @@ export namespace Components {
         "pendingUnhandled": string;
         "pendingUsTax": string;
         "reward": Reward;
+        "rewardPaidOutText": string;
+        "rewardPayoutFailedText": string;
+        "rewardPayoutInProgressText": string;
         "statusText": string;
     }
     interface SqpStatusColumn {
@@ -262,6 +265,21 @@ export namespace Components {
         "pendingUsTax": string;
         "renderCell": (data: Reward, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        /**
+          * Shown in the dropdown details when a reward has been paid out.’
+          * @uiName Reward Paid Out Text
+         */
+        "rewardPaidOutText": string;
+        /**
+          * Shown in the dropdown details when a reward payout has failed.’
+          * @uiName Reward Payout Failed Text
+         */
+        "rewardPayoutFailedText": string;
+        /**
+          * Shown in the dropdown details when a reward is being paid out.’
+          * @uiName Reward Payout In Progress Text
+         */
+        "rewardPayoutInProgressText": string;
         /**
           * @uiName Reward Status Text
           * @uiWidget textArea
@@ -512,17 +530,17 @@ declare namespace LocalJSX {
          */
         "pendingForText"?: string;
         /**
-          * Shown in the dropdown details when a reward has been received.’
-          * @uiName Reward Received Text
+          * Shown in the dropdown details when a reward has been paid out.’
+          * @uiName Reward Paid Out Text
          */
         "rewardPaidOutText"?: string;
         /**
-          * Shown in the dropdown details when a reward has been received.’
+          * Shown in the dropdown details when a reward payout has failed.’
           * @uiName Reward Payout Failed Text
          */
         "rewardPayoutFailedText"?: string;
         /**
-          * Shown in the dropdown details when a reward has been received.’
+          * Shown in the dropdown details when a reward is being paid out.’
           * @uiName Reward Payout In Progress Text
          */
         "rewardPayoutInProgressText"?: string;
@@ -551,6 +569,9 @@ declare namespace LocalJSX {
         "pendingUnhandled"?: string;
         "pendingUsTax"?: string;
         "reward"?: Reward;
+        "rewardPaidOutText"?: string;
+        "rewardPayoutFailedText"?: string;
+        "rewardPayoutInProgressText"?: string;
         "statusText"?: string;
     }
     interface SqpStatusColumn {
@@ -578,6 +599,21 @@ declare namespace LocalJSX {
           * @uiName W9 Pending Text
          */
         "pendingUsTax"?: string;
+        /**
+          * Shown in the dropdown details when a reward has been paid out.’
+          * @uiName Reward Paid Out Text
+         */
+        "rewardPaidOutText"?: string;
+        /**
+          * Shown in the dropdown details when a reward payout has failed.’
+          * @uiName Reward Payout Failed Text
+         */
+        "rewardPayoutFailedText"?: string;
+        /**
+          * Shown in the dropdown details when a reward is being paid out.’
+          * @uiName Reward Payout In Progress Text
+         */
+        "rewardPayoutInProgressText"?: string;
         /**
           * @uiName Reward Status Text
           * @uiWidget textArea

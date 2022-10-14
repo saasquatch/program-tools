@@ -52,14 +52,14 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   @Prop() rewardReceivedText: string = "Reward received on";
 
   /**
-   * Shown in the dropdown details when a reward has been received.’
+   * Shown in the dropdown details when a reward has been paid out.’
    *
-   * @uiName Reward Received Text
+   * @uiName Reward Paid Out Text
    */
   @Prop() rewardPaidOutText: string = "Sent via PayPal on";
 
   /**
-   * Shown in the dropdown details when a reward has been received.’
+   * Shown in the dropdown details when a reward is being paid out.’
    *
    * @uiName Reward Payout In Progress Text
    */
@@ -67,7 +67,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
     "PayPal payout processing started on";
 
   /**
-   * Shown in the dropdown details when a reward has been received.’
+   * Shown in the dropdown details when a reward payout has failed.’
    *
    * @uiName Reward Payout Failed Text
    */

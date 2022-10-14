@@ -54,6 +54,28 @@ export class RewardTableStatusColumn implements RewardTableColumn {
    */
   @Prop() pendingUnhandled: string = "Fulfillment error";
 
+  /**
+   * Shown in the dropdown details when a reward has been paid out.’
+   *
+   * @uiName Reward Paid Out Text
+   */
+  @Prop() rewardPaidOutText: string = "Sent via PayPal on";
+
+  /**
+   * Shown in the dropdown details when a reward is being paid out.’
+   *
+   * @uiName Reward Payout In Progress Text
+   */
+  @Prop() rewardPayoutInProgressText: string =
+    "PayPal payout processing started on";
+
+  /**
+   * Shown in the dropdown details when a reward payout has failed.’
+   *
+   * @uiName Reward Payout Failed Text
+   */
+  @Prop() rewardPayoutFailedText: string = "Payout last attempted on";
+
   constructor() {
     withHooks(this);
   }
@@ -70,6 +92,9 @@ export class RewardTableStatusColumn implements RewardTableColumn {
         pendingUsTax={this.pendingUsTax}
         pendingUnhandled={this.pendingUnhandled}
         locale={locale}
+        rewardPaidOutText={this.rewardPaidOutText}
+        rewardPayoutInProgressText={this.rewardPayoutInProgressText}
+        rewardPayoutFailedText={this.rewardPayoutFailedText}
       ></sqp-status-cell>
     );
   }

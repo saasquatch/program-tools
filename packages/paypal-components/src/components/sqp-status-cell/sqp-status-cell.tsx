@@ -52,9 +52,11 @@ export class RewardTableStatusCell {
   @Prop() pendingUsTax: string = "W-9 required";
   @Prop() pendingScheduled: string = "Until";
   @Prop() pendingUnhandled: string = "Fulfillment error";
+  @Prop() rewardPaidOutText: string;
+  @Prop() rewardPayoutInProgressText: string;
+  @Prop() rewardPayoutFailedText: string;
 
   rewardStatus(reward: Reward) {
-    console.log({ reward });
     if (reward.dateCancelled) return "CANCELLED";
     if (reward.statuses && reward.statuses.includes("EXPIRED"))
       return "EXPIRED";
@@ -135,6 +137,32 @@ export class RewardTableStatusCell {
         ?.setLocale(luxonLocale(this.locale))
         .toLocaleString(DateTime.DATE_MED)}`;
 
+    const paidOut =
+      rewardStatus === "TRANSFERRED" &&
+      `${this.rewardPaidOutText + " "}${DateTime.fromMillis(
+        this.reward.meta?.customMeta?.datePaidOut
+      )
+        ?.setLocale(luxonLocale(this.locale))
+        .toLocaleString(DateTime.DATE_MED)}`;
+
+    const payoutFailed =
+      rewardStatus === "FAILED" &&
+      `${this.rewardPayoutFailedText + " "}${DateTime.fromMillis(
+        this.reward.meta?.customMeta?.dateLastAttempted ||
+          this.reward.meta?.customMeta?.dateFirstAttempted
+      )
+        ?.setLocale(luxonLocale(this.locale))
+        .toLocaleString(DateTime.DATE_MED)}`;
+
+    const payoutInProgress =
+      rewardStatus === "INPROGRESS" &&
+      `${this.rewardPayoutInProgressText + " "}${DateTime.fromMillis(
+        this.reward.meta?.customMeta?.dateLastAttempted ||
+          this.reward.meta?.customMeta?.dateFirstAttempted
+      )
+        ?.setLocale(luxonLocale(this.locale))
+        .toLocaleString(DateTime.DATE_MED)}`;
+
     const pendingReasons =
       rewardStatus === "PENDING" ? getRewardPendingReasons(this) : null;
 
@@ -158,7 +186,13 @@ export class RewardTableStatusCell {
           {isPayPal && <PaypalBadge />}
         </div>
 
-        <p class={sheet.classes.Date}>{pendingReasons || date}</p>
+        <p class={sheet.classes.Date}>
+          {paidOut ||
+            payoutFailed ||
+            payoutInProgress ||
+            pendingReasons ||
+            date}
+        </p>
       </div>
     );
 

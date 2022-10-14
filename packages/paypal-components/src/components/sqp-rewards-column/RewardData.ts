@@ -120,9 +120,9 @@ export const transferredReward = {
   meta: {
     status: "SUCCESS",
     customMeta: {
-      datePaidOut: 123456789,
-      dateLastAttempted: 123456789,
-      dateFirstAttempted: 123456789,
+      datePaidOut: 1627427794891,
+      dateLastAttempted: 1627427794891,
+      dateFirstAttempted: 1627427794891,
     },
   },
 };
@@ -131,8 +131,8 @@ export const failedPaypal = {
     status: "ERROR",
     customMeta: {
       datePaidOut: null,
-      dateLastAttempted: 123456789,
-      dateFirstAttempted: 123456789,
+      dateLastAttempted: 1627427794891,
+      dateFirstAttempted: 1627427794891,
     },
   },
 };
@@ -141,8 +141,8 @@ export const inProgressPaypal = {
   meta: {
     customMeta: {
       datePaidOut: null,
-      dateLastAttempted: 123456789,
-      dateFirstAttempted: 123456789,
+      dateLastAttempted: 1627427794891,
+      dateFirstAttempted: 1627427794891,
     },
   },
 };
