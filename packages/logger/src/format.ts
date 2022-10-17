@@ -9,6 +9,7 @@ export function jsonFormat(name: string): winston.Logform.Format {
     winston.format.timestamp(),
     winston.format.splat(),
     addLoggerName(name)(),
+    prefixTenantAlias(),
     formatHttpLog(),
     dataDogStatus(),
     cleanLogTypeMarker(),
@@ -24,6 +25,7 @@ export function prettyFormat(name: string): winston.Logform.Format {
     winston.format.timestamp(),
     winston.format.splat(),
     addLoggerName(name)(),
+    prefixTenantAlias(),
     formatHttpLog(),
     dataDogStatus(),
     cleanLogTypeMarker(),
@@ -106,6 +108,14 @@ const addLoggerName = (name: string) =>
         return info;
       })
     : winston.format((info) => info);
+
+const prefixTenantAlias = winston.format((info) => {
+  if (info["tenantAlias"] && typeof info.message === "string") {
+    info.message = `[${info["tenantAlias"]}] ${info.message}`;
+  }
+
+  return info;
+});
 
 /**
  * Clean up the log type marker which is only used for some of the other
