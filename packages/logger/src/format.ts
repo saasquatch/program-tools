@@ -58,22 +58,24 @@ const friendlyHttpFormat = (message: {
  * fields for Datadog to consume
  */
 const formatHttpLog = winston.format((info) => {
-  const message = info.message;
-  if (info[LOG_TYPE_MARKER] === "HTTP") {
-    const micros = Number(info.message.time);
+  const newInfo = { ...info };
+  const message = newInfo.message;
+  if (newInfo[LOG_TYPE_MARKER] === "HTTP") {
+    const micros = Number(newInfo.message.time);
     if (micros < 1000) {
       message.time = `${micros} μs`;
     } else {
       message.time = `${Math.round(micros / 1000)} ms`;
     }
 
-    info.message = friendlyHttpFormat(message);
-    info["http.url"] = message.url;
-    info["http.method"] = message.method;
-    info["http.status_code"] = message.status;
-    info["http.response_time"] = message.time;
+    newInfo.message = friendlyHttpFormat(message);
+    newInfo["http.url"] = message.url;
+    newInfo["http.method"] = message.method;
+    newInfo["http.status_code"] = message.status;
+    newInfo["http.response_time"] = message.time;
   }
-  return info;
+
+  return newInfo;
 });
 
 /**
@@ -81,20 +83,20 @@ const formatHttpLog = winston.format((info) => {
  * level of the log.
  */
 const dataDogStatus = winston.format((info) => {
-  info.status = info.level;
-  return info;
+  return { ...info, status: info.level };
 });
 
 /**
  * Simple human-readable log format
  */
 const prettyDevFormat = winston.format.printf((info) => {
-  const message = info.message;
+  const newInfo = { ...info };
+  const message = newInfo.message;
   if (typeof message === "object") {
-    info.message = JSON.stringify(info.message);
+    newInfo.message = JSON.stringify(newInfo.message);
   }
 
-  return `[${info.level}] ${info.message}`;
+  return `[${newInfo.level}] ${newInfo.message}`;
 });
 
 /**
@@ -103,15 +105,12 @@ const prettyDevFormat = winston.format.printf((info) => {
  */
 const addLoggerName = (name: string) =>
   name !== DEFAULT_LOGGER_NAME
-    ? winston.format((info) => {
-        info["logger.name"] = name;
-        return info;
-      })
+    ? winston.format((info) => ({ ...info, "logger.name": name }))
     : winston.format((info) => info);
 
 const prefixTenantAlias = winston.format((info) => {
   if (info["tenantAlias"] && typeof info.message === "string") {
-    info.message = `[${info["tenantAlias"]}] ${info.message}`;
+    return { ...info, message: `[${info["tenantAlias"]}] ${info.message}` };
   }
 
   return info;
