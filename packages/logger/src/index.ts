@@ -19,6 +19,7 @@ import {
   log,
   LOG_TYPE_MARKER,
   SYSLOG_LOG_LEVELS,
+  transportConfigToRealTransport,
   warn,
 } from "./logger";
 import { httpLogMiddleware } from "./plugins";
@@ -42,7 +43,8 @@ export {
   initializeLogger,
   isLoggerInitialized,
   jsonFormat,
-  prettyFormat,
   log,
+  prettyFormat,
+  transportConfigToRealTransport,
   warn,
 };

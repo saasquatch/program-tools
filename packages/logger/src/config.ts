@@ -1,3 +1,4 @@
+import { Writable } from "stream";
 import winston from "winston";
 
 /**
@@ -46,6 +47,7 @@ export type HttpTransport = {
 
 export type StreamTransport = {
   type: "stream";
+  stream: Writable;
   options?: winston.transports.StreamTransportOptions;
 };
 

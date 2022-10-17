@@ -121,7 +121,7 @@ export function initializeLogger(
   return _loggers[name];
 }
 
-const transportConfigToRealTransport = (name: string) => {
+export const transportConfigToRealTransport = (name: string) => {
   return (transport: Transport) => {
     switch (transport.type) {
       case "console":
@@ -137,7 +137,11 @@ const transportConfigToRealTransport = (name: string) => {
           ...transport.options,
         });
       case "stream":
-        return new winston.transports.Stream(transport.options);
+        return new winston.transports.Stream({
+          format: jsonFormat(name),
+          stream: transport.stream,
+          ...transport.options,
+        });
     }
   };
 };
