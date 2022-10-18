@@ -48,7 +48,7 @@ export type HttpTransport = {
 export type StreamTransport = {
   type: "stream";
   stream: Writable;
-  options?: winston.transports.StreamTransportOptions;
+  options?: Omit<winston.transports.StreamTransportOptions, "stream">;
 };
 
 export type Transport =

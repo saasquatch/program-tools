@@ -115,7 +115,16 @@ export function initializeLogger(
     levels: SYSLOG_LOG_LEVELS,
     format:
       conf.environment === "production" ? jsonFormat(name) : prettyFormat(name),
-    transports: conf.transports.map(transportConfigToRealTransport(name)),
+    transports: conf.transports
+      // we need to put the console transports last because the colorize
+      // formatter actually mutates the info field...
+      .sort((a, b) => {
+        if (a.type === "console" && b.type !== "console") {
+          return 1;
+        }
+        return 0;
+      })
+      .map(transportConfigToRealTransport(name)),
   });
 
   return _loggers[name];

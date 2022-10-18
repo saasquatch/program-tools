@@ -11,8 +11,9 @@ export function jsonFormat(name: string): winston.Logform.Format {
     addLoggerName(name)(),
     prefixTenantAlias(),
     formatHttpLog(),
-    dataDogStatus(),
     cleanLogTypeMarker(),
+    winston.format.uncolorize(),
+    dataDogStatus(),
     winston.format.json()
   );
 }
@@ -27,9 +28,9 @@ export function prettyFormat(name: string): winston.Logform.Format {
     addLoggerName(name)(),
     prefixTenantAlias(),
     formatHttpLog(),
-    dataDogStatus(),
     cleanLogTypeMarker(),
     winston.format.colorize(),
+    dataDogStatus(),
     winston.format.simple(),
     prettyDevFormat
   );
@@ -109,7 +110,11 @@ const addLoggerName = (name: string) =>
     : winston.format((info) => info);
 
 const prefixTenantAlias = winston.format((info) => {
-  if (info["tenantAlias"] && typeof info.message === "string") {
+  if (
+    info["tenantAlias"] &&
+    typeof info.message === "string" &&
+    !info.message.startsWith(`[${info["tenantAlias"]}]`)
+  ) {
     return { ...info, message: `[${info["tenantAlias"]}] ${info.message}` };
   }
 
