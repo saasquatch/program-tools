@@ -26,6 +26,7 @@ interface PenpalParentMethods<IntegrationConfig, FormConfig> {
   ): Promise<{ patchIntegrationConfig: { config: IntegrationConfig } }>;
   updateFormConfiguration(config: Partial<FormConfig>): Promise<void>;
   navigateToNewPortalURL(url: string): Promise<void>;
+  scrollTo(scrollX: number, scrollY: number): Promise<void>;
   getFileStackConfig(): Promise<FileStackConfig>;
 }
 
@@ -197,6 +198,15 @@ export function PenpalContextProvider<
     );
   }, [assertConnected, saveFormConfig, state]);
 
+  const scrollTo = useCallback(
+    async (scrollX) => {
+      assertConnected();
+      const parent = await penpalConnectionRef.current!.promise;
+      await parent.scrollTo(scrollX, scrollY);
+    },
+    [assertConnected]
+  );
+
   useEffect(() => {
     (async () => {
       penpalConnectionRef.current = connectToParent({
@@ -282,6 +292,7 @@ export function PenpalContextProvider<
       saveFormConfig,
       getFileStackConfig,
       navigatePortal,
+      scrollTo,
       closeFormConfig,
       setShouldCancelDisableCallback,
     }),
@@ -293,6 +304,7 @@ export function PenpalContextProvider<
       saveFormConfig,
       getFileStackConfig,
       navigatePortal,
+      scrollTo,
       closeFormConfig,
       setShouldCancelDisableCallback,
     ]
