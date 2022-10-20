@@ -28,14 +28,21 @@ const content_a = [
 ];
 
 const text_a = (
-  <div>
+  <div style={{ flex: "1 1 100px", width: "100px" }}>
     <strong> A form name </strong> <br />
     form-key
   </div>
 );
 
 const text_b = (
-  <>
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      flex: "1 1 100px",
+      width: "100px",
+    }}
+  >
     <div>
       <AvatarView firstName="New" lastName="Guy" />
     </div>
@@ -43,29 +50,52 @@ const text_b = (
       <span style={{ color: "#0088CC" }}>new guy</span> <br />
       sam123@test.ca
     </div>
-  </>
+  </div>
 );
 
-const text_c = "11 months ago";
+const text_c = (
+  <div style={{ flex: "1 1 100px", width: "100px" }}>11 months ago</div>
+);
 
 const text_d = (
-  <>
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      flex: "1 1 100px",
+      width: "100px",
+    }}
+  >
     <DataTableView.SkeletonView circle={true} size="8px" color="#57AC59" />{" "}
     Success
-  </>
+  </div>
 );
 
 const text_e = (
-  <>
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      flex: "1 1 100px",
+      width: "100px",
+    }}
+  >
     <DataTableView.SkeletonView circle={true} size="8px" color="#FE6666" />{" "}
     Failed
-  </>
+  </div>
 );
 
 const text_e_popover = (
   <HoverPopover
     handle={
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flex: "1 1 100px",
+          width: "100px",
+        }}
+      >
         <DataTableView.SkeletonView circle={true} size="8px" color="#FE6666" />{" "}
         Failed
       </div>
@@ -157,7 +187,12 @@ export const FormSubmissionTable = () => {
 };
 
 export const FormSubmissionTableWithControllerMapping = () => {
-  const headers = ["Form", "User", "Date Submitted", "Status"];
+  const headers = [
+    <span style={{ flex: "1 1 100px", width: "100px" }}>Form</span>,
+    <span style={{ flex: "1 1 100px", width: "100px" }}>User</span>,
+    <span style={{ flex: "1 1 100px", width: "100px" }}>Date Submitted</span>,
+    <span style={{ flex: "1 1 100px", width: "100px" }}>Status</span>,
+  ];
   const rowMatrix = [
     [text_a, text_b, text_c, text_d],
     [text_a, text_b, text_c, text_d],
