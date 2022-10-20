@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Components changed
   - \<TagInput>
     - Added an input that supports tags before the functional input, can be used for tag or email input
+  - \<Select>
+    - refactor such that <Select> shares a codebase with <SelectView> and its subcomponents.
 
 ## [1.1.1] - 2022-09-22
 
