@@ -10,13 +10,7 @@ import { DataTableView } from "../DataTable";
 export type SelectHandleViewProps<ItemType> = HandleOptionProps<ItemType> &
   Partial<React.ComponentProps<"input">>;
 
-export interface SelectContainerViewProps<ItemType> {
-  /**
-   * Downshift hook for component functionality (useSelect or useCombobox)
-   */
-  functional?:
-    | UseSelectReturnValue<ItemType>
-    | UseComboboxReturnValue<ItemType>;
+export interface SelectContainerViewProps {
   /**
    * Limit the width of the select with a valid CSS size (px, %) [default 300px]
    */
@@ -36,7 +30,7 @@ export interface SelectContainerViewProps<ItemType> {
 }
 export interface HandleOptionProps<ItemType> {
   /**
-   * Downshift hook for component functionality (useSelect or useCombobox)
+   * Downshift hook for component functionality (useSelect or useCombobox or useMultipleSelection)
    */
   functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
   /**
@@ -79,6 +73,10 @@ export interface HandleOptionProps<ItemType> {
    * Use a custom icon instead of a chevron
    */
   customIcon?: IconKey;
+  /**
+   * Slot used to pass tag content to select when using a multi select
+   */
+  tagsSlot?: React.ReactNode;
 }
 export interface SelectListViewProps<ItemType> {
   /**
@@ -98,7 +96,7 @@ export interface SelectListViewProps<ItemType> {
    */
   loading?: boolean;
   /**
-   * Downshift hook for component functionality (useSelect or useCombobox)
+   * Downshift hook for component functionality (useSelect or useCombobox or useMultipleSelection)
    */
   functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
   /**
@@ -190,6 +188,10 @@ const ContainerDiv = styled("div")<{
   ${(props) => props.customContainerCSS}
 `;
 
+const TagsSlotWrapperDiv = styled.div`
+  ${Styles.TagsSlotWrapper}
+`;
+
 const SelectInputButton = styled.button<{
   disabled: boolean | undefined;
   errors: any;
@@ -244,20 +246,8 @@ declare module "react" {
   ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
 }
 
-const SelectContainerView = <ItemType extends ItemTypeBase>(
-  props: SelectContainerViewProps<ItemType>
-) => {
-  const {
-    limitWidth = true,
-    customContainerCSS = ``,
-    functional,
-    children,
-    disabled,
-  } = props;
-
-  const isOpen = disabled ? false : functional?.isOpen;
-
-  console.log("isOpen", isOpen);
+const SelectContainerView = (props: SelectContainerViewProps) => {
+  const { limitWidth = true, customContainerCSS = ``, children } = props;
 
   return (
     <ContainerDiv
@@ -283,6 +273,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
     limitHeight = false,
     customIcon,
     functional,
+    tagsSlot,
     itemToString = (item: ItemType) => {
       return item;
     },
@@ -316,6 +307,17 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
     );
   }
 
+  // function isMultiSelect(
+  //   hook:
+  //     | UseSelectReturnValue<ItemType>
+  //     | UseMultipleSelectionReturnValue<ItemType>
+  // ): hook is UseMultipleSelectionReturnValue<ItemType> {
+  //   return (
+  //     (hook as UseMultipleSelectionReturnValue<ItemType>)
+  //       .getSelectedItemProps !== undefined
+  //   );
+  // }
+
   const isOpen = disabled ? false : functional.isOpen;
 
   return !isCombobox(functional) ? (
@@ -330,6 +332,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
       customCSS={customCSS}
       {...functional.getToggleButtonProps()}
     >
+      {tagsSlot && <TagsSlotWrapperDiv>{tagsSlot}</TagsSlotWrapperDiv>}
       <SelectedValueSpan subdued={functional.selectedItem ? false : true}>
         {functional.selectedItem
           ? itemToString(functional.selectedItem)

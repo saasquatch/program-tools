@@ -106,3 +106,11 @@ export const ButtonDiv = css`
     margin-right: var(--sq-spacing-xx-small);
   }
 `;
+
+export const TagsSlotWrapper = css`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: var(--sq-spacing-xx-small);
+`;
