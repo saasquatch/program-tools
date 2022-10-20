@@ -39,6 +39,7 @@ export function useAccountDetails(props) {
 
   const { data } = useQuery(ACCOUNT_DETAILS_QUERY, {});
 
+  // TODO: remove this
   useEffect(() => {
     setUserIdentity({
       jwt: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MzQ5OTQ4MjcwZmU0NTRhNjMxYWY4ODgiLCJpYXQiOjE2NjU3NjY1MzAsImV4cCI6MTY2NTg1MjkzMCwic3ViIjoiWkdWeVpXc3VjMmxsYldWdWN5dDBjRUJ5WldabGNuSmhiSE5oWVhOeGRXRjBZMmd1WTI5dDpaR1Z5WldzdWMybGxiV1Z1Y3l0MGNFQnlaV1psY25KaGJITmhZWE54ZFdGMFkyZ3VZMjl0QHRlc3RfYTYzN3Nybm5iNDhhNDp1c2VycyIsInVzZXIiOnsiaWQiOiJkZXJlay5zaWVtZW5zK3RwQHJlZmVycmFsc2Fhc3F1YXRjaC5jb20iLCJhY2NvdW50SWQiOiJkZXJlay5zaWVtZW5zK3RwQHJlZmVycmFsc2Fhc3F1YXRjaC5jb20iLCJkYXRlQmxvY2tlZCI6bnVsbH19.dtlKlNSnPVws9cAQzEp_b-TTVRjImoqx_wyFmRE_ErI",
