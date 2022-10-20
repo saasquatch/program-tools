@@ -20,7 +20,7 @@ export const Basic = () => {
         margin: "100px",
       }}
     >
-      <SelectView.ContainerView>
+      <SelectView.ContainerView {...{ functional }}>
         <SelectView.HandleView {...props} />
         <SelectView.ListView {...props} />
       </SelectView.ContainerView>
@@ -74,7 +74,7 @@ export const FullWidth = () => {
         margin: "100px",
       }}
     >
-      <SelectView.ContainerView {...props}>
+      <SelectView.ContainerView>
         <SelectView.HandleView {...props} />
         <SelectView.ListView {...props} />
       </SelectView.ContainerView>
