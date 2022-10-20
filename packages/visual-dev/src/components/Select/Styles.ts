@@ -27,7 +27,7 @@ export const ItemContainer = css`
   border-radius: 0 0 var(--sq-border-radius-normal)
     var(--sq-border-radius-normal);
   border-top: none;
-  top: 33px;
+  top: 34px;
   outline: none;
   overflow-y: auto;
 
@@ -68,7 +68,8 @@ export const SelectInputStyle = css`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 36px;
+  min-height: 36px;
+  max-height: 100%;
   box-sizing: border-box;
   text-indent: 6px;
   color: var(--sq-text);
@@ -111,6 +112,8 @@ export const TagsSlotWrapper = css`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
   width: 100%;
   gap: var(--sq-spacing-xx-small);
+  max-width: 100%;
 `;
