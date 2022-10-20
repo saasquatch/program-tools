@@ -320,6 +320,17 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
     );
   }
 
+  // function isMultiSelect(
+  //   hook:
+  //     | UseSelectReturnValue<ItemType>
+  //     | UseMultipleSelectionReturnValue<ItemType>
+  // ): hook is UseMultipleSelectionReturnValue<ItemType> {
+  //   return (
+  //     (hook as UseMultipleSelectionReturnValue<ItemType>)
+  //       .getSelectedItemProps !== undefined
+  //   );
+  // }
+
   const isOpen = disabled ? false : functional.isOpen;
 
   return !isCombobox(functional) ? (
