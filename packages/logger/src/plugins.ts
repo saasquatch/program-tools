@@ -19,7 +19,11 @@ export function httpLogMiddleware(logger: winston.Logger) {
       const status = res.statusCode;
 
       const level =
-        res.statusCode > 500 ? "error" : res.statusCode > 400 ? "warn" : "info";
+        res.statusCode >= 500
+          ? "error"
+          : res.statusCode >= 400
+          ? "warn"
+          : "info";
       const message = { method, status, time, url };
 
       logger.log(level, {
