@@ -118,7 +118,7 @@ export interface SelectListViewProps<ItemType> {
   /**
    * Render in empty state
    */
-  empty?: boolean;
+  empty: boolean;
   /**
    * Content to display when in the empty state
    */
@@ -319,17 +319,6 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
       (hook as UseComboboxReturnValue<ItemType>).getComboboxProps !== undefined
     );
   }
-
-  // function isMultiSelect(
-  //   hook:
-  //     | UseSelectReturnValue<ItemType>
-  //     | UseMultipleSelectionReturnValue<ItemType>
-  // ): hook is UseMultipleSelectionReturnValue<ItemType> {
-  //   return (
-  //     (hook as UseMultipleSelectionReturnValue<ItemType>)
-  //       .getSelectedItemProps !== undefined
-  //   );
-  // }
 
   const isOpen = disabled ? false : functional.isOpen;
 
