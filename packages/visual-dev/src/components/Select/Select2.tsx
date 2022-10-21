@@ -203,7 +203,9 @@ const SelectInputButton = styled.button<{
     props.disabled &&
     "background: var(--sq-surface-input-disabled); cursor: default;"}
   ${(props) =>
-    props.isOpen && !props.disabled && "border-color: var(--sq-focused);"}
+    props.isOpen &&
+    !props.disabled &&
+    "border-color: var(--sq-focused); border-bottom: none;"}
   ${(props) =>
     !props.isOpen &&
     !props.disabled &&

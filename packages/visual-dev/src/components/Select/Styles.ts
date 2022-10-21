@@ -13,9 +13,8 @@ export const Item = css`
     background: var(--sq-surface-hover);
   }
 `;
-
 export const ItemContainer = css`
-  position: absolute;
+  position: relative;
   z-index: 100;
   box-sizing: border-box;
   list-style-type: none;
@@ -27,7 +26,7 @@ export const ItemContainer = css`
   border-radius: 0 0 var(--sq-border-radius-normal)
     var(--sq-border-radius-normal);
   border-top: none;
-  top: 34px;
+  top: -3px;
   outline: none;
   overflow-y: auto;
 
@@ -80,7 +79,7 @@ export const SelectInputStyle = css`
   line-height: var(--sq-line-height-regular);
   border: 2px solid var(--sq-border);
   border-radius: var(--sq-border-radius-normal);
-  padding: var(--sq-spacing-xxx-small) 0 var(--sq-spacing-xxx-small)
+  padding: var(--sq-spacing-xx-small) 0 var(--sq-spacing-xx-small)
     var(--sq-spacing-small);
 
   &:focus {
