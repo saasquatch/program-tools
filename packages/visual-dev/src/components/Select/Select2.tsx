@@ -118,7 +118,7 @@ export interface SelectListViewProps<ItemType> {
   /**
    * Render in empty state
    */
-  empty?: boolean;
+  empty: boolean;
   /**
    * Content to display when in the empty state
    */
@@ -143,6 +143,7 @@ const ItemContainerList = styled.ul<{
   errors: any;
   limitWidth: SizeType;
   limitHeight: SizeType;
+  empty: boolean;
 }>`
   ${Styles.ItemContainer}
   ${(props) =>
@@ -160,6 +161,8 @@ const ItemContainerList = styled.ul<{
         ? `max-height: ${props.limitHeight};`
         : "max-height: 200px;"
       : "max-height: auto;"}
+      ${(props) =>
+    props.empty && "& li:hover {background: white; cursor: default;}"}
 `;
 
 const ListItem = styled("li")`
@@ -241,6 +244,14 @@ const ButtonDiv = styled.div`
   ${Styles.ButtonDiv}
 `;
 
+const EmptyContainerDiv = styled.div`
+  ${Styles.EmptyContainerDiv}
+`;
+
+const LabelSpan = styled.span`
+  ${Styles.LabelSpan}
+`;
+
 // Redeclare forwardRef for use with generic prop types.
 declare module "react" {
   function forwardRef<T, P = {}>(
@@ -308,17 +319,6 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
       (hook as UseComboboxReturnValue<ItemType>).getComboboxProps !== undefined
     );
   }
-
-  // function isMultiSelect(
-  //   hook:
-  //     | UseSelectReturnValue<ItemType>
-  //     | UseMultipleSelectionReturnValue<ItemType>
-  // ): hook is UseMultipleSelectionReturnValue<ItemType> {
-  //   return (
-  //     (hook as UseMultipleSelectionReturnValue<ItemType>)
-  //       .getSelectedItemProps !== undefined
-  //   );
-  // }
 
   const isOpen = disabled ? false : functional.isOpen;
 
@@ -478,7 +478,11 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
       </>
     ),
     empty = false,
-    emptySlot = "",
+    emptySlot = (
+      <EmptyContainerDiv>
+        <LabelSpan>No results found</LabelSpan>
+      </EmptyContainerDiv>
+    ),
     itemToString = (item: ItemType) => {
       return item;
     },
@@ -511,6 +515,7 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
       limitWidth={limitWidth}
       limitHeight={limitHeight}
       errors={errors}
+      empty={empty}
       ref={ref}
       {...functional.getMenuProps()}
     >

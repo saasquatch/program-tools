@@ -89,11 +89,14 @@ export function MultipleSelect() {
     </>
   );
 
+  // const emptySlot = <>EMPTY</>;
+
   const props = {
     getSelectedItemProps,
     getDropdownProps,
     addSelectedItem,
     removeSelectedItem,
+    // emptySlot,
     functional,
     items,
     tagsSlot,
@@ -102,7 +105,11 @@ export function MultipleSelect() {
   return (
     <SelectView.ContainerView>
       <SelectView.HandleView {...props} />
-      <SelectView.ListView {...props} />
+      <SelectView.ListView
+        {...props}
+        // emptySlot={props.emptySlot}
+        empty={!items.length}
+      />
     </SelectView.ContainerView>
   );
 }
@@ -204,7 +211,7 @@ export function MultipleSelectFullWidth() {
   return (
     <SelectView.ContainerView {...props}>
       <SelectView.HandleView {...props} />
-      <SelectView.ListView {...props} />
+      <SelectView.ListView {...props} empty={!items.length} />
     </SelectView.ContainerView>
   );
 }
