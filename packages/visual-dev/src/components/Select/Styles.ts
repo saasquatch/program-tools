@@ -116,3 +116,20 @@ export const TagsSlotWrapper = css`
   gap: var(--sq-spacing-xx-small);
   max-width: 100%;
 `;
+
+export const EmptyContainerDiv = css`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sq-spacing-xx-small);
+  flex-direction: column;
+  min-height: 50px;
+`;
+
+export const LabelSpan = css`
+  font-weight: var(--sq-font-weight-bold);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
+  text-align: center;
+`;
