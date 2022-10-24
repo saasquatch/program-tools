@@ -57,6 +57,7 @@ interface PenpalContextMethods<IntegrationConfig, FormConfig> {
   saveFormConfig(config: Partial<FormConfig>): Promise<void>;
   getFileStackConfig(): Promise<FileStackConfig>;
   navigatePortal(url: string): Promise<void>;
+  scrollTo(scrollX: number, scrollY: number): Promise<void>;
   closeFormConfig(): Promise<void>;
   setShouldCancelDisableCallback: (fn: () => Promise<boolean>) => void;
 }
