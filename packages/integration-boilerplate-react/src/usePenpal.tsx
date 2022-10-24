@@ -19,12 +19,17 @@ export enum ConfigMode {
 interface PenpalParentMethods<IntegrationConfig, FormConfig> {
   resize(height: number): Promise<void>;
   saveIntegration(
-    config: Partial<IntegrationConfig>
+    config: Partial<IntegrationConfig>,
+    options?: { hideNotification?: boolean }
   ): Promise<{ upsertIntegration: { config: IntegrationConfig } }>;
   patchIntegrationConfig(
-    patch: IntegrationConfigPatch
+    patch: IntegrationConfigPatch,
+    options?: { hideNotification?: boolean }
   ): Promise<{ patchIntegrationConfig: { config: IntegrationConfig } }>;
-  updateFormConfiguration(config: Partial<FormConfig>): Promise<void>;
+  updateFormConfiguration(
+    config: Partial<FormConfig>,
+    options?: { hideNotification?: boolean }
+  ): Promise<void>;
   navigateToNewPortalURL(url: string): Promise<void>;
   scrollTo(scrollX: number, scrollY: number): Promise<void>;
   getFileStackConfig(): Promise<FileStackConfig>;
@@ -52,9 +57,18 @@ type PenpalConnection<IntegrationConfig, FormConfig> = Connection<
 >;
 
 interface PenpalContextMethods<IntegrationConfig, FormConfig> {
-  saveIntegrationConfig(config: Partial<IntegrationConfig>): Promise<void>;
-  patchIntegrationConfig(patch: IntegrationConfigPatch): Promise<void>;
-  saveFormConfig(config: Partial<FormConfig>): Promise<void>;
+  saveIntegrationConfig(
+    config: Partial<IntegrationConfig>,
+    options?: { hideNotification?: boolean }
+  ): Promise<void>;
+  patchIntegrationConfig(
+    patch: IntegrationConfigPatch,
+    options?: { hideNotification?: boolean }
+  ): Promise<void>;
+  saveFormConfig(
+    config: Partial<FormConfig>,
+    options?: { hideNotification?: boolean }
+  ): Promise<void>;
   getFileStackConfig(): Promise<FileStackConfig>;
   navigatePortal(url: string): Promise<void>;
   scrollTo(scrollX: number, scrollY: number): Promise<void>;
