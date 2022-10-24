@@ -155,10 +155,13 @@ export function PenpalContextProvider<
   }, []);
 
   const saveIntegrationConfig = useCallback(
-    async (config: Partial<IntegrationConfig>) => {
+    async (
+      config: Partial<IntegrationConfig>,
+      options?: { hideNotification?: boolean }
+    ) => {
       assertConnected();
       const parent = await penpalConnectionRef.current!.promise;
-      const data = await parent.saveIntegration(config);
+      const data = await parent.saveIntegration(config, options);
       setState((state) => ({
         ...state,
         integrationConfig: data.upsertIntegration.config,
@@ -168,10 +171,13 @@ export function PenpalContextProvider<
   );
 
   const patchIntegrationConfig = useCallback(
-    async (patch: IntegrationConfigPatch) => {
+    async (
+      patch: IntegrationConfigPatch,
+      options?: { hideNotification?: boolean }
+    ) => {
       assertConnected();
       const parent = await penpalConnectionRef.current!.promise;
-      const data = await parent.patchIntegrationConfig(patch);
+      const data = await parent.patchIntegrationConfig(patch, options);
       setState((state) => ({
         ...state,
         integrationConfig: data.patchIntegrationConfig.config,
@@ -181,10 +187,13 @@ export function PenpalContextProvider<
   );
 
   const saveFormConfig = useCallback(
-    async (config: Partial<FormConfig>) => {
+    async (
+      config: Partial<FormConfig>,
+      options?: { hideNotification?: boolean }
+    ) => {
       assertConnected();
       const parent = await penpalConnectionRef.current!.promise;
-      await parent.updateFormConfiguration(config);
+      await parent.updateFormConfiguration(config, options);
       setState((state) => ({ ...state, formConfig: config }));
     },
     [assertConnected]
