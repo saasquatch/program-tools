@@ -43,6 +43,14 @@ export const ModalActionDivStyle = css`
   align-items: center;
   justify-content: center;
 `;
+export const ModalActionFooterDivStyle = css`
+  position: absolute;
+  bottom: 0;
+  width: calc(100% - var(--sq-spacing-large) * 2);
+  box-sizing: border-box;
+  background-color: white;
+  padding: 20px 0;
+`
 
 export const ModalContentDivStyle = css`
   max-height: 650px;
@@ -64,6 +72,17 @@ export const ModalContentDivStyle = css`
   ::-webkit-scrollbar-thumb:hover {
   }
   padding: var(--sq-spacing-large);
+/* 
+  margin-bottom: 60px;
+    padding-bottom: 0;
+    $(ModalActionDiv) {
+      position: absolute;
+      bottom: 0;
+      width: calc(100% - var(--sq-spacing-large) * 2);
+      box-sizing: border-box;
+      background-color: white;
+      padding: 20px 0;
+    }  */
 `;
 
 export const ModalContentTextDivStyle = css`

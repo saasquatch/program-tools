@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled, { CSSProp } from "styled-components";
+import styled, { css, CSSProp } from "styled-components";
 import { Button, ButtonProps } from "../Button";
 import * as Styles from "./Styles";
 
@@ -87,21 +87,43 @@ type ModalContentProps = ContentOptions &
 
 export interface ContentOptions {
   children?: React.ReactNode;
+  stickyFooter?: boolean;
 }
 
-const ModalContentDiv = styled.div<Required<StyleProps>>`
+const ModalContentDiv = styled.div<
+  Required<StyleProps & { stickyFooter: boolean }>
+>`
   ${Styles.ModalContentDivStyle}
   ${(props) => props.customCSS}
+  ${(props) =>
+    props.stickyFooter &&
+    css`
+      margin-bottom: 60px;
+      padding-bottom: 0;
+
+      & ${ModalActionDiv} {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - var(--sq-spacing-large) * 2);
+        box-sizing: border-box;
+        background-color: var(--sq-surface);
+        padding: var(--sq-spacing-large) 0;
+      }
+    `}
 `;
 
 export const ModalContentView = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps
 >((props, forwardedRef) => {
-  const { children, customCSS = {}, ...rest } = props;
-
+  const { children, customCSS = {}, stickyFooter = false, ...rest } = props;
   return (
-    <ModalContentDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+    <ModalContentDiv
+      {...rest}
+      ref={forwardedRef}
+      customCSS={customCSS}
+      stickyFooter={stickyFooter}
+    >
       {children}
     </ModalContentDiv>
   );

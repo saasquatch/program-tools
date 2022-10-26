@@ -597,3 +597,41 @@ export const WithCodeBlockOverflow = () => {
     </div>
   );
 };
+
+export const WithStickyFooter = () => {
+  const [active, setActive] = useState(true);
+  const handleChange = useCallback(() => setActive(!active), [active]);
+
+  const arr = Array.from(Array(20).keys());
+  return (
+    <div style={{ height: 900 }}>
+      <Button buttonType="secondary" onClick={handleChange}>
+        Open Modal
+      </Button>
+      <ModalView
+        title="Salesforce Submit Actions"
+        open={active}
+        onClose={handleChange}
+      >
+        <ModalView.ModalContentView stickyFooter={true}>
+          <ModalView.ModalContentTextView>
+            {arr.map((el: number) => (
+              <>
+                <br />
+                <div key={el}>test</div>
+              </>
+            ))}
+            <br />
+            <div>test last line</div>
+          </ModalView.ModalContentTextView>
+          <ModalView.ModalContentActionView
+            primaryAction={{
+              text: "Close",
+              onAction: handleChange,
+            }}
+          />
+        </ModalView.ModalContentView>
+      </ModalView>
+    </div>
+  );
+};

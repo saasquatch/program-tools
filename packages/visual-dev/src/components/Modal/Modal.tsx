@@ -36,6 +36,10 @@ export interface OptionProps {
    * Content inside the modal under the title
    */
   children: React.ReactNode;
+  /**
+   * TODO: add description
+   */
+  stickyFooter?: boolean;
 }
 
 export interface StyleProps {
