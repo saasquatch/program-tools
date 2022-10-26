@@ -44,6 +44,14 @@ export interface OptionProps {
    *
    */
   loadingSlot?: React.ReactNode | React.ReactNode[];
+  /**
+   * Graphic displayed in empty tables above emptyContent
+   */
+  emptyGraphic?: React.ReactNode | React.ReactNode[];
+  /**
+   * Graphic displayed in empty filter state tables above emptyFilterContent
+   */
+  emptyFilterGraphic?: React.ReactNode | React.ReactNode[];
 }
 
 export interface StyleProps {
@@ -83,6 +91,18 @@ export const DataTableView = React.forwardRef<
     empty = false,
     loading = false,
     emptyFilter = false,
+    emptyGraphic = (
+      <>
+        {DataGraphic}
+        <br />
+      </>
+    ),
+    emptyFilterGraphic = (
+      <>
+        {DataGraphic}
+        <br />
+      </>
+    ),
     emptyContent = "No submission found",
     emptyFilterContent = "No submissions that meet your filter criteria",
     headerSlot = <></>,
@@ -103,8 +123,7 @@ export const DataTableView = React.forwardRef<
       {!loading && empty && (
         <RowDiv>
           <DataDiv>
-            {DataGraphic}
-            <br />
+            {emptyGraphic}
             {emptyContent}
           </DataDiv>
         </RowDiv>
@@ -112,8 +131,7 @@ export const DataTableView = React.forwardRef<
       {!loading && !empty && emptyFilter && (
         <RowDiv>
           <DataDiv>
-            {DataGraphic}
-            <br />
+            {emptyFilterGraphic}
             {emptyFilterContent}
           </DataDiv>
         </RowDiv>

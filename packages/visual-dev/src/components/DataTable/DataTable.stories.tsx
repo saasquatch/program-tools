@@ -355,6 +355,51 @@ export const FormSubmissionTableEmpty = () => {
     </>
   );
 };
+
+export const FormSubmissionTableEmptyCustomGraphic = () => {
+  const content_a = [
+    { text: "Form" },
+    { text: "User" },
+    { text: "Date Submitted" },
+    { text: "Status" },
+    { text: "", width: "50px", flex: 0.01 },
+  ];
+
+  return (
+    <>
+      <DataTableView.FilterView>
+        <Dropdown text="All Forms" customCSS="min-width: 112px;" />
+        <Dropdown text="Any Status" customCSS="min-width: 116px;" />
+        <Dropdown
+          text="30 Days"
+          icon="calendar"
+          customCSS="min-width: 142px;"
+        />
+      </DataTableView.FilterView>
+      <DataTableView
+        width="958px"
+        empty
+        emptyGraphic={
+          <img src="https://www.saasquatch.com/wp-content/themes/saasquatch/dist/images/trees.svg" />
+        }
+        headerSlot={
+          <DataTableView.RowView variant="header">
+            {content_a}
+          </DataTableView.RowView>
+        }
+        footerSlot={
+          <DataTableView.PaginationView
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      ></DataTableView>
+    </>
+  );
+};
+
 export const FormSubmissionTableFilterView = () => {
   const content_a = [
     { text: "Form" },

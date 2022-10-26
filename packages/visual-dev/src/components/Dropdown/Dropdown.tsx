@@ -147,7 +147,7 @@ const DropdownButtonDiv = styled("div")<
     props.showMenu &&
     (props.popUpwards
       ? "border-top: 2px solid var(--sq-surface);"
-      : "border-bottom: 2px solid var(--sq-surface);")}
+      : "border-bottom: none;")}
   ${(props) => `border-radius: ${props.borderRadius};`}
   &:hover {
     ${(props) => props.disabled && "cursor: not-allowed;"};
@@ -238,8 +238,8 @@ const borderPresets = {
 };
 
 /**
- * ZH: When pill is set to true in the table pagination dropdown the view is totally broken. 
- * This will need to be fixed at some point in the near future. 
+ * ZH: When pill is set to true in the table pagination dropdown the view is totally broken.
+ * This will need to be fixed at some point in the near future.
  */
 const DropdownView = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
   (props, forwardedRef) => {
