@@ -43,7 +43,7 @@ const BadgeDiv = styled.div<StyleProps>`
   ${(props) => props.size === "small" && Styles.small}
   ${(props) =>
     props.pill &&
-    props.size &&
+    props.size === "small" &&
     "padding: var(--sq-spacing-xxx-small) var(--sq-spacing-x-small);"}
   ${(props) => props.customCSS}
 `;
