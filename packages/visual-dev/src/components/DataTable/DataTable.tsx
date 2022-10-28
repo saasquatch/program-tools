@@ -80,6 +80,12 @@ const DataTableDiv = styled.div<Required<StyleProps>>`
   ${(props) => props.customCSS}
 `;
 
+const EmptyDataDiv = styled(DataDiv)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const DataTableView = React.forwardRef<
   React.ElementRef<"div">,
   DataTableProps
@@ -122,10 +128,10 @@ export const DataTableView = React.forwardRef<
       {loading && loadingSlot}
       {!loading && empty && (
         <RowDiv>
-          <DataDiv>
+          <EmptyDataDiv>
             {emptyGraphic}
             {emptyContent}
-          </DataDiv>
+          </EmptyDataDiv>
         </RowDiv>
       )}
       {!loading && !empty && emptyFilter && (

@@ -7,6 +7,7 @@ import { HoverPopover, PopoverView } from "../Popover";
 import { BadgeView } from "../Badge";
 import { BannerView } from "./Banner";
 import { DataTableView } from ".";
+import { EmptyTableSVG } from "./EmptyTableSVG";
 
 export default {
   title: "Components / DataTable",
@@ -382,6 +383,40 @@ export const FormSubmissionTableEmptyCustomGraphic = () => {
         emptyGraphic={
           <img src="https://www.saasquatch.com/wp-content/themes/saasquatch/dist/images/trees.svg" />
         }
+        headerSlot={
+          <DataTableView.RowView variant="header">
+            {content_a}
+          </DataTableView.RowView>
+        }
+        footerSlot={
+          <DataTableView.PaginationView
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      ></DataTableView>
+    </>
+  );
+};
+
+export const FormSubmissionTableEmptyInlineSVG = () => {
+  const content_a = [
+    { text: "Form" },
+    { text: "User" },
+    { text: "Date Submitted" },
+    { text: "Status" },
+    { text: "", width: "50px", flex: 0.01 },
+  ];
+
+  return (
+    <>
+      <DataTableView
+        width="958px"
+        empty
+        emptyContent="Empty table custom text"
+        emptyGraphic={EmptyTableSVG}
         headerSlot={
           <DataTableView.RowView variant="header">
             {content_a}
