@@ -7,7 +7,7 @@ import { HoverPopover, PopoverView } from "../Popover";
 import { BadgeView } from "../Badge";
 import { BannerView } from "./Banner";
 import { DataTableView } from ".";
-import { EmptyTableSVG } from "./EmptyTableSVG";
+import { EmptyTableSVG } from "../Graphics";
 
 export default {
   title: "Components / DataTable",

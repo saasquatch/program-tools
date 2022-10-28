@@ -136,10 +136,10 @@ export const DataTableView = React.forwardRef<
       )}
       {!loading && !empty && emptyFilter && (
         <RowDiv>
-          <DataDiv>
+          <EmptyDataDiv>
             {emptyFilterGraphic}
             {emptyFilterContent}
-          </DataDiv>
+          </EmptyDataDiv>
         </RowDiv>
       )}
       {!loading && !empty && !emptyFilter && children}
