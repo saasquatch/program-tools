@@ -40,3 +40,8 @@ export const warning = css`
   border-color: var(--sq-badge-surface-warning);
   color: var(--sq-text);
 `;
+
+export const small = css`
+  padding: var(--sq-spacing-xxx-small) var(--sq-spacing-xx-small);
+  font-weight: var(--sq-font-weight-regular);
+`

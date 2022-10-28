@@ -24,6 +24,10 @@ export interface StyleProps {
    */
   pill?: boolean;
   /**
+   * Change the badge size
+   */
+  size?: "default" | "small";
+  /**
    * Custom CSS applied to badge
    */
   customCSS?: CSSProp;
@@ -33,7 +37,14 @@ const BadgeDiv = styled.div<StyleProps>`
   ${Styles.base}
   ${(props) => Styles[props.status]}
   border-radius: ${(props) =>
-    props.pill ? "var(--sq-spacing-xxx-large)" : "var(--sq-spacing-xx-small)"};
+    props.pill
+      ? "var(--sq-spacing-xxx-large);"
+      : "var(--sq-spacing-xx-small);"};
+  ${(props) => props.size === "small" && Styles.small}
+  ${(props) =>
+    props.pill &&
+    props.size &&
+    "padding: var(--sq-spacing-xxx-small) var(--sq-spacing-x-small);"}
   ${(props) => props.customCSS}
 `;
 
@@ -42,6 +53,7 @@ export const BadgeView = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
     const {
       status,
       pill = false,
+      size = "default",
       icon,
       children,
       customCSS = {},
@@ -53,6 +65,7 @@ export const BadgeView = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
         {...rest}
         status={status}
         pill={pill}
+        size={size}
         ref={forwardedRef}
         customCSS={customCSS}
       >
@@ -60,7 +73,11 @@ export const BadgeView = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
           <IconView
             icon={icon}
             color="inherit"
-            size="var(--sq-icon-size-badge)"
+            size={
+              size === "small"
+                ? "var(--sq-icon-size-small)"
+                : "var(--sq-icon-size-badge)"
+            }
             customCSS="+ span { margin-left: var(--sq-spacing-x-small); }"
           />
         )}
