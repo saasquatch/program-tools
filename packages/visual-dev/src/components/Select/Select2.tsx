@@ -118,7 +118,7 @@ export interface SelectListViewProps<ItemType> {
   /**
    * Render in empty state
    */
-  empty: boolean;
+  empty?: boolean;
   /**
    * Content to display when in the empty state
    */
@@ -477,7 +477,7 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
         </ListItem>
       </>
     ),
-    empty = false,
+    empty = !items.length,
     emptySlot = (
       <EmptyContainerDiv>
         <LabelSpan>No results found</LabelSpan>
