@@ -301,12 +301,8 @@ describe("triggerProgram", () => {
       };
       const result = triggerProgram(testBody, spyingProgram);
       expect(result).toStrictEqual({
-        code: 500,
-        json: {
-          error:
-            "An error occurred in a webtask (PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST)",
-          message: undefined,
-        },
+        code: 204,
+        json: {},
       });
     });
 

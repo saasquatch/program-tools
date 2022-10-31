@@ -230,13 +230,6 @@ function handleProgramVariableSchemaRequest(
         ["error.message"]: e.message,
         ["error.stack"]: e.stack,
       });
-
-      // FIXME: This code wasn't actually returning a 500 before this, was that meant to be the case
-      // or did we just forget?
-      return {
-        json: errorMes,
-        code: 500,
-      };
     }
 
     if (!newSchema) {
