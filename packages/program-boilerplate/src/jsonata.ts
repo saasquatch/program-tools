@@ -1,5 +1,5 @@
 import jsonata from "jsonata";
-import { getLogger as sqqtLogger } from "@saasquatch/logger";
+import { getLogger as ssqtLogger } from "@saasquatch/logger";
 
 const TIMEOUT = 5000;
 const MAXDEPTH = 1000;
@@ -63,7 +63,7 @@ export function safeJsonata(expression: string, inputData: any) {
     timeboxExpression(jsonataQuery);
     return jsonataQuery.evaluate(inputData);
   } catch (e) {
-    sqqtLogger("program-boilerplate").warn(
+    ssqtLogger("program-boilerplate").warn(
       `Failed to evaluate JSONata expression: ${e.message}`
     );
   }
@@ -85,7 +85,7 @@ export function timeboxedJsonata(
     return { success: true, result };
   } catch (e) {
     if (e instanceof Error) {
-      sqqtLogger("program-boilerplate").warn(
+      ssqtLogger("program-boilerplate").warn(
         `Failed to evaluate JSONata expression: ${e.message}`
       );
     }
