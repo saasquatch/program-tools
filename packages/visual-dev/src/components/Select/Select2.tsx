@@ -118,7 +118,7 @@ export interface SelectListViewProps<ItemType> {
   /**
    * Render in empty state
    */
-  empty: boolean;
+  empty?: boolean;
   /**
    * Content to display when in the empty state
    */
