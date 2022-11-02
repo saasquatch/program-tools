@@ -25,13 +25,11 @@
 
 ### Used by
 
- - [sqp-status-column](../sqp-status-column)
  - [sqp-stencilbook](../sqp-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqp-status-column --> sqp-status-cell
   sqp-stencilbook --> sqp-status-cell
   style sqp-status-cell fill:#f9f,stroke:#333,stroke-width:4px
 ```

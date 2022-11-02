@@ -99,25 +99,41 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Referral, locale: string) {
+  async renderCell(data: Referral, locale: string, mintRenderer) {
     // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
     console.log(data.rewards);
-    return (
-      <sqp-rewards-cell
-        rewards={data.rewards}
-        statusText={this.statusText}
-        statusLongText={this.statusLongText}
-        fuelTankText={this.fuelTankText}
-        rewardReceivedText={this.rewardReceivedText}
-        expiringText={this.expiringText}
-        pendingForText={this.pendingForText}
-        hideDetails={this.hideDetails}
-        locale={locale}
-        rewardPaidOutText={this.rewardPaidOutText}
-        rewardPayoutInProgressText={this.rewardPayoutInProgressText}
-        rewardPayoutFailedText={this.rewardPayoutFailedText}
-      ></sqp-rewards-cell>
-    );
+
+    return mintRenderer("sqp-rewards-cell", {
+      rewards: data.rewards,
+      statusText: this.statusText,
+      statusLongText: this.statusLongText,
+      fuelTankText: this.fuelTankText,
+      rewardReceivedText: this.rewardReceivedText,
+      expiringText: this.expiringText,
+      pendingForText: this.pendingForText,
+      hideDetails: this.hideDetails,
+      locale: locale,
+      rewardPaidOutText: this.rewardPaidOutText,
+      rewardPayoutInProgressText: this.rewardPayoutInProgressText,
+      rewardPayoutFailedText: this.rewardPayoutFailedText,
+    });
+
+    // return (
+    //   <sqp-rewards-cell
+    //     rewards={data.rewards}
+    //     statusText={this.statusText}
+    //     statusLongText={this.statusLongText}
+    //     fuelTankText={this.fuelTankText}
+    //     rewardReceivedText={this.rewardReceivedText}
+    //     expiringText={this.expiringText}
+    //     pendingForText={this.pendingForText}
+    //     hideDetails={this.hideDetails}
+    //     locale={locale}
+    //     rewardPaidOutText={this.rewardPaidOutText}
+    //     rewardPayoutInProgressText={this.rewardPayoutInProgressText}
+    //     rewardPayoutFailedText={this.rewardPayoutFailedText}
+    //   ></sqp-rewards-cell>
+    // );
   }
 
   @Method()

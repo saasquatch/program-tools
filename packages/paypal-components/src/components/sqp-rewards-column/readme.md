@@ -24,7 +24,7 @@
 
 ## Methods
 
-### `renderCell(data: Referral, locale: string) => Promise<any>`
+### `renderCell(data: Referral, locale: string, mintRenderer: any) => Promise<any>`
 
 
 
