@@ -27,12 +27,19 @@ declare global {
   namespace Express {
     interface Request {
       tenantAlias?: string;
+      accountId?: string;
+      userId?: string;
     }
   }
 }
 
 export function createSaasquatchTokenMiddleware(auth: Auth, logger: Logger) {
   return async function (req: Request, res: Response, next: NextFunction) {
+    if (req.tenantAlias !== undefined && req.tenantAlias !== "") {
+      next();
+      return;
+    }
+
     const header = req.header("Authorization");
     if (!header) {
       logger.error("No Authorization header");
