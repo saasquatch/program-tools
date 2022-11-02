@@ -316,7 +316,7 @@ export function useReferralTable(
     let referrerRow;
     if (showReferrerRow && states.currentPage === 0) {
       const referrerPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderReferrerCell(referrerData, locale))
+        tryMethod(c, () => c.renderReferrerCell(referrerData, locale, h))
       );
       referrerRow = await Promise.all(referrerPromise);
     }
