@@ -58,10 +58,10 @@ const style = {
     },
   },
 
-  TitleContainer:{
+  TitleContainer: {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr"
-  }
+    gridTemplateColumns: "1fr 1fr",
+  },
 
   Label: {
     fontWeight: "bold",
@@ -106,14 +106,14 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
       >
         {detailsContent.editText}
       </sl-button>
-        <div class={classes.LabelContainer}>
-          <p class={classes.Label}>{detailsContent.recentPaymentLabel}:</p>{" "}
-          {detailedContent}
-        </div>
-        <div class={classes.LabelContainer}>
-          <p class={classes.Label}>{detailsContent.nextPaymentLabel}:</p>{" "}
-          {scheduledContent}
-        </div>
+      <div class={classes.LabelContainer}>
+        <p class={classes.Label}>{detailsContent.recentPaymentLabel}:</p>{" "}
+        {/* {detailedContent} */}
       </div>
+      <div class={classes.LabelContainer}>
+        <p class={classes.Label}>{detailsContent.nextPaymentLabel}:</p>{" "}
+        {/* {scheduledContent} */}
+      </div>
+    </div>
   );
 }
