@@ -6,6 +6,7 @@ import {
   ModalContentBannerView,
   ModalContentTopActionView,
   ModalContentCodeView,
+  ModalContentFooter,
 } from "./ModalContent";
 import { ModalView } from "./Modal";
 
@@ -17,6 +18,7 @@ const ModalNamespace = Object.assign(ModalView, {
   ModalContentBannerView,
   ModalContentTopActionView,
   ModalContentCodeView,
+  ModalContentFooter,
 });
 
 export { ModalNamespace as ModalView };

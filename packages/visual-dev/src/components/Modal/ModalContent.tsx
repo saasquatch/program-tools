@@ -98,16 +98,16 @@ const ModalContentDiv = styled.div<
   ${(props) =>
     props.stickyFooter &&
     css`
-      margin-bottom: 60px;
       padding-bottom: 0;
 
-      & ${ModalActionDiv} {
-        position: absolute;
+      & ${ModalFooterDiv} {
+        position: sticky;
         bottom: 0;
-        width: calc(100% - var(--sq-spacing-large) * 2);
-        box-sizing: border-box;
         background-color: var(--sq-surface);
-        padding: var(--sq-spacing-large) 0;
+      }
+      & ${ModalActionDiv} {
+        padding-bottom: var(--sq-spacing-large);
+        box-sizing: border-box;
       }
     `}
 `;
@@ -217,5 +217,22 @@ export const ModalContentTopActionView = React.forwardRef<
       {action ? action.icon : ""}
       {action ? action.text : ""}
     </ModalBackDiv>
+  );
+});
+
+const ModalFooterDiv = styled.div<Required<StyleProps>>`
+  ${(props) => props.customCSS}
+`;
+
+export const ModalContentFooter = React.forwardRef<
+  React.ElementRef<"div">,
+  ModalContentProps
+>((props, forwardedRef) => {
+  const { children, customCSS = {}, ...rest } = props;
+
+  return (
+    <ModalFooterDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+      {children}
+    </ModalFooterDiv>
   );
 });

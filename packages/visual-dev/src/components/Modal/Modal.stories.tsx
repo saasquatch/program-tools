@@ -624,12 +624,15 @@ export const WithStickyFooter = () => {
             <br />
             <div>test last line</div>
           </ModalView.ModalContentTextView>
-          <ModalView.ModalContentActionView
-            primaryAction={{
-              text: "Close",
-              onAction: handleChange,
-            }}
-          />
+          <ModalView.ModalContentFooter>
+            <ModalView.ModalContentDividerView />
+            <ModalView.ModalContentActionView
+              primaryAction={{
+                text: "Close",
+                onAction: handleChange,
+              }}
+            />
+          </ModalView.ModalContentFooter>
         </ModalView.ModalContentView>
       </ModalView>
     </div>
