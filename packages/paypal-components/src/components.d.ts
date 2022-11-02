@@ -108,6 +108,21 @@ export namespace Components {
          */
         "headerText": string;
         /**
+          * @uiName Integration Disabled Alert Header Text
+          * @uiGroup Alert
+         */
+        "integrationAlertHeader": string;
+        /**
+          * @uiName Integration Disabled Alert Body Text
+          * @uiGroup Alert
+         */
+        "integrationAlertText": string;
+        /**
+          * @uiName Integration Disabled Flag
+          * @uiGroup Alert
+         */
+        "integrationDisabled": boolean;
+        /**
           * @uiName Modal Header
           * @uiGroup Form
          */
@@ -446,6 +461,21 @@ declare namespace LocalJSX {
           * @uiGroup Details
          */
         "headerText"?: string;
+        /**
+          * @uiName Integration Disabled Alert Header Text
+          * @uiGroup Alert
+         */
+        "integrationAlertHeader"?: string;
+        /**
+          * @uiName Integration Disabled Alert Body Text
+          * @uiGroup Alert
+         */
+        "integrationAlertText"?: string;
+        /**
+          * @uiName Integration Disabled Flag
+          * @uiGroup Alert
+         */
+        "integrationDisabled"?: boolean;
         /**
           * @uiName Modal Header
           * @uiGroup Form

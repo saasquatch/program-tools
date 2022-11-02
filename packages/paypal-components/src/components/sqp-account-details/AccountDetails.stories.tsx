@@ -13,6 +13,7 @@ export default {
 
 const defaultAccountDetailsProps: AccountDetailsViewProps = {
   loading: false,
+  integrationDisabled: false,
   setOpen: (open: boolean) => console.log(open),
   hasAccount: true,
   accountDetails: {
@@ -34,6 +35,7 @@ const defaultAccountDetailsProps: AccountDetailsViewProps = {
 const defaultAccountFormProps: AccountFormViewProps = {
   formRef: { current: null },
   hasAccount: true,
+  integrationDisabled: false,
   callbacks: { submit: () => {}, setOpen: () => {}, disconnect: () => {} },
   states: {
     editingAccount: false,
@@ -61,12 +63,27 @@ const defaultAccountFormProps: AccountFormViewProps = {
       "You will not be able to receive payments if you disconnect your PayPal account.",
     disconnectAccountButtonText: "Disconnect account",
   },
+  alertContent: {
+    integrationAlertHeader: "PayPal payouts are currently disabled",
+    integrationAlertText:
+      "Looks like this feature is turned off at the moment. Come back later to see if it’s enabled. ",
+  },
 };
 
 export const NoAccount = () => (
   <div>
     <AccountFormView {...defaultAccountFormProps} hasAccount={false} />
     <AccountDetailsView {...defaultAccountDetailsProps} hasAccount={false} />
+  </div>
+);
+
+export const IntegrationDisabled = () => (
+  <div>
+    <AccountFormView {...defaultAccountFormProps} integrationDisabled={true} />
+    <AccountDetailsView
+      {...defaultAccountDetailsProps}
+      integrationDisabled={true}
+    />
   </div>
 );
 
