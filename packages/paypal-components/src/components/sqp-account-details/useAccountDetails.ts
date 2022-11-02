@@ -118,6 +118,7 @@ export function useAccountDetails(props) {
 
   return {
     formRef,
+    integrationDisabled: false,
     hasAccount: !!data?.viewer?.customFields?.paypalEmail,
     accountDetails: {
       email: data?.viewer?.customFields?.paypalEmail,
@@ -156,6 +157,10 @@ export function useAccountDetails(props) {
       disconnectAccountHeaderText: props.disconnectAccountHeaderText,
       disconnectAccountDescriptionText: props.disconnectAccountDescriptionText,
       disconnectAccountButtonText: props.disconnectAccountButtonText,
+    },
+    alertContent: {
+      integrationAlertHeader: props.integrationAlertHeader,
+      integrationAlertText: props.integrationAlertText,
     },
   };
 }

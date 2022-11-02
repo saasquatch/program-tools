@@ -130,6 +130,23 @@ export class PaypalAccountDetails {
    * @uiGroup Form
    */
   @Prop() disconnectAccountButtonText: string = "Disconnect account";
+  /**
+   * @uiName Integration Disabled Alert Header Text
+   * @uiGroup Alert
+   */
+  @Prop() integrationAlertHeader: string =
+    "PayPal payouts are currently disabled";
+  /**
+   * @uiName Integration Disabled Alert Body Text
+   * @uiGroup Alert
+   */
+  @Prop() integrationAlertText: string =
+    "Looks like this feature is turned off at the moment. Come back later to see if it’s enabled. ";
+  /**
+   * @uiName Integration Disabled Flag
+   * @uiGroup Alert
+   */
+  @Prop() integrationDisabled: boolean = false;
 
   /**
    * @undocumented
@@ -153,7 +170,9 @@ export class PaypalAccountDetails {
           states={props.states}
           callbacks={props.callbacks}
           formContent={props.formContent}
+          alertContent={props.alertContent}
           hasAccount={props.hasAccount}
+          integrationDisabled={props.integrationDisabled}
         />
         <AccountDetailsView
           loading={props.states.loading}
@@ -161,6 +180,7 @@ export class PaypalAccountDetails {
           accountDetails={props.accountDetails}
           detailsContent={props.detailsContent}
           setOpen={props.callbacks.setOpen}
+          integrationDisabled={props.integrationDisabled}
         ></AccountDetailsView>
       </Host>
     );
@@ -175,6 +195,7 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
       formRef,
       setupAccount: () => {},
       hasAccount: false,
+      integrationDisabled: false,
       accountDetails: {
         email: "test@example.com",
         recentPayment: { amount: 10000, date: 12345678900 },
@@ -214,6 +235,10 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
         disconnectAccountDescriptionText:
           props.disconnectAccountDescriptionText,
         disconnectAccountButtonText: props.disconnectAccountButtonText,
+      },
+      alertContent: {
+        integrationAlertHeader: props.integrationAlertHeader,
+        intergrationAlertText: props.integrationAlertText,
       },
     },
     props.demoData || {},
