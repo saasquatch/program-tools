@@ -50,7 +50,7 @@ interface DisplayConfiguration<IntegrationConfig, FormConfig> {
   formType?: "submit_actions" | "initial_data_actions";
 }
 
-type IntegrationConfigPatch = Array<{ op: string; path: string; value: any }>;
+type IntegrationConfigPatch = Array<{ op: string; path: string; value?: any }>;
 
 type PenpalConnection<IntegrationConfig, FormConfig> = Connection<
   PenpalParentMethods<IntegrationConfig, FormConfig>
