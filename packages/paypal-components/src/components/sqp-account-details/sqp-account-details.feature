@@ -3,7 +3,6 @@
 Feature: Paypal Account Details
 
     @motivating
-    #currently we are doing this through the core API, but we will likely want to move this to be through the integration
     Scenario: Participants can configure their paypal email
         Given a "<sqp-account-details>" component
         And a participant without a "paypalEmail" custom field value
@@ -30,7 +29,7 @@ Feature: Paypal Account Details
         And below the see a section to disconnect their account
 
     @motivating
-    Scenario: Paypal Email can be changed after configuration 
+    Scenario: Paypal Email can be changed after configuration
         Given a "<sqp-account-details>" component
         And a participant with a "paypalEmail" custom field value
         When click the "Edit" button
@@ -46,9 +45,8 @@ Feature: Paypal Account Details
         And their new email is saved on the participant as their "paypalEmail"
 
     @minutia
-    #Is there a big use case for this?
     Scenario: Participants can disconnect themselves from the PayPal integration
-    Given a "<sqp-account-details>" component
+        Given a "<sqp-account-details>" component
         And a participant with a "paypalEmail" custom field value
         When click the "Edit" button
         And click "Disconnect account" in the modal
@@ -56,7 +54,6 @@ Feature: Paypal Account Details
         And their PayPal email is wiped from their user in SSQT
 
     @minutia
-    #details on validation pretty tbd
     Scenario: Paypal email must be a valid email
         Given a participant configuring their paypal email
         But they do not enter a valid email address
@@ -74,32 +71,6 @@ Feature: Paypal Account Details
         And the modal isn't closed
         And their "paypalEmail" isn't saved
 
-    @motivating
-    #we need to source this from the integration
-    Scenario: Last payout and next payout are displayed when the participant has configured their paypal email
-        Given a "<sqp-account-details>" component
-        And a participant with a "paypalEmail" custom field value
-        And they have been paid out by the integration
-        And they have rewards that are going to be paid out by the integration
-        When they view the component
-        Then they see the following information for their previous payout
-            | information                                             | text                       |
-            | total amount paid out the last time the integration ran | {amount}$ on {datePaidOut} |
-            #questions here if this is the above or the last time the integration ran that resulted in the participant being paid out, and how much that was
-        And they see the date of the next scheduled payout
-
-    @minutia
-    Scenario: Previous payout is hidden if they have no previous payout
-       Given a "<sqp-account-details>" component
-        And a participant with a "paypalEmail" custom field value
-        But they have not been paid out by the integration
-        When they view the component
-        Then they do not see the "Recent Payment" section
-
-    @unknown
-    #Need detail of what is possible from the integration
-    Scenario: The "Next Payment" section displays ___ when the participant has nothing to be paid out
-
     @minutia
     Scenario: The component displays a disabled state if the integration is not configured/enabled
         Given a "<sqp-account-details>" component
@@ -108,6 +79,113 @@ Feature: Paypal Account Details
         Then they see text explaining that the integration is not configured/enabled
         And they are unable to connect their email
 
+    @motivating
+    Scenario: Payout schedule information is displayed when a user has a PayPal email configured
+        Given a "<sqp-account-details>" component
+        And a user with a PayPal email
+        Then they see a "Payout details" section displaying a large card of their next payout
+        And to the right they see a "Schedule" section with 4 cards
+        And they see three cards for the next three payouts
+        And they see one card for pending rewards
+        And they see a brand colour border around the first card to signify that it is selected
+        When they click on a different card in the "Schedule" section
+        Then that card replaces the card in the "Payout details" section
+        And it is selected in the "Schedule" section
+
+    @motivating
+    Scenario Outline: Payout details cards show all currencies being paid out for a payout
+        Given a "<sqp-account-details>" component
+        And a user with a PayPal email
+        And they have rewards in <numCurrencies> currencies to be paid out during a singular payout
+        When they see the payout details card for that payout
+        Then they see the payout amount of the currency with the largest total in the middle of the card
+        And they <maySee> text "+ <text> other currencies" below
+        And the <maySee> the payout amount of the other currencies seperated by "|" below
+        Examples:
+            | numCurrencies | maySee | text |
+            | 1             | don't  |      |
+            | 2             | see    | 1    |
+            | 3             | see    | 2    |
+            | 4             | see    | 3    |
+
+    @motivating
+    Scenario Outline: Payout details cards show payout date and a status pill
+        Given a "<sqp-account-details>" component
+        And a user with a PayPal email
+        When they view a payout details card for <payout>
+        Then they see <dateText> in the top left hand corner of the card
+        And <color> pill with <text> in the right hand corner
+        Examples:
+            | payout                                  | dateText                               | color  | text        |
+            | the next payout                         | the payout date                        | green  | Next payout |
+            | the 2nd next payout                     | the payout date                        | green  | Upcoming    |
+            | the 3rd next payout                     | the payout date                        | green  | Upcoming    |
+            | pending rewards past the 3 next payouts | Check rewards table for available date | orange | Pending     |
+
+    @motivating
+    #what happens when they only have one type of pending reward?
+    Scenario: Payout details cards show pending and w9 reward totals to be paid out in the future
+        Given a "<sqp-account-details>" component
+        And a user with a PayPal email
+        And they have W9 pending rewards
+        And they have rewards with "dateScheduledFor" beyond the next 3 payouts
+        When they view the pending payout details card
+        Then the card has two sections with titles in the top left
+            | section                                 | title                                  |
+            | Pending rewards with a dateScheduledFor | Check rewards table for available date |
+            | W9 pending rewards                      | Awaiting W-9 tax form                  |
+        And each section displays the payout amount of the currency with the largest total in the middle of the section
+        And they display other currency totals below
+
+    @motivating
+    Scenario Outline: Payout Schedule cards display the payout amout with the largest total
+        Given a "<sqp-account-details>" component
+        And a user with a PayPal email
+        And rewards to be paid out
+        When they view the Schedule card for <payout>
+        Then they see <text> in the top left of the card
+        And the payout amount of the currency with the largest total in the middle of the card
+        Examples:
+            | payout                                  | dateText        |
+            | the next payout                         | the payout date |
+            | the 2nd next payout                     | the payout date |
+            | the 3rd next payout                     | the payout date |
+            | pending rewards past the 3 next payouts | Pending         |
+
+    @motivating
+    Scenario: Payout Schedule cards display if there are payouts in multiple currencies
+        Given a "<sqp-account-details>" component
+        And a user with a PayPal email
+        And they have rewards in <numCurrencies> currencies to be paid out during a singular payout
+        When they see the payout schedule card for that payout
+        Then they see the payout amount of the currency with the largest total in the middle of the card
+        And they <maySee> text "+ <text> other currencies" below
+        Examples:
+            | numCurrencies | maySee | text |
+            | 1             | don't  |      |
+            | 2             | see    | 1    |
+            | 3             | see    | 2    |
+            | 4             | see    | 3    |
+
+    @minutia
+    Scenario: Payout cards display an empty state when there are no rewards to payout for a scheduled payout
+        Given a "<sqp-account-details>" component
+        And a user with a PayPal email
+        But they have no rewards to be paid out for a scheduled payout
+        Then the <card> displays "No rewards" instead of a payout amount
+        Examples:
+            | card           |
+            | Payout details |
+            | Schedule       |
+
+    @motivating
+    @unknown
+    Scenario: What to display if the payouts are paused?
+
     @minutia
     @ui
     Scenario: A loading state is displayed when the component is loading
+        Given a "<sqp-account-details>" component
+        When a user views the component
+        But the components data is loading
+        Then they see a skeleton of the payout cards
