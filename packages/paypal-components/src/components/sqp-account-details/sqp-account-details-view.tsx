@@ -5,6 +5,7 @@ export interface AccountDetailsViewProps {
   loading: boolean;
   setOpen: (open: boolean) => void;
   hasAccount: boolean;
+  integrationDisabled: boolean;
   accountDetails: {
     email: string;
     recentPayment: { amount: number; date: number };
@@ -19,73 +20,71 @@ export interface AccountDetailsViewProps {
   };
 }
 
-export function AccountDetailsView(props: AccountDetailsViewProps) {
-  const { detailsContent, accountDetails, hasAccount, loading } = props;
+const FlexContainer = {
+  display: "flex",
+  alignItems: "flex-start",
+  justifyContent: "center",
+  gap: "10px",
+};
+const style = {
+  Container: {
+    extend: FlexContainer,
+    flexDirection: "column",
+  },
+  HeaderContainer: {
+    extend: FlexContainer,
+    // "& img": {
+    //   width: "39px",
+    //   height: "39px",
+    // },
+    "& h2": {
+      fontWeight: "bold",
+      marginRight: "12px",
+    },
+  },
 
-  if (!hasAccount) return "";
-  const FlexContainer = {
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "center",
-    gap: "10px",
-  };
-  const style = {
-    Container: {
-      extend: FlexContainer,
+  AccountDetailsContainer: {
+    extend: FlexContainer,
+    "@media screen and (max-width: 499px)": {
       flexDirection: "column",
     },
-    HeaderContainer: {
-      extend: FlexContainer,
-      // "& img": {
-      //   width: "39px",
-      //   height: "39px",
-      // },
-      "& h2": {
-        fontWeight: "bold",
-        marginRight: "12px",
-      },
-    },
+  },
 
-    AccountDetailsContainer: {
-      extend: FlexContainer,
-      "@media screen and (max-width: 499px)": {
-        flexDirection: "column",
-      },
+  LabelContainer: {
+    extend: FlexContainer,
+    alignItems: "center",
+    "& p": {
+      margin: "0",
     },
+  },
 
-    LabelContainer: {
-      extend: FlexContainer,
-      alignItems: "center",
-      "& p": {
-        margin: "0",
-      },
-    },
+  TitleContainer:{
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr"
+  }
 
-    Label: {
-      fontWeight: "bold",
-      "@media screen and (max-width: 499px)": {
-        wordWrap: "wrap-word",
-      },
+  Label: {
+    fontWeight: "bold",
+    "@media screen and (max-width: 499px)": {
+      wordWrap: "wrap-word",
     },
+  },
 
-    DesktopEditButton: {
-      "@media screen and (max-width: 499px)": {
-        display: "none",
-      },
-    },
+  Skeleton: {
+    width: "150px",
+  },
+};
 
-    MobileEditButton: {
-      display: "none",
-      "@media screen and (max-width: 499px)": {
-        display: "block",
-        width: "100%",
-      },
-    },
+export function AccountDetailsView(props: AccountDetailsViewProps) {
+  const {
+    detailsContent,
+    accountDetails,
+    hasAccount,
+    loading,
+    integrationDisabled,
+  } = props;
 
-    Skeleton: {
-      width: "150px",
-    },
-  };
+  if (!hasAccount || integrationDisabled) return "";
 
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
@@ -93,46 +92,12 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
 
   return (
     <div class={classes.Container}>
-      <style type="text/css">{styleString}</style>
-      <div class={classes.HeaderContainer}>
+      <style type="text/css">{styleString}</style>{" "}
+      <div class={classes.TitleContainer}>
         <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665703368/tenant_test_a8b41jotf8a1v/tjfxf0qxu2lwqzgtcghw.svg" />
         <h2>{detailsContent.headerText}</h2>
-        <sl-button
-          class={classes.DesktopEditButton}
-          disabled={loading}
-          onClick={(e) => {
-            e.preventDefault();
-            props.setOpen(true);
-          }}
-        >
-          {detailsContent.editText}
-        </sl-button>
-      </div>
-      <div class={classes.AccountDetailsContainer}>
-        <div class={classes.LabelContainer}>
-          <p class={classes.Label}>{detailsContent.recentPaymentLabel}:</p>{" "}
-          {loading ? (
-            <sl-skeleton class={classes.Skeleton}></sl-skeleton>
-          ) : (
-            <p>
-              {accountDetails.recentPayment.amount} on{" "}
-              {accountDetails.recentPayment.date}
-            </p>
-          )}
-        </div>
-        <div class={classes.LabelContainer}>
-          <p class={classes.Label}>{detailsContent.nextPaymentLabel}:</p>{" "}
-          {loading ? (
-            <sl-skeleton class={classes.Skeleton}></sl-skeleton>
-          ) : (
-            <p>
-              <p>{accountDetails.nextPayment.date}</p>
-            </p>
-          )}
-        </div>
       </div>
       <sl-button
-        class={classes.MobileEditButton}
         disabled={loading}
         onClick={(e) => {
           e.preventDefault();
@@ -141,6 +106,14 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
       >
         {detailsContent.editText}
       </sl-button>
-    </div>
+        <div class={classes.LabelContainer}>
+          <p class={classes.Label}>{detailsContent.recentPaymentLabel}:</p>{" "}
+          {detailedContent}
+        </div>
+        <div class={classes.LabelContainer}>
+          <p class={classes.Label}>{detailsContent.nextPaymentLabel}:</p>{" "}
+          {scheduledContent}
+        </div>
+      </div>
   );
 }
