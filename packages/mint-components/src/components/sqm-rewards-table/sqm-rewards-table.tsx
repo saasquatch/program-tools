@@ -207,6 +207,7 @@ function useRewardsTableDemo(
     const rows =
       cellsPromise && (await Promise.all(cellsPromise)).filter((i) => i);
 
+    // @ts-ignore
     setContent({ rows });
     const columns =
       columnsPromise && ((await Promise.all(columnsPromise)) as string[]);

@@ -324,7 +324,7 @@ export function useReferralTable(
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, locale))
+        tryMethod(c, () => c.renderCell(r, locale, h))
       );
       const cells = (await Promise.all(cellPromise)) as VNode[][];
       return cells;
