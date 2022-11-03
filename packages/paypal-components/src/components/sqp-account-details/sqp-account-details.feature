@@ -72,11 +72,12 @@ Feature: Paypal Account Details
         And their "paypalEmail" isn't saved
 
     @minutia
-    Scenario: The component displays a disabled state if the integration is not configured/enabled
+    Scenario: The component displays an alert banner if the integration is not configured/enabled
         Given a "<sqp-account-details>" component
         But the tenant has not configured/enabled the PayPal integration
         When a participant views the component
-        Then they see text explaining that the integration is not configured/enabled
+        Then they see a light blue banner
+        And text explaining that the integration is not configured/enabled
         And they are unable to connect their email
 
     @motivating
@@ -207,8 +208,13 @@ Feature: Paypal Account Details
             | Schedule       |
 
     @motivating
-    @unknown
-    Scenario: What to display if the payouts are paused?
+    Scenario: The component displays an alert banner if the integration is paused
+        Given a "<sqp-account-details>" component
+        But the tenant's PayPal integration is paused
+        When a participant views the component
+        Then they see a light blue banner
+        And text explaining that payouts will resume when the integration is resumed
+        And they still see the payout schedule
 
     @minutia
     @ui

@@ -72,23 +72,23 @@ Feature: Paypal Reward Status Column
         And under the pill is <text>
         And the date is localized to the users locale
         Examples:
-            | reward                                 | text                                                                                                                                |
-            | available reward with an expiry date   | localized expiry date in format "Month-Day-Year"                                                                                    |
-            | redeemed reward                        | localized redemption date in format "Month-Day-Year"                                                                                |
-            | expired reward                         | localized expired date in format "Month-Day-Year"                                                                                   |
-            | cancelled reward                       | localized cancelled date in format "Month-Day-Year"                                                                                 |
-            | pending reward with a end date         | localized pending for date in format "Month-Day-Year"                                                                               |
-            | pending reward due to W9               | W-9 required                                                                                                                        |
-            | pending reward due to fufillment error | Fulfillment error                                                                                                                   |
-            | succeeded PayPal payout reward         | Paid out on {date}.                                                                                                                 |
-            | Failed PayPal payout reward            | This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on {date}. |
-            | Pending PayPal payout reward           | Payout process started on {date}.                                                                                                   |
-            | Unclaimed PayPal payout reward         | The email you provided does not link to an exisiting PayPal account. Payout expires on {date}.                                      |
-            | On hold PayPal payout reward           | Payout on hold and in review since {date}.                                                                                          |
-            | Refunded PayPal payout reward          | Payout refunded on {date}                                                                                                           |
-            | Returned PayPal payout reward          | The email you provided does not link to an exisiting PayPal account. Payout expired on {date}.                                      |
-            | Reversed PayPal payout reward          | Payout reversed on {date}                                                                                                           |
-            | Blocked PayPal payout reward           | Payout blocked on {date}                                                                                                            |
+            | reward                                 | text                                                                                                                                                               |
+            | available reward with an expiry date   | localized expiry date in format "Month-Day-Year"                                                                                                                   |
+            | redeemed reward                        | localized redemption date in format "Month-Day-Year"                                                                                                               |
+            | expired reward                         | localized expired date in format "Month-Day-Year"                                                                                                                  |
+            | cancelled reward                       | localized cancelled date in format "Month-Day-Year"                                                                                                                |
+            | pending reward with a end date         | localized pending for date in format "Month-Day-Year"                                                                                                              |
+            | pending reward due to W9               | W-9 required                                                                                                                                                       |
+            | pending reward due to fufillment error | Fulfillment error                                                                                                                                                  |
+            | succeeded PayPal payout reward         | Paid out on {dateLastUpdated from the customMeta}.                                                                                                                 |
+            | Failed PayPal payout reward            | This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on {dateLastUpdated from the customMeta}. |
+            | Pending PayPal payout reward           | Payout process started on {dateLastUpdated from the customMeta}.                                                                                                   |
+            | Unclaimed PayPal payout reward         | The email you provided does not link to an exisiting PayPal account. Payout expires on {dateLastUpdated + 30 days from the customMeta}.                            |
+            | On hold PayPal payout reward           | Payout on hold and in review since {dadateLastUpdated from the customMetateLastUpdated}.                                                                           |
+            | Refunded PayPal payout reward          | Payout refunded on {dateLastUpdated from the customMeta}                                                                                                           |
+            | Returned PayPal payout reward          | The email you provided does not link to an exisiting PayPal account. Payout expired on {dateLastUpdated + 30 days from the customMeta}.                            |
+            | Reversed PayPal payout reward          | Payout reversed on {dateLastUpdated from the customMeta}                                                                                                           |
+            | Blocked PayPal payout reward           | Payout blocked on {dateLastUpdated from the customMeta}                                                                                                            |
 
     @motivating
     Scenario Outline: Statuses can be customized
