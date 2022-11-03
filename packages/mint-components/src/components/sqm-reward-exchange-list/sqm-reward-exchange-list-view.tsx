@@ -61,6 +61,7 @@ export type RewardExchangeViewProps = {
     resetState: (refresh?: boolean) => void;
     setExchangeState: Function;
     copyFuelTankCode: () => void;
+    setInput: (el: HTMLInputElement) => void;
   };
   refs?: { canvasRef: any };
 };
@@ -816,6 +817,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               tooltiptext={states?.content?.text.tooltipText}
               open={states.open}
               onClick={callbacks.copyFuelTankCode}
+              setInput={callbacks.setInput}
             ></ShareLinkView>
           </div>
         )}

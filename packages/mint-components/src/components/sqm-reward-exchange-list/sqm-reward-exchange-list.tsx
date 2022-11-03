@@ -16,6 +16,7 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
 import { demoRewardExchange, rewardExchange } from "./RewardExchangeListData";
+import { useRef } from "@saasquatch/universal-hooks";
 
 /**
  * @uiName Reward Exchange
@@ -271,6 +272,7 @@ function useRewardExchangeListDemo(props: RewardExchangeProps) {
         setStage: (_: Stages) => {},
         resetState: () => {},
         copyFuelTankCode: () => {},
+        setInput: () => {},
       },
       refs: {
         canvasRef: {},

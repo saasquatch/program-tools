@@ -5,8 +5,7 @@ import {
   useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useDomContext, useEffect } from "@saasquatch/stencil-hooks";
-import { useState } from "@saasquatch/universal-hooks";
+import { useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { ShareLinkViewProps } from "../sqm-share-link/sqm-share-link-view";
 
@@ -46,11 +45,21 @@ export function useShareCode(props: ShareCodeProps): ShareLinkViewProps {
     "...";
 
   const [open, setOpen] = useState(false);
-
+  const [input, setInput] = useState<HTMLInputElement>(undefined);
   function onClick() {
     // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
     // Only if called from a user-initiated event
-    navigator.clipboard.writeText(shareString);
+    if (navigator?.clipboard) {
+      navigator.clipboard.writeText(shareString);
+    } else {
+      input?.select();
+      input?.setSelectionRange(0, 99999);
+      try {
+        document.execCommand("copy");
+      } catch (err) {
+        console.log("Error while copying to clipboard: " + err);
+      }
+    }
     setOpen(true);
     setTimeout(() => setOpen(false), props.tooltiplifespan);
     sendLoadEvent({
@@ -67,5 +76,5 @@ export function useShareCode(props: ShareCodeProps): ShareLinkViewProps {
     });
   }
 
-  return { ...props, onClick, open, shareString };
+  return { ...props, onClick, open, shareString, setInput };
 }

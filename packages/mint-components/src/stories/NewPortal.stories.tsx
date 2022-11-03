@@ -63,6 +63,7 @@ export const Dashboard = () => {
     disabled: false,
     tooltiptext: "Share link copied",
     onClick: () => console.log("Share link copied"),
+    setInput: () => {},
   };
 
   const sharecodeProps = {
@@ -71,6 +72,7 @@ export const Dashboard = () => {
     disabled: false,
     tooltiptext: "Share code copied",
     onClick: () => console.log("Share code copied"),
+    setInput: () => {},
   };
 
   const twitterButtonProps = {

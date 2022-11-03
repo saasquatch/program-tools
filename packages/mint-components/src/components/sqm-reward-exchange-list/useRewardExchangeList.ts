@@ -209,6 +209,7 @@ export function useRewardExchangeList(
     }
   }, [exchangeResponse, errors]);
 
+  const [input, setInput] = useState<HTMLInputElement>(undefined);
   const canvasRef = useRef<HTMLCanvasElement>();
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -299,9 +300,20 @@ export function useRewardExchangeList(
   }
 
   function copyFuelTankCode() {
-    navigator.clipboard.writeText(
-      exchangeResponse?.exchangeReward?.reward?.fuelTankCode
-    );
+    if (navigator?.clipboard) {
+      navigator.clipboard.writeText(
+        exchangeResponse?.exchangeReward?.reward?.fuelTankCode
+      );
+    } else {
+      input?.select();
+      input?.setSelectionRange(0, 99999);
+
+      try {
+        document.execCommand("copy");
+      } catch (err) {
+        console.log("Error while copying to clipboard: " + err);
+      }
+    }
     setOpen(true);
     setTimeout(() => setOpen(false), 1000);
   }
@@ -319,7 +331,8 @@ export function useRewardExchangeList(
       queryError: !!queryError,
       loading: loading || exchangeLoading,
       open,
-      noExchangeOptions: data?.viewer?.visibleRewardExchangeItems.totalCount === 0,
+      noExchangeOptions:
+        data?.viewer?.visibleRewardExchangeItems.totalCount === 0,
     },
     data: {
       exchangeList: data?.viewer?.visibleRewardExchangeItems?.data,
@@ -331,6 +344,7 @@ export function useRewardExchangeList(
       setStage,
       resetState,
       copyFuelTankCode,
+      setInput,
     },
     refs: {
       canvasRef,

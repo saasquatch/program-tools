@@ -8,6 +8,7 @@ export interface ShareLinkViewProps {
   disabled?: boolean;
   tooltiptext: string;
   onClick?: () => void;
+  setInput: (el: HTMLInputElement) => void;
 }
 
 const style = {
@@ -36,6 +37,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
           class={sheet.classes.inputStyle}
           exportparts="label: input-label"
           value={props.shareString}
+          ref={props.setInput}
           readonly
         >
           <sl-icon-button

@@ -9,6 +9,7 @@ import { getProps } from "../../utils/utils";
 import { useShareCode } from "./useShareCode";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
+import { useRef } from "@saasquatch/universal-hooks";
 
 /**
  * @uiName Share Code
@@ -68,15 +69,29 @@ export class ShareCode {
 function useDemoShareCode(props: ShareCode): ShareLinkViewProps {
   const [open, setOpen] = useState(false);
   const shareString = "SHARECODE001";
+
+  const [input, setInput] = useState<HTMLInputElement>(undefined);
+
   return deepmerge(
     {
       shareString,
       tooltiptext: props.tooltiptext,
       open,
+      setInput,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
         // Only if called from a user-initiated event
-        navigator.clipboard.writeText(shareString);
+        if (navigator?.clipboard) {
+          navigator.clipboard.writeText(shareString);
+        } else {
+          input?.select();
+          input?.setSelectionRange(0, 99999);
+          try {
+            document.execCommand("copy");
+          } catch (err) {
+            console.log("Error while copying to clipboard: " + err);
+          }
+        }
         setOpen(true);
         setTimeout(() => setOpen(false), props.tooltiplifespan);
       },

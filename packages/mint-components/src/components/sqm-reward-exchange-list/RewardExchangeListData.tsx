@@ -75,6 +75,7 @@ const baseResponse = (
     setStage: null,
     setExchangeState: null,
     copyFuelTankCode: null,
+    setInput: null,
     refs: null,
   },
   refs: null,

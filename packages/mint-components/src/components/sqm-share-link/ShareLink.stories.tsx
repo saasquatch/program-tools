@@ -14,6 +14,7 @@ export const Default = () => {
     shareString: "https://noah.example.com",
     open: false,
     tooltiptext: "Copied!",
+    setInput: () => {},
   };
   return <ShareLinkView {...props} />;
 };
@@ -23,6 +24,7 @@ export const Tooltip = () => {
     shareString: "https://noah.example.com",
     tooltiptext: "Some text for the tooltip",
     open: true,
+    setInput: () => {},
   };
   return <ShareLinkView {...props} />;
 };
@@ -33,6 +35,7 @@ export const Disabled = () => {
     disabled: true,
     open: true,
     tooltiptext: "Copied!",
+    setInput: () => {},
   };
   return <ShareLinkView {...props} />;
 };
