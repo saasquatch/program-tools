@@ -22,22 +22,49 @@ Feature: Paypal Reward Status Column
     Scenario Outline: The status column displays the status of each reward
         Given a user
         And they have a <status> reward
-        And it <mayHaveBeenPaidOut> by the Paypal integration
         When they view the reward table
         Then the status of their reward is displayed in <pillColour> pill with <text>
-        And they <maySee> the PayPal icon to the right of the pill
         Examples:
-            | status    | mayHaveBeenPaidOut                                                          | text        | pillColour | maySee    |
-            | AVAILABLE | hasn't been paid out                                                        | Available   | Green      | don’t see |
-            | REDEEMED  | has been paid out (datePaidOut)                                             | Transferred | Blue       | see       |
-            | AVAILABLE | failed to be paid out (meta status is ERROR)                                | Failed      | Red        | see       |
-            | AVAILABLE | is being paid out by the integration (dateLastAttempted but no datePaidOut) | In Progress | Orange     | see       |
-            | CANCELLED | N/A                                                                         | Cancelled   | Red        | don't see |
-            | PENDING   | N/A                                                                         | Pending     | Orange     | don't see |
-            | EXPIRED   | N/A                                                                         | Expired     | Red        | don't see |
-            | REDEEMED  | N/A                                                                         | Redeemed    | Blue       | don't see |
+            | status    | text      | pillColour |
+            | AVAILABLE | Available | Green      |
+            | CANCELLED | Cancelled | Red        |
+            | PENDING   | Pending   | Orange     |
+            | EXPIRED   | Expired   | Red        |
+            | REDEEMED  | Redeemed  | Blue       |
 
     @motivating
+    @ui
+    Scenario Outline: The status column displays the status of PayPal rewards
+        Given a user
+        And they have a reward with <paypalStatus> in its reward meta
+        When they view the rewards table
+        Then the status of their reward is displayed in a <pillColour> pill with <text>
+        And they see the PayPal icon to the right of the pill
+        Examples:
+            | status    | text        | pillColour |
+            | SUCCESS   | Paid Out    | Blue       |
+            | FAILED    | Failed      | Red        |
+            | PENDING   | In progress | Orange     |
+            | UNCLAIMED | Unclaimed   | Orange     |
+            | ONHOLD    | In progress | Orange     |
+            | REFUNDED  | Refunded    | grey       |
+            | RETURNED  | Returned    | grey       |
+            | REVERSED  | Reversed    | grey       |
+            | BLOCKED   | Blocked     | grey       |
+
+    @minutia
+    Scenario Outline: Available rewards of a reward unit and currency paid out by the tenants PayPal integration display a PayPal icon with the badge
+        Given a user
+        And they have an <status> reward that is to be paid out by the PayPal integration
+        When they view the rewards table
+        Then they see the PayPal icon to the right of rewards status pill
+        Examples:
+            | status    |
+            | AVAILABLE |
+            | PENDING   |
+
+    @motivating
+    #just need to double check where all these dates come from
     Scenario Outline: Reward status related information is displayed under status pills
         Given a user
         And they have a <reward>
@@ -46,35 +73,47 @@ Feature: Paypal Reward Status Column
         And under the pill is <text>
         And the date is localized to the users locale
         Examples:
-            | reward                                                             | text                                                                                                 |
-            | available reward with an expiry date                               | localized expiry date in format "Month-Day-Year"                                                     |
-            | redeemed reward                                                    | localized redemption date in format "Month-Day-Year"                                                 |
-            | expired reward                                                     | localized expired date in format "Month-Day-Year"                                                    |
-            | cancelled reward                                                   | localized cancelled date in format "Month-Day-Year"                                                  |
-            | pending reward with a end date                                     | localized pending for date in format "Month-Day-Year"                                                |
-            | pending reward due to W9                                           | W-9 required                                                                                         |
-            | pending reward due to fufillment error                             | Fulfillment error                                                                                    |
-            | redeemed reward paid out by the integration                        | localized datePaidOut from the reward meta in format “Month-Day-Year”                                |
-            | available reward that was failed to be paid out by the integration | Last attempted then the localized DateLastAttempted from the reward meta in format “Month-0Day_Year” |
-            | available reward that is being paid out by the integration         | Processing Payout                                                                                    |
+            | reward                                 | text                                                                                                                                |
+            | available reward with an expiry date   | localized expiry date in format "Month-Day-Year"                                                                                    |
+            | redeemed reward                        | localized redemption date in format "Month-Day-Year"                                                                                |
+            | expired reward                         | localized expired date in format "Month-Day-Year"                                                                                   |
+            | cancelled reward                       | localized cancelled date in format "Month-Day-Year"                                                                                 |
+            | pending reward with a end date         | localized pending for date in format "Month-Day-Year"                                                                               |
+            | pending reward due to W9               | W-9 required                                                                                                                        |
+            | pending reward due to fufillment error | Fulfillment error                                                                                                                   |
+            | succeeded PayPal payout reward         | Paid out on {date}.                                                                                                                 |
+            | Failed PayPal payout reward            | This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on {date}. |
+            | Pending PayPal payout reward           | Payout process started on {date}.                                                                                                   |
+            | Unclaimed PayPal payout reward         | The email you provided does not link to an exisiting PayPal account. Payout expires on {date}.                                      |
+            | On hold PayPal payout reward           | Payout on hold and in review since {date}.                                                                                          |
+            | Refunded PayPal payout reward          | Payout refunded on {date}                                                                                                           |
+            | Returned PayPal payout reward          | The email you provided does not link to an exisiting PayPal account. Payout expired on {date}.                                      |
+            | Reversed PayPal payout reward          | Payout reversed on {date}                                                                                                           |
+            | Blocked PayPal payout reward           | Payout blocked on {date}                                                                                                            |
 
     @motivating
     Scenario Outline: Statuses can be customized
-        Given the "status-text" prop is "{status, select, PAYOUTFAILED {Failed sorry!} PAYOUTSUCCEEDED {Paid} PAYOUTINPROGRESS {Transferring} AVAILABLE {Redeem me!} CANCELLED {Unavailable} PENDING {Coming soon!} EXPIRED {Past due} REDEEMED {Spent}}"
+        Given the "status-text" prop is "{status, select, PAYOUTSUCCESS {Paid} PAYOUTFAILED {Error} PAYOUTPENDING {Pending} PAYOUTUNCLAIMED {Claim!} PAYOUTONHOLD{On hold} PAYOUTREFUNDED {Refund} PAYOUTRETURNED {Return} PAYOUTREVERSED {Reverse} PAYOUTBLOCKED {Held} AVAILABLE {Redeem me!} CANCELLED {Unavailable} PENDING {Coming soon!} EXPIRED {Past due} REDEEMED {Spent}}"
         And a user
         And they have a <status> reward
         When they view the reward table
-        Then the status of their reward is displayed in <pillColour> pill with <text>
+        Then the status of their reward is displayed in a pill with <text>
         Examples:
-            | status                                                            | text          | pillColour |
-            | available                                                         | Redeem me!    | Green      |
-            | cancelled                                                         | Unavailable   | Red        |
-            | pending                                                           | Coming soon!  | Orange     |
-            | expired                                                           | Past due      | Red        |
-            | redeemed                                                          | Spent         | Blue       |
-            | redeemed and paid out by the PayPal integration                   | Paid          | Blue       |
-            | available but being paid out by the PayPal integration            | Transferring  | Orange     |
-            | available and has failed to be paid out by the PayPal integration | Failed sorry! | Red        |
+            | status    | text         |
+            | available | Redeem me!   |
+            | cancelled | Unavailable  |
+            | pending   | Coming soon! |
+            | expired   | Past due     |
+            | redeemed  | Spent        |
+            | SUCCESS   | Paid         |
+            | FAILED    | Error        |
+            | PENDING   | Pending      |
+            | UNCLAIMED | Claim!       |
+            | ONHOLD    | On hold      |
+            | REFUNDED  | Refund       |
+            | RETURNED  | Return       |
+            | REVERSED  | Reverse      |
+            | BLOCKED   | Held         |
 
     @minutia
     @ui

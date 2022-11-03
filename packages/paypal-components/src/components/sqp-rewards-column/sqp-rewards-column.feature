@@ -5,7 +5,8 @@ Feature: Referral Table Reward Column
     Shows the reward associated with each referral
 
     Background:
-        Given the status column is included in the referral table
+        Given a user
+        And the status column is included in the referral table
         And at least one referral exists
 
     @motivating
@@ -15,17 +16,40 @@ Feature: Referral Table Reward Column
         And the reward type and value is displayed in the cell
         And the status of each reward is displayed as a pill in the cell
         And rewards of <status> have a <pillColour> pill with the text <statusText>
-        And they <maySee> the PayPal icon to the right of the pill
         Examples:
-            | status                                                                                        | pillColour | statusText  | maySee    |
-            | Available                                                                                     | green      | Available   | don't see |
-            | Pending                                                                                       | orange     | Pending     | don't see |
-            | Cancelled                                                                                     | red        | Cancelled   | don't see |
-            | Expired                                                                                       | red        | Expired     | don't see |
-            | Redeemed                                                                                      | blue       | Redeemed    | don't see |
-            | redeemed and paid out by the PayPal integration                                               | blue       | Transferred | see       |
-            | available but being paid out by the PayPal integration (dateLastAttempted but no datePaidOut) | orange     | In Progress | see       |
-            | available and has failed to be paid out by the PayPal integration (meta status is ERROR)      | red        | Failed      | see       |
+            | status    | pillColour | statusText |
+            | Available | green      | Available  |
+            | Pending   | orange     | Pending    |
+            | Cancelled | red        | Cancelled  |
+            | Expired   | red        | Expired    |
+            | Redeemed  | blue       | Redeemed   |
+
+    @motivating
+    @ui
+    Scenario Outline: The status column displays the status of PayPal rewards
+        Given a reward with <paypalStatus> in its reward meta
+        Then the status of their reward is displayed in a <pillColour> pill with <text>
+        And they see the PayPal icon to the right of the pill
+        Examples:
+            | status    | text        | pillColour |
+            | SUCCESS   | Paid Out    | Blue       |
+            | FAILED    | Failed      | Red        |
+            | PENDING   | In progress | Orange     |
+            | UNCLAIMED | Unclaimed   | Orange     |
+            | ONHOLD    | In progress | Orange     |
+            | REFUNDED  | Refunded    | grey       |
+            | RETURNED  | Returned    | grey       |
+            | REVERSED  | Reversed    | grey       |
+            | BLOCKED   | Blocked     | grey       |
+
+    @minutia
+    Scenario Outline: Available rewards of a reward unit and currency paid out by the tenants PayPal integration display a PayPal icon with the badge
+        Given a <status> reward that is to be paid out by the PayPal integration
+        Then the PayPal icon is displayed to the right of rewards status pill
+        Examples:
+            | status    |
+            | AVAILABLE |
+            | PENDING   |
 
     @motivating
     Scenario: The pending period of a referral reward is shown if it exists
@@ -54,15 +78,27 @@ Feature: Referral Table Reward Column
             | 2 years      |
 
     @motivating
-    Scenario: Each reward can be expanded to show additional details about the reward
+    #just need to double check where all these dates come from
+    Scenario Outline: Each reward can be expanded to show additional details about the reward
+        Given a <reward>
         When a reward cell is clicked
-        Then it expands to show the following additional information (if it's available):
-            | Date the reward was received                                                    |
-            | Date the reward was paid out by the PayPal integration (paid out)               |
-            | Date the reward payout was started with the PayPal integration (in progress)    |
-            | Date the reward payout was last attempeted with the PayPal integration (failed) |
-            | Date the reward was cancelled                                                   |
-            | Date the reward expires                                                         |
-            | Date the reward is pending until                                                |
-            | Coupon code                                                                     |
+        Then it expands to show <text>
         And all dates are localized to a users locale
+        Examples:
+            | reward                                 | text                                                                                                                                |
+            | available reward with an expiry date   | localized expiry date in format "Month-Day-Year"                                                                                    |
+            | redeemed reward                        | localized redemption date in format "Month-Day-Year"                                                                                |
+            | expired reward                         | localized expired date in format "Month-Day-Year"                                                                                   |
+            | cancelled reward                       | localized cancelled date in format "Month-Day-Year"                                                                                 |
+            | pending reward with a end date         | localized pending for date in format "Month-Day-Year"                                                                               |
+            | pending reward due to W9               | W-9 required                                                                                                                        |
+            | pending reward due to fufillment error | Fulfillment error                                                                                                                   |
+            | succeeded PayPal payout reward         | Paid out on {date}.                                                                                                                 |
+            | Failed PayPal payout reward            | This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on {date}. |
+            | Pending PayPal payout reward           | Payout process started on {date}.                                                                                                   |
+            | Unclaimed PayPal payout reward         | The email you provided does not link to an exisiting PayPal account. Payout expires on {date}.                                      |
+            | On hold PayPal payout reward           | Payout on hold and in review since {date}.                                                                                          |
+            | Refunded PayPal payout reward          | Payout refunded on {date}                                                                                                           |
+            | Returned PayPal payout reward          | The email you provided does not link to an exisiting PayPal account. Payout expired on {date}.                                      |
+            | Reversed PayPal payout reward          | Payout reversed on {date}                                                                                                           |
+            | Blocked PayPal payout reward           | Payout blocked on {date}                                                                                                            |
