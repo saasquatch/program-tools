@@ -116,26 +116,29 @@ Feature: Paypal Account Details
         Then they see <dateText> in the top left hand corner of the card
         And <color> pill with <text> in the right hand corner
         Examples:
-            | payout                                  | dateText                               | color  | text        |
-            | the next payout                         | the payout date                        | green  | Next payout |
-            | the 2nd next payout                     | the payout date                        | green  | Upcoming    |
-            | the 3rd next payout                     | the payout date                        | green  | Upcoming    |
-            | pending rewards past the 3 next payouts | Check rewards table for available date | orange | Pending     |
+            | payout              | dateText        | color | text        |
+            | the next payout     | the payout date | green | Next payout |
+            | the 2nd next payout | the payout date | green | Upcoming    |
+            | the 3rd next payout | the payout date | green | Upcoming    |
+
+
+
+            | pending rewards past the 3 next payouts | Check rewards table for available date | orange | Pending |
 
     @motivating
-    #what happens when they only have one type of pending reward?
-    Scenario: Payout details cards show pending and w9 reward totals to be paid out in the future
+    Scenario Outline: Payout details cards show pending and w9 reward totals to be paid out in the future
         Given a "<sqp-account-details>" component
         And a user with a PayPal email
-        And they have W9 pending rewards
-        And they have rewards with "dateScheduledFor" beyond the next 3 payouts
+        And they have <rewards>
         When they view the pending payout details card
-        Then the card has two sections with titles in the top left
-            | section                                 | title                                  |
-            | Pending rewards with a dateScheduledFor | Check rewards table for available date |
-            | W9 pending rewards                      | Awaiting W-9 tax form                  |
-        And each section displays the payout amount of the currency with the largest total in the middle of the section
-        And they display other currency totals below
+        Then they see an orange pill with text "Pending" in top top right hand corner
+        And they see <sections> on the card with currency totals
+        And multi currencies below
+        Examples:
+            | rewards                                                    | sections                                       |
+            | W9 pending rewards                                         | W9 section                                     |
+            | scheduled pending rewards beyond the next 3 payouts        | Scheduled pending section                      |
+            | W9 and scheduled pending rewards beyond the next 3 payouts | Scheduled pending section and W9 section below |
 
     @motivating
     Scenario Outline: Payout Schedule cards display the payout amout with the largest total
