@@ -34,6 +34,7 @@ const style = {
     boxShadow: "0px 2px 4px rgba(28, 28, 33, 0.12)",
     borderRadius: "4px",
     padding: "var(--sl-spacing-large)",
+    minHeight: "150px",
   },
   StatusContainer: {
     display: "flex",
@@ -75,6 +76,18 @@ const style = {
     paddingTop: "var(--sl-spacing-large)",
     borderTop: "1px solid var(--sl-color-gray-200)",
   },
+  SkeletonOne: {
+    width: "25%",
+    height: "16px",
+  },
+  SkeletonTwo: {
+    width: "25%",
+    height: "24px",
+  },
+  SkeletonThree: {
+    width: "50%",
+    height: "34px",
+  },
 };
 
 export function DetailsCardView(props: DetailsCardViewProps) {
@@ -115,19 +128,30 @@ export function DetailsCardView(props: DetailsCardViewProps) {
     <div>
       <style type="text/css">{styleString}</style>
       <div class={classes.Container}>
-        <div class={classes.StatusContainer}>
-          <p class={classes.SubduedRegularText}>{detailedStatusText}</p>
-          <sl-badge pill type={statusMap[status]}>
-            {statusBadgeText}
-          </sl-badge>
-        </div>
-        <h1 class={classes.MainCurrency}>
-          {mainCurrency.amountText}{" "}
-          <span class={classes.MainCurrencyLabel}>
-            {mainCurrency.currencyText}
-          </span>
-        </h1>
-        {otherCurrencies !== undefined && (
+        {loading ? (
+          <div class={classes.StatusContainer}>
+            <sl-skeleton class={classes.SkeletonOne}></sl-skeleton>{" "}
+            <sl-skeleton class={classes.SkeletonTwo}></sl-skeleton>
+          </div>
+        ) : (
+          <div class={classes.StatusContainer}>
+            <p class={classes.SubduedRegularText}>{detailedStatusText}</p>
+            <sl-badge pill type={statusMap[status]}>
+              {statusBadgeText}
+            </sl-badge>
+          </div>
+        )}
+        {loading ? (
+          <sl-skeleton class={classes.SkeletonThree}></sl-skeleton>
+        ) : (
+          <h1 class={classes.MainCurrency}>
+            {mainCurrency.amountText}{" "}
+            <span class={classes.MainCurrencyLabel}>
+              {mainCurrency.currencyText}
+            </span>
+          </h1>
+        )}
+        {otherCurrencies !== undefined && !loading && (
           <div>
             <p class={classes.SubduedRegularText}>
               + {otherCurrencies.length} {otherCurrenciesText}
@@ -135,7 +159,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
             {currencyList(otherCurrencies)}
           </div>
         )}
-        {w9Pending !== undefined && (
+        {w9Pending !== undefined && !loading && (
           <div class={classes.W9Container}>
             <p class={classes.SubduedRegularText}>
               + {w9Pending.length} {w9PendingText}

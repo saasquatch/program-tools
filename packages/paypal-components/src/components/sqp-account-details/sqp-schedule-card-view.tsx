@@ -4,6 +4,7 @@ import { currencyAmount } from "./sqp-details-card-view";
 
 export interface ScheduleCardViewProps {
   active: boolean;
+  loading: boolean;
   otherCurrencies: boolean;
   statusText: string;
   otherCurrenciesText: string;
@@ -40,7 +41,6 @@ const style = {
     display: "flex",
     flexDirection: "column",
     background: "var(--sl-color-neutral-0)",
-    boxShadow: "0px 2px 4px rgba(28, 28, 33, 0.12)",
     borderRadius: "4px",
     padding: "var(--sl-spacing-small)",
     height: "94px",
@@ -54,6 +54,14 @@ const style = {
     height: "100%",
     boxSizing: "border-box",
   },
+  UpperSkeleton: {
+    maxWidth: "90%",
+    height: "16px",
+  },
+  LowerSkeleton: {
+    maxWidth: "80%",
+    height: "18px",
+  },
 };
 
 export function ScheduleCardView(props: ScheduleCardViewProps) {
@@ -63,6 +71,7 @@ export function ScheduleCardView(props: ScheduleCardViewProps) {
     otherCurrencies,
     otherCurrenciesText,
     mainCurrency,
+    loading,
   } = props;
 
   const sheet = createStyleSheet(style);
@@ -70,17 +79,34 @@ export function ScheduleCardView(props: ScheduleCardViewProps) {
   const { classes } = sheet;
 
   return (
-    <div class={classes.Container}>
+    <div
+      class={classes.Container}
+      style={{
+        boxShadow: `${
+          active
+            ? "0px 0px 0px 2px #402DC1, 0px 2px 4px rgba(28, 28, 33, 0.12)"
+            : "0px 2px 4px rgba(28, 28, 33, 0.12)"
+        }`,
+      }}
+    >
       <style type="text/css">{styleString}</style>
-      <p class={classes.SubduedRegularText}>{statusText}</p>
+      {loading ? (
+        <sl-skeleton class={classes.UpperSkeleton}></sl-skeleton>
+      ) : (
+        <p class={classes.SubduedRegularText}>{statusText}</p>
+      )}
       <div class={classes.AmountsContainer}>
-        <h2 class={classes.MainCurrency}>
-          {mainCurrency.amountText}{" "}
-          <span class={classes.MainCurrencyLabel}>
-            {mainCurrency.currencyText}
-          </span>
-        </h2>
-        {otherCurrencies && (
+        {loading ? (
+          <sl-skeleton class={classes.LowerSkeleton}></sl-skeleton>
+        ) : (
+          <h2 class={classes.MainCurrency}>
+            {mainCurrency.amountText}{" "}
+            <span class={classes.MainCurrencyLabel}>
+              {mainCurrency.currencyText}
+            </span>
+          </h2>
+        )}
+        {otherCurrencies && !loading && (
           <p class={classes.SubduedSmallText}>+ {otherCurrenciesText}</p>
         )}
       </div>

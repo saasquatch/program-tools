@@ -30,6 +30,10 @@ export const Upcoming = () => {
   return <DetailsCardView {...defaultProps} />;
 };
 
+export const Loading = () => {
+  return <DetailsCardView {...{ ...defaultProps, loading: true }} />;
+};
+
 export const NextPayout = () => {
   return (
     <DetailsCardView
