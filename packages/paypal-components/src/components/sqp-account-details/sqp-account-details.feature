@@ -2,10 +2,12 @@
 @owner:derek
 Feature: Paypal Account Details
 
+    Background: The account details component is used
+        Given a "<sqp-account-details>" component
+
     @motivating
     Scenario: Participants can configure their paypal email
-        Given a "<sqp-account-details>" component
-        And a participant without a "paypalEmail" custom field value
+        Given a participant without a "paypalEmail" custom field value
         When they view the component
         Then they see a button to connect their paypal account
         When they click the button
@@ -19,8 +21,7 @@ Feature: Paypal Account Details
     @minutia
     @ui
     Scenario: Clicking the "Edit" button displays a modal to choose between editing email or disconnecting your email from the integration
-        Given a "<sqp-account-details>" component
-        And a participant with a "paypalEmail" custom field value
+        Given a participant with a "paypalEmail" custom field value
         Then they see an "Edit" button beside the PayPal header
         When they click "Edit"
         Then they see a modal
@@ -30,8 +31,7 @@ Feature: Paypal Account Details
 
     @motivating
     Scenario: Paypal Email can be changed after configuration
-        Given a "<sqp-account-details>" component
-        And a participant with a "paypalEmail" custom field value
+        Given a participant with a "paypalEmail" custom field value
         When click the "Edit" button
         And click "change account" in the modal
         Then they see the following inputs
@@ -46,8 +46,7 @@ Feature: Paypal Account Details
 
     @minutia
     Scenario: Participants can disconnect themselves from the PayPal integration
-        Given a "<sqp-account-details>" component
-        And a participant with a "paypalEmail" custom field value
+        Given a participant with a "paypalEmail" custom field value
         When click the "Edit" button
         And click "Disconnect account" in the modal
         Then the modal closes
@@ -82,8 +81,7 @@ Feature: Paypal Account Details
 
     @motivating
     Scenario: Payout schedule information is displayed when a user has a PayPal email configured
-        Given a "<sqp-account-details>" component
-        And a user with a PayPal email
+        Given a user with a PayPal email
         Then they see a "Payout details" section displaying a large card of their next payout
         And to the right they see a "Schedule" section with 4 cards
         And they see three cards for the next three payouts
@@ -95,8 +93,7 @@ Feature: Paypal Account Details
 
     @motivating
     Scenario Outline: Payout details cards show all currencies being paid out for a payout
-        Given a "<sqp-account-details>" component
-        And a user with a PayPal email
+        Given a user with a PayPal email
         And they have rewards in <numCurrencies> currencies to be paid out during a singular payout
         When they see the payout details card for that payout
         Then they see the payout amount of the currency with the largest total in the middle of the card
@@ -111,8 +108,7 @@ Feature: Paypal Account Details
 
     @motivating
     Scenario Outline: Payout details cards show payout date and a status pill
-        Given a "<sqp-account-details>" component
-        And a user with a PayPal email
+        Given a user with a PayPal email
         When they view a payout details card for <payout>
         Then they see <dateText> in the top left hand corner of the card
         And <color> pill with <text> in the right hand corner
@@ -122,14 +118,9 @@ Feature: Paypal Account Details
             | the 2nd next payout | the payout date | green | Upcoming    |
             | the 3rd next payout | the payout date | green | Upcoming    |
 
-
-
-            | pending rewards past the 3 next payouts | Check rewards table for available date | orange | Pending |
-
     @motivating
     Scenario Outline: Payout details cards show pending and w9 reward totals to be paid out in the future
-        Given a "<sqp-account-details>" component
-        And a user with a PayPal email
+        Given a user with a PayPal email
         And they have <rewards>
         When they view the pending payout details card
         Then they see an orange pill with text "Pending" in top top right hand corner
@@ -143,8 +134,7 @@ Feature: Paypal Account Details
 
     @motivating
     Scenario Outline: Payout Schedule cards display the payout amout with the largest total
-        Given a "<sqp-account-details>" component
-        And a user with a PayPal email
+        Given a user with a PayPal email
         And rewards to be paid out
         When they view the Schedule card for <payout>
         Then they see <text> in the top left of the card
@@ -158,8 +148,7 @@ Feature: Paypal Account Details
 
     @motivating
     Scenario: Payout totals handle rewards with pending periods within
-        Given a "<sqp-account-details>" component
-        And a user with a PayPal email
+        Given a user with a PayPal email
         And todays date is "2022-11-02"
         And the tenant timezone is "America/Vancouver"
         And the following rewards
@@ -183,8 +172,7 @@ Feature: Paypal Account Details
 
     @motivating
     Scenario: Payout Schedule cards display if there are payouts in multiple currencies
-        Given a "<sqp-account-details>" component
-        And a user with a PayPal email
+        Given a user with a PayPal email
         And they have rewards in <numCurrencies> currencies to be paid out during a singular payout
         When they see the payout schedule card for that payout
         Then they see the payout amount of the currency with the largest total in the middle of the card
@@ -198,8 +186,7 @@ Feature: Paypal Account Details
 
     @minutia
     Scenario: Payout cards display an empty state when there are no rewards to payout for a scheduled payout
-        Given a "<sqp-account-details>" component
-        And a user with a PayPal email
+        Given a user with a PayPal email
         But they have no rewards to be paid out for a scheduled payout
         Then the <card> displays "No rewards" instead of a payout amount
         Examples:
@@ -209,8 +196,7 @@ Feature: Paypal Account Details
 
     @motivating
     Scenario: The component displays an alert banner if the integration is paused
-        Given a "<sqp-account-details>" component
-        But the tenant's PayPal integration is paused
+        Given the tenant's PayPal integration is paused
         When a participant views the component
         Then they see a light blue banner
         And text explaining that payouts will resume when the integration is resumed
@@ -219,7 +205,6 @@ Feature: Paypal Account Details
     @minutia
     @ui
     Scenario: A loading state is displayed when the component is loading
-        Given a "<sqp-account-details>" component
-        When a user views the component
+        Given a user views the component
         But the components data is loading
         Then they see a skeleton of the payout cards
