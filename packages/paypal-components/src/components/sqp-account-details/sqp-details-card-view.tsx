@@ -86,7 +86,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
     return (
       <div class={classes.CurrenciesContainer}>
         {" "}
-        {currencies.map((currency, idx) => {
+        {currencies.map((currency) => {
           return (
             <div class={classes.CurrencyContainer}>
               <p class={classes.SubduedRegularText}>

@@ -12,8 +12,6 @@ export interface AccountDetailsViewProps {
     scheduleLabel: string;
     detailsContent: VNode;
     ScheduleContent: VNode | VNode[];
-    editText: string;
-    headerText: string;
   };
 }
 
@@ -30,23 +28,6 @@ const style = {
     gridGap: "var(--sl-spacing-medium)",
     "@media screen and (max-width: 499px)": {
       gridTemplateColumns: "1fr",
-    },
-  },
-
-  TitleContainer: {
-    display: "flex",
-    alignItems: "center",
-    gap: "var(--sl-spacing-x-small)",
-    gridColumn: "1 / 3",
-    "@media screen and (max-width: 499px)": {
-      gridColumn: "1 / 2",
-    },
-  },
-
-  EditButton: {
-    "@media screen and (min-width: 500px)": {
-      width: "max-content",
-      marginLeft: "auto",
     },
   },
 
@@ -79,7 +60,7 @@ const style = {
 export function AccountDetailsView(props: AccountDetailsViewProps) {
   const { overviewContent, hasAccount, loading, integrationDisabled } = props;
 
-  if (!hasAccount || integrationDisabled) return "";
+  if (!hasAccount) return "";
 
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
@@ -88,20 +69,6 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
   return (
     <div class={classes.Container}>
       <style type="text/css">{styleString}</style>{" "}
-      <div class={classes.TitleContainer}>
-        <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665703368/tenant_test_a8b41jotf8a1v/tjfxf0qxu2lwqzgtcghw.svg" />
-        <h2>{overviewContent.headerText}</h2>
-      </div>
-      <sl-button
-        class={classes.EditButton}
-        disabled={loading}
-        onClick={(e) => {
-          e.preventDefault();
-          props.setOpen(true);
-        }}
-      >
-        {overviewContent.editText}
-      </sl-button>
       <div>
         <p class={classes.Label}>{overviewContent.detailsLabel}</p>{" "}
         {overviewContent.detailsContent}

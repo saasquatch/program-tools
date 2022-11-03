@@ -239,14 +239,13 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
         disconnectAccountDescriptionText:
           props.disconnectAccountDescriptionText,
         disconnectAccountButtonText: props.disconnectAccountButtonText,
+        editText: props.editText,
       },
       alertContent: {
         integrationAlertHeader: props.integrationAlertHeader,
         intergrationAlertText: props.integrationAlertText,
       },
       overviewContent: {
-        editText: props.editText,
-        headerText: props.headerText,
         detailsLabel: props.detailsLabel,
         scheduleLabel: props.scheduleLabel,
         detailsContent: <Upcoming />,

@@ -29,6 +29,7 @@ export interface AccountFormViewProps {
     disconnectAccountHeaderText: string;
     disconnectAccountDescriptionText: string;
     disconnectAccountButtonText: string;
+    editText: string;
   };
   alertContent: {
     integrationAlertHeader: string;
@@ -45,17 +46,6 @@ export function AccountFormView(props: AccountFormViewProps) {
   const { formContent, alertContent, states, callbacks, integrationDisabled } =
     props;
   const style = {
-    HeaderContainer: {
-      display: "flex",
-      justifyContent: "flex-start",
-      alignItems: "center",
-      gap: "10px",
-
-      "& h2": {
-        fontWeight: "bold",
-      },
-    },
-
     ButtonContainer: {
       display: "flex",
       flexDirection: "column",
@@ -113,6 +103,31 @@ export function AccountFormView(props: AccountFormViewProps) {
       display: "flex",
       flexDirection: "column",
       gap: "20px",
+    },
+
+    EditButton: {
+      "@media screen and (min-width: 500px)": {
+        width: "max-content",
+        marginLeft: "auto",
+      },
+    },
+    HeaderContainer: {
+      display: "grid",
+      alignItems: "center",
+      gap: "var(--sl-spacing-medium)",
+      gridTemplateColumns: "1fr max-content",
+      "@media screen and (max-width: 499px)": {
+        gridTemplateColumns: "1fr",
+      },
+    },
+    TitleContainer: {
+      display: "grid",
+      alignItems: "center",
+      gap: "var(--sl-spacing-x-small)",
+      gridTemplateColumns: "max-content max-content",
+    },
+    ContentContainer: {
+      marginBottom: "var(--sl-spacing-medium)",
     },
   };
 
@@ -276,39 +291,60 @@ export function AccountFormView(props: AccountFormViewProps) {
           }}
         ></PortalSectionView>
       </sl-dialog>
-      {(!props.hasAccount || integrationDisabled) && (
-        <PortalSectionView
-          {...{
-            labelMargin: "x-large",
-            padding: "xxx-large",
-            label: (
-              <div>
-                <div class={sheet.classes.HeaderContainer}>
+
+      <PortalSectionView
+        {...{
+          labelMargin: "medium",
+          padding: "none",
+          label: (
+            <div>
+              <div class={sheet.classes.HeaderContainer}>
+                <div class={sheet.classes.TitleContainer}>
                   <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665703368/tenant_test_a8b41jotf8a1v/tjfxf0qxu2lwqzgtcghw.svg" />
                   <h2>{formContent.payPalAccountHeaderText}</h2>
                 </div>
-                {!integrationDisabled && (
-                  <p>{formContent.connectPayPalDescriptionText}</p>
+                {!integrationDisabled && props.hasAccount && (
+                  <sl-button
+                    class={sheet.classes.EditButton}
+                    disabled={states.loading}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      callbacks.setOpen(true);
+                    }}
+                  >
+                    {formContent.editText}
+                  </sl-button>
                 )}
               </div>
-            ),
-            content: integrationDisabled ? (
-              <sl-alert open type="primary">
-                <sl-icon slot="icon" name="info-circle"></sl-icon>
-                <b>{alertContent.integrationAlertHeader}</b>
-                <br />
-                {alertContent.integrationAlertText}
-              </sl-alert>
-            ) : (
-              <sl-button onClick={() => callbacks.setOpen(true)}>
-                {formContent.connectPayPalAccountButtonText}
-              </sl-button>
-            ),
-          }}
-        >
-          <style type="text/css">{styleString}</style>
-        </PortalSectionView>
-      )}
+              {!integrationDisabled && (
+                <p>{formContent.connectPayPalDescriptionText}</p>
+              )}
+            </div>
+          ),
+          content: (
+            <div class={sheet.classes.ContentContainer}>
+              {integrationDisabled && (
+                <sl-alert open type="primary">
+                  <sl-icon slot="icon" name="info-circle"></sl-icon>
+                  <b>{alertContent.integrationAlertHeader}</b>
+                  <br />
+                  {alertContent.integrationAlertText}
+                </sl-alert>
+              )}
+              {!props.hasAccount && (
+                <sl-button
+                  disabled={states.loading}
+                  onClick={() => callbacks.setOpen(true)}
+                >
+                  {formContent.connectPayPalAccountButtonText}
+                </sl-button>
+              )}
+            </div>
+          ),
+        }}
+      >
+        <style type="text/css">{styleString}</style>
+      </PortalSectionView>
     </div>
   );
 }

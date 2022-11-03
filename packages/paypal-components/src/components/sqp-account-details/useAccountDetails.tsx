@@ -153,14 +153,13 @@ export function useAccountDetails(props) {
       disconnectAccountHeaderText: props.disconnectAccountHeaderText,
       disconnectAccountDescriptionText: props.disconnectAccountDescriptionText,
       disconnectAccountButtonText: props.disconnectAccountButtonText,
+      editText: props.editText,
     },
     alertContent: {
       integrationAlertHeader: props.integrationAlertHeader,
       integrationAlertText: props.integrationAlertText,
     },
     overviewContent: {
-      editText: props.editText,
-      headerText: props.headerText,
       detailsLabel: props.detailsLabel,
       scheduleLabel: props.scheduleLabel,
       detailsContent: <Upcoming />,

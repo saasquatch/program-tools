@@ -19,8 +19,6 @@ const defaultAccountDetailsProps: AccountDetailsViewProps = {
   setOpen: (open: boolean) => console.log(open),
   hasAccount: true,
   overviewContent: {
-    headerText: "Payout",
-    editText: "Edit account",
     detailsLabel: "Payout details",
     scheduleLabel: "Schedule",
     detailsContent: <W9AndOtherCurrencies />,
@@ -58,6 +56,7 @@ const defaultAccountFormProps: AccountFormViewProps = {
     disconnectAccountDescriptionText:
       "You will not be able to receive payments if you disconnect your PayPal account.",
     disconnectAccountButtonText: "Disconnect account",
+    editText: "Edit account",
   },
   alertContent: {
     integrationAlertHeader: "PayPal payouts are currently disabled",
@@ -98,6 +97,17 @@ export const HasAccount = () => (
   <div>
     <AccountFormView {...defaultAccountFormProps} />
     <AccountDetailsView {...defaultAccountDetailsProps} />
+  </div>
+);
+
+export const HasAccountIntegrationDisabled = () => (
+  <div>
+    <AccountFormView
+      {...{ ...defaultAccountFormProps, integrationDisabled: true }}
+    />
+    <AccountDetailsView
+      {...{ ...defaultAccountDetailsProps, integrationDisabled: true }}
+    />
   </div>
 );
 
