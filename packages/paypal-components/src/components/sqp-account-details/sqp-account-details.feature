@@ -153,12 +153,12 @@ Feature: Paypal Account Details
         And the tenant timezone is "America/Vancouver"
         And the following rewards
             | reward                                     |
-            | Available 25$ USD                          |
-            | Pending 25$ USD till 2022-11-04 at 12:00PM |
-            | Pending 30$ USD till 2022-11-31 at 11:59PM |
-            | Pending 30$ USD till 2023-01-01 at 12:59PM |
-            | Pending 30$ USD till 2023-01-01 at 12:01PM |
-            | Pending 35$ USD till 2023-02-04 at 5:00PM  |
+            | Available $25 USD                          |
+            | Pending $25 USD till 2022-11-04 at 12:00PM |
+            | Pending $30 USD till 2022-11-31 at 11:59PM |
+            | Pending $30 USD till 2023-01-01 at 12:59PM |
+            | Pending $30 USD till 2023-01-01 at 12:01PM |
+            | Pending $35 USD till 2023-02-04 at 5:00PM  |
         And the following payout schedule for the next 3 payouts
             | payoutDate |
             | 2022-12-01 |
@@ -166,9 +166,15 @@ Feature: Paypal Account Details
             | 2023-02-01 |
         Then they see the following payout schedule totals
             | payoutDate | rewardTotal |
-            | 2022-12-01 | 110$ USD    |
-            | 2023-01-01 | 30$ USD     |
-            | 2023-02-01 | 35$ USD     |
+            | 2022-12-01 | $110 USD    |
+            | 2023-01-01 | $30 USD     |
+            | 2023-02-01 | $35 USD     |
+    
+    @motivating
+    Scenario: Amount totals are displayed using pretty values
+        Given a user with a PayPal email
+        When they view any of the payout amounts 
+        Then the amount of money in the currency is formated to their locale
 
     @motivating
     Scenario: Payout Schedule cards display if there are payouts in multiple currencies
