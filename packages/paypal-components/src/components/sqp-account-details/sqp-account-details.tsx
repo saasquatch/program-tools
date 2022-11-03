@@ -11,6 +11,8 @@ import { AccountFormView, AccountFormViewProps } from "./sqp-account-form-view";
 import { useAccountDetails } from "./useAccountDetails";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
+import { Upcoming } from "./DetailsCard.stories";
+import { Default } from "./ScheduleCard.stories";
 /**
  * @uiName PayPal Account Details
  * @slots [{"name":"","title":"Form Slot"}]
@@ -147,6 +149,16 @@ export class PaypalAccountDetails {
    * @uiGroup Alert
    */
   @Prop() integrationDisabled: boolean = false;
+  /**
+   * @uiName Label above payout details card
+   * @uiGroup Alert
+   */
+  @Prop() detailsLabel: string = "Payout details";
+  /**
+   * @uiName Label above scheduled payouts card(s)
+   * @uiGroup Alert
+   */
+  @Prop() scheduleLabel: string = "Schedule";
 
   /**
    * @undocumented
@@ -177,8 +189,7 @@ export class PaypalAccountDetails {
         <AccountDetailsView
           loading={props.states.loading}
           hasAccount={props.hasAccount}
-          accountDetails={props.accountDetails}
-          detailsContent={props.detailsContent}
+          overviewContent={props.overviewContent}
           setOpen={props.callbacks.setOpen}
           integrationDisabled={props.integrationDisabled}
         ></AccountDetailsView>
@@ -196,13 +207,6 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
       setupAccount: () => {},
       hasAccount: false,
       integrationDisabled: false,
-      accountDetails: {
-        email: "test@example.com",
-        recentPayment: { amount: 10000, date: 12345678900 },
-        nextPayment: {
-          date: 12345678900,
-        },
-      },
       callbacks: { submit: () => {}, setOpen, disconnect: () => {} },
       states: {
         editingAccount: false,
@@ -235,10 +239,17 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
         disconnectAccountDescriptionText:
           props.disconnectAccountDescriptionText,
         disconnectAccountButtonText: props.disconnectAccountButtonText,
+        editText: props.editText,
       },
       alertContent: {
         integrationAlertHeader: props.integrationAlertHeader,
         intergrationAlertText: props.integrationAlertText,
+      },
+      overviewContent: {
+        detailsLabel: props.detailsLabel,
+        scheduleLabel: props.scheduleLabel,
+        detailsContent: <Upcoming />,
+        ScheduleContent: [<Default />],
       },
     },
     props.demoData || {},

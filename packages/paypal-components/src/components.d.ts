@@ -83,6 +83,11 @@ export namespace Components {
          */
         "demoData"?: DemoData<AccountDetailsViewProps & AccountFormViewProps>;
         /**
+          * @uiName Label above payout details card
+          * @uiGroup Alert
+         */
+        "detailsLabel": string;
+        /**
           * @uiName Disconnect Account Button Text
           * @uiGroup Form
          */
@@ -152,6 +157,11 @@ export namespace Components {
           * @uiGroup Details
          */
         "recentPaymentLabel": string;
+        /**
+          * @uiName Label above scheduled payouts card(s)
+          * @uiGroup Alert
+         */
+        "scheduleLabel": string;
         /**
           * @uiName Submit Button Text
           * @uiGroup Form
@@ -437,6 +447,11 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<AccountDetailsViewProps & AccountFormViewProps>;
         /**
+          * @uiName Label above payout details card
+          * @uiGroup Alert
+         */
+        "detailsLabel"?: string;
+        /**
           * @uiName Disconnect Account Button Text
           * @uiGroup Form
          */
@@ -506,6 +521,11 @@ declare namespace LocalJSX {
           * @uiGroup Details
          */
         "recentPaymentLabel"?: string;
+        /**
+          * @uiName Label above scheduled payouts card(s)
+          * @uiGroup Alert
+         */
+        "scheduleLabel"?: string;
         /**
           * @uiName Submit Button Text
           * @uiGroup Form

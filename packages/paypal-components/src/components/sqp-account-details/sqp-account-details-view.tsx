@@ -1,4 +1,5 @@
-import { h } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
+import { StringUnitLength } from "luxon";
 import { createStyleSheet } from "../../styling/JSS";
 
 export interface AccountDetailsViewProps {
@@ -6,17 +7,11 @@ export interface AccountDetailsViewProps {
   setOpen: (open: boolean) => void;
   hasAccount: boolean;
   integrationDisabled: boolean;
-  accountDetails: {
-    email: string;
-    recentPayment: { amount: number; date: number };
-    nextPayment: { date: number };
-  };
-  detailsContent: {
-    headerText: string;
-    accountLabel: string;
-    recentPaymentLabel: string;
-    nextPaymentLabel: string;
-    editText: string;
+  overviewContent: {
+    detailsLabel: string;
+    scheduleLabel: string;
+    detailsContent: VNode;
+    ScheduleContent: VNode | VNode[];
   };
 }
 
@@ -28,43 +23,17 @@ const FlexContainer = {
 };
 const style = {
   Container: {
-    extend: FlexContainer,
-    flexDirection: "column",
-  },
-  HeaderContainer: {
-    extend: FlexContainer,
-    // "& img": {
-    //   width: "39px",
-    //   height: "39px",
-    // },
-    "& h2": {
-      fontWeight: "bold",
-      marginRight: "12px",
-    },
-  },
-
-  AccountDetailsContainer: {
-    extend: FlexContainer,
-    "@media screen and (max-width: 499px)": {
-      flexDirection: "column",
-    },
-  },
-
-  LabelContainer: {
-    extend: FlexContainer,
-    alignItems: "center",
-    "& p": {
-      margin: "0",
-    },
-  },
-
-  TitleContainer: {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr",
+    gridTemplateColumns: "1fr min-content 1fr",
+    gridGap: "var(--sl-spacing-medium)",
+    "@media screen and (max-width: 499px)": {
+      gridTemplateColumns: "1fr",
+    },
   },
 
   Label: {
-    fontWeight: "bold",
+    fontSize: "var(--sl-font-size-small)",
+    margin: "0 0 var(--sl-spacing-medium)",
     "@media screen and (max-width: 499px)": {
       wordWrap: "wrap-word",
     },
@@ -73,18 +42,25 @@ const style = {
   Skeleton: {
     width: "150px",
   },
+
+  Divider: {
+    minHeight: "100%",
+    width: "1px",
+    backgroundColor: "var(--sl-color-gray-200)",
+    margin: "auto",
+  },
+
+  ScheduleContainer: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gridGap: "var(--sl-spacing-medium)",
+  },
 };
 
 export function AccountDetailsView(props: AccountDetailsViewProps) {
-  const {
-    detailsContent,
-    accountDetails,
-    hasAccount,
-    loading,
-    integrationDisabled,
-  } = props;
+  const { overviewContent, hasAccount, loading, integrationDisabled } = props;
 
-  if (!hasAccount || integrationDisabled) return "";
+  if (!hasAccount) return "";
 
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
@@ -93,26 +69,16 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
   return (
     <div class={classes.Container}>
       <style type="text/css">{styleString}</style>{" "}
-      <div class={classes.TitleContainer}>
-        <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665703368/tenant_test_a8b41jotf8a1v/tjfxf0qxu2lwqzgtcghw.svg" />
-        <h2>{detailsContent.headerText}</h2>
+      <div>
+        <p class={classes.Label}>{overviewContent.detailsLabel}</p>{" "}
+        {overviewContent.detailsContent}
       </div>
-      <sl-button
-        disabled={loading}
-        onClick={(e) => {
-          e.preventDefault();
-          props.setOpen(true);
-        }}
-      >
-        {detailsContent.editText}
-      </sl-button>
-      <div class={classes.LabelContainer}>
-        <p class={classes.Label}>{detailsContent.recentPaymentLabel}:</p>{" "}
-        {/* {detailedContent} */}
-      </div>
-      <div class={classes.LabelContainer}>
-        <p class={classes.Label}>{detailsContent.nextPaymentLabel}:</p>{" "}
-        {/* {scheduledContent} */}
+      <div class={classes.Divider}></div>
+      <div>
+        <p class={classes.Label}>{overviewContent.scheduleLabel}</p>{" "}
+        <div class={classes.ScheduleContainer}>
+          {overviewContent.ScheduleContent}
+        </div>
       </div>
     </div>
   );

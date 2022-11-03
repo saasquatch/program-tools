@@ -1,4 +1,6 @@
 import { h } from "@stencil/core";
+import { W9AndOtherCurrencies } from "./DetailsCard.stories";
+import { Pending, Active, WithOtherCurrencies } from "./ScheduleCard.stories";
 import {
   AccountDetailsView,
   AccountDetailsViewProps,
@@ -16,19 +18,11 @@ const defaultAccountDetailsProps: AccountDetailsViewProps = {
   integrationDisabled: false,
   setOpen: (open: boolean) => console.log(open),
   hasAccount: true,
-  accountDetails: {
-    email: "jonsnow@example.com",
-    recentPayment: { amount: 10000, date: 12345678900 },
-    nextPayment: {
-      date: 12345678900,
-    },
-  },
-  detailsContent: {
-    headerText: "Payout",
-    accountLabel: "Account",
-    recentPaymentLabel: "Recent payment",
-    nextPaymentLabel: "Next payment",
-    editText: "Edit account",
+  overviewContent: {
+    detailsLabel: "Payout details",
+    scheduleLabel: "Schedule",
+    detailsContent: <W9AndOtherCurrencies />,
+    ScheduleContent: [<Active />, <Pending />, <WithOtherCurrencies />],
   },
 };
 
@@ -62,6 +56,7 @@ const defaultAccountFormProps: AccountFormViewProps = {
     disconnectAccountDescriptionText:
       "You will not be able to receive payments if you disconnect your PayPal account.",
     disconnectAccountButtonText: "Disconnect account",
+    editText: "Edit account",
   },
   alertContent: {
     integrationAlertHeader: "PayPal payouts are currently disabled",
@@ -102,6 +97,17 @@ export const HasAccount = () => (
   <div>
     <AccountFormView {...defaultAccountFormProps} />
     <AccountDetailsView {...defaultAccountDetailsProps} />
+  </div>
+);
+
+export const HasAccountIntegrationDisabled = () => (
+  <div>
+    <AccountFormView
+      {...{ ...defaultAccountFormProps, integrationDisabled: true }}
+    />
+    <AccountDetailsView
+      {...{ ...defaultAccountDetailsProps, integrationDisabled: true }}
+    />
   </div>
 );
 

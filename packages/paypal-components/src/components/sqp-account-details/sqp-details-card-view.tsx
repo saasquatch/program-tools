@@ -30,7 +30,6 @@ const style = {
     display: "grid",
     gridTemplateColumns: "1fr",
     gridGap: "var(--sl-spacing-large)",
-    maxWidth: "400px",
     background: "var(--sl-color-neutral-0)",
     boxShadow: "0px 2px 4px rgba(28, 28, 33, 0.12)",
     borderRadius: "4px",
@@ -87,7 +86,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
     return (
       <div class={classes.CurrenciesContainer}>
         {" "}
-        {currencies.map((currency, idx) => {
+        {currencies.map((currency) => {
           return (
             <div class={classes.CurrencyContainer}>
               <p class={classes.SubduedRegularText}>

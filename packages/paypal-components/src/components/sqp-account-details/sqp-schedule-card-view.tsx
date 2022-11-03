@@ -43,7 +43,6 @@ const style = {
     boxShadow: "0px 2px 4px rgba(28, 28, 33, 0.12)",
     borderRadius: "4px",
     padding: "var(--sl-spacing-small)",
-    maxWidth: "160px",
     height: "94px",
     boxSizing: "border-box",
   },
