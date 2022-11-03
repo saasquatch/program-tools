@@ -64,7 +64,6 @@ Feature: Paypal Reward Status Column
             | PENDING   |
 
     @motivating
-    #just need to double check where all these dates come from
     Scenario Outline: Reward status related information is displayed under status pills
         Given a user
         And they have a <reward>
