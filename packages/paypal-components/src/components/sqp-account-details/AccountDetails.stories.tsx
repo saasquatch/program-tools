@@ -1,4 +1,6 @@
 import { h } from "@stencil/core";
+import { W9AndOtherCurrencies } from "./DetailsCard.stories";
+import { Pending, Active, WithOtherCurrencies } from "./ScheduleCard.stories";
 import {
   AccountDetailsView,
   AccountDetailsViewProps,
@@ -16,19 +18,13 @@ const defaultAccountDetailsProps: AccountDetailsViewProps = {
   integrationDisabled: false,
   setOpen: (open: boolean) => console.log(open),
   hasAccount: true,
-  accountDetails: {
-    email: "jonsnow@example.com",
-    recentPayment: { amount: 10000, date: 12345678900 },
-    nextPayment: {
-      date: 12345678900,
-    },
-  },
-  detailsContent: {
+  overviewContent: {
     headerText: "Payout",
-    accountLabel: "Account",
-    recentPaymentLabel: "Recent payment",
-    nextPaymentLabel: "Next payment",
     editText: "Edit account",
+    detailsLabel: "Payout details",
+    scheduleLabel: "Schedule",
+    detailsContent: <W9AndOtherCurrencies />,
+    ScheduleContent: [<Active />, <Pending />, <WithOtherCurrencies />],
   },
 };
 

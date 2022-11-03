@@ -6,8 +6,11 @@ import {
   setUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useRef, useState, useEffect } from "@saasquatch/universal-hooks";
+import { h } from "@stencil/core";
 import { gql } from "graphql-request";
 import jsonpointer from "jsonpointer";
+import { Upcoming } from "./DetailsCard.stories";
+import { Default } from "./ScheduleCard.stories";
 const ACCOUNT_DETAILS_QUERY = gql`
   query {
     viewer {
@@ -120,13 +123,6 @@ export function useAccountDetails(props) {
     formRef,
     integrationDisabled: false,
     hasAccount: !!data?.viewer?.customFields?.paypalEmail,
-    accountDetails: {
-      email: data?.viewer?.customFields?.paypalEmail,
-      recentPayment: { amount: 10000, date: 12345678900 },
-      nextPayment: {
-        date: 12345678900,
-      },
-    },
     callbacks: { submit, setOpen: openModal, disconnect },
     states: {
       loading,
@@ -161,6 +157,14 @@ export function useAccountDetails(props) {
     alertContent: {
       integrationAlertHeader: props.integrationAlertHeader,
       integrationAlertText: props.integrationAlertText,
+    },
+    overviewContent: {
+      editText: props.editText,
+      headerText: props.headerText,
+      detailsLabel: props.detailsLabel,
+      scheduleLabel: props.scheduleLabel,
+      detailsContent: <Upcoming />,
+      ScheduleContent: [<Default />],
     },
   };
 }

@@ -276,40 +276,39 @@ export function AccountFormView(props: AccountFormViewProps) {
           }}
         ></PortalSectionView>
       </sl-dialog>
-      {!props.hasAccount ||
-        (integrationDisabled && (
-          <PortalSectionView
-            {...{
-              labelMargin: "x-large",
-              padding: "xxx-large",
-              label: (
-                <div>
-                  <div class={sheet.classes.HeaderContainer}>
-                    <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665703368/tenant_test_a8b41jotf8a1v/tjfxf0qxu2lwqzgtcghw.svg" />
-                    <h2>{formContent.payPalAccountHeaderText}</h2>
-                  </div>
-                  {!integrationDisabled && (
-                    <p>{formContent.connectPayPalDescriptionText}</p>
-                  )}
+      {(!props.hasAccount || integrationDisabled) && (
+        <PortalSectionView
+          {...{
+            labelMargin: "x-large",
+            padding: "xxx-large",
+            label: (
+              <div>
+                <div class={sheet.classes.HeaderContainer}>
+                  <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665703368/tenant_test_a8b41jotf8a1v/tjfxf0qxu2lwqzgtcghw.svg" />
+                  <h2>{formContent.payPalAccountHeaderText}</h2>
                 </div>
-              ),
-              content: integrationDisabled ? (
-                <sl-alert open type="primary">
-                  <sl-icon slot="icon" name="info-circle"></sl-icon>
-                  <b>{alertContent.integrationAlertHeader}</b>
-                  <br />
-                  {alertContent.integrationAlertText}
-                </sl-alert>
-              ) : (
-                <sl-button onClick={() => callbacks.setOpen(true)}>
-                  {formContent.connectPayPalAccountButtonText}
-                </sl-button>
-              ),
-            }}
-          >
-            <style type="text/css">{styleString}</style>
-          </PortalSectionView>
-        ))}
+                {!integrationDisabled && (
+                  <p>{formContent.connectPayPalDescriptionText}</p>
+                )}
+              </div>
+            ),
+            content: integrationDisabled ? (
+              <sl-alert open type="primary">
+                <sl-icon slot="icon" name="info-circle"></sl-icon>
+                <b>{alertContent.integrationAlertHeader}</b>
+                <br />
+                {alertContent.integrationAlertText}
+              </sl-alert>
+            ) : (
+              <sl-button onClick={() => callbacks.setOpen(true)}>
+                {formContent.connectPayPalAccountButtonText}
+              </sl-button>
+            ),
+          }}
+        >
+          <style type="text/css">{styleString}</style>
+        </PortalSectionView>
+      )}
     </div>
   );
 }
