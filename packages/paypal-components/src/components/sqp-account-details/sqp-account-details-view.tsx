@@ -26,6 +26,8 @@ const style = {
     display: "grid",
     gridTemplateColumns: "1fr min-content 1fr",
     gridGap: "var(--sl-spacing-medium)",
+    background: "var(--sl-color-neutral-0)",
+
     "@media screen and (max-width: 499px)": {
       gridTemplateColumns: "1fr",
     },

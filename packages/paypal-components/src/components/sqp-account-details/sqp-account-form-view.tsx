@@ -128,18 +128,26 @@ export function AccountFormView(props: AccountFormViewProps) {
     },
     ContentContainer: {
       marginBottom: "var(--sl-spacing-medium)",
+      background: "var(--sl-color-neutral-0)",
+    },
+    DescriptionText: {
+      margin: "0",
+      color: "var(--sl-color-500)",
+      fontSize: "var(--sl-font-size-medium)",
+      marginTop: "var(--sl-spacing-medium)",
     },
   };
 
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
+  const { classes } = sheet;
 
   return (
-    <div>
+    <div style={{ background: "var(--sl-color-neutral-0)" }}>
       <style type="text/css">{styleString}</style>
 
       <sl-dialog
-        class={sheet.classes.Dialog}
+        class={classes.Dialog}
         open={states.open}
         onSl-hide={() => callbacks.setOpen(false)}
       >
@@ -148,7 +156,7 @@ export function AccountFormView(props: AccountFormViewProps) {
             labelMargin: "x-large",
             padding: "none",
             label: (
-              <div class={sheet.classes.FormHeaderContainer}>
+              <div class={classes.FormHeaderContainer}>
                 <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665703368/tenant_test_a8b41jotf8a1v/tjfxf0qxu2lwqzgtcghw.svg" />
                 <h2>
                   {states.editingAccount
@@ -164,7 +172,7 @@ export function AccountFormView(props: AccountFormViewProps) {
               <div>
                 {states.error && (
                   <sqm-form-message
-                    class={sheet.classes.Error}
+                    class={classes.Error}
                     type="error"
                     exportparts="erroralert-icon"
                   >
@@ -173,7 +181,7 @@ export function AccountFormView(props: AccountFormViewProps) {
                 )}
                 {states.success && (
                   <sqm-form-message
-                    class={sheet.classes.Success}
+                    class={classes.Success}
                     type="success"
                     exportparts="successalert-icon"
                   >
@@ -182,7 +190,7 @@ export function AccountFormView(props: AccountFormViewProps) {
                     </div>
                   </sqm-form-message>
                 )}
-                <div class={sheet.classes.EditingFormContentContainer}>
+                <div class={classes.EditingFormContentContainer}>
                   <sl-input
                     exportparts="label: input-label"
                     name="/email"
@@ -194,7 +202,7 @@ export function AccountFormView(props: AccountFormViewProps) {
                     value="email@example.com"
                   ></sl-input>
                   <sl-button
-                    class={sheet.classes.FullWidthButton}
+                    class={classes.FullWidthButton}
                     type="primary"
                     submit
                     loading={states.loading}
@@ -214,7 +222,7 @@ export function AccountFormView(props: AccountFormViewProps) {
                       {formContent.disconnectAccountDescriptionText}
                     </p>
                     <sl-button
-                      class={sheet.classes.FullWidthButton}
+                      class={classes.FullWidthButton}
                       onClick={callbacks.disconnect}
                     >
                       {formContent.disconnectAccountButtonText}
@@ -226,7 +234,7 @@ export function AccountFormView(props: AccountFormViewProps) {
               <div>
                 {states.error && (
                   <sqm-form-message
-                    class={sheet.classes.Error}
+                    class={classes.Error}
                     type="error"
                     exportparts="erroralert-icon"
                   >
@@ -235,7 +243,7 @@ export function AccountFormView(props: AccountFormViewProps) {
                 )}
                 {states.success && (
                   <sqm-form-message
-                    class={sheet.classes.Success}
+                    class={classes.Success}
                     type="success"
                     exportparts="successalert-icon"
                   >
@@ -248,7 +256,7 @@ export function AccountFormView(props: AccountFormViewProps) {
                   onSl-submit={callbacks.submit}
                   ref={(el: HTMLFormElement) => (props.formRef.current = el)}
                 >
-                  <div class={sheet.classes.InputContainer}>
+                  <div class={classes.InputContainer}>
                     <sl-input
                       exportparts="label: input-label"
                       name="/email"
@@ -268,9 +276,9 @@ export function AccountFormView(props: AccountFormViewProps) {
                     ></sl-input>
                   </div>
 
-                  <div class={sheet.classes.ButtonContainer}>
+                  <div class={classes.ButtonContainer}>
                     <sl-button
-                      class={sheet.classes.ConnectPayPalAccount}
+                      class={classes.ConnectPayPalAccount}
                       type="primary"
                       submit
                       loading={states.loading}
@@ -278,7 +286,7 @@ export function AccountFormView(props: AccountFormViewProps) {
                       {formContent.submitPayPalAccountButtonText}
                     </sl-button>
                     <sl-button
-                      class={sheet.classes.CancelButton}
+                      class={classes.CancelButton}
                       type="text"
                       onClick={() => callbacks.setOpen(false)}
                     >
@@ -298,14 +306,14 @@ export function AccountFormView(props: AccountFormViewProps) {
           padding: "none",
           label: (
             <div>
-              <div class={sheet.classes.HeaderContainer}>
-                <div class={sheet.classes.TitleContainer}>
+              <div class={classes.HeaderContainer}>
+                <div class={classes.TitleContainer}>
                   <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665703368/tenant_test_a8b41jotf8a1v/tjfxf0qxu2lwqzgtcghw.svg" />
                   <h2>{formContent.payPalAccountHeaderText}</h2>
                 </div>
                 {!integrationDisabled && props.hasAccount && (
                   <sl-button
-                    class={sheet.classes.EditButton}
+                    class={classes.EditButton}
                     disabled={states.loading}
                     onClick={(e) => {
                       e.preventDefault();
@@ -317,12 +325,14 @@ export function AccountFormView(props: AccountFormViewProps) {
                 )}
               </div>
               {!integrationDisabled && (
-                <p>{formContent.connectPayPalDescriptionText}</p>
+                <p class={classes.DescriptionText}>
+                  {formContent.connectPayPalDescriptionText}
+                </p>
               )}
             </div>
           ),
           content: (
-            <div class={sheet.classes.ContentContainer}>
+            <div class={classes.ContentContainer}>
               {integrationDisabled && (
                 <sl-alert open type="primary">
                   <sl-icon slot="icon" name="info-circle"></sl-icon>
