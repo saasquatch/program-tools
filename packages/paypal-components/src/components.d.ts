@@ -173,6 +173,34 @@ export namespace Components {
          */
         "successMessage": string;
     }
+    interface SqpAccountStuff {
+        /**
+          * @undocumented
+         */
+        "hasAccount": boolean;
+        /**
+          * @undocumented
+         */
+        "integrationDisabled": boolean;
+        /**
+          * @undocumented
+         */
+        "loading": boolean;
+        /**
+          * @undocumented
+         */
+        "overviewContent": any;
+        /**
+          * @undocumented
+         */
+        "setOpen": (open: boolean) => void;
+    }
+    interface SqpGraphqlClientProvider {
+        /**
+          * @uiName Domain
+         */
+        "domain": string;
+    }
     interface SqpHookStoryContainer {
         "hookStory": FunctionalComponent;
     }
@@ -327,6 +355,18 @@ declare global {
         prototype: HTMLSqpAccountDetailsElement;
         new (): HTMLSqpAccountDetailsElement;
     };
+    interface HTMLSqpAccountStuffElement extends Components.SqpAccountStuff, HTMLStencilElement {
+    }
+    var HTMLSqpAccountStuffElement: {
+        prototype: HTMLSqpAccountStuffElement;
+        new (): HTMLSqpAccountStuffElement;
+    };
+    interface HTMLSqpGraphqlClientProviderElement extends Components.SqpGraphqlClientProvider, HTMLStencilElement {
+    }
+    var HTMLSqpGraphqlClientProviderElement: {
+        prototype: HTMLSqpGraphqlClientProviderElement;
+        new (): HTMLSqpGraphqlClientProviderElement;
+    };
     interface HTMLSqpHookStoryContainerElement extends Components.SqpHookStoryContainer, HTMLStencilElement {
     }
     var HTMLSqpHookStoryContainerElement: {
@@ -366,6 +406,8 @@ declare global {
     interface HTMLElementTagNameMap {
         "sqm-titled-section": HTMLSqmTitledSectionElement;
         "sqp-account-details": HTMLSqpAccountDetailsElement;
+        "sqp-account-stuff": HTMLSqpAccountStuffElement;
+        "sqp-graphql-client-provider": HTMLSqpGraphqlClientProviderElement;
         "sqp-hook-story-container": HTMLSqpHookStoryContainerElement;
         "sqp-rewards-cell": HTMLSqpRewardsCellElement;
         "sqp-rewards-column": HTMLSqpRewardsColumnElement;
@@ -537,6 +579,34 @@ declare namespace LocalJSX {
          */
         "successMessage"?: string;
     }
+    interface SqpAccountStuff {
+        /**
+          * @undocumented
+         */
+        "hasAccount"?: boolean;
+        /**
+          * @undocumented
+         */
+        "integrationDisabled"?: boolean;
+        /**
+          * @undocumented
+         */
+        "loading"?: boolean;
+        /**
+          * @undocumented
+         */
+        "overviewContent"?: any;
+        /**
+          * @undocumented
+         */
+        "setOpen"?: (open: boolean) => void;
+    }
+    interface SqpGraphqlClientProvider {
+        /**
+          * @uiName Domain
+         */
+        "domain"?: string;
+    }
     interface SqpHookStoryContainer {
         "hookStory"?: FunctionalComponent;
     }
@@ -675,6 +745,8 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "sqm-titled-section": SqmTitledSection;
         "sqp-account-details": SqpAccountDetails;
+        "sqp-account-stuff": SqpAccountStuff;
+        "sqp-graphql-client-provider": SqpGraphqlClientProvider;
         "sqp-hook-story-container": SqpHookStoryContainer;
         "sqp-rewards-cell": SqpRewardsCell;
         "sqp-rewards-column": SqpRewardsColumn;
@@ -689,6 +761,8 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
             "sqp-account-details": LocalJSX.SqpAccountDetails & JSXBase.HTMLAttributes<HTMLSqpAccountDetailsElement>;
+            "sqp-account-stuff": LocalJSX.SqpAccountStuff & JSXBase.HTMLAttributes<HTMLSqpAccountStuffElement>;
+            "sqp-graphql-client-provider": LocalJSX.SqpGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqpGraphqlClientProviderElement>;
             "sqp-hook-story-container": LocalJSX.SqpHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqpHookStoryContainerElement>;
             "sqp-rewards-cell": LocalJSX.SqpRewardsCell & JSXBase.HTMLAttributes<HTMLSqpRewardsCellElement>;
             "sqp-rewards-column": LocalJSX.SqpRewardsColumn & JSXBase.HTMLAttributes<HTMLSqpRewardsColumnElement>;

@@ -186,13 +186,22 @@ export class PaypalAccountDetails {
           hasAccount={props.hasAccount}
           integrationDisabled={props.integrationDisabled}
         />
-        <AccountDetailsView
+        <sqp-graphql-client-provider domain="https://13d8-75-157-214-84.ngrok.io/graphql">
+          <sqp-account-stuff
+            hasAccount={props.hasAccount}
+            loading={props.states.loading}
+            overviewContent={props.overviewContent}
+            setOpen={props.callbacks.setOpen}
+            integrationDisabled={props.integrationDisabled}
+          />
+        </sqp-graphql-client-provider>
+        {/* <AccountDetailsView
           loading={props.states.loading}
           hasAccount={props.hasAccount}
           overviewContent={props.overviewContent}
           setOpen={props.callbacks.setOpen}
           integrationDisabled={props.integrationDisabled}
-        ></AccountDetailsView>
+        ></AccountDetailsView> */}
       </Host>
     );
   }

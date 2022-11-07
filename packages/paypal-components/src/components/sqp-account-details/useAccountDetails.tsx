@@ -34,6 +34,24 @@ const SUBMIT_ACCOUNT = gql`
   }
 `;
 
+const NEXT_PAYOUT_QUERY = gql`
+  query nextPayoutDetails {
+    nextPayoutDetails {
+      totals {
+        currencyCode
+        value
+      }
+      baseUnitBalances {
+        baseUnit
+        balances {
+          currencyCode
+          value
+        }
+      }
+    }
+  }
+`;
+
 export function useAccountDetails(props) {
   const formRef = useRef<HTMLFormElement>(null);
   const [error, setError] = useState("");
@@ -45,14 +63,9 @@ export function useAccountDetails(props) {
   // TODO: remove this
   useEffect(() => {
     setUserIdentity({
-      jwt: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJaR1Z5WldzdWMybGxiV1Z1Y3l0MGNFQnlaV1psY25KaGJITmhZWE54ZFdGMFkyZ3VZMjl0OlpHVnlaV3N1YzJsbGJXVnVjeXQwY0VCeVpXWmxjbkpoYkhOaFlYTnhkV0YwWTJndVkyOXRAdGVzdF9hNjM3c3JubmI0OGE0OnVzZXJzIiwidXNlciI6eyJpZCI6ImRlcmVrLnNpZW1lbnMrdHBAcmVmZXJyYWxzYWFzcXVhdGNoLmNvbSIsImFjY291bnRJZCI6ImRlcmVrLnNpZW1lbnMrdHBAcmVmZXJyYWxzYWFzcXVhdGNoLmNvbSIsImRhdGVCbG9ja2VkIjpudWxsfX0.1mraInmrItlrm2lHkUVFgsI8U7iUjrzBNMlWQ4QTbWc",
-      id: "derek.siemens+tp@referralsaasquatch.com",
-      accountId: "derek.siemens+tp@referralsaasquatch.com",
-      managedIdentity: {
-        email: "derek.siemens+tp@referralsaasquatch.com",
-        emailVerified: true,
-        sessionData: {},
-      },
+      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtKzIwQHNhYXNxdWF0LmNoIiwiYWNjb3VudElkIjoic2FtKzIwQHNhYXNxdWF0LmNoIiwiZW1haWwiOiJzYW0rMjBAc2Fhc3F1YXQuY2gifX0.1b8tjushS1Dq5Suc-EY7WmasP9v5XX2Fa997y-CH2i4",
+      id: "sam+20@saasquat.ch",
+      accountId: "sam+20@saasquat.ch",
     });
   }, []);
 
@@ -60,7 +73,7 @@ export function useAccountDetails(props) {
     useMutation(SUBMIT_ACCOUNT);
 
   const { refresh } = useRefreshDispatcher();
-  console.log({ data });
+  // console.log({ data });
   const { accountId, id } = useUserIdentity() || { accountId: null, id: null };
 
   const submit = async (event: any) => {
@@ -119,9 +132,12 @@ export function useAccountDetails(props) {
     }
   };
 
+  console.log({ data });
+
   return {
     formRef,
     integrationDisabled: false,
+    // @ts-ignore
     hasAccount: !!data?.viewer?.customFields?.paypalEmail,
     callbacks: { submit, setOpen: openModal, disconnect },
     states: {
@@ -138,6 +154,8 @@ export function useAccountDetails(props) {
       editText: props.editText,
     },
     formContent: {
+      // @ts-ignore
+      paypalEmail: data?.viewer?.customFields?.paypalEmail,
       modalConnectPayPalAccountHeader: props.modalConnectPayPalAccountHeader,
       cancelText: props.cancelText,
       connectPayPalAccountButtonText: props.connectPayPalAccountButtonText,

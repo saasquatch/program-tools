@@ -134,6 +134,8 @@ export function AccountFormView(props: AccountFormViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
+  console.log({ editingAccount: states.editingAccount });
+
   return (
     <div>
       <style type="text/css">{styleString}</style>
@@ -191,7 +193,7 @@ export function AccountFormView(props: AccountFormViewProps) {
                     disabled={true}
                     help-text={formContent.payPalEmailLabelHelpText}
                     type="email"
-                    value="email@example.com"
+                    value={"email@example.com"}
                   ></sl-input>
                   <sl-button
                     class={sheet.classes.FullWidthButton}
