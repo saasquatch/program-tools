@@ -102,6 +102,12 @@ export const ButtonDiv = css`
   text-indent: 0px;
   padding: 2px 4px 0px;
 
+  & svg {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   & > :not(:last-child) {
     margin-right: var(--sq-spacing-xx-small);
   }
