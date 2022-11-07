@@ -81,9 +81,11 @@ const DataTableDiv = styled.div<Required<StyleProps>>`
 `;
 
 const EmptyDataDiv = styled(DataDiv)`
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 export const DataTableView = React.forwardRef<
@@ -97,18 +99,8 @@ export const DataTableView = React.forwardRef<
     empty = false,
     loading = false,
     emptyFilter = false,
-    emptyGraphic = (
-      <>
-        {DataGraphic}
-        <br />
-      </>
-    ),
-    emptyFilterGraphic = (
-      <>
-        {DataGraphic}
-        <br />
-      </>
-    ),
+    emptyGraphic = DataGraphic,
+    emptyFilterGraphic = DataGraphic,
     emptyContent = "No submission found",
     emptyFilterContent = "No submissions that meet your filter criteria",
     headerSlot = <></>,
