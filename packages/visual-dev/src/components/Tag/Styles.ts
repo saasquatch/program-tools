@@ -38,4 +38,9 @@ export const iconSegment = css`
     fill: var(--sq-text-dark);
     cursor: pointer;
   }
+  & svg {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
