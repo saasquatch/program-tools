@@ -173,7 +173,16 @@ export namespace Components {
          */
         "successMessage": string;
     }
-    interface SqpAccountStuff {
+    interface SqpGraphqlClientProvider {
+        /**
+          * @uiName Domain
+         */
+        "domain": string;
+    }
+    interface SqpHookStoryContainer {
+        "hookStory": FunctionalComponent;
+    }
+    interface SqpPaypalDetails {
         /**
           * @undocumented
          */
@@ -194,15 +203,6 @@ export namespace Components {
           * @undocumented
          */
         "setOpen": (open: boolean) => void;
-    }
-    interface SqpGraphqlClientProvider {
-        /**
-          * @uiName Domain
-         */
-        "domain": string;
-    }
-    interface SqpHookStoryContainer {
-        "hookStory": FunctionalComponent;
     }
     interface SqpRewardsCell {
         "expiringText": string;
@@ -355,12 +355,6 @@ declare global {
         prototype: HTMLSqpAccountDetailsElement;
         new (): HTMLSqpAccountDetailsElement;
     };
-    interface HTMLSqpAccountStuffElement extends Components.SqpAccountStuff, HTMLStencilElement {
-    }
-    var HTMLSqpAccountStuffElement: {
-        prototype: HTMLSqpAccountStuffElement;
-        new (): HTMLSqpAccountStuffElement;
-    };
     interface HTMLSqpGraphqlClientProviderElement extends Components.SqpGraphqlClientProvider, HTMLStencilElement {
     }
     var HTMLSqpGraphqlClientProviderElement: {
@@ -372,6 +366,12 @@ declare global {
     var HTMLSqpHookStoryContainerElement: {
         prototype: HTMLSqpHookStoryContainerElement;
         new (): HTMLSqpHookStoryContainerElement;
+    };
+    interface HTMLSqpPaypalDetailsElement extends Components.SqpPaypalDetails, HTMLStencilElement {
+    }
+    var HTMLSqpPaypalDetailsElement: {
+        prototype: HTMLSqpPaypalDetailsElement;
+        new (): HTMLSqpPaypalDetailsElement;
     };
     interface HTMLSqpRewardsCellElement extends Components.SqpRewardsCell, HTMLStencilElement {
     }
@@ -406,9 +406,9 @@ declare global {
     interface HTMLElementTagNameMap {
         "sqm-titled-section": HTMLSqmTitledSectionElement;
         "sqp-account-details": HTMLSqpAccountDetailsElement;
-        "sqp-account-stuff": HTMLSqpAccountStuffElement;
         "sqp-graphql-client-provider": HTMLSqpGraphqlClientProviderElement;
         "sqp-hook-story-container": HTMLSqpHookStoryContainerElement;
+        "sqp-paypal-details": HTMLSqpPaypalDetailsElement;
         "sqp-rewards-cell": HTMLSqpRewardsCellElement;
         "sqp-rewards-column": HTMLSqpRewardsColumnElement;
         "sqp-status-cell": HTMLSqpStatusCellElement;
@@ -579,7 +579,16 @@ declare namespace LocalJSX {
          */
         "successMessage"?: string;
     }
-    interface SqpAccountStuff {
+    interface SqpGraphqlClientProvider {
+        /**
+          * @uiName Domain
+         */
+        "domain"?: string;
+    }
+    interface SqpHookStoryContainer {
+        "hookStory"?: FunctionalComponent;
+    }
+    interface SqpPaypalDetails {
         /**
           * @undocumented
          */
@@ -600,15 +609,6 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "setOpen"?: (open: boolean) => void;
-    }
-    interface SqpGraphqlClientProvider {
-        /**
-          * @uiName Domain
-         */
-        "domain"?: string;
-    }
-    interface SqpHookStoryContainer {
-        "hookStory"?: FunctionalComponent;
     }
     interface SqpRewardsCell {
         "expiringText"?: string;
@@ -745,9 +745,9 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "sqm-titled-section": SqmTitledSection;
         "sqp-account-details": SqpAccountDetails;
-        "sqp-account-stuff": SqpAccountStuff;
         "sqp-graphql-client-provider": SqpGraphqlClientProvider;
         "sqp-hook-story-container": SqpHookStoryContainer;
+        "sqp-paypal-details": SqpPaypalDetails;
         "sqp-rewards-cell": SqpRewardsCell;
         "sqp-rewards-column": SqpRewardsColumn;
         "sqp-status-cell": SqpStatusCell;
@@ -761,9 +761,9 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
             "sqp-account-details": LocalJSX.SqpAccountDetails & JSXBase.HTMLAttributes<HTMLSqpAccountDetailsElement>;
-            "sqp-account-stuff": LocalJSX.SqpAccountStuff & JSXBase.HTMLAttributes<HTMLSqpAccountStuffElement>;
             "sqp-graphql-client-provider": LocalJSX.SqpGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqpGraphqlClientProviderElement>;
             "sqp-hook-story-container": LocalJSX.SqpHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqpHookStoryContainerElement>;
+            "sqp-paypal-details": LocalJSX.SqpPaypalDetails & JSXBase.HTMLAttributes<HTMLSqpPaypalDetailsElement>;
             "sqp-rewards-cell": LocalJSX.SqpRewardsCell & JSXBase.HTMLAttributes<HTMLSqpRewardsCellElement>;
             "sqp-rewards-column": LocalJSX.SqpRewardsColumn & JSXBase.HTMLAttributes<HTMLSqpRewardsColumnElement>;
             "sqp-status-cell": LocalJSX.SqpStatusCell & JSXBase.HTMLAttributes<HTMLSqpStatusCellElement>;

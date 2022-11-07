@@ -83,31 +83,36 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
 
   @Method()
   async renderCell(data: Reward, locale: string, mintRenderer) {
-    return mintRenderer("sqp-status-cell", {
-      statusText: this.statusText,
-      reward: data,
-      expiryText: this.expiryText,
-      pendingScheduled: this.pendingScheduled,
-      pendingUsTax: this.pendingUsTax,
-      pendingUnhandled: this.pendingUnhandled,
-      locale: locale,
-      rewardPaidOutText: this.rewardPaidOutText,
-      rewardPayoutInProgressText: this.rewardPayoutInProgressText,
-      rewardPayoutFailedText: this.rewardPayoutFailedText,
-    });
+    if (mintRenderer) {
+      return mintRenderer("sqp-status-cell", {
+        statusText: this.statusText,
+        reward: data,
+        expiryText: this.expiryText,
+        pendingScheduled: this.pendingScheduled,
+        pendingUsTax: this.pendingUsTax,
+        pendingUnhandled: this.pendingUnhandled,
+        locale: locale,
+        rewardPaidOutText: this.rewardPaidOutText,
+        rewardPayoutInProgressText: this.rewardPayoutInProgressText,
+        rewardPayoutFailedText: this.rewardPayoutFailedText,
+      });
+    } else {
+      return (
+        <sqp-status-cell
+          statusText={this.statusText}
+          reward={data}
+          expiryText={this.expiryText}
+          pendingScheduled={this.pendingScheduled}
+          pendingUsTax={this.pendingUsTax}
+          pendingUnhandled={this.pendingUnhandled}
+          locale={locale}
+          rewardPaidOutText={this.rewardPaidOutText}
+          rewardPayoutInProgressText={this.rewardPayoutInProgressText}
+          rewardPayoutFailedText={this.rewardPayoutFailedText}
+        ></sqp-status-cell>
+      );
+    }
   }
-  // <sqp-status-cell
-  //   statusText={this.statusText}
-  //   reward={data}
-  //   expiryText={this.expiryText}
-  //   pendingScheduled={this.pendingScheduled}
-  //   pendingUsTax={this.pendingUsTax}
-  //   pendingUnhandled={this.pendingUnhandled}
-  //   locale={locale}
-  //   rewardPaidOutText={this.rewardPaidOutText}
-  //   rewardPayoutInProgressText={this.rewardPayoutInProgressText}
-  //   rewardPayoutFailedText={this.rewardPayoutFailedText}
-  // ></sqp-status-cell>
 
   @Method()
   async renderLabel() {

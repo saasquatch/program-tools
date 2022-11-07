@@ -187,7 +187,7 @@ export class PaypalAccountDetails {
           integrationDisabled={props.integrationDisabled}
         />
         <sqp-graphql-client-provider domain="https://13d8-75-157-214-84.ngrok.io/graphql">
-          <sqp-account-stuff
+          <sqp-paypal-details
             hasAccount={props.hasAccount}
             loading={props.states.loading}
             overviewContent={props.overviewContent}

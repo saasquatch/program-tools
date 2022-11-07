@@ -10,7 +10,7 @@ import { usePayPalDetails } from "./usePaypalDetails";
  * @undocumented
  */
 @Component({
-  tag: "sqp-account-stuff",
+  tag: "sqp-paypal-details",
   shadow: true,
 })
 export class PaypalAccountDetails {

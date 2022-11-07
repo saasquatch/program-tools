@@ -8,7 +8,7 @@
     />
     <title>Paypal Components</title>
     <script src="https://fast.ssqt.io/npm/@samsquatch/vanilla-components@latest/dist/widget-components.js"></script>
-    <script src="https://fast.ssqt.io/npm/@saasquatch/mint-components@next/dist/mint-components/mint-components.js"></script>
+    <script src="https://fast.ssqt.io/npm/@saasquatch/mint-components@1.6.5-12/dist/mint-components/mint-components.js"></script>
     <script src="build/paypal-components.js"></script>
   </head>
   <body>
@@ -18,9 +18,54 @@
         appDomain: "https://staging.referralsaasquatch.com",
       };
     </script>
-    <sqp-account-details></sqp-account-details>
+    <!-- <sqp-account-details></sqp-account-details>
+    <sqm-rewards-table
+      per-page="4"
+      program-id
+      hidden-columns="0"
+      more-label="Next"
+      prev-label="Prev"
+      sm-breakpoint="599"
+      md-breakpoint="799"
+    >
+      <sqm-rewards-table-reward-column
+        available-text="{availableAmount} remaining"
+        column-title="Reward"
+        copy-text="Copied!"
+        redeemed-text="{redeemedAmount} redeemed"
+      >
+      </sqm-rewards-table-reward-column>
+      <sqm-rewards-table-source-column
+        anonymous-user="Anonymous User"
+        column-title="Source"
+        deleted-user="Deleted User"
+        referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}"
+        reward-exchange-text="Reward Exchange"
+        reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"
+      >
+      </sqm-rewards-table-source-column>
+      <sqm-rewards-table-status-column
+        column-title="Status"
+        expiry-text="Expires on "
+        status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+      >
+      </sqm-rewards-table-status-column>
+      <sqp-status-column column-title="Paypal Status"></sqp-status-column>
+      <sqm-rewards-table-date-column
+        column-title="Date received"
+        date-shown="dateGiven"
+      >
+      </sqm-rewards-table-date-column>
+      <sqm-empty
+        slot="empty"
+        empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png"
+        empty-state-header="View your rewards"
+        empty-state-text="Refer friends and complete tasks to view the details of your rewards"
+      >
+      </sqm-empty>
+    </sqm-rewards-table> -->
 
-    <!-- <sqp-stencilbook></sqp-stencilbook> -->
+    <sqp-stencilbook></sqp-stencilbook>
     <!-- <sqm-referral-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799">
       <sqm-referral-table-user-column column-title="User" anonymous-user="Anonymous User" deleted-user="Deleted User"> </sqm-referral-table-user-column>
       <sqm-referral-table-status-column column-title="Referral status" converted-status-text="Converted" in-progress-status-text="In Progress"> </sqm-referral-table-status-column>
