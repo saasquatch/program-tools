@@ -161,17 +161,18 @@ const DropdownContentDiv = styled("div")<
   ${Styles.ContentDiv}
   border-radius: ${(props) => props.borderRadius};
 
-  ${(props) => props.popUpwards && `top: 2px; transform: translateY(-100%);`}
+  ${(props) =>
+    props.popUpwards &&
+    `top: 2px; transform: translateY(calc(-100% + -1*var(--sq-spacing-x-small)));`}
 
   ${(props) =>
     !props.pill &&
-    (props.popUpwards ? `border-bottom: none;` : `border-top: none;`)}
+    (props.popUpwards
+      ? `border-bottom: none;`
+      : `border-top: none; transform: translateY(-1px);`)}
 
   ${(props) =>
-    props.pill &&
-    (props.popUpwards
-      ? "margin-bottom: var(--sq-spacing-x-small)"
-      : "margin-top: var(--sq-spacing-x-small)")}
+    props.pill && !props.popUpwards && "margin-top: var(--sq-spacing-x-small);"}
 `;
 
 const DropdownItemDiv = styled("div")<Required<StyleProps>>`
