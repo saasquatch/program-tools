@@ -93,16 +93,66 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    */
   @Prop() hideDetails: boolean = false;
 
-  // TODO: all of these need to be implemented
-  // | succeeded PayPal payout reward         | Paid out on {dateLastUpdated from the customMeta}.                                                                                                                   |
-  // | Failed PayPal payout reward            | This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on {dateLastAttempted from the customMeta}. |
-  // | Pending PayPal payout reward           | Payout process started on {dateLastUpdated from the customMeta}.                                                                                                     |
-  // | Unclaimed PayPal payout reward         | The email you provided does not link to an exisiting PayPal account. Payout expires on {dateLastUpdated + 30 days from the customMeta}.                              |
-  // | On hold PayPal payout reward           | Payout on hold and in review since {dadateLastUpdated from the customMetateLastUpdated}.                                                                             |
-  // | Refunded PayPal payout reward          | Payout refunded on {dateLastUpdated from the customMeta}                                                                                                             |
-  // | Returned PayPal payout reward          | The email you provided does not link to an exisiting PayPal account. Payout expired on {dateLastUpdated + 30 days from the customMeta}.                              |
-  // | Reversed PayPal payout reward          | Payout reversed on {dateLastUpdated from the customMeta}                                                                                                             |
-  // | Blocked PayPal payout reward           | Payout blocked on {dateLastUpdated from the customMeta}                                                                                                              |
+  /**
+   * Shown in the dropdown details when a reward is pending.
+   *
+   * @uiName Reward Pending Text
+   */
+  @Prop() succeededStatusText: string = "Paid out on {date}.";
+
+  /**
+   * Shown in the dropdown details when a reward is pending.
+   *
+   * @uiName Reward Pending Text
+   */
+  @Prop() failedStatusText: string =
+    "This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on {date}.";
+
+  /**
+   * Shown in the dropdown details when a reward is pending.
+   *
+   * @uiName Reward Pending Text
+   */
+  @Prop() pendingStatusText: string = "Payout process started on {date}.";
+
+  /**
+   * Shown in the dropdown details when a reward is pending.
+   *
+   * @uiName Reward Pending Text
+   */
+  @Prop() unclaimedStatusText: string =
+    "The email you provided does not link to an exisitingPayPalaccount. Payout expires on {date}.";
+
+  /**
+   * Shown in the dropdown details when a reward is pending.
+   *
+   * @uiName Reward Pending Text
+   */
+  @Prop() onHolStatusText: string =
+    "Payout on hold and in review since {date}.";
+  @Prop() refundedStatusText: string = "Payout refunded on {date}.";
+
+  /**
+   * Shown in the dropdown details when a reward is pending.
+   *
+   * @uiName Reward Pending Text
+   */
+  @Prop() returnedStatusText: string =
+    "The email you provided does not link to an exisitingPayPalaccount. Payout expired on {date}.";
+
+  /**
+   * Shown in the dropdown details when a reward is pending.
+   *
+   * @uiName Reward Pending Text
+   */
+  @Prop() reversedStatusText: string = "Payout reversed on {date}.";
+
+  /**
+   * Shown in the dropdown details when a reward is pending.
+   *
+   * @uiName Reward Pending Text
+   */
+  @Prop() blockedStatusText: string = "Payout blocked on {date}.";
 
   constructor() {
     withHooks(this);
