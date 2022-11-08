@@ -180,6 +180,9 @@ export function useAccountDetails(props) {
     overviewContent: {
       detailsLabel: props.detailsLabel,
       scheduleLabel: props.scheduleLabel,
+      otherCurrenciesLabel: props.otherCurrenciesLabel,
+      w9TaxLabel: props.w9TaxLabel,
+      upcomingPaymentLabel: props.upcomingPaymentLabel,
       detailsContent: <Upcoming />,
       ScheduleContent: [<Default />],
     },

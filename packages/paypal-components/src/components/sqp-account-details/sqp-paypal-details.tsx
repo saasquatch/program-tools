@@ -48,7 +48,7 @@ export class PaypalAccountDetails {
   disconnectedCallback() {}
   render() {
     const componentProps = getProps(this);
-    const props = usePayPalDetails();
+    const props = usePayPalDetails(componentProps);
 
     console.log({ componentProps });
 

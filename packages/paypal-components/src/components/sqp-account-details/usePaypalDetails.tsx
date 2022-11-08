@@ -4,6 +4,7 @@ import accounting from "accounting";
 import { gql } from "graphql-request";
 import { DateTime } from "luxon";
 import { DetailsCardViewProps } from "./sqp-details-card-view";
+import { PaypalAccountDetails } from "./sqp-paypal-details";
 import { ScheduleCardView } from "./sqp-schedule-card-view";
 const NEXT_PAYOUT_QUERY = gql`
   query userPaymentPreview {
@@ -54,7 +55,7 @@ const NEXT_PAYOUT_QUERY = gql`
   }
 `;
 
-export function usePayPalDetails() {
+export function usePayPalDetails(props: PaypalAccountDetails) {
   const { data: nextPayoutData, loading } = useQuery(NEXT_PAYOUT_QUERY, {});
 
   console.log({ nextPayoutData });
@@ -93,13 +94,13 @@ export function usePayPalDetails() {
     mainCurrency,
     // TODO: figure out where this comes from
     status: "upcoming",
-    // TODO: text should probably come from parent component
-    statusBadgeText: "Upcoming",
+
+    statusBadgeText: props.overviewContent.upcomingPaymentLabel,
     detailedStatusText: nextPayout?.date
       ? DateTime.fromMillis(nextPayout?.date).toFormat("LLL dd, yyyy")
       : "-",
-    otherCurrenciesText: "other currencies",
-    w9PendingText: "Awaiting W-9 tax form",
+    otherCurrenciesText: props.overviewContent.otherCurrenciesLabel,
+    w9PendingText: props.overviewContent.w9TaxLabel,
     otherCurrencies,
     w9Pending,
   };
@@ -135,7 +136,7 @@ export function usePayPalDetails() {
         loading,
         statusText: DateTime.fromMillis(bucket?.date).toFormat("LLL dd, yyyy"),
         otherCurrenciesText: hasOtherCurrencies
-          ? `${otherCurrencies.length} other currencies`
+          ? `${otherCurrencies.length} ${props.overviewContent.otherCurrenciesLabel}`
           : "",
         mainCurrency,
       };

@@ -48,6 +48,21 @@ export class PaypalAccountDetails {
    */
   @Prop() nextPaymentLabel: string = "Next payment";
   /**
+   * @uiName Other Currencies Label
+   * @uiGroup Details
+   */
+  @Prop() otherCurrenciesLabel: string = "other currencies";
+  /**
+   * @uiName W9 Tax Label
+   * @uiGroup Details
+   */
+  @Prop() w9TaxLabel: string = "Awaiting W-9 tax form";
+  /**
+   * @uiName  Upcoming Payment Label
+   * @uiGroup Details
+   */
+  @Prop() upcomingPaymentLabel: string = "Upcoming";
+  /**
    * @uiName Edit Text
    * @uiGroup Details
    */
@@ -257,6 +272,9 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
       overviewContent: {
         detailsLabel: props.detailsLabel,
         scheduleLabel: props.scheduleLabel,
+        otherCurrenciesLabel: props.otherCurrenciesLabel,
+        w9TaxLabel: props.w9TaxLabel,
+        upcomingPaymentLabel: props.upcomingPaymentLabel,
         detailsContent: <Upcoming />,
         ScheduleContent: [<Default />],
       },

@@ -138,6 +138,11 @@ export namespace Components {
          */
         "nextPaymentLabel": string;
         /**
+          * @uiName Other Currencies Label
+          * @uiGroup Details
+         */
+        "otherCurrenciesLabel": string;
+        /**
           * @uiName Header Text
           * @uiGroup Connect
          */
@@ -172,6 +177,16 @@ export namespace Components {
           * @uiGroup Form
          */
         "successMessage": string;
+        /**
+          * @uiName Upcoming Payment Label
+          * @uiGroup Details
+         */
+        "upcomingPaymentLabel": string;
+        /**
+          * @uiName W9 Tax Label
+          * @uiGroup Details
+         */
+        "w9TaxLabel": string;
     }
     interface SqpGraphqlClientProvider {
         /**
@@ -544,6 +559,11 @@ declare namespace LocalJSX {
          */
         "nextPaymentLabel"?: string;
         /**
+          * @uiName Other Currencies Label
+          * @uiGroup Details
+         */
+        "otherCurrenciesLabel"?: string;
+        /**
           * @uiName Header Text
           * @uiGroup Connect
          */
@@ -578,6 +598,16 @@ declare namespace LocalJSX {
           * @uiGroup Form
          */
         "successMessage"?: string;
+        /**
+          * @uiName Upcoming Payment Label
+          * @uiGroup Details
+         */
+        "upcomingPaymentLabel"?: string;
+        /**
+          * @uiName W9 Tax Label
+          * @uiGroup Details
+         */
+        "w9TaxLabel"?: string;
     }
     interface SqpGraphqlClientProvider {
         /**
