@@ -125,25 +125,47 @@ export class ReferralTableRewardsCell {
       return possibleStates.find((state) => states.includes(state) && state);
     };
 
-    const getSLBadgeType = (state: string): string => {
-      switch (state) {
-        case "REDEEMED":
-          return "primary";
-        case "TRANSFERRED":
-          return "primary";
-        case "INPROGRESS":
-          return "warning";
-        case "FAILED":
-          return "danger";
-        case "EXPIRED":
-          return "danger";
-        case "CANCELLED":
-          return "danger";
-        case "PENDING":
-          return "warning";
-        case "AVAILABLE":
-          return "success";
-      }
+    // switch (state) {
+    //   case "REDEEMED":
+    //     return "primary";
+    //   case "TRANSFERRED":
+    //     return "primary";
+    //   case "INPROGRESS":
+    //     return "warning";
+    //   case "FAILED":
+    //     return "danger";
+    //   case "EXPIRED":
+    //     return "danger";
+    //   case "CANCELLED":
+    //     return "danger";
+    //   case "PENDING":
+    //     return "warning";
+    //   case "AVAILABLE":
+    //     return "success";
+    // }
+
+    const getSLBadgeType = (state: string, hasMeta: boolean): string => {
+      const badgeType = hasMeta
+        ? state === "SUCCESS"
+          ? "primary"
+          : state === "FAILED"
+          ? "danger"
+          : state === "PENDING" || state === "UNCLAIMED" || state === "ONHOLD"
+          ? "warning"
+          : state === "REFUNDED" ||
+            state === "RETURNED" ||
+            state === "REVERSED" ||
+            state === "BLOCKED"
+          ? "neutral"
+          : "danger"
+        : state === "AVAILABLE"
+        ? "success"
+        : state === "REDEEMED" || state === "TRANSFERRED"
+        ? "primary"
+        : state === "PENDING" || state === "INPROGRESS"
+        ? "warning"
+        : "danger";
+      return badgeType;
     };
 
     const getTimeDiff = (endTime: number): string => {
@@ -156,9 +178,11 @@ export class ReferralTableRewardsCell {
     };
 
     return this.rewards?.map((reward) => {
+      const hasMeta =
+        !!reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"];
       const state = getState(reward);
       const isPayPal = paypalStatuses.includes(state);
-      const slBadgeType = getSLBadgeType(state);
+      const slBadgeType = getSLBadgeType(state, hasMeta);
       const badgeText = intl.formatMessage(
         { id: "statusShortMessage", defaultMessage: this.statusText },
         {

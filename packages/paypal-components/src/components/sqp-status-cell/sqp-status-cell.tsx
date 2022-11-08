@@ -99,7 +99,15 @@ export class RewardTableStatusCell {
   render() {
     intl.locale = this.locale;
 
-    const rewardStatus = this.rewardStatus(this.reward);
+    // const rewardStatus = this.rewardStatus(this.reward);
+
+    const hasMeta =
+      !!this.reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"];
+
+    const rewardStatus =
+      this.reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"] ||
+      this.rewardStatus(this.reward);
+
     console.log({
       reward: this.reward,
       rewardStatus,
@@ -112,14 +120,39 @@ export class RewardTableStatusCell {
       }
     );
 
-    const badgeType =
-      rewardStatus === "AVAILABLE"
-        ? "success"
-        : rewardStatus === "REDEEMED" || rewardStatus === "TRANSFERRED"
+    // | SUCCESS   | Paid Out    | Blue       |
+    // | FAILED    | Failed      | Red        |
+    // | PENDING   | In progress | Orange     |
+    // | UNCLAIMED | Unclaimed   | Orange     |
+    // | ONHOLD    | In progress | Orange     |
+    // | REFUNDED  | Refunded    | grey       |
+    // | RETURNED  | Returned    | grey       |
+    // | REVERSED  | Reversed    | grey       |
+    // | BLOCKED   | Blocked     | grey       |
+
+    // const badgeType =
+    const badgeType = hasMeta
+      ? rewardStatus === "SUCCESS"
         ? "primary"
-        : rewardStatus === "PENDING" || rewardStatus === "INPROGRESS"
+        : rewardStatus === "FAILED"
+        ? "danger"
+        : rewardStatus === "PENDING" ||
+          rewardStatus === "UNCLAIMED" ||
+          rewardStatus === "ONHOLD"
         ? "warning"
-        : "danger";
+        : rewardStatus === "REFUNDED" ||
+          rewardStatus === "RETURNED" ||
+          rewardStatus === "REVERSED" ||
+          rewardStatus === "BLOCKED"
+        ? "neutral"
+        : "danger"
+      : rewardStatus === "AVAILABLE"
+      ? "success"
+      : rewardStatus === "REDEEMED" || rewardStatus === "TRANSFERRED"
+      ? "primary"
+      : rewardStatus === "PENDING" || rewardStatus === "INPROGRESS"
+      ? "warning"
+      : "danger";
 
     const dateShown =
       this.reward.dateCancelled ||

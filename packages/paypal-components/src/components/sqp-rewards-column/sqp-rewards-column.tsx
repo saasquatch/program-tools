@@ -7,7 +7,7 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
  * @uiName Referral Table Rewards Column
  * @validParents ["sqm-referral-table"]
  * @exampleGroup PayPal Components
- * @example Referral Table Rewards Column - <sqp-rewards-column column-title="Rewards" status-text="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}"></sqp-rewards-column>
+ * @example Referral Table Rewards Column - <sqp-rewards-column column-title="Rewards" status-text="{status, select, SUCCESS {Paid Out} FAILED {Failed} PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} other {Not available} }" status-long-text="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}"></sqp-rewards-column>
  */
 @Component({
   tag: "sqp-rewards-column",
@@ -26,7 +26,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    * @uiWidget textArea
    */
   @Prop() statusText: string =
-    "{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
+    "{status, select, SUCCESS {Paid Out} FAILED {Failed} PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} other {Not available} }";
 
   /**
    * Additional status text shown in the details drop down.
@@ -92,6 +92,17 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    * @default
    */
   @Prop() hideDetails: boolean = false;
+
+  // TODO: all of these need to be implemented
+  // | succeeded PayPal payout reward         | Paid out on {dateLastUpdated from the customMeta}.                                                                                                                   |
+  // | Failed PayPal payout reward            | This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on {dateLastAttempted from the customMeta}. |
+  // | Pending PayPal payout reward           | Payout process started on {dateLastUpdated from the customMeta}.                                                                                                     |
+  // | Unclaimed PayPal payout reward         | The email you provided does not link to an exisiting PayPal account. Payout expires on {dateLastUpdated + 30 days from the customMeta}.                              |
+  // | On hold PayPal payout reward           | Payout on hold and in review since {dadateLastUpdated from the customMetateLastUpdated}.                                                                             |
+  // | Refunded PayPal payout reward          | Payout refunded on {dateLastUpdated from the customMeta}                                                                                                             |
+  // | Returned PayPal payout reward          | The email you provided does not link to an exisiting PayPal account. Payout expired on {dateLastUpdated + 30 days from the customMeta}.                              |
+  // | Reversed PayPal payout reward          | Payout reversed on {dateLastUpdated from the customMeta}                                                                                                             |
+  // | Blocked PayPal payout reward           | Payout blocked on {dateLastUpdated from the customMeta}                                                                                                              |
 
   constructor() {
     withHooks(this);
