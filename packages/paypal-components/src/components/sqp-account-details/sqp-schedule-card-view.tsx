@@ -36,6 +36,7 @@ const style = {
   },
   MainCurrency: {
     fontSize: "18px",
+    margin: "0px",
   },
   Container: {
     display: "flex",
