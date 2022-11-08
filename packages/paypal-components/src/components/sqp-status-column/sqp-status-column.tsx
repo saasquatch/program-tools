@@ -27,14 +27,14 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
     "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} EXPIRED {Expired} REDEEMED {Redeemed} SUCCESS {Paid Out} FAILED {Failed} PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} other {Not available} }";
 
   /**
-   * Shown in the dropdown details when a reward has been paid out.
+   * Displayed below the status pill when a reward has been paid out.
    *
    * @uiName Reward Paid Out Text
    */
   @Prop() rewardPaidOutText: string = "Paid out on {date}.";
 
   /**
-   * Shown in the dropdown details when a reward is being paid out.
+   * Displayed below the status pill when a reward is being paid out.
    *
    * @uiName Reward Payout In Progress Text
    */
@@ -42,7 +42,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
     "Payout processing started on {date}.";
 
   /**
-   * Shown in the dropdown details when a reward payout has failed.
+   * Displayed below the status pill when a reward payout has failed.
    *
    * @uiName Reward Payout Failed Text
    */
@@ -50,7 +50,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
     "This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on {date}.";
 
   /**
-   * Shown in the dropdown details when a reward was paid out but is unclaimed.
+   * Displayed below the status pill when a reward was paid out but is unclaimed.
    *
    * @uiName Reward Unclaimed Text
    */
@@ -58,7 +58,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
     "The email you provided does not link to an exisitingPayPalaccount. Payout expires on {date}.";
 
   /**
-   * Shown in the dropdown details when a reward was placed on hold during payout.
+   * Displayed below the status pill when a reward was placed on hold during payout.
    *
    * @uiName Reward On Hold Text
    */
@@ -66,14 +66,14 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
     "Payout on hold and in review since {date}.";
 
   /**
-   * Shown in the dropdown details when a reward was refunded after payout.
+   * Displayed below the status pill when a reward was refunded after payout.
    *
    * @uiName Reward Refunded Text
    */
   @Prop() rewardRefundedText: string = "Payout refunded on {date}.";
 
   /**
-   * Shown in the dropdown details when a reward was returned after payout.
+   * Displayed below the status pill when a reward was returned after payout.
    *
    * @uiName Reward Returned Text
    */
@@ -81,14 +81,14 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
     "The email you provided does not link to an exisitingPayPalaccount. Payout expired on {date}.";
 
   /**
-   * Shown in the dropdown details when a rewards payout was reserved.
+   * Displayed below the status pill when a rewards payout was reserved.
    *
    * @uiName Reward Reversed Text
    */
   @Prop() rewardReversedText: string = "Payout reversed on {date}.";
 
   /**
-   * Shown in the dropdown details when a reward was blocked during payout.
+   * Displayed below the status pill when a reward was blocked during payout.
    *
    * @uiName Reward Blocked Text
    */
