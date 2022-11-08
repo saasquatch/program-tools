@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Components changed
   - \<Icon>
     - removed center alignment from default icon styling, and added prop to overwrite existing styles and center the icon
+  - \<ObjectFieldTemplate>
+    - allow custom CSS properties on the fields container
 
 ## [1.1.0] - 2022-09-21
 

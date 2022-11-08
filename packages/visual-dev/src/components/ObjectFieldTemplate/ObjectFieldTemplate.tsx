@@ -12,6 +12,7 @@ export const FieldContainer = styled.div`
 `;
 
 export const FieldsContainer = styled.div<{ customCSS?: any }>`
+  display: contents;
   ${(props) => props.customCSS}
 `;
 
