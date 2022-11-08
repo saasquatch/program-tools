@@ -11,6 +11,10 @@ export const FieldContainer = styled.div`
   ${Styles.FieldContainer}
 `;
 
+export const FieldsContainer = styled.div<{ customCSS?: any }>`
+  ${(props) => props.customCSS}
+`;
+
 export const Title = styled.label`
   ${Styles.Title}
 `;
@@ -28,7 +32,14 @@ const RequiredLabel = styled.span`
 `;
 
 export const ObjectFieldTemplate = (props: ObjectFieldTemplateProps) => {
-  const { idSchema, title, description, properties, required } = props;
+  const {
+    idSchema,
+    title,
+    description,
+    properties,
+    required,
+    uiSchema,
+  } = props;
   return (
     <Container>
       {(title || description) && (
@@ -46,11 +57,13 @@ export const ObjectFieldTemplate = (props: ObjectFieldTemplateProps) => {
           )}
         </FrontMatterContainer>
       )}
-      {properties.map((element: any, index: number) => (
-        <FieldContainer className="property-wrapper" key={index}>
-          {element.content}
-        </FieldContainer>
-      ))}
+      <FieldsContainer customCSS={uiSchema["ui:options"]?.customCSS}>
+        {properties.map((element: any, index: number) => (
+          <FieldContainer className="property-wrapper" key={index}>
+            {element.content}
+          </FieldContainer>
+        ))}
+      </FieldsContainer>
     </Container>
   );
 };
