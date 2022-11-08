@@ -58,15 +58,26 @@ export class PaypalAccountDetails {
    */
   @Prop() w9TaxLabel: string = "Awaiting W-9 tax form";
   /**
-   * @uiName  Upcoming Payment Label
+   * @uiName  Upcoming Payout Label
    * @uiGroup Details
    */
   @Prop() upcomingPaymentLabel: string = "Upcoming";
+  /**
+   * @uiName  Next Payout Label
+   * @uiGroup Details
+   */
+  @Prop() nextPayoutLabel: string = "Next payout";
   /**
    * @uiName Edit Text
    * @uiGroup Details
    */
   @Prop() editText: string = "Edit";
+  /**
+   * @uiName Integration Domain
+   * @uiGroup Details
+   */
+  @Prop() integrationDomain: string =
+    "https://13d8-75-157-214-84.ngrok.io/graphql";
   /**
    * @uiName Connect Button Text
    * @uiGroup Connect
@@ -201,13 +212,12 @@ export class PaypalAccountDetails {
           hasAccount={props.hasAccount}
           integrationDisabled={props.integrationDisabled}
         />
-        <sqp-graphql-client-provider domain="https://13d8-75-157-214-84.ngrok.io/graphql">
+        <sqp-graphql-client-provider domain={this.integrationDomain}>
           <sqp-paypal-details
             hasAccount={props.hasAccount}
             loading={props.states.loading}
             overviewContent={props.overviewContent}
             setOpen={props.callbacks.setOpen}
-            integrationDisabled={props.integrationDisabled}
           />
         </sqp-graphql-client-provider>
         {/* <AccountDetailsView
@@ -275,6 +285,7 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
         otherCurrenciesLabel: props.otherCurrenciesLabel,
         w9TaxLabel: props.w9TaxLabel,
         upcomingPaymentLabel: props.upcomingPaymentLabel,
+        nextPayoutLabel: props.nextPayoutLabel,
         detailsContent: <Upcoming />,
         ScheduleContent: [<Default />],
       },

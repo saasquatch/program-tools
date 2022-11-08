@@ -4,6 +4,7 @@ import { currencyAmount } from "./sqp-details-card-view";
 
 export interface ScheduleCardViewProps {
   active: boolean;
+  setActivePayout: () => void;
   loading: boolean;
   otherCurrencies: boolean;
   statusText: string;
@@ -46,6 +47,7 @@ const style = {
     padding: "var(--sl-spacing-small)",
     height: "94px",
     boxSizing: "border-box",
+    cursor: "pointer",
   },
   AmountsContainer: {
     display: "flex",
@@ -68,6 +70,7 @@ const style = {
 export function ScheduleCardView(props: ScheduleCardViewProps) {
   const {
     active,
+    setActivePayout,
     statusText,
     otherCurrencies,
     otherCurrenciesText,
@@ -82,6 +85,7 @@ export function ScheduleCardView(props: ScheduleCardViewProps) {
   return (
     <div
       class={classes.Container}
+      onClick={setActivePayout}
       style={{
         boxShadow: `${
           active

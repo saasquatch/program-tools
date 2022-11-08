@@ -183,6 +183,7 @@ export function useAccountDetails(props) {
       otherCurrenciesLabel: props.otherCurrenciesLabel,
       w9TaxLabel: props.w9TaxLabel,
       upcomingPaymentLabel: props.upcomingPaymentLabel,
+      nextPayoutLabel: props.nextPayoutLabel,
       detailsContent: <Upcoming />,
       ScheduleContent: [<Default />],
     },

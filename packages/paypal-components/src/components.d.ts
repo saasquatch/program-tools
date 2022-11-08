@@ -128,6 +128,11 @@ export namespace Components {
          */
         "integrationDisabled": boolean;
         /**
+          * @uiName Integration Domain
+          * @uiGroup Details
+         */
+        "integrationDomain": string;
+        /**
           * @uiName Modal Header
           * @uiGroup Form
          */
@@ -137,6 +142,11 @@ export namespace Components {
           * @uiGroup Details
          */
         "nextPaymentLabel": string;
+        /**
+          * @uiName Next Payout Label
+          * @uiGroup Details
+         */
+        "nextPayoutLabel": string;
         /**
           * @uiName Other Currencies Label
           * @uiGroup Details
@@ -178,7 +188,7 @@ export namespace Components {
          */
         "successMessage": string;
         /**
-          * @uiName Upcoming Payment Label
+          * @uiName Upcoming Payout Label
           * @uiGroup Details
          */
         "upcomingPaymentLabel": string;
@@ -202,10 +212,6 @@ export namespace Components {
           * @undocumented
          */
         "hasAccount": boolean;
-        /**
-          * @undocumented
-         */
-        "integrationDisabled": boolean;
         /**
           * @undocumented
          */
@@ -549,6 +555,11 @@ declare namespace LocalJSX {
          */
         "integrationDisabled"?: boolean;
         /**
+          * @uiName Integration Domain
+          * @uiGroup Details
+         */
+        "integrationDomain"?: string;
+        /**
           * @uiName Modal Header
           * @uiGroup Form
          */
@@ -558,6 +569,11 @@ declare namespace LocalJSX {
           * @uiGroup Details
          */
         "nextPaymentLabel"?: string;
+        /**
+          * @uiName Next Payout Label
+          * @uiGroup Details
+         */
+        "nextPayoutLabel"?: string;
         /**
           * @uiName Other Currencies Label
           * @uiGroup Details
@@ -599,7 +615,7 @@ declare namespace LocalJSX {
          */
         "successMessage"?: string;
         /**
-          * @uiName Upcoming Payment Label
+          * @uiName Upcoming Payout Label
           * @uiGroup Details
          */
         "upcomingPaymentLabel"?: string;
@@ -623,10 +639,6 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "hasAccount"?: boolean;
-        /**
-          * @undocumented
-         */
-        "integrationDisabled"?: boolean;
         /**
           * @undocumented
          */

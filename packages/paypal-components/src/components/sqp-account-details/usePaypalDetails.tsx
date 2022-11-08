@@ -1,4 +1,5 @@
 import { useQuery } from "@saasquatch/component-boilerplate";
+import { useState } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import accounting from "accounting";
 import { gql } from "graphql-request";
@@ -56,13 +57,19 @@ const NEXT_PAYOUT_QUERY = gql`
 `;
 
 export function usePayPalDetails(props: PaypalAccountDetails) {
-  const { data: nextPayoutData, loading } = useQuery(NEXT_PAYOUT_QUERY, {});
+  const {
+    data: nextPayoutData,
+    loading,
+    errors,
+  } = useQuery(NEXT_PAYOUT_QUERY, {});
 
-  console.log({ nextPayoutData });
+  const [selectedPayout, setSelectedPayout] = useState(0);
+
+  console.log({ nextPayoutData, errors });
 
   const buckets = nextPayoutData?.userPaymentPreview?.buckets;
 
-  const nextPayout = buckets?.[0];
+  const nextPayout = buckets?.[selectedPayout];
 
   const mainCurrencyBucket = nextPayout?.details?.totals?.find(
     (total) => total.currencyCode === "USD"
@@ -93,9 +100,12 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     loading,
     mainCurrency,
     // TODO: figure out where this comes from
-    status: "upcoming",
+    status: selectedPayout === 0 ? "next payout" : "upcoming",
 
-    statusBadgeText: props.overviewContent.upcomingPaymentLabel,
+    statusBadgeText:
+      selectedPayout === 0
+        ? props.overviewContent.nextPayoutLabel
+        : props.overviewContent.upcomingPaymentLabel,
     detailedStatusText: nextPayout?.date
       ? DateTime.fromMillis(nextPayout?.date).toFormat("LLL dd, yyyy")
       : "-",
@@ -108,6 +118,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
   return {
     loading,
     detailsProps,
+    integrationDisabled: !!errors,
     ScheduleContent: buckets?.map((bucket, i) => {
       console.log({ bucket });
       const mainCurrencyTotal = bucket.details?.totals?.find(
@@ -131,7 +142,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
       const hasOtherCurrencies = otherCurrencies.length > 0;
 
       const viewProps = {
-        active: i === 0,
+        active: i === selectedPayout,
         otherCurrencies: hasOtherCurrencies,
         loading,
         statusText: DateTime.fromMillis(bucket?.date).toFormat("LLL dd, yyyy"),
@@ -139,6 +150,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
           ? `${otherCurrencies.length} ${props.overviewContent.otherCurrenciesLabel}`
           : "",
         mainCurrency,
+        setActivePayout: () => setSelectedPayout(i),
       };
       return <ScheduleCardView {...viewProps} />;
     }),

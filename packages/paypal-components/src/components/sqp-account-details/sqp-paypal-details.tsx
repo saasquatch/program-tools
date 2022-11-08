@@ -37,11 +37,6 @@ export class PaypalAccountDetails {
    */
   @Prop() overviewContent: any;
 
-  /**
-   * @undocumented
-   */
-  @Prop() integrationDisabled: boolean;
-
   constructor() {
     withHooks(this);
   }
@@ -63,7 +58,7 @@ export class PaypalAccountDetails {
             ScheduleContent: props.ScheduleContent,
           }}
           setOpen={componentProps.setOpen}
-          integrationDisabled={componentProps.integrationDisabled}
+          integrationDisabled={props.integrationDisabled}
         ></AccountDetailsView>
       </Host>
     );

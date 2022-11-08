@@ -13,6 +13,7 @@ export default {
 
 const defaultProps: ScheduleCardViewProps = {
   active: false,
+  setActivePayout: () => {},
   otherCurrencies: false,
   loading: false,
   statusText: "Oct 1, 2022",
