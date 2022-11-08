@@ -10,13 +10,7 @@ import { DataTableView } from "../DataTable";
 export type SelectHandleViewProps<ItemType> = HandleOptionProps<ItemType> &
   Partial<React.ComponentProps<"input">>;
 
-export interface SelectContainerViewProps<ItemType> {
-  /**
-   * Downshift hook for component functionality (useSelect or useCombobox)
-   */
-  functional?:
-    | UseSelectReturnValue<ItemType>
-    | UseComboboxReturnValue<ItemType>;
+export interface SelectContainerViewProps {
   /**
    * Limit the width of the select with a valid CSS size (px, %) [default 300px]
    */
@@ -36,7 +30,7 @@ export interface SelectContainerViewProps<ItemType> {
 }
 export interface HandleOptionProps<ItemType> {
   /**
-   * Downshift hook for component functionality (useSelect or useCombobox)
+   * Downshift hook for component functionality (useSelect or useCombobox or useMultipleSelection)
    */
   functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
   /**
@@ -79,6 +73,10 @@ export interface HandleOptionProps<ItemType> {
    * Use a custom icon instead of a chevron
    */
   customIcon?: IconKey;
+  /**
+   * Slot used to pass tag content to select when using a multi select
+   */
+  tagsSlot?: React.ReactNode;
 }
 export interface SelectListViewProps<ItemType> {
   /**
@@ -98,7 +96,7 @@ export interface SelectListViewProps<ItemType> {
    */
   loading?: boolean;
   /**
-   * Downshift hook for component functionality (useSelect or useCombobox)
+   * Downshift hook for component functionality (useSelect or useCombobox or useMultipleSelection)
    */
   functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
   /**
@@ -145,6 +143,7 @@ const ItemContainerList = styled.ul<{
   errors: any;
   limitWidth: SizeType;
   limitHeight: SizeType;
+  empty: boolean;
 }>`
   ${Styles.ItemContainer}
   ${(props) =>
@@ -162,6 +161,8 @@ const ItemContainerList = styled.ul<{
         ? `max-height: ${props.limitHeight};`
         : "max-height: 200px;"
       : "max-height: auto;"}
+      ${(props) =>
+    props.empty && "& li:hover {background: white; cursor: default;}"}
 `;
 
 const ListItem = styled("li")`
@@ -190,6 +191,10 @@ const ContainerDiv = styled("div")<{
   ${(props) => props.customContainerCSS}
 `;
 
+const TagsSlotWrapperDiv = styled.div`
+  ${Styles.TagsSlotWrapper}
+`;
+
 const SelectInputButton = styled.button<{
   disabled: boolean | undefined;
   errors: any;
@@ -201,7 +206,9 @@ const SelectInputButton = styled.button<{
     props.disabled &&
     "background: var(--sq-surface-input-disabled); cursor: default;"}
   ${(props) =>
-    props.isOpen && !props.disabled && "border-color: var(--sq-focused);"}
+    props.isOpen &&
+    !props.disabled &&
+    "border-color: var(--sq-focused); border-bottom: none;"}
   ${(props) =>
     !props.isOpen &&
     !props.disabled &&
@@ -237,6 +244,14 @@ const ButtonDiv = styled.div`
   ${Styles.ButtonDiv}
 `;
 
+const EmptyContainerDiv = styled.div`
+  ${Styles.EmptyContainerDiv}
+`;
+
+const LabelSpan = styled.span`
+  ${Styles.LabelSpan}
+`;
+
 // Redeclare forwardRef for use with generic prop types.
 declare module "react" {
   function forwardRef<T, P = {}>(
@@ -244,20 +259,8 @@ declare module "react" {
   ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
 }
 
-const SelectContainerView = <ItemType extends ItemTypeBase>(
-  props: SelectContainerViewProps<ItemType>
-) => {
-  const {
-    limitWidth = true,
-    customContainerCSS = ``,
-    functional,
-    children,
-    disabled,
-  } = props;
-
-  const isOpen = disabled ? false : functional?.isOpen;
-
-  console.log("isOpen", isOpen);
+const SelectContainerView = (props: SelectContainerViewProps) => {
+  const { limitWidth = true, customContainerCSS = ``, children } = props;
 
   return (
     <ContainerDiv
@@ -283,6 +286,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
     limitHeight = false,
     customIcon,
     functional,
+    tagsSlot,
     itemToString = (item: ItemType) => {
       return item;
     },
@@ -330,6 +334,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
       customCSS={customCSS}
       {...functional.getToggleButtonProps()}
     >
+      {tagsSlot && <TagsSlotWrapperDiv>{tagsSlot}</TagsSlotWrapperDiv>}
       <SelectedValueSpan subdued={functional.selectedItem ? false : true}>
         {functional.selectedItem
           ? itemToString(functional.selectedItem)
@@ -472,8 +477,12 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
         </ListItem>
       </>
     ),
-    empty = false,
-    emptySlot = "",
+    empty = !items.length,
+    emptySlot = (
+      <EmptyContainerDiv>
+        <LabelSpan>No results found</LabelSpan>
+      </EmptyContainerDiv>
+    ),
     itemToString = (item: ItemType) => {
       return item;
     },
@@ -499,12 +508,14 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
   const isOpen = disabled || loading ? false : functional.isOpen;
 
   console.log("isOpen", isOpen);
+  console.log("items", items);
 
   return (
     <ItemContainerList
       limitWidth={limitWidth}
       limitHeight={limitHeight}
       errors={errors}
+      empty={empty}
       ref={ref}
       {...functional.getMenuProps()}
     >
