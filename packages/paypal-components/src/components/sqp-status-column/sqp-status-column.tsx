@@ -26,26 +26,73 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
   @Prop() statusText: string =
     "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} EXPIRED {Expired} REDEEMED {Redeemed} SUCCESS {Paid Out} FAILED {Failed} PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} other {Not available} }";
 
-  // | SUCCESS   | Paid Out    | Blue       |
-  // | FAILED    | Failed      | Red        |
-  // | PENDING   | In progress | Orange     |
-  // | UNCLAIMED | Unclaimed   | Orange     |
-  // | ONHOLD    | In progress | Orange     |
-  // | REFUNDED  | Refunded    | grey       |
-  // | RETURNED  | Returned    | grey       |
-  // | REVERSED  | Reversed    | grey       |
-  // | BLOCKED   | Blocked     | grey       |
+  /**
+   * Displayed below the status pill when a reward has been paid out.
+   *
+   * @uiName Reward Paid Out Text
+   */
+  @Prop() rewardPaidOutText: string = "Paid out on {date}.";
 
-  // | succeeded PayPal payout reward         | Paid out on {dateLastUpdated from the customMeta}.                                                                                                                   |
-  // | Failed PayPal payout reward            | This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on {dateLastAttempted from the customMeta}. |
-  // | Pending PayPal payout reward           | Payout process started on {dateLastUpdated from the customMeta}.                                                                                                     |
-  // | Unclaimed PayPal payout reward         | The email you provided does not link to an exisiting PayPal account. Payout expires on {dateLastUpdated + 30 days from the customMeta}.                              |
-  // | On hold PayPal payout reward           | Payout on hold and in review since {dadateLastUpdated from the customMetateLastUpdated}.                                                                             |
-  // | Refunded PayPal payout reward          | Payout refunded on {dateLastUpdated from the customMeta}                                                                                                             |
-  // | Returned PayPal payout reward          | The email you provided does not link to an exisiting PayPal account. Payout expired on {dateLastUpdated + 30 days from the customMeta}.                              |
-  // | Reversed PayPal payout reward          | Payout reversed on {dateLastUpdated from the customMeta}                                                                                                             |
-  // | Blocked PayPal payout reward           | Payout blocked on {dateLastUpdated from the customMeta}                                                                                                              |
+  /**
+   * Displayed below the status pill when a reward is being paid out.
+   *
+   * @uiName Reward Payout In Progress Text
+   */
+  @Prop() rewardPayoutInProgressText: string =
+    "Payout processing started on {date}.";
 
+  /**
+   * Displayed below the status pill when a reward payout has failed.
+   *
+   * @uiName Reward Payout Failed Text
+   */
+  @Prop() rewardPayoutFailedText: string =
+    "This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on {date}.";
+
+  /**
+   * Displayed below the status pill when a reward was paid out but is unclaimed.
+   *
+   * @uiName Reward Unclaimed Text
+   */
+  @Prop() rewardUnclaimedText: string =
+    "The email you provided does not link to an exisitingPayPalaccount. Payout expires on {date}.";
+
+  /**
+   * Displayed below the status pill when a reward was placed on hold during payout.
+   *
+   * @uiName Reward On Hold Text
+   */
+  @Prop() rewardOnHoldText: string =
+    "Payout on hold and in review since {date}.";
+
+  /**
+   * Displayed below the status pill when a reward was refunded after payout.
+   *
+   * @uiName Reward Refunded Text
+   */
+  @Prop() rewardRefundedText: string = "Payout refunded on {date}.";
+
+  /**
+   * Displayed below the status pill when a reward was returned after payout.
+   *
+   * @uiName Reward Returned Text
+   */
+  @Prop() rewardReturnedText: string =
+    "The email you provided does not link to an exisitingPayPalaccount. Payout expired on {date}.";
+
+  /**
+   * Displayed below the status pill when a rewards payout was reserved.
+   *
+   * @uiName Reward Reversed Text
+   */
+  @Prop() rewardReversedText: string = "Payout reversed on {date}.";
+
+  /**
+   * Displayed below the status pill when a reward was blocked during payout.
+   *
+   * @uiName Reward Blocked Text
+   */
+  @Prop() rewardBlockedText: string = "Payout blocked on {date}.";
   /**
    * Text shown before the date of an expiring reward.
    *
@@ -73,28 +120,6 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
    * @uiName Unhandled Error Text
    */
   @Prop() pendingUnhandled: string = "Fulfillment error";
-
-  /**
-   * Shown in the dropdown details when a reward has been paid out.
-   *
-   * @uiName Reward Paid Out Text
-   */
-  @Prop() rewardPaidOutText: string = "Sent via PayPal on";
-
-  /**
-   * Shown in the dropdown details when a reward is being paid out.
-   *
-   * @uiName Reward Payout In Progress Text
-   */
-  @Prop() rewardPayoutInProgressText: string =
-    "PayPal payout processing started on";
-
-  /**
-   * Shown in the dropdown details when a reward payout has failed.
-   *
-   * @uiName Reward Payout Failed Text
-   */
-  @Prop() rewardPayoutFailedText: string = "Payout last attempted on";
 
   constructor() {
     withHooks(this);
