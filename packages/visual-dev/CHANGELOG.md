@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Components changed
   - \<Select>
     - refactor such that <Select> shares a codebase with <SelectView> and its subcomponents.
+    - <Select> now supports the DownshiftJS multiselect hook, see stories for implementation details
 
 ## [1.1.1] - 2022-09-22
 
