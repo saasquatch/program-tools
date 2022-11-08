@@ -1,6 +1,6 @@
 import { FieldTemplateProps } from "@rjsf/core";
 import React from "react";
-import styled from "styled-components";
+import styled, { CSSProp } from "styled-components";
 import { IconView } from "../Icon";
 import * as Styles from "./Styles";
 
@@ -24,8 +24,9 @@ const RequiredLabel = styled.span`
   ${Styles.RequiredLabel}
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ customCSS?: any }>`
   ${Styles.Container}
+  ${(props) => props.customCSS}
 `;
 
 const ErrorItem = styled.li`
@@ -43,10 +44,15 @@ export const FieldTemplate = (props: FieldTemplateProps) => {
     children,
     schema,
     rawErrors,
+    uiSchema,
   } = props;
   const isCollection = schema.type === "object" || schema.type === "array";
   return (
-    <Container className={classNames} id={id}>
+    <Container
+      customCSS={uiSchema["ui:options"]?.customCSS}
+      className={classNames}
+      id={id}
+    >
       {!isCollection && label && (
         <Label htmlFor={id} id={`${id}-title`}>
           {label}
