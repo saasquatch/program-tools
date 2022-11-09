@@ -4,6 +4,7 @@ import { CheckboxView } from "./Checkbox";
 
 export function RJSFCheckbox(props: WidgetProps) {
   const options = props.options;
+  console.log(props);
   return (
     <CheckboxView
       id={props.id}
@@ -12,7 +13,7 @@ export function RJSFCheckbox(props: WidgetProps) {
       required={props.required}
       onChange={(e: any) => props.onChange(e.target.checked)}
       disabled={props.disabled}
-      label={props.label}
+      label={options.title || props.label}
     />
   );
 }
