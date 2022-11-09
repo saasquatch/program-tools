@@ -46,6 +46,41 @@ export const Default = () => {
   );
 };
 
+export const HideLabel = () => {
+  const uiSchema = {
+    "ui:title": "Field Title",
+    "ui:description":
+      "Field descriptions appear below their respective fields now. Descriptions can get quite long",
+    "ui:widget": (props: WidgetProps) => {
+      return <RJSFInput {...props} />;
+    },
+    "ui:options": {
+      hideLabel: true,
+    },
+  };
+
+  const schema: JSONSchema7 = {
+    type: "string",
+  };
+
+  return (
+    <div style={{ margin: "100px", resize: "horizontal", overflow: "hidden" }}>
+      <Form
+        schema={schema}
+        uiSchema={uiSchema}
+        onChange={log("changed")}
+        onSubmit={log("submitted")}
+        onError={log("errors")}
+        FieldTemplate={FieldTemplate}
+      >
+        <Button buttonType="primary" style={{ marginTop: 15 }}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+};
+
 export const CustomCSS = () => {
   const uiSchema = {
     "ui:title": "Field Title",

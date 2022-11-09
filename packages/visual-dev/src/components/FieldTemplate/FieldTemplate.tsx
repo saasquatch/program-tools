@@ -53,7 +53,7 @@ export const FieldTemplate = (props: FieldTemplateProps) => {
       className={classNames}
       id={id}
     >
-      {!isCollection && label && (
+      {!isCollection && label && !uiSchema["ui:options"]?.hideLabel && (
         <Label htmlFor={id} id={`${id}-title`}>
           {label}
           {required && <RequiredLabel> (required)</RequiredLabel>}
