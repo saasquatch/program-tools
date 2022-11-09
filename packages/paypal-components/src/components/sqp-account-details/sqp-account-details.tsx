@@ -179,12 +179,12 @@ export class PaypalAccountDetails {
    * @uiName Label above payout details card
    * @uiGroup Alert
    */
-  @Prop() detailsLabel: string = "Payout details";
+  @Prop() detailsHeaderText: string = "Payout details";
   /**
    * @uiName Label above scheduled payouts card(s)
    * @uiGroup Alert
    */
-  @Prop() scheduleLabel: string = "Schedule";
+  @Prop() scheduleHeaderText: string = "Schedule";
 
   /**
    * @undocumented
@@ -208,16 +208,30 @@ export class PaypalAccountDetails {
           states={props.states}
           callbacks={props.callbacks}
           formContent={props.formContent}
-          alertContent={props.alertContent}
           hasAccount={props.hasAccount}
-          integrationDisabled={props.integrationDisabled}
         />
         <sqp-graphql-client-provider domain={this.integrationDomain}>
           <sqp-paypal-details
             hasAccount={props.hasAccount}
             loading={props.states.loading}
-            overviewContent={props.overviewContent}
             setOpen={props.callbacks.setOpen}
+            integrationDisabled={props.integrationDisabled}
+            detailsHeaderText={props.overviewContent.detailsHeaderText}
+            scheduleHeaderText={props.overviewContent.scheduleHeaderText}
+            editText={props.formContent.editText}
+            integrationAlertHeader={props.alertContent.integrationAlertHeader}
+            integrationAlertText={props.alertContent.integrationAlertText}
+            payPalAccountHeaderText={props.formContent.payPalAccountHeaderText}
+            connectPayPalDescriptionText={
+              props.formContent.connectPayPalDescriptionText
+            }
+            connectPayPalAccountButtonText={
+              props.formContent.connectPayPalAccountButtonText
+            }
+            nextPayoutLabel={props.overviewContent.nextPayoutLabel}
+            upcomingPaymentLabel={props.overviewContent.upcomingPaymentLabel}
+            otherCurrenciesLabel={props.overviewContent.otherCurrenciesLabel}
+            w9TaxLabel={props.overviewContent.w9TaxLabel}
           />
         </sqp-graphql-client-provider>
         {/* <AccountDetailsView
@@ -280,8 +294,8 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
         intergrationAlertText: props.integrationAlertText,
       },
       overviewContent: {
-        detailsLabel: props.detailsLabel,
-        scheduleLabel: props.scheduleLabel,
+        detailsHeaderText: props.detailsHeaderText,
+        scheduleHeaderText: props.scheduleHeaderText,
         otherCurrenciesLabel: props.otherCurrenciesLabel,
         w9TaxLabel: props.w9TaxLabel,
         upcomingPaymentLabel: props.upcomingPaymentLabel,

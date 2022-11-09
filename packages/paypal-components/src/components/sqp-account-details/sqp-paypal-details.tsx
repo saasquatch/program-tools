@@ -20,22 +20,67 @@ export class PaypalAccountDetails {
   /**
    * @undocumented
    */
-  @Prop() hasAccount: boolean;
-
+  @Prop() loading: boolean;
   /**
    * @undocumented
    */
   @Prop() setOpen: (open: boolean) => void;
-
   /**
    * @undocumented
    */
-  @Prop() loading: boolean;
-
+  @Prop() hasAccount: boolean;
   /**
    * @undocumented
    */
-  @Prop() overviewContent: any;
+  @Prop() integrationDisabled: boolean;
+  /**
+   * @undocumented
+   */
+  @Prop() detailsHeaderText: string;
+  /**
+   * @undocumented
+   */
+  @Prop() scheduleHeaderText: string;
+  /**
+   * @undocumented
+   */
+  @Prop() editText: string;
+  /**
+   * @undocumented
+   */
+  @Prop() integrationAlertHeader: string;
+  /**
+   * @undocumented
+   */
+  @Prop() integrationAlertText: string;
+  /**
+   * @undocumented
+   */
+  @Prop() payPalAccountHeaderText: string;
+  /**
+   * @undocumented
+   */
+  @Prop() connectPayPalDescriptionText: string;
+  /**
+   * @undocumented
+   */
+  @Prop() connectPayPalAccountButtonText: string;
+  /**
+   * @undocumented
+   */
+  @Prop() nextPayoutLabel: string;
+  /**
+   * @undocumented
+   */
+  @Prop() upcomingPaymentLabel: string;
+  /**
+   * @undocumented
+   */
+  @Prop() otherCurrenciesLabel: string;
+  /**
+   * @undocumented
+   */
+  @Prop() w9TaxLabel: string;
 
   constructor() {
     withHooks(this);
@@ -52,13 +97,22 @@ export class PaypalAccountDetails {
         <AccountDetailsView
           loading={componentProps.loading}
           hasAccount={componentProps.hasAccount}
-          overviewContent={{
-            ...componentProps.overviewContent,
-            detailsContent: <DetailsCardView {...props.detailsProps} />,
-            ScheduleContent: props.ScheduleContent,
-          }}
+          detailsSlot={<DetailsCardView {...props.detailsProps} />}
+          scheduleSlot={props.ScheduleContent}
           setOpen={componentProps.setOpen}
           integrationDisabled={props.integrationDisabled}
+          detailsHeaderText={componentProps.detailsHeaderText}
+          scheduleHeaderText={componentProps.scheduleHeaderText}
+          editText={componentProps.editText}
+          integrationAlertHeader={componentProps.integrationAlertHeader}
+          integrationAlertText={componentProps.integrationAlertText}
+          payPalAccountHeaderText={componentProps.payPalAccountHeaderText}
+          connectPayPalDescriptionText={
+            componentProps.connectPayPalDescriptionText
+          }
+          connectPayPalAccountButtonText={
+            componentProps.connectPayPalAccountButtonText
+          }
         ></AccountDetailsView>
       </Host>
     );

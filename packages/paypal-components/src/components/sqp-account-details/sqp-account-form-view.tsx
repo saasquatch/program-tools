@@ -5,7 +5,6 @@ import { PortalSectionView } from "../sqp-titled-section/sqp-portal-section-view
 export interface AccountFormViewProps {
   hasAccount: boolean;
   formRef?: any;
-  integrationDisabled: boolean;
   states: {
     open: boolean;
     error: string;
@@ -16,35 +15,27 @@ export interface AccountFormViewProps {
   formContent: {
     modalConnectPayPalAccountHeader: string;
     cancelText: string;
-    connectPayPalAccountButtonText: string;
     submitPayPalAccountButtonText: string;
     payPalEmailLabel: string;
     payPalEmailLabelHelpText: string;
     confirmPayPalEmailLabel: string;
     successMessage: string;
-    payPalAccountHeaderText: string;
-    connectPayPalDescriptionText: string;
     connectAccountModalHeaderText: string;
     connectAccountModalButtonText: string;
     disconnectAccountHeaderText: string;
     disconnectAccountDescriptionText: string;
     disconnectAccountButtonText: string;
-    editText: string;
-  };
-  alertContent: {
-    integrationAlertHeader: string;
-    integrationAlertText: string;
+    connectPayPalDescriptionText: string;
   };
   callbacks: {
-    setOpen: (open: boolean) => void;
     submit: (event: MouseEvent) => void;
     disconnect: () => void;
+    setOpen: (open: boolean) => void;
   };
 }
 
 export function AccountFormView(props: AccountFormViewProps) {
-  const { formContent, alertContent, states, callbacks, integrationDisabled } =
-    props;
+  const { formContent, states, callbacks } = props;
   const style = {
     ButtonContainer: {
       display: "flex",
@@ -103,38 +94,6 @@ export function AccountFormView(props: AccountFormViewProps) {
       display: "flex",
       flexDirection: "column",
       gap: "20px",
-    },
-
-    EditButton: {
-      "@media screen and (min-width: 500px)": {
-        width: "max-content",
-        marginLeft: "auto",
-      },
-    },
-    HeaderContainer: {
-      display: "grid",
-      alignItems: "center",
-      gap: "var(--sl-spacing-medium)",
-      gridTemplateColumns: "1fr max-content",
-      "@media screen and (max-width: 499px)": {
-        gridTemplateColumns: "1fr",
-      },
-    },
-    TitleContainer: {
-      display: "grid",
-      alignItems: "center",
-      gap: "var(--sl-spacing-x-small)",
-      gridTemplateColumns: "max-content max-content",
-    },
-    ContentContainer: {
-      marginBottom: "var(--sl-spacing-medium)",
-      background: "var(--sl-color-neutral-0)",
-    },
-    DescriptionText: {
-      margin: "0",
-      color: "var(--sl-color-500)",
-      fontSize: "var(--sl-font-size-medium)",
-      marginTop: "var(--sl-spacing-medium)",
     },
   };
 
@@ -301,62 +260,6 @@ export function AccountFormView(props: AccountFormViewProps) {
           }}
         ></PortalSectionView>
       </sl-dialog>
-
-      <PortalSectionView
-        {...{
-          labelMargin: "medium",
-          padding: "none",
-          label: (
-            <div>
-              <div class={classes.HeaderContainer}>
-                <div class={classes.TitleContainer}>
-                  <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665703368/tenant_test_a8b41jotf8a1v/tjfxf0qxu2lwqzgtcghw.svg" />
-                  <h2>{formContent.payPalAccountHeaderText}</h2>
-                </div>
-                {!integrationDisabled && props.hasAccount && (
-                  <sl-button
-                    class={classes.EditButton}
-                    disabled={states.loading}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      callbacks.setOpen(true);
-                    }}
-                  >
-                    {formContent.editText}
-                  </sl-button>
-                )}
-              </div>
-              {!integrationDisabled && (
-                <p class={classes.DescriptionText}>
-                  {formContent.connectPayPalDescriptionText}
-                </p>
-              )}
-            </div>
-          ),
-          content: (
-            <div class={classes.ContentContainer}>
-              {integrationDisabled && (
-                <sl-alert open type="primary">
-                  <sl-icon slot="icon" name="info-circle"></sl-icon>
-                  <b>{alertContent.integrationAlertHeader}</b>
-                  <br />
-                  {alertContent.integrationAlertText}
-                </sl-alert>
-              )}
-              {!props.hasAccount && (
-                <sl-button
-                  disabled={states.loading}
-                  onClick={() => callbacks.setOpen(true)}
-                >
-                  {formContent.connectPayPalAccountButtonText}
-                </sl-button>
-              )}
-            </div>
-          ),
-        }}
-      >
-        <style type="text/css">{styleString}</style>
-      </PortalSectionView>
     </div>
   );
 }

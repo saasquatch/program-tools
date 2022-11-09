@@ -178,8 +178,8 @@ export function useAccountDetails(props) {
       integrationAlertText: props.integrationAlertText,
     },
     overviewContent: {
-      detailsLabel: props.detailsLabel,
-      scheduleLabel: props.scheduleLabel,
+      detailsHeaderText: props.detailsHeaderText,
+      scheduleHeaderText: props.scheduleHeaderText,
       otherCurrenciesLabel: props.otherCurrenciesLabel,
       w9TaxLabel: props.w9TaxLabel,
       upcomingPaymentLabel: props.upcomingPaymentLabel,

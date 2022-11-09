@@ -103,14 +103,12 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     status: selectedPayout === 0 ? "next payout" : "upcoming",
 
     statusBadgeText:
-      selectedPayout === 0
-        ? props.overviewContent.nextPayoutLabel
-        : props.overviewContent.upcomingPaymentLabel,
+      selectedPayout === 0 ? props.nextPayoutLabel : props.upcomingPaymentLabel,
     detailedStatusText: nextPayout?.date
       ? DateTime.fromMillis(nextPayout?.date).toFormat("LLL dd, yyyy")
       : "-",
-    otherCurrenciesText: props.overviewContent.otherCurrenciesLabel,
-    w9PendingText: props.overviewContent.w9TaxLabel,
+    otherCurrenciesText: props.otherCurrenciesLabel,
+    w9PendingText: props.w9TaxLabel,
     otherCurrencies,
     w9Pending,
   };
@@ -147,7 +145,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
         loading,
         statusText: DateTime.fromMillis(bucket?.date).toFormat("LLL dd, yyyy"),
         otherCurrenciesText: hasOtherCurrencies
-          ? `${otherCurrencies.length} ${props.overviewContent.otherCurrenciesLabel}`
+          ? `${otherCurrencies.length} ${props.otherCurrenciesLabel}`
           : "",
         mainCurrency,
         setActivePayout: () => setSelectedPayout(i),

@@ -18,18 +18,23 @@ const defaultAccountDetailsProps: AccountDetailsViewProps = {
   integrationDisabled: false,
   setOpen: (open: boolean) => console.log(open),
   hasAccount: true,
-  overviewContent: {
-    detailsLabel: "Payout details",
-    scheduleLabel: "Schedule",
-    detailsContent: <W9AndOtherCurrencies />,
-    ScheduleContent: [<Active />, <Pending />, <WithOtherCurrencies />],
-  },
+  detailsHeaderText: "Payout details",
+  scheduleHeaderText: "Schedule",
+  detailsSlot: <W9AndOtherCurrencies />,
+  scheduleSlot: [<Active />, <Pending />, <WithOtherCurrencies />],
+  editText: "Edit account",
+  integrationAlertHeader: "PayPal payouts are currently disabled",
+  integrationAlertText:
+    "This feature is currently inactive. If this is unexpected, please contact {companyName} for assistance.",
+  payPalAccountHeaderText: "Payout",
+  connectPayPalDescriptionText:
+    "Connect your PayPal account to automatically receive payments for the rewards you earn.",
+  connectPayPalAccountButtonText: "Connect account",
 };
 
 const defaultAccountFormProps: AccountFormViewProps = {
   formRef: { current: null },
   hasAccount: true,
-  integrationDisabled: false,
   callbacks: { submit: () => {}, setOpen: () => {}, disconnect: () => {} },
   states: {
     editingAccount: false,
@@ -41,12 +46,10 @@ const defaultAccountFormProps: AccountFormViewProps = {
   formContent: {
     modalConnectPayPalAccountHeader: "Connect PayPal account",
     cancelText: "Cancel",
-    connectPayPalAccountButtonText: "Connect account",
     payPalEmailLabel: "PayPal email",
     payPalEmailLabelHelpText: "Enter the email used for your PayPal account.",
     confirmPayPalEmailLabel: "Confirm email",
     successMessage: "Success",
-    payPalAccountHeaderText: "Payout",
     connectPayPalDescriptionText:
       "Connect your PayPal account to automatically receive payments/cash rewards",
     submitPayPalAccountButtonText: "Connect account",
@@ -56,12 +59,6 @@ const defaultAccountFormProps: AccountFormViewProps = {
     disconnectAccountDescriptionText:
       "You will not be able to receive payments if you disconnect your PayPal account.",
     disconnectAccountButtonText: "Disconnect account",
-    editText: "Edit account",
-  },
-  alertContent: {
-    integrationAlertHeader: "PayPal payouts are currently disabled",
-    integrationAlertText:
-      "Looks like this feature is turned off at the moment. Come back later to see if it’s enabled. ",
   },
 };
 
@@ -74,7 +71,7 @@ export const NoAccount = () => (
 
 export const IntegrationDisabled = () => (
   <div>
-    <AccountFormView {...defaultAccountFormProps} integrationDisabled={true} />
+    <AccountFormView {...defaultAccountFormProps} />
     <AccountDetailsView
       {...defaultAccountDetailsProps}
       integrationDisabled={true}
