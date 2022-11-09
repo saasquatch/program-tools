@@ -38,7 +38,18 @@ const style = {
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-const paypalStatuses = ["TRANSFERRED", "FAILED", "INPROGRESS"];
+const paypalStatuses = [
+  "TRANSFERRED",
+  "FAILED",
+  "INPROGRESS",
+  "UNCLAIMED",
+  "SUCCESS",
+  "REFUNDED",
+  "RETURNED",
+  "REVERSED",
+  "BLOCKED",
+  "ONHOLD",
+];
 
 @Component({
   tag: "sqp-status-cell",
@@ -212,6 +223,7 @@ export class RewardTableStatusCell {
 
     const isPayPal = paypalStatuses.includes(rewardStatus);
     console.log("rewardStatus is  ", rewardStatus);
+    console.log("isPaypal  ", isPayPal);
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
