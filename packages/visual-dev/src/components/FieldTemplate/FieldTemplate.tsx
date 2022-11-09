@@ -1,6 +1,6 @@
 import { FieldTemplateProps } from "@rjsf/core";
 import React from "react";
-import styled, { CSSProp } from "styled-components";
+import styled from "styled-components";
 import { IconView } from "../Icon";
 import * as Styles from "./Styles";
 
