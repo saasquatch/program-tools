@@ -291,7 +291,7 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
       },
       alertContent: {
         integrationAlertHeader: props.integrationAlertHeader,
-        intergrationAlertText: props.integrationAlertText,
+        integrationAlertText: props.integrationAlertText,
       },
       overviewContent: {
         detailsHeaderText: props.detailsHeaderText,
