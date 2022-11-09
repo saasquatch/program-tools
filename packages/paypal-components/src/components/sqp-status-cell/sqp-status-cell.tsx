@@ -168,7 +168,7 @@ export class RewardTableStatusCell {
           : ""
       }${DateTime.fromMillis(dateShown)
         ?.setLocale(luxonLocale(this.locale))
-        .toLocaleString(DateTime.DATE_MED)}`;
+        .toLocaleString(DateTime.DATE_MED)}.`;
 
     const paidOut =
       rewardStatus === "TRANSFERRED" &&
@@ -176,7 +176,7 @@ export class RewardTableStatusCell {
         this.reward.meta?.customMeta?.datePaidOut
       )
         ?.setLocale(luxonLocale(this.locale))
-        .toLocaleString(DateTime.DATE_MED)}`;
+        .toLocaleString(DateTime.DATE_MED)}.`;
 
     const payoutFailed =
       rewardStatus === "FAILED" &&
@@ -185,7 +185,7 @@ export class RewardTableStatusCell {
           this.reward.meta?.customMeta?.dateFirstAttempted
       )
         ?.setLocale(luxonLocale(this.locale))
-        .toLocaleString(DateTime.DATE_MED)}`;
+        .toLocaleString(DateTime.DATE_MED)}.`;
 
     const payoutInProgress =
       rewardStatus === "INPROGRESS" &&
@@ -194,7 +194,7 @@ export class RewardTableStatusCell {
           this.reward.meta?.customMeta?.dateFirstAttempted
       )
         ?.setLocale(luxonLocale(this.locale))
-        .toLocaleString(DateTime.DATE_MED)}`;
+        .toLocaleString(DateTime.DATE_MED)}.`;
 
     const pendingReasons =
       rewardStatus === "PENDING" ? getRewardPendingReasons(this) : null;

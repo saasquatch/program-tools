@@ -268,25 +268,55 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
         /**
-          * Shown in the dropdown details when a reward has been paid out.’
+          * Shown in the dropdown details when a reward was blocked during payout.
+          * @uiName Reward Blocked Text
+         */
+        "rewardBlockedText": string;
+        /**
+          * Shown in the dropdown details when a reward was placed on hold during payout.
+          * @uiName Reward On Hold Text
+         */
+        "rewardOnHoldText": string;
+        /**
+          * Shown in the dropdown details when a reward has been paid out.
           * @uiName Reward Paid Out Text
          */
         "rewardPaidOutText": string;
         /**
-          * Shown in the dropdown details when a reward payout has failed.’
+          * Shown in the dropdown details when a reward payout has failed.
           * @uiName Reward Payout Failed Text
          */
         "rewardPayoutFailedText": string;
         /**
-          * Shown in the dropdown details when a reward is being paid out.’
+          * Shown in the dropdown details when a reward is being paid out.
           * @uiName Reward Payout In Progress Text
          */
         "rewardPayoutInProgressText": string;
         /**
-          * Shown in the dropdown details when a reward has been received.’
+          * Shown in the dropdown details when a reward has been received.
           * @uiName Reward Received Text
          */
         "rewardReceivedText": string;
+        /**
+          * Shown in the dropdown details when a reward was refunded after payout.
+          * @uiName Reward Refunded Text
+         */
+        "rewardRefundedText": string;
+        /**
+          * Shown in the dropdown details when a reward was returned after payout.
+          * @uiName Reward Returned Text
+         */
+        "rewardReturnedText": string;
+        /**
+          * Shown in the dropdown details when a rewards payout was reserved.
+          * @uiName Reward Reversed Text
+         */
+        "rewardReversedText": string;
+        /**
+          * Shown in the dropdown details when a reward was paid out but is unclaimed.
+          * @uiName Reward Unclaimed Text
+         */
+        "rewardUnclaimedText": string;
         /**
           * Additional status text shown in the details drop down.
           * @uiName Reward Status Long Text
@@ -340,20 +370,50 @@ export namespace Components {
         "renderCell": (data: Reward, locale: string, mintRenderer: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
-          * Shown in the dropdown details when a reward has been paid out.
+          * Displayed below the status pill when a reward was blocked during payout.
+          * @uiName Reward Blocked Text
+         */
+        "rewardBlockedText": string;
+        /**
+          * Displayed below the status pill when a reward was placed on hold during payout.
+          * @uiName Reward On Hold Text
+         */
+        "rewardOnHoldText": string;
+        /**
+          * Displayed below the status pill when a reward has been paid out.
           * @uiName Reward Paid Out Text
          */
         "rewardPaidOutText": string;
         /**
-          * Shown in the dropdown details when a reward payout has failed.
+          * Displayed below the status pill when a reward payout has failed.
           * @uiName Reward Payout Failed Text
          */
         "rewardPayoutFailedText": string;
         /**
-          * Shown in the dropdown details when a reward is being paid out.
+          * Displayed below the status pill when a reward is being paid out.
           * @uiName Reward Payout In Progress Text
          */
         "rewardPayoutInProgressText": string;
+        /**
+          * Displayed below the status pill when a reward was refunded after payout.
+          * @uiName Reward Refunded Text
+         */
+        "rewardRefundedText": string;
+        /**
+          * Displayed below the status pill when a reward was returned after payout.
+          * @uiName Reward Returned Text
+         */
+        "rewardReturnedText": string;
+        /**
+          * Displayed below the status pill when a rewards payout was reserved.
+          * @uiName Reward Reversed Text
+         */
+        "rewardReversedText": string;
+        /**
+          * Displayed below the status pill when a reward was paid out but is unclaimed.
+          * @uiName Reward Unclaimed Text
+         */
+        "rewardUnclaimedText": string;
         /**
           * @uiName Reward Status Text
           * @uiWidget textArea
@@ -692,25 +752,55 @@ declare namespace LocalJSX {
          */
         "pendingForText"?: string;
         /**
-          * Shown in the dropdown details when a reward has been paid out.’
+          * Shown in the dropdown details when a reward was blocked during payout.
+          * @uiName Reward Blocked Text
+         */
+        "rewardBlockedText"?: string;
+        /**
+          * Shown in the dropdown details when a reward was placed on hold during payout.
+          * @uiName Reward On Hold Text
+         */
+        "rewardOnHoldText"?: string;
+        /**
+          * Shown in the dropdown details when a reward has been paid out.
           * @uiName Reward Paid Out Text
          */
         "rewardPaidOutText"?: string;
         /**
-          * Shown in the dropdown details when a reward payout has failed.’
+          * Shown in the dropdown details when a reward payout has failed.
           * @uiName Reward Payout Failed Text
          */
         "rewardPayoutFailedText"?: string;
         /**
-          * Shown in the dropdown details when a reward is being paid out.’
+          * Shown in the dropdown details when a reward is being paid out.
           * @uiName Reward Payout In Progress Text
          */
         "rewardPayoutInProgressText"?: string;
         /**
-          * Shown in the dropdown details when a reward has been received.’
+          * Shown in the dropdown details when a reward has been received.
           * @uiName Reward Received Text
          */
         "rewardReceivedText"?: string;
+        /**
+          * Shown in the dropdown details when a reward was refunded after payout.
+          * @uiName Reward Refunded Text
+         */
+        "rewardRefundedText"?: string;
+        /**
+          * Shown in the dropdown details when a reward was returned after payout.
+          * @uiName Reward Returned Text
+         */
+        "rewardReturnedText"?: string;
+        /**
+          * Shown in the dropdown details when a rewards payout was reserved.
+          * @uiName Reward Reversed Text
+         */
+        "rewardReversedText"?: string;
+        /**
+          * Shown in the dropdown details when a reward was paid out but is unclaimed.
+          * @uiName Reward Unclaimed Text
+         */
+        "rewardUnclaimedText"?: string;
         /**
           * Additional status text shown in the details drop down.
           * @uiName Reward Status Long Text
@@ -762,20 +852,50 @@ declare namespace LocalJSX {
          */
         "pendingUsTax"?: string;
         /**
-          * Shown in the dropdown details when a reward has been paid out.
+          * Displayed below the status pill when a reward was blocked during payout.
+          * @uiName Reward Blocked Text
+         */
+        "rewardBlockedText"?: string;
+        /**
+          * Displayed below the status pill when a reward was placed on hold during payout.
+          * @uiName Reward On Hold Text
+         */
+        "rewardOnHoldText"?: string;
+        /**
+          * Displayed below the status pill when a reward has been paid out.
           * @uiName Reward Paid Out Text
          */
         "rewardPaidOutText"?: string;
         /**
-          * Shown in the dropdown details when a reward payout has failed.
+          * Displayed below the status pill when a reward payout has failed.
           * @uiName Reward Payout Failed Text
          */
         "rewardPayoutFailedText"?: string;
         /**
-          * Shown in the dropdown details when a reward is being paid out.
+          * Displayed below the status pill when a reward is being paid out.
           * @uiName Reward Payout In Progress Text
          */
         "rewardPayoutInProgressText"?: string;
+        /**
+          * Displayed below the status pill when a reward was refunded after payout.
+          * @uiName Reward Refunded Text
+         */
+        "rewardRefundedText"?: string;
+        /**
+          * Displayed below the status pill when a reward was returned after payout.
+          * @uiName Reward Returned Text
+         */
+        "rewardReturnedText"?: string;
+        /**
+          * Displayed below the status pill when a rewards payout was reserved.
+          * @uiName Reward Reversed Text
+         */
+        "rewardReversedText"?: string;
+        /**
+          * Displayed below the status pill when a reward was paid out but is unclaimed.
+          * @uiName Reward Unclaimed Text
+         */
+        "rewardUnclaimedText"?: string;
         /**
           * @uiName Reward Status Text
           * @uiWidget textArea
