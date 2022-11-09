@@ -86,7 +86,7 @@ export namespace Components {
           * @uiName Label above payout details card
           * @uiGroup Alert
          */
-        "detailsLabel": string;
+        "detailsHeaderText": string;
         /**
           * @uiName Disconnect Account Button Text
           * @uiGroup Form
@@ -176,7 +176,7 @@ export namespace Components {
           * @uiName Label above scheduled payouts card(s)
           * @uiGroup Alert
          */
-        "scheduleLabel": string;
+        "scheduleHeaderText": string;
         /**
           * @uiName Submit Button Text
           * @uiGroup Form
@@ -211,7 +211,35 @@ export namespace Components {
         /**
           * @undocumented
          */
+        "connectPayPalAccountButtonText": string;
+        /**
+          * @undocumented
+         */
+        "connectPayPalDescriptionText": string;
+        /**
+          * @undocumented
+         */
+        "detailsHeaderText": string;
+        /**
+          * @undocumented
+         */
+        "editText": string;
+        /**
+          * @undocumented
+         */
         "hasAccount": boolean;
+        /**
+          * @undocumented
+         */
+        "integrationAlertHeader": string;
+        /**
+          * @undocumented
+         */
+        "integrationAlertText": string;
+        /**
+          * @undocumented
+         */
+        "integrationDisabled": boolean;
         /**
           * @undocumented
          */
@@ -219,11 +247,31 @@ export namespace Components {
         /**
           * @undocumented
          */
-        "overviewContent": any;
+        "nextPayoutLabel": string;
+        /**
+          * @undocumented
+         */
+        "otherCurrenciesLabel": string;
+        /**
+          * @undocumented
+         */
+        "payPalAccountHeaderText": string;
+        /**
+          * @undocumented
+         */
+        "scheduleHeaderText": string;
         /**
           * @undocumented
          */
         "setOpen": (open: boolean) => void;
+        /**
+          * @undocumented
+         */
+        "upcomingPaymentLabel": string;
+        /**
+          * @undocumented
+         */
+        "w9TaxLabel": string;
     }
     interface SqpRewardsCell {
         "expiringText": string;
@@ -340,6 +388,7 @@ export namespace Components {
         "rewardPaidOutText": string;
         "rewardPayoutFailedText": string;
         "rewardPayoutInProgressText": string;
+        "rewardUnclaimedText": string;
         "statusText": string;
     }
     interface SqpStatusColumn {
@@ -573,7 +622,7 @@ declare namespace LocalJSX {
           * @uiName Label above payout details card
           * @uiGroup Alert
          */
-        "detailsLabel"?: string;
+        "detailsHeaderText"?: string;
         /**
           * @uiName Disconnect Account Button Text
           * @uiGroup Form
@@ -663,7 +712,7 @@ declare namespace LocalJSX {
           * @uiName Label above scheduled payouts card(s)
           * @uiGroup Alert
          */
-        "scheduleLabel"?: string;
+        "scheduleHeaderText"?: string;
         /**
           * @uiName Submit Button Text
           * @uiGroup Form
@@ -698,7 +747,35 @@ declare namespace LocalJSX {
         /**
           * @undocumented
          */
+        "connectPayPalAccountButtonText"?: string;
+        /**
+          * @undocumented
+         */
+        "connectPayPalDescriptionText"?: string;
+        /**
+          * @undocumented
+         */
+        "detailsHeaderText"?: string;
+        /**
+          * @undocumented
+         */
+        "editText"?: string;
+        /**
+          * @undocumented
+         */
         "hasAccount"?: boolean;
+        /**
+          * @undocumented
+         */
+        "integrationAlertHeader"?: string;
+        /**
+          * @undocumented
+         */
+        "integrationAlertText"?: string;
+        /**
+          * @undocumented
+         */
+        "integrationDisabled"?: boolean;
         /**
           * @undocumented
          */
@@ -706,11 +783,31 @@ declare namespace LocalJSX {
         /**
           * @undocumented
          */
-        "overviewContent"?: any;
+        "nextPayoutLabel"?: string;
+        /**
+          * @undocumented
+         */
+        "otherCurrenciesLabel"?: string;
+        /**
+          * @undocumented
+         */
+        "payPalAccountHeaderText"?: string;
+        /**
+          * @undocumented
+         */
+        "scheduleHeaderText"?: string;
         /**
           * @undocumented
          */
         "setOpen"?: (open: boolean) => void;
+        /**
+          * @undocumented
+         */
+        "upcomingPaymentLabel"?: string;
+        /**
+          * @undocumented
+         */
+        "w9TaxLabel"?: string;
     }
     interface SqpRewardsCell {
         "expiringText"?: string;
@@ -824,6 +921,7 @@ declare namespace LocalJSX {
         "rewardPaidOutText"?: string;
         "rewardPayoutFailedText"?: string;
         "rewardPayoutInProgressText"?: string;
+        "rewardUnclaimedText"?: string;
         "statusText"?: string;
     }
     interface SqpStatusColumn {

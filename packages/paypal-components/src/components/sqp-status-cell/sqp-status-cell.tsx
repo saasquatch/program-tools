@@ -55,6 +55,7 @@ export class RewardTableStatusCell {
   @Prop() rewardPaidOutText: string;
   @Prop() rewardPayoutInProgressText: string;
   @Prop() rewardPayoutFailedText: string;
+  @Prop() rewardUnclaimedText: string;
 
   rewardStatus(reward: Reward) {
     if (reward.dateCancelled) return "CANCELLED";
@@ -178,6 +179,15 @@ export class RewardTableStatusCell {
         ?.setLocale(luxonLocale(this.locale))
         .toLocaleString(DateTime.DATE_MED)}.`;
 
+    const unClaimed =
+      rewardStatus === "UNCLAIMED" &&
+      `${this.rewardUnclaimedText + " "}${DateTime.fromMillis(
+        this.reward.meta?.customMeta.dateLastUpdated
+      )
+        .plus({ days: 30 })
+        ?.setLocale(luxonLocale(this.locale))
+        .toLocaleString(DateTime.DATE_MED)}.`;
+
     const payoutFailed =
       rewardStatus === "FAILED" &&
       `${this.rewardPayoutFailedText + " "}${DateTime.fromMillis(
@@ -188,19 +198,20 @@ export class RewardTableStatusCell {
         .toLocaleString(DateTime.DATE_MED)}.`;
 
     const payoutInProgress =
-      rewardStatus === "INPROGRESS" &&
-      `${this.rewardPayoutInProgressText + " "}${DateTime.fromMillis(
-        this.reward.meta?.customMeta?.dateLastAttempted ||
-          this.reward.meta?.customMeta?.dateFirstAttempted
-      )
-        ?.setLocale(luxonLocale(this.locale))
-        .toLocaleString(DateTime.DATE_MED)}.`;
+      rewardStatus ===
+      ("INPROGRESS" &&
+        `${this.rewardPayoutInProgressText + " "}${DateTime.fromMillis(
+          this.reward.meta?.customMeta?.dateLastAttempted ||
+            this.reward.meta?.customMeta?.dateFirstAttempted
+        )
+          ?.setLocale(luxonLocale(this.locale))
+          .toLocaleString(DateTime.DATE_MED)}.`);
 
     const pendingReasons =
       rewardStatus === "PENDING" ? getRewardPendingReasons(this) : null;
 
     const isPayPal = paypalStatuses.includes(rewardStatus);
-
+    console.log("rewardStatus is  ", rewardStatus);
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
@@ -224,6 +235,7 @@ export class RewardTableStatusCell {
             payoutFailed ||
             payoutInProgress ||
             pendingReasons ||
+            unClaimed ||
             date}
         </p>
       </div>
