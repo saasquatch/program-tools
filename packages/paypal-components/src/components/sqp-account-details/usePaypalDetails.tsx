@@ -87,8 +87,6 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
       amountText: accounting.formatMoney(total?.value),
     }));
 
-  console.log({ nextPayout, otherCurrencies });
-
   const w9Pending = nextPayoutData?.userPaymentPreview?.W9?.totals?.map(
     (total) => ({
       currencyText: total?.currencyCode,
@@ -101,7 +99,6 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     mainCurrency,
     // TODO: figure out where this comes from
     status: selectedPayout === 0 ? "next payout" : "upcoming",
-
     statusBadgeText:
       selectedPayout === 0 ? props.nextPayoutLabel : props.upcomingPaymentLabel,
     detailedStatusText: nextPayout?.date
@@ -113,80 +110,74 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     w9Pending,
   };
 
-  const pendingTotals =
-    nextPayoutData?.userPaymentPreview?.pending?.totals?.find(
-      (total) => total.currencyCode === "USD"
-    );
+  const pendingTotals = nextPayoutData?.userPaymentPreview?.pending?.totals;
 
-  console.log({
-    pendingTotals: nextPayoutData?.userPaymentPreview?.pending?.totals,
-  });
+  const mainPendingCurrencyTotal = pendingTotals?.find(
+    (total) => total.currencyCode === "USD"
+  );
+
+  const mainPendingCurrency = {
+    currencyText: mainPendingCurrencyTotal?.currencyCode,
+    amountText: accounting.formatMoney(mainPendingCurrencyTotal?.value),
+  };
+
+  const pendingProps = {
+    active: selectedPayout === 3,
+    otherCurrencies: pendingTotals?.length > 1,
+    loading,
+    statusText: "Pending",
+    otherCurrenciesText:
+      pendingTotals?.length > 1
+        ? `${otherCurrencies.length} ${props.otherCurrenciesLabel}`
+        : "",
+    mainCurrency: mainPendingCurrency,
+    setActivePayout: () => setSelectedPayout(3),
+  };
+
+  const upcomingContent =
+    buckets?.map((bucket, i) => {
+      const mainCurrencyTotal = bucket.details?.totals?.find(
+        (total) => total.currencyCode === "USD"
+      );
+
+      const mainCurrency = {
+        currencyText: mainCurrencyTotal?.currencyCode,
+        amountText: accounting.formatMoney(mainCurrencyTotal?.value),
+      };
+
+      const otherCurrencies = bucket?.details?.totals
+        ?.filter((total) => total.currencyCode !== "USD")
+        .map((total) => ({
+          currencyText: total?.currencyCode,
+          amountText: accounting.formatMoney(total?.value),
+        }));
+
+      const hasOtherCurrencies = otherCurrencies.length > 0;
+
+      const viewProps = {
+        active: i === selectedPayout,
+        otherCurrencies: hasOtherCurrencies,
+        loading,
+        statusText: DateTime.fromMillis(bucket?.date).toFormat("LLL dd, yyyy"),
+        otherCurrenciesText: hasOtherCurrencies
+          ? `${otherCurrencies.length} ${props.otherCurrenciesLabel}`
+          : "",
+        mainCurrency,
+        setActivePayout: () => setSelectedPayout(i),
+      };
+      return <ScheduleCardView {...viewProps} />;
+    }) || [];
+
+  const pendingContent = pendingTotals?.length ? (
+    <ScheduleCardView {...pendingProps} />
+  ) : (
+    ""
+  );
 
   return {
     loading,
     detailsProps,
     integrationDisabled: !!errors,
-    ScheduleContent: [
-      buckets?.map((bucket, i) => {
-        console.log({ bucket });
-        const mainCurrencyTotal = bucket.details?.totals?.find(
-          (total) => total.currencyCode === "USD"
-        );
-
-        const mainCurrency = {
-          currencyText: mainCurrencyTotal?.currencyCode,
-          amountText: accounting.formatMoney(mainCurrencyTotal?.value),
-        };
-
-        console.log({ bucket, mainCurrencyTotal });
-
-        const otherCurrencies = bucket?.details?.totals
-          ?.filter((total) => total.currencyCode !== "USD")
-          .map((total) => ({
-            currencyText: total?.currencyCode,
-            amountText: accounting.formatMoney(total?.value),
-          }));
-
-        const hasOtherCurrencies = otherCurrencies.length > 0;
-
-        const viewProps = {
-          active: i === selectedPayout,
-          otherCurrencies: hasOtherCurrencies,
-          loading,
-          statusText: DateTime.fromMillis(bucket?.date).toFormat(
-            "LLL dd, yyyy"
-          ),
-          otherCurrenciesText: hasOtherCurrencies
-            ? `${otherCurrencies.length} ${props.otherCurrenciesLabel}`
-            : "",
-          mainCurrency,
-          setActivePayout: () => setSelectedPayout(i),
-        };
-        return <ScheduleCardView {...viewProps} />;
-      }),
-      pendingTotals?.map((bucket, i) => {
-        const otherCurrencies = bucket?.details?.totals
-          ?.filter((total) => total.currencyCode !== "USD")
-          .map((total) => ({
-            currencyText: total?.currencyCode,
-            amountText: accounting.formatMoney(total?.value),
-          }));
-
-        const hasOtherCurrencies = otherCurrencies.length > 0;
-
-        const viewProps = {
-          active: i === selectedPayout,
-          otherCurrencies: hasOtherCurrencies,
-          loading,
-          statusText: "Pending",
-          otherCurrenciesText: hasOtherCurrencies
-            ? `${otherCurrencies.length} ${props.otherCurrenciesLabel}`
-            : "",
-          mainCurrency,
-          setActivePayout: () => setSelectedPayout(i),
-        };
-        return <ScheduleCardView {...viewProps} />;
-      }),
-    ],
+    ScheduleContent: [upcomingContent, pendingContent],
   };
 }
