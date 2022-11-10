@@ -56,31 +56,24 @@ const NEXT_PAYOUT_QUERY = gql`
   }
 `;
 
-export function usePayPalDetails(props: PaypalAccountDetails) {
-  const {
-    data: nextPayoutData,
-    loading,
-    errors,
-  } = useQuery(NEXT_PAYOUT_QUERY, {});
-
-  const [selectedPayout, setSelectedPayout] = useState(0);
-
-  console.log({ nextPayoutData, errors });
-
-  const buckets = nextPayoutData?.userPaymentPreview?.buckets;
-
-  const pendingTotals = nextPayoutData?.userPaymentPreview?.pending?.totals;
-
-  const w9Pending = nextPayoutData?.userPaymentPreview?.W9?.totals?.map(
-    (total) => ({
+function getW9Data(w9Totals) {
+  if (!w9Totals?.length) return {};
+  return {
+    w9Pending: w9Totals?.map((total) => ({
       currencyText: total?.currencyCode,
       amountText: accounting.formatMoney(total?.value),
-    })
-  );
+    })),
+  };
+}
 
+function getPendingData(pendingTotals) {
   const mainPendingCurrencyTotal = pendingTotals?.find(
     (total) => total.currencyCode === "USD"
   );
+  const mainPendingCurrency = {
+    currencyText: mainPendingCurrencyTotal?.currencyCode,
+    amountText: accounting.formatMoney(mainPendingCurrencyTotal?.value),
+  };
 
   const pendingOtherCurrencies = pendingTotals
     ?.filter((total) => total.currencyCode !== "USD")
@@ -89,38 +82,14 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
       amountText: accounting.formatMoney(total?.value),
     }));
 
-  const mainPendingCurrency = {
-    currencyText: mainPendingCurrencyTotal?.currencyCode,
-    amountText: accounting.formatMoney(mainPendingCurrencyTotal?.value),
-  };
-
-  const pendingProps = {
-    active: selectedPayout === -1,
-
-    loading,
-    status: "pending" as "pending",
-    statusText: "Pending",
-    statusBadgeText: "Pending",
-    detailedStatusText: "Pending",
-    otherCurrencies: pendingOtherCurrencies?.length
-      ? pendingOtherCurrencies
-      : undefined,
-    otherCurrenciesText: props.otherCurrenciesLabel,
-    mainCurrency: mainPendingCurrency,
-    setActivePayout: () => setSelectedPayout(-1),
-    w9PendingText: props.w9TaxLabel,
-    w9Pending,
-  };
-
-  const nextPayout = buckets?.[selectedPayout];
-
-  console.log({
-    mainPendingCurrency,
+  return {
     mainPendingCurrencyTotal,
-    selectedPayout,
-    nextPayout,
-  });
+    mainPendingCurrency,
+    pendingOtherCurrencies,
+  };
+}
 
+function getDetailsCardData(nextPayout) {
   const otherCurrencyTotals = nextPayout?.details?.totals?.filter(
     (total) => total.currencyCode !== "USD"
   );
@@ -139,14 +108,90 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     amountText: accounting.formatMoney(mainCurrencyBucket?.value),
   };
 
+  return {
+    otherCurrencyTotals,
+    otherCurrencies,
+    mainCurrencyBucket,
+    mainCurrency,
+  };
+}
+
+type Total = {
+  currencyCode: string;
+  value: number;
+};
+
+type Bucket = {
+  date: number;
+  totals: Total[];
+  baseUnitBalances: {
+    baseUnit: string;
+    balances: Total[];
+  };
+};
+//
+type PayoutData = {
+  userPaymentPreview: {
+    buckets: { date: number; details: Bucket }[];
+    W9: Bucket;
+    pending: Bucket;
+  };
+};
+
+export function usePayPalDetails(props: PaypalAccountDetails) {
+  const {
+    data: nextPayoutData,
+    loading,
+    errors,
+  } = useQuery<PayoutData>(NEXT_PAYOUT_QUERY, {});
+
+  const [selectedPayout, setSelectedPayout] = useState(0);
+
+  const buckets = nextPayoutData?.userPaymentPreview?.buckets;
+  const pendingTotals = nextPayoutData?.userPaymentPreview?.pending?.totals;
+  const w9Totals = nextPayoutData?.userPaymentPreview?.W9?.totals;
+  const nextPayout = buckets?.[selectedPayout];
+
+  const { w9Pending } = getW9Data(w9Totals);
+  const {
+    mainPendingCurrency,
+    pendingOtherCurrencies,
+    mainPendingCurrencyTotal,
+  } = getPendingData(pendingTotals);
+  const {
+    otherCurrencyTotals,
+    otherCurrencies,
+    mainCurrencyBucket,
+    mainCurrency,
+  } = getDetailsCardData(nextPayout);
+
   const empty =
     !mainCurrencyBucket?.value &&
     !otherCurrencyTotals?.reduce((agg, total) => agg + total.value, 0);
 
+  const pendingProps = {
+    empty:
+      !mainPendingCurrencyTotal?.value &&
+      !pendingOtherCurrencies?.reduce((agg, total) => agg + total.value, 0),
+    active: selectedPayout === -1,
+    loading,
+    status: "pending" as "pending",
+    statusText: "Pending",
+    statusBadgeText: "Pending",
+    detailedStatusText: "Pending",
+    otherCurrencies: pendingOtherCurrencies?.length
+      ? pendingOtherCurrencies
+      : undefined,
+    otherCurrenciesText: props.otherCurrenciesLabel,
+    mainCurrency: mainPendingCurrency,
+    setActivePayout: () => setSelectedPayout(-1),
+    w9PendingText: props.w9TaxLabel,
+    w9Pending,
+  };
+
   const detailsProps: DetailsCardViewProps = {
     loading,
     mainCurrency,
-    // TODO: figure out where this comes from
     status: selectedPayout === 0 ? "next payout" : "upcoming",
     statusBadgeText:
       selectedPayout === 0 ? props.nextPayoutLabel : props.upcomingPaymentLabel,
