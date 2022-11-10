@@ -6,7 +6,17 @@ import { createStyleSheet } from "../../styling/JSS";
 import { TextSpanView } from "./text-span-view";
 import { PaypalBadge } from "../../Icons/PaypalBadge";
 
-const paypalStatuses = ["TRANSFERRED", "FAILED", "INPROGRESS"];
+const paypalStatuses = [
+  "PAYPAL_PENDING",
+  "FAILED",
+  "INPROGRESS",
+  "UNCLAIMED",
+  "ONHOLD",
+  "REFUNDED",
+  "RETURNED",
+  "REVERSED",
+  "BLOCKED",
+];
 
 @Component({
   tag: "sqp-rewards-cell",
@@ -199,8 +209,36 @@ export class ReferralTableRewardsCell {
       );
 
       console.log({ reward, customMeta: reward.meta?.customMeta, state });
-      const RewardGivenText = () =>
-        state === "FAILED" ? (
+      const RewardGivenText = () => {
+        const customDate =
+          state === "FAILED"
+            ? reward.meta?.customMeta?.dateLastAttempted
+            : state === "UNCLAIMED"
+            ? DateTime.fromMillis(reward.meta?.customMeta?.dateLastUpdated)
+                .plus({ days: 30 })
+                .toMillis()
+            : reward.meta?.customMeta?.dateLastUpdated;
+
+        return paypalStatuses.includes(state) ? (
+          <div>
+            <TextSpanView type="p">
+              {intl.formatMessage(
+                {
+                  id: "statusLongMessage",
+                  defaultMessage: this.statusLongText,
+                },
+                {
+                  status: state,
+                }
+              )}{" "}
+              <span class={sheet.classes.BoldText}>
+                {DateTime.fromMillis(customDate)
+                  .setLocale(luxonLocale(this.locale))
+                  .toLocaleString(DateTime.DATE_MED)}
+              </span>
+            </TextSpanView>
+          </div>
+        ) : state === "FAILED" ? (
           <div>
             <TextSpanView type="p">
               {this.rewardPayoutFailedText}{" "}
@@ -226,6 +264,7 @@ export class ReferralTableRewardsCell {
             </TextSpanView>
           </div>
         );
+      };
 
       return (
         <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>
