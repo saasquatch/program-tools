@@ -1,6 +1,14 @@
 import { h } from "@stencil/core";
-import { W9AndOtherCurrencies } from "./DetailsCard.stories";
-import { Pending, Active, WithOtherCurrencies } from "./ScheduleCard.stories";
+import {
+  W9AndOtherCurrencies,
+  Empty as EmptyDetailsCard,
+} from "./DetailsCard.stories";
+import {
+  Pending,
+  Active,
+  WithOtherCurrencies,
+  Empty as EmptyScheduleCard,
+} from "./ScheduleCard.stories";
 import {
   AccountDetailsView,
   AccountDetailsViewProps,
@@ -112,6 +120,23 @@ export const HasAccountLoading = () => (
   <div>
     <AccountFormView {...defaultAccountFormProps} />
     <AccountDetailsView {...defaultAccountDetailsProps} loading={true} />
+  </div>
+);
+
+export const HasAccountEmpty = () => (
+  <div>
+    <AccountFormView {...defaultAccountFormProps} />
+    <AccountDetailsView
+      {...{
+        ...defaultAccountDetailsProps,
+        detailsSlot: <EmptyDetailsCard />,
+        scheduleSlot: [
+          <EmptyScheduleCard />,
+          <EmptyScheduleCard />,
+          <EmptyScheduleCard />,
+        ],
+      }}
+    />
   </div>
 );
 

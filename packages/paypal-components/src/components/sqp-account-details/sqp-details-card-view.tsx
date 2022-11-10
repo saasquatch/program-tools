@@ -17,6 +17,7 @@ export interface DetailsCardViewProps {
   w9PendingText: string;
   detailedStatusText: string;
   otherCurrenciesText: string;
+  empty?: boolean;
 }
 
 const statusMap = {
@@ -122,6 +123,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
     otherCurrenciesText,
     w9Pending,
     w9PendingText,
+    empty,
   } = props;
 
   return (
@@ -143,6 +145,8 @@ export function DetailsCardView(props: DetailsCardViewProps) {
         )}
         {loading ? (
           <sl-skeleton class={classes.SkeletonThree}></sl-skeleton>
+        ) : empty ? (
+          <h1 class={classes.MainCurrency}>No rewards</h1>
         ) : (
           <h1 class={classes.MainCurrency}>
             {mainCurrency.amountText}{" "}

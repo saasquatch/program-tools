@@ -13,6 +13,7 @@ export default {
 
 const defaultProps: ScheduleCardViewProps = {
   active: false,
+  empty: false,
   setActivePayout: () => {},
   otherCurrencies: false,
   loading: false,
@@ -30,6 +31,10 @@ export const Default = () => {
 
 export const Loading = () => {
   return <ScheduleCardView {...{ ...defaultProps, loading: true }} />;
+};
+
+export const Empty = () => {
+  return <ScheduleCardView {...{ ...defaultProps, empty: true }} />;
 };
 
 export const WithOtherCurrencies = () => {

@@ -11,6 +11,7 @@ export default {
 
 const defaultProps: DetailsCardViewProps = {
   loading: false,
+  empty: false,
   mainCurrency: { currencyText: "USD", amountText: "100.00" },
   status: "upcoming",
   statusBadgeText: "Upcoming",
@@ -32,6 +33,10 @@ export const Upcoming = () => {
 
 export const Loading = () => {
   return <DetailsCardView {...{ ...defaultProps, loading: true }} />;
+};
+
+export const Empty = () => {
+  return <DetailsCardView {...{ ...defaultProps, empty: true }} />;
 };
 
 export const NextPayout = () => {
