@@ -38,7 +38,16 @@ const style = {
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-const paypalStatuses = ["TRANSFERRED", "FAILED", "INPROGRESS"];
+const paypalStatuses = [
+  "FAILED",
+  "UNCLAIMED",
+  "SUCCESS",
+  "REFUNDED",
+  "RETURNED",
+  "REVERSED",
+  "BLOCKED",
+  "ONHOLD",
+];
 
 @Component({
   tag: "sqp-status-cell",
@@ -58,26 +67,15 @@ export class RewardTableStatusCell {
   @Prop() rewardUnclaimedText: string;
 
   rewardStatus(reward: Reward) {
+    const paypalStatus =
+      reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"];
+    if (paypalStatus === "PENDING") return "PAYPAL_PENDING";
+    if (paypalStatus) return paypalStatus;
     if (reward.dateCancelled) return "CANCELLED";
     if (reward.statuses && reward.statuses.includes("EXPIRED"))
       return "EXPIRED";
     if (reward.statuses && reward.statuses.includes("PENDING"))
       return "PENDING";
-    if (
-      reward.meta?.customMeta?.datePaidOut &&
-      reward.statuses.includes("REDEEMED")
-    ) {
-      return "TRANSFERRED";
-    }
-    if (reward.meta?.status === "ERROR") {
-      return "FAILED";
-    }
-    if (
-      reward.meta?.customMeta?.dateLastAttempted &&
-      !reward.meta?.customMeta?.datePaidOut
-    ) {
-      return "INPROGRESS";
-    }
     if (reward.type === "CREDIT") {
       if (reward.statuses.includes("REDEEMED")) return "REDEEMED";
       return "AVAILABLE";
@@ -100,20 +98,11 @@ export class RewardTableStatusCell {
   render() {
     intl.locale = this.locale;
 
-    // const rewardStatus = this.rewardStatus(this.reward);
-
     const hasMeta =
       !!this.reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"];
 
-    const rewardStatus =
-      this.reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"] ||
-      this.rewardStatus(this.reward);
+    const rewardStatus = this.rewardStatus(this.reward);
 
-    console.log({
-      reward: this.reward,
-      rewardStatus,
-      message: this.statusText,
-    });
     const statusText = intl.formatMessage(
       { id: "statusMessage", defaultMessage: this.statusText },
       {
@@ -137,7 +126,7 @@ export class RewardTableStatusCell {
         ? "primary"
         : rewardStatus === "FAILED"
         ? "danger"
-        : rewardStatus === "PENDING" ||
+        : rewardStatus === "PAYPAL_PENDING" ||
           rewardStatus === "UNCLAIMED" ||
           rewardStatus === "ONHOLD"
         ? "warning"
@@ -149,11 +138,18 @@ export class RewardTableStatusCell {
         : "danger"
       : rewardStatus === "AVAILABLE"
       ? "success"
-      : rewardStatus === "REDEEMED" || rewardStatus === "TRANSFERRED"
+      : rewardStatus === "REDEEMED"
       ? "primary"
-      : rewardStatus === "PENDING" || rewardStatus === "INPROGRESS"
+      : rewardStatus === "PENDING"
       ? "warning"
       : "danger";
+
+    console.log({
+      reward: this.reward,
+      rewardStatus,
+      message: this.statusText,
+      badgeType,
+    });
 
     const dateShown =
       this.reward.dateCancelled ||
@@ -168,14 +164,6 @@ export class RewardTableStatusCell {
           ? this.expiryText + " "
           : ""
       }${DateTime.fromMillis(dateShown)
-        ?.setLocale(luxonLocale(this.locale))
-        .toLocaleString(DateTime.DATE_MED)}.`;
-
-    const paidOut =
-      rewardStatus === "TRANSFERRED" &&
-      `${this.rewardPaidOutText + " "}${DateTime.fromMillis(
-        this.reward.meta?.customMeta?.datePaidOut
-      )
         ?.setLocale(luxonLocale(this.locale))
         .toLocaleString(DateTime.DATE_MED)}.`;
 
@@ -197,21 +185,12 @@ export class RewardTableStatusCell {
         ?.setLocale(luxonLocale(this.locale))
         .toLocaleString(DateTime.DATE_MED)}.`;
 
-    const payoutInProgress =
-      rewardStatus ===
-      ("INPROGRESS" &&
-        `${this.rewardPayoutInProgressText + " "}${DateTime.fromMillis(
-          this.reward.meta?.customMeta?.dateLastAttempted ||
-            this.reward.meta?.customMeta?.dateFirstAttempted
-        )
-          ?.setLocale(luxonLocale(this.locale))
-          .toLocaleString(DateTime.DATE_MED)}.`);
-
     const pendingReasons =
       rewardStatus === "PENDING" ? getRewardPendingReasons(this) : null;
 
-    const isPayPal = paypalStatuses.includes(rewardStatus);
+    const isPayPal = hasMeta;
     console.log("rewardStatus is  ", rewardStatus);
+    console.log("isPaypal  ", isPayPal);
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
@@ -231,12 +210,7 @@ export class RewardTableStatusCell {
         </div>
 
         <p class={sheet.classes.Date}>
-          {paidOut ||
-            payoutFailed ||
-            payoutInProgress ||
-            pendingReasons ||
-            unClaimed ||
-            date}
+          {payoutFailed || pendingReasons || unClaimed || date}
         </p>
       </div>
     );

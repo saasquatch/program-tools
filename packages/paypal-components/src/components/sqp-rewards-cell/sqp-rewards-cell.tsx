@@ -25,6 +25,36 @@ export class ReferralTableRewardsCell {
   @Prop() rewardPayoutInProgressText: string;
   @Prop() rewardPayoutFailedText: string;
   @Prop() locale: string = "en";
+
+  rewardStatus(reward: Reward) {
+    const paypalStatus =
+      reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"];
+    if (paypalStatus === "PENDING") return "PAYPAL_PENDING";
+    if (paypalStatus) return paypalStatus;
+    if (reward.dateCancelled) return "CANCELLED";
+    if (reward.statuses && reward.statuses.includes("EXPIRED"))
+      return "EXPIRED";
+    if (reward.statuses && reward.statuses.includes("PENDING"))
+      return "PENDING";
+    if (reward.type === "CREDIT") {
+      if (reward.statuses.includes("REDEEMED")) return "REDEEMED";
+      return "AVAILABLE";
+    }
+    if (reward.type === "PCT_DISCOUNT") {
+      if (reward.statuses.includes("AVAILABLE")) return "AVAILABLE";
+    }
+
+    if (reward.type === "INTEGRATION" || reward.type === "FUELTANK") {
+      if (reward.statuses && reward.statuses.includes("PENDING"))
+        return "PENDING";
+      if (reward.statuses && reward.statuses.includes("CANCELLED"))
+        return "CANCELLED";
+      if (reward.statuses.includes("AVAILABLE")) return "AVAILABLE";
+    }
+
+    return "";
+  }
+
   render() {
     intl.locale = this.locale;
     const style = {
@@ -94,37 +124,6 @@ export class ReferralTableRewardsCell {
     const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
 
-    const getState = (reward: Reward): string => {
-      if (
-        reward.meta?.customMeta?.datePaidOut &&
-        reward.statuses.includes("REDEEMED")
-      ) {
-        return "TRANSFERRED";
-      }
-      if (reward.meta?.status === "ERROR") {
-        return "FAILED";
-      }
-      if (
-        reward.meta?.customMeta?.dateLastAttempted &&
-        !reward.meta?.customMeta?.datePaidOut
-      ) {
-        return "INPROGRESS";
-      }
-      const states = reward.statuses;
-
-      const possibleStates = [
-        "REDEEMED",
-        "CANCELLED",
-        "EXPIRED",
-        "PENDING",
-        "AVAILABLE",
-      ];
-
-      if (states.length === 1) return states[0];
-
-      return possibleStates.find((state) => states.includes(state) && state);
-    };
-
     // switch (state) {
     //   case "REDEEMED":
     //     return "primary";
@@ -160,9 +159,9 @@ export class ReferralTableRewardsCell {
           : "danger"
         : state === "AVAILABLE"
         ? "success"
-        : state === "REDEEMED" || state === "TRANSFERRED"
+        : state === "REDEEMED"
         ? "primary"
-        : state === "PENDING" || state === "INPROGRESS"
+        : state === "PENDING"
         ? "warning"
         : "danger";
       return badgeType;
@@ -180,8 +179,8 @@ export class ReferralTableRewardsCell {
     return this.rewards?.map((reward) => {
       const hasMeta =
         !!reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"];
-      const state = getState(reward);
-      const isPayPal = paypalStatuses.includes(state);
+      const state = this.rewardStatus(reward);
+      const isPayPal = hasMeta;
       const slBadgeType = getSLBadgeType(state, hasMeta);
       const badgeText = intl.formatMessage(
         { id: "statusShortMessage", defaultMessage: this.statusText },
@@ -199,34 +198,9 @@ export class ReferralTableRewardsCell {
         }
       );
 
-      console.log(reward.meta?.customMeta);
+      console.log({ reward, customMeta: reward.meta?.customMeta, state });
       const RewardGivenText = () =>
-        state === "INPROGRESS" ? (
-          <div>
-            <TextSpanView type="p">
-              {this.rewardPayoutInProgressText}{" "}
-              <span class={sheet.classes.BoldText}>
-                {DateTime.fromMillis(
-                  reward.meta?.customMeta?.dateLastAttempted ||
-                    reward.meta?.customMeta?.dateFirstAttempted
-                )
-                  .setLocale(luxonLocale(this.locale))
-                  .toLocaleString(DateTime.DATE_MED)}
-              </span>
-            </TextSpanView>
-          </div>
-        ) : state === "TRANSFERRED" ? (
-          <div>
-            <TextSpanView type="p">
-              {this.rewardPaidOutText}{" "}
-              <span class={sheet.classes.BoldText}>
-                {DateTime.fromMillis(reward.meta?.customMeta?.datePaidOut)
-                  .setLocale(luxonLocale(this.locale))
-                  .toLocaleString(DateTime.DATE_MED)}
-              </span>
-            </TextSpanView>
-          </div>
-        ) : state === "FAILED" ? (
+        state === "FAILED" ? (
           <div>
             <TextSpanView type="p">
               {this.rewardPayoutFailedText}{" "}
