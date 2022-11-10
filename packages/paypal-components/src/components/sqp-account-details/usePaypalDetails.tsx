@@ -71,9 +71,23 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
 
   const pendingTotals = nextPayoutData?.userPaymentPreview?.pending?.totals;
 
+  const w9Pending = nextPayoutData?.userPaymentPreview?.W9?.totals?.map(
+    (total) => ({
+      currencyText: total?.currencyCode,
+      amountText: accounting.formatMoney(total?.value),
+    })
+  );
+
   const mainPendingCurrencyTotal = pendingTotals?.find(
     (total) => total.currencyCode === "USD"
   );
+
+  const pendingOtherCurrencies = pendingTotals
+    ?.filter((total) => total.currencyCode !== "USD")
+    .map((total) => ({
+      currencyText: total?.currencyCode,
+      amountText: accounting.formatMoney(total?.value),
+    }));
 
   const mainPendingCurrency = {
     currencyText: mainPendingCurrencyTotal?.currencyCode,
@@ -81,20 +95,31 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
   };
 
   const pendingProps = {
-    active: selectedPayout === 3,
-    otherCurrencies: pendingTotals?.length > 1,
+    active: selectedPayout === -1,
+
     loading,
+    status: "pending" as "pending",
     statusText: "Pending",
-    otherCurrenciesText:
-      pendingTotals?.length > 1
-        ? `${pendingTotals.length - 1} ${props.otherCurrenciesLabel}`
-        : "",
+    statusBadgeText: "Pending",
+    detailedStatusText: "Pending",
+    otherCurrencies: pendingOtherCurrencies?.length
+      ? pendingOtherCurrencies
+      : undefined,
+    otherCurrenciesText: props.otherCurrenciesLabel,
     mainCurrency: mainPendingCurrency,
-    setActivePayout: () => setSelectedPayout(3),
+    setActivePayout: () => setSelectedPayout(-1),
+    w9PendingText: props.w9TaxLabel,
+    w9Pending,
   };
 
-  const nextPayout =
-    selectedPayout === -1 ? pendingProps : buckets?.[selectedPayout];
+  const nextPayout = buckets?.[selectedPayout];
+
+  console.log({
+    mainPendingCurrency,
+    mainPendingCurrencyTotal,
+    selectedPayout,
+    nextPayout,
+  });
 
   const otherCurrencies = nextPayout?.details?.totals
     ?.filter((total) => total.currencyCode !== "USD")
@@ -112,13 +137,6 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     amountText: accounting.formatMoney(mainCurrencyBucket?.value),
   };
 
-  const w9Pending = nextPayoutData?.userPaymentPreview?.W9?.totals?.map(
-    (total) => ({
-      currencyText: total?.currencyCode,
-      amountText: accounting.formatMoney(total?.value),
-    })
-  );
-
   const detailsProps: DetailsCardViewProps = {
     loading,
     mainCurrency,
@@ -132,7 +150,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     otherCurrenciesText: props.otherCurrenciesLabel,
     otherCurrencies: otherCurrencies?.length ? otherCurrencies : undefined,
     w9PendingText: props.w9TaxLabel,
-    w9Pending,
+    w9Pending: undefined,
   };
 
   const upcomingContent =
@@ -177,7 +195,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
 
   return {
     loading,
-    detailsProps,
+    detailsProps: selectedPayout === -1 ? pendingProps : detailsProps,
     integrationDisabled: !!errors,
     ScheduleContent: [upcomingContent, pendingContent],
   };
