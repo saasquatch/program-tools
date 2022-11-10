@@ -51,6 +51,15 @@ const NEXT_PAYOUT_QUERY = gql`
     }
   }
 `;
+type AccountDetailsQuery = {
+  viewer: {
+    id: string;
+    accountId: string;
+    customFields: {
+      paypalEmail?: string;
+    };
+  };
+};
 
 export function useAccountDetails(props) {
   const formRef = useRef<HTMLFormElement>(null);
@@ -58,22 +67,22 @@ export function useAccountDetails(props) {
   const [open, setOpen] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const { data } = useQuery(ACCOUNT_DETAILS_QUERY, {});
+  const { data } = useQuery<AccountDetailsQuery>(ACCOUNT_DETAILS_QUERY, {});
 
   // TODO: remove this
-  useEffect(() => {
-    setUserIdentity({
-      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtKzIwQHNhYXNxdWF0LmNoIiwiYWNjb3VudElkIjoic2FtKzIwQHNhYXNxdWF0LmNoIiwiZW1haWwiOiJzYW0rMjBAc2Fhc3F1YXQuY2gifX0.1b8tjushS1Dq5Suc-EY7WmasP9v5XX2Fa997y-CH2i4",
-      id: "sam+20@saasquat.ch",
-      accountId: "sam+20@saasquat.ch",
-    });
-  }, []);
+  if (process.env.NODE_ENV === "dev")
+    useEffect(() => {
+      setUserIdentity({
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtKzIwQHNhYXNxdWF0LmNoIiwiYWNjb3VudElkIjoic2FtKzIwQHNhYXNxdWF0LmNoIiwiZW1haWwiOiJzYW0rMjBAc2Fhc3F1YXQuY2gifX0.1b8tjushS1Dq5Suc-EY7WmasP9v5XX2Fa997y-CH2i4",
+        id: "sam+20@saasquat.ch",
+        accountId: "sam+20@saasquat.ch",
+      });
+    }, []);
 
   const [submitUser, { data: submissionData, loading }] =
     useMutation(SUBMIT_ACCOUNT);
 
   const { refresh } = useRefreshDispatcher();
-  // console.log({ data });
   const { accountId, id } = useUserIdentity() || { accountId: null, id: null };
 
   const submit = async (event: any) => {
@@ -105,16 +114,14 @@ export function useAccountDetails(props) {
   function resetForm() {
     const formControls = formRef.current.getFormControls();
     formControls?.forEach((control) => {
-      control.value = "";
+      control.value = data?.viewer?.customFields?.paypalEmail || "";
     });
     setSuccess(false);
   }
 
   function openModal(open: boolean) {
+    resetForm();
     setOpen(open);
-    if (!open) {
-      resetForm();
-    }
   }
 
   const disconnect = async () => {
@@ -132,12 +139,9 @@ export function useAccountDetails(props) {
     }
   };
 
-  console.log({ data });
-
   return {
     formRef,
     integrationDisabled: false,
-    // @ts-ignore
     hasAccount: !!data?.viewer?.customFields?.paypalEmail,
     callbacks: { submit, setOpen: openModal, disconnect },
     states: {
