@@ -66,6 +66,7 @@ export function useAccountDetails(props) {
   const [error, setError] = useState("");
   const [open, setOpen] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [editingAccount, setEditingAccount] = useState(false);
 
   const { data } = useQuery<AccountDetailsQuery>(ACCOUNT_DETAILS_QUERY, {});
 
@@ -107,12 +108,13 @@ export function useAccountDetails(props) {
       return setError("Network request failed.");
     } else {
       setSuccess(true);
+      setEditingAccount(false);
       refresh();
     }
   };
 
   function resetForm() {
-    const formControls = formRef.current.getFormControls();
+    const formControls = formRef.current?.getFormControls();
     formControls?.forEach((control) => {
       control.value = data?.viewer?.customFields?.paypalEmail || "";
     });
@@ -134,21 +136,26 @@ export function useAccountDetails(props) {
     if (result instanceof Error) {
       return setError("Network request failed.");
     } else {
-      setSuccess(true);
       refresh();
+      setSuccess(true);
+      setOpen(false);
     }
   };
+
+  const paypalEmail = data?.viewer?.customFields?.paypalEmail;
 
   return {
     formRef,
     integrationDisabled: false,
-    hasAccount: !!data?.viewer?.customFields?.paypalEmail,
-    callbacks: { submit, setOpen: openModal, disconnect },
+    hasAccount: !!paypalEmail,
+    callbacks: { submit, setOpen: openModal, disconnect, setEditingAccount },
     states: {
       loading,
       error,
       success,
       open,
+      editingAccount,
+      paypalEmail,
     },
     detailsContent: {
       headerText: props.headerText,

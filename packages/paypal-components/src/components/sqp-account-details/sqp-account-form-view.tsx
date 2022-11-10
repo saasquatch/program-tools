@@ -10,6 +10,7 @@ export interface AccountFormViewProps {
     error: string;
     loading: boolean;
     success: boolean;
+    paypalEmail?: string;
     editingAccount?: boolean;
   };
   formContent: {
@@ -31,11 +32,12 @@ export interface AccountFormViewProps {
     submit: (event: MouseEvent) => void;
     disconnect: () => void;
     setOpen: (open: boolean) => void;
+    setEditingAccount?: (editing: boolean) => void;
   };
 }
 
 export function AccountFormView(props: AccountFormViewProps) {
-  const { formContent, states, callbacks } = props;
+  const { formContent, hasAccount, states, callbacks } = props;
   const style = {
     ButtonContainer: {
       display: "flex",
@@ -101,8 +103,6 @@ export function AccountFormView(props: AccountFormViewProps) {
   const styleString = sheet.toString();
   const { classes } = sheet;
 
-  console.log({ editingAccount: states.editingAccount });
-
   return (
     <div style={{ background: "var(--sl-color-neutral-0)" }}>
       <style type="text/css">{styleString}</style>
@@ -120,143 +120,144 @@ export function AccountFormView(props: AccountFormViewProps) {
               <div class={classes.FormHeaderContainer}>
                 <img src="https://res.cloudinary.com/saasquatch-staging/image/upload/v1665703368/tenant_test_a8b41jotf8a1v/tjfxf0qxu2lwqzgtcghw.svg" />
                 <h2>
-                  {states.editingAccount
+                  {hasAccount
                     ? formContent.connectAccountModalHeaderText
                     : formContent.modalConnectPayPalAccountHeader}
                 </h2>
-                {!states.editingAccount && (
+                {!hasAccount && (
                   <p>{formContent.connectPayPalDescriptionText}</p>
                 )}
               </div>
             ),
-            content: states.editingAccount ? (
-              <div>
-                {states.error && (
-                  <sqm-form-message
-                    class={classes.Error}
-                    type="error"
-                    exportparts="erroralert-icon"
-                  >
-                    <div part="erroralert-text">{states.error}</div>
-                  </sqm-form-message>
-                )}
-                {states.success && (
-                  <sqm-form-message
-                    class={classes.Success}
-                    type="success"
-                    exportparts="successalert-icon"
-                  >
-                    <div part="successalert-text">
-                      {formContent.successMessage}
-                    </div>
-                  </sqm-form-message>
-                )}
-                <div class={classes.EditingFormContentContainer}>
-                  <sl-input
-                    exportparts="label: input-label"
-                    name="/email"
-                    label={formContent.payPalEmailLabel}
-                    required
-                    disabled={true}
-                    help-text={formContent.payPalEmailLabelHelpText}
-                    type="email"
-                    value={"email@example.com"}
-                  ></sl-input>
-                  <sl-button
-                    class={classes.FullWidthButton}
-                    type="primary"
-                    submit
-                    loading={states.loading}
-                  >
-                    {formContent.connectAccountModalButtonText}
-                  </sl-button>
-                  <hr
-                    style={{
-                      width: "100%",
-                      borderTop: "none",
-                      color: "#E4E4E7",
-                    }}
-                  />
-                  <div>
-                    <h2>{formContent.disconnectAccountHeaderText}</h2>
-                    <p style={{ marginTop: "0px" }}>
-                      {formContent.disconnectAccountDescriptionText}
-                    </p>
-                    <sl-button
-                      class={classes.FullWidthButton}
-                      onClick={callbacks.disconnect}
+            content:
+              hasAccount && !states.editingAccount ? (
+                <div>
+                  {states.error && (
+                    <sqm-form-message
+                      class={classes.Error}
+                      type="error"
+                      exportparts="erroralert-icon"
                     >
-                      {formContent.disconnectAccountButtonText}
-                    </sl-button>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div>
-                {states.error && (
-                  <sqm-form-message
-                    class={classes.Error}
-                    type="error"
-                    exportparts="erroralert-icon"
-                  >
-                    <div part="erroralert-text">{states.error}</div>
-                  </sqm-form-message>
-                )}
-                {states.success && (
-                  <sqm-form-message
-                    class={classes.Success}
-                    type="success"
-                    exportparts="successalert-icon"
-                  >
-                    <div part="successalert-text">
-                      {formContent.successMessage}
-                    </div>
-                  </sqm-form-message>
-                )}
-                <sl-form
-                  onSl-submit={callbacks.submit}
-                  ref={(el: HTMLFormElement) => (props.formRef.current = el)}
-                >
-                  <div class={classes.InputContainer}>
+                      <div part="erroralert-text">{states.error}</div>
+                    </sqm-form-message>
+                  )}
+                  {states.success && (
+                    <sqm-form-message
+                      class={classes.Success}
+                      type="success"
+                      exportparts="successalert-icon"
+                    >
+                      <div part="successalert-text">
+                        {formContent.successMessage}
+                      </div>
+                    </sqm-form-message>
+                  )}
+                  <div class={classes.EditingFormContentContainer}>
                     <sl-input
                       exportparts="label: input-label"
                       name="/email"
                       label={formContent.payPalEmailLabel}
                       required
-                      disabled={states.loading}
+                      disabled={true}
                       help-text={formContent.payPalEmailLabelHelpText}
                       type="email"
+                      value={states.paypalEmail || "email@example.com"}
                     ></sl-input>
-                    <sl-input
-                      exportparts="label: input-label"
-                      name="/confirmEmail"
-                      label={formContent.confirmPayPalEmailLabel}
-                      required
-                      disabled={states.loading}
-                      type="email"
-                    ></sl-input>
-                  </div>
-
-                  <div class={classes.ButtonContainer}>
                     <sl-button
-                      class={classes.ConnectPayPalAccount}
+                      class={classes.FullWidthButton}
                       type="primary"
-                      submit
+                      onClick={() => callbacks.setEditingAccount(true)}
                       loading={states.loading}
                     >
-                      {formContent.submitPayPalAccountButtonText}
+                      {formContent.connectAccountModalButtonText}
                     </sl-button>
-                    <sl-button
-                      class={classes.CancelButton}
-                      type="text"
-                      onClick={() => callbacks.setOpen(false)}
-                    >
-                      {formContent.cancelText}
-                    </sl-button>
+                    <hr
+                      style={{
+                        width: "100%",
+                        borderTop: "none",
+                        color: "#E4E4E7",
+                      }}
+                    />
+                    <div>
+                      <h2>{formContent.disconnectAccountHeaderText}</h2>
+                      <p style={{ marginTop: "0px" }}>
+                        {formContent.disconnectAccountDescriptionText}
+                      </p>
+                      <sl-button
+                        class={classes.FullWidthButton}
+                        onClick={callbacks.disconnect}
+                      >
+                        {formContent.disconnectAccountButtonText}
+                      </sl-button>
+                    </div>
                   </div>
-                </sl-form>
-              </div>
-            ),
+                </div>
+              ) : (
+                <div>
+                  {states.error && (
+                    <sqm-form-message
+                      class={classes.Error}
+                      type="error"
+                      exportparts="erroralert-icon"
+                    >
+                      <div part="erroralert-text">{states.error}</div>
+                    </sqm-form-message>
+                  )}
+                  {states.success && (
+                    <sqm-form-message
+                      class={classes.Success}
+                      type="success"
+                      exportparts="successalert-icon"
+                    >
+                      <div part="successalert-text">
+                        {formContent.successMessage}
+                      </div>
+                    </sqm-form-message>
+                  )}
+                  <sl-form
+                    onSl-submit={callbacks.submit}
+                    ref={(el: HTMLFormElement) => (props.formRef.current = el)}
+                  >
+                    <div class={classes.InputContainer}>
+                      <sl-input
+                        exportparts="label: input-label"
+                        name="/email"
+                        label={formContent.payPalEmailLabel}
+                        required
+                        disabled={states.loading}
+                        help-text={formContent.payPalEmailLabelHelpText}
+                        type="email"
+                      ></sl-input>
+                      <sl-input
+                        exportparts="label: input-label"
+                        name="/confirmEmail"
+                        label={formContent.confirmPayPalEmailLabel}
+                        required
+                        disabled={states.loading}
+                        type="email"
+                      ></sl-input>
+                    </div>
+
+                    <div class={classes.ButtonContainer}>
+                      <sl-button
+                        class={classes.ConnectPayPalAccount}
+                        type="primary"
+                        submit
+                        loading={states.loading}
+                      >
+                        {formContent.submitPayPalAccountButtonText}
+                      </sl-button>
+                      <sl-button
+                        class={classes.CancelButton}
+                        type="text"
+                        onClick={() => callbacks.setOpen(false)}
+                      >
+                        {formContent.cancelText}
+                      </sl-button>
+                    </div>
+                  </sl-form>
+                </div>
+              ),
           }}
         ></PortalSectionView>
       </sl-dialog>
