@@ -1,6 +1,14 @@
 import { h } from "@stencil/core";
-import { W9AndOtherCurrencies } from "./DetailsCard.stories";
-import { Pending, Active, WithOtherCurrencies } from "./ScheduleCard.stories";
+import {
+  W9AndOtherCurrencies,
+  Empty as EmptyDetailsCard,
+} from "./DetailsCard.stories";
+import {
+  Pending,
+  Active,
+  WithOtherCurrencies,
+  Empty as EmptyScheduleCard,
+} from "./ScheduleCard.stories";
 import {
   AccountDetailsView,
   AccountDetailsViewProps,
@@ -34,10 +42,9 @@ const defaultAccountDetailsProps: AccountDetailsViewProps = {
 
 const defaultAccountFormProps: AccountFormViewProps = {
   formRef: { current: null },
-  hasAccount: true,
+  hasAccount: false,
   callbacks: { submit: () => {}, setOpen: () => {}, disconnect: () => {} },
   states: {
-    editingAccount: false,
     loading: false,
     error: undefined,
     success: false,
@@ -115,15 +122,31 @@ export const HasAccountLoading = () => (
   </div>
 );
 
+export const HasAccountEmpty = () => (
+  <div>
+    <AccountFormView {...defaultAccountFormProps} />
+    <AccountDetailsView
+      {...{
+        ...defaultAccountDetailsProps,
+        detailsSlot: <EmptyDetailsCard />,
+        scheduleSlot: [
+          <EmptyScheduleCard />,
+          <EmptyScheduleCard />,
+          <EmptyScheduleCard />,
+        ],
+      }}
+    />
+  </div>
+);
+
 export const EditAccountFormOpen = () => (
   <div>
     <AccountFormView
       {...defaultAccountFormProps}
-      hasAccount={false}
+      hasAccount={true}
       states={{
         ...defaultAccountFormProps.states,
         open: true,
-        editingAccount: true,
       }}
     />
     <AccountDetailsView {...defaultAccountDetailsProps} hasAccount={false} />

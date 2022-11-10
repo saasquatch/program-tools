@@ -36,7 +36,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    */
   @Prop()
   statusLongText: string =
-    "{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} REDEEMED {Redeemed on} PENDING {Available on} EXPIRED {Reward expired on} SUCCESS {Paid out on} FAILED {This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on} PAYPAL_PENDING {Payout process started on} UNCLAIMED {The email you provided does not link to an exisiting PayPal account. Payout expires on} ONHOLD {Payout on hold and in review since} REFUNDED {Payout refunded on} RETURNED {Payout returned on} REVERSED {Payout reversed on} BLOCKED {Payout blocked on} other {Not available} }";
+    "{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} REDEEMED {Redeemed on} PENDING {Available on} EXPIRED {Reward expired on} SUCCESS {Paid out on} FAILED {This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on} PAYPAL_PENDING {Payout process started on} UNCLAIMED {The email you provided does not link to an existing PayPal account. Payout expires on} ONHOLD {Payout on hold and in review since} REFUNDED {Payout refunded on} RETURNED {Payout returned on} REVERSED {Payout reversed on} BLOCKED {Payout blocked on} other {Not available} }";
 
   /**
    * Shown in the dropdown details when a reward has an associated fuel tank code.
@@ -81,7 +81,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    * @uiName Reward Unclaimed Text
    */
   @Prop() rewardUnclaimedText: string =
-    "The email you provided does not link to an exisitingPayPalaccount. Payout expires on {date}.";
+    "The email you provided does not link to an existing PayPal account. Payout expires on {date}.";
 
   /**
    * Shown in the dropdown details when a reward was placed on hold during payout.
@@ -104,7 +104,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    * @uiName Reward Returned Text
    */
   @Prop() rewardReturnedText: string =
-    "The email you provided does not link to an exisitingPayPalaccount. Payout expired on {date}.";
+    "The email you provided does not link to an existing PayPal account. Payout expired on {date}.";
 
   /**
    * Shown in the dropdown details when a rewards payout was reserved.

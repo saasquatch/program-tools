@@ -76,7 +76,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
    * @uiName Reward Returned Text
    */
   @Prop() rewardReturnedText: string =
-    "The email you provided does not link to an exisiting PayPalaccount. Payout expired on";
+    "The email you provided does not link to an existing PayPal account. Payout expired on";
 
   /**
    * Displayed below the status pill when a rewards payout was reserved.

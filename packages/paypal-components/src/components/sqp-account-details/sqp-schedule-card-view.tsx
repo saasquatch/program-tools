@@ -6,6 +6,7 @@ export interface ScheduleCardViewProps {
   active: boolean;
   setActivePayout: () => void;
   loading: boolean;
+  empty?: boolean;
   otherCurrencies: boolean;
   statusText: string;
   otherCurrenciesText: string;
@@ -76,6 +77,7 @@ export function ScheduleCardView(props: ScheduleCardViewProps) {
     otherCurrenciesText,
     mainCurrency,
     loading,
+    empty,
   } = props;
 
   const sheet = createStyleSheet(style);
@@ -103,6 +105,8 @@ export function ScheduleCardView(props: ScheduleCardViewProps) {
       <div class={classes.AmountsContainer}>
         {loading ? (
           <sl-skeleton class={classes.LowerSkeleton}></sl-skeleton>
+        ) : empty ? (
+          <h2 class={classes.MainCurrency}>No rewards</h2>
         ) : (
           <h2 class={classes.MainCurrency}>
             {mainCurrency.amountText}{" "}
