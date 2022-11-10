@@ -4,10 +4,10 @@ import { useRequestRerender } from "../../tables/re-render";
 import { ReferralTableColumn } from "./ReferralTableColumn";
 
 /**
- * @uiName Referral Table Rewards Column
+ * @uiName PayPal Referral Table Rewards Column
  * @validParents ["sqm-referral-table"]
  * @exampleGroup PayPal Components
- * @example Referral Table Rewards Column - <sqp-rewards-column column-title="Rewards" status-text="{status, select, SUCCESS {Paid Out} FAILED {Failed} PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} other {Not available} }" status-long-text="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}"></sqp-rewards-column>
+ * @example Referral Table Rewards Column - <sqp-rewards-column></sqp-rewards-column>
  */
 @Component({
   tag: "sqp-rewards-column",

@@ -4,10 +4,10 @@ import { useRequestRerender } from "../../tables/re-render";
 import { RewardTableColumn } from "./RewardTableColumn";
 
 /**
- * @uiName Reward Table Status Column
+ * @uiName PayPal Reward Table Status Column
  * @validParents ["sqm-rewards-table"]
  * @exampleGroup PayPal Components
- * @example Reward Table Status Column - <sqp-status-column column-title="PayPal Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} SUCCESS {Paid Out} FAILED {Failed} PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error"></sqp-status-column>
+ * @example Reward Table Status Column - <sqp-status-column></sqp-status-column>
  */
 @Component({
   tag: "sqp-status-column",
