@@ -67,6 +67,10 @@ export class RewardTableStatusCell {
   @Prop() rewardUnclaimedText: string;
 
   rewardStatus(reward: Reward) {
+    const paypalStatus =
+      reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"];
+    if (paypalStatus === "PENDING") return "PAYPAL_PENDING";
+    if (paypalStatus) return paypalStatus;
     if (reward.dateCancelled) return "CANCELLED";
     if (reward.statuses && reward.statuses.includes("EXPIRED"))
       return "EXPIRED";
@@ -97,15 +101,8 @@ export class RewardTableStatusCell {
     const hasMeta =
       !!this.reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"];
 
-    const rewardStatus =
-      this.reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"] ||
-      this.rewardStatus(this.reward);
+    const rewardStatus = this.rewardStatus(this.reward);
 
-    console.log({
-      reward: this.reward,
-      rewardStatus,
-      message: this.statusText,
-    });
     const statusText = intl.formatMessage(
       { id: "statusMessage", defaultMessage: this.statusText },
       {
@@ -129,7 +126,7 @@ export class RewardTableStatusCell {
         ? "primary"
         : rewardStatus === "FAILED"
         ? "danger"
-        : rewardStatus === "PENDING" ||
+        : rewardStatus === "PAYPAL_PENDING" ||
           rewardStatus === "UNCLAIMED" ||
           rewardStatus === "ONHOLD"
         ? "warning"
@@ -146,6 +143,13 @@ export class RewardTableStatusCell {
       : rewardStatus === "PENDING"
       ? "warning"
       : "danger";
+
+    console.log({
+      reward: this.reward,
+      rewardStatus,
+      message: this.statusText,
+      badgeType,
+    });
 
     const dateShown =
       this.reward.dateCancelled ||

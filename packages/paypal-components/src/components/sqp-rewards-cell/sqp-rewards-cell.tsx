@@ -25,6 +25,36 @@ export class ReferralTableRewardsCell {
   @Prop() rewardPayoutInProgressText: string;
   @Prop() rewardPayoutFailedText: string;
   @Prop() locale: string = "en";
+
+  rewardStatus(reward: Reward) {
+    const paypalStatus =
+      reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"];
+    if (paypalStatus === "PENDING") return "PAYPAL_PENDING";
+    if (paypalStatus) return paypalStatus;
+    if (reward.dateCancelled) return "CANCELLED";
+    if (reward.statuses && reward.statuses.includes("EXPIRED"))
+      return "EXPIRED";
+    if (reward.statuses && reward.statuses.includes("PENDING"))
+      return "PENDING";
+    if (reward.type === "CREDIT") {
+      if (reward.statuses.includes("REDEEMED")) return "REDEEMED";
+      return "AVAILABLE";
+    }
+    if (reward.type === "PCT_DISCOUNT") {
+      if (reward.statuses.includes("AVAILABLE")) return "AVAILABLE";
+    }
+
+    if (reward.type === "INTEGRATION" || reward.type === "FUELTANK") {
+      if (reward.statuses && reward.statuses.includes("PENDING"))
+        return "PENDING";
+      if (reward.statuses && reward.statuses.includes("CANCELLED"))
+        return "CANCELLED";
+      if (reward.statuses.includes("AVAILABLE")) return "AVAILABLE";
+    }
+
+    return "";
+  }
+
   render() {
     intl.locale = this.locale;
     const style = {
@@ -94,25 +124,6 @@ export class ReferralTableRewardsCell {
     const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
 
-    const getState = (reward: Reward): string => {
-      if (reward.meta?.status === "ERROR") {
-        return "FAILED";
-      }
-      const states = reward.statuses;
-
-      const possibleStates = [
-        "REDEEMED",
-        "CANCELLED",
-        "EXPIRED",
-        "PENDING",
-        "AVAILABLE",
-      ];
-
-      if (states.length === 1) return states[0];
-
-      return possibleStates.find((state) => states.includes(state) && state);
-    };
-
     // switch (state) {
     //   case "REDEEMED":
     //     return "primary";
@@ -168,7 +179,7 @@ export class ReferralTableRewardsCell {
     return this.rewards?.map((reward) => {
       const hasMeta =
         !!reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"];
-      const state = getState(reward);
+      const state = this.rewardStatus(reward);
       const isPayPal = hasMeta;
       const slBadgeType = getSLBadgeType(state, hasMeta);
       const badgeText = intl.formatMessage(
@@ -187,7 +198,7 @@ export class ReferralTableRewardsCell {
         }
       );
 
-      console.log(reward.meta?.customMeta);
+      console.log({ reward, customMeta: reward.meta?.customMeta, state });
       const RewardGivenText = () =>
         state === "FAILED" ? (
           <div>

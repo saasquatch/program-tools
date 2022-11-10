@@ -77,7 +77,7 @@ export class PaypalAccountDetails {
    * @uiGroup Details
    */
   @Prop() integrationDomain: string =
-    "https://7e3b-75-157-214-84.ngrok.io/graphql";
+    "https://paypal-payouts-staging.herokuapp.com/graphql";
   /**
    * @uiName Connect Button Text
    * @uiGroup Connect
