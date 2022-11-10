@@ -121,12 +121,14 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     nextPayout,
   });
 
-  const otherCurrencies = nextPayout?.details?.totals
-    ?.filter((total) => total.currencyCode !== "USD")
-    .map((total) => ({
-      currencyText: total?.currencyCode,
-      amountText: accounting.formatMoney(total?.value),
-    }));
+  const otherCurrencyTotals = nextPayout?.details?.totals?.filter(
+    (total) => total.currencyCode !== "USD"
+  );
+
+  const otherCurrencies = otherCurrencyTotals?.map((total) => ({
+    currencyText: total?.currencyCode,
+    amountText: accounting.formatMoney(total?.value),
+  }));
 
   const mainCurrencyBucket = nextPayout?.details?.totals?.find(
     (total) => total.currencyCode === "USD"
@@ -136,6 +138,10 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     currencyText: mainCurrencyBucket?.currencyCode,
     amountText: accounting.formatMoney(mainCurrencyBucket?.value),
   };
+
+  const empty =
+    !mainCurrencyBucket?.value &&
+    !otherCurrencyTotals?.reduce((agg, total) => agg + total.value, 0);
 
   const detailsProps: DetailsCardViewProps = {
     loading,
@@ -151,6 +157,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     otherCurrencies: otherCurrencies?.length ? otherCurrencies : undefined,
     w9PendingText: props.w9TaxLabel,
     w9Pending: undefined,
+    empty,
   };
 
   const upcomingContent =
