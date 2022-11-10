@@ -118,8 +118,6 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
     setOpen,
   } = props;
 
-  if (!hasAccount) return "";
-
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
   const { classes } = sheet;
@@ -150,7 +148,7 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
                   </sl-button>
                 )}
               </div>
-              {!integrationDisabled && (
+              {!integrationDisabled && !hasAccount && (
                 <p class={classes.DescriptionText}>
                   {connectPayPalDescriptionText}
                 </p>

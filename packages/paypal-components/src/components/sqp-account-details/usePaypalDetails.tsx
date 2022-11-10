@@ -130,8 +130,8 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
       ? DateTime.fromMillis(nextPayout?.date).toFormat("LLL dd, yyyy")
       : "-",
     otherCurrenciesText: props.otherCurrenciesLabel,
+    otherCurrencies: otherCurrencies?.length ? otherCurrencies : undefined,
     w9PendingText: props.w9TaxLabel,
-    otherCurrencies,
     w9Pending,
   };
 

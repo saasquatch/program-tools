@@ -34,10 +34,9 @@ const defaultAccountDetailsProps: AccountDetailsViewProps = {
 
 const defaultAccountFormProps: AccountFormViewProps = {
   formRef: { current: null },
-  hasAccount: true,
+  hasAccount: false,
   callbacks: { submit: () => {}, setOpen: () => {}, disconnect: () => {} },
   states: {
-    editingAccount: false,
     loading: false,
     error: undefined,
     success: false,
@@ -119,11 +118,10 @@ export const EditAccountFormOpen = () => (
   <div>
     <AccountFormView
       {...defaultAccountFormProps}
-      hasAccount={false}
+      hasAccount={true}
       states={{
         ...defaultAccountFormProps.states,
         open: true,
-        editingAccount: true,
       }}
     />
     <AccountDetailsView {...defaultAccountDetailsProps} hasAccount={false} />
