@@ -3,7 +3,7 @@
   "title": "PayPal Components",
   "version": "1.0.0-29",
   "description": "Component library that integrates with our Paypal Payouts integration. Built with Shoelace components by Saasquatch.",
-  "icon": "https://res.cloudinary.com/saasquatch-staging/image/upload/v1665703550/tenant_test_a8b41jotf8a1v/m2zu10nybshsus3vrhzb.svg",
+  "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1668096533/squatch-assets/PayPal/For_PayPal.svg",
   "raisins": "docs/raisins.json",
   "main": "dist/index.cjs.js",
   "es2015": "dist/esm/index.js",
