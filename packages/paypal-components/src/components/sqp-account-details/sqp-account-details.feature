@@ -191,9 +191,9 @@ Feature: Paypal Account Details
             | 4             | see    | 3    |
 
     @minutia
-    Scenario: Payout cards display an empty state when there are no rewards to payout for a scheduled payout
+    Scenario: Payout cards display an empty state when there are no rewards to payout
         Given a user with a PayPal email
-        But they have no rewards to be paid out for a scheduled payout
+        But they have no rewards to be paid out for a scheduled/pending payout
         Then the <card> displays "No rewards" instead of a payout amount
         Examples:
             | card           |
