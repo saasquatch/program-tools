@@ -8,6 +8,29 @@ export default {
 
 const exampleOnClick = () => alert("You clicked a dropdown item.");
 
+const defaultItems = (
+  <>
+    <DropdownView.ItemView onClick={exampleOnClick}>
+      {" "}
+      Dropdown Item{" "}
+    </DropdownView.ItemView>
+    <DropdownView.ItemView onClick={exampleOnClick}>
+      {" "}
+      Dropdown Item{" "}
+    </DropdownView.ItemView>
+    <DropdownView.SublistView name="Dropdown Subtitle">
+      <DropdownView.ItemView onClick={exampleOnClick}>
+        {" "}
+        Dropdown Suboption{" "}
+      </DropdownView.ItemView>
+      <DropdownView.ItemView onClick={exampleOnClick}>
+        {" "}
+        Dropdown Suboption{" "}
+      </DropdownView.ItemView>
+    </DropdownView.SublistView>
+  </>
+);
+
 export const Functional = () => {
   const [enabled, setEnable] = useState(true);
   return (
@@ -17,24 +40,23 @@ export const Functional = () => {
         onClickDropdown={() => setEnable(!enabled)}
         showMenu={enabled}
       >
-        <DropdownView.ItemView onClick={exampleOnClick}>
-          {" "}
-          Dropdown Item{" "}
-        </DropdownView.ItemView>
-        <DropdownView.ItemView onClick={exampleOnClick}>
-          {" "}
-          Dropdown Item{" "}
-        </DropdownView.ItemView>
-        <DropdownView.SublistView name="Dropdown Subtitle">
-          <DropdownView.ItemView onClick={exampleOnClick}>
-            {" "}
-            Dropdown Suboption{" "}
-          </DropdownView.ItemView>
-          <DropdownView.ItemView onClick={exampleOnClick}>
-            {" "}
-            Dropdown Suboption{" "}
-          </DropdownView.ItemView>
-        </DropdownView.SublistView>
+        {defaultItems}
+      </DropdownView>
+    </div>
+  );
+};
+
+export const FunctionalPill = () => {
+  const [enabled, setEnable] = useState(true);
+  return (
+    <div style={{ height: 280 }}>
+      <DropdownView
+        text="Default Dropdown"
+        pill={true}
+        onClickDropdown={() => setEnable(!enabled)}
+        showMenu={enabled}
+      >
+        {defaultItems}
       </DropdownView>
     </div>
   );
@@ -50,24 +72,24 @@ export const FunctionalUpwards = () => {
         onClickDropdown={() => setEnable(!enabled)}
         showMenu={enabled}
       >
-        <DropdownView.ItemView onClick={exampleOnClick}>
-          {" "}
-          Dropdown Item{" "}
-        </DropdownView.ItemView>
-        <DropdownView.ItemView onClick={exampleOnClick}>
-          {" "}
-          Dropdown Item{" "}
-        </DropdownView.ItemView>
-        <DropdownView.SublistView name="Dropdown Subtitle">
-          <DropdownView.ItemView onClick={exampleOnClick}>
-            {" "}
-            Dropdown Suboption{" "}
-          </DropdownView.ItemView>
-          <DropdownView.ItemView onClick={exampleOnClick}>
-            {" "}
-            Dropdown Suboption{" "}
-          </DropdownView.ItemView>
-        </DropdownView.SublistView>
+        {defaultItems}
+      </DropdownView>
+    </div>
+  );
+};
+
+export const FunctionalUpwardsPill = () => {
+  const [enabled, setEnable] = useState(true);
+  return (
+    <div style={{ height: 280, paddingTop: 400 }}>
+      <DropdownView
+        popUpwards={true}
+        pill={true}
+        text="Default Dropdown"
+        onClickDropdown={() => setEnable(!enabled)}
+        showMenu={enabled}
+      >
+        {defaultItems}
       </DropdownView>
     </div>
   );
