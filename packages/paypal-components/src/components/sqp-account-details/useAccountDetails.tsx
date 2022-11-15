@@ -108,6 +108,9 @@ export function useAccountDetails(props) {
       return setError("Network request failed.");
     } else {
       setSuccess(true);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setOpen(false);
+      await new Promise((resolve) => setTimeout(resolve, 250));
       setEditingAccount(false);
       refresh();
     }
@@ -137,9 +140,11 @@ export function useAccountDetails(props) {
     if (result instanceof Error) {
       return setError("Network request failed.");
     } else {
-      refresh();
       setSuccess(true);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       setOpen(false);
+      await new Promise((resolve) => setTimeout(resolve, 250));
+      refresh();
     }
   };
 
