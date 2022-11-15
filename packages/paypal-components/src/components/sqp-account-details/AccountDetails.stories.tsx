@@ -24,6 +24,7 @@ export default {
 const defaultAccountDetailsProps: AccountDetailsViewProps = {
   loading: false,
   integrationDisabled: false,
+  integrationPaused: false,
   setOpen: (open: boolean) => console.log(open),
   hasAccount: true,
   detailsHeaderText: "Payout details",
@@ -31,9 +32,12 @@ const defaultAccountDetailsProps: AccountDetailsViewProps = {
   detailsSlot: <W9AndOtherCurrencies />,
   scheduleSlot: [<Active />, <Pending />, <WithOtherCurrencies />],
   editText: "Edit account",
-  integrationAlertHeader: "PayPal payouts are currently disabled",
-  integrationAlertText:
+  integrationDisabledHeader: "PayPal payouts are currently disabled",
+  integrationDisabledText:
     "This feature is currently inactive. If this is unexpected, please contact {companyName} for assistance.",
+  integrationPausedHeader: "PayPal payouts are paused",
+  integrationPausedText:
+    "This feature is paused at the moment, but don't worry—your rewards are still being tracked! Once this feature resumes, your payouts will continue on the next payout date.",
   payPalAccountHeaderText: "Payout",
   connectPayPalDescriptionText:
     "Connect your PayPal account to automatically receive payments for the rewards you earn.",
@@ -111,6 +115,17 @@ export const HasAccountIntegrationDisabled = () => (
     />
     <AccountDetailsView
       {...{ ...defaultAccountDetailsProps, integrationDisabled: true }}
+    />
+  </div>
+);
+
+export const HasAccountIntegrationPaused = () => (
+  <div>
+    <AccountFormView
+      {...{ ...defaultAccountFormProps, integrationPaused: true }}
+    />
+    <AccountDetailsView
+      {...{ ...defaultAccountDetailsProps, integrationPaused: true }}
     />
   </div>
 );

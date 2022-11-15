@@ -9,6 +9,9 @@ import { PaypalAccountDetails } from "./sqp-paypal-details";
 import { ScheduleCardView } from "./sqp-schedule-card-view";
 const NEXT_PAYOUT_QUERY = gql`
   query userPaymentPreview {
+    tenantConfig {
+      paused
+    }
     userPaymentPreview {
       pending {
         totals {
@@ -131,6 +134,9 @@ type Bucket = {
 };
 //
 type PayoutData = {
+  tenantConfig: {
+    paused: boolean;
+  };
   userPaymentPreview: {
     buckets: { date: number; details: Bucket }[];
     W9: Bucket;
@@ -239,16 +245,16 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
       return <ScheduleCardView {...viewProps} />;
     }) || [];
 
-  const pendingContent = pendingTotals?.length ? (
-    <ScheduleCardView {...pendingProps} />
-  ) : (
-    ""
-  );
+  const pendingContent = <ScheduleCardView {...pendingProps} />;
+
+  const integrationDisabled = !!errors;
+  const integrationPaused = nextPayoutData?.tenantConfig?.paused;
 
   return {
     loading,
     detailsProps: selectedPayout === -1 ? pendingProps : detailsProps,
-    integrationDisabled: !!errors,
+    integrationDisabled,
+    integrationPaused,
     ScheduleContent: [upcomingContent, pendingContent],
   };
 }

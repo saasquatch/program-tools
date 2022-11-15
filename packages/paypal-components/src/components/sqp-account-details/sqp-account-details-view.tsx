@@ -8,13 +8,16 @@ export interface AccountDetailsViewProps {
   setOpen: (open: boolean) => void;
   hasAccount: boolean;
   integrationDisabled: boolean;
+  integrationPaused: boolean;
   detailsHeaderText: string;
   scheduleHeaderText: string;
   detailsSlot: VNode;
   scheduleSlot: VNode | VNode[];
   editText: string;
-  integrationAlertHeader: string;
-  integrationAlertText: string;
+  integrationDisabledHeader: string;
+  integrationDisabledText: string;
+  integrationPausedHeader: string;
+  integrationPausedText: string;
   payPalAccountHeaderText: string;
   connectPayPalDescriptionText: string;
   connectPayPalAccountButtonText: string;
@@ -105,10 +108,13 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
     hasAccount,
     loading,
     integrationDisabled,
+    integrationPaused,
     editText,
     payPalAccountHeaderText,
-    integrationAlertHeader,
-    integrationAlertText,
+    integrationDisabledHeader,
+    integrationDisabledText,
+    integrationPausedHeader,
+    integrationPausedText,
     detailsHeaderText,
     detailsSlot,
     scheduleHeaderText,
@@ -160,12 +166,20 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
               {integrationDisabled && (
                 <sl-alert open type="primary">
                   <sl-icon slot="icon" name="info-circle"></sl-icon>
-                  <b>{integrationAlertHeader}</b>
+                  <b>{integrationDisabledHeader}</b>
                   <br />
-                  {integrationAlertText}
+                  {integrationDisabledText}
                 </sl-alert>
               )}
-              {!props.hasAccount && (
+              {integrationPaused && (
+                <sl-alert open type="primary">
+                  <sl-icon slot="icon" name="info-circle"></sl-icon>
+                  <b>{integrationPausedHeader}</b>
+                  <br />
+                  {integrationPausedText}
+                </sl-alert>
+              )}
+              {!props.hasAccount && !integrationDisabled && (
                 <sl-button disabled={loading} onClick={() => setOpen(true)}>
                   {connectPayPalAccountButtonText}
                 </sl-button>
@@ -176,17 +190,19 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
       >
         <style type="text/css">{styleString}</style>
       </PortalSectionView>
-      <div class={classes.Container}>
-        <style type="text/css">{styleString}</style>{" "}
-        <div>
-          <p class={classes.Label}>{detailsHeaderText}</p> {detailsSlot}
+      {props.hasAccount && !integrationDisabled && (
+        <div class={classes.Container}>
+          <style type="text/css">{styleString}</style>{" "}
+          <div>
+            <p class={classes.Label}>{detailsHeaderText}</p> {detailsSlot}
+          </div>
+          <div class={classes.Divider}></div>
+          <div>
+            <p class={classes.Label}>{scheduleHeaderText}</p>{" "}
+            <div class={classes.ScheduleContainer}>{scheduleSlot}</div>
+          </div>
         </div>
-        <div class={classes.Divider}></div>
-        <div>
-          <p class={classes.Label}>{scheduleHeaderText}</p>{" "}
-          <div class={classes.ScheduleContainer}>{scheduleSlot}</div>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

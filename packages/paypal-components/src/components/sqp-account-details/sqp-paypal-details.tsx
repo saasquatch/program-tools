@@ -36,6 +36,10 @@ export class PaypalAccountDetails {
   /**
    * @undocumented
    */
+  @Prop() integrationPaused: boolean;
+  /**
+   * @undocumented
+   */
   @Prop() detailsHeaderText: string;
   /**
    * @undocumented
@@ -48,11 +52,19 @@ export class PaypalAccountDetails {
   /**
    * @undocumented
    */
-  @Prop() integrationAlertHeader: string;
+  @Prop() integrationDisabledHeader: string;
   /**
    * @undocumented
    */
-  @Prop() integrationAlertText: string;
+  @Prop() integrationDisabledText: string;
+  /**
+   * @undocumented
+   */
+  @Prop() integrationPausedHeader: string;
+  /**
+   * @undocumented
+   */
+  @Prop() integrationPausedText: string;
   /**
    * @undocumented
    */
@@ -101,11 +113,14 @@ export class PaypalAccountDetails {
           scheduleSlot={props.ScheduleContent}
           setOpen={componentProps.setOpen}
           integrationDisabled={props.integrationDisabled}
+          integrationPaused={props.integrationPaused}
           detailsHeaderText={componentProps.detailsHeaderText}
           scheduleHeaderText={componentProps.scheduleHeaderText}
           editText={componentProps.editText}
-          integrationAlertHeader={componentProps.integrationAlertHeader}
-          integrationAlertText={componentProps.integrationAlertText}
+          integrationDisabledHeader={componentProps.integrationDisabledHeader}
+          integrationDisabledText={componentProps.integrationDisabledText}
+          integrationPausedHeader={componentProps.integrationPausedHeader}
+          integrationPausedText={componentProps.integrationPausedText}
           payPalAccountHeaderText={componentProps.payPalAccountHeaderText}
           connectPayPalDescriptionText={
             componentProps.connectPayPalDescriptionText

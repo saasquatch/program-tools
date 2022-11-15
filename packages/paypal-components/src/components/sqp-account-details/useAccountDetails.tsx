@@ -108,17 +108,21 @@ export function useAccountDetails(props) {
       return setError("Network request failed.");
     } else {
       setSuccess(true);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setOpen(false);
+      await new Promise((resolve) => setTimeout(resolve, 250));
       setEditingAccount(false);
       refresh();
     }
   };
 
   function resetForm() {
+    setSuccess(false);
+    setEditingAccount(false);
     const formControls = formRef.current?.getFormControls();
     formControls?.forEach((control) => {
       control.value = data?.viewer?.customFields?.paypalEmail || "";
     });
-    setSuccess(false);
   }
 
   function openModal(open: boolean) {
@@ -136,9 +140,11 @@ export function useAccountDetails(props) {
     if (result instanceof Error) {
       return setError("Network request failed.");
     } else {
-      refresh();
       setSuccess(true);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       setOpen(false);
+      await new Promise((resolve) => setTimeout(resolve, 250));
+      refresh();
     }
   };
 
@@ -147,6 +153,7 @@ export function useAccountDetails(props) {
   return {
     formRef,
     integrationDisabled: false,
+    integrationPaused: false,
     hasAccount: !!paypalEmail,
     callbacks: { submit, setOpen: openModal, disconnect, setEditingAccount },
     states: {
@@ -185,8 +192,10 @@ export function useAccountDetails(props) {
       editText: props.editText,
     },
     alertContent: {
-      integrationAlertHeader: props.integrationAlertHeader,
-      integrationAlertText: props.integrationAlertText,
+      integrationDisabledHeader: props.integrationDisabledHeader,
+      integrationDisabledText: props.integrationDisabledText,
+      integrationPausedHeader: props.integrationPausedHeader,
+      integrationPausedText: props.integrationPausedText,
     },
     overviewContent: {
       detailsHeaderText: props.detailsHeaderText,

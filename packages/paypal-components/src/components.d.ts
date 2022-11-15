@@ -113,25 +113,40 @@ export namespace Components {
          */
         "headerText": string;
         /**
-          * @uiName Integration Disabled Alert Header Text
-          * @uiGroup Alert
-         */
-        "integrationAlertHeader": string;
-        /**
-          * @uiName Integration Disabled Alert Body Text
-          * @uiGroup Alert
-         */
-        "integrationAlertText": string;
-        /**
           * @uiName Integration Disabled Flag
           * @uiGroup Alert
          */
         "integrationDisabled": boolean;
         /**
+          * @uiName Integration Disabled Alert Header Text
+          * @uiGroup Alert
+         */
+        "integrationDisabledHeader": string;
+        /**
+          * @uiName Integration Disabled Alert Body Text
+          * @uiGroup Alert
+         */
+        "integrationDisabledText": string;
+        /**
           * @uiName Integration Domain
           * @uiGroup Details
          */
         "integrationDomain": string;
+        /**
+          * @uiName Integration Paused Flag
+          * @uiGroup Alert
+         */
+        "integrationPaused": boolean;
+        /**
+          * @uiName Integration Paused Alert Header Text
+          * @uiGroup Alert
+         */
+        "integrationPausedHeader": string;
+        /**
+          * @uiName Integration Paused Alert Body Text
+          * @uiGroup Alert
+         */
+        "integrationPausedText": string;
         /**
           * @uiName Modal Header
           * @uiGroup Form
@@ -231,15 +246,27 @@ export namespace Components {
         /**
           * @undocumented
          */
-        "integrationAlertHeader": string;
-        /**
-          * @undocumented
-         */
-        "integrationAlertText": string;
-        /**
-          * @undocumented
-         */
         "integrationDisabled": boolean;
+        /**
+          * @undocumented
+         */
+        "integrationDisabledHeader": string;
+        /**
+          * @undocumented
+         */
+        "integrationDisabledText": string;
+        /**
+          * @undocumented
+         */
+        "integrationPaused": boolean;
+        /**
+          * @undocumented
+         */
+        "integrationPausedHeader": string;
+        /**
+          * @undocumented
+         */
+        "integrationPausedText": string;
         /**
           * @undocumented
          */
@@ -649,25 +676,40 @@ declare namespace LocalJSX {
          */
         "headerText"?: string;
         /**
-          * @uiName Integration Disabled Alert Header Text
-          * @uiGroup Alert
-         */
-        "integrationAlertHeader"?: string;
-        /**
-          * @uiName Integration Disabled Alert Body Text
-          * @uiGroup Alert
-         */
-        "integrationAlertText"?: string;
-        /**
           * @uiName Integration Disabled Flag
           * @uiGroup Alert
          */
         "integrationDisabled"?: boolean;
         /**
+          * @uiName Integration Disabled Alert Header Text
+          * @uiGroup Alert
+         */
+        "integrationDisabledHeader"?: string;
+        /**
+          * @uiName Integration Disabled Alert Body Text
+          * @uiGroup Alert
+         */
+        "integrationDisabledText"?: string;
+        /**
           * @uiName Integration Domain
           * @uiGroup Details
          */
         "integrationDomain"?: string;
+        /**
+          * @uiName Integration Paused Flag
+          * @uiGroup Alert
+         */
+        "integrationPaused"?: boolean;
+        /**
+          * @uiName Integration Paused Alert Header Text
+          * @uiGroup Alert
+         */
+        "integrationPausedHeader"?: string;
+        /**
+          * @uiName Integration Paused Alert Body Text
+          * @uiGroup Alert
+         */
+        "integrationPausedText"?: string;
         /**
           * @uiName Modal Header
           * @uiGroup Form
@@ -767,15 +809,27 @@ declare namespace LocalJSX {
         /**
           * @undocumented
          */
-        "integrationAlertHeader"?: string;
-        /**
-          * @undocumented
-         */
-        "integrationAlertText"?: string;
-        /**
-          * @undocumented
-         */
         "integrationDisabled"?: boolean;
+        /**
+          * @undocumented
+         */
+        "integrationDisabledHeader"?: string;
+        /**
+          * @undocumented
+         */
+        "integrationDisabledText"?: string;
+        /**
+          * @undocumented
+         */
+        "integrationPaused"?: boolean;
+        /**
+          * @undocumented
+         */
+        "integrationPausedHeader"?: string;
+        /**
+          * @undocumented
+         */
+        "integrationPausedText"?: string;
         /**
           * @undocumented
          */

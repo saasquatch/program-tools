@@ -1,7 +1,5 @@
 # sqp-account-details
 
-
-
 <!-- Auto Generated Below -->
 
 
@@ -14,9 +12,12 @@
 | `detailsHeaderText`              | `details-header-text`                 |             | `string`                  | `undefined` |
 | `editText`                       | `edit-text`                           |             | `string`                  | `undefined` |
 | `hasAccount`                     | `has-account`                         |             | `boolean`                 | `undefined` |
-| `integrationAlertHeader`         | `integration-alert-header`            |             | `string`                  | `undefined` |
-| `integrationAlertText`           | `integration-alert-text`              |             | `string`                  | `undefined` |
 | `integrationDisabled`            | `integration-disabled`                |             | `boolean`                 | `undefined` |
+| `integrationDisabledHeader`      | `integration-disabled-header`         |             | `string`                  | `undefined` |
+| `integrationDisabledText`        | `integration-disabled-text`           |             | `string`                  | `undefined` |
+| `integrationPaused`              | `integration-paused`                  |             | `boolean`                 | `undefined` |
+| `integrationPausedHeader`        | `integration-paused-header`           |             | `string`                  | `undefined` |
+| `integrationPausedText`          | `integration-paused-text`             |             | `string`                  | `undefined` |
 | `loading`                        | `loading`                             |             | `boolean`                 | `undefined` |
 | `nextPayoutLabel`                | `next-payout-label`                   |             | `string`                  | `undefined` |
 | `otherCurrenciesLabel`           | `other-currencies-label`              |             | `string`                  | `undefined` |
