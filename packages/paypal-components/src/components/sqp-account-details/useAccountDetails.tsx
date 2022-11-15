@@ -114,11 +114,12 @@ export function useAccountDetails(props) {
   };
 
   function resetForm() {
+    setSuccess(false);
+    setEditingAccount(false);
     const formControls = formRef.current?.getFormControls();
     formControls?.forEach((control) => {
       control.value = data?.viewer?.customFields?.paypalEmail || "";
     });
-    setSuccess(false);
   }
 
   function openModal(open: boolean) {

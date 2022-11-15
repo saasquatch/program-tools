@@ -245,11 +245,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
       return <ScheduleCardView {...viewProps} />;
     }) || [];
 
-  const pendingContent = pendingTotals?.length ? (
-    <ScheduleCardView {...pendingProps} />
-  ) : (
-    ""
-  );
+  const pendingContent = <ScheduleCardView {...pendingProps} />;
 
   const integrationDisabled = !!errors;
   const integrationPaused = nextPayoutData?.tenantConfig?.paused;

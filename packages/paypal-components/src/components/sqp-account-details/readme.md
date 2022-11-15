@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property                         | Attribute                             | Description | Type                      | Default     |
@@ -11,9 +12,12 @@
 | `detailsHeaderText`              | `details-header-text`                 |             | `string`                  | `undefined` |
 | `editText`                       | `edit-text`                           |             | `string`                  | `undefined` |
 | `hasAccount`                     | `has-account`                         |             | `boolean`                 | `undefined` |
-| `integrationDisabledHeader`      | `integration-alert-header`            |             | `string`                  | `undefined` |
-| `integrationDisabledText`        | `integration-alert-text`              |             | `string`                  | `undefined` |
 | `integrationDisabled`            | `integration-disabled`                |             | `boolean`                 | `undefined` |
+| `integrationDisabledHeader`      | `integration-disabled-header`         |             | `string`                  | `undefined` |
+| `integrationDisabledText`        | `integration-disabled-text`           |             | `string`                  | `undefined` |
+| `integrationPaused`              | `integration-paused`                  |             | `boolean`                 | `undefined` |
+| `integrationPausedHeader`        | `integration-paused-header`           |             | `string`                  | `undefined` |
+| `integrationPausedText`          | `integration-paused-text`             |             | `string`                  | `undefined` |
 | `loading`                        | `loading`                             |             | `boolean`                 | `undefined` |
 | `nextPayoutLabel`                | `next-payout-label`                   |             | `string`                  | `undefined` |
 | `otherCurrenciesLabel`           | `other-currencies-label`              |             | `string`                  | `undefined` |
@@ -23,20 +27,20 @@
 | `upcomingPaymentLabel`           | `upcoming-payment-label`              |             | `string`                  | `undefined` |
 | `w9TaxLabel`                     | `w-9-tax-label`                       |             | `string`                  | `undefined` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [sqp-account-details](.)
+ - [sqp-account-details](.)
 
 ### Graph
-
 ```mermaid
 graph TD;
   sqp-account-details --> sqp-paypal-details
   style sqp-paypal-details fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*
