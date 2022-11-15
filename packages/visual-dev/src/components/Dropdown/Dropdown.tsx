@@ -145,6 +145,7 @@ const DropdownButtonDiv = styled("div")<
     "border-color: var(--sq-text-interactive);"}
   ${(props) =>
     props.showMenu &&
+    !props.pill &&
     (props.popUpwards
       ? "border-top: 2px solid var(--sq-surface);"
       : "border-bottom: none;")}
@@ -161,9 +162,17 @@ const DropdownContentDiv = styled("div")<
   border-radius: ${(props) => props.borderRadius};
 
   ${(props) =>
-    props.popUpwards
-      ? `top: 2px; transform: translateY(-100%); border-bottom: none;`
-      : `border-top: none;`}
+    props.popUpwards &&
+    `top: 2px; transform: translateY(calc(-100% + -1*var(--sq-spacing-x-small)));`}
+
+  ${(props) =>
+    !props.pill &&
+    (props.popUpwards
+      ? `border-bottom: none;`
+      : `border-top: none; transform: translateY(-1px);`)}
+
+  ${(props) =>
+    props.pill && !props.popUpwards && "margin-top: var(--sq-spacing-x-small);"}
 `;
 
 const DropdownItemDiv = styled("div")<Required<StyleProps>>`
@@ -211,14 +220,14 @@ const EmptyTextSpan = styled("span")`
 const borderPresets = {
   pill: {
     top: {
-      open: "var(--sq-border-radius-pill) var(--sq-border-radius-pill) 0 0",
+      open: "var(--sq-border-radius-pill)",
       closed: "var(--sq-border-radius-pill)",
-      content: "32px 32px 0 0",
+      content: "var(--sq-border-radius-normal)",
     },
     bottom: {
-      open: "0 0 var(--sq-border-radius-pill) var(--sq-border-radius-pill)",
+      open: "var(--sq-border-radius-pill)",
       closed: "var(--sq-border-radius-pill)",
-      content: "0 0 32px 32px",
+      content: "var(--sq-border-radius-normal)",
     },
   },
   normal: {
@@ -296,6 +305,7 @@ const DropdownView = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
         {showMenu && (
           <DropdownContentDiv
             popUpwards={popUpwards}
+            pill={pill}
             borderRadius={
               borderPresets[pill ? "pill" : "normal"][
                 popUpwards ? "top" : "bottom"
