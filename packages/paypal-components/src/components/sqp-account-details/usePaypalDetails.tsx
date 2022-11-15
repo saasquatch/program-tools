@@ -249,6 +249,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     loading,
     detailsProps: selectedPayout === -1 ? pendingProps : detailsProps,
     integrationDisabled: !!errors,
+    integrationPaused: !!errors,
     ScheduleContent: [upcomingContent, pendingContent],
   };
 }

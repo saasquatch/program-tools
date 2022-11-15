@@ -147,6 +147,7 @@ export function useAccountDetails(props) {
   return {
     formRef,
     integrationDisabled: false,
+    integrationPaused: false,
     hasAccount: !!paypalEmail,
     callbacks: { submit, setOpen: openModal, disconnect, setEditingAccount },
     states: {
@@ -185,8 +186,10 @@ export function useAccountDetails(props) {
       editText: props.editText,
     },
     alertContent: {
-      integrationAlertHeader: props.integrationAlertHeader,
-      integrationAlertText: props.integrationAlertText,
+      integrationDisabledHeader: props.integrationDisabledHeader,
+      integrationDisabledText: props.integrationDisabledText,
+      integrationPausedHeader: props.integrationPausedHeader,
+      integrationPausedText: props.integrationPausedText,
     },
     overviewContent: {
       detailsHeaderText: props.detailsHeaderText,

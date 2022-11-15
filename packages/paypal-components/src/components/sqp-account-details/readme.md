@@ -1,9 +1,6 @@
 # sqp-account-details
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -14,8 +11,8 @@
 | `detailsHeaderText`              | `details-header-text`                 |             | `string`                  | `undefined` |
 | `editText`                       | `edit-text`                           |             | `string`                  | `undefined` |
 | `hasAccount`                     | `has-account`                         |             | `boolean`                 | `undefined` |
-| `integrationAlertHeader`         | `integration-alert-header`            |             | `string`                  | `undefined` |
-| `integrationAlertText`           | `integration-alert-text`              |             | `string`                  | `undefined` |
+| `integrationDisabledHeader`      | `integration-alert-header`            |             | `string`                  | `undefined` |
+| `integrationDisabledText`        | `integration-alert-text`              |             | `string`                  | `undefined` |
 | `integrationDisabled`            | `integration-disabled`                |             | `boolean`                 | `undefined` |
 | `loading`                        | `loading`                             |             | `boolean`                 | `undefined` |
 | `nextPayoutLabel`                | `next-payout-label`                   |             | `string`                  | `undefined` |
@@ -26,20 +23,20 @@
 | `upcomingPaymentLabel`           | `upcoming-payment-label`              |             | `string`                  | `undefined` |
 | `w9TaxLabel`                     | `w-9-tax-label`                       |             | `string`                  | `undefined` |
 
-
 ## Dependencies
 
 ### Used by
 
- - [sqp-account-details](.)
+- [sqp-account-details](.)
 
 ### Graph
+
 ```mermaid
 graph TD;
   sqp-account-details --> sqp-paypal-details
   style sqp-paypal-details fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

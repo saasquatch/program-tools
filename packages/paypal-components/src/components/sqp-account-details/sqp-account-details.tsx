@@ -161,19 +161,35 @@ export class PaypalAccountDetails {
    * @uiName Integration Disabled Alert Header Text
    * @uiGroup Alert
    */
-  @Prop() integrationAlertHeader: string =
+  @Prop() integrationDisabledHeader: string =
     "PayPal payouts are currently disabled";
   /**
    * @uiName Integration Disabled Alert Body Text
    * @uiGroup Alert
    */
-  @Prop() integrationAlertText: string =
+  @Prop() integrationDisabledText: string =
     "Looks like this feature is turned off at the moment. Come back later to see if it’s enabled. ";
+  /**
+   * @uiName Integration Paused Alert Header Text
+   * @uiGroup Alert
+   */
+  @Prop() integrationPausedHeader: string = "PayPal payouts are paused";
+  /**
+   * @uiName Integration Paused Alert Body Text
+   * @uiGroup Alert
+   */
+  @Prop() integrationPausedText: string =
+    "This feature is paused at the moment, but dont worry—your rewards are still being tracked! Once this feature resumes, your payouts will continue on the next payout date.";
   /**
    * @uiName Integration Disabled Flag
    * @uiGroup Alert
    */
   @Prop() integrationDisabled: boolean = false;
+  /**
+   * @uiName Integration Paused Flag
+   * @uiGroup Alert
+   */
+  @Prop() integrationPaused: boolean = false;
   /**
    * @uiName Label above payout details card
    * @uiGroup Alert
@@ -215,11 +231,14 @@ export class PaypalAccountDetails {
             loading={props.states.loading}
             setOpen={props.callbacks.setOpen}
             integrationDisabled={props.integrationDisabled}
+            integrationPaused={props.integrationPaused}
             detailsHeaderText={props.overviewContent.detailsHeaderText}
             scheduleHeaderText={props.overviewContent.scheduleHeaderText}
             editText={props.formContent.editText}
-            integrationAlertHeader={props.alertContent.integrationAlertHeader}
-            integrationAlertText={props.alertContent.integrationAlertText}
+            integrationDisabledHeader={
+              props.alertContent.integrationDisabledHeader
+            }
+            integrationDisabledText={props.alertContent.integrationDisabledText}
             payPalAccountHeaderText={props.formContent.payPalAccountHeaderText}
             connectPayPalDescriptionText={
               props.formContent.connectPayPalDescriptionText
@@ -254,6 +273,7 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
       setupAccount: () => {},
       hasAccount: false,
       integrationDisabled: false,
+      integrationPaused: false,
       callbacks: { submit: () => {}, setOpen, disconnect: () => {} },
       states: {
         editingAccount: false,
@@ -289,8 +309,10 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
         editText: props.editText,
       },
       alertContent: {
-        integrationAlertHeader: props.integrationAlertHeader,
-        integrationAlertText: props.integrationAlertText,
+        integrationDisabledHeader: props.integrationDisabledHeader,
+        integrationDisabledText: props.integrationDisabledText,
+        integrationPausedHeader: props.integrationPausedHeader,
+        integrationPausedText: props.integrationPausedText,
       },
       overviewContent: {
         detailsHeaderText: props.detailsHeaderText,
