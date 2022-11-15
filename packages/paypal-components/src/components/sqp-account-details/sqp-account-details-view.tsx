@@ -179,7 +179,7 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
                   {integrationPausedText}
                 </sl-alert>
               )}
-              {!props.hasAccount && (
+              {!props.hasAccount && !integrationDisabled && (
                 <sl-button disabled={loading} onClick={() => setOpen(true)}>
                   {connectPayPalAccountButtonText}
                 </sl-button>
