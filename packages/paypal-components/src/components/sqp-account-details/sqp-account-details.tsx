@@ -239,6 +239,8 @@ export class PaypalAccountDetails {
               props.alertContent.integrationDisabledHeader
             }
             integrationDisabledText={props.alertContent.integrationDisabledText}
+            integrationPausedHeader={props.alertContent.integrationPausedHeader}
+            integrationPausedText={props.alertContent.integrationPausedText}
             payPalAccountHeaderText={props.formContent.payPalAccountHeaderText}
             connectPayPalDescriptionText={
               props.formContent.connectPayPalDescriptionText
