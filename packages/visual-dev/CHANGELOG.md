@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Components changed
+  - \<TagInput>
+    - Added an input that supports tags before the functional input, can be used for tag or email input
+
 ## [1.1.1] - 2022-09-22
 
 ### Changed

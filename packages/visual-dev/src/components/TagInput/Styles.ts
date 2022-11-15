@@ -1,10 +1,7 @@
 import { css } from "styled-components";
 
-
 export const ContainerDiv = css`
-  min-width: 280px;
-  width: min-content;
-  max-width: 100%;
+  width: 100%;
   border: 2px solid var(--sq-border);
   padding: var(--sq-spacing-xx-small) var(--sq-spacing-x-small);
   display: flex;
