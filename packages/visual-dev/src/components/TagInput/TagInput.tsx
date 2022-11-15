@@ -1,19 +1,24 @@
 import React from "react";
 import styled, { CSSProp } from "styled-components";
 import { IconButtonView } from "../Button";
+import { InputWidthType } from "../Input";
 import * as Styles from "./Styles";
 
-export type EmailInputViewProps = OptionProps &
+export type TagInputViewProps = OptionProps &
   Partial<React.ComponentProps<"span">>;
 
 export interface OptionProps {
   /**
    * Slot for tags of fully input emails
    */
-  tagContent: React.ReactNode | React.ReactNode[];
+  tagSlot: React.ReactNode | React.ReactNode[];
+  /**
+   * Limit the input width using a valid CSS size value (e.g. px, %) [default 300px]
+   */
+  limitWidth?: InputWidthType;
 }
 
-export interface EmailTagViewProps {
+export interface TagViewProps {
   id: number;
   onDelete: (id: number) => void;
   children: React.ReactNode | React.ReactNode[];
@@ -26,8 +31,15 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const ContainerDiv = styled.div<StyleProps>`
+const ContainerDiv = styled.div<StyleProps & { limitWidth: InputWidthType }>`
   ${Styles.ContainerDiv}
+
+  ${(props) =>
+    props.limitWidth
+      ? typeof props.limitWidth === "string"
+        ? `max-width: ${props.limitWidth};`
+        : "max-width: 300px;"
+      : "max-width: 100%;"}
 `;
 
 const StyledInput = styled.span<StyleProps>`
@@ -38,7 +50,7 @@ const TagDiv = styled.div<StyleProps>`
   ${Styles.TagDiv}
 `;
 
-export const EmailTagView = (props: EmailTagViewProps) => {
+export const TagView = (props: TagViewProps) => {
   const { children } = props;
   return (
     <TagDiv key={props.id}>
@@ -55,14 +67,14 @@ export const EmailTagView = (props: EmailTagViewProps) => {
   );
 };
 
-const EmailInputView = React.forwardRef<
+const TagInputView = React.forwardRef<
   React.ElementRef<"span">,
-  EmailInputViewProps
+  TagInputViewProps
 >((props, forwardedRef) => {
-  const { tagContent, ...rest } = props;
+  const { tagSlot, limitWidth = true, ...rest } = props;
   return (
-    <ContainerDiv>
-      {tagContent}
+    <ContainerDiv limitWidth={limitWidth}>
+      {tagSlot}
       <StyledInput
         {...rest}
         ref={forwardedRef}
@@ -73,8 +85,8 @@ const EmailInputView = React.forwardRef<
   );
 });
 
-const EmailInputNamespace = Object.assign(EmailInputView, {
-  TagView: EmailTagView,
+const TagInputNamespace = Object.assign(TagInputView, {
+  TagView: TagView,
 });
 
-export { EmailInputNamespace as EmailInputView };
+export { TagInputNamespace as TagInputView };

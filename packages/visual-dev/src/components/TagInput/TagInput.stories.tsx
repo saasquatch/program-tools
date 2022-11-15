@@ -1,31 +1,31 @@
 import React, { useCallback, useEffect, useState } from "react";
-import {
-  EmailInputView,
-  EmailInputViewProps,
-  EmailTagView,
-} from "./EmailInput";
+import { TagInputView, TagInputViewProps, TagView } from "./TagInput";
 
 export default {
   title: "Components / Email Input",
-  component: EmailInputView,
+  component: TagInputView,
 };
 
-const defaultProps: EmailInputViewProps = {
-  tagContent: [
-    <EmailInputView.TagView onDelete={() => {}} id={0}>
+const defaultProps: TagInputViewProps = {
+  tagSlot: [
+    <TagInputView.TagView onDelete={() => {}} id={0}>
       test1@example.com
-    </EmailInputView.TagView>,
-    <EmailInputView.TagView onDelete={() => {}} id={1}>
+    </TagInputView.TagView>,
+    <TagInputView.TagView onDelete={() => {}} id={1}>
       test1@example.com
-    </EmailInputView.TagView>,
+    </TagInputView.TagView>,
   ],
 };
 
 export const Default = () => {
-  return <EmailInputView {...defaultProps} />;
+  return <TagInputView {...defaultProps} />;
 };
 
-function useEmailInput(
+export const FullWidth = () => {
+  return <TagInputView {...{ ...defaultProps, limitWidth: false }} />;
+};
+
+function useTagInput(
   onChange: (value: string) => void,
   initialValue: string | undefined
 ) {
@@ -109,18 +109,18 @@ function useEmailInput(
 
   return {
     ref,
-    tagContent: _value?.map((v, idx) => (
-      <EmailTagView onDelete={onDeleteTag} id={idx}>
+    tagSlot: _value?.map((v, idx) => (
+      <TagView onDelete={onDeleteTag} id={idx}>
         {v}
-      </EmailTagView>
+      </TagView>
     )),
   };
 }
 
 export const Functional = () => {
   return (
-    <EmailInputView
-      {...useEmailInput((v: string) => console.log("test", v), undefined)}
+    <TagInputView
+      {...useTagInput((v: string) => console.log("test", v), undefined)}
     />
   );
 };

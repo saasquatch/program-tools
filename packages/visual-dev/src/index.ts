@@ -73,6 +73,7 @@ import { Dropdown, DropdownView } from "./components/Dropdown";
 import { Tabs, TabsView } from "./components/Tabs";
 import { ModalView } from "./components/Modal";
 import { SliderView } from "./components/Slider";
+import { TagInputView } from "./components/TagInput";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -151,6 +152,7 @@ export {
   Switch,
   TagView,
   Tag,
+  TagInputView,
   TextareaView,
   Textarea,
   TextRules,
