@@ -79,6 +79,9 @@ export const vanilla_package_logo = () => (
   <IconView icon={"vanilla_package_logo"} />
 );
 export const mint_package_logo = () => <IconView icon={"mint_package_logo"} />;
+export const paypal_package_logo = () => (
+  <IconView icon={"paypal_package_logo"} />
+);
 export const default_package_logo = () => (
   <IconView icon={"default_package_logo"} />
 );
