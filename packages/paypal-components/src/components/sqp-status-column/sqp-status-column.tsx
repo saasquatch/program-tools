@@ -17,7 +17,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
   /**
    * @uiName Column Title
    */
-  @Prop() columnTitle: string = "PayPal Status";
+  @Prop() columnTitle: string = "Status";
 
   /**
    * @uiName Reward Status Text
