@@ -70,6 +70,12 @@ export class RewardTableStatusCell {
   rewardStatus(reward: Reward) {
     const paypalStatus =
       reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"];
+
+    const metaStatus = reward?.meta?.status;
+
+    if (metaStatus === "ERROR" && !paypalStatus) return "FAILED";
+    if (metaStatus === "IN_PROGRESS" && !paypalStatus) return "PAYPAL_PENDING";
+
     if (paypalStatus === "PENDING") return "PAYPAL_PENDING";
     if (paypalStatus) return paypalStatus;
     if (reward.dateCancelled) return "CANCELLED";
