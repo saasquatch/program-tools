@@ -10,6 +10,28 @@ const prettyValues = ["Points", "Tickets", "Gifts"];
 const statuses = ["AVAILABLE", "PENDING", "CANCELLED", "EXPIRED", "REDEEMED"];
 const pendingReasons = ["US_TAX", "SCHEDULED", "UNHANDLED_ERROR"];
 
+const paypalStatuses = [
+  "FAILED",
+  "UNCLAIMED",
+  "ONHOLD",
+  "REFUNDED",
+  "RETURNED",
+  "REVERSED",
+  "BLOCKED",
+];
+
+function getPaypalStatus(datePaidOut) {
+  if (datePaidOut) return "SUCCESS";
+
+  const randomIndex = Math.floor(Math.random() * 6);
+
+  const randomStatus = paypalStatuses.find(
+    (_status, index) => index === randomIndex
+  );
+
+  return randomStatus;
+}
+
 const getPaypalMeta = () => {
   const datePaidOut = Math.floor(Math.random() * 10) >= 5 ? 123456789 : null;
   const dateLastAttempted =
@@ -21,16 +43,20 @@ const getPaypalMeta = () => {
     ? "ERROR"
     : "SUCCESS";
 
+  const paypalStatus = getPaypalStatus(datePaidOut);
+
   return {
     status,
     customMeta: {
       datePaidOut,
       dateLastAttempted,
       dateFirstAttempted: dateLastAttempted,
+      rawPayPalInfo: {
+        transaction_status: paypalStatus,
+      },
     },
   };
 };
-
 const getMockData = () => {
   let isAvailableZero = false;
   let randomRedeemed = 0;
@@ -127,9 +153,6 @@ const getMockData = () => {
         : null,
     referral: null,
     meta: {
-      integration: {
-        name: "PayPal",
-      },
       ...getPaypalMeta(),
     },
     rewardRedemptionTransactions: {
