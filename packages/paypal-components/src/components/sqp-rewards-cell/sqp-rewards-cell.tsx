@@ -8,6 +8,7 @@ import { PaypalBadge } from "../../Icons/PaypalBadge";
 
 const paypalStatuses = [
   "PAYPAL_PENDING",
+  "SUCCESS",
   "FAILED",
   "INPROGRESS",
   "UNCLAIMED",
@@ -16,6 +17,7 @@ const paypalStatuses = [
   "RETURNED",
   "REVERSED",
   "BLOCKED",
+  "DENIED",
 ];
 
 @Component({
@@ -34,6 +36,7 @@ export class ReferralTableRewardsCell {
   @Prop() rewardPaidOutText: string;
   @Prop() rewardPayoutInProgressText: string;
   @Prop() rewardPayoutFailedText: string;
+  @Prop() rewardDeniedText: string;
   @Prop() locale: string = "en";
 
   rewardStatus(reward: Reward) {
@@ -164,7 +167,8 @@ export class ReferralTableRewardsCell {
           : state === "REFUNDED" ||
             state === "RETURNED" ||
             state === "REVERSED" ||
-            state === "BLOCKED"
+            state === "BLOCKED" ||
+            state === "DENIED"
           ? "neutral"
           : "danger"
         : state === "AVAILABLE"
@@ -217,6 +221,10 @@ export class ReferralTableRewardsCell {
             ? DateTime.fromMillis(reward.meta?.customMeta?.dateLastUpdated || 0)
                 .plus({ days: 30 })
                 .toMillis()
+            : state === "DENIED"
+            ? DateTime.fromMillis(
+                reward.meta?.customMeta?.dateLastAttempted || 0
+              ).toMillis()
             : reward.meta?.customMeta?.dateLastUpdated || 0;
 
         return paypalStatuses.includes(state) ? (

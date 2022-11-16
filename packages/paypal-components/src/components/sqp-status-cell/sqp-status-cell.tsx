@@ -65,6 +65,7 @@ export class RewardTableStatusCell {
   @Prop() rewardPayoutInProgressText: string;
   @Prop() rewardPayoutFailedText: string;
   @Prop() rewardUnclaimedText: string;
+  @Prop() rewardDeniedText: string;
 
   rewardStatus(reward: Reward) {
     const paypalStatus =
@@ -133,7 +134,8 @@ export class RewardTableStatusCell {
         : rewardStatus === "REFUNDED" ||
           rewardStatus === "RETURNED" ||
           rewardStatus === "REVERSED" ||
-          rewardStatus === "BLOCKED"
+          rewardStatus === "BLOCKED" ||
+          rewardStatus === "DENIED"
         ? "neutral"
         : "danger"
       : rewardStatus === "AVAILABLE"
@@ -176,6 +178,14 @@ export class RewardTableStatusCell {
         ?.setLocale(luxonLocale(this.locale))
         .toLocaleString(DateTime.DATE_MED)}.`;
 
+    const payoutDenied =
+      rewardStatus === "DENIED" &&
+      `${this.rewardDeniedText + " "}${DateTime.fromMillis(
+        this.reward.meta?.customMeta.dateLastAttempted || 0
+      )
+        ?.setLocale(luxonLocale(this.locale))
+        .toLocaleString(DateTime.DATE_MED)}.`;
+
     const payoutFailed =
       rewardStatus === "FAILED" &&
       `${this.rewardPayoutFailedText + " "}${DateTime.fromMillis(
@@ -211,7 +221,7 @@ export class RewardTableStatusCell {
         </div>
 
         <p class={sheet.classes.Date}>
-          {payoutFailed || pendingReasons || unClaimed || date}
+          {payoutFailed || pendingReasons || unClaimed || payoutDenied || date}
         </p>
       </div>
     );
