@@ -18,6 +18,7 @@ const paypalStatuses = [
   "RETURNED",
   "REVERSED",
   "BLOCKED",
+  "DENIED",
 ];
 
 function getPaypalStatus(datePaidOut) {
@@ -32,18 +33,21 @@ function getPaypalStatus(datePaidOut) {
   return randomStatus;
 }
 
-const getPaypalMeta = () => {
+export const getPaypalMeta = () => {
   const datePaidOut = Math.floor(Math.random() * 10) >= 5 ? 123456789 : null;
   const dateLastAttempted =
     Math.floor(Math.random() * 10) >= 5 ? 123456789 : null;
 
-  const status = !!datePaidOut
-    ? "SUCCESS"
-    : Math.floor(Math.random() * 10) >= 8
-    ? "ERROR"
-    : "SUCCESS";
-
   const paypalStatus = getPaypalStatus(datePaidOut);
+
+  const status =
+    paypalStatus === "DENIED"
+      ? "WARN"
+      : !!datePaidOut
+      ? "SUCCESS"
+      : Math.floor(Math.random() * 10) >= 8
+      ? "ERROR"
+      : "SUCCESS";
 
   return {
     status,
