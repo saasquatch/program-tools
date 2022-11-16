@@ -27,16 +27,6 @@ const statuses = [
   ["REDEEMED"],
 ];
 
-const paypalStatuses = [
-  "FAILED",
-  "UNCLAIMED",
-  "ONHOLD",
-  "REFUNDED",
-  "RETURNED",
-  "REVERSED",
-  "BLOCKED",
-];
-
 const firstNames = [
   "Rajesh",
   "Pierre",
