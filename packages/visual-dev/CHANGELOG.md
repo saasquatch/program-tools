@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Components changed
+  - \<TagInput>
+    - Added an input that supports tags before the functional input, can be used for tag or email input
+  - \<Select>
+    - refactor such that <Select> shares a codebase with <SelectView> and its subcomponents.
+    - <Select> now supports the DownshiftJS multiselect hook, see stories for implementation details
+
 ## [1.1.1] - 2022-09-22
 
 ### Changed
@@ -14,6 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Components changed
   - \<Icon>
     - removed center alignment from default icon styling, and added prop to overwrite existing styles and center the icon
+  - \<Dropdown>
+    - Change the look of the pill style dropdown so borders don't interfere with content
 
 ## [1.1.0] - 2022-09-21
 

@@ -6,7 +6,7 @@ import React from "react";
 
 type InputProps = OptionProps & Partial<React.ComponentProps<"input">>;
 
-type InputWidthType = boolean | string;
+export type InputWidthType = boolean | string;
 
 export interface OptionProps {
   /**
