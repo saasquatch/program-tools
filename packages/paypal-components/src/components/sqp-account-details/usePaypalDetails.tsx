@@ -11,6 +11,7 @@ const NEXT_PAYOUT_QUERY = gql`
   query userPaymentPreview {
     tenantConfig {
       paused
+      baseUnits
     }
     userPaymentPreview {
       pending {
@@ -97,10 +98,23 @@ function getDetailsCardData(nextPayout) {
     (total) => total.currencyCode !== "USD"
   );
 
-  const otherCurrencies = otherCurrencyTotals?.map((total) => ({
-    currencyText: total?.currencyCode,
-    amountText: accounting.formatMoney(total?.value),
-  }));
+  const otherCurrencies = otherCurrencyTotals?.map((total) => {
+    const symbol = (0)
+      .toLocaleString("en", {
+        style: "currency",
+        currency: total?.currencyCode,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      })
+      .replace(/\d/g, "")
+      .trim();
+    return {
+      currencyText: total?.currencyCode,
+      amountText: accounting.formatMoney(total?.value, {
+        symbol,
+      }),
+    };
+  });
 
   const mainCurrencyBucket = nextPayout?.details?.totals?.find(
     (total) => total.currencyCode === "USD"
