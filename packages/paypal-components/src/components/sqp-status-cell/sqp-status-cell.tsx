@@ -163,14 +163,14 @@ export class RewardTableStatusCell {
         rewardStatus === "AVAILABLE" && this.reward.dateExpires
           ? this.expiryText + " "
           : ""
-      }${DateTime.fromMillis(dateShown)
+      }${DateTime.fromMillis(dateShown || 0)
         ?.setLocale(luxonLocale(this.locale))
         .toLocaleString(DateTime.DATE_MED)}.`;
 
     const unClaimed =
       rewardStatus === "UNCLAIMED" &&
       `${this.rewardUnclaimedText + " "}${DateTime.fromMillis(
-        this.reward.meta?.customMeta.dateLastUpdated
+        this.reward.meta?.customMeta.dateLastUpdated || 0
       )
         .plus({ days: 30 })
         ?.setLocale(luxonLocale(this.locale))
@@ -180,7 +180,8 @@ export class RewardTableStatusCell {
       rewardStatus === "FAILED" &&
       `${this.rewardPayoutFailedText + " "}${DateTime.fromMillis(
         this.reward.meta?.customMeta?.dateLastAttempted ||
-          this.reward.meta?.customMeta?.dateFirstAttempted
+          this.reward.meta?.customMeta?.dateFirstAttempted ||
+          0
       )
         ?.setLocale(luxonLocale(this.locale))
         .toLocaleString(DateTime.DATE_MED)}.`;
@@ -222,7 +223,7 @@ export class RewardTableStatusCell {
           prop.reward.dateScheduledFor &&
           prop.pendingScheduled +
             " " +
-            DateTime.fromMillis(prop.reward.dateScheduledFor)
+            DateTime.fromMillis(prop.reward.dateScheduledFor || 0)
               ?.setLocale(luxonLocale(prop.locale || "en"))
               .toLocaleString(DateTime.DATE_MED),
         UNHANDLED_ERROR: prop.pendingUnhandled,
