@@ -183,6 +183,16 @@ export namespace Components {
          */
         "payPalEmailLabelHelpText": string;
         /**
+          * @uiName W9 Tax Label
+          * @uiGroup Details
+         */
+        "pendingDetailedStatusText": string;
+        /**
+          * @uiName Pending Label
+          * @uiGroup Details
+         */
+        "pendingLabel": string;
+        /**
           * @uiName Recent Payment Label
           * @uiGroup Details
          */
@@ -283,6 +293,14 @@ export namespace Components {
           * @undocumented
          */
         "payPalAccountHeaderText": string;
+        /**
+          * @undocumented
+         */
+        "pendingDetailedStatusText": string;
+        /**
+          * @undocumented
+         */
+        "pendingLabel": string;
         /**
           * @undocumented
          */
@@ -746,6 +764,16 @@ declare namespace LocalJSX {
          */
         "payPalEmailLabelHelpText"?: string;
         /**
+          * @uiName W9 Tax Label
+          * @uiGroup Details
+         */
+        "pendingDetailedStatusText"?: string;
+        /**
+          * @uiName Pending Label
+          * @uiGroup Details
+         */
+        "pendingLabel"?: string;
+        /**
           * @uiName Recent Payment Label
           * @uiGroup Details
          */
@@ -846,6 +874,14 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "payPalAccountHeaderText"?: string;
+        /**
+          * @undocumented
+         */
+        "pendingDetailedStatusText"?: string;
+        /**
+          * @undocumented
+         */
+        "pendingLabel"?: string;
         /**
           * @undocumented
          */

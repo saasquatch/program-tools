@@ -197,9 +197,13 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     active: selectedPayout === -1,
     loading,
     status: "pending" as "pending",
-    statusText: "Pending",
-    statusBadgeText: "Pending",
-    detailedStatusText: "Pending",
+    statusText: props.pendingLabel,
+    pendingStatusBadgeText: props.pendingLabel,
+    upcomingStatusBadgeText: props.upcomingPaymentLabel,
+    nextPayoutStatusBadgeText: props.nextPayoutLabel,
+    pendingDetailedStatusText: props.pendingDetailedStatusText,
+    upcomingDetailedStatusText: "",
+    nextPayoutDetailedStatusText: "",
     otherCurrencies: pendingOtherCurrencies?.length
       ? pendingOtherCurrencies
       : undefined,
@@ -222,9 +226,14 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     loading,
     mainCurrency,
     status: selectedPayout === 0 ? "next payout" : "upcoming",
-    statusBadgeText:
-      selectedPayout === 0 ? props.nextPayoutLabel : props.upcomingPaymentLabel,
-    detailedStatusText: nextPayout?.date
+    pendingStatusBadgeText: props.pendingLabel,
+    upcomingStatusBadgeText: props.upcomingPaymentLabel,
+    nextPayoutStatusBadgeText: props.nextPayoutLabel,
+    pendingDetailedStatusText: props.pendingDetailedStatusText,
+    nextPayoutDetailedStatusText: nextPayout?.date
+      ? DateTime.fromMillis(nextPayout?.date).toFormat("LLL dd, yyyy")
+      : "-",
+    upcomingDetailedStatusText: nextPayout?.date
       ? DateTime.fromMillis(nextPayout?.date).toFormat("LLL dd, yyyy")
       : "-",
     otherCurrenciesText: intl.formatMessage(
