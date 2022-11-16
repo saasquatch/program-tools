@@ -1,4 +1,5 @@
 import { DateTime } from "luxon";
+import { getPaypalMeta } from "../sqp-status-column/mockRewardData";
 
 export default (count = 4) => {
   const data = [...Array(count)].map(() => getMockData());
@@ -26,16 +27,6 @@ const statuses = [
   ["REDEEMED"],
 ];
 
-const paypalStatuses = [
-  "FAILED",
-  "UNCLAIMED",
-  "ONHOLD",
-  "REFUNDED",
-  "RETURNED",
-  "REVERSED",
-  "BLOCKED",
-];
-
 const firstNames = [
   "Rajesh",
   "Pierre",
@@ -60,75 +51,6 @@ const lastNames = [
   "Pym",
   "Rogers",
 ];
-
-function getPaypalStatus(datePaidOut) {
-  if (datePaidOut) return "SUCCESS";
-
-  const randomIndex = Math.floor(Math.random() * 6);
-
-  const randomStatus = paypalStatuses.find(
-    (_status, index) => index === randomIndex
-  );
-
-  return randomStatus;
-}
-
-const getPaypalMeta = () => {
-  const datePaidOut = Math.floor(Math.random() * 10) >= 5 ? 123456789 : null;
-  const dateLastAttempted =
-    Math.floor(Math.random() * 10) >= 5 ? 123456789 : null;
-
-  const status = !!datePaidOut
-    ? "SUCCESS"
-    : Math.floor(Math.random() * 10) >= 8
-    ? "ERROR"
-    : "SUCCESS";
-
-  const paypalStatus = getPaypalStatus(datePaidOut);
-
-  return {
-    status,
-    customMeta: {
-      datePaidOut,
-      dateLastAttempted,
-      dateFirstAttempted: dateLastAttempted,
-      rawPayPalInfo: {
-        transaction_status: paypalStatus,
-      },
-    },
-  };
-};
-
-const inProgressMeta = {
-  status: "IN_PROGRESS",
-  integration: {
-    name: "PayPal Payouts Integration",
-  },
-  message: null,
-  customMeta: {
-    dateFirstAttempted: 1668108111653,
-    dateLastUpdated: 1668108111653,
-    dateLastAttempted: 1668108111653,
-    errorReason: null,
-    rawPayPalInfo: null,
-    attempts: 1,
-  },
-};
-
-const unclaimedMeta = {
-  status: "WARN",
-  integration: null,
-  message: null,
-  customMeta: {
-    dateFirstAttempted: 1667932903241,
-    dateLastUpdated: 1667932919027,
-    dateLastAttempted: 1667932903241,
-    rawPayPalInfo: {
-      transaction_status: "UNCLAIMED",
-    },
-    attempts: 1,
-  },
-};
 
 const getMockData = () => {
   return {

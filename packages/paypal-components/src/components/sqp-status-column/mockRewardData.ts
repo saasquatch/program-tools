@@ -18,12 +18,13 @@ const paypalStatuses = [
   "RETURNED",
   "REVERSED",
   "BLOCKED",
+  "DENIED",
 ];
 
 function getPaypalStatus(datePaidOut) {
   if (datePaidOut) return "SUCCESS";
 
-  const randomIndex = Math.floor(Math.random() * 6);
+  const randomIndex = Math.floor(Math.random() * 7);
 
   const randomStatus = paypalStatuses.find(
     (_status, index) => index === randomIndex
@@ -32,18 +33,21 @@ function getPaypalStatus(datePaidOut) {
   return randomStatus;
 }
 
-const getPaypalMeta = () => {
+export const getPaypalMeta = () => {
   const datePaidOut = Math.floor(Math.random() * 10) >= 5 ? 123456789 : null;
   const dateLastAttempted =
     Math.floor(Math.random() * 10) >= 5 ? 123456789 : null;
 
-  const status = !!datePaidOut
-    ? "SUCCESS"
-    : Math.floor(Math.random() * 10) >= 8
-    ? "ERROR"
-    : "SUCCESS";
-
   const paypalStatus = getPaypalStatus(datePaidOut);
+
+  const status =
+    paypalStatus === "DENIED"
+      ? "WARN"
+      : !!datePaidOut
+      ? "SUCCESS"
+      : Math.floor(Math.random() * 10) >= 8
+      ? "ERROR"
+      : "SUCCESS";
 
   return {
     status,

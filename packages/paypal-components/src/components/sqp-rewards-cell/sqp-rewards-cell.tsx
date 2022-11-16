@@ -179,7 +179,7 @@ export class ReferralTableRewardsCell {
 
     const getTimeDiff = (endTime: number): string => {
       // Current implementation only calculates the difference from current time
-      return DateTime.fromMillis(endTime)
+      return DateTime.fromMillis(endTime || 0)
         .setLocale(luxonLocale(this.locale))
         .toRelative()
         .replace("in", "")
@@ -214,10 +214,10 @@ export class ReferralTableRewardsCell {
           state === "FAILED"
             ? reward.meta?.customMeta?.dateLastAttempted
             : state === "UNCLAIMED"
-            ? DateTime.fromMillis(reward.meta?.customMeta?.dateLastUpdated)
+            ? DateTime.fromMillis(reward.meta?.customMeta?.dateLastUpdated || 0)
                 .plus({ days: 30 })
                 .toMillis()
-            : reward.meta?.customMeta?.dateLastUpdated;
+            : reward.meta?.customMeta?.dateLastUpdated || 0;
 
         return paypalStatuses.includes(state) ? (
           <div>
@@ -245,7 +245,8 @@ export class ReferralTableRewardsCell {
               <span class={sheet.classes.BoldText}>
                 {DateTime.fromMillis(
                   reward.meta?.customMeta?.dateLastAttempted ||
-                    reward.meta?.customMeta?.dateFirstAttempted
+                    reward.meta?.customMeta?.dateFirstAttempted ||
+                    0
                 )
                   .setLocale(luxonLocale(this.locale))
                   .toLocaleString(DateTime.DATE_MED)}
@@ -257,7 +258,7 @@ export class ReferralTableRewardsCell {
             <TextSpanView type="p">
               {this.rewardReceivedText}{" "}
               <span class={sheet.classes.BoldText}>
-                {DateTime.fromMillis(reward.dateGiven)
+                {DateTime.fromMillis(reward.dateGiven || 0)
                   .setLocale(luxonLocale(this.locale))
                   .toLocaleString(DateTime.DATE_MED)}
               </span>
@@ -371,7 +372,7 @@ export class ReferralTableRewardsCell {
                 <TextSpanView type="p">
                   {statusText}{" "}
                   <span class={sheet.classes.BoldText}>
-                    {DateTime.fromMillis(reward.dateExpires)
+                    {DateTime.fromMillis(reward.dateExpires || 0)
                       .setLocale(luxonLocale(this.locale))
                       .toLocaleString(DateTime.DATE_MED)}
                   </span>

@@ -149,38 +149,38 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   async renderCell(data: Referral, locale: string, mintRenderer) {
     // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
     console.log(data.rewards);
-
-    return mintRenderer("sqp-rewards-cell", {
-      rewards: data.rewards,
-      statusText: this.statusText,
-      statusLongText: this.statusLongText,
-      fuelTankText: this.fuelTankText,
-      rewardReceivedText: this.rewardReceivedText,
-      expiringText: this.expiringText,
-      pendingForText: this.pendingForText,
-      hideDetails: this.hideDetails,
-      locale: locale,
-      rewardPaidOutText: this.rewardPaidOutText,
-      rewardPayoutInProgressText: this.rewardPayoutInProgressText,
-      rewardPayoutFailedText: this.rewardPayoutFailedText,
-    });
-
-    // return (
-    //   <sqp-rewards-cell
-    //     rewards={data.rewards}
-    //     statusText={this.statusText}
-    //     statusLongText={this.statusLongText}
-    //     fuelTankText={this.fuelTankText}
-    //     rewardReceivedText={this.rewardReceivedText}
-    //     expiringText={this.expiringText}
-    //     pendingForText={this.pendingForText}
-    //     hideDetails={this.hideDetails}
-    //     locale={locale}
-    //     rewardPaidOutText={this.rewardPaidOutText}
-    //     rewardPayoutInProgressText={this.rewardPayoutInProgressText}
-    //     rewardPayoutFailedText={this.rewardPayoutFailedText}
-    //   ></sqp-rewards-cell>
-    // );
+    if (mintRenderer) {
+      return mintRenderer("sqp-rewards-cell", {
+        rewards: data.rewards,
+        statusText: this.statusText,
+        statusLongText: this.statusLongText,
+        fuelTankText: this.fuelTankText,
+        rewardReceivedText: this.rewardReceivedText,
+        expiringText: this.expiringText,
+        pendingForText: this.pendingForText,
+        hideDetails: this.hideDetails,
+        locale: locale,
+        rewardPaidOutText: this.rewardPaidOutText,
+        rewardPayoutInProgressText: this.rewardPayoutInProgressText,
+        rewardPayoutFailedText: this.rewardPayoutFailedText,
+      });
+    }
+    return (
+      <sqp-rewards-cell
+        rewards={data.rewards}
+        statusText={this.statusText}
+        statusLongText={this.statusLongText}
+        fuelTankText={this.fuelTankText}
+        rewardReceivedText={this.rewardReceivedText}
+        expiringText={this.expiringText}
+        pendingForText={this.pendingForText}
+        hideDetails={this.hideDetails}
+        locale={locale}
+        rewardPaidOutText={this.rewardPaidOutText}
+        rewardPayoutInProgressText={this.rewardPayoutInProgressText}
+        rewardPayoutFailedText={this.rewardPayoutFailedText}
+      ></sqp-rewards-cell>
+    );
   }
 
   @Method()
@@ -189,8 +189,23 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   }
 
   @Method()
-  async renderReferrerCell(data: Referrer) {
-    // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
+  async renderReferrerCell(data: Referrer, mintRenderer) {
+    if (mintRenderer) {
+      return mintRenderer("sqp-rewards-cell", {
+        rewards: data.rewards,
+        statusText: this.statusText,
+        statusLongText: this.statusLongText,
+        fuelTankText: this.fuelTankText,
+        rewardReceivedText: this.rewardReceivedText,
+        expiringText: this.expiringText,
+        pendingForText: this.pendingForText,
+        hideDetails: this.hideDetails,
+        rewardPaidOutText: this.rewardPaidOutText,
+        rewardPayoutInProgressText: this.rewardPayoutInProgressText,
+        rewardPayoutFailedText: this.rewardPayoutFailedText,
+      });
+    }
+
     return (
       <sqp-rewards-cell
         rewards={data.rewards}

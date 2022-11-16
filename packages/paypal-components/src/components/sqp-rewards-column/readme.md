@@ -50,7 +50,7 @@ Type: `Promise<string>`
 
 
 
-### `renderReferrerCell(data: Referrer) => Promise<any>`
+### `renderReferrerCell(data: Referrer, mintRenderer: any) => Promise<any>`
 
 
 
