@@ -65,7 +65,7 @@ export const DisplayDropdownOpen = () => {
             onClickItem={() => alert("Clicked Item!")}
             isSelected={false}
           >
-            Dropdown Item loooooooooooooooooooooooonge item
+            Dropdown Item loooooooooooooooooooooooong item
           </DisplayDropdown.ItemView>
           <DisplayDropdown.ItemView
             onClickItem={() => alert("Clicked Item!")}
