@@ -24,7 +24,7 @@ const paypalStatuses = [
 function getPaypalStatus(datePaidOut) {
   if (datePaidOut) return "SUCCESS";
 
-  const randomIndex = Math.floor(Math.random() * 6);
+  const randomIndex = Math.floor(Math.random() * 7);
 
   const randomStatus = paypalStatuses.find(
     (_status, index) => index === randomIndex
