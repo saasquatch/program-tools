@@ -140,7 +140,7 @@ const DisplayDropdownItemView = React.forwardRef<
   return (
     <MenuItemDiv onClick={onClick} ref={forwardedRef} customCSS={customCSS}>
       <IconView
-        style={{ visibility: `${isSelected ? "visible" : "hidden"}` }}
+        style={{ visibility: isSelected ? "visible" : "hidden" }}
         icon="checkmark"
       />
       {children}
