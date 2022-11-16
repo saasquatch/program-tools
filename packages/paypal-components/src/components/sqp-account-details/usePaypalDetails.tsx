@@ -4,6 +4,7 @@ import { h } from "@stencil/core";
 import accounting from "accounting";
 import { gql } from "graphql-request";
 import { DateTime } from "luxon";
+import { intl } from "../../global/global";
 import { DetailsCardViewProps } from "./sqp-details-card-view";
 import { PaypalAccountDetails } from "./sqp-paypal-details";
 import { ScheduleCardView } from "./sqp-schedule-card-view";
@@ -202,7 +203,15 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     otherCurrencies: pendingOtherCurrencies?.length
       ? pendingOtherCurrencies
       : undefined,
-    otherCurrenciesText: props.otherCurrenciesLabel,
+    otherCurrenciesText: intl.formatMessage(
+      {
+        id: "otherCurrencies",
+        defaultMessage: props.otherCurrenciesLabel,
+      },
+      {
+        amount: pendingOtherCurrencies?.length,
+      }
+    ),
     mainCurrency: mainPendingCurrency,
     setActivePayout: () => setSelectedPayout(-1),
     w9PendingText: props.w9TaxLabel,
@@ -218,7 +227,15 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     detailedStatusText: nextPayout?.date
       ? DateTime.fromMillis(nextPayout?.date).toFormat("LLL dd, yyyy")
       : "-",
-    otherCurrenciesText: props.otherCurrenciesLabel,
+    otherCurrenciesText: intl.formatMessage(
+      {
+        id: "otherCurrencies",
+        defaultMessage: props.otherCurrenciesLabel,
+      },
+      {
+        amount: otherCurrencies?.length,
+      }
+    ),
     otherCurrencies: otherCurrencies?.length ? otherCurrencies : undefined,
     w9PendingText: props.w9TaxLabel,
     w9Pending: undefined,
@@ -251,7 +268,15 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
         loading,
         statusText: DateTime.fromMillis(bucket?.date).toFormat("LLL dd, yyyy"),
         otherCurrenciesText: hasOtherCurrencies
-          ? `${otherCurrencies.length} ${props.otherCurrenciesLabel}`
+          ? intl.formatMessage(
+              {
+                id: "otherCurrencies",
+                defaultMessage: props.otherCurrenciesLabel,
+              },
+              {
+                amount: otherCurrencies?.length,
+              }
+            )
           : "",
         mainCurrency,
         setActivePayout: () => setSelectedPayout(i),

@@ -157,9 +157,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
         )}
         {otherCurrencies !== undefined && !loading && (
           <div>
-            <p class={classes.SubduedRegularText}>
-              + {otherCurrencies.length} {otherCurrenciesText}
-            </p>
+            <p class={classes.SubduedRegularText}>+ {otherCurrenciesText}</p>
             {currencyList(otherCurrencies)}
           </div>
         )}

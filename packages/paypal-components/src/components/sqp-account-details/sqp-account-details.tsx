@@ -50,7 +50,8 @@ export class PaypalAccountDetails {
    * @uiName Other Currencies Label
    * @uiGroup Details
    */
-  @Prop() otherCurrenciesLabel: string = "other currencies";
+  @Prop() otherCurrenciesLabel: string =
+    "{amount} {amount, plural, =0 {other currencies} =1 {other currency} other {other currencies}}";
   /**
    * @uiName W9 Tax Label
    * @uiGroup Details
