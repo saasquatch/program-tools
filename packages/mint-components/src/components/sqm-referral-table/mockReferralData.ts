@@ -1,4 +1,5 @@
 import { DateTime } from "luxon";
+import { getPaypalMeta } from "../sqm-rewards-table/mockRewardData";
 
 export default (count = 4) => {
   const data = [...Array(count)].map(() => getMockData());
@@ -102,6 +103,9 @@ const getMockData = () => {
               statuses: statuses[Math.floor(Math.random() * statuses.length)],
               globalRewardKey: null,
               programRewardKey: "partnerReward",
+              meta: {
+                ...getPaypalMeta(),
+              },
               rewardRedemptionTransactions: {
                 data: [
                   {

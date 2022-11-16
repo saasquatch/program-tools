@@ -10,6 +10,54 @@ const prettyValues = ["Points", "Tickets", "Gifts"];
 const statuses = ["AVAILABLE", "PENDING", "CANCELLED", "EXPIRED", "REDEEMED"];
 const pendingReasons = ["US_TAX", "SCHEDULED", "UNHANDLED_ERROR"];
 
+const paypalStatuses = [
+  "FAILED",
+  "UNCLAIMED",
+  "ONHOLD",
+  "REFUNDED",
+  "RETURNED",
+  "REVERSED",
+  "BLOCKED",
+];
+
+function getPaypalStatus(datePaidOut) {
+  if (datePaidOut) return "SUCCESS";
+
+  const randomIndex = Math.floor(Math.random() * 6);
+
+  const randomStatus = paypalStatuses.find(
+    (_status, index) => index === randomIndex
+  );
+
+  return randomStatus;
+}
+
+export const getPaypalMeta = () => {
+  const datePaidOut = Math.floor(Math.random() * 10) >= 5 ? 123456789 : null;
+  const dateLastAttempted =
+    Math.floor(Math.random() * 10) >= 5 ? 123456789 : null;
+
+  const status = !!datePaidOut
+    ? "SUCCESS"
+    : Math.floor(Math.random() * 10) >= 8
+    ? "ERROR"
+    : "SUCCESS";
+
+  const paypalStatus = getPaypalStatus(datePaidOut);
+
+  return {
+    status,
+    customMeta: {
+      datePaidOut,
+      dateLastAttempted,
+      dateFirstAttempted: dateLastAttempted,
+      rawPayPalInfo: {
+        transaction_status: paypalStatus,
+      },
+    },
+  };
+};
+
 const getMockData = () => {
   let isAvailableZero = false;
   let randomRedeemed = 0;
@@ -33,7 +81,9 @@ const getMockData = () => {
     prettyAvailableValue = `${randomValue} ${prettyValue}`;
     randomRedeemed = Math.floor(Math.random() * randomValue);
     dateExpires =
-      Math.floor(Math.random() * 10) < 3 ? today.plus({ days: 7 }).toMillis() : null;
+      Math.floor(Math.random() * 10) < 3
+        ? today.plus({ days: 7 }).toMillis()
+        : null;
   } else if (randomStatus === "EXPIRED") {
     prettyAvailableValue = `0 ${prettyValue}`;
     isAvailableZero = true;
@@ -81,6 +131,9 @@ const getMockData = () => {
     programId: source === 1 ? "program-id" : null,
     program: {
       name: "My Program",
+    },
+    meta: {
+      ...getPaypalMeta(),
     },
     statuses: [randomStatus],
     pendingReasons: pendingReason,
