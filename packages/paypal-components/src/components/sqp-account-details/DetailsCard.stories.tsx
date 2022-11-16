@@ -14,8 +14,12 @@ const defaultProps: DetailsCardViewProps = {
   empty: false,
   mainCurrency: { currencyText: "USD", amountText: "100.00" },
   status: "upcoming",
-  statusBadgeText: "Upcoming",
-  detailedStatusText: "November 1, 2022",
+  pendingStatusBadgeText: "Pending",
+  upcomingStatusBadgeText: "Upcoming",
+  nextPayoutStatusBadgeText: "Next payout",
+  pendingDetailedStatusText: "Check rewards table for available date",
+  upcomingDetailedStatusText: "November 1, 2022",
+  nextPayoutDetailedStatusText: "November 1, 2022",
   otherCurrenciesText: "other currencies",
   w9PendingText: "Awaiting W-9 tax form",
 };
@@ -45,7 +49,6 @@ export const NextPayout = () => {
       {...{
         ...defaultProps,
         status: "next payout",
-        statusBadgeText: "Next Payout",
       }}
     />
   );
@@ -57,8 +60,6 @@ export const Pending = () => {
       {...{
         ...defaultProps,
         status: "pending",
-        statusBadgeText: "Pending",
-        detailedStatusText: "Check rewards table for available date",
       }}
     />
   );
@@ -81,9 +82,7 @@ export const W9Pending = () => {
       {...{
         ...defaultProps,
         status: "pending",
-        statusBadgeText: "Pending",
-        detailedStatusText: "Check rewards table for available date",
-        w9Pending: currencyList,
+        w9Pending: { amountText: "15.92", currencyText: "USD" },
       }}
     />
   );
@@ -95,10 +94,21 @@ export const W9AndOtherCurrencies = () => {
       {...{
         ...defaultProps,
         status: "pending",
-        statusBadgeText: "Pending",
-        detailedStatusText: "Check rewards table for available date",
-        w9Pending: currencyList,
+        w9Pending: { amountText: "15.92", currencyText: "USD" },
         otherCurrencies: currencyList,
+      }}
+    />
+  );
+};
+
+export const W9OnlyPending = () => {
+  return (
+    <DetailsCardView
+      {...{
+        ...defaultProps,
+        empty: true,
+        status: "pending",
+        w9Pending: { amountText: "15.92", currencyText: "USD" },
       }}
     />
   );
