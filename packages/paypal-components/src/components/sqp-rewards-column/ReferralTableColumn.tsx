@@ -7,5 +7,5 @@ export interface ReferralTableColumn {
     locale: string,
     h: (sel: any) => VNode
   ): Promise<VNode>;
-  renderReferrerCell?(data: Referrer): Promise<VNode>;
+  renderReferrerCell?(data: Referrer, h: (sel: any) => VNode): Promise<VNode>;
 }

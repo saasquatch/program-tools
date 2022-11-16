@@ -341,7 +341,7 @@ export namespace Components {
         "pendingForText": string;
         "renderCell": (data: Referral, locale: string, mintRenderer: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer) => Promise<any>;
+        "renderReferrerCell": (data: Referrer, mintRenderer: any) => Promise<any>;
         /**
           * Shown in the dropdown details when a reward was blocked during payout.
           * @uiName Reward Blocked Text
