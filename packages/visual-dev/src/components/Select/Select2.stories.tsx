@@ -74,7 +74,7 @@ export const FullWidth = () => {
         margin: "100px",
       }}
     >
-      <SelectView.ContainerView>
+      <SelectView.ContainerView {...props}>
         <SelectView.HandleView {...props} />
         <SelectView.ListView {...props} />
       </SelectView.ContainerView>
