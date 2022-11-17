@@ -175,10 +175,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
           <h1 class={classes.MainCurrency}>No rewards</h1>
         ) : (
           <h1 class={classes.MainCurrency}>
-            {mainCurrency.amountText || w9Pending.amountText}{" "}
-            <span class={classes.MainCurrencyLabel}>
-              {mainCurrency.currencyText || w9Pending.currencyText}
-            </span>
+            {mainCurrency.amountText || w9Pending.amountText}
           </h1>
         )}
         {otherCurrencies !== undefined && !loading && (
