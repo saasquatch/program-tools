@@ -217,7 +217,7 @@ export class RewardTableStatusCell {
     const paidOut =
       rewardStatus === "SUCCESS" &&
       `${this.rewardPaidOutText + " "}${DateTime.fromMillis(
-        this.reward.meta?.customMeta.datePaidOut || 0
+        this.reward.meta?.customMeta.dateLastUpdated || 0
       )
         ?.setLocale(luxonLocale(this.locale))
         .toLocaleString(DateTime.DATE_MED)}.`;
@@ -272,8 +272,6 @@ export class RewardTableStatusCell {
         .toLocaleString(DateTime.DATE_MED)}.`;
 
     const isPayPal = hasMeta;
-
-    console.log(this.reward.meta?.customMeta);
 
     return (
       <div style={{ display: "contents" }}>
