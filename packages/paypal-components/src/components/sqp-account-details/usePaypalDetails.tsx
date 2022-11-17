@@ -266,12 +266,14 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
         amountText: accounting.formatMoney(mainCurrencyTotal?.value),
       };
 
-      const otherCurrencies = bucket?.details?.totals
-        ?.filter((total) => total.currencyCode !== "USD")
-        .map((total) => ({
-          currencyText: total?.currencyCode,
-          amountText: accounting.formatMoney(total?.value),
-        }));
+      const otherCurrenciesTotals = bucket?.details?.totals?.filter(
+        (total) => total.currencyCode !== "USD"
+      );
+
+      const otherCurrencies = otherCurrenciesTotals.map((total) => ({
+        currencyText: total?.currencyCode,
+        amountText: accounting.formatMoney(total?.value),
+      }));
 
       const hasOtherCurrencies = otherCurrencies.length > 0;
 
@@ -293,6 +295,9 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
           : "",
         mainCurrency,
         setActivePayout: () => setSelectedPayout(i),
+        empty:
+          !mainCurrencyTotal?.value &&
+          !otherCurrenciesTotals?.reduce((agg, total) => agg + total.value, 0),
       };
       return <ScheduleCardView {...viewProps} />;
     }) || [];
