@@ -22,6 +22,8 @@ export interface DetailsCardViewProps {
   w9PendingText: string;
   otherCurrenciesText: string;
   empty?: boolean;
+  hasW9Pending?: boolean;
+  hasDatePending?: boolean;
 }
 
 const statusMap = {

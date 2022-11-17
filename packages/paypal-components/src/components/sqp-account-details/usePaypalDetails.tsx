@@ -190,10 +190,11 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     !mainCurrencyBucket?.value &&
     !otherCurrencyTotals?.reduce((agg, total) => agg + total.value, 0);
 
+  const emptyPending =
+    !mainPendingCurrencyTotal?.value &&
+    !pendingOtherCurrencies?.reduce((agg, total) => agg + total.value, 0);
+
   const pendingProps = {
-    empty:
-      !mainPendingCurrencyTotal?.value &&
-      !pendingOtherCurrencies?.reduce((agg, total) => agg + total.value, 0),
     active: selectedPayout === -1,
     loading,
     status: "pending" as "pending",
@@ -220,6 +221,9 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     setActivePayout: () => setSelectedPayout(-1),
     w9PendingText: props.w9TaxLabel,
     w9Pending,
+    hasDatePending: !emptyPending,
+    hasW9Pending: !!w9Pending,
+    empty: emptyPending && !w9Pending,
   };
 
   const detailsProps: DetailsCardViewProps = {
