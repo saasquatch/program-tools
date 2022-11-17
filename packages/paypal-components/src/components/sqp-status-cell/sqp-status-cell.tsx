@@ -223,7 +223,7 @@ export class RewardTableStatusCell {
         .toLocaleString(DateTime.DATE_MED)}.`;
 
     const inProgress =
-      rewardStatus === "PENDING" &&
+      rewardStatus === "PAYPAL_PENDING" &&
       `${this.rewardPayoutInProgressText + " "}${DateTime.fromMillis(
         this.reward.meta?.customMeta.dateLastUpdated || 0
       )

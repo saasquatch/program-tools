@@ -167,7 +167,10 @@ export class ReferralTableRewardsCell {
           ? "primary"
           : state === "FAILED"
           ? "danger"
-          : state === "PENDING" || state === "UNCLAIMED" || state === "ONHOLD"
+          : state === "PENDING" ||
+            state === "PAYPAL_PENDING" ||
+            state === "UNCLAIMED" ||
+            state === "ONHOLD"
           ? "warning"
           : state === "REFUNDED" ||
             state === "RETURNED" ||

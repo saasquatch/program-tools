@@ -57,11 +57,21 @@ export const InProgress = () => {
     <sqp-status-cell
       reward={{
         ...baseReward,
-        ...inProgressPaypal,
+        meta: {
+          status: "IN_PROGRESS",
+          customMeta: {
+            dateFirstAttempted: 1668559450249,
+            dateLastUpdated: 1668559467180,
+            dateLastAttempted: 1668559450249,
+            rawPayPalInfo: {
+              transaction_status: "PENDING",
+            },
+          },
+        },
       }}
       column-title="Status"
       expiry-text="Expires on "
-      status-text="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+      status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} EXPIRED {Expired} REDEEMED {Redeemed} PENDING {Pending} SUCCESS {Paid out} FAILED {Failed} PAYPAL_PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} DENIED {Denied} other {Not available}  }"
       rewardPaidOutText="Sent via PayPal on"
       rewardPayoutInProgressText="PayPal payout processing started on"
       rewardPayoutFailedText="Payout last attempted on"
