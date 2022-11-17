@@ -165,7 +165,7 @@ export class ReferralTableRewardsCell {
             state === "RETURNED" ||
             state === "REVERSED" ||
             state === "BLOCKED"
-          ? "neutral"
+          ? "info"
           : "danger"
         : state === "AVAILABLE"
         ? "success"

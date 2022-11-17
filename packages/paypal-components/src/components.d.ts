@@ -430,9 +430,14 @@ export namespace Components {
         "pendingUnhandled": string;
         "pendingUsTax": string;
         "reward": Reward;
+        "rewardBlockedText": string;
+        "rewardOnHoldText": string;
         "rewardPaidOutText": string;
         "rewardPayoutFailedText": string;
         "rewardPayoutInProgressText": string;
+        "rewardRefundedText": string;
+        "rewardReturnedText": string;
+        "rewardReversedText": string;
         "rewardUnclaimedText": string;
         "statusText": string;
     }
@@ -1008,9 +1013,14 @@ declare namespace LocalJSX {
         "pendingUnhandled"?: string;
         "pendingUsTax"?: string;
         "reward"?: Reward;
+        "rewardBlockedText"?: string;
+        "rewardOnHoldText"?: string;
         "rewardPaidOutText"?: string;
         "rewardPayoutFailedText"?: string;
         "rewardPayoutInProgressText"?: string;
+        "rewardRefundedText"?: string;
+        "rewardReturnedText"?: string;
+        "rewardReversedText"?: string;
         "rewardUnclaimedText"?: string;
         "statusText"?: string;
     }

@@ -24,7 +24,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
    * @uiWidget textArea
    */
   @Prop() statusText: string =
-    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} EXPIRED {Expired} REDEEMED {Redeemed} PENDING {Pending} SUCCESS {Paid Out} FAILED {Failed} PAYPAL_PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} other {Not available}  }";
+    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} EXPIRED {Expired} REDEEMED {Redeemed} PENDING {Pending} SUCCESS {Paid out} FAILED {Failed} PAYPAL_PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} other {Not available}  }";
 
   /**
    * Displayed below the status pill when a reward has been paid out.
@@ -38,7 +38,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
    *
    * @uiName Reward Payout In Progress Text
    */
-  @Prop() rewardPayoutInProgressText: string = "Payout processing started on";
+  @Prop() rewardPayoutInProgressText: string = "Payout process started on";
 
   /**
    * Displayed below the status pill when a reward payout has failed.
@@ -91,13 +91,13 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
    * @uiName Reward Blocked Text
    */
   @Prop() rewardBlockedText: string = "Payout blocked on";
+
   /**
    * Text shown before the date of an expiring reward.
    *
    * @uiName Expiry Date Prefix
    */
   @Prop() expiryText: string = "Expires on ";
-
   /**
    * Displayed when a reward is pending due to W9 compliance.
    *
