@@ -106,7 +106,6 @@ export const W9OnlyPending = () => {
     <DetailsCardView
       {...{
         ...defaultProps,
-        empty: true,
         status: "pending",
         w9Pending: { amountText: "15.92", currencyText: "USD" },
       }}
