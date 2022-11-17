@@ -76,37 +76,42 @@ export const OtherCurrencies = () => {
   );
 };
 
-export const W9Pending = () => {
-  return (
-    <DetailsCardView
-      {...{
-        ...defaultProps,
-        status: "pending",
-        w9Pending: { amountText: "15.92", currencyText: "USD" },
-      }}
-    />
-  );
-};
-
-export const W9AndOtherCurrencies = () => {
-  return (
-    <DetailsCardView
-      {...{
-        ...defaultProps,
-        status: "pending",
-        w9Pending: { amountText: "15.92", currencyText: "USD" },
-        otherCurrencies: currencyList,
-      }}
-    />
-  );
-};
-
 export const W9OnlyPending = () => {
   return (
     <DetailsCardView
       {...{
         ...defaultProps,
         status: "pending",
+        hasDatePending: false,
+        hasW9Pending: true,
+        w9Pending: { amountText: "15.92", currencyText: "USD" },
+      }}
+    />
+  );
+};
+
+export const DateOnlyPending = () => {
+  return (
+    <DetailsCardView
+      {...{
+        ...defaultProps,
+        status: "pending",
+        hasDatePending: true,
+        hasW9Pending: false,
+        otherCurrencies: currencyList,
+      }}
+    />
+  );
+};
+
+export const CombinedPending = () => {
+  return (
+    <DetailsCardView
+      {...{
+        ...defaultProps,
+        status: "pending",
+        hasDatePending: true,
+        hasW9Pending: true,
         w9Pending: { amountText: "15.92", currencyText: "USD" },
       }}
     />

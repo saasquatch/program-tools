@@ -134,6 +134,8 @@ export function DetailsCardView(props: DetailsCardViewProps) {
     w9Pending,
     w9PendingText,
     empty,
+    hasDatePending,
+    hasW9Pending,
   } = props;
 
   const badgeText = {
@@ -162,7 +164,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
             <p class={classes.SubduedRegularText}>
               {status !== "pending"
                 ? statusText[status]
-                : !empty
+                : hasDatePending
                 ? statusText["pending"]
                 : w9PendingText}
             </p>
@@ -177,7 +179,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
           <h1 class={classes.MainCurrency}>No rewards</h1>
         ) : (
           <h1 class={classes.MainCurrency}>
-            {mainCurrency.amountText || w9Pending.amountText}
+            {hasDatePending ? mainCurrency.amountText : w9Pending.amountText}
           </h1>
         )}
         {otherCurrencies !== undefined && !loading && (
@@ -191,7 +193,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
             {currencyList(otherCurrencies)}
           </div>
         )}
-        {w9Pending !== undefined && !empty && !loading && (
+        {hasW9Pending && status === "pending" && hasDatePending && !loading && (
           <div class={classes.W9Container}>
             <p class={classes.SubduedRegularText}>{w9PendingText}</p>
             {currencyList([w9Pending])}
