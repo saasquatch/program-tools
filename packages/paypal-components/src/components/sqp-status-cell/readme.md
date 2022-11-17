@@ -15,6 +15,7 @@
 | `pendingUnhandled`           | `pending-unhandled`              |             | `string` | `"Fulfillment error"` |
 | `pendingUsTax`               | `pending-us-tax`                 |             | `string` | `"W-9 required"`      |
 | `reward`                     | --                               |             | `Reward` | `undefined`           |
+| `rewardDeniedText`           | `reward-denied-text`             |             | `string` | `undefined`           |
 | `rewardPaidOutText`          | `reward-paid-out-text`           |             | `string` | `undefined`           |
 | `rewardPayoutFailedText`     | `reward-payout-failed-text`      |             | `string` | `undefined`           |
 | `rewardPayoutInProgressText` | `reward-payout-in-progress-text` |             | `string` | `undefined`           |

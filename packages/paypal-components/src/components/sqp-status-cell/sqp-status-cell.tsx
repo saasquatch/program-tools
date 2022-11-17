@@ -74,10 +74,17 @@ export class RewardTableStatusCell {
     "The email you provided does not link to an exisiting PayPal account. Payout expired on";
   @Prop() rewardReversedText: string = "Payout reversed on";
   @Prop() rewardBlockedText: string = "Payout blocked on";
+  @Prop() rewardDeniedText: string = "";
 
   rewardStatus(reward: Reward) {
     const paypalStatus =
       reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"];
+
+    const metaStatus = reward?.meta?.status;
+
+    if (metaStatus === "ERROR" && !paypalStatus) return "FAILED";
+    if (metaStatus === "IN_PROGRESS" && !paypalStatus) return "PAYPAL_PENDING";
+
     if (paypalStatus === "PENDING") return "PAYPAL_PENDING";
     if (paypalStatus) return paypalStatus;
     if (reward.dateCancelled) return "CANCELLED";
@@ -142,7 +149,8 @@ export class RewardTableStatusCell {
         : rewardStatus === "REFUNDED" ||
           rewardStatus === "RETURNED" ||
           rewardStatus === "REVERSED" ||
-          rewardStatus === "BLOCKED"
+          rewardStatus === "BLOCKED" ||
+          rewardStatus === "DENIED"
         ? "info"
         : "danger"
       : rewardStatus === "AVAILABLE"
@@ -182,6 +190,14 @@ export class RewardTableStatusCell {
         this.reward.meta?.customMeta.dateLastUpdated || 0
       )
         .plus({ days: 30 })
+        ?.setLocale(luxonLocale(this.locale))
+        .toLocaleString(DateTime.DATE_MED)}.`;
+
+    const payoutDenied =
+      rewardStatus === "DENIED" &&
+      `${this.rewardDeniedText + " "}${DateTime.fromMillis(
+        this.reward.meta?.customMeta.dateLastAttempted || 0
+      )
         ?.setLocale(luxonLocale(this.locale))
         .toLocaleString(DateTime.DATE_MED)}.`;
 
@@ -287,6 +303,7 @@ export class RewardTableStatusCell {
             inProgress ||
             reversed ||
             blocked ||
+            payoutDenied ||
             paidOut ||
             date}
         </p>

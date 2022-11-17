@@ -24,7 +24,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
    * @uiWidget textArea
    */
   @Prop() statusText: string =
-    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} EXPIRED {Expired} REDEEMED {Redeemed} PENDING {Pending} SUCCESS {Paid out} FAILED {Failed} PAYPAL_PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} other {Not available}  }";
+    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} EXPIRED {Expired} REDEEMED {Redeemed} PENDING {Pending} SUCCESS {Paid out} FAILED {Failed} PAYPAL_PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} DENIED {Denied} other {Not available}  }";
 
   /**
    * Displayed below the status pill when a reward has been paid out.
@@ -93,6 +93,12 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
   @Prop() rewardBlockedText: string = "Payout blocked on";
 
   /**
+   * Displayed below the status pill when a reward was denied during payout.
+   *
+   * @uiName Reward Denied Text
+   */
+  @Prop() rewardDeniedText: string = "Payout denied by PayPal on";
+  /**
    * Text shown before the date of an expiring reward.
    *
    * @uiName Expiry Date Prefix
@@ -139,6 +145,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
         rewardPayoutInProgressText: this.rewardPayoutInProgressText,
         rewardPayoutFailedText: this.rewardPayoutFailedText,
         rewardUnclaimedText: this.rewardUnclaimedText,
+        rewardDeniedText: this.rewardDeniedText,
       });
     } else {
       return (
@@ -154,6 +161,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
           rewardPayoutInProgressText={this.rewardPayoutInProgressText}
           rewardPayoutFailedText={this.rewardPayoutFailedText}
           rewardUnclaimedText={this.rewardUnclaimedText}
+          rewardDeniedText={this.rewardDeniedText}
         ></sqp-status-cell>
       );
     }
@@ -175,6 +183,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
       this.rewardPaidOutText,
       this.rewardPayoutInProgressText,
       this.rewardPayoutFailedText,
+      this.rewardDeniedText,
     ]);
     return <Host style={{ display: "none" }} />;
   }
