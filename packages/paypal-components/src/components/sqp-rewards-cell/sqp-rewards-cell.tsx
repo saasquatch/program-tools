@@ -186,7 +186,7 @@ export class ReferralTableRewardsCell {
         ? "success"
         : state === "REDEEMED"
         ? "primary"
-        : state === "PENDING"
+        : state === "PENDING" || state === "PAYPAL_PENDING"
         ? "warning"
         : "danger";
       return badgeType;
