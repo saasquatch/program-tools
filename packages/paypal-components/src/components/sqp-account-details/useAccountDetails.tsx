@@ -204,6 +204,7 @@ export function useAccountDetails(props) {
       w9TaxLabel: props.w9TaxLabel,
       upcomingPaymentLabel: props.upcomingPaymentLabel,
       nextPayoutLabel: props.nextPayoutLabel,
+      pendingLabel: props.pendingLabel,
       detailsContent: <Upcoming />,
       ScheduleContent: [<Default />],
     },
