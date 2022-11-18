@@ -11,7 +11,7 @@ const paypalStatuses = [
   "PAYPAL_PENDING",
   "SUCCESS",
   "FAILED",
-  "INPROGRESS",
+  "IN_PROGRESS",
   "UNCLAIMED",
   "ONHOLD",
   "REFUNDED",

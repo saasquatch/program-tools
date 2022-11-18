@@ -148,7 +148,8 @@ export class RewardTableStatusCell {
         ? "danger"
         : rewardStatus === "PAYPAL_PENDING" ||
           rewardStatus === "UNCLAIMED" ||
-          rewardStatus === "ONHOLD"
+          rewardStatus === "ONHOLD" ||
+          rewardStatus === "IN_PROGRESS"
         ? "warning"
         : rewardStatus === "REFUNDED" ||
           rewardStatus === "RETURNED" ||
@@ -161,7 +162,9 @@ export class RewardTableStatusCell {
       ? "success"
       : rewardStatus === "REDEEMED"
       ? "primary"
-      : rewardStatus === "PENDING"
+      : rewardStatus === "PENDING" ||
+        rewardStatus === "IN_PROGRESS" ||
+        rewardStatus === "PAYPAL_PENDING"
       ? "warning"
       : "danger";
 
