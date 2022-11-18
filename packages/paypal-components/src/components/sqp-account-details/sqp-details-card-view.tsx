@@ -179,7 +179,9 @@ export function DetailsCardView(props: DetailsCardViewProps) {
           <h1 class={classes.MainCurrency}>No rewards</h1>
         ) : (
           <h1 class={classes.MainCurrency}>
-            {hasDatePending ? mainCurrency?.amountText : w9Pending?.amountText}
+            {hasDatePending || status !== "pending"
+              ? mainCurrency?.amountText
+              : w9Pending?.amountText}
           </h1>
         )}
         {otherCurrencies !== undefined && !loading && (
