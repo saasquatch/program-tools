@@ -86,7 +86,7 @@ Feature: Paypal Reward Status Column
             | Unclaimed PayPal payout reward         | The email you provided does not link to an existing PayPal account. Payout expires on {dateLastUpdated + 30 days from the customMeta}.                              |
             | On hold PayPal payout reward           | Payout on hold and in review since {dadateLastUpdated from the customMetateLastUpdated}.                                                                             |
             | Refunded PayPal payout reward          | Payout refunded on {dateLastUpdated from the customMeta}                                                                                                             |
-            | Returned PayPal payout reward          | The email you provided does not link to an existing PayPal account. Payout expired on {dateLastUpdated + 30 days from the customMeta}.                              |
+            | Returned PayPal payout reward          | The email you provided does not link to an existing PayPal account. Payout expired on {dateLastUpdated}.                              |
             | Reversed PayPal payout reward          | Payout reversed on {dateLastUpdated from the customMeta}                                                                                                             |
             | Blocked PayPal payout reward           | Payout blocked on {dateLastUpdated from the customMeta}                                                                                                              |
 
