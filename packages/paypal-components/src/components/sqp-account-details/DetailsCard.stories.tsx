@@ -22,6 +22,7 @@ const defaultProps: DetailsCardViewProps = {
   nextPayoutDetailedStatusText: "November 1, 2022",
   otherCurrenciesText: "other currencies",
   w9PendingText: "Awaiting W-9 tax form",
+  w9Pending: undefined,
 };
 
 const currencyList = [
@@ -99,6 +100,7 @@ export const DateOnlyPending = () => {
         hasDatePending: true,
         hasW9Pending: false,
         otherCurrencies: currencyList,
+        w9Pending: undefined,
       }}
     />
   );

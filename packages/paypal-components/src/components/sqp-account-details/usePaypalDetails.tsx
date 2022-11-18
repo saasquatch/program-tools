@@ -1,7 +1,6 @@
 import { useQuery } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
-import accounting from "accounting";
 import { gql } from "graphql-request";
 import { DateTime } from "luxon";
 import { intl } from "../../global/global";
@@ -19,12 +18,14 @@ const NEXT_PAYOUT_QUERY = gql`
         totals {
           currencyCode
           value
+          prettyValue
         }
         baseUnitBalances {
           baseUnit
           balances {
             currencyCode
             value
+            prettyValue
           }
         }
       }
@@ -32,12 +33,14 @@ const NEXT_PAYOUT_QUERY = gql`
         totals {
           currencyCode
           value
+          prettyValue
         }
         baseUnitBalances {
           baseUnit
           balances {
             currencyCode
             value
+            prettyValue
           }
         }
       }
@@ -47,12 +50,14 @@ const NEXT_PAYOUT_QUERY = gql`
           totals {
             currencyCode
             value
+            prettyValue
           }
           baseUnitBalances {
             baseUnit
             balances {
               currencyCode
               value
+              prettyValue
             }
           }
         }
@@ -66,7 +71,7 @@ function getW9Data(w9Totals) {
   return {
     w9Pending: w9Totals?.map((total) => ({
       currencyText: total?.currencyCode,
-      amountText: accounting.formatMoney(total?.value),
+      amountText: total.prettyValue,
     })),
   };
 }
@@ -77,14 +82,14 @@ function getPendingData(pendingTotals) {
   );
   const mainPendingCurrency = {
     currencyText: mainPendingCurrencyTotal?.currencyCode,
-    amountText: accounting.formatMoney(mainPendingCurrencyTotal?.value),
+    amountText: mainPendingCurrencyTotal?.prettyValue,
   };
 
   const pendingOtherCurrencies = pendingTotals
     ?.filter((total) => total.currencyCode !== "USD")
     .map((total) => ({
       currencyText: total?.currencyCode,
-      amountText: accounting.formatMoney(total?.value),
+      amountText: total?.prettyValue,
     }));
 
   return {
@@ -100,20 +105,9 @@ function getDetailsCardData(nextPayout) {
   );
 
   const otherCurrencies = otherCurrencyTotals?.map((total) => {
-    const symbol = (0)
-      .toLocaleString("en", {
-        style: "currency",
-        currency: total?.currencyCode,
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-      })
-      .replace(/\d/g, "")
-      .trim();
     return {
       currencyText: total?.currencyCode,
-      amountText: accounting.formatMoney(total?.value, {
-        symbol,
-      }),
+      amountText: total.prettyValue,
     };
   });
 
@@ -123,7 +117,7 @@ function getDetailsCardData(nextPayout) {
 
   const mainCurrency = {
     currencyText: mainCurrencyBucket?.currencyCode,
-    amountText: accounting.formatMoney(mainCurrencyBucket?.value),
+    amountText: mainCurrencyBucket?.prettyValue,
   };
 
   return {
@@ -137,6 +131,7 @@ function getDetailsCardData(nextPayout) {
 type Total = {
   currencyCode: string;
   value: number;
+  prettyValue: string;
 };
 
 type Bucket = {
@@ -263,7 +258,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
 
       const mainCurrency = {
         currencyText: mainCurrencyTotal?.currencyCode,
-        amountText: accounting.formatMoney(mainCurrencyTotal?.value),
+        amountText: mainCurrencyTotal?.prettyValue,
       };
 
       const otherCurrenciesTotals = bucket?.details?.totals?.filter(
@@ -272,7 +267,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
 
       const otherCurrencies = otherCurrenciesTotals.map((total) => ({
         currencyText: total?.currencyCode,
-        amountText: accounting.formatMoney(total?.value),
+        amountText: total.prettyValue,
       }));
 
       const hasOtherCurrencies = otherCurrencies.length > 0;
