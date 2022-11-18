@@ -128,6 +128,8 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
   const styleString = sheet.toString();
   const { classes } = sheet;
 
+  console.log("sam props", props);
+
   return (
     <div>
       <PortalSectionView

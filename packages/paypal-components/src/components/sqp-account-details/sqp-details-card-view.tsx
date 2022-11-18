@@ -110,7 +110,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
           return (
             <div class={classes.CurrencyContainer}>
               <p class={classes.SubduedRegularText}>
-                {currency.amountText} {currency.currencyText}
+                {currency?.amountText} {currency?.currencyText}
               </p>
             </div>
           );
