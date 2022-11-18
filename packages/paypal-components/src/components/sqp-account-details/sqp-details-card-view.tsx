@@ -188,7 +188,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
               class={classes.SubduedRegularText}
               style={{ fontSize: "var(--sl-font-size-x-small)" }}
             >
-              + {otherCurrencies.length} {otherCurrenciesText}
+              + {otherCurrenciesText}
             </p>
             {currencyList(otherCurrencies)}
           </div>
