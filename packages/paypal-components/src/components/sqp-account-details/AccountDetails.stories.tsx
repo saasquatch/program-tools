@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
 import {
-  W9AndOtherCurrencies,
+  CombinedPending,
   Empty as EmptyDetailsCard,
 } from "./DetailsCard.stories";
 import {
@@ -29,7 +29,7 @@ const defaultAccountDetailsProps: AccountDetailsViewProps = {
   hasAccount: true,
   detailsHeaderText: "Payout details",
   scheduleHeaderText: "Schedule",
-  detailsSlot: <W9AndOtherCurrencies />,
+  detailsSlot: <CombinedPending />,
   scheduleSlot: [<Active />, <Pending />, <WithOtherCurrencies />],
   editText: "Edit account",
   integrationDisabledHeader: "PayPal payouts are currently disabled",

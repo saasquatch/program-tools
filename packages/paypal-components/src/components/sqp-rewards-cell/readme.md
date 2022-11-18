@@ -14,6 +14,7 @@
 | `hideDetails`                | `hide-details`                   |             | `boolean`  | `undefined` |
 | `locale`                     | `locale`                         |             | `string`   | `"en"`      |
 | `pendingForText`             | `pending-for-text`               |             | `string`   | `undefined` |
+| `rewardDeniedText`           | `reward-denied-text`             |             | `string`   | `undefined` |
 | `rewardPaidOutText`          | `reward-paid-out-text`           |             | `string`   | `undefined` |
 | `rewardPayoutFailedText`     | `reward-payout-failed-text`      |             | `string`   | `undefined` |
 | `rewardPayoutInProgressText` | `reward-payout-in-progress-text` |             | `string`   | `undefined` |

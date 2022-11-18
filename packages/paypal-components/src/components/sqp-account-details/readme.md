@@ -22,6 +22,8 @@
 | `nextPayoutLabel`                | `next-payout-label`                   |             | `string`                  | `undefined` |
 | `otherCurrenciesLabel`           | `other-currencies-label`              |             | `string`                  | `undefined` |
 | `payPalAccountHeaderText`        | `pay-pal-account-header-text`         |             | `string`                  | `undefined` |
+| `pendingDetailedStatusText`      | `pending-detailed-status-text`        |             | `string`                  | `undefined` |
+| `pendingLabel`                   | `pending-label`                       |             | `string`                  | `undefined` |
 | `scheduleHeaderText`             | `schedule-header-text`                |             | `string`                  | `undefined` |
 | `setOpen`                        | --                                    |             | `(open: boolean) => void` | `undefined` |
 | `upcomingPaymentLabel`           | `upcoming-payment-label`              |             | `string`                  | `undefined` |

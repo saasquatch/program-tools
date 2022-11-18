@@ -1,4 +1,5 @@
 import { DateTime } from "luxon";
+import { getPaypalMeta } from "../sqp-status-column/mockRewardData";
 
 export default (count = 4) => {
   const data = [...Array(count)].map(() => getMockData());
@@ -50,27 +51,6 @@ const lastNames = [
   "Pym",
   "Rogers",
 ];
-
-const getPaypalMeta = () => {
-  const datePaidOut = Math.floor(Math.random() * 10) >= 5 ? 123456789 : null;
-  const dateLastAttempted =
-    Math.floor(Math.random() * 10) >= 5 ? 123456789 : null;
-
-  const status = !!datePaidOut
-    ? "SUCCESS"
-    : Math.floor(Math.random() * 10) >= 8
-    ? "ERROR"
-    : "SUCCESS";
-
-  return {
-    status,
-    customMeta: {
-      datePaidOut,
-      dateLastAttempted,
-      dateFirstAttempted: dateLastAttempted,
-    },
-  };
-};
 
 const getMockData = () => {
   return {
@@ -124,9 +104,6 @@ const getMockData = () => {
               globalRewardKey: null,
               programRewardKey: "partnerReward",
               meta: {
-                integration: {
-                  name: "PayPal",
-                },
                 ...getPaypalMeta(),
               },
               rewardRedemptionTransactions: {

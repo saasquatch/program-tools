@@ -8,6 +8,7 @@ import { PaypalBadge } from "../../Icons/PaypalBadge";
 
 const paypalStatuses = [
   "PAYPAL_PENDING",
+  "SUCCESS",
   "FAILED",
   "INPROGRESS",
   "UNCLAIMED",
@@ -16,6 +17,7 @@ const paypalStatuses = [
   "RETURNED",
   "REVERSED",
   "BLOCKED",
+  "DENIED",
 ];
 
 @Component({
@@ -34,11 +36,17 @@ export class ReferralTableRewardsCell {
   @Prop() rewardPaidOutText: string;
   @Prop() rewardPayoutInProgressText: string;
   @Prop() rewardPayoutFailedText: string;
+  @Prop() rewardDeniedText: string;
   @Prop() locale: string = "en";
 
   rewardStatus(reward: Reward) {
     const paypalStatus =
       reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"];
+
+    const metaStatus = reward?.meta?.status;
+
+    if (metaStatus === "ERROR" && !paypalStatus) return "FAILED";
+    if (metaStatus === "IN_PROGRESS" && !paypalStatus) return "PAYPAL_PENDING";
     if (paypalStatus === "PENDING") return "PAYPAL_PENDING";
     if (paypalStatus) return paypalStatus;
     if (reward.dateCancelled) return "CANCELLED";
@@ -159,13 +167,17 @@ export class ReferralTableRewardsCell {
           ? "primary"
           : state === "FAILED"
           ? "danger"
-          : state === "PENDING" || state === "UNCLAIMED" || state === "ONHOLD"
+          : state === "PENDING" ||
+            state === "PAYPAL_PENDING" ||
+            state === "UNCLAIMED" ||
+            state === "ONHOLD"
           ? "warning"
           : state === "REFUNDED" ||
             state === "RETURNED" ||
             state === "REVERSED" ||
-            state === "BLOCKED"
-          ? "neutral"
+            state === "BLOCKED" ||
+            state === "DENIED"
+          ? "info"
           : "danger"
         : state === "AVAILABLE"
         ? "success"
@@ -179,7 +191,7 @@ export class ReferralTableRewardsCell {
 
     const getTimeDiff = (endTime: number): string => {
       // Current implementation only calculates the difference from current time
-      return DateTime.fromMillis(endTime)
+      return DateTime.fromMillis(endTime || 0)
         .setLocale(luxonLocale(this.locale))
         .toRelative()
         .replace("in", "")
@@ -214,10 +226,14 @@ export class ReferralTableRewardsCell {
           state === "FAILED"
             ? reward.meta?.customMeta?.dateLastAttempted
             : state === "UNCLAIMED"
-            ? DateTime.fromMillis(reward.meta?.customMeta?.dateLastUpdated)
+            ? DateTime.fromMillis(reward.meta?.customMeta?.dateLastUpdated || 0)
                 .plus({ days: 30 })
                 .toMillis()
-            : reward.meta?.customMeta?.dateLastUpdated;
+            : state === "DENIED"
+            ? DateTime.fromMillis(
+                reward.meta?.customMeta?.dateLastAttempted || 0
+              ).toMillis()
+            : reward.meta?.customMeta?.dateLastUpdated || 0;
 
         return paypalStatuses.includes(state) ? (
           <div>
@@ -245,7 +261,8 @@ export class ReferralTableRewardsCell {
               <span class={sheet.classes.BoldText}>
                 {DateTime.fromMillis(
                   reward.meta?.customMeta?.dateLastAttempted ||
-                    reward.meta?.customMeta?.dateFirstAttempted
+                    reward.meta?.customMeta?.dateFirstAttempted ||
+                    0
                 )
                   .setLocale(luxonLocale(this.locale))
                   .toLocaleString(DateTime.DATE_MED)}
@@ -257,7 +274,7 @@ export class ReferralTableRewardsCell {
             <TextSpanView type="p">
               {this.rewardReceivedText}{" "}
               <span class={sheet.classes.BoldText}>
-                {DateTime.fromMillis(reward.dateGiven)
+                {DateTime.fromMillis(reward.dateGiven || 0)
                   .setLocale(luxonLocale(this.locale))
                   .toLocaleString(DateTime.DATE_MED)}
               </span>
@@ -371,7 +388,7 @@ export class ReferralTableRewardsCell {
                 <TextSpanView type="p">
                   {statusText}{" "}
                   <span class={sheet.classes.BoldText}>
-                    {DateTime.fromMillis(reward.dateExpires)
+                    {DateTime.fromMillis(reward.dateExpires || 0)
                       .setLocale(luxonLocale(this.locale))
                       .toLocaleString(DateTime.DATE_MED)}
                   </span>

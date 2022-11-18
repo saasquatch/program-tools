@@ -11,13 +11,19 @@ export interface DetailsCardViewProps {
   loading?: boolean;
   mainCurrency: currencyAmount;
   status: "pending" | "upcoming" | "next payout";
-  statusBadgeText: string;
+  pendingStatusBadgeText: string;
+  upcomingStatusBadgeText: string;
+  nextPayoutStatusBadgeText: string;
+  pendingDetailedStatusText: string;
+  upcomingDetailedStatusText: string;
+  nextPayoutDetailedStatusText: string;
   otherCurrencies?: currencyAmount[];
-  w9Pending?: currencyAmount[];
+  w9Pending?: currencyAmount;
   w9PendingText: string;
-  detailedStatusText: string;
   otherCurrenciesText: string;
   empty?: boolean;
+  hasW9Pending?: boolean;
+  hasDatePending?: boolean;
 }
 
 const statusMap = {
@@ -51,7 +57,7 @@ const style = {
     fontSize: "32px",
   },
   SubduedRegularText: {
-    fontSize: "var(--sl-font-size-regular)",
+    fontSize: "var(--sl-font-size-small)",
     color: "var(--sl-color-gray-500)",
     margin: 0,
     width: "max-content",
@@ -117,14 +123,32 @@ export function DetailsCardView(props: DetailsCardViewProps) {
     loading,
     mainCurrency,
     status,
-    statusBadgeText,
     otherCurrencies,
-    detailedStatusText,
     otherCurrenciesText,
+    pendingStatusBadgeText,
+    upcomingStatusBadgeText,
+    nextPayoutStatusBadgeText,
+    pendingDetailedStatusText,
+    upcomingDetailedStatusText,
+    nextPayoutDetailedStatusText,
     w9Pending,
     w9PendingText,
     empty,
+    hasDatePending,
+    hasW9Pending,
   } = props;
+
+  const badgeText = {
+    pending: pendingStatusBadgeText,
+    upcoming: upcomingStatusBadgeText,
+    "next payout": nextPayoutStatusBadgeText,
+  };
+
+  const statusText = {
+    pending: pendingDetailedStatusText,
+    upcoming: upcomingDetailedStatusText,
+    "next payout": nextPayoutDetailedStatusText,
+  };
 
   return (
     <div>
@@ -137,9 +161,17 @@ export function DetailsCardView(props: DetailsCardViewProps) {
           </div>
         ) : (
           <div class={classes.StatusContainer}>
-            <p class={classes.SubduedRegularText}>{detailedStatusText}</p>
+            <p class={classes.SubduedRegularText}>
+              {empty
+                ? ""
+                : status !== "pending"
+                ? statusText[status]
+                : hasDatePending
+                ? statusText["pending"]
+                : w9PendingText}
+            </p>
             <sl-badge pill type={statusMap[status]}>
-              {statusBadgeText}
+              {badgeText[status]}
             </sl-badge>
           </div>
         )}
@@ -149,26 +181,26 @@ export function DetailsCardView(props: DetailsCardViewProps) {
           <h1 class={classes.MainCurrency}>No rewards</h1>
         ) : (
           <h1 class={classes.MainCurrency}>
-            {mainCurrency.amountText}{" "}
-            <span class={classes.MainCurrencyLabel}>
-              {mainCurrency.currencyText}
-            </span>
+            {hasDatePending || status !== "pending"
+              ? mainCurrency?.amountText
+              : w9Pending?.amountText}
           </h1>
         )}
         {otherCurrencies !== undefined && !loading && (
           <div>
-            <p class={classes.SubduedRegularText}>
-              + {otherCurrencies.length} {otherCurrenciesText}
+            <p
+              class={classes.SubduedRegularText}
+              style={{ fontSize: "var(--sl-font-size-x-small)" }}
+            >
+              + {otherCurrenciesText}
             </p>
             {currencyList(otherCurrencies)}
           </div>
         )}
-        {w9Pending !== undefined && !loading && (
+        {hasW9Pending && status === "pending" && hasDatePending && !loading && (
           <div class={classes.W9Container}>
-            <p class={classes.SubduedRegularText}>
-              + {w9Pending.length} {w9PendingText}
-            </p>
-            {currencyList(w9Pending)}
+            <p class={classes.SubduedRegularText}>{w9PendingText}</p>
+            {currencyList([w9Pending])}
           </div>
         )}
       </div>

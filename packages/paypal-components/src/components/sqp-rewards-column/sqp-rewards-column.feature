@@ -32,7 +32,7 @@ Feature: Referral Table Reward Column
         And they see the PayPal icon to the right of the pill
         Examples:
             | status    | text        | pillColour |
-            | SUCCESS   | Paid Out    | Blue       |
+            | SUCCESS   | Paid out    | Blue       |
             | FAILED    | Failed      | Red        |
             | PENDING   | In progress | Orange     |
             | UNCLAIMED | Unclaimed   | Orange     |
@@ -98,6 +98,6 @@ Feature: Referral Table Reward Column
             | Unclaimed PayPal payout reward         | The email you provided does not link to an existing PayPal account. Payout expires on {dateLastUpdated + 30 days from the customMeta}.                               |
             | On hold PayPal payout reward           | Payout on hold and in review since {dadateLastUpdated from the customMetateLastUpdated}.                                                                             |
             | Refunded PayPal payout reward          | Payout refunded on {dateLastUpdated from the customMeta}                                                                                                             |
-            | Returned PayPal payout reward          | The email you provided does not link to an existing PayPal account. Payout expired on {dateLastUpdated}.                                                             |
+            | Returned PayPal payout reward          | The email you provided does not link to an existing PayPal account. Payout expired on {dateLastUpdated + 30 days from the customMeta}.                               |
             | Reversed PayPal payout reward          | Payout reversed on {dateLastUpdated from the customMeta}                                                                                                             |
             | Blocked PayPal payout reward           | Payout blocked on {dateLastUpdated from the customMeta}                                                                                                              |

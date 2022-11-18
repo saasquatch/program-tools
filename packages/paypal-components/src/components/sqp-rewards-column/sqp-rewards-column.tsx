@@ -26,7 +26,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    * @uiWidget textArea
    */
   @Prop() statusText: string =
-    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} EXPIRED {Expired} REDEEMED {Redeemed} PENDING {Pending} SUCCESS {Paid Out} FAILED {Failed} PAYPAL_PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} other {Not available}  }";
+    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} EXPIRED {Expired} REDEEMED {Redeemed} PENDING {Pending} SUCCESS {Paid out} FAILED {Failed} PAYPAL_PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} DENIED {Denied} other {Not available}  }";
 
   /**
    * Additional status text shown in the details drop down.
@@ -36,7 +36,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    */
   @Prop()
   statusLongText: string =
-    "{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} REDEEMED {Redeemed on} PENDING {Available on} EXPIRED {Reward expired on} SUCCESS {Paid out on} FAILED {This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on} PAYPAL_PENDING {Payout process started on} UNCLAIMED {The email you provided does not link to an existing PayPal account. Payout expires on} ONHOLD {Payout on hold and in review since} REFUNDED {Payout refunded on} RETURNED {Payout returned on} REVERSED {Payout reversed on} BLOCKED {Payout blocked on} other {Not available} }";
+    "{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} REDEEMED {Redeemed on} PENDING {Available on} EXPIRED {Reward expired on} SUCCESS {Paid out on} FAILED {This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on} PAYPAL_PENDING {Payout process started on} UNCLAIMED {The email you provided does not link to an existing PayPal account. Payout expires on} ONHOLD {Payout on hold and in review since} REFUNDED {Payout refunded on} RETURNED {Payout returned on} REVERSED {Payout reversed on} BLOCKED {Payout blocked on} DENIED {Payout denied by PayPal on} other {Not available} }";
 
   /**
    * Shown in the dropdown details when a reward has an associated fuel tank code.
@@ -121,6 +121,13 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   @Prop() rewardBlockedText: string = "Payout blocked on {date}.";
 
   /**
+   * Shown in the dropdown details when a reward was denied during payout.
+   *
+   * @uiName Reward Denied Text
+   */
+  @Prop() rewardDeniedText: string = "Payout denied by PayPal on {date}.";
+
+  /**
    * Shown in the dropdown details when a reward has an expiry date.
    *
    * @uiName Reward Expiring Text
@@ -149,38 +156,40 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   async renderCell(data: Referral, locale: string, mintRenderer) {
     // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
     console.log(data.rewards);
-
-    return mintRenderer("sqp-rewards-cell", {
-      rewards: data.rewards,
-      statusText: this.statusText,
-      statusLongText: this.statusLongText,
-      fuelTankText: this.fuelTankText,
-      rewardReceivedText: this.rewardReceivedText,
-      expiringText: this.expiringText,
-      pendingForText: this.pendingForText,
-      hideDetails: this.hideDetails,
-      locale: locale,
-      rewardPaidOutText: this.rewardPaidOutText,
-      rewardPayoutInProgressText: this.rewardPayoutInProgressText,
-      rewardPayoutFailedText: this.rewardPayoutFailedText,
-    });
-
-    // return (
-    //   <sqp-rewards-cell
-    //     rewards={data.rewards}
-    //     statusText={this.statusText}
-    //     statusLongText={this.statusLongText}
-    //     fuelTankText={this.fuelTankText}
-    //     rewardReceivedText={this.rewardReceivedText}
-    //     expiringText={this.expiringText}
-    //     pendingForText={this.pendingForText}
-    //     hideDetails={this.hideDetails}
-    //     locale={locale}
-    //     rewardPaidOutText={this.rewardPaidOutText}
-    //     rewardPayoutInProgressText={this.rewardPayoutInProgressText}
-    //     rewardPayoutFailedText={this.rewardPayoutFailedText}
-    //   ></sqp-rewards-cell>
-    // );
+    if (mintRenderer) {
+      return mintRenderer("sqp-rewards-cell", {
+        rewards: data.rewards,
+        statusText: this.statusText,
+        statusLongText: this.statusLongText,
+        fuelTankText: this.fuelTankText,
+        rewardReceivedText: this.rewardReceivedText,
+        expiringText: this.expiringText,
+        pendingForText: this.pendingForText,
+        hideDetails: this.hideDetails,
+        locale: locale,
+        rewardPaidOutText: this.rewardPaidOutText,
+        rewardPayoutInProgressText: this.rewardPayoutInProgressText,
+        rewardPayoutFailedText: this.rewardPayoutFailedText,
+        rewardDeniedText: this.rewardDeniedText,
+      });
+    }
+    return (
+      <sqp-rewards-cell
+        rewards={data.rewards}
+        statusText={this.statusText}
+        statusLongText={this.statusLongText}
+        fuelTankText={this.fuelTankText}
+        rewardReceivedText={this.rewardReceivedText}
+        expiringText={this.expiringText}
+        pendingForText={this.pendingForText}
+        hideDetails={this.hideDetails}
+        locale={locale}
+        rewardPaidOutText={this.rewardPaidOutText}
+        rewardPayoutInProgressText={this.rewardPayoutInProgressText}
+        rewardPayoutFailedText={this.rewardPayoutFailedText}
+        rewardDeniedText={this.rewardDeniedText}
+      ></sqp-rewards-cell>
+    );
   }
 
   @Method()
@@ -189,8 +198,24 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   }
 
   @Method()
-  async renderReferrerCell(data: Referrer) {
-    // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
+  async renderReferrerCell(data: Referrer, mintRenderer) {
+    if (mintRenderer) {
+      return mintRenderer("sqp-rewards-cell", {
+        rewards: data.rewards,
+        statusText: this.statusText,
+        statusLongText: this.statusLongText,
+        fuelTankText: this.fuelTankText,
+        rewardReceivedText: this.rewardReceivedText,
+        expiringText: this.expiringText,
+        pendingForText: this.pendingForText,
+        hideDetails: this.hideDetails,
+        rewardPaidOutText: this.rewardPaidOutText,
+        rewardPayoutInProgressText: this.rewardPayoutInProgressText,
+        rewardPayoutFailedText: this.rewardPayoutFailedText,
+        rewardDeniedText: this.rewardDeniedText,
+      });
+    }
+
     return (
       <sqp-rewards-cell
         rewards={data.rewards}
@@ -204,6 +229,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
         rewardPaidOutText={this.rewardPaidOutText}
         rewardPayoutInProgressText={this.rewardPayoutInProgressText}
         rewardPayoutFailedText={this.rewardPayoutFailedText}
+        rewardDeniedText={this.rewardDeniedText}
       ></sqp-rewards-cell>
     );
   }
@@ -221,6 +247,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
       this.rewardPaidOutText,
       this.rewardPayoutInProgressText,
       this.rewardPayoutFailedText,
+      this.rewardDeniedText,
     ]);
     return <Host style={{ display: "none" }} />;
   }

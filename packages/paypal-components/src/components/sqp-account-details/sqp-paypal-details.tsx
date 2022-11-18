@@ -88,6 +88,14 @@ export class PaypalAccountDetails {
   /**
    * @undocumented
    */
+  @Prop() pendingLabel: string;
+  /**
+   * @undocumented
+   */
+  @Prop() pendingDetailedStatusText: string;
+  /**
+   * @undocumented
+   */
   @Prop() otherCurrenciesLabel: string;
   /**
    * @undocumented

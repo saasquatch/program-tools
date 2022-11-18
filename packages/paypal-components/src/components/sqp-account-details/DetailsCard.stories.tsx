@@ -14,10 +14,15 @@ const defaultProps: DetailsCardViewProps = {
   empty: false,
   mainCurrency: { currencyText: "USD", amountText: "100.00" },
   status: "upcoming",
-  statusBadgeText: "Upcoming",
-  detailedStatusText: "November 1, 2022",
+  pendingStatusBadgeText: "Pending",
+  upcomingStatusBadgeText: "Upcoming",
+  nextPayoutStatusBadgeText: "Next payout",
+  pendingDetailedStatusText: "Check rewards table for available date",
+  upcomingDetailedStatusText: "November 1, 2022",
+  nextPayoutDetailedStatusText: "November 1, 2022",
   otherCurrenciesText: "other currencies",
   w9PendingText: "Awaiting W-9 tax form",
+  w9Pending: undefined,
 };
 
 const currencyList = [
@@ -45,7 +50,6 @@ export const NextPayout = () => {
       {...{
         ...defaultProps,
         status: "next payout",
-        statusBadgeText: "Next Payout",
       }}
     />
   );
@@ -57,8 +61,6 @@ export const Pending = () => {
       {...{
         ...defaultProps,
         status: "pending",
-        statusBadgeText: "Pending",
-        detailedStatusText: "Check rewards table for available date",
       }}
     />
   );
@@ -75,30 +77,44 @@ export const OtherCurrencies = () => {
   );
 };
 
-export const W9Pending = () => {
+export const W9OnlyPending = () => {
   return (
     <DetailsCardView
       {...{
         ...defaultProps,
         status: "pending",
-        statusBadgeText: "Pending",
-        detailedStatusText: "Check rewards table for available date",
-        w9Pending: currencyList,
+        hasDatePending: false,
+        hasW9Pending: true,
+        w9Pending: { amountText: "15.92", currencyText: "USD" },
       }}
     />
   );
 };
 
-export const W9AndOtherCurrencies = () => {
+export const DateOnlyPending = () => {
   return (
     <DetailsCardView
       {...{
         ...defaultProps,
         status: "pending",
-        statusBadgeText: "Pending",
-        detailedStatusText: "Check rewards table for available date",
-        w9Pending: currencyList,
+        hasDatePending: true,
+        hasW9Pending: false,
         otherCurrencies: currencyList,
+        w9Pending: undefined,
+      }}
+    />
+  );
+};
+
+export const CombinedPending = () => {
+  return (
+    <DetailsCardView
+      {...{
+        ...defaultProps,
+        status: "pending",
+        hasDatePending: true,
+        hasW9Pending: true,
+        w9Pending: { amountText: "15.92", currencyText: "USD" },
       }}
     />
   );

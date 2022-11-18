@@ -108,12 +108,7 @@ export function ScheduleCardView(props: ScheduleCardViewProps) {
         ) : empty ? (
           <h2 class={classes.MainCurrency}>No rewards</h2>
         ) : (
-          <h2 class={classes.MainCurrency}>
-            {mainCurrency.amountText}{" "}
-            <span class={classes.MainCurrencyLabel}>
-              {mainCurrency.currencyText}
-            </span>
-          </h2>
+          <h2 class={classes.MainCurrency}>{mainCurrency.amountText}</h2>
         )}
         {otherCurrencies && !loading && (
           <p class={classes.SubduedSmallText}>+ {otherCurrenciesText}</p>

@@ -183,6 +183,16 @@ export namespace Components {
          */
         "payPalEmailLabelHelpText": string;
         /**
+          * @uiName W9 Tax Label
+          * @uiGroup Details
+         */
+        "pendingDetailedStatusText": string;
+        /**
+          * @uiName Pending Label
+          * @uiGroup Details
+         */
+        "pendingLabel": string;
+        /**
           * @uiName Recent Payment Label
           * @uiGroup Details
          */
@@ -286,6 +296,14 @@ export namespace Components {
         /**
           * @undocumented
          */
+        "pendingDetailedStatusText": string;
+        /**
+          * @undocumented
+         */
+        "pendingLabel": string;
+        /**
+          * @undocumented
+         */
         "scheduleHeaderText": string;
         /**
           * @undocumented
@@ -306,6 +324,7 @@ export namespace Components {
         "hideDetails": boolean;
         "locale": string;
         "pendingForText": string;
+        "rewardDeniedText": string;
         "rewardPaidOutText": string;
         "rewardPayoutFailedText": string;
         "rewardPayoutInProgressText": string;
@@ -341,12 +360,17 @@ export namespace Components {
         "pendingForText": string;
         "renderCell": (data: Referral, locale: string, mintRenderer: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer) => Promise<any>;
+        "renderReferrerCell": (data: Referrer, mintRenderer: any) => Promise<any>;
         /**
           * Shown in the dropdown details when a reward was blocked during payout.
           * @uiName Reward Blocked Text
          */
         "rewardBlockedText": string;
+        /**
+          * Shown in the dropdown details when a reward was denied during payout.
+          * @uiName Reward Denied Text
+         */
+        "rewardDeniedText": string;
         /**
           * Shown in the dropdown details when a reward was placed on hold during payout.
           * @uiName Reward On Hold Text
@@ -412,9 +436,15 @@ export namespace Components {
         "pendingUnhandled": string;
         "pendingUsTax": string;
         "reward": Reward;
+        "rewardBlockedText": string;
+        "rewardDeniedText": string;
+        "rewardOnHoldText": string;
         "rewardPaidOutText": string;
         "rewardPayoutFailedText": string;
         "rewardPayoutInProgressText": string;
+        "rewardRefundedText": string;
+        "rewardReturnedText": string;
+        "rewardReversedText": string;
         "rewardUnclaimedText": string;
         "statusText": string;
     }
@@ -450,6 +480,11 @@ export namespace Components {
           * @uiName Reward Blocked Text
          */
         "rewardBlockedText": string;
+        /**
+          * Displayed below the status pill when a reward was denied during payout.
+          * @uiName Reward Denied Text
+         */
+        "rewardDeniedText": string;
         /**
           * Displayed below the status pill when a reward was placed on hold during payout.
           * @uiName Reward On Hold Text
@@ -746,6 +781,16 @@ declare namespace LocalJSX {
          */
         "payPalEmailLabelHelpText"?: string;
         /**
+          * @uiName W9 Tax Label
+          * @uiGroup Details
+         */
+        "pendingDetailedStatusText"?: string;
+        /**
+          * @uiName Pending Label
+          * @uiGroup Details
+         */
+        "pendingLabel"?: string;
+        /**
           * @uiName Recent Payment Label
           * @uiGroup Details
          */
@@ -849,6 +894,14 @@ declare namespace LocalJSX {
         /**
           * @undocumented
          */
+        "pendingDetailedStatusText"?: string;
+        /**
+          * @undocumented
+         */
+        "pendingLabel"?: string;
+        /**
+          * @undocumented
+         */
         "scheduleHeaderText"?: string;
         /**
           * @undocumented
@@ -869,6 +922,7 @@ declare namespace LocalJSX {
         "hideDetails"?: boolean;
         "locale"?: string;
         "pendingForText"?: string;
+        "rewardDeniedText"?: string;
         "rewardPaidOutText"?: string;
         "rewardPayoutFailedText"?: string;
         "rewardPayoutInProgressText"?: string;
@@ -907,6 +961,11 @@ declare namespace LocalJSX {
           * @uiName Reward Blocked Text
          */
         "rewardBlockedText"?: string;
+        /**
+          * Shown in the dropdown details when a reward was denied during payout.
+          * @uiName Reward Denied Text
+         */
+        "rewardDeniedText"?: string;
         /**
           * Shown in the dropdown details when a reward was placed on hold during payout.
           * @uiName Reward On Hold Text
@@ -972,9 +1031,15 @@ declare namespace LocalJSX {
         "pendingUnhandled"?: string;
         "pendingUsTax"?: string;
         "reward"?: Reward;
+        "rewardBlockedText"?: string;
+        "rewardDeniedText"?: string;
+        "rewardOnHoldText"?: string;
         "rewardPaidOutText"?: string;
         "rewardPayoutFailedText"?: string;
         "rewardPayoutInProgressText"?: string;
+        "rewardRefundedText"?: string;
+        "rewardReturnedText"?: string;
+        "rewardReversedText"?: string;
         "rewardUnclaimedText"?: string;
         "statusText"?: string;
     }
@@ -1008,6 +1073,11 @@ declare namespace LocalJSX {
           * @uiName Reward Blocked Text
          */
         "rewardBlockedText"?: string;
+        /**
+          * Displayed below the status pill when a reward was denied during payout.
+          * @uiName Reward Denied Text
+         */
+        "rewardDeniedText"?: string;
         /**
           * Displayed below the status pill when a reward was placed on hold during payout.
           * @uiName Reward On Hold Text

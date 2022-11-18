@@ -50,12 +50,19 @@ export class PaypalAccountDetails {
    * @uiName Other Currencies Label
    * @uiGroup Details
    */
-  @Prop() otherCurrenciesLabel: string = "other currencies";
+  @Prop() otherCurrenciesLabel: string =
+    "{amount} {amount, plural, =0 {other currencies} =1 {other currency} other {other currencies}}";
   /**
    * @uiName W9 Tax Label
    * @uiGroup Details
    */
   @Prop() w9TaxLabel: string = "Awaiting W-9 tax form";
+  /**
+   * @uiName W9 Tax Label
+   * @uiGroup Details
+   */
+  @Prop() pendingDetailedStatusText: string =
+    "Check rewards table for available date";
   /**
    * @uiName  Upcoming Payout Label
    * @uiGroup Details
@@ -66,6 +73,11 @@ export class PaypalAccountDetails {
    * @uiGroup Details
    */
   @Prop() nextPayoutLabel: string = "Next payout";
+  /**
+   * @uiName  Pending Label
+   * @uiGroup Details
+   */
+  @Prop() pendingLabel: string = "Pending";
   /**
    * @uiName Edit Text
    * @uiGroup Details
