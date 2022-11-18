@@ -162,7 +162,9 @@ export function DetailsCardView(props: DetailsCardViewProps) {
         ) : (
           <div class={classes.StatusContainer}>
             <p class={classes.SubduedRegularText}>
-              {status !== "pending"
+              {empty
+                ? ""
+                : status !== "pending"
                 ? statusText[status]
                 : hasDatePending
                 ? statusText["pending"]
