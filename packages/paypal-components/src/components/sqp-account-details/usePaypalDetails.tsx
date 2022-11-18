@@ -290,6 +290,9 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
           : "",
         mainCurrency,
         setActivePayout: () => setSelectedPayout(i),
+        w9Pending,
+        hasDatePending: !emptyPending,
+        hasW9Pending: !!w9Pending,
         empty:
           !mainCurrencyTotal?.value &&
           !otherCurrenciesTotals?.reduce((agg, total) => agg + total.value, 0),
