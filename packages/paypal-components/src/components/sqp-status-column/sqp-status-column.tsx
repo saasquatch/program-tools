@@ -1,7 +1,22 @@
+import {
+  useQuery,
+  useTenantAlias,
+  useToken,
+} from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Host, Method, Prop } from "@stencil/core";
+import { Component, h, Host, Method, Prop, State } from "@stencil/core";
+import { gql, GraphQLClient } from "graphql-request";
 import { useRequestRerender } from "../../tables/re-render";
+import { memoizedGraphQLClient } from "../sqp-graphql-client-provider/useGraphQLClient";
 import { RewardTableColumn } from "./RewardTableColumn";
+
+const GET_INTEGRATION_STATUS = gql`
+  query userPaymentPreview {
+    tenantConfig {
+      baseUnits
+    }
+  }
+`;
 
 /**
  * @uiName PayPal Reward Table Status Column
@@ -125,6 +140,14 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
    */
   @Prop() pendingUnhandled: string = "Fulfillment error";
 
+  /**
+   * @uiName Integration Domain
+   */
+  @Prop() integrationDomain: string =
+    "https://paypal-payouts-staging.herokuapp.com/graphql";
+
+  @State() integrationBaseUnits: string[] | undefined = undefined;
+
   constructor() {
     withHooks(this);
   }
@@ -146,6 +169,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
         rewardPayoutFailedText: this.rewardPayoutFailedText,
         rewardUnclaimedText: this.rewardUnclaimedText,
         rewardDeniedText: this.rewardDeniedText,
+        baseUnits: this.integrationBaseUnits,
       });
     } else {
       return (
@@ -162,6 +186,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
           rewardPayoutFailedText={this.rewardPayoutFailedText}
           rewardUnclaimedText={this.rewardUnclaimedText}
           rewardDeniedText={this.rewardDeniedText}
+          baseUnits={this.integrationBaseUnits}
         ></sqp-status-cell>
       );
     }
@@ -172,7 +197,21 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
     return this.columnTitle;
   }
 
+  async setIntegrationBaseUnits() {
+    const tenantAlias = useTenantAlias();
+    const token = useToken();
+    const managedIdentityClient: GraphQLClient = memoizedGraphQLClient(
+      this.integrationDomain,
+      tenantAlias,
+      token
+    );
+    const res = await managedIdentityClient.request(GET_INTEGRATION_STATUS);
+
+    this.integrationBaseUnits = res?.tenantConfig?.baseUnits || [];
+  }
+
   render() {
+    if (!this.integrationBaseUnits) this.setIntegrationBaseUnits();
     useRequestRerender([
       this.columnTitle,
       this.statusText,
@@ -184,6 +223,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
       this.rewardPayoutInProgressText,
       this.rewardPayoutFailedText,
       this.rewardDeniedText,
+      this.integrationBaseUnits,
     ]);
     return <Host style={{ display: "none" }} />;
   }

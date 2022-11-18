@@ -5,6 +5,7 @@ import { luxonLocale } from "../../utils/utils";
 import { createStyleSheet } from "../../styling/JSS";
 import { TextSpanView } from "./text-span-view";
 import { PaypalBadge } from "../../Icons/PaypalBadge";
+import { supportedCurrencies } from "../sqp-status-column/mockRewardData";
 
 const paypalStatuses = [
   "PAYPAL_PENDING",
@@ -38,6 +39,7 @@ export class ReferralTableRewardsCell {
   @Prop() rewardPayoutFailedText: string;
   @Prop() rewardDeniedText: string;
   @Prop() locale: string = "en";
+  @Prop() baseUnits: string[];
 
   rewardStatus(reward: Reward) {
     const paypalStatus =
@@ -74,6 +76,7 @@ export class ReferralTableRewardsCell {
   }
 
   render() {
+    const baseUnits = this.baseUnits;
     intl.locale = this.locale;
     const style = {
       "@keyframes slideRight": {
@@ -202,7 +205,14 @@ export class ReferralTableRewardsCell {
       const hasMeta =
         !!reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"];
       const state = this.rewardStatus(reward);
-      const isPayPal = hasMeta;
+
+      const baseUnit = reward?.unit?.split("/")?.shift() as string;
+      const isPayPal =
+        hasMeta ||
+        (baseUnits?.includes(baseUnit) &&
+          supportedCurrencies.includes(reward.currency) &&
+          ["PENDING", "AVAILABLE"].includes(state));
+
       const slBadgeType = getSLBadgeType(state, hasMeta);
       const badgeText = intl.formatMessage(
         { id: "statusShortMessage", defaultMessage: this.statusText },

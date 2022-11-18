@@ -1,7 +1,18 @@
+import { useTenantAlias, useToken } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Host, Method, Prop } from "@stencil/core";
+import { Component, h, Host, Method, Prop, State } from "@stencil/core";
+import { gql, GraphQLClient } from "graphql-request";
 import { useRequestRerender } from "../../tables/re-render";
+import { memoizedGraphQLClient } from "../sqp-graphql-client-provider/useGraphQLClient";
 import { ReferralTableColumn } from "./ReferralTableColumn";
+
+const GET_INTEGRATION_STATUS = gql`
+  query userPaymentPreview {
+    tenantConfig {
+      baseUnits
+    }
+  }
+`;
 
 /**
  * @uiName PayPal Referral Table Rewards Column
@@ -147,6 +158,14 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    */
   @Prop() hideDetails: boolean = false;
 
+  /**
+   * @uiName Integration Domain
+   */
+  @Prop() integrationDomain: string =
+    "https://paypal-payouts-staging.herokuapp.com/graphql";
+
+  @State() integrationBaseUnits: string[] | undefined = undefined;
+
   constructor() {
     withHooks(this);
   }
@@ -234,7 +253,20 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
     );
   }
 
+  async setIntegrationBaseUnits() {
+    const tenantAlias = useTenantAlias();
+    const token = useToken();
+    const managedIdentityClient: GraphQLClient = memoizedGraphQLClient(
+      this.integrationDomain,
+      tenantAlias,
+      token
+    );
+    const res = await managedIdentityClient.request(GET_INTEGRATION_STATUS);
+    this.integrationBaseUnits = res?.tenantConfig?.baseUnits || [];
+  }
+
   render() {
+    if (!this.integrationBaseUnits) this.setIntegrationBaseUnits();
     useRequestRerender([
       this.columnTitle,
       this.statusText,

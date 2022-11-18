@@ -21,6 +21,35 @@ const paypalStatuses = [
   "DENIED",
 ];
 
+// Currencies supported by PayPal - https://developer.paypal.com/docs/reports/reference/paypal-supported-currencies/
+export const supportedCurrencies = [
+  "AUD",
+  "BRL",
+  "CAD",
+  "CNY",
+  "CZK",
+  "DKK",
+  "EUR",
+  "HKD",
+  "HUF",
+  "ILS",
+  "JPY",
+  "MYR",
+  "MXN",
+  "TWD",
+  "NZD",
+  "NOK",
+  "PHP",
+  "PLN",
+  "GBP",
+  "RUB",
+  "SGB",
+  "SEK",
+  "CHF",
+  "THB",
+  "USD",
+];
+
 function getPaypalStatus(datePaidOut) {
   if (datePaidOut) return "SUCCESS";
 
