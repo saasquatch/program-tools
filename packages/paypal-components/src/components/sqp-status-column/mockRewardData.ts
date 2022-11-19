@@ -11,6 +11,7 @@ const statuses = ["AVAILABLE", "PENDING", "CANCELLED", "EXPIRED", "REDEEMED"];
 const pendingReasons = ["US_TAX", "SCHEDULED", "UNHANDLED_ERROR"];
 
 const paypalStatuses = [
+  "PENDING",
   "FAILED",
   "UNCLAIMED",
   "ONHOLD",
@@ -72,7 +73,7 @@ export const getPaypalMeta = () => {
       ? "WARN"
       : !!datePaidOut
       ? "SUCCESS"
-      : Math.floor(Math.random() * 10) >= 8
+      : Math.floor(Math.random() * 10) >= 9
       ? "ERROR"
       : "SUCCESS";
 
