@@ -151,6 +151,7 @@ const GET_REFERRAL_DATA = gql`
               fuelTankType
               currency
               prettyValue(locale: $locale)
+              pendingReasons
               statuses
               globalRewardKey
               programRewardKey
