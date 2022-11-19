@@ -54,6 +54,14 @@ export class ReferralTableRewardsCell {
     if (reward.dateCancelled) return "CANCELLED";
     if (reward.statuses && reward.statuses.includes("EXPIRED"))
       return "EXPIRED";
+
+    if (
+      reward.statuses?.includes("PENDING") &&
+      reward.pendingReasons?.includes("US_TAX")
+    ) {
+      return "W9_PENDING";
+    }
+
     if (reward.statuses && reward.statuses.includes("PENDING"))
       return "PENDING";
     if (reward.type === "CREDIT") {
@@ -171,6 +179,7 @@ export class ReferralTableRewardsCell {
           : state === "FAILED"
           ? "danger"
           : state === "PENDING" ||
+            state === "W9_PENDING" ||
             state === "PAYPAL_PENDING" ||
             state === "UNCLAIMED" ||
             state === "ONHOLD"
@@ -186,7 +195,9 @@ export class ReferralTableRewardsCell {
         ? "success"
         : state === "REDEEMED"
         ? "primary"
-        : state === "PENDING" || state === "PAYPAL_PENDING"
+        : state === "PENDING" ||
+          state === "PAYPAL_PENDING" ||
+          state === "W9_PENDING"
         ? "warning"
         : "danger";
       return badgeType;
@@ -293,6 +304,10 @@ export class ReferralTableRewardsCell {
         );
       };
 
+      console.log("STATE", state);
+
+      console.log("STATUS_TEXT", statusText);
+
       return (
         <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>
           <style type="text/css">{styleString}</style>
@@ -380,6 +395,11 @@ export class ReferralTableRewardsCell {
                 </TextSpanView>
               </div>
             )}
+            {state === "W9_PENDING" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
             {state === "PENDING" && reward.dateScheduledFor && (
               <div>
                 <TextSpanView type="p">
@@ -391,8 +411,7 @@ export class ReferralTableRewardsCell {
                   </span>
                 </TextSpanView>
               </div>
-            )}{" "}
-            {/* Pending for W9 Tax reasons cases here */}
+            )}
             {state === "AVAILABLE" && reward.dateExpires && (
               <div>
                 <TextSpanView type="p">
