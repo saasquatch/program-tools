@@ -85,7 +85,7 @@ export const W9OnlyPending = () => {
         status: "pending",
         hasDatePending: false,
         hasW9Pending: true,
-        w9Pending: { amountText: "15.92", currencyText: "USD" },
+        w9Pending: [{ amountText: "15.92", currencyText: "USD" }],
       }}
     />
   );
@@ -114,7 +114,7 @@ export const CombinedPending = () => {
         status: "pending",
         hasDatePending: true,
         hasW9Pending: true,
-        w9Pending: { amountText: "15.92", currencyText: "USD" },
+        w9Pending: [{ amountText: "15.92", currencyText: "USD" }],
       }}
     />
   );
