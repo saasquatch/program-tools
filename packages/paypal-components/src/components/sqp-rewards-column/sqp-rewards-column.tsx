@@ -1,7 +1,18 @@
+import { useTenantAlias, useToken } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Host, Method, Prop } from "@stencil/core";
+import { Component, h, Host, Method, Prop, State } from "@stencil/core";
+import { gql, GraphQLClient } from "graphql-request";
 import { useRequestRerender } from "../../tables/re-render";
+import { memoizedGraphQLClient } from "../sqp-graphql-client-provider/useGraphQLClient";
 import { ReferralTableColumn } from "./ReferralTableColumn";
+
+const GET_INTEGRATION_STATUS = gql`
+  query userPaymentPreview {
+    tenantConfig {
+      baseUnits
+    }
+  }
+`;
 
 /**
  * @uiName PayPal Referral Table Rewards Column
@@ -26,7 +37,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    * @uiWidget textArea
    */
   @Prop() statusText: string =
-    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} EXPIRED {Expired} REDEEMED {Redeemed} PENDING {Pending} SUCCESS {Paid out} FAILED {Failed} PAYPAL_PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} DENIED {Denied} other {Not available}  }";
+    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} EXPIRED {Expired} REDEEMED {Redeemed} PENDING {Pending} SUCCESS {Paid out} FAILED {Failed} PAYPAL_PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} W9_PENDING {Pending} DENIED {Denied} other {Not available}  }";
 
   /**
    * Additional status text shown in the details drop down.
@@ -36,7 +47,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    */
   @Prop()
   statusLongText: string =
-    "{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} REDEEMED {Redeemed on} PENDING {Available on} EXPIRED {Reward expired on} SUCCESS {Paid out on} FAILED {This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on} PAYPAL_PENDING {Payout process started on} UNCLAIMED {The email you provided does not link to an existing PayPal account. Payout expires on} ONHOLD {Payout on hold and in review since} REFUNDED {Payout refunded on} RETURNED {Payout returned on} REVERSED {Payout reversed on} BLOCKED {Payout blocked on} DENIED {Payout denied by PayPal on} other {Not available} }";
+    "{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} REDEEMED {Redeemed on} PENDING {Available on} EXPIRED {Reward expired on} SUCCESS {Paid out on} FAILED {This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on} PAYPAL_PENDING {Payout process started on} UNCLAIMED {The email you provided does not link to an existing PayPal account. Payout expires on} ONHOLD {Payout on hold and in review since} REFUNDED {Payout refunded on} RETURNED {Payout returned on} REVERSED {Payout reversed on} BLOCKED {Payout blocked on} W9_PENDING {W-9 required} DENIED {Payout denied by PayPal on} other {Not available} }";
 
   /**
    * Shown in the dropdown details when a reward has an associated fuel tank code.
@@ -147,6 +158,14 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    */
   @Prop() hideDetails: boolean = false;
 
+  /**
+   * @uiName Integration Domain
+   */
+  @Prop() integrationDomain: string =
+    "https://paypal-payouts-staging.herokuapp.com/graphql";
+
+  @State() integrationBaseUnits: string[] | undefined = undefined;
+
   constructor() {
     withHooks(this);
   }
@@ -234,7 +253,20 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
     );
   }
 
+  async setIntegrationBaseUnits() {
+    const tenantAlias = useTenantAlias();
+    const token = useToken();
+    const managedIdentityClient: GraphQLClient = memoizedGraphQLClient(
+      this.integrationDomain,
+      tenantAlias,
+      token
+    );
+    const res = await managedIdentityClient.request(GET_INTEGRATION_STATUS);
+    this.integrationBaseUnits = res?.tenantConfig?.baseUnits || [];
+  }
+
   render() {
+    if (!this.integrationBaseUnits) this.setIntegrationBaseUnits();
     useRequestRerender([
       this.columnTitle,
       this.statusText,

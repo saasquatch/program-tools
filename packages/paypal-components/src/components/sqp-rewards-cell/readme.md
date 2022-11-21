@@ -9,6 +9,7 @@
 
 | Property                     | Attribute                        | Description | Type       | Default     |
 | ---------------------------- | -------------------------------- | ----------- | ---------- | ----------- |
+| `baseUnits`                  | --                               |             | `string[]` | `undefined` |
 | `expiringText`               | `expiring-text`                  |             | `string`   | `undefined` |
 | `fuelTankText`               | `fuel-tank-text`                 |             | `string`   | `undefined` |
 | `hideDetails`                | `hide-details`                   |             | `boolean`  | `undefined` |

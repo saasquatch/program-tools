@@ -260,6 +260,7 @@ export class PaypalAccountDetails {
             connectPayPalAccountButtonText={
               props.formContent.connectPayPalAccountButtonText
             }
+            pendingLabel={props.overviewContent.pendingLabel}
             nextPayoutLabel={props.overviewContent.nextPayoutLabel}
             upcomingPaymentLabel={props.overviewContent.upcomingPaymentLabel}
             otherCurrenciesLabel={props.overviewContent.otherCurrenciesLabel}
@@ -335,6 +336,7 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
         w9TaxLabel: props.w9TaxLabel,
         upcomingPaymentLabel: props.upcomingPaymentLabel,
         nextPayoutLabel: props.nextPayoutLabel,
+        pendingLabel: props.pendingLabel,
         detailsContent: <Upcoming />,
         ScheduleContent: [<Default />],
       },

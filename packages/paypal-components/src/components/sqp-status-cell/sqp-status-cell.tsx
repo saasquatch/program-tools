@@ -4,6 +4,7 @@ import { intl } from "../../global/global";
 import { PaypalBadge } from "../../Icons/PaypalBadge";
 import { createStyleSheet } from "../../styling/JSS";
 import { luxonLocale } from "../../utils/utils";
+import { supportedCurrencies } from "../sqp-status-column/mockRewardData";
 
 const style = {
   BadgeContainer: {
@@ -75,6 +76,7 @@ export class RewardTableStatusCell {
   @Prop() rewardReversedText: string = "Payout reversed on";
   @Prop() rewardBlockedText: string = "Payout blocked on";
   @Prop() rewardDeniedText: string = "";
+  @Prop() baseUnits: string[];
 
   rewardStatus(reward: Reward) {
     const paypalStatus =
@@ -112,6 +114,8 @@ export class RewardTableStatusCell {
   }
 
   render() {
+    const baseUnits = this.baseUnits;
+
     intl.locale = this.locale;
 
     const hasMeta =
@@ -144,7 +148,8 @@ export class RewardTableStatusCell {
         ? "danger"
         : rewardStatus === "PAYPAL_PENDING" ||
           rewardStatus === "UNCLAIMED" ||
-          rewardStatus === "ONHOLD"
+          rewardStatus === "ONHOLD" ||
+          rewardStatus === "IN_PROGRESS"
         ? "warning"
         : rewardStatus === "REFUNDED" ||
           rewardStatus === "RETURNED" ||
@@ -157,7 +162,9 @@ export class RewardTableStatusCell {
       ? "success"
       : rewardStatus === "REDEEMED"
       ? "primary"
-      : rewardStatus === "PENDING"
+      : rewardStatus === "PENDING" ||
+        rewardStatus === "IN_PROGRESS" ||
+        rewardStatus === "PAYPAL_PENDING"
       ? "warning"
       : "danger";
 
@@ -271,7 +278,12 @@ export class RewardTableStatusCell {
         ?.setLocale(luxonLocale(this.locale))
         .toLocaleString(DateTime.DATE_MED)}.`;
 
-    const isPayPal = hasMeta;
+    const baseUnit = this.reward.unit?.split("/")?.shift() as string;
+    const isPayPal =
+      hasMeta ||
+      (baseUnits?.includes(baseUnit) &&
+        supportedCurrencies.includes(this.reward.currency) &&
+        ["PENDING", "AVAILABLE"].includes(rewardStatus));
 
     return (
       <div style={{ display: "contents" }}>

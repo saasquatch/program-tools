@@ -18,7 +18,7 @@ export interface DetailsCardViewProps {
   upcomingDetailedStatusText: string;
   nextPayoutDetailedStatusText: string;
   otherCurrencies?: currencyAmount[];
-  w9Pending?: currencyAmount;
+  w9Pending?: currencyAmount[];
   w9PendingText: string;
   otherCurrenciesText: string;
   empty?: boolean;
@@ -110,7 +110,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
           return (
             <div class={classes.CurrencyContainer}>
               <p class={classes.SubduedRegularText}>
-                {currency.amountText} {currency.currencyText}
+                {currency?.amountText} {currency?.currencyText}
               </p>
             </div>
           );
@@ -162,7 +162,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
         ) : (
           <div class={classes.StatusContainer}>
             <p class={classes.SubduedRegularText}>
-              {empty
+              {empty && status === "pending"
                 ? ""
                 : status !== "pending"
                 ? statusText[status]
@@ -183,7 +183,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
           <h1 class={classes.MainCurrency}>
             {hasDatePending || status !== "pending"
               ? mainCurrency?.amountText
-              : w9Pending?.amountText}
+              : w9Pending[0]?.amountText}
           </h1>
         )}
         {otherCurrencies !== undefined && !loading && (
@@ -200,7 +200,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
         {hasW9Pending && status === "pending" && hasDatePending && !loading && (
           <div class={classes.W9Container}>
             <p class={classes.SubduedRegularText}>{w9PendingText}</p>
-            {currencyList([w9Pending])}
+            {currencyList(w9Pending)}
           </div>
         )}
       </div>

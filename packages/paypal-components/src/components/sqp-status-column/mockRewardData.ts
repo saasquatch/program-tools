@@ -11,6 +11,7 @@ const statuses = ["AVAILABLE", "PENDING", "CANCELLED", "EXPIRED", "REDEEMED"];
 const pendingReasons = ["US_TAX", "SCHEDULED", "UNHANDLED_ERROR"];
 
 const paypalStatuses = [
+  "PENDING",
   "FAILED",
   "UNCLAIMED",
   "ONHOLD",
@@ -19,6 +20,35 @@ const paypalStatuses = [
   "REVERSED",
   "BLOCKED",
   "DENIED",
+];
+
+// Currencies supported by PayPal - https://developer.paypal.com/docs/reports/reference/paypal-supported-currencies/
+export const supportedCurrencies = [
+  "AUD",
+  "BRL",
+  "CAD",
+  "CNY",
+  "CZK",
+  "DKK",
+  "EUR",
+  "HKD",
+  "HUF",
+  "ILS",
+  "JPY",
+  "MYR",
+  "MXN",
+  "TWD",
+  "NZD",
+  "NOK",
+  "PHP",
+  "PLN",
+  "GBP",
+  "RUB",
+  "SGB",
+  "SEK",
+  "CHF",
+  "THB",
+  "USD",
 ];
 
 function getPaypalStatus(datePaidOut) {
@@ -43,7 +73,7 @@ export const getPaypalMeta = () => {
       ? "WARN"
       : !!datePaidOut
       ? "SUCCESS"
-      : Math.floor(Math.random() * 10) >= 8
+      : Math.floor(Math.random() * 10) >= 9
       ? "ERROR"
       : "SUCCESS";
 

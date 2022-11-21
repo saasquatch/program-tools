@@ -5,12 +5,13 @@ import { luxonLocale } from "../../utils/utils";
 import { createStyleSheet } from "../../styling/JSS";
 import { TextSpanView } from "./text-span-view";
 import { PaypalBadge } from "../../Icons/PaypalBadge";
+import { supportedCurrencies } from "../sqp-status-column/mockRewardData";
 
 const paypalStatuses = [
   "PAYPAL_PENDING",
   "SUCCESS",
   "FAILED",
-  "INPROGRESS",
+  "IN_PROGRESS",
   "UNCLAIMED",
   "ONHOLD",
   "REFUNDED",
@@ -38,6 +39,7 @@ export class ReferralTableRewardsCell {
   @Prop() rewardPayoutFailedText: string;
   @Prop() rewardDeniedText: string;
   @Prop() locale: string = "en";
+  @Prop() baseUnits: string[];
 
   rewardStatus(reward: Reward) {
     const paypalStatus =
@@ -52,6 +54,14 @@ export class ReferralTableRewardsCell {
     if (reward.dateCancelled) return "CANCELLED";
     if (reward.statuses && reward.statuses.includes("EXPIRED"))
       return "EXPIRED";
+
+    if (
+      reward.statuses?.includes("PENDING") &&
+      reward.pendingReasons?.includes("US_TAX")
+    ) {
+      return "W9_PENDING";
+    }
+
     if (reward.statuses && reward.statuses.includes("PENDING"))
       return "PENDING";
     if (reward.type === "CREDIT") {
@@ -74,6 +84,7 @@ export class ReferralTableRewardsCell {
   }
 
   render() {
+    const baseUnits = this.baseUnits;
     intl.locale = this.locale;
     const style = {
       "@keyframes slideRight": {
@@ -168,6 +179,7 @@ export class ReferralTableRewardsCell {
           : state === "FAILED"
           ? "danger"
           : state === "PENDING" ||
+            state === "W9_PENDING" ||
             state === "PAYPAL_PENDING" ||
             state === "UNCLAIMED" ||
             state === "ONHOLD"
@@ -183,7 +195,9 @@ export class ReferralTableRewardsCell {
         ? "success"
         : state === "REDEEMED"
         ? "primary"
-        : state === "PENDING"
+        : state === "PENDING" ||
+          state === "PAYPAL_PENDING" ||
+          state === "W9_PENDING"
         ? "warning"
         : "danger";
       return badgeType;
@@ -202,7 +216,14 @@ export class ReferralTableRewardsCell {
       const hasMeta =
         !!reward?.meta?.customMeta?.rawPayPalInfo?.["transaction_status"];
       const state = this.rewardStatus(reward);
-      const isPayPal = hasMeta;
+
+      const baseUnit = reward?.unit?.split("/")?.shift() as string;
+      const isPayPal =
+        hasMeta ||
+        (baseUnits?.includes(baseUnit) &&
+          supportedCurrencies.includes(reward.currency) &&
+          ["PENDING", "AVAILABLE"].includes(state));
+
       const slBadgeType = getSLBadgeType(state, hasMeta);
       const badgeText = intl.formatMessage(
         { id: "statusShortMessage", defaultMessage: this.statusText },
@@ -282,6 +303,10 @@ export class ReferralTableRewardsCell {
           </div>
         );
       };
+
+      console.log("STATE", state);
+
+      console.log("STATUS_TEXT", statusText);
 
       return (
         <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>
@@ -370,6 +395,11 @@ export class ReferralTableRewardsCell {
                 </TextSpanView>
               </div>
             )}
+            {state === "W9_PENDING" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
             {state === "PENDING" && reward.dateScheduledFor && (
               <div>
                 <TextSpanView type="p">
@@ -381,8 +411,7 @@ export class ReferralTableRewardsCell {
                   </span>
                 </TextSpanView>
               </div>
-            )}{" "}
-            {/* Pending for W9 Tax reasons cases here */}
+            )}
             {state === "AVAILABLE" && reward.dateExpires && (
               <div>
                 <TextSpanView type="p">

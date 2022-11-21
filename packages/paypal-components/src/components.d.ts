@@ -319,6 +319,7 @@ export namespace Components {
         "w9TaxLabel": string;
     }
     interface SqpRewardsCell {
+        "baseUnits": string[];
         "expiringText": string;
         "fuelTankText": string;
         "hideDetails": boolean;
@@ -353,6 +354,10 @@ export namespace Components {
           * @default
          */
         "hideDetails": boolean;
+        /**
+          * @uiName Integration Domain
+         */
+        "integrationDomain": string;
         /**
           * Shown in the dropdown details when a reward is pending.
           * @uiName Reward Pending Text
@@ -430,6 +435,7 @@ export namespace Components {
         "statusText": string;
     }
     interface SqpStatusCell {
+        "baseUnits": string[];
         "expiryText": string;
         "locale": string;
         "pendingScheduled": string;
@@ -458,6 +464,10 @@ export namespace Components {
           * @uiName Expiry Date Prefix
          */
         "expiryText": string;
+        /**
+          * @uiName Integration Domain
+         */
+        "integrationDomain": string;
         /**
           * Text shown before the available date of a pending reward.
           * @uiName Pending Date Prefix
@@ -917,6 +927,7 @@ declare namespace LocalJSX {
         "w9TaxLabel"?: string;
     }
     interface SqpRewardsCell {
+        "baseUnits"?: string[];
         "expiringText"?: string;
         "fuelTankText"?: string;
         "hideDetails"?: boolean;
@@ -951,6 +962,10 @@ declare namespace LocalJSX {
           * @default
          */
         "hideDetails"?: boolean;
+        /**
+          * @uiName Integration Domain
+         */
+        "integrationDomain"?: string;
         /**
           * Shown in the dropdown details when a reward is pending.
           * @uiName Reward Pending Text
@@ -1025,6 +1040,7 @@ declare namespace LocalJSX {
         "statusText"?: string;
     }
     interface SqpStatusCell {
+        "baseUnits"?: string[];
         "expiryText"?: string;
         "locale"?: string;
         "pendingScheduled"?: string;
@@ -1053,6 +1069,10 @@ declare namespace LocalJSX {
           * @uiName Expiry Date Prefix
          */
         "expiryText"?: string;
+        /**
+          * @uiName Integration Domain
+         */
+        "integrationDomain"?: string;
         /**
           * Text shown before the available date of a pending reward.
           * @uiName Pending Date Prefix
