@@ -201,6 +201,7 @@ export function useAccountDetails(props) {
       detailsHeaderText: props.detailsHeaderText,
       scheduleHeaderText: props.scheduleHeaderText,
       otherCurrenciesLabel: props.otherCurrenciesLabel,
+      pendingDetailedStatusText: props.pendingDetailedStatusText,
       w9TaxLabel: props.w9TaxLabel,
       upcomingPaymentLabel: props.upcomingPaymentLabel,
       nextPayoutLabel: props.nextPayoutLabel,
