@@ -153,25 +153,6 @@ export class ReferralTableRewardsCell {
     const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
 
-    // switch (state) {
-    //   case "REDEEMED":
-    //     return "primary";
-    //   case "TRANSFERRED":
-    //     return "primary";
-    //   case "INPROGRESS":
-    //     return "warning";
-    //   case "FAILED":
-    //     return "danger";
-    //   case "EXPIRED":
-    //     return "danger";
-    //   case "CANCELLED":
-    //     return "danger";
-    //   case "PENDING":
-    //     return "warning";
-    //   case "AVAILABLE":
-    //     return "success";
-    // }
-
     const getSLBadgeType = (state: string, hasMeta: boolean): string => {
       const badgeType = hasMeta
         ? state === "SUCCESS"

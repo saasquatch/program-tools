@@ -117,7 +117,7 @@ export function ScheduleCardView(props: ScheduleCardViewProps) {
           <h2 class={classes.MainCurrency}>
             {hasDatePending || statusText !== "Pending"
               ? mainCurrency?.amountText
-              : w9Pending[0]?.amountText}
+              : w9Pending?.[0]?.amountText}
           </h2>
         )}
         {otherCurrencies && !loading && (
