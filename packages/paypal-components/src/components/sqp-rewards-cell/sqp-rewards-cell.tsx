@@ -219,6 +219,7 @@ export class ReferralTableRewardsCell {
 
       const baseUnit = reward?.unit?.split("/")?.shift() as string;
       const isPayPal =
+        paypalStatuses?.includes(state) ||
         hasMeta ||
         (baseUnits?.includes(baseUnit) &&
           supportedCurrencies.includes(reward.currency) &&
