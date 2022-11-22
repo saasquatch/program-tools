@@ -41,6 +41,7 @@ Feature: Referral Table Reward Column
             | RETURNED  | Returned    | grey       |
             | REVERSED  | Reversed    | grey       |
             | BLOCKED   | Blocked     | grey       |
+            | DENIED    | Denied      | grey       |
 
     @minutia
     Scenario Outline: Available rewards of a reward unit and currency paid out by the tenants PayPal integration display a PayPal icon with the badge
@@ -101,3 +102,4 @@ Feature: Referral Table Reward Column
             | Returned PayPal payout reward          | The email you provided does not link to an existing PayPal account. Payout expired on {dateLastUpdated + 30 days from the customMeta}.                               |
             | Reversed PayPal payout reward          | Payout reversed on {dateLastUpdated from the customMeta}                                                                                                             |
             | Blocked PayPal payout reward           | Payout blocked on {dateLastUpdated from the customMeta}                                                                                                              |
+            | Denied PayPal payout reward            | Payout denied on {dateLastUpdated from the customMeta}                                                                                                               |

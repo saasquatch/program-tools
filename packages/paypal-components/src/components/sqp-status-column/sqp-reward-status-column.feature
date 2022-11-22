@@ -51,6 +51,7 @@ Feature: Paypal Reward Status Column
             | RETURNED  | Returned    | grey       |
             | REVERSED  | Reversed    | grey       |
             | BLOCKED   | Blocked     | grey       |
+            | DENIED    | Denied      | grey       |
 
     @minutia
     Scenario Outline: Available rewards of a reward unit and currency paid out by the tenants PayPal integration display a PayPal icon with the badge
@@ -89,10 +90,11 @@ Feature: Paypal Reward Status Column
             | Returned PayPal payout reward          | The email you provided does not link to an existing PayPal account. Payout expired on {dateLastUpdated + 30 days from the customMeta}.                               |
             | Reversed PayPal payout reward          | Payout reversed on {dateLastUpdated from the customMeta}                                                                                                             |
             | Blocked PayPal payout reward           | Payout blocked on {dateLastUpdated from the customMeta}                                                                                                              |
+            | Denied PayPal payout reward            | Payout denied on {dateLastUpdated from the customMeta}                                                                                                               |
 
     @motivating
     Scenario Outline: Statuses can be customized
-        Given the "status-text" prop is "{status, select, PAYOUTSUCCESS {Paid} PAYOUTFAILED {Error} PAYOUTPENDING {Pending} PAYOUTUNCLAIMED {Claim!} PAYOUTONHOLD{On hold} PAYOUTREFUNDED {Refund} PAYOUTRETURNED {Return} PAYOUTREVERSED {Reverse} PAYOUTBLOCKED {Held} AVAILABLE {Redeem me!} CANCELLED {Unavailable} PENDING {Coming soon!} EXPIRED {Past due} REDEEMED {Spent}}"
+        Given the "status-text" prop is "{status, select, SUCCESS {Paid} FAILED {Error} PAYPAL_PENDING {Pending} UNCLAIMED {Claim!} ONHOLD {On hold} REFUNDED {Refund} RETURNED {Return} REVERSED {Reverse} BLOCKED {Held} Denied {sorry bro} AVAILABLE {Redeem me!} CANCELLED {Unavailable} PENDING {Coming soon!} EXPIRED {Past due} REDEEMED {Spent}}"
         And a user
         And they have a <status> reward
         When they view the reward table
@@ -113,6 +115,7 @@ Feature: Paypal Reward Status Column
             | RETURNED  | Return       |
             | REVERSED  | Reverse      |
             | BLOCKED   | Held         |
+            | DENIED    | sorry bro    |
 
     @minutia
     @ui
