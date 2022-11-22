@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { IconView } from ".";
 
 export default {
@@ -111,3 +112,63 @@ export const filled_package_logo = () => (
   <IconView icon={"filled_package_logo"} />
 );
 export const open_tab = () => <IconView icon={"open_tab"} />;
+export const refresh = () => <IconView icon={"refresh"} />;
+
+const TestTooltipDiv = styled.div`
+  margin: 50px 50%;
+`;
+export const tooltip = () => (
+  <TestTooltipDiv>
+    <IconView
+      icon={"add"}
+      tooltip="A tooltip that explains something in detail"
+    />
+  </TestTooltipDiv>
+);
+export const tooltipDirectionBottom = () => (
+  <TestTooltipDiv>
+    <IconView
+      icon={"add"}
+      tooltip="A tooltip that explains something in detail"
+      tooltipDirection="bottom"
+    />
+  </TestTooltipDiv>
+);
+export const tooltipDirectionLeft = () => (
+  <TestTooltipDiv>
+    <IconView
+      icon={"add"}
+      tooltip="A tooltip that explains something in detail"
+      tooltipDirection="left"
+    />
+  </TestTooltipDiv>
+);
+export const tooltipDirectionRight = () => (
+  <TestTooltipDiv>
+    <IconView
+      icon={"add"}
+      tooltip="A tooltip that explains something in detail"
+      tooltipDirection="right"
+    />
+  </TestTooltipDiv>
+);
+export const tooltipMaxWidth = () => (
+  <TestTooltipDiv style={{ margin: "100px 50%" }}>
+    <IconView
+      icon={"add"}
+      tooltip="A tooltip that explains something in detail. This is a longer tooltip."
+      tooltipDirection="bottom"
+      tooltipMaxWidth="400px"
+    />
+  </TestTooltipDiv>
+);
+export const tooltipCustomCSS = () => (
+  <TestTooltipDiv>
+    <IconView
+      icon={"add"}
+      tooltip="A tooltip that explains something in detail. This is a longer tooltip."
+      tooltipDirection="right"
+      tooltipCustomCSS={{ fontSize: "20px", fontWeight: "bold" }}
+    />
+  </TestTooltipDiv>
+);
