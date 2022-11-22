@@ -27,175 +27,202 @@ export class PaypalAccountDetails {
   ignored = true;
 
   /**
-   * @uiName Header Text
-   * @uiGroup Details
+   * @uiName Header
+   * @uiGroup Account connected
    */
-  @Prop() headerText: string = "PayPal account";
+  @Prop() headerText: string = "Account";
 
   /**
-   * @uiName Other Currencies Label
-   * @uiGroup Details
+   * Text on payout card to indicate that this has rewards with multiple currencies.
+   *
+   * @uiName Other currencies label
+   * @uiGroup Account connected
    */
   @Prop() otherCurrenciesLabel: string =
     "{amount} {amount, plural, =0 {other currencies} =1 {other currency} other {other currencies}}";
   /**
-   * @uiName W9 Tax Label
-   * @uiGroup Details
+   * Text on a payout card to indicate that this reward is pending due to tax reasons.
+   *
+   * @uiName W9 tax label
+   * @uiGroup Account connected
    */
   @Prop() w9TaxLabel: string = "Awaiting W-9 tax form";
   /**
-   * @uiName W9 Tax Label
-   * @uiGroup Details
+   * @uiName Pending reward label
+   * @uiGroup Account connected
    */
   @Prop() pendingDetailedStatusText: string =
     "Check rewards table for available date";
   /**
-   * @uiName  Upcoming Payout Label
-   * @uiGroup Details
+   * Badge label on a payout card to indicate that this is scheduled after their next payout.
+   *
+   * @uiName  Upcoming payout badge
+   * @uiGroup Account connected
    */
   @Prop() upcomingPaymentLabel: string = "Upcoming";
   /**
-   * @uiName  Next Payout Label
-   * @uiGroup Details
+   * Badge label on a payout card to indicate that this is their next scheduled payout.
+   *
+   * @uiName  Next payout badge
+   * @uiGroup Account connected
    */
   @Prop() nextPayoutLabel: string = "Next payout";
   /**
    * @uiName  Pending Label
-   * @uiGroup Details
+   * @uiGroup Account connected
    */
   @Prop() pendingLabel: string = "Pending";
   /**
-   * @uiName Edit Text
-   * @uiGroup Details
+   * Allows a participant to edit their account connection.
+   *
+   * @uiName Edit button label
+   * @uiGroup Account connected
    */
   @Prop() editText: string = "Edit";
   /**
-   * @uiName Integration Domain
-   * @uiGroup Details
+   * @undocumented
    */
   @Prop() integrationDomain: string =
     "https://paypal-payouts-staging.herokuapp.com/graphql";
   /**
-   * @uiName Connect Button Text
-   * @uiGroup Connect
+   * @uiName Connect button label
+   * @uiGroup Account not connected
    */
   @Prop() connectPayPalAccountButtonText: string = "Connect account";
   /**
-   * @uiName Subheader Text
-   * @uiGroup Connect
+   * Let your participants know they need to connect their PayPal account to receive payouts.
+   *
+   * @uiName Subheader text
+   * @uiGroup Account not connected
+   * @uiWidget textArea
    */
   @Prop() connectPayPalDescriptionText: string =
     "Connect your PayPal account to automatically receive payments/cash rewards.";
   /**
-   * @uiName Header Text
-   * @uiGroup Connect
+   * @uiName Header
+   * @uiGroup Account not connected
    */
   @Prop() payPalAccountHeaderText: string = "PayPal account";
   /**
-   * @uiName Modal Header
-   * @uiGroup Form
+   * Header for the modal shown when a participant is connecting their acccount.
+   * 
+   * @uiName Connect account header
+   * @uiGroup Account settings modal
    */
   @Prop() modalConnectPayPalAccountHeader: string = "Connect PayPal account";
   /**
-   * @uiName Cancel Text
-   * @uiGroup Form
+   * @uiName Cancel button label
+   * @uiGroup Account settings modal
    */
   @Prop() cancelText: string = "Cancel";
   /**
-   * @uiName Submit Button Text
-   * @uiGroup Form
+   * @uiName Submit button label
+   * @uiGroup Account settings modal
    */
   @Prop() submitPayPalAccountButtonText: string = "Connect account";
   /**
-   * @uiName Paypal Email Label
-   * @uiGroup Form
+   * Label for the input shown when a participant is connecting their account.
+   * 
+   * @uiName PayPal email label
+   * @uiGroup Account settings modal
    */
   @Prop() payPalEmailLabel: string = "PayPal email";
   /**
-   * @uiName Email Help Text
-   * @uiGroup Form
+   * @uiName Email help text
+   * @uiGroup Account settings modal
+   * @uiWidget textArea
    */
   @Prop() payPalEmailLabelHelpText: string =
     "Enter the email used for your PayPal account.";
   /**
-   * @uiName Confirmation Email Text
-   * @uiGroup Form
+   * Label for the input shown when a participant is connecting their account.
+   *
+   * @uiName Confirm email label
+   * @uiGroup Account settings modal
    */
   @Prop() confirmPayPalEmailLabel: string = "Confirm email";
   /**
-   * @uiName Success Message
-   * @uiGroup Form
+   * Alert message shown when a participant successfully connects, changes, or disconnects their PayPal account.
+   * 
+   * @uiName Success message
+   * @uiGroup Account settings modal
    */
   @Prop() successMessage: string = "Success!";
   /**
-   * @uiName Edit Account Form Header
-   * @uiGroup Form
+   * Header for the section in the modal that allows a participant to change their connected PayPal account.
+   *
+   * @uiName Edit account header
+   * @uiGroup Account settings modal
    */
   @Prop() connectAccountModalHeaderText: string = "Connected account settings";
 
   /**
-   * @uiName Change Account Button Text
-   * @uiGroup Form
+   * @uiName Change account button label
+   * @uiGroup Account settings modal
    */
   @Prop() connectAccountModalButtonText: string = "Change account";
   /**
-   * @uiName Disconnect Account Header Text
-   * @uiGroup Form
+   * Header for the section in the modal that allows a participant to disconnect their PayPal account.
+   *
+   * @uiName Disconnect account header
+   * @uiGroup Account settings modal
    */
   @Prop() disconnectAccountHeaderText: string = "Disconnect account";
   /**
-   * @uiName Disconnect Account Description Text
-   * @uiGroup Form
+   * Description for the section in the modal that allows a participant to disconnect their PayPal account.
+   *
+   * @uiName Disconnect account description
+   * @uiGroup Account settings modal
+   * @uiWidget textArea
    */
   @Prop() disconnectAccountDescriptionText: string =
     "You will not be able to receive payments if you disconnect your PayPal account.";
 
   /**
-   * @uiName Disconnect Account Button Text
-   * @uiGroup Form
+   * @uiName Disconnect account button label
+   * @uiGroup Account settings modal
    */
   @Prop() disconnectAccountButtonText: string = "Disconnect account";
   /**
-   * @uiName Integration Disabled Alert Header Text
-   * @uiGroup Alert
+   * @uiName Integration disabled alert header
+   * @uiGroup Integration disabled alert
+   * @uiWidget textArea
    */
   @Prop() integrationDisabledHeader: string =
     "PayPal payouts are currently disabled";
   /**
-   * @uiName Integration Disabled Alert Body Text
-   * @uiGroup Alert
+   * @uiName Integration disabled alert descriptio
+   * @uiGroup Integration disabled alert
+   * @uiWidget textArea
    */
   @Prop() integrationDisabledText: string =
-    "Looks like this feature is turned off at the moment. Come back later to see if it’s enabled. ";
+    "Looks like this feature is turned off at the moment. Come back later to see if it’s enabled.";
   /**
-   * @uiName Integration Paused Alert Header Text
-   * @uiGroup Alert
+   * @uiName Integration paused alert header text
+   * @uiGroup Integration disabled alert
    */
   @Prop() integrationPausedHeader: string = "PayPal payouts are paused";
   /**
-   * @uiName Integration Paused Alert Body Text
-   * @uiGroup Alert
+   * @uiName Integration paused alert body text
+   * @uiGroup Integration disabled alert
    */
   @Prop() integrationPausedText: string =
     "This feature is paused at the moment, but dont worry—your rewards are still being tracked! Once this feature resumes, your payouts will continue on the next payout date.";
   /**
-   * @uiName Integration Disabled Flag
-   * @uiGroup Alert
+   * @uiName Integration disabled flag
+   * @uiGroup Integration disabled alert
    */
   @Prop() integrationDisabled: boolean = false;
   /**
-   * @uiName Integration Paused Flag
-   * @uiGroup Alert
+   * @undocumented
    */
   @Prop() integrationPaused: boolean = false;
   /**
-   * @uiName Label above payout details card
-   * @uiGroup Alert
+   * @uiName Payout details label
    */
   @Prop() detailsHeaderText: string = "Payout details";
   /**
-   * @uiName Label above scheduled payouts card(s)
-   * @uiGroup Alert
+   * @uiName Schedule payout(s) label
    */
   @Prop() scheduleHeaderText: string = "Schedule";
 

@@ -97,14 +97,14 @@ Feature: Paypal Account Details
         And they have rewards in <numCurrencies> currencies to be paid out during a singular payout
         When they see the payout details card for that payout
         Then they see the payout amount of the currency with the largest total in the middle of the card
-        And they <maySee> text "+ <text> other currencies" below
+        And they <maySee> <text> below
         And the <maySee> the payout amount of the other currencies seperated by "|" below
         Examples:
-            | numCurrencies | maySee | text |
-            | 1             | don't  |      |
-            | 2             | see    | 1    |
-            | 3             | see    | 2    |
-            | 4             | see    | 3    |
+            | numCurrencies | maySee | text                 |
+            | 1             | don't  |                      |
+            | 2             | see    | + 1 other currency   |
+            | 3             | see    | + 2 other currencies |
+            | 4             | see    | + 3 other currencies |
 
     @motivating
     Scenario Outline: Payout details cards show payout date and a status pill
@@ -133,20 +133,6 @@ Feature: Paypal Account Details
             | W9 and scheduled pending rewards beyond the next 3 payouts | Scheduled pending section and W9 section below |
 
     @motivating
-    Scenario Outline: Payout Schedule cards display the payout amout with the largest total
-        Given a user with a PayPal email
-        And rewards to be paid out
-        When they view the Schedule card for <payout>
-        Then they see <text> in the top left of the card
-        And the payout amount of the currency with the largest total in the middle of the card
-        Examples:
-            | payout                                  | dateText        |
-            | the next payout                         | the payout date |
-            | the 2nd next payout                     | the payout date |
-            | the 3rd next payout                     | the payout date |
-            | pending rewards past the 3 next payouts | Pending         |
-
-    @motivating
     Scenario: Payout totals handle rewards with pending periods within
         Given a user with a PayPal email
         And todays date is "2022-11-02"
@@ -169,11 +155,11 @@ Feature: Paypal Account Details
             | 2022-12-01 | $110 USD    |
             | 2023-01-01 | $30 USD     |
             | 2023-02-01 | $35 USD     |
-    
+
     @motivating
     Scenario: Amount totals are displayed using pretty values
         Given a user with a PayPal email
-        When they view any of the payout amounts 
+        When they view any of the payout amounts
         Then the amount of money in the currency is formated to their locale
 
     @motivating
@@ -182,13 +168,13 @@ Feature: Paypal Account Details
         And they have rewards in <numCurrencies> currencies to be paid out during a singular payout
         When they see the payout schedule card for that payout
         Then they see the payout amount of the currency with the largest total in the middle of the card
-        And they <maySee> text "+ <text> other currencies" below
+        And they <maySee> <text> below
         Examples:
-            | numCurrencies | maySee | text |
-            | 1             | don't  |      |
-            | 2             | see    | 1    |
-            | 3             | see    | 2    |
-            | 4             | see    | 3    |
+            | numCurrencies | maySee | text                 |
+            | 1             | don't  |                      |
+            | 2             | see    | + 1 other currency   |
+            | 3             | see    | + 2 other currencies |
+            | 4             | see    | + 3 other currencies |
 
     @minutia
     Scenario: Payout cards display an empty state when there are no rewards to payout
