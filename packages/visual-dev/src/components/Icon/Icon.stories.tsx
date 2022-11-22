@@ -150,7 +150,7 @@ export const tooltipRight = () => (
   </TestTooltipDiv>
 );
 export const tooltipMaxWidth = () => (
-  <TestTooltipDiv style={{ margin: "100px 50%" }}>
+  <TestTooltipDiv>
     <IconView
       icon={"add"}
       tooltip="A tooltip that explains something in detail. This is a longer tooltip."
