@@ -68,7 +68,7 @@ export class PaypalAccountDetails {
    */
   @Prop() nextPayoutLabel: string = "Next payout";
   /**
-   * @uiName  Pending Label
+   * @uiName  Pending label
    * @uiGroup Account connected
    */
   @Prop() pendingLabel: string = "Pending";
@@ -128,6 +128,8 @@ export class PaypalAccountDetails {
    */
   @Prop() payPalEmailLabel: string = "PayPal email";
   /**
+   * Shown under the PayPal email input field.
+   * 
    * @uiName Email help text
    * @uiGroup Account settings modal
    * @uiWidget textArea
@@ -191,7 +193,7 @@ export class PaypalAccountDetails {
   @Prop() integrationDisabledHeader: string =
     "PayPal payouts are currently disabled";
   /**
-   * @uiName Integration disabled alert descriptio
+   * @uiName Integration disabled alert description
    * @uiGroup Integration disabled alert
    * @uiWidget textArea
    */
@@ -209,8 +211,7 @@ export class PaypalAccountDetails {
   @Prop() integrationPausedText: string =
     "This feature is paused at the moment, but dont worry—your rewards are still being tracked! Once this feature resumes, your payouts will continue on the next payout date.";
   /**
-   * @uiName Integration disabled flag
-   * @uiGroup Integration disabled alert
+   * @undocumented
    */
   @Prop() integrationDisabled: boolean = false;
   /**

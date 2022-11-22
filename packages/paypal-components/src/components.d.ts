@@ -115,8 +115,7 @@ export namespace Components {
          */
         "headerText": string;
         /**
-          * @uiName Integration disabled flag
-          * @uiGroup Integration disabled alert
+          * @undocumented
          */
         "integrationDisabled": boolean;
         /**
@@ -126,7 +125,7 @@ export namespace Components {
          */
         "integrationDisabledHeader": string;
         /**
-          * @uiName Integration disabled alert descriptio
+          * @uiName Integration disabled alert description
           * @uiGroup Integration disabled alert
           * @uiWidget textArea
          */
@@ -179,6 +178,7 @@ export namespace Components {
          */
         "payPalEmailLabel": string;
         /**
+          * Shown under the PayPal email input field.
           * @uiName Email help text
           * @uiGroup Account settings modal
           * @uiWidget textArea
@@ -190,7 +190,7 @@ export namespace Components {
          */
         "pendingDetailedStatusText": string;
         /**
-          * @uiName Pending Label
+          * @uiName Pending label
           * @uiGroup Account connected
          */
         "pendingLabel": string;
@@ -335,17 +335,17 @@ export namespace Components {
     }
     interface SqpRewardsColumn {
         /**
-          * @uiName Reward column title
+          * @uiName Column title
          */
         "columnTitle": string;
         /**
           * Shown in the dropdown details when a reward has an expiry date.
-          * @uiName Reward Expiring Text
+          * @uiName Reward expiring text
          */
         "expiringText": string;
         /**
           * Shown in the dropdown details when a reward has an associated fuel tank code.
-          * @uiName Fuel Tank Code Text
+          * @uiName Fuel tank code text
          */
         "fuelTankText": string;
         /**
@@ -354,12 +354,12 @@ export namespace Components {
          */
         "hideDetails": boolean;
         /**
-          * @uiName Integration Domain
+          * @undocumented
          */
         "integrationDomain": string;
         /**
           * Shown in the dropdown details when a reward is pending.
-          * @uiName Reward Pending Text
+          * @uiName Reward pending text
          */
         "pendingForText": string;
         "renderCell": (data: Referral, locale: string, mintRenderer: any) => Promise<any>;
@@ -367,68 +367,68 @@ export namespace Components {
         "renderReferrerCell": (data: Referrer, mintRenderer: any) => Promise<any>;
         /**
           * Shown in the dropdown details when a reward was blocked during payout.
-          * @uiName Reward Blocked Text
+          * @uiName Reward blocked text
          */
         "rewardBlockedText": string;
         /**
           * Shown in the dropdown details when a reward was denied during payout.
-          * @uiName Reward Denied Text
+          * @uiName Reward denied text
          */
         "rewardDeniedText": string;
         /**
           * Shown in the dropdown details when a reward was placed on hold during payout.
-          * @uiName Reward On Hold Text
+          * @uiName Reward on hold text
          */
         "rewardOnHoldText": string;
         /**
           * Shown in the dropdown details when a reward has been paid out.
-          * @uiName Reward Paid Out Text
+          * @uiName Reward paid out text
          */
         "rewardPaidOutText": string;
         /**
           * Shown in the dropdown details when a reward payout has failed.
-          * @uiName Reward Payout Failed Text
+          * @uiName Reward payout failed text
          */
         "rewardPayoutFailedText": string;
         /**
           * Shown in the dropdown details when a reward is being paid out.
-          * @uiName Reward Payout In Progress Text
+          * @uiName Reward payout in progress text
          */
         "rewardPayoutInProgressText": string;
         /**
           * Shown in the dropdown details when a reward has been received.
-          * @uiName Reward Received Text
+          * @uiName Reward received text
          */
         "rewardReceivedText": string;
         /**
           * Shown in the dropdown details when a reward was refunded after payout.
-          * @uiName Reward Refunded Text
+          * @uiName Reward refunded text
          */
         "rewardRefundedText": string;
         /**
           * Shown in the dropdown details when a reward was returned after payout.
-          * @uiName Reward Returned Text
+          * @uiName Reward returned text
          */
         "rewardReturnedText": string;
         /**
-          * Shown in the dropdown details when a rewards payout was reserved.
-          * @uiName Reward Reversed Text
+          * Shown in the dropdown details when a rewards payout was reversed.
+          * @uiName Reward reversed text
          */
         "rewardReversedText": string;
         /**
           * Shown in the dropdown details when a reward was paid out but is unclaimed.
-          * @uiName Reward Unclaimed Text
+          * @uiName Reward unclaimed text
          */
         "rewardUnclaimedText": string;
         /**
           * Additional status text shown in the details drop down.
-          * @uiName Reward Status Long Text
+          * @uiName Reward status long text
           * @uiWidget textArea
          */
         "statusLongText": string;
         /**
-          * Text shown in the reward status badge.
-          * @uiName Reward Status Text
+          * Define the text shown in the reward status badge.
+          * @uiName Reward status text
           * @uiWidget textArea
          */
         "statusText": string;
@@ -455,87 +455,88 @@ export namespace Components {
     }
     interface SqpStatusColumn {
         /**
-          * @uiName Column Title
+          * @uiName Column title
          */
         "columnTitle": string;
         /**
-          * Text shown before the date of an expiring reward.
-          * @uiName Expiry Date Prefix
+          * Text shown before the date of an expiring reward. Example: Expires on {date}.
+          * @uiName Expiry date prefix
          */
         "expiryText": string;
         /**
-          * @uiName Integration Domain
+          * @undocumented
          */
         "integrationDomain": string;
         /**
-          * Text shown before the available date of a pending reward.
-          * @uiName Pending Date Prefix
+          * Text shown before the available date of a pending reward. Example: Pending until {date}.
+          * @uiName Pending date prefix
          */
         "pendingScheduled": string;
         /**
-          * Displayed when fulfillment error occured when creating a reward.
-          * @uiName Unhandled Error Text
+          * Shown below the status when a fulfillment error occured when creating a reward.
+          * @uiName Unhandled error text
          */
         "pendingUnhandled": string;
         /**
-          * Displayed when a reward is pending due to W9 compliance.
-          * @uiName W9 Pending Text
+          * Shown below the status when a reward is pending due to W-9 compliance.
+          * @uiName W-9 pending text
          */
         "pendingUsTax": string;
         "renderCell": (data: Reward, locale: string, mintRenderer: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
-          * Displayed below the status pill when a reward was blocked during payout.
-          * @uiName Reward Blocked Text
+          * Shown below the status when a reward was blocked during payout.
+          * @uiName Reward blocked text
          */
         "rewardBlockedText": string;
         /**
-          * Displayed below the status pill when a reward was denied during payout.
-          * @uiName Reward Denied Text
+          * Shown below the status pill when a reward was denied during payout.
+          * @uiName Reward denied text
          */
         "rewardDeniedText": string;
         /**
-          * Displayed below the status pill when a reward was placed on hold during payout.
-          * @uiName Reward On Hold Text
+          * Shown below the status when a reward was placed on hold during payout.
+          * @uiName Reward on hold text
          */
         "rewardOnHoldText": string;
         /**
-          * Displayed below the status pill when a reward has been paid out.
-          * @uiName Reward Paid Out Text
+          * Shown below the status pill when a reward has been paid out.
+          * @uiName Reward paid out text
          */
         "rewardPaidOutText": string;
         /**
-          * Displayed below the status pill when a reward payout has failed.
-          * @uiName Reward Payout Failed Text
+          * Shown below the status when a reward has failed.
+          * @uiName Reward payout failed text
          */
         "rewardPayoutFailedText": string;
         /**
-          * Displayed below the status pill when a reward is being paid out.
-          * @uiName Reward Payout In Progress Text
+          * Shown below the status when a reward is being paid out.
+          * @uiName Reward payout in progress text
          */
         "rewardPayoutInProgressText": string;
         /**
-          * Displayed below the status pill when a reward was refunded after payout.
+          * Shown below the status pill when a reward was refunded after payout.
           * @uiName Reward Refunded Text
          */
         "rewardRefundedText": string;
         /**
-          * Displayed below the status pill when a reward was returned after payout.
-          * @uiName Reward Returned Text
+          * Shown below the status pill when a reward was returned after payout.
+          * @uiName Reward returned text
          */
         "rewardReturnedText": string;
         /**
-          * Displayed below the status pill when a rewards payout was reserved.
-          * @uiName Reward Reversed Text
+          * Shown below the status pill when a rewards payout was reversed.
+          * @uiName Reward reversed text
          */
         "rewardReversedText": string;
         /**
-          * Displayed below the status pill when a reward was paid out but is unclaimed.
-          * @uiName Reward Unclaimed Text
+          * Shown below the status pill when a reward was paid out but is unclaimed.
+          * @uiName Reward unclaimed text
          */
         "rewardUnclaimedText": string;
         /**
-          * @uiName Reward Status Text
+          * Define the text shown in the reward status badge.
+          * @uiName Reward status text
           * @uiWidget textArea
          */
         "statusText": string;
@@ -722,8 +723,7 @@ declare namespace LocalJSX {
          */
         "headerText"?: string;
         /**
-          * @uiName Integration disabled flag
-          * @uiGroup Integration disabled alert
+          * @undocumented
          */
         "integrationDisabled"?: boolean;
         /**
@@ -733,7 +733,7 @@ declare namespace LocalJSX {
          */
         "integrationDisabledHeader"?: string;
         /**
-          * @uiName Integration disabled alert descriptio
+          * @uiName Integration disabled alert description
           * @uiGroup Integration disabled alert
           * @uiWidget textArea
          */
@@ -786,6 +786,7 @@ declare namespace LocalJSX {
          */
         "payPalEmailLabel"?: string;
         /**
+          * Shown under the PayPal email input field.
           * @uiName Email help text
           * @uiGroup Account settings modal
           * @uiWidget textArea
@@ -797,7 +798,7 @@ declare namespace LocalJSX {
          */
         "pendingDetailedStatusText"?: string;
         /**
-          * @uiName Pending Label
+          * @uiName Pending label
           * @uiGroup Account connected
          */
         "pendingLabel"?: string;
@@ -942,17 +943,17 @@ declare namespace LocalJSX {
     }
     interface SqpRewardsColumn {
         /**
-          * @uiName Reward column title
+          * @uiName Column title
          */
         "columnTitle"?: string;
         /**
           * Shown in the dropdown details when a reward has an expiry date.
-          * @uiName Reward Expiring Text
+          * @uiName Reward expiring text
          */
         "expiringText"?: string;
         /**
           * Shown in the dropdown details when a reward has an associated fuel tank code.
-          * @uiName Fuel Tank Code Text
+          * @uiName Fuel tank code text
          */
         "fuelTankText"?: string;
         /**
@@ -961,78 +962,78 @@ declare namespace LocalJSX {
          */
         "hideDetails"?: boolean;
         /**
-          * @uiName Integration Domain
+          * @undocumented
          */
         "integrationDomain"?: string;
         /**
           * Shown in the dropdown details when a reward is pending.
-          * @uiName Reward Pending Text
+          * @uiName Reward pending text
          */
         "pendingForText"?: string;
         /**
           * Shown in the dropdown details when a reward was blocked during payout.
-          * @uiName Reward Blocked Text
+          * @uiName Reward blocked text
          */
         "rewardBlockedText"?: string;
         /**
           * Shown in the dropdown details when a reward was denied during payout.
-          * @uiName Reward Denied Text
+          * @uiName Reward denied text
          */
         "rewardDeniedText"?: string;
         /**
           * Shown in the dropdown details when a reward was placed on hold during payout.
-          * @uiName Reward On Hold Text
+          * @uiName Reward on hold text
          */
         "rewardOnHoldText"?: string;
         /**
           * Shown in the dropdown details when a reward has been paid out.
-          * @uiName Reward Paid Out Text
+          * @uiName Reward paid out text
          */
         "rewardPaidOutText"?: string;
         /**
           * Shown in the dropdown details when a reward payout has failed.
-          * @uiName Reward Payout Failed Text
+          * @uiName Reward payout failed text
          */
         "rewardPayoutFailedText"?: string;
         /**
           * Shown in the dropdown details when a reward is being paid out.
-          * @uiName Reward Payout In Progress Text
+          * @uiName Reward payout in progress text
          */
         "rewardPayoutInProgressText"?: string;
         /**
           * Shown in the dropdown details when a reward has been received.
-          * @uiName Reward Received Text
+          * @uiName Reward received text
          */
         "rewardReceivedText"?: string;
         /**
           * Shown in the dropdown details when a reward was refunded after payout.
-          * @uiName Reward Refunded Text
+          * @uiName Reward refunded text
          */
         "rewardRefundedText"?: string;
         /**
           * Shown in the dropdown details when a reward was returned after payout.
-          * @uiName Reward Returned Text
+          * @uiName Reward returned text
          */
         "rewardReturnedText"?: string;
         /**
-          * Shown in the dropdown details when a rewards payout was reserved.
-          * @uiName Reward Reversed Text
+          * Shown in the dropdown details when a rewards payout was reversed.
+          * @uiName Reward reversed text
          */
         "rewardReversedText"?: string;
         /**
           * Shown in the dropdown details when a reward was paid out but is unclaimed.
-          * @uiName Reward Unclaimed Text
+          * @uiName Reward unclaimed text
          */
         "rewardUnclaimedText"?: string;
         /**
           * Additional status text shown in the details drop down.
-          * @uiName Reward Status Long Text
+          * @uiName Reward status long text
           * @uiWidget textArea
          */
         "statusLongText"?: string;
         /**
-          * Text shown in the reward status badge.
-          * @uiName Reward Status Text
+          * Define the text shown in the reward status badge.
+          * @uiName Reward status text
           * @uiWidget textArea
          */
         "statusText"?: string;
@@ -1059,85 +1060,86 @@ declare namespace LocalJSX {
     }
     interface SqpStatusColumn {
         /**
-          * @uiName Column Title
+          * @uiName Column title
          */
         "columnTitle"?: string;
         /**
-          * Text shown before the date of an expiring reward.
-          * @uiName Expiry Date Prefix
+          * Text shown before the date of an expiring reward. Example: Expires on {date}.
+          * @uiName Expiry date prefix
          */
         "expiryText"?: string;
         /**
-          * @uiName Integration Domain
+          * @undocumented
          */
         "integrationDomain"?: string;
         /**
-          * Text shown before the available date of a pending reward.
-          * @uiName Pending Date Prefix
+          * Text shown before the available date of a pending reward. Example: Pending until {date}.
+          * @uiName Pending date prefix
          */
         "pendingScheduled"?: string;
         /**
-          * Displayed when fulfillment error occured when creating a reward.
-          * @uiName Unhandled Error Text
+          * Shown below the status when a fulfillment error occured when creating a reward.
+          * @uiName Unhandled error text
          */
         "pendingUnhandled"?: string;
         /**
-          * Displayed when a reward is pending due to W9 compliance.
-          * @uiName W9 Pending Text
+          * Shown below the status when a reward is pending due to W-9 compliance.
+          * @uiName W-9 pending text
          */
         "pendingUsTax"?: string;
         /**
-          * Displayed below the status pill when a reward was blocked during payout.
-          * @uiName Reward Blocked Text
+          * Shown below the status when a reward was blocked during payout.
+          * @uiName Reward blocked text
          */
         "rewardBlockedText"?: string;
         /**
-          * Displayed below the status pill when a reward was denied during payout.
-          * @uiName Reward Denied Text
+          * Shown below the status pill when a reward was denied during payout.
+          * @uiName Reward denied text
          */
         "rewardDeniedText"?: string;
         /**
-          * Displayed below the status pill when a reward was placed on hold during payout.
-          * @uiName Reward On Hold Text
+          * Shown below the status when a reward was placed on hold during payout.
+          * @uiName Reward on hold text
          */
         "rewardOnHoldText"?: string;
         /**
-          * Displayed below the status pill when a reward has been paid out.
-          * @uiName Reward Paid Out Text
+          * Shown below the status pill when a reward has been paid out.
+          * @uiName Reward paid out text
          */
         "rewardPaidOutText"?: string;
         /**
-          * Displayed below the status pill when a reward payout has failed.
-          * @uiName Reward Payout Failed Text
+          * Shown below the status when a reward has failed.
+          * @uiName Reward payout failed text
          */
         "rewardPayoutFailedText"?: string;
         /**
-          * Displayed below the status pill when a reward is being paid out.
-          * @uiName Reward Payout In Progress Text
+          * Shown below the status when a reward is being paid out.
+          * @uiName Reward payout in progress text
          */
         "rewardPayoutInProgressText"?: string;
         /**
-          * Displayed below the status pill when a reward was refunded after payout.
+          * Shown below the status pill when a reward was refunded after payout.
           * @uiName Reward Refunded Text
          */
         "rewardRefundedText"?: string;
         /**
-          * Displayed below the status pill when a reward was returned after payout.
-          * @uiName Reward Returned Text
+          * Shown below the status pill when a reward was returned after payout.
+          * @uiName Reward returned text
          */
         "rewardReturnedText"?: string;
         /**
-          * Displayed below the status pill when a rewards payout was reserved.
-          * @uiName Reward Reversed Text
+          * Shown below the status pill when a rewards payout was reversed.
+          * @uiName Reward reversed text
          */
         "rewardReversedText"?: string;
         /**
-          * Displayed below the status pill when a reward was paid out but is unclaimed.
-          * @uiName Reward Unclaimed Text
+          * Shown below the status pill when a reward was paid out but is unclaimed.
+          * @uiName Reward unclaimed text
          */
         "rewardUnclaimedText"?: string;
         /**
-          * @uiName Reward Status Text
+          * Define the text shown in the reward status badge.
+          * @uiName Reward status text
           * @uiWidget textArea
          */
         "statusText"?: string;
