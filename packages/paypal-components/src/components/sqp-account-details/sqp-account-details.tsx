@@ -48,6 +48,13 @@ export class PaypalAccountDetails {
    */
   @Prop() w9TaxLabel: string = "Awaiting W-9 tax form";
   /**
+   * Text on a scheduled payout card to indicate that this reward is pending due to tax reasons.
+   *
+   * @uiName Additional W9 rewards label
+   * @uiGroup Account connected
+   */
+  @Prop() additionalW9Text: string = "Rewards awaiting W-9";
+  /**
    * @uiName Pending reward label
    * @uiGroup Account connected
    */
@@ -277,6 +284,7 @@ export class PaypalAccountDetails {
             pendingLabel={props.overviewContent.pendingLabel}
             nextPayoutLabel={props.overviewContent.nextPayoutLabel}
             upcomingPaymentLabel={props.overviewContent.upcomingPaymentLabel}
+            additionalW9Text={props.overviewContent.additionalW9Text}
             otherCurrenciesLabel={props.overviewContent.otherCurrenciesLabel}
             pendingDetailedStatusText={
               props.overviewContent.pendingDetailedStatusText
@@ -347,6 +355,7 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
       overviewContent: {
         detailsHeaderText: props.detailsHeaderText,
         scheduleHeaderText: props.scheduleHeaderText,
+        additionalW9Text: props.additionalW9Text,
         otherCurrenciesLabel: props.otherCurrenciesLabel,
         w9TaxLabel: props.w9TaxLabel,
         pendingDetailedStatusText: props.pendingDetailedStatusText,

@@ -14,6 +14,8 @@ export interface ScheduleCardViewProps {
   hasW9Pending?: boolean;
   hasDatePending?: boolean;
   w9Pending?: currencyAmount[];
+  status: "pending" | "upcoming" | "next payout";
+  additionalW9Text: string;
 }
 
 const SubduedText = {
@@ -85,6 +87,8 @@ export function ScheduleCardView(props: ScheduleCardViewProps) {
     hasDatePending,
     hasW9Pending,
     w9Pending,
+    status,
+    additionalW9Text,
   } = props;
 
   const sheet = createStyleSheet(style);
@@ -116,13 +120,16 @@ export function ScheduleCardView(props: ScheduleCardViewProps) {
           <h2 class={classes.MainCurrency}>No rewards</h2>
         ) : (
           <h2 class={classes.MainCurrency}>
-            {hasDatePending || statusText !== "Pending"
+            {hasDatePending || status !== "pending"
               ? mainCurrency?.amountText
               : w9Pending?.[0]?.amountText}
           </h2>
         )}
         {otherCurrencies && !loading && (
           <p class={classes.SubduedSmallText}>+ {otherCurrenciesText}</p>
+        )}
+        {hasW9Pending && status === "pending" && (
+          <p class={classes.SubduedSmallText}>+ {additionalW9Text}</p>
         )}
       </div>
     </div>

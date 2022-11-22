@@ -111,6 +111,10 @@ export class PaypalAccountDetails {
    * @undocumented
    */
   @Prop() w9TaxLabel: string;
+  /**
+   * @undocumented
+   */
+  @Prop() additionalW9Text: string;
 
   /**
    * @undocumented
