@@ -52,6 +52,7 @@ const style = {
     height: "94px",
     boxSizing: "border-box",
     cursor: "pointer",
+    border: "1px solid var(--sl-color-gray-200)",
   },
   AmountsContainer: {
     display: "flex",

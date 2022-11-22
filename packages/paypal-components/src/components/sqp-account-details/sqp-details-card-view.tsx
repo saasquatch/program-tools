@@ -42,6 +42,7 @@ const style = {
     borderRadius: "4px",
     padding: "var(--sl-spacing-large)",
     minHeight: "150px",
+    border: "1px solid var(--sl-color-gray-200)",
   },
   StatusContainer: {
     display: "flex",
