@@ -43,33 +43,37 @@ export namespace Components {
     }
     interface SqpAccountDetails {
         /**
-          * @uiName Cancel Text
-          * @uiGroup Form
+          * @uiName Cancel button label
+          * @uiGroup Account settings modal
          */
         "cancelText": string;
         /**
-          * @uiName Confirmation Email Text
-          * @uiGroup Form
+          * Label for the input shown when a participant is connecting their account.
+          * @uiName Confirm email label
+          * @uiGroup Account settings modal
          */
         "confirmPayPalEmailLabel": string;
         /**
-          * @uiName Change Account Button Text
-          * @uiGroup Form
+          * @uiName Change account button label
+          * @uiGroup Account settings modal
          */
         "connectAccountModalButtonText": string;
         /**
-          * @uiName Edit Account Form Header
-          * @uiGroup Form
+          * Header for the section in the modal that allows a participant to change their connected PayPal account.
+          * @uiName Edit account header
+          * @uiGroup Account settings modal
          */
         "connectAccountModalHeaderText": string;
         /**
-          * @uiName Connect Button Text
-          * @uiGroup Connect
+          * @uiName Connect button label
+          * @uiGroup Account not connected
          */
         "connectPayPalAccountButtonText": string;
         /**
-          * @uiName Subheader Text
-          * @uiGroup Connect
+          * Let your participants know they need to connect their PayPal account to receive payouts.
+          * @uiName Subheader text
+          * @uiGroup Account not connected
+          * @uiWidget textArea
          */
         "connectPayPalDescriptionText": string;
         /**
@@ -78,133 +82,143 @@ export namespace Components {
          */
         "demoData"?: DemoData<AccountDetailsViewProps & AccountFormViewProps>;
         /**
-          * @uiName Label above payout details card
-          * @uiGroup Alert
+          * @uiName Payout details label
          */
         "detailsHeaderText": string;
         /**
-          * @uiName Disconnect Account Button Text
-          * @uiGroup Form
+          * @uiName Disconnect account button label
+          * @uiGroup Account settings modal
          */
         "disconnectAccountButtonText": string;
         /**
-          * @uiName Disconnect Account Description Text
-          * @uiGroup Form
+          * Description for the section in the modal that allows a participant to disconnect their PayPal account.
+          * @uiName Disconnect account description
+          * @uiGroup Account settings modal
+          * @uiWidget textArea
          */
         "disconnectAccountDescriptionText": string;
         /**
-          * @uiName Disconnect Account Header Text
-          * @uiGroup Form
+          * Header for the section in the modal that allows a participant to disconnect their PayPal account.
+          * @uiName Disconnect account header
+          * @uiGroup Account settings modal
          */
         "disconnectAccountHeaderText": string;
         /**
-          * @uiName Edit Text
-          * @uiGroup Details
+          * Allows a participant to edit their account connection.
+          * @uiName Edit button label
+          * @uiGroup Account connected
          */
         "editText": string;
         /**
-          * @uiName Header Text
-          * @uiGroup Details
+          * @uiName Header
+          * @uiGroup Account connected
          */
         "headerText": string;
         /**
-          * @uiName Integration Disabled Flag
-          * @uiGroup Alert
+          * @uiName Integration disabled flag
+          * @uiGroup Integration disabled alert
          */
         "integrationDisabled": boolean;
         /**
-          * @uiName Integration Disabled Alert Header Text
-          * @uiGroup Alert
+          * @uiName Integration disabled alert header
+          * @uiGroup Integration disabled alert
+          * @uiWidget textArea
          */
         "integrationDisabledHeader": string;
         /**
-          * @uiName Integration Disabled Alert Body Text
-          * @uiGroup Alert
+          * @uiName Integration disabled alert descriptio
+          * @uiGroup Integration disabled alert
+          * @uiWidget textArea
          */
         "integrationDisabledText": string;
         /**
-          * @uiName Integration Domain
-          * @uiGroup Details
+          * @undocumented
          */
         "integrationDomain": string;
         /**
-          * @uiName Integration Paused Flag
-          * @uiGroup Alert
+          * @undocumented
          */
         "integrationPaused": boolean;
         /**
-          * @uiName Integration Paused Alert Header Text
-          * @uiGroup Alert
+          * @uiName Integration paused alert header text
+          * @uiGroup Integration disabled alert
          */
         "integrationPausedHeader": string;
         /**
-          * @uiName Integration Paused Alert Body Text
-          * @uiGroup Alert
+          * @uiName Integration paused alert body text
+          * @uiGroup Integration disabled alert
          */
         "integrationPausedText": string;
         /**
-          * @uiName Modal Header
-          * @uiGroup Form
+          * Header for the modal shown when a participant is connecting their acccount.
+          * @uiName Connect account header
+          * @uiGroup Account settings modal
          */
         "modalConnectPayPalAccountHeader": string;
         /**
-          * @uiName Next Payout Label
-          * @uiGroup Details
+          * Badge label on a payout card to indicate that this is their next scheduled payout.
+          * @uiName Next payout badge
+          * @uiGroup Account connected
          */
         "nextPayoutLabel": string;
         /**
-          * @uiName Other Currencies Label
-          * @uiGroup Details
+          * Text on payout card to indicate that this has rewards with multiple currencies.
+          * @uiName Other currencies label
+          * @uiGroup Account connected
          */
         "otherCurrenciesLabel": string;
         /**
-          * @uiName Header Text
-          * @uiGroup Connect
+          * @uiName Header
+          * @uiGroup Account not connected
          */
         "payPalAccountHeaderText": string;
         /**
-          * @uiName Paypal Email Label
-          * @uiGroup Form
+          * Label for the input shown when a participant is connecting their account.
+          * @uiName PayPal email label
+          * @uiGroup Account settings modal
          */
         "payPalEmailLabel": string;
         /**
-          * @uiName Email Help Text
-          * @uiGroup Form
+          * @uiName Email help text
+          * @uiGroup Account settings modal
+          * @uiWidget textArea
          */
         "payPalEmailLabelHelpText": string;
         /**
-          * @uiName W9 Tax Label
-          * @uiGroup Details
+          * @uiName Pending reward label
+          * @uiGroup Account connected
          */
         "pendingDetailedStatusText": string;
         /**
           * @uiName Pending Label
-          * @uiGroup Details
+          * @uiGroup Account connected
          */
         "pendingLabel": string;
         /**
-          * @uiName Label above scheduled payouts card(s)
-          * @uiGroup Alert
+          * @uiName Schedule payout(s) label
          */
         "scheduleHeaderText": string;
         /**
-          * @uiName Submit Button Text
-          * @uiGroup Form
+          * @uiName Submit button label
+          * @uiGroup Account settings modal
          */
         "submitPayPalAccountButtonText": string;
         /**
-          * @uiName Success Message
-          * @uiGroup Form
+          * Alert message shown when a participant successfully connects, changes, or disconnects their PayPal account.
+          * @uiName Success message
+          * @uiGroup Account settings modal
          */
         "successMessage": string;
         /**
-          * @uiName Upcoming Payout Label
-          * @uiGroup Details
+          * Badge label on a payout card to indicate that this is scheduled after their next payout.
+          * @uiName Upcoming payout badge
+          * @uiGroup Account connected
          */
         "upcomingPaymentLabel": string;
         /**
-          * @uiName W9 Tax Label
-          * @uiGroup Details
+          * Text on a payout card to indicate that this reward is pending due to tax reasons.
+          * @uiName W9 tax label
+          * @uiGroup Account connected
          */
         "w9TaxLabel": string;
     }
@@ -636,33 +650,37 @@ declare namespace LocalJSX {
     }
     interface SqpAccountDetails {
         /**
-          * @uiName Cancel Text
-          * @uiGroup Form
+          * @uiName Cancel button label
+          * @uiGroup Account settings modal
          */
         "cancelText"?: string;
         /**
-          * @uiName Confirmation Email Text
-          * @uiGroup Form
+          * Label for the input shown when a participant is connecting their account.
+          * @uiName Confirm email label
+          * @uiGroup Account settings modal
          */
         "confirmPayPalEmailLabel"?: string;
         /**
-          * @uiName Change Account Button Text
-          * @uiGroup Form
+          * @uiName Change account button label
+          * @uiGroup Account settings modal
          */
         "connectAccountModalButtonText"?: string;
         /**
-          * @uiName Edit Account Form Header
-          * @uiGroup Form
+          * Header for the section in the modal that allows a participant to change their connected PayPal account.
+          * @uiName Edit account header
+          * @uiGroup Account settings modal
          */
         "connectAccountModalHeaderText"?: string;
         /**
-          * @uiName Connect Button Text
-          * @uiGroup Connect
+          * @uiName Connect button label
+          * @uiGroup Account not connected
          */
         "connectPayPalAccountButtonText"?: string;
         /**
-          * @uiName Subheader Text
-          * @uiGroup Connect
+          * Let your participants know they need to connect their PayPal account to receive payouts.
+          * @uiName Subheader text
+          * @uiGroup Account not connected
+          * @uiWidget textArea
          */
         "connectPayPalDescriptionText"?: string;
         /**
@@ -671,133 +689,143 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<AccountDetailsViewProps & AccountFormViewProps>;
         /**
-          * @uiName Label above payout details card
-          * @uiGroup Alert
+          * @uiName Payout details label
          */
         "detailsHeaderText"?: string;
         /**
-          * @uiName Disconnect Account Button Text
-          * @uiGroup Form
+          * @uiName Disconnect account button label
+          * @uiGroup Account settings modal
          */
         "disconnectAccountButtonText"?: string;
         /**
-          * @uiName Disconnect Account Description Text
-          * @uiGroup Form
+          * Description for the section in the modal that allows a participant to disconnect their PayPal account.
+          * @uiName Disconnect account description
+          * @uiGroup Account settings modal
+          * @uiWidget textArea
          */
         "disconnectAccountDescriptionText"?: string;
         /**
-          * @uiName Disconnect Account Header Text
-          * @uiGroup Form
+          * Header for the section in the modal that allows a participant to disconnect their PayPal account.
+          * @uiName Disconnect account header
+          * @uiGroup Account settings modal
          */
         "disconnectAccountHeaderText"?: string;
         /**
-          * @uiName Edit Text
-          * @uiGroup Details
+          * Allows a participant to edit their account connection.
+          * @uiName Edit button label
+          * @uiGroup Account connected
          */
         "editText"?: string;
         /**
-          * @uiName Header Text
-          * @uiGroup Details
+          * @uiName Header
+          * @uiGroup Account connected
          */
         "headerText"?: string;
         /**
-          * @uiName Integration Disabled Flag
-          * @uiGroup Alert
+          * @uiName Integration disabled flag
+          * @uiGroup Integration disabled alert
          */
         "integrationDisabled"?: boolean;
         /**
-          * @uiName Integration Disabled Alert Header Text
-          * @uiGroup Alert
+          * @uiName Integration disabled alert header
+          * @uiGroup Integration disabled alert
+          * @uiWidget textArea
          */
         "integrationDisabledHeader"?: string;
         /**
-          * @uiName Integration Disabled Alert Body Text
-          * @uiGroup Alert
+          * @uiName Integration disabled alert descriptio
+          * @uiGroup Integration disabled alert
+          * @uiWidget textArea
          */
         "integrationDisabledText"?: string;
         /**
-          * @uiName Integration Domain
-          * @uiGroup Details
+          * @undocumented
          */
         "integrationDomain"?: string;
         /**
-          * @uiName Integration Paused Flag
-          * @uiGroup Alert
+          * @undocumented
          */
         "integrationPaused"?: boolean;
         /**
-          * @uiName Integration Paused Alert Header Text
-          * @uiGroup Alert
+          * @uiName Integration paused alert header text
+          * @uiGroup Integration disabled alert
          */
         "integrationPausedHeader"?: string;
         /**
-          * @uiName Integration Paused Alert Body Text
-          * @uiGroup Alert
+          * @uiName Integration paused alert body text
+          * @uiGroup Integration disabled alert
          */
         "integrationPausedText"?: string;
         /**
-          * @uiName Modal Header
-          * @uiGroup Form
+          * Header for the modal shown when a participant is connecting their acccount.
+          * @uiName Connect account header
+          * @uiGroup Account settings modal
          */
         "modalConnectPayPalAccountHeader"?: string;
         /**
-          * @uiName Next Payout Label
-          * @uiGroup Details
+          * Badge label on a payout card to indicate that this is their next scheduled payout.
+          * @uiName Next payout badge
+          * @uiGroup Account connected
          */
         "nextPayoutLabel"?: string;
         /**
-          * @uiName Other Currencies Label
-          * @uiGroup Details
+          * Text on payout card to indicate that this has rewards with multiple currencies.
+          * @uiName Other currencies label
+          * @uiGroup Account connected
          */
         "otherCurrenciesLabel"?: string;
         /**
-          * @uiName Header Text
-          * @uiGroup Connect
+          * @uiName Header
+          * @uiGroup Account not connected
          */
         "payPalAccountHeaderText"?: string;
         /**
-          * @uiName Paypal Email Label
-          * @uiGroup Form
+          * Label for the input shown when a participant is connecting their account.
+          * @uiName PayPal email label
+          * @uiGroup Account settings modal
          */
         "payPalEmailLabel"?: string;
         /**
-          * @uiName Email Help Text
-          * @uiGroup Form
+          * @uiName Email help text
+          * @uiGroup Account settings modal
+          * @uiWidget textArea
          */
         "payPalEmailLabelHelpText"?: string;
         /**
-          * @uiName W9 Tax Label
-          * @uiGroup Details
+          * @uiName Pending reward label
+          * @uiGroup Account connected
          */
         "pendingDetailedStatusText"?: string;
         /**
           * @uiName Pending Label
-          * @uiGroup Details
+          * @uiGroup Account connected
          */
         "pendingLabel"?: string;
         /**
-          * @uiName Label above scheduled payouts card(s)
-          * @uiGroup Alert
+          * @uiName Schedule payout(s) label
          */
         "scheduleHeaderText"?: string;
         /**
-          * @uiName Submit Button Text
-          * @uiGroup Form
+          * @uiName Submit button label
+          * @uiGroup Account settings modal
          */
         "submitPayPalAccountButtonText"?: string;
         /**
-          * @uiName Success Message
-          * @uiGroup Form
+          * Alert message shown when a participant successfully connects, changes, or disconnects their PayPal account.
+          * @uiName Success message
+          * @uiGroup Account settings modal
          */
         "successMessage"?: string;
         /**
-          * @uiName Upcoming Payout Label
-          * @uiGroup Details
+          * Badge label on a payout card to indicate that this is scheduled after their next payout.
+          * @uiName Upcoming payout badge
+          * @uiGroup Account connected
          */
         "upcomingPaymentLabel"?: string;
         /**
-          * @uiName W9 Tax Label
-          * @uiGroup Details
+          * Text on a payout card to indicate that this reward is pending due to tax reasons.
+          * @uiName W9 tax label
+          * @uiGroup Account connected
          */
         "w9TaxLabel"?: string;
     }
