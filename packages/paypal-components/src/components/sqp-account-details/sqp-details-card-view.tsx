@@ -42,6 +42,7 @@ const style = {
     borderRadius: "4px",
     padding: "var(--sl-spacing-large)",
     minHeight: "150px",
+    border: "1px solid var(--sl-color-gray-200)",
   },
   StatusContainer: {
     display: "flex",
@@ -55,16 +56,17 @@ const style = {
   MainCurrency: {
     margin: 0,
     fontSize: "32px",
+    width: "auto",
   },
   SubduedRegularText: {
     fontSize: "var(--sl-font-size-small)",
     color: "var(--sl-color-gray-500)",
     margin: 0,
-    width: "max-content",
+    width: "auto",
   },
   CurrenciesContainer: {
     display: "grid",
-    width: "min-content",
+    width: "auto",
     gridTemplateColumns: "1fr 1fr 1fr",
     gap: "var(--sl-spacing-xx-small) var(--sl-spacing-small)",
     paddingTop: "var(--sq-spacing-xx-small)",
@@ -78,6 +80,11 @@ const style = {
   CurrencyContainer: {
     paddingRight: "var(--sl-spacing-small)",
     gap: "var(--sl-spacing-small)",
+  },
+  SubCurrencyText: {
+    fontWeight: "var(--sl-font-weight-bold)",
+    fontSize: "var(--sl-font-size-large)",
+    margin: "0",
   },
   W9Container: {
     paddingTop: "var(--sl-spacing-large)",
@@ -109,9 +116,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
         {currencies.map((currency) => {
           return (
             <div class={classes.CurrencyContainer}>
-              <p class={classes.SubduedRegularText}>
-                {currency?.amountText} {currency?.currencyText}
-              </p>
+              <p class={classes.SubCurrencyText}>{currency?.amountText}</p>
             </div>
           );
         })}{" "}
@@ -149,6 +154,13 @@ export function DetailsCardView(props: DetailsCardViewProps) {
     upcoming: upcomingDetailedStatusText,
     "next payout": nextPayoutDetailedStatusText,
   };
+
+  console.log("ternary", empty && status === "pending");
+
+  console.log("status", status);
+  console.log("statusText", statusText[status]);
+  console.log("statusText all", statusText);
+  console.log("PROPS", props);
 
   return (
     <div>

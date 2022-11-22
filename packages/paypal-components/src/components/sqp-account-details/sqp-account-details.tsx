@@ -264,6 +264,9 @@ export class PaypalAccountDetails {
             nextPayoutLabel={props.overviewContent.nextPayoutLabel}
             upcomingPaymentLabel={props.overviewContent.upcomingPaymentLabel}
             otherCurrenciesLabel={props.overviewContent.otherCurrenciesLabel}
+            pendingDetailedStatusText={
+              props.overviewContent.pendingDetailedStatusText
+            }
             w9TaxLabel={props.overviewContent.w9TaxLabel}
           />
         </sqp-graphql-client-provider>
@@ -334,6 +337,7 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
         scheduleHeaderText: props.scheduleHeaderText,
         otherCurrenciesLabel: props.otherCurrenciesLabel,
         w9TaxLabel: props.w9TaxLabel,
+        pendingDetailedStatusText: props.pendingDetailedStatusText,
         upcomingPaymentLabel: props.upcomingPaymentLabel,
         nextPayoutLabel: props.nextPayoutLabel,
         pendingLabel: props.pendingLabel,

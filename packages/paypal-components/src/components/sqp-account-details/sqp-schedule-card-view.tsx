@@ -52,6 +52,7 @@ const style = {
     height: "94px",
     boxSizing: "border-box",
     cursor: "pointer",
+    border: "1px solid var(--sl-color-gray-200)",
   },
   AmountsContainer: {
     display: "flex",
@@ -117,7 +118,7 @@ export function ScheduleCardView(props: ScheduleCardViewProps) {
           <h2 class={classes.MainCurrency}>
             {hasDatePending || statusText !== "Pending"
               ? mainCurrency?.amountText
-              : w9Pending[0]?.amountText}
+              : w9Pending?.[0]?.amountText}
           </h2>
         )}
         {otherCurrencies && !loading && (

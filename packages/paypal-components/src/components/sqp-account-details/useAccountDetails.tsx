@@ -74,9 +74,9 @@ export function useAccountDetails(props) {
   if (process.env.NODE_ENV === "development")
     useEffect(() => {
       setUserIdentity({
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtKzIwQHNhYXNxdWF0LmNoIiwiYWNjb3VudElkIjoic2FtKzIwQHNhYXNxdWF0LmNoIiwiZW1haWwiOiJzYW0rMjBAc2Fhc3F1YXQuY2gifX0.1b8tjushS1Dq5Suc-EY7WmasP9v5XX2Fa997y-CH2i4",
-        id: "sam+20@saasquat.ch",
-        accountId: "sam+20@saasquat.ch",
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoibnB1IiwiYWNjb3VudElkIjoibnB1In19.62n_CbE1ljGtth0YXMZePxdtuilwv95aegidXszxygM",
+        id: "npu",
+        accountId: "npu",
       });
     }, []);
 
@@ -201,6 +201,7 @@ export function useAccountDetails(props) {
       detailsHeaderText: props.detailsHeaderText,
       scheduleHeaderText: props.scheduleHeaderText,
       otherCurrenciesLabel: props.otherCurrenciesLabel,
+      pendingDetailedStatusText: props.pendingDetailedStatusText,
       w9TaxLabel: props.w9TaxLabel,
       upcomingPaymentLabel: props.upcomingPaymentLabel,
       nextPayoutLabel: props.nextPayoutLabel,

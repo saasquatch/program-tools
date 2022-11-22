@@ -32,7 +32,7 @@ const FlexContainer = {
 const style = {
   Container: {
     display: "grid",
-    gridTemplateColumns: "1fr min-content 1fr",
+    gridTemplateColumns: "55% min-content 1fr",
     gridGap: "var(--sl-spacing-medium)",
     background: "var(--sl-color-neutral-0)",
 

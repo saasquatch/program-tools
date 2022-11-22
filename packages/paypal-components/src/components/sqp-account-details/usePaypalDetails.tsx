@@ -110,9 +110,7 @@ function getW9Data(w9Totals) {
 }
 
 function getPendingData(pendingTotals) {
-  const totals: Total[] =
-    pendingTotals?.details?.totals &&
-    Array.from(pendingTotals?.details?.totals);
+  const totals: Total[] = pendingTotals && Array.from(pendingTotals);
 
   const totalsSorted = totals?.sort((a, b) => b.value - a.value);
 

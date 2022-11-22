@@ -40,16 +40,18 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 const paypalStatuses = [
-  "FAILED",
-  "UNCLAIMED",
+  "PAYPAL_PENDING",
   "SUCCESS",
+  "FAILED",
+  "IN_PROGRESS",
+  "UNCLAIMED",
+  "ONHOLD",
   "REFUNDED",
   "RETURNED",
   "REVERSED",
   "BLOCKED",
-  "ONHOLD",
+  "DENIED",
 ];
-
 @Component({
   tag: "sqp-status-cell",
   shadow: true,
@@ -279,12 +281,13 @@ export class RewardTableStatusCell {
         .toLocaleString(DateTime.DATE_MED)}.`;
 
     const baseUnit = this.reward.unit?.split("/")?.shift() as string;
-    const isPayPal =
-      hasMeta ||
+    const isPayPal = paypalStatuses?.includes(rewardStatus);
+    hasMeta ||
       (baseUnits?.includes(baseUnit) &&
         supportedCurrencies.includes(this.reward.currency) &&
         ["PENDING", "AVAILABLE"].includes(rewardStatus));
 
+    console.log({ reward: this.reward, isPayPal, hasMeta });
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
