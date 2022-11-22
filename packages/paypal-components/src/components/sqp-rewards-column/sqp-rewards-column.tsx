@@ -26,14 +26,14 @@ const GET_INTEGRATION_STATUS = gql`
 })
 export class ReferralTableRewardsColumn implements ReferralTableColumn {
   /**
-   * @uiName Reward column title
+   * @uiName Column title
    */
   @Prop() columnTitle: string = "Rewards";
 
   /**
-   * Text shown in the reward status badge.
+   * Define the text shown in the reward status badge.
    *
-   * @uiName Reward Status Text
+   * @uiName Reward status text
    * @uiWidget textArea
    */
   @Prop() statusText: string =
@@ -42,7 +42,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   /**
    * Additional status text shown in the details drop down.
    *
-   * @uiName Reward Status Long Text
+   * @uiName Reward status long text
    * @uiWidget textArea
    */
   @Prop()
@@ -52,28 +52,28 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   /**
    * Shown in the dropdown details when a reward has an associated fuel tank code.
    *
-   * @uiName Fuel Tank Code Text
+   * @uiName Fuel tank code text
    */
   @Prop() fuelTankText: string = "Your code is";
 
   /**
    * Shown in the dropdown details when a reward has been received.
    *
-   * @uiName Reward Received Text
+   * @uiName Reward received text
    */
   @Prop() rewardReceivedText: string = "Reward received on";
 
   /**
    * Shown in the dropdown details when a reward has been paid out.
    *
-   * @uiName Reward Paid Out Text
+   * @uiName Reward paid out text
    */
   @Prop() rewardPaidOutText: string = "Paid out on {date}.";
 
   /**
    * Shown in the dropdown details when a reward is being paid out.
    *
-   * @uiName Reward Payout In Progress Text
+   * @uiName Reward payout in progress text
    */
   @Prop() rewardPayoutInProgressText: string =
     "Payout processing started on {date}.";
@@ -81,7 +81,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   /**
    * Shown in the dropdown details when a reward payout has failed.
    *
-   * @uiName Reward Payout Failed Text
+   * @uiName Reward payout failed text
    */
   @Prop() rewardPayoutFailedText: string =
     "This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on {date}.";
@@ -89,7 +89,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   /**
    * Shown in the dropdown details when a reward was paid out but is unclaimed.
    *
-   * @uiName Reward Unclaimed Text
+   * @uiName Reward unclaimed text
    */
   @Prop() rewardUnclaimedText: string =
     "The email you provided does not link to an existing PayPal account. Payout expires on {date}.";
@@ -97,7 +97,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   /**
    * Shown in the dropdown details when a reward was placed on hold during payout.
    *
-   * @uiName Reward On Hold Text
+   * @uiName Reward on hold text
    */
   @Prop() rewardOnHoldText: string =
     "Payout on hold and in review since {date}.";
@@ -105,50 +105,50 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   /**
    * Shown in the dropdown details when a reward was refunded after payout.
    *
-   * @uiName Reward Refunded Text
+   * @uiName Reward refunded text
    */
   @Prop() rewardRefundedText: string = "Payout refunded on {date}.";
 
   /**
    * Shown in the dropdown details when a reward was returned after payout.
    *
-   * @uiName Reward Returned Text
+   * @uiName Reward returned text
    */
   @Prop() rewardReturnedText: string =
     "The email you provided does not link to an existing PayPal account. Payout expired on {date}.";
 
   /**
-   * Shown in the dropdown details when a rewards payout was reserved.
+   * Shown in the dropdown details when a rewards payout was reversed.
    *
-   * @uiName Reward Reversed Text
+   * @uiName Reward reversed text
    */
   @Prop() rewardReversedText: string = "Payout reversed on {date}.";
 
   /**
    * Shown in the dropdown details when a reward was blocked during payout.
    *
-   * @uiName Reward Blocked Text
+   * @uiName Reward blocked text
    */
   @Prop() rewardBlockedText: string = "Payout blocked on {date}.";
 
   /**
    * Shown in the dropdown details when a reward was denied during payout.
    *
-   * @uiName Reward Denied Text
+   * @uiName Reward denied text
    */
   @Prop() rewardDeniedText: string = "Payout denied by PayPal on {date}.";
 
   /**
    * Shown in the dropdown details when a reward has an expiry date.
    *
-   * @uiName Reward Expiring Text
+   * @uiName Reward expiring text
    */
   @Prop() expiringText: string = "Expiring in";
 
   /**
    * Shown in the dropdown details when a reward is pending.
    *
-   * @uiName Reward Pending Text
+   * @uiName Reward pending text
    */
   @Prop() pendingForText: string = "{status} for {date}";
 
@@ -159,7 +159,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   @Prop() hideDetails: boolean = false;
 
   /**
-   * @uiName Integration Domain
+   * @undocumented
    */
   @Prop() integrationDomain: string =
     "https://paypal-payouts-staging.herokuapp.com/graphql";

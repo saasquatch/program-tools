@@ -30,118 +30,120 @@ const GET_INTEGRATION_STATUS = gql`
 })
 export class RewardTablePayPalStatusColumn implements RewardTableColumn {
   /**
-   * @uiName Column Title
+   * @uiName Column title
    */
   @Prop() columnTitle: string = "Status";
 
   /**
-   * @uiName Reward Status Text
+   * Define the text shown in the reward status badge.
+   * 
+   * @uiName Reward status text
    * @uiWidget textArea
    */
   @Prop() statusText: string =
     "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} EXPIRED {Expired} REDEEMED {Redeemed} PENDING {Pending} SUCCESS {Paid out} FAILED {Failed} PAYPAL_PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} DENIED {Denied} other {Not available}  }";
 
   /**
-   * Displayed below the status pill when a reward has been paid out.
+   * Shown below the status pill when a reward has been paid out.
    *
-   * @uiName Reward Paid Out Text
+   * @uiName Reward paid out text
    */
   @Prop() rewardPaidOutText: string = "Paid out on";
 
   /**
-   * Displayed below the status pill when a reward is being paid out.
+   * Shown below the status when a reward is being paid out.
    *
-   * @uiName Reward Payout In Progress Text
+   * @uiName Reward payout in progress text
    */
   @Prop() rewardPayoutInProgressText: string = "Payout process started on";
 
   /**
-   * Displayed below the status pill when a reward payout has failed.
+   * Shown below the status when a reward has failed.
    *
-   * @uiName Reward Payout Failed Text
+   * @uiName Reward payout failed text
    */
   @Prop() rewardPayoutFailedText: string =
     "This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on";
 
   /**
-   * Displayed below the status pill when a reward was paid out but is unclaimed.
+   * Shown below the status pill when a reward was paid out but is unclaimed.
    *
-   * @uiName Reward Unclaimed Text
+   * @uiName Reward unclaimed text
    */
   @Prop() rewardUnclaimedText: string =
     "The email you provided does not link to an existing PayPal account. Payout expires on";
 
   /**
-   * Displayed below the status pill when a reward was placed on hold during payout.
+   * Shown below the status when a reward was placed on hold during payout.
    *
-   * @uiName Reward On Hold Text
+   * @uiName Reward on hold text
    */
   @Prop() rewardOnHoldText: string = "Payout on hold and in review since";
 
   /**
-   * Displayed below the status pill when a reward was refunded after payout.
+   * Shown below the status pill when a reward was refunded after payout.
    *
    * @uiName Reward Refunded Text
    */
   @Prop() rewardRefundedText: string = "Payout refunded on";
 
   /**
-   * Displayed below the status pill when a reward was returned after payout.
+   * Shown below the status pill when a reward was returned after payout.
    *
-   * @uiName Reward Returned Text
+   * @uiName Reward returned text
    */
   @Prop() rewardReturnedText: string =
     "The email you provided does not link to an existing PayPal account. Payout expired on";
 
   /**
-   * Displayed below the status pill when a rewards payout was reserved.
+   * Shown below the status pill when a rewards payout was reversed.
    *
-   * @uiName Reward Reversed Text
+   * @uiName Reward reversed text
    */
   @Prop() rewardReversedText: string = "Payout reversed on";
 
   /**
-   * Displayed below the status pill when a reward was blocked during payout.
+   * Shown below the status when a reward was blocked during payout.
    *
-   * @uiName Reward Blocked Text
+   * @uiName Reward blocked text
    */
   @Prop() rewardBlockedText: string = "Payout blocked on";
 
   /**
-   * Displayed below the status pill when a reward was denied during payout.
+   * Shown below the status pill when a reward was denied during payout.
    *
-   * @uiName Reward Denied Text
+   * @uiName Reward denied text
    */
   @Prop() rewardDeniedText: string = "Payout denied by PayPal on";
   /**
-   * Text shown before the date of an expiring reward.
+   * Text shown before the date of an expiring reward. Example: Expires on {date}.
    *
-   * @uiName Expiry Date Prefix
+   * @uiName Expiry date prefix
    */
   @Prop() expiryText: string = "Expires on ";
   /**
-   * Displayed when a reward is pending due to W9 compliance.
+   * Shown below the status when a reward is pending due to W-9 compliance.
    *
-   * @uiName W9 Pending Text
+   * @uiName W-9 pending text
    */
   @Prop() pendingUsTax: string = "W-9 required";
 
   /**
-   * Text shown before the available date of a pending reward.
+   * Text shown before the available date of a pending reward. Example: Pending until {date}.
    *
-   * @uiName Pending Date Prefix
+   * @uiName Pending date prefix
    */
   @Prop() pendingScheduled: string = "Until";
 
   /**
-   * Displayed when fulfillment error occured when creating a reward.
+   * Shown below the status when a fulfillment error occured when creating a reward.
    *
-   * @uiName Unhandled Error Text
+   * @uiName Unhandled error text
    */
   @Prop() pendingUnhandled: string = "Fulfillment error";
 
   /**
-   * @uiName Integration Domain
+   * @undocumented
    */
   @Prop() integrationDomain: string =
     "https://paypal-payouts-staging.herokuapp.com/graphql";

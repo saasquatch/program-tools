@@ -141,7 +141,7 @@ Feature: Paypal Account Details
             | reward                                     |
             | Available $25 USD                          |
             | Pending $25 USD till 2022-11-04 at 12:00PM |
-            | Pending $30 USD till 2022-11-31 at 11:59PM |
+            | Pending $30 USD till 2022-11-30 at 11:59PM |
             | Pending $30 USD till 2023-01-01 at 12:59PM |
             | Pending $30 USD till 2023-01-01 at 12:01PM |
             | Pending $35 USD till 2023-02-04 at 5:00PM  |
