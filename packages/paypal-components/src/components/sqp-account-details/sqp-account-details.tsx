@@ -31,21 +31,7 @@ export class PaypalAccountDetails {
    * @uiGroup Details
    */
   @Prop() headerText: string = "PayPal account";
-  /**
-   * @uiName Account Label
-   * @uiGroup Details
-   */
-  @Prop() accountLabel: string = "Account";
-  /**
-   * @uiName Recent Payment Label
-   * @uiGroup Details
-   */
-  @Prop() recentPaymentLabel: string = "Recent payment";
-  /**
-   * @uiName Next Payment Label
-   * @uiGroup Details
-   */
-  @Prop() nextPaymentLabel: string = "Next payment";
+
   /**
    * @uiName Other Currencies Label
    * @uiGroup Details
@@ -302,9 +288,6 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
       },
       detailsContent: {
         headerText: props.headerText,
-        accountLabel: props.accountLabel,
-        recentPaymentLabel: props.recentPaymentLabel,
-        nextPaymentLabel: props.nextPaymentLabel,
         editText: props.editText,
       },
       formContent: {
