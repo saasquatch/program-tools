@@ -43,11 +43,6 @@ export namespace Components {
     }
     interface SqpAccountDetails {
         /**
-          * @uiName Account Label
-          * @uiGroup Details
-         */
-        "accountLabel": string;
-        /**
           * @uiName Cancel Text
           * @uiGroup Form
          */
@@ -153,11 +148,6 @@ export namespace Components {
          */
         "modalConnectPayPalAccountHeader": string;
         /**
-          * @uiName Next Payment Label
-          * @uiGroup Details
-         */
-        "nextPaymentLabel": string;
-        /**
           * @uiName Next Payout Label
           * @uiGroup Details
          */
@@ -192,11 +182,6 @@ export namespace Components {
           * @uiGroup Details
          */
         "pendingLabel": string;
-        /**
-          * @uiName Recent Payment Label
-          * @uiGroup Details
-         */
-        "recentPaymentLabel": string;
         /**
           * @uiName Label above scheduled payouts card(s)
           * @uiGroup Alert
@@ -651,11 +636,6 @@ declare namespace LocalJSX {
     }
     interface SqpAccountDetails {
         /**
-          * @uiName Account Label
-          * @uiGroup Details
-         */
-        "accountLabel"?: string;
-        /**
           * @uiName Cancel Text
           * @uiGroup Form
          */
@@ -761,11 +741,6 @@ declare namespace LocalJSX {
          */
         "modalConnectPayPalAccountHeader"?: string;
         /**
-          * @uiName Next Payment Label
-          * @uiGroup Details
-         */
-        "nextPaymentLabel"?: string;
-        /**
           * @uiName Next Payout Label
           * @uiGroup Details
          */
@@ -800,11 +775,6 @@ declare namespace LocalJSX {
           * @uiGroup Details
          */
         "pendingLabel"?: string;
-        /**
-          * @uiName Recent Payment Label
-          * @uiGroup Details
-         */
-        "recentPaymentLabel"?: string;
         /**
           * @uiName Label above scheduled payouts card(s)
           * @uiGroup Alert

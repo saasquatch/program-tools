@@ -166,9 +166,6 @@ export function useAccountDetails(props) {
     },
     detailsContent: {
       headerText: props.headerText,
-      accountLabel: props.accountLabel,
-      recentPaymentLabel: props.recentPaymentLabel,
-      nextPaymentLabel: props.nextPaymentLabel,
       editText: props.editText,
     },
     formContent: {

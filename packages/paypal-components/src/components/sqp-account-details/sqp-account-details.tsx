@@ -31,18 +31,7 @@ export class PaypalAccountDetails {
    * @uiGroup Account connected
    */
   @Prop() headerText: string = "Account";
-  /**
-   * @undocumented
-   */
-  @Prop() accountLabel: string = "Account";
-  /**
-   * @undocumented
-   */
-  @Prop() recentPaymentLabel: string = "Recent payment";
-  /**
-   * @undocumented
-   */
-  @Prop() nextPaymentLabel: string = "Next payment";
+
   /**
    * Text on payout card to indicate that this has rewards with multiple currencies.
    *
@@ -326,9 +315,6 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
       },
       detailsContent: {
         headerText: props.headerText,
-        accountLabel: props.accountLabel,
-        recentPaymentLabel: props.recentPaymentLabel,
-        nextPaymentLabel: props.nextPaymentLabel,
         editText: props.editText,
       },
       formContent: {
