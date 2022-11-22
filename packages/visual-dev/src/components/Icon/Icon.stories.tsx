@@ -117,24 +117,21 @@ export const refresh = () => <IconView icon={"refresh"} />;
 const TestTooltipDiv = styled.div`
   margin: 50px 50%;
 `;
-export const tooltip = () => (
+export const IconWithTooltip = () => (
   <TestTooltipDiv>
-    <IconView
-      icon={"add"}
-      tooltip="A tooltip that explains something in detail"
-    />
+    <IconView icon={"add"} tooltip="Tooltip description" />
   </TestTooltipDiv>
 );
-export const tooltipDirectionBottom = () => (
+export const tooltipBottom = () => (
   <TestTooltipDiv>
     <IconView
       icon={"add"}
-      tooltip="A tooltip that explains something in detail"
+      tooltip="Tooltip description"
       tooltipDirection="bottom"
     />
   </TestTooltipDiv>
 );
-export const tooltipDirectionLeft = () => (
+export const tooltipLeft = () => (
   <TestTooltipDiv>
     <IconView
       icon={"add"}
@@ -143,7 +140,7 @@ export const tooltipDirectionLeft = () => (
     />
   </TestTooltipDiv>
 );
-export const tooltipDirectionRight = () => (
+export const tooltipRight = () => (
   <TestTooltipDiv>
     <IconView
       icon={"add"}
@@ -168,7 +165,12 @@ export const tooltipCustomCSS = () => (
       icon={"add"}
       tooltip="A tooltip that explains something in detail. This is a longer tooltip."
       tooltipDirection="right"
-      tooltipCustomCSS={{ fontSize: "20px", fontWeight: "bold" }}
+      tooltipMaxWidth="200px"
+      tooltipCustomCSS={{
+        fontSize: "20px",
+        fontWeight: "bold",
+        textAlign: "center",
+      }}
     />
   </TestTooltipDiv>
 );
