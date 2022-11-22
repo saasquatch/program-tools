@@ -231,6 +231,7 @@ function usePayPalDetailsDemo(props: PaypalAccountDetails) {
         active: i === 0,
         otherCurrencies: true,
         loading: false,
+        status: "upcoming" as "upcoming",
         statusText: DateTime.now()
           .plus({ day: bucket })
           .toFormat("LLL dd, yyyy"),
@@ -249,6 +250,7 @@ function usePayPalDetailsDemo(props: PaypalAccountDetails) {
         hasDatePending: false,
         hasW9Pending: false,
         empty: false,
+        additionalW9Text: props.additionalW9Text,
       };
       return <ScheduleCardView {...viewProps} />;
     }) || [];
@@ -273,6 +275,7 @@ function usePayPalDetailsDemo(props: PaypalAccountDetails) {
     hasDatePending: true,
     hasW9Pending: false,
     empty: false,
+    additionalW9Text: props.additionalW9Text,
   };
   const pendingContent = <ScheduleCardView {...pendingProps} />;
 
