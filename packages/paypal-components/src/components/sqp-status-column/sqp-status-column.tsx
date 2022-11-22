@@ -83,7 +83,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
   /**
    * Shown below the status pill when a reward was refunded after payout.
    *
-   * @uiName Reward Refunded Text
+   * @uiName Reward refunded text
    */
   @Prop() rewardRefundedText: string = "Payout refunded on";
 
