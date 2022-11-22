@@ -24,6 +24,7 @@ export interface DetailsCardViewProps {
   empty?: boolean;
   hasW9Pending?: boolean;
   hasDatePending?: boolean;
+  additionalW9Text?: string;
 }
 
 const statusMap = {

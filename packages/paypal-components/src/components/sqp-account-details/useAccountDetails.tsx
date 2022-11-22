@@ -74,9 +74,9 @@ export function useAccountDetails(props) {
   if (process.env.NODE_ENV === "development")
     useEffect(() => {
       setUserIdentity({
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoibnB1IiwiYWNjb3VudElkIjoibnB1In19.62n_CbE1ljGtth0YXMZePxdtuilwv95aegidXszxygM",
-        id: "npu",
-        accountId: "npu",
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoidzlvdSIsImFjY291bnRJZCI6Inc5b3UifX0.iluu7ZMJJVnrAIlqRFSfxS-tl5i0mEztRzYof3CWSec",
+        id: "w9ou",
+        accountId: "w9ou",
       });
     }, []);
 
@@ -197,6 +197,7 @@ export function useAccountDetails(props) {
     overviewContent: {
       detailsHeaderText: props.detailsHeaderText,
       scheduleHeaderText: props.scheduleHeaderText,
+      additionalW9Text: props.additionalW9Text,
       otherCurrenciesLabel: props.otherCurrenciesLabel,
       pendingDetailedStatusText: props.pendingDetailedStatusText,
       w9TaxLabel: props.w9TaxLabel,

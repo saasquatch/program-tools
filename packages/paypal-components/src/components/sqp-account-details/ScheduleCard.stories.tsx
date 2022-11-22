@@ -19,6 +19,8 @@ const defaultProps: ScheduleCardViewProps = {
   loading: false,
   statusText: "Oct 1, 2022",
   otherCurrenciesText: "5 other currencies",
+  status: "upcoming",
+  additionalW9Text: "Rewards awaiting W-9",
   mainCurrency: {
     amountText: "30.00",
     currencyText: "USD",
@@ -46,5 +48,9 @@ export const Active = () => {
 };
 
 export const Pending = () => {
-  return <ScheduleCardView {...{ ...defaultProps, statusText: "Pending" }} />;
+  return (
+    <ScheduleCardView
+      {...{ ...defaultProps, statusText: "Pending", status: "pending" }}
+    />
+  );
 };

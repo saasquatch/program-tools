@@ -48,6 +48,13 @@ export class PaypalAccountDetails {
    */
   @Prop() w9TaxLabel: string = "Awaiting W-9 tax form";
   /**
+   * Text on a scheduled payout card to indicate that this reward is pending due to tax reasons.
+   *
+   * @uiName Additional W9 rewards label
+   * @uiGroup Account connected
+   */
+  @Prop() additionalW9Text: string = "Rewards awaiting W-9";
+  /**
    * @uiName Pending reward label
    * @uiGroup Account connected
    */
@@ -105,7 +112,7 @@ export class PaypalAccountDetails {
   @Prop() payPalAccountHeaderText: string = "PayPal account";
   /**
    * Header for the modal shown when a participant is connecting their acccount.
-   * 
+   *
    * @uiName Connect account header
    * @uiGroup Account settings modal
    */
@@ -122,14 +129,14 @@ export class PaypalAccountDetails {
   @Prop() submitPayPalAccountButtonText: string = "Connect account";
   /**
    * Label for the input shown when a participant is connecting their account.
-   * 
+   *
    * @uiName PayPal email label
    * @uiGroup Account settings modal
    */
   @Prop() payPalEmailLabel: string = "PayPal email";
   /**
    * Shown under the PayPal email input field.
-   * 
+   *
    * @uiName Email help text
    * @uiGroup Account settings modal
    * @uiWidget textArea
@@ -145,7 +152,7 @@ export class PaypalAccountDetails {
   @Prop() confirmPayPalEmailLabel: string = "Confirm email";
   /**
    * Alert message shown when a participant successfully connects, changes, or disconnects their PayPal account.
-   * 
+   *
    * @uiName Success message
    * @uiGroup Account settings modal
    */
@@ -277,6 +284,7 @@ export class PaypalAccountDetails {
             pendingLabel={props.overviewContent.pendingLabel}
             nextPayoutLabel={props.overviewContent.nextPayoutLabel}
             upcomingPaymentLabel={props.overviewContent.upcomingPaymentLabel}
+            additionalW9Text={props.overviewContent.additionalW9Text}
             otherCurrenciesLabel={props.overviewContent.otherCurrenciesLabel}
             pendingDetailedStatusText={
               props.overviewContent.pendingDetailedStatusText
@@ -346,6 +354,7 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
       overviewContent: {
         detailsHeaderText: props.detailsHeaderText,
         scheduleHeaderText: props.scheduleHeaderText,
+        additionalW9Text: props.additionalW9Text,
         otherCurrenciesLabel: props.otherCurrenciesLabel,
         w9TaxLabel: props.w9TaxLabel,
         pendingDetailedStatusText: props.pendingDetailedStatusText,
