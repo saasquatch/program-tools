@@ -3,9 +3,8 @@ import {
   useQuery,
   useRefreshDispatcher,
   useUserIdentity,
-  setUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useRef, useState, useEffect } from "@saasquatch/universal-hooks";
+import { useRef, useState } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { gql } from "graphql-request";
 import jsonpointer from "jsonpointer";
@@ -34,23 +33,6 @@ const SUBMIT_ACCOUNT = gql`
   }
 `;
 
-const NEXT_PAYOUT_QUERY = gql`
-  query nextPayoutDetails {
-    nextPayoutDetails {
-      totals {
-        currencyCode
-        value
-      }
-      baseUnitBalances {
-        baseUnit
-        balances {
-          currencyCode
-          value
-        }
-      }
-    }
-  }
-`;
 type AccountDetailsQuery = {
   viewer: {
     id: string;
@@ -70,18 +52,7 @@ export function useAccountDetails(props) {
 
   const { data } = useQuery<AccountDetailsQuery>(ACCOUNT_DETAILS_QUERY, {});
 
-  // TODO: remove this
-  if (process.env.NODE_ENV === "development")
-    useEffect(() => {
-      setUserIdentity({
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoibnB1IiwiYWNjb3VudElkIjoibnB1In19.62n_CbE1ljGtth0YXMZePxdtuilwv95aegidXszxygM",
-        id: "npu",
-        accountId: "npu",
-      });
-    }, []);
-
-  const [submitUser, { data: submissionData, loading }] =
-    useMutation(SUBMIT_ACCOUNT);
+  const [submitUser, { loading }] = useMutation(SUBMIT_ACCOUNT);
 
   const { refresh } = useRefreshDispatcher();
   const { accountId, id } = useUserIdentity() || { accountId: null, id: null };
@@ -169,7 +140,6 @@ export function useAccountDetails(props) {
       editText: props.editText,
     },
     formContent: {
-      // @ts-ignore
       paypalEmail: data?.viewer?.customFields?.paypalEmail,
       modalConnectPayPalAccountHeader: props.modalConnectPayPalAccountHeader,
       cancelText: props.cancelText,

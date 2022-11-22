@@ -241,6 +241,11 @@ export namespace Components {
          */
         "connectPayPalDescriptionText": string;
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<AccountDetailsViewProps>;
+        /**
           * @undocumented
          */
         "detailsHeaderText": string;
@@ -848,6 +853,11 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "connectPayPalDescriptionText"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<AccountDetailsViewProps>;
         /**
           * @undocumented
          */

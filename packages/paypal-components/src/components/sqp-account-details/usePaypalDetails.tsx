@@ -4,7 +4,6 @@ import { h } from "@stencil/core";
 import { gql } from "graphql-request";
 import { DateTime } from "luxon";
 import { intl } from "../../global/global";
-import { OtherCurrencies } from "./DetailsCard.stories";
 import { DetailsCardViewProps } from "./sqp-details-card-view";
 import { PaypalAccountDetails } from "./sqp-paypal-details";
 import { ScheduleCardView } from "./sqp-schedule-card-view";

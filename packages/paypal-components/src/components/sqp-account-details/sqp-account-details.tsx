@@ -105,7 +105,7 @@ export class PaypalAccountDetails {
   @Prop() payPalAccountHeaderText: string = "PayPal account";
   /**
    * Header for the modal shown when a participant is connecting their acccount.
-   * 
+   *
    * @uiName Connect account header
    * @uiGroup Account settings modal
    */
@@ -122,14 +122,14 @@ export class PaypalAccountDetails {
   @Prop() submitPayPalAccountButtonText: string = "Connect account";
   /**
    * Label for the input shown when a participant is connecting their account.
-   * 
+   *
    * @uiName PayPal email label
    * @uiGroup Account settings modal
    */
   @Prop() payPalEmailLabel: string = "PayPal email";
   /**
    * Shown under the PayPal email input field.
-   * 
+   *
    * @uiName Email help text
    * @uiGroup Account settings modal
    * @uiWidget textArea
@@ -145,7 +145,7 @@ export class PaypalAccountDetails {
   @Prop() confirmPayPalEmailLabel: string = "Confirm email";
   /**
    * Alert message shown when a participant successfully connects, changes, or disconnects their PayPal account.
-   * 
+   *
    * @uiName Success message
    * @uiGroup Account settings modal
    */
@@ -303,7 +303,7 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
     {
       formRef,
       setupAccount: () => {},
-      hasAccount: false,
+      hasAccount: true,
       integrationDisabled: false,
       integrationPaused: false,
       callbacks: { submit: () => {}, setOpen, disconnect: () => {} },
@@ -319,6 +319,7 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
         editText: props.editText,
       },
       formContent: {
+        paypalEmail: "test@example.com",
         modalConnectPayPalAccountHeader: props.modalConnectPayPalAccountHeader,
         cancelText: props.cancelText,
         connectPayPalAccountButtonText: props.connectPayPalAccountButtonText,
