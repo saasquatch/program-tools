@@ -61,6 +61,10 @@ export function AccountFormView(props: AccountFormViewProps) {
         padding:
           "0 var(--sl-spacing-x-large) var(--sl-spacing-x-large) var(--sl-spacing-x-large)",
       },
+      "&::part(base)": {
+        marginTop: "var(--sl-spacing-xxxx-large)",
+        alignItems: "flex-start",
+      },
     },
 
     Error: {
