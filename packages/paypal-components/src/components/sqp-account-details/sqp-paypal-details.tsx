@@ -174,7 +174,7 @@ function usePayPalDetailsDemo(props: PaypalAccountDetails) {
   const otherCurrencies = [
     {
       currencyText: "CAD",
-      amountText: "€$20.00",
+      amountText: "CA$20.00",
       value: 2000,
     },
     {
@@ -217,7 +217,7 @@ function usePayPalDetailsDemo(props: PaypalAccountDetails) {
       const otherCurrencies = [
         {
           currencyText: "CAD",
-          amountText: "€$20.00",
+          amountText: "CA$20.00",
           value: 2000,
         },
         {
