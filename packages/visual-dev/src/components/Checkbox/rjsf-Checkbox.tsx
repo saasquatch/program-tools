@@ -4,7 +4,6 @@ import { CheckboxView } from "./Checkbox";
 
 export function RJSFCheckbox(props: WidgetProps) {
   const options = props.options;
-  console.log(props);
   return (
     <CheckboxView
       id={props.id}
