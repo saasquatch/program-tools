@@ -4,7 +4,6 @@ import { h } from "@stencil/core";
 import { gql } from "graphql-request";
 import { DateTime } from "luxon";
 import { intl } from "../../global/global";
-import { OtherCurrencies } from "./DetailsCard.stories";
 import { DetailsCardViewProps } from "./sqp-details-card-view";
 import { PaypalAccountDetails } from "./sqp-paypal-details";
 import { ScheduleCardView } from "./sqp-schedule-card-view";
@@ -192,7 +191,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
   const pendingProps = {
     active: selectedPayout === -1,
     loading,
-    status: "pending" as "pending",
+    status: "pending" as const,
     statusText: props.pendingLabel,
     pendingStatusBadgeText: props.pendingLabel,
     upcomingStatusBadgeText: props.upcomingPaymentLabel,
@@ -216,6 +215,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     setActivePayout: () => setSelectedPayout(-1),
     w9PendingText: props.w9TaxLabel,
     w9Pending,
+    additionalW9Text: props.additionalW9Text,
     hasDatePending: !emptyPending,
     hasW9Pending: !!w9Pending,
     empty: emptyPending && !w9Pending,
@@ -246,6 +246,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     ),
     otherCurrencies: otherCurrencies?.length ? otherCurrencies : undefined,
     w9PendingText: props.w9TaxLabel,
+    additionalW9Text: props.additionalW9Text,
     w9Pending: undefined,
     empty,
   };
@@ -262,7 +263,12 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
       const viewProps = {
         active: i === selectedPayout,
         otherCurrencies: hasOtherCurrencies,
+        additionalW9Text: props.additionalW9Text,
         loading,
+        status:
+          selectedPayout === 0
+            ? ("next payout" as const)
+            : ("upcoming" as const),
         statusText: DateTime.fromMillis(bucket?.date).toFormat("LLL dd, yyyy"),
         otherCurrenciesText: hasOtherCurrencies
           ? intl.formatMessage(

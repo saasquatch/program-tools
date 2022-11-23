@@ -1,8 +1,18 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Prop, State } from "@stencil/core";
+import deepmerge from "deepmerge";
+import { DateTime } from "luxon";
+import { DemoData } from "../../global/demo";
+import { intl } from "../../global/global";
 import { getProps } from "../../utils/utils";
-import { AccountDetailsView } from "./sqp-account-details-view";
-import { DetailsCardView } from "./sqp-details-card-view";
+import { Upcoming } from "./DetailsCard.stories";
+import { Default } from "./ScheduleCard.stories";
+import {
+  AccountDetailsView,
+  AccountDetailsViewProps,
+} from "./sqp-account-details-view";
+import { DetailsCardView, DetailsCardViewProps } from "./sqp-details-card-view";
 import { ScheduleCardView } from "./sqp-schedule-card-view";
 import { usePayPalDetails } from "./usePaypalDetails";
 
@@ -101,6 +111,16 @@ export class PaypalAccountDetails {
    * @undocumented
    */
   @Prop() w9TaxLabel: string;
+  /**
+   * @undocumented
+   */
+  @Prop() additionalW9Text: string;
+
+  /**
+   * @undocumented
+   * @uiType object
+   */
+  @Prop() demoData?: DemoData<AccountDetailsViewProps>;
 
   constructor() {
     withHooks(this);
@@ -108,7 +128,10 @@ export class PaypalAccountDetails {
   disconnectedCallback() {}
   render() {
     const componentProps = getProps(this);
-    const props = usePayPalDetails(componentProps);
+
+    const props = isDemo()
+      ? usePayPalDetailsDemo(componentProps)
+      : usePayPalDetails(componentProps);
 
     console.log({ componentProps });
 
@@ -140,4 +163,136 @@ export class PaypalAccountDetails {
       </Host>
     );
   }
+}
+
+function usePayPalDetailsDemo(props: PaypalAccountDetails) {
+  const mainCurrency = {
+    currencyText: "USD",
+    amountText: "$25.00",
+    value: 2500,
+  };
+  const otherCurrencies = [
+    {
+      currencyText: "CAD",
+      amountText: "CA$20.00",
+      value: 2000,
+    },
+    {
+      currencyText: "EUR",
+      amountText: "€15.00",
+      value: 1500,
+    },
+  ];
+  const detailsProps: DetailsCardViewProps = {
+    loading: false,
+    mainCurrency,
+    status: "next payout",
+    pendingStatusBadgeText: props.pendingLabel,
+    upcomingStatusBadgeText: props.upcomingPaymentLabel,
+    nextPayoutStatusBadgeText: props.nextPayoutLabel,
+    pendingDetailedStatusText: props.pendingDetailedStatusText,
+    nextPayoutDetailedStatusText: DateTime.now().toFormat("LLL dd, yyyy"),
+    upcomingDetailedStatusText: DateTime.now()
+      .plus({ day: 1 })
+      .toFormat("LLL dd, yyyy"),
+    otherCurrenciesText: intl.formatMessage(
+      {
+        id: "otherCurrencies",
+        defaultMessage: props.otherCurrenciesLabel,
+      },
+      {
+        amount: otherCurrencies?.length,
+      }
+    ),
+    otherCurrencies: otherCurrencies?.length ? otherCurrencies : undefined,
+    w9PendingText: props.w9TaxLabel,
+    w9Pending: undefined,
+    empty: false,
+  };
+
+  const buckets = [0, 1, 2];
+
+  const upcomingContent =
+    buckets?.map((bucket, i) => {
+      const otherCurrencies = [
+        {
+          currencyText: "CAD",
+          amountText: "CA$20.00",
+          value: 2000,
+        },
+        {
+          currencyText: "EUR",
+          amountText: "€15.00",
+          value: 1500,
+        },
+      ];
+
+      const viewProps = {
+        active: i === 0,
+        otherCurrencies: true,
+        loading: false,
+        status: "upcoming" as "upcoming",
+        statusText: DateTime.now()
+          .plus({ day: bucket })
+          .toFormat("LLL dd, yyyy"),
+        otherCurrenciesText: intl.formatMessage(
+          {
+            id: "otherCurrencies",
+            defaultMessage: props.otherCurrenciesLabel,
+          },
+          {
+            amount: bucket === 2 ? 1 : otherCurrencies?.length,
+          }
+        ),
+        mainCurrency,
+        setActivePayout: () => {},
+        w9Pending: undefined,
+        hasDatePending: false,
+        hasW9Pending: false,
+        empty: false,
+        additionalW9Text: props.additionalW9Text,
+      };
+      return <ScheduleCardView {...viewProps} />;
+    }) || [];
+
+  const pendingProps = {
+    active: false,
+    loading: false,
+    status: "pending" as "pending",
+    statusText: props.pendingLabel,
+    pendingStatusBadgeText: props.pendingLabel,
+    upcomingStatusBadgeText: props.upcomingPaymentLabel,
+    nextPayoutStatusBadgeText: props.nextPayoutLabel,
+    pendingDetailedStatusText: props.pendingDetailedStatusText,
+    upcomingDetailedStatusText: "",
+    nextPayoutDetailedStatusText: "",
+    otherCurrencies: undefined,
+    otherCurrenciesText: "",
+    mainCurrency,
+    setActivePayout: () => {},
+    w9PendingText: props.w9TaxLabel,
+    w9Pending: undefined,
+    hasDatePending: true,
+    hasW9Pending: false,
+    empty: false,
+    additionalW9Text: props.additionalW9Text,
+  };
+  const pendingContent = <ScheduleCardView {...pendingProps} />;
+
+  return deepmerge(
+    {
+      detailsProps,
+      detailsHeaderText: props.detailsHeaderText,
+      scheduleHeaderText: props.scheduleHeaderText,
+      otherCurrenciesLabel: props.otherCurrenciesLabel,
+      w9TaxLabel: props.w9TaxLabel,
+      pendingDetailedStatusText: props.pendingDetailedStatusText,
+      upcomingPaymentLabel: props.upcomingPaymentLabel,
+      nextPayoutLabel: props.nextPayoutLabel,
+      pendingLabel: props.pendingLabel,
+      ScheduleContent: [upcomingContent, pendingContent],
+    },
+    props.demoData || {},
+    { arrayMerge: (_, a) => a }
+  );
 }

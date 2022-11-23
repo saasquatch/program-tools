@@ -43,6 +43,12 @@ export namespace Components {
     }
     interface SqpAccountDetails {
         /**
+          * Text on a scheduled payout card to indicate that this reward is pending due to tax reasons.
+          * @uiName Additional W9 rewards label
+          * @uiGroup Account connected
+         */
+        "additionalW9Text": string;
+        /**
           * @uiName Cancel button label
           * @uiGroup Account settings modal
          */
@@ -237,11 +243,20 @@ export namespace Components {
         /**
           * @undocumented
          */
+        "additionalW9Text": string;
+        /**
+          * @undocumented
+         */
         "connectPayPalAccountButtonText": string;
         /**
           * @undocumented
          */
         "connectPayPalDescriptionText": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<AccountDetailsViewProps>;
         /**
           * @undocumented
          */
@@ -653,6 +668,12 @@ declare namespace LocalJSX {
     }
     interface SqpAccountDetails {
         /**
+          * Text on a scheduled payout card to indicate that this reward is pending due to tax reasons.
+          * @uiName Additional W9 rewards label
+          * @uiGroup Account connected
+         */
+        "additionalW9Text"?: string;
+        /**
           * @uiName Cancel button label
           * @uiGroup Account settings modal
          */
@@ -847,11 +868,20 @@ declare namespace LocalJSX {
         /**
           * @undocumented
          */
+        "additionalW9Text"?: string;
+        /**
+          * @undocumented
+         */
         "connectPayPalAccountButtonText"?: string;
         /**
           * @undocumented
          */
         "connectPayPalDescriptionText"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<AccountDetailsViewProps>;
         /**
           * @undocumented
          */
