@@ -12,9 +12,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Components changed
   - \<TagInput>
     - Added an input that supports tags before the functional input, can be used for tag or email input
-  - \<Select>
+  - \<SelectView>
     - refactor such that <Select> shares a codebase with <SelectView> and its subcomponents.
-    - <Select> now supports the DownshiftJS multiselect hook, see stories for implementation details
+    - Added support for the DownshiftJS multiselect hook, see stories for implementation details
+  - \<Badge>
+    - Add "small" badge size
+  - \<IconButton>
+    - Fix cursor not entering pointer mode when hovering button
+  - \<Datatable>
+    - Support for custom empty state graphics
+  - \<DisplayDropdown>
+    - Add a new style of select/dropdown component, typically used in table rows
+  - \<GlobalStyle>
+    - Add tokens for surface dark and surface overlay colors
 
 ## [1.1.1] - 2022-09-22
 
