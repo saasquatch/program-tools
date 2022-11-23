@@ -139,13 +139,15 @@ export namespace Components {
          */
         "integrationPaused": boolean;
         /**
-          * @uiName Integration paused alert header text
+          * @uiName Integration paused alert header
           * @uiGroup Integration disabled alert
+          * @uiWidget textArea
          */
         "integrationPausedHeader": string;
         /**
-          * @uiName Integration paused alert body text
+          * @uiName Integration paused alert description
           * @uiGroup Integration disabled alert
+          * @uiWidget textArea
          */
         "integrationPausedText": string;
         /**
@@ -195,7 +197,7 @@ export namespace Components {
          */
         "pendingLabel": string;
         /**
-          * @uiName Schedule payout(s) label
+          * @uiName Scheduled payout(s) label
          */
         "scheduleHeaderText": string;
         /**
@@ -516,7 +518,7 @@ export namespace Components {
         "rewardPayoutInProgressText": string;
         /**
           * Shown below the status pill when a reward was refunded after payout.
-          * @uiName Reward Refunded Text
+          * @uiName Reward refunded text
          */
         "rewardRefundedText": string;
         /**
@@ -747,13 +749,15 @@ declare namespace LocalJSX {
          */
         "integrationPaused"?: boolean;
         /**
-          * @uiName Integration paused alert header text
+          * @uiName Integration paused alert header
           * @uiGroup Integration disabled alert
+          * @uiWidget textArea
          */
         "integrationPausedHeader"?: string;
         /**
-          * @uiName Integration paused alert body text
+          * @uiName Integration paused alert description
           * @uiGroup Integration disabled alert
+          * @uiWidget textArea
          */
         "integrationPausedText"?: string;
         /**
@@ -803,7 +807,7 @@ declare namespace LocalJSX {
          */
         "pendingLabel"?: string;
         /**
-          * @uiName Schedule payout(s) label
+          * @uiName Scheduled payout(s) label
          */
         "scheduleHeaderText"?: string;
         /**
@@ -1119,7 +1123,7 @@ declare namespace LocalJSX {
         "rewardPayoutInProgressText"?: string;
         /**
           * Shown below the status pill when a reward was refunded after payout.
-          * @uiName Reward Refunded Text
+          * @uiName Reward refunded text
          */
         "rewardRefundedText"?: string;
         /**

@@ -26,7 +26,7 @@ Feature: Referral Table Reward Column
 
     @motivating
     @ui
-    Scenario Outline: The status column displays the status of PayPal rewards
+    Scenario Outline: The rewards column displays the status of PayPal rewards
         Given a reward with <paypalStatus> in its reward meta
         Then the status of their reward is displayed in a <pillColour> pill with <text>
         And they see the PayPal icon to the right of the pill
@@ -42,6 +42,18 @@ Feature: Referral Table Reward Column
             | REVERSED  | Reversed    | grey       |
             | BLOCKED   | Blocked     | grey       |
             | DENIED    | Denied      | grey       |
+
+    @minutia
+    Scenario Outline: PayPal statuses fallback if there is a meta status but not a PayPal status
+        Given a reward with meta status <status>
+        But it has no PayPal transaction status in the custom meta
+        Then the status of their reward is displayed in a <pillColour> pill with <text>
+        And they see the PayPal icon to the right of the pill
+        And below they see <descriptionText>
+        Examples:
+            | status      | text        | pillColour | descriptionText                                                                                                                                                      |
+            | ERROR       | Failed      | Red        | This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on {dateLastAttempted from the customMeta}. |
+            | IN_PROGRESS | In progress | Orange     | Payout process started on {dateLastUpdated from the customMeta}.                                                                                                     |
 
     @minutia
     Scenario Outline: Available rewards of a reward unit and currency paid out by the tenants PayPal integration display a PayPal icon with the badge
