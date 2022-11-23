@@ -50,7 +50,12 @@ export const Active = () => {
 export const Pending = () => {
   return (
     <ScheduleCardView
-      {...{ ...defaultProps, statusText: "Pending", status: "pending" }}
+      {...{
+        ...defaultProps,
+        statusText: "Pending",
+        status: "pending",
+        hasDatePending: true,
+      }}
     />
   );
 };

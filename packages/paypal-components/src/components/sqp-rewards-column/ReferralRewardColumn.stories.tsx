@@ -63,27 +63,28 @@ export const Transferred = () => {
   );
 };
 
-export const InProgress = () => {
-  return (
-    <sqp-rewards-cell
-      rewards={[
-        {
-          ...baseReward,
-          ...inProgressPaypal,
-        },
-      ]}
-      statusText="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }"
-      fuelTankText="Your code is"
-      rewardReceivedText="Reward received on"
-      expiringText="Expiring in"
-      pendingForText="{status} for {date}"
-      rewardPaidOutText="Sent via PayPal on"
-      rewardPayoutInProgressText="PayPal payout processing started on"
-      rewardPayoutFailedText="Payout last attempted on"
-    ></sqp-rewards-cell>
-  );
-};
+// Need to fix this state
+// export const InProgress = () => {
+//   return (
+//     <sqp-rewards-cell
+//       rewards={[
+//         {
+//           ...baseReward,
+//           ...inProgressPaypal,
+//         },
+//       ]}
+//       statusText="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+//       statusLongText="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} FAILED {Payout Failed} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }"
+//       fuelTankText="Your code is"
+//       rewardReceivedText="Reward received on"
+//       expiringText="Expiring in"
+//       pendingForText="{status} for {date}"
+//       rewardPaidOutText="Sent via PayPal on"
+//       rewardPayoutInProgressText="PayPal payout processing started on"
+//       rewardPayoutFailedText="Payout last attempted on"
+//     ></sqp-rewards-cell>
+//   );
+// };
 
 export const Failed = () => {
   return (

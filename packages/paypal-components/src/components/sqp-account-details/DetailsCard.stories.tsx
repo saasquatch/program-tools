@@ -23,6 +23,8 @@ const defaultProps: DetailsCardViewProps = {
   otherCurrenciesText: "other currencies",
   w9PendingText: "Awaiting W-9 tax form",
   w9Pending: undefined,
+  hasDatePending: true,
+  hasW9Pending: false,
 };
 
 const currencyList = [
