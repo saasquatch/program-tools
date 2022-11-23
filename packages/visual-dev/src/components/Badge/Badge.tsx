@@ -24,9 +24,9 @@ export interface StyleProps {
    */
   pill?: boolean;
   /**
-   * Change the badge size
+   * Change the badge size (default is "medium")
    */
-  size?: "default" | "small";
+  size?: "medium" | "small";
   /**
    * Custom CSS applied to badge
    */
@@ -53,7 +53,7 @@ export const BadgeView = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
     const {
       status,
       pill = false,
-      size = "default",
+      size = "medium",
       icon,
       children,
       customCSS = {},

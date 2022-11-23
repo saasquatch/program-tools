@@ -49,8 +49,8 @@ export const ModalActionFooterDivStyle = css`
   width: calc(100% - var(--sq-spacing-large) * 2);
   box-sizing: border-box;
   background-color: white;
-  padding: 20px 0;
-`
+  padding: var(--sq-spacing-large) 0;
+`;
 
 export const ModalContentDivStyle = css`
   max-height: 650px;
@@ -72,7 +72,6 @@ export const ModalContentDivStyle = css`
   ::-webkit-scrollbar-thumb:hover {
   }
   padding: var(--sq-spacing-large);
-
 `;
 
 export const ModalContentTextDivStyle = css`
