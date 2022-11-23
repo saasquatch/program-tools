@@ -198,7 +198,7 @@ export class PaypalAccountDetails {
    * @uiWidget textArea
    */
   @Prop() integrationDisabledHeader: string =
-    "PayPal payouts are currently disabled";
+    "This feature is currently inactive. If this is unexpected, please contact support for assistance.";
   /**
    * @uiName Integration disabled alert description
    * @uiGroup Integration disabled alert
@@ -207,13 +207,15 @@ export class PaypalAccountDetails {
   @Prop() integrationDisabledText: string =
     "Looks like this feature is turned off at the moment. Come back later to see if it’s enabled.";
   /**
-   * @uiName Integration paused alert header text
+   * @uiName Integration paused alert header
    * @uiGroup Integration disabled alert
+   * @uiWidget textArea
    */
   @Prop() integrationPausedHeader: string = "PayPal payouts are paused";
   /**
-   * @uiName Integration paused alert body text
+   * @uiName Integration paused alert description
    * @uiGroup Integration disabled alert
+   * @uiWidget textArea
    */
   @Prop() integrationPausedText: string =
     "This feature is paused at the moment, but dont worry—your rewards are still being tracked! Once this feature resumes, your payouts will continue on the next payout date.";
@@ -230,7 +232,7 @@ export class PaypalAccountDetails {
    */
   @Prop() detailsHeaderText: string = "Payout details";
   /**
-   * @uiName Schedule payout(s) label
+   * @uiName Scheduled payout(s) label
    */
   @Prop() scheduleHeaderText: string = "Schedule";
 

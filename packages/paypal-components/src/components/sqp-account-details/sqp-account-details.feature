@@ -177,6 +177,14 @@ Feature: Paypal Account Details
             | 4             | see    | + 3 other currencies |
 
     @minutia
+    Scenario: Pending Payout schedule card displays text when there are dateScheduledFor and w9 pending rewards
+         Given a user with a PayPal email
+         And they have eligible rewards that are pending past the next 3 payouts
+         And they have eligible rewards that are pending due to W9
+         Then they they see the largest currency total of rewards that are pending past the next 3 payouts
+         And below they see "+ Rewards awaiting W-9"
+
+    @minutia
     Scenario: Payout cards display an empty state when there are no rewards to payout
         Given a user with a PayPal email
         But they have no rewards to be paid out for a scheduled/pending payout
