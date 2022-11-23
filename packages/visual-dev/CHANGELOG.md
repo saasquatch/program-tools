@@ -12,9 +12,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Components changed
   - \<TagInput>
     - Added an input that supports tags before the functional input, can be used for tag or email input
-  - \<Select>
+  - \<SelectView>
     - refactor such that <Select> shares a codebase with <SelectView> and its subcomponents.
-    - <Select> now supports the DownshiftJS multiselect hook, see stories for implementation details
+    - Added support for the DownshiftJS multiselect hook, see stories for implementation details
+  - \<ObjectFieldTemplate>
+    - allow custom CSS properties on the fields container from UI schema
+  - \<RJSFCheckbox>
+    - Support field labels from the UISchema "ui:options"
+  - \<Datatable>
+    - Support for custom empty state graphics
+  - \<RJSFInput>
+    - Support for field placeholders
+  - \<FieldTemplate>
+    - allow custom CSS properties on the field from UI schema
 
 ## [1.1.1] - 2022-09-22
 
@@ -22,9 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Components changed
   - \<Icon>
-    - removed center alignment from default icon styling, and added prop to overwrite existing styles and center the icon
-  - \<ObjectFieldTemplate>
-    - allow custom CSS properties on the fields container
+    - Removed center alignment from default icon styling, and added prop to overwrite existing styles and center the icon
   - \<Dropdown>
     - Change the look of the pill style dropdown so borders don't interfere with content
 
