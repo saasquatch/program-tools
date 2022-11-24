@@ -1,26 +1,10 @@
 import { h } from "@stencil/core";
+import { DateTime } from "luxon";
 import column from "./columns/referral-table-column.feature";
 import date from "./columns/referral-table-date-column.feature";
 import rewards from "./columns/referral-table-rewards-column.feature";
 import status from "./columns/referral-table-status-column.feature";
 import user from "./columns/referral-table-user-column.feature";
-import {
-  baseReward,
-  pendingReward,
-  nullScheduledFor,
-  availableReward,
-  nullExpiresIn,
-  redeemedReward,
-  cancelledReward,
-  expiredReward,
-  zeroRewards,
-  oneReward,
-  twoRewards,
-  threeRewards,
-  fiveRewards,
-  eightRewards,
-  tenRewards,
-} from "./ReferralTableRewardsCellData";
 
 const scenario = column + date + rewards + status + user;
 
@@ -30,6 +14,160 @@ export default {
     scenario,
   },
 };
+
+const baseReward: Reward = {
+  id: "123",
+  type: "CREDIT",
+  value: 19,
+  unit: "POINT",
+  name: "test",
+  dateGiven: 1627427794891,
+  dateScheduledFor: getDays(),
+  dateExpires: getMonths(),
+  dateCancelled: 134400,
+  dateRedeemed: 0,
+  fuelTankCode: "ABC",
+  fuelTankType: "Code",
+  currency: "null",
+  prettyValue: "19 Points",
+  statuses: ["AVAILABLE"],
+  globalRewardKey: "Key",
+  rewardRedemptionTransactions: {
+    data: [
+      {
+        exchangedRewards: {
+          data: [
+            {
+              prettyValue: "19 Points",
+              type: "CREDIT",
+              fuelTankCode: "ABC",
+              globalRewardKey: "Key",
+            },
+          ],
+        },
+      },
+    ],
+  },
+};
+
+const nullExpiresIn = {
+  dateExpires: null,
+};
+
+const nullScheduledFor = {
+  dateScheduledFor: null,
+};
+
+const nullFuelTank = {
+  fuelTankCode: null,
+};
+
+// Reward Type Cases
+const discountReward = {
+  type: "PCT_DISCOUNT",
+};
+
+const creditReward = {
+  type: "CREDIT",
+};
+
+const fuelTankReward = {
+  type: "FUELTANK",
+};
+
+const integrationReward = {
+  type: "INTEGRATION",
+};
+
+// Reward Status Cases
+const pendingReward = {
+  statuses: ["AVAILABLE", "PENDING"],
+};
+const cancelledReward = {
+  statuses: ["PENDING", "CANCELLED"],
+  dateCancelled: 1626850800000,
+};
+const expiredReward = {
+  statuses: ["EXPIRED", "AVAILABLE"],
+  dateExpires: 1626850800000,
+};
+const redeemedReward = {
+  statuses: ["AVAILABLE", "EXPIRED", "REDEEMED"],
+};
+const availableReward = {
+  statuses: ["AVAILABLE"],
+};
+
+const zeroRewards = [];
+
+const oneReward = [{ ...baseReward, ...availableReward }];
+
+const twoRewards = [
+  { ...baseReward, ...discountReward, ...pendingReward },
+  { ...baseReward, ...creditReward },
+];
+
+const threeRewards = [
+  { ...baseReward, ...fuelTankReward, ...nullExpiresIn },
+  { ...baseReward, ...fuelTankReward, ...expiredReward },
+  { ...baseReward, ...pendingReward, ...nullFuelTank },
+];
+
+const fiveRewards = [
+  { ...baseReward, ...fuelTankReward },
+  { ...baseReward, ...integrationReward },
+  { ...baseReward, ...pendingReward },
+  { ...baseReward, ...cancelledReward, ...nullExpiresIn, ...nullFuelTank },
+  { ...baseReward, ...expiredReward, ...nullFuelTank },
+];
+
+const eightRewards = [
+  { ...baseReward, ...redeemedReward, ...nullFuelTank },
+  { ...baseReward, ...availableReward, ...nullExpiresIn },
+  { ...baseReward, ...pendingReward },
+  { ...baseReward, ...cancelledReward },
+  { ...baseReward, ...expiredReward },
+  { ...baseReward, ...pendingReward, ...nullExpiresIn, ...nullScheduledFor },
+  { ...baseReward, ...cancelledReward },
+  { ...baseReward, ...expiredReward },
+];
+
+const tenRewards = [
+  { ...baseReward, ...integrationReward },
+  { ...baseReward, ...redeemedReward },
+  { ...baseReward, ...availableReward },
+  { ...baseReward, ...cancelledReward, ...nullExpiresIn },
+  { ...baseReward, ...expiredReward },
+  { ...baseReward, ...pendingReward },
+  { ...baseReward, ...discountReward },
+  { ...baseReward, ...fuelTankReward },
+  { ...baseReward, ...cancelledReward, ...nullExpiresIn },
+  { ...baseReward, ...creditReward },
+];
+
+function getSeconds() {
+  return DateTime.now().toMillis() + 10000;
+}
+
+function getMinutes() {
+  return DateTime.now().toMillis() + 400000;
+}
+
+function getHours() {
+  return DateTime.now().toMillis() + 9000000;
+}
+
+function getDays() {
+  return DateTime.now().toMillis() + 600000000;
+}
+
+function getMonths() {
+  return DateTime.now().toMillis() + 10000000000;
+}
+
+function getYears() {
+  return DateTime.now().toMillis() + 200000000000;
+}
 
 export const PendingNoUnpend = () => {
   return (
