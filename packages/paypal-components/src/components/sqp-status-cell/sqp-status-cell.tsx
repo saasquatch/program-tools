@@ -132,17 +132,6 @@ export class RewardTableStatusCell {
       }
     );
 
-    // | SUCCESS   | Paid out    | Blue       |
-    // | FAILED    | Failed      | Red        |
-    // | PENDING   | In progress | Orange     |
-    // | UNCLAIMED | Unclaimed   | Orange     |
-    // | ONHOLD    | In progress | Orange     |
-    // | REFUNDED  | Refunded    | grey       |
-    // | RETURNED  | Returned    | grey       |
-    // | REVERSED  | Reversed    | grey       |
-    // | BLOCKED   | Blocked     | grey       |
-
-    // const badgeType =
     const badgeType = hasMeta
       ? rewardStatus === "SUCCESS"
         ? "primary"
@@ -170,18 +159,14 @@ export class RewardTableStatusCell {
       ? "warning"
       : "danger";
 
-    console.log({
-      reward: this.reward,
-      rewardStatus,
-      message: this.statusText,
-      badgeType,
-    });
-
     const dateShown =
       this.reward.dateCancelled ||
       this.reward.dateExpires ||
       this.reward.dateRedeemed ||
       "";
+
+    const pendingReasons =
+      rewardStatus === "PENDING" ? getRewardPendingReasons(this) : null;
 
     const date =
       dateShown &&
@@ -193,101 +178,92 @@ export class RewardTableStatusCell {
         ?.setLocale(luxonLocale(this.locale))
         .toLocaleString(DateTime.DATE_MED)}.`;
 
-    const unClaimed =
-      rewardStatus === "UNCLAIMED" &&
-      `${this.rewardUnclaimedText + " "}${DateTime.fromMillis(
-        this.reward.meta?.customMeta.dateLastUpdated || 0
-      )
-        .plus({ days: 30 })
+    const getBadgeText = (rewardStatus: string) => {
+      if (pendingReasons) return pendingReasons;
+
+      let textString;
+      let dateUsed;
+
+      switch (rewardStatus) {
+        case "SUCCESS":
+          textString = this.rewardPaidOutText;
+          dateUsed = DateTime.fromMillis(
+            this.reward.meta?.customMeta.dateLastUpdated || 0
+          );
+          break;
+        case "PAYPAL_PENDING":
+          textString = this.rewardPayoutInProgressText;
+          dateUsed = DateTime.fromMillis(
+            this.reward.meta?.customMeta.dateLastUpdated || 0
+          );
+          break;
+        case "ONHOLD":
+          textString = this.rewardOnHoldText;
+          dateUsed = DateTime.fromMillis(
+            this.reward.meta?.customMeta.dateLastUpdated || 0
+          );
+          break;
+        case "REFUNDED":
+          textString = this.rewardRefundedText;
+          dateUsed = DateTime.fromMillis(
+            this.reward.meta?.customMeta.dateLastUpdated || 0
+          );
+          break;
+        case "RETURNED":
+          textString = this.rewardReturnedText;
+          dateUsed = DateTime.fromMillis(
+            this.reward.meta?.customMeta.dateLastUpdated || 0
+          ).plus({ days: 30 });
+          break;
+        case "REVERSED":
+          textString = this.rewardReversedText;
+          dateUsed = DateTime.fromMillis(
+            this.reward.meta?.customMeta.dateLastUpdated || 0
+          );
+          break;
+        case "BLOCKED":
+          textString = this.rewardBlockedText;
+          dateUsed = DateTime.fromMillis(
+            this.reward.meta?.customMeta.dateLastUpdated || 0
+          );
+          break;
+        case "UNCLAIMED":
+          textString = this.rewardUnclaimedText;
+          dateUsed = DateTime.fromMillis(
+            this.reward.meta?.customMeta.dateLastUpdated || 0
+          ).plus({ days: 30 });
+          break;
+        case "DENIED":
+          textString = this.rewardDeniedText;
+          dateUsed = DateTime.fromMillis(
+            this.reward.meta?.customMeta.dateLastAttempted || 0
+          );
+          break;
+        case "FAILED":
+          textString = this.rewardPayoutFailedText;
+          dateUsed = DateTime.fromMillis(
+            this.reward.meta?.customMeta?.dateLastAttempted || 0
+          );
+          break;
+        default:
+          return date;
+      }
+
+      return `${textString} ${dateUsed
         ?.setLocale(luxonLocale(this.locale))
         .toLocaleString(DateTime.DATE_MED)}.`;
+    };
 
-    const payoutDenied =
-      rewardStatus === "DENIED" &&
-      `${this.rewardDeniedText + " "}${DateTime.fromMillis(
-        this.reward.meta?.customMeta.dateLastAttempted || 0
-      )
-        ?.setLocale(luxonLocale(this.locale))
-        .toLocaleString(DateTime.DATE_MED)}.`;
-
-    const payoutFailed =
-      rewardStatus === "FAILED" &&
-      `${this.rewardPayoutFailedText + " "}${DateTime.fromMillis(
-        this.reward.meta?.customMeta?.dateLastAttempted ||
-          this.reward.meta?.customMeta?.dateFirstAttempted ||
-          0
-      )
-        ?.setLocale(luxonLocale(this.locale))
-        .toLocaleString(DateTime.DATE_MED)}.`;
-
-    const pendingReasons =
-      rewardStatus === "PENDING" ? getRewardPendingReasons(this) : null;
-
-    const paidOut =
-      rewardStatus === "SUCCESS" &&
-      `${this.rewardPaidOutText + " "}${DateTime.fromMillis(
-        this.reward.meta?.customMeta.dateLastUpdated || 0
-      )
-        ?.setLocale(luxonLocale(this.locale))
-        .toLocaleString(DateTime.DATE_MED)}.`;
-
-    const inProgress =
-      rewardStatus === "PAYPAL_PENDING" &&
-      `${this.rewardPayoutInProgressText + " "}${DateTime.fromMillis(
-        this.reward.meta?.customMeta.dateLastUpdated || 0
-      )
-        ?.setLocale(luxonLocale(this.locale))
-        .toLocaleString(DateTime.DATE_MED)}.`;
-
-    const onHold =
-      rewardStatus === "ONHOLD" &&
-      `${this.rewardOnHoldText + " "}${DateTime.fromMillis(
-        this.reward.meta?.customMeta.dateLastUpdated || 0
-      )
-        ?.setLocale(luxonLocale(this.locale))
-        .toLocaleString(DateTime.DATE_MED)}.`;
-
-    const refunded =
-      rewardStatus === "REFUNDED" &&
-      `${this.rewardRefundedText + " "}${DateTime.fromMillis(
-        this.reward.meta?.customMeta.dateLastUpdated || 0
-      )
-        ?.setLocale(luxonLocale(this.locale))
-        .toLocaleString(DateTime.DATE_MED)}.`;
-
-    const returned =
-      rewardStatus === "RETURNED" &&
-      `${this.rewardReturnedText + " "}${DateTime.fromMillis(
-        this.reward.meta?.customMeta.dateLastUpdated || 0
-      )
-        .plus({ days: 30 })
-        ?.setLocale(luxonLocale(this.locale))
-        .toLocaleString(DateTime.DATE_MED)}.`;
-
-    const reversed =
-      rewardStatus === "REVERSED" &&
-      `${this.rewardReversedText + " "}${DateTime.fromMillis(
-        this.reward.meta?.customMeta.dateLastUpdated || 0
-      )
-        ?.setLocale(luxonLocale(this.locale))
-        .toLocaleString(DateTime.DATE_MED)}.`;
-
-    const blocked =
-      rewardStatus === "BLOCKED" &&
-      `${this.rewardBlockedText + " "}${DateTime.fromMillis(
-        this.reward.meta?.customMeta.dateLastUpdated || 0
-      )
-        ?.setLocale(luxonLocale(this.locale))
-        .toLocaleString(DateTime.DATE_MED)}.`;
+    const badgeText = getBadgeText(rewardStatus);
 
     const baseUnit = this.reward.unit?.split("/")?.shift() as string;
+
     const isPayPal = paypalStatuses?.includes(rewardStatus);
     hasMeta ||
       (baseUnits?.includes(baseUnit) &&
         supportedCurrencies.includes(this.reward.currency) &&
         ["PENDING", "AVAILABLE"].includes(rewardStatus));
 
-    console.log({ reward: this.reward, isPayPal, hasMeta });
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
@@ -306,20 +282,7 @@ export class RewardTableStatusCell {
           {isPayPal && <PaypalBadge />}
         </div>
 
-        <p class={sheet.classes.Date}>
-          {payoutFailed ||
-            pendingReasons ||
-            unClaimed ||
-            refunded ||
-            onHold ||
-            returned ||
-            inProgress ||
-            reversed ||
-            blocked ||
-            payoutDenied ||
-            paidOut ||
-            date}
-        </p>
+        <p class={sheet.classes.Date}>{badgeText}</p>
       </div>
     );
 
