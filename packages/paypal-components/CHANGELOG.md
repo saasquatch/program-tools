@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqp-account-details>
 
     - Allows users to edit and disconnect the paypalEmail attached to their SaaSquatch user
-    - Minimum version of `@saasquatch/mint-components@1.6.5` is required to query data necessary for these components
+    - version `@saasquatch/mint-components@1.6.5` or later is required to query data necessary for these components
     - Displays a preview of any PayPal payouts that are coming in the next 3 payout periods and which currencies they will be paid out in
     - Displays any pending rewards without a dateScheduledFor that will not be paid out by PayPal until they are available
 
