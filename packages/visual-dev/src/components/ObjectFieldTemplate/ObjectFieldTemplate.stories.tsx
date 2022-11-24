@@ -72,6 +72,7 @@ export const TwoColumns = () => {
       customCSS: {
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
+        gridGap: "var(--sq-spacing-small)",
       },
     },
     field1: {
