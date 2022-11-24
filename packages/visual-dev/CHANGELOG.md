@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.2.0] - 2022-11-
+## [1.2.0] - 2022-11-24
 
 ### Changed
 
@@ -18,23 +18,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - refactor such that <Select> shares a codebase with <SelectView> and its subcomponents.
     - Added support for the DownshiftJS multiselect hook, see stories for implementation details
   - \<ObjectFieldTemplate>
-    - allow custom CSS properties on the fields container from UI schema
+    - allow custom CSS properties on the fields container from `customCSS` in `ui:options`
   - \<RJSFCheckbox>
-    - Support field labels from the UISchema "ui:options"
+    - Support field labels from `ui:options`
   - \<Datatable>
-    - Support for custom empty state graphics
+    - `emptyGraphic` - added support for custom empty graphics displayed above `emptyContent`
+    - `emptyFilterGraphic` - added support for custom empty graphics displayed above `emptyFilterContent`
   - \<RJSFInput>
-    - Support for field placeholders
+    - `"ui:placeholder"` - support for input field placeholders
   - \<FieldTemplate>
-    - allow custom CSS properties on the field from UI schema
+    - allow custom CSS properties on the field from `customCSS` in `ui:options`
   - \<Badge>
-    - Add "small" badge size
+    - `size` - added new "small" badge size (default is "medium")
   - \<IconButton>
     - Fix cursor not entering pointer mode when hovering button
   - \<DisplayDropdown>
     - Add a new style of select/dropdown component, typically used in table rows
   - \<GlobalStyle>
-    - Add tokens for surface dark and surface overlay colors
+    - `--sq-surface-overlay` - new background color token for elements which overlay the main page surface
+    - `--sq-surface-dark` - new dark background color token
 
 ## [1.1.1] - 2022-09-22
 
