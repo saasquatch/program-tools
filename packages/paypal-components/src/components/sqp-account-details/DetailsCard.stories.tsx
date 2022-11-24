@@ -1,12 +1,8 @@
 import { h } from "@stencil/core";
-import { P } from "../../global/mixins";
 import { DetailsCardView, DetailsCardViewProps } from "./sqp-details-card-view";
 
 export default {
   title: "Components/Detail Card",
-  // parameters: {
-  //   scenario,
-  // },
 };
 
 const defaultProps: DetailsCardViewProps = {

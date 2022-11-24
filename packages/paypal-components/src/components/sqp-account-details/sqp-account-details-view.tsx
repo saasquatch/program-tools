@@ -1,5 +1,4 @@
 import { h, VNode } from "@stencil/core";
-import { StringUnitLength } from "luxon";
 import { createStyleSheet } from "../../styling/JSS";
 import { PortalSectionView } from "../sqp-titled-section/sqp-portal-section-view";
 

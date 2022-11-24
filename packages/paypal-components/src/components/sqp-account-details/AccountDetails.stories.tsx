@@ -16,9 +16,6 @@ import {
 import { AccountFormView, AccountFormViewProps } from "./sqp-account-form-view";
 export default {
   title: "Components/PayPal Account Details",
-  // parameters: {
-  //   scenario,
-  // },
 };
 
 const defaultAccountDetailsProps: AccountDetailsViewProps = {

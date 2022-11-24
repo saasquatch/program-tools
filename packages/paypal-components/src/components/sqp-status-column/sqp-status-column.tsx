@@ -1,8 +1,4 @@
-import {
-  useQuery,
-  useTenantAlias,
-  useToken,
-} from "@saasquatch/component-boilerplate";
+import { useTenantAlias, useToken } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Method, Prop, State } from "@stencil/core";
 import { gql, GraphQLClient } from "graphql-request";

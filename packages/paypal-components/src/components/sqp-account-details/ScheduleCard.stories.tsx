@@ -6,9 +6,6 @@ import {
 
 export default {
   title: "Components/Schedule Card",
-  // parameters: {
-  //   scenario,
-  // },
 };
 
 const defaultProps: ScheduleCardViewProps = {

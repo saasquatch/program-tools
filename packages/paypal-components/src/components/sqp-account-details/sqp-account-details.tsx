@@ -291,13 +291,6 @@ export class PaypalAccountDetails {
             w9TaxLabel={props.overviewContent.w9TaxLabel}
           />
         </sqp-graphql-client-provider>
-        {/* <AccountDetailsView
-          loading={props.states.loading}
-          hasAccount={props.hasAccount}
-          overviewContent={props.overviewContent}
-          setOpen={props.callbacks.setOpen}
-          integrationDisabled={props.integrationDisabled}
-        ></AccountDetailsView> */}
       </Host>
     );
   }

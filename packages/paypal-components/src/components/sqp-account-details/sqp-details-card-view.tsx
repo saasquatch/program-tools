@@ -1,5 +1,4 @@
 import { h } from "@stencil/core";
-import { NoUndefinedVariablesRule } from "graphql";
 import { createStyleSheet } from "../../styling/JSS";
 
 export type currencyAmount = {

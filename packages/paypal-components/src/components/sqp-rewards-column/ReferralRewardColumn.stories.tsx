@@ -4,21 +4,14 @@ import { h } from "@stencil/core";
 import mockReferralData from "./mockReferralData";
 import {
   baseReward,
-  availableReward,
-  nullExpiresIn,
-  transferredReward,
-  cancelledReward,
   failedPaypal,
-  pendingReward,
-  nullScheduledFor,
+  nullExpiresIn,
   nullFuelTank,
-  inProgressPaypal,
+  nullScheduledFor,
+  transferredReward,
 } from "./RewardData";
 export default {
   title: "Components/Referral Reward Column",
-  // parameters: {
-  //   scenario,
-  // },
 };
 
 export const Available = () => {
