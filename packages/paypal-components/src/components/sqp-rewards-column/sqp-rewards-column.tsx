@@ -162,7 +162,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    * @undocumented
    */
   @Prop() integrationDomain: string =
-    "https://paypal-payouts-staging.herokuapp.com/graphql";
+    "https://paypal-payouts-prod.herokuapp.com/graphql";
 
   @State() integrationBaseUnits: string[] | undefined = undefined;
 

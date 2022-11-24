@@ -6,8 +6,6 @@ import { DateTime } from "luxon";
 import { DemoData } from "../../global/demo";
 import { intl } from "../../global/global";
 import { getProps } from "../../utils/utils";
-import { Upcoming } from "./DetailsCard.stories";
-import { Default } from "./ScheduleCard.stories";
 import {
   AccountDetailsView,
   AccountDetailsViewProps,

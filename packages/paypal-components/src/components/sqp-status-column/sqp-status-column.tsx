@@ -36,7 +36,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
 
   /**
    * Define the text shown in the reward status badge.
-   * 
+   *
    * @uiName Reward status text
    * @uiWidget textArea
    */
@@ -146,7 +146,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
    * @undocumented
    */
   @Prop() integrationDomain: string =
-    "https://paypal-payouts-staging.herokuapp.com/graphql";
+    "https://paypal-payouts-prod.herokuapp.com/graphql";
 
   @State() integrationBaseUnits: string[] | undefined = undefined;
 

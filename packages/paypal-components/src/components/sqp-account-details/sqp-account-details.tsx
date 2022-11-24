@@ -2,17 +2,14 @@ import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useRef, useState } from "@saasquatch/universal-hooks";
 import { Component, h, Host, Prop, State } from "@stencil/core";
-import { getProps } from "../../utils/utils";
-import {
-  AccountDetailsView,
-  AccountDetailsViewProps,
-} from "./sqp-account-details-view";
-import { AccountFormView, AccountFormViewProps } from "./sqp-account-form-view";
-import { useAccountDetails } from "./useAccountDetails";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
+import { getProps } from "../../utils/utils";
 import { Upcoming } from "./DetailsCard.stories";
 import { Default } from "./ScheduleCard.stories";
+import { AccountDetailsViewProps } from "./sqp-account-details-view";
+import { AccountFormView, AccountFormViewProps } from "./sqp-account-form-view";
+import { useAccountDetails } from "./useAccountDetails";
 /**
  * @uiName PayPal Account Details
  * @exampleGroup PayPal Components
@@ -90,7 +87,7 @@ export class PaypalAccountDetails {
    * @undocumented
    */
   @Prop() integrationDomain: string =
-    "https://paypal-payouts-staging.herokuapp.com/graphql";
+    "https://paypal-payouts-prod.herokuapp.com/graphql";
   /**
    * @uiName Connect button label
    * @uiGroup Account not connected
