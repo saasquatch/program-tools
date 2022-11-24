@@ -148,7 +148,7 @@ const DropdownButtonDiv = styled("div")<
     !props.pill &&
     (props.popUpwards
       ? "border-top: 2px solid var(--sq-surface);"
-      : "border-bottom: 2px solid var(--sq-surface);")}
+      : "border-bottom: none;")}
   ${(props) => `border-radius: ${props.borderRadius};`}
   &:hover {
     ${(props) => props.disabled && "cursor: not-allowed;"};

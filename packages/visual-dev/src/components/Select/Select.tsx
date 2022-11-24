@@ -93,7 +93,7 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
   props: SelectProps<ItemType>
 ) => {
   return (
-    <SelectView.ContainerView>
+    <SelectView.ContainerView {...props}>
       <SelectView.HandleView {...{ ...props, ref: undefined }} />
       <SelectView.ListView {...{ ...props, ref: undefined }} />
     </SelectView.ContainerView>

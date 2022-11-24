@@ -125,3 +125,15 @@ export const badgeCSS = () => (
     CSS Badge
   </BadgeView>
 );
+
+export const smallBadge = () => (
+  <BadgeView status="info" size="small">
+    Small Badge
+  </BadgeView>
+);
+
+export const smallBadgePill = () => (
+  <BadgeView status="info" size="small" pill>
+    Small Badge
+  </BadgeView>
+);

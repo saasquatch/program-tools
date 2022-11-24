@@ -43,6 +43,14 @@ export const ModalActionDivStyle = css`
   align-items: center;
   justify-content: center;
 `;
+export const ModalActionFooterDivStyle = css`
+  position: absolute;
+  bottom: 0;
+  width: calc(100% - var(--sq-spacing-large) * 2);
+  box-sizing: border-box;
+  background-color: white;
+  padding: var(--sq-spacing-large) 0;
+`;
 
 export const ModalContentDivStyle = css`
   max-height: 650px;
