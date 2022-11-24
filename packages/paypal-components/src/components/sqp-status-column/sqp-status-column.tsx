@@ -153,41 +153,23 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
 
   @Method()
   async renderCell(data: Reward, locale: string, mintRenderer) {
-    if (mintRenderer) {
-      return mintRenderer("sqp-status-cell", {
-        statusText: this.statusText,
-        reward: data,
-        expiryText: this.expiryText,
-        pendingScheduled: this.pendingScheduled,
-        pendingUsTax: this.pendingUsTax,
-        pendingUnhandled: this.pendingUnhandled,
-        locale: locale,
-        rewardPaidOutText: this.rewardPaidOutText,
-        rewardPayoutInProgressText: this.rewardPayoutInProgressText,
-        rewardPayoutFailedText: this.rewardPayoutFailedText,
-        rewardUnclaimedText: this.rewardUnclaimedText,
-        rewardDeniedText: this.rewardDeniedText,
-        baseUnits: this.integrationBaseUnits,
-      });
-    } else {
-      return (
-        <sqp-status-cell
-          statusText={this.statusText}
-          reward={data}
-          expiryText={this.expiryText}
-          pendingScheduled={this.pendingScheduled}
-          pendingUsTax={this.pendingUsTax}
-          pendingUnhandled={this.pendingUnhandled}
-          locale={locale}
-          rewardPaidOutText={this.rewardPaidOutText}
-          rewardPayoutInProgressText={this.rewardPayoutInProgressText}
-          rewardPayoutFailedText={this.rewardPayoutFailedText}
-          rewardUnclaimedText={this.rewardUnclaimedText}
-          rewardDeniedText={this.rewardDeniedText}
-          baseUnits={this.integrationBaseUnits}
-        ></sqp-status-cell>
-      );
-    }
+    const renderer = mintRenderer ?? h;
+
+    return renderer("sqp-status-cell", {
+      statusText: this.statusText,
+      reward: data,
+      expiryText: this.expiryText,
+      pendingScheduled: this.pendingScheduled,
+      pendingUsTax: this.pendingUsTax,
+      pendingUnhandled: this.pendingUnhandled,
+      locale: locale,
+      rewardPaidOutText: this.rewardPaidOutText,
+      rewardPayoutInProgressText: this.rewardPayoutInProgressText,
+      rewardPayoutFailedText: this.rewardPayoutFailedText,
+      rewardUnclaimedText: this.rewardUnclaimedText,
+      rewardDeniedText: this.rewardDeniedText,
+      baseUnits: this.integrationBaseUnits,
+    });
   }
 
   @Method()

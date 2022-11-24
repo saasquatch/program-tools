@@ -23,8 +23,6 @@ graph TD;
   sqp-stencilbook --> sqp-status-column
   sqp-stencilbook --> sqp-rewards-cell
   sqp-stencilbook --> sqp-rewards-column
-  sqp-status-column --> sqp-status-cell
-  sqp-rewards-column --> sqp-rewards-cell
   style sqp-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

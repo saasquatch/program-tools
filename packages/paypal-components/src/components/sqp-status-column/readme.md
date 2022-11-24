@@ -11,7 +11,7 @@
 | ---------------------------- | -------------------------------- | ---------------------------------------------------------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `columnTitle`                | `column-title`                   |                                                                                          | `string` | `"Status"`                                                                                                                                                                                                                                                                                                                                                 |
 | `expiryText`                 | `expiry-text`                    | Text shown before the date of an expiring reward. Example: Expires on {date}.            | `string` | `"Expires on "`                                                                                                                                                                                                                                                                                                                                            |
-| `integrationDomain`          | `integration-domain`             |                                                                                          | `string` | `"https://paypal-payouts-staging.herokuapp.com/graphql"`                                                                                                                                                                                                                                                                                                   |
+| `integrationDomain`          | `integration-domain`             |                                                                                          | `string` | `"https://paypal-payouts-prod.herokuapp.com/graphql"`                                                                                                                                                                                                                                                                                                      |
 | `pendingScheduled`           | `pending-scheduled`              | Text shown before the available date of a pending reward. Example: Pending until {date}. | `string` | `"Until"`                                                                                                                                                                                                                                                                                                                                                  |
 | `pendingUnhandled`           | `pending-unhandled`              | Shown below the status when a fulfillment error occured when creating a reward.          | `string` | `"Fulfillment error"`                                                                                                                                                                                                                                                                                                                                      |
 | `pendingUsTax`               | `pending-us-tax`                 | Shown below the status when a reward is pending due to W-9 compliance.                   | `string` | `"W-9 required"`                                                                                                                                                                                                                                                                                                                                           |
@@ -57,14 +57,9 @@ Type: `Promise<string>`
 
  - [sqp-stencilbook](../sqp-stencilbook)
 
-### Depends on
-
-- [sqp-status-cell](../sqp-status-cell)
-
 ### Graph
 ```mermaid
 graph TD;
-  sqp-status-column --> sqp-status-cell
   sqp-stencilbook --> sqp-status-column
   style sqp-status-column fill:#f9f,stroke:#333,stroke-width:4px
 ```

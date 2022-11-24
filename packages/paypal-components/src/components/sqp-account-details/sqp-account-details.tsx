@@ -306,7 +306,12 @@ function useAccountDetailsDemo(props: PaypalAccountDetails) {
       hasAccount: true,
       integrationDisabled: false,
       integrationPaused: false,
-      callbacks: { submit: () => {}, setOpen, disconnect: () => {} },
+      callbacks: {
+        submit: () => {},
+        setOpen,
+        disconnect: () => {},
+        setEditingAccount: () => {},
+      },
       states: {
         editingAccount: false,
         loading: false,

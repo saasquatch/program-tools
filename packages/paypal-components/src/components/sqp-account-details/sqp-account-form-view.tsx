@@ -32,7 +32,7 @@ export interface AccountFormViewProps {
     submit: (event: MouseEvent) => void;
     disconnect: () => void;
     setOpen: (open: boolean) => void;
-    setEditingAccount?: (editing: boolean) => void;
+    setEditingAccount: (editing: boolean) => void;
   };
 }
 

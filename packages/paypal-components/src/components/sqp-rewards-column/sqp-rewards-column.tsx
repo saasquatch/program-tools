@@ -173,40 +173,23 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
 
   @Method()
   async renderCell(data: Referral, locale: string, mintRenderer) {
-    if (mintRenderer) {
-      return mintRenderer("sqp-rewards-cell", {
-        rewards: data.rewards,
-        statusText: this.statusText,
-        statusLongText: this.statusLongText,
-        fuelTankText: this.fuelTankText,
-        rewardReceivedText: this.rewardReceivedText,
-        expiringText: this.expiringText,
-        pendingForText: this.pendingForText,
-        hideDetails: this.hideDetails,
-        locale: locale,
-        rewardPaidOutText: this.rewardPaidOutText,
-        rewardPayoutInProgressText: this.rewardPayoutInProgressText,
-        rewardPayoutFailedText: this.rewardPayoutFailedText,
-        rewardDeniedText: this.rewardDeniedText,
-      });
-    }
-    return (
-      <sqp-rewards-cell
-        rewards={data.rewards}
-        statusText={this.statusText}
-        statusLongText={this.statusLongText}
-        fuelTankText={this.fuelTankText}
-        rewardReceivedText={this.rewardReceivedText}
-        expiringText={this.expiringText}
-        pendingForText={this.pendingForText}
-        hideDetails={this.hideDetails}
-        locale={locale}
-        rewardPaidOutText={this.rewardPaidOutText}
-        rewardPayoutInProgressText={this.rewardPayoutInProgressText}
-        rewardPayoutFailedText={this.rewardPayoutFailedText}
-        rewardDeniedText={this.rewardDeniedText}
-      ></sqp-rewards-cell>
-    );
+    const renderer = mintRenderer ?? h;
+
+    return renderer("sqp-rewards-cell", {
+      rewards: data.rewards,
+      statusText: this.statusText,
+      statusLongText: this.statusLongText,
+      fuelTankText: this.fuelTankText,
+      rewardReceivedText: this.rewardReceivedText,
+      expiringText: this.expiringText,
+      pendingForText: this.pendingForText,
+      hideDetails: this.hideDetails,
+      locale: locale,
+      rewardPaidOutText: this.rewardPaidOutText,
+      rewardPayoutInProgressText: this.rewardPayoutInProgressText,
+      rewardPayoutFailedText: this.rewardPayoutFailedText,
+      rewardDeniedText: this.rewardDeniedText,
+    });
   }
 
   @Method()
@@ -216,39 +199,22 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
 
   @Method()
   async renderReferrerCell(data: Referrer, mintRenderer) {
-    if (mintRenderer) {
-      return mintRenderer("sqp-rewards-cell", {
-        rewards: data.rewards,
-        statusText: this.statusText,
-        statusLongText: this.statusLongText,
-        fuelTankText: this.fuelTankText,
-        rewardReceivedText: this.rewardReceivedText,
-        expiringText: this.expiringText,
-        pendingForText: this.pendingForText,
-        hideDetails: this.hideDetails,
-        rewardPaidOutText: this.rewardPaidOutText,
-        rewardPayoutInProgressText: this.rewardPayoutInProgressText,
-        rewardPayoutFailedText: this.rewardPayoutFailedText,
-        rewardDeniedText: this.rewardDeniedText,
-      });
-    }
+    const renderer = mintRenderer ?? h;
 
-    return (
-      <sqp-rewards-cell
-        rewards={data.rewards}
-        statusText={this.statusText}
-        statusLongText={this.statusLongText}
-        fuelTankText={this.fuelTankText}
-        rewardReceivedText={this.rewardReceivedText}
-        expiringText={this.expiringText}
-        pendingForText={this.pendingForText}
-        hideDetails={this.hideDetails}
-        rewardPaidOutText={this.rewardPaidOutText}
-        rewardPayoutInProgressText={this.rewardPayoutInProgressText}
-        rewardPayoutFailedText={this.rewardPayoutFailedText}
-        rewardDeniedText={this.rewardDeniedText}
-      ></sqp-rewards-cell>
-    );
+    return renderer("sqp-rewards-cell", {
+      rewards: data.rewards,
+      statusText: this.statusText,
+      statusLongText: this.statusLongText,
+      fuelTankText: this.fuelTankText,
+      rewardReceivedText: this.rewardReceivedText,
+      expiringText: this.expiringText,
+      pendingForText: this.pendingForText,
+      hideDetails: this.hideDetails,
+      rewardPaidOutText: this.rewardPaidOutText,
+      rewardPayoutInProgressText: this.rewardPayoutInProgressText,
+      rewardPayoutFailedText: this.rewardPayoutFailedText,
+      rewardDeniedText: this.rewardDeniedText,
+    });
   }
 
   async setIntegrationBaseUnits() {

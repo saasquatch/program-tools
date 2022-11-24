@@ -29,13 +29,11 @@
 
 ### Used by
 
- - [sqp-rewards-column](../sqp-rewards-column)
  - [sqp-stencilbook](../sqp-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqp-rewards-column --> sqp-rewards-cell
   sqp-stencilbook --> sqp-rewards-cell
   style sqp-rewards-cell fill:#f9f,stroke:#333,stroke-width:4px
 ```

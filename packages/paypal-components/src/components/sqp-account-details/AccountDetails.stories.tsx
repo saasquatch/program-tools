@@ -44,7 +44,12 @@ const defaultAccountDetailsProps: AccountDetailsViewProps = {
 const defaultAccountFormProps: AccountFormViewProps = {
   formRef: { current: null },
   hasAccount: false,
-  callbacks: { submit: () => {}, setOpen: () => {}, disconnect: () => {} },
+  callbacks: {
+    submit: () => {},
+    setOpen: () => {},
+    disconnect: () => {},
+    setEditingAccount: () => {},
+  },
   states: {
     loading: false,
     error: undefined,
