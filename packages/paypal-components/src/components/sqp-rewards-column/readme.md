@@ -32,13 +32,13 @@
 
 ## Methods
 
-### `renderCell(data: Referral, locale: string, mintRenderer: any) => Promise<any>`
+### `renderCell(data: Referral, locale: string, mintRenderer: (sel: string, options: VNodeData) => VNode) => Promise<VNode>`
 
 
 
 #### Returns
 
-Type: `Promise<any>`
+Type: `Promise<VNode>`
 
 
 
@@ -52,13 +52,13 @@ Type: `Promise<string>`
 
 
 
-### `renderReferrerCell(data: Referrer, mintRenderer: any) => Promise<any>`
+### `renderReferrerCell(data: Referrer, mintRenderer: (sel: string, options: VNodeData) => VNode) => Promise<VNode>`
 
 
 
 #### Returns
 
-Type: `Promise<any>`
+Type: `Promise<VNode>`
 
 
 

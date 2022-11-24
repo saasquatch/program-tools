@@ -16,7 +16,7 @@ export interface DetailsCardViewProps {
   pendingDetailedStatusText: string;
   upcomingDetailedStatusText: string;
   nextPayoutDetailedStatusText: string;
-  otherCurrencies?: currencyAmount[];
+  otherCurrencies: currencyAmount[] | boolean;
   w9Pending?: currencyAmount[];
   w9PendingText: string;
   otherCurrenciesText: string;
@@ -104,12 +104,16 @@ const style = {
   },
 };
 
+type Currency = {
+  amountText: string;
+};
+
 export function DetailsCardView(props: DetailsCardViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
   const { classes } = sheet;
 
-  const currencyList = (currencies) => {
+  const currencyList = (currencies: Currency[]) => {
     return (
       <div class={classes.CurrenciesContainer}>
         {" "}
@@ -188,7 +192,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
           <h1 class={classes.MainCurrency}>
             {hasDatePending || status !== "pending"
               ? mainCurrency?.amountText
-              : w9Pending[0]?.amountText}
+              : w9Pending?.[0]?.amountText}
           </h1>
         )}
         {otherCurrencies !== undefined && !loading && (
@@ -199,13 +203,13 @@ export function DetailsCardView(props: DetailsCardViewProps) {
             >
               + {otherCurrenciesText}
             </p>
-            {currencyList(otherCurrencies)}
+            {currencyList(otherCurrencies as Currency[])}
           </div>
         )}
         {hasW9Pending && status === "pending" && hasDatePending && !loading && (
           <div class={classes.W9Container}>
             <p class={classes.SubduedRegularText}>{w9PendingText}</p>
-            {currencyList(w9Pending)}
+            {currencyList(w9Pending!)}
           </div>
         )}
       </div>

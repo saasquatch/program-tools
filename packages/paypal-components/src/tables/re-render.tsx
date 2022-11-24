@@ -30,7 +30,7 @@ export function useRerenderListener() {
   const host = useHost();
   const [tick, rerender] = useTick();
   useEffect(() => {
-    const listener = (e: CustomEvent) => {
+    const listener: EventListener = (e) => {
       // Preventes recursively nested components from sending requests up all the way
       e.stopPropagation();
       rerender();

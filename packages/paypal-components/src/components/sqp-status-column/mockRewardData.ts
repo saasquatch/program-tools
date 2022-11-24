@@ -51,7 +51,7 @@ export const supportedCurrencies = [
   "USD",
 ];
 
-function getPaypalStatus(datePaidOut) {
+function getPaypalStatus(datePaidOut: number | null) {
   if (datePaidOut) return "SUCCESS";
 
   const randomIndex = Math.floor(Math.random() * 8);

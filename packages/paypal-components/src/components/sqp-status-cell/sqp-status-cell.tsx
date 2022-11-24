@@ -286,21 +286,24 @@ export class RewardTableStatusCell {
       </div>
     );
 
-    function getRewardPendingReasons(prop) {
+    function getRewardPendingReasons(prop: RewardTableStatusCell) {
       const pendingCodeMap: { [code: string]: string } = {
         US_TAX: prop.pendingUsTax,
-        SCHEDULED:
-          prop.reward.dateScheduledFor &&
-          prop.pendingScheduled +
+        SCHEDULED: prop.reward.dateScheduledFor
+          ? prop.pendingScheduled +
             " " +
             DateTime.fromMillis(prop.reward.dateScheduledFor || 0)
               ?.setLocale(luxonLocale(prop.locale || "en"))
-              .toLocaleString(DateTime.DATE_MED),
+              .toLocaleString(DateTime.DATE_MED)
+          : "",
         UNHANDLED_ERROR: prop.pendingUnhandled,
       };
-      return [prop.reward.pendingReasons]
-        .map((s: string): string => pendingCodeMap[s] ?? s)
-        .join(", ");
+      return (
+        [prop.reward.pendingReasons]
+          // @ts-ignore
+          .map((s: string): string => pendingCodeMap[s] ?? s)
+          .join(", ")
+      );
     }
   }
 }

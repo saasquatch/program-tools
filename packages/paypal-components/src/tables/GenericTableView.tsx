@@ -124,6 +124,7 @@ export function GenericTableView(props: GenericTableViewProps) {
     },
   };
 
+  // @ts-ignore;
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
@@ -159,10 +160,12 @@ export function GenericTableView(props: GenericTableViewProps) {
                   {row.map((cell, j) => {
                     return typeof columns[j] === "string" ? (
                       <td
+                        // @ts-ignore
                         class={hiddenCols?.includes(j) ? "hidden" : ""}
                         data-label={columns[j] + ":"}
                         style={{
-                          gridTemplateColumns: hiddenCols?.includes(j)
+                          // @ts-ignore
+                          gridTemplateColumns: hiddenCols?.includes(j!)
                             ? "1fr"
                             : "0.5fr 0.5fr",
                         }}

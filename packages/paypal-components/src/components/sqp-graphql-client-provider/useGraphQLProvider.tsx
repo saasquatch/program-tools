@@ -6,9 +6,12 @@ import {
 import { useDomContextState } from "@saasquatch/stencil-hooks";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { GraphQLClient } from "graphql-request";
+import { GraphQLClientProvider } from "./sqp-graphql-client-provider";
 import { memoizedGraphQLClient } from "./useGraphQLClient";
 
-export async function useGraphQLClientProvider({ domain }) {
+export async function useGraphQLClientProvider({
+  domain,
+}: GraphQLClientProvider) {
   const token = useToken();
   const appDomain = domain;
   const tenantAlias = useTenantAlias();

@@ -46,6 +46,7 @@
     "@stencil/sass": "^1.3.2",
     "@stencil/utils": "latest",
     "@types/debug": "^4.1.7",
+    "@types/highlight.js": "^10.1.0",
     "@types/jest": "^26.0.21",
     "@types/luxon": "^2.0.9",
     "@types/puppeteer": "^5.4.2",

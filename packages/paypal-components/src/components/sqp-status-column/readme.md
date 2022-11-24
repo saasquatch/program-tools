@@ -30,13 +30,13 @@
 
 ## Methods
 
-### `renderCell(data: Reward, locale: string, mintRenderer: any) => Promise<any>`
+### `renderCell(data: Reward, locale: string, mintRenderer: (sel: string, options: VNodeData) => VNode) => Promise<VNode>`
 
 
 
 #### Returns
 
-Type: `Promise<any>`
+Type: `Promise<VNode>`
 
 
 

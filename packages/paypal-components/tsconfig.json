@@ -3,8 +3,9 @@
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
     "declaration": false,
-    "experimentalDecorators": true,
-    "strict":false,
+    "experimentalDecorators": true, 
+    "strict":true,
+    "strictPropertyInitialization": false,
     "lib": [
       "dom",
       "es2017",
@@ -20,7 +21,6 @@
     "noUnusedParameters": true,
     "jsx": "react",
     "jsxFactory": "h",
-    // "noImplicitAny": true,
 		"types": ["resize-observer-browser", "jest"]
   },
   "include": [

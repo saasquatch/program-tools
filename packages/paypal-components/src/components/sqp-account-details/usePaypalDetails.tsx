@@ -66,7 +66,13 @@ const NEXT_PAYOUT_QUERY = gql`
   }
 `;
 
-function getCurrencies(totals) {
+export type CurrencyValue = {
+  currencyText: string;
+  amountText: string;
+  value: number;
+};
+
+function getCurrencies(totals: Total[]) {
   const currencies = totals?.reduce(
     (totals, total, i) => {
       if (i === 0)
@@ -91,14 +97,14 @@ function getCurrencies(totals) {
       };
     },
     {
-      mainCurrency: {},
-      otherCurrencies: [],
+      mainCurrency: {} as CurrencyValue,
+      otherCurrencies: [] as CurrencyValue[],
     }
   );
   return currencies;
 }
 
-function getW9Data(w9Totals) {
+function getW9Data(w9Totals?: Total[]) {
   if (!w9Totals?.length) return {};
   return {
     w9Pending: w9Totals?.map((total) => ({
@@ -108,12 +114,13 @@ function getW9Data(w9Totals) {
   };
 }
 
-function getPendingData(pendingTotals) {
-  const totals: Total[] = pendingTotals && Array.from(pendingTotals);
+function getPendingData(pendingTotals?: Total[]) {
+  const totals: Total[] | undefined =
+    pendingTotals && Array.from(pendingTotals);
 
   const totalsSorted = totals?.sort((a, b) => b.value - a.value);
 
-  const currencies = getCurrencies(totalsSorted);
+  const currencies = getCurrencies(totalsSorted!);
 
   return {
     mainPendingCurrency: currencies?.mainCurrency,
@@ -121,13 +128,13 @@ function getPendingData(pendingTotals) {
   };
 }
 
-function getDetailsCardData(nextPayout) {
-  const totals: Total[] =
+function getDetailsCardData(nextPayout?: { details: Bucket }) {
+  const totals: Total[] | undefined =
     nextPayout?.details?.totals && Array.from(nextPayout?.details?.totals);
 
   const totalsSorted = totals?.sort((a, b) => b.value - a.value);
 
-  const currencies = getCurrencies(totalsSorted);
+  const currencies = getCurrencies(totalsSorted!);
 
   return {
     otherCurrencies: currencies?.otherCurrencies,
@@ -201,7 +208,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
     nextPayoutDetailedStatusText: "",
     otherCurrencies: pendingOtherCurrencies?.length
       ? pendingOtherCurrencies
-      : undefined,
+      : false,
     otherCurrenciesText: intl.formatMessage(
       {
         id: "otherCurrencies",
@@ -244,7 +251,7 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
         amount: otherCurrencies?.length,
       }
     ),
-    otherCurrencies: otherCurrencies?.length ? otherCurrencies : undefined,
+    otherCurrencies: otherCurrencies?.length ? otherCurrencies : false,
     w9PendingText: props.w9TaxLabel,
     additionalW9Text: props.additionalW9Text,
     w9Pending: undefined,

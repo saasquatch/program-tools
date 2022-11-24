@@ -185,6 +185,7 @@ export class ReferralTableRewardsCell {
 
     const getTimeDiff = (endTime: number): string => {
       // Current implementation only calculates the difference from current time
+      // @ts-ignore
       return DateTime.fromMillis(endTime || 0)
         .setLocale(luxonLocale(this.locale))
         .toRelative()

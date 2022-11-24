@@ -22,12 +22,6 @@ export interface AccountDetailsViewProps {
   connectPayPalAccountButtonText: string;
 }
 
-const FlexContainer = {
-  display: "flex",
-  alignItems: "flex-start",
-  justifyContent: "center",
-  gap: "10px",
-};
 const style = {
   Container: {
     display: "grid",
@@ -145,7 +139,7 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
                   <sl-button
                     class={classes.EditButton}
                     disabled={loading}
-                    onClick={(e) => {
+                    onClick={(e: MouseEvent) => {
                       e.preventDefault();
                       setOpen(true);
                     }}

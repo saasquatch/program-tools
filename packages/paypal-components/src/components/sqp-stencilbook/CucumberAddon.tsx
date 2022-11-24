@@ -1,11 +1,12 @@
 import { h } from "@stencil/core";
 import { AddOn } from "@saasquatch/stencilbook";
 
+// @ts-ignore
 import hljs from "highlight.js/lib/core";
+// @ts-ignore
 import gherkin from "highlight.js/lib/languages/gherkin";
 
 hljs.registerLanguage("gherkin", gherkin);
-
 
 export const CucumberAddon: AddOn = ({ story }, children) => {
   let code = (story.parent.parameters as any)?.scenario;

@@ -8,6 +8,7 @@ export default {
 const defaultProps: DetailsCardViewProps = {
   loading: false,
   empty: false,
+  otherCurrencies: false,
   mainCurrency: { currencyText: "USD", amountText: "100.00" },
   status: "upcoming",
   pendingStatusBadgeText: "Pending",

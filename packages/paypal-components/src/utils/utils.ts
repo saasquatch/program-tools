@@ -5,10 +5,10 @@ export function format(first: string, middle: string, last: string): string {
 }
 
 function readGetters(obj: Object) {
-  var result = [];
+  var result = [] as any[];
   Object.keys(obj).forEach((property) => {
     var descriptor = Object.getOwnPropertyDescriptor(obj, property);
-    if (typeof descriptor.get === "function") {
+    if (typeof descriptor?.get === "function") {
       result.push(property);
     }
   });
@@ -20,6 +20,7 @@ function readGetters(obj: Object) {
 export function getProps<T>(obj: T): T {
   let props: T = {} as T;
   for (const k of readGetters(Object.getPrototypeOf(obj))) {
+    // @ts-ignore
     props[k] = obj[k];
   }
   return props;

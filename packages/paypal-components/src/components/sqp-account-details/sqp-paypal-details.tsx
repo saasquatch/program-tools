@@ -140,7 +140,7 @@ export class PaypalAccountDetails {
           scheduleSlot={props.ScheduleContent}
           setOpen={componentProps.setOpen}
           integrationDisabled={props.integrationDisabled}
-          integrationPaused={props.integrationPaused}
+          integrationPaused={props.integrationPaused!}
           detailsHeaderText={componentProps.detailsHeaderText}
           scheduleHeaderText={componentProps.scheduleHeaderText}
           editText={componentProps.editText}
@@ -200,7 +200,7 @@ function usePayPalDetailsDemo(props: PaypalAccountDetails) {
         amount: otherCurrencies?.length,
       }
     ),
-    otherCurrencies: otherCurrencies?.length ? otherCurrencies : undefined,
+    otherCurrencies: otherCurrencies?.length ? otherCurrencies : false,
     w9PendingText: props.w9TaxLabel,
     w9Pending: undefined,
     empty: false,
@@ -262,7 +262,7 @@ function usePayPalDetailsDemo(props: PaypalAccountDetails) {
     pendingDetailedStatusText: props.pendingDetailedStatusText,
     upcomingDetailedStatusText: "",
     nextPayoutDetailedStatusText: "",
-    otherCurrencies: undefined,
+    otherCurrencies: false,
     otherCurrenciesText: "",
     mainCurrency,
     setActivePayout: () => {},

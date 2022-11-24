@@ -1,6 +1,15 @@
 import { useTenantAlias, useToken } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Host, Method, Prop, State } from "@stencil/core";
+import {
+  Component,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+  VNode,
+  VNodeData,
+} from "@stencil/core";
 import { gql, GraphQLClient } from "graphql-request";
 import { useRequestRerender } from "../../tables/re-render";
 import { memoizedGraphQLClient } from "../sqp-graphql-client-provider/useGraphQLClient";
@@ -172,7 +181,11 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Referral, locale: string, mintRenderer) {
+  async renderCell(
+    data: Referral,
+    locale: string,
+    mintRenderer: (sel: string, options: VNodeData) => VNode
+  ) {
     const renderer = mintRenderer ?? h;
 
     return renderer("sqp-rewards-cell", {
@@ -198,7 +211,10 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   }
 
   @Method()
-  async renderReferrerCell(data: Referrer, mintRenderer) {
+  async renderReferrerCell(
+    data: Referrer,
+    mintRenderer: (sel: string, options: VNodeData) => VNode
+  ) {
     const renderer = mintRenderer ?? h;
 
     return renderer("sqp-rewards-cell", {

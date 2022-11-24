@@ -10,6 +10,7 @@ import { gql } from "graphql-request";
 import jsonpointer from "jsonpointer";
 import { Upcoming } from "./DetailsCard.stories";
 import { Default } from "./ScheduleCard.stories";
+import { PaypalAccountDetails } from "./sqp-account-details";
 const ACCOUNT_DETAILS_QUERY = gql`
   query {
     viewer {
@@ -43,7 +44,7 @@ type AccountDetailsQuery = {
   };
 };
 
-export function useAccountDetails(props) {
+export function useAccountDetails(props: PaypalAccountDetails) {
   const formRef = useRef<HTMLFormElement>(null);
   const [error, setError] = useState("");
   const [open, setOpen] = useState(false);
@@ -91,7 +92,7 @@ export function useAccountDetails(props) {
     setSuccess(false);
     setEditingAccount(false);
     const formControls = formRef.current?.getFormControls();
-    formControls?.forEach((control) => {
+    formControls?.forEach((control: HTMLInputElement) => {
       control.value = data?.viewer?.customFields?.paypalEmail || "";
     });
   }

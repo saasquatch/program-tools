@@ -1,13 +1,14 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { currencyAmount } from "./sqp-details-card-view";
+import { CurrencyValue } from "./usePaypalDetails";
 
 export interface ScheduleCardViewProps {
   active: boolean;
   setActivePayout: () => void;
   loading: boolean;
   empty?: boolean;
-  otherCurrencies: boolean;
+  otherCurrencies: boolean | CurrencyValue[];
   statusText: string;
   otherCurrenciesText: string;
   mainCurrency: currencyAmount;

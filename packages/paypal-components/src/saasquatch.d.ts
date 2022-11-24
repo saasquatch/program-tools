@@ -49,11 +49,11 @@ interface Reward {
     };
     customMeta?: any;
   };
-  dateScheduledFor: number;
-  dateExpires: number;
-  dateCancelled: number;
-  dateRedeemed: number;
-  fuelTankCode: string;
+  dateScheduledFor: number | null;
+  dateExpires: number | null;
+  dateCancelled: number | null;
+  dateRedeemed: number | null;
+  fuelTankCode: string | null;
   fuelTankType: string;
   currency: string;
   prettyValue: string;

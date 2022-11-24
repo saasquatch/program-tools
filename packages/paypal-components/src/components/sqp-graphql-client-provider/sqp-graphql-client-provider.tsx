@@ -39,6 +39,6 @@ export class GraphQLClientProvider {
     );
   }
 }
-function useGraphQLClientProviderDemo({ domain }) {
+function useGraphQLClientProviderDemo({ domain }: GraphQLClientProvider) {
   return domain;
 }

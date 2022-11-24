@@ -52,7 +52,7 @@ const defaultAccountFormProps: AccountFormViewProps = {
   },
   states: {
     loading: false,
-    error: undefined,
+    error: "",
     success: false,
     open: false,
   },

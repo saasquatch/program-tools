@@ -9,7 +9,7 @@ import { Spacing } from "./global/mixins";
 import { DemoData } from "./global/demo";
 import { AccountDetailsViewProps } from "./components/sqp-account-details/sqp-account-details-view";
 import { AccountFormViewProps } from "./components/sqp-account-details/sqp-account-form-view";
-import { FunctionalComponent } from "@stencil/core";
+import { FunctionalComponent, VNode, VNodeData } from "@stencil/core";
 export namespace Components {
     interface SqmTitledSection {
         /**
@@ -379,9 +379,9 @@ export namespace Components {
           * @uiName Reward pending text
          */
         "pendingForText": string;
-        "renderCell": (data: Referral, locale: string, mintRenderer: any) => Promise<any>;
+        "renderCell": (data: Referral, locale: string, mintRenderer: (sel: string, options: VNodeData) => VNode) => Promise<VNode>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer, mintRenderer: any) => Promise<any>;
+        "renderReferrerCell": (data: Referrer, mintRenderer: (sel: string, options: VNodeData) => VNode) => Promise<VNode>;
         /**
           * Shown in the dropdown details when a reward was blocked during payout.
           * @uiName Reward blocked text
@@ -499,7 +499,7 @@ export namespace Components {
           * @uiName W-9 pending text
          */
         "pendingUsTax": string;
-        "renderCell": (data: Reward, locale: string, mintRenderer: any) => Promise<any>;
+        "renderCell": (data: Reward, locale: string, mintRenderer: (sel: string, options: VNodeData) => VNode) => Promise<VNode>;
         "renderLabel": () => Promise<string>;
         /**
           * Shown below the status when a reward was blocked during payout.

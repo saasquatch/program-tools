@@ -29,7 +29,7 @@ export const baseReward: Reward = {
   name: "test",
   dateGiven: 1627427794891,
   dateScheduledFor: getDays(),
-  dateExpires: null,
+  dateExpires: 0,
   dateCancelled: 0,
   dateRedeemed: 0,
   fuelTankCode: "ABC",

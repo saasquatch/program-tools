@@ -1,6 +1,15 @@
 import { useTenantAlias, useToken } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Host, Method, Prop, State } from "@stencil/core";
+import {
+  Component,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+  VNode,
+  VNodeData,
+} from "@stencil/core";
 import { gql, GraphQLClient } from "graphql-request";
 import { useRequestRerender } from "../../tables/re-render";
 import { memoizedGraphQLClient } from "../sqp-graphql-client-provider/useGraphQLClient";
@@ -152,7 +161,11 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Reward, locale: string, mintRenderer) {
+  async renderCell(
+    data: Reward,
+    locale: string,
+    mintRenderer: (sel: string, options: VNodeData) => VNode
+  ) {
     const renderer = mintRenderer ?? h;
 
     return renderer("sqp-status-cell", {
