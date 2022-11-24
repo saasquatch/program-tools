@@ -34,8 +34,6 @@ function useGraphQLClient(): GraphQLClient {
   const appDomain = useAppDomain();
   const tenantAlias = useTenantAlias();
 
-  console.log({ token, tenantAlias });
-
   // Memoization is shared. One client per domain, tenant and token (or null)
   const localClient: GraphQLClient = memoizedGraphQLClient(
     appDomain,

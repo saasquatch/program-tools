@@ -156,13 +156,6 @@ export function DetailsCardView(props: DetailsCardViewProps) {
     "next payout": nextPayoutDetailedStatusText,
   };
 
-  console.log("ternary", empty && status === "pending");
-
-  console.log("status", status);
-  console.log("statusText", statusText[status]);
-  console.log("statusText all", statusText);
-  console.log("PROPS", props);
-
   return (
     <div>
       <style type="text/css">{styleString}</style>

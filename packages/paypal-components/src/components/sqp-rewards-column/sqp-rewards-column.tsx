@@ -173,8 +173,6 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
 
   @Method()
   async renderCell(data: Referral, locale: string, mintRenderer) {
-    // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
-    console.log(data.rewards);
     if (mintRenderer) {
       return mintRenderer("sqp-rewards-cell", {
         rewards: data.rewards,

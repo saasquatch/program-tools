@@ -133,8 +133,6 @@ export class PaypalAccountDetails {
       ? usePayPalDetailsDemo(componentProps)
       : usePayPalDetails(componentProps);
 
-    console.log({ componentProps });
-
     return (
       <Host>
         <AccountDetailsView

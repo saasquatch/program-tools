@@ -223,7 +223,6 @@ export class ReferralTableRewardsCell {
         }
       );
 
-      console.log({ reward, customMeta: reward.meta?.customMeta, state });
       const RewardGivenText = () => {
         const customDate =
           state === "FAILED"
@@ -285,10 +284,6 @@ export class ReferralTableRewardsCell {
           </div>
         );
       };
-
-      console.log("STATE", state);
-
-      console.log("STATUS_TEXT", statusText);
 
       return (
         <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>
