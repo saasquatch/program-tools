@@ -26,7 +26,6 @@ export const ItemContainer = css`
   border-radius: 0 0 var(--sq-border-radius-normal)
     var(--sq-border-radius-normal);
   border-top: none;
-  top: -3px;
   outline: none;
   overflow-y: auto;
 
@@ -78,7 +77,7 @@ export const SelectInputStyle = css`
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
   border: 2px solid var(--sq-border);
-  border-radius: var(--sq-border-radius-normal);
+  // border-radius: var(--sq-border-radius-normal);
   padding: 1px var(--sq-spacing-x-small);
 
   &:focus {

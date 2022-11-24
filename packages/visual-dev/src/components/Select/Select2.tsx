@@ -205,6 +205,12 @@ const SelectInputButton = styled.button<{
   ${(props) =>
     props.disabled &&
     "background: var(--sq-surface-input-disabled); cursor: default;"}
+        ${(props) =>
+    `border-radius: ${
+      props.isOpen
+        ? "var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0"
+        : "var(--sq-border-radius-normal)"
+    };`}
   ${(props) =>
     props.isOpen &&
     !props.disabled &&
@@ -393,7 +399,11 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
         limitWidth={limitWidth}
         customCSS={`
               ${customCSS};
-              ${isOpen && "border: 2px solid var(--sq-focused)"};
+              ${
+                isOpen
+                  ? "border: 2px solid var(--sq-focused); border-bottom: none; border-radius: var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0"
+                  : ""
+              };
               ${
                 clearable
                   ? "padding-right: var(--sq-spacing-xxxx-large)"
