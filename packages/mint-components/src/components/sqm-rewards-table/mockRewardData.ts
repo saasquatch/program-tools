@@ -11,6 +11,8 @@ const statuses = ["AVAILABLE", "PENDING", "CANCELLED", "EXPIRED", "REDEEMED"];
 const pendingReasons = ["US_TAX", "SCHEDULED", "UNHANDLED_ERROR"];
 
 const paypalStatuses = [
+  "PENDING",
+  "IN_PROGRESS",
   "FAILED",
   "UNCLAIMED",
   "ONHOLD",
@@ -24,7 +26,7 @@ const paypalStatuses = [
 function getPaypalStatus(datePaidOut) {
   if (datePaidOut) return "SUCCESS";
 
-  const randomIndex = Math.floor(Math.random() * 8);
+  const randomIndex = Math.floor(Math.random() * 10);
 
   const randomStatus = paypalStatuses[randomIndex];
 
@@ -32,9 +34,14 @@ function getPaypalStatus(datePaidOut) {
 }
 
 export const getPaypalMeta = () => {
-  const datePaidOut = Math.floor(Math.random() * 10) >= 5 ? 123456789 : null;
+  const datePaidOut =
+    Math.floor(Math.random() * 10) >= 5
+      ? DateTime.now()?.minus({ day: 1 })
+      : null;
   const dateLastAttempted =
-    Math.floor(Math.random() * 10) >= 5 ? 123456789 : null;
+    Math.floor(Math.random() * 10) >= 5
+      ? DateTime.now()?.minus({ day: 1 })
+      : null;
 
   const paypalStatus = getPaypalStatus(datePaidOut);
 
