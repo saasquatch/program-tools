@@ -7,14 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2022-11-
+
 ### Changed
 
 - Components changed
   - \<TagInput>
     - Added an input that supports tags before the functional input, can be used for tag or email input
-  - \<Select>
+  - \<SelectView>
     - refactor such that <Select> shares a codebase with <SelectView> and its subcomponents.
-    - <Select> now supports the DownshiftJS multiselect hook, see stories for implementation details
+    - Added support for the DownshiftJS multiselect hook, see stories for implementation details
+  - \<Badge>
+    - Add "small" badge size
+  - \<IconButton>
+    - Fix cursor not entering pointer mode when hovering button
+  - \<Datatable>
+    - Support for custom empty state graphics
+  - \<DisplayDropdown>
+    - Add a new style of select/dropdown component, typically used in table rows
+  - \<GlobalStyle>
+    - Add tokens for surface dark and surface overlay colors
 
 ## [1.1.1] - 2022-09-22
 
@@ -184,7 +196,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<TextArea>
   - \<Tooltip>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.1.1...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.2.0...HEAD
+[1.2.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.2.0
 [1.1.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.1.1
 [1.1.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.1.0
 [1.0.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.0.2

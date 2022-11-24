@@ -11,6 +11,8 @@ export const CSSVariables = createGlobalStyle`
   --sq-surface: #ffffff;
   --sq-surface-subdued: #f6f6f6;
   --sq-background: #f9f9f9;
+  --sq-surface-overlay: rgba(0, 0, 0, 0.7);
+  --sq-surface-dark: #232323;
 
   /* On Surface */
   --sq-text: #575757;

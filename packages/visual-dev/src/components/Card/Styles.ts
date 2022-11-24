@@ -11,12 +11,13 @@ export const CardDiv = css`
   padding: var(--sq-spacing-x-small);
 `;
 export const CardHeaderDiv = css`
-display: flex;
-height: 40px;
-vertical-align: middle
-flex-direction: column;
-align-items: center;
-padding: var(--sq-spacing-x-small);`;
+  display: flex;
+  height: 40px;
+  vertical-align: middle;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--sq-spacing-x-small);
+`;
 export const CardHeaderIconDiv = css`
   float: left;
   margin-right: 16px;
@@ -56,8 +57,8 @@ export const CardLongDiv = css`
 export const CardLongHeaderDiv = css`
   flex-direction: column;
   align-items: center;
-  vertical-align: middle
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  vertical-align: middle;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-header-three);
   line-height: var(--sq-line-height-header-three);
@@ -87,9 +88,9 @@ export const CardEditDiv = css`
   padding: var(--sq-spacing-medium);
 `;
 export const CardEditHeaderDiv = css`
-  display: flex;	
+  display: flex;
   height: 40px;
-  vertical-align: middle
+  vertical-align: middle;
   flex-direction: column;
   align-items: center;
 `;
