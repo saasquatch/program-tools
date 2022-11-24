@@ -92,7 +92,6 @@ const style = {
 
   ContentContainer: {
     marginBottom: "var(--sl-spacing-medium)",
-    background: "var(--sl-color-neutral-0)",
   },
 
   DescriptionText: {
@@ -130,6 +129,8 @@ export function AccountDetailsView(props: AccountDetailsViewProps) {
 
   return (
     <div>
+      <style type="text/css">{styleString}</style>
+
       <PortalSectionView
         {...{
           labelMargin: "medium",
