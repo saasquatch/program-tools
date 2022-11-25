@@ -9,11 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.2.0] - 2022-11-24
 
+### Added
+
+- \<TagInput>
+  - Added an input that supports tags before the functional input, can be used for tag or email input
+
 ### Changed
 
 - Components changed
-  - \<TagInput>
-    - Added an input that supports tags before the functional input, can be used for tag or email input
+  - \<Accordion>
+    - Fixed bug where the cursor would not enter pointer mode when hovering over the accordion facade
   - \<SelectView>
     - refactor such that <Select> shares a codebase with <SelectView> and its subcomponents.
     - Added support for the DownshiftJS multiselect hook, see stories for implementation details
