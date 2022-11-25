@@ -29,3 +29,9 @@ export const CollapsibleDiv = css`
   max-height: 0;
   transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
 `;
+
+export const IconDiv = css`
+  & svg {
+    cursor: pointer;
+  }
+`;
