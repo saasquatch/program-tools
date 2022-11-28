@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { TagInputView, TagInputViewProps, TagView } from "./TagInput";
 
 export default {
-  title: "Components / Email Input",
+  title: "Components / Tag Input",
   component: TagInputView,
 };
 
