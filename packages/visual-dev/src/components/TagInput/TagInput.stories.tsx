@@ -25,6 +25,21 @@ export const FullWidth = () => {
   return <TagInputView {...{ ...defaultProps, limitWidth: false }} />;
 };
 
+export const CustomCSS = () => {
+  return (
+    <TagInputView
+      {...{
+        ...defaultProps,
+        customCSS: {
+          backgroundColor: "lightblue",
+          borderColor: "blue",
+          width: "200px",
+        },
+      }}
+    />
+  );
+};
+
 function useTagInput(
   onChange: (value: string) => void,
   initialValue: string | undefined
