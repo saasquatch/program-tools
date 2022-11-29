@@ -260,7 +260,11 @@ export function usePayPalDetails(props: PaypalAccountDetails) {
 
   const upcomingContent =
     buckets?.map((bucket, i) => {
-      const currencies = getCurrencies(bucket.details?.totals);
+      const totals: Total[] | undefined =
+        bucket?.details?.totals && Array.from(bucket?.details?.totals);
+
+      const totalsSorted = totals?.sort((a, b) => b.value - a.value);
+      const currencies = getCurrencies(totalsSorted!);
 
       const mainCurrency = currencies?.mainCurrency;
       const otherCurrencies = currencies?.otherCurrencies;
