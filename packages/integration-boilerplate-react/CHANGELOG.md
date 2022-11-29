@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Added option to hide the Saved notification when using patchIntegrationConfig or updateFormConfiguration
+- Added option to hide the Saved notification when using patchIntegrationConfig, updateFormConfiguration, or saveFormConfig
 
 ## [2.0.0] - 2021-09-22
 

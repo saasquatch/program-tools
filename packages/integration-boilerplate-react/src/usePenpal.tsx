@@ -223,7 +223,7 @@ export function PenpalContextProvider<
   }, [assertConnected, saveFormConfig, state]);
 
   const scrollTo = useCallback(
-    async (scrollX) => {
+    async (scrollX:number, scrollY:number) => {
       assertConnected();
       const parent = await penpalConnectionRef.current!.promise;
       await parent.scrollTo(scrollX, scrollY);
