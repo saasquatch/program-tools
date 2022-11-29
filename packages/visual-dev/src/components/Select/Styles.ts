@@ -13,9 +13,8 @@ export const Item = css`
     background: var(--sq-surface-hover);
   }
 `;
-
 export const ItemContainer = css`
-  position: absolute;
+  position: relative;
   z-index: 100;
   box-sizing: border-box;
   list-style-type: none;
@@ -27,7 +26,6 @@ export const ItemContainer = css`
   border-radius: 0 0 var(--sq-border-radius-normal)
     var(--sq-border-radius-normal);
   border-top: none;
-  top: 33px;
   outline: none;
   overflow-y: auto;
 
@@ -68,7 +66,8 @@ export const SelectInputStyle = css`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 36px;
+  min-height: 36px;
+  max-height: 100%;
   box-sizing: border-box;
   text-indent: 6px;
   color: var(--sq-text);
@@ -78,9 +77,8 @@ export const SelectInputStyle = css`
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
   border: 2px solid var(--sq-border);
-  border-radius: var(--sq-border-radius-normal);
-  padding: var(--sq-spacing-xxx-small) 0 var(--sq-spacing-xxx-small)
-    var(--sq-spacing-small);
+  // border-radius: var(--sq-border-radius-normal);
+  padding: 1px var(--sq-spacing-x-small);
 
   &:focus {
     border-color: var(--sq-focused);
@@ -102,7 +100,40 @@ export const ButtonDiv = css`
   text-indent: 0px;
   padding: 2px 4px 0px;
 
+  & svg {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   & > :not(:last-child) {
     margin-right: var(--sq-spacing-xx-small);
   }
+`;
+
+export const TagsSlotWrapper = css`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: var(--sq-spacing-xx-small);
+  max-width: 100%;
+`;
+
+export const EmptyContainerDiv = css`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sq-spacing-xx-small);
+  flex-direction: column;
+  min-height: 50px;
+`;
+
+export const LabelSpan = css`
+  font-weight: var(--sq-font-weight-bold);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
+  text-align: center;
 `;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled, { CSSProp } from "styled-components";
+import styled, { css, CSSProp } from "styled-components";
 import { Button, ButtonProps } from "../Button";
 import * as Styles from "./Styles";
 
@@ -87,21 +87,43 @@ type ModalContentProps = ContentOptions &
 
 export interface ContentOptions {
   children?: React.ReactNode;
+  stickyFooter?: boolean;
 }
 
-const ModalContentDiv = styled.div<Required<StyleProps>>`
+const ModalContentDiv = styled.div<
+  Required<StyleProps & { stickyFooter: boolean }>
+>`
   ${Styles.ModalContentDivStyle}
   ${(props) => props.customCSS}
+  ${(props) =>
+    props.stickyFooter &&
+    css`
+      padding-bottom: 0;
+
+      & ${ModalFooterDiv} {
+        position: sticky;
+        bottom: 0;
+        background-color: var(--sq-surface);
+      }
+      & ${ModalActionDiv} {
+        padding-bottom: var(--sq-spacing-large);
+        box-sizing: border-box;
+      }
+    `}
 `;
 
 export const ModalContentView = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps
 >((props, forwardedRef) => {
-  const { children, customCSS = {}, ...rest } = props;
-
+  const { children, customCSS = {}, stickyFooter = false, ...rest } = props;
   return (
-    <ModalContentDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+    <ModalContentDiv
+      {...rest}
+      ref={forwardedRef}
+      customCSS={customCSS}
+      stickyFooter={stickyFooter}
+    >
       {children}
     </ModalContentDiv>
   );
@@ -195,5 +217,22 @@ export const ModalContentTopActionView = React.forwardRef<
       {action ? action.icon : ""}
       {action ? action.text : ""}
     </ModalBackDiv>
+  );
+});
+
+const ModalFooterDiv = styled.div<Required<StyleProps>>`
+  ${(props) => props.customCSS}
+`;
+
+export const ModalContentFooter = React.forwardRef<
+  React.ElementRef<"div">,
+  ModalContentProps
+>((props, forwardedRef) => {
+  const { children, customCSS = {}, ...rest } = props;
+
+  return (
+    <ModalFooterDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+      {children}
+    </ModalFooterDiv>
   );
 });

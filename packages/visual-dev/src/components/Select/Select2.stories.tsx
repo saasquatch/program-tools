@@ -20,7 +20,7 @@ export const Basic = () => {
         margin: "100px",
       }}
     >
-      <SelectView.ContainerView>
+      <SelectView.ContainerView {...{ functional }}>
         <SelectView.HandleView {...props} />
         <SelectView.ListView {...props} />
       </SelectView.ContainerView>
@@ -75,6 +75,31 @@ export const FullWidth = () => {
       }}
     >
       <SelectView.ContainerView {...props}>
+        <SelectView.HandleView {...props} />
+        <SelectView.ListView {...props} />
+      </SelectView.ContainerView>
+    </div>
+  );
+};
+
+export const CustomCSS = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const functional = useSelect({ items });
+  const props = { limitWidth: false, items, functional };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <SelectView.ContainerView
+        customContainerCSS={
+          "& ul { border: 2px solid red; border-radius: 4px; }"
+        }
+      >
         <SelectView.HandleView {...props} />
         <SelectView.ListView {...props} />
       </SelectView.ContainerView>

@@ -44,6 +44,14 @@ export interface OptionProps {
    *
    */
   loadingSlot?: React.ReactNode | React.ReactNode[];
+  /**
+   * Graphic displayed in empty tables above emptyContent
+   */
+  emptyGraphic?: React.ReactNode | React.ReactNode[];
+  /**
+   * Graphic displayed in empty filter state tables above emptyFilterContent
+   */
+  emptyFilterGraphic?: React.ReactNode | React.ReactNode[];
 }
 
 export interface StyleProps {
@@ -72,6 +80,14 @@ const DataTableDiv = styled.div<Required<StyleProps>>`
   ${(props) => props.customCSS}
 `;
 
+const EmptyDataDiv = styled(DataDiv)`
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const DataTableView = React.forwardRef<
   React.ElementRef<"div">,
   DataTableProps
@@ -83,6 +99,8 @@ export const DataTableView = React.forwardRef<
     empty = false,
     loading = false,
     emptyFilter = false,
+    emptyGraphic = DataGraphic,
+    emptyFilterGraphic = DataGraphic,
     emptyContent = "No submission found",
     emptyFilterContent = "No submissions that meet your filter criteria",
     headerSlot = <></>,
@@ -102,20 +120,18 @@ export const DataTableView = React.forwardRef<
       {loading && loadingSlot}
       {!loading && empty && (
         <RowDiv>
-          <DataDiv>
-            {DataGraphic}
-            <br />
+          <EmptyDataDiv>
+            {emptyGraphic}
             {emptyContent}
-          </DataDiv>
+          </EmptyDataDiv>
         </RowDiv>
       )}
       {!loading && !empty && emptyFilter && (
         <RowDiv>
-          <DataDiv>
-            {DataGraphic}
-            <br />
+          <EmptyDataDiv>
+            {emptyFilterGraphic}
             {emptyFilterContent}
-          </DataDiv>
+          </EmptyDataDiv>
         </RowDiv>
       )}
       {!loading && !empty && !emptyFilter && children}

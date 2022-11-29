@@ -10,6 +10,63 @@ const prettyValues = ["Points", "Tickets", "Gifts"];
 const statuses = ["AVAILABLE", "PENDING", "CANCELLED", "EXPIRED", "REDEEMED"];
 const pendingReasons = ["US_TAX", "SCHEDULED", "UNHANDLED_ERROR"];
 
+const paypalStatuses = [
+  "PENDING",
+  "IN_PROGRESS",
+  "FAILED",
+  "UNCLAIMED",
+  "ONHOLD",
+  "REFUNDED",
+  "RETURNED",
+  "REVERSED",
+  "BLOCKED",
+  "DENIED",
+];
+
+function getPaypalStatus(datePaidOut) {
+  if (datePaidOut) return "SUCCESS";
+
+  const randomIndex = Math.floor(Math.random() * 10);
+
+  const randomStatus = paypalStatuses[randomIndex];
+
+  return randomStatus;
+}
+
+export const getPaypalMeta = () => {
+  const datePaidOut =
+    Math.floor(Math.random() * 10) >= 5
+      ? DateTime.now()?.minus({ day: 1 })
+      : null;
+  const dateLastAttempted =
+    Math.floor(Math.random() * 10) >= 5
+      ? DateTime.now()?.minus({ day: 1 })
+      : null;
+
+  const paypalStatus = getPaypalStatus(datePaidOut);
+
+  const status =
+    paypalStatus === "DENIED"
+      ? "WARN"
+      : !!datePaidOut
+      ? "SUCCESS"
+      : Math.floor(Math.random() * 10) >= 8
+      ? "ERROR"
+      : "SUCCESS";
+
+  return {
+    status,
+    customMeta: {
+      datePaidOut,
+      dateLastAttempted,
+      dateFirstAttempted: dateLastAttempted,
+      rawPayPalInfo: {
+        transaction_status: paypalStatus,
+      },
+    },
+  };
+};
+
 const getMockData = () => {
   let isAvailableZero = false;
   let randomRedeemed = 0;
@@ -33,7 +90,9 @@ const getMockData = () => {
     prettyAvailableValue = `${randomValue} ${prettyValue}`;
     randomRedeemed = Math.floor(Math.random() * randomValue);
     dateExpires =
-      Math.floor(Math.random() * 10) < 3 ? today.plus({ days: 7 }).toMillis() : null;
+      Math.floor(Math.random() * 10) < 3
+        ? today.plus({ days: 7 }).toMillis()
+        : null;
   } else if (randomStatus === "EXPIRED") {
     prettyAvailableValue = `0 ${prettyValue}`;
     isAvailableZero = true;
@@ -81,6 +140,9 @@ const getMockData = () => {
     programId: source === 1 ? "program-id" : null,
     program: {
       name: "My Program",
+    },
+    meta: {
+      ...getPaypalMeta(),
     },
     statuses: [randomStatus],
     pendingReasons: pendingReason,

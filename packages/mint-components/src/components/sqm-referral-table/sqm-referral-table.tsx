@@ -78,7 +78,9 @@ export class ReferralTable {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<GenericTableViewProps>;
+  @Prop() demoData?: DemoData<GenericTableViewProps> & {
+    mockData?: { data: Referral[] };
+  };
 
   constructor() {
     withHooks(this);
@@ -162,7 +164,7 @@ function useReferralTableDemo(
   const tick = useRerenderListener();
 
   const mockData = useMemo(
-    () => mockReferralData(props.perPage),
+    () => props.demoData?.mockData || mockReferralData(props.perPage),
     [props.perPage]
   );
 

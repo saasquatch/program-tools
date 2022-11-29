@@ -37,7 +37,12 @@ const GET_REWARDS = gql`
           count
           data {
             meta {
+              status
+              integration {
+                name
+              }
               message
+              customMeta
             }
             id
             type
@@ -191,7 +196,7 @@ export function useRewardsTable(
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r: Reward) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, locale))
+        tryMethod(c, () => c.renderCell(r, locale, h))
       );
       const cells = (await Promise.all(cellPromise)) as VNode[];
       return cells;

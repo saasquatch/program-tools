@@ -56,6 +56,14 @@ const GET_REFERRER_DATA = gql`
             statuses
             globalRewardKey
             programRewardKey
+            meta {
+              status
+              integration {
+                name
+              }
+              message
+              customMeta
+            }
             rewardRedemptionTransactions {
               data {
                 exchangedRewards {
@@ -143,9 +151,18 @@ const GET_REFERRAL_DATA = gql`
               fuelTankType
               currency
               prettyValue(locale: $locale)
+              pendingReasons
               statuses
               globalRewardKey
               programRewardKey
+              meta {
+                status
+                integration {
+                  name
+                }
+                message
+                customMeta
+              }
               rewardRedemptionTransactions {
                 data {
                   exchangedRewards {
@@ -308,7 +325,7 @@ export function useReferralTable(
     let referrerRow;
     if (showReferrerRow && states.currentPage === 0) {
       const referrerPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderReferrerCell(referrerData, locale))
+        tryMethod(c, () => c.renderReferrerCell(referrerData, locale, h))
       );
       referrerRow = await Promise.all(referrerPromise);
     }
@@ -316,7 +333,7 @@ export function useReferralTable(
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, locale))
+        tryMethod(c, () => c.renderCell(r, locale, h))
       );
       const cells = (await Promise.all(cellPromise)) as VNode[][];
       return cells;

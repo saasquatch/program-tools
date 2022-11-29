@@ -36,6 +36,10 @@ export interface OptionProps {
    * Content inside the modal under the title
    */
   children: React.ReactNode;
+  /**
+   * Set the footer of modal to stick to bottom when scrolling. Should be set on ModalContentView and footer should be contained in ModalContentFooter
+   */
+  stickyFooter?: boolean;
 }
 
 export interface StyleProps {
@@ -71,8 +75,6 @@ export const ModalView = React.forwardRef<React.ElementRef<"div">, ModalProps>(
       open = false,
       onClose,
       zIndex,
-      primaryAction,
-      secondaryAction,
       children,
       customCSS = {},
       customTitleCSS = {},

@@ -32,6 +32,10 @@ export class BaseConfig {
   @optional("info")
   public serverLogLevel!: string;
 
+  @key("SERVER_LOG_FILE")
+  @optional("")
+  public serverLogFile!: string;
+
   @key("ENFORCE_HTTPS", asBoolean)
   @optional(true)
   public enforceHttps!: boolean;

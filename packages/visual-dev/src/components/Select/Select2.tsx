@@ -4,8 +4,8 @@ import { UseComboboxReturnValue, UseSelectReturnValue } from "downshift";
 import { InputView } from "../Input";
 import { IconButton } from "../Button";
 import React from "react";
-import { IconView } from "../Icon";
-import { LoadingSpinner } from "../LoadingSpinner";
+import { IconKey, IconView } from "../Icon";
+import { DataTableView } from "../DataTable";
 
 export type SelectHandleViewProps<ItemType> = HandleOptionProps<ItemType> &
   Partial<React.ComponentProps<"input">>;
@@ -23,10 +23,14 @@ export interface SelectContainerViewProps {
    * Children of the container, generally SelectHandleView and SelectListView
    */
   children: React.ReactNode;
+  /**
+   * Disable the select
+   */
+  disabled?: boolean;
 }
 export interface HandleOptionProps<ItemType> {
   /**
-   * Downshift hook for component functionality (useSelect or useCombobox)
+   * Downshift hook for component functionality (useSelect or useCombobox or useMultipleSelection)
    */
   functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
   /**
@@ -46,22 +50,13 @@ export interface HandleOptionProps<ItemType> {
    */
   errors?: any;
   /**
-   * Items to include in the select list
-   */
-  items: Array<any>;
-  /**
    * Custom CSS for the select handle
    */
   customCSS?: CSSProp;
-
   /**
    * Allow the select value to be cleared
    */
   clearable?: boolean;
-  /**
-   * Render the handle in the loading state
-   */
-  loading?: boolean;
   /**
    * Placeholder displayed in the handle before a selection is made
    */
@@ -74,8 +69,15 @@ export interface HandleOptionProps<ItemType> {
    * Limit the width of the select with a valid CSS size (px, %) [default 300px]
    */
   limitWidth?: SizeType;
+  /**
+   * Use a custom icon instead of a chevron
+   */
+  customIcon?: IconKey;
+  /**
+   * Slot used to pass tag content to select when using a multi select
+   */
+  tagsSlot?: React.ReactNode;
 }
-
 export interface SelectListViewProps<ItemType> {
   /**
    * Render the select with red border and background to indicate an error
@@ -94,7 +96,7 @@ export interface SelectListViewProps<ItemType> {
    */
   loading?: boolean;
   /**
-   * Downshift hook for component functionality (useSelect or useCombobox)
+   * Downshift hook for component functionality (useSelect or useCombobox or useMultipleSelection)
    */
   functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
   /**
@@ -113,6 +115,18 @@ export interface SelectListViewProps<ItemType> {
    * Items to include in the select list
    */
   items: Array<any>;
+  /**
+   * Render in empty state
+   */
+  empty?: boolean;
+  /**
+   * Content to display when in the empty state
+   */
+  emptySlot?: string | React.ReactNode;
+  /**
+   * Content to display when in the loading state
+   */
+  loadingSlot?: string | React.ReactNode;
 }
 
 type SizeType = boolean | string;
@@ -129,6 +143,7 @@ const ItemContainerList = styled.ul<{
   errors: any;
   limitWidth: SizeType;
   limitHeight: SizeType;
+  empty: boolean;
 }>`
   ${Styles.ItemContainer}
   ${(props) =>
@@ -146,6 +161,8 @@ const ItemContainerList = styled.ul<{
         ? `max-height: ${props.limitHeight};`
         : "max-height: 200px;"
       : "max-height: auto;"}
+      ${(props) =>
+    props.empty && "& li:hover {background: white; cursor: default;}"}
 `;
 
 const ListItem = styled("li")`
@@ -174,7 +191,11 @@ const ContainerDiv = styled("div")<{
   ${(props) => props.customContainerCSS}
 `;
 
-const SelectInputDiv = styled.div<{
+const TagsSlotWrapperDiv = styled.div`
+  ${Styles.TagsSlotWrapper}
+`;
+
+const SelectInputButton = styled.button<{
   disabled: boolean | undefined;
   errors: any;
   isOpen: boolean;
@@ -184,8 +205,16 @@ const SelectInputDiv = styled.div<{
   ${(props) =>
     props.disabled &&
     "background: var(--sq-surface-input-disabled); cursor: default;"}
+        ${(props) =>
+    `border-radius: ${
+      props.isOpen
+        ? "var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0"
+        : "var(--sq-border-radius-normal)"
+    };`}
   ${(props) =>
-    props.isOpen && !props.disabled && "border-color: var(--sq-focused);"}
+    props.isOpen &&
+    !props.disabled &&
+    "border-color: var(--sq-focused); border-bottom: none;"}
   ${(props) =>
     !props.isOpen &&
     !props.disabled &&
@@ -221,6 +250,14 @@ const ButtonDiv = styled.div`
   ${Styles.ButtonDiv}
 `;
 
+const EmptyContainerDiv = styled.div`
+  ${Styles.EmptyContainerDiv}
+`;
+
+const LabelSpan = styled.span`
+  ${Styles.LabelSpan}
+`;
+
 // Redeclare forwardRef for use with generic prop types.
 declare module "react" {
   function forwardRef<T, P = {}>(
@@ -230,6 +267,7 @@ declare module "react" {
 
 const SelectContainerView = (props: SelectContainerViewProps) => {
   const { limitWidth = true, customContainerCSS = ``, children } = props;
+
   return (
     <ContainerDiv
       customContainerCSS={customContainerCSS}
@@ -249,12 +287,12 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
     disabled = false,
     errors = false,
     clearable = false,
-    loading = false,
     placeholder = "",
     limitWidth = true,
     limitHeight = false,
+    customIcon,
     functional,
-    items,
+    tagsSlot,
     itemToString = (item: ItemType) => {
       return item;
     },
@@ -288,19 +326,21 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
     );
   }
 
-  const isOpen = disabled || loading ? false : functional.isOpen;
+  const isOpen = disabled ? false : functional.isOpen;
 
   return !isCombobox(functional) ? (
-    <SelectInputDiv
+    <SelectInputButton
       {...rest}
+      type={"button"}
+      role={"button"}
       isOpen={functional.isOpen}
-      disabled={disabled || loading}
+      disabled={disabled}
       ref={ref}
       errors={errors}
       customCSS={customCSS}
-      role="button"
       {...functional.getToggleButtonProps()}
     >
+      {tagsSlot && <TagsSlotWrapperDiv>{tagsSlot}</TagsSlotWrapperDiv>}
       <SelectedValueSpan subdued={functional.selectedItem ? false : true}>
         {functional.selectedItem
           ? itemToString(functional.selectedItem)
@@ -327,11 +367,14 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             functional.selectItem((null as unknown) as ItemType);
           }}
         />
-        {loading ? (
-          <LoadingSpinner
+        {customIcon ? (
+          <IconView
+            icon={customIcon}
+            size={"small"}
+            customCSS={
+              "padding: var(--sq-spacing-x-small) var(--sq-spacing-small) var(--sq-spacing-x-small) var(--sq-spacing-x-small); box-sizing: content-box;"
+            }
             color={"var(--sq-text-subdued)"}
-            right="var(--sq-spacing-x-large)"
-            bottom="12px"
           />
         ) : (
           <IconView
@@ -344,7 +387,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           />
         )}
       </ButtonDiv>
-    </SelectInputDiv>
+    </SelectInputButton>
   ) : (
     <div {...functional.getComboboxProps()}>
       <InputView
@@ -356,14 +399,18 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
         limitWidth={limitWidth}
         customCSS={`
               ${customCSS};
-              ${isOpen && "border: 2px solid var(--sq-focused)"};
+              ${
+                isOpen
+                  ? "border: 2px solid var(--sq-focused); border-bottom: none; border-radius: var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0"
+                  : ""
+              };
               ${
                 clearable
                   ? "padding-right: var(--sq-spacing-xxxx-large)"
                   : "padding-right: var(--sq-spacing-xxx-large)"
               };
             `}
-        disabled={disabled || loading}
+        disabled={disabled}
         {...functional.getInputProps()}
       />
       <ButtonContainerDiv>
@@ -382,11 +429,20 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             functional.selectItem((null as unknown) as ItemType);
           }}
         />
-        {loading ? (
-          <LoadingSpinner
-            color={"var(--sq-text-subdued)"}
-            right="16px"
-            bottom="9px"
+        {customIcon ? (
+          <IconButton
+            disabled={disabled}
+            icon={customIcon}
+            borderless={true}
+            size="small"
+            customCSS={{
+              padding:
+                "10px var(--sq-spacing-x-small) var(--sq-spacing-x-small)",
+            }}
+            icon_css={{
+              color: "var(--sq-text-subdued)",
+            }}
+            {...functional.getToggleButtonProps()}
           />
         ) : (
           <IconButton
@@ -418,6 +474,25 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
     loading = false,
     functional,
     items,
+    loadingSlot = (
+      <>
+        <ListItem style={{ height: "32px" }} key={`1`}>
+          <DataTableView.SkeletonView size="120px" />
+        </ListItem>
+        <ListItem style={{ height: "32px" }} key={`2`}>
+          <DataTableView.SkeletonView size="120px" />
+        </ListItem>
+        <ListItem style={{ height: "32px" }} key={`3`}>
+          <DataTableView.SkeletonView size="120px" />
+        </ListItem>
+      </>
+    ),
+    empty = !items.length,
+    emptySlot = (
+      <EmptyContainerDiv>
+        <LabelSpan>No results found</LabelSpan>
+      </EmptyContainerDiv>
+    ),
     itemToString = (item: ItemType) => {
       return item;
     },
@@ -447,25 +522,31 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
       limitWidth={limitWidth}
       limitHeight={limitHeight}
       errors={errors}
+      empty={empty}
       ref={ref}
       {...functional.getMenuProps()}
     >
       {/* Place the conditional render inside getMenuProps call to avoid downshift errors */}
       {isOpen ? (
-        items.map((item, index) => (
-          <ListItem
-            style={
-              functional.highlightedIndex === index
-                ? { backgroundColor: "var(--sq-surface-hover)" }
-                : {}
-            }
-            key={`${itemToString(item)}-${index}`}
-            {...functional.getItemProps({ item, index })}
-            onMouseMove={() => {}}
-          >
-            {itemToNode(item)}
-          </ListItem>
-        ))
+        loading ? (
+          loadingSlot
+        ) : empty ? (
+          <ListItem key={`3`}>{emptySlot}</ListItem>
+        ) : (
+          items.map((item, index) => (
+            <ListItem
+              style={
+                functional.highlightedIndex === index
+                  ? { backgroundColor: "var(--sq-surface-hover)" }
+                  : {}
+              }
+              key={`${itemToString(item)}-${index}`}
+              {...functional.getItemProps({ item, index })}
+            >
+              {itemToNode(item)}
+            </ListItem>
+          ))
+        )
       ) : (
         <></>
       )}

@@ -17,6 +17,7 @@ vertical-align: middle
 flex-direction: column;
 align-items: center;
 padding: var(--sq-spacing-x-small);`;
+
 export const CardHeaderIconDiv = css`
   float: left;
   margin-right: 16px;
@@ -43,6 +44,9 @@ export const CardFooterDiv = css`
 export const CardLongDiv = css`
   width: 450px;
   height: 211px;
+  display: flex;
+  flex-direction: column;
+
   background: var(--sq-surface);
   border: 2px solid var(--sq-border);
   box-sizing: border-box;
@@ -73,8 +77,8 @@ export const CardLongFooterDiv = css`
   position: relative;
   bottom: 0px;
   background: var(--sq-background);
-  height: 26px;
   padding: var(--sq-spacing-large);
+  margin-top: auto;
 `;
 export const CardEditDiv = css`
   width: 850px;

@@ -24,8 +24,9 @@ const RequiredLabel = styled.span`
   ${Styles.RequiredLabel}
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ customCSS?: any }>`
   ${Styles.Container}
+  ${(props) => props.customCSS}
 `;
 
 const ErrorItem = styled.li`
@@ -43,11 +44,16 @@ export const FieldTemplate = (props: FieldTemplateProps) => {
     children,
     schema,
     rawErrors,
+    uiSchema,
   } = props;
   const isCollection = schema.type === "object" || schema.type === "array";
   return (
-    <Container className={classNames} id={id}>
-      {!isCollection && label && (
+    <Container
+      customCSS={uiSchema["ui:options"]?.customCSS}
+      className={classNames}
+      id={id}
+    >
+      {!isCollection && label && !uiSchema["ui:options"]?.hideLabel && (
         <Label htmlFor={id} id={`${id}-title`}>
           {label}
           {required && <RequiredLabel> (required)</RequiredLabel>}

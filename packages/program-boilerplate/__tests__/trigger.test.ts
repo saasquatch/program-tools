@@ -8,13 +8,6 @@ import {
   Program,
 } from "../src/types/rpc";
 
-const cachedLogger = console.log;
-beforeAll(() => {
-  console.log = () => {};
-});
-afterAll(() => {
-  console.log = cachedLogger;
-});
 describe("triggerProgram", () => {
   describe("body has invalid messageType", () => {
     const testBody = {
@@ -308,8 +301,8 @@ describe("triggerProgram", () => {
       };
       const result = triggerProgram(testBody, spyingProgram);
       expect(result).toStrictEqual({
-        json: {},
         code: 204,
+        json: {},
       });
     });
 

@@ -7,11 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.5] - 2022-11-29
+
+### Changed
+
+- Changed components:
+  - \<sqm-referral-table>
+    - additional data queried for use with `@saasquatch/paypal-components`
+    - `h` function passed to renderCell functions to support rendering between two packages
+  - \<sqm-rewards-table>
+    - additional data queried for use with `@saasquatch/paypal-components`
+    - `h` function passed to renderCell functions to support rendering between two packages
+
 ## [1.6.4] - 2022-10-05
 
 ### Changed
 
-- Changed components: 
+- Changed components:
   - \<sqm-divided-layout>
     - Added `box-sizing: border-box` and `overflow-x: clip` to the root container element to remove horizontal scrollbar on mobile devices
   - \<sqm-edit-profile>
@@ -28,7 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Replaced `<sqm-portal-container>` used in the view in order to change the flex direction of the name inputs when in mobile view.
     - Added missing margin bottom to the success alert
   - \<sqm-stat-container>
-    - Added media query to hide the stats right border when the screen size is 430px or less. 
+    - Added media query to hide the stats right border when the screen size is 430px or less.
   - \<sqm-hero>
     - Adding two column layout example for usage in the microsite/widget editor
 
@@ -611,7 +623,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.4...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.5...HEAD
+[1.6.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.5
 [1.6.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.4
 [1.6.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.3
 [1.6.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.2

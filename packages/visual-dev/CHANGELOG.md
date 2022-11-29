@@ -7,13 +7,51 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2022-11-29
+
+### Added
+
+- \<TagInput>
+  - Added an input that supports tags before the functional input, can be used for tag or email input
+
+### Changed
+
+- Components changed
+  - \<Accordion>
+    - Fixed bug where the cursor would not enter pointer mode when hovering over the accordion facade
+  - \<SelectView>
+    - refactor such that <Select> shares a codebase with <SelectView> and its subcomponents.
+    - Added support for the DownshiftJS multiselect hook, see stories for implementation details
+  - \<ObjectFieldTemplate>
+    - allow custom CSS properties on the fields container from `customCSS` in `ui:options`
+  - \<RJSFCheckbox>
+    - Support field labels from `ui:options`
+  - \<Datatable>
+    - `emptyGraphic` - added support for custom empty graphics displayed above `emptyContent`
+    - `emptyFilterGraphic` - added support for custom empty graphics displayed above `emptyFilterContent`
+  - \<RJSFInput>
+    - `"ui:placeholder"` - support for input field placeholders
+  - \<FieldTemplate>
+    - allow custom CSS properties on the field from `customCSS` in `ui:options`
+  - \<Badge>
+    - `size` - added new "small" badge size (default is "medium")
+  - \<IconButton>
+    - Fix cursor not entering pointer mode when hovering button
+  - \<DisplayDropdown>
+    - Add a new style of select/dropdown component, typically used in table rows
+  - \<GlobalStyle>
+    - `--sq-surface-overlay` - new background color token for elements which overlay the main page surface
+    - `--sq-surface-dark` - new dark background color token
+
 ## [1.1.1] - 2022-09-22
 
 ### Changed
 
 - Components changed
   - \<Icon>
-    - removed center alignment from default icon styling, and added prop to overwrite existing styles and center the icon
+    - Removed center alignment from default icon styling, and added prop to overwrite existing styles and center the icon
+  - \<Dropdown>
+    - Change the look of the pill style dropdown so borders don't interfere with content
 
 ## [1.1.0] - 2022-09-21
 
@@ -173,7 +211,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<TextArea>
   - \<Tooltip>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.1.1...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.2.0...HEAD
+[1.2.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.2.0
 [1.1.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.1.1
 [1.1.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.1.0
 [1.0.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.0.2
