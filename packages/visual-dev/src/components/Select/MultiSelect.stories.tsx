@@ -77,7 +77,7 @@ export function MultipleSelect() {
               selectedItem: selectedItemForRender,
               index,
             })}
-            onClick={(e) => {
+            onClickClose={(e) => {
               e.stopPropagation();
               removeSelectedItem(selectedItemForRender);
             }}
@@ -183,7 +183,7 @@ export function MultipleSelectFullWidth() {
               selectedItem: selectedItemForRender,
               index,
             })}
-            onClick={(e) => {
+            onClickClose={(e) => {
               e.stopPropagation();
               removeSelectedItem(selectedItemForRender);
             }}
@@ -306,7 +306,7 @@ export function MultiSelectWithManyItems() {
               selectedItem: selectedItemForRender,
               index,
             })}
-            onClick={(e) => {
+            onClickClose={(e) => {
               e.stopPropagation();
               removeSelectedItem(selectedItemForRender);
             }}

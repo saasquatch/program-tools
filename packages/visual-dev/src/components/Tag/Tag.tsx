@@ -9,7 +9,7 @@ export interface OptionProps {
   /**
    * Callback triggered when the close on the tag is clicked
    */
-  onClickClose?: () => void;
+  onClickClose?: (e?: any) => void;
   /**
    * Content displayed inside tag, generally small pieces of content like a <span>
    */

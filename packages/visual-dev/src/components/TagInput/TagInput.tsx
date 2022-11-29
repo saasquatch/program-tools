@@ -5,6 +5,7 @@ import { InputWidthType } from "../Input";
 import * as Styles from "./Styles";
 
 export type TagInputViewProps = OptionProps &
+  StyleProps &
   Partial<React.ComponentProps<"span">>;
 
 export interface OptionProps {
@@ -26,7 +27,7 @@ export interface TagViewProps {
 
 export interface StyleProps {
   /**
-   * Custom CSS applied to badge
+   * Custom CSS applied to input container
    */
   customCSS?: CSSProp;
 }
@@ -40,6 +41,8 @@ const ContainerDiv = styled.div<StyleProps & { limitWidth: InputWidthType }>`
         ? `max-width: ${props.limitWidth};`
         : "max-width: 300px;"
       : "max-width: 100%;"}
+
+  ${(props) => props.customCSS}
 `;
 
 const StyledInput = styled.span<StyleProps>`
@@ -71,9 +74,9 @@ const TagInputView = React.forwardRef<
   React.ElementRef<"span">,
   TagInputViewProps
 >((props, forwardedRef) => {
-  const { tagSlot, limitWidth = true, ...rest } = props;
+  const { tagSlot, limitWidth = true, customCSS = {}, ...rest } = props;
   return (
-    <ContainerDiv limitWidth={limitWidth}>
+    <ContainerDiv limitWidth={limitWidth} customCSS={customCSS}>
       {tagSlot}
       <StyledInput
         {...rest}

@@ -60,6 +60,7 @@ const DescriptionP = styled.p`
 `;
 
 const IconDiv = styled.div<{ expanded: boolean }>`
+  ${Styles.IconDiv}
   ${(props) =>
     props.expanded &&
     "transform: rotate( -180deg ); transition: transform 400ms ease;"}

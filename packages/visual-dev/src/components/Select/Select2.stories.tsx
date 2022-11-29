@@ -81,3 +81,28 @@ export const FullWidth = () => {
     </div>
   );
 };
+
+export const CustomCSS = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const functional = useSelect({ items });
+  const props = { limitWidth: false, items, functional };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <SelectView.ContainerView
+        customContainerCSS={
+          "& ul { border: 2px solid red; border-radius: 4px; }"
+        }
+      >
+        <SelectView.HandleView {...props} />
+        <SelectView.ListView {...props} />
+      </SelectView.ContainerView>
+    </div>
+  );
+};

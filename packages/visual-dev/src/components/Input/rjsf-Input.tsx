@@ -14,6 +14,7 @@ export function RJSFInput(props: WidgetProps) {
       disabled={props.disabled}
       errors={props.rawErrors && !!props.rawErrors.length}
       required={props.required}
+      placeholder={props.placeholder}
     />
   );
 }
@@ -30,6 +31,7 @@ export function RJSFNumericalInput(props: WidgetProps) {
       disabled={props.disabled}
       errors={props.rawErrors && !!props.rawErrors.length}
       required={props.required}
+      placeholder={props.placeholder}
     />
   );
 }
@@ -47,6 +49,7 @@ export function RJSFPasswordInput(props: WidgetProps) {
       errors={props.rawErrors && !!props.rawErrors.length}
       disabled={props.disabled}
       required={props.required}
+      placeholder={props.placeholder}
       buttons={
         <IconButton
           icon="visibility"
@@ -74,6 +77,7 @@ export function RJSFLockableInput(props: WidgetProps) {
       disabled={locked}
       errors={props.rawErrors && !!props.rawErrors.length}
       required={props.required}
+      placeholder={props.placeholder}
       buttons={
         <IconButton
           icon="edit"
@@ -129,6 +133,7 @@ export function RJSFCancellableInput(props: WidgetProps) {
       disabled={locked}
       errors={props.rawErrors && !!props.rawErrors.length}
       required={props.required}
+      placeholder={props.placeholder}
       buttons={
         locked == true ? (
           <IconButton
