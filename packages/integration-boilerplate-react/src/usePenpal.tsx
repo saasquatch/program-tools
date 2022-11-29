@@ -19,13 +19,19 @@ export enum ConfigMode {
 interface PenpalParentMethods<IntegrationConfig, FormConfig> {
   resize(height: number): Promise<void>;
   saveIntegration(
-    config: Partial<IntegrationConfig>
+    config: Partial<IntegrationConfig>,
+    options?: { hideNotification?: boolean }
   ): Promise<{ upsertIntegration: { config: IntegrationConfig } }>;
   patchIntegrationConfig(
-    patch: IntegrationConfigPatch
+    patch: IntegrationConfigPatch,
+    options?: { hideNotification?: boolean }
   ): Promise<{ patchIntegrationConfig: { config: IntegrationConfig } }>;
-  updateFormConfiguration(config: Partial<FormConfig>): Promise<void>;
+  updateFormConfiguration(
+    config: Partial<FormConfig>,
+    options?: { hideNotification?: boolean }
+  ): Promise<void>;
   navigateToNewPortalURL(url: string): Promise<void>;
+  scrollTo(scrollX: number, scrollY: number): Promise<void>;
   getFileStackConfig(): Promise<FileStackConfig>;
 }
 
@@ -44,18 +50,28 @@ interface DisplayConfiguration<IntegrationConfig, FormConfig> {
   formType?: "submit_actions" | "initial_data_actions";
 }
 
-type IntegrationConfigPatch = Array<{ op: string; path: string; value: any }>;
+type IntegrationConfigPatch = Array<{ op: string; path: string; value?: any }>;
 
 type PenpalConnection<IntegrationConfig, FormConfig> = Connection<
   PenpalParentMethods<IntegrationConfig, FormConfig>
 >;
 
 interface PenpalContextMethods<IntegrationConfig, FormConfig> {
-  saveIntegrationConfig(config: Partial<IntegrationConfig>): Promise<void>;
-  patchIntegrationConfig(patch: IntegrationConfigPatch): Promise<void>;
-  saveFormConfig(config: Partial<FormConfig>): Promise<void>;
+  saveIntegrationConfig(
+    config: Partial<IntegrationConfig>,
+    options?: { hideNotification?: boolean }
+  ): Promise<void>;
+  patchIntegrationConfig(
+    patch: IntegrationConfigPatch,
+    options?: { hideNotification?: boolean }
+  ): Promise<void>;
+  saveFormConfig(
+    config: Partial<FormConfig>,
+    options?: { hideNotification?: boolean }
+  ): Promise<void>;
   getFileStackConfig(): Promise<FileStackConfig>;
   navigatePortal(url: string): Promise<void>;
+  scrollTo(scrollX: number, scrollY: number): Promise<void>;
   closeFormConfig(): Promise<void>;
   setShouldCancelDisableCallback: (fn: () => Promise<boolean>) => void;
 }
@@ -139,10 +155,13 @@ export function PenpalContextProvider<
   }, []);
 
   const saveIntegrationConfig = useCallback(
-    async (config: Partial<IntegrationConfig>) => {
+    async (
+      config: Partial<IntegrationConfig>,
+      options?: { hideNotification?: boolean }
+    ) => {
       assertConnected();
       const parent = await penpalConnectionRef.current!.promise;
-      const data = await parent.saveIntegration(config);
+      const data = await parent.saveIntegration(config, options);
       setState((state) => ({
         ...state,
         integrationConfig: data.upsertIntegration.config,
@@ -152,10 +171,13 @@ export function PenpalContextProvider<
   );
 
   const patchIntegrationConfig = useCallback(
-    async (patch: IntegrationConfigPatch) => {
+    async (
+      patch: IntegrationConfigPatch,
+      options?: { hideNotification?: boolean }
+    ) => {
       assertConnected();
       const parent = await penpalConnectionRef.current!.promise;
-      const data = await parent.patchIntegrationConfig(patch);
+      const data = await parent.patchIntegrationConfig(patch, options);
       setState((state) => ({
         ...state,
         integrationConfig: data.patchIntegrationConfig.config,
@@ -165,10 +187,13 @@ export function PenpalContextProvider<
   );
 
   const saveFormConfig = useCallback(
-    async (config: Partial<FormConfig>) => {
+    async (
+      config: Partial<FormConfig>,
+      options?: { hideNotification?: boolean }
+    ) => {
       assertConnected();
       const parent = await penpalConnectionRef.current!.promise;
-      await parent.updateFormConfiguration(config);
+      await parent.updateFormConfiguration(config, options);
       setState((state) => ({ ...state, formConfig: config }));
     },
     [assertConnected]
@@ -196,6 +221,15 @@ export function PenpalContextProvider<
         .formConfig
     );
   }, [assertConnected, saveFormConfig, state]);
+
+  const scrollTo = useCallback(
+    async (scrollX:number, scrollY:number) => {
+      assertConnected();
+      const parent = await penpalConnectionRef.current!.promise;
+      await parent.scrollTo(scrollX, scrollY);
+    },
+    [assertConnected]
+  );
 
   useEffect(() => {
     (async () => {
@@ -282,6 +316,7 @@ export function PenpalContextProvider<
       saveFormConfig,
       getFileStackConfig,
       navigatePortal,
+      scrollTo,
       closeFormConfig,
       setShouldCancelDisableCallback,
     }),
@@ -293,6 +328,7 @@ export function PenpalContextProvider<
       saveFormConfig,
       getFileStackConfig,
       navigatePortal,
+      scrollTo,
       closeFormConfig,
       setShouldCancelDisableCallback,
     ]
