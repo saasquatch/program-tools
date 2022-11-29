@@ -19,6 +19,7 @@ jobs:
         package:
           - mint-components
           - bedrock-components
+          - paypal-components
 
     steps:
       - name: Checkout
