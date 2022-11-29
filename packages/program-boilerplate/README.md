@@ -177,10 +177,13 @@ export const program: Program = {
 `<my-program>.ts`
 ```typescript
 import {program} from './program';
-import {webtask} from '@saasquatch/program-boilerplate';
+import {webtask, getLogger} from '@saasquatch/program-boilerplate';
 
-webtask(program).listen(process.env.PORT, () => {
-  console.log(`My program running on port ${process.env.PORT}`);
+const logger = getLogger();
+const port = process.env.PORT ?? 3000;
+
+webtask(program).listen(port, () => {
+  logger.notice(`My program running on port ${port}`);
 });
 ```
 

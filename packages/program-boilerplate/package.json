@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/program-boilerplate",
-  "version": "3.6.0",
+  "version": "3.6.1",
   "description": "Boilerplate for writing programs",
   "main": "dist/index.js",
   "files": [
@@ -13,7 +13,7 @@
     "prepush": "npm run format",
     "prepare": "npm run build",
     "deploy": "np",
-    "test": "jest"
+    "test": "SSQT_LOG_LEVEL=emerg jest"
   },
   "author": "",
   "license": "ISC",
@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@saasquatch/jsonata-paths-extractor": "^1.0.1",
+    "@saasquatch/logger": "^1.0.0",
     "bson-objectid": "^1.3.1",
     "compression": "^1.7.4",
     "express": "^4.17.1",

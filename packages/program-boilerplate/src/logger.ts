@@ -1,4 +1,5 @@
-import { createLogger, format, Logger, transports } from "winston";
+import { initializeLogger, LogLevel, LOG_LEVELS } from "@saasquatch/logger";
+import { Logger } from "winston";
 
 // Lazily initialized logger instance
 let _logger: Logger;
@@ -16,16 +17,13 @@ export function getLogger(logLevel: string): Logger {
     return _logger;
   }
 
-  const logFormat = format.printf(({ level, message }) => {
-    return `[${level.toUpperCase()}] ${message}`;
-  });
+  if (!LOG_LEVELS.includes(logLevel as LogLevel)) {
+    logLevel = "info";
+  }
 
-  _logger = createLogger({
-    level: logLevel,
-    format: format.combine(logFormat),
-    transports: [new transports.Console()],
+  _logger = initializeLogger({
+    logLevel: logLevel as LogLevel,
   });
-
   return _logger;
 }
 

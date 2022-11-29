@@ -19,6 +19,7 @@ import { webhookHandler } from "./webhookHandler";
 import { formHandler } from "./formHandler";
 import { IntegrationConfigError, GraphQLError } from "./errors";
 import { gql } from ".";
+import { httpLogMiddleware } from "@saasquatch/logger";
 
 declare module "http" {
   interface IncomingMessage {
@@ -157,6 +158,10 @@ export class IntegrationService<
     return { config, graphql };
   }
 
+  async getUserGraphQL(tenantAlias: string, userJwt: string) {
+    return this.getUserScopedGraphQL(tenantAlias, userJwt);
+  }
+
   async getIntegrationConfig(tenantAlias: string): Promise<IntegrationConfig> {
     if (this.tenantIntegrationConfigCache.has(tenantAlias)) {
       this.logger.debug(
@@ -210,43 +215,65 @@ export class IntegrationService<
       variables?: Record<string, any>,
       operationName?: string
     ) => {
-      return this.graphql<QueryResponseShape>(
-        query,
+      return this.graphql<QueryResponseShape>(query, {
         tenantAlias,
         variables,
-        operationName
-      );
+        operationName,
+      });
+    };
+  }
+
+  private getUserScopedGraphQL(
+    tenantAlias: string,
+    userJwt: string
+  ): types.TenantScopedGraphQLFn {
+    return <QueryResponseShape>(
+      query: string,
+      variables?: Record<string, any>,
+      operationName?: string
+    ) => {
+      return this.graphql<QueryResponseShape>(query, {
+        tenantAlias,
+        variables,
+        operationName,
+        token: userJwt,
+      });
     };
   }
 
   private async graphql<QueryResponseShape = unknown>(
     query: string,
-    tenantAlias?: string,
-    variables?: Record<string, any>,
-    operationName?: string
+    opts?: {
+      tenantAlias?: string;
+      variables?: Record<string, any>;
+      operationName?: string;
+      token?: string;
+    }
   ): Promise<QueryResponseShape> {
-    const apiToken = await this.auth.getSaasquatchApiToken();
+    const apiToken = opts?.token
+      ? opts.token
+      : await this.auth.getSaasquatchApiToken();
 
     try {
       const body: {
         query: string;
-        variables?: typeof variables;
+        variables?: Record<string, any>;
         operationName?: string;
       } = { query };
 
-      if (variables) {
-        body.variables = variables;
+      if (opts?.variables) {
+        body.variables = opts.variables;
       }
 
-      if (operationName) {
-        body.operationName = operationName;
+      if (opts?.operationName) {
+        body.operationName = opts.operationName;
       }
 
       let url;
-      if (tenantAlias) {
+      if (opts?.tenantAlias) {
         url = `https://${
           this.config.saasquatchAppDomain
-        }/api/v1/${encodeURIComponent(tenantAlias)}/graphql`;
+        }/api/v1/${encodeURIComponent(opts.tenantAlias)}/graphql`;
       } else {
         url = `https://${this.config.saasquatchAppDomain}/api/v1/graphql`;
       }
@@ -284,11 +311,8 @@ export class IntegrationService<
     // Enable compression
     server.use(compression());
 
-    // Simple request logging middleware
-    server.use((req, _res, next) => {
-      this.logger.info(`${req.method} ${req.url}`);
-      next();
-    });
+    // Enable request logging
+    server.use(httpLogMiddleware(this.logger));
 
     // Force HTTPS for all requests
     if (this.config.enforceHttps) {

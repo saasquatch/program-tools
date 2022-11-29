@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.6.1] - 2022-11-29
+
+### Changed
+
+- Boilerplate logger has been changed to use `@saasquatch/logger` instead of plain
+  Winston
+
 ## [3.6.0] - 2022-09-21
 
 ### Added
@@ -31,7 +38,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch/program-boilerplate%403.6.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch/program-boilerplate%403.6.1...HEAD
+[3.6.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.6.1
 [3.6.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.6.0
 [3.5.11]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.5.11
 [3.5.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.5.9
