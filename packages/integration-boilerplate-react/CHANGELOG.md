@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.1] - 2022-11-29
+
+### Added
+
+- scrollTo method for controlling page position within portal
+
+### Changed
+
+- Added option to hide the Saved notification when using patchIntegrationConfig or updateFormConfiguration
+
 ## [2.0.0] - 2021-09-22
 
 ### Changed
@@ -25,5 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[unreleased]: https://github.com/sasquatch/integration-boilerplate-react/compare/v1.0.0...HEAD
+[unreleased]: https://github.com/sasquatch/integration-boilerplate-react/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/sasquatch/integration-boilerplate-react/releases/tag/v2.0.1
+[2.0.0]: https://github.com/sasquatch/integration-boilerplate-react/releases/tag/v2.0.0
 [1.0.0]: https://github.com/sasquatch/integration-boilerplate-react/releases/tag/v1.0.0
