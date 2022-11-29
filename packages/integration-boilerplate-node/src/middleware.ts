@@ -27,8 +27,6 @@ declare global {
   namespace Express {
     interface Request {
       tenantAlias?: string;
-      accountId?: string;
-      userId?: string;
     }
   }
 }
