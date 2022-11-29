@@ -117,7 +117,7 @@ export function DetailsCardView(props: DetailsCardViewProps) {
     return (
       <div class={classes.CurrenciesContainer}>
         {" "}
-        {currencies.map((currency) => {
+        {currencies?.map((currency) => {
           return (
             <div class={classes.CurrencyContainer}>
               <p class={classes.SubCurrencyText}>{currency?.amountText}</p>
@@ -195,17 +195,19 @@ export function DetailsCardView(props: DetailsCardViewProps) {
               : w9Pending?.[0]?.amountText}
           </h1>
         )}
-        {otherCurrencies !== undefined && !loading && (
-          <div>
-            <p
-              class={classes.SubduedRegularText}
-              style={{ fontSize: "var(--sl-font-size-x-small)" }}
-            >
-              + {otherCurrenciesText}
-            </p>
-            {currencyList(otherCurrencies as Currency[])}
-          </div>
-        )}
+        {otherCurrencies !== undefined &&
+          otherCurrencies !== false &&
+          !loading && (
+            <div>
+              <p
+                class={classes.SubduedRegularText}
+                style={{ fontSize: "var(--sl-font-size-x-small)" }}
+              >
+                + {otherCurrenciesText}
+              </p>
+              {currencyList(otherCurrencies as Currency[])}
+            </div>
+          )}
         {hasW9Pending && status === "pending" && hasDatePending && !loading && (
           <div class={classes.W9Container}>
             <p class={classes.SubduedRegularText}>{w9PendingText}</p>
