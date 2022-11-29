@@ -11,13 +11,13 @@ export const CardDiv = css`
   padding: var(--sq-spacing-x-small);
 `;
 export const CardHeaderDiv = css`
-  display: flex;
-  height: 40px;
-  vertical-align: middle;
-  flex-direction: column;
-  align-items: center;
-  padding: var(--sq-spacing-x-small);
-`;
+display: flex;
+height: 40px;
+vertical-align: middle
+flex-direction: column;
+align-items: center;
+padding: var(--sq-spacing-x-small);`;
+
 export const CardHeaderIconDiv = css`
   float: left;
   margin-right: 16px;
@@ -44,6 +44,9 @@ export const CardFooterDiv = css`
 export const CardLongDiv = css`
   width: 450px;
   height: 211px;
+  display: flex;
+  flex-direction: column;
+
   background: var(--sq-surface);
   border: 2px solid var(--sq-border);
   box-sizing: border-box;
@@ -57,8 +60,8 @@ export const CardLongDiv = css`
 export const CardLongHeaderDiv = css`
   flex-direction: column;
   align-items: center;
-  vertical-align: middle;
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  vertical-align: middle
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-header-three);
   line-height: var(--sq-line-height-header-three);
@@ -74,8 +77,8 @@ export const CardLongFooterDiv = css`
   position: relative;
   bottom: 0px;
   background: var(--sq-background);
-  height: 26px;
   padding: var(--sq-spacing-large);
+  margin-top: auto;
 `;
 export const CardEditDiv = css`
   width: 850px;
@@ -88,9 +91,9 @@ export const CardEditDiv = css`
   padding: var(--sq-spacing-medium);
 `;
 export const CardEditHeaderDiv = css`
-  display: flex;
+  display: flex;	
   height: 40px;
-  vertical-align: middle;
+  vertical-align: middle
   flex-direction: column;
   align-items: center;
 `;

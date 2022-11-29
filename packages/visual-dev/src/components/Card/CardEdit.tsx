@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import styled, { CSSProp } from "styled-components";
 import { BadgeView } from "../Badge";
-import { Button, IconButton } from "../Button";
+import { Button, IconButton, IconButtonView } from "../Button";
 import { IconView } from "../Icon";
 import { InputView } from "../Input";
 import * as Styles from "./Styles";
@@ -91,21 +91,19 @@ export const CardEditView = React.forwardRef<
                   />
                 ) : (
                   <>
-                    <IconButton
+                    <IconButtonView
                       icon="checkmark"
                       size="mini"
-                      customCSS="position: relative; left: -50px;"
                       primary
-                      icon_css="margin: -10px; top: 9px;"
+                      customCSS={"margin-right: 4px;"}
                       onClick={() => {
                         setLocked(true);
                       }}
                     />
-                    <IconButton
+                    <IconButtonView
                       icon="close"
                       size="mini"
-                      customCSS="position: relative; left: -47px;"
-                      icon_css="margin: -10px; top: 8px;  color: #858585"
+                      icon_css="color: #858585;"
                       onClick={() => {
                         setLocked(true);
                       }}
