@@ -2,7 +2,7 @@
 
 # PayPal Components
 
-PayPal components are a collection of components for SaaSquatch that provide end users with details about PayPal payouts made through the PayPal integration.
+PayPal components are a collection of components for SaaSquatch that provide end users with details about PayPal payouts made through the PayPal integration. This includes a PayPal account details component (\<sqp-account-details>) allowing users to add/update their PayPal email and view the preview of future payouts, a PayPal rewards table status column component (\<sqp-status-column>) which displays reward payout details from the PayPal integration and similarly a PayPal referral table rewards column component (\<sqp-rewards-column>) which displays reward payout details from the PayPal integration.
 
 ## Using these components
 
