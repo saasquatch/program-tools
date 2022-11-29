@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.3] - 2022-11-29
+
+### Changed
+
+- SaaSquatch token middleware exits early if the request `tenantAlias` is already present
+- integration-boilerplate-node logger now uses `@saasquatch/logger` package
+
+### Added
+
+- `getUserGraphQL` function for getting a user-scoped GraphQL client using a user JWT
+
 ## [1.1.2] - 2022-06-20
 
 ### Changed
@@ -35,7 +46,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[unreleased]: https://github.com/sasquatch/integration-boilerplate-node/compare/v1.1.2...HEAD
+[unreleased]: https://github.com/sasquatch/integration-boilerplate-node/compare/v1.1.3...HEAD
+[1.1.3]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.3
 [1.1.2]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.2
 [1.1.1]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.1
 [1.1.0]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.0
