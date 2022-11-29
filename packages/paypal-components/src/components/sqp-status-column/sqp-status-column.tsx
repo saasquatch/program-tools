@@ -151,7 +151,7 @@ export class RewardTablePayPalStatusColumn implements RewardTableColumn {
    * @undocumented
    */
   @Prop() integrationDomain: string =
-    "https://paypal-payouts-prod.herokuapp.com/graphql";
+    "https://paypal-payouts.integrations.saasquatch.com/graphql";
 
   @State() integrationBaseUnits: string[] | undefined = undefined;
 

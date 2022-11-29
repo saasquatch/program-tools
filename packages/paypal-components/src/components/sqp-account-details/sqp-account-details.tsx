@@ -87,7 +87,7 @@ export class PaypalAccountDetails {
    * @undocumented
    */
   @Prop() integrationDomain: string =
-    "https://paypal-payouts-prod.herokuapp.com/graphql";
+    "https://paypal-payouts.integrations.saasquatch.com/graphql";
   /**
    * @uiName Connect button label
    * @uiGroup Account not connected
