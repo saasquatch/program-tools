@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
-import { PortalSectionView } from "../sqp-titled-section/sqp-portal-section-view";
+import { PortalSectionView } from "./sqp-portal-section-view";
 
 export interface AccountFormViewProps {
   hasAccount: boolean;
