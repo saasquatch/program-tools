@@ -166,6 +166,11 @@ const DropdownContentDiv = styled("div")<
     `top: 2px; transform: translateY(calc(-100% + -1*var(--sq-spacing-x-small)));`}
 
   ${(props) =>
+    props.popUpwards &&
+    !props.pill &&
+    `top: 2px; transform: translateY(calc(-100%));`}
+
+  ${(props) =>
     !props.pill &&
     (props.popUpwards
       ? `border-bottom: none;`

@@ -154,6 +154,7 @@ export const PaginationView = React.forwardRef<
                 onClickDropdown={() => setDropdown(!dropdown)}
                 showMenu={dropdown}
                 center
+                pill
                 popUpwards
                 text={`${limit} Per Page`}
                 customCSS="min-width: 165px; width: 165px; display: inline-block; border-radius: 18px;"
