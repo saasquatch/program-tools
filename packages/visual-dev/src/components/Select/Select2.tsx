@@ -515,7 +515,9 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
     },
   } = props;
 
-  const isOpen = disabled || loading ? false : functional.isOpen;
+  const isOpen = disabled || functional.isOpen;
+
+  console.log("loading", loading);
 
   return (
     <ItemContainerList
