@@ -517,8 +517,6 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
 
   const isOpen = disabled || functional.isOpen;
 
-  console.log("loading", loading);
-
   return (
     <ItemContainerList
       limitWidth={limitWidth}
