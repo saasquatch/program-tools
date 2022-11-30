@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Components changed
+  - \<Dropdown>
+    - Fixed a visual regression with the upwards menu direction where there was an unnecessary gap between the handle and list
+
 ## [1.2.0] - 2022-11-29
 
 ### Added
