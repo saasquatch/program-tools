@@ -1,17 +1,80 @@
 import { JSONSchema6 } from "json-schema";
+import Ajv from "ajv";
+import addFormats from "ajv-formats";
+import * as draft6MetaSchema from "ajv/dist/refs/json-schema-draft-06.json";
+import * as integrationTemplateSchema_import from "@saasquatch/schema/json/IntegrationConfig.schema.json";
 
+const integrationTemplateSchema = { ...integrationTemplateSchema_import };
+
+export type TenantAlias = string;
 export interface Webhook {
   id: string;
   type: string;
-  tenantAlias: string;
+  tenantAlias: TenantAlias;
   live: boolean;
   created: number;
   [key: string]: any;
 }
 
+const additionalPropertiesTrue = (input: any) => {
+  Object.entries(input).forEach(([key, val]) => {
+    if (key === "additionalProperties") {
+      input[key] = true;
+    } else if (typeof val === "object") {
+      additionalPropertiesTrue(val);
+    }
+  });
+};
+
+export type IntegrationConfiguration =
+  saasquatch.IntegrationConfig.IntegrationConfiguration;
+
+// @ts-ignore
+integrationTemplateSchema["$id"] = "#/definitions/integrationTemplateSchema";
+
+// allow additionalProperties: true throughout the entire schema. this enables
+// "at least equivalent" ajv validation for the input
+additionalPropertiesTrue(integrationTemplateSchema);
+
+const introspectionBodySchema = {
+  $schema: "http://json-schema.org/draft-06/schema#",
+  type: "object",
+  required: ["tenantAlias", "templateIntegrationConfig"],
+  additionalProperties: true,
+  properties: {
+    tenantAlias: { type: "string" },
+    templateIntegrationConfig: {
+      $ref: "#/definitions/integrationTemplateSchema",
+    },
+  },
+};
+
+export type IntrospectionBody<IntegrationConfig> = {
+  /**
+   * The tenantAlias
+   */
+  tenantAlias: TenantAlias;
+  /**
+   * The integration settings for the specific tenant that this introspection is for
+   */
+  config: IntegrationConfig;
+  /**
+   * The integration's top-level config
+   */
+  templateIntegrationConfig: IntegrationConfiguration;
+};
+
+const ajv = new Ajv();
+addFormats(ajv);
+ajv.addMetaSchema(draft6MetaSchema);
+ajv.addSchema(integrationTemplateSchema);
+ajv.addSchema(introspectionBodySchema);
+
+export const validateIntrospectionBody = ajv.compile(introspectionBodySchema);
+
 export interface FormRequestContext<IntegrationConfig, FormConfig> {
   type: "SUBMIT" | "VALIDATE" | "INTROSPECTION" | "INITIAL_DATA";
-  tenantAlias: string;
+  tenantAlias: TenantAlias;
   formData: Record<string, any>;
   formSubmissionRecordId: string;
   dateSubmitted: number;

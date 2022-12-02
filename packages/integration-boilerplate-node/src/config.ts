@@ -64,6 +64,10 @@ export class BaseConfig {
   @key("STATIC_FRONTEND_INDEX")
   @optional("index.html")
   public staticFrontendIndex!: string;
+
+  @key("INTROSPECTION_ENDPOINT_PATH")
+  @optional("/introspection")
+  public introspectionEndpointPath!: string;
 }
 
 export async function loadConfig<T extends BaseConfig>(

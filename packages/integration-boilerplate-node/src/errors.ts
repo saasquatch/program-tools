@@ -4,6 +4,7 @@ import { Logger } from "winston";
 
 export class PermissionDeniedError extends CustomError {}
 export class UnhandledWebhookError extends CustomError {}
+export class UnhandledIntrospectionError extends CustomError {}
 export class UnhandledFormError extends CustomError {}
 export class IntegrationConfigError extends CustomError {}
 export class GraphQLError extends CustomError {
@@ -23,6 +24,10 @@ export function handleError(e: Error, logger: Logger, res: Response) {
 
   if (e instanceof UnhandledWebhookError) {
     errorCode = "UNHANDLED_WEBHOOK_ERROR";
+  }
+
+  if (e instanceof UnhandledIntrospectionError) {
+    errorCode = "UNHANDLED_INTROSPECTION_ERROR";
   }
 
   if (e instanceof UnhandledFormError) {

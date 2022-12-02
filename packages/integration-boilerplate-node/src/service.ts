@@ -1,25 +1,25 @@
-import path from "path";
-import express, { Express, Router, Response } from "express";
+import { httpLogMiddleware } from "@saasquatch/logger";
 import compression from "compression";
+import express, { Express, Response, Router } from "express";
 import enforce from "express-sslify";
 import { createProxyMiddleware } from "http-proxy-middleware";
-import { Logger } from "winston";
-import fetch from "node-fetch";
 import NodeCache from "node-cache";
-
-import * as types from "./types";
-import { BaseConfig, loadConfig } from "./config";
-import { createLogger } from "./logger";
+import fetch from "node-fetch";
+import path from "path";
+import { Logger } from "winston";
+import { gql } from ".";
 import { Auth } from "./auth";
+import { BaseConfig, loadConfig } from "./config";
+import { GraphQLError, IntegrationConfigError } from "./errors";
+import { formHandler } from "./formHandler";
+import { introspectionHandler } from "./introspectionHandler";
+import { createLogger } from "./logger";
 import {
   createSaasquatchRequestMiddleware,
   createSaasquatchTokenMiddleware,
 } from "./middleware";
+import * as types from "./types";
 import { webhookHandler } from "./webhookHandler";
-import { formHandler } from "./formHandler";
-import { IntegrationConfigError, GraphQLError } from "./errors";
-import { gql } from ".";
-import { httpLogMiddleware } from "@saasquatch/logger";
 
 declare module "http" {
   interface IncomingMessage {
@@ -62,6 +62,12 @@ export interface IntegrationHandlers<
     context: types.FormInitialDataRequestContext<IntegrationConfig, FormConfig>,
     graphql: types.TenantScopedGraphQLFn
   ) => Promise<types.FormInitialDataResponse | types.FormErrorResponse>;
+  introspectionHandler?: (
+    service: IntegrationService<ServiceConfig, IntegrationConfig, FormConfig>,
+    config: IntegrationConfig,
+    templateIntegrationConfig: types.IntegrationConfiguration,
+    tenantAlias: types.TenantAlias
+  ) => Promise<types.IntegrationConfiguration>;
 }
 
 export interface ServiceOptions<
@@ -141,7 +147,7 @@ export class IntegrationService<
     `;
 
     interface TenantQueryData {
-      data: { viewer: { tenants: { tenantAlias: string }[] } };
+      data: { viewer: { tenants: { tenantAlias: types.TenantAlias }[] } };
     }
 
     const result = await this.graphql<TenantQueryData>(tenantQuery);
@@ -152,17 +158,19 @@ export class IntegrationService<
     return tenantAliases;
   }
 
-  async getTenant(tenantAlias: string) {
+  async getTenant(tenantAlias: types.TenantAlias) {
     const config = await this.getIntegrationConfig(tenantAlias);
     const graphql = this.getTenantScopedGraphQL(tenantAlias);
     return { config, graphql };
   }
 
-  async getUserGraphQL(tenantAlias: string, userJwt: string) {
+  async getUserGraphQL(tenantAlias: types.TenantAlias, userJwt: string) {
     return this.getUserScopedGraphQL(tenantAlias, userJwt);
   }
 
-  async getIntegrationConfig(tenantAlias: string): Promise<IntegrationConfig> {
+  async getIntegrationConfig(
+    tenantAlias: types.TenantAlias
+  ): Promise<IntegrationConfig> {
     if (this.tenantIntegrationConfigCache.has(tenantAlias)) {
       this.logger.debug(
         `Retrieving integration config for tenant [${tenantAlias}] from cache`
@@ -208,7 +216,7 @@ export class IntegrationService<
   }
 
   private getTenantScopedGraphQL(
-    tenantAlias: string
+    tenantAlias: types.TenantAlias
   ): types.TenantScopedGraphQLFn {
     return <QueryResponseShape>(
       query: string,
@@ -224,7 +232,7 @@ export class IntegrationService<
   }
 
   private getUserScopedGraphQL(
-    tenantAlias: string,
+    tenantAlias: types.TenantAlias,
     userJwt: string
   ): types.TenantScopedGraphQLFn {
     return <QueryResponseShape>(
@@ -244,7 +252,7 @@ export class IntegrationService<
   private async graphql<QueryResponseShape = unknown>(
     query: string,
     opts?: {
-      tenantAlias?: string;
+      tenantAlias?: types.TenantAlias;
       variables?: Record<string, any>;
       operationName?: string;
       token?: string;
@@ -347,6 +355,16 @@ export class IntegrationService<
           this.getTenantScopedGraphQL(req.body.tenantAlias)
         );
       });
+    }
+
+    if (this.options?.handlers?.introspectionHandler) {
+      server.post(
+        this.config.introspectionEndpointPath,
+        // requireSaaSquatchSignature,
+        async (req, res) => {
+          await introspectionHandler(req, res, this);
+        }
+      );
     }
 
     if (
