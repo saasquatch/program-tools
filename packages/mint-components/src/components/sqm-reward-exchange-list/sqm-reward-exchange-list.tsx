@@ -16,6 +16,7 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
 import { demoRewardExchange, rewardExchange } from "./RewardExchangeListData";
+import { useReducer } from "@saasquatch/universal-hooks";
 
 /**
  * @uiName Reward Exchange
@@ -197,6 +198,12 @@ export class SqmRewardExchangeList {
    */
   @Prop() demoData?: DemoData<RewardExchangeViewProps>;
 
+  /**
+   * @undocumented
+   * @uiType string
+   */
+  @Prop() demoDataString?: any;
+
   constructor() {
     withHooks(this);
   }
@@ -243,16 +250,37 @@ function EmptySlot() {
 }
 
 function useRewardExchangeListDemo(props: RewardExchangeProps) {
+  const [exchangeState, setExchangeState] = useReducer<
+    ExchangeState,
+    Partial<ExchangeState>
+  >(
+    (state, next) => ({
+      ...state,
+      ...next,
+    }),
+    {
+      selectedItem: undefined,
+      selectedStep: undefined,
+      redeemStage: "chooseReward",
+      amount: 0,
+      exchangeError: false,
+    }
+  );
+
+  function setStage(stage?: Stages) {
+    setExchangeState({ redeemStage: stage });
+  }
+  console.log("reward exchange props", { props });
   return deepmerge(
     {
       states: {
         content: {
           text: props,
         },
-        redeemStage: "chooseReward",
+        redeemStage: exchangeState.redeemStage,
         amount: 0,
         selectedStep: undefined,
-        selectedItem: undefined,
+        selectedItem: exchangeState.selectedItem,
         open: false,
         exchangeError: false,
         queryError: false,
@@ -267,16 +295,25 @@ function useRewardExchangeListDemo(props: RewardExchangeProps) {
       },
       callbacks: {
         exchangeReward: () => {},
-        setExchangeState: (_: ExchangeState) => {},
-        setStage: (_: Stages) => {},
-        resetState: () => {},
+        setExchangeState,
+        setStage,
+        resetState: () =>
+          setExchangeState({
+            amount: 0,
+            selectedStep: undefined,
+            selectedItem: undefined,
+            exchangeError: false,
+            redeemStage: "chooseReward",
+          }),
         copyFuelTankCode: () => {},
       },
       refs: {
         canvasRef: {},
       },
     },
-    props.demoData || {},
+    props.demoData || props.demoDataString
+      ? JSON.parse(props.demoDataString)
+      : {},
     { arrayMerge: (_, a) => a }
   );
 }

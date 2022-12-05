@@ -96,6 +96,7 @@ export interface RewardExchangeProps {
   costTitle: string;
   empty: VNode;
   demoData?: object;
+  demoDataString?: string;
 }
 
 export type Stages = "" | "chooseReward" | "chooseAmount" | "confirmation";
@@ -319,7 +320,8 @@ export function useRewardExchangeList(
       queryError: !!queryError,
       loading: loading || exchangeLoading,
       open,
-      noExchangeOptions: data?.viewer?.visibleRewardExchangeItems.totalCount === 0,
+      noExchangeOptions:
+        data?.viewer?.visibleRewardExchangeItems.totalCount === 0,
     },
     data: {
       exchangeList: data?.viewer?.visibleRewardExchangeItems?.data,

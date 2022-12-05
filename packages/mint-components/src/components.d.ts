@@ -1585,6 +1585,11 @@ export namespace Components {
          */
         "demoData"?: DemoData<RewardExchangeViewProps>;
         /**
+          * @undocumented 
+          * @uiType string
+         */
+        "demoDataString"?: any;
+        /**
           * @uiName Done Text
          */
         "doneText": string;
@@ -4527,6 +4532,11 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<RewardExchangeViewProps>;
+        /**
+          * @undocumented 
+          * @uiType string
+         */
+        "demoDataString"?: any;
         /**
           * @uiName Done Text
          */
