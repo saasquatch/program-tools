@@ -360,7 +360,7 @@ export class IntegrationService<
     if (this.options?.handlers?.introspectionHandler) {
       server.post(
         this.config.introspectionEndpointPath,
-        // requireSaaSquatchSignature,
+        requireSaaSquatchSignature,
         async (req, res) => {
           await introspectionHandler(req, res, this);
         }
