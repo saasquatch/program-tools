@@ -21,9 +21,10 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "types": ["@saasquatch/schema"]
   },
-  "include": ["src/**/*.ts", "./node_modules/@saasquatch/schema/index.d.ts"],
+  "include": ["src/**/*.ts"],
   "ts-node": {
     "files": true
   }

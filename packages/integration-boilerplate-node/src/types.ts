@@ -16,7 +16,7 @@ export interface Webhook {
   [key: string]: any;
 }
 
-const additionalPropertiesTrue = (input: any) => {
+const additionalPropertiesTrue = (input: any): void => {
   Object.entries(input).forEach(([key, val]) => {
     if (key === "additionalProperties") {
       input[key] = true;

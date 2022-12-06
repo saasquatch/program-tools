@@ -20,7 +20,12 @@ export async function introspectionHandler<
   const introspectionBody: IntrospectionBody<IntegrationConfig> = req.body;
   const validationResult = validateIntrospectionBody(introspectionBody);
   if (!validationResult) {
-    res.status(400).json({ error: "Input validation failed" });
+    service.logger.debug({
+      message: "Input validation failed",
+      errors: validateIntrospectionBody.errors,
+    });
+
+    res.status(400).json({ errorCode: "INPUT_VALIDATION_FAILED" });
     return;
   }
 
@@ -49,7 +54,7 @@ export async function introspectionHandler<
       service.logger.crit(
         "Error: attempted to run introspectionHandler without an introspection handler in the options. This is a logic error"
       );
-      res.status(500).json({ error: "INTERNAL_ERROR" });
+      res.status(500).json({ errorCode: "INTERNAL_ERROR" });
     }
   } catch (e) {
     handleError(e, service.logger, res);
