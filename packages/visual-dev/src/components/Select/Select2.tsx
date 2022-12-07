@@ -462,6 +462,32 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
   );
 };
 
+interface itemsToNodeProps<ItemType> {
+  items: Array<ItemType>;
+  functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
+  itemToString: (item: ItemType) => ItemTypeBase;
+  itemToNode: (item: ItemType) => React.ReactNode;
+}
+
+const itemsToNode = <ItemType extends ItemTypeBase>(
+  props: itemsToNodeProps<ItemType>
+) => {
+  const { items, functional, itemToString, itemToNode } = props;
+  return items.map((item, index) => (
+    <ListItem
+      style={
+        functional.highlightedIndex === index
+          ? { backgroundColor: "var(--sq-surface-hover)" }
+          : {}
+      }
+      key={`${itemToString(item)}-${index}`}
+      {...functional.getItemProps({ item, index })}
+    >
+      {itemToNode(item)}
+    </ListItem>
+  ));
+};
+
 const SelectInnerListView = <ItemType extends ItemTypeBase>(
   props: SelectListViewProps<ItemType>,
   ref: React.Ref<HTMLInputElement>
