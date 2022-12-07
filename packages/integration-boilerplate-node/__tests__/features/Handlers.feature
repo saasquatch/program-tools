@@ -15,6 +15,51 @@ Feature: Handlers
     #
     # Custom handlers
     #
+    #
+    Scenario: Custom introspection handlers are called
+        Given an integration service with custom handlers
+        And the introspection path is /introspection
+        And there is a POST request to /introspection
+        And the X-HOOK-JWS-RFC-7797 header is:
+            """
+            eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImhMWC95ZFd3NEMwbXdkcnZ5UGhVWW1kQ2tEOD0ifQ..oCWvfbcIRyD1Y0uaVoQw0o7Z_FkjirjWArHwg9zYBYDPniKzK8Yg1tMzbNApEVVx3YieVtgXqIHLhOWhtsOKgH8fnV9u1oDitviJD-J5-L_rqU3J7E-haacHfvz3wSEW_NGQdlJoE6b-_8_1JG0ZeDCYhJyg911YKBgTTvoaLDHeEMKa-8hWZkPLGISnGCB3ido8FPW25muoBNgTzqh6dwAhXxdMveoC-OtUr3-lH0Vy5SJlOO0A9lAPhtXw_OKS0p_MmHm4IBTUAn0FKgd3sukSRhSQVwxO74LkgECRYV3R8LyuFxftfFIeVggZCfWw4jDoIfYgoYPpk0TSEMXBJA
+            """
+        And the body is:
+            """
+            {
+                "tenantAlias": "testing",
+                "config": { "someKey": "someVal" },
+                "templateIntegrationConfig": {
+                    "webhooks": [],
+                    "linkInterceptors": [],
+                    "formHandler": {
+                        "endpointUrl": "http://dzDWaUdUrMEsPysuNZEkUVWR.jftNXu04KHtr.92bA",
+                        "name": "voluptate anim dolore dolor"
+                    },
+                    "customFields": []
+                }
+            }
+            """
+        When the request is sent
+        Then the custom introspection handler will be called
+
+    Scenario: Custom introspection handler request body is validated against schema
+        Given an integration service with custom handlers
+        And the introspection path is /introspection
+        And there is a POST request to /introspection
+        And the X-HOOK-JWS-RFC-7797 header is:
+            """
+            eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImhMWC95ZFd3NEMwbXdkcnZ5UGhVWW1kQ2tEOD0ifQ..oCWvfbcIRyD1Y0uaVoQw0o7Z_FkjirjWArHwg9zYBYDPniKzK8Yg1tMzbNApEVVx3YieVtgXqIHLhOWhtsOKgH8fnV9u1oDitviJD-J5-L_rqU3J7E-haacHfvz3wSEW_NGQdlJoE6b-_8_1JG0ZeDCYhJyg911YKBgTTvoaLDHeEMKa-8hWZkPLGISnGCB3ido8FPW25muoBNgTzqh6dwAhXxdMveoC-OtUr3-lH0Vy5SJlOO0A9lAPhtXw_OKS0p_MmHm4IBTUAn0FKgd3sukSRhSQVwxO74LkgECRYV3R8LyuFxftfFIeVggZCfWw4jDoIfYgoYPpk0TSEMXBJA
+            """
+        And the body is:
+            """
+            {
+                "tenantAlias": "testing",
+                "config": { "someKey": "someVal" }
+            }
+            """
+        When the request is sent
+        Then the custom introspection handler will not be called
 
     Scenario: Custom webhook handlers are called
         Given an integration service with custom handlers

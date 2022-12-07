@@ -22,7 +22,7 @@
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "types": ["@saasquatch/schema"]
+    "types": ["@saasquatch/schema", "jest"]
   },
   "include": ["src/**/*.ts"],
   "ts-node": {
