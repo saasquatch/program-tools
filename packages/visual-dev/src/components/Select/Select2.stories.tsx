@@ -106,3 +106,49 @@ export const CustomCSS = () => {
     </div>
   );
 };
+
+export const Frame = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const items2 = ["Orca", "San Juan"];
+  const functional = useSelect({ items: [...items, ...items2] });
+  const props = { limitWidth: false, items, functional };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <SelectView.ContainerView>
+        <SelectView.HandleView {...props} />
+        <SelectView.FrameView {...props}>
+          <div>Gulf Islands</div>
+          {items.map((item, index) => (
+            <SelectView.ListItemView
+              isHighlighted={functional.highlightedIndex === index}
+              key={`${SelectView.ItemToString(item)}-${index}`}
+              {...functional.getItemProps({ item, index })}
+            >
+              {SelectView.ItemToString(item)}
+            </SelectView.ListItemView>
+          ))}
+          <div>San Juan Islands</div>
+          {items2.map((item, index) => {
+            const full_index = items.length + index;
+            return (
+              <SelectView.ListItemView
+                isHighlighted={functional.highlightedIndex === full_index}
+                key={`${SelectView.ItemToString(item)}-${full_index}`}
+                {...functional.getItemProps({ item, index: full_index })}
+              >
+                {SelectView.ItemToString(item)}
+              </SelectView.ListItemView>
+            );
+          })}
+        </SelectView.FrameView>
+      </SelectView.ContainerView>
+    </div>
+  );
+};
