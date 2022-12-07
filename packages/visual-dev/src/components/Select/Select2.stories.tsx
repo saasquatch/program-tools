@@ -127,24 +127,24 @@ export const Frame = () => {
           <div>Gulf Islands</div>
           {items.map((item, index) => (
             <SelectView.ListItemView
-              isHighlighted={functional.highlightedIndex === index}
-              key={`${SelectView.ItemToString(item)}-${index}`}
-              {...functional.getItemProps({ item, index })}
-            >
-              {SelectView.ItemToString(item)}
-            </SelectView.ListItemView>
+              {...{
+                functional,
+                index,
+                item,
+              }}
+            />
           ))}
           <div>San Juan Islands</div>
           {items2.map((item, index) => {
-            const full_index = items.length + index;
+            const global_index = items.length + index;
             return (
               <SelectView.ListItemView
-                isHighlighted={functional.highlightedIndex === full_index}
-                key={`${SelectView.ItemToString(item)}-${full_index}`}
-                {...functional.getItemProps({ item, index: full_index })}
-              >
-                {SelectView.ItemToString(item)}
-              </SelectView.ListItemView>
+                {...{
+                  functional,
+                  index: global_index,
+                  item,
+                }}
+              />
             );
           })}
         </SelectView.FrameView>

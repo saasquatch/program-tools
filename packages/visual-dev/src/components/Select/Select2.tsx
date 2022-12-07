@@ -176,6 +176,50 @@ const ListItem = styled.li<{ isHighlighted?: boolean }>`
     props.isHighlighted ? "background-color: var(--sq-surface-hover)" : ""}
 `;
 
+export interface ListItemViewProps<ItemType> {
+  /**
+   * Index of the current list item in the full list (including subgroups)
+   */
+  index: number;
+  /**
+   * Current list item to render
+   */
+  item: ItemType;
+  /**
+   * Function to transform item objects to strings for display
+   */
+  itemToString?: (item: ItemType | null) => string;
+  /**
+   * Function to transform item objects into template code for dropdown items
+   */
+  itemToNode?: (item: ItemType) => React.ReactNode;
+  /**
+   * Downshift hook for component functionality (useSelect or useCombobox or useMultipleSelection)
+   */
+  functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
+}
+
+const ListItemView = <ItemType extends ItemTypeBase>(
+  props: ListItemViewProps<ItemType>
+) => {
+  const {
+    item,
+    index,
+    itemToString = itemToStringDefault,
+    itemToNode = itemToNodeDefault,
+    functional,
+  } = props;
+  return (
+    <ListItem
+      isHighlighted={functional.highlightedIndex === index}
+      key={`${itemToString(item)}-${index}`}
+      {...functional.getItemProps({ item, index })}
+    >
+      {itemToNode(item)}
+    </ListItem>
+  );
+};
+
 const ButtonContainerDiv = styled.div`
   ${Styles.ButtonContainer}
 `;
@@ -463,13 +507,13 @@ const itemsToNode = <ItemType extends ItemTypeBase>(
 ): React.ReactNode | React.ReactNode[] => {
   const { items, functional, itemToString, itemToNode } = props;
   return items.map((item, index) => (
-    <ListItem
-      isHighlighted={functional.highlightedIndex === index}
-      key={`${itemToString(item)}-${index}`}
-      {...functional.getItemProps({ item, index })}
-    >
-      {itemToNode(item)}
-    </ListItem>
+    <SelectView.ListItemView
+      {...{
+        functional,
+        index,
+        item,
+      }}
+    />
   ));
 };
 
@@ -582,7 +626,7 @@ export const SelectView = {
   ListView: React.forwardRef(SelectInnerListView),
   FrameView: React.forwardRef(SelectInnerFrameView),
   ContainerView: SelectContainerView,
-  ListItemView: ListItem,
+  ListItemView: ListItemView,
   ItemToNode: itemToNodeDefault,
   ItemToString: itemToStringDefault,
 };
