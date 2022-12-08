@@ -129,6 +129,29 @@ export interface SelectListViewProps<ItemType> {
   loadingSlot?: string | React.ReactNode;
 }
 
+export interface ListItemViewProps<ItemType> {
+  /**
+   * Index of the current list item in the full list (including subgroups)
+   */
+  index: number;
+  /**
+   * Current list item to render
+   */
+  item: ItemType;
+  /**
+   * Function to transform item objects to strings for display
+   */
+  itemToString?: (item: ItemType | null) => string;
+  /**
+   * Function to transform item objects into template code for dropdown items
+   */
+  itemToNode?: (item: ItemType) => React.ReactNode;
+  /**
+   * Downshift hook for component functionality (useSelect or useCombobox or useMultipleSelection)
+   */
+  functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
+}
+
 export type SelectFrameViewProps<ItemType> = Omit<
   SelectListViewProps<ItemType>,
   "itemToNode" | "itemToString"
@@ -137,12 +160,6 @@ export type SelectFrameViewProps<ItemType> = Omit<
 type SizeType = boolean | string;
 
 type ItemTypeBase = { description?: string } | string | number | boolean;
-
-type ComplexItemType = { description?: string };
-
-function isComplexItem(item: any): item is ComplexItemType {
-  return typeof item === "object" && item !== null;
-}
 
 const ItemContainerList = styled.ul<{
   errors: any;
@@ -175,50 +192,6 @@ const ListItem = styled.li<{ isHighlighted?: boolean }>`
   ${(props) =>
     props.isHighlighted ? "background-color: var(--sq-surface-hover)" : ""}
 `;
-
-export interface ListItemViewProps<ItemType> {
-  /**
-   * Index of the current list item in the full list (including subgroups)
-   */
-  index: number;
-  /**
-   * Current list item to render
-   */
-  item: ItemType;
-  /**
-   * Function to transform item objects to strings for display
-   */
-  itemToString?: (item: ItemType | null) => string;
-  /**
-   * Function to transform item objects into template code for dropdown items
-   */
-  itemToNode?: (item: ItemType) => React.ReactNode;
-  /**
-   * Downshift hook for component functionality (useSelect or useCombobox or useMultipleSelection)
-   */
-  functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
-}
-
-const ItemView = <ItemType extends ItemTypeBase>(
-  props: ListItemViewProps<ItemType>
-) => {
-  const {
-    item,
-    index,
-    itemToString = itemToStringDefault,
-    itemToNode = itemToNodeDefault,
-    functional,
-  } = props;
-  return (
-    <ListItem
-      isHighlighted={functional.highlightedIndex === index}
-      key={`${itemToString(item)}-${index}`}
-      {...functional.getItemProps({ item, index })}
-    >
-      {itemToNode(item)}
-    </ListItem>
-  );
-};
 
 const ButtonContainerDiv = styled.div`
   ${Styles.ButtonContainer}
@@ -315,6 +288,27 @@ declare module "react" {
     render: (props: P, ref: React.Ref<T>) => React.ReactElement | null
   ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
 }
+
+const ItemView = <ItemType extends ItemTypeBase>(
+  props: ListItemViewProps<ItemType>
+) => {
+  const {
+    item,
+    index,
+    itemToString = itemToStringDefault,
+    itemToNode = itemToNodeDefault,
+    functional,
+  } = props;
+  return (
+    <ListItem
+      isHighlighted={functional.highlightedIndex === index}
+      key={`${itemToString(item)}-${index}`}
+      {...functional.getItemProps({ item, index })}
+    >
+      {itemToNode(item)}
+    </ListItem>
+  );
+};
 
 const SelectContainerView = (props: SelectContainerViewProps) => {
   const { limitWidth = true, customContainerCSS = ``, children } = props;
@@ -584,12 +578,14 @@ function itemToStringDefault<ItemType>(item: ItemType | null): string {
   return `${item}`;
 }
 
-function itemToNodeDefault<ItemType>(item: ItemType) {
-  if (isComplexItem(item)) {
+function itemToNodeDefault<ItemType>(
+  item: ItemType & { description?: string }
+) {
+  if (typeof item === "object" && item !== null) {
     return (
       <>
         <span>{itemToStringDefault(item)}</span>
-        {item.description && (
+        {item.hasOwnProperty("description") && item.description && (
           <>
             <br />
             <ItemDescriptionSpan>{item.description}</ItemDescriptionSpan>
