@@ -126,7 +126,7 @@ export const Frame = () => {
         <SelectView.FrameView {...props}>
           <div>Gulf Islands</div>
           {items.map((item, index) => (
-            <SelectView.ListItemView
+            <SelectView.ItemView
               {...{
                 functional,
                 index,
@@ -138,7 +138,7 @@ export const Frame = () => {
           {items2.map((item, index) => {
             const global_index = items.length + index;
             return (
-              <SelectView.ListItemView
+              <SelectView.ItemView
                 {...{
                   functional,
                   index: global_index,

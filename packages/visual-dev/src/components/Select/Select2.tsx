@@ -199,7 +199,7 @@ export interface ListItemViewProps<ItemType> {
   functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
 }
 
-const ListItemView = <ItemType extends ItemTypeBase>(
+const ItemView = <ItemType extends ItemTypeBase>(
   props: ListItemViewProps<ItemType>
 ) => {
   const {
@@ -498,7 +498,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
 interface itemsToNodeProps<ItemType> {
   items: Array<ItemType>;
   functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
-  itemToString: (item: ItemType) => ItemTypeBase;
+  itemToString: (item: ItemType | null) => string;
   itemToNode: (item: ItemType) => React.ReactNode;
 }
 
@@ -507,11 +507,13 @@ const itemsToNode = <ItemType extends ItemTypeBase>(
 ): React.ReactNode | React.ReactNode[] => {
   const { items, functional, itemToString, itemToNode } = props;
   return items.map((item, index) => (
-    <SelectView.ListItemView
+    <SelectView.ItemView
       {...{
         functional,
         index,
         item,
+        itemToNode,
+        itemToString,
       }}
     />
   ));
@@ -578,11 +580,11 @@ const SelectInnerFrameView = <ItemType extends ItemTypeBase>(
   );
 };
 
-const itemToStringDefault = <ItemType extends ItemTypeBase>(item: ItemType) => {
-  return item;
-};
+function itemToStringDefault<ItemType>(item: ItemType | null): string {
+  return `${item}`;
+}
 
-const itemToNodeDefault = <ItemType extends ItemTypeBase>(item: ItemType) => {
+function itemToNodeDefault<ItemType>(item: ItemType) {
   if (isComplexItem(item)) {
     return (
       <>
@@ -598,7 +600,7 @@ const itemToNodeDefault = <ItemType extends ItemTypeBase>(item: ItemType) => {
   } else {
     return <span>{itemToStringDefault(item)}</span>;
   }
-};
+}
 
 const SelectInnerListView = <ItemType extends ItemTypeBase>(
   props: SelectListViewProps<ItemType>,
@@ -626,7 +628,7 @@ export const SelectView = {
   ListView: React.forwardRef(SelectInnerListView),
   FrameView: React.forwardRef(SelectInnerFrameView),
   ContainerView: SelectContainerView,
-  ListItemView: ListItemView,
+  ItemView: ItemView,
   ItemToNode: itemToNodeDefault,
   ItemToString: itemToStringDefault,
 };
