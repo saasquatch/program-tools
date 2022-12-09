@@ -4,6 +4,8 @@ import addFormats from "ajv-formats";
 import * as draft6MetaSchema from "ajv/dist/refs/json-schema-draft-06.json";
 import * as integrationTemplateSchema_import from "@saasquatch/schema/json/IntegrationConfig.schema.json";
 
+import { IntegrationConfiguration } from "@saasquatch/schema/types/IntegrationConfig";
+
 const integrationTemplateSchema = { ...integrationTemplateSchema_import };
 
 export type TenantAlias = string;
@@ -25,9 +27,6 @@ const additionalPropertiesTrue = (input: any): void => {
     }
   });
 };
-
-export type IntegrationConfiguration =
-  saasquatch.IntegrationConfig.IntegrationConfiguration;
 
 // @ts-ignore
 integrationTemplateSchema["$id"] = "#/definitions/integrationTemplateSchema";
@@ -59,9 +58,23 @@ export type IntrospectionBody<IntegrationConfig> = {
    */
   config: IntegrationConfig;
   /**
-   * The integration's top-level config
+   * The integration's top-level template config (configured in Contentful)
    */
   templateIntegrationConfig: IntegrationConfiguration;
+};
+
+export type IntrospectionResponse = {
+  /**
+   * The modified integration template config
+   */
+  templateIntegrationConfig: IntegrationConfiguration;
+
+  /**
+   * Whether the list of rewards in the templateIntegrationConfig represents
+   * the concrete rewardUnits that the integration can fulfill or whether its a
+   * list of all hypothetical rewardUnits that it could fulfill
+   */
+  excludeNonExistentRewardUnits?: boolean;
 };
 
 const ajv = new Ajv();

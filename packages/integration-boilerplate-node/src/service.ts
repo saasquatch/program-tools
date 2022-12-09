@@ -1,4 +1,5 @@
 import { httpLogMiddleware } from "@saasquatch/logger";
+import { IntegrationConfiguration } from "@saasquatch/schema/types/IntegrationConfig";
 import compression from "compression";
 import express, { Express, Response, Router } from "express";
 import enforce from "express-sslify";
@@ -65,9 +66,9 @@ export interface IntegrationHandlers<
   introspectionHandler?: (
     service: IntegrationService<ServiceConfig, IntegrationConfig, FormConfig>,
     config: IntegrationConfig,
-    templateIntegrationConfig: types.IntegrationConfiguration,
+    templateIntegrationConfig: IntegrationConfiguration,
     tenantAlias: types.TenantAlias
-  ) => Promise<types.IntegrationConfiguration>;
+  ) => Promise<types.IntrospectionResponse>;
 }
 
 export interface ServiceOptions<
