@@ -43,9 +43,9 @@ export async function introspectionHandler<
   try {
     if (service.options?.handlers?.introspectionHandler) {
       try {
-        const newTemplate = await service.options.handlers
+        const introspectionResult = await service.options.handlers
           .introspectionHandler!(service, config, template, tenantAlias);
-        res.status(200).json({ templateIntegrationConfig: newTemplate });
+        res.status(200).json(introspectionResult);
       } catch (e) {
         throw new UnhandledIntrospectionError(errorToString(e));
       }
