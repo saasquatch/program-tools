@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Components changed
   - \<Dropdown>
     - Fixed a visual regression with the upwards menu direction where there was an unnecessary gap between the handle and list
+  - \<RadioCard>
+    - Added more flexibility to allow custom CSS and better design for cards without icons
 
 ## [1.2.0] - 2022-11-29
 

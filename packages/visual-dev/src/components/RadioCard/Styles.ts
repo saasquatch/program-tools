@@ -68,7 +68,6 @@ export const RightSegmentStyle = css`
   width: auto;
   align-self: stretch;
   float: right;
-  border-left: 2px solid var(--sq-surface-input-disabled);
 `;
 
 export const LeftSegmentStyle = css`
@@ -78,4 +77,5 @@ export const LeftSegmentStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-right: 2px solid var(--sq-surface-input-disabled);
 `;

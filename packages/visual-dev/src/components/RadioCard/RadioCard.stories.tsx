@@ -143,3 +143,21 @@ export const radioCardNoText = () => {
     </RadioCardGroupView>
   );
 };
+
+export const CustomCSSNoIcon = () => {
+  return (
+    <RadioCardGroupView>
+      <RadioCardView
+        value={0}
+        optionValue={1}
+        onClick={void 0}
+        onChange={void 0}
+        customCSS={{ maxWidth: "200px" }}
+        title={"A title for this option"}
+        description={
+          "This is a default radio group button. Toggle it by clicking."
+        }
+      />
+    </RadioCardGroupView>
+  );
+};
