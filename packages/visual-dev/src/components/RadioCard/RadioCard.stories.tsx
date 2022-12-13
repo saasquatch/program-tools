@@ -29,6 +29,7 @@ export const Functional = () => {
         onChange={void 0}
         onClick={() => setValue(2)}
         icon="calendar"
+        disabled
       />
       <RadioCardView
         title={"A title for this option"}
@@ -157,6 +158,25 @@ export const CustomCSSNoIcon = () => {
         description={
           "This is a default radio group button. Toggle it by clicking."
         }
+      />
+    </RadioCardGroupView>
+  );
+};
+
+export const Disabled = () => {
+  return (
+    <RadioCardGroupView>
+      <RadioCardView
+        title={"A title for this option"}
+        description={
+          "This is a default radio group button. Toggle it by clicking."
+        }
+        value={0}
+        optionValue={1}
+        onClick={void 0}
+        onChange={void 0}
+        icon="calendar"
+        disabled
       />
     </RadioCardGroupView>
   );

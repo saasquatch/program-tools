@@ -42,13 +42,22 @@ const ShadowDom = styled(root.div)`
   display: contents;
 `;
 
-const RadioLabel = styled.label<{ isChecked: boolean; customCSS: CSSProp }>`
+interface RabelLabelProps {
+  isChecked: boolean;
+  customCSS: CSSProp;
+  disabled: boolean;
+}
+
+const RadioLabel = styled.label<RabelLabelProps>`
   ${Styles.RadioLabelStyle}
   ${(props) =>
-    props.isChecked
+    props.isChecked && !props.disabled
       ? "border: 2px solid var(--sq-action-primary-hovered);"
       : "&:hover {border: 2px solid var(--sq-text-subdued);}"}
 
+    ${(props) =>
+    props.disabled &&
+    "background-color: var(--sq-border); & * {color: var(--sq-text-subdued);}"}
 ${(props) => props.customCSS}
 `;
 const RadioInput = styled.input`
@@ -84,6 +93,7 @@ export const RadioCardView = React.forwardRef<
     description,
     icon = "",
     customCSS = {},
+    disabled = false,
     ...rest
   } = props;
 
@@ -92,9 +102,15 @@ export const RadioCardView = React.forwardRef<
   const icon_color = selected ? "var(--sq-action-primary-hovered)" : "";
 
   return (
-    <RadioLabel customCSS={customCSS} htmlFor={rest.id} isChecked={selected}>
+    <RadioLabel
+      customCSS={customCSS}
+      htmlFor={rest.id}
+      isChecked={selected}
+      disabled={disabled}
+    >
       <RadioInput
         {...rest}
+        disabled={disabled}
         type="radio"
         checked={selected}
         readOnly
@@ -112,11 +128,7 @@ export const RadioCardView = React.forwardRef<
           ) : (
             ""
           )}
-          {description ? (
-            <div style={{ color: "var(--sq-text-subdued)" }}>{description}</div>
-          ) : (
-            ""
-          )}
+          {description ? <div>{description}</div> : ""}
         </RadioTextDiv>
       </RightSegmentDiv>
     </RadioLabel>
