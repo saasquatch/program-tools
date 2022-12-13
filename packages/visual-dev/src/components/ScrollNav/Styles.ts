@@ -20,13 +20,4 @@ export const ContainerDiv = css`
   margin: auto;
   border-left: 1px solid var(--sq-border);
   max-width: 180px;
-
-  /* &::after {
-    content: "";
-    position: absolute;
-    left: -2px;
-    width: 3px;
-    background: var(--sq-action-primary);
-    transition: 300ms;
-  } */
 `;

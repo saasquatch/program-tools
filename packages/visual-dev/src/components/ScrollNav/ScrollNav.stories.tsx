@@ -7,54 +7,70 @@ export default {
   component: ScrollNavView,
 };
 
-const defaultProps = { currentSection: 1 };
-
-const defaultItemProps = {
-  onClick: () => console.log("click"),
-};
-
 export const Default = () => {
   return (
-    <ScrollNavView {...defaultProps}>
-      <ScrollNavView.ItemView {...defaultItemProps}>
+    <ScrollNavView currentSection={1}>
+      <ScrollNavView.ItemView
+        onClick={() => console.log("Scrolling to section")}
+      >
         Item1
       </ScrollNavView.ItemView>
-      <ScrollNavView.ItemView {...{ ...defaultItemProps, active: true }}>
+      <ScrollNavView.ItemView
+        onClick={() => console.log("Scrolling to section")}
+      >
         A very long nav item that breaks
       </ScrollNavView.ItemView>
-      <ScrollNavView.ItemView {...defaultItemProps}>
+      <ScrollNavView.ItemView
+        onClick={() => console.log("Scrolling to section")}
+      >
         Item3
       </ScrollNavView.ItemView>
     </ScrollNavView>
   );
 };
 
-export const Section2 = () => {
+export const OnSection2 = () => {
   return (
     <ScrollNavView currentSection={2}>
-      <ScrollNavView.ItemView {...defaultItemProps}>
+      <ScrollNavView.ItemView
+        onClick={() => console.log("Scrolling to section")}
+      >
         Item1
       </ScrollNavView.ItemView>
-      <ScrollNavView.ItemView {...{ ...defaultItemProps, active: true }}>
+      <ScrollNavView.ItemView
+        onClick={() => console.log("Scrolling to section")}
+      >
         A very long nav item that breaks
       </ScrollNavView.ItemView>
-      <ScrollNavView.ItemView {...defaultItemProps}>
+      <ScrollNavView.ItemView
+        onClick={() => console.log("Scrolling to section")}
+      >
         Item3
       </ScrollNavView.ItemView>
     </ScrollNavView>
   );
 };
 
-export const Section3 = () => {
+export const CustomCSS = () => {
   return (
-    <ScrollNavView currentSection={3}>
-      <ScrollNavView.ItemView {...defaultItemProps}>
+    <ScrollNavView
+      currentSection={3}
+      customCSS={{ width: "300px", maxWidth: "unset" }}
+    >
+      <ScrollNavView.ItemView
+        onClick={() => console.log("Scrolling to section")}
+      >
         Item1
       </ScrollNavView.ItemView>
-      <ScrollNavView.ItemView {...{ ...defaultItemProps, active: true }}>
+      <ScrollNavView.ItemView
+        onClick={() => console.log("Scrolling to section")}
+      >
         A very long nav item that breaks
       </ScrollNavView.ItemView>
-      <ScrollNavView.ItemView {...defaultItemProps}>
+      <ScrollNavView.ItemView
+        onClick={() => console.log("Scrolling to section")}
+        customCSS={{ backgroundColor: "pink" }}
+      >
         Item3
       </ScrollNavView.ItemView>
     </ScrollNavView>

@@ -8,75 +8,61 @@ export type ScrollNavViewProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Todo - add description
+   * For adding scroll nav items
    */
   children: React.ReactNode[] | React.ReactNode;
+  /**
+   * To indicate the current section that the page is on
+   */
   currentSection: number;
 }
 
 export interface ScrollNavItemViewProps {
   children: React.ReactNode[] | React.ReactNode;
   onClick: () => void;
-}
-
-export interface ScrollNavProps {
-  current: number;
-  children: React.ReactNode | React.ReactNode[];
+  customCSS?: CSSProp;
 }
 
 export interface StyleProps {
   /**
-   * Custom CSS applied to input container
+   * Custom CSS applied to the target
    */
   customCSS?: CSSProp;
 }
 
 const ItemDiv = styled.div<StyleProps>`
   ${Styles.ItemDiv}
+  ${(props) => props.customCSS}
 `;
 
-const ContainerDiv = styled.div<
-  StyleProps & {
-    currentSection: number;
-  }
->`
+const ContainerDiv = styled.div<StyleProps & { current: number }>`
   ${Styles.ContainerDiv}
 
-  ${ItemDiv}:nth-child( ${(props) => props.currentSection}) {
+  ${ItemDiv}:nth-child( ${(props) => props.current}) {
     border-left: 2px solid var(--sq-action-primary);
   }
+  ${(props) => props.customCSS}
 `;
 
-export const ScrollNavView = (props: ScrollNavViewProps) => {
-  const { currentSection, children } = props;
+const ScrollNavView = (props: ScrollNavViewProps) => {
+  const { currentSection, customCSS = {}, children } = props;
   return (
-    <ContainerDiv currentSection={currentSection}>{children}</ContainerDiv>
+    <ContainerDiv current={currentSection} customCSS={customCSS}>
+      {children}
+    </ContainerDiv>
   );
 };
 
-export const ScrollNavItemView = (props: ScrollNavItemViewProps) => {
-  const { children, onClick } = props;
-  return <ItemDiv onClick={onClick}>{children}</ItemDiv>;
-};
-
-ScrollNavView.ItemView = ScrollNavItemView;
-
-/*
-
-const ScrollNav = (props: ScrollNavProps) => {
-  const current = props.current || 1;
+const ScrollNavItemView = (props: ScrollNavItemViewProps) => {
+  const { children, customCSS = {}, onClick } = props;
   return (
-    <ScrollNavView
-      {...{
-        indicatorOffset: (current - 1) * 36,
-        indicatorHeight: 32,
-      }}
-    >
-      {props.children}
-    </ScrollNavView>
+    <ItemDiv onClick={onClick} customCSS={customCSS}>
+      {children}
+    </ItemDiv>
   );
 };
 
-ScrollNav.Item = ScrollNavItemView;
-
-*/
+const ScrollNavNamespace = Object.assign(ScrollNavView, {
+  ItemView: ScrollNavItemView,
+});
+export { ScrollNavNamespace as ScrollNavView };
