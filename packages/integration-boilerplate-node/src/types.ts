@@ -68,13 +68,6 @@ export type IntrospectionResponse = {
    * The modified integration template config
    */
   templateIntegrationConfig: IntegrationConfiguration;
-
-  /**
-   * Whether the list of rewards in the templateIntegrationConfig represents
-   * the concrete rewardUnits that the integration can fulfill or whether its a
-   * list of all hypothetical rewardUnits that it could fulfill
-   */
-  excludeNonExistentRewardUnits?: boolean;
 };
 
 const ajv = new Ajv();
