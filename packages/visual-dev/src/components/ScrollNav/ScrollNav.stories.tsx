@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollNavView } from "./ScrollNav";
+import { ScrollNavView } from ".";
 
 export default {
   title: "Components / Scroll Nav",

@@ -8,7 +8,7 @@ export type ScrollNavViewProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * For adding scroll nav items
+   * Scroll nav content for adding items
    */
   children: React.ReactNode[] | React.ReactNode;
   /**
@@ -44,7 +44,7 @@ const ContainerDiv = styled.div<StyleProps & { current: number }>`
   ${(props) => props.customCSS}
 `;
 
-const ScrollNavView = React.forwardRef<
+export const ScrollNavView = React.forwardRef<
   React.ElementRef<"div">,
   ScrollNavViewProps
 >((props, forwardedRef) => {
@@ -61,7 +61,7 @@ const ScrollNavView = React.forwardRef<
   );
 });
 
-const ScrollNavItemView = React.forwardRef<
+export const ScrollNavItemView = React.forwardRef<
   React.ElementRef<"div">,
   ScrollNavItemViewProps
 >((props, forwardedRef) => {
@@ -77,8 +77,3 @@ const ScrollNavItemView = React.forwardRef<
     </ItemDiv>
   );
 });
-
-const ScrollNavNamespace = Object.assign(ScrollNavView, {
-  ItemView: ScrollNavItemView,
-});
-export { ScrollNavNamespace as ScrollNavView };
