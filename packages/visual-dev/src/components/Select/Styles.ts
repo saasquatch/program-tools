@@ -14,7 +14,7 @@ export const Item = css`
   }
 `;
 export const ItemContainer = css`
-  position: relative;
+  position: absolute;
   z-index: 100;
   box-sizing: border-box;
   list-style-type: none;
@@ -41,8 +41,7 @@ export const ButtonContainer = css`
   text-indent: 0px;
   padding-right: var(--sq-spacing-small);
   right: 0px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 6px;
   & > :not(:last-child) {
     margin-right: var(--sq-spacing-x-small);
   }
