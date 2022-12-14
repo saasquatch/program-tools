@@ -4,7 +4,7 @@ import * as Styles from "./Styles";
 
 export type ScrollNavViewProps = OptionProps &
   StyleProps &
-  Partial<React.ComponentProps<"span">>;
+  Partial<React.ComponentProps<"div">>;
 
 export interface OptionProps {
   /**
@@ -17,11 +17,11 @@ export interface OptionProps {
   currentSection: number;
 }
 
-export interface ScrollNavItemViewProps {
+export type ScrollNavItemViewProps = {
   children: React.ReactNode[] | React.ReactNode;
   onClick: () => void;
   customCSS?: CSSProp;
-}
+} & Partial<React.ComponentProps<"div">>;
 
 export interface StyleProps {
   /**
@@ -44,23 +44,39 @@ const ContainerDiv = styled.div<StyleProps & { current: number }>`
   ${(props) => props.customCSS}
 `;
 
-const ScrollNavView = (props: ScrollNavViewProps) => {
-  const { currentSection, customCSS = {}, children } = props;
+const ScrollNavView = React.forwardRef<
+  React.ElementRef<"div">,
+  ScrollNavViewProps
+>((props, forwardedRef) => {
+  const { currentSection, customCSS = {}, children, ...rest } = props;
   return (
-    <ContainerDiv current={currentSection} customCSS={customCSS}>
+    <ContainerDiv
+      {...rest}
+      current={currentSection}
+      customCSS={customCSS}
+      ref={forwardedRef}
+    >
       {children}
     </ContainerDiv>
   );
-};
+});
 
-const ScrollNavItemView = (props: ScrollNavItemViewProps) => {
-  const { children, customCSS = {}, onClick } = props;
+const ScrollNavItemView = React.forwardRef<
+  React.ElementRef<"div">,
+  ScrollNavItemViewProps
+>((props, forwardedRef) => {
+  const { children, customCSS = {}, onClick, ...rest } = props;
   return (
-    <ItemDiv onClick={onClick} customCSS={customCSS}>
+    <ItemDiv
+      {...rest}
+      onClick={onClick}
+      customCSS={customCSS}
+      ref={forwardedRef}
+    >
       {children}
     </ItemDiv>
   );
-};
+});
 
 const ScrollNavNamespace = Object.assign(ScrollNavView, {
   ItemView: ScrollNavItemView,
