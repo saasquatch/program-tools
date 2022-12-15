@@ -129,15 +129,37 @@ export interface SelectListViewProps<ItemType> {
   loadingSlot?: string | React.ReactNode;
 }
 
+export interface ListItemViewProps<ItemType> {
+  /**
+   * Index of the current list item in the full list (including subgroups)
+   */
+  index: number;
+  /**
+   * Current list item to render
+   */
+  item: ItemType;
+  /**
+   * Function to transform item objects to strings for display
+   */
+  itemToString?: (item: ItemType | null) => string;
+  /**
+   * Function to transform item objects into template code for dropdown items
+   */
+  itemToNode?: (item: ItemType) => React.ReactNode;
+  /**
+   * Downshift hook for component functionality (useSelect or useCombobox or useMultipleSelection)
+   */
+  functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
+}
+
+export type SelectFrameViewProps<ItemType> = Omit<
+  SelectListViewProps<ItemType>,
+  "itemToNode" | "itemToString"
+> & { children: React.ReactNode | React.ReactNode[] };
+
 type SizeType = boolean | string;
 
 type ItemTypeBase = { description?: string } | string | number | boolean;
-
-type ComplexItemType = { description?: string };
-
-function isComplexItem(item: any): item is ComplexItemType {
-  return typeof item === "object" && item !== null;
-}
 
 const ItemContainerList = styled.ul<{
   errors: any;
@@ -165,8 +187,10 @@ const ItemContainerList = styled.ul<{
     props.empty && "& li:hover {background: white; cursor: default;}"}
 `;
 
-const ListItem = styled("li")`
+const ListItem = styled.li<{ isHighlighted?: boolean }>`
   ${Styles.Item}
+  ${(props) =>
+    props.isHighlighted ? "background-color: var(--sq-surface-hover)" : ""}
 `;
 
 const ButtonContainerDiv = styled.div`
@@ -265,6 +289,27 @@ declare module "react" {
   ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
 }
 
+const ItemView = <ItemType extends ItemTypeBase>(
+  props: ListItemViewProps<ItemType>
+) => {
+  const {
+    item,
+    index,
+    itemToString = itemToStringDefault,
+    itemToNode = itemToNodeDefault,
+    functional,
+  } = props;
+  return (
+    <ListItem
+      isHighlighted={functional.highlightedIndex === index}
+      key={`${itemToString(item)}-${index}`}
+      {...functional.getItemProps({ item, index })}
+    >
+      {itemToNode(item)}
+    </ListItem>
+  );
+};
+
 const SelectContainerView = (props: SelectContainerViewProps) => {
   const { limitWidth = true, customContainerCSS = ``, children } = props;
 
@@ -293,26 +338,8 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
     customIcon,
     functional,
     tagsSlot,
-    itemToString = (item: ItemType) => {
-      return item;
-    },
-    itemToNode = (item: ItemType) => {
-      if (isComplexItem(item)) {
-        return (
-          <>
-            <span>{itemToString(item)}</span>
-            {item.description && (
-              <>
-                <br />
-                <ItemDescriptionSpan>{item.description}</ItemDescriptionSpan>
-              </>
-            )}
-          </>
-        );
-      } else {
-        return <span>{itemToString(item)}</span>;
-      }
-    },
+    itemToString = itemToStringDefault,
+    itemToNode = itemToNodeDefault,
     ...rest
   } = props;
 
@@ -462,8 +489,32 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
   );
 };
 
-const SelectInnerListView = <ItemType extends ItemTypeBase>(
-  props: SelectListViewProps<ItemType>,
+interface itemsToNodeProps<ItemType> {
+  items: Array<ItemType>;
+  functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
+  itemToString: (item: ItemType | null) => string;
+  itemToNode: (item: ItemType) => React.ReactNode;
+}
+
+const itemsToNode = <ItemType extends ItemTypeBase>(
+  props: itemsToNodeProps<ItemType>
+): React.ReactNode | React.ReactNode[] => {
+  const { items, functional, itemToString, itemToNode } = props;
+  return items.map((item, index) => (
+    <SelectView.ItemView
+      {...{
+        functional,
+        index,
+        item,
+        itemToNode,
+        itemToString,
+      }}
+    />
+  ));
+};
+
+const SelectInnerFrameView = <ItemType extends ItemTypeBase>(
+  props: SelectFrameViewProps<ItemType>,
   ref: React.Ref<HTMLInputElement>
 ) => {
   const {
@@ -474,6 +525,7 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
     loading = false,
     functional,
     items,
+    children,
     loadingSlot = (
       <>
         <ListItem style={{ height: "32px" }} key={`1`}>
@@ -493,29 +545,9 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
         <LabelSpan>No results found</LabelSpan>
       </EmptyContainerDiv>
     ),
-    itemToString = (item: ItemType) => {
-      return item;
-    },
-    itemToNode = (item: ItemType) => {
-      if (isComplexItem(item)) {
-        return (
-          <>
-            <span>{itemToString(item)}</span>
-            {item.description && (
-              <>
-                <br />
-                <ItemDescriptionSpan>{item.description}</ItemDescriptionSpan>
-              </>
-            )}
-          </>
-        );
-      } else {
-        return <span>{itemToString(item)}</span>;
-      }
-    },
   } = props;
 
-  const isOpen = disabled || functional.isOpen;
+  const isOpen = !disabled && functional.isOpen;
 
   return (
     <ItemContainerList
@@ -533,19 +565,7 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
         ) : empty ? (
           <ListItem key={`3`}>{emptySlot}</ListItem>
         ) : (
-          items.map((item, index) => (
-            <ListItem
-              style={
-                functional.highlightedIndex === index
-                  ? { backgroundColor: "var(--sq-surface-hover)" }
-                  : {}
-              }
-              key={`${itemToString(item)}-${index}`}
-              {...functional.getItemProps({ item, index })}
-            >
-              {itemToNode(item)}
-            </ListItem>
-          ))
+          children
         )
       ) : (
         <></>
@@ -554,8 +574,57 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
   );
 };
 
+function itemToStringDefault<ItemType>(item: ItemType | null): string {
+  return `${item}`;
+}
+
+function itemToNodeDefault<ItemType>(
+  item: ItemType & { description?: string }
+) {
+  if (typeof item === "object" && item !== null) {
+    return (
+      <>
+        <span>{itemToStringDefault(item)}</span>
+        {item.hasOwnProperty("description") && item.description && (
+          <>
+            <br />
+            <ItemDescriptionSpan>{item.description}</ItemDescriptionSpan>
+          </>
+        )}
+      </>
+    );
+  } else {
+    return <span>{itemToStringDefault(item)}</span>;
+  }
+}
+
+const SelectInnerListView = <ItemType extends ItemTypeBase>(
+  props: SelectListViewProps<ItemType>,
+  ref: React.Ref<HTMLInputElement>
+) => {
+  const {
+    itemToString = itemToStringDefault,
+    itemToNode = itemToNodeDefault,
+    ...rest
+  } = props;
+  return (
+    <SelectInnerFrameView {...{ ...rest, ref }}>
+      {itemsToNode({
+        items: props.items,
+        functional: props.functional,
+        itemToString,
+        itemToNode,
+      })}
+    </SelectInnerFrameView>
+  );
+};
+
 export const SelectView = {
   HandleView: React.forwardRef(SelectHandleInnerView),
   ListView: React.forwardRef(SelectInnerListView),
+  FrameView: React.forwardRef(SelectInnerFrameView),
   ContainerView: SelectContainerView,
+  ItemView: ItemView,
+  ItemToNode: itemToNodeDefault,
+  ItemToString: itemToStringDefault,
 };

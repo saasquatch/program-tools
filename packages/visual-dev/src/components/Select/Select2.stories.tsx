@@ -106,3 +106,49 @@ export const CustomCSS = () => {
     </div>
   );
 };
+
+export const Frame = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const items2 = ["Orca", "San Juan"];
+  const functional = useSelect({ items: [...items, ...items2] });
+  const props = { limitWidth: false, items, functional };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <SelectView.ContainerView>
+        <SelectView.HandleView {...props} />
+        <SelectView.FrameView {...props}>
+          <div>Gulf Islands</div>
+          {items.map((item, index) => (
+            <SelectView.ItemView
+              {...{
+                functional,
+                index,
+                item,
+              }}
+            />
+          ))}
+          <div>San Juan Islands</div>
+          {items2.map((item, index) => {
+            const global_index = items.length + index;
+            return (
+              <SelectView.ItemView
+                {...{
+                  functional,
+                  index: global_index,
+                  item,
+                }}
+              />
+            );
+          })}
+        </SelectView.FrameView>
+      </SelectView.ContainerView>
+    </div>
+  );
+};
