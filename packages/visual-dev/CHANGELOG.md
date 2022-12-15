@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<SelectView>
     - Introduce the `FrameView` subview which allows list items to be specified in the controller. Used in place of `ListView`
     - Export previously internal helper views and function: `ItemView`, `ItemToNode`, and `ItemToString`
+  - \<CheckboxView>
+    - Fix a bug with checkbox labels not wrapping
 
 ## [1.2.1] - 2022-11-30
 
