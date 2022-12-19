@@ -1,6 +1,7 @@
 import { rewardScheduleQuery } from "./queries";
 import { ProgramTriggerBody, TriggerType } from "./types/rpc";
 import getJsonataPaths from "@saasquatch/jsonata-paths-extractor";
+import jsonata from "jsonata";
 
 /**
  * Append a reward schedule to the template and return the new template
@@ -250,4 +251,27 @@ export function getUserCustomFieldsFromJsonata(
   }
   //dedup
   return Array.from(new Set(userCustomFields));
+}
+
+export function getRewardUnitsFromJsonata(
+  expr: jsonata.ExprNode | undefined
+): string[] | undefined {
+  if (expr === undefined) {
+    return undefined;
+  }
+
+  if (expr.type === "string" && typeof expr.value === "string") {
+    return [expr.value];
+  }
+
+  if (expr.type === "condition") {
+    // @ts-ignore: expr.then isn't present in the AST typedef for some reason
+    const lhs = extractJsonataRewardUnits(expr.then);
+    // @ts-ignore: expr.else isn't present in the AST typedef for some reason
+    const rhs = extractJsonataRewardUnits(expr.else);
+
+    if (lhs !== undefined || rhs !== undefined) {
+      return [...(lhs ?? []), ...(rhs ?? [])];
+    }
+  }
 }

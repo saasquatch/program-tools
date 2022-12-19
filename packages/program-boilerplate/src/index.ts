@@ -30,6 +30,7 @@ import {
   numToEquality,
   getTriggerSchema,
   getUserCustomFieldsFromJsonata,
+  getRewardUnitsFromJsonata,
 } from "./utils";
 import { httpLogMiddleware } from "@saasquatch/logger";
 
@@ -54,6 +55,7 @@ export {
   numToEquality,
   getTriggerSchema,
   getUserCustomFieldsFromJsonata,
+  getRewardUnitsFromJsonata,
   timeboxExpression,
   timeboxedJsonata,
   safeJsonata,
