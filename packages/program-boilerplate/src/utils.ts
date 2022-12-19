@@ -265,10 +265,15 @@ export function getRewardUnitsFromJsonata(
   }
 
   if (expr.type === "condition") {
-    // @ts-ignore: expr.then isn't present in the AST typedef for some reason
-    const lhs = extractJsonataRewardUnits(expr.then);
-    // @ts-ignore: expr.else isn't present in the AST typedef for some reason
-    const rhs = extractJsonataRewardUnits(expr.else);
+    const lhs = getRewardUnitsFromJsonata(
+      // @ts-ignore: expr.then isn't present in the AST typedef for some reason
+      expr.then
+    );
+
+    const rhs = getRewardUnitsFromJsonata(
+      // @ts-ignore: expr.else isn't present in the AST typedef for some reason
+      expr.else
+    );
 
     if (lhs !== undefined || rhs !== undefined) {
       return [...(lhs ?? []), ...(rhs ?? [])];
