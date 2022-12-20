@@ -103,11 +103,19 @@ export const ButtonView = React.forwardRef<
       customCSS={customCSS}
     >
       {iconLocation == "left" && icon && (
-        <IconView icon={icon} size={Styles.icon_size[size]} />
+        <IconView
+          cursor={"pointer"}
+          icon={icon}
+          size={Styles.icon_size[size]}
+        />
       )}
       <span> {children} </span>
       {iconLocation == "right" && icon && (
-        <IconView icon={icon} size={Styles.icon_size[size]} />
+        <IconView
+          cursor={"pointer"}
+          icon={icon}
+          size={Styles.icon_size[size]}
+        />
       )}
       {loading && props.buttonType != "text" && (
         <>
