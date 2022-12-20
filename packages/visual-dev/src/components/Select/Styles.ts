@@ -87,7 +87,7 @@ export const SelectInputStyle = css`
 
 export const SelectedValue = css`
   padding-top: var(--sq-spacing-xxx-small);
-  margin: auto 0;
+  margin: 4px 0 auto;
   text-indent: 0px;
   text-overflow: ellipsis;
   overflow: hidden;
