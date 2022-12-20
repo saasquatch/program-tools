@@ -104,7 +104,7 @@ export const ButtonView = React.forwardRef<
     >
       {iconLocation == "left" && icon && (
         <IconView
-          cursor={"pointer"}
+          cursor={"inherit"}
           icon={icon}
           size={Styles.icon_size[size]}
         />
@@ -112,7 +112,7 @@ export const ButtonView = React.forwardRef<
       <span> {children} </span>
       {iconLocation == "right" && icon && (
         <IconView
-          cursor={"pointer"}
+          cursor={"inherit"}
           icon={icon}
           size={Styles.icon_size[size]}
         />
