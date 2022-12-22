@@ -20,9 +20,9 @@ Feature: Handlers
         Given an integration service with custom handlers
         And the introspection path is /introspection
         And there is a POST request to /introspection
+        # TODO: Don't know how to generate valid headers for testing
         And the X-HOOK-JWS-RFC-7797 header is:
             """
-            eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImhMWC95ZFd3NEMwbXdkcnZ5UGhVWW1kQ2tEOD0ifQ..oCWvfbcIRyD1Y0uaVoQw0o7Z_FkjirjWArHwg9zYBYDPniKzK8Yg1tMzbNApEVVx3YieVtgXqIHLhOWhtsOKgH8fnV9u1oDitviJD-J5-L_rqU3J7E-haacHfvz3wSEW_NGQdlJoE6b-_8_1JG0ZeDCYhJyg911YKBgTTvoaLDHeEMKa-8hWZkPLGISnGCB3ido8FPW25muoBNgTzqh6dwAhXxdMveoC-OtUr3-lH0Vy5SJlOO0A9lAPhtXw_OKS0p_MmHm4IBTUAn0FKgd3sukSRhSQVwxO74LkgECRYV3R8LyuFxftfFIeVggZCfWw4jDoIfYgoYPpk0TSEMXBJA
             """
         And the body is:
             """
@@ -47,9 +47,9 @@ Feature: Handlers
         Given an integration service with custom handlers
         And the introspection path is /introspection
         And there is a POST request to /introspection
+        # TODO: Don't know how to generate valid headers for testing
         And the X-HOOK-JWS-RFC-7797 header is:
             """
-            eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImhMWC95ZFd3NEMwbXdkcnZ5UGhVWW1kQ2tEOD0ifQ..oCWvfbcIRyD1Y0uaVoQw0o7Z_FkjirjWArHwg9zYBYDPniKzK8Yg1tMzbNApEVVx3YieVtgXqIHLhOWhtsOKgH8fnV9u1oDitviJD-J5-L_rqU3J7E-haacHfvz3wSEW_NGQdlJoE6b-_8_1JG0ZeDCYhJyg911YKBgTTvoaLDHeEMKa-8hWZkPLGISnGCB3ido8FPW25muoBNgTzqh6dwAhXxdMveoC-OtUr3-lH0Vy5SJlOO0A9lAPhtXw_OKS0p_MmHm4IBTUAn0FKgd3sukSRhSQVwxO74LkgECRYV3R8LyuFxftfFIeVggZCfWw4jDoIfYgoYPpk0TSEMXBJA
             """
         And the body is:
             """
@@ -290,8 +290,10 @@ Feature: Handlers
             """
 
         Examples:
-            | route    | header  | error                                                           |
-            | /form    |         | Permission denied - JWT validation failed: jwt must be provided |
-            | /form    | notAJWT | Permission denied - JWT validation failed: jwt malformed        |
-            | /webhook |         | Permission denied - JWT validation failed: jwt must be provided |
-            | /webhook | notAJWT | Permission denied - JWT validation failed: jwt malformed        |
+            | route          | header  | error                                                           |
+            | /form          |         | Permission denied - JWT validation failed: jwt must be provided |
+            | /form          | notAJWT | Permission denied - JWT validation failed: jwt malformed        |
+            | /webhook       |         | Permission denied - JWT validation failed: jwt must be provided |
+            | /webhook       | notAJWT | Permission denied - JWT validation failed: jwt malformed        |
+            | /introspection |         | Permission denied - JWT validation failed: jwt must be provided |
+            | /introspection | notAJWT | Permission denied - JWT validation failed: jwt malformed        |
