@@ -44,6 +44,9 @@ export class BaseConfig {
   @optional("")
   public proxyFrontend!: string;
 
+  @key("SERVICE_NAME")
+  public serviceName!: string;
+
   @key("SAASQUATCH_APP_DOMAIN")
   @optional("app.referralsaasquatch.com")
   public saasquatchAppDomain!: string;
@@ -69,13 +72,9 @@ export class BaseConfig {
   @optional("/introspection")
   public introspectionEndpointPath!: string;
 
-  @key("INTEGRATION_METRICS")
+  @key("METRICS_ENABLED")
   @optional(false)
   public metricsEnabled!: boolean;
-
-  @key("INTEGRATION_METRICS_SERVICE_NAME")
-  @optional("")
-  public metricsServiceName!: string;
 }
 
 export async function loadConfig<T extends BaseConfig>(

@@ -58,8 +58,8 @@ export class MetricsManager {
   }
 
   public createCounter(name: string, options?: MetricOptions): void {
-    // to avoid confusion, creating a counter and updown counter with the same name will be
-    // disallowed
+    // to avoid confusion, creating a normal counter and an up/down counter
+    // with the same name will be disallowed
     if (
       this.counters[name] !== undefined ||
       this.updownCounters[name] !== undefined
@@ -74,8 +74,8 @@ export class MetricsManager {
   }
 
   public createUpDownCounter(name: string, options?: MetricOptions): void {
-    // to avoid confusion, creating a counter and updown counter with the same name will be
-    // disallowed
+    // to avoid confusion, creating a normal counter and an up/down counter
+    // with the same name will be disallowed
     if (
       this.updownCounters[name] !== undefined ||
       this.counters[name] !== undefined

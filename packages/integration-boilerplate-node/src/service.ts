@@ -1,4 +1,5 @@
 import { httpLogMiddleware } from "@saasquatch/logger";
+import { hostname } from "os";
 import { IntegrationConfiguration } from "@saasquatch/schema/types/IntegrationConfig";
 import compression from "compression";
 import express, { Express, Response, Router } from "express";
@@ -22,6 +23,7 @@ import {
 } from "./middleware";
 import * as types from "./types";
 import { webhookHandler } from "./webhookHandler";
+import { installInstrumentation } from "./instrumentation";
 
 declare module "http" {
   interface IncomingMessage {
@@ -112,7 +114,7 @@ export class IntegrationService<
     this.config = config;
     this.logger = createLogger(config);
     this.metricsManager = config.metricsEnabled
-      ? new MetricsManager(config.metricsServiceName)
+      ? new MetricsManager(config.serviceName)
       : undefined;
     this.auth = new Auth(
       config.saasquatchAppDomain,
@@ -437,7 +439,7 @@ export class IntegrationService<
       );
     } else if (this.config.staticFrontendPath) {
       const frontendPath = path.join(
-        process.cwd(),
+        require.main!.path,
         this.config.staticFrontendPath
       );
       server.use(express.static(frontendPath));
@@ -472,5 +474,13 @@ export async function createIntegrationService<
   const config: ServiceConfig = options?.configClass
     ? await loadConfig(options.configClass)
     : await loadConfig();
+
+  if (config.metricsEnabled) {
+    const hostName = `${config.serviceName}.${
+      process.env["DYNO"] ?? hostname()
+    }`;
+    installInstrumentation(config.serviceName, hostName);
+  }
+
   return new IntegrationService(config, options);
 }
