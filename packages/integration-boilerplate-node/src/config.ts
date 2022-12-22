@@ -68,6 +68,14 @@ export class BaseConfig {
   @key("INTROSPECTION_ENDPOINT_PATH")
   @optional("/introspection")
   public introspectionEndpointPath!: string;
+
+  @key("INTEGRATION_METRICS")
+  @optional(false)
+  public metricsEnabled!: boolean;
+
+  @key("INTEGRATION_METRICS_SERVICE_NAME")
+  @optional("")
+  public metricsServiceName!: string;
 }
 
 export async function loadConfig<T extends BaseConfig>(

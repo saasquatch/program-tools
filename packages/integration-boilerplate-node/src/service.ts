@@ -15,6 +15,7 @@ import { GraphQLError, IntegrationConfigError } from "./errors";
 import { formHandler } from "./formHandler";
 import { introspectionHandler } from "./introspectionHandler";
 import { createLogger } from "./logger";
+import { MetricsManager } from "./metrics";
 import {
   createSaasquatchRequestMiddleware,
   createSaasquatchTokenMiddleware,
@@ -88,6 +89,7 @@ export class IntegrationService<
 > {
   readonly config: ServiceConfig;
   readonly logger: Logger;
+  readonly metricsManager: MetricsManager | undefined;
   readonly auth: Auth;
   readonly options?: ServiceOptions<
     ServiceConfig,
@@ -109,6 +111,9 @@ export class IntegrationService<
     this.options = options;
     this.config = config;
     this.logger = createLogger(config);
+    this.metricsManager = config.metricsEnabled
+      ? new MetricsManager(config.metricsServiceName)
+      : undefined;
     this.auth = new Auth(
       config.saasquatchAppDomain,
       config.saasquatchAuth0ClientId,
@@ -323,6 +328,30 @@ export class IntegrationService<
     // Enable request logging
     server.use(httpLogMiddleware(this.logger));
 
+    // Record the server's HTTP response times if metrics are enabled
+    if (this.config.metricsEnabled) {
+      server.use(async (_req, res, next) => {
+        const startTimeNs = process.hrtime.bigint();
+        this.metricsManager!.increment("requests_processing");
+
+        res.on("finish", () => {
+          const endTimeNs = process.hrtime.bigint();
+          const time = Number((endTimeNs - startTimeNs) / BigInt(1000));
+
+          if (!Number.isNaN(time) && Number.isFinite(time) && time > 0) {
+            this.metricsManager!.recordHistogramVal(
+              "response_time",
+              Number(time)
+            );
+          }
+
+          this.metricsManager!.decrement("requests_processing");
+        });
+
+        next();
+      });
+    }
+
     // Force HTTPS for all requests
     if (this.config.enforceHttps) {
       server.use(enforce.HTTPS({ trustProtoHeader: true }));
@@ -355,6 +384,10 @@ export class IntegrationService<
           this,
           this.getTenantScopedGraphQL(req.body.tenantAlias)
         );
+
+        if (this.config.metricsEnabled) {
+          this.metricsManager!.increment("webhook_request");
+        }
       });
     }
 
@@ -364,6 +397,9 @@ export class IntegrationService<
         requireSaaSquatchSignature,
         async (req, res) => {
           await introspectionHandler(req, res, this);
+          if (this.config.metricsEnabled) {
+            this.metricsManager!.increment("introspection_request");
+          }
         }
       );
     }
@@ -381,6 +417,10 @@ export class IntegrationService<
           this,
           this.getTenantScopedGraphQL(req.body.tenantAlias)
         );
+
+        if (this.config.metricsEnabled) {
+          this.metricsManager!.increment("form_request");
+        }
       });
     }
 
