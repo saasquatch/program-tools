@@ -28,28 +28,28 @@ export class MetricsManager {
     const metricsPrefix = `saasquatch.integrations.${integrationName}`;
     this.metricsPrefix = metricsPrefix;
 
-    this.createCounter("webhook_request", {
+    this.createCounter("request.webhook.count", {
       description: "Incremented each time a webhook request is received",
       valueType: ValueType.INT,
     });
 
-    this.createCounter("form_request", {
+    this.createCounter("request.form.count", {
       description: "Incremented each time a form request is received",
       valueType: ValueType.INT,
     });
 
-    this.createCounter("introspection_request", {
+    this.createCounter("request.introspection.count", {
       description: "Incremented each time an introspection request is received",
       valueType: ValueType.INT,
     });
 
-    this.createUpDownCounter("requests_processing", {
+    this.createUpDownCounter("requests.processing.count", {
       description:
         "The number of requests that the server is currently processing",
       valueType: ValueType.INT,
     });
 
-    this.createHistogram("response_time", {
+    this.createHistogram("http.response.duration", {
       description:
         "The response time of the integration HTTP server measured in microseconds",
       unit: "microseconds",
