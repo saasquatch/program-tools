@@ -194,7 +194,7 @@ const ItemContainerList = styled.ul<{
 const ListItem = styled.li<{ isHighlighted?: boolean; customCSS?: CSSProp }>`
   ${Styles.Item}
   ${(props) =>
-    props.isHighlighted ? "background-color: var(--sq-surface-hover)" : ""}
+    props.isHighlighted ? "background-color: var(--sq-surface-hover);" : ""}
     ${(props) => props.customCSS}
 `;
 
@@ -295,7 +295,7 @@ declare module "react" {
 }
 
 const ItemView = <ItemType extends ItemTypeBase>(
-  props: ListItemViewProps<ItemType>
+  props: ListItemViewProps<ItemType> & Partial<React.ComponentProps<"input">>
 ) => {
   const {
     item,
@@ -304,6 +304,7 @@ const ItemView = <ItemType extends ItemTypeBase>(
     itemToNode = itemToNodeDefault,
     functional,
     customCSS = {},
+    ...rest
   } = props;
   return (
     <ListItem
@@ -311,6 +312,7 @@ const ItemView = <ItemType extends ItemTypeBase>(
       isHighlighted={functional.highlightedIndex === index}
       key={`${itemToString(item)}-${index}`}
       {...functional.getItemProps({ item, index })}
+      {...rest}
     >
       {itemToNode(item)}
     </ListItem>
