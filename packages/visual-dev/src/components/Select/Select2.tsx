@@ -150,6 +150,10 @@ export interface ListItemViewProps<ItemType> {
    * Downshift hook for component functionality (useSelect or useCombobox or useMultipleSelection)
    */
   functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
+  /**
+   * Custom CSS applied to the item's container
+   */
+  customCSS: CSSProp;
 }
 
 export type SelectFrameViewProps<ItemType> = Omit<
@@ -187,10 +191,11 @@ const ItemContainerList = styled.ul<{
     props.empty && "& li:hover {background: white; cursor: default;}"}
 `;
 
-const ListItem = styled.li<{ isHighlighted?: boolean }>`
+const ListItem = styled.li<{ isHighlighted?: boolean; customCSS: CSSProp }>`
   ${Styles.Item}
   ${(props) =>
     props.isHighlighted ? "background-color: var(--sq-surface-hover)" : ""}
+    ${(props) => props.customCSS}
 `;
 
 const ButtonContainerDiv = styled.div`
@@ -298,9 +303,11 @@ const ItemView = <ItemType extends ItemTypeBase>(
     itemToString = itemToStringDefault,
     itemToNode = itemToNodeDefault,
     functional,
+    customCSS = {},
   } = props;
   return (
     <ListItem
+      customCSS={customCSS}
       isHighlighted={functional.highlightedIndex === index}
       key={`${itemToString(item)}-${index}`}
       {...functional.getItemProps({ item, index })}
