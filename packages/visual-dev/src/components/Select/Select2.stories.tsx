@@ -132,7 +132,7 @@ export const Frame = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const items2 = ["Orca", "San Juan"];
   const functional = useSelect({ items: [...items, ...items2] });
-  const props = { limitWidth: false, items, functional };
+  const props = { limitWidth: false, items, functional, limitHeight: true };
   return (
     <div
       style={{
@@ -142,7 +142,7 @@ export const Frame = () => {
         margin: "100px",
       }}
     >
-      <SelectView.ContainerView>
+      <SelectView.ContainerView {...props}>
         <SelectView.HandleView {...props} />
         <SelectView.FrameView {...props}>
           <div>Gulf Islands</div>
