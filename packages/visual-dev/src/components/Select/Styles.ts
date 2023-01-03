@@ -27,8 +27,7 @@ export const ItemContainer = css`
     var(--sq-border-radius-normal);
   border-top: none;
   outline: none;
-  overflow-y: scroll;
-  scrollbar-width: thin;
+  overflow-y: auto;
 
   &:empty {
     border: none;
