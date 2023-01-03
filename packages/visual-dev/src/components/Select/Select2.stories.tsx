@@ -28,6 +28,27 @@ export const Basic = () => {
   );
 };
 
+export const Placeholder = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const functional = useSelect({ items });
+  const props = { items, functional, placeholder: "Placeholder text..." };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <SelectView.ContainerView {...{ functional }}>
+        <SelectView.HandleView {...props} />
+        <SelectView.ListView {...props} />
+      </SelectView.ContainerView>
+    </div>
+  );
+};
+
 export const WithItemToString = () => {
   interface Islands {
     text: string;
