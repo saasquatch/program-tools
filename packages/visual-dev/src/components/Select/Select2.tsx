@@ -153,7 +153,7 @@ export interface ListItemViewProps<ItemType> {
   /**
    * Custom CSS applied to the item's container
    */
-  customCSS: CSSProp;
+  customCSS?: CSSProp;
 }
 
 export type SelectFrameViewProps<ItemType> = Omit<
@@ -191,7 +191,7 @@ const ItemContainerList = styled.ul<{
     props.empty && "& li:hover {background: white; cursor: default;}"}
 `;
 
-const ListItem = styled.li<{ isHighlighted?: boolean; customCSS: CSSProp }>`
+const ListItem = styled.li<{ isHighlighted?: boolean; customCSS?: CSSProp }>`
   ${Styles.Item}
   ${(props) =>
     props.isHighlighted ? "background-color: var(--sq-surface-hover)" : ""}
