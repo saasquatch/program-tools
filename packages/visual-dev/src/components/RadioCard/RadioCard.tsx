@@ -1,6 +1,6 @@
 import * as React from "react";
 import root from "react-shadow/styled-components";
-import styled, { CSSProp } from "styled-components";
+import styled, { css, CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { IconKey, IconView } from "../Icon";
 
@@ -57,7 +57,15 @@ const RadioLabel = styled.label<RabelLabelProps>`
 
     ${(props) =>
     props.disabled &&
-    "background-color: var(--sq-border); & * {color: var(--sq-text-subdued);}"}
+    css`
+      background-color: var(--sq-border);
+      & * {
+        color: var(--sq-text-subdued);
+      }
+      &:hover {
+        border: 2px solid transparent;
+      }
+    `}
 ${(props) => props.customCSS}
 `;
 const RadioInput = styled.input`
