@@ -80,16 +80,16 @@ export const CSSVariables = createGlobalStyle`
   --sq-font-weight-semibold: 600;
   --sq-font-weight-bold: 700;
 
-  --sq-font-size-header-one: 26px;
-  --sq-font-size-header-two: 22px;
-  --sq-font-size-header-three: 18px;
+  --sq-font-size-header-one: 24px;
+  --sq-font-size-header-two: 20px;
+  --sq-font-size-header-three: 16px;
   --sq-font-size-regular: 14px;
   --sq-font-size-small: 12px;
   --sq-font-size-caption: 16px;
 
-  --sq-line-height-header-one: 28px;
+  --sq-line-height-header-one: 32px;
   --sq-line-height-header-two: 28px;
-  --sq-line-height-header-three: 20px;
+  --sq-line-height-header-three: 24px;
   --sq-line-height-regular: 20px;
   --sq-line-height-caption: 16px;
 
