@@ -163,7 +163,12 @@ export type SelectFrameViewProps<ItemType> = Omit<
 
 type SizeType = boolean | string;
 
-type ItemTypeBase = { description?: string } | string | number | boolean;
+type ItemTypeBase =
+  | { description?: string }
+  | string
+  | number
+  | boolean
+  | object;
 
 const ItemContainerList = styled.ul<{
   errors: any;
