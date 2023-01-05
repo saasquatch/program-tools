@@ -69,6 +69,7 @@ const SVGStyleSpan = styled.span<Required<StyleProps>>`
       : ""}
 
   & > svg {
+    display: block;
     cursor: ${(props) => (props.cursor ? props.cursor : "default")};
     width: ${(props) =>
       default_size.hasOwnProperty(props.size)
