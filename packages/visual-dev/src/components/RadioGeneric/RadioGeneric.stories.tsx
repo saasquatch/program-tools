@@ -1,25 +1,25 @@
 import React from "react";
 import { useState } from "react";
-import { RadioGenericView, RadioOption } from ".";
+import { RadioGenericView } from ".";
 
 export default {
   title: "Components / Generic Radio",
   component: RadioGenericView,
 };
 
-const RadioHandle = ({
-  value,
-  activeValue,
-}: {
-  value: string;
-  activeValue: string;
-}) => {
-  return (
-    <div style={{ backgroundColor: value == activeValue ? "red" : "blue" }}>
-      {value}
-    </div>
-  );
-};
+// const RadioHandle = ({
+//   value,
+//   activeValue,
+// }: {
+//   value: string;
+//   activeValue: string;
+// }) => {
+//   return (
+//     <div style={{ backgroundColor: value == activeValue ? "red" : "blue" }}>
+//       {value}
+//     </div>
+//   );
+// };
 
 export const Functional = () => {
   const [value, setValue] = useState();
