@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, AlertView } from ".";
+import { AlertView } from ".";
 
 export default {
   title: "Components / Alert",

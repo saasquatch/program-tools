@@ -36,7 +36,7 @@ export function MultipleSelect() {
     selectedItem: null,
     defaultHighlightedIndex: 0, // after selection, highlight the first item.
     items,
-    stateReducer: (state, actionAndChanges) => {
+    stateReducer: (_, actionAndChanges) => {
       const { changes, type } = actionAndChanges;
       switch (type) {
         case useSelect.stateChangeTypes.MenuKeyDownEnter:
@@ -142,7 +142,7 @@ export function MultipleSelectFullWidth() {
     selectedItem: null,
     defaultHighlightedIndex: 0, // after selection, highlight the first item.
     items,
-    stateReducer: (state, actionAndChanges) => {
+    stateReducer: (_, actionAndChanges) => {
       const { changes, type } = actionAndChanges;
       switch (type) {
         case useSelect.stateChangeTypes.MenuKeyDownEnter:
@@ -265,7 +265,7 @@ export function MultiSelectWithManyItems() {
     selectedItem: null,
     defaultHighlightedIndex: 0, // after selection, highlight the first item.
     items,
-    stateReducer: (state, actionAndChanges) => {
+    stateReducer: (_, actionAndChanges) => {
       const { changes, type } = actionAndChanges;
       switch (type) {
         case useSelect.stateChangeTypes.MenuKeyDownEnter:
@@ -391,7 +391,7 @@ export function MultipleSelectObjectItem() {
     selectedItem: null,
     defaultHighlightedIndex: 0, // after selection, highlight the first item.
     items,
-    stateReducer: (state, actionAndChanges) => {
+    stateReducer: (_, actionAndChanges) => {
       const { changes, type } = actionAndChanges;
       switch (type) {
         case useSelect.stateChangeTypes.MenuKeyDownEnter:

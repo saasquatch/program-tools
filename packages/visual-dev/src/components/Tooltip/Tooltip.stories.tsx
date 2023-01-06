@@ -64,7 +64,7 @@ export const Functional = () => {
           }
           min="0"
           max="5000"
-          css="width: 75px;"
+          customContainerCSS="width: 75px;"
         />
       </div>
       <ButtonFrame>

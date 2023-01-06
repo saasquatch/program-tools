@@ -15,7 +15,7 @@ export const Functional = () => {
     2: false,
   };
 
-  states[count] = true;
+  states[count as keyof typeof states] = true;
 
   return (
     <Button
@@ -323,32 +323,56 @@ export const primaryPillLoadingIconLarge = () => (
 
 // Icon Text
 export const primaryPillIconSmallLeft = () => (
-  <Button buttonType="primary" pill size="small" icon="add"iconLocation="left" >
+  <Button buttonType="primary" pill size="small" icon="add" iconLocation="left">
     Icon Text
   </Button>
 );
 export const primaryPillIconMediumLeft = () => (
-  <Button buttonType="primary" pill size="medium" icon="add"iconLocation="left">
+  <Button
+    buttonType="primary"
+    pill
+    size="medium"
+    icon="add"
+    iconLocation="left"
+  >
     Icon Text
   </Button>
 );
 export const primaryPillIconLargeLeft = () => (
-  <Button buttonType="primary" pill size="large" icon="add"iconLocation="left">
+  <Button buttonType="primary" pill size="large" icon="add" iconLocation="left">
     Icon Text
   </Button>
 );
 export const primaryPillIconSmallRight = () => (
-  <Button buttonType="primary" pill size="small" icon="add" iconLocation="right">
+  <Button
+    buttonType="primary"
+    pill
+    size="small"
+    icon="add"
+    iconLocation="right"
+  >
     Icon Text
   </Button>
 );
 export const primaryPillIconMediumRight = () => (
-  <Button buttonType="primary" pill size="medium" icon="add" iconLocation="right">
+  <Button
+    buttonType="primary"
+    pill
+    size="medium"
+    icon="add"
+    iconLocation="right"
+  >
     Icon Text
   </Button>
 );
 export const primaryPillIconLargeRight = () => (
-  <Button buttonType="primary" pill size="large" icon="add" iconLocation="right">
+  <Button
+    buttonType="primary"
+    pill
+    size="large"
+    icon="add"
+    iconLocation="right"
+  >
     Icon Text
   </Button>
 );

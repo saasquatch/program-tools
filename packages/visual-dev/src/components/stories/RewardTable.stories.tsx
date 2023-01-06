@@ -106,15 +106,15 @@ export const FormSubmissionTable = () => {
         <div style={{ paddingBottom: 20 }}>
           <Dropdown
             text="All Forms"
-            css="min-width: 100px; margin-right: 10px;"
+            customCSS="min-width: 100px; margin-right: 10px;"
           ></Dropdown>
-          <Dropdown text="Any Status" css="min-width: 110px;"></Dropdown>
+          <Dropdown text="Any Status" customCSS="min-width: 110px;"></Dropdown>
         </div>
         <DataTable.Banner> </DataTable.Banner>
         <DataTable.Row variant="extra">
           <div></div>
         </DataTable.Row>
-        <DataTable.Row css="background: #f9f9f9; color: #7c7c7c;">
+        <DataTable.Row customCSS="background: #f9f9f9; color: #7c7c7c;">
           {content_a}
         </DataTable.Row>
         <DataTable.Row>{content_b}</DataTable.Row>

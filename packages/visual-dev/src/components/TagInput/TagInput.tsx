@@ -20,8 +20,17 @@ export interface OptionProps {
 }
 
 export interface TagViewProps {
+  /**
+   * The id of the tag, used to reference the tag for deletion
+   */
   id: number;
+  /**
+   * Callback to delete a tag by id
+   */
   onDelete: (id: number) => void;
+  /**
+   * Tag content
+   */
   children: React.ReactNode | React.ReactNode[];
 }
 
