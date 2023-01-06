@@ -1,7 +1,0 @@
-dist/
-.out/
-*.DS_Store
-node_modules
-storybook-static
-
-src/__tests__/__image_snapshots__/
