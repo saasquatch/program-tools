@@ -27,6 +27,7 @@
     "@types/http-proxy-middleware": "^1.0.0",
     "@types/json-schema": "^7.0.7",
     "@types/jsonwebtoken": "^9.0.0",
+    "@types/lodash": "^4.14.191",
     "@types/node-cache": "^4.2.5",
     "@types/node-fetch": "^2.5.10",
     "jest": "^27.0.4",
