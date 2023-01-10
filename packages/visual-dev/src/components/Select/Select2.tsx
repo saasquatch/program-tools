@@ -127,6 +127,10 @@ export interface SelectListViewProps<ItemType> {
    * Content to display when in the loading state
    */
   loadingSlot?: string | React.ReactNode;
+  /**
+   * Custom CSS applied to the list container
+   */
+  customCSS?: CSSProp;
 }
 
 export interface ListItemViewProps<ItemType> {
@@ -175,6 +179,7 @@ const ItemContainerList = styled.ul<{
   limitWidth: SizeType;
   limitHeight: SizeType;
   empty: boolean;
+  customCSS: CSSProp;
 }>`
   ${Styles.ItemContainer}
   ${(props) =>
@@ -194,6 +199,7 @@ const ItemContainerList = styled.ul<{
       : "max-height: auto;"}
       ${(props) =>
     props.empty && "& li:hover {background: white; cursor: default;}"}
+    ${(props) => props.customCSS}
 `;
 
 const ListItem = styled.li<{ isHighlighted?: boolean; customCSS?: CSSProp }>`
@@ -559,6 +565,7 @@ const SelectInnerFrameView = <ItemType extends ItemTypeBase>(
         <LabelSpan>No results found</LabelSpan>
       </EmptyContainerDiv>
     ),
+    customCSS = {},
   } = props;
 
   const isOpen = !disabled && functional.isOpen;
@@ -570,6 +577,7 @@ const SelectInnerFrameView = <ItemType extends ItemTypeBase>(
       errors={errors}
       empty={empty}
       ref={ref}
+      customCSS={customCSS}
       {...functional.getMenuProps()}
     >
       {/* Place the conditional render inside getMenuProps call to avoid downshift errors */}
@@ -577,7 +585,7 @@ const SelectInnerFrameView = <ItemType extends ItemTypeBase>(
         loading ? (
           loadingSlot
         ) : empty ? (
-          <ListItem key={`3`}>{emptySlot}</ListItem>
+          <ListItem key={`empty`}>{emptySlot}</ListItem>
         ) : (
           children
         )
