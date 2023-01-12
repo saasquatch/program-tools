@@ -2,7 +2,7 @@ import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { UseComboboxReturnValue, UseSelectReturnValue } from "downshift";
 import { InputView } from "../Input";
-import { IconButton } from "../Button";
+import { IconButtonView } from "../Button";
 import React from "react";
 import { IconKey, IconView } from "../Icon";
 import { DataTableView } from "../DataTable";
@@ -298,6 +298,18 @@ const LabelSpan = styled.span`
   ${Styles.LabelSpan}
 `;
 
+const ComboboxContainerDiv = styled.div<{ isOpen: boolean; errors: boolean }>`
+  ${Styles.ComboboxContainerDiv}
+  ${(props) =>
+    props.isOpen
+      ? "border: 2px solid var(--sq-focused); border-bottom: none; border-radius: var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0"
+      : ""};
+  ${(props) =>
+    props.errors
+      ? "border-color: var(--sq-border-critical); background-color: var(--sq-surface-critical-subdued);"
+      : ""}
+`;
+
 // Redeclare forwardRef for use with generic prop types.
 declare module "react" {
   function forwardRef<T, P = {}>(
@@ -394,7 +406,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           : placeholder}
       </SelectedValueSpan>
       <ButtonDiv>
-        <IconButton
+        <IconButtonView
           disabled={disabled}
           icon={"close"}
           borderless={true}
@@ -436,7 +448,12 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
       </ButtonDiv>
     </SelectInputButton>
   ) : (
-    <div {...functional.getComboboxProps()}>
+    <ComboboxContainerDiv
+      {...functional.getComboboxProps()}
+      isOpen={isOpen}
+      errors={errors}
+    >
+      {tagsSlot && <TagsSlotWrapperDiv>{tagsSlot}</TagsSlotWrapperDiv>}
       <InputView
         {...rest}
         placeholder={placeholder}
@@ -447,21 +464,18 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
         customCSS={`
               ${customCSS};
               ${
-                isOpen
-                  ? "border: 2px solid var(--sq-focused); border-bottom: none; border-radius: var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0"
-                  : ""
-              };
-              ${
                 clearable
                   ? "padding-right: var(--sq-spacing-xxxx-large)"
                   : "padding-right: var(--sq-spacing-xxx-large)"
               };
+              border: none !important;
+              height: 32px;
             `}
         disabled={disabled}
         {...functional.getInputProps()}
       />
       <ButtonContainerDiv>
-        <IconButton
+        <IconButtonView
           disabled={disabled}
           icon={"close"}
           borderless={true}
@@ -477,7 +491,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           }}
         />
         {customIcon ? (
-          <IconButton
+          <IconButtonView
             disabled={disabled}
             icon={customIcon}
             borderless={true}
@@ -492,7 +506,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             {...functional.getToggleButtonProps()}
           />
         ) : (
-          <IconButton
+          <IconButtonView
             disabled={disabled}
             icon={isOpen ? "chevron_up" : "chevron_down"}
             borderless={true}
@@ -505,7 +519,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           />
         )}
       </ButtonContainerDiv>
-    </div>
+    </ComboboxContainerDiv>
   );
 };
 

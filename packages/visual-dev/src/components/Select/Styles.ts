@@ -41,7 +41,7 @@ export const ButtonContainer = css`
   text-indent: 0px;
   padding-right: var(--sq-spacing-small);
   right: 0px;
-  top: 6px;
+  top: 5px;
   & > :not(:last-child) {
     margin-right: var(--sq-spacing-x-small);
   }
@@ -135,4 +135,15 @@ export const LabelSpan = css`
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
   text-align: center;
+`;
+
+export const ComboboxContainerDiv = css`
+  display: flex;
+  border: 2px solid var(--sq-border);
+  border-radius: var(--sq-border-radius-normal);
+  flex-wrap: wrap;
+  &:focus {
+    outline: none;
+    border-color: var(--sq-focused);
+  }
 `;
