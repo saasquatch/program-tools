@@ -5,7 +5,9 @@ import {
   inferType,
   numToEquality,
   setRewardSchedule,
+  getRewardUnitsFromJsonata,
 } from "../src/utils";
+import jsonata from "jsonata";
 
 describe("#inferType", () => {
   test("Booleans are inferred", () => {
@@ -405,6 +407,46 @@ describe("#getGoalAnalyticTimestamp", () => {
       ],
     };
     expect(getGoalAnalyticTimestamp(trigger)).toBe(1619482037652);
+  });
+});
+
+describe("#getRewardUnitsFromJsonata", () => {
+  test("returns nothing when jsonata expression doesn't have any reward units", () => {
+    const expr = jsonata(`123`).ast();
+    const result = getRewardUnitsFromJsonata(expr);
+    expect(result).toBeUndefined();
+  });
+
+  test("returns reward unit when it is only a string literal", () => {
+    const expr = jsonata(`"POINT"`).ast();
+    const result = getRewardUnitsFromJsonata(expr);
+    expect(result).toBeDefined();
+    expect(result!.sort()).toEqual(["POINT"]);
+  });
+
+  test("returns reward unit from single branch ternary", () => {
+    const expr = jsonata(`user.customFields.test = "test" ? "USD"`).ast();
+    const result = getRewardUnitsFromJsonata(expr);
+    expect(result).toBeDefined();
+    expect(result!.sort()).toEqual(["USD"]);
+  });
+
+  test("returns reward units from multi branch ternary", () => {
+    const expr = jsonata(
+      `user.customFields.test = "test" ? "USD" : "CAD"`
+    ).ast();
+    const result = getRewardUnitsFromJsonata(expr);
+    expect(result).toBeDefined();
+    expect(result!.sort()).toEqual(["CAD", "USD"]);
+  });
+
+  test("returns reward units from nested multi branch ternary statements", () => {
+    const expr = jsonata(
+      `user.customFields.test = "test" ? "USD" : user.customFields.test = "test2" ? "CAD" : "GBP"`
+    ).ast();
+    const result = getRewardUnitsFromJsonata(expr);
+    expect(result).toBeDefined();
+    expect(result!.sort()).toEqual(["CAD", "GBP", "USD"]);
   });
 });
 
