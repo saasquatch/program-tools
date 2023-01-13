@@ -7,6 +7,12 @@ import otel, {
   ValueType,
 } from "@opentelemetry/api";
 
+export const METRIC_WEBHOOK_COUNT = "request.webhook.count";
+export const METRIC_FORM_COUNT = "request.form.count";
+export const METRIC_INTROSPECTION_COUNT = "request.introspection.count";
+export const METRIC_REQUEST_PROCESSING_COUNT = "request.processing.count";
+export const METRIC_HTTP_RESPONSE_TIME = "http.response.time";
+
 export class MetricsManager {
   private counters: Record<string, Counter> = {};
   private updownCounters: Record<string, UpDownCounter> = {};
@@ -28,28 +34,28 @@ export class MetricsManager {
     const metricsPrefix = `saasquatch.integrations.${integrationName}`;
     this.metricsPrefix = metricsPrefix;
 
-    this.createCounter("request.webhook.count", {
+    this.createCounter(METRIC_WEBHOOK_COUNT, {
       description: "Incremented each time a webhook request is received",
       valueType: ValueType.INT,
     });
 
-    this.createCounter("request.form.count", {
+    this.createCounter(METRIC_FORM_COUNT, {
       description: "Incremented each time a form request is received",
       valueType: ValueType.INT,
     });
 
-    this.createCounter("request.introspection.count", {
+    this.createCounter(METRIC_INTROSPECTION_COUNT, {
       description: "Incremented each time an introspection request is received",
       valueType: ValueType.INT,
     });
 
-    this.createUpDownCounter("requests.processing.count", {
+    this.createUpDownCounter(METRIC_REQUEST_PROCESSING_COUNT, {
       description:
         "The number of requests that the server is currently processing",
       valueType: ValueType.INT,
     });
 
-    this.createHistogram("http.response.duration", {
+    this.createHistogram(METRIC_HTTP_RESPONSE_TIME, {
       description:
         "The response time of the integration HTTP server measured in microseconds",
       unit: "microseconds",

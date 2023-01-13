@@ -16,7 +16,13 @@ import { GraphQLError, IntegrationConfigError } from "./errors";
 import { formHandler } from "./formHandler";
 import { introspectionHandler } from "./introspectionHandler";
 import { createLogger } from "./logger";
-import { MetricsManager } from "./metrics";
+import {
+  MetricsManager,
+  METRIC_FORM_COUNT,
+  METRIC_INTROSPECTION_COUNT,
+  METRIC_REQUEST_PROCESSING_COUNT,
+  METRIC_WEBHOOK_COUNT,
+} from "./metrics";
 import {
   createSaasquatchRequestMiddleware,
   createSaasquatchTokenMiddleware,
@@ -334,7 +340,7 @@ export class IntegrationService<
     if (this.config.metricsEnabled) {
       server.use(async (_req, res, next) => {
         const startTimeNs = process.hrtime.bigint();
-        this.metricsManager!.increment("requests_processing");
+        this.metricsManager!.increment(METRIC_REQUEST_PROCESSING_COUNT);
 
         res.on("finish", () => {
           const endTimeNs = process.hrtime.bigint();
@@ -347,7 +353,7 @@ export class IntegrationService<
             );
           }
 
-          this.metricsManager!.decrement("requests_processing");
+          this.metricsManager!.decrement(METRIC_REQUEST_PROCESSING_COUNT);
         });
 
         next();
@@ -388,7 +394,7 @@ export class IntegrationService<
         );
 
         if (this.config.metricsEnabled) {
-          this.metricsManager!.increment("webhook_request");
+          this.metricsManager!.increment(METRIC_WEBHOOK_COUNT);
         }
       });
     }
@@ -400,7 +406,7 @@ export class IntegrationService<
         async (req, res) => {
           await introspectionHandler(req, res, this);
           if (this.config.metricsEnabled) {
-            this.metricsManager!.increment("introspection_request");
+            this.metricsManager!.increment(METRIC_INTROSPECTION_COUNT);
           }
         }
       );
@@ -421,7 +427,7 @@ export class IntegrationService<
         );
 
         if (this.config.metricsEnabled) {
-          this.metricsManager!.increment("form_request");
+          this.metricsManager!.increment(METRIC_FORM_COUNT);
         }
       });
     }
