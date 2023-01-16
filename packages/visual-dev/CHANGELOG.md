@@ -5,13 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [unreleased]
+## [1.2.2] - 2023-1-16
+
+### Changed
+
+- Added storyshots-puppeteer visual testing
 
 - Components changed
   - \<SelectView>
     - Introduce the `FrameView` subview which allows list items to be specified in the controller. Used in place of `ListView`
     - Export previously internal helper views and function: `ItemView`, `ItemToNode`, and `ItemToString`
-  - \<CheckboxView>
+    - Support for combobox style multiselect, `tagSlot` is now rendered when using the `useCombobox` hook
+  - \<Checkbox>
     - Fix a bug with checkbox labels not wrapping
 
 ## [1.2.1] - 2022-11-30
