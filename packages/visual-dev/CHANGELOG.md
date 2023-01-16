@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [1.3.0] - 2023-1-16
+
+### Changed
+
+- Components changed
+  - \<RadioCard>
+    - Added more flexibility to allow custom CSS and better design for cards without icons
+    - Added a disabled state
+  - \<ScrollNav>
+    - Add new sidebar scroll navigation component
+  - \<GlobalStyle>
+    - Update font size and line height tokens for headers
+  - \<Button> and <IconButton>
+    - Improve cursor styling consistency
+
 ## [1.2.1] - 2022-11-30
 
 ### Changed
@@ -14,9 +29,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Components changed
   - \<Dropdown>
     - Fixed a visual regression with the upwards menu direction where there was an unnecessary gap between the handle and list
-  - \<RadioCard>
-    - Added more flexibility to allow custom CSS and better design for cards without icons
-    - Added a disabled state
 
 ## [1.2.0] - 2022-11-29
 
@@ -223,6 +235,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<Tooltip>
 
 [unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.2.1...HEAD
+[1.3.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.3.0
 [1.2.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.2.1
 [1.2.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.2.0
 [1.1.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.1.1
