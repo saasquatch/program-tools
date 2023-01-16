@@ -453,7 +453,13 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
       isOpen={isOpen}
       errors={errors}
     >
-      {tagsSlot && <TagsSlotWrapperDiv>{tagsSlot}</TagsSlotWrapperDiv>}
+      {tagsSlot && (
+        <TagsSlotWrapperDiv
+          style={{ padding: "1px var(--sq-spacing-x-small)" }}
+        >
+          {tagsSlot}
+        </TagsSlotWrapperDiv>
+      )}
       <InputView
         {...rest}
         placeholder={placeholder}
