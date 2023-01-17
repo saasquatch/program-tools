@@ -38,7 +38,7 @@ function validateWithJwks(
         if (err) {
           reject(err);
         } else {
-          if (!decoded) {
+          if (!decoded || typeof decoded === "string") {
             reject();
           } else {
             resolve(decoded);
