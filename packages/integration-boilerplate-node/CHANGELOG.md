@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.4] - 2023-01-16
+
+### Changed
+
+- Changed package `jsonwebtoken` from version 8.5.1 to 9.0.0
+
 ## [1.1.3] - 2022-11-29
 
 ### Changed
@@ -46,7 +52,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[unreleased]: https://github.com/sasquatch/integration-boilerplate-node/compare/v1.1.3...HEAD
+[unreleased]: https://github.com/sasquatch/integration-boilerplate-node/compare/v1.1.4...HEAD
+[1.1.4]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.4
 [1.1.3]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.3
 [1.1.2]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.2
 [1.1.1]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.1

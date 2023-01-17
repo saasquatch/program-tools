@@ -2,7 +2,7 @@ import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { UseComboboxReturnValue, UseSelectReturnValue } from "downshift";
 import { InputView } from "../Input";
-import { IconButton } from "../Button";
+import { IconButtonView } from "../Button";
 import React from "react";
 import { IconKey, IconView } from "../Icon";
 import { DataTableView } from "../DataTable";
@@ -127,23 +127,59 @@ export interface SelectListViewProps<ItemType> {
    * Content to display when in the loading state
    */
   loadingSlot?: string | React.ReactNode;
+  /**
+   * Custom CSS applied to the list container
+   */
+  customCSS?: CSSProp;
 }
+
+export interface ListItemViewProps<ItemType> {
+  /**
+   * Index of the current list item in the full list (including subgroups)
+   */
+  index: number;
+  /**
+   * Current list item to render
+   */
+  item: ItemType;
+  /**
+   * Function to transform item objects to strings for display
+   */
+  itemToString?: (item: ItemType | null) => string;
+  /**
+   * Function to transform item objects into template code for dropdown items
+   */
+  itemToNode?: (item: ItemType) => React.ReactNode;
+  /**
+   * Downshift hook for component functionality (useSelect or useCombobox or useMultipleSelection)
+   */
+  functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
+  /**
+   * Custom CSS applied to the item's container
+   */
+  customCSS?: CSSProp;
+}
+
+export type SelectFrameViewProps<ItemType> = Omit<
+  SelectListViewProps<ItemType>,
+  "itemToNode" | "itemToString"
+> & { children: React.ReactNode | React.ReactNode[] };
 
 type SizeType = boolean | string;
 
-type ItemTypeBase = { description?: string } | string | number | boolean;
-
-type ComplexItemType = { description?: string };
-
-function isComplexItem(item: any): item is ComplexItemType {
-  return typeof item === "object" && item !== null;
-}
+type ItemTypeBase =
+  | { description?: string }
+  | string
+  | number
+  | boolean
+  | object;
 
 const ItemContainerList = styled.ul<{
   errors: any;
   limitWidth: SizeType;
   limitHeight: SizeType;
   empty: boolean;
+  customCSS: CSSProp;
 }>`
   ${Styles.ItemContainer}
   ${(props) =>
@@ -163,10 +199,14 @@ const ItemContainerList = styled.ul<{
       : "max-height: auto;"}
       ${(props) =>
     props.empty && "& li:hover {background: white; cursor: default;}"}
+    ${(props) => props.customCSS}
 `;
 
-const ListItem = styled("li")`
+const ListItem = styled.li<{ isHighlighted?: boolean; customCSS?: CSSProp }>`
   ${Styles.Item}
+  ${(props) =>
+    props.isHighlighted ? "background-color: var(--sq-surface-hover);" : ""}
+    ${(props) => props.customCSS}
 `;
 
 const ButtonContainerDiv = styled.div`
@@ -258,12 +298,49 @@ const LabelSpan = styled.span`
   ${Styles.LabelSpan}
 `;
 
+const ComboboxContainerDiv = styled.div<{ isOpen: boolean; errors: boolean }>`
+  ${Styles.ComboboxContainerDiv}
+  ${(props) =>
+    props.isOpen
+      ? "border: 2px solid var(--sq-focused); border-bottom: none; border-radius: var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0"
+      : ""};
+  ${(props) =>
+    props.errors
+      ? "border-color: var(--sq-border-critical); background-color: var(--sq-surface-critical-subdued);"
+      : ""}
+`;
+
 // Redeclare forwardRef for use with generic prop types.
 declare module "react" {
   function forwardRef<T, P = {}>(
     render: (props: P, ref: React.Ref<T>) => React.ReactElement | null
   ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
 }
+
+const ItemView = <ItemType extends ItemTypeBase>(
+  props: ListItemViewProps<ItemType> & Partial<React.ComponentProps<"input">>
+) => {
+  const {
+    item,
+    index,
+    itemToString = itemToStringDefault,
+    itemToNode = itemToNodeDefault,
+    functional,
+    customCSS = {},
+    ...rest
+  } = props;
+  return (
+    <ListItem
+      customCSS={customCSS}
+      isHighlighted={functional.highlightedIndex === index}
+      key={`${itemToString(item)}-${index}`}
+      {...functional.getItemProps({ item, index })}
+      {...rest}
+    >
+      {itemToNode(item)}
+    </ListItem>
+  );
+};
 
 const SelectContainerView = (props: SelectContainerViewProps) => {
   const { limitWidth = true, customContainerCSS = ``, children } = props;
@@ -293,26 +370,8 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
     customIcon,
     functional,
     tagsSlot,
-    itemToString = (item: ItemType) => {
-      return item;
-    },
-    itemToNode = (item: ItemType) => {
-      if (isComplexItem(item)) {
-        return (
-          <>
-            <span>{itemToString(item)}</span>
-            {item.description && (
-              <>
-                <br />
-                <ItemDescriptionSpan>{item.description}</ItemDescriptionSpan>
-              </>
-            )}
-          </>
-        );
-      } else {
-        return <span>{itemToString(item)}</span>;
-      }
-    },
+    itemToString = itemToStringDefault,
+    itemToNode = itemToNodeDefault,
     ...rest
   } = props;
 
@@ -347,7 +406,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           : placeholder}
       </SelectedValueSpan>
       <ButtonDiv>
-        <IconButton
+        <IconButtonView
           disabled={disabled}
           icon={"close"}
           borderless={true}
@@ -389,7 +448,18 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
       </ButtonDiv>
     </SelectInputButton>
   ) : (
-    <div {...functional.getComboboxProps()}>
+    <ComboboxContainerDiv
+      {...functional.getComboboxProps()}
+      isOpen={isOpen}
+      errors={errors}
+    >
+      {tagsSlot && (
+        <TagsSlotWrapperDiv
+          style={{ padding: "1px var(--sq-spacing-x-small)" }}
+        >
+          {tagsSlot}
+        </TagsSlotWrapperDiv>
+      )}
       <InputView
         {...rest}
         placeholder={placeholder}
@@ -400,21 +470,18 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
         customCSS={`
               ${customCSS};
               ${
-                isOpen
-                  ? "border: 2px solid var(--sq-focused); border-bottom: none; border-radius: var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0"
-                  : ""
-              };
-              ${
                 clearable
                   ? "padding-right: var(--sq-spacing-xxxx-large)"
                   : "padding-right: var(--sq-spacing-xxx-large)"
               };
+              border: none !important;
+              height: 32px;
             `}
         disabled={disabled}
         {...functional.getInputProps()}
       />
       <ButtonContainerDiv>
-        <IconButton
+        <IconButtonView
           disabled={disabled}
           icon={"close"}
           borderless={true}
@@ -430,7 +497,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           }}
         />
         {customIcon ? (
-          <IconButton
+          <IconButtonView
             disabled={disabled}
             icon={customIcon}
             borderless={true}
@@ -445,7 +512,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             {...functional.getToggleButtonProps()}
           />
         ) : (
-          <IconButton
+          <IconButtonView
             disabled={disabled}
             icon={isOpen ? "chevron_up" : "chevron_down"}
             borderless={true}
@@ -458,12 +525,36 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           />
         )}
       </ButtonContainerDiv>
-    </div>
+    </ComboboxContainerDiv>
   );
 };
 
-const SelectInnerListView = <ItemType extends ItemTypeBase>(
-  props: SelectListViewProps<ItemType>,
+interface itemsToNodeProps<ItemType> {
+  items: Array<ItemType>;
+  functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
+  itemToString: (item: ItemType | null) => string;
+  itemToNode: (item: ItemType) => React.ReactNode;
+}
+
+const itemsToNode = <ItemType extends ItemTypeBase>(
+  props: itemsToNodeProps<ItemType>
+): React.ReactNode | React.ReactNode[] => {
+  const { items, functional, itemToString, itemToNode } = props;
+  return items.map((item, index) => (
+    <SelectView.ItemView
+      {...{
+        functional,
+        index,
+        item,
+        itemToNode,
+        itemToString,
+      }}
+    />
+  ));
+};
+
+const SelectInnerFrameView = <ItemType extends ItemTypeBase>(
+  props: SelectFrameViewProps<ItemType>,
   ref: React.Ref<HTMLInputElement>
 ) => {
   const {
@@ -474,6 +565,7 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
     loading = false,
     functional,
     items,
+    children,
     loadingSlot = (
       <>
         <ListItem style={{ height: "32px" }} key={`1`}>
@@ -493,29 +585,10 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
         <LabelSpan>No results found</LabelSpan>
       </EmptyContainerDiv>
     ),
-    itemToString = (item: ItemType) => {
-      return item;
-    },
-    itemToNode = (item: ItemType) => {
-      if (isComplexItem(item)) {
-        return (
-          <>
-            <span>{itemToString(item)}</span>
-            {item.description && (
-              <>
-                <br />
-                <ItemDescriptionSpan>{item.description}</ItemDescriptionSpan>
-              </>
-            )}
-          </>
-        );
-      } else {
-        return <span>{itemToString(item)}</span>;
-      }
-    },
+    customCSS = {},
   } = props;
 
-  const isOpen = disabled || functional.isOpen;
+  const isOpen = !disabled && functional.isOpen;
 
   return (
     <ItemContainerList
@@ -524,6 +597,7 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
       errors={errors}
       empty={empty}
       ref={ref}
+      customCSS={customCSS}
       {...functional.getMenuProps()}
     >
       {/* Place the conditional render inside getMenuProps call to avoid downshift errors */}
@@ -531,21 +605,9 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
         loading ? (
           loadingSlot
         ) : empty ? (
-          <ListItem key={`3`}>{emptySlot}</ListItem>
+          <ListItem key={`empty`}>{emptySlot}</ListItem>
         ) : (
-          items.map((item, index) => (
-            <ListItem
-              style={
-                functional.highlightedIndex === index
-                  ? { backgroundColor: "var(--sq-surface-hover)" }
-                  : {}
-              }
-              key={`${itemToString(item)}-${index}`}
-              {...functional.getItemProps({ item, index })}
-            >
-              {itemToNode(item)}
-            </ListItem>
-          ))
+          children
         )
       ) : (
         <></>
@@ -554,8 +616,57 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
   );
 };
 
+function itemToStringDefault<ItemType>(item: ItemType | null): string {
+  return `${item}`;
+}
+
+function itemToNodeDefault<ItemType>(
+  item: ItemType & { description?: string }
+) {
+  if (typeof item === "object" && item !== null) {
+    return (
+      <>
+        <span>{itemToStringDefault(item)}</span>
+        {item.hasOwnProperty("description") && item.description && (
+          <>
+            <br />
+            <ItemDescriptionSpan>{item.description}</ItemDescriptionSpan>
+          </>
+        )}
+      </>
+    );
+  } else {
+    return <span>{itemToStringDefault(item)}</span>;
+  }
+}
+
+const SelectInnerListView = <ItemType extends ItemTypeBase>(
+  props: SelectListViewProps<ItemType>,
+  ref: React.Ref<HTMLInputElement>
+) => {
+  const {
+    itemToString = itemToStringDefault,
+    itemToNode = itemToNodeDefault,
+    ...rest
+  } = props;
+  return (
+    <SelectInnerFrameView {...{ ...rest, ref }}>
+      {itemsToNode({
+        items: props.items,
+        functional: props.functional,
+        itemToString,
+        itemToNode,
+      })}
+    </SelectInnerFrameView>
+  );
+};
+
 export const SelectView = {
   HandleView: React.forwardRef(SelectHandleInnerView),
   ListView: React.forwardRef(SelectInnerListView),
+  FrameView: React.forwardRef(SelectInnerFrameView),
   ContainerView: SelectContainerView,
+  ItemView: ItemView,
+  ItemToNode: itemToNodeDefault,
+  ItemToString: itemToStringDefault,
 };

@@ -30,14 +30,14 @@ export interface StyleProps {
 
 const TabGroupStyle = styled("div")<Required<StyleProps>>`
   ${Styles.tabgroup}
-  ${(props) => Styles[props.color + "_bg"]};
-  ${(props) => Styles[props.color + "_text"]};
+  ${(props) => Styles[(props.color + "_bg") as keyof typeof Styles]};
+  ${(props) => Styles[(props.color + "_text") as keyof typeof Styles]};
   ${(props) => props.customCSS}
 `;
 
 const TabStyle = styled("div")<Required<StyleProps & { selected: boolean }>>`
   ${Styles.tab}
-  ${(props) => Styles[props.color + "_grey"]};
+  ${(props) => Styles[(props.color + "_grey") as keyof typeof Styles]};
   ${(props) => props.selected && Styles.selected}
   ${(props) => props.customCSS}
 `;

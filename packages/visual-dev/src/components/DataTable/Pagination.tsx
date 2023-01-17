@@ -3,7 +3,7 @@ import styled, { CSSProp } from "styled-components";
 import { DropdownView } from "../Dropdown";
 import { IconButtonView } from "../Button";
 import * as styles from "./Styles";
-import { DataTableView } from ".";
+import { SkeletonView } from "./Skeleton";
 
 type PopoverProps = OptionProps &
   StyleProps &
@@ -99,10 +99,7 @@ export const PaginationView = React.forwardRef<
   return (
     <PaginationDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
       {loading ? (
-        <DataTableView.SkeletonView
-          customCSS={{ marginLeft: "auto" }}
-          size="160px"
-        />
+        <SkeletonView customCSS={{ marginLeft: "auto" }} size="160px" />
       ) : (
         <>
           {total !== null &&

@@ -1,6 +1,7 @@
 import { useCombobox } from "downshift";
 import React, { useState } from "react";
 import { Select } from "./Select";
+import { SelectView } from "./Select2";
 
 export default {
   title: "Components / Combobox",
@@ -21,6 +22,38 @@ export const Basic = () => {
     },
   });
   const props = { items: inputItems, functional };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <Select {...props}></Select>
+    </div>
+  );
+};
+
+export const Placeholder = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const [inputItems, setInputItems] = useState(items);
+  const functional = useCombobox({
+    items: inputItems,
+    onInputValueChange: ({ inputValue }) => {
+      setInputItems(
+        items.filter((item) =>
+          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
+        )
+      );
+    },
+  });
+  const props = {
+    items: inputItems,
+    functional,
+    placeholder: "Placeholder text...",
+  };
   return (
     <div
       style={{
@@ -324,4 +357,65 @@ export const CustomCSS = () => {
     functional,
   };
   return <Select {...props}></Select>;
+};
+
+export const Frame = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const items2 = ["Orca", "San Juan"];
+  const combinedItems = [...items, ...items2];
+  const [inputItems, setInputItems] = useState(combinedItems);
+  const functional = useCombobox({
+    items: [...items, ...items2],
+    onInputValueChange: ({ inputValue }) => {
+      setInputItems(
+        combinedItems.filter((item) =>
+          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
+        )
+      );
+    },
+  });
+  const props = { limitWidth: false, items: inputItems, functional };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <SelectView.ContainerView>
+        <SelectView.HandleView {...props} />
+        <SelectView.FrameView {...props}>
+          <div>Gulf Islands</div>
+          {inputItems
+            .filter((x) => items.includes(x))
+            .map((item, index) => (
+              <SelectView.ItemView
+                {...{
+                  functional,
+                  index,
+                  item,
+                }}
+              />
+            ))}
+          <div>San Juan Islands</div>
+          {inputItems
+            .filter((x) => items2.includes(x))
+            .map((item, index) => {
+              const global_index = items.length + index;
+              return (
+                <SelectView.ItemView
+                  {...{
+                    functional,
+                    index: global_index,
+                    item,
+                  }}
+                />
+              );
+            })}
+        </SelectView.FrameView>
+      </SelectView.ContainerView>
+    </div>
+  );
 };

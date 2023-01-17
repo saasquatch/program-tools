@@ -62,7 +62,7 @@ export const cardLongA = () => {
   const footer = (
     <>
       <span> No Codes Available</span>
-      <Button buttonType="primary" size="medium" pill css="float: right;">
+      <Button buttonType="primary" size="medium" pill customCSS="float: right;">
         Upload Codes
       </Button>
     </>
@@ -79,14 +79,19 @@ export const cardLongB = () => {
   const footer = (
     <>
       <span style={{ color: "#57AC59" }}> 123 Codes Available </span>
-      <Button buttonType="secondary" size="medium" pill css="float: right;">
+      <Button
+        buttonType="secondary"
+        size="medium"
+        pill
+        customCSS="float: right;"
+      >
         Upload Codes
       </Button>
       <Button
         buttonType="secondary"
         size="medium"
         pill
-        css="margin-right: 8px; float: right;"
+        customCSS="margin-right: 8px; float: right;"
       >
         Manage
       </Button>
