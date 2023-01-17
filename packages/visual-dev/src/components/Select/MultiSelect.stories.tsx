@@ -91,14 +91,11 @@ export function MultipleSelect() {
     </>
   );
 
-  // const emptySlot = <>EMPTY</>;
-
   const props = {
     getSelectedItemProps,
     getDropdownProps,
     addSelectedItem,
     removeSelectedItem,
-    // emptySlot,
     functional,
     items,
     tagsSlot,
@@ -107,11 +104,7 @@ export function MultipleSelect() {
   return (
     <SelectView.ContainerView>
       <SelectView.HandleView {...props} />
-      <SelectView.ListView
-        {...props}
-        // emptySlot={props.emptySlot}
-        empty={!items.length}
-      />
+      <SelectView.ListView {...props} empty={!items.length} />
     </SelectView.ContainerView>
   );
 }
@@ -246,11 +239,7 @@ export function MultipleSelectCombobox() {
   return (
     <SelectView.ContainerView {...props}>
       <SelectView.HandleView {...props} />
-      <SelectView.ListView
-        {...props}
-        // emptySlot={props.emptySlot}
-        empty={!items.length}
-      />
+      <SelectView.ListView {...props} empty={!items.length} />
     </SelectView.ContainerView>
   );
 }
@@ -486,7 +475,7 @@ export function MultipleSelectObjectItem() {
   };
   const itemToNode = (item: Book | null) => {
     if (item === null) {
-      return <></>;
+      return null;
     }
     return (
       <div>
@@ -571,14 +560,11 @@ export function MultipleSelectObjectItem() {
     </>
   );
 
-  // const emptySlot = <>EMPTY</>;
-
   const props = {
     getSelectedItemProps,
     getDropdownProps,
     addSelectedItem,
     removeSelectedItem,
-    // emptySlot,
     functional,
     items,
     tagsSlot,
@@ -589,11 +575,7 @@ export function MultipleSelectObjectItem() {
   return (
     <SelectView.ContainerView>
       <SelectView.HandleView {...props} />
-      <SelectView.ListView
-        {...props}
-        // emptySlot={props.emptySlot}
-        empty={!items.length}
-      />
+      <SelectView.ListView {...props} empty={!items.length} />
     </SelectView.ContainerView>
   );
 }

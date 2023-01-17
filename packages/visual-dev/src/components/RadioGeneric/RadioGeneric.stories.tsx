@@ -7,6 +7,7 @@ export default {
   component: RadioGenericView,
 };
 
+// TODO: Fix typing
 // const RadioHandle = ({
 //   value,
 //   activeValue,
