@@ -7,13 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.6.5] - 2023-01-18
+## [1.6.6] - 2023-01-17
 
 ### Changed
 
 - Changed components:
   - \<sqm-reward-exchange-list>
     - Added reward exchange component example to the rewards group
+    - Bug fixed to restrict the size of the reward exchange option drop down
 
 ## [1.6.5] - 2022-11-29
 
