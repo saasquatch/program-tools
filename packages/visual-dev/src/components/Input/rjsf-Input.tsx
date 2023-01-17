@@ -149,7 +149,7 @@ export function RJSFCancellableInput(props: WidgetProps) {
             <IconButton
               icon="checkmark"
               size="mini"
-              css={"margin-right: 4px;"}
+              customCSS={"margin-right: 4px;"}
               primary
               onClick={() => {
                 setOldValue(props.value);

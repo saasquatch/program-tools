@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import { TagInputView, TagInputViewProps, TagView } from "./TagInput";
 
 export default {
@@ -18,15 +18,18 @@ const defaultProps: TagInputViewProps = {
 };
 
 export const Default = () => {
+  //@ts-ignore
   return <TagInputView {...defaultProps} />;
 };
 
 export const FullWidth = () => {
+  //@ts-ignore
   return <TagInputView {...{ ...defaultProps, limitWidth: false }} />;
 };
 
 export const CustomCSS = () => {
   return (
+    //@ts-ignore
     <TagInputView
       {...{
         ...defaultProps,
@@ -45,7 +48,7 @@ function useTagInput(
   initialValue: string | undefined
 ) {
   const [_value, setValue] = useState(initialValue?.split(",") || []);
-  const ref = React.useRef<HTMLSpanElement | null>(null);
+  const ref = useRef<HTMLSpanElement | null>(null);
 
   const createCodes = ["Enter", "Comma", "Space"];
   const deleteCodes = ["Backspace"];

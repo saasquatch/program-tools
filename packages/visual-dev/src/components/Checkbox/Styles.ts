@@ -22,7 +22,7 @@ export const CheckboxLabelStyle = css`
   font-size: var(--sq-font-size-regular);
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
-  width: max-content;
+  /* width: max-content; */
 `;
 
 export const CheckboxTickStyle = css`

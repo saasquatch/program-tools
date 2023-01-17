@@ -15,7 +15,7 @@ export const Functional = () => {
     2: false,
   };
 
-  states[count] = true;
+  states[count as keyof typeof states] = true;
 
   return (
     <Button

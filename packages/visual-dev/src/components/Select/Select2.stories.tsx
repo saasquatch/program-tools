@@ -28,6 +28,27 @@ export const Basic = () => {
   );
 };
 
+export const Placeholder = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const functional = useSelect({ items });
+  const props = { items, functional, placeholder: "Placeholder text..." };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <SelectView.ContainerView {...{ functional }}>
+        <SelectView.HandleView {...props} />
+        <SelectView.ListView {...props} />
+      </SelectView.ContainerView>
+    </div>
+  );
+};
+
 export const WithItemToString = () => {
   interface Islands {
     text: string;
@@ -102,6 +123,100 @@ export const CustomCSS = () => {
       >
         <SelectView.HandleView {...props} />
         <SelectView.ListView {...props} />
+      </SelectView.ContainerView>
+    </div>
+  );
+};
+
+export const Frame = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const items2 = ["Orca", "San Juan"];
+  const functional = useSelect({ items: [...items, ...items2] });
+  const props = { limitWidth: false, items, functional, limitHeight: true };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <SelectView.ContainerView {...props}>
+        <SelectView.HandleView {...props} />
+        <SelectView.FrameView {...props}>
+          <div>Gulf Islands</div>
+          {items.map((item, index) => (
+            <SelectView.ItemView
+              {...{
+                functional,
+                index,
+                item,
+              }}
+            />
+          ))}
+          <div>San Juan Islands</div>
+          {items2.map((item, index) => {
+            const global_index = items.length + index;
+            return (
+              <SelectView.ItemView
+                {...{
+                  functional,
+                  index: global_index,
+                  item,
+                }}
+              />
+            );
+          })}
+        </SelectView.FrameView>
+      </SelectView.ContainerView>
+    </div>
+  );
+};
+
+export const FrameCustomCSS = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const items2 = ["Orca", "San Juan"];
+  const functional = useSelect({ items: [...items, ...items2] });
+  const props = { limitWidth: false, items, functional, limitHeight: true };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <SelectView.ContainerView {...props}>
+        <SelectView.HandleView {...props} />
+        <SelectView.FrameView
+          {...{ ...props, customCSS: { background: "red" } }}
+        >
+          <div>Gulf Islands</div>
+          {items.map((item, index) => (
+            <SelectView.ItemView
+              {...{
+                functional,
+                index,
+                item,
+              }}
+            />
+          ))}
+          <div>San Juan Islands</div>
+          {items2.map((item, index) => {
+            const global_index = items.length + index;
+            return (
+              <SelectView.ItemView
+                {...{
+                  functional,
+                  index: global_index,
+                  item,
+                }}
+              />
+            );
+          })}
+        </SelectView.FrameView>
       </SelectView.ContainerView>
     </div>
   );

@@ -90,12 +90,13 @@ declare module "react" {
 }
 
 const SelectInnerView = <ItemType extends ItemTypeBase>(
-  props: SelectProps<ItemType>
+  props: SelectProps<ItemType>,
+  ref: React.Ref<HTMLInputElement>
 ) => {
   return (
     <SelectView.ContainerView {...props}>
-      <SelectView.HandleView {...{ ...props, ref: undefined }} />
-      <SelectView.ListView {...{ ...props, ref: undefined }} />
+      <SelectView.HandleView {...{ ...props, ref }} />
+      <SelectView.ListView {...{ ...props, ref }} />
     </SelectView.ContainerView>
   );
 };

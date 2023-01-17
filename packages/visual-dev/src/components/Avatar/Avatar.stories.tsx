@@ -1,6 +1,5 @@
 import React from "react";
 import { AvatarView } from ".";
-import { GlobalStyle } from "../GlobalStyle";
 
 export default {
   title: "Components / Avatar",
