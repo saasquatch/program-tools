@@ -449,10 +449,7 @@ export const WithFormElements = () => {
             User ID <span style={{ color: "#989898" }}> (required) </span>
             <InputView value="" style={{ margin: "10px 0 10px 0" }} />
             <br />
-            <CheckboxView
-              value={true}
-              options={{ text: "Referrable" }}
-            ></CheckboxView>
+            <CheckboxView value={true} label={"Referrable"}></CheckboxView>
           </ModalView.ModalContentTextView>
           <ModalView.ModalContentDividerView />
           <ModalView.ModalContentActionView

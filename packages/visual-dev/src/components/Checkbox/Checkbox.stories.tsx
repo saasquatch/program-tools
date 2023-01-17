@@ -18,6 +18,18 @@ export const functional = () => {
   );
 };
 
+export const FunctionalWithALongLabel = () => {
+  const [value, setValue] = useState(false);
+  return (
+    <CheckboxView
+      label={"Checkbox with a super long label"}
+      value={value}
+      onChange={() => console.log("change!")}
+      onClick={() => setValue(!value)}
+    />
+  );
+};
+
 export const checkbox = () => {
   return <CheckboxView label={"Checkbox"} value={false} onChange={undefined} />;
 };
