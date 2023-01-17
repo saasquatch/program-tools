@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added support for integration introspection handlers
 - Added support for OpenTelemetry metrics management via boilerplate
-- BREAKING: Added new required config variable `SERVER_NAME`
+- BREAKING: Added new required config variable `SERVICE_NAME`
 
 ### Changed
 
