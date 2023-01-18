@@ -8,7 +8,7 @@
   "description": "Thin wrapper around Winston to provide unified logging across SaaSquatch NodeJS services",
   "prettier": {},
   "engines": {
-    "node": ">=16"
+    "node": "^16 || ^18"
   },
   "files": [
     "dist"

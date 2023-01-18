@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2023-01-17
+
+### Added
+
+- Added support for integration introspection handlers
+- Added support for OpenTelemetry metrics management via boilerplate
+- BREAKING: Added new required config variable `SERVICE_NAME`
+
+### Changed
+
+- BREAKING: Server uses `process.cwd()` to determine the current working directory
+  instead of `require.main!.path`
+
 ## [1.1.4] - 2023-01-16
 
 ### Changed
@@ -52,7 +65,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[unreleased]: https://github.com/sasquatch/integration-boilerplate-node/compare/v1.1.4...HEAD
+[unreleased]: https://github.com/sasquatch/integration-boilerplate-node/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v2.0.0
 [1.1.4]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.4
 [1.1.3]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.3
 [1.1.2]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.2

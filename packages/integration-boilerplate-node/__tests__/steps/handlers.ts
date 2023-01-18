@@ -3,12 +3,16 @@ import { Router, Application } from "express";
 import { StepDefinitions } from "jest-cucumber";
 import fetch, { Response, RequestInit } from "node-fetch";
 
-import { createIntegrationService } from "../../src";
+import { BaseConfig, createIntegrationService } from "../../src";
 import { graphqlShouldError } from "../../mocks/graphql";
 
 const mockWebhookHandler = jest
   .fn()
   .mockImplementation((_s, _w, _c, _g, r) => r.sendStatus(200));
+
+const mockIntrospectionHandler = jest
+  .fn()
+  .mockImplementation((_s, _c, t, _ta) => t);
 
 const mockBrokenWebhookHandler = jest.fn().mockImplementation(() => {
   throw new Error("broken webhook handler");
@@ -48,10 +52,12 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
   let url: string = "";
   let requestInit: RequestInit = {};
   let response: Response;
+  let config: BaseConfig;
 
   function setupService(service: any) {
     return new Promise<void>((resolve, _reject) => {
       app = service.server;
+      config = service.config;
       server = service.server.listen(() => {
         port = (server.address() as any).port;
         resolve();
@@ -72,10 +78,15 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
     return setupService(service);
   });
 
+  given(/the introspection path is (\S+)/, async (path: string) => {
+    config.introspectionEndpointPath = path;
+  });
+
   given("an integration service with custom handlers", async () => {
     const service = await createIntegrationService({
       handlers: {
         webhookHandler: mockWebhookHandler,
+        introspectionHandler: mockIntrospectionHandler,
         formSubmitHandler: mockFormSubmitHandler,
         formValidateHandler: mockFormValidateHandler,
         formIntrospectionHandler: mockFormIntrospectionHandler,
@@ -239,6 +250,15 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
   then("the custom webhook handler will be called", () => {
     expect(mockWebhookHandler.mock.calls.length).toBe(1);
   });
+
+  then(
+    /the custom introspection handler (will|will not) be called/,
+    (willWillNot: string) => {
+      expect(mockIntrospectionHandler.mock.calls.length).toBe(
+        willWillNot === "will" ? 1 : 0
+      );
+    }
+  );
 
   then("the custom form submit handler will be called", () => {
     expect(mockFormSubmitHandler.mock.calls.length).toBe(1);
