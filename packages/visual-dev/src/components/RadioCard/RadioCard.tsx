@@ -58,6 +58,7 @@ const RadioLabel = styled.label<RabelLabelProps>`
     ${(props) =>
     props.disabled &&
     css`
+      cursor: default;
       background-color: var(--sq-border);
       & * {
         color: var(--sq-text-subdued);
