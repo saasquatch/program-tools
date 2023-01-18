@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.7.0] - 2023-01-17
+
+### Added
+
+- Added `getRewardUnitsFromJsonata` utility function for extracting reward units from a
+  JSONata expression
+
 ## [3.6.1] - 2022-11-29
 
 ### Changed
@@ -38,7 +45,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch/program-boilerplate%403.6.1...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch/program-boilerplate%403.7.0...HEAD
+[3.7.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.7.0
 [3.6.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.6.1
 [3.6.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.6.0
 [3.5.11]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.5.11

@@ -83,7 +83,7 @@ const style = {
       //   color: "var(--sl-color-primary-500)",
     },
     "&::part(menu)": {
-      maxHeight: "50vh",
+      maxHeight: "450px",
     },
 
     "& sl-menu-item::part(checked-icon)": {

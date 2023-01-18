@@ -15,6 +15,57 @@ Feature: Handlers
     #
     # Custom handlers
     #
+    #
+    Scenario: Custom introspection handlers are called
+        Given an integration service with custom handlers
+        And the introspection path is /introspection
+        And there is a POST request to /introspection
+        # TODO: Don't know how to generate valid headers for testing
+        And the X-HOOK-JWS-RFC-7797 header is:
+            """
+            eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImhMWC95ZFd3NEMwbXdkcnZ5UGhVWW1kQ2tEOD0ifQ..WO3xC475rz8tQ89zxPM05hIdewEY-vyK5ck-1OKJpsLvj3qhEUdvOmHhwPYKZT-uMkKI5odhmrg3ZLbPpvbZ-vT-84zcpWgcx9zxmPQeS6PslP3VIaJ9L8U1CNv_j7dOCr2oExbeI3WxqQzDQXZ0GXal0kpy_E2HAiui-l02Z-mvtsq5PnU4BEOZsQTdAUSNjY-uz4xl4W3eHC3ZYpVAtC5Uo2XMwQVDURnF1tGfysT1FoYdTPA_6fp30V0ynrYHR0J1IBHFEmK1QubW8-XPJN2BpsSJeDmPX9LfKatRL3otzGfcY25lkZbcVjZp32yvhXaCOZBa7aXGIf_Kq89Www
+            """
+        And the body is:
+            """
+            {
+                "tenantAlias": "testing",
+                "config": {
+                    "someKey": "someVal"
+                },
+                "templateIntegrationConfig": {
+                    "webhooks": [],
+                    "linkInterceptors": [],
+                    "formHandler": {
+                        "endpointUrl": "http://dzDWaUdUrMEsPysuNZEkUVWR.jftNXu04KHtr.92bA",
+                        "name": "voluptate anim dolore dolor"
+                    },
+                    "customFields": []
+                }
+            }
+            """
+        When the request is sent
+        Then the custom introspection handler will be called
+
+    Scenario: Custom introspection handler request body is validated against schema
+        Given an integration service with custom handlers
+        And the introspection path is /introspection
+        And there is a POST request to /introspection
+        # TODO: Don't know how to generate valid headers for testing
+        And the X-HOOK-JWS-RFC-7797 header is:
+            """
+            eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImhMWC95ZFd3NEMwbXdkcnZ5UGhVWW1kQ2tEOD0ifQ..DVaPiWHl-7-uj8LorNN5xEQmk9qXAvkmrxw4spcrrA6p1fLIkbKys9thF48x6IyJ1FnzNA9bZ8KP2THQKVZdmoY_89o9SN0-dNcdf7a51vnnzt9mdPCIXETT13xbw5-jXn1EIM8EX-iEG-nJgRluRTohTLN8Rn_xEtV3UnXWLFWRdwN2fyD4a07LAw3fAfsJC-yMC81lIBaYxKrmJCKU53spgnNdQzJdkkzyUZBS5mGssGY4hEsCTjgvPhaWwcBK6KHKm9dzQrFZOiimith9EIIXkArT9xpaGcNopnSn1sRaYi8DZ-CNSf_stamVpqKRleQS6ck1ChwoHd9EjQSEsw
+            """
+        And the body is:
+            """
+            {
+                "tenantAlias": "testing",
+                "config": {
+                    "someKey": "someVal"
+                }
+            }
+            """
+        When the request is sent
+        Then the custom introspection handler will not be called
 
     Scenario: Custom webhook handlers are called
         Given an integration service with custom handlers
@@ -245,8 +296,10 @@ Feature: Handlers
             """
 
         Examples:
-            | route    | header  | error                                                           |
-            | /form    |         | Permission denied - JWT validation failed: jwt must be provided |
-            | /form    | notAJWT | Permission denied - JWT validation failed: jwt malformed        |
-            | /webhook |         | Permission denied - JWT validation failed: jwt must be provided |
-            | /webhook | notAJWT | Permission denied - JWT validation failed: jwt malformed        |
+            | route          | header  | error                                                           |
+            | /form          |         | Permission denied - JWT validation failed: jwt must be provided |
+            | /form          | notAJWT | Permission denied - JWT validation failed: jwt malformed        |
+            | /webhook       |         | Permission denied - JWT validation failed: jwt must be provided |
+            | /webhook       | notAJWT | Permission denied - JWT validation failed: jwt malformed        |
+            | /introspection |         | Permission denied - JWT validation failed: jwt must be provided |
+            | /introspection | notAJWT | Permission denied - JWT validation failed: jwt malformed        |

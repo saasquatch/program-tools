@@ -3,6 +3,7 @@ import { Logger } from "winston";
 import jwt from "jsonwebtoken";
 
 import { Auth } from "./auth";
+import { TenantAlias } from "./types";
 
 export function createSaasquatchRequestMiddleware(auth: Auth, logger: Logger) {
   return async function (req: Request, res: Response, next: NextFunction) {
@@ -26,7 +27,7 @@ export function createSaasquatchRequestMiddleware(auth: Auth, logger: Logger) {
 declare global {
   namespace Express {
     interface Request {
-      tenantAlias?: string;
+      tenantAlias?: TenantAlias;
     }
   }
 }

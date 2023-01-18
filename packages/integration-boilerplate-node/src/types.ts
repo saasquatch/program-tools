@@ -1,17 +1,41 @@
+import { IntegrationConfiguration } from "@saasquatch/schema/types/IntegrationConfig";
 import { JSONSchema6 } from "json-schema";
 
+export type TenantAlias = string;
 export interface Webhook {
   id: string;
   type: string;
-  tenantAlias: string;
+  tenantAlias: TenantAlias;
   live: boolean;
   created: number;
   [key: string]: any;
 }
 
+export type IntrospectionBody<IntegrationConfig> = {
+  /**
+   * The tenantAlias
+   */
+  tenantAlias: TenantAlias;
+  /**
+   * The integration settings for the specific tenant that this introspection is for
+   */
+  config: IntegrationConfig;
+  /**
+   * The integration's top-level template config (configured in Contentful)
+   */
+  templateIntegrationConfig: IntegrationConfiguration;
+};
+
+export type IntrospectionResponse = {
+  /**
+   * The modified integration template config
+   */
+  templateIntegrationConfig: IntegrationConfiguration;
+};
+
 export interface FormRequestContext<IntegrationConfig, FormConfig> {
   type: "SUBMIT" | "VALIDATE" | "INTROSPECTION" | "INITIAL_DATA";
-  tenantAlias: string;
+  tenantAlias: TenantAlias;
   formData: Record<string, any>;
   formSubmissionRecordId: string;
   dateSubmitted: number;

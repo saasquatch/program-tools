@@ -4,3 +4,4 @@ export { default as gql } from "noop-tag";
 export * from "./types";
 export * from "./config";
 export * from "./service";
+export * from "./metrics";
