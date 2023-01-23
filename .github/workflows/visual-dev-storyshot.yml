@@ -9,6 +9,13 @@ on:
     paths:
       - packages/visual-dev/**
 
+env:
+  # opt out of storybook data harvesting
+  STORYBOOK_DISABLE_TELEMETRY: "1"
+  STORYBOOK_ENABLE_CRASH_REPORTS: "0"
+  PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
+  PUPPETEER_EXECUTABLE_PATH: "/usr/bin/chromium-browser"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,5 +29,5 @@ jobs:
       - run: cd packages/visual-dev && npm install
       - run: |
           cd packages/visual-dev
-          npm run storybook &
+          nohup npm run storybook &
           npm test
