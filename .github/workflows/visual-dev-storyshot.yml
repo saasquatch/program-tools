@@ -1,0 +1,27 @@
+name: Visual Dev Storyshot Tests
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - packages/visual-dev/**
+  pull_request:
+    paths:
+      - packages/visual-dev/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+      - run: cd packages/visual-dev && npm install
+      - run: cd packages/visual-dev && npm run build
+      - run: |
+          cd packages/visual-dev
+          npm run storybook &
+          npm test
