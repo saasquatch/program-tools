@@ -115,3 +115,5 @@ export const filled_package_logo = () => (
 );
 export const open_tab = () => <IconView icon={"open_tab"} />;
 export const refresh = () => <IconView icon={"refresh"} />;
+export const first = () => <IconView icon={"first"} />;
+export const infinity = () => <IconView icon={"infinity"} />;
