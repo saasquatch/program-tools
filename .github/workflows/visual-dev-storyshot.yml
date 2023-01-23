@@ -13,6 +13,7 @@ env:
   # opt out of storybook data harvesting
   STORYBOOK_DISABLE_TELEMETRY: "1"
   STORYBOOK_ENABLE_CRASH_REPORTS: "0"
+  # make sure Puppeteer isn't using an ancient Chromium
   PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
   PUPPETEER_EXECUTABLE_PATH: "/usr/bin/chromium-browser"
 
@@ -33,5 +34,12 @@ jobs:
         working-directory: packages/visual-dev
         run: |
           npm run storybook &
-          for attempt in {1..20}; do sleep 6; if curl http://localhost:9001/ --silent >/dev/null; then echo "Storybook ready!"; break; fi; echo "Waiting for storybook..."; done
+          # 20 attempts, 6 seconds each (2 minute wait for Storybook to start)
+          for _attempt in {1..20}; do
+            sleep 6
+            if curl http://localhost:9001/ --silent >/dev/null; then
+              echo "Connected to storybook!"
+              break
+            fi
+            echo "Waiting for storybook..."; done
           npm test
