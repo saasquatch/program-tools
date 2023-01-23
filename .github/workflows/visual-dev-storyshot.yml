@@ -15,6 +15,7 @@ env:
   STORYBOOK_ENABLE_CRASH_REPORTS: "0"
   # make sure Puppeteer isn't using an ancient Chromium
   PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
+  # https://github.com/actions/runner-images/blob/releases/ubuntu22/20230109/images/linux/scripts/installers/google-chrome.sh#L96
   PUPPETEER_EXECUTABLE_PATH: "/usr/bin/chromium-browser"
 
 jobs:
@@ -22,19 +23,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
+
       - name: NPM install
         working-directory: packages/visual-dev
         run: npm install
-      - name: Run tests
+
+      - name: Run snapshot tests
         working-directory: packages/visual-dev
         run: |
           npm run storybook &
-          # 20 attempts, 6 seconds each (2 minute wait for Storybook to start)
+          # 20 attempts, 6 seconds each = 2 minute wait for Storybook to start
           for _attempt in {1..20}; do
             sleep 6
             if curl http://localhost:9001/ --silent >/dev/null; then
