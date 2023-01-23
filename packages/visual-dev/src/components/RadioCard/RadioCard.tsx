@@ -67,45 +67,53 @@ const RadioGridDiv = styled.div`
   ${Styles.RadioGridStyle}
 `;
 
-export const RadioCardView = React.forwardRef<
-  React.ElementRef<"input">,
-  InputProps
->((props, forwardedRef) => {
-  const { value, optionValue, title, description, icon = "", ...rest } = props;
+const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
+  (props, forwardedRef) => {
+    const {
+      value,
+      optionValue,
+      title,
+      description,
+      icon = "",
+      ...rest
+    } = props;
 
-  const selected = value === optionValue;
+    const selected = value === optionValue;
 
-  const icon_color = selected ? "var(--sq-action-primary-hovered)" : "";
+    const icon_color = selected ? "var(--sq-action-primary-hovered)" : "";
 
-  return (
-    <RadioLabel htmlFor={rest.id} isChecked={selected}>
-      <RadioInput
-        {...rest}
-        type="radio"
-        checked={selected}
-        readOnly
-        ref={forwardedRef}
-      />
-      <LeftSegmentDiv isChecked={selected}>
-        {icon && <IconView icon={icon} size="40px" color={icon_color} />}
-      </LeftSegmentDiv>
-      <RightSegmentDiv>
-        <RadioTextDiv>
-          {title ? (
-            <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
-          ) : (
-            ""
-          )}
-          {description ? (
-            <div style={{ color: "var(--sq-text-subdued)" }}>{description}</div>
-          ) : (
-            ""
-          )}
-        </RadioTextDiv>
-      </RightSegmentDiv>
-    </RadioLabel>
-  );
-});
+    return (
+      <RadioLabel htmlFor={rest.id} isChecked={selected}>
+        <RadioInput
+          {...rest}
+          type="radio"
+          checked={selected}
+          readOnly
+          ref={forwardedRef}
+        />
+        <LeftSegmentDiv isChecked={selected}>
+          {icon && <IconView icon={icon} size="40px" color={icon_color} />}
+        </LeftSegmentDiv>
+        <RightSegmentDiv>
+          <RadioTextDiv>
+            {title ? (
+              <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
+            ) : (
+              ""
+            )}
+            {description ? (
+              <div style={{ color: "var(--sq-text-subdued)" }}>
+                {description}
+              </div>
+            ) : (
+              ""
+            )}
+          </RadioTextDiv>
+        </RightSegmentDiv>
+      </RadioLabel>
+    );
+  }
+);
 
 export const RadioCardGroupView = (props: GroupProps) => {
   const { children } = props;
@@ -118,11 +126,26 @@ export const RadioCardGroupView = (props: GroupProps) => {
 };
 
 /**
- * @deprecated use {@link RadioCardView} instead
- */
-export const RadioCard = RadioCardView;
-
-/**
  * @deprecated use {@link RadioGroupView} instead
  */
 export const RadioCardGroup = RadioCardGroupView;
+
+const RadioCardNamespace = Object.assign(RadioCardView, {
+  RadioCardView: RadioCardView,
+  RadioCardGroupView: RadioCardGroupView,
+});
+
+/**
+ * @deprecated use {@link RadioCardView} instead
+ */
+const RadioCardNamespaceDeprecated = Object.assign(RadioCardView, {
+  RadioCard: RadioCardView,
+  RadioCardGroup: RadioCardGroupView,
+});
+
+export { RadioCardNamespace as RadioCardView };
+
+/**
+ * @deprecated use {@link RadioCardView} instead
+ */
+export { RadioCardNamespaceDeprecated as RadioCard };
