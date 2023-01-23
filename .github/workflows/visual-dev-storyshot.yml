@@ -20,7 +20,6 @@ jobs:
         with:
           node-version: 16.x
       - run: cd packages/visual-dev && npm install
-      - run: cd packages/visual-dev && npm run build
       - run: |
           cd packages/visual-dev
           npm run storybook &
