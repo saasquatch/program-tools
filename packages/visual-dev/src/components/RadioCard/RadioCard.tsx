@@ -6,7 +6,8 @@ import { IconKey, IconView } from "../Icon";
 
 type GroupProps = React.ComponentProps<"input">;
 
-type InputProps = OptionProps & Partial<React.ComponentProps<"input">>;
+type InputProps = OptionProps &
+  Omit<Partial<React.ComponentProps<"input">>, "value">;
 export interface OptionProps {
   /**
    * Current value of radio card form group
