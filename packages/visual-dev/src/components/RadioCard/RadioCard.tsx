@@ -137,7 +137,7 @@ export const RadioCardView = React.forwardRef<
           ) : (
             ""
           )}
-          {description ? <div>{description}</div> : ""}
+          {description ? <>{description}</> : ""}
         </RadioTextDiv>
       </RightSegmentDiv>
     </RadioLabel>
