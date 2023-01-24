@@ -131,16 +131,14 @@ export const RadioCardGroupView = (props: GroupProps) => {
 export const RadioCardGroup = RadioCardGroupView;
 
 const RadioCardNamespace = Object.assign(RadioCardView, {
-  RadioCardView: RadioCardView,
-  RadioCardGroupView: RadioCardGroupView,
+  GroupView: RadioCardGroupView,
 });
 
 /**
  * @deprecated use {@link RadioCardView} instead
  */
 const RadioCardNamespaceDeprecated = Object.assign(RadioCardView, {
-  RadioCard: RadioCardView,
-  RadioCardGroup: RadioCardGroupView,
+  Group: RadioCardGroupView,
 });
 
 export { RadioCardNamespace as RadioCardView };
