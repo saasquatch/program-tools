@@ -23,11 +23,11 @@ export interface OptionProps {
   /**
    * Main title at the top of the card
    */
-  title?: string;
+  title?: string | React.ReactNode;
   /**
    * Description in the card below the title
    */
-  description?: string;
+  description?: string | React.ReactNode;
   /**
    * Icon displayed in the left side section of the card
    */
