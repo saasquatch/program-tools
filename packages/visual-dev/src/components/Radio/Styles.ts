@@ -34,7 +34,7 @@ export const RadioButtonStyle = css`
   border-radius: 50%;
   margin-right: 20px;
   box-sizing: border-box;
-  padding: 1.5px;
+  padding: 2.5px 1.5px;
   flex-shrink: 0;
 
   &::after {
