@@ -9,7 +9,8 @@ import { SemanticResourceAttributes } from "@opentelemetry/semantic-conventions"
 
 export function installInstrumentation(
   serviceName: string,
-  hostName: string
+  hostName: string,
+  deploymentEnv: string
 ): void {
   const metricExporter = new OTLPMetricExporter({});
   const meterProvider = new MeterProvider({
@@ -20,8 +21,7 @@ export function installInstrumentation(
       [SemanticResourceAttributes.SERVICE_VERSION]: "1.0.0",
       [SemanticResourceAttributes.SERVICE_NAME]: serviceName,
       [SemanticResourceAttributes.HOST_NAME]: hostName,
-      [SemanticResourceAttributes.DEPLOYMENT_ENVIRONMENT]:
-        process.env["DEPLOYMENT_ENVIRONMENT"] ?? "staging",
+      [SemanticResourceAttributes.DEPLOYMENT_ENVIRONMENT]: deploymentEnv,
     }),
   });
 
