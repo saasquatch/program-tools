@@ -143,3 +143,22 @@ export const radioCardNoText = () => {
     </RadioCardView.GroupView>
   );
 };
+
+export const radioCardCustomCSS = () => {
+  return (
+    <RadioCardView.GroupView>
+      <RadioCardView
+        title={"A title for this option"}
+        customCSS="background: var(--sq-nav-surface-primary);"
+        value={0}
+        optionValue={1}
+        onClick={void 0}
+        onChange={void 0}
+        icon="calendar"
+        description={
+          "This is a default radio group button. Toggle it by clicking."
+        }
+      />
+    </RadioCardView.GroupView>
+  );
+};
