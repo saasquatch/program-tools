@@ -1,6 +1,6 @@
 import * as React from "react";
 import root from "react-shadow/styled-components";
-import styled from "styled-components";
+import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { IconKey, IconView } from "../Icon";
 
@@ -33,14 +33,19 @@ export interface OptionProps {
    * Icon displayed in the left side section of the card
    */
   icon?: IconKey;
+  /**
+   * Custom CSS applied to accordion container
+   */
+  customCSS?: CSSProp;
 }
 
 const ShadowDom = styled(root.div)`
   display: contents;
 `;
 
-const RadioLabel = styled.label<{ isChecked: boolean }>`
+const RadioLabel = styled.label<{ isChecked: boolean; customCSS?: CSSProp }>`
   ${Styles.RadioLabelStyle}
+  ${(props) => props.customCSS && props.customCSS}
   ${(props) =>
     props.isChecked
       ? "border: 2px solid var(--sq-action-primary-hovered);"
@@ -75,6 +80,7 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
       optionValue,
       title,
       description,
+      customCSS,
       icon = "",
       ...rest
     } = props;
@@ -84,7 +90,7 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
     const icon_color = selected ? "var(--sq-action-primary-hovered)" : "";
 
     return (
-      <RadioLabel htmlFor={rest.id} isChecked={selected}>
+      <RadioLabel htmlFor={rest.id} isChecked={selected} customCSS={customCSS}>
         <RadioInput
           {...rest}
           type="radio"
