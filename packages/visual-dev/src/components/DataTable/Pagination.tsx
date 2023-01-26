@@ -103,7 +103,10 @@ export const PaginationView = React.forwardRef<
       ) : (
         <>
           {total !== null &&
-            `${offset + 1} - ${Math.min(offset + limit, total)} of ${total}`}
+            `${total === 0 ? 0 : offset + 1} - ${Math.min(
+              offset + limit,
+              total
+            )} of ${total}`}
 
           <ContainerDiv>
             <IconButtonView

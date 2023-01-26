@@ -500,6 +500,15 @@ export const paginationFunctional = () => {
   );
 };
 
+export const paginationZero = () => (
+  <DataTableView.PaginationView
+    total={0}
+    limit={10}
+    offset={0}
+    updatePagination={updatePaginationDummy}
+  />
+);
+
 export const paginationLoading = () => (
   <DataTableView.PaginationView
     total={440}
