@@ -139,6 +139,10 @@ export interface ListItemViewProps<ItemType> {
    */
   index: number;
   /**
+   * Set item to disabled
+   */
+  disabled?: boolean;
+  /**
    * Current list item to render
    */
   item: ItemType;
@@ -207,6 +211,12 @@ const ListItem = styled.li<{ isHighlighted?: boolean; customCSS?: CSSProp }>`
   ${(props) =>
     props.isHighlighted ? "background-color: var(--sq-surface-hover);" : ""}
     ${(props) => props.customCSS}
+`;
+
+const ListItemDisabled = styled.li<{ customCSS?: CSSProp }>`
+  ${Styles.ItemDisabled}
+
+  ${(props) => props.customCSS}
 `;
 
 const ButtonContainerDiv = styled.div`
@@ -323,12 +333,28 @@ const ItemView = <ItemType extends ItemTypeBase>(
   const {
     item,
     index,
+    disabled = false,
     itemToString = itemToStringDefault,
     itemToNode = itemToNodeDefault,
     functional,
     customCSS = {},
     ...rest
   } = props;
+
+  if (disabled) {
+    return (
+      //@ts-ignore
+      <ListItemDisabled
+        customCSS={customCSS}
+        key={`${itemToString(item)}-${index}`}
+        {...functional.getItemProps({ item, index, disabled: true })}
+        {...rest}
+      >
+        {itemToNode(item)}
+      </ListItemDisabled>
+    );
+  }
+
   return (
     <ListItem
       customCSS={customCSS}
