@@ -9,7 +9,11 @@ import { LOG_TYPE_MARKER } from "./logger";
  * @param {winston.Logger} logger - The logger to use
  */
 export function httpLogMiddleware(logger: winston.Logger) {
-  return (req: IncomingMessage, res: ServerResponse, next: () => void) => {
+  return (
+    req: IncomingMessage,
+    res: ServerResponse & { locals?: Record<string, any> },
+    next: () => void
+  ) => {
     const startTimeNs = process.hrtime.bigint();
 
     res.on("finish", () => {
@@ -17,6 +21,7 @@ export function httpLogMiddleware(logger: winston.Logger) {
       const time = (endTimeNs - startTimeNs) / BigInt(1000);
       const { method, url } = req;
       const status = res.statusCode;
+      const requestId = res.locals?.requestId;
 
       const level =
         res.statusCode >= 500
@@ -24,7 +29,7 @@ export function httpLogMiddleware(logger: winston.Logger) {
           : res.statusCode >= 400
           ? "warn"
           : "info";
-      const message = { method, status, time, url };
+      const message = { method, status, time, url, requestId };
 
       logger.log(level, {
         [LOG_TYPE_MARKER]: "HTTP",
