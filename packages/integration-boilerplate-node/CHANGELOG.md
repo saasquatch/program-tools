@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.1] - 2023-01-25
+
+### Changed
+
+- Boilerplate no longer assumes that "staging" / "prod" will be included in the
+  `SERVICE_NAME`
+
 ## [2.0.0] - 2023-01-17
 
 ### Added
@@ -65,7 +72,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[unreleased]: https://github.com/sasquatch/integration-boilerplate-node/compare/v2.0.0...HEAD
+[unreleased]: https://github.com/sasquatch/integration-boilerplate-node/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v2.0.1
 [2.0.0]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v2.0.0
 [1.1.4]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.4
 [1.1.3]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.3

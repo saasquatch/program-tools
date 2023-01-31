@@ -482,10 +482,11 @@ export async function createIntegrationService<
     : await loadConfig();
 
   if (config.metricsEnabled) {
-    const hostName = `${config.serviceName}.${
+    const deploymentEnv = process.env["DEPLOYMENT_ENVIRONMENT"] ?? "staging";
+    const hostName = `${config.serviceName}-${deploymentEnv}.${
       process.env["DYNO"] ?? hostname()
     }`;
-    installInstrumentation(config.serviceName, hostName);
+    installInstrumentation(config.serviceName, hostName, deploymentEnv);
   }
 
   return new IntegrationService(config, options);

@@ -69,6 +69,7 @@ parameters common to all integrations. These are:
 
 | Environment Variable       | Property                | Default                    | Description                                                                                                  |
 | -------------------------- | ----------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| SERVICE_NAME               | serviceName             |                            | The name of the integration, in kebab case. For example: "my-cool-integration"                               |
 | PORT                       | port                    | 10000                      | The port on which to run the microservice                                                                    |
 | SERVER_LOG_LEVEL           | serverLogLevel          | info                       | The log level for the default logger                                                                         |
 | SERVER_LOG_FILE            | serverLogFile           |                            | The optional path to write server logs to                                                                    |
@@ -176,6 +177,21 @@ Form handlers can also return an error response, which is defined in
 
 The Typescript types are based on these schemas and should help you make sure your handlers are returning the right
 kind of data.
+
+#### Introspection handler
+
+An integration introspection handler takes the following arguments:
+
+| Argument                    | Description                                                                                |
+| --------------------------- | ------------------------------------------------------------------------------------------ |
+| `service`                   | The integration service, which gives you access to service config, and the built-in logger |
+| `config`                    | The integration configuration for the tenant for which the webhook was sent                |
+| `templateIntegrationConfig` | The system-wide integration config stored in CMS                                           |
+| `tenantAlias`               | The tenant alias of the tenant for which the introspection is taking place                 |
+
+For successful introspection, the integration should modify the
+`templateIntegrationConfig` as necessary and return it in the JSON body under the key
+`templateIntegrationConfig`.
 
 ## Advanced Use Cases
 
