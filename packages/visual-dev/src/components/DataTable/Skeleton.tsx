@@ -20,11 +20,25 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const SkeletonDiv = styled.div<
-  Required<StyleProps> & { size?: string; circle: boolean; color?: string }
->`
+export interface SkeletonDivProps {
+  /**
+   * Specify the skeleton width
+   */
+  size?: string;
+  /**
+   * Sets the skeleton as a circle with 15px width and height
+   */
+  circle?: boolean;
+  /**
+   * Hide the shimmer effect
+   */
+  hideShimmer?: boolean;
+}
+
+const SkeletonDiv = styled.div<Required<StyleProps> & SkeletonDivProps>`
   ${Styles.SkeletonDiv}
-  background: ${(props) => (props.color ? props.color : "var(--sq-border)")};
+  background-color: ${(props) =>
+    props.color ? props.color : "var(--sq-border)"};
 
   height: ${(props) =>
     props.circle ? (props.size ? props.size : "15px") : "15px"};
@@ -37,12 +51,14 @@ const SkeletonDiv = styled.div<
       ? props.size
       : "100%"};
 
+  ${(props) => !props.hideShimmer && Styles.ShimmerStyles}
+
   ${(props) => props.customCSS};
 `;
 
 export const SkeletonView = React.forwardRef<
   React.ElementRef<"div">,
-  PopoverProps & { size?: string; circle?: boolean }
+  PopoverProps & SkeletonDivProps
 >((props, forwardedRef) => {
   const {
     circle = false,
@@ -50,6 +66,7 @@ export const SkeletonView = React.forwardRef<
     color,
     children,
     customCSS = {},
+    hideShimmer = false,
     ...rest
   } = props;
 
@@ -59,6 +76,7 @@ export const SkeletonView = React.forwardRef<
       circle={circle}
       size={size}
       color={color}
+      hideShimmer={hideShimmer}
       ref={forwardedRef}
       customCSS={customCSS}
     >

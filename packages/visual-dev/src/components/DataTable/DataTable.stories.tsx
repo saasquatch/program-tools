@@ -619,6 +619,18 @@ export const rowSkeleton = () => {
   return <DataTableView.RowView>{content}</DataTableView.RowView>;
 };
 
+export const rowSkeletonHideShimmer = () => {
+  const text = <DataTableView.SkeletonView size="91px" hideShimmer />;
+  const content = [
+    { text: text },
+    { text: text },
+    { text: text },
+    { text: text },
+  ];
+
+  return <DataTableView.RowView>{content}</DataTableView.RowView>;
+};
+
 export const FormSubmissionTableLoading = () => {
   return (
     <>
