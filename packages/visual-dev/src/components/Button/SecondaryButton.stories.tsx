@@ -119,6 +119,11 @@ export const secondarySuccessLarge = () => (
     Success
   </Button>
 );
+export const secondaryDisabledSuccess = () => (
+  <Button buttonType="secondary" size="large" success disabled>
+    Success
+  </Button>
+);
 
 // Loading icon only
 
