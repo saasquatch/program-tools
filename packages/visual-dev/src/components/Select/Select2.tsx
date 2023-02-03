@@ -503,8 +503,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             borderless={true}
             size="small"
             customCSS={{
-              padding:
-                "10px var(--sq-spacing-x-small) var(--sq-spacing-x-small)",
+              padding: "var(--sq-spacing-x-small)",
             }}
             icon_css={{
               color: "var(--sq-text-subdued)",
