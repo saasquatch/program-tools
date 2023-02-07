@@ -1,6 +1,6 @@
 import * as React from "react";
 import root from "react-shadow/styled-components";
-import styled from "styled-components";
+import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { IconKey, IconView } from "../Icon";
 
@@ -32,18 +32,24 @@ export interface OptionProps {
    * Icon displayed in the left side section of the card
    */
   icon?: IconKey;
+  /**
+   * Custom CSS applied to Radio Card
+   */
+  customCSS?: CSSProp;
 }
 
 const ShadowDom = styled(root.div)`
   display: contents;
 `;
 
-const RadioLabel = styled.label<{ isChecked: boolean }>`
+const RadioLabel = styled.label<{ isChecked: boolean; css?: any }>`
   ${Styles.RadioLabelStyle}
   ${(props) =>
     props.isChecked
       ? "border: 2px solid var(--sq-action-primary-hovered);"
       : "&:hover {border: 2px solid var(--sq-text-subdued);}"}
+      
+  ${(props) => props.css && props.css}
 `;
 const RadioInput = styled.input`
   ${Styles.RadioInputStyle}
@@ -75,6 +81,7 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
       title,
       description,
       icon = "",
+      css,
       ...rest
     } = props;
 
@@ -83,7 +90,7 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
     const icon_color = selected ? "var(--sq-action-primary-hovered)" : "";
 
     return (
-      <RadioLabel htmlFor={rest.id} isChecked={selected}>
+      <RadioLabel htmlFor={rest.id} isChecked={selected} css={css}>
         <RadioInput
           {...rest}
           type="radio"
