@@ -42,14 +42,14 @@ const ShadowDom = styled(root.div)`
   display: contents;
 `;
 
-const RadioLabel = styled.label<{ isChecked: boolean; css?: any }>`
+const RadioLabel = styled.label<{ isChecked: boolean; customCSS?: any }>`
   ${Styles.RadioLabelStyle}
   ${(props) =>
     props.isChecked
       ? "border: 2px solid var(--sq-action-primary-hovered);"
       : "&:hover {border: 2px solid var(--sq-text-subdued);}"}
       
-  ${(props) => props.css && props.css}
+  ${(props) => props.customCSS && props.customCSS}
 `;
 const RadioInput = styled.input`
   ${Styles.RadioInputStyle}
@@ -81,7 +81,7 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
       title,
       description,
       icon = "",
-      css,
+      customCSS,
       ...rest
     } = props;
 
@@ -90,7 +90,7 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
     const icon_color = selected ? "var(--sq-action-primary-hovered)" : "";
 
     return (
-      <RadioLabel htmlFor={rest.id} isChecked={selected} css={css}>
+      <RadioLabel htmlFor={rest.id} isChecked={selected} customCSS={customCSS}>
         <RadioInput
           {...rest}
           type="radio"

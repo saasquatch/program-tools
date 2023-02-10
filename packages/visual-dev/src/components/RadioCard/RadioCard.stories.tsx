@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { RadioCardView, RadioCardGroupView } from ".";
+import { RadioCardView } from ".";
 
 export default {
   title: "Components / RadioCard",
@@ -67,7 +67,7 @@ export const radioCardCustomCSS = () => {
   return (
     <RadioCardView.GroupView>
       <RadioCardView
-        css="background: var(--sq-nav-surface-primary); color: white !important; border: none; border-radius: 50px;"
+        customCSS="background: var(--sq-nav-surface-primary); color: white !important; border: none; border-radius: 50px;"
         title={"A title for this option"}
         description={
           "This is a default radio group button. Toggle it by clicking."
