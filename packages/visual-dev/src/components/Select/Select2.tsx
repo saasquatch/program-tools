@@ -254,7 +254,7 @@ const SelectInputButton = styled.button<{
   ${(props) =>
     props.isOpen &&
     !props.disabled &&
-    "border-color: var(--sq-focused); border-bottom: none;"}
+    "border-color: var(--sq-focused); border-bottom: none; padding-bottom: var(--sq-spacing-xxx-small);"}
   ${(props) =>
     !props.isOpen &&
     !props.disabled &&
@@ -302,7 +302,7 @@ const ComboboxContainerDiv = styled.div<{ isOpen: boolean; errors: boolean }>`
   ${Styles.ComboboxContainerDiv}
   ${(props) =>
     props.isOpen
-      ? "border: 2px solid var(--sq-focused); border-bottom: none; border-radius: var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0"
+      ? "border: 2px solid var(--sq-focused); border-bottom: none; border-radius: var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0; padding-bottom: var(--sq-spacing-xxx-small)"
       : ""};
   ${(props) =>
     props.errors
