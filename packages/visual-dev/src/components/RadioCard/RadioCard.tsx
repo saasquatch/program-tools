@@ -103,17 +103,13 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
         </LeftSegmentDiv>
         <RightSegmentDiv>
           <RadioTextDiv>
-            {title ? (
+            {title && (
               <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
-            ) : (
-              ""
             )}
-            {description ? (
+            {description && (
               <div style={{ color: "var(--sq-text-subdued)" }}>
                 {description}
               </div>
-            ) : (
-              ""
             )}
           </RadioTextDiv>
         </RightSegmentDiv>
