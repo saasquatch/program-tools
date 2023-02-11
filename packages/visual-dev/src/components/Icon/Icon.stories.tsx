@@ -117,3 +117,5 @@ export const open_tab = () => <IconView icon={"open_tab"} />;
 export const refresh = () => <IconView icon={"refresh"} />;
 export const first = () => <IconView icon={"first_badge"} />;
 export const infinity = () => <IconView icon={"infinity"} />;
+export const gift_filled = () => <IconView icon={"gift_filled"} />;
+export const data = () => <IconView icon={"data"} />;

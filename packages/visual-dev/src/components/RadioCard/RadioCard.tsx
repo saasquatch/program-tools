@@ -34,7 +34,7 @@ export interface OptionProps {
    */
   icon?: IconKey;
   /**
-   * Custom CSS applied to accordion container
+   * Custom CSS applied to Radio Card
    */
   customCSS?: CSSProp;
 }
@@ -50,6 +50,8 @@ const RadioLabel = styled.label<{ isChecked: boolean; customCSS?: CSSProp }>`
     props.isChecked
       ? "border: 2px solid var(--sq-action-primary-hovered);"
       : "&:hover {border: 2px solid var(--sq-text-subdued);}"}
+      
+  ${(props) => props.customCSS && props.customCSS}
 `;
 const RadioInput = styled.input`
   ${Styles.RadioInputStyle}
@@ -82,6 +84,7 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
       description,
       customCSS,
       icon = "",
+      customCSS,
       ...rest
     } = props;
 
@@ -103,17 +106,13 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
         </LeftSegmentDiv>
         <RightSegmentDiv>
           <RadioTextDiv>
-            {title ? (
+            {title && (
               <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
-            ) : (
-              ""
             )}
-            {description ? (
+            {description && (
               <div style={{ color: "var(--sq-text-subdued)" }}>
                 {description}
               </div>
-            ) : (
-              ""
             )}
           </RadioTextDiv>
         </RightSegmentDiv>
