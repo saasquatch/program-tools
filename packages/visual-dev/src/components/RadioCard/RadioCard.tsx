@@ -1,12 +1,13 @@
 import * as React from "react";
 import root from "react-shadow/styled-components";
-import styled from "styled-components";
+import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { IconKey, IconView } from "../Icon";
 
 type GroupProps = React.ComponentProps<"input">;
 
-type InputProps = OptionProps & Partial<React.ComponentProps<"input">>;
+type InputProps = OptionProps &
+  Partial<Omit<React.ComponentProps<"input">, "value">>;
 export interface OptionProps {
   /**
    * Current value of radio card form group
@@ -23,23 +24,28 @@ export interface OptionProps {
   /**
    * Main title at the top of the card
    */
-  title?: string;
+  title?: string | React.ReactNode;
   /**
    * Description in the card below the title
    */
-  description?: string;
+  description?: string | React.ReactNode;
   /**
    * Icon displayed in the left side section of the card
    */
   icon?: IconKey;
+  /**
+   * Custom CSS applied to accordion container
+   */
+  customCSS?: CSSProp;
 }
 
 const ShadowDom = styled(root.div)`
   display: contents;
 `;
 
-const RadioLabel = styled.label<{ isChecked: boolean }>`
+const RadioLabel = styled.label<{ isChecked: boolean; customCSS?: CSSProp }>`
   ${Styles.RadioLabelStyle}
+  ${(props) => props.customCSS && props.customCSS}
   ${(props) =>
     props.isChecked
       ? "border: 2px solid var(--sq-action-primary-hovered);"
@@ -67,45 +73,54 @@ const RadioGridDiv = styled.div`
   ${Styles.RadioGridStyle}
 `;
 
-export const RadioCardView = React.forwardRef<
-  React.ElementRef<"input">,
-  InputProps
->((props, forwardedRef) => {
-  const { value, optionValue, title, description, icon = "", ...rest } = props;
+const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
+  (props, forwardedRef) => {
+    const {
+      value,
+      optionValue,
+      title,
+      description,
+      customCSS,
+      icon = "",
+      ...rest
+    } = props;
 
-  const selected = value === optionValue;
+    const selected = value === optionValue;
 
-  const icon_color = selected ? "var(--sq-action-primary-hovered)" : "";
+    const icon_color = selected ? "var(--sq-action-primary-hovered)" : "";
 
-  return (
-    <RadioLabel htmlFor={rest.id} isChecked={selected}>
-      <RadioInput
-        {...rest}
-        type="radio"
-        checked={selected}
-        readOnly
-        ref={forwardedRef}
-      />
-      <LeftSegmentDiv isChecked={selected}>
-        {icon && <IconView icon={icon} size="40px" color={icon_color} />}
-      </LeftSegmentDiv>
-      <RightSegmentDiv>
-        <RadioTextDiv>
-          {title ? (
-            <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
-          ) : (
-            ""
-          )}
-          {description ? (
-            <div style={{ color: "var(--sq-text-subdued)" }}>{description}</div>
-          ) : (
-            ""
-          )}
-        </RadioTextDiv>
-      </RightSegmentDiv>
-    </RadioLabel>
-  );
-});
+    return (
+      <RadioLabel htmlFor={rest.id} isChecked={selected} customCSS={customCSS}>
+        <RadioInput
+          {...rest}
+          type="radio"
+          checked={selected}
+          readOnly
+          ref={forwardedRef}
+        />
+        <LeftSegmentDiv isChecked={selected}>
+          {icon && <IconView icon={icon} size="40px" color={icon_color} />}
+        </LeftSegmentDiv>
+        <RightSegmentDiv>
+          <RadioTextDiv>
+            {title ? (
+              <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
+            ) : (
+              ""
+            )}
+            {description ? (
+              <div style={{ color: "var(--sq-text-subdued)" }}>
+                {description}
+              </div>
+            ) : (
+              ""
+            )}
+          </RadioTextDiv>
+        </RightSegmentDiv>
+      </RadioLabel>
+    );
+  }
+);
 
 export const RadioCardGroupView = (props: GroupProps) => {
   const { children } = props;
@@ -118,11 +133,24 @@ export const RadioCardGroupView = (props: GroupProps) => {
 };
 
 /**
- * @deprecated use {@link RadioCardView} instead
- */
-export const RadioCard = RadioCardView;
-
-/**
  * @deprecated use {@link RadioGroupView} instead
  */
 export const RadioCardGroup = RadioCardGroupView;
+
+const RadioCardNamespace = Object.assign(RadioCardView, {
+  GroupView: RadioCardGroupView,
+});
+
+/**
+ * @deprecated use {@link RadioCardView} instead
+ */
+const RadioCardNamespaceDeprecated = Object.assign(RadioCardView, {
+  Group: RadioCardGroupView,
+});
+
+export { RadioCardNamespace as RadioCardView };
+
+/**
+ * @deprecated use {@link RadioCardView} instead
+ */
+export { RadioCardNamespaceDeprecated as RadioCard };
