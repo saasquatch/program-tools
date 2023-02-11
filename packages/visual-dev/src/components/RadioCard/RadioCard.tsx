@@ -82,7 +82,6 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
       optionValue,
       title,
       description,
-      customCSS,
       icon = "",
       customCSS,
       ...rest
