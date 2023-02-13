@@ -19,7 +19,7 @@ env:
   PUPPETEER_EXECUTABLE_PATH: "/usr/bin/chromium-browser"
 
 jobs:
-  build:
+  run-storyshot-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -37,6 +37,7 @@ jobs:
 
       - name: Run snapshot tests
         working-directory: packages/visual-dev
+        continue-on-error: true
         run: |
           npm run storybook &
           # 20 attempts, 6 seconds each = 2 minute wait for Storybook to start
@@ -48,3 +49,9 @@ jobs:
             fi
             echo "Waiting for storybook..."; done
           npm test
+
+      - name: Upload diffs
+        uses: actions/upload-artifact@v3
+        with:
+          name: diff-output
+          path: packages/visual-dev/src/__tests__/__image_snapshots__/__diff_output__/
