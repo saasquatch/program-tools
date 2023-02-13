@@ -19,7 +19,8 @@ env:
   PUPPETEER_EXECUTABLE_PATH: "/usr/bin/chromium-browser"
 
 jobs:
-  run-storyshot-tests:
+  run:
+    name: Storyshot Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -27,17 +28,17 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 16
 
       - name: NPM install
         working-directory: packages/visual-dev
         run: npm install
 
       - name: Run snapshot tests
+        id: test
         working-directory: packages/visual-dev
-        continue-on-error: true
         run: |
           npm run storybook &
           # 20 attempts, 6 seconds each = 2 minute wait for Storybook to start
@@ -47,11 +48,17 @@ jobs:
               echo "Connected to storybook!"
               break
             fi
-            echo "Waiting for storybook..."; done
+            echo "Waiting for storybook..."
+          done
           npm test
 
       - name: Upload diffs
+        id: upload
         uses: actions/upload-artifact@v3
+        # run `upload` only if `test` ran, regardless of whether `test` succeeded or failed
+        # however, if something else failed and prevented the tests from running, don't upload.
+        # https://stackoverflow.com/a/75123818
+        if: success() || steps.test.conclusion == 'failure'
         with:
           name: diff-output
           path: packages/visual-dev/src/__tests__/__image_snapshots__/__diff_output__/
