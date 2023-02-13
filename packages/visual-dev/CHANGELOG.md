@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [1.4.0] - 2023-02-13
+
+### Added
+
+- \<GlobalStyle>
+  - `--sq-border-radius-small` - new token for border radii
+- \<Icon>
+  - new svg's for first_badge, infinity, gift_filled, and data.
+- \<RadioCard>
+  - Prop for customCSS
+- \<SelectView>
+  - Add `padding-bottom: var(--sq-spacing-xxx-small)` when select is open
+
+### Changed
+
+- Components changed
+  - \<RadioCard>
+    - Refactored `RadioCardGroupView` to now use dot notation `RadioCardView.GroupView`
+    - Updated title & description props to now allow for `string | React.ReactNode`
+    - Removed unnecessary ternary conditionals
+    - Changed `min-height` from `138px` to `95px`
+  - \<SelectView>
+    - Remove extra padding causing icons to look misaligned inside of a ComboBox
+  - \<Radio>
+    - Fix radio alignment
+
 ## [1.3.0] - 2023-1-16
 
 ### Changed
@@ -233,7 +259,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<TextArea>
   - \<Tooltip>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.3.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.4.0...HEAD
+[1.4.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.4.0
 [1.3.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.3.0
 [1.2.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.2.1
 [1.2.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.2.0
