@@ -22,7 +22,7 @@ export const RadioInputStyle = css`
   }
 
   &:checked + div::after {
-    transform: scale(1);
+    transform: scale(1) translate(-50%, -50%);
   }
 `;
 
@@ -34,17 +34,21 @@ export const RadioButtonStyle = css`
   border-radius: 50%;
   margin-right: 20px;
   box-sizing: border-box;
-  padding: 1.5px;
   flex-shrink: 0;
+  position: relative;
 
   &::after {
+    transform-origin: top left;
+    position: relative;
     content: "";
     width: 8px;
     height: 8px;
     display: block;
     background: var(--sq-action-primary);
     border-radius: 100%;
-    transform: scale(0);
+    left: 50%;
+    top: 50%;
+    transform: scale(0) translate(-50%, -50%);
     transition: transform 0.15s;
   }
 `;

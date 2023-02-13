@@ -254,7 +254,7 @@ const SelectInputButton = styled.button<{
   ${(props) =>
     props.isOpen &&
     !props.disabled &&
-    "border-color: var(--sq-focused); border-bottom: none;"}
+    "border-color: var(--sq-focused); border-bottom: none; padding-bottom: var(--sq-spacing-xxx-small);"}
   ${(props) =>
     !props.isOpen &&
     !props.disabled &&
@@ -302,7 +302,7 @@ const ComboboxContainerDiv = styled.div<{ isOpen: boolean; errors: boolean }>`
   ${Styles.ComboboxContainerDiv}
   ${(props) =>
     props.isOpen
-      ? "border: 2px solid var(--sq-focused); border-bottom: none; border-radius: var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0"
+      ? "border: 2px solid var(--sq-focused); border-bottom: none; border-radius: var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0; padding-bottom: var(--sq-spacing-xxx-small)"
       : ""};
   ${(props) =>
     props.errors
@@ -503,8 +503,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             borderless={true}
             size="small"
             customCSS={{
-              padding:
-                "10px var(--sq-spacing-x-small) var(--sq-spacing-x-small)",
+              padding: "var(--sq-spacing-x-small)",
             }}
             icon_css={{
               color: "var(--sq-text-subdued)",
