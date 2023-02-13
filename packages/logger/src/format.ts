@@ -74,6 +74,10 @@ const formatHttpLog = winston.format((info) => {
     newInfo["http.method"] = message.method;
     newInfo["http.status_code"] = message.status;
     newInfo["http.response_time"] = message.time;
+
+    if (message.requestId) {
+      newInfo["http.request_id"] = message.requestId;
+    }
   }
 
   return newInfo;
