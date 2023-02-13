@@ -17,8 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - new svg's for first_badge, infinity, gift_filled, and data.
 - \<RadioCard>
   - Prop for customCSS
+  - Reduced inital height to 95px from 138px
 - \<SelectView>
-  - Add `padding-bottom: var(--sq-spacing-xxx-small)` when select is open
+  - Add `padding-bottom: var(--sq-spacing-xxx-small)` when select is open to avoid bouncing when the menu is opened
 
 ### Changed
 
