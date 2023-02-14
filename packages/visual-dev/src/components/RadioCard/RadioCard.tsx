@@ -71,8 +71,9 @@ const RadioLabel = styled.label<RadioLabelProps>`
     `}
 ${(props) => props.customCSS}
 `;
-const RadioInput = styled.input`
+const RadioInput = styled.input<{ disabled: boolean }>`
   ${Styles.RadioInputStyle}
+  ${(props) => props.disabled && "border-color: unset;"}
 `;
 
 const RightSegmentDiv = styled.div`
@@ -121,6 +122,7 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
           {...rest}
           type="radio"
           checked={selected}
+          disabled={disabled}
           readOnly
           ref={forwardedRef}
         />

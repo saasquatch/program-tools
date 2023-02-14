@@ -166,7 +166,7 @@ export const radioCardNoText = () => {
 
 export const CustomCSSNoIcon = () => {
   return (
-    <RadioCardGroupView>
+    <RadioCardView.GroupView>
       <RadioCardView
         value={0}
         optionValue={1}
@@ -178,13 +178,13 @@ export const CustomCSSNoIcon = () => {
           "This is a default radio group button. Toggle it by clicking."
         }
       />
-    </RadioCardGroupView>
+    </RadioCardView.GroupView>
   );
 };
 
 export const Disabled = () => {
   return (
-    <RadioCardGroupView>
+    <RadioCardView.GroupView>
       <RadioCardView
         title={"A title for this option"}
         description={
@@ -197,6 +197,6 @@ export const Disabled = () => {
         icon="calendar"
         disabled
       />
-    </RadioCardGroupView>
+    </RadioCardView.GroupView>
   );
 };
