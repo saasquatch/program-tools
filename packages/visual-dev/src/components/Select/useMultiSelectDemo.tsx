@@ -1,35 +1,20 @@
-import React from "react";
-import { SelectView, TagView } from "@saasquatch/visual-dev";
 import { useMultipleSelection, useSelect } from "downshift";
+import React from "react";
+import { TagView } from "../Tag";
 
-export default {
-  title: "Components / Multi Select",
-  component: SelectView,
+type useMultiSelectDemoProps = {
+  selectItems: string[];
 };
 
-const countries = [
-  "Canada",
-  "Costa Rica",
-  "Greece",
-  "Ireland",
-  "Japan",
-  "Mexico",
-  "United States",
-];
+export const useMultiSelectDemo = ({
+  selectItems,
+}: useMultiSelectDemoProps) => {
+  function getSelectItemsFilter(selectedItems: string[]) {
+    return function selectItemsFilter(book: string) {
+      return selectedItems.indexOf(book) < 0;
+    };
+  }
 
-function getCountriesFilter(selectedItems: string[]) {
-  return function countriesFilter(country: string) {
-    return selectedItems.indexOf(country) < 0;
-  };
-}
-
-export function MultipleSelectStory({
-  width = "100%",
-  itemsArray = countries,
-}: {
-  width?: string;
-  itemsArray?: string[];
-}) {
   const {
     getSelectedItemProps,
     getDropdownProps,
@@ -37,10 +22,10 @@ export function MultipleSelectStory({
     removeSelectedItem,
     selectedItems,
   } = useMultipleSelection({
-    initialSelectedItems: [itemsArray[0], itemsArray[1]],
+    initialSelectedItems: [selectItems[0], selectItems[1]],
   });
 
-  const items = itemsArray.filter(getCountriesFilter(selectedItems));
+  const items = selectItems.filter(getSelectItemsFilter(selectedItems));
   const functional = useSelect({
     selectedItem: null,
     defaultHighlightedIndex: 0, // after selection, highlight the first item.
@@ -98,7 +83,7 @@ export function MultipleSelectStory({
     </>
   );
 
-  const props = {
+  return {
     getSelectedItemProps,
     getDropdownProps,
     addSelectedItem,
@@ -106,13 +91,5 @@ export function MultipleSelectStory({
     functional,
     items,
     tagsSlot,
-    limitWidth: width,
   };
-
-  return (
-    <SelectView.ContainerView {...props}>
-      <SelectView.HandleView {...props} />
-      <SelectView.ListView {...props} empty={!items.length} />
-    </SelectView.ContainerView>
-  );
-}
+};

@@ -2,26 +2,18 @@ import { useCombobox } from "downshift";
 import React, { useState } from "react";
 import { Select } from "./Select";
 import { SelectView } from "./Select2";
+import { useComboboxDemo } from "./useComboboxDemo";
 
 export default {
   title: "Components / Combobox",
   component: Select,
 };
+const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
 
 export const Basic = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const [inputItems, setInputItems] = useState(items);
-  const functional = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      setInputItems(
-        items.filter((item) =>
-          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
-        )
-      );
-    },
+  const props = useComboboxDemo({
+    items,
   });
-  const props = { items: inputItems, functional };
   return (
     <div
       style={{
@@ -37,23 +29,9 @@ export const Basic = () => {
 };
 
 export const Placeholder = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const [inputItems, setInputItems] = useState(items);
-  const functional = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      setInputItems(
-        items.filter((item) =>
-          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
-        )
-      );
-    },
+  const props = useComboboxDemo({
+    items,
   });
-  const props = {
-    items: inputItems,
-    functional,
-    placeholder: "Placeholder text...",
-  };
   return (
     <div
       style={{
@@ -63,29 +41,15 @@ export const Placeholder = () => {
         margin: "100px",
       }}
     >
-      <Select {...props}></Select>
+      <Select {...props} placeholder="Placeholder text..."></Select>
     </div>
   );
 };
 
 export const CustomIcon = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const [inputItems, setInputItems] = useState(items);
-  const functional = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      setInputItems(
-        items.filter((item) =>
-          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
-        )
-      );
-    },
+  const props = useComboboxDemo({
+    items,
   });
-  const props = {
-    items: inputItems,
-    functional,
-    placeholder: "Search",
-  };
   return (
     <div
       style={{
@@ -95,30 +59,15 @@ export const CustomIcon = () => {
         margin: "100px",
       }}
     >
-      <Select {...props} customIcon="search"></Select>
+      <Select {...props} customIcon="search" placeholder="Search"></Select>
     </div>
   );
 };
 
 export const Empty = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const [inputItems, setInputItems] = useState(items);
-  const functional = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      setInputItems(
-        items.filter((item) =>
-          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
-        )
-      );
-    },
+  const props = useComboboxDemo({
+    items,
   });
-  const props = {
-    items: inputItems,
-    functional,
-    emptySlot: "No list items to display",
-    empty: true,
-  };
   return (
     <div
       style={{
@@ -128,25 +77,19 @@ export const Empty = () => {
         margin: "100px",
       }}
     >
-      <Select {...props}></Select>
+      <Select
+        {...props}
+        empty={true}
+        emptySlot="No list items to display"
+      ></Select>
     </div>
   );
 };
 
 export const FullWidth = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const [inputItems, setInputItems] = useState(items);
-  const functional = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      setInputItems(
-        items.filter((item) =>
-          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
-        )
-      );
-    },
+  const props = useComboboxDemo({
+    items,
   });
-  const props = { limitWidth: false, items: inputItems, functional };
   return (
     <div
       style={{
@@ -156,25 +99,15 @@ export const FullWidth = () => {
         margin: "100px",
       }}
     >
-      <Select {...props}></Select>
+      <Select {...props} limitWidth={false}></Select>
     </div>
   );
 };
 
 export const CustomWidth = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const [inputItems, setInputItems] = useState(items);
-  const functional = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      setInputItems(
-        items.filter((item) =>
-          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
-        )
-      );
-    },
+  const props = useComboboxDemo({
+    items,
   });
-  const props = { limitWidth: "600px", items: inputItems, functional };
   return (
     <div
       style={{
@@ -184,7 +117,7 @@ export const CustomWidth = () => {
         margin: "100px",
       }}
     >
-      <Select {...props}></Select>
+      <Select {...props} limitWidth="600px"></Select>
     </div>
   );
 };
@@ -199,18 +132,9 @@ export const LimitHeight = () => {
     "Mayne",
     "Pender",
   ];
-  const [inputItems, setInputItems] = useState(items);
-  const functional = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      setInputItems(
-        items.filter((item) =>
-          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
-        )
-      );
-    },
+  const props = useComboboxDemo({
+    items,
   });
-  const props = { limitHeight: true, items: inputItems, functional };
   return (
     <div
       style={{
@@ -220,25 +144,15 @@ export const LimitHeight = () => {
         margin: "100px",
       }}
     >
-      <Select {...props}></Select>
+      <Select {...props} limitHeight={true}></Select>
     </div>
   );
 };
 
 export const CustomHeight = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const [inputItems, setInputItems] = useState(items);
-  const functional = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      setInputItems(
-        items.filter((item) =>
-          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
-        )
-      );
-    },
+  const props = useComboboxDemo({
+    items,
   });
-  const props = { limitHeight: "100px", items: inputItems, functional };
   return (
     <div
       style={{
@@ -248,46 +162,15 @@ export const CustomHeight = () => {
         margin: "100px",
       }}
     >
-      <Select {...props}></Select>
+      <Select {...props} limitHeight="100px"></Select>
     </div>
   );
 };
 
-export const WithPlaceholder = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const [inputItems, setInputItems] = useState(items);
-  const functional = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      setInputItems(
-        items.filter((item) =>
-          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
-        )
-      );
-    },
-  });
-  const props = {
-    placeholder: "Enter a value!",
-    items: inputItems,
-    functional,
-  };
-  return <Select {...props}></Select>;
-};
-
 export const Loading = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const [inputItems, setInputItems] = useState(items);
-  const functional = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      setInputItems(
-        items.filter((item) =>
-          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
-        )
-      );
-    },
+  const props = useComboboxDemo({
+    items,
   });
-  const props = { loading: true, items: inputItems, functional };
   return (
     <div
       style={{
@@ -297,26 +180,16 @@ export const Loading = () => {
         margin: "100px",
       }}
     >
-      <Select {...props}></Select>
+      <Select {...props} loading={true}></Select>
     </div>
   );
 };
 
 export const Clearable = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const [inputItems, setInputItems] = useState(items);
-  const functional = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      setInputItems(
-        items.filter((item) =>
-          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
-        )
-      );
-    },
+  const props = useComboboxDemo({
+    items,
   });
-  const props = { items: inputItems, functional, clearable: true };
-  return <Select {...props}></Select>;
+  return <Select {...props} clearable={true}></Select>;
 };
 
 export const Detailed = () => {
@@ -337,58 +210,24 @@ export const Detailed = () => {
 };
 
 export const Disabled = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const [inputItems, setInputItems] = useState(items);
-  const functional = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      setInputItems(
-        items.filter((item) =>
-          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
-        )
-      );
-    },
+  const props = useComboboxDemo({
+    items,
   });
-  const props = { items: inputItems, functional, disabled: true };
-  return <Select {...props}></Select>;
+  return <Select {...props} disabled={true}></Select>;
 };
 
 export const Error = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const [inputItems, setInputItems] = useState(items);
-  const functional = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      setInputItems(
-        items.filter((item) =>
-          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
-        )
-      );
-    },
+  const props = useComboboxDemo({
+    items,
   });
-  const props = { items: inputItems, functional, errors: { field1: "error" } };
-  return <Select {...props}></Select>;
+  return <Select {...props} errors={{ field1: "error" }}></Select>;
 };
 
 export const CustomCSS = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const [inputItems, setInputItems] = useState(items);
-  const functional = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      setInputItems(
-        items.filter((item) =>
-          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
-        )
-      );
-    },
+  const props = useComboboxDemo({
+    items,
   });
-  const props = {
-    css: "color: blue",
-    items: inputItems,
-    functional,
-  };
-  return <Select {...props}></Select>;
+  return <Select {...props} css="color: blue"></Select>;
 };
 
 export const Frame = () => {

@@ -1,16 +1,27 @@
 import { useSelect } from "downshift";
 import React from "react";
+import styled from "styled-components";
 import { SelectView } from "./Select2";
+import { useDemoSelect } from "./useSelectDemo";
 
 export default {
   title: "Components / Select v2",
   component: SelectView,
 };
 
+const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+const TitleP = styled.p`
+  margin: 0;
+  color: var(--sq-text);
+  font-weight: var(--sq-font-weight-regular);
+  font-size: var(--sq-font-size-regular);
+`;
+const DescriptionP = styled(TitleP)`
+  color: var(--sq-text-subdued);
+  font-size: var(--sq-font-size-small);
+`;
 export const Basic = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const functional = useSelect({ items });
-  const props = { items, functional };
+  const props = useDemoSelect({ items });
   return (
     <div
       style={{
@@ -20,7 +31,7 @@ export const Basic = () => {
         margin: "100px",
       }}
     >
-      <SelectView.ContainerView {...{ functional }}>
+      <SelectView.ContainerView {...props.functional}>
         <SelectView.HandleView {...props} />
         <SelectView.ListView {...props} />
       </SelectView.ContainerView>
@@ -29,9 +40,10 @@ export const Basic = () => {
 };
 
 export const Placeholder = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const functional = useSelect({ items });
-  const props = { items, functional, placeholder: "Placeholder text..." };
+  const props = useDemoSelect({
+    items,
+    placeholder: "Placeholder text...",
+  });
   return (
     <div
       style={{
@@ -41,14 +53,16 @@ export const Placeholder = () => {
         margin: "100px",
       }}
     >
-      <SelectView.ContainerView {...{ functional }}>
+      <SelectView.ContainerView {...props.functional}>
         <SelectView.HandleView {...props} />
         <SelectView.ListView {...props} />
       </SelectView.ContainerView>
     </div>
   );
 };
-
+/********************************************** 
+  Stuck here :(
+***********************************************/
 export const WithItemToString = () => {
   interface Islands {
     text: string;
@@ -74,9 +88,26 @@ export const WithItemToString = () => {
         margin: "100px",
       }}
     >
-      <SelectView.ContainerView>
+      <SelectView.ContainerView {...{ functional }}>
         <SelectView.HandleView {...props} />
-        <SelectView.ListView {...props} />
+        <SelectView.FrameView {...props}>
+          {items.map((item: any, index: number) => (
+            <SelectView.ItemView
+              {...{
+                functional,
+                index,
+                item,
+                itemToString,
+                itemToNode: (test: any) => (
+                  <div>
+                    <TitleP>{item.text}</TitleP>
+                    <DescriptionP>{item.description}</DescriptionP>
+                  </div>
+                ),
+              }}
+            />
+          ))}
+        </SelectView.FrameView>
       </SelectView.ContainerView>
     </div>
   );
