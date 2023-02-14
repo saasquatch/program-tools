@@ -136,7 +136,7 @@ export const IconView = React.forwardRef<React.ElementRef<"div">, IconProps>(
       icon,
       color = "inherit",
       size = "medium",
-      cursor = "default",
+      cursor = "inherit",
       center = false,
       customCSS = {},
       tooltip = "",
