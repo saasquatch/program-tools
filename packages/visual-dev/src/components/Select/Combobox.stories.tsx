@@ -68,6 +68,38 @@ export const Placeholder = () => {
   );
 };
 
+export const CustomIcon = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const [inputItems, setInputItems] = useState(items);
+  const functional = useCombobox({
+    items: inputItems,
+    onInputValueChange: ({ inputValue }) => {
+      setInputItems(
+        items.filter((item) =>
+          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
+        )
+      );
+    },
+  });
+  const props = {
+    items: inputItems,
+    functional,
+    placeholder: "Search",
+  };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <Select {...props} customIcon="search"></Select>
+    </div>
+  );
+};
+
 export const Empty = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const [inputItems, setInputItems] = useState(items);

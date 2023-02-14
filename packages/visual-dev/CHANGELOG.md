@@ -7,20 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
-## [1.4.0] - 2023-1-20
+## [1.4.0] - 2023-02-13
+
+### Added
+
+- \<GlobalStyle>
+  - `--sq-border-radius-small` - new token for border radii
+- \<Icon>
+  - new svg's for first_badge, infinity, gift_filled, and data.
+- \<RadioCard>
+  - Prop for customCSS
+  - Reduced inital height to 95px from 138px
+- \<SelectView>
+  - Add `padding-bottom: var(--sq-spacing-xxx-small)` when select is open to avoid bouncing when the menu is opened
 
 ### Changed
 
 - Components changed
   - \<RadioCard>
-    - Added more flexibility to allow custom CSS and better design for cards without icons
-    - Added a disabled state
+    <<<<<<< HEAD - Added more flexibility to allow custom CSS and better design for cards without icons - Added a disabled state
   - \<ScrollNav>
     - Add new sidebar scroll navigation component
   - \<GlobalStyle>
     - Update font size and line height tokens for headers
-  - \<Button> and <IconButton>
-    - Improve cursor styling consistency
+  - \<Button> and <IconButton> - Improve cursor styling consistency
+    ======= - Refactored `RadioCardGroupView` to now use dot notation `RadioCardView.GroupView` - Updated title & description props to now allow for `string | React.ReactNode` - Removed unnecessary ternary conditionals - Changed `min-height` from `138px` to `95px`
+  - \<SelectView>
+    - Remove extra padding causing icons to look misaligned inside of a ComboBox
+  - \<Radio> - Fix radio alignment
+    > > > > > > > master
 
 ## [1.3.0] - 2023-1-16
 

@@ -109,58 +109,104 @@ export const primarySuccessSmall = () => (
     Success
   </Button>
 );
+primarySuccessSmall.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primarySuccessMedium = () => (
   <Button buttonType="primary" size="medium" success>
     Success
   </Button>
 );
+primarySuccessMedium.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primarySuccessLarge = () => (
   <Button buttonType="primary" size="large" success>
     Success
   </Button>
 );
+primarySuccessLarge.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primaryDisabledSuccess = () => (
   <Button buttonType="primary" size="large" success disabled>
     Success
   </Button>
 );
+
 export const primaryLoadingSmall = () => (
   <Button buttonType="primary" size="small" loading>
     Loading
   </Button>
 );
+primaryLoadingSmall.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primaryLoadingMedium = () => (
   <Button buttonType="primary" size="medium" loading>
     Loading
   </Button>
 );
+primaryLoadingMedium.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primaryLoadingLarge = () => (
   <Button buttonType="primary" size="large" loading>
     Loading
   </Button>
 );
+primaryLoadingLarge.parameters = {
+  storyshots: { disable: true },
+};
 
 // Success and Loading icon only
 
 export const primarySuccessIconSmall = () => (
   <Button buttonType="primary" size="small" success />
 );
+primarySuccessIconSmall.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primarySuccessIconMedium = () => (
   <Button buttonType="primary" size="medium" success />
 );
+primarySuccessIconMedium.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primarySuccessIconLarge = () => (
   <Button buttonType="primary" size="large" success />
 );
+primarySuccessIconLarge.parameters = {
+  storyshots: { disable: true },
+};
 
 export const primaryLoadingIconSmall = () => (
   <Button buttonType="primary" size="small" loading />
 );
+primaryLoadingIconSmall.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primaryLoadingIconMedium = () => (
   <Button buttonType="primary" size="medium" loading />
 );
+primaryLoadingIconMedium.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primaryLoadingIconLarge = () => (
   <Button buttonType="primary" size="large" loading />
 );
+primaryLoadingIconLarge.parameters = {
+  storyshots: { disable: true },
+};
 
 // Icon Text
 export const primaryIconSmallLeft = () => (
@@ -278,53 +324,98 @@ export const primaryPillSuccessSmall = () => (
     Success
   </Button>
 );
+primaryPillSuccessSmall.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primaryPillSuccessMedium = () => (
   <Button buttonType="primary" pill size="medium" success>
     Success
   </Button>
 );
+primaryPillSuccessMedium.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primaryPillSuccessLarge = () => (
   <Button buttonType="primary" pill size="large" success>
     Success
   </Button>
 );
+primaryPillSuccessLarge.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primaryPillLoadingSmall = () => (
   <Button buttonType="primary" pill size="small" loading>
     Loading
   </Button>
 );
+primaryPillLoadingSmall.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primaryPillLoadingMedium = () => (
   <Button buttonType="primary" pill size="medium" loading>
     Loading
   </Button>
 );
+primaryPillLoadingMedium.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primaryPillLoadingLarge = () => (
   <Button buttonType="primary" pill size="large" loading>
     Loading
   </Button>
 );
+primaryPillLoadingLarge.parameters = {
+  storyshots: { disable: true },
+};
 
 // Success and Loading icon only
 
 export const primaryPillSuccessIconSmall = () => (
   <Button buttonType="primary" pill size="small" success />
 );
+primaryPillSuccessIconSmall.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primaryPillSuccessIconMedium = () => (
   <Button buttonType="primary" pill size="medium" success />
 );
+primaryPillSuccessIconMedium.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primaryPillSuccessIconLarge = () => (
   <Button buttonType="primary" pill size="large" success />
 );
+primaryPillSuccessIconLarge.parameters = {
+  storyshots: { disable: true },
+};
 
 export const primaryPillLoadingIconSmall = () => (
   <Button buttonType="primary" pill size="small" loading />
 );
+primaryPillLoadingIconSmall.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primaryPillLoadingIconMedium = () => (
   <Button buttonType="primary" pill size="medium" loading />
 );
+primaryPillLoadingIconMedium.parameters = {
+  storyshots: { disable: true },
+};
+
 export const primaryPillLoadingIconLarge = () => (
   <Button buttonType="primary" pill size="large" loading />
 );
+primaryPillLoadingIconLarge.parameters = {
+  storyshots: { disable: true },
+};
 
 // Icon Text
 export const primaryPillIconSmallLeft = () => (

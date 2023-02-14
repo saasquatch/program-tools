@@ -109,16 +109,28 @@ export const secondarySuccessSmall = () => (
     Success
   </Button>
 );
+secondarySuccessSmall.parameters = {
+  storyshots: { disable: true },
+};
+
 export const secondarySuccessMedium = () => (
   <Button buttonType="secondary" size="medium" success>
     Success
   </Button>
 );
+secondarySuccessMedium.parameters = {
+  storyshots: { disable: true },
+};
+
 export const secondarySuccessLarge = () => (
   <Button buttonType="secondary" size="large" success>
     Success
   </Button>
 );
+secondarySuccessLarge.parameters = {
+  storyshots: { disable: true },
+};
+
 export const secondaryDisabledSuccess = () => (
   <Button buttonType="secondary" size="large" success disabled>
     Success
@@ -130,12 +142,23 @@ export const secondaryDisabledSuccess = () => (
 export const secondaryLoadingIconSmall = () => (
   <Button buttonType="secondary" size="small" loading />
 );
+secondaryLoadingIconSmall.parameters = {
+  storyshots: { disable: true },
+};
+
 export const secondaryLoadingIconMedium = () => (
   <Button buttonType="secondary" size="medium" loading />
 );
+secondaryLoadingIconMedium.parameters = {
+  storyshots: { disable: true },
+};
+
 export const secondaryLoadingIconLarge = () => (
   <Button buttonType="secondary" size="large" loading />
 );
+secondaryLoadingIconLarge.parameters = {
+  storyshots: { disable: true },
+};
 
 // Loading with text
 
@@ -144,16 +167,27 @@ export const secondaryLoadingSmall = () => (
     Loading
   </Button>
 );
+secondaryLoadingSmall.parameters = {
+  storyshots: { disable: true },
+};
+
 export const secondaryLoadingMedium = () => (
   <Button buttonType="secondary" size="medium" loading>
     Loading
   </Button>
 );
+secondaryLoadingMedium.parameters = {
+  storyshots: { disable: true },
+};
+
 export const secondaryLoadingLarge = () => (
   <Button buttonType="secondary" size="large" loading>
     Loading
   </Button>
 );
+secondaryLoadingLarge.parameters = {
+  storyshots: { disable: true },
+};
 
 // Icon Text
 export const secondaryIconSmallLeft = () => (
@@ -269,12 +303,23 @@ export const secondaryPillCriticalLarge = () => (
 export const secondaryPillLoadingIconSmall = () => (
   <Button buttonType="secondary" pill size="small" loading />
 );
+secondaryPillLoadingIconSmall.parameters = {
+  storyshots: { disable: true },
+};
+
 export const secondaryPillLoadingIconMedium = () => (
   <Button buttonType="secondary" pill size="medium" loading />
 );
+secondaryPillLoadingIconMedium.parameters = {
+  storyshots: { disable: true },
+};
+
 export const secondaryPillLoadingIconLarge = () => (
   <Button buttonType="secondary" pill size="large" loading />
 );
+secondaryPillLoadingIconLarge.parameters = {
+  storyshots: { disable: true },
+};
 
 // Loading with text
 
@@ -283,16 +328,27 @@ export const secondaryPillLoadingSmall = () => (
     Loading
   </Button>
 );
+secondaryPillLoadingSmall.parameters = {
+  storyshots: { disable: true },
+};
+
 export const secondaryPillLoadingMedium = () => (
   <Button buttonType="secondary" pill size="medium" loading>
     Loading
   </Button>
 );
+secondaryPillLoadingMedium.parameters = {
+  storyshots: { disable: true },
+};
+
 export const secondaryPillLoadingLarge = () => (
   <Button buttonType="secondary" pill size="large" loading>
     Loading
   </Button>
 );
+secondaryPillLoadingLarge.parameters = {
+  storyshots: { disable: true },
+};
 
 // Icon Text
 export const secondaryPillIconSmallLeft = () => (

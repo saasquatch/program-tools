@@ -6,7 +6,8 @@ import { IconKey, IconView } from "../Icon";
 
 type GroupProps = React.ComponentProps<"input">;
 
-type InputProps = OptionProps & Partial<React.ComponentProps<"input">>;
+type InputProps = OptionProps &
+  Partial<Omit<React.ComponentProps<"input">, "value">>;
 export interface OptionProps {
   /**
    * Current value of radio card form group
@@ -33,7 +34,7 @@ export interface OptionProps {
    */
   icon?: IconKey;
   /**
-   * Custom CSS applied to the card container
+   * Custom CSS applied to Radio Card
    */
   customCSS?: CSSProp;
 }
@@ -42,14 +43,15 @@ const ShadowDom = styled(root.div)`
   display: contents;
 `;
 
-interface RabelLabelProps {
+interface RadioLabelProps {
   isChecked: boolean;
   customCSS: CSSProp;
   disabled: boolean;
 }
 
-const RadioLabel = styled.label<RabelLabelProps>`
+const RadioLabel = styled.label<RadioLabelProps>`
   ${Styles.RadioLabelStyle}
+  ${(props) => props.customCSS && props.customCSS}
   ${(props) =>
     props.isChecked && !props.disabled
       ? "border: 2px solid var(--sq-action-primary-hovered);"
@@ -91,58 +93,56 @@ const RadioGridDiv = styled.div`
   ${Styles.RadioGridStyle}
 `;
 
-export const RadioCardView = React.forwardRef<
-  React.ElementRef<"input">,
-  InputProps
->((props, forwardedRef) => {
-  const {
-    value,
-    optionValue,
-    title,
-    description,
-    icon = "",
-    customCSS = {},
-    disabled = false,
-    ...rest
-  } = props;
+const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
+  (props, forwardedRef) => {
+    const {
+      value,
+      optionValue,
+      title,
+      description,
+      icon = "",
+      customCSS = {},
+      disabled = false,
+      ...rest
+    } = props;
 
-  const selected = value === optionValue;
+    const selected = value === optionValue;
 
-  const icon_color = selected ? "var(--sq-action-primary-hovered)" : "";
+    const icon_color = selected ? "var(--sq-action-primary-hovered)" : "";
 
-  return (
-    <RadioLabel
-      customCSS={customCSS}
-      htmlFor={rest.id}
-      isChecked={selected}
-      disabled={disabled}
-    >
-      <RadioInput
-        {...rest}
+    return (
+      <RadioLabel
         disabled={disabled}
-        type="radio"
-        checked={selected}
-        readOnly
-        ref={forwardedRef}
-      />
-      {icon && (
+        htmlFor={rest.id}
+        isChecked={selected}
+        customCSS={customCSS}
+      >
+        <RadioInput
+          {...rest}
+          type="radio"
+          checked={selected}
+          readOnly
+          ref={forwardedRef}
+        />
         <LeftSegmentDiv isChecked={selected}>
-          <IconView icon={icon} size="40px" color={icon_color} />
+          {icon && <IconView icon={icon} size="40px" color={icon_color} />}
         </LeftSegmentDiv>
-      )}
-      <RightSegmentDiv>
-        <RadioTextDiv>
-          {title ? (
-            <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
-          ) : (
-            ""
-          )}
-          {description ? <>{description}</> : ""}
-        </RadioTextDiv>
-      </RightSegmentDiv>
-    </RadioLabel>
-  );
-});
+        <RightSegmentDiv>
+          <RadioTextDiv>
+            {title && (
+              <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
+            )}
+            {description && (
+              <div style={{ color: "var(--sq-text-subdued)" }}>
+                {description}
+              </div>
+            )}
+          </RadioTextDiv>
+        </RightSegmentDiv>
+      </RadioLabel>
+    );
+  }
+);
 
 export const RadioCardGroupView = (props: GroupProps) => {
   const { children } = props;
@@ -155,11 +155,24 @@ export const RadioCardGroupView = (props: GroupProps) => {
 };
 
 /**
- * @deprecated use {@link RadioCardView} instead
- */
-export const RadioCard = RadioCardView;
-
-/**
  * @deprecated use {@link RadioGroupView} instead
  */
 export const RadioCardGroup = RadioCardGroupView;
+
+const RadioCardNamespace = Object.assign(RadioCardView, {
+  GroupView: RadioCardGroupView,
+});
+
+/**
+ * @deprecated use {@link RadioCardView} instead
+ */
+const RadioCardNamespaceDeprecated = Object.assign(RadioCardView, {
+  Group: RadioCardGroupView,
+});
+
+export { RadioCardNamespace as RadioCardView };
+
+/**
+ * @deprecated use {@link RadioCardView} instead
+ */
+export { RadioCardNamespaceDeprecated as RadioCard };

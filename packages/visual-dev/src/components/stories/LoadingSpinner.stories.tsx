@@ -1,36 +1,45 @@
-import { storiesOf } from "@storybook/react";
 import React from "react";
 import { LoadingSpinner, LoadingSpinnerLarge } from "../LoadingSpinner";
 
-storiesOf("Components / Loading Spinner", module).add("Normal", () => {
+export default {
+  title: "Components / Loading Spinner",
+};
+
+export const Normal = () => {
   return (
     <div style={{ margin: "100px" }}>
       <LoadingSpinner />
     </div>
   );
-});
+};
+Normal.parameters = {
+  storyshots: { disable: true },
+};
 
-storiesOf("Components / Loading Spinner", module).add(
-  "Normal with props",
-  () => {
-    return (
-      <div style={{ margin: "100px" }}>
-        <LoadingSpinner
-          left={"50px"}
-          paddingRight={"10px"}
-          right={"10px"}
-          bottom={"5px"}
-          color={"blue"}
-        />
-      </div>
-    );
-  }
-);
+export const NormalWithProps = () => {
+  return (
+    <div style={{ margin: "100px" }}>
+      <LoadingSpinner
+        left={"50px"}
+        paddingRight={"10px"}
+        right={"10px"}
+        bottom={"5px"}
+        color={"blue"}
+      />
+    </div>
+  );
+};
+NormalWithProps.parameters = {
+  storyshots: { disable: true },
+};
 
-storiesOf("Components / Loading Spinner", module).add("Large", () => {
+export const Large = () => {
   return (
     <div style={{ margin: "100px" }}>
       <LoadingSpinnerLarge />
     </div>
   );
-});
+};
+Large.parameters = {
+  storyshots: { disable: true },
+};

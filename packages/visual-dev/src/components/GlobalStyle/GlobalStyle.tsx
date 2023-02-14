@@ -149,9 +149,9 @@ export const CSSVariables = createGlobalStyle`
   --sq-spacing-xxxx-large: 64px;
 
   /* Border Radii */
+  --sq-border-radius-small: 2px;
   --sq-border-radius-normal: 4px;
   --sq-border-radius-pill: 9999px;
-
 } 
 `;
 
