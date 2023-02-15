@@ -1,16 +1,17 @@
 import { useSelect } from "downshift";
+import { SelectView } from "./Select2";
 
 type useDemoSelectProps = {
-  items: string[] | { text: string; description: string }[];
-  placeholder?: string;
+  items: any;
   hasDescription?: boolean;
+  itemToString?: (item: any) => string;
 };
 
-export const useDemoSelect = ({ items, placeholder }: useDemoSelectProps) => {
-  const itemToString = (item: { text: string; description: string } | null) => {
-    return item ? item.text : "";
-  };
+export const useSelectDemo = ({
+  items,
+  itemToString = SelectView.ItemToString,
+}: useDemoSelectProps) => {
   const functional = useSelect({ items, itemToString });
 
-  return { items, functional, placeholder, itemToString };
+  return { items, functional, itemToString };
 };

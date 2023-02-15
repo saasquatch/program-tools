@@ -1,5 +1,6 @@
 import { useCombobox } from "downshift";
 import React, { useState } from "react";
+import styled from "styled-components";
 import { Select } from "./Select";
 import { SelectView } from "./Select2";
 import { useComboboxDemo } from "./useComboboxDemo";
@@ -9,22 +10,21 @@ export default {
   component: Select,
 };
 const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+const StoryContainerDiv = styled.div`
+  resize: both;
+  height: 400px;
+  overflow: auto;
+  margin: 100px;
+`;
 
 export const Basic = () => {
   const props = useComboboxDemo({
     items,
   });
   return (
-    <div
-      style={{
-        resize: "both",
-        height: "400px",
-        overflow: "auto",
-        margin: "100px",
-      }}
-    >
+    <StoryContainerDiv>
       <Select {...props}></Select>
-    </div>
+    </StoryContainerDiv>
   );
 };
 
@@ -33,16 +33,9 @@ export const Placeholder = () => {
     items,
   });
   return (
-    <div
-      style={{
-        resize: "both",
-        height: "400px",
-        overflow: "auto",
-        margin: "100px",
-      }}
-    >
+    <StoryContainerDiv>
       <Select {...props} placeholder="Placeholder text..."></Select>
-    </div>
+    </StoryContainerDiv>
   );
 };
 
@@ -51,16 +44,9 @@ export const CustomIcon = () => {
     items,
   });
   return (
-    <div
-      style={{
-        resize: "both",
-        height: "400px",
-        overflow: "auto",
-        margin: "100px",
-      }}
-    >
+    <StoryContainerDiv>
       <Select {...props} customIcon="search" placeholder="Search"></Select>
-    </div>
+    </StoryContainerDiv>
   );
 };
 
@@ -69,20 +55,13 @@ export const Empty = () => {
     items,
   });
   return (
-    <div
-      style={{
-        resize: "both",
-        height: "400px",
-        overflow: "auto",
-        margin: "100px",
-      }}
-    >
+    <StoryContainerDiv>
       <Select
         {...props}
         empty={true}
         emptySlot="No list items to display"
       ></Select>
-    </div>
+    </StoryContainerDiv>
   );
 };
 
@@ -91,16 +70,9 @@ export const FullWidth = () => {
     items,
   });
   return (
-    <div
-      style={{
-        resize: "both",
-        height: "400px",
-        overflow: "auto",
-        margin: "100px",
-      }}
-    >
+    <StoryContainerDiv>
       <Select {...props} limitWidth={false}></Select>
-    </div>
+    </StoryContainerDiv>
   );
 };
 
@@ -109,16 +81,9 @@ export const CustomWidth = () => {
     items,
   });
   return (
-    <div
-      style={{
-        resize: "both",
-        height: "400px",
-        overflow: "auto",
-        margin: "100px",
-      }}
-    >
+    <StoryContainerDiv>
       <Select {...props} limitWidth="600px"></Select>
-    </div>
+    </StoryContainerDiv>
   );
 };
 
@@ -136,16 +101,9 @@ export const LimitHeight = () => {
     items,
   });
   return (
-    <div
-      style={{
-        resize: "both",
-        height: "400px",
-        overflow: "auto",
-        margin: "100px",
-      }}
-    >
+    <StoryContainerDiv>
       <Select {...props} limitHeight={true}></Select>
-    </div>
+    </StoryContainerDiv>
   );
 };
 
@@ -154,16 +112,9 @@ export const CustomHeight = () => {
     items,
   });
   return (
-    <div
-      style={{
-        resize: "both",
-        height: "400px",
-        overflow: "auto",
-        margin: "100px",
-      }}
-    >
+    <StoryContainerDiv>
       <Select {...props} limitHeight="100px"></Select>
-    </div>
+    </StoryContainerDiv>
   );
 };
 
@@ -172,16 +123,9 @@ export const Loading = () => {
     items,
   });
   return (
-    <div
-      style={{
-        resize: "both",
-        height: "400px",
-        overflow: "auto",
-        margin: "100px",
-      }}
-    >
+    <StoryContainerDiv>
       <Select {...props} loading={true}></Select>
-    </div>
+    </StoryContainerDiv>
   );
 };
 
@@ -204,9 +148,30 @@ export const Detailed = () => {
     { text: "Pender", description: "There's actually two" },
   ];
   const itemToString = (item: Islands | null) => (item ? item.text : "");
-  const functional = useCombobox({ items, itemToString });
-  const props = { items, functional, itemToString };
-  return <Select {...props}></Select>;
+  const props = useComboboxDemo({ items, itemToString });
+  return (
+    <SelectView.ContainerView {...props.functional}>
+      <SelectView.HandleView {...props} />
+      <SelectView.FrameView {...props}>
+        {items.map((item: any, index: number) => (
+          <SelectView.ItemView
+            {...{
+              functional: props.functional,
+              index,
+              item,
+              itemToString,
+              itemToNode: () => (
+                <div>
+                  <p>{item.text}</p>
+                  <p>{item.description}</p>
+                </div>
+              ),
+            }}
+          />
+        ))}
+      </SelectView.FrameView>
+    </SelectView.ContainerView>
+  );
 };
 
 export const Disabled = () => {
@@ -247,14 +212,7 @@ export const Frame = () => {
   });
   const props = { limitWidth: false, items: inputItems, functional };
   return (
-    <div
-      style={{
-        resize: "both",
-        height: "400px",
-        overflow: "auto",
-        margin: "100px",
-      }}
-    >
+    <StoryContainerDiv>
       <SelectView.ContainerView>
         <SelectView.HandleView {...props} />
         <SelectView.FrameView {...props}>
@@ -287,6 +245,6 @@ export const Frame = () => {
             })}
         </SelectView.FrameView>
       </SelectView.ContainerView>
-    </div>
+    </StoryContainerDiv>
   );
 };
