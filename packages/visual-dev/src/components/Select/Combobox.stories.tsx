@@ -141,19 +141,19 @@ export const Detailed = () => {
     text: string;
     description: string;
   }
-  const items: Array<Islands> = [
+  const selectItems: Array<Islands> = [
     { text: "Salt Spring", description: "The big one" },
     { text: "Gabriola", description: "Way up north" },
     { text: "Mayne", description: "With a y" },
     { text: "Pender", description: "There's actually two" },
   ];
   const itemToString = (item: Islands | null) => (item ? item.text : "");
-  const props = useComboboxDemo({ items, itemToString });
+  const props = useComboboxDemo({ items: selectItems, itemToString });
   return (
     <SelectView.ContainerView {...props.functional}>
       <SelectView.HandleView {...props} />
       <SelectView.FrameView {...props}>
-        {items.map((item: any, index: number) => (
+        {props.items.map((item: any, index: number) => (
           <SelectView.ItemView
             {...{
               functional: props.functional,
