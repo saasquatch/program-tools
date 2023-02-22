@@ -75,6 +75,7 @@ import { ModalView } from "./components/Modal";
 import { SliderView } from "./components/Slider";
 import { TagInputView } from "./components/TagInput";
 import { DisplayDropdown } from "./components/DisplayDropdown";
+import { ProgressBarView } from "./components/ProgressBar";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -163,4 +164,5 @@ export {
   TabsView,
   SliderView,
   DisplayDropdown,
+  ProgressBarView,
 };
