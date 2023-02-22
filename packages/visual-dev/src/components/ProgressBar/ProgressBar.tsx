@@ -65,7 +65,7 @@ export const ProgressBarView = React.forwardRef<
   return (
     <StyledOl {...rest} ref={forwardedRef} customCSS={customCSS}>
       {steps.map((step: string, idx: number) => (
-        <div key={idx} className="item-wrapper">
+        <div key={step} className="item-wrapper">
           <StyledBarDiv
             barColor={barColor}
             active={idx === currentStep}
