@@ -126,9 +126,11 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
           readOnly
           ref={forwardedRef}
         />
-        <LeftSegmentDiv isChecked={selected}>
-          {icon && <IconView icon={icon} size="40px" color={icon_color} />}
-        </LeftSegmentDiv>
+        {icon && (
+          <LeftSegmentDiv isChecked={selected}>
+            <IconView icon={icon} size="40px" color={icon_color} />
+          </LeftSegmentDiv>
+        )}
         <RightSegmentDiv>
           <RadioTextDiv>
             {title && (
