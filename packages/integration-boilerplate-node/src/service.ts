@@ -194,31 +194,18 @@ export class IntegrationService<
       ) as IntegrationConfig;
     }
 
-    const apiToken = await this.auth.getSaasquatchApiToken();
-
     try {
-      const url = `https://${
-        this.config.saasquatchAppDomain
-      }/api/v1/${encodeURIComponent(
-        tenantAlias
-      )}/integration/${encodeURIComponent(
-        this.config.saasquatchAuth0ClientId
-      )}`;
+      const tenantAliasParam = encodeURIComponent(tenantAlias);
+      const clientId = encodeURIComponent(this.config.saasquatchAuth0ClientId);
+      const path = `api/v1/${tenantAliasParam}/integration/${clientId}`;
 
-      const response = await fetch(url, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${apiToken}`,
-        },
-      });
-
-      const json = await response.json();
+      const response = await this.authenticatedHttpRequest("GET", path);
 
       if (response.status !== 200) {
-        throw new Error(JSON.stringify(json));
+        throw new Error(JSON.stringify(response.json));
       }
 
-      const config = json.config as IntegrationConfig;
+      const config = response.json.config as IntegrationConfig;
       this.tenantIntegrationConfigCache.set(tenantAlias, config);
 
       return config;
@@ -227,6 +214,25 @@ export class IntegrationService<
         `Failed to get integration config: ${(e as Error).message}`
       );
     }
+  }
+
+  public async authenticatedHttpRequest(
+    method: "GET" | "POST",
+    path: string,
+    body?: any
+  ): Promise<{ status: number; json: any }> {
+    const apiToken = await this.auth.getSaasquatchApiToken();
+    const appDomain = this.config.saasquatchAppDomain;
+    const response = await fetch(`https://${appDomain}${path}`, {
+      method,
+      body,
+      headers: {
+        Authorization: `Bearer ${apiToken}`,
+      },
+    });
+
+    const json = await response.json();
+    return { status: response.status, json };
   }
 
   private getTenantScopedGraphQL(
