@@ -197,7 +197,7 @@ export class IntegrationService<
     try {
       const tenantAliasParam = encodeURIComponent(tenantAlias);
       const clientId = encodeURIComponent(this.config.saasquatchAuth0ClientId);
-      const path = `api/v1/${tenantAliasParam}/integration/${clientId}`;
+      const path = `/api/v1/${tenantAliasParam}/integration/${clientId}`;
 
       const response = await this.authenticatedHttpRequest("GET", path);
 
@@ -223,7 +223,8 @@ export class IntegrationService<
   ): Promise<{ status: number; json: any }> {
     const apiToken = await this.auth.getSaasquatchApiToken();
     const appDomain = this.config.saasquatchAppDomain;
-    const response = await fetch(`https://${appDomain}${path}`, {
+    const realPath = path.startsWith("/") ? path : `/${path}`;
+    const response = await fetch(`https://${appDomain}${realPath}`, {
       method,
       body,
       headers: {
