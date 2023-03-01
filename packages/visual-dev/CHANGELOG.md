@@ -25,17 +25,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Components changed
   - \<RadioCard>
-    <<<<<<< HEAD - Added more flexibility to allow custom CSS and better design for cards without icons - Added a disabled state
-  - \<ScrollNav>
-    - Add new sidebar scroll navigation component
-  - \<GlobalStyle>
-    - Update font size and line height tokens for headers
-  - \<Button> and <IconButton> - Improve cursor styling consistency
-    ======= - Refactored `RadioCardGroupView` to now use dot notation `RadioCardView.GroupView` - Updated title & description props to now allow for `string | React.ReactNode` - Removed unnecessary ternary conditionals - Changed `min-height` from `138px` to `95px`
+    - Refactored `RadioCardGroupView` to now use dot notation `RadioCardView.GroupView`
+    - Updated title & description props to now allow for `string | React.ReactNode`
+    - Removed unnecessary ternary conditionals
+    - Changed `min-height` from `138px` to `95px`
   - \<SelectView>
     - Remove extra padding causing icons to look misaligned inside of a ComboBox
-  - \<Radio> - Fix radio alignment
-    > > > > > > > master
+  - \<Radio>
+    - Fix radio alignment
 
 ## [1.3.0] - 2023-1-16
 
@@ -263,7 +260,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<TextArea>
   - \<Tooltip>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.4.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.5.0...HEAD
+[1.5.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.5.0
 [1.4.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.4.0
 [1.3.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.3.0
 [1.2.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.2.1
