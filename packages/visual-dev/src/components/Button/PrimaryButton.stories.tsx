@@ -131,6 +131,12 @@ primarySuccessLarge.parameters = {
   storyshots: { disable: true },
 };
 
+export const primaryDisabledSuccess = () => (
+  <Button buttonType="primary" size="large" success disabled>
+    Success
+  </Button>
+);
+
 export const primaryLoadingSmall = () => (
   <Button buttonType="primary" size="small" loading>
     Loading

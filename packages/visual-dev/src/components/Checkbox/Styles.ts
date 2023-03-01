@@ -50,6 +50,9 @@ export const CheckboxStyle = css`
   margin-right: 18px;
   flex-shrink: 0;
   border-radius: 2px;
+  & svg {
+    cursor: pointer;
+  }
 
   &:hover {
     box-shadow: 0 0 0 2px var(--sq-text);

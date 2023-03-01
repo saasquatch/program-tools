@@ -72,6 +72,30 @@ export const CSSVariables = createGlobalStyle`
   --sq-icon-interactive: #0088cc;
   --sq-surface-hover: #eef6ff;
 
+  /* Docs site */
+  --sq-docs-interactive: #007A5B;
+  --sq-docs-interactive-hovered: #00654C;
+  --sq-docs-surface-hovered: #E7EDEE;
+  --sq-docs-card-border-hovered: #B5CDC7;
+  --sq-docs-badge-surface: #EBF9EA;
+
+  /* Editor */
+  --sq-editor-canvas-background: #eaeaea;
+  --sq-editor-nav-button-disabled: #366168;
+  --sq-editor-nav-button-selected: #2E5B65;
+  --sq-editor-nav-border: #424c51;
+  --sq-editor-interactive-selected: #439b76;
+  --sq-editor-selector-intereactive-hovered: #A3CABA;
+  --sq-editor-button-interactive-hovered: #388363;
+  
+
+  /* Modal */
+  --sq-surface-modal-banner: #12c8d7;
+
+  /* Input */
+  --sq-surface-input-disabled: #ebebeb;
+  --sq-text-input-disabled: #bdbdbd;
+
   /* Typography */
   --sq-font-family-sans: "Helvetica Neue", Helvetica, sans-serif;
   --sq-font-family-monospace: monospace;
@@ -80,16 +104,16 @@ export const CSSVariables = createGlobalStyle`
   --sq-font-weight-semibold: 600;
   --sq-font-weight-bold: 700;
 
-  --sq-font-size-header-one: 26px;
-  --sq-font-size-header-two: 22px;
-  --sq-font-size-header-three: 18px;
+  --sq-font-size-header-one: 24px;
+  --sq-font-size-header-two: 20px;
+  --sq-font-size-header-three: 16px;
   --sq-font-size-regular: 14px;
   --sq-font-size-small: 12px;
   --sq-font-size-caption: 16px;
 
-  --sq-line-height-header-one: 28px;
+  --sq-line-height-header-one: 32px;
   --sq-line-height-header-two: 28px;
-  --sq-line-height-header-three: 20px;
+  --sq-line-height-header-three: 24px;
   --sq-line-height-regular: 20px;
   --sq-line-height-caption: 16px;
 
@@ -111,13 +135,6 @@ export const CSSVariables = createGlobalStyle`
   --sq-icon-size-avatar: 36px;
   --sq-icon-size-avatar-large: 50px;
   --sq-font-size-avatar: 24px;
-
-  /* Modal */
-  --sq-surface-modal-banner: #12c8d7;
-
-  /* Input */
-  --sq-surface-input-disabled: #ebebeb;
-  --sq-text-input-disabled: #bdbdbd;
 
   /* Spacing */
   --sq-spacing-xxx-small: 2px;

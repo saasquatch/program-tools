@@ -1,6 +1,6 @@
 import * as React from "react";
 import root from "react-shadow/styled-components";
-import styled, { CSSProp } from "styled-components";
+import styled, { css, CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { IconKey, IconView } from "../Icon";
 
@@ -43,18 +43,37 @@ const ShadowDom = styled(root.div)`
   display: contents;
 `;
 
-const RadioLabel = styled.label<{ isChecked: boolean; customCSS?: CSSProp }>`
+interface RadioLabelProps {
+  isChecked: boolean;
+  customCSS: CSSProp;
+  disabled: boolean;
+}
+
+const RadioLabel = styled.label<RadioLabelProps>`
   ${Styles.RadioLabelStyle}
   ${(props) => props.customCSS && props.customCSS}
   ${(props) =>
-    props.isChecked
+    props.isChecked && !props.disabled
       ? "border: 2px solid var(--sq-action-primary-hovered);"
       : "&:hover {border: 2px solid var(--sq-text-subdued);}"}
-      
-  ${(props) => props.customCSS && props.customCSS}
+
+    ${(props) =>
+    props.disabled &&
+    css`
+      cursor: default;
+      background-color: var(--sq-border);
+      & * {
+        color: var(--sq-text-subdued);
+      }
+      &:hover {
+        border: 2px solid transparent;
+      }
+    `}
+${(props) => props.customCSS}
 `;
-const RadioInput = styled.input`
+const RadioInput = styled.input<{ disabled: boolean }>`
   ${Styles.RadioInputStyle}
+  ${(props) => props.disabled && "border-color: unset;"}
 `;
 
 const RightSegmentDiv = styled.div`
@@ -83,7 +102,8 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
       title,
       description,
       icon = "",
-      customCSS,
+      customCSS = {},
+      disabled = false,
       ...rest
     } = props;
 
@@ -92,17 +112,25 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
     const icon_color = selected ? "var(--sq-action-primary-hovered)" : "";
 
     return (
-      <RadioLabel htmlFor={rest.id} isChecked={selected} customCSS={customCSS}>
+      <RadioLabel
+        disabled={disabled}
+        htmlFor={rest.id}
+        isChecked={selected}
+        customCSS={customCSS}
+      >
         <RadioInput
           {...rest}
           type="radio"
           checked={selected}
+          disabled={disabled}
           readOnly
           ref={forwardedRef}
         />
-        <LeftSegmentDiv isChecked={selected}>
-          {icon && <IconView icon={icon} size="40px" color={icon_color} />}
-        </LeftSegmentDiv>
+        {icon && (
+          <LeftSegmentDiv isChecked={selected}>
+            <IconView icon={icon} size="40px" color={icon_color} />
+          </LeftSegmentDiv>
+        )}
         <RightSegmentDiv>
           <RadioTextDiv>
             {title && (
