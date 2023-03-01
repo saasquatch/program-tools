@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [1.5.0] - 2023-03-01
+
+### Added
+
+- New components added
+  - \<ScrollNav> - Side navigation that can be inserted into a page
+
+### Changed
+
+- Components changed
+  - \<Button>
+    - Fixed disable state handling
+  - \<DataTable>
+    - Added shimmer effect to loading skeleton
+  - \<Icon>
+    - Added props for css tooltip on icon hover
+  - \<SelectView>
+    - Added disabled item state
+  - \<GlobalStyles>
+    - Added color tokens for editor and docs site
+    - Updated font sizes
+
 ## [1.4.0] - 2023-02-13
 
 ### Added
@@ -69,7 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<Accordion>
     - Fixed bug where the cursor would not enter pointer mode when hovering over the accordion facade
   - \<SelectView>
-    - refactor such that <Select> shares a codebase with <SelectView> and its subcomponents.
+    - refactor such that \<Select> shares a codebase with \<SelectView> and its subcomponents.
     - Added support for the DownshiftJS multiselect hook, see stories for implementation details
   - \<ObjectFieldTemplate>
     - allow custom CSS properties on the fields container from `customCSS` in `ui:options`
@@ -109,7 +131,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New components added
 
   - \<Slider> - slider style input
-  - \<TableRow> - alternate to <Row> that displays children cells directly (instead of mapping through an object)
+  - \<TableRow> - alternate to \<Row> that displays children cells directly (instead of mapping through an object)
 
 - Added / Updated props to the following components:
 
