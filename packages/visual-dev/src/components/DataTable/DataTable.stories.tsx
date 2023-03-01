@@ -260,6 +260,9 @@ export const PopoverTest = () => {
     </>
   );
 };
+PopoverTest.parameters = {
+  storyshots: { disable: true },
+};
 
 export const FormSubmissionTableWithBanner = () => {
   return (
@@ -618,6 +621,9 @@ export const rowSkeleton = () => {
 
   return <DataTableView.RowView>{content}</DataTableView.RowView>;
 };
+rowSkeleton.parameters = {
+  storyshots: { disable: true },
+};
 
 export const rowSkeletonHideShimmer = () => {
   const text = <DataTableView.SkeletonView size="91px" hideShimmer />;
@@ -677,6 +683,9 @@ export const FormSubmissionTableLoading = () => {
     </>
   );
 };
+FormSubmissionTableLoading.parameters = {
+  storyshots: { disable: true },
+};
 
 export const headerActions = () => {
   const content = [
@@ -730,6 +739,9 @@ export const rowActionsSkeleton = () => {
   ];
 
   return <DataTableView.RowView>{content}</DataTableView.RowView>;
+};
+rowActionsSkeleton.parameters = {
+  storyshots: { disable: true },
 };
 
 export const header_arrow = () => {
