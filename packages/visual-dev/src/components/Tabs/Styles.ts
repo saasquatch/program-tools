@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from "styled-components";
 
 export const root = css`
   box-sizing: border-box;
@@ -12,11 +12,13 @@ export const root = css`
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
-`
+  border-bottom: 1px solid var(--sq-border);
+  width: 100%;
+`;
 
 export const Tab = css`
   cursor: pointer;
-`
+`;
 
 export const defaultTabStyle = css`
   border-bottom: 2px solid transparent;
@@ -32,4 +34,4 @@ export const defaultTabStyle = css`
     color: var(--sq-text-subdued);
     cursor: default;
   }
-`
+`;

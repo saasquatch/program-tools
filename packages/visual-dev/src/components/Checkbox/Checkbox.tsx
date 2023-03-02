@@ -29,7 +29,7 @@ export interface OptionProps {
    */
   id?: string;
   /**
-   * Custon CSS applied to the checkbox container
+   * Custom CSS applied to the checkbox container
    */
   customContainerCSS?: CSSProp;
 }
