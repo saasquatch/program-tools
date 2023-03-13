@@ -126,9 +126,9 @@ const RingLarge = styled(RingDefault)<RingProps>`
 `;
 
 export const LoadingSpinnerLarge = ({ ...props }: RingProps) => {
-  const { color } = props;
+  const { color, margin } = props;
   return (
-    <RingLarge color={color}>
+    <RingLarge color={color} margin={margin}>
       <div></div>
       <div></div>
       <div></div>
