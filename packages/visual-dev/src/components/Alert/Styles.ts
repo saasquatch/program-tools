@@ -23,9 +23,19 @@ export const critical = css`
   border-color: var(--sq-border-critical);
 `;
 
+export const textCritical = css`
+  background-color: none;
+  border: none;
+`;
+
 export const warning = css`
   background-color: var(--sq-surface-warning-subdued);
   border-color: var(--sq-border-warning);
+`;
+
+export const textWarning = css`
+  background-color: none;
+  border: none;
 `;
 
 export const success = css`

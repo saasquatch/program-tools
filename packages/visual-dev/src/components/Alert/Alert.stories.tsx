@@ -11,8 +11,26 @@ export const critical = () => (
     An explanation of what this alert is.
   </AlertView>
 );
+export const textCritical = () => (
+  <AlertView type="textCritical">
+    An explanation of what this alert is.
+  </AlertView>
+);
+export const textCriticalLongText = () => (
+  <AlertView type="textCritical">
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae ab id
+    facilis consequatur dolorum excepturi quae, ratione asperiores ducimus
+    molestiae sit dignissimos reprehenderit natus doloremque ex quisquam totam
+    molestias amet.
+  </AlertView>
+);
 export const warning = () => (
   <AlertView type="warning" title="A warning alert">
+    An explanation of what this alert is.
+  </AlertView>
+);
+export const textWarning = () => (
+  <AlertView type="textWarning">
     An explanation of what this alert is.
   </AlertView>
 );

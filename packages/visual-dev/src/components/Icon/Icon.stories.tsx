@@ -124,3 +124,11 @@ export const long_left_arrow = () => <IconView icon={"long_left_arrow"} />;
 export const long_both_arrow = () => <IconView icon={"long_both_arrow"} />;
 export const ssqt_logo = () => <IconView icon={"ssqt_logo"} />;
 export const hubspot_logo = () => <IconView icon={"hubspot_logo"} />;
+export const ssqt_arrow = () => <IconView icon={"ssqt_arrow"} />;
+export const hubspot_arrow = () => <IconView icon={"hubspot_arrow"} />;
+export const hubspot_ssqt_arrow = () => (
+  <IconView icon={"hubspot_ssqt_arrow"} />
+);
+export const checkmark_circle_filled = () => (
+  <IconView icon={"checkmark_circle_filled"} />
+);
