@@ -16,6 +16,11 @@ export interface OptionProps {
    * Content displayed inside alert below title
    */
   children: React.ReactNode;
+
+  /**
+   * Slot to overwrite the existing default icons
+   */
+  iconSlot?: React.ReactNode;
 }
 
 export interface StyleProps {
@@ -74,7 +79,14 @@ const icons = {
 
 export const AlertView = React.forwardRef<React.ElementRef<"div">, AlertProps>(
   (props, forwardedRef) => {
-    const { type: variant, title, children, customCSS = {}, ...rest } = props;
+    const {
+      type: variant,
+      iconSlot,
+      title,
+      children,
+      customCSS = {},
+      ...rest
+    } = props;
     const textBannerWithNoTitle =
       (!title && variant === "textWarning") || variant === "textCritical";
     return (
@@ -84,7 +96,7 @@ export const AlertView = React.forwardRef<React.ElementRef<"div">, AlertProps>(
         ref={forwardedRef}
         customCSS={customCSS}
       >
-        {icons[variant]}
+        {iconSlot ? iconSlot : icons[variant]}
         <div>
           <strong>{title}</strong>
           <div style={{ paddingTop: textBannerWithNoTitle ? "2px" : "0px" }}>

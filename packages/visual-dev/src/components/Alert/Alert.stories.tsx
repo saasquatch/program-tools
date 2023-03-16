@@ -1,5 +1,6 @@
 import React from "react";
 import { AlertView } from ".";
+import { IconView } from "../Icon";
 
 export default {
   title: "Components / Alert",
@@ -49,6 +50,16 @@ export const customCSS = () => (
     type="success"
     title="An info alert"
     customCSS="background:red !important;"
+  >
+    An explanation of what this alert is in multiple lines.
+  </AlertView>
+);
+
+export const customIcon = () => (
+  <AlertView
+    type="success"
+    title="An info alert"
+    iconSlot={<IconView icon={"visibility_alt"} />}
   >
     An explanation of what this alert is in multiple lines.
   </AlertView>
