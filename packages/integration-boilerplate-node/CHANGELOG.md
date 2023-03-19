@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2023-03-20
+
+### Added
+
+- Support for automatically generating `GOOGLE_APPLICATION_CREDENTIALS` for use with Workload Identity Federation
+
+### Changed
+
+- Jayden TODO
+
 ## [2.0.1] - 2023-01-25
 
 ### Changed
@@ -72,7 +82,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[unreleased]: https://github.com/sasquatch/integration-boilerplate-node/compare/v2.0.1...HEAD
+[unreleased]: https://github.com/sasquatch/integration-boilerplate-node/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v2.1.0
 [2.0.1]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v2.0.1
 [2.0.0]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v2.0.0
 [1.1.4]: https://github.com/sasquatch/integration-boilerplate-node/releases/tag/v1.1.4

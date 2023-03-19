@@ -30,6 +30,7 @@ import {
 import * as types from "./types";
 import { webhookHandler } from "./webhookHandler";
 import { installInstrumentation } from "./instrumentation";
+import Auth0WorkloadIdentityCredentialProvider from "./auth0WorkloadIdentityCredentialProvider";
 
 declare module "http" {
   interface IncomingMessage {
@@ -494,6 +495,26 @@ export async function createIntegrationService<
       process.env["DYNO"] ?? hostname()
     }`;
     installInstrumentation(config.serviceName, hostName, deploymentEnv);
+  }
+
+  // Enable workload identity federation if all the appropriate parameters have
+  // been set
+  if (
+    config.googleWorkloadIdentityProjectId &&
+    config.googleWorkloadIdentityPool &&
+    config.googleWorkloadIdentityProvider &&
+    config.googleWorkloadIdentityServiceAccountEmail
+  ) {
+    new Auth0WorkloadIdentityCredentialProvider(createLogger(config), {
+      auth0Domain: config.saasquatchAuth0Domain,
+      auth0ClientId: config.saasquatchAuth0ClientId,
+      auth0ClientSecret: config.saasquatchAuth0Secret,
+      googleWorkloadProjectId: config.googleWorkloadIdentityProjectId,
+      googleWorkloadIdentityPool: config.googleWorkloadIdentityPool,
+      googleWorkloadIdentityProvider: config.googleWorkloadIdentityProvider,
+      googleWorkloadServiceAccountEmail:
+        config.googleWorkloadIdentityServiceAccountEmail,
+    });
   }
 
   return new IntegrationService(config, options);
