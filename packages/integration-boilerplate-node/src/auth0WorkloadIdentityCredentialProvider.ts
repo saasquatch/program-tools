@@ -15,7 +15,7 @@ export interface Auth0WorkloadIdentityCredentialProviderOptions {
   workloadIdentityFile?: string;
 }
 
-export default class Auth0WorkloadIdentityCredentialProvider {
+export class Auth0WorkloadIdentityCredentialProvider {
   private tokenFile: string;
   private workloadIdentityFile: string;
 

@@ -30,7 +30,7 @@ import {
 import * as types from "./types";
 import { webhookHandler } from "./webhookHandler";
 import { installInstrumentation } from "./instrumentation";
-import Auth0WorkloadIdentityCredentialProvider from "./auth0WorkloadIdentityCredentialProvider";
+import { Auth0WorkloadIdentityCredentialProvider } from "./auth0WorkloadIdentityCredentialProvider";
 
 declare module "http" {
   interface IncomingMessage {
