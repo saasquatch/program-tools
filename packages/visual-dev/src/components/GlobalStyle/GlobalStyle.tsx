@@ -82,7 +82,8 @@ export const CSSVariables = createGlobalStyle`
 
   --sq-font-size-header-one: 26px;
   --sq-font-size-header-two: 22px;
-  --sq-font-size-header-three: 18px;
+  --sq-font-size-header-three: 20px;
+  --sq-font-size-header-four: 18px;
   --sq-font-size-regular: 14px;
   --sq-font-size-small: 12px;
   --sq-font-size-caption: 16px;

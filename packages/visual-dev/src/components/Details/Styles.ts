@@ -6,11 +6,6 @@ export const DivStyle = css`
   flex-direction: column;
   justify-content: flex-start;
   gap: var(--sq-spacing-small);
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: -moz-none;
-  -o-user-select: none;
-  user-select: none;
 `;
 
 export const SummaryContainerDivStyle = css`
@@ -20,6 +15,12 @@ export const SummaryContainerDivStyle = css`
   align-items: center;
   gap: var(--sq-spacing-x-small);
   cursor: pointer;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  user-select: none;
+  width: max-content;
 `;
 
 export const ParagraphStyle = css`

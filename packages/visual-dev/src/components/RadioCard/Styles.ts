@@ -80,3 +80,18 @@ export const LeftSegmentStyle = css`
   justify-content: center;
   align-items: center;
 `;
+
+export const TitleContainerStyle = css`
+  display: flex;
+  gap: var(--sq-spacing-x-small);
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: var(--sq-spacing-xx-small);
+`;
+
+export const TitleStyle = css`
+  font-weight: bold;
+  margin: 0px;
+  font-size: var(--sq-font-size-regular);
+  color: inherit;
+`;

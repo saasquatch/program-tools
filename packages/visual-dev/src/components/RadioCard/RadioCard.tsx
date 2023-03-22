@@ -34,6 +34,10 @@ export interface OptionProps {
    */
   icon?: IconKey;
   /**
+   * Icon displayed to the right of the title
+   */
+  titleIconSlot?: React.ReactNode;
+  /**
    * Custom CSS applied to Radio Card
    */
   customCSS?: CSSProp;
@@ -75,6 +79,14 @@ const RadioGridDiv = styled.div`
   ${Styles.RadioGridStyle}
 `;
 
+const TitleContainerDiv = styled.div`
+  ${Styles.TitleContainerStyle}
+`;
+
+const TitleP = styled.p`
+  ${Styles.TitleStyle}
+`;
+
 const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
   (props, forwardedRef) => {
     const {
@@ -83,6 +95,7 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
       title,
       description,
       icon = "",
+      titleIconSlot,
       customCSS,
       ...rest
     } = props;
@@ -106,12 +119,13 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
         <RightSegmentDiv>
           <RadioTextDiv>
             {title && (
-              <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
+              <TitleContainerDiv>
+                <TitleP>{title}</TitleP>
+                {titleIconSlot && titleIconSlot}
+              </TitleContainerDiv>
             )}
             {description && (
-              <div style={{ color: "var(--sq-text-subdued)" }}>
-                {description}
-              </div>
+              <div style={{ color: "inherit" }}>{description}</div>
             )}
           </RadioTextDiv>
         </RightSegmentDiv>

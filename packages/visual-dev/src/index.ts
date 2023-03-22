@@ -76,6 +76,7 @@ import { SliderView } from "./components/Slider";
 import { TagInputView } from "./components/TagInput";
 import { DisplayDropdown } from "./components/DisplayDropdown";
 import { ProgressBarView } from "./components/ProgressBar";
+import { DetailsView } from "./components/Details";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -165,4 +166,5 @@ export {
   SliderView,
   DisplayDropdown,
   ProgressBarView,
+  DetailsView,
 };

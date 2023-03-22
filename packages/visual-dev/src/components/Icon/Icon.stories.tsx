@@ -132,3 +132,4 @@ export const hubspot_ssqt_arrow = () => (
 export const checkmark_circle_filled = () => (
   <IconView icon={"checkmark_circle_filled"} />
 );
+export const globe = () => <IconView icon={"globe"} />;
