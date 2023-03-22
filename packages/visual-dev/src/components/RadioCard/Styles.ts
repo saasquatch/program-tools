@@ -83,7 +83,7 @@ export const LeftSegmentStyle = css`
 
 export const TitleContainerStyle = css`
   display: flex;
-  gap: var(--sq-spacing-x-small);
+  gap: var(--sq-spacing-xx-small);
   align-items: center;
   justify-content: flex-start;
   margin-bottom: var(--sq-spacing-xx-small);
