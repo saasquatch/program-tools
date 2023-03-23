@@ -20,6 +20,7 @@ import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-field
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
+import { PasswordlessRegistrationViewProps } from "./components/sqm-passwordless-registration/sqm-passwordless-registration-view";
 import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
 import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
@@ -657,6 +658,42 @@ export namespace Components {
           * @uiName Password Label
          */
         "fieldLabel": string;
+    }
+    interface SqmPasswordlessRegistration {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PasswordlessRegistrationViewProps>;
+        /**
+          * @uiName Email Field Label
+         */
+        "emailLabel": string;
+        /**
+          * Redirect participants to this page after they successfully Registration.
+          * @uiName Registration Redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage": string;
+        /**
+          * @uiName Heading Label
+          * @uiWidget textArea
+         */
+        "pageLabel": string;
+        /**
+          * @uiName Register Button Text
+         */
+        "registerLabel": string;
+        /**
+          * Redirect participants to this page to start registration.
+          * @uiName Register Button Redirect
+          * @uiWidget pageSelect
+         */
+        "registerPath": string;
+        /**
+          * @uiName Submit Button Text
+         */
+        "submitLabel": string;
     }
     interface SqmPopupContainer {
         /**
@@ -2535,6 +2572,12 @@ declare global {
         prototype: HTMLSqmPasswordFieldElement;
         new (): HTMLSqmPasswordFieldElement;
     };
+    interface HTMLSqmPasswordlessRegistrationElement extends Components.SqmPasswordlessRegistration, HTMLStencilElement {
+    }
+    var HTMLSqmPasswordlessRegistrationElement: {
+        prototype: HTMLSqmPasswordlessRegistrationElement;
+        new (): HTMLSqmPasswordlessRegistrationElement;
+    };
     interface HTMLSqmPopupContainerElement extends Components.SqmPopupContainer, HTMLStencilElement {
     }
     var HTMLSqmPopupContainerElement: {
@@ -2933,6 +2976,7 @@ declare global {
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
         "sqm-password-field": HTMLSqmPasswordFieldElement;
+        "sqm-passwordless-registration": HTMLSqmPasswordlessRegistrationElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
         "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
         "sqm-portal-container": HTMLSqmPortalContainerElement;
@@ -3614,6 +3658,42 @@ declare namespace LocalJSX {
           * @uiName Password Label
          */
         "fieldLabel"?: string;
+    }
+    interface SqmPasswordlessRegistration {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PasswordlessRegistrationViewProps>;
+        /**
+          * @uiName Email Field Label
+         */
+        "emailLabel"?: string;
+        /**
+          * Redirect participants to this page after they successfully Registration.
+          * @uiName Registration Redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage"?: string;
+        /**
+          * @uiName Heading Label
+          * @uiWidget textArea
+         */
+        "pageLabel"?: string;
+        /**
+          * @uiName Register Button Text
+         */
+        "registerLabel"?: string;
+        /**
+          * Redirect participants to this page to start registration.
+          * @uiName Register Button Redirect
+          * @uiWidget pageSelect
+         */
+        "registerPath"?: string;
+        /**
+          * @uiName Submit Button Text
+         */
+        "submitLabel"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -5341,6 +5421,7 @@ declare namespace LocalJSX {
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
         "sqm-password-field": SqmPasswordField;
+        "sqm-passwordless-registration": SqmPasswordlessRegistration;
         "sqm-popup-container": SqmPopupContainer;
         "sqm-portal-change-password": SqmPortalChangePassword;
         "sqm-portal-container": SqmPortalContainer;
@@ -5434,6 +5515,7 @@ declare module "@stencil/core" {
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
+            "sqm-passwordless-registration": LocalJSX.SqmPasswordlessRegistration & JSXBase.HTMLAttributes<HTMLSqmPasswordlessRegistrationElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
             "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
             "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;

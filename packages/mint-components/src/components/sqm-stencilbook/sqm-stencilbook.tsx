@@ -70,6 +70,7 @@ import * as TitledSection from "../sqm-titled-section/TitledSection.stories";
 import * as Scroll from "../sqm-scroll/Scroll.stories";
 import * as Tabs from "../sqm-tabs/Tabs.stories";
 import * as ShareCode from "../sqm-share-code/ShareCode.stories";
+import * as PasswordlessRegistration from "../sqm-passwordless-registration/PasswordlessRegistration.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -146,6 +147,7 @@ const stories = [
   Scroll,
   Tabs,
   ShareCode,
+  PasswordlessRegistration,
 ];
 
 /**
