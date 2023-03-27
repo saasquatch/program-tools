@@ -77,6 +77,7 @@ import { TagInputView } from "./components/TagInput";
 import { DisplayDropdown } from "./components/DisplayDropdown";
 import { ProgressBarView } from "./components/ProgressBar";
 import { DetailsView } from "./components/Details";
+import { ScrollNavView } from "./components/ScrollNav";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -167,4 +168,5 @@ export {
   DisplayDropdown,
   ProgressBarView,
   DetailsView,
+  ScrollNavView,
 };

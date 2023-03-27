@@ -102,6 +102,14 @@ export const primary = {
     &:hover {
       background: var(--sq-surface-success-hovered);
     }
+
+    &:disabled {
+      cursor: not-allowed;
+      background: var(--sq-surface-success);
+      &:hover {
+        background: var(--sq-surface-success);
+      }
+    }
   `,
   loading: css`
     cursor: wait;
@@ -150,6 +158,16 @@ export const secondary = {
     &:hover {
       color: var(--sq-text-on-secondary-hovered);
       background: var(--sq-surface-success-hovered);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      color: var(--sq-surface-success);
+      box-shadow: inset 0 0 0 1px var(--sq-surface-success);
+      &:hover{
+      color: var(--sq-surface-success);
+
+      }
     }
   `,
   loading: css`
