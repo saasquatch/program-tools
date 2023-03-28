@@ -16,7 +16,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \<Icon>
   - New SVG's for the HubSpot Integration
 - \<Alert>
-
   - Added props `textCritical` & `textWarning` to display a new text style alert banner without a background color
 
 - New components added
