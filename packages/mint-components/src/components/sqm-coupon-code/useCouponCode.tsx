@@ -10,7 +10,7 @@ import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { CopyTextViewProps } from "../views/copy-text-view";
 
-interface ShareCodeProps {
+interface CouponCodeProps {
   programId?: string;
   tooltiptext: string;
   tooltiplifespan: number;
@@ -32,7 +32,7 @@ const WIDGET_ENGAGEMENT_EVENT = gql`
   }
 `;
 
-export function useShareCode(props: ShareCodeProps): CopyTextViewProps {
+export function useCouponCode(props: CouponCodeProps): CopyTextViewProps {
   const { programId = useProgramId() } = props;
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
@@ -61,11 +61,11 @@ export function useShareCode(props: ShareCodeProps): CopyTextViewProps {
         type: "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT",
         meta: {
           engagementMedium,
-          shareMedium: "DIRECT",
+          couponMedium: "DIRECT",
         },
       },
     });
   }
 
-  return { ...props, onClick, open, copyString: copyString };
+  return { ...props, onClick, open, copyString };
 }
