@@ -9,6 +9,7 @@ import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
+import { CopyTextViewProps } from "./components/views/copy-text-view";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
@@ -36,7 +37,6 @@ import { GenericTableViewProps } from "./tables/GenericTableView";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
-import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
@@ -154,6 +154,29 @@ export namespace Components {
           * @uiName Unchecked Error Message
          */
         "errorMessage": string;
+    }
+    interface SqmCouponCode {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
+          * @uiName Program ID
+          * @uiWidget programSelector
+         */
+        "programId"?: string;
+        /**
+          * The number of milliseconds that the tooltip appears for
+          * @uiName Tooltip lifespan
+         */
+        "tooltiplifespan": number;
+        /**
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+          * @uiName Tooltip Text
+         */
+        "tooltiptext": string;
     }
     interface SqmDividedLayout {
         /**
@@ -2093,7 +2116,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<ShareLinkViewProps>;
+        "demoData"?: DemoData<CopyTextViewProps>;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -2116,7 +2139,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<ShareLinkViewProps>;
+        "demoData"?: DemoData<CopyTextViewProps>;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -2457,6 +2480,12 @@ declare global {
     var HTMLSqmCheckboxFieldElement: {
         prototype: HTMLSqmCheckboxFieldElement;
         new (): HTMLSqmCheckboxFieldElement;
+    };
+    interface HTMLSqmCouponCodeElement extends Components.SqmCouponCode, HTMLStencilElement {
+    }
+    var HTMLSqmCouponCodeElement: {
+        prototype: HTMLSqmCouponCodeElement;
+        new (): HTMLSqmCouponCodeElement;
     };
     interface HTMLSqmDividedLayoutElement extends Components.SqmDividedLayout, HTMLStencilElement {
     }
@@ -2957,6 +2986,7 @@ declare global {
         "sqm-brand": HTMLSqmBrandElement;
         "sqm-card-feed": HTMLSqmCardFeedElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
+        "sqm-coupon-code": HTMLSqmCouponCodeElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
@@ -3154,6 +3184,29 @@ declare namespace LocalJSX {
           * @uiName Unchecked Error Message
          */
         "errorMessage"?: string;
+    }
+    interface SqmCouponCode {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
+          * @uiName Program ID
+          * @uiWidget programSelector
+         */
+        "programId"?: string;
+        /**
+          * The number of milliseconds that the tooltip appears for
+          * @uiName Tooltip lifespan
+         */
+        "tooltiplifespan"?: number;
+        /**
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+          * @uiName Tooltip Text
+         */
+        "tooltiptext"?: string;
     }
     interface SqmDividedLayout {
         /**
@@ -5069,7 +5122,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<ShareLinkViewProps>;
+        "demoData"?: DemoData<CopyTextViewProps>;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -5092,7 +5145,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<ShareLinkViewProps>;
+        "demoData"?: DemoData<CopyTextViewProps>;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -5402,6 +5455,7 @@ declare namespace LocalJSX {
         "sqm-brand": SqmBrand;
         "sqm-card-feed": SqmCardFeed;
         "sqm-checkbox-field": SqmCheckboxField;
+        "sqm-coupon-code": SqmCouponCode;
         "sqm-divided-layout": SqmDividedLayout;
         "sqm-dropdown-field": SqmDropdownField;
         "sqm-edit-profile": SqmEditProfile;
@@ -5496,6 +5550,7 @@ declare module "@stencil/core" {
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
+            "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;

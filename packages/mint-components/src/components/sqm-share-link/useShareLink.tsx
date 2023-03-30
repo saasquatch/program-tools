@@ -7,7 +7,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
-import { ShareLinkViewProps } from "./sqm-share-link-view";
+import { CopyTextViewProps } from "../views/copy-text-view";
 
 interface ShareLinkProps {
   programId?: string;
@@ -31,7 +31,7 @@ const WIDGET_ENGAGEMENT_EVENT = gql`
   }
 `;
 
-export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
+export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
   const { programId = useProgramId() } = props;
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
@@ -39,7 +39,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const { data } = useQuery(MessageLinkQuery, { programId }, !user?.jwt);
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
 
-  const shareString =
+  const copyString =
     data?.user?.shareLink ??
     // Shown during loading
     "...";
@@ -49,7 +49,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   function onClick() {
     // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
     // Only if called from a user-initiated event
-    navigator.clipboard.writeText(shareString);
+    navigator.clipboard.writeText(copyString);
     setOpen(true);
     setTimeout(() => setOpen(false), props.tooltiplifespan);
     sendLoadEvent({
@@ -66,5 +66,5 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     });
   }
 
-  return { ...props, onClick, open, shareString };
+  return { ...props, onClick, open, copyString: copyString };
 }

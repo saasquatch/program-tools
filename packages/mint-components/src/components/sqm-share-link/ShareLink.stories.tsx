@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import { ShareLinkView } from "./sqm-share-link-view";
+import { CopyTextView } from "../views/copy-text-view";
 import scenario from "./ShareLink.feature";
 
 export default {
@@ -11,30 +11,30 @@ export default {
 
 export const Default = () => {
   const props = {
-    shareString: "https://noah.example.com",
+    copyString: "https://noah.example.com",
     open: false,
     tooltiptext: "Copied!",
   };
-  return <ShareLinkView {...props} />;
+  return <CopyTextView {...props} />;
 };
 
 export const Tooltip = () => {
   const props = {
-    shareString: "https://noah.example.com",
+    copyString: "https://noah.example.com",
     tooltiptext: "Some text for the tooltip",
     open: true,
   };
-  return <ShareLinkView {...props} />;
+  return <CopyTextView {...props} />;
 };
 
 export const Disabled = () => {
   const props = {
-    shareString: "https://noah.example.com",
+    copyString: "https://noah.example.com",
     disabled: true,
     open: true,
     tooltiptext: "Copied!",
   };
-  return <ShareLinkView {...props} />;
+  return <CopyTextView {...props} />;
 };
 
 export const FullStack = () => {

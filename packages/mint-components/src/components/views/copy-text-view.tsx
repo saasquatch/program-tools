@@ -2,8 +2,8 @@ import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { HostBlock } from "../../global/mixins";
 
-export interface ShareLinkViewProps {
-  shareString: string;
+export interface CopyTextViewProps {
+  copyString: string;
   open: boolean;
   disabled?: boolean;
   tooltiptext: string;
@@ -20,7 +20,7 @@ const style = {
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export function ShareLinkView(props: ShareLinkViewProps) {
+export function CopyTextView(props: CopyTextViewProps) {
   return (
     <div>
       <style type="text/css">{styleString}</style>
@@ -35,7 +35,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         <sl-input
           class={sheet.classes.inputStyle}
           exportparts="label: input-label"
-          value={props.shareString}
+          value={props.copyString}
           readonly
         >
           <sl-icon-button
