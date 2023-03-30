@@ -11,6 +11,7 @@ export interface ReferralCardViewProps {
 }
 const style = {
   Container: {
+    "& p": {margin: "0"},
     display: "flex",
     color: "var(--sl-color-neutral-900)",
     background: "var(--sl-color-neutral-0)",
@@ -21,8 +22,8 @@ const style = {
       paddingRight: "var(--sl-spacing-medium)",
       "@media (max-width: 499px)": {
         width: "100%",
-        padding: "0",
-        marginBottom: "var(--sl-spacing-xx-large)",
+        // padding: "0",
+        // marginBottom: "var(--sl-spacing-large)",
       },
     },
     "& .right": {
@@ -32,7 +33,7 @@ const style = {
       paddingLeft: "var(--sl-spacing-medium)",
       "@media (max-width: 499px)": {
         width: "100%",
-        padding: "0",
+        // padding: "0",
       },
     },
     border: "1px solid var(--sl-color-neutral-300)",
@@ -60,7 +61,7 @@ export function ReferralCardView(props: ReferralCardViewProps) {
         {styleString}
         {vanillaStyle}
       </style>
-      <div class={sheet.classes.Container}>
+      <div part="sqm-base" class={sheet.classes.Container}>
         <div
           class="left"
           style={{

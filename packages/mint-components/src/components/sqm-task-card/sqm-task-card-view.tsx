@@ -246,7 +246,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   `;
 
   return (
-    <div class={sheet.classes.TaskCard}>
+    <div class={sheet.classes.TaskCard} part="sqm-base">
       <style type="text/css">
         {styleString}
         {vanillaStyle}
@@ -289,6 +289,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         </div>
       )}
       <div
+        part="sqm-card-container-inner"
         style={{
           borderRadius:
             taskUnavailable &&
@@ -302,7 +303,11 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             : "main"
         }
       >
-        <div class="container" data-subdue={taskComplete || taskUnavailable}>
+        <div
+          class="container"
+          part="sqm-card-container"
+          data-subdue={taskComplete || taskUnavailable}
+        >
           <div
             class={sheet.classes.Header}
             style={{ opacity: taskComplete || taskUnavailable ? "0.45" : "1" }}
@@ -316,8 +321,12 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                     {taskComplete ? checkmark_filled : checkmark_circle}
                   </span>
                 )}
-                <span class={"value"}>{content.rewardAmount}</span>
-                <span class="text">{content.rewardUnit}</span>
+                <span part="sqm-value" class={"value"}>
+                  {content.rewardAmount}
+                </span>
+                <span part="sqm-unit" class="text">
+                  {content.rewardUnit}
+                </span>
               </div>
             )}
           </div>
@@ -329,6 +338,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           ) : (
             <div
               class={"title"}
+              part="sqm-title"
               style={{
                 marginBottom: !content.description
                   ? content.steps
@@ -435,6 +445,8 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                 </span>
 
                 <sl-button
+                  part="base"
+                  id="sl-button"
                   class={
                     taskUnavailable
                       ? "action neutral"
