@@ -1,5 +1,5 @@
 import { h as StencilH, FunctionalComponent, VNode } from "@stencil/core";
-import { useState, useMemo } from "@saasquatch/universal-hooks";
+import { useState, useMemo, useEffect } from "@saasquatch/universal-hooks";
 
 import startCase from "lodash.startcase";
 import { Style } from "./stencil-storybook.styles";
@@ -54,24 +54,57 @@ export function useStencilbook(
     imports
   );
 
-  const [Selected, setSelectedInternal] = useState<Selection>(undefined);
+  // set persistent story
+  // setSelectedURL
+  //  sets it in url param
+  //
+  //
+  // get url param
+  //  go from path to story
+  //
+
+  console.log("stories", stories);
+
+  const [Selected, setSelectedInternal] = useState<Selection>(
+    getSelectedStory(getSelectedURL())
+  );
   const selectedKey = Selected?.key;
   const [layout, setLayout] = useState<Layout>("desktop");
   const [showSidebar, setShowSidebar] = useState<boolean>(true);
   const [darkCanvas, setDarkCanvas] = useState<boolean>(false);
-  function setSelected(
-    story: FunctionalComponent,
-    key: string,
-    parent: StorybookDefaultExport,
-    label: string
-  ) {
-    setSelectedInternal({
+
+  function getSelectedStory(key?: string) {
+    if (!key) return undefined;
+
+    const keys = decodeURIComponent(key).split("-");
+    const group = keys[0];
+    const parentTitle = keys[1];
+    const subKey = keys[2];
+
+    console.log(group, parentTitle, subKey);
+
+    const s = stories[group]?.find(
+      (element) => element.story.title === parentTitle
+    );
+    const subStory = s.subs[subKey];
+    return {
       key,
-      story,
-      parent,
-      label,
-    });
+      story: subStory,
+      parent: s.story,
+      label: subStory.name,
+    };
   }
+  function setSelectedURL(key: string) {
+    window.location.hash = encodeURIComponent(key);
+  }
+  function getSelectedURL() {
+    return decodeURIComponent(window.location.hash).replace("#", "");
+  }
+  function setSelected(key: string) {
+    setSelectedURL(key);
+    setSelectedInternal(getSelectedStory(key));
+  }
+
   const WidthSelector = () => {
     // Not the best way to display these buttons but don't wanna put too much time
     return (
@@ -177,7 +210,7 @@ export function useStencilbook(
                           </summary>
                           {s.subs &&
                             Object.keys(s.subs).map((subKey) => {
-                              const key = group + "/" + subKey;
+                              const key = `${group}-${s.story.title}-${subKey}`;
                               const subStory = s.subs[subKey];
                               const subStoryView = () => <subStory />;
                               const label =
@@ -188,11 +221,7 @@ export function useStencilbook(
                                     selectedKey === key ? "selected" : ""
                                   }`}
                                 >
-                                  <a
-                                    onClick={() =>
-                                      setSelected(subStory, key, s.story, label)
-                                    }
-                                  >
+                                  <a onClick={() => setSelected(key)}>
                                     {label}
                                   </a>
                                 </div>
