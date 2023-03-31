@@ -162,11 +162,21 @@ export namespace Components {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
+          * Set copy button as icon
+          * @uiName Copy icon
+         */
+        "isCopyIcon"?: boolean;
+        /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Change the text alignment
+          * @uiName Align text
+         */
+        "textAlign"?: "left" | "center";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -2118,11 +2128,21 @@ export namespace Components {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
+          * Set copy button as icon
+          * @uiName Copy icon
+         */
+        "isCopyIcon"?: boolean;
+        /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Change the text alignment
+          * @uiName Align text
+         */
+        "textAlign"?: "left" | "center";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -2141,11 +2161,21 @@ export namespace Components {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
+          * Set copy button as icon
+          * @uiName Copy icon
+         */
+        "isCopyIcon"?: boolean;
+        /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Change the text alignment
+          * @uiName Align text
+         */
+        "textAlign"?: "left" | "center";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip Lifespan
@@ -3192,11 +3222,21 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
+          * Set copy button as icon
+          * @uiName Copy icon
+         */
+        "isCopyIcon"?: boolean;
+        /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Change the text alignment
+          * @uiName Align text
+         */
+        "textAlign"?: "left" | "center";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -5124,11 +5164,21 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
+          * Set copy button as icon
+          * @uiName Copy icon
+         */
+        "isCopyIcon"?: boolean;
+        /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Change the text alignment
+          * @uiName Align text
+         */
+        "textAlign"?: "left" | "center";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -5147,11 +5197,21 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
+          * Set copy button as icon
+          * @uiName Copy icon
+         */
+        "isCopyIcon"?: boolean;
+        /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Change the text alignment
+          * @uiName Align text
+         */
+        "textAlign"?: "left" | "center";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip Lifespan

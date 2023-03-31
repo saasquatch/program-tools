@@ -13,7 +13,12 @@ export const ShareCode = () => {
 export const CustomTooltipText = () => {
   return <sqm-share-code tooltiptext="CUSTOM TOOLTIP TEXT"></sqm-share-code>;
 };
-
+export const TextAlignCenter = () => {
+  return <sqm-share-code textAlign="center"></sqm-share-code>;
+};
+export const CopyButton = () => {
+  return <sqm-share-code isCopyIcon={false}></sqm-share-code>;
+};
 export const CustomTooltipDuration = () => {
   return (
     <sqm-share-code

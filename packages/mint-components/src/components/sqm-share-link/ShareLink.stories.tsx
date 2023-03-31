@@ -36,7 +36,12 @@ export const Disabled = () => {
   };
   return <CopyTextView {...props} />;
 };
-
+export const TextAlignCenter = () => {
+  return <sqm-share-link textAlign="center"></sqm-share-link>;
+};
+export const CopyButton = () => {
+  return <sqm-share-link isCopyIcon={false}></sqm-share-link>;
+};
 export const FullStack = () => {
   return <sqm-share-link></sqm-share-link>;
 };
