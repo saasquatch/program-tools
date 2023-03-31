@@ -25,142 +25,18 @@ export function MultipleSelect() {
   return (
     <SelectView.ContainerView>
       <SelectView.HandleView {...props} />
-      <SelectView.ListView {...props} empty={!props.items.length} />
+      <SelectView.ListView {...props} />
     </SelectView.ContainerView>
   );
 }
 
 export function MultipleSelectCombobox() {
-  const initialSelectedItems = [books[0], books[1]];
-
-  function getFilteredBooksCombobox(
-    selectedItems: string[],
-    inputValue: string
-  ) {
-    const lowerCasedInputValue = inputValue.toLowerCase();
-
-    return books.filter(function filterBook(book) {
-      return (
-        !selectedItems.includes(book) &&
-        book.toLowerCase().includes(lowerCasedInputValue)
-      );
-    });
-  }
-
-  const [inputValue, setInputValue] = React.useState("");
-  const [selectedItems, setSelectedItems] = React.useState(
-    initialSelectedItems
-  );
-  const items = React.useMemo(
-    () => getFilteredBooksCombobox(selectedItems, inputValue),
-    [selectedItems, inputValue]
-  );
-  const {
-    getSelectedItemProps,
-    getDropdownProps,
-    addSelectedItem,
-    removeSelectedItem,
-  } = useMultipleSelection({
-    selectedItems,
-    onStateChange({ selectedItems: newSelectedItems, type }) {
-      switch (type) {
-        case useMultipleSelection.stateChangeTypes.SelectedItemKeyDownBackspace:
-        case useMultipleSelection.stateChangeTypes.SelectedItemKeyDownDelete:
-        case useMultipleSelection.stateChangeTypes.DropdownKeyDownBackspace:
-        case useMultipleSelection.stateChangeTypes.FunctionRemoveSelectedItem:
-          setSelectedItems(newSelectedItems || []);
-          break;
-        default:
-          break;
-      }
-    },
-  });
-
-  const functional = useCombobox({
-    items,
-    defaultHighlightedIndex: 0, // after selection, highlight the first item.
-    selectedItem: null,
-    stateReducer(_, actionAndChanges) {
-      const { changes, type } = actionAndChanges;
-
-      switch (type) {
-        case useCombobox.stateChangeTypes.InputKeyDownEnter:
-        case useCombobox.stateChangeTypes.ItemClick:
-        case useCombobox.stateChangeTypes.InputBlur:
-          return {
-            ...changes,
-            ...(changes.selectedItem && { isOpen: true, highlightedIndex: 0 }),
-          };
-        default:
-          return changes;
-      }
-    },
-    onStateChange({
-      inputValue: newInputValue,
-      type,
-      selectedItem: newSelectedItem,
-    }) {
-      switch (type) {
-        case useCombobox.stateChangeTypes.InputKeyDownEnter:
-        case useCombobox.stateChangeTypes.ItemClick:
-          const guardedSelectItems = selectedItems || [];
-
-          const newSelectedItems = newSelectedItem
-            ? [...guardedSelectItems, newSelectedItem]
-            : guardedSelectItems;
-
-          setSelectedItems(newSelectedItems);
-          break;
-
-        case useCombobox.stateChangeTypes.InputChange:
-          setInputValue(newInputValue || "");
-
-          break;
-        default:
-          break;
-      }
-    },
-  });
-
-  const tagsSlot = (
-    <>
-      {selectedItems.map(function renderSelectedItem(
-        selectedItemForRender,
-        index
-      ) {
-        return (
-          <TagView
-            key={`selected-item-${index}`}
-            {...getSelectedItemProps({
-              selectedItem: selectedItemForRender,
-              index,
-            })}
-            onClickClose={(e) => {
-              e.stopPropagation();
-              removeSelectedItem(selectedItemForRender);
-            }}
-          >
-            {selectedItemForRender}
-          </TagView>
-        );
-      })}
-    </>
-  );
-
-  const props = {
-    getSelectedItemProps,
-    getDropdownProps,
-    addSelectedItem,
-    removeSelectedItem,
-    functional,
-    items,
-    tagsSlot,
-  };
+  const props = useMultiSelectDemo({ selectItems: books, useCombobox: true });
 
   return (
     <SelectView.ContainerView {...props}>
       <SelectView.HandleView {...props} />
-      <SelectView.ListView {...props} empty={!items.length} />
+      <SelectView.ListView {...props} />
     </SelectView.ContainerView>
   );
 }
@@ -171,11 +47,7 @@ export function MultipleSelectFullWidth() {
   return (
     <SelectView.ContainerView {...props} limitWidth={false}>
       <SelectView.HandleView {...props} limitWidth={false} />
-      <SelectView.ListView
-        {...props}
-        empty={!props.items.length}
-        limitWidth={false}
-      />
+      <SelectView.ListView {...props} limitWidth={false} />
     </SelectView.ContainerView>
   );
 }
@@ -207,12 +79,7 @@ export function MultiSelectWithManyItems() {
   return (
     <SelectView.ContainerView {...props} limitWidth={false}>
       <SelectView.HandleView {...props} limitWidth={false} />
-      <SelectView.ListView
-        limitHeight={true}
-        {...props}
-        empty={!props.items.length}
-        limitWidth={false}
-      />
+      <SelectView.ListView limitHeight={true} {...props} limitWidth={false} />
     </SelectView.ContainerView>
   );
 }
