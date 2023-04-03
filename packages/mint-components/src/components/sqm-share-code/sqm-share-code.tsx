@@ -50,7 +50,7 @@ export class ShareCode {
   @Prop({
     attribute: "text-align",
   })
-  textAlign?: "left" | "center" = "left";
+  textAlign: "left" | "center" = "left";
   /**
    * Set copy button as icon
    *
@@ -59,7 +59,7 @@ export class ShareCode {
   @Prop({
     attribute: "is-copy-icon",
   })
-  isCopyIcon?: boolean = true;
+  isCopyIcon: boolean = true;
   /**
    * @undocumented
    * @uiType object

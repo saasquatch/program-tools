@@ -2131,7 +2131,7 @@ export namespace Components {
           * Set copy button as icon
           * @uiName Copy icon
          */
-        "isCopyIcon"?: boolean;
+        "isCopyIcon": boolean;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -2142,7 +2142,7 @@ export namespace Components {
           * Change the text alignment
           * @uiName Align text
          */
-        "textAlign"?: "left" | "center";
+        "textAlign": "left" | "center";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -2164,7 +2164,7 @@ export namespace Components {
           * Set copy button as icon
           * @uiName Copy icon
          */
-        "isCopyIcon"?: boolean;
+        "isCopyIcon": boolean;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -2175,7 +2175,7 @@ export namespace Components {
           * Change the text alignment
           * @uiName Align text
          */
-        "textAlign"?: "left" | "center";
+        "textAlign": "left" | "center";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip Lifespan

@@ -51,7 +51,7 @@ export class ShareLink {
   @Prop({
     attribute: "text-align",
   })
-  textAlign?: "left" | "center" = "left";
+  textAlign: "left" | "center" = "left";
   /**
    * Set copy button as icon
    *
@@ -60,7 +60,7 @@ export class ShareLink {
   @Prop({
     attribute: "is-copy-icon",
   })
-  isCopyIcon?: boolean = true;
+  isCopyIcon: boolean = true;
 
   /**
    * @undocumented

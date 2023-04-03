@@ -50,7 +50,7 @@ export class CouponCode {
   @Prop({
     attribute: "text-align",
   })
-  textAlign?: "left" | "center" = "left";
+  textAlign: "left" | "center" = "left";
   /**
    * Set copy button as icon
    *
@@ -59,7 +59,7 @@ export class CouponCode {
   @Prop({
     attribute: "is-copy-icon",
   })
-  isCopyIcon?: boolean = true;
+  isCopyIcon: boolean = true;
 
   /**
    * @undocumented
