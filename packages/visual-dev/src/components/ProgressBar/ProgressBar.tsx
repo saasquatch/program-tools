@@ -22,12 +22,12 @@ export interface OptionProps {
    * TODO: This prop currently doesn't do anything, need to make it work in the future.
    * Order style shown above each progress bar step
    */
-  orderStyle?:
-    | "number"
-    | "uppercase_letter"
-    | "lowercase_letter"
-    | "uppercase_roman_numerals"
-    | "lowercase_roman_numerals";
+  // orderStyle?:
+  //   | "number"
+  //   | "uppercase_letter"
+  //   | "lowercase_letter"
+  //   | "uppercase_roman_numerals"
+  //   | "lowercase_roman_numerals";
   /**
    * Custom CSS applied to slider
    */
