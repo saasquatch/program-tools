@@ -1,7 +1,7 @@
 import { setUserIdentity } from "@saasquatch/component-boilerplate";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
-import { ShareLinkView } from "./sqm-share-link-view";
+import { CopyTextView } from "../views/copy-text-view";
 import { useShareLink } from "./useShareLink";
 
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
@@ -46,7 +46,7 @@ export const BareBonesView = createHookStory(() => {
       <code
         style={{ borderStyle: "solid", borderWidth: "1px", padding: "2px" }}
       >
-        {res.shareString}
+        {res.copyString}
       </code>
     </div>
   );
@@ -55,7 +55,7 @@ export const BareBonesView = createHookStory(() => {
 export const RegularView = createHookStory(() => {
   setupGraphQL();
   return (
-    <ShareLinkView
+    <CopyTextView
       {...useShareLink({
         programId: "sam-partner-test-2",
         tooltiptext: "Copied to clipboard",
@@ -68,7 +68,7 @@ export const RegularView = createHookStory(() => {
 export const FastTooltip = createHookStory(() => {
   setupGraphQL();
   return (
-    <ShareLinkView
+    <CopyTextView
       {...useShareLink({
         programId: "sam-partner-test-2",
         tooltiptext:

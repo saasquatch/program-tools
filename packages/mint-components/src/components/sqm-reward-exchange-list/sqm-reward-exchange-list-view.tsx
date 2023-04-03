@@ -2,7 +2,7 @@ import { getAssetPath, h, VNode } from "@stencil/core";
 import { intl } from "../../global/global";
 import { HostBlock } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
-import { ShareLinkView } from "../sqm-share-link/sqm-share-link-view";
+import { CopyTextView } from "../views/copy-text-view";
 import { ProgressBar } from "./progressBar";
 import { CheckmarkFilled, Gift } from "./SVGs";
 import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
@@ -811,12 +811,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         {data?.fuelTankCode && (
           <div class="promo">
             {states.content.text.promoCode}
-            <ShareLinkView
-              shareString={data.fuelTankCode}
+            <CopyTextView
+              copyString={data.fuelTankCode}
               tooltiptext={states?.content?.text.tooltipText}
               open={states.open}
               onClick={callbacks.copyFuelTankCode}
-            ></ShareLinkView>
+            ></CopyTextView>
           </div>
         )}
         <div class={sheet.classes.Button}>

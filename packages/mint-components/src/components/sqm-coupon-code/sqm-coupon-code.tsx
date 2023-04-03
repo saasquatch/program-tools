@@ -3,20 +3,20 @@ import { Component, Prop, h } from "@stencil/core";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
 import { getProps } from "../../utils/utils";
-import { useShareCode } from "./useShareCode";
+import { useCouponCode } from "./useCouponCode";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
 
 /**
- * @uiName Share Code
+ * @uiName Coupon Code
  * @exampleGroup Sharing
- * @example Share Code - <sqm-share-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-code>
+ * @example Coupon Code - <sqm-coupon-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-coupon-code>
  */
 @Component({
-  tag: "sqm-share-code",
+  tag: "sqm-coupon-code",
   shadow: true,
 })
-export class ShareCode {
+export class CouponCode {
   /**
    * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
    *
@@ -60,6 +60,7 @@ export class ShareCode {
     attribute: "is-copy-icon",
   })
   isCopyIcon: boolean = true;
+
   /**
    * @undocumented
    * @uiType object
@@ -74,18 +75,18 @@ export class ShareCode {
   render() {
     const thisProps = getProps(this);
     const props = isDemo()
-      ? useDemoShareCode(thisProps)
-      : useShareCode(thisProps);
+      ? useDemoCouponCode(thisProps)
+      : useCouponCode(thisProps);
     return <CopyTextView {...props} />;
   }
 }
 
-function useDemoShareCode(props: ShareCode): CopyTextViewProps {
+function useDemoCouponCode(props: CouponCode): CopyTextViewProps {
   const [open, setOpen] = useState(false);
-  const copyString = "SHARECODE001";
+  const copyString = "THANKSJANE125uv125";
   return deepmerge(
     {
-      copyString: copyString,
+      copyString,
       tooltiptext: props.tooltiptext,
       isCopyIcon: props.isCopyIcon,
       textAlign: props.textAlign,

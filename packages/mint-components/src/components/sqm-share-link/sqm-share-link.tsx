@@ -1,7 +1,7 @@
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import { isDemo } from "@saasquatch/component-boilerplate";
-import { ShareLinkView, ShareLinkViewProps } from "./sqm-share-link-view";
+import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
 import { useShareLink } from "./useShareLink";
 import { getProps } from "../../utils/utils";
 import { DemoData } from "../../global/demo";
@@ -44,10 +44,29 @@ export class ShareLink {
   tooltiplifespan: number = 1000;
 
   /**
+   * Change the text alignment
+   *
+   * @uiName Align text
+   */
+  @Prop({
+    attribute: "text-align",
+  })
+  textAlign: "left" | "center" = "left";
+  /**
+   * Set copy button as icon
+   *
+   * @uiName Copy icon
+   */
+  @Prop({
+    attribute: "is-copy-icon",
+  })
+  isCopyIcon: boolean = true;
+
+  /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<ShareLinkViewProps>;
+  @Prop() demoData?: DemoData<CopyTextViewProps>;
 
   constructor() {
     withHooks(this);
@@ -59,22 +78,24 @@ export class ShareLink {
     const props = isDemo()
       ? useDemoShareLink(thisProps)
       : useShareLink(thisProps);
-    return <ShareLinkView {...props} />;
+    return <CopyTextView {...props} />;
   }
 }
 
-function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
+function useDemoShareLink(props: ShareLink): CopyTextViewProps {
   const [open, setOpen] = useState(false);
-  const shareString = "https://www.example.com/sharelink/abc";
+  const copyString = "https://www.example.com/sharelink/abc";
   return deepmerge(
     {
-      shareString,
+      copyString: copyString,
       tooltiptext: props.tooltiptext,
+      isCopyIcon: props.isCopyIcon,
+      textAlign: props.textAlign,
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
         // Only if called from a user-initiated event
-        navigator.clipboard.writeText(shareString);
+        navigator.clipboard.writeText(copyString);
         setOpen(true);
         setTimeout(() => setOpen(false), props.tooltiplifespan);
       },

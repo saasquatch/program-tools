@@ -9,6 +9,7 @@ import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
+import { CopyTextViewProps } from "./components/views/copy-text-view";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
@@ -20,6 +21,7 @@ import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-field
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
+import { PasswordlessRegistrationViewProps } from "./components/sqm-passwordless-registration/sqm-passwordless-registration-view";
 import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
 import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
@@ -35,7 +37,6 @@ import { GenericTableViewProps } from "./tables/GenericTableView";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
-import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
@@ -153,6 +154,39 @@ export namespace Components {
           * @uiName Unchecked Error Message
          */
         "errorMessage": string;
+    }
+    interface SqmCouponCode {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * Set copy button as icon
+          * @uiName Copy icon
+         */
+        "isCopyIcon": boolean;
+        /**
+          * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
+          * @uiName Program ID
+          * @uiWidget programSelector
+         */
+        "programId"?: string;
+        /**
+          * Change the text alignment
+          * @uiName Align text
+         */
+        "textAlign": "left" | "center";
+        /**
+          * The number of milliseconds that the tooltip appears for
+          * @uiName Tooltip lifespan
+         */
+        "tooltiplifespan": number;
+        /**
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+          * @uiName Tooltip Text
+         */
+        "tooltiptext": string;
     }
     interface SqmDividedLayout {
         /**
@@ -657,6 +691,42 @@ export namespace Components {
           * @uiName Password Label
          */
         "fieldLabel": string;
+    }
+    interface SqmPasswordlessRegistration {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PasswordlessRegistrationViewProps>;
+        /**
+          * @uiName Email Field Label
+         */
+        "emailLabel": string;
+        /**
+          * Redirect participants to this page after they successfully Registration.
+          * @uiName Registration Redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage": string;
+        /**
+          * @uiName Heading Label
+          * @uiWidget textArea
+         */
+        "pageLabel": string;
+        /**
+          * @uiName Register Button Text
+         */
+        "registerLabel": string;
+        /**
+          * Redirect participants to this page to start registration.
+          * @uiName Register Button Redirect
+          * @uiWidget pageSelect
+         */
+        "registerPath": string;
+        /**
+          * @uiName Submit Button Text
+         */
+        "submitLabel": string;
     }
     interface SqmPopupContainer {
         /**
@@ -2056,13 +2126,23 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<ShareLinkViewProps>;
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * Set copy button as icon
+          * @uiName Copy icon
+         */
+        "isCopyIcon": boolean;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Change the text alignment
+          * @uiName Align text
+         */
+        "textAlign": "left" | "center";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -2079,13 +2159,23 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<ShareLinkViewProps>;
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * Set copy button as icon
+          * @uiName Copy icon
+         */
+        "isCopyIcon": boolean;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Change the text alignment
+          * @uiName Align text
+         */
+        "textAlign": "left" | "center";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip Lifespan
@@ -2421,6 +2511,12 @@ declare global {
         prototype: HTMLSqmCheckboxFieldElement;
         new (): HTMLSqmCheckboxFieldElement;
     };
+    interface HTMLSqmCouponCodeElement extends Components.SqmCouponCode, HTMLStencilElement {
+    }
+    var HTMLSqmCouponCodeElement: {
+        prototype: HTMLSqmCouponCodeElement;
+        new (): HTMLSqmCouponCodeElement;
+    };
     interface HTMLSqmDividedLayoutElement extends Components.SqmDividedLayout, HTMLStencilElement {
     }
     var HTMLSqmDividedLayoutElement: {
@@ -2534,6 +2630,12 @@ declare global {
     var HTMLSqmPasswordFieldElement: {
         prototype: HTMLSqmPasswordFieldElement;
         new (): HTMLSqmPasswordFieldElement;
+    };
+    interface HTMLSqmPasswordlessRegistrationElement extends Components.SqmPasswordlessRegistration, HTMLStencilElement {
+    }
+    var HTMLSqmPasswordlessRegistrationElement: {
+        prototype: HTMLSqmPasswordlessRegistrationElement;
+        new (): HTMLSqmPasswordlessRegistrationElement;
     };
     interface HTMLSqmPopupContainerElement extends Components.SqmPopupContainer, HTMLStencilElement {
     }
@@ -2914,6 +3016,7 @@ declare global {
         "sqm-brand": HTMLSqmBrandElement;
         "sqm-card-feed": HTMLSqmCardFeedElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
+        "sqm-coupon-code": HTMLSqmCouponCodeElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
@@ -2933,6 +3036,7 @@ declare global {
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
         "sqm-password-field": HTMLSqmPasswordFieldElement;
+        "sqm-passwordless-registration": HTMLSqmPasswordlessRegistrationElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
         "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
         "sqm-portal-container": HTMLSqmPortalContainerElement;
@@ -3110,6 +3214,39 @@ declare namespace LocalJSX {
           * @uiName Unchecked Error Message
          */
         "errorMessage"?: string;
+    }
+    interface SqmCouponCode {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * Set copy button as icon
+          * @uiName Copy icon
+         */
+        "isCopyIcon"?: boolean;
+        /**
+          * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
+          * @uiName Program ID
+          * @uiWidget programSelector
+         */
+        "programId"?: string;
+        /**
+          * Change the text alignment
+          * @uiName Align text
+         */
+        "textAlign"?: "left" | "center";
+        /**
+          * The number of milliseconds that the tooltip appears for
+          * @uiName Tooltip lifespan
+         */
+        "tooltiplifespan"?: number;
+        /**
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+          * @uiName Tooltip Text
+         */
+        "tooltiptext"?: string;
     }
     interface SqmDividedLayout {
         /**
@@ -3614,6 +3751,42 @@ declare namespace LocalJSX {
           * @uiName Password Label
          */
         "fieldLabel"?: string;
+    }
+    interface SqmPasswordlessRegistration {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PasswordlessRegistrationViewProps>;
+        /**
+          * @uiName Email Field Label
+         */
+        "emailLabel"?: string;
+        /**
+          * Redirect participants to this page after they successfully Registration.
+          * @uiName Registration Redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage"?: string;
+        /**
+          * @uiName Heading Label
+          * @uiWidget textArea
+         */
+        "pageLabel"?: string;
+        /**
+          * @uiName Register Button Text
+         */
+        "registerLabel"?: string;
+        /**
+          * Redirect participants to this page to start registration.
+          * @uiName Register Button Redirect
+          * @uiWidget pageSelect
+         */
+        "registerPath"?: string;
+        /**
+          * @uiName Submit Button Text
+         */
+        "submitLabel"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -4989,13 +5162,23 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<ShareLinkViewProps>;
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * Set copy button as icon
+          * @uiName Copy icon
+         */
+        "isCopyIcon"?: boolean;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Change the text alignment
+          * @uiName Align text
+         */
+        "textAlign"?: "left" | "center";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -5012,13 +5195,23 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<ShareLinkViewProps>;
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * Set copy button as icon
+          * @uiName Copy icon
+         */
+        "isCopyIcon"?: boolean;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Change the text alignment
+          * @uiName Align text
+         */
+        "textAlign"?: "left" | "center";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip Lifespan
@@ -5322,6 +5515,7 @@ declare namespace LocalJSX {
         "sqm-brand": SqmBrand;
         "sqm-card-feed": SqmCardFeed;
         "sqm-checkbox-field": SqmCheckboxField;
+        "sqm-coupon-code": SqmCouponCode;
         "sqm-divided-layout": SqmDividedLayout;
         "sqm-dropdown-field": SqmDropdownField;
         "sqm-edit-profile": SqmEditProfile;
@@ -5341,6 +5535,7 @@ declare namespace LocalJSX {
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
         "sqm-password-field": SqmPasswordField;
+        "sqm-passwordless-registration": SqmPasswordlessRegistration;
         "sqm-popup-container": SqmPopupContainer;
         "sqm-portal-change-password": SqmPortalChangePassword;
         "sqm-portal-container": SqmPortalContainer;
@@ -5415,6 +5610,7 @@ declare module "@stencil/core" {
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
+            "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
@@ -5434,6 +5630,7 @@ declare module "@stencil/core" {
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
+            "sqm-passwordless-registration": LocalJSX.SqmPasswordlessRegistration & JSXBase.HTMLAttributes<HTMLSqmPasswordlessRegistrationElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
             "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
             "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;

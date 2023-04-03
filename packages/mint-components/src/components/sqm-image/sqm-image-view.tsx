@@ -43,7 +43,11 @@ export function ImageView(props: ImageViewProps) {
         {vanillaStyle}
       </style>
       <div class={sheet.classes.Container}>
-        <img src={props.imageUrl} class={sheet.classes.Image} />
+        <img
+          part="sqm-image"
+          src={props.imageUrl}
+          class={sheet.classes.Image}
+        />
       </div>
     </div>
   );
