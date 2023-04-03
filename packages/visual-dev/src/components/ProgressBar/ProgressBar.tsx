@@ -19,6 +19,7 @@ export interface OptionProps {
    */
   barColor?: string;
   /**
+   * TODO: This prop currently doesn't do anything, need to make it work in the future.
    * Order style shown above each progress bar step
    */
   orderStyle?:
