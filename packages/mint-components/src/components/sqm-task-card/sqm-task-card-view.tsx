@@ -243,6 +243,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
 		display: block;
 		margin-bottom: var(--sl-spacing-large);
 	}
+
   `;
 
   return (
@@ -272,8 +273,11 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       )}
       {!states.loading && taskEnded && (
         <div class={sheet.classes.Ended}>
-          <span class="icon">
-            <sl-icon name="exclamation-triangle-fill"></sl-icon>
+          <span class="icon" part="test">
+            <sl-icon
+              exportparts="base: task-card-icon"
+              name="exclamation-triangle-fill"
+            ></sl-icon>
           </span>
           {intl.formatMessage(
             {
@@ -445,7 +449,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                 </span>
 
                 <sl-button
-                  part="base"
+                  exportparts="base: task-card-button"
                   id="sl-button"
                   class={
                     taskUnavailable
