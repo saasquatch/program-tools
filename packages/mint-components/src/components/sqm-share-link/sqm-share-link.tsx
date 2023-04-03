@@ -44,6 +44,25 @@ export class ShareLink {
   tooltiplifespan: number = 1000;
 
   /**
+   * Change the text alignment
+   *
+   * @uiName Align text
+   */
+  @Prop({
+    attribute: "text-align",
+  })
+  textAlign: "left" | "center" = "left";
+  /**
+   * Set copy button as icon
+   *
+   * @uiName Copy icon
+   */
+  @Prop({
+    attribute: "is-copy-icon",
+  })
+  isCopyIcon: boolean = true;
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -70,6 +89,8 @@ function useDemoShareLink(props: ShareLink): CopyTextViewProps {
     {
       copyString: copyString,
       tooltiptext: props.tooltiptext,
+      isCopyIcon: props.isCopyIcon,
+      textAlign: props.textAlign,
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility

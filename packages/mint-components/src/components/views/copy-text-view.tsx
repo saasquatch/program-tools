@@ -7,6 +7,9 @@ export interface CopyTextViewProps {
   open: boolean;
   disabled?: boolean;
   tooltiptext: string;
+  isCopyIcon?: boolean;
+  textAlign?: "left" | "center";
+
   onClick?: () => void;
 }
 
@@ -17,13 +20,27 @@ const style = {
   },
 };
 
+const textAlignStyle = `
+  :host{
+    display: block;   
+  }
+  sl-input::part(input){
+    text-align: center;
+  }
+`;
+
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function CopyTextView(props: CopyTextViewProps) {
+  const { isCopyIcon = true } = props;
+
   return (
     <div>
-      <style type="text/css">{styleString}</style>
+      <style type="text/css">
+        {styleString}
+        {props.textAlign === "center" && textAlignStyle}
+      </style>
       <sl-tooltip
         trigger="manual"
         content={props.tooltiptext}
@@ -38,12 +55,24 @@ export function CopyTextView(props: CopyTextViewProps) {
           value={props.copyString}
           readonly
         >
-          <sl-icon-button
-            onClick={() => props.onClick?.()}
-            slot="suffix"
-            name="files"
-            disabled={props.disabled}
-          />
+          {isCopyIcon ? (
+            <sl-icon-button
+              onClick={() => props.onClick?.()}
+              slot="suffix"
+              name="files"
+              disabled={props.disabled}
+            />
+          ) : (
+            <sl-button
+              onClick={() => props.onClick?.()}
+              slot="suffix"
+              name="files"
+              size="small"
+              disabled={props.disabled}
+            >
+              Copy
+            </sl-button>
+          )}
         </sl-input>
       </sl-tooltip>
     </div>
