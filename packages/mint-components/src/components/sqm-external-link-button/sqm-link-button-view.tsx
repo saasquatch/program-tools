@@ -1,14 +1,13 @@
 import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 
-export interface UserIdentifierViewProps {
-  userIdentificationText: string;
-  switchUserLink: string;
-  switchUserText: string;
+export interface LinkButtonViewProps {
+  link: string;
+  openInNewTab: boolean;
 }
 
 const style = {
-  Container: {},
+  Container: { display: "contents" },
 };
 
 const vanillaStyle = `
@@ -20,8 +19,8 @@ const vanillaStyle = `
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export function UserIdentifierView(props: UserIdentifierViewProps) {
-  const { userIdentificationText, switchUserLink, switchUserText } = props;
+export function LinkButtonView(props: LinkButtonViewProps) {
+  const { link, openInNewTab } = props;
 
   return (
     <span class={sheet.classes.Container}>
@@ -29,7 +28,11 @@ export function UserIdentifierView(props: UserIdentifierViewProps) {
         {styleString}
         {vanillaStyle}
       </style>
-      {userIdentificationText} (<a href={switchUserLink}>{switchUserText}</a>)
+      <sl-button>
+        <a href={link} target={openInNewTab ? "_blank" : ""}>
+          <slot />
+        </a>
+      </sl-button>
     </span>
   );
 }
