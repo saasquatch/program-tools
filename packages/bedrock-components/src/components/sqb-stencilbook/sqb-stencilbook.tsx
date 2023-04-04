@@ -3,11 +3,12 @@ import { useStencilbook } from '@saasquatch/stencilbook';
 import { withHooks } from '@saasquatch/stencil-hooks';
 import * as ProgramSwitch from '../sqb-program-switch/ProgramSwitch.stories';
 import * as Widget from '../sqb-widget/Widget.stories';
+import * as AuthTemplateSwitch from '../sqb-auth-template-switch/AuthTemplateSwitch.stories';
 import { HookStoryAddon } from './HookStoryAddon';
 import { CucumberAddon } from './CucumberAddon';
 
 // Import and add all stories to this array
-const stories = [ProgramSwitch, Widget];
+const stories = [AuthTemplateSwitch, ProgramSwitch, Widget];
 
 /**
  * For internal documentation
