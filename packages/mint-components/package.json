@@ -31,7 +31,8 @@
     "generate": "stencil generate",
     "specs": "picklesdoc xlsx src docs --testers=2",
     "serve:package": "serve . --cors",
-    "start:raisins": "run-p start serve:package"
+    "start:raisins": "run-p start serve:package",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "@formatjs/intl": "1.8.4",
@@ -58,6 +59,7 @@
     "jest-cli": "^26.6.3",
     "jest-config": "^26.6.3",
     "marked": "^3.0.4",
+    "patch-package": "^6.5.1",
     "picklesdoc": "^1.2.1",
     "puppeteer": "^19.5.2",
     "rollup-plugin-copy": "^3.4.0",
