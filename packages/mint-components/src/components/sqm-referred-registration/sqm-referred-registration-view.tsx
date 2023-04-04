@@ -7,7 +7,7 @@ import {
 import { createStyleSheet } from "../../styling/JSS";
 import { PoweredByImg } from "../sqm-portal-footer/PoweredByImg";
 
-export interface PasswordlessRegistrationViewProps {
+export interface RefereeWelcomeViewProps {
   states: {
     error: string;
     loading: boolean;
@@ -53,9 +53,7 @@ const vanillaStyle = `
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export function PasswordlessRegistrationView(
-  props: PasswordlessRegistrationViewProps
-) {
+export function RefereeWelcomeView(props: RefereeWelcomeViewProps) {
   const { states, callbacks, content } = props;
   return (
     <div class={sheet.classes.Wrapper}>
@@ -76,7 +74,7 @@ export function PasswordlessRegistrationView(
           <sl-input
             exportparts="label: input-label"
             type="name"
-            name="/firstName"
+            name="/name"
             label={content.firstNameLabel || "First Name"}
             disabled={states.loading}
             required
@@ -86,7 +84,7 @@ export function PasswordlessRegistrationView(
           <sl-input
             exportparts="label: input-label"
             type="name"
-            name="/lastName"
+            name="/name"
             label={content.lastNameLabel || "Last Name"}
             disabled={states.loading}
             required

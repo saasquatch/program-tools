@@ -1,14 +1,14 @@
 import { h } from "@stencil/core";
 import {
-  PasswordlessRegistrationView,
-  PasswordlessRegistrationViewProps,
-} from "./sqm-passwordless-registration-view";
+  RefereeWelcomeView,
+  RefereeWelcomeViewProps,
+} from "./sqm-referred-registration-view";
 
 export default {
-  title: "Components/Passwordless Registration",
+  title: "Components/Referred Registration",
 };
 
-const defaultProps: PasswordlessRegistrationViewProps = {
+const defaultProps: RefereeWelcomeViewProps = {
   states: {
     error: "",
     loading: false,
@@ -20,10 +20,10 @@ const defaultProps: PasswordlessRegistrationViewProps = {
   // content: { pageLabel: "Share 50$ with your friend now!" },
 };
 
-export const Default = () => <PasswordlessRegistrationView {...defaultProps} />;
+export const Default = () => <RefereeWelcomeView {...defaultProps} />;
 
 export const HasFirstNameLastName = () => (
-  <PasswordlessRegistrationView
+  <RefereeWelcomeView
     {...defaultProps}
     {...{
       content: {
@@ -34,7 +34,7 @@ export const HasFirstNameLastName = () => (
 );
 
 export const WithSlots = () => (
-  <PasswordlessRegistrationView
+  <RefereeWelcomeView
     {...defaultProps}
     {...{
       content: {
@@ -46,7 +46,7 @@ export const WithSlots = () => (
 );
 
 export const HidePoweredBy = () => (
-  <PasswordlessRegistrationView
+  <RefereeWelcomeView
     {...defaultProps}
     {...{
       content: {

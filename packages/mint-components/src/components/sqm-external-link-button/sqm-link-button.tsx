@@ -1,7 +1,7 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import { getProps } from "../../utils/utils";
-import { UserIdentifierView } from "./sqm-user-identifier-view";
+import { LinkButtonView } from "./sqm-link-button-view";
 
 /**
  * @uiName Image
@@ -9,7 +9,7 @@ import { UserIdentifierView } from "./sqm-user-identifier-view";
  * @example Image - <sqm-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png" alignment="center"></sqm-image>
  */
 @Component({
-  tag: "sqm-user-identifier",
+  tag: "sqm-link-button",
   shadow: true,
 })
 export class Image {
@@ -17,20 +17,14 @@ export class Image {
    * @required
    * @uiName User Identification Text
    */
-  @Prop() userIdentificationText: string = "{email}";
+  @Prop() link: string;
   /**
-   * @required
-   * @uiName Switch User Link
+   * @uiName User Identification Text
    */
-  @Prop() switchUserLink: string;
-  /**
-   * @required
-   * @uiName Switch User Text
-   */
-  @Prop() switchUserText: string = "not you?";
+  @Prop() openInNewTab: boolean = false;
 
   render() {
-    return <UserIdentifierView {...getProps(this)} />;
+    return <LinkButtonView {...getProps(this)} />;
   }
 }
 

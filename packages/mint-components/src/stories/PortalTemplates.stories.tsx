@@ -19,6 +19,9 @@ import forgotPasswordTemplate from "../templates/ForgotPassword.html";
 import resetPasswordTemplate from "../templates/ResetPassword.html";
 import emailVerifiedTemplate from "../templates/EmailVerified.html";
 import emailVerificationTemplate from "../templates/EmailVerification.html";
+import passwordlessReferrerPersonalized from "../templates/PasswordlessReferrerPersonalized.html";
+import passwordlessReferrerRegistration from "../templates/PasswordlessReferrerRegistration.html";
+
 import marked from "marked";
 
 import LoginReadme from "../components/sqm-portal-login/readme.md";
@@ -294,5 +297,15 @@ export const ResetPasswordEmail = createHookStory(() => {
 
 export const VerifyEmail = createHookStory(() => {
   const { states, callbacks } = useTemplate(verifyEmailTemplate);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const PasswordlessReferrerPersonalized = createHookStory(() => {
+  const { states, callbacks } = useTemplate(passwordlessReferrerPersonalized);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const PasswordlessReferrerRegistration = createHookStory(() => {
+  const { states, callbacks } = useTemplate(passwordlessReferrerRegistration);
   return <TemplateView states={states} callbacks={callbacks} />;
 });

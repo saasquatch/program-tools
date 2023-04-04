@@ -4,20 +4,19 @@ import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import {
-  PasswordlessRegistrationView,
-  PasswordlessRegistrationViewProps,
-} from "./sqm-passwordless-registration-view";
-import { usePasswordlessRegistration } from "./usePasswordlessRegistration";
+  RefereeWelcomeView,
+  RefereeWelcomeViewProps,
+} from "./sqm-referred-registration-view";
 
 /**
  * @uiName Microsite Registration
  * @slots [{"name":"top-slot","title":"Widget Content"},{"name":"bottom-slot","title":"Widget Content"}]
  */
 @Component({
-  tag: "sqm-passwordless-registration",
+  tag: "sqm-referred-registration",
   shadow: true,
 })
-export class PasswordlessRegistration {
+export class ReferredRegistration {
   @State()
   ignored = true;
 
@@ -68,7 +67,7 @@ export class PasswordlessRegistration {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<PasswordlessRegistrationViewProps>;
+  @Prop() demoData?: DemoData<RefereeWelcomeViewProps>;
 
   constructor() {
     withHooks(this);
@@ -77,10 +76,8 @@ export class PasswordlessRegistration {
   disconnectedCallback() {}
 
   render() {
-    const { states, callbacks } = isDemo()
-      ? useRegistrationDemo(this)
-      : usePasswordlessRegistration();
-
+    const { states, callbacks } = useRegistrationDemo(this);
+    // isDemo() ? useRegistrationDemo(this) : useReferredRegistration(this);
     const content = {
       emailLabel: this.emailLabel,
       registerLabel: this.registerLabel,
@@ -94,17 +91,17 @@ export class PasswordlessRegistration {
       bottomSlot: <slot name="bottom-slot" />,
     };
     return (
-      <PasswordlessRegistrationView
+      <RefereeWelcomeView
         states={states}
         callbacks={callbacks}
         content={content}
-      ></PasswordlessRegistrationView>
+      ></RefereeWelcomeView>
     );
   }
 }
 function useRegistrationDemo(
-  props: PasswordlessRegistration
-): Partial<PasswordlessRegistrationViewProps> {
+  props: ReferredRegistration
+): Partial<RefereeWelcomeViewProps> {
   return deepmerge(
     {
       states: {

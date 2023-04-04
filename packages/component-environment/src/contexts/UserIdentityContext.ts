@@ -97,8 +97,12 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
 function _getInitialValue(): UserIdentity | undefined {
   const sdk = getEnvironmentSDK();
   switch (sdk.type) {
+    case "SquatchIOS":
     case "SquatchAndroid":
     case "SquatchJS2":
+      const { userId, accountId, token } = sdk.widgetIdent;
+      if (!userId || !accountId || !token) return undefined;
+
       return {
         id: sdk.widgetIdent.userId,
         accountId: sdk.widgetIdent.accountId,
