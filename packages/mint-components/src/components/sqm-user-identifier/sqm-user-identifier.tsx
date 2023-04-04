@@ -1,7 +1,7 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import { getProps } from "../../utils/utils";
-import { ImageView } from "./sqm-user-identifier-view";
+import { UserIdentifierView } from "./sqm-user-identifier-view";
 
 /**
  * @uiName Image
@@ -15,34 +15,24 @@ import { ImageView } from "./sqm-user-identifier-view";
 export class Image {
   /**
    * @uiWidget ImageUpload
-   * @format url
    * @required
-   * @uiName Image Link
+   * @uiName User Identification Text
    */
-  @Prop() imageUrl: string;
-
+  @Prop() userIdentificationText: string;
   /**
-   * @uiName Position Alignment
-   * @uiType string
-   * @uiEnum ["left", "center", "right"]
-   * @uiEnumNames ["Left", "Center", "Right"]
+   * @uiWidget ImageUpload
+   * @required
+   * @uiName Switch User Link
    */
-  @Prop() alignment: "left" | "center" | "right" = "center";
-
+  @Prop() switchUserLink: string;
   /**
-   * @uiName Background Color
-   * @uiWidget color
-   * @format color
+   * @uiWidget ImageUpload
+   * @required
+   * @uiName Switch User Text
    */
-  @Prop() backgroundColor: string;
-
-  /**
-   * (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
-   * @uiName Minimum Height
-   */
-  @Prop() minHeight?: string;
+  @Prop() switchUserText: string;
 
   render() {
-    return <ImageView {...getProps(this)} />;
+    return <UserIdentifierView {...getProps(this)} />;
   }
 }
