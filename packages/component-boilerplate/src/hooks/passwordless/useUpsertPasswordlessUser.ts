@@ -5,7 +5,7 @@ import {
 import gql from "graphql-tag";
 import decode from "jwt-decode";
 import { useMutation } from "../graphql/useMutation";
-
+import { BaseQueryData } from "../graphql/useBaseQuery";
 interface UpsertPasswordlessUserVariables {
   email: string;
   firstName: string;
@@ -53,7 +53,10 @@ const UpsertPasswordlessUserMutation = gql`
   }
 `;
 
-export function useUpsertPasswordlessUserMutation() {
+export function useUpsertPasswordlessUserMutation(): [
+  (e: unknown) => Promise<UpsertPasswordlessUserResult | Error>,
+  BaseQueryData<UpsertPasswordlessUserResult>
+] {
   const [request, { loading, data, errors }] =
     useMutation<UpsertPasswordlessUserResult>(UpsertPasswordlessUserMutation);
 
@@ -62,18 +65,13 @@ export function useUpsertPasswordlessUserMutation() {
   ) => {
     const result = await request(variables);
 
+    console.log({ result });
     if (!(result instanceof Error) && result.upsertPasswordlessUser) {
       const jwt = result.upsertPasswordlessUser.token;
-      const { user } = decode<DecodedSquatchJWT>(jwt);
       setUserIdentity({
         jwt,
-        id: user.id,
-        accountId: user.accountId,
-        // managedIdentity: {
-        //   email: result.upsertPasswordlessUser.email,
-        //   emailVerified: result.upsertPasswordlessUser.emailVerified,
-        //   sessionData: result.upsertPasswordlessUser.sessionData,
-        // },
+        id: result.upsertPasswordlessUser.user.id,
+        accountId: result.upsertPasswordlessUser.user.accountId,
       });
     }
 

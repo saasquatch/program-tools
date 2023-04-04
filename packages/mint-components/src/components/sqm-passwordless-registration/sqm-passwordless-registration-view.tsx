@@ -76,7 +76,7 @@ export function PasswordlessRegistrationView(
           <sl-input
             exportparts="label: input-label"
             type="name"
-            name="/name"
+            name="/firstName"
             label={content.firstNameLabel || "First Name"}
             disabled={states.loading}
             required
@@ -86,7 +86,7 @@ export function PasswordlessRegistrationView(
           <sl-input
             exportparts="label: input-label"
             type="name"
-            name="/name"
+            name="/lastName"
             label={content.lastNameLabel || "Last Name"}
             disabled={states.loading}
             required

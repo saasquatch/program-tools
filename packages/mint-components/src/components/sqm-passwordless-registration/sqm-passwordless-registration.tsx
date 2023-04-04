@@ -7,6 +7,7 @@ import {
   PasswordlessRegistrationView,
   PasswordlessRegistrationViewProps,
 } from "./sqm-passwordless-registration-view";
+import { usePasswordlessRegistration } from "./usePasswordlessRegistration";
 
 /**
  * @uiName Microsite Registration
@@ -76,8 +77,10 @@ export class PasswordlessRegistration {
   disconnectedCallback() {}
 
   render() {
-    const { states, callbacks } = useRegistrationDemo(this);
-    // isDemo() ? useRegistrationDemo(this) : usePasswordlessRegistration(this);
+    const { states, callbacks } = isDemo()
+      ? useRegistrationDemo(this)
+      : usePasswordlessRegistration();
+
     const content = {
       emailLabel: this.emailLabel,
       registerLabel: this.registerLabel,

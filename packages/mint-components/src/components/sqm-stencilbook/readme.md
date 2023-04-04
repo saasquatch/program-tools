@@ -71,6 +71,7 @@
 - [sqm-referral-card](../sqm-referral-card)
 - [sqm-image](../sqm-image)
 - [sqm-titled-section](../sqm-titled-section)
+- [sqm-coupon-code](../sqm-coupon-code)
 
 ### Graph
 ```mermaid
@@ -137,6 +138,7 @@ graph TD;
   sqm-stencilbook --> sqm-referral-card
   sqm-stencilbook --> sqm-image
   sqm-stencilbook --> sqm-titled-section
+  sqm-stencilbook --> sqm-coupon-code
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section

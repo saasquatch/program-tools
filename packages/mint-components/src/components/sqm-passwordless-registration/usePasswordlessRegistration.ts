@@ -6,12 +6,10 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { sanitizeUrlPath } from "../../utils/utils";
 
-export function usePasswordlessRegistration(props) {
+export function usePasswordlessRegistration() {
   const [request, { loading, errors, data }] =
     useUpsertPasswordlessUserMutation();
   const [error, setError] = useState("");
-  const urlParams = new URLSearchParams(navigation.location.search);
-  const nextPageOverride = urlParams.get("nextPage");
 
   const submit = async (event: any) => {
     setError("");
@@ -32,11 +30,6 @@ export function usePasswordlessRegistration(props) {
         setError("Network request failed.");
       return;
     }
-    if (result.authenticateManagedIdentityWithPasswordless?.token) {
-      urlParams.delete("nextPage");
-      const url = sanitizeUrlPath(nextPageOverride || props.nextPage);
-      navigation.push(url.href);
-    }
   };
 
   const errorMessage =
@@ -48,8 +41,6 @@ export function usePasswordlessRegistration(props) {
     states: {
       loading,
       error: errorMessage,
-      registerPath: props.registerPath,
-      forgotPasswordPath: props.forgotPasswordPath,
     },
     callbacks: {
       submit,

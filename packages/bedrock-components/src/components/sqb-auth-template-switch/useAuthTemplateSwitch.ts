@@ -17,17 +17,15 @@ export function useAuthTemplateSwitch() {
       return;
     }
 
-    const isAuth = !!authToken && true;
+    const isAuth = !!authToken;
     const templates = slot.querySelectorAll<HTMLTemplateElement>(`template`);
     const template = Array.from(templates).find(t => t.slot === (isAuth ? 'logged-in' : 'logged-out'));
 
-    const newContent = template.innerHTML || template.firstElementChild.outerHTML;
-
-    if (newContent === container.innerHTML) {
-      debug("don't render");
-    } else if (template) {
-      container.innerHTML = newContent;
-    }
+    const clone = template.content.cloneNode(true);
+    const wrapper = document.createElement('div');
+    wrapper.slot = 'shown';
+    wrapper.appendChild(clone);
+    container.appendChild(wrapper);
   }, [slot, container, authToken]);
 
   return {

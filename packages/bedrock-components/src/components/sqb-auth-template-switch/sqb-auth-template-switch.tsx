@@ -21,7 +21,9 @@ export class SqbAuthTemplateSwitch {
           <slot name="logged-out" />
           <slot name="logged-in" />
         </div>
-        <div ref={setContainer}></div>
+        <div ref={setContainer}>
+          <slot name="shown"></slot>
+        </div>
       </Host>
     );
   }
