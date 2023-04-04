@@ -1,6 +1,6 @@
 import { createHookStory } from '../sqb-stencilbook/HookStoryAddon';
 import { h } from '@stencil/core';
-import { useEffect, useState } from '@saasquatch/universal-hooks';
+import { useEffect } from '@saasquatch/universal-hooks';
 
 export default {
   title: 'Auth Template Switch',
@@ -19,6 +19,7 @@ function useAuth() {
   };
 }
 
+//@ts-ignore
 function useNoAuth() {
   //@ts-ignore
   window.widgetIdent = {
