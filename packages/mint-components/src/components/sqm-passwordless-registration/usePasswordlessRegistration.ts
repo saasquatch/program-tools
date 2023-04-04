@@ -2,13 +2,13 @@ import jsonpointer from "jsonpointer";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import {
   navigation,
-  useAuthenticateWithPasswordlessMutation,
+  useUpsertPasswordlessUserMutation,
 } from "@saasquatch/component-boilerplate";
 import { sanitizeUrlPath } from "../../utils/utils";
 
 export function usePasswordlessRegistration(props) {
   const [request, { loading, errors, data }] =
-    useAuthenticateWithPasswordlessMutation();
+    useUpsertPasswordlessUserMutation();
   const [error, setError] = useState("");
   const urlParams = new URLSearchParams(navigation.location.search);
   const nextPageOverride = urlParams.get("nextPage");
