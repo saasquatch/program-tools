@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [1.6.0] - 2023-04-03
+
+### Added
+
+- \<GlobalStyle>
+  - `--sq-header-four` - new token for header size
+- \<Icon>
+  - New SVG's for the HubSpot Integration
+- \<Alert>
+  - Added props `textCritical` & `textWarning` to display a new text style alert banner without a background color
+
+- New components added
+  - \<Details>
+    - Custom details component, used to show and hide content
+  - \<ProgressBar>
+    - Progress bar with configurable steps and styles
+
+### Changed
+
+- Components changed
+  - \<LoadingSpinner>
+    - Added `margin` prop to overwrite default margin
+  - \<Modal>
+    - Changed header font size from `--sq-font-size-header-one` to `--sq-font-size-header-three`
+    - added cursor pointer to the close icon
+  - \<RadioCard>
+    - Added new `titleIconSlot`
+  - \<Tabs>
+    - Added bottom border to tabs containter
+
 ## [1.5.0] - 2023-03-01
 
 ### Added
@@ -282,7 +312,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<TextArea>
   - \<Tooltip>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.5.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.6.0...HEAD
+[1.6.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.6.0
 [1.5.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.5.0
 [1.4.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.4.0
 [1.3.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.3.0
