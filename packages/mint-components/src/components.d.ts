@@ -2509,7 +2509,6 @@ export namespace Components {
     }
     interface SqmUserIdentifier {
         /**
-<<<<<<< HEAD
           * @uiName Position Alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
@@ -2534,22 +2533,6 @@ export namespace Components {
           * @uiName Minimum Height
          */
         "minHeight"?: string;
-=======
-          * @required 
-          * @uiName Switch User Link
-         */
-        "switchUserLink": string;
-        /**
-          * @required 
-          * @uiName Switch User Text
-         */
-        "switchUserText": string;
-        /**
-          * @required 
-          * @uiName User Identification Text
-         */
-        "userIdentificationText": string;
->>>>>>> bd7923d8283ab7a1713b0669e604b14b09f7eb88
     }
     interface SqmUserName {
         /**
@@ -5658,7 +5641,6 @@ declare namespace LocalJSX {
     }
     interface SqmUserIdentifier {
         /**
-<<<<<<< HEAD
           * @uiName Position Alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
@@ -5683,22 +5665,6 @@ declare namespace LocalJSX {
           * @uiName Minimum Height
          */
         "minHeight"?: string;
-=======
-          * @required 
-          * @uiName Switch User Link
-         */
-        "switchUserLink"?: string;
-        /**
-          * @required 
-          * @uiName Switch User Text
-         */
-        "switchUserText"?: string;
-        /**
-          * @required 
-          * @uiName User Identification Text
-         */
-        "userIdentificationText"?: string;
->>>>>>> bd7923d8283ab7a1713b0669e604b14b09f7eb88
     }
     interface SqmUserName {
         /**
