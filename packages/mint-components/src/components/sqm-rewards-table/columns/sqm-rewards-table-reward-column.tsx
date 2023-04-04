@@ -47,6 +47,7 @@ export class RewardsTableColumn implements RewardTableColumn {
         availableText={this.availableText}
         copyText={this.copyText}
         locale={locale}
+        exportparts="sqm-rewards-cell-value, sqm-rewards-cell-progress-bar, sqm-rewards-cell-subtext"
       ></sqm-rewards-table-reward-cell>
     );
   }

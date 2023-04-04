@@ -165,7 +165,7 @@ export namespace Components {
           * Set copy button as icon
           * @uiName Copy icon
          */
-        "isCopyIcon"?: boolean;
+        "isCopyIcon": boolean;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -176,7 +176,7 @@ export namespace Components {
           * Change the text alignment
           * @uiName Align text
          */
-        "textAlign"?: "left" | "center";
+        "textAlign": "left" | "center";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -703,30 +703,31 @@ export namespace Components {
          */
         "emailLabel": string;
         /**
-          * Redirect participants to this page after they successfully Registration.
+          * @uiName First Name Field Label
+         */
+        "firstNameLabel": string;
+        /**
+          * @uiName Include name fields
+         */
+        "hidePoweredBy": boolean;
+        /**
+          * @uiName Include name fields
+         */
+        "includeName": boolean;
+        /**
+          * @uiName Last Name Field Label
+         */
+        "lastNameLabel": string;
+        /**
+          * Redirect participants to this page after they successfully register.
           * @uiName Registration Redirect
           * @uiWidget pageSelect
          */
         "nextPage": string;
         /**
-          * @uiName Heading Label
-          * @uiWidget textArea
-         */
-        "pageLabel": string;
-        /**
           * @uiName Register Button Text
          */
         "registerLabel": string;
-        /**
-          * Redirect participants to this page to start registration.
-          * @uiName Register Button Redirect
-          * @uiWidget pageSelect
-         */
-        "registerPath": string;
-        /**
-          * @uiName Submit Button Text
-         */
-        "submitLabel": string;
     }
     interface SqmPopupContainer {
         /**
@@ -2457,6 +2458,33 @@ export namespace Components {
          */
         "textAlign": "left" | "center" | "right";
     }
+    interface SqmUserIdentifier {
+        /**
+          * @uiName Position Alignment
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
+         */
+        "alignment": "left" | "center" | "right";
+        /**
+          * @uiName Background Color
+          * @uiWidget color
+          * @format color
+         */
+        "backgroundColor": string;
+        /**
+          * @uiWidget ImageUpload
+          * @format url
+          * @required 
+          * @uiName Image Link
+         */
+        "imageUrl": string;
+        /**
+          * (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
+          * @uiName Minimum Height
+         */
+        "minHeight"?: string;
+    }
     interface SqmUserName {
         /**
           * @undocumented 
@@ -3003,6 +3031,12 @@ declare global {
         prototype: HTMLSqmTitledSectionElement;
         new (): HTMLSqmTitledSectionElement;
     };
+    interface HTMLSqmUserIdentifierElement extends Components.SqmUserIdentifier, HTMLStencilElement {
+    }
+    var HTMLSqmUserIdentifierElement: {
+        prototype: HTMLSqmUserIdentifierElement;
+        new (): HTMLSqmUserIdentifierElement;
+    };
     interface HTMLSqmUserNameElement extends Components.SqmUserName, HTMLStencilElement {
     }
     var HTMLSqmUserNameElement: {
@@ -3098,6 +3132,7 @@ declare global {
         "sqm-timeline": HTMLSqmTimelineElement;
         "sqm-timeline-entry": HTMLSqmTimelineEntryElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
+        "sqm-user-identifier": HTMLSqmUserIdentifierElement;
         "sqm-user-name": HTMLSqmUserNameElement;
     }
 }
@@ -3763,30 +3798,31 @@ declare namespace LocalJSX {
          */
         "emailLabel"?: string;
         /**
-          * Redirect participants to this page after they successfully Registration.
+          * @uiName First Name Field Label
+         */
+        "firstNameLabel"?: string;
+        /**
+          * @uiName Include name fields
+         */
+        "hidePoweredBy"?: boolean;
+        /**
+          * @uiName Include name fields
+         */
+        "includeName"?: boolean;
+        /**
+          * @uiName Last Name Field Label
+         */
+        "lastNameLabel"?: string;
+        /**
+          * Redirect participants to this page after they successfully register.
           * @uiName Registration Redirect
           * @uiWidget pageSelect
          */
         "nextPage"?: string;
         /**
-          * @uiName Heading Label
-          * @uiWidget textArea
-         */
-        "pageLabel"?: string;
-        /**
           * @uiName Register Button Text
          */
         "registerLabel"?: string;
-        /**
-          * Redirect participants to this page to start registration.
-          * @uiName Register Button Redirect
-          * @uiWidget pageSelect
-         */
-        "registerPath"?: string;
-        /**
-          * @uiName Submit Button Text
-         */
-        "submitLabel"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -5492,6 +5528,33 @@ declare namespace LocalJSX {
          */
         "textAlign"?: "left" | "center" | "right";
     }
+    interface SqmUserIdentifier {
+        /**
+          * @uiName Position Alignment
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
+         */
+        "alignment"?: "left" | "center" | "right";
+        /**
+          * @uiName Background Color
+          * @uiWidget color
+          * @format color
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiWidget ImageUpload
+          * @format url
+          * @required 
+          * @uiName Image Link
+         */
+        "imageUrl"?: string;
+        /**
+          * (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
+          * @uiName Minimum Height
+         */
+        "minHeight"?: string;
+    }
     interface SqmUserName {
         /**
           * @undocumented 
@@ -5597,6 +5660,7 @@ declare namespace LocalJSX {
         "sqm-timeline": SqmTimeline;
         "sqm-timeline-entry": SqmTimelineEntry;
         "sqm-titled-section": SqmTitledSection;
+        "sqm-user-identifier": SqmUserIdentifier;
         "sqm-user-name": SqmUserName;
     }
 }
@@ -5692,6 +5756,7 @@ declare module "@stencil/core" {
             "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;
             "sqm-timeline-entry": LocalJSX.SqmTimelineEntry & JSXBase.HTMLAttributes<HTMLSqmTimelineEntryElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
+            "sqm-user-identifier": LocalJSX.SqmUserIdentifier & JSXBase.HTMLAttributes<HTMLSqmUserIdentifierElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
         }
     }
