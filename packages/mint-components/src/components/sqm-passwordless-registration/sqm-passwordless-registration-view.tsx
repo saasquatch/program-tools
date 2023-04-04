@@ -1,11 +1,11 @@
-import { h } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import {
   AuthButtonsContainer,
   AuthColumn,
   AuthWrapper,
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
-import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
+import { PoweredByImg } from "../sqm-portal-footer/PoweredByImg";
 
 export interface PasswordlessRegistrationViewProps {
   states: {
@@ -17,9 +17,13 @@ export interface PasswordlessRegistrationViewProps {
   };
   content: {
     emailLabel?: string;
-    nameLabel?: string;
-    submitLabel?: string;
-    pageLabel?: string;
+    firstNameLabel?: string;
+    lastNameLabel?: string;
+    registerLabel?: string;
+    includeName?: boolean;
+    hidePoweredBy?: boolean;
+    topSlot?: VNode;
+    bottomSlot?: VNode;
   };
 }
 
@@ -59,21 +63,36 @@ export function PasswordlessRegistrationView(
         {vanillaStyle}
         {styleString}
       </style>
-      <TextSpanView type="h3">{content.pageLabel}</TextSpanView>
+      {content.topSlot}
+
       <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
         {props.states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
         )}
-        <sl-input
-          exportparts="label: input-label"
-          type="name"
-          name="/name"
-          label={content.nameLabel || "Name"}
-          disabled={states.loading}
-          required
-        ></sl-input>
+
+        {content.includeName && (
+          <sl-input
+            exportparts="label: input-label"
+            type="name"
+            name="/name"
+            label={content.firstNameLabel || "First Name"}
+            disabled={states.loading}
+            required={}
+          ></sl-input>
+        )}
+        {content.includeName && (
+          <sl-input
+            exportparts="label: input-label"
+            type="name"
+            name="/name"
+            label={content.lastNameLabel || "Last Name"}
+            disabled={states.loading}
+            required
+          ></sl-input>
+        )}
+
         <sl-input
           exportparts="label: input-label"
           type="email"
@@ -82,6 +101,7 @@ export function PasswordlessRegistrationView(
           disabled={states.loading}
           required
         ></sl-input>
+
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
             submit
@@ -89,10 +109,16 @@ export function PasswordlessRegistrationView(
             exportparts="base: primarybutton-base"
             type="primary"
           >
-            {content.submitLabel || "Registration"}
+            {content.registerLabel || "Registration"}
           </sl-button>
         </div>
       </sl-form>
+      {content.bottomSlot}
+      {!content.hidePoweredBy && (
+        <a target="_blank" href={"www.saasquatch.com"}>
+          <PoweredByImg />
+        </a>
+      )}
     </div>
   );
 }

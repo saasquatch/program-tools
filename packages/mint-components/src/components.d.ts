@@ -165,7 +165,7 @@ export namespace Components {
           * Set copy button as icon
           * @uiName Copy icon
          */
-        "isCopyIcon"?: boolean;
+        "isCopyIcon": boolean;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -176,7 +176,7 @@ export namespace Components {
           * Change the text alignment
           * @uiName Align text
          */
-        "textAlign"?: "left" | "center";
+        "textAlign": "left" | "center";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -703,30 +703,31 @@ export namespace Components {
          */
         "emailLabel": string;
         /**
-          * Redirect participants to this page after they successfully Registration.
+          * @uiName First Name Field Label
+         */
+        "firstNameLabel": string;
+        /**
+          * @uiName Include name fields
+         */
+        "hidePoweredBy": boolean;
+        /**
+          * @uiName Include name fields
+         */
+        "includeName": boolean;
+        /**
+          * @uiName Last Name Field Label
+         */
+        "lastNameLabel": string;
+        /**
+          * Redirect participants to this page after they successfully register.
           * @uiName Registration Redirect
           * @uiWidget pageSelect
          */
         "nextPage": string;
         /**
-          * @uiName Heading Label
-          * @uiWidget textArea
-         */
-        "pageLabel": string;
-        /**
           * @uiName Register Button Text
          */
         "registerLabel": string;
-        /**
-          * Redirect participants to this page to start registration.
-          * @uiName Register Button Redirect
-          * @uiWidget pageSelect
-         */
-        "registerPath": string;
-        /**
-          * @uiName Submit Button Text
-         */
-        "submitLabel": string;
     }
     interface SqmPopupContainer {
         /**
@@ -3763,30 +3764,31 @@ declare namespace LocalJSX {
          */
         "emailLabel"?: string;
         /**
-          * Redirect participants to this page after they successfully Registration.
+          * @uiName First Name Field Label
+         */
+        "firstNameLabel"?: string;
+        /**
+          * @uiName Include name fields
+         */
+        "hidePoweredBy"?: boolean;
+        /**
+          * @uiName Include name fields
+         */
+        "includeName"?: boolean;
+        /**
+          * @uiName Last Name Field Label
+         */
+        "lastNameLabel"?: string;
+        /**
+          * Redirect participants to this page after they successfully register.
           * @uiName Registration Redirect
           * @uiWidget pageSelect
          */
         "nextPage"?: string;
         /**
-          * @uiName Heading Label
-          * @uiWidget textArea
-         */
-        "pageLabel"?: string;
-        /**
           * @uiName Register Button Text
          */
         "registerLabel"?: string;
-        /**
-          * Redirect participants to this page to start registration.
-          * @uiName Register Button Redirect
-          * @uiWidget pageSelect
-         */
-        "registerPath"?: string;
-        /**
-          * @uiName Submit Button Text
-         */
-        "submitLabel"?: string;
     }
     interface SqmPopupContainer {
         /**
