@@ -18,7 +18,7 @@ export class Image {
    * @required
    * @uiName User Identification Text
    */
-  @Prop() userIdentificationText: string;
+  @Prop() userIdentificationText: string = "{email}";
   /**
    * @uiWidget ImageUpload
    * @required
@@ -30,9 +30,11 @@ export class Image {
    * @required
    * @uiName Switch User Text
    */
-  @Prop() switchUserText: string;
+  @Prop() switchUserText: string = "not you?";
 
   render() {
     return <UserIdentifierView {...getProps(this)} />;
   }
 }
+
+//TODO: Write a hook to resolve ICU strings
