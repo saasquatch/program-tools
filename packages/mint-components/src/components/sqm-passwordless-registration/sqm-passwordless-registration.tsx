@@ -10,7 +10,7 @@ import {
 
 /**
  * @uiName Microsite Registration
- * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+ * @slots [{"name":"top-slot","title":"Widget Content"},{"name":"bottom-slot","title":"Widget Content"}]
  */
 @Component({
   tag: "sqm-passwordless-registration",
