@@ -79,7 +79,7 @@ export function PasswordlessRegistrationView(
             name="/name"
             label={content.firstNameLabel || "First Name"}
             disabled={states.loading}
-            required={}
+            required
           ></sl-input>
         )}
         {content.includeName && (
