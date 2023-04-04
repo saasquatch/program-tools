@@ -13,8 +13,8 @@
   </head>
   <body>
     <sqm-stencilbook></sqm-stencilbook>
-    <!-- <div>
-      <style>
+    <div>
+      <!-- <style>
         sqm-image::part(sqm-image) {
           border-radius: 24px;
           -webkit-box-shadow: 2px 4px 7px 4px rgba(0, 0, 0, 0.4);
@@ -74,7 +74,7 @@
         }
 
         sqm-portal-container.widget-container::part(sqm-base) {
-          padding: 40px;
+          padding: 50px;
           background: linear-gradient(
             309deg,
             rgba(23, 44, 112, 1) 29%,
@@ -97,8 +97,34 @@
 
         sqm-rewards-table::part(sqm-rewards-cell-value),
         sqm-rewards-table::part(sqm-rewards-cell-progress-bar),
-        sqm-rewards-table::part(sqm-rewards-cell-subtext) {
-          color: white;
+        sqm-rewards-table::part(sqm-rewards-cell-subtext),
+        sqm-referral-table::part(sqm-reward-cell-value) {
+          color: white !important;
+        }
+
+        sqm-referral-table::part(defaultbutton-base) {
+          color: white !important;
+          border: none;
+          border-radius: 40px;
+          background: rgba(0, 158, 227, 1);
+          padding: 0px 12px;
+        }
+
+        sqm-referral-table::part(sqm-text-span) {
+          color: white !important;
+        }
+
+        sqm-hero-image::part(sqm-hero-image-container) {
+          border-radius: 40px;
+          max-width: 800px;
+          height: 20px;
+        }
+
+        sqm-hero-image::part(sqm-hero-image-overlay-container),
+        sqm-hero-image::part(sqm-hero-image-text-area),
+        sqm-hero-image::part(sqm-hero-image) {
+          border-radius: 40px;
+          border: 1px solid red;
         }
 
         @media screen and (max-width: 799px) {
@@ -108,21 +134,8 @@
             border: none;
           }
         }
-      </style>
-      <!-- <sqm-hero-image
-              image-url="https://10xtravel.com/wp-content/uploads/2023/02/paypal-rewards-2.png"
-              header="MyCompany Rewards"
-              description="Refer friends and complete tasks to earn rewards"
-              layout="columns"
-              image-pos="right"
-              background-color="#F9F9F9"
-              image-mobile-pos="top"
-              image-percentage="50"
-              padding-image="none"
-              padding-text="xxxx-large"
-            >
-            </sqm-hero-image> -->
-      <sqm-brand brand-color="#169bd7" brand-font="Nunito Sans">
+      </style> -->
+      <!-- <sqm-brand brand-color="#169bd7" brand-font="Nunito Sans">
         <sqm-portal-container
           class="widget-container"
           direction="column"
@@ -256,6 +269,7 @@
                       icon-slot="prefix"
                       size="medium"
                       type="default"
+                      pill="true"
                     >
                       Share via email
                     </sqm-share-button>
@@ -264,6 +278,7 @@
                       icon-slot="prefix"
                       size="medium"
                       type="default"
+                      pill="true"
                     >
                       Share on LinkedIn
                     </sqm-share-button>
@@ -272,6 +287,7 @@
                       icon-slot="prefix"
                       size="medium"
                       type="default"
+                      pill="true"
                     >
                       Tweet about us
                     </sqm-share-button>
@@ -480,7 +496,7 @@
             ></sqm-portal-footer>
           </sqm-portal-container>
         </sqm-portal-container>
-      </sqm-brand>
-    </div> -->
+      </sqm-brand> -->
+    </div>
   </body>
 </html>

@@ -2457,6 +2457,33 @@ export namespace Components {
          */
         "textAlign": "left" | "center" | "right";
     }
+    interface SqmUserIdentifier {
+        /**
+          * @uiName Position Alignment
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
+         */
+        "alignment": "left" | "center" | "right";
+        /**
+          * @uiName Background Color
+          * @uiWidget color
+          * @format color
+         */
+        "backgroundColor": string;
+        /**
+          * @uiWidget ImageUpload
+          * @format url
+          * @required 
+          * @uiName Image Link
+         */
+        "imageUrl": string;
+        /**
+          * (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
+          * @uiName Minimum Height
+         */
+        "minHeight"?: string;
+    }
     interface SqmUserName {
         /**
           * @undocumented 
@@ -3003,6 +3030,12 @@ declare global {
         prototype: HTMLSqmTitledSectionElement;
         new (): HTMLSqmTitledSectionElement;
     };
+    interface HTMLSqmUserIdentifierElement extends Components.SqmUserIdentifier, HTMLStencilElement {
+    }
+    var HTMLSqmUserIdentifierElement: {
+        prototype: HTMLSqmUserIdentifierElement;
+        new (): HTMLSqmUserIdentifierElement;
+    };
     interface HTMLSqmUserNameElement extends Components.SqmUserName, HTMLStencilElement {
     }
     var HTMLSqmUserNameElement: {
@@ -3098,6 +3131,7 @@ declare global {
         "sqm-timeline": HTMLSqmTimelineElement;
         "sqm-timeline-entry": HTMLSqmTimelineEntryElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
+        "sqm-user-identifier": HTMLSqmUserIdentifierElement;
         "sqm-user-name": HTMLSqmUserNameElement;
     }
 }
@@ -5492,6 +5526,33 @@ declare namespace LocalJSX {
          */
         "textAlign"?: "left" | "center" | "right";
     }
+    interface SqmUserIdentifier {
+        /**
+          * @uiName Position Alignment
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
+         */
+        "alignment"?: "left" | "center" | "right";
+        /**
+          * @uiName Background Color
+          * @uiWidget color
+          * @format color
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiWidget ImageUpload
+          * @format url
+          * @required 
+          * @uiName Image Link
+         */
+        "imageUrl"?: string;
+        /**
+          * (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
+          * @uiName Minimum Height
+         */
+        "minHeight"?: string;
+    }
     interface SqmUserName {
         /**
           * @undocumented 
@@ -5597,6 +5658,7 @@ declare namespace LocalJSX {
         "sqm-timeline": SqmTimeline;
         "sqm-timeline-entry": SqmTimelineEntry;
         "sqm-titled-section": SqmTitledSection;
+        "sqm-user-identifier": SqmUserIdentifier;
         "sqm-user-name": SqmUserName;
     }
 }
@@ -5692,6 +5754,7 @@ declare module "@stencil/core" {
             "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;
             "sqm-timeline-entry": LocalJSX.SqmTimelineEntry & JSXBase.HTMLAttributes<HTMLSqmTimelineEntryElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
+            "sqm-user-identifier": LocalJSX.SqmUserIdentifier & JSXBase.HTMLAttributes<HTMLSqmUserIdentifierElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
         }
     }

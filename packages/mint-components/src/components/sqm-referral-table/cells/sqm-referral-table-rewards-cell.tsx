@@ -148,7 +148,7 @@ export class ReferralTableRewardsCell {
           <style type="text/css">{styleString}</style>
           <div slot="summary" class={sheet.classes.DetailsContainer}>
             <TextSpanView type="p">
-              <span class={sheet.classes.BoldText}>{reward.prettyValue}</span>
+              <span part="sqm-reward-cell-bold-text" class={sheet.classes.BoldText}>{reward.prettyValue}</span>
             </TextSpanView>
             {/* If state is pending and reward has expiry date, display the relative time inside badge. Otherwise only display the badge text */}
             {/* Pending for W9 Tax reasons cases here */}
@@ -208,7 +208,7 @@ export class ReferralTableRewardsCell {
               <div>
                 <TextSpanView type="p">
                   {this.rewardReceivedText}{" "}
-                  <span class={sheet.classes.BoldText}>
+                  <span class={sheet.classes.BoldText} part="sqm-reward-cell-bold-text">
                     {DateTime.fromMillis(reward.dateGiven)
                       .setLocale(luxonLocale(this.locale))
                       .toLocaleString(DateTime.DATE_MED)}
@@ -220,7 +220,7 @@ export class ReferralTableRewardsCell {
               <div>
                 <TextSpanView type="p">
                   {statusText}{" "}
-                  <span class={sheet.classes.BoldText}>
+                  <span class={sheet.classes.BoldText} part="sqm-reward-cell-bold-text">
                     {DateTime.fromMillis(reward.dateExpires)
                       .setLocale(luxonLocale(this.locale))
                       .toLocaleString(DateTime.DATE_MED)}
@@ -232,7 +232,7 @@ export class ReferralTableRewardsCell {
               <div>
                 <TextSpanView type="p">
                   {statusText}{" "}
-                  <span class={sheet.classes.BoldText}>
+                  <span class={sheet.classes.BoldText} part="sqm-reward-cell-bold-text">
                     {DateTime.fromMillis(reward.dateCancelled)
                       .setLocale(luxonLocale(this.locale))
                       .toLocaleString(DateTime.DATE_MED)}
@@ -244,7 +244,7 @@ export class ReferralTableRewardsCell {
               <div>
                 <TextSpanView type="p">
                   {statusText}{" "}
-                  <span class={sheet.classes.BoldText}>
+                  <span class={sheet.classes.BoldText} part="sqm-reward-cell-bold-text">
                     {DateTime.fromMillis(reward.dateScheduledFor)
                       .setLocale(luxonLocale(this.locale))
                       .toLocaleString(DateTime.DATE_MED)}
@@ -257,7 +257,7 @@ export class ReferralTableRewardsCell {
               <div>
                 <TextSpanView type="p">
                   {statusText}{" "}
-                  <span class={sheet.classes.BoldText}>
+                  <span class={sheet.classes.BoldText} part="sqm-reward-cell-bold-text">
                     {DateTime.fromMillis(reward.dateExpires)
                       .setLocale(luxonLocale(this.locale))
                       .toLocaleString(DateTime.DATE_MED)}
@@ -268,7 +268,7 @@ export class ReferralTableRewardsCell {
             {reward.fuelTankCode && (
               <div>
                 {this.fuelTankText}{" "}
-                <span class={sheet.classes.BoldText}>
+                <span class={sheet.classes.BoldText} part="sqm-reward-cell-bold-text">
                   {reward.fuelTankCode}
                 </span>
               </div>

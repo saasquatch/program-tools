@@ -49,17 +49,22 @@ export function GenericTableView(props: GenericTableViewProps) {
   // Due to mobile media queries being dependant on props, not feasiable to move out of render function
   const style = {
     Table: {
+      borderCollapse: "collapse",
       tableLayout: "fixed",
       width: "100%",
+      "& tbody tr": {
+        borderBottom: "1px solid var(--sl-color-neutral-200)",
+        "&:first-child": {
+          borderTop: "1px solid var(--sl-color-neutral-200)"
+        }
+      },
       "& th": {
         paddingBottom: "var(--sl-spacing-small)",
         textAlign: "left",
         fontWeight: "var(--sl-font-weight-semibold)",
         overflowWrap: "anywhere",
       },
-      "& tr": {},
       "& td": {
-        borderTop: "1px solid var(--sl-color-neutral-200)",
         padding: "var(--sl-spacing-small)",
         paddingLeft: "0",
         overflow: "hidden",
