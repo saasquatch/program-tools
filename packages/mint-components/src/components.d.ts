@@ -703,30 +703,31 @@ export namespace Components {
          */
         "emailLabel": string;
         /**
-          * Redirect participants to this page after they successfully Registration.
+          * @uiName First Name Field Label
+         */
+        "firstNameLabel": string;
+        /**
+          * @uiName Include name fields
+         */
+        "hidePoweredBy": boolean;
+        /**
+          * @uiName Include name fields
+         */
+        "includeName": boolean;
+        /**
+          * @uiName Last Name Field Label
+         */
+        "lastNameLabel": string;
+        /**
+          * Redirect participants to this page after they successfully register.
           * @uiName Registration Redirect
           * @uiWidget pageSelect
          */
         "nextPage": string;
         /**
-          * @uiName Heading Label
-          * @uiWidget textArea
-         */
-        "pageLabel": string;
-        /**
           * @uiName Register Button Text
          */
         "registerLabel": string;
-        /**
-          * Redirect participants to this page to start registration.
-          * @uiName Register Button Redirect
-          * @uiWidget pageSelect
-         */
-        "registerPath": string;
-        /**
-          * @uiName Submit Button Text
-         */
-        "submitLabel": string;
     }
     interface SqmPopupContainer {
         /**
@@ -3790,30 +3791,31 @@ declare namespace LocalJSX {
          */
         "emailLabel"?: string;
         /**
-          * Redirect participants to this page after they successfully Registration.
+          * @uiName First Name Field Label
+         */
+        "firstNameLabel"?: string;
+        /**
+          * @uiName Include name fields
+         */
+        "hidePoweredBy"?: boolean;
+        /**
+          * @uiName Include name fields
+         */
+        "includeName"?: boolean;
+        /**
+          * @uiName Last Name Field Label
+         */
+        "lastNameLabel"?: string;
+        /**
+          * Redirect participants to this page after they successfully register.
           * @uiName Registration Redirect
           * @uiWidget pageSelect
          */
         "nextPage"?: string;
         /**
-          * @uiName Heading Label
-          * @uiWidget textArea
-         */
-        "pageLabel"?: string;
-        /**
           * @uiName Register Button Text
          */
         "registerLabel"?: string;
-        /**
-          * Redirect participants to this page to start registration.
-          * @uiName Register Button Redirect
-          * @uiWidget pageSelect
-         */
-        "registerPath"?: string;
-        /**
-          * @uiName Submit Button Text
-         */
-        "submitLabel"?: string;
     }
     interface SqmPopupContainer {
         /**

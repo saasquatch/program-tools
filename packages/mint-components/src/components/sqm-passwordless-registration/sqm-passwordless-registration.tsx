@@ -10,6 +10,7 @@ import {
 
 /**
  * @uiName Microsite Registration
+ * @slots [{"name":"top-slot","title":"Widget Content"},{"name":"bottom-slot","title":"Widget Content"}]
  */
 @Component({
   tag: "sqm-passwordless-registration",
@@ -20,7 +21,7 @@ export class PasswordlessRegistration {
   ignored = true;
 
   /**
-   * Redirect participants to this page after they successfully Registration.
+   * Redirect participants to this page after they successfully register.
    *
    * @uiName Registration Redirect
    * @uiWidget pageSelect
@@ -35,29 +36,32 @@ export class PasswordlessRegistration {
   emailLabel: string = "Email";
 
   /**
-   * @uiName Submit Button Text
+   * @uiName First Name Field Label
    */
   @Prop()
-  submitLabel: string = "Sign In";
+  firstNameLabel: string = "First Name";
+
+  /**
+   * @uiName Last Name Field Label
+   */
+  @Prop()
+  lastNameLabel: string = "Last Name";
 
   /**
    * @uiName Register Button Text
    */
   @Prop()
-  registerLabel: string = "Register";
+  registerLabel: string = "Start Referring";
 
   /**
-   * Redirect participants to this page to start registration.
-   * @uiName Register Button Redirect
-   * @uiWidget pageSelect
+   * @uiName Include name fields
    */
-  @Prop() registerPath: string = "/register";
+  @Prop() includeName: boolean = false;
 
   /**
-   * @uiName Heading Label
-   * @uiWidget textArea
+   * @uiName Include name fields
    */
-  @Prop() pageLabel: string = "Sign in to your account";
+  @Prop() hidePoweredBy: boolean = false;
 
   /**
    * @undocumented
@@ -76,8 +80,15 @@ export class PasswordlessRegistration {
     // isDemo() ? useRegistrationDemo(this) : usePasswordlessRegistration(this);
     const content = {
       emailLabel: this.emailLabel,
-      submitLabel: this.submitLabel,
-      pageLabel: this.pageLabel,
+      registerLabel: this.registerLabel,
+      firstNameLabel: this.firstNameLabel,
+      lastNameLabel: this.lastNameLabel,
+      includeName: this.includeName,
+      hidePoweredBy: this.hidePoweredBy,
+
+      // slots
+      topSlot: <slot name="top-slot" />,
+      bottomSlot: <slot name="bottom-slot" />,
     };
     return (
       <PasswordlessRegistrationView

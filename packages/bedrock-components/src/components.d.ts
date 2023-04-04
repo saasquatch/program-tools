@@ -8,6 +8,8 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { FunctionalComponent } from "@stencil/core";
 import { DemoData } from "./global/demo";
 export namespace Components {
+    interface SqbAuthTemplateSwitch {
+    }
     interface SqbConditionalSection {
         /**
           * Show child content when a user meets specified criteria. <a href="http://docs.jsonata.org/overview.html" target="_blank">JSONata expression</a> is used to define this logic. A participant’s segments, country code, custom fields and email can be used.
@@ -64,6 +66,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLSqbAuthTemplateSwitchElement extends Components.SqbAuthTemplateSwitch, HTMLStencilElement {
+    }
+    var HTMLSqbAuthTemplateSwitchElement: {
+        prototype: HTMLSqbAuthTemplateSwitchElement;
+        new (): HTMLSqbAuthTemplateSwitchElement;
+    };
     interface HTMLSqbConditionalSectionElement extends Components.SqbConditionalSection, HTMLStencilElement {
     }
     var HTMLSqbConditionalSectionElement: {
@@ -107,6 +115,7 @@ declare global {
         new (): HTMLSqbWidgetElement;
     };
     interface HTMLElementTagNameMap {
+        "sqb-auth-template-switch": HTMLSqbAuthTemplateSwitchElement;
         "sqb-conditional-section": HTMLSqbConditionalSectionElement;
         "sqb-hook-story-container": HTMLSqbHookStoryContainerElement;
         "sqb-program-section": HTMLSqbProgramSectionElement;
@@ -117,6 +126,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface SqbAuthTemplateSwitch {
+    }
     interface SqbConditionalSection {
         /**
           * Show child content when a user meets specified criteria. <a href="http://docs.jsonata.org/overview.html" target="_blank">JSONata expression</a> is used to define this logic. A participant’s segments, country code, custom fields and email can be used.
@@ -172,6 +183,7 @@ declare namespace LocalJSX {
         "widgetType"?: string;
     }
     interface IntrinsicElements {
+        "sqb-auth-template-switch": SqbAuthTemplateSwitch;
         "sqb-conditional-section": SqbConditionalSection;
         "sqb-hook-story-container": SqbHookStoryContainer;
         "sqb-program-section": SqbProgramSection;
@@ -185,6 +197,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "sqb-auth-template-switch": LocalJSX.SqbAuthTemplateSwitch & JSXBase.HTMLAttributes<HTMLSqbAuthTemplateSwitchElement>;
             "sqb-conditional-section": LocalJSX.SqbConditionalSection & JSXBase.HTMLAttributes<HTMLSqbConditionalSectionElement>;
             "sqb-hook-story-container": LocalJSX.SqbHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqbHookStoryContainerElement>;
             "sqb-program-section": LocalJSX.SqbProgramSection & JSXBase.HTMLAttributes<HTMLSqbProgramSectionElement>;

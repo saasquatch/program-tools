@@ -16,7 +16,42 @@ const defaultProps: PasswordlessRegistrationViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
-  content: { pageLabel: "Share 50$ with your friend now!" },
+  content: {},
+  // content: { pageLabel: "Share 50$ with your friend now!" },
 };
 
 export const Default = () => <PasswordlessRegistrationView {...defaultProps} />;
+
+export const HasFirstNameLastName = () => (
+  <PasswordlessRegistrationView
+    {...defaultProps}
+    {...{
+      content: {
+        includeName: true,
+      },
+    }}
+  />
+);
+
+export const WithSlots = () => (
+  <PasswordlessRegistrationView
+    {...defaultProps}
+    {...{
+      content: {
+        topSlot: <div>Hello this is the top slot</div>,
+        bottomSlot: <div>Hello this is the bottom slot</div>,
+      },
+    }}
+  />
+);
+
+export const HidePoweredBy = () => (
+  <PasswordlessRegistrationView
+    {...defaultProps}
+    {...{
+      content: {
+        hidePoweredBy: true,
+      },
+    }}
+  />
+);
