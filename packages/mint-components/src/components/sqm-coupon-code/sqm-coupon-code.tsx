@@ -62,6 +62,26 @@ export class CouponCode {
   isCopyIcon: boolean = true;
 
   /**
+   * Set copy button label
+   *
+   * @uiName Copy button label
+   */
+  @Prop({
+    attribute: "copy-button-label",
+  })
+  copyButtonLabel: string = "Copy Coupon";
+
+  /**
+   * Set the copy button outside the field
+   *
+   * @uiName Copy button outside
+   */
+  @Prop({
+    attribute: "is-button-outside",
+  })
+  buttonOutside: boolean = true;
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -90,6 +110,8 @@ function useDemoCouponCode(props: CouponCode): CopyTextViewProps {
       tooltiptext: props.tooltiptext,
       isCopyIcon: props.isCopyIcon,
       textAlign: props.textAlign,
+      buttonOutside: props.buttonOutside,
+      copyButtonLabel: props.copyButtonLabel,
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility

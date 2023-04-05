@@ -1,4 +1,5 @@
 import { h } from "@stencil/core";
+import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
 
 export default {
   title: "Components/Coupon Code",
@@ -6,6 +7,14 @@ export default {
     // scenario,
   },
 };
+
+const defaultProps: CopyTextViewProps = {
+  tooltiptext: "Copied to Clipboard",
+  copyString: "test",
+  open: false,
+  copyButtonLabel: "Copy Coupon",
+};
+
 export const CouponCode = () => {
   return <sqm-coupon-code tooltiptext="Copied to Clipboard"></sqm-coupon-code>;
 };
@@ -18,6 +27,16 @@ export const TextAlignCenter = () => {
 export const CopyButton = () => {
   return <sqm-coupon-code isCopyIcon={false}></sqm-coupon-code>;
 };
+export const CopyButtonInside = () => {
+  return (
+    <CopyTextView
+      {...defaultProps}
+      buttonOutside={false}
+      isCopyIcon={false}
+    ></CopyTextView>
+  );
+};
+
 export const CustomTooltipDuration = () => {
   return (
     <sqm-coupon-code

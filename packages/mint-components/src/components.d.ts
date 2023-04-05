@@ -158,6 +158,16 @@ export namespace Components {
     }
     interface SqmCouponCode {
         /**
+          * Set the copy button outside the field
+          * @uiName Copy button outside
+         */
+        "buttonOutside": boolean;
+        /**
+          * Set copy button label
+          * @uiName Copy button label
+         */
+        "copyButtonLabel": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -719,7 +729,7 @@ export namespace Components {
          */
         "firstNameLabel": string;
         /**
-          * @uiName Include name fields
+          * @uiName Hide Powered By SaaSquatch
          */
         "hidePoweredBy": boolean;
         /**
@@ -2173,6 +2183,16 @@ export namespace Components {
     }
     interface SqmShareCode {
         /**
+          * Set the copy button outside the field
+          * @uiName Copy button outside
+         */
+        "buttonOutside": boolean;
+        /**
+          * Set copy button label
+          * @uiName Copy button label
+         */
+        "copyButtonLabel": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -2205,6 +2225,16 @@ export namespace Components {
         "tooltiptext": string;
     }
     interface SqmShareLink {
+        /**
+          * Set the copy button outside the field
+          * @uiName Copy button outside
+         */
+        "buttonOutside": boolean;
+        /**
+          * Set copy button label
+          * @uiName Copy button label
+         */
+        "copyButtonLabel": string;
         /**
           * @undocumented 
           * @uiType object
@@ -3305,6 +3335,16 @@ declare namespace LocalJSX {
     }
     interface SqmCouponCode {
         /**
+          * Set the copy button outside the field
+          * @uiName Copy button outside
+         */
+        "buttonOutside"?: boolean;
+        /**
+          * Set copy button label
+          * @uiName Copy button label
+         */
+        "copyButtonLabel"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -3866,7 +3906,7 @@ declare namespace LocalJSX {
          */
         "firstNameLabel"?: string;
         /**
-          * @uiName Include name fields
+          * @uiName Hide Powered By SaaSquatch
          */
         "hidePoweredBy"?: boolean;
         /**
@@ -5296,6 +5336,16 @@ declare namespace LocalJSX {
     }
     interface SqmShareCode {
         /**
+          * Set the copy button outside the field
+          * @uiName Copy button outside
+         */
+        "buttonOutside"?: boolean;
+        /**
+          * Set copy button label
+          * @uiName Copy button label
+         */
+        "copyButtonLabel"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -5328,6 +5378,16 @@ declare namespace LocalJSX {
         "tooltiptext"?: string;
     }
     interface SqmShareLink {
+        /**
+          * Set the copy button outside the field
+          * @uiName Copy button outside
+         */
+        "buttonOutside"?: boolean;
+        /**
+          * Set copy button label
+          * @uiName Copy button label
+         */
+        "copyButtonLabel"?: string;
         /**
           * @undocumented 
           * @uiType object
