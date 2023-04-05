@@ -73,6 +73,7 @@ import * as ShareCode from "../sqm-share-code/ShareCode.stories";
 import * as PasswordlessRegistration from "../sqm-passwordless-registration/PasswordlessRegistration.stories";
 import * as CouponCode from "../sqm-coupon-code/CouponCode.stories";
 import * as UserIdentifier from "../sqm-user-identifier/UserIdentifier.stories";
+import * as LinkButton from "../sqm-link-button/LinkButton.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -152,6 +153,7 @@ const stories = [
   PasswordlessRegistration,
   CouponCode,
   UserIdentifier,
+  LinkButton,
 ];
 
 /**

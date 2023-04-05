@@ -21,6 +21,8 @@ import emailVerifiedTemplate from "../templates/EmailVerified.html";
 import emailVerificationTemplate from "../templates/EmailVerification.html";
 import passwordlessReferrerPersonalized from "../templates/PasswordlessReferrerPersonalized.html";
 import passwordlessReferrerRegistration from "../templates/PasswordlessReferrerRegistration.html";
+import passwordlessReferredPersonalized from "../templates/PasswordlessReferredPersonalized.html";
+import passwordlessReferredRegistration from "../templates/PasswordlessReferredRegistration.html";
 
 import marked from "marked";
 
@@ -307,5 +309,15 @@ export const PasswordlessReferrerPersonalized = createHookStory(() => {
 
 export const PasswordlessReferrerRegistration = createHookStory(() => {
   const { states, callbacks } = useTemplate(passwordlessReferrerRegistration);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const PasswordlessReferredPersonalized = createHookStory(() => {
+  const { states, callbacks } = useTemplate(passwordlessReferredPersonalized);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const PasswordlessReferredRegistration = createHookStory(() => {
+  const { states, callbacks } = useTemplate(passwordlessReferredRegistration);
   return <TemplateView states={states} callbacks={callbacks} />;
 });
