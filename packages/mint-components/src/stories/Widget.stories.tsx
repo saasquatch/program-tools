@@ -4,10 +4,15 @@ import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
 import referralWidget from "../templates/ReferralWidget.html";
 import monoWidget from "../templates/MonoWidget.html";
 import loyaltyWidget from "../templates/LoyaltyWidget.html";
+import passwordlessReferrerPersonalized from "../templates/PasswordlessReferrerPersonalized.html";
+import passwordlessReferrerRegistration from "../templates/PasswordlessReferrerRegistration.html";
+import passwordlessReferredPersonalized from "../templates/PasswordlessReferredPersonalized.html";
+import passwordlessReferredRegistration from "../templates/PasswordlessReferredRegistration.html";
 
 import marked from "marked";
 
 import { navigation } from "@saasquatch/component-boilerplate";
+import { TemplateView } from "./PortalTemplates.stories";
 
 export default {
   title: "Templates / Widgets",
@@ -102,4 +107,24 @@ export const Loyalty = createHookStory(() => {
       template={loyaltyWidget}
     />
   );
+});
+
+export const PasswordlessReferrerPersonalized = createHookStory(() => {
+  const { states, callbacks } = useTemplate(passwordlessReferrerPersonalized);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const PasswordlessReferrerRegistration = createHookStory(() => {
+  const { states, callbacks } = useTemplate(passwordlessReferrerRegistration);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const PasswordlessReferredPersonalized = createHookStory(() => {
+  const { states, callbacks } = useTemplate(passwordlessReferredPersonalized);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const PasswordlessReferredRegistration = createHookStory(() => {
+  const { states, callbacks } = useTemplate(passwordlessReferredRegistration);
+  return <TemplateView states={states} callbacks={callbacks} />;
 });

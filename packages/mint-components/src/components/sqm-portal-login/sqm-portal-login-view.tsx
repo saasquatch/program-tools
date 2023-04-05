@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import {
   AuthButtonsContainer,
   AuthColumn,
-  AuthWrapper
+  AuthWrapper,
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
@@ -11,8 +11,8 @@ export interface PortalLoginViewProps {
   states: {
     error: string;
     loading: boolean;
-    forgotPasswordPath: string,
-    registerPath: string,
+    forgotPasswordPath: string;
+    registerPath: string;
   };
   callbacks: {
     submit: (event: any) => Promise<void>;
@@ -56,7 +56,7 @@ const styleString = sheet.toString();
 export function PortalLoginView(props: PortalLoginViewProps) {
   const { states, callbacks, content } = props;
   return (
-    <div class={sheet.classes.Wrapper}>
+    <div class={sheet.classes.Wrapper} part="sqm-portal-login-container">
       <style type="text/css">
         {vanillaStyle}
         {styleString}

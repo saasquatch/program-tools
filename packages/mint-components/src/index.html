@@ -36,51 +36,51 @@
           f.parentNode.insertBefore(e, f);
       }, this);
     </script>
-    
-      
-      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
-      <script>
-        // 1. When squatch.js is ready, run the following function.
-        squatch.ready(function () {
-          // 2. Configure squatch.js for the tenant you are using.
-          squatch.init({
-            // Your tenant alias can be found at https://staging.referralsaasquatch.com/portal/p/5bdcd24ee4b04d8faa9c5f9a/t/test/general
-            tenantAlias: 'test_acocayt4aov9z', 
-        domain:'https://staging.referralsaasquatch.com'
-          });
-    
-          // 3. Load your HubSpot form
-          //  To fill in the region, portalId and formId use the following steps
-          //      3a. Navigate to the form editor in HubSpot
-          //      3b. Click the Embed button in the top right
-          //      3c. Copy and paste the region, portalId and formId into this code
-          hbspt.forms.create({
-            region: "na1",
-            portalId: "23987976",
-            formId: "1851f97a-f37e-4c0b-aa94-7548a17069a2",
-    
-            // 4. Add a function to run when the form is loaded
-            onReady: ($form) => {
-    
-              // 5. Make the request to retrieve referral information from the dropped cookie
-              //  Cookies are dropped after a user clicks on a sharelink
-              //  This cookie includes important referral information such as the referrer's referral code
-              //  To read more on our referral cookies see https://docs.saasquatch.com/developer/squatchjs/cookies/
-              squatch
+
+    <script
+      charset="utf-8"
+      type="text/javascript"
+      src="//js.hsforms.net/forms/embed/v2.js"
+    ></script>
+    <!-- <script>
+      // 1. When squatch.js is ready, run the following function.
+      squatch.ready(function () {
+        // 2. Configure squatch.js for the tenant you are using.
+        squatch.init({
+          // Your tenant alias can be found at https://staging.referralsaasquatch.com/portal/p/5bdcd24ee4b04d8faa9c5f9a/t/test/general
+          tenantAlias: "test_acocayt4aov9z",
+          domain: "https://staging.referralsaasquatch.com",
+        });
+
+        // 3. Load your HubSpot form
+        //  To fill in the region, portalId and formId use the following steps
+        //      3a. Navigate to the form editor in HubSpot
+        //      3b. Click the Embed button in the top right
+        //      3c. Copy and paste the region, portalId and formId into this code
+        hbspt.forms.create({
+          region: "na1",
+          portalId: "23987976",
+          formId: "1851f97a-f37e-4c0b-aa94-7548a17069a2",
+
+          // 4. Add a function to run when the form is loaded
+          onReady: ($form) => {
+            // 5. Make the request to retrieve referral information from the dropped cookie
+            //  Cookies are dropped after a user clicks on a sharelink
+            //  This cookie includes important referral information such as the referrer's referral code
+            //  To read more on our referral cookies see https://docs.saasquatch.com/developer/squatchjs/cookies/
+            squatch
               .api()
               .squatchReferralCookie()
               .then(function (response) {
-    
                 // 6. Retrieve the form field you want to autofill the referral cookie into
                 const referralCookieField = Array.from($form).find(
                   (input) => input.name === "ssqt_referralcookies"
                 );
-    
+
                 // 7. Set the value of the form field to be the participants referral cokkie
                 referralCookieField.value = response.encodedCookie;
               });
-            },
-          });
+          },
         });
       </script> -->
     <sqm-stencilbook></sqm-stencilbook>
@@ -91,7 +91,7 @@
           -webkit-box-shadow: 2px 4px 7px 4px rgba(0, 0, 0, 0.4);
           box-shadow: 2px 4px 7px 4px rgba(0, 0, 0, 0.1);
         }
-        sqm-referral-card::part(sqm-base) {
+        sqm-referral-card::part(sqm-referral-card-container) {
           /* NOTE: THIS SHOULD BE ADDED BY DEFAULT */
           box-sizing: border-box;
           /* background: #E50914; */
