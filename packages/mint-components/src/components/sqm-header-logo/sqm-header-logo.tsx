@@ -38,7 +38,7 @@ export class HeroImage {
   render() {
     return (
       <Host>
-        <a href={this.nextPage}>
+        <a href={this.nextPage} part="sqm-header-logo-link">
           <img style={{ height: `${this?.height}px` }} src={this?.imageUrl} />
         </a>
       </Host>

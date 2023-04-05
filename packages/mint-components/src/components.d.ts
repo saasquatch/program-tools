@@ -2509,30 +2509,20 @@ export namespace Components {
     }
     interface SqmUserIdentifier {
         /**
-          * @uiName Position Alignment
-          * @uiType string
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "alignment": "left" | "center" | "right";
-        /**
-          * @uiName Background Color
-          * @uiWidget color
-          * @format color
-         */
-        "backgroundColor": string;
-        /**
-          * @uiWidget ImageUpload
-          * @format url
           * @required 
-          * @uiName Image Link
+          * @uiName Switch User Link
          */
-        "imageUrl": string;
+        "switchUserLink": string;
         /**
-          * (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
-          * @uiName Minimum Height
+          * @required 
+          * @uiName Switch User Text
          */
-        "minHeight"?: string;
+        "switchUserText": string;
+        /**
+          * @required 
+          * @uiName User Identification Text
+         */
+        "userIdentificationText": string;
     }
     interface SqmUserName {
         /**
@@ -5641,30 +5631,20 @@ declare namespace LocalJSX {
     }
     interface SqmUserIdentifier {
         /**
-          * @uiName Position Alignment
-          * @uiType string
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "alignment"?: "left" | "center" | "right";
-        /**
-          * @uiName Background Color
-          * @uiWidget color
-          * @format color
-         */
-        "backgroundColor"?: string;
-        /**
-          * @uiWidget ImageUpload
-          * @format url
           * @required 
-          * @uiName Image Link
+          * @uiName Switch User Link
          */
-        "imageUrl"?: string;
+        "switchUserLink"?: string;
         /**
-          * (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
-          * @uiName Minimum Height
+          * @required 
+          * @uiName Switch User Text
          */
-        "minHeight"?: string;
+        "switchUserText"?: string;
+        /**
+          * @required 
+          * @uiName User Identification Text
+         */
+        "userIdentificationText"?: string;
     }
     interface SqmUserName {
         /**
