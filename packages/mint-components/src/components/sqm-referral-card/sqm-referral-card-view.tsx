@@ -11,7 +11,7 @@ export interface ReferralCardViewProps {
 }
 const style = {
   Container: {
-    "& p": {margin: "0"},
+    "& p": { margin: "0" },
     display: "flex",
     color: "var(--sl-color-neutral-900)",
     background: "var(--sl-color-neutral-0)",
@@ -61,7 +61,7 @@ export function ReferralCardView(props: ReferralCardViewProps) {
         {styleString}
         {vanillaStyle}
       </style>
-      <div part="sqm-base" class={sheet.classes.Container}>
+      <div part="sqm-referral-card-container" class={sheet.classes.Container}>
         <div
           class="left"
           style={{

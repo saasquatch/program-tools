@@ -522,7 +522,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
   function chooseReward() {
     return [
-      <div>
+      <div part="choose-reward-container">
         <div class={sheet.classes.Title}>{states.content.text.rewardTitle}</div>
         {states.loading || states.queryError ? (
           loading()
@@ -677,7 +677,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         : input && !states.amount;
     return (
       <div>
-        <div class={sheet.classes.ChooseAmount}>
+        <div class={sheet.classes.ChooseAmount} part="choose-amount-container">
           <div class="wrapper">
             <img
               class="image"
@@ -731,7 +731,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     const amount = selectedStep?.prettyDestinationValue;
     return (
       <div>
-        <div class={sheet.classes.Confirmation}>
+        <div class={sheet.classes.Confirmation} part="confirmation-container">
           <div class={sheet.classes.Title}>
             {states.content.text.redeemTitle}
           </div>
@@ -787,7 +787,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
   function success() {
     return (
-      <div class={sheet.classes.Success}>
+      <div class={sheet.classes.Success} part="success-container">
         <Gift />
         <Confetti />
         <div class="title">{states.content.text?.rewardRedeemedText}</div>
@@ -864,7 +864,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
   function loading() {
     return (
-      <div class={sheet.classes.Grid}>
+      <div class={sheet.classes.Grid} part="loading-container">
         {[...Array(states.content.text.skeletonCardNum)].map(() => {
           return (
             <div>
@@ -939,7 +939,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   if (states.noExchangeOptions) return states.content.text.empty;
 
   return (
-    <div class={sheet.classes.Container}>
+    <div
+      class={sheet.classes.Container}
+      part="sqm-reward-exchange-list-container"
+    >
       <style type="text/css">{styleString}</style>
       <div>
         {stageMap()}

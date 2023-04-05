@@ -10,8 +10,7 @@ export interface PortalSectionProps {
   textAlign?: "left" | "center" | "right";
 }
 
-export function PortalSectionView(props:   PortalSectionProps) {
-
+export function PortalSectionView(props: PortalSectionProps) {
   // Due to sole usage of props, not feasiable to move out of render function
   const style = {
     LabelContainer: {
@@ -31,9 +30,14 @@ export function PortalSectionView(props:   PortalSectionProps) {
   const styleString = sheet.toString();
 
   return (
-    <div class={sheet.classes.SectionContainer}>
+    <div
+      class={sheet.classes.SectionContainer}
+      part="sqm-portal-section-container"
+    >
       <style type="text/css">{styleString}</style>
-      <div class={sheet.classes.LabelContainer}>{props.label}</div>
+      <div class={sheet.classes.LabelContainer} part="sqm-portal-section-label">
+        {props.label}
+      </div>
       {props.content}
     </div>
   );

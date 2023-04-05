@@ -81,7 +81,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
   }
 
   return (
-    <div class={sheet.classes.Wrapper}>
+    <div class={sheet.classes.Wrapper} part="sqm-portal-register-container">
       <style type="text/css">
         {vanillaStyle}
         {styleString}
