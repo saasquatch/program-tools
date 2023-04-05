@@ -4,9 +4,10 @@ import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import {
-  PasswordlessRegistrationView,
-  PasswordlessRegistrationViewProps,
-} from "./sqm-passwordless-registration-view";
+  EmailRegistrationView,
+  EmailRegistrationViewProps,
+} from "../views/email-registration-view";
+
 import { usePasswordlessRegistration } from "./usePasswordlessRegistration";
 
 /**
@@ -68,7 +69,7 @@ export class PasswordlessRegistration {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<PasswordlessRegistrationViewProps>;
+  @Prop() demoData?: DemoData<EmailRegistrationViewProps>;
 
   constructor() {
     withHooks(this);
@@ -94,17 +95,17 @@ export class PasswordlessRegistration {
       bottomSlot: <slot name="bottom-slot" />,
     };
     return (
-      <PasswordlessRegistrationView
+      <EmailRegistrationView
         states={states}
         callbacks={callbacks}
         content={content}
-      ></PasswordlessRegistrationView>
+      ></EmailRegistrationView>
     );
   }
 }
 function useRegistrationDemo(
   props: PasswordlessRegistration
-): Partial<PasswordlessRegistrationViewProps> {
+): Partial<EmailRegistrationViewProps> {
   return deepmerge(
     {
       states: {

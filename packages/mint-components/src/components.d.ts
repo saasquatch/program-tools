@@ -21,7 +21,7 @@ import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-field
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
-import { PasswordlessRegistrationViewProps } from "./components/sqm-passwordless-registration/sqm-passwordless-registration-view";
+import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
 import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
@@ -35,7 +35,6 @@ import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email
 import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
 import { GenericTableViewProps } from "./tables/GenericTableView";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
-import { RefereeWelcomeViewProps } from "./components/sqm-referred-registration/sqm-referred-registration-view";
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
@@ -719,7 +718,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<PasswordlessRegistrationViewProps>;
+        "demoData"?: DemoData<EmailRegistrationViewProps>;
         /**
           * @uiName Email Field Label
          */
@@ -1642,7 +1641,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<RefereeWelcomeViewProps>;
+        "demoData"?: DemoData<EmailRegistrationViewProps>;
         /**
           * @uiName Email Field Label
          */
@@ -3896,7 +3895,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<PasswordlessRegistrationViewProps>;
+        "demoData"?: DemoData<EmailRegistrationViewProps>;
         /**
           * @uiName Email Field Label
          */
@@ -4805,7 +4804,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<RefereeWelcomeViewProps>;
+        "demoData"?: DemoData<EmailRegistrationViewProps>;
         /**
           * @uiName Email Field Label
          */

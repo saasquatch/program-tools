@@ -1,14 +1,17 @@
 import { h } from "@stencil/core";
 import {
-  RefereeWelcomeView,
-  RefereeWelcomeViewProps,
-} from "./sqm-referred-registration-view";
+  EmailRegistrationView,
+  EmailRegistrationViewProps,
+} from "./email-registration-view";
+// import scenario from "./ShareCode.feature";
 
 export default {
-  title: "Components/Referred Registration",
+  title: "Components/Email Registration",
+  parameters: {
+    // scenario,
+  },
 };
-
-const defaultProps: RefereeWelcomeViewProps = {
+const defaultProps: EmailRegistrationViewProps = {
   states: {
     error: "",
     loading: false,
@@ -20,10 +23,10 @@ const defaultProps: RefereeWelcomeViewProps = {
   // content: { pageLabel: "Share 50$ with your friend now!" },
 };
 
-export const Default = () => <RefereeWelcomeView {...defaultProps} />;
+export const Default = () => <EmailRegistrationView {...defaultProps} />;
 
 export const HasFirstNameLastName = () => (
-  <RefereeWelcomeView
+  <EmailRegistrationView
     {...defaultProps}
     {...{
       content: {
@@ -34,7 +37,7 @@ export const HasFirstNameLastName = () => (
 );
 
 export const WithSlots = () => (
-  <RefereeWelcomeView
+  <EmailRegistrationView
     {...defaultProps}
     {...{
       content: {
@@ -46,7 +49,7 @@ export const WithSlots = () => (
 );
 
 export const HidePoweredBy = () => (
-  <RefereeWelcomeView
+  <EmailRegistrationView
     {...defaultProps}
     {...{
       content: {
