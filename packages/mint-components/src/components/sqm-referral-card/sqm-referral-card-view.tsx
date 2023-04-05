@@ -68,7 +68,7 @@ const vanillaStyle = `
 
 export function ReferralCardView(props: ReferralCardViewProps) {
   return (
-    <div part="sqm-base" class={sheet.classes.Container}>
+    <div part="sqm-referral-card-container" class={sheet.classes.Container}>
       <style type="text/css">
         {styleString}
         {vanillaStyle}

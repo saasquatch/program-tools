@@ -43,7 +43,10 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
 
   if (states.verified) {
     return (
-      <div class={sheet.classes.Wrapper}>
+      <div
+        class={sheet.classes.Wrapper}
+        part="sqm-portal-verify-email-container"
+      >
         <style type="text/css">
           {vanillaStyle}
           {styleString}
