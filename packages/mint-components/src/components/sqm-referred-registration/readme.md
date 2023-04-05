@@ -7,25 +7,19 @@
 
 ## Properties
 
-| Property              | Attribute               | Description                                                       | Type                                                                                                                                                                                                                                                            | Default                     |
-| --------------------- | ----------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| `demoData`            | --                      |                                                                   | `{ states?: { error: string; loading: boolean; forgotPasswordPath: string; registerPath: string; }; content?: { forgotPasswordButton?: any; secondaryButton?: any; emailLabel?: string; passwordLabel?: string; submitLabel?: string; pageLabel?: string; }; }` | `undefined`                 |
-| `emailLabel`          | `email-label`           |                                                                   | `string`                                                                                                                                                                                                                                                        | `"Email"`                   |
-| `forgotPasswordLabel` | `forgot-password-label` |                                                                   | `string`                                                                                                                                                                                                                                                        | `"Forgot Password?"`        |
-| `forgotPasswordPath`  | `forgot-password-path`  | Redirect participants to this page to reset their password        | `string`                                                                                                                                                                                                                                                        | `"/forgotPassword"`         |
-| `nextPage`            | `next-page`             | Redirect participants to this page after they successfully login. | `string`                                                                                                                                                                                                                                                        | `"/"`                       |
-| `pageLabel`           | `page-label`            |                                                                   | `string`                                                                                                                                                                                                                                                        | `"Sign in to your account"` |
-| `passwordLabel`       | `password-label`        |                                                                   | `string`                                                                                                                                                                                                                                                        | `"Password"`                |
-| `registerLabel`       | `register-label`        |                                                                   | `string`                                                                                                                                                                                                                                                        | `"Register"`                |
-| `registerPath`        | `register-path`         | Redirect participants to this page to start registration.         | `string`                                                                                                                                                                                                                                                        | `"/register"`               |
-| `submitLabel`         | `submit-label`          |                                                                   | `string`                                                                                                                                                                                                                                                        | `"Sign In"`                 |
+| Property         | Attribute          | Description                                                          | Type                                                                                                                                                                                                                                                   | Default             |
+| ---------------- | ------------------ | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------- |
+| `demoData`       | --                 |                                                                      | `{ states?: { error: string; loading: boolean; }; content?: { emailLabel?: string; firstNameLabel?: string; lastNameLabel?: string; registerLabel?: string; includeName?: boolean; hidePoweredBy?: boolean; topSlot?: VNode; bottomSlot?: VNode; }; }` | `undefined`         |
+| `emailLabel`     | `email-label`      |                                                                      | `string`                                                                                                                                                                                                                                               | `"Email"`           |
+| `firstNameLabel` | `first-name-label` |                                                                      | `string`                                                                                                                                                                                                                                               | `"First Name"`      |
+| `hidePoweredBy`  | `hide-powered-by`  |                                                                      | `boolean`                                                                                                                                                                                                                                              | `false`             |
+| `includeName`    | `include-name`     |                                                                      | `boolean`                                                                                                                                                                                                                                              | `false`             |
+| `lastNameLabel`  | `last-name-label`  |                                                                      | `string`                                                                                                                                                                                                                                               | `"Last Name"`       |
+| `nextPage`       | `next-page`        | Redirect participants to this page after they successfully register. | `string`                                                                                                                                                                                                                                               | `"/"`               |
+| `registerLabel`  | `register-label`   |                                                                      | `string`                                                                                                                                                                                                                                               | `"Start Referring"` |
 
 
 ## Dependencies
-
-### Used by
-
- - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Depends on
 
@@ -34,9 +28,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  sqm-portal-login --> sqm-form-message
-  sqm-stencilbook --> sqm-portal-login
-  style sqm-portal-login fill:#f9f,stroke:#333,stroke-width:4px
+  sqm-referred-registration --> sqm-form-message
+  style sqm-referred-registration fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

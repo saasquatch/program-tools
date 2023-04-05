@@ -28,6 +28,7 @@
  - [sqm-portal-registration-form](../sqm-portal-registration-form)
  - [sqm-portal-reset-password](../sqm-portal-reset-password)
  - [sqm-portal-verify-email](../sqm-portal-verify-email)
+ - [sqm-referred-registration](../sqm-referred-registration)
  - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Graph
@@ -44,6 +45,7 @@ graph TD;
   sqm-portal-registration-form --> sqm-form-message
   sqm-portal-reset-password --> sqm-form-message
   sqm-portal-verify-email --> sqm-form-message
+  sqm-referred-registration --> sqm-form-message
   sqm-stencilbook --> sqm-form-message
   style sqm-form-message fill:#f9f,stroke:#333,stroke-width:4px
 ```
