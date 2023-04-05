@@ -1,4 +1,4 @@
-import { useMultipleSelection, useSelect, useCombobox } from "downshift";
+import { useMultipleSelection, useSelect } from "downshift";
 import React from "react";
 import { TagView } from "../Tag";
 import { SelectView } from "./Select2";

@@ -14,7 +14,6 @@ export const useComboboxDemo = ({
   const functional = useCombobox({
     items: inputItems,
     onInputValueChange: ({ inputValue = "" }) => {
-      console.log({ inputItems });
       setInputItems(() =>
         items.filter((item: any) => {
           return itemToString(item)

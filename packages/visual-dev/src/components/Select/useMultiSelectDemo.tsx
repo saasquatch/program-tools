@@ -3,7 +3,7 @@ import React, { useMemo, useState } from "react";
 import { TagView } from "../Tag";
 
 type useMultiSelectDemoProps = {
-  selectItems: string[];
+  selectItems: any;
   onChange?: (value: any) => void;
   itemMap?: { [key: string]: string };
   emptySlot?: React.ReactNode;
@@ -43,7 +43,7 @@ export const useMultiSelectDemo = ({
   const filteredItems = props.useCombobox
     ? useMemo(
         () =>
-          selectItems?.filter((item) => {
+          selectItems?.filter((item: any) => {
             const isSelected = selectedItems.includes(item);
 
             const isQueried =
