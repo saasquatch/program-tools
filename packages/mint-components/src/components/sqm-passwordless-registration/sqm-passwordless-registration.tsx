@@ -60,7 +60,7 @@ export class PasswordlessRegistration {
   @Prop() includeName: boolean = false;
 
   /**
-   * @uiName Include name fields
+   * @uiName Hide Powered By SaaSquatch
    */
   @Prop() hidePoweredBy: boolean = false;
 
