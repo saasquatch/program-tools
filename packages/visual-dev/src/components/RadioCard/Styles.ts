@@ -69,7 +69,6 @@ export const RightSegmentStyle = css`
   width: auto;
   align-self: stretch;
   float: right;
-  border-left: 2px solid var(--sq-surface-input-disabled);
 `;
 
 export const LeftSegmentStyle = css`
@@ -79,4 +78,20 @@ export const LeftSegmentStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-right: 1px solid var(--sq-border);
+`;
+
+export const TitleContainerStyle = css`
+  display: flex;
+  gap: var(--sq-spacing-xx-small);
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: var(--sq-spacing-xx-small);
+`;
+
+export const TitleStyle = css`
+  font-weight: bold;
+  margin: 0px;
+  font-size: var(--sq-font-size-regular);
+  color: inherit;
 `;

@@ -46,7 +46,7 @@ export interface TabsProps {
   /**
    * Callback triggered when the tab is clicked, passed the tab id
    */
-  onTabClick: (id: string) => void;
+  onTabClick: (tab: any) => void;
   /**
    * Custom styling applied to the tabs container
    */

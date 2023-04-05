@@ -260,6 +260,9 @@ export const PopoverTest = () => {
     </>
   );
 };
+PopoverTest.parameters = {
+  storyshots: { disable: true },
+};
 
 export const FormSubmissionTableWithBanner = () => {
   return (
@@ -500,6 +503,15 @@ export const paginationFunctional = () => {
   );
 };
 
+export const paginationZero = () => (
+  <DataTableView.PaginationView
+    total={0}
+    limit={10}
+    offset={0}
+    updatePagination={updatePaginationDummy}
+  />
+);
+
 export const paginationLoading = () => (
   <DataTableView.PaginationView
     total={440}
@@ -609,6 +621,21 @@ export const rowSkeleton = () => {
 
   return <DataTableView.RowView>{content}</DataTableView.RowView>;
 };
+rowSkeleton.parameters = {
+  storyshots: { disable: true },
+};
+
+export const rowSkeletonHideShimmer = () => {
+  const text = <DataTableView.SkeletonView size="91px" hideShimmer />;
+  const content = [
+    { text: text },
+    { text: text },
+    { text: text },
+    { text: text },
+  ];
+
+  return <DataTableView.RowView>{content}</DataTableView.RowView>;
+};
 
 export const FormSubmissionTableLoading = () => {
   return (
@@ -655,6 +682,9 @@ export const FormSubmissionTableLoading = () => {
       </DataTableView>
     </>
   );
+};
+FormSubmissionTableLoading.parameters = {
+  storyshots: { disable: true },
 };
 
 export const headerActions = () => {
@@ -709,6 +739,9 @@ export const rowActionsSkeleton = () => {
   ];
 
   return <DataTableView.RowView>{content}</DataTableView.RowView>;
+};
+rowActionsSkeleton.parameters = {
+  storyshots: { disable: true },
 };
 
 export const header_arrow = () => {

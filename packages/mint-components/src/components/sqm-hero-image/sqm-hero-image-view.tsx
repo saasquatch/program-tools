@@ -43,9 +43,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       display: "block",
       width: "100%",
       height: "100%",
-      maxWidth: "max-content",
       objectFit: "cover",
-      margin: "auto",
     },
     Background: {
       backgroundImage: `url(${props.imageUrl})`,
@@ -80,6 +78,9 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
         width: props.imagePercentage ? props.imagePercentage + "%" : "50%",
         padding: "var(--sl-spacing-" + props.paddingImage + ")",
         boxSizing: "border-box",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         "@media (max-width: 599px)": {
           width: "100%",
         },

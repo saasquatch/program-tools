@@ -163,6 +163,56 @@ export const Frame = () => {
   );
 };
 
+export const FrameWithItemsDisabled = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const items2 = ["Orca", "San Juan"];
+  const functional = useSelect({ items: [...items, ...items2] });
+  const props = { limitWidth: false, items, functional, limitHeight: true };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <SelectView.ContainerView {...props}>
+        <SelectView.HandleView {...props} />
+        <SelectView.FrameView {...props}>
+          <div>Gulf Islands</div>
+          {items.map((item, index) => {
+            const disabled = index === 2 ? true : false;
+            return (
+              <SelectView.ItemView
+                {...{
+                  functional,
+                  index,
+                  item,
+                  disabled,
+                }}
+              />
+            );
+          })}
+          <div>San Juan Islands</div>
+          {items2.map((item, index) => {
+            const global_index = items.length + index;
+            return (
+              <SelectView.ItemView
+                {...{
+                  functional,
+                  index: global_index,
+                  item,
+                }}
+              />
+            );
+          })}
+        </SelectView.FrameView>
+      </SelectView.ContainerView>
+    </div>
+  );
+};
+
 export const FrameCustomCSS = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const items2 = ["Orca", "San Juan"];

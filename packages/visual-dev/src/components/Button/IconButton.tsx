@@ -82,7 +82,7 @@ export const IconButtonView = React.forwardRef<
         size={Styles.icon_only_size[size]}
         style={{ display: "block" }}
         customCSS={icon_css}
-        cursor={"pointer"}
+        cursor={"inherit"}
       />
     </StyledButton>
   );

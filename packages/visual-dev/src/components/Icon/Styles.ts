@@ -7,3 +7,7 @@ export const base = css`
   justify-content: center;
   align-items: center;
 `;
+
+export const tooltipIconStyles = css`
+  position: relative;
+`
