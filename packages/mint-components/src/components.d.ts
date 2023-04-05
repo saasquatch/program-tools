@@ -35,6 +35,7 @@ import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email
 import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
 import { GenericTableViewProps } from "./tables/GenericTableView";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
+import { RefereeWelcomeViewProps } from "./components/sqm-referred-registration/sqm-referred-registration-view";
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
@@ -1626,6 +1627,43 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
+    interface SqmReferredRegistration {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<RefereeWelcomeViewProps>;
+        /**
+          * @uiName Email Field Label
+         */
+        "emailLabel": string;
+        /**
+          * @uiName First Name Field Label
+         */
+        "firstNameLabel": string;
+        /**
+          * @uiName Include name fields
+         */
+        "hidePoweredBy": boolean;
+        /**
+          * @uiName Include name fields
+         */
+        "includeName": boolean;
+        /**
+          * @uiName Last Name Field Label
+         */
+        "lastNameLabel": string;
+        /**
+          * Redirect participants to this page after they successfully register.
+          * @uiName Registration Redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage": string;
+        /**
+          * @uiName Register Button Text
+         */
+        "registerLabel": string;
+    }
     interface SqmRewardExchangeList {
         /**
           * @uiName Back Button Text
@@ -2858,6 +2896,12 @@ declare global {
         prototype: HTMLSqmReferralTableUserColumnElement;
         new (): HTMLSqmReferralTableUserColumnElement;
     };
+    interface HTMLSqmReferredRegistrationElement extends Components.SqmReferredRegistration, HTMLStencilElement {
+    }
+    var HTMLSqmReferredRegistrationElement: {
+        prototype: HTMLSqmReferredRegistrationElement;
+        new (): HTMLSqmReferredRegistrationElement;
+    };
     interface HTMLSqmRewardExchangeListElement extends Components.SqmRewardExchangeList, HTMLStencilElement {
     }
     var HTMLSqmRewardExchangeListElement: {
@@ -3110,6 +3154,7 @@ declare global {
         "sqm-referral-table-status-column": HTMLSqmReferralTableStatusColumnElement;
         "sqm-referral-table-user-cell": HTMLSqmReferralTableUserCellElement;
         "sqm-referral-table-user-column": HTMLSqmReferralTableUserColumnElement;
+        "sqm-referred-registration": HTMLSqmReferredRegistrationElement;
         "sqm-reward-exchange-list": HTMLSqmRewardExchangeListElement;
         "sqm-rewards-table": HTMLSqmRewardsTableElement;
         "sqm-rewards-table-customer-note-cell": HTMLSqmRewardsTableCustomerNoteCellElement;
@@ -4715,6 +4760,43 @@ declare namespace LocalJSX {
          */
         "deletedUser"?: string;
     }
+    interface SqmReferredRegistration {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<RefereeWelcomeViewProps>;
+        /**
+          * @uiName Email Field Label
+         */
+        "emailLabel"?: string;
+        /**
+          * @uiName First Name Field Label
+         */
+        "firstNameLabel"?: string;
+        /**
+          * @uiName Include name fields
+         */
+        "hidePoweredBy"?: boolean;
+        /**
+          * @uiName Include name fields
+         */
+        "includeName"?: boolean;
+        /**
+          * @uiName Last Name Field Label
+         */
+        "lastNameLabel"?: string;
+        /**
+          * Redirect participants to this page after they successfully register.
+          * @uiName Registration Redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage"?: string;
+        /**
+          * @uiName Register Button Text
+         */
+        "registerLabel"?: string;
+    }
     interface SqmRewardExchangeList {
         /**
           * @uiName Back Button Text
@@ -5640,6 +5722,7 @@ declare namespace LocalJSX {
         "sqm-referral-table-status-column": SqmReferralTableStatusColumn;
         "sqm-referral-table-user-cell": SqmReferralTableUserCell;
         "sqm-referral-table-user-column": SqmReferralTableUserColumn;
+        "sqm-referred-registration": SqmReferredRegistration;
         "sqm-reward-exchange-list": SqmRewardExchangeList;
         "sqm-rewards-table": SqmRewardsTable;
         "sqm-rewards-table-customer-note-cell": SqmRewardsTableCustomerNoteCell;
@@ -5737,6 +5820,7 @@ declare module "@stencil/core" {
             "sqm-referral-table-status-column": LocalJSX.SqmReferralTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusColumnElement>;
             "sqm-referral-table-user-cell": LocalJSX.SqmReferralTableUserCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserCellElement>;
             "sqm-referral-table-user-column": LocalJSX.SqmReferralTableUserColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserColumnElement>;
+            "sqm-referred-registration": LocalJSX.SqmReferredRegistration & JSXBase.HTMLAttributes<HTMLSqmReferredRegistrationElement>;
             "sqm-reward-exchange-list": LocalJSX.SqmRewardExchangeList & JSXBase.HTMLAttributes<HTMLSqmRewardExchangeListElement>;
             "sqm-rewards-table": LocalJSX.SqmRewardsTable & JSXBase.HTMLAttributes<HTMLSqmRewardsTableElement>;
             "sqm-rewards-table-customer-note-cell": LocalJSX.SqmRewardsTableCustomerNoteCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableCustomerNoteCellElement>;

@@ -136,7 +136,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
   }`;
 
   return (
-    <div class={sheet.classes.Container}>
+    <div class={sheet.classes.Container} part="sqm-hero-image-container">
       <style type="text/css">
         {vanillaStyle}
         {styleString}
@@ -150,7 +150,10 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
   function OverlayView() {
     return (
       <div class={sheet.classes.Background}>
-        <div class={sheet.classes.Overlay}>
+        <div
+          class={sheet.classes.Overlay}
+          part="sqm-hero-image-overlay-container"
+        >
           {props.header && (
             <div class={sheet.classes.Header}>{props.header}</div>
           )}
@@ -181,17 +184,29 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       <div>
         <div class={sheet.classes.Column}>
           <div class="image-area">
-            <img class={sheet.classes.Image} src={props.imageUrl}></img>
+            <img
+              class={sheet.classes.Image}
+              src={props.imageUrl}
+              part="sqm-hero-image"
+            ></img>
           </div>
-          <div class="text-area">
+          <div class="text-area" part="sqm-hero-image-text-area">
             {props.header && (
-              <div class={sheet.classes.Header}>{props.header}</div>
+              <div class={sheet.classes.Header} part="sqm-hero-image-header">
+                {props.header}
+              </div>
             )}
             {props.description && (
-              <div class={sheet.classes.Description}>{props.description}</div>
+              <div
+                class={sheet.classes.Description}
+                part="sqm-hero-image-description"
+              >
+                {props.description}
+              </div>
             )}
             {props.buttonText && (
               <sl-button
+                exportparts="base: sqm-hero-image-btn"
                 class={sheet.classes.Button}
                 type="primary"
                 onClick={() =>
