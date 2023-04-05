@@ -117,7 +117,7 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
       </sl-form>
       {content.bottomSlot}
       {!content.hidePoweredBy && (
-        <a target="_blank" href={"www.saasquatch.com"}>
+        <a target="_blank" href={"https://www.saasquatch.com/"}>
           <PoweredByImg />
         </a>
       )}
