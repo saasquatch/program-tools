@@ -100,7 +100,27 @@ function _getInitialValue(): UserIdentity | undefined {
     case "SquatchIOS":
     case "SquatchAndroid":
     case "SquatchJS2":
-      const { userId, accountId, token } = sdk.widgetIdent;
+      if (!sdk.widgetIdent) return undefined;
+
+      const { programId, tenantAlias, userId, accountId, token } =
+        sdk.widgetIdent;
+
+      // Look for user identity in local storage
+      const storedSquatchUser = localStorage.getItem(
+        `${USER_CONTEXT_NAME}:${tenantAlias}:${programId || "global"}`
+      );
+
+      if (storedSquatchUser) {
+        try {
+          const potentialUserIdent = JSON.parse(
+            storedSquatchUser
+          ) as UserIdentity;
+          return userIdentityFromJwt(potentialUserIdent.jwt);
+        } catch (e) {
+          return undefined;
+        }
+      }
+
       if (!userId || !accountId || !token) return undefined;
 
       return {
@@ -147,9 +167,29 @@ function _getInitialValue(): UserIdentity | undefined {
 export function setUserIdentity(identity?: UserIdentity) {
   const globalProvider = lazilyStartUserContext();
 
+  const sdk = getEnvironmentSDK();
+  const widgetIdent = sdk.type === "SquatchJS2" ? sdk.widgetIdent : undefined;
+  console.log({ sdk, widgetIdent });
+
   if (!equal(globalProvider.context, identity)) {
     debug(`Setting user context value [${JSON.stringify(identity)}]`);
     globalProvider.context = identity;
+  }
+
+  // Passwordless widgets store identity in local storage
+  if (identity && widgetIdent) {
+    localStorage.setItem(
+      `${USER_CONTEXT_NAME}:${widgetIdent.tenantAlias}:${
+        widgetIdent.programId || "global"
+      }`,
+      JSON.stringify(identity)
+    );
+  } else if (!identity && widgetIdent) {
+    localStorage.removeItem(
+      `${USER_CONTEXT_NAME}:${widgetIdent.tenantAlias}:${
+        widgetIdent.programId || "global"
+      }`
+    );
   }
 
   // Portals store identity in local storage

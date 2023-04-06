@@ -27,15 +27,6 @@ export class PasswordlessRegistration {
   ignored = true;
 
   /**
-   * Redirect participants to this page after they successfully register.
-   *
-   * @uiName Registration Redirect
-   * @uiWidget pageSelect
-   */
-  @Prop()
-  nextPage: string = "/";
-
-  /**
    * @uiName Email Field Label
    */
   @Prop()
@@ -104,8 +95,6 @@ export class PasswordlessRegistration {
 function useRegistrationDemo(
   props: PasswordlessRegistration
 ): Partial<EmailRegistrationViewProps> {
-  console.debug("sqm-passwordless-registration: Running in debug mode...");
-
   const onSubmit = () => {
     setUserIdentity({
       id: "referrer@example.com",

@@ -736,12 +736,6 @@ export namespace Components {
          */
         "lastNameLabel": string;
         /**
-          * Redirect participants to this page after they successfully register.
-          * @uiName Registration Redirect
-          * @uiWidget pageSelect
-         */
-        "nextPage": string;
-        /**
           * @uiName Register Button Text
          */
         "registerLabel": string;
@@ -1654,12 +1648,6 @@ export namespace Components {
           * @uiName Last Name Field Label
          */
         "lastNameLabel": string;
-        /**
-          * Redirect participants to this page after they successfully register.
-          * @uiName Registration Redirect
-          * @uiWidget pageSelect
-         */
-        "nextPage": string;
         /**
           * @uiName Register Button Text
          */
@@ -3905,12 +3893,6 @@ declare namespace LocalJSX {
          */
         "lastNameLabel"?: string;
         /**
-          * Redirect participants to this page after they successfully register.
-          * @uiName Registration Redirect
-          * @uiWidget pageSelect
-         */
-        "nextPage"?: string;
-        /**
           * @uiName Register Button Text
          */
         "registerLabel"?: string;
@@ -4809,12 +4791,6 @@ declare namespace LocalJSX {
           * @uiName Last Name Field Label
          */
         "lastNameLabel"?: string;
-        /**
-          * Redirect participants to this page after they successfully register.
-          * @uiName Registration Redirect
-          * @uiWidget pageSelect
-         */
-        "nextPage"?: string;
         /**
           * @uiName Register Button Text
          */
