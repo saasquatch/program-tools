@@ -1,9 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
-import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop, State } from "@stencil/core";
+import { Component, h, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
-import { getProps } from "../../utils/utils";
 import { CopyTextViewProps } from "../views/copy-text-view";
 import {
   UserIdentifierView,

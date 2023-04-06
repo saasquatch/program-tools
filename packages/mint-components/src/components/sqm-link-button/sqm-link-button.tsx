@@ -1,5 +1,4 @@
-import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop, State } from "@stencil/core";
+import { Component, h, Prop } from "@stencil/core";
 import { getProps } from "../../utils/utils";
 import { LinkButtonView } from "./sqm-link-button-view";
 

@@ -19,6 +19,7 @@ const style = {
   HostBlock: HostBlock,
   inputStyle: {
     "&::part(base)": { background: "white", opacity: "1", cursor: "pointer" },
+    "&::part(input)": { textOverflow: "ellipsis" },
   },
   containerStyle: {
     display: "flex",
