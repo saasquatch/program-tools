@@ -1,18 +1,24 @@
-import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop, State } from "@stencil/core";
-import { getProps } from "../../utils/utils";
-import { UserIdentifierView } from "./sqm-user-identifier-view";
+import { isDemo } from "@saasquatch/component-boilerplate";
+import { Component, h, Prop } from "@stencil/core";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
+import { CopyTextViewProps } from "../views/copy-text-view";
+import {
+  UserIdentifierView,
+  UserIdentifierViewProps,
+} from "./sqm-user-identifier-view";
+import { useUserIdentifier } from "./useUserIdentifer";
 
 /**
- * @uiName Image
+ * @uiName User Identifier
  * @exampleGroup Common Components
- * @example Image - <sqm-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png" alignment="center"></sqm-image>
+ * @example User Identifier - <sqm-user-identifier user-identification-text="Showing data for {email}" switch-user-link="www.example.com" switch-user-text="not you?"></sqm-user-identifier>
  */
 @Component({
   tag: "sqm-user-identifier",
   shadow: true,
 })
-export class Image {
+export class UserIdentifier {
   /**
    * @required
    * @uiName User Identification Text
@@ -28,10 +34,30 @@ export class Image {
    * @uiName Switch User Text
    */
   @Prop() switchUserText: string = "not you?";
+  /**
+   * @undocumented
+   * @uiType object
+   */
+  @Prop() demoData?: DemoData<CopyTextViewProps>;
 
   render() {
-    return <UserIdentifierView {...getProps(this)} />;
+    const props = isDemo()
+      ? useDemoUserIdentifier(this)
+      : useUserIdentifier(this);
+    return <UserIdentifierView {...props} />;
   }
 }
 
-//TODO: Write a hook to resolve ICU strings
+function useDemoUserIdentifier(props: UserIdentifier): UserIdentifierViewProps {
+  const switchUserLink = "https://example.com";
+  const userIdentificationText = "user@example.com";
+  return deepmerge(
+    {
+      switchUserLink,
+      userIdentificationText,
+      switchUserText: props.switchUserText,
+    },
+    props.demoData || {},
+    { arrayMerge: (_, a) => a }
+  );
+}

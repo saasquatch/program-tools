@@ -924,6 +924,10 @@ export namespace Components {
          */
         "hidePoweredBy": boolean;
         /**
+          * @uiName Hide the support text
+         */
+        "hideSupportText": boolean;
+        /**
           * @uiName Padding Bottom
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
@@ -2518,6 +2522,11 @@ export namespace Components {
     }
     interface SqmUserIdentifier {
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
           * @required 
           * @uiName Switch User Link
          */
@@ -4080,6 +4089,10 @@ declare namespace LocalJSX {
           * @uiName Hide Powered By SaaSquatch
          */
         "hidePoweredBy"?: boolean;
+        /**
+          * @uiName Hide the support text
+         */
+        "hideSupportText"?: boolean;
         /**
           * @uiName Padding Bottom
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
@@ -5649,6 +5662,11 @@ declare namespace LocalJSX {
         "textAlign"?: "left" | "center" | "right";
     }
     interface SqmUserIdentifier {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CopyTextViewProps>;
         /**
           * @required 
           * @uiName Switch User Link

@@ -47,3 +47,27 @@ export const WithSlots = () => (
     }}
   />
 );
+
+export const Loading = () => (
+  <EmailRegistrationView
+    {...{
+      ...defaultProps,
+      states: {
+        error: "",
+        loading: true,
+      },
+    }}
+  />
+);
+
+export const Error = () => (
+  <EmailRegistrationView
+    {...{
+      ...defaultProps,
+      states: {
+        error: "Something went wrong. Please try again.",
+        loading: false,
+      },
+    }}
+  />
+);

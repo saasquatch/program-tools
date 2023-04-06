@@ -58,3 +58,13 @@ export const FooterNoPoweredBy = () => (
     hidePoweredBy={true}
   />
 );
+export const FooterNoSupportText = () => (
+  <PortalFooterView
+    {...defaultProps}
+    termsLink="https://example.com"
+    termsText="Terms and Conditions"
+    faqLink="https://example.com"
+    faqText="FAQ"
+    hideSupportText={true}
+  />
+);
