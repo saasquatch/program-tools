@@ -1,9 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
-import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop, State } from "@stencil/core";
+import { Component, h, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
-import { getProps } from "../../utils/utils";
 import { CopyTextViewProps } from "../views/copy-text-view";
 import {
   UserIdentifierView,
@@ -12,9 +10,9 @@ import {
 import { useUserIdentifier } from "./useUserIdentifer";
 
 /**
- * @uiName Image
+ * @uiName User Identifier
  * @exampleGroup Common Components
- * @example Image - <sqm-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png" alignment="center"></sqm-image>
+ * @example User Identifier - <sqm-user-identifier user-identification-text="Showing data for {email}" switch-user-link="www.example.com" switch-user-text="not you?"></sqm-user-identifier>
  */
 @Component({
   tag: "sqm-user-identifier",

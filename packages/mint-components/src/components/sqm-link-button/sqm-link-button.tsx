@@ -1,18 +1,17 @@
-import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop, State } from "@stencil/core";
+import { Component, h, Prop } from "@stencil/core";
 import { getProps } from "../../utils/utils";
 import { LinkButtonView } from "./sqm-link-button-view";
 
 /**
- * @uiName Image
+ * @uiName Link Button
  * @exampleGroup Common Components
- * @example Image - <sqm-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png" alignment="center"></sqm-image>
+ * @example Link Button - <sqm-link-button link="www.example.com" open-in-new-tab="true">Click here</sqm-link-button>
  */
 @Component({
   tag: "sqm-link-button",
   shadow: true,
 })
-export class Image {
+export class LinkButton {
   /**
    * @required
    * @uiName User Identification Text
