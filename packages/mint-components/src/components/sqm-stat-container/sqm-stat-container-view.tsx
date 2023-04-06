@@ -58,12 +58,15 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
   const styleString = sheet.toString();
 
   return (
-    <div class={sheet.classes.StatFrame}>
-      <div class={sheet.classes.StatContainer}>
+    <div class={sheet.classes.StatFrame} part="sqm-stat-container-frame">
+      <div class={sheet.classes.StatContainer} part="sqm-stat-container">
         <style type="text/css">{styleString}</style>
         {children}
       </div>
-      <div class={sheet.classes.BorderFix}></div>
+      <div
+        class={sheet.classes.BorderFix}
+        part="sqm-stat-container-border"
+      ></div>
     </div>
   );
 }

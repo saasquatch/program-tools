@@ -1,14 +1,17 @@
 import { h } from "@stencil/core";
 import {
-  PasswordlessRegistrationView,
-  PasswordlessRegistrationViewProps,
-} from "./sqm-passwordless-registration-view";
+  EmailRegistrationView,
+  EmailRegistrationViewProps,
+} from "./email-registration-view";
+// import scenario from "./ShareCode.feature";
 
 export default {
-  title: "Components/Passwordless Registration",
+  title: "Components/Email Registration",
+  parameters: {
+    // scenario,
+  },
 };
-
-const defaultProps: PasswordlessRegistrationViewProps = {
+const defaultProps: EmailRegistrationViewProps = {
   states: {
     error: "",
     loading: false,
@@ -20,10 +23,10 @@ const defaultProps: PasswordlessRegistrationViewProps = {
   // content: { pageLabel: "Share 50$ with your friend now!" },
 };
 
-export const Default = () => <PasswordlessRegistrationView {...defaultProps} />;
+export const Default = () => <EmailRegistrationView {...defaultProps} />;
 
 export const HasFirstNameLastName = () => (
-  <PasswordlessRegistrationView
+  <EmailRegistrationView
     {...defaultProps}
     {...{
       content: {
@@ -34,23 +37,12 @@ export const HasFirstNameLastName = () => (
 );
 
 export const WithSlots = () => (
-  <PasswordlessRegistrationView
+  <EmailRegistrationView
     {...defaultProps}
     {...{
       content: {
         topSlot: <div>Hello this is the top slot</div>,
         bottomSlot: <div>Hello this is the bottom slot</div>,
-      },
-    }}
-  />
-);
-
-export const HidePoweredBy = () => (
-  <PasswordlessRegistrationView
-    {...defaultProps}
-    {...{
-      content: {
-        hidePoweredBy: true,
       },
     }}
   />

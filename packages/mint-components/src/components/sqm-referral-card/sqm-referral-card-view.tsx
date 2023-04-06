@@ -7,14 +7,27 @@ export interface ReferralCardViewProps {
   slots: {
     left: VNode;
     right: VNode;
+    header: VNode;
+    footer: VNode;
   };
 }
 const style = {
   Container: {
-    "& p": {margin: "0"},
-    display: "flex",
+    border: "1px solid var(--sl-color-neutral-300)",
+    borderRadius: "var(--sl-border-radius-large)",
     color: "var(--sl-color-neutral-900)",
     background: "var(--sl-color-neutral-0)",
+  },
+  EndContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "0 var(--sl-spacing-large)",
+  },
+  ColumnContainer: {
+    "& p": { margin: "0" },
+    display: "flex",
+
     "& .left": {
       boxSizing: "border-box",
       width: "50%",
@@ -36,8 +49,7 @@ const style = {
         // padding: "0",
       },
     },
-    border: "1px solid var(--sl-color-neutral-300)",
-    borderRadius: "var(--sl-border-radius-large)",
+
     "@media (max-width: 499px)": {
       flexDirection: "column",
       border: "none",
@@ -56,12 +68,13 @@ const vanillaStyle = `
 
 export function ReferralCardView(props: ReferralCardViewProps) {
   return (
-    <div>
+    <div part="sqm-referral-card-container" class={sheet.classes.Container}>
       <style type="text/css">
         {styleString}
         {vanillaStyle}
       </style>
-      <div part="sqm-base" class={sheet.classes.Container}>
+      <div class={sheet.classes.EndContainer}>{props.slots.header}</div>
+      <div part="sqm-columns" class={sheet.classes.ColumnContainer}>
         <div
           class="left"
           style={{
@@ -79,6 +92,7 @@ export function ReferralCardView(props: ReferralCardViewProps) {
           {props.slots.right}
         </div>
       </div>
+      <div class={sheet.classes.EndContainer}>{props.slots.footer}</div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { h } from "@stencil/core";
+import { CopyTextView } from "../views/copy-text-view";
 import scenario from "./ShareCode.feature";
 
 export default {
@@ -16,14 +17,38 @@ export const CustomTooltipText = () => {
 export const TextAlignCenter = () => {
   return <sqm-share-code textAlign="center"></sqm-share-code>;
 };
-export const CopyButton = () => {
-  return <sqm-share-code isCopyIcon={false}></sqm-share-code>;
-};
+
 export const CustomTooltipDuration = () => {
   return (
     <sqm-share-code
       tooltiplifespan={5000}
       tooltiptext="CUSTOM TOOLTIP TEXT"
     ></sqm-share-code>
+  );
+};
+
+export const CopyButton = () => {
+  return (
+    <CopyTextView
+      {...{
+        copyString: "https://noah.example.com",
+        open: false,
+        tooltiptext: "Copied!",
+        isCopyIcon: false,
+      }}
+    ></CopyTextView>
+  );
+};
+export const CopyButtonInside = () => {
+  return (
+    <CopyTextView
+      {...{
+        copyString: "https://noah.example.com",
+        open: false,
+        tooltiptext: "Copied!",
+        buttonOutside: false,
+        isCopyIcon: false,
+      }}
+    ></CopyTextView>
   );
 };

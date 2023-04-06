@@ -21,7 +21,7 @@ import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-field
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
-import { PasswordlessRegistrationViewProps } from "./components/sqm-passwordless-registration/sqm-passwordless-registration-view";
+import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
 import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
@@ -156,6 +156,16 @@ export namespace Components {
         "errorMessage": string;
     }
     interface SqmCouponCode {
+        /**
+          * Set the copy button outside the field
+          * @uiName Copy button outside
+         */
+        "buttonOutside": boolean;
+        /**
+          * Set copy button label
+          * @uiName Copy button label
+         */
+        "copyButtonLabel": string;
         /**
           * @undocumented 
           * @uiType object
@@ -708,7 +718,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<PasswordlessRegistrationViewProps>;
+        "demoData"?: DemoData<EmailRegistrationViewProps>;
         /**
           * @uiName Email Field Label
          */
@@ -717,10 +727,6 @@ export namespace Components {
           * @uiName First Name Field Label
          */
         "firstNameLabel": string;
-        /**
-          * @uiName Include name fields
-         */
-        "hidePoweredBy": boolean;
         /**
           * @uiName Include name fields
          */
@@ -1626,6 +1632,39 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
+    interface SqmReferredRegistration {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<EmailRegistrationViewProps>;
+        /**
+          * @uiName Email Field Label
+         */
+        "emailLabel": string;
+        /**
+          * @uiName First Name Field Label
+         */
+        "firstNameLabel": string;
+        /**
+          * @uiName Include name fields
+         */
+        "includeName": boolean;
+        /**
+          * @uiName Last Name Field Label
+         */
+        "lastNameLabel": string;
+        /**
+          * Redirect participants to this page after they successfully register.
+          * @uiName Registration Redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage": string;
+        /**
+          * @uiName Register Button Text
+         */
+        "registerLabel": string;
+    }
     interface SqmRewardExchangeList {
         /**
           * @uiName Back Button Text
@@ -2135,6 +2174,16 @@ export namespace Components {
     }
     interface SqmShareCode {
         /**
+          * Set the copy button outside the field
+          * @uiName Copy button outside
+         */
+        "buttonOutside": boolean;
+        /**
+          * Set copy button label
+          * @uiName Copy button label
+         */
+        "copyButtonLabel": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -2167,6 +2216,16 @@ export namespace Components {
         "tooltiptext": string;
     }
     interface SqmShareLink {
+        /**
+          * Set the copy button outside the field
+          * @uiName Copy button outside
+         */
+        "buttonOutside": boolean;
+        /**
+          * Set copy button label
+          * @uiName Copy button label
+         */
+        "copyButtonLabel": string;
         /**
           * @undocumented 
           * @uiType object
@@ -2858,6 +2917,12 @@ declare global {
         prototype: HTMLSqmReferralTableUserColumnElement;
         new (): HTMLSqmReferralTableUserColumnElement;
     };
+    interface HTMLSqmReferredRegistrationElement extends Components.SqmReferredRegistration, HTMLStencilElement {
+    }
+    var HTMLSqmReferredRegistrationElement: {
+        prototype: HTMLSqmReferredRegistrationElement;
+        new (): HTMLSqmReferredRegistrationElement;
+    };
     interface HTMLSqmRewardExchangeListElement extends Components.SqmRewardExchangeList, HTMLStencilElement {
     }
     var HTMLSqmRewardExchangeListElement: {
@@ -3110,6 +3175,7 @@ declare global {
         "sqm-referral-table-status-column": HTMLSqmReferralTableStatusColumnElement;
         "sqm-referral-table-user-cell": HTMLSqmReferralTableUserCellElement;
         "sqm-referral-table-user-column": HTMLSqmReferralTableUserColumnElement;
+        "sqm-referred-registration": HTMLSqmReferredRegistrationElement;
         "sqm-reward-exchange-list": HTMLSqmRewardExchangeListElement;
         "sqm-rewards-table": HTMLSqmRewardsTableElement;
         "sqm-rewards-table-customer-note-cell": HTMLSqmRewardsTableCustomerNoteCellElement;
@@ -3259,6 +3325,16 @@ declare namespace LocalJSX {
         "errorMessage"?: string;
     }
     interface SqmCouponCode {
+        /**
+          * Set the copy button outside the field
+          * @uiName Copy button outside
+         */
+        "buttonOutside"?: boolean;
+        /**
+          * Set copy button label
+          * @uiName Copy button label
+         */
+        "copyButtonLabel"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -3811,7 +3887,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<PasswordlessRegistrationViewProps>;
+        "demoData"?: DemoData<EmailRegistrationViewProps>;
         /**
           * @uiName Email Field Label
          */
@@ -3820,10 +3896,6 @@ declare namespace LocalJSX {
           * @uiName First Name Field Label
          */
         "firstNameLabel"?: string;
-        /**
-          * @uiName Include name fields
-         */
-        "hidePoweredBy"?: boolean;
         /**
           * @uiName Include name fields
          */
@@ -4715,6 +4787,39 @@ declare namespace LocalJSX {
          */
         "deletedUser"?: string;
     }
+    interface SqmReferredRegistration {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<EmailRegistrationViewProps>;
+        /**
+          * @uiName Email Field Label
+         */
+        "emailLabel"?: string;
+        /**
+          * @uiName First Name Field Label
+         */
+        "firstNameLabel"?: string;
+        /**
+          * @uiName Include name fields
+         */
+        "includeName"?: boolean;
+        /**
+          * @uiName Last Name Field Label
+         */
+        "lastNameLabel"?: string;
+        /**
+          * Redirect participants to this page after they successfully register.
+          * @uiName Registration Redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage"?: string;
+        /**
+          * @uiName Register Button Text
+         */
+        "registerLabel"?: string;
+    }
     interface SqmRewardExchangeList {
         /**
           * @uiName Back Button Text
@@ -5214,6 +5319,16 @@ declare namespace LocalJSX {
     }
     interface SqmShareCode {
         /**
+          * Set the copy button outside the field
+          * @uiName Copy button outside
+         */
+        "buttonOutside"?: boolean;
+        /**
+          * Set copy button label
+          * @uiName Copy button label
+         */
+        "copyButtonLabel"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -5246,6 +5361,16 @@ declare namespace LocalJSX {
         "tooltiptext"?: string;
     }
     interface SqmShareLink {
+        /**
+          * Set the copy button outside the field
+          * @uiName Copy button outside
+         */
+        "buttonOutside"?: boolean;
+        /**
+          * Set copy button label
+          * @uiName Copy button label
+         */
+        "copyButtonLabel"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -5640,6 +5765,7 @@ declare namespace LocalJSX {
         "sqm-referral-table-status-column": SqmReferralTableStatusColumn;
         "sqm-referral-table-user-cell": SqmReferralTableUserCell;
         "sqm-referral-table-user-column": SqmReferralTableUserColumn;
+        "sqm-referred-registration": SqmReferredRegistration;
         "sqm-reward-exchange-list": SqmRewardExchangeList;
         "sqm-rewards-table": SqmRewardsTable;
         "sqm-rewards-table-customer-note-cell": SqmRewardsTableCustomerNoteCell;
@@ -5737,6 +5863,7 @@ declare module "@stencil/core" {
             "sqm-referral-table-status-column": LocalJSX.SqmReferralTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusColumnElement>;
             "sqm-referral-table-user-cell": LocalJSX.SqmReferralTableUserCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserCellElement>;
             "sqm-referral-table-user-column": LocalJSX.SqmReferralTableUserColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserColumnElement>;
+            "sqm-referred-registration": LocalJSX.SqmReferredRegistration & JSXBase.HTMLAttributes<HTMLSqmReferredRegistrationElement>;
             "sqm-reward-exchange-list": LocalJSX.SqmRewardExchangeList & JSXBase.HTMLAttributes<HTMLSqmRewardExchangeListElement>;
             "sqm-rewards-table": LocalJSX.SqmRewardsTable & JSXBase.HTMLAttributes<HTMLSqmRewardsTableElement>;
             "sqm-rewards-table-customer-note-cell": LocalJSX.SqmRewardsTableCustomerNoteCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableCustomerNoteCellElement>;

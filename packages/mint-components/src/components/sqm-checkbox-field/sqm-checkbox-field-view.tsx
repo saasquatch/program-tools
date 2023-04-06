@@ -72,7 +72,7 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
   const validationErrors = states?.registrationFormState?.validationErrors;
 
   return (
-    <div class={sheet.classes.FieldContainer}>
+    <div class={sheet.classes.FieldContainer} part="sqm-checkbox-container">
       <style type="text/css">
         {vanillaStyle}
         {styleString}

@@ -39,9 +39,33 @@ export const Disabled = () => {
 export const TextAlignCenter = () => {
   return <sqm-share-link textAlign="center"></sqm-share-link>;
 };
+
 export const CopyButton = () => {
-  return <sqm-share-link isCopyIcon={false}></sqm-share-link>;
+  return (
+    <CopyTextView
+      {...{
+        copyString: "https://noah.example.com",
+        open: false,
+        tooltiptext: "Copied!",
+        isCopyIcon: false,
+      }}
+    ></CopyTextView>
+  );
 };
+export const CopyButtonInside = () => {
+  return (
+    <CopyTextView
+      {...{
+        copyString: "https://noah.example.com",
+        open: false,
+        tooltiptext: "Copied!",
+        buttonOutside: false,
+        isCopyIcon: false,
+      }}
+    ></CopyTextView>
+  );
+};
+
 export const FullStack = () => {
   return <sqm-share-link></sqm-share-link>;
 };

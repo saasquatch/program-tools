@@ -125,6 +125,26 @@ export const FlippedSlots = () => {
   );
 };
 
+export const WithHeader = () => {
+  return (
+    <sqm-referral-card>
+      <h3 slot="header">Header slot content</h3>
+      {timeline("right", 3)}
+      {sharebutton("left")}
+    </sqm-referral-card>
+  );
+};
+
+export const WithFooter = () => {
+  return (
+    <sqm-referral-card>
+      {timeline("right", 3)}
+      {sharebutton("left")}
+      <sqm-portal-footer slot="footer" />
+    </sqm-referral-card>
+  );
+};
+
 export const ReferralCardGeneric = () => {
   return (
     <sqm-referral-card vertical-alignment="center">

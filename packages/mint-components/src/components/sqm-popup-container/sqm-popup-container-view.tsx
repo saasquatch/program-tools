@@ -8,9 +8,13 @@ const PopupContainerView = (props: PopupContainerViewProps) => {
 
   return (
     <Host class="squatch-container">
-      <div style={{ padding: props.states.styles.padding }}>
+      <div
+        style={{ padding: props.states.styles.padding }}
+        part="sqm-popup-container"
+      >
         {styles.closeButton && (
           <span
+            part="sqm-popup-container-close-btn"
             class="close squatch-header-close"
             data-close-panel="#squatch-panel"
             onClick={() => callbacks.closePopup()}
