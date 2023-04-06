@@ -1,12 +1,17 @@
-import { isDemo, navigation } from "@saasquatch/component-boilerplate";
+import {
+  isDemo,
+  navigation,
+  setUserIdentity,
+} from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import {
-  PasswordlessRegistrationView,
-  PasswordlessRegistrationViewProps,
-} from "./sqm-passwordless-registration-view";
+  EmailRegistrationView,
+  EmailRegistrationViewProps,
+} from "../views/email-registration-view";
+
 import { usePasswordlessRegistration } from "./usePasswordlessRegistration";
 
 /**
@@ -60,15 +65,10 @@ export class PasswordlessRegistration {
   @Prop() includeName: boolean = false;
 
   /**
-   * @uiName Hide Powered By SaaSquatch
-   */
-  @Prop() hidePoweredBy: boolean = false;
-
-  /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<PasswordlessRegistrationViewProps>;
+  @Prop() demoData?: DemoData<EmailRegistrationViewProps>;
 
   constructor() {
     withHooks(this);
@@ -87,35 +87,42 @@ export class PasswordlessRegistration {
       firstNameLabel: this.firstNameLabel,
       lastNameLabel: this.lastNameLabel,
       includeName: this.includeName,
-      hidePoweredBy: this.hidePoweredBy,
 
       // slots
       topSlot: <slot name="top-slot" />,
       bottomSlot: <slot name="bottom-slot" />,
     };
     return (
-      <PasswordlessRegistrationView
+      <EmailRegistrationView
         states={states}
         callbacks={callbacks}
         content={content}
-      ></PasswordlessRegistrationView>
+      ></EmailRegistrationView>
     );
   }
 }
 function useRegistrationDemo(
   props: PasswordlessRegistration
-): Partial<PasswordlessRegistrationViewProps> {
+): Partial<EmailRegistrationViewProps> {
+  console.debug("sqm-passwordless-registration: Running in debug mode...");
+
+  const onSubmit = () => {
+    setUserIdentity({
+      id: "referrer@example.com",
+      accountId: "referrer@example.com",
+      jwt: "eyJraWQiOiJlNjI2NzQxNy1jMzZlLTRlM2EtYjM5NS1lYTFmY2YyNmU3YzIiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJjbVZtWlhKeVpYSkFaWGhoYlhCc1pTNWpiMjA9OmNtVm1aWEp5WlhKQVpYaGhiWEJzWlM1amIyMD1AdGVzdF9heGJndGF0dzF0Y2NwOnVzZXJzIiwicGFzc3dvcmRsZXNzIjp0cnVlLCJpc3MiOiJodHRwczovL3N0YWdpbmcucmVmZXJyYWxzYWFzcXVhdGNoLmNvbS8iLCJleHAiOjE2ODA4ODU5MTksImlhdCI6MTY4MDc5OTUxOX0.kjmTVVf_BTb-uMNKnadLyNLxMFwpkefsY02O3iAfBVIJJZZfeZMwunPlKsS3Vbp28aYRClBjH5Wj4pYxDn23D0CdZx8KNCqiJ8yF6149O9SPMkRseoJkliqS6LyvMOEDjGDkuLfcC8_hq1AHBXFt5BdCtWOk1gwf_5R9A0w5gXEIvprBzbNDLbuo88bVAlrmFNvfttXXryrpUeruMal7cBKuy02YblBrB4kKoyJiprU5GLEjciBA4A56u8TwQc0kbsPf2YcQaJsY_IvkC7S1u4sPyObpq6iF6Ed8UYHAo6nU5KjZXyVtoUyeIS11mf_6OtDO6LyMNHV2FtEUUDdPCg",
+    });
+  };
+
   return deepmerge(
     {
       states: {
-        error: "",
         loading: false,
-        forgotPasswordPath: "/forgotPassword",
-        registerPath: "/register",
+        error: "",
       },
       callbacks: {
         submit: async (_event) => {
-          console.log("submit");
+          onSubmit();
         },
       },
     },

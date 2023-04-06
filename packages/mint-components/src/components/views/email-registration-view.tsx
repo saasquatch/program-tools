@@ -7,7 +7,7 @@ import {
 import { createStyleSheet } from "../../styling/JSS";
 import { PoweredByImg } from "../sqm-portal-footer/PoweredByImg";
 
-export interface RefereeWelcomeViewProps {
+export interface EmailRegistrationViewProps {
   states: {
     error: string;
     loading: boolean;
@@ -21,7 +21,6 @@ export interface RefereeWelcomeViewProps {
     lastNameLabel?: string;
     registerLabel?: string;
     includeName?: boolean;
-    hidePoweredBy?: boolean;
     topSlot?: VNode;
     bottomSlot?: VNode;
   };
@@ -48,12 +47,16 @@ const vanillaStyle = `
 :host([hidden]): {
   display: none;
 }
+a svg {
+  margin: 0 auto;
+  display: block;
+}
 `;
 
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export function RefereeWelcomeView(props: RefereeWelcomeViewProps) {
+export function EmailRegistrationView(props: EmailRegistrationViewProps) {
   const { states, callbacks, content } = props;
   return (
     <div class={sheet.classes.Wrapper}>
@@ -74,7 +77,7 @@ export function RefereeWelcomeView(props: RefereeWelcomeViewProps) {
           <sl-input
             exportparts="label: input-label"
             type="name"
-            name="/name"
+            name="/firstName"
             label={content.firstNameLabel || "First Name"}
             disabled={states.loading}
             required
@@ -84,7 +87,7 @@ export function RefereeWelcomeView(props: RefereeWelcomeViewProps) {
           <sl-input
             exportparts="label: input-label"
             type="name"
-            name="/name"
+            name="/lastName"
             label={content.lastNameLabel || "Last Name"}
             disabled={states.loading}
             required
@@ -112,11 +115,6 @@ export function RefereeWelcomeView(props: RefereeWelcomeViewProps) {
         </div>
       </sl-form>
       {content.bottomSlot}
-      {!content.hidePoweredBy && (
-        <a target="_blank" href={"www.saasquatch.com"}>
-          <PoweredByImg />
-        </a>
-      )}
     </div>
   );
 }

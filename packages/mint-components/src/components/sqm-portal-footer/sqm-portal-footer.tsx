@@ -16,6 +16,10 @@ export class PortalFooter {
   ignored = true;
 
   /**
+   * @uiName Hide the support text
+   */
+  @Prop() hideSupportText: boolean = false;
+  /**
    * @uiName Support Email
    */
   @Prop() supportEmail: string = "support@example.com";

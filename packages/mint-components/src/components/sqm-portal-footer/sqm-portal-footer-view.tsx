@@ -23,6 +23,7 @@ type PortalFooterViewProps = {
   paddingLeft?: string;
   termsLink?: string;
   termsText?: string;
+  hideSupportText?: boolean;
   supportText?: string;
   supportEmail?: string;
   hidePoweredBy?: boolean;
@@ -46,6 +47,7 @@ export function PortalFooterView(props: PortalFooterViewProps) {
       "padding-right": `var(--sl-spacing-${props.paddingRight})`,
       "padding-bottom": `var(--sl-spacing-${props.paddingBottom})`,
       "padding-left": `var(--sl-spacing-${props.paddingLeft})`,
+      "row-gap": `var(--sl-spacing-small)`,
       "& a:hover": {
         color: "var(--sl-color-gray-900)",
       },
@@ -53,6 +55,7 @@ export function PortalFooterView(props: PortalFooterViewProps) {
 
     SupportText: {
       textAlign: "center",
+      margin: 0,
     },
 
     PoweredByLink: {
@@ -85,21 +88,23 @@ export function PortalFooterView(props: PortalFooterViewProps) {
           </a>
         )}
       </div>
-      <p class={sheet.classes.SupportText}>
-        {intl.formatMessage(
-          {
-            id: "supportFooter",
-            defaultMessage: props.supportText,
-          },
-          {
-            email: (
-              <a target="_blank" href={`mailto:${props.supportEmail}`}>
-                {props.supportEmail}
-              </a>
-            ),
-          }
-        )}
-      </p>
+      {!props.hideSupportText && (
+        <p class={sheet.classes.SupportText}>
+          {intl.formatMessage(
+            {
+              id: "supportFooter",
+              defaultMessage: props.supportText,
+            },
+            {
+              email: (
+                <a target="_blank" href={`mailto:${props.supportEmail}`}>
+                  {props.supportEmail}
+                </a>
+              ),
+            }
+          )}
+        </p>
+      )}
       {!props.hidePoweredBy && (
         <a
           class={sheet.classes.PoweredByLink}

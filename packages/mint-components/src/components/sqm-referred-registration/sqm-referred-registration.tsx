@@ -5,9 +5,9 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { usePasswordlessRegistration } from "../sqm-passwordless-registration/usePasswordlessRegistration";
 import {
-  RefereeWelcomeView,
-  RefereeWelcomeViewProps,
-} from "./sqm-referred-registration-view";
+  EmailRegistrationView,
+  EmailRegistrationViewProps,
+} from "../views/email-registration-view";
 
 /**
  * @uiName Microsite Registration
@@ -60,15 +60,10 @@ export class ReferredRegistration {
   @Prop() includeName: boolean = false;
 
   /**
-   * @uiName Include name fields
-   */
-  @Prop() hidePoweredBy: boolean = false;
-
-  /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<RefereeWelcomeViewProps>;
+  @Prop() demoData?: DemoData<EmailRegistrationViewProps>;
 
   constructor() {
     withHooks(this);
@@ -87,24 +82,23 @@ export class ReferredRegistration {
       firstNameLabel: this.firstNameLabel,
       lastNameLabel: this.lastNameLabel,
       includeName: this.includeName,
-      hidePoweredBy: this.hidePoweredBy,
 
       // slots
       topSlot: <slot name="top-slot" />,
       bottomSlot: <slot name="bottom-slot" />,
     };
     return (
-      <RefereeWelcomeView
+      <EmailRegistrationView
         states={states}
         callbacks={callbacks}
         content={content}
-      ></RefereeWelcomeView>
+      ></EmailRegistrationView>
     );
   }
 }
 function useRegistrationDemo(
   props: ReferredRegistration
-): Partial<RefereeWelcomeViewProps> {
+): Partial<EmailRegistrationViewProps> {
   return deepmerge(
     {
       states: {
