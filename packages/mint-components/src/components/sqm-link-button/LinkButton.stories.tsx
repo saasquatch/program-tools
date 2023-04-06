@@ -3,7 +3,7 @@ import scenario from "./sqm-link-button.feature";
 import { LinkButtonView } from "./sqm-link-button-view";
 
 export default {
-  title: "Components/User Identifier",
+  title: "Components/Link Button",
   parameters: {
     scenario,
   },
