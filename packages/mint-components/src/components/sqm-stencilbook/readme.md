@@ -69,6 +69,7 @@
 - [sqm-timeline](../sqm-timeline)
 - [sqm-timeline-entry](../sqm-timeline)
 - [sqm-referral-card](../sqm-referral-card)
+- [sqm-portal-footer](../sqm-portal-footer)
 - [sqm-image](../sqm-image)
 - [sqm-titled-section](../sqm-titled-section)
 - [sqm-coupon-code](../sqm-coupon-code)
@@ -136,6 +137,7 @@ graph TD;
   sqm-stencilbook --> sqm-timeline
   sqm-stencilbook --> sqm-timeline-entry
   sqm-stencilbook --> sqm-referral-card
+  sqm-stencilbook --> sqm-portal-footer
   sqm-stencilbook --> sqm-image
   sqm-stencilbook --> sqm-titled-section
   sqm-stencilbook --> sqm-coupon-code
