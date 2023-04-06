@@ -2539,6 +2539,11 @@ export namespace Components {
     }
     interface SqmUserIdentifier {
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
           * @required 
           * @uiName Switch User Link
          */
@@ -5690,6 +5695,11 @@ declare namespace LocalJSX {
         "textAlign"?: "left" | "center" | "right";
     }
     interface SqmUserIdentifier {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CopyTextViewProps>;
         /**
           * @required 
           * @uiName Switch User Link

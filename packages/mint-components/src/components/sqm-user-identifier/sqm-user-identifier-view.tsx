@@ -8,7 +8,14 @@ export interface UserIdentifierViewProps {
 }
 
 const style = {
-  Container: {},
+  Container: { color: "var(--sl-color-neutral-600)" },
+  Link: {
+    textDecoration: "none",
+    color: "var(--sl-color-primary-700)",
+    "&:hover": {
+      color: "var(--sl-color-primary-800)",
+    },
+  },
 };
 
 const vanillaStyle = `
@@ -24,12 +31,16 @@ export function UserIdentifierView(props: UserIdentifierViewProps) {
   const { userIdentificationText, switchUserLink, switchUserText } = props;
 
   return (
-    <span class={sheet.classes.Container}>
+    <span class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">
         {styleString}
         {vanillaStyle}
       </style>
-      {userIdentificationText} (<a href={switchUserLink}>{switchUserText}</a>)
+      {userIdentificationText} (
+      <a class={sheet.classes.Link} href={switchUserLink} part="sqm-link">
+        {switchUserText}
+      </a>
+      )
     </span>
   );
 }
