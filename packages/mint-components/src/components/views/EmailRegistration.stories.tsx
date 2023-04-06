@@ -47,14 +47,3 @@ export const WithSlots = () => (
     }}
   />
 );
-
-export const HidePoweredBy = () => (
-  <EmailRegistrationView
-    {...defaultProps}
-    {...{
-      content: {
-        hidePoweredBy: true,
-      },
-    }}
-  />
-);

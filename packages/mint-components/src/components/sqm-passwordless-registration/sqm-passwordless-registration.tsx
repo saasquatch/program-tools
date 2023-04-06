@@ -61,11 +61,6 @@ export class PasswordlessRegistration {
   @Prop() includeName: boolean = false;
 
   /**
-   * @uiName Hide Powered By SaaSquatch
-   */
-  @Prop() hidePoweredBy: boolean = false;
-
-  /**
    * @undocumented
    * @uiType object
    */
@@ -88,7 +83,6 @@ export class PasswordlessRegistration {
       firstNameLabel: this.firstNameLabel,
       lastNameLabel: this.lastNameLabel,
       includeName: this.includeName,
-      hidePoweredBy: this.hidePoweredBy,
 
       // slots
       topSlot: <slot name="top-slot" />,

@@ -728,10 +728,6 @@ export namespace Components {
          */
         "firstNameLabel": string;
         /**
-          * @uiName Hide Powered By SaaSquatch
-         */
-        "hidePoweredBy": boolean;
-        /**
           * @uiName Include name fields
          */
         "includeName": boolean;
@@ -1650,10 +1646,6 @@ export namespace Components {
           * @uiName First Name Field Label
          */
         "firstNameLabel": string;
-        /**
-          * @uiName Include name fields
-         */
-        "hidePoweredBy": boolean;
         /**
           * @uiName Include name fields
          */
@@ -3905,10 +3897,6 @@ declare namespace LocalJSX {
          */
         "firstNameLabel"?: string;
         /**
-          * @uiName Hide Powered By SaaSquatch
-         */
-        "hidePoweredBy"?: boolean;
-        /**
           * @uiName Include name fields
          */
         "includeName"?: boolean;
@@ -4813,10 +4801,6 @@ declare namespace LocalJSX {
           * @uiName First Name Field Label
          */
         "firstNameLabel"?: string;
-        /**
-          * @uiName Include name fields
-         */
-        "hidePoweredBy"?: boolean;
         /**
           * @uiName Include name fields
          */

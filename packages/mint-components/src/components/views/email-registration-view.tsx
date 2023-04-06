@@ -21,7 +21,6 @@ export interface EmailRegistrationViewProps {
     lastNameLabel?: string;
     registerLabel?: string;
     includeName?: boolean;
-    hidePoweredBy?: boolean;
     topSlot?: VNode;
     bottomSlot?: VNode;
   };
@@ -116,11 +115,6 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
         </div>
       </sl-form>
       {content.bottomSlot}
-      {!content.hidePoweredBy && (
-        <a target="_blank" href={"https://www.saasquatch.com/"}>
-          <PoweredByImg />
-        </a>
-      )}
     </div>
   );
 }

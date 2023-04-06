@@ -60,11 +60,6 @@ export class ReferredRegistration {
   @Prop() includeName: boolean = false;
 
   /**
-   * @uiName Include name fields
-   */
-  @Prop() hidePoweredBy: boolean = false;
-
-  /**
    * @undocumented
    * @uiType object
    */
@@ -87,7 +82,6 @@ export class ReferredRegistration {
       firstNameLabel: this.firstNameLabel,
       lastNameLabel: this.lastNameLabel,
       includeName: this.includeName,
-      hidePoweredBy: this.hidePoweredBy,
 
       // slots
       topSlot: <slot name="top-slot" />,
