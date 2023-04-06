@@ -72,14 +72,14 @@ export class CouponCode {
   copyButtonLabel: string = "Copy Coupon";
 
   /**
-   * Set the copy button outside the field
+   * Set the copy button position
    *
-   * @uiName Copy button outside
+   * @uiName Copy button position
    */
   @Prop({
-    attribute: "is-button-outside",
+    attribute: "copy-button-position",
   })
-  buttonOutside: boolean = true;
+  buttonPosition: "inside" | "outside" | "below" = "outside";
 
   /**
    * @undocumented
@@ -110,7 +110,7 @@ function useDemoCouponCode(props: CouponCode): CopyTextViewProps {
       tooltiptext: props.tooltiptext,
       isCopyIcon: props.isCopyIcon,
       textAlign: props.textAlign,
-      buttonOutside: props.buttonOutside,
+      buttonPosition: props.buttonPosition,
       copyButtonLabel: props.copyButtonLabel,
       open,
       onClick: () => {

@@ -46,7 +46,7 @@ export const CopyButtonInside = () => {
         copyString: "https://noah.example.com",
         open: false,
         tooltiptext: "Copied!",
-        buttonOutside: false,
+        buttonPosition: "inside",
         isCopyIcon: false,
       }}
     ></CopyTextView>

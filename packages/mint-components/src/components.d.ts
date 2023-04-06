@@ -157,10 +157,10 @@ export namespace Components {
     }
     interface SqmCouponCode {
         /**
-          * Set the copy button outside the field
-          * @uiName Copy button outside
+          * Set the copy button position
+          * @uiName Copy button position
          */
-        "buttonOutside": boolean;
+        "buttonPosition": "inside" | "outside" | "below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -2178,10 +2178,10 @@ export namespace Components {
     }
     interface SqmShareCode {
         /**
-          * Set the copy button outside the field
-          * @uiName Copy button outside
+          * Set the copy button position
+          * @uiName Copy button position
          */
-        "buttonOutside": boolean;
+        "buttonPosition": "inside" | "outside" | "below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -2221,10 +2221,10 @@ export namespace Components {
     }
     interface SqmShareLink {
         /**
-          * Set the copy button outside the field
-          * @uiName Copy button outside
+          * Set the copy button position
+          * @uiName Copy button position
          */
-        "buttonOutside": boolean;
+        "buttonPosition": "inside" | "outside" | "below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -3335,10 +3335,10 @@ declare namespace LocalJSX {
     }
     interface SqmCouponCode {
         /**
-          * Set the copy button outside the field
-          * @uiName Copy button outside
+          * Set the copy button position
+          * @uiName Copy button position
          */
-        "buttonOutside"?: boolean;
+        "buttonPosition"?: "inside" | "outside" | "below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -5332,10 +5332,10 @@ declare namespace LocalJSX {
     }
     interface SqmShareCode {
         /**
-          * Set the copy button outside the field
-          * @uiName Copy button outside
+          * Set the copy button position
+          * @uiName Copy button position
          */
-        "buttonOutside"?: boolean;
+        "buttonPosition"?: "inside" | "outside" | "below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -5375,10 +5375,10 @@ declare namespace LocalJSX {
     }
     interface SqmShareLink {
         /**
-          * Set the copy button outside the field
-          * @uiName Copy button outside
+          * Set the copy button position
+          * @uiName Copy button position
          */
-        "buttonOutside"?: boolean;
+        "buttonPosition"?: "inside" | "outside" | "below";
         /**
           * Set copy button label
           * @uiName Copy button label
