@@ -930,6 +930,10 @@ export namespace Components {
          */
         "hidePoweredBy": boolean;
         /**
+          * @uiName Hide the support text
+         */
+        "hideSupportText": boolean;
+        /**
           * @uiName Padding Bottom
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
@@ -4098,6 +4102,10 @@ declare namespace LocalJSX {
           * @uiName Hide Powered By SaaSquatch
          */
         "hidePoweredBy"?: boolean;
+        /**
+          * @uiName Hide the support text
+         */
+        "hideSupportText"?: boolean;
         /**
           * @uiName Padding Bottom
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
