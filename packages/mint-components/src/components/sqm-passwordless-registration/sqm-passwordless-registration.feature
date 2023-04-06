@@ -1,5 +1,5 @@
 @author:truman
-Feature: Passwordless registration
+Feature: Passwordless referrer registration
 
     @motivating
     Scenario: User's must provide an email to register
@@ -12,3 +12,9 @@ Feature: Passwordless registration
 
     @ui
     Scenario: Slotted content can be included
+
+    @ui
+    Scenario: First name and last name input fields can be hidden
+
+    @ui
+    Scenario: Input labels can be customized
