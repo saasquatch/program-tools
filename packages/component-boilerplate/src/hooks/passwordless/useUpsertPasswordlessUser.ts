@@ -65,7 +65,6 @@ export function useUpsertPasswordlessUserMutation(): [
   ) => {
     const result = await request(variables);
 
-    console.log({ result });
     if (!(result instanceof Error) && result.upsertPasswordlessUser) {
       const jwt = result.upsertPasswordlessUser.token;
       setUserIdentity({

@@ -621,6 +621,17 @@ export namespace Components {
          */
         "unrankedText": string;
     }
+    interface SqmLinkButton {
+        /**
+          * @required 
+          * @uiName User Identification Text
+         */
+        "link": string;
+        /**
+          * @uiName User Identification Text
+         */
+        "openInNewTab": boolean;
+    }
     interface SqmNameFields {
         /**
           * @undocumented 
@@ -2460,19 +2471,16 @@ export namespace Components {
     }
     interface SqmUserIdentifier {
         /**
-          * @uiWidget ImageUpload
           * @required 
           * @uiName Switch User Link
          */
         "switchUserLink": string;
         /**
-          * @uiWidget ImageUpload
           * @required 
           * @uiName Switch User Text
          */
         "switchUserText": string;
         /**
-          * @uiWidget ImageUpload
           * @required 
           * @uiName User Identification Text
          */
@@ -2621,6 +2629,12 @@ declare global {
     var HTMLSqmLeaderboardRankElement: {
         prototype: HTMLSqmLeaderboardRankElement;
         new (): HTMLSqmLeaderboardRankElement;
+    };
+    interface HTMLSqmLinkButtonElement extends Components.SqmLinkButton, HTMLStencilElement {
+    }
+    var HTMLSqmLinkButtonElement: {
+        prototype: HTMLSqmLinkButtonElement;
+        new (): HTMLSqmLinkButtonElement;
     };
     interface HTMLSqmNameFieldsElement extends Components.SqmNameFields, HTMLStencilElement {
     }
@@ -3058,6 +3072,7 @@ declare global {
         "sqm-input-field": HTMLSqmInputFieldElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
+        "sqm-link-button": HTMLSqmLinkButtonElement;
         "sqm-name-fields": HTMLSqmNameFieldsElement;
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
@@ -3708,6 +3723,17 @@ declare namespace LocalJSX {
           * @uiName Unranked Text
          */
         "unrankedText"?: string;
+    }
+    interface SqmLinkButton {
+        /**
+          * @required 
+          * @uiName User Identification Text
+         */
+        "link"?: string;
+        /**
+          * @uiName User Identification Text
+         */
+        "openInNewTab"?: boolean;
     }
     interface SqmNameFields {
         /**
@@ -5523,19 +5549,16 @@ declare namespace LocalJSX {
     }
     interface SqmUserIdentifier {
         /**
-          * @uiWidget ImageUpload
           * @required 
           * @uiName Switch User Link
          */
         "switchUserLink"?: string;
         /**
-          * @uiWidget ImageUpload
           * @required 
           * @uiName Switch User Text
          */
         "switchUserText"?: string;
         /**
-          * @uiWidget ImageUpload
           * @required 
           * @uiName User Identification Text
          */
@@ -5579,6 +5602,7 @@ declare namespace LocalJSX {
         "sqm-input-field": SqmInputField;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
+        "sqm-link-button": SqmLinkButton;
         "sqm-name-fields": SqmNameFields;
         "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-navigation-sidebar": SqmNavigationSidebar;
@@ -5675,6 +5699,7 @@ declare module "@stencil/core" {
             "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
+            "sqm-link-button": LocalJSX.SqmLinkButton & JSXBase.HTMLAttributes<HTMLSqmLinkButtonElement>;
             "sqm-name-fields": LocalJSX.SqmNameFields & JSXBase.HTMLAttributes<HTMLSqmNameFieldsElement>;
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
