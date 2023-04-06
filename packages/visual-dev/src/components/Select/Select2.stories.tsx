@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { SelectView } from "./Select2";
 import { useSelectDemo } from "./useSelectDemo";
+import { useSelect } from "downshift";
 
 export default {
   title: "Components / Select v2",

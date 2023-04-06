@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [1.7.0] - 2023-04-06
+
+### Added
+
+- Added new demo hooks in stories to remove unnecessary repeat code.
+
+  - `useComboboxDemo()`
+  - `useMultiSelectDemo()`
+  - `useSelectDemo()`
+
 ## [1.6.0] - 2023-04-03
 
 ### Added
@@ -16,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \<Icon>
   - New SVG's for the HubSpot Integration
 - \<Alert>
+
   - Added props `textCritical` & `textWarning` to display a new text style alert banner without a background color
 
 - New components added
@@ -312,7 +323,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<TextArea>
   - \<Tooltip>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.6.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.7.0...HEAD
+[1.7.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.0
 [1.6.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.6.0
 [1.5.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.5.0
 [1.4.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.4.0

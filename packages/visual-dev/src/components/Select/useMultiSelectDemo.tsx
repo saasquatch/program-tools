@@ -72,6 +72,7 @@ export const useMultiSelectDemo = ({
         setFilter(inputValue || "");
       },
       defaultHighlightedIndex: 0, // after selection, highlight the first item.
+      //@ts-ignore
       stateReducer: (state, actionAndChanges) => {
         const { changes, type } = actionAndChanges;
         switch (type) {
