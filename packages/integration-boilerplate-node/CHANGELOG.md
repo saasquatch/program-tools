@@ -12,10 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Support for automatically generating `GOOGLE_APPLICATION_CREDENTIALS` for use with Workload Identity Federation
+- Added public authenticatedHttpRequest method in Auth module to be used by
 
 ### Changed
 
-- Jayden TODO
+- Made Auth module public
 
 ## [2.0.1] - 2023-01-25
 
