@@ -76,6 +76,9 @@ export class ShareLink {
    * Set the copy button position
    *
    * @uiName Copy button position
+   * @uiType string
+   * @uiEnum ["inside", "outside", "below"]
+   * @uiEnumNames ["inside", "outside", "below"]
    */
   @Prop({
     attribute: "copy-button-position",
