@@ -5,5 +5,9 @@ export function useUserIdentifier(
   // @ts-ignore;
   props: UserIdentifier
 ): UserIdentifierViewProps {
-  return { switchUserLink: "", userIdentificationText: "", switchUserText: "" };
+  return {
+    switchUserLink: "" || props.switchUserLink,
+    userIdentificationText: "",
+    switchUserText: "",
+  };
 }

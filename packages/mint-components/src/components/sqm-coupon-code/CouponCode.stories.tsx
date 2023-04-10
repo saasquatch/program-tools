@@ -31,12 +31,20 @@ export const CopyButtonInside = () => {
   return (
     <CopyTextView
       {...defaultProps}
-      buttonOutside={false}
+      buttonPosition={"inside"}
       isCopyIcon={false}
     ></CopyTextView>
   );
 };
-
+export const CopyButtonBelow = () => {
+  return (
+    <CopyTextView
+      {...defaultProps}
+      buttonPosition={"below"}
+      isCopyIcon={false}
+    ></CopyTextView>
+  );
+};
 export const CustomTooltipDuration = () => {
   return (
     <sqm-coupon-code
