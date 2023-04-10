@@ -49,6 +49,9 @@ export class CouponCode {
    * Change the text alignment
    *
    * @uiName Align text
+   * @uiType string
+   * @uiEnum ["left", "center"]
+   * @uiEnumNames ["left", "center"]
    */
   @Prop({
     attribute: "text-align",
