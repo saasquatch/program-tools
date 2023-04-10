@@ -24,6 +24,7 @@ export class CouponCode {
    * @uiWidget programSelector
    */
   @Prop() programId?: string;
+
   /**
    * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
    *
@@ -33,6 +34,7 @@ export class CouponCode {
     attribute: "tooltip-text",
   })
   tooltiptext: string = "Copied to Clipboard";
+
   /**
    * The number of milliseconds that the tooltip appears for
    *
@@ -42,6 +44,7 @@ export class CouponCode {
     attribute: "tooltip-lifespan",
   })
   tooltiplifespan: number = 1000;
+
   /**
    * Change the text alignment
    *
@@ -51,6 +54,7 @@ export class CouponCode {
     attribute: "text-align",
   })
   textAlign: "left" | "center" = "left";
+
   /**
    * Set copy button as icon
    *
