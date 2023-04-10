@@ -25,24 +25,19 @@ export const TextAlignCenter = () => {
   return <sqm-coupon-code textAlign="center"></sqm-coupon-code>;
 };
 export const CopyButton = () => {
-  return <sqm-coupon-code isCopyIcon={false}></sqm-coupon-code>;
+  return <sqm-coupon-code buttonStyle="button outside"></sqm-coupon-code>;
 };
 export const CopyButtonInside = () => {
   return (
     <CopyTextView
       {...defaultProps}
-      buttonPosition={"inside"}
-      isCopyIcon={false}
+      buttonStyle={"button inside"}
     ></CopyTextView>
   );
 };
 export const CopyButtonBelow = () => {
   return (
-    <CopyTextView
-      {...defaultProps}
-      buttonPosition={"below"}
-      isCopyIcon={false}
-    ></CopyTextView>
+    <CopyTextView {...defaultProps} buttonStyle={"button below"}></CopyTextView>
   );
 };
 export const CustomTooltipDuration = () => {

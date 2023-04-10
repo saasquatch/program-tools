@@ -59,13 +59,23 @@ export const CopyButtonInside = () => {
         copyString: "https://noah.example.com",
         open: false,
         tooltiptext: "Copied!",
-        buttonPosition: "inside",
-        isCopyIcon: false,
+        buttonStyle: "button inside",
       }}
     ></CopyTextView>
   );
 };
-
+export const CopyButtonBelow = () => {
+  return (
+    <CopyTextView
+      {...{
+        copyString: "https://noah.example.com",
+        open: false,
+        tooltiptext: "Copied!",
+        buttonStyle: "button below",
+      }}
+    ></CopyTextView>
+  );
+};
 export const FullStack = () => {
   return <sqm-share-link></sqm-share-link>;
 };

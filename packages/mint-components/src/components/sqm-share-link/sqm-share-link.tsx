@@ -49,21 +49,14 @@ export class ShareLink {
    * Change the text alignment
    *
    * @uiName Align text
+   * @uiType string
+   * @uiEnum ["left", "center"]
+   * @uiEnumNames ["left", "center"]
    */
   @Prop({
     attribute: "text-align",
   })
   textAlign: "left" | "center" = "left";
-
-  /**
-   * Set copy button as icon
-   *
-   * @uiName Copy icon
-   */
-  @Prop({
-    attribute: "is-copy-icon",
-  })
-  isCopyIcon: boolean = true;
 
   /**
    * Set copy button label
@@ -76,17 +69,18 @@ export class ShareLink {
   copyButtonLabel: string = "Copy Link";
 
   /**
-   * Set the copy button position
+   * Set the copy button style
    *
-   * @uiName Copy button position
+   * @uiName Copy button style
    * @uiType string
-   * @uiEnum ["inside", "outside", "below"]
-   * @uiEnumNames ["inside", "outside", "below"]
+   * @uiEnum ["icon", "button inside", "button outside", "button below"]
+   * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
    */
   @Prop({
-    attribute: "copy-button-position",
+    attribute: "copy-button-style",
   })
-  buttonPosition: "inside" | "outside" | "below" = "outside";
+  buttonStyle: "icon" | "button inside" | "button outside" | "button below" =
+    "icon";
 
   /**
    * @undocumented
@@ -115,9 +109,8 @@ function useDemoShareLink(props: ShareLink): CopyTextViewProps {
     {
       copyString: copyString,
       tooltiptext: props.tooltiptext,
-      isCopyIcon: props.isCopyIcon,
       textAlign: props.textAlign,
-      buttonPosition: props.buttonPosition,
+      buttonStyle: props.buttonStyle,
       copyButtonLabel: props.copyButtonLabel,
       open,
       onClick: () => {
