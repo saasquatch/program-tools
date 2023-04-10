@@ -24,6 +24,7 @@ export class ShareLink {
    * @uiWidget programSelector
    */
   @Prop() programId?: string;
+
   /**
    * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
    *
@@ -33,6 +34,7 @@ export class ShareLink {
     attribute: "tooltip-text",
   })
   tooltiptext: string = "Copied to Clipboard";
+
   /**
    * The number of milliseconds that the tooltip appears for
    *
@@ -52,6 +54,7 @@ export class ShareLink {
     attribute: "text-align",
   })
   textAlign: "left" | "center" = "left";
+
   /**
    * Set copy button as icon
    *
