@@ -49,12 +49,10 @@ export class UserIdentifier {
 }
 
 function useDemoUserIdentifier(props: UserIdentifier): UserIdentifierViewProps {
-  const switchUserLink = "https://example.com";
-  const userIdentificationText = "user@example.com";
   return deepmerge(
     {
-      switchUserLink,
-      userIdentificationText,
+      switchUserLink: props.switchUserLink || "https://example.com",
+      userIdentificationText: props.userIdentificationText,
       switchUserText: props.switchUserText,
     },
     props.demoData || {},
