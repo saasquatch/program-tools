@@ -59,16 +59,6 @@ export class CouponCode {
   textAlign: "left" | "center" = "left";
 
   /**
-   * Set copy button as icon
-   *
-   * @uiName Copy icon
-   */
-  @Prop({
-    attribute: "is-copy-icon",
-  })
-  isCopyIcon: boolean = true;
-
-  /**
    * Set copy button label
    *
    * @uiName Copy button label
@@ -79,17 +69,18 @@ export class CouponCode {
   copyButtonLabel: string = "Copy Coupon";
 
   /**
-   * Set the copy button position
+   * Set the copy button style
    *
-   * @uiName Copy button position
+   * @uiName Copy button style
    * @uiType string
-   * @uiEnum ["inside", "outside", "below"]
-   * @uiEnumNames ["inside", "outside", "below"]
+   * @uiEnum ["icon", "button inside", "button outside", "button below"]
+   * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
    */
   @Prop({
-    attribute: "copy-button-position",
+    attribute: "copy-button-style",
   })
-  buttonPosition: "inside" | "outside" | "below" = "outside";
+  buttonStyle: "icon" | "button inside" | "button outside" | "button below" =
+    "icon";
 
   /**
    * @undocumented
@@ -118,9 +109,8 @@ function useDemoCouponCode(props: CouponCode): CopyTextViewProps {
     {
       copyString,
       tooltiptext: props.tooltiptext,
-      isCopyIcon: props.isCopyIcon,
       textAlign: props.textAlign,
-      buttonPosition: props.buttonPosition,
+      buttonStyle: props.buttonStyle,
       copyButtonLabel: props.copyButtonLabel,
       open,
       onClick: () => {

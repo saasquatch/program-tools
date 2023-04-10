@@ -54,15 +54,6 @@ export class ShareCode {
     attribute: "text-align",
   })
   textAlign: "left" | "center" = "left";
-  /**
-   * Set copy button as icon
-   *
-   * @uiName Copy icon
-   */
-  @Prop({
-    attribute: "is-copy-icon",
-  })
-  isCopyIcon: boolean = true;
 
   /**
    * Set copy button label
@@ -75,17 +66,18 @@ export class ShareCode {
   copyButtonLabel: string = "Copy Code";
 
   /**
-   * Set the copy button position
+   * Set the copy button style
    *
-   * @uiName Copy button position
+   * @uiName Copy button style
    * @uiType string
-   * @uiEnum ["inside", "outside", "below"]
-   * @uiEnumNames ["inside", "outside", "below"]
+   * @uiEnum ["icon", "button inside", "button outside", "button below"]
+   * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
    */
   @Prop({
-    attribute: "copy-button-position",
+    attribute: "copy-button-style",
   })
-  buttonPosition: "inside" | "outside" | "below" = "outside";
+  buttonStyle: "icon" | "button inside" | "button outside" | "button below" =
+    "icon";
 
   /**
    * @undocumented
@@ -114,10 +106,9 @@ function useDemoShareCode(props: ShareCode): CopyTextViewProps {
     {
       copyString: copyString,
       tooltiptext: props.tooltiptext,
-      isCopyIcon: props.isCopyIcon,
       textAlign: props.textAlign,
-      buttonPosition: props.buttonPosition,
       copyButtonLabel: props.copyButtonLabel,
+      buttonStyle: props.buttonStyle,
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility

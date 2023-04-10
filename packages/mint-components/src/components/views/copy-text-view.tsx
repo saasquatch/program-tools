@@ -8,9 +8,8 @@ export interface CopyTextViewProps {
   open: boolean;
   copyButtonLabel?: string;
   disabled?: boolean;
-  isCopyIcon?: boolean;
   textAlign?: "left" | "center";
-  buttonPosition?: "inside" | "outside" | "below";
+  buttonStyle?: "button inside" | "button outside" | "button below" | "icon";
 
   onClick?: () => void;
 }
@@ -41,19 +40,20 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function CopyTextView(props: CopyTextViewProps) {
-  const { isCopyIcon = true } = props;
+  const { buttonStyle = "icon" } = props;
 
-  const copyButton = isCopyIcon ? null : (
-    <sl-button
-      onClick={() => props.onClick?.()}
-      size={props.buttonPosition === "outside" ? "medium" : "small"}
-      disabled={props.disabled}
-      slot="suffix"
-      type="primary"
-    >
-      {props.copyButtonLabel || "Copy"}
-    </sl-button>
-  );
+  const copyButton =
+    buttonStyle === "icon" ? null : (
+      <sl-button
+        onClick={() => props.onClick?.()}
+        size={buttonStyle === "button outside" ? "medium" : "small"}
+        disabled={props.disabled}
+        slot="suffix"
+        type="primary"
+      >
+        {props.copyButtonLabel || "Copy"}
+      </sl-button>
+    );
 
   return (
     <div>
@@ -73,7 +73,7 @@ export function CopyTextView(props: CopyTextViewProps) {
           class={sheet.classes.containerStyle}
           style={{
             flexDirection: `${
-              props.buttonPosition === "below" ? "column" : "row"
+              buttonStyle === "button below" ? "column" : "row"
             }`,
             width: "100%",
           }}
@@ -84,7 +84,7 @@ export function CopyTextView(props: CopyTextViewProps) {
             value={props.copyString}
             readonly
           >
-            {isCopyIcon ? (
+            {buttonStyle === "icon" ? (
               <sl-icon-button
                 onClick={() => props.onClick?.()}
                 slot="suffix"
@@ -92,11 +92,11 @@ export function CopyTextView(props: CopyTextViewProps) {
                 disabled={props.disabled}
               />
             ) : (
-              props.buttonPosition === "inside" && copyButton
+              buttonStyle === "button inside" && copyButton
             )}
           </sl-input>
-          {(props.buttonPosition === "outside" ||
-            props.buttonPosition === "below") &&
+          {(buttonStyle === "button outside" ||
+            buttonStyle === "button below") &&
             copyButton}
         </div>
       </sl-tooltip>
