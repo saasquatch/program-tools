@@ -103,6 +103,38 @@ export class PortalRegister {
   @Prop() loginPath: string = "/login";
 
   /**
+   * The message to be displayed when a required field is not filled.
+   *
+   * @uiName Required Field Message
+   * @uiWidget textArea
+   */
+  @Prop() requiredFieldErrorMessage: string = "Cannot be empty";
+
+  /**
+   * The message to be displayed when a the form submission fails unexpectedly.
+   *
+   * @uiName Network Error Message
+   * @uiWidget textArea
+   */
+  @Prop() networkErrorMessage: string = "Network request failed.";
+
+  /**
+   * The message to be displayed when password inputs do not match.
+   *
+   * @uiName Password Mismatch Message
+   * @uiWidget textArea
+   */
+  @Prop() passwordMismatchErrorMessage: string = "Passwords do not match.";
+
+  /**
+   * The message to be displayed when the email used is invalid or blocked.
+   *
+   * @uiName Invalid Email Message
+   * @uiWidget textArea
+   */
+  @Prop() invalidEmailErrorMessage: string = "Must be a valid email address";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -137,6 +169,8 @@ export class PortalRegister {
       submitLabel: this.submitLabel,
       pageLabel: this.pageLabel,
       confirmPasswordLabel: this.confirmPasswordLabel,
+      invalidEmailErrorMessage: this.invalidEmailErrorMessage,
+      requiredFieldErrorMessage: this.requiredFieldErrorMessage,
     };
 
     return (
