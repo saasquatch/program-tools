@@ -543,6 +543,12 @@ export namespace Components {
          */
         "includeName": boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage": string;
+        /**
           * @uiName Last Name Field Label
          */
         "lastNameLabel": string;
@@ -550,6 +556,12 @@ export namespace Components {
           * @uiName Register Button Text
          */
         "registerLabel": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
     }
     interface SqmLeaderboard {
         /**
@@ -1679,6 +1691,12 @@ export namespace Components {
          */
         "includeName": boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage": string;
+        /**
           * @uiName Last Name Field Label
          */
         "lastNameLabel": string;
@@ -1686,6 +1704,12 @@ export namespace Components {
           * @uiName Register Button Text
          */
         "registerLabel": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
     }
     interface SqmRewardExchangeList {
         /**
@@ -3741,6 +3765,12 @@ declare namespace LocalJSX {
          */
         "includeName"?: boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
           * @uiName Last Name Field Label
          */
         "lastNameLabel"?: string;
@@ -3748,6 +3778,12 @@ declare namespace LocalJSX {
           * @uiName Register Button Text
          */
         "registerLabel"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
     }
     interface SqmLeaderboard {
         /**
@@ -4863,6 +4899,12 @@ declare namespace LocalJSX {
          */
         "includeName"?: boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
           * @uiName Last Name Field Label
          */
         "lastNameLabel"?: string;
@@ -4870,6 +4912,12 @@ declare namespace LocalJSX {
           * @uiName Register Button Text
          */
         "registerLabel"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
     }
     interface SqmRewardExchangeList {
         /**

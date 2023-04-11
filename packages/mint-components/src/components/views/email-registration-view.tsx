@@ -26,6 +26,8 @@ export interface EmailRegistrationViewProps {
     includeName?: boolean;
     topSlot?: VNode;
     bottomSlot?: VNode;
+    invalidEmailErrorMessage: string;
+    requiredFieldErrorMessage: string;
   };
 }
 
@@ -107,11 +109,11 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
           required
           validationError={({ value }: { value: string }) => {
             if (!value) {
-              return "Cannot be empty";
+              return content.requiredFieldErrorMessage;
             }
             // this matches shoelace validation, but could be better
             if (!value.includes("@")) {
-              return "Must be a valid email address";
+              return content.invalidEmailErrorMessage;
             }
           }}
           {...(states.registrationFormState?.validationErrors?.email
@@ -119,7 +121,7 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
                 class: sheet.classes.ErrorStyle,
                 helpText:
                   states.registrationFormState?.validationErrors?.email ||
-                  "Cannot be empty",
+                  content.requiredFieldErrorMessage,
               }
             : [])}
         ></sl-input>
