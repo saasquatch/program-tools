@@ -71,3 +71,18 @@ export const Error = () => (
     }}
   />
 );
+
+export const EmptyEmailError = () => (
+  <EmailRegistrationView
+    {...{
+      ...defaultProps,
+      states: {
+        error: "Something went wrong. Please try again.",
+        loading: false,
+        registrationFormState: {
+          validationErrors: { email: "Email cannot be empty" },
+        },
+      },
+    }}
+  />
+);
