@@ -6,8 +6,8 @@ import monoWidget from "../templates/MonoWidget.html";
 import loyaltyWidget from "../templates/LoyaltyWidget.html";
 import instantAccessShareWidget from "../templates/InstantAccessShareWidget.html";
 import instantAccessCouponWidget from "../templates/InstantAccessCouponWidget.html";
-import instantAccessReferrerRegistationWidget from "../templates/InstantAccessReferrerRegistationWidget.html";
-import instantAccessReferredRegistationWidget from "../templates/InsantAccessReferredRegistationWidget.html";
+import instantAccessReferrerRegistationWidget from "../templates/InstantAccessReferrerRegistrationWidget.html";
+import instantAccessReferredRegistationWidget from "../templates/InstantAccessReferredRegistrationWidget.html";
 
 import marked from "marked";
 
