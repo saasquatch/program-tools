@@ -6,7 +6,6 @@ export function usePasswordlessRegistration() {
   const cookie = new URLSearchParams(window.location.search);
 
   const cookies = cookie?.get("_saasquatch");
-  console.log({ cookie });
 
   const [request, { loading, errors, data }] =
     useUpsertPasswordlessUserMutation();
