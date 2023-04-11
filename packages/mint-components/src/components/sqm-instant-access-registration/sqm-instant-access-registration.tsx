@@ -12,17 +12,17 @@ import {
   EmailRegistrationViewProps,
 } from "../views/email-registration-view";
 
-import { usePasswordlessRegistration } from "./usePasswordlessRegistration";
+import { useInstantAccessRegistration } from "./useInstantAccessRegistration";
 
 /**
- * @uiName Microsite Registration
+ * @uiName Instant Access Registration
  * @slots [{"name":"top-slot","title":"Widget Content"},{"name":"bottom-slot","title":"Widget Content"}]
  */
 @Component({
-  tag: "sqm-passwordless-registration",
+  tag: "sqm-instant-access-registration",
   shadow: true,
 })
-export class PasswordlessRegistration {
+export class InstantAccessRegistration {
   @State()
   ignored = true;
 
@@ -70,7 +70,7 @@ export class PasswordlessRegistration {
   render() {
     const { states, callbacks } = isDemo()
       ? useRegistrationDemo(this)
-      : usePasswordlessRegistration();
+      : useInstantAccessRegistration();
 
     const content = {
       emailLabel: this.emailLabel,
@@ -93,7 +93,7 @@ export class PasswordlessRegistration {
   }
 }
 function useRegistrationDemo(
-  props: PasswordlessRegistration
+  props: InstantAccessRegistration
 ): Partial<EmailRegistrationViewProps> {
   const onSubmit = () => {
     setUserIdentity({

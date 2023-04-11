@@ -15,13 +15,13 @@ import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-pro
 import { Spacing } from "./global/mixins";
 import { FunctionalComponent } from "@stencil/core";
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
+import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
 import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-fields-view";
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
-import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
 import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
@@ -524,6 +524,33 @@ export namespace Components {
          */
         "fieldType": "text" | "date" | "tel";
     }
+    interface SqmInstantAccessRegistration {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<EmailRegistrationViewProps>;
+        /**
+          * @uiName Email Field Label
+         */
+        "emailLabel": string;
+        /**
+          * @uiName First Name Field Label
+         */
+        "firstNameLabel": string;
+        /**
+          * @uiName Include name fields
+         */
+        "includeName": boolean;
+        /**
+          * @uiName Last Name Field Label
+         */
+        "lastNameLabel": string;
+        /**
+          * @uiName Register Button Text
+         */
+        "registerLabel": string;
+    }
     interface SqmLeaderboard {
         /**
           * Title displayed for users without names
@@ -718,33 +745,6 @@ export namespace Components {
           * @uiName Password Label
          */
         "fieldLabel": string;
-    }
-    interface SqmPasswordlessRegistration {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<EmailRegistrationViewProps>;
-        /**
-          * @uiName Email Field Label
-         */
-        "emailLabel": string;
-        /**
-          * @uiName First Name Field Label
-         */
-        "firstNameLabel": string;
-        /**
-          * @uiName Include name fields
-         */
-        "includeName": boolean;
-        /**
-          * @uiName Last Name Field Label
-         */
-        "lastNameLabel": string;
-        /**
-          * @uiName Register Button Text
-         */
-        "registerLabel": string;
     }
     interface SqmPopupContainer {
         /**
@@ -2682,6 +2682,12 @@ declare global {
         prototype: HTMLSqmInputFieldElement;
         new (): HTMLSqmInputFieldElement;
     };
+    interface HTMLSqmInstantAccessRegistrationElement extends Components.SqmInstantAccessRegistration, HTMLStencilElement {
+    }
+    var HTMLSqmInstantAccessRegistrationElement: {
+        prototype: HTMLSqmInstantAccessRegistrationElement;
+        new (): HTMLSqmInstantAccessRegistrationElement;
+    };
     interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
     }
     var HTMLSqmLeaderboardElement: {
@@ -2729,12 +2735,6 @@ declare global {
     var HTMLSqmPasswordFieldElement: {
         prototype: HTMLSqmPasswordFieldElement;
         new (): HTMLSqmPasswordFieldElement;
-    };
-    interface HTMLSqmPasswordlessRegistrationElement extends Components.SqmPasswordlessRegistration, HTMLStencilElement {
-    }
-    var HTMLSqmPasswordlessRegistrationElement: {
-        prototype: HTMLSqmPasswordlessRegistrationElement;
-        new (): HTMLSqmPasswordlessRegistrationElement;
     };
     interface HTMLSqmPopupContainerElement extends Components.SqmPopupContainer, HTMLStencilElement {
     }
@@ -3140,6 +3140,7 @@ declare global {
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-image": HTMLSqmImageElement;
         "sqm-input-field": HTMLSqmInputFieldElement;
+        "sqm-instant-access-registration": HTMLSqmInstantAccessRegistrationElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-link-button": HTMLSqmLinkButtonElement;
@@ -3148,7 +3149,6 @@ declare global {
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
         "sqm-password-field": HTMLSqmPasswordFieldElement;
-        "sqm-passwordless-registration": HTMLSqmPasswordlessRegistrationElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
         "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
         "sqm-portal-container": HTMLSqmPortalContainerElement;
@@ -3698,6 +3698,33 @@ declare namespace LocalJSX {
          */
         "fieldType"?: "text" | "date" | "tel";
     }
+    interface SqmInstantAccessRegistration {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<EmailRegistrationViewProps>;
+        /**
+          * @uiName Email Field Label
+         */
+        "emailLabel"?: string;
+        /**
+          * @uiName First Name Field Label
+         */
+        "firstNameLabel"?: string;
+        /**
+          * @uiName Include name fields
+         */
+        "includeName"?: boolean;
+        /**
+          * @uiName Last Name Field Label
+         */
+        "lastNameLabel"?: string;
+        /**
+          * @uiName Register Button Text
+         */
+        "registerLabel"?: string;
+    }
     interface SqmLeaderboard {
         /**
           * Title displayed for users without names
@@ -3892,33 +3919,6 @@ declare namespace LocalJSX {
           * @uiName Password Label
          */
         "fieldLabel"?: string;
-    }
-    interface SqmPasswordlessRegistration {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<EmailRegistrationViewProps>;
-        /**
-          * @uiName Email Field Label
-         */
-        "emailLabel"?: string;
-        /**
-          * @uiName First Name Field Label
-         */
-        "firstNameLabel"?: string;
-        /**
-          * @uiName Include name fields
-         */
-        "includeName"?: boolean;
-        /**
-          * @uiName Last Name Field Label
-         */
-        "lastNameLabel"?: string;
-        /**
-          * @uiName Register Button Text
-         */
-        "registerLabel"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -5735,6 +5735,7 @@ declare namespace LocalJSX {
         "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-image": SqmImage;
         "sqm-input-field": SqmInputField;
+        "sqm-instant-access-registration": SqmInstantAccessRegistration;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-link-button": SqmLinkButton;
@@ -5743,7 +5744,6 @@ declare namespace LocalJSX {
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
         "sqm-password-field": SqmPasswordField;
-        "sqm-passwordless-registration": SqmPasswordlessRegistration;
         "sqm-popup-container": SqmPopupContainer;
         "sqm-portal-change-password": SqmPortalChangePassword;
         "sqm-portal-container": SqmPortalContainer;
@@ -5833,6 +5833,7 @@ declare module "@stencil/core" {
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-image": LocalJSX.SqmImage & JSXBase.HTMLAttributes<HTMLSqmImageElement>;
             "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
+            "sqm-instant-access-registration": LocalJSX.SqmInstantAccessRegistration & JSXBase.HTMLAttributes<HTMLSqmInstantAccessRegistrationElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-link-button": LocalJSX.SqmLinkButton & JSXBase.HTMLAttributes<HTMLSqmLinkButtonElement>;
@@ -5841,7 +5842,6 @@ declare module "@stencil/core" {
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
-            "sqm-passwordless-registration": LocalJSX.SqmPasswordlessRegistration & JSXBase.HTMLAttributes<HTMLSqmPasswordlessRegistrationElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
             "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
             "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;

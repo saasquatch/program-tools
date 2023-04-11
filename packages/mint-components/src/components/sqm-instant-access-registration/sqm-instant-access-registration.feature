@@ -1,5 +1,5 @@
 @author:truman
-Feature: Instant access referred registration
+Feature: Instant access referrer registration
 
   @motivating
   Scenario: User's must provide an email to register

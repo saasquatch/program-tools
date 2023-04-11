@@ -6,7 +6,7 @@ import gql from "graphql-tag";
 import decode from "jwt-decode";
 import { useMutation } from "../graphql/useMutation";
 import { BaseQueryData } from "../graphql/useBaseQuery";
-interface UpsertPasswordlessUserVariables {
+interface UpsertInstantAccessUserVariables {
   email: string;
   firstName: string;
   lastName: string;
@@ -15,8 +15,8 @@ interface UpsertPasswordlessUserVariables {
   cookies: string;
 }
 
-interface UpsertPasswordlessUserResult {
-  upsertPasswordlessUser: {
+interface UpsertInstantAccessUserResult {
+  upsertInstantAccessUser: {
     token: string;
     user: {
       id: string;
@@ -25,8 +25,8 @@ interface UpsertPasswordlessUserResult {
   };
 }
 
-const UpsertPasswordlessUserMutation = gql`
-  mutation UpsertPasswordlessUser(
+const UpsertInstantAccessUserMutation = gql`
+  mutation UpsertInstantAccessUser(
     $email: String!
     $firstName: String
     $lastName: String
@@ -34,8 +34,8 @@ const UpsertPasswordlessUserMutation = gql`
     $countryCode: RSCountryCode
     $cookies: String
   ) {
-    upsertPasswordlessUser(
-      passwordlessUserInput: {
+    upsertInstantAccessUser(
+      instantAccessUserInput: {
         email: $email
         firstName: $firstName
         lastName: $lastName
@@ -53,24 +53,24 @@ const UpsertPasswordlessUserMutation = gql`
   }
 `;
 
-export function useUpsertPasswordlessUserMutation(): [
-  (e: unknown) => Promise<UpsertPasswordlessUserResult | Error>,
-  BaseQueryData<UpsertPasswordlessUserResult>
+export function useUpsertInstantAccessUserMutation(): [
+  (e: unknown) => Promise<UpsertInstantAccessUserResult | Error>,
+  BaseQueryData<UpsertInstantAccessUserResult>
 ] {
   const [request, { loading, data, errors }] =
-    useMutation<UpsertPasswordlessUserResult>(UpsertPasswordlessUserMutation);
+    useMutation<UpsertInstantAccessUserResult>(UpsertInstantAccessUserMutation);
 
   const requestAndSetUserIdentity = async (
-    variables: UpsertPasswordlessUserVariables
+    variables: UpsertInstantAccessUserVariables
   ) => {
     const result = await request(variables);
 
-    if (!(result instanceof Error) && result.upsertPasswordlessUser) {
-      const jwt = result.upsertPasswordlessUser.token;
+    if (!(result instanceof Error) && result.upsertInstantAccessUser) {
+      const jwt = result.upsertInstantAccessUser.token;
       setUserIdentity({
         jwt,
-        id: result.upsertPasswordlessUser.user.id,
-        accountId: result.upsertPasswordlessUser.user.accountId,
+        id: result.upsertInstantAccessUser.user.id,
+        accountId: result.upsertInstantAccessUser.user.accountId,
       });
     }
 

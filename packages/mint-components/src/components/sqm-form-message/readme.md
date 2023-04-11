@@ -18,7 +18,7 @@
 ### Used by
 
  - [sqm-edit-profile](../sqm-edit-profile)
- - [sqm-passwordless-registration](../sqm-passwordless-registration)
+ - [sqm-instant-access-registration](../sqm-instant-access-registration)
  - [sqm-portal-change-password](../sqm-portal-change-password)
  - [sqm-portal-email-verification](../sqm-portal-email-verification)
  - [sqm-portal-forgot-password](../sqm-portal-forgot-password)
@@ -35,7 +35,7 @@
 ```mermaid
 graph TD;
   sqm-edit-profile --> sqm-form-message
-  sqm-passwordless-registration --> sqm-form-message
+  sqm-instant-access-registration --> sqm-form-message
   sqm-portal-change-password --> sqm-form-message
   sqm-portal-email-verification --> sqm-form-message
   sqm-portal-forgot-password --> sqm-form-message
