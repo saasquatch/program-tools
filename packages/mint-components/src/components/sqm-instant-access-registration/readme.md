@@ -26,8 +26,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  sqm-passwordless-registration --> sqm-form-message
-  style sqm-passwordless-registration fill:#f9f,stroke:#333,stroke-width:4px
+  sqm-instant-access-registration --> sqm-form-message
+  style sqm-instant-access-registration fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

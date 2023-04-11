@@ -7,7 +7,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
-import { usePasswordlessRegistration } from "../sqm-passwordless-registration/usePasswordlessRegistration";
+import { useInstantAccessRegistration } from "../sqm-instant-access-registration/useInstantAccessRegistration";
 import {
   EmailRegistrationView,
   EmailRegistrationViewProps,
@@ -69,7 +69,7 @@ export class ReferredRegistration {
   render() {
     const { states, callbacks } = isDemo()
       ? useRegistrationDemo(this)
-      : usePasswordlessRegistration();
+      : useInstantAccessRegistration();
 
     const content = {
       emailLabel: this.emailLabel,
