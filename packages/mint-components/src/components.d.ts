@@ -1166,6 +1166,12 @@ export namespace Components {
          */
         "hideInputs": boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage": string;
+        /**
           * @uiName Login Button Text
          */
         "loginLabel": string;
@@ -1175,6 +1181,12 @@ export namespace Components {
           * @uiWidget pageSelect
          */
         "loginPath": string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network Error Message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage": string;
         /**
           * Redirect participants to this page from their verification email
           * @uiName Registration Redirect
@@ -1190,11 +1202,23 @@ export namespace Components {
          */
         "passwordLabel": string;
         /**
+          * The message to be displayed when password inputs do not match.
+          * @uiName Password Mismatch Message
+          * @uiWidget textArea
+         */
+        "passwordMismatchErrorMessage": string;
+        /**
           * The page that participants are redirected to from the verification email.
           * @uiName Email Verification Redirect
           * @uiWidget pageSelect
          */
         "redirectPath": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
         /**
           * @uiName Submit Button Text
          */
@@ -4340,6 +4364,12 @@ declare namespace LocalJSX {
          */
         "hideInputs"?: boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
           * @uiName Login Button Text
          */
         "loginLabel"?: string;
@@ -4349,6 +4379,12 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "loginPath"?: string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network Error Message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page from their verification email
           * @uiName Registration Redirect
@@ -4364,11 +4400,23 @@ declare namespace LocalJSX {
          */
         "passwordLabel"?: string;
         /**
+          * The message to be displayed when password inputs do not match.
+          * @uiName Password Mismatch Message
+          * @uiWidget textArea
+         */
+        "passwordMismatchErrorMessage"?: string;
+        /**
           * The page that participants are redirected to from the verification email.
           * @uiName Email Verification Redirect
           * @uiWidget pageSelect
          */
         "redirectPath"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
         /**
           * @uiName Submit Button Text
          */
