@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
-import { HostBlock } from "../../global/mixins";
+import { HostBlock, P } from "../../global/mixins";
 
 export interface CopyTextViewProps {
   copyString: string;
@@ -8,9 +8,10 @@ export interface CopyTextViewProps {
   open: boolean;
   copyButtonLabel?: string;
   disabled?: boolean;
-  isCopyIcon?: boolean;
   textAlign?: "left" | "center";
-  buttonPosition?: "inside" | "outside" | "below";
+  buttonStyle?: "button inside" | "button outside" | "button below" | "icon";
+  error?: boolean;
+  errorText?: string;
 
   onClick?: () => void;
 }
@@ -22,9 +23,23 @@ const style = {
     "&::part(input)": { textOverflow: "ellipsis" },
     width: "100%",
   },
+  inputErrorStyle: {
+    "&::part(base)": {
+      border: "2px solid red",
+    },
+  },
   containerStyle: {
     display: "flex",
     gap: "8px",
+  },
+  errorTextStyle: {
+    margin: "0",
+    color: "red",
+  },
+  helptextStyle: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "8px",
   },
 };
 
@@ -41,19 +56,20 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function CopyTextView(props: CopyTextViewProps) {
-  const { isCopyIcon = true } = props;
+  const { buttonStyle = "icon", errorText = "An error occurred" } = props;
 
-  const copyButton = isCopyIcon ? null : (
-    <sl-button
-      onClick={() => props.onClick?.()}
-      size={props.buttonPosition === "outside" ? "medium" : "small"}
-      disabled={props.disabled}
-      slot="suffix"
-      type="primary"
-    >
-      {props.copyButtonLabel || "Copy"}
-    </sl-button>
-  );
+  const copyButton =
+    buttonStyle === "icon" ? null : (
+      <sl-button
+        onClick={() => props.onClick?.()}
+        size={buttonStyle === "button outside" ? "medium" : "small"}
+        disabled={props.disabled}
+        slot="suffix"
+        type="primary"
+      >
+        {props.copyButtonLabel || "Copy"}
+      </sl-button>
+    );
 
   return (
     <div>
@@ -73,18 +89,21 @@ export function CopyTextView(props: CopyTextViewProps) {
           class={sheet.classes.containerStyle}
           style={{
             flexDirection: `${
-              props.buttonPosition === "below" ? "column" : "row"
+              buttonStyle === "button below" ? "column" : "row"
             }`,
             width: "100%",
           }}
         >
           <sl-input
-            class={sheet.classes.inputStyle}
+            class={`${sheet.classes.inputStyle} ${
+              props.error ? sheet.classes.inputErrorStyle : ""
+            }`}
             exportparts="label: input-label"
             value={props.copyString}
             readonly
+            style={{}}
           >
-            {isCopyIcon ? (
+            {buttonStyle === "icon" ? (
               <sl-icon-button
                 onClick={() => props.onClick?.()}
                 slot="suffix"
@@ -92,12 +111,17 @@ export function CopyTextView(props: CopyTextViewProps) {
                 disabled={props.disabled}
               />
             ) : (
-              props.buttonPosition === "inside" && copyButton
+              buttonStyle === "button inside" && copyButton
             )}
+            <div slot="help-text" class={sheet.classes.helptextStyle}>
+              {(buttonStyle === "button outside" ||
+                buttonStyle === "button below") &&
+                copyButton}
+              {props.error && (
+                <p class={sheet.classes.errorTextStyle}>{errorText}</p>
+              )}
+            </div>
           </sl-input>
-          {(props.buttonPosition === "outside" ||
-            props.buttonPosition === "below") &&
-            copyButton}
         </div>
       </sl-tooltip>
     </div>

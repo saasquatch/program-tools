@@ -157,10 +157,13 @@ export namespace Components {
     }
     interface SqmCouponCode {
         /**
-          * Set the copy button position
-          * @uiName Copy button position
+          * Set the copy button style
+          * @uiName Copy button style
+          * @uiType string
+          * @uiEnum ["icon", "button inside", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
          */
-        "buttonPosition": "inside" | "outside" | "below";
+        "buttonStyle": "icon" | "button inside" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -172,10 +175,10 @@ export namespace Components {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Set copy button as icon
-          * @uiName Copy icon
+          * Set error message
+          * @uiName Error message
          */
-        "isCopyIcon": boolean;
+        "errorText": string;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -185,6 +188,9 @@ export namespace Components {
         /**
           * Change the text alignment
           * @uiName Align text
+          * @uiType string
+          * @uiEnum ["left", "center"]
+          * @uiEnumNames ["left", "center"]
          */
         "textAlign": "left" | "center";
         /**
@@ -2166,10 +2172,13 @@ export namespace Components {
     }
     interface SqmShareCode {
         /**
-          * Set the copy button position
-          * @uiName Copy button position
+          * Set the copy button style
+          * @uiName Copy button style
+          * @uiType string
+          * @uiEnum ["icon", "button inside", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
          */
-        "buttonPosition": "inside" | "outside" | "below";
+        "buttonStyle": "icon" | "button inside" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -2181,11 +2190,6 @@ export namespace Components {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Set copy button as icon
-          * @uiName Copy icon
-         */
-        "isCopyIcon": boolean;
-        /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
@@ -2194,6 +2198,9 @@ export namespace Components {
         /**
           * Change the text alignment
           * @uiName Align text
+          * @uiType string
+          * @uiEnum ["left", "center"]
+          * @uiEnumNames ["left", "center"]
          */
         "textAlign": "left" | "center";
         /**
@@ -2209,10 +2216,13 @@ export namespace Components {
     }
     interface SqmShareLink {
         /**
-          * Set the copy button position
-          * @uiName Copy button position
+          * Set the copy button style
+          * @uiName Copy button style
+          * @uiType string
+          * @uiEnum ["icon", "button inside", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
          */
-        "buttonPosition": "inside" | "outside" | "below";
+        "buttonStyle": "icon" | "button inside" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -2224,11 +2234,6 @@ export namespace Components {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Set copy button as icon
-          * @uiName Copy icon
-         */
-        "isCopyIcon": boolean;
-        /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
@@ -2237,6 +2242,9 @@ export namespace Components {
         /**
           * Change the text alignment
           * @uiName Align text
+          * @uiType string
+          * @uiEnum ["left", "center"]
+          * @uiEnumNames ["left", "center"]
          */
         "textAlign": "left" | "center";
         /**
@@ -3323,10 +3331,13 @@ declare namespace LocalJSX {
     }
     interface SqmCouponCode {
         /**
-          * Set the copy button position
-          * @uiName Copy button position
+          * Set the copy button style
+          * @uiName Copy button style
+          * @uiType string
+          * @uiEnum ["icon", "button inside", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
          */
-        "buttonPosition"?: "inside" | "outside" | "below";
+        "buttonStyle"?: "icon" | "button inside" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -3338,10 +3349,10 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Set copy button as icon
-          * @uiName Copy icon
+          * Set error message
+          * @uiName Error message
          */
-        "isCopyIcon"?: boolean;
+        "errorText"?: string;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -3351,6 +3362,9 @@ declare namespace LocalJSX {
         /**
           * Change the text alignment
           * @uiName Align text
+          * @uiType string
+          * @uiEnum ["left", "center"]
+          * @uiEnumNames ["left", "center"]
          */
         "textAlign"?: "left" | "center";
         /**
@@ -5308,10 +5322,13 @@ declare namespace LocalJSX {
     }
     interface SqmShareCode {
         /**
-          * Set the copy button position
-          * @uiName Copy button position
+          * Set the copy button style
+          * @uiName Copy button style
+          * @uiType string
+          * @uiEnum ["icon", "button inside", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
          */
-        "buttonPosition"?: "inside" | "outside" | "below";
+        "buttonStyle"?: "icon" | "button inside" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -5323,11 +5340,6 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Set copy button as icon
-          * @uiName Copy icon
-         */
-        "isCopyIcon"?: boolean;
-        /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
@@ -5336,6 +5348,9 @@ declare namespace LocalJSX {
         /**
           * Change the text alignment
           * @uiName Align text
+          * @uiType string
+          * @uiEnum ["left", "center"]
+          * @uiEnumNames ["left", "center"]
          */
         "textAlign"?: "left" | "center";
         /**
@@ -5351,10 +5366,13 @@ declare namespace LocalJSX {
     }
     interface SqmShareLink {
         /**
-          * Set the copy button position
-          * @uiName Copy button position
+          * Set the copy button style
+          * @uiName Copy button style
+          * @uiType string
+          * @uiEnum ["icon", "button inside", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
          */
-        "buttonPosition"?: "inside" | "outside" | "below";
+        "buttonStyle"?: "icon" | "button inside" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -5366,11 +5384,6 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Set copy button as icon
-          * @uiName Copy icon
-         */
-        "isCopyIcon"?: boolean;
-        /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
@@ -5379,6 +5392,9 @@ declare namespace LocalJSX {
         /**
           * Change the text alignment
           * @uiName Align text
+          * @uiType string
+          * @uiEnum ["left", "center"]
+          * @uiEnumNames ["left", "center"]
          */
         "textAlign"?: "left" | "center";
         /**

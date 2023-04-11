@@ -10,9 +10,11 @@ export default {
 
 const defaultProps: CopyTextViewProps = {
   tooltiptext: "Copied to Clipboard",
-  copyString: "test",
+  copyString: "THANKSJANE125uv125",
   open: false,
   copyButtonLabel: "Copy Coupon",
+  errorText:
+    "Oops! Looks like we weren’t able to retrieve a code for you. Please try again later.",
 };
 
 export const CouponCode = () => {
@@ -21,35 +23,42 @@ export const CouponCode = () => {
 export const CustomTooltipText = () => {
   return <sqm-coupon-code tooltiptext="CUSTOM TOOLTIP TEXT"></sqm-coupon-code>;
 };
-export const TextAlignCenter = () => {
-  return <sqm-coupon-code textAlign="center"></sqm-coupon-code>;
-};
-export const CopyButton = () => {
-  return <sqm-coupon-code isCopyIcon={false}></sqm-coupon-code>;
-};
-export const CopyButtonInside = () => {
-  return (
-    <CopyTextView
-      {...defaultProps}
-      buttonPosition={"inside"}
-      isCopyIcon={false}
-    ></CopyTextView>
-  );
-};
-export const CopyButtonBelow = () => {
-  return (
-    <CopyTextView
-      {...defaultProps}
-      buttonPosition={"below"}
-      isCopyIcon={false}
-    ></CopyTextView>
-  );
-};
 export const CustomTooltipDuration = () => {
   return (
     <sqm-coupon-code
       tooltiplifespan={5000}
       tooltiptext="CUSTOM TOOLTIP TEXT"
     ></sqm-coupon-code>
+  );
+};
+export const TextAlignCenter = () => {
+  return <sqm-coupon-code textAlign="center"></sqm-coupon-code>;
+};
+export const CopyButton = () => {
+  return <sqm-coupon-code buttonStyle="button outside"></sqm-coupon-code>;
+};
+export const CopyButtonInside = () => {
+  return (
+    <CopyTextView
+      {...defaultProps}
+      buttonStyle={"button inside"}
+    ></CopyTextView>
+  );
+};
+export const CopyButtonBelow = () => {
+  return (
+    <CopyTextView {...defaultProps} buttonStyle={"button below"}></CopyTextView>
+  );
+};
+export const Error = () => {
+  return <CopyTextView {...defaultProps} error={true}></CopyTextView>;
+};
+export const ErrorButtonBelow = () => {
+  return (
+    <CopyTextView
+      {...defaultProps}
+      error={true}
+      buttonStyle="button below"
+    ></CopyTextView>
   );
 };
