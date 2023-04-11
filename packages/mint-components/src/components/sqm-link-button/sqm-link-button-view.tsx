@@ -23,13 +23,13 @@ export function LinkButtonView(props: LinkButtonViewProps) {
   const { link, openInNewTab } = props;
 
   return (
-    <span class={sheet.classes.Container}>
+    <span class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">
         {styleString}
         {vanillaStyle}
       </style>
-      <sl-button>
-        <a href={link} target={openInNewTab ? "_blank" : ""}>
+      <sl-button exportparts="base: primarybutton-base">
+        <a href={link} target={openInNewTab ? "_blank" : ""} part="sqm-link">
           <slot />
         </a>
       </sl-button>
