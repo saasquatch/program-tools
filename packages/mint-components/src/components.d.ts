@@ -170,6 +170,11 @@ export namespace Components {
          */
         "copyButtonLabel": string;
         /**
+          * Set coupon code placeholder for when there there is no coupon code to display
+          * @uiName Coupon code placeholder
+         */
+        "couponCodePlaceholder": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -3391,6 +3396,11 @@ declare namespace LocalJSX {
           * @uiName Copy button label
          */
         "copyButtonLabel"?: string;
+        /**
+          * Set coupon code placeholder for when there there is no coupon code to display
+          * @uiName Coupon code placeholder
+         */
+        "couponCodePlaceholder"?: string;
         /**
           * @undocumented 
           * @uiType object
