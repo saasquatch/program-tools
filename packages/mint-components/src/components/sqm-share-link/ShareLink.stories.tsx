@@ -36,6 +36,16 @@ export const Disabled = () => {
   };
   return <CopyTextView {...props} />;
 };
+export const Error = () => {
+  const props = {
+    copyString: "https://noah.example.com",
+    disabled: true,
+    open: true,
+    tooltiptext: "Copied!",
+    error: true,
+  };
+  return <CopyTextView {...props} />;
+};
 export const TextAlignCenter = () => {
   return <sqm-share-link textAlign="center"></sqm-share-link>;
 };

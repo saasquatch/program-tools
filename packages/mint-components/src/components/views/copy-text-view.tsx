@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
-import { HostBlock } from "../../global/mixins";
+import { HostBlock, P } from "../../global/mixins";
 
 export interface CopyTextViewProps {
   copyString: string;
@@ -10,6 +10,8 @@ export interface CopyTextViewProps {
   disabled?: boolean;
   textAlign?: "left" | "center";
   buttonStyle?: "button inside" | "button outside" | "button below" | "icon";
+  error?: boolean;
+  errorText?: string;
 
   onClick?: () => void;
 }
@@ -21,9 +23,23 @@ const style = {
     "&::part(input)": { textOverflow: "ellipsis" },
     width: "100%",
   },
+  inputErrorStyle: {
+    "&::part(base)": {
+      border: "2px solid red",
+    },
+  },
   containerStyle: {
     display: "flex",
     gap: "8px",
+  },
+  errorTextStyle: {
+    margin: "0",
+    color: "red",
+  },
+  helptextStyle: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "8px",
   },
 };
 
@@ -40,7 +56,7 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function CopyTextView(props: CopyTextViewProps) {
-  const { buttonStyle = "icon" } = props;
+  const { buttonStyle = "icon", errorText = "An error occurred" } = props;
 
   const copyButton =
     buttonStyle === "icon" ? null : (
@@ -79,10 +95,13 @@ export function CopyTextView(props: CopyTextViewProps) {
           }}
         >
           <sl-input
-            class={sheet.classes.inputStyle}
+            class={`${sheet.classes.inputStyle} ${
+              props.error ? sheet.classes.inputErrorStyle : ""
+            }`}
             exportparts="label: input-label"
             value={props.copyString}
             readonly
+            style={{}}
           >
             {buttonStyle === "icon" ? (
               <sl-icon-button
@@ -94,10 +113,15 @@ export function CopyTextView(props: CopyTextViewProps) {
             ) : (
               buttonStyle === "button inside" && copyButton
             )}
+            <div slot="help-text" class={sheet.classes.helptextStyle}>
+              {(buttonStyle === "button outside" ||
+                buttonStyle === "button below") &&
+                copyButton}
+              {props.error && (
+                <p class={sheet.classes.errorTextStyle}>{errorText}</p>
+              )}
+            </div>
           </sl-input>
-          {(buttonStyle === "button outside" ||
-            buttonStyle === "button below") &&
-            copyButton}
         </div>
       </sl-tooltip>
     </div>

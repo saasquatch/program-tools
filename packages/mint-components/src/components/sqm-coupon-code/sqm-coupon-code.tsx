@@ -83,6 +83,17 @@ export class CouponCode {
     "icon";
 
   /**
+   * Set error message
+   *
+   * @uiName Error message
+   */
+  @Prop({
+    attribute: "error-text",
+  })
+  errorText: string =
+    "Oops! Looks like we weren’t able to retrieve a code for you. Please try again later.";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -112,6 +123,8 @@ function useDemoCouponCode(props: CouponCode): CopyTextViewProps {
       textAlign: props.textAlign,
       buttonStyle: props.buttonStyle,
       copyButtonLabel: props.copyButtonLabel,
+      errorText: props.errorText,
+      error: false,
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility

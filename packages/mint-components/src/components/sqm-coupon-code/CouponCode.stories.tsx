@@ -10,9 +10,11 @@ export default {
 
 const defaultProps: CopyTextViewProps = {
   tooltiptext: "Copied to Clipboard",
-  copyString: "test",
+  copyString: "THANKSJANE125uv125",
   open: false,
   copyButtonLabel: "Copy Coupon",
+  errorText:
+    "Oops! Looks like we weren’t able to retrieve a code for you. Please try again later.",
 };
 
 export const CouponCode = () => {
@@ -20,6 +22,14 @@ export const CouponCode = () => {
 };
 export const CustomTooltipText = () => {
   return <sqm-coupon-code tooltiptext="CUSTOM TOOLTIP TEXT"></sqm-coupon-code>;
+};
+export const CustomTooltipDuration = () => {
+  return (
+    <sqm-coupon-code
+      tooltiplifespan={5000}
+      tooltiptext="CUSTOM TOOLTIP TEXT"
+    ></sqm-coupon-code>
+  );
 };
 export const TextAlignCenter = () => {
   return <sqm-coupon-code textAlign="center"></sqm-coupon-code>;
@@ -40,11 +50,15 @@ export const CopyButtonBelow = () => {
     <CopyTextView {...defaultProps} buttonStyle={"button below"}></CopyTextView>
   );
 };
-export const CustomTooltipDuration = () => {
+export const Error = () => {
+  return <CopyTextView {...defaultProps} error={true}></CopyTextView>;
+};
+export const ErrorButtonBelow = () => {
   return (
-    <sqm-coupon-code
-      tooltiplifespan={5000}
-      tooltiptext="CUSTOM TOOLTIP TEXT"
-    ></sqm-coupon-code>
+    <CopyTextView
+      {...defaultProps}
+      error={true}
+      buttonStyle="button below"
+    ></CopyTextView>
   );
 };

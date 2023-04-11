@@ -63,3 +63,13 @@ export const CopyButtonBelow = () => {
     ></CopyTextView>
   );
 };
+export const Error = () => {
+  const props = {
+    copyString: "https://noah.example.com",
+    disabled: true,
+    open: true,
+    tooltiptext: "Copied!",
+    error: true,
+  };
+  return <CopyTextView {...props} />;
+};

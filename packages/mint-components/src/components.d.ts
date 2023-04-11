@@ -175,6 +175,11 @@ export namespace Components {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
+          * Set error message
+          * @uiName Error message
+         */
+        "errorText": string;
+        /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
@@ -3343,6 +3348,11 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * Set error message
+          * @uiName Error message
+         */
+        "errorText"?: string;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
