@@ -54,34 +54,22 @@ export function useStencilbook(
     imports
   );
 
-  // set persistent story
-  // setSelectedURL
-  //  sets it in url param
-  //
-  //
-  // get url param
-  //  go from path to story
-  //
-
-  console.log("stories", stories);
-
+  const urlStoryKey = decodeURIComponent(window.location.hash).replace("#", "");
   const [Selected, setSelectedInternal] = useState<Selection>(
-    getSelectedStory(getSelectedURL())
+    getStoryFromKey(urlStoryKey)
   );
   const selectedKey = Selected?.key;
   const [layout, setLayout] = useState<Layout>("desktop");
   const [showSidebar, setShowSidebar] = useState<boolean>(true);
   const [darkCanvas, setDarkCanvas] = useState<boolean>(false);
 
-  function getSelectedStory(key?: string) {
+  function getStoryFromKey(key?: string) {
     if (!key) return undefined;
 
     const keys = decodeURIComponent(key).split("-");
     const group = keys[0];
     const parentTitle = keys[1];
     const subKey = keys[2];
-
-    console.log(group, parentTitle, subKey);
 
     const s = stories[group]?.find(
       (element) => element.story.title === parentTitle
@@ -90,57 +78,25 @@ export function useStencilbook(
     return {
       key,
       story: subStory,
-      parent: s.story,
-      label: subStory.name,
+      parent: s?.story,
+      label: subStory?.name,
     };
   }
-  function setSelectedURL(key: string) {
+  function setSelectedStory(key: string) {
     window.location.hash = encodeURIComponent(key);
-  }
-  function getSelectedURL() {
-    return decodeURIComponent(window.location.hash).replace("#", "");
-  }
-  function setSelected(key: string) {
-    setSelectedURL(key);
-    setSelectedInternal(getSelectedStory(key));
+    setSelectedInternal(getStoryFromKey(key));
   }
 
   const WidthSelector = () => {
     // Not the best way to display these buttons but don't wanna put too much time
     return (
       <div class="dynamic-display-wrapper">
-        <div class="button-wrapper">
-          <button
-            class={layout === "desktop" ? "active" : ""}
-            onClick={() => setLayout("desktop")}
-          >
-            Desktop
-          </button>
-          <button
-            class={layout === "tablet" ? "active" : ""}
-            onClick={() => setLayout("tablet")}
-          >
-            Tablet
-          </button>
-          <button
-            class={layout === "mobile" ? "active" : ""}
-            onClick={() => setLayout("mobile")}
-          >
-            Mobile
-          </button>
-        </div>
-        <p>
-          Note: Currently doesn't test breakpoints, use the native tester for
-          now
-        </p>
-        <hr />
         <button
           class={darkCanvas ? "active" : ""}
           onClick={() => setDarkCanvas((isDark) => !isDark)}
         >
           Toggle Dark Background
         </button>
-        <hr />
         <button
           class={showSidebar ? "active" : ""}
           onClick={() => setShowSidebar((isshown) => !isshown)}
@@ -221,7 +177,7 @@ export function useStencilbook(
                                     selectedKey === key ? "selected" : ""
                                   }`}
                                 >
-                                  <a onClick={() => setSelected(key)}>
+                                  <a onClick={() => setSelectedStory(key)}>
                                     {label}
                                   </a>
                                 </div>
