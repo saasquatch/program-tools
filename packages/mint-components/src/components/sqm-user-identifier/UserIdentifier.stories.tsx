@@ -12,7 +12,7 @@ export default {
 const defaultProps = {
   userIdentificationText:
     "Currently showing referral data for noah.clarke@saasquatch.com",
-  switchUserLink: "example.com",
+  onSwitchClick: () => console.log("clicked"),
   switchUserText: "not you?",
 };
 
