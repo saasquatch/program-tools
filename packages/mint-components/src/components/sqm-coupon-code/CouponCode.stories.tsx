@@ -1,10 +1,11 @@
 import { h } from "@stencil/core";
 import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
+import scenario from "./sqm-coupon-code.feature";
 
 export default {
   title: "Components/Coupon Code",
   parameters: {
-    // scenario,
+    scenario,
   },
 };
 

@@ -30,3 +30,20 @@ Feature: Coupon Code
         And in place of the coupon code is "CODE ERROR"
         When the copy button's position is set to "below"
         Then the red help text is below the copy button
+
+    @ui
+    Scenario: user can edit the error message and code placeholder
+
+    @ui
+    Scenario: user can edit the alignment of the coupon code text
+
+    @ui
+    Scenario Outline: The position of the copy button can be changed
+        Given a user is editing the coupon code component
+        When they change the option "Button style" to <option>
+        Then they see the copy button in <position>
+        Examples:
+            | option         | position                        |
+            | button inside  | inside the input, on the right  |
+            | button outside | outside the input, on the right |
+            | button below   | outside the input, below        |
