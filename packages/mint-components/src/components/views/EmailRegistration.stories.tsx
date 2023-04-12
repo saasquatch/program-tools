@@ -19,7 +19,10 @@ const defaultProps: EmailRegistrationViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
-  content: {},
+  content: {
+    invalidEmailErrorMessage: "Must be a valid email address",
+    requiredFieldErrorMessage: "Cannot be empty",
+  },
   // content: { pageLabel: "Share 50$ with your friend now!" },
 };
 
@@ -27,9 +30,10 @@ export const Default = () => <EmailRegistrationView {...defaultProps} />;
 
 export const HasFirstNameLastName = () => (
   <EmailRegistrationView
-    {...defaultProps}
     {...{
+      ...defaultProps,
       content: {
+        ...defaultProps.content,
         includeName: true,
       },
     }}
@@ -38,9 +42,10 @@ export const HasFirstNameLastName = () => (
 
 export const WithSlots = () => (
   <EmailRegistrationView
-    {...defaultProps}
     {...{
+      ...defaultProps,
       content: {
+        ...defaultProps.content,
         topSlot: <div>Hello this is the top slot</div>,
         bottomSlot: <div>Hello this is the bottom slot</div>,
       },
@@ -67,6 +72,21 @@ export const Error = () => (
       states: {
         error: "Something went wrong. Please try again.",
         loading: false,
+      },
+    }}
+  />
+);
+
+export const EmptyEmailError = () => (
+  <EmailRegistrationView
+    {...{
+      ...defaultProps,
+      states: {
+        error: "Something went wrong. Please try again.",
+        loading: false,
+        registrationFormState: {
+          validationErrors: { email: "Email cannot be empty" },
+        },
       },
     }}
   />

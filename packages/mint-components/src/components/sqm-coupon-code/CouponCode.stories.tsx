@@ -15,6 +15,7 @@ const defaultProps: CopyTextViewProps = {
   copyButtonLabel: "Copy Coupon",
   errorText:
     "Oops! Looks like we weren’t able to retrieve a code for you. Please try again later.",
+  inputPlaceholderText: "CODE ERROR",
 };
 
 export const CouponCode = () => {

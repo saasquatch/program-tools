@@ -94,6 +94,16 @@ export class CouponCode {
     "Oops! Looks like we weren’t able to retrieve a code for you. Please try again later.";
 
   /**
+   * Set coupon code placeholder for when there there is no coupon code to display
+   *
+   * @uiName Coupon code placeholder
+   */
+  @Prop({
+    attribute: "coupon-code-placeholder",
+  })
+  couponCodePlaceholder: string = "CODE ERROR";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -125,6 +135,7 @@ function useDemoCouponCode(props: CouponCode): CopyTextViewProps {
       copyButtonLabel: props.copyButtonLabel,
       errorText: props.errorText,
       error: false,
+      couponCodePlaceholder: props.couponCodePlaceholder,
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility

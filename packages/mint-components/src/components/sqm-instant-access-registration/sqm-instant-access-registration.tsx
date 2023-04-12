@@ -52,6 +52,22 @@ export class InstantAccessRegistration {
   @Prop() includeName: boolean = false;
 
   /**
+   * The message to be displayed when a required field is not filled.
+   *
+   * @uiName Required Field Message
+   * @uiWidget textArea
+   */
+  @Prop() requiredFieldErrorMessage: string = "Cannot be empty";
+
+  /**
+   * The message to be displayed when the email used is invalid or blocked.
+   *
+   * @uiName Invalid Email Message
+   * @uiWidget textArea
+   */
+  @Prop() invalidEmailErrorMessage: string = "Must be a valid email address";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -74,6 +90,8 @@ export class InstantAccessRegistration {
       firstNameLabel: this.firstNameLabel,
       lastNameLabel: this.lastNameLabel,
       includeName: this.includeName,
+      invalidEmailErrorMessage: this.invalidEmailErrorMessage,
+      requiredFieldErrorMessage: this.requiredFieldErrorMessage,
 
       // slots
       topSlot: <slot name="top-slot" />,

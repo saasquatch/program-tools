@@ -45,7 +45,7 @@ export function usePortalRegister(props: PortalRegister) {
       jsonpointer.set(formData, key, value);
       // required validation
       if (control.required && !value) {
-        jsonpointer.set(validationErrors, key, "Cannot be empty");
+        jsonpointer.set(validationErrors, key, props.requiredFieldErrorMessage);
       }
       // custom validation
       if (typeof control.validationError === "function") {
@@ -62,7 +62,7 @@ export function usePortalRegister(props: PortalRegister) {
     ) {
       validationErrors = {
         ...validationErrors,
-        confirmPassword: "Passwords do not match.",
+        confirmPassword: props.passwordMismatchErrorMessage,
       };
     }
 
@@ -105,7 +105,7 @@ export function usePortalRegister(props: PortalRegister) {
     } catch (error) {
       setRegistrationFormState({
         loading: false,
-        error: "Network request failed.",
+        error: props.networkErrorMessage,
         validationErrors: {},
       });
     }
@@ -120,9 +120,9 @@ export function usePortalRegister(props: PortalRegister) {
 
   let errorMessage = "";
   if (errors?.response?.["error"]) {
-    errorMessage = "Network request failed";
+    errorMessage = props.networkErrorMessage;
   } else if (errors?.message && !errors?.response?.errors.length) {
-    errorMessage = "Network request failed";
+    errorMessage = props.networkErrorMessage;
   } else {
     errorMessage =
       errors?.response?.errors?.[0]?.extensions?.message ||

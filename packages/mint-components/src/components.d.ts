@@ -170,6 +170,11 @@ export namespace Components {
          */
         "copyButtonLabel": string;
         /**
+          * Set coupon code placeholder for when there there is no coupon code to display
+          * @uiName Coupon code placeholder
+         */
+        "couponCodePlaceholder": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -543,6 +548,12 @@ export namespace Components {
          */
         "includeName": boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage": string;
+        /**
           * @uiName Last Name Field Label
          */
         "lastNameLabel": string;
@@ -550,6 +561,12 @@ export namespace Components {
           * @uiName Register Button Text
          */
         "registerLabel": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
     }
     interface SqmLeaderboard {
         /**
@@ -1166,6 +1183,12 @@ export namespace Components {
          */
         "hideInputs": boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage": string;
+        /**
           * @uiName Login Button Text
          */
         "loginLabel": string;
@@ -1175,6 +1198,12 @@ export namespace Components {
           * @uiWidget pageSelect
          */
         "loginPath": string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network Error Message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage": string;
         /**
           * Redirect participants to this page from their verification email
           * @uiName Registration Redirect
@@ -1190,11 +1219,23 @@ export namespace Components {
          */
         "passwordLabel": string;
         /**
+          * The message to be displayed when password inputs do not match.
+          * @uiName Password Mismatch Message
+          * @uiWidget textArea
+         */
+        "passwordMismatchErrorMessage": string;
+        /**
           * The page that participants are redirected to from the verification email.
           * @uiName Email Verification Redirect
           * @uiWidget pageSelect
          */
         "redirectPath": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
         /**
           * @uiName Submit Button Text
          */
@@ -1655,6 +1696,12 @@ export namespace Components {
          */
         "includeName": boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage": string;
+        /**
           * @uiName Last Name Field Label
          */
         "lastNameLabel": string;
@@ -1662,6 +1709,12 @@ export namespace Components {
           * @uiName Register Button Text
          */
         "registerLabel": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
     }
     interface SqmRewardExchangeList {
         /**
@@ -3344,6 +3397,11 @@ declare namespace LocalJSX {
          */
         "copyButtonLabel"?: string;
         /**
+          * Set coupon code placeholder for when there there is no coupon code to display
+          * @uiName Coupon code placeholder
+         */
+        "couponCodePlaceholder"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -3717,6 +3775,12 @@ declare namespace LocalJSX {
          */
         "includeName"?: boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
           * @uiName Last Name Field Label
          */
         "lastNameLabel"?: string;
@@ -3724,6 +3788,12 @@ declare namespace LocalJSX {
           * @uiName Register Button Text
          */
         "registerLabel"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
     }
     interface SqmLeaderboard {
         /**
@@ -4340,6 +4410,12 @@ declare namespace LocalJSX {
          */
         "hideInputs"?: boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
           * @uiName Login Button Text
          */
         "loginLabel"?: string;
@@ -4349,6 +4425,12 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "loginPath"?: string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network Error Message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page from their verification email
           * @uiName Registration Redirect
@@ -4364,11 +4446,23 @@ declare namespace LocalJSX {
          */
         "passwordLabel"?: string;
         /**
+          * The message to be displayed when password inputs do not match.
+          * @uiName Password Mismatch Message
+          * @uiWidget textArea
+         */
+        "passwordMismatchErrorMessage"?: string;
+        /**
           * The page that participants are redirected to from the verification email.
           * @uiName Email Verification Redirect
           * @uiWidget pageSelect
          */
         "redirectPath"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
         /**
           * @uiName Submit Button Text
          */
@@ -4815,6 +4909,12 @@ declare namespace LocalJSX {
          */
         "includeName"?: boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
           * @uiName Last Name Field Label
          */
         "lastNameLabel"?: string;
@@ -4822,6 +4922,12 @@ declare namespace LocalJSX {
           * @uiName Register Button Text
          */
         "registerLabel"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
     }
     interface SqmRewardExchangeList {
         /**

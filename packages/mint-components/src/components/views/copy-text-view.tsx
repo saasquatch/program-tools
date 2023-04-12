@@ -12,6 +12,7 @@ export interface CopyTextViewProps {
   buttonStyle?: "button inside" | "button outside" | "button below" | "icon";
   error?: boolean;
   errorText?: string;
+  inputPlaceholderText?: string;
 
   onClick?: () => void;
 }
@@ -71,6 +72,11 @@ export function CopyTextView(props: CopyTextViewProps) {
       </sl-button>
     );
 
+  const inputText =
+    !props.copyString || props.error
+      ? props.inputPlaceholderText
+      : props.copyString;
+
   return (
     <div>
       <style type="text/css">
@@ -99,7 +105,7 @@ export function CopyTextView(props: CopyTextViewProps) {
               props.error ? sheet.classes.inputErrorStyle : ""
             }`}
             exportparts="label: input-label"
-            value={props.copyString}
+            value={inputText}
             readonly
             style={{}}
           >
