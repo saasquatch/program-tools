@@ -12,7 +12,7 @@ import { useUserIdentifier } from "./useUserIdentifer";
 /**
  * @uiName User Identifier
  * @exampleGroup Common Components
- * @example User Identifier - <sqm-user-identifier user-identification-text="Showing data for {email}" switch-user-link="www.example.com" switch-user-text="not you?"></sqm-user-identifier>
+ * @example User Identifier - <sqm-user-identifier user-identification-text="Showing data for {email}" switch-user-link="#" switch-user-text="not you?"></sqm-user-identifier>
  */
 @Component({
   tag: "sqm-user-identifier",
