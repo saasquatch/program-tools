@@ -91,7 +91,7 @@ export class CouponCode {
     attribute: "error-text",
   })
   errorText: string =
-    "Oops! Looks like we weren’t able to retrieve a code for you. Please try again later.";
+    "Oops! Looks like we weren’t able to retrieve a code for you. Please try again later or contact support.";
 
   /**
    * Set coupon code placeholder for when there there is no coupon code to display
