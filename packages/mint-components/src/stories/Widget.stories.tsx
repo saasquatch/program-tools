@@ -4,10 +4,10 @@ import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
 import referralWidget from "../templates/ReferralWidget.html";
 import monoWidget from "../templates/MonoWidget.html";
 import loyaltyWidget from "../templates/LoyaltyWidget.html";
-import instantAccessShareWidget from "../templates/InstantAccessShareWidget.html";
-import instantAccessCouponWidget from "../templates/InstantAccessCouponWidget.html";
-import instantAccessReferrerRegistationWidget from "../templates/InstantAccessReferrerRegistrationWidget.html";
-import instantAccessReferredRegistationWidget from "../templates/InstantAccessReferredRegistrationWidget.html";
+import instantAccessReferrerShareWidget from "../templates/InstantAccessReferrerShareWidget.html";
+import instantAccessFriendCouponWidget from "../templates/InstantAccessFriendCouponWidget.html";
+import instantAccessReferrerRegistrationWidget from "../templates/InstantAccessReferrerRegistrationWidget.html";
+import instantAccessFriendRegistrationWidget from "../templates/InstantAccessFriendRegistrationWidget.html";
 
 import marked from "marked";
 
@@ -109,26 +109,26 @@ export const Loyalty = createHookStory(() => {
   );
 });
 
-export const InstantAccessShareWidget = createHookStory(() => {
-  const { states, callbacks } = useTemplate(instantAccessShareWidget);
+export const InstantAccessReferrerShareWidget = createHookStory(() => {
+  const { states, callbacks } = useTemplate(instantAccessReferrerShareWidget);
   return <TemplateView states={states} callbacks={callbacks} />;
 });
 
-export const InstantAccessCouponWidget = createHookStory(() => {
-  const { states, callbacks } = useTemplate(instantAccessCouponWidget);
+export const InstantAccessFriendCouponWidget = createHookStory(() => {
+  const { states, callbacks } = useTemplate(instantAccessFriendCouponWidget);
   return <TemplateView states={states} callbacks={callbacks} />;
 });
 
-export const InstantAccessReferrerRegistationWidget = createHookStory(() => {
+export const InstantAccessReferrerRegistrationWidget = createHookStory(() => {
   const { states, callbacks } = useTemplate(
-    instantAccessReferrerRegistationWidget
+    instantAccessReferrerRegistrationWidget
   );
   return <TemplateView states={states} callbacks={callbacks} />;
 });
 
-export const InsantAccessReferredRegistationWidget = createHookStory(() => {
+export const InstantAccessFriendRegistrationWidget = createHookStory(() => {
   const { states, callbacks } = useTemplate(
-    instantAccessReferredRegistationWidget
+    instantAccessFriendRegistrationWidget
   );
   return <TemplateView states={states} callbacks={callbacks} />;
 });
