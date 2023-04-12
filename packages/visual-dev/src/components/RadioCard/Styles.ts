@@ -17,6 +17,7 @@ export const RadioLabelStyle = css`
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
+  background-color: var(--sq-surface);
 `;
 
 export const RadioGridStyle = css`
