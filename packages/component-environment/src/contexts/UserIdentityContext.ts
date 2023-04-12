@@ -75,11 +75,13 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
     }
 
     if (!userId || !accountId) {
+      debug("No user information");
       return undefined;
     }
 
     // Check if the JWT has expired
     if (exp && Date.now() >= exp * 1000) {
+      debug("JWT has expired");
       return undefined;
     }
 
@@ -89,6 +91,7 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
       jwt,
     };
   } catch (e) {
+    debug("Invalid JWT");
     // Invalid JWT
     return undefined;
   }
@@ -149,10 +152,6 @@ function _getInitialValue(): UserIdentity | undefined {
  */
 export function setUserIdentity(identity?: UserIdentity) {
   const globalProvider = lazilyStartUserContext();
-
-  const sdk = getEnvironmentSDK();
-  const widgetIdent = sdk.type === "SquatchJS2" ? sdk.widgetIdent : undefined;
-  console.log({ sdk, widgetIdent });
 
   if (!equal(globalProvider.context, identity)) {
     debug(`Setting user context value [${JSON.stringify(identity)}]`);

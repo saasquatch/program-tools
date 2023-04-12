@@ -69,7 +69,7 @@ export class ReferredRegistration {
   render() {
     const { states, callbacks } = isDemo()
       ? useRegistrationDemo(this)
-      : useInstantAccessRegistration();
+      : useInstantAccessRegistration({ includeCookies: true });
 
     const content = {
       emailLabel: this.emailLabel,

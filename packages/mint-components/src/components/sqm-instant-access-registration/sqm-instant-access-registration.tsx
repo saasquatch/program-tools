@@ -1,8 +1,4 @@
-import {
-  isDemo,
-  navigation,
-  setUserIdentity,
-} from "@saasquatch/component-boilerplate";
+import { isDemo, setUserIdentity } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
@@ -95,7 +91,7 @@ export class InstantAccessRegistration {
 function useRegistrationDemo(
   props: InstantAccessRegistration
 ): Partial<EmailRegistrationViewProps> {
-  const onSubmit = () => {
+  const submit = async (_event: any) => {
     setUserIdentity({
       id: "referrer@example.com",
       accountId: "referrer@example.com",
@@ -110,9 +106,7 @@ function useRegistrationDemo(
         error: "",
       },
       callbacks: {
-        submit: async (_event) => {
-          onSubmit();
-        },
+        submit,
       },
     },
     props.demoData || {},
