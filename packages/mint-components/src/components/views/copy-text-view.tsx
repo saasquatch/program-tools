@@ -31,16 +31,12 @@ const style = {
   },
   containerStyle: {
     display: "flex",
+    alignItems: "center",
     gap: "8px",
   },
   errorTextStyle: {
     margin: "0",
     color: "red",
-  },
-  helptextStyle: {
-    display: "flex",
-    flexDirection: "column",
-    marginTop: "8px",
   },
 };
 
@@ -63,7 +59,8 @@ export function CopyTextView(props: CopyTextViewProps) {
     buttonStyle === "icon" ? null : (
       <sl-button
         onClick={() => props.onClick?.()}
-        size={buttonStyle === "button outside" ? "medium" : "small"}
+        size="small"
+        style={{ width: `${buttonStyle === "button below" && "100%"}` }}
         disabled={props.disabled}
         slot="suffix"
         type="primary"
@@ -119,16 +116,12 @@ export function CopyTextView(props: CopyTextViewProps) {
             ) : (
               buttonStyle === "button inside" && copyButton
             )}
-            <div slot="help-text" class={sheet.classes.helptextStyle}>
-              {(buttonStyle === "button outside" ||
-                buttonStyle === "button below") &&
-                copyButton}
-              {props.error && (
-                <p class={sheet.classes.errorTextStyle}>{errorText}</p>
-              )}
-            </div>
           </sl-input>
+          {(buttonStyle === "button outside" ||
+            buttonStyle === "button below") &&
+            copyButton}
         </div>
+        {props.error && <p class={sheet.classes.errorTextStyle}>{errorText}</p>}
       </sl-tooltip>
     </div>
   );
