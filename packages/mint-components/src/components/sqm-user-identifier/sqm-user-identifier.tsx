@@ -1,4 +1,4 @@
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { isDemo, setUserIdentity } from "@saasquatch/component-boilerplate";
 import { Component, h, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
@@ -26,11 +26,6 @@ export class UserIdentifier {
   @Prop() userIdentificationText: string = "{email}";
   /**
    * @required
-   * @uiName Switch User Link
-   */
-  @Prop() switchUserLink: string;
-  /**
-   * @required
    * @uiName Switch User Text
    */
   @Prop() switchUserText: string = "not you?";
@@ -51,7 +46,7 @@ export class UserIdentifier {
 function useDemoUserIdentifier(props: UserIdentifier): UserIdentifierViewProps {
   return deepmerge(
     {
-      switchUserLink: props.switchUserLink || "https://example.com",
+      onSwitchClick: () => setUserIdentity(undefined),
       userIdentificationText: props.userIdentificationText,
       switchUserText: props.switchUserText,
     },

@@ -2,7 +2,9 @@ import { useUpsertInstantAccessUserMutation } from "@saasquatch/component-boiler
 import { useState } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
 
-export function useInstantAccessRegistration() {
+export function useInstantAccessRegistration(options?: {
+  includeCookies?: boolean;
+}) {
   const cookie = new URLSearchParams(window.location.search);
 
   const cookies = cookie?.get("_saasquatch");
@@ -22,7 +24,7 @@ export function useInstantAccessRegistration() {
       firstName: formData.firstName,
       lastName: formData.lastName,
       email: formData.email,
-      ...(cookies ? { cookies } : {}),
+      ...(options?.includeCookies && cookies ? { cookies } : {}),
     };
 
     const result = await request(variables);

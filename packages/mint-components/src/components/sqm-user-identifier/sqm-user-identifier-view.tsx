@@ -3,7 +3,7 @@ import { createStyleSheet } from "../../styling/JSS";
 
 export interface UserIdentifierViewProps {
   userIdentificationText: string;
-  switchUserLink: string;
+  onSwitchClick: () => void;
   switchUserText: string;
 }
 
@@ -28,7 +28,7 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function UserIdentifierView(props: UserIdentifierViewProps) {
-  const { userIdentificationText, switchUserLink, switchUserText } = props;
+  const { userIdentificationText, onSwitchClick, switchUserText } = props;
 
   return (
     <span class={sheet.classes.Container} part="sqm-base">
@@ -37,7 +37,7 @@ export function UserIdentifierView(props: UserIdentifierViewProps) {
         {vanillaStyle}
       </style>
       {userIdentificationText} (
-      <a class={sheet.classes.Link} href={switchUserLink} part="sqm-link">
+      <a class={sheet.classes.Link} onClick={onSwitchClick} part="sqm-link">
         {switchUserText}
       </a>
       )

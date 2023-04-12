@@ -2589,11 +2589,6 @@ export namespace Components {
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
           * @required 
-          * @uiName Switch User Link
-         */
-        "switchUserLink": string;
-        /**
-          * @required 
           * @uiName Switch User Text
          */
         "switchUserText": string;
@@ -5789,11 +5784,6 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<CopyTextViewProps>;
-        /**
-          * @required 
-          * @uiName Switch User Link
-         */
-        "switchUserLink"?: string;
         /**
           * @required 
           * @uiName Switch User Text
