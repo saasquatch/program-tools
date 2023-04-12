@@ -692,6 +692,23 @@ export namespace Components {
          */
         "openInNewTab": boolean;
     }
+    interface SqmLogoutCurrentUser {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * @required 
+          * @uiName Switch User Text
+         */
+        "switchUserText": string;
+        /**
+          * @required 
+          * @uiName User Identification Text
+         */
+        "userIdentificationText": string;
+    }
     interface SqmNameFields {
         /**
           * @undocumented 
@@ -2581,23 +2598,6 @@ export namespace Components {
          */
         "textAlign": "left" | "center" | "right";
     }
-    interface SqmUserIdentifier {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<CopyTextViewProps>;
-        /**
-          * @required 
-          * @uiName Switch User Text
-         */
-        "switchUserText": string;
-        /**
-          * @required 
-          * @uiName User Identification Text
-         */
-        "userIdentificationText": string;
-    }
     interface SqmUserName {
         /**
           * @undocumented 
@@ -2753,6 +2753,12 @@ declare global {
     var HTMLSqmLinkButtonElement: {
         prototype: HTMLSqmLinkButtonElement;
         new (): HTMLSqmLinkButtonElement;
+    };
+    interface HTMLSqmLogoutCurrentUserElement extends Components.SqmLogoutCurrentUser, HTMLStencilElement {
+    }
+    var HTMLSqmLogoutCurrentUserElement: {
+        prototype: HTMLSqmLogoutCurrentUserElement;
+        new (): HTMLSqmLogoutCurrentUserElement;
     };
     interface HTMLSqmNameFieldsElement extends Components.SqmNameFields, HTMLStencilElement {
     }
@@ -3156,12 +3162,6 @@ declare global {
         prototype: HTMLSqmTitledSectionElement;
         new (): HTMLSqmTitledSectionElement;
     };
-    interface HTMLSqmUserIdentifierElement extends Components.SqmUserIdentifier, HTMLStencilElement {
-    }
-    var HTMLSqmUserIdentifierElement: {
-        prototype: HTMLSqmUserIdentifierElement;
-        new (): HTMLSqmUserIdentifierElement;
-    };
     interface HTMLSqmUserNameElement extends Components.SqmUserName, HTMLStencilElement {
     }
     var HTMLSqmUserNameElement: {
@@ -3192,6 +3192,7 @@ declare global {
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-link-button": HTMLSqmLinkButtonElement;
+        "sqm-logout-current-user": HTMLSqmLogoutCurrentUserElement;
         "sqm-name-fields": HTMLSqmNameFieldsElement;
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
@@ -3259,7 +3260,6 @@ declare global {
         "sqm-timeline": HTMLSqmTimelineElement;
         "sqm-timeline-entry": HTMLSqmTimelineEntryElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
-        "sqm-user-identifier": HTMLSqmUserIdentifierElement;
         "sqm-user-name": HTMLSqmUserNameElement;
     }
 }
@@ -3913,6 +3913,23 @@ declare namespace LocalJSX {
           * @uiName User Identification Text
          */
         "openInNewTab"?: boolean;
+    }
+    interface SqmLogoutCurrentUser {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * @required 
+          * @uiName Switch User Text
+         */
+        "switchUserText"?: string;
+        /**
+          * @required 
+          * @uiName User Identification Text
+         */
+        "userIdentificationText"?: string;
     }
     interface SqmNameFields {
         /**
@@ -5778,23 +5795,6 @@ declare namespace LocalJSX {
          */
         "textAlign"?: "left" | "center" | "right";
     }
-    interface SqmUserIdentifier {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<CopyTextViewProps>;
-        /**
-          * @required 
-          * @uiName Switch User Text
-         */
-        "switchUserText"?: string;
-        /**
-          * @required 
-          * @uiName User Identification Text
-         */
-        "userIdentificationText"?: string;
-    }
     interface SqmUserName {
         /**
           * @undocumented 
@@ -5835,6 +5835,7 @@ declare namespace LocalJSX {
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-link-button": SqmLinkButton;
+        "sqm-logout-current-user": SqmLogoutCurrentUser;
         "sqm-name-fields": SqmNameFields;
         "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-navigation-sidebar": SqmNavigationSidebar;
@@ -5902,7 +5903,6 @@ declare namespace LocalJSX {
         "sqm-timeline": SqmTimeline;
         "sqm-timeline-entry": SqmTimelineEntry;
         "sqm-titled-section": SqmTitledSection;
-        "sqm-user-identifier": SqmUserIdentifier;
         "sqm-user-name": SqmUserName;
     }
 }
@@ -5933,6 +5933,7 @@ declare module "@stencil/core" {
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-link-button": LocalJSX.SqmLinkButton & JSXBase.HTMLAttributes<HTMLSqmLinkButtonElement>;
+            "sqm-logout-current-user": LocalJSX.SqmLogoutCurrentUser & JSXBase.HTMLAttributes<HTMLSqmLogoutCurrentUserElement>;
             "sqm-name-fields": LocalJSX.SqmNameFields & JSXBase.HTMLAttributes<HTMLSqmNameFieldsElement>;
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
@@ -6000,7 +6001,6 @@ declare module "@stencil/core" {
             "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;
             "sqm-timeline-entry": LocalJSX.SqmTimelineEntry & JSXBase.HTMLAttributes<HTMLSqmTimelineEntryElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
-            "sqm-user-identifier": LocalJSX.SqmUserIdentifier & JSXBase.HTMLAttributes<HTMLSqmUserIdentifierElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
         }
     }

@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
-import scenario from "./sqm-user-identifier.feature";
-import { UserIdentifierView } from "./sqm-user-identifier-view";
+import scenario from "./sqm-logout-current-user.feature";
+import { LogoutCurrentUserView } from "./sqm-logout-current-user-view";
 
 export default {
   title: "Components/User Identifier",
@@ -17,5 +17,5 @@ const defaultProps = {
 };
 
 export const Default = () => {
-  return <UserIdentifierView {...defaultProps} />;
+  return <LogoutCurrentUserView {...defaultProps} />;
 };
