@@ -1,11 +1,11 @@
 import { setUserIdentity } from "@saasquatch/component-boilerplate";
-import { UserIdentifier } from "./sqm-user-identifier";
-import { UserIdentifierViewProps } from "./sqm-user-identifier-view";
+import { LogoutCurrentUser } from "./sqm-logout-current-user";
+import { LogoutCurrentUserViewProps } from "./sqm-logout-current-user-view";
 
-export function useUserIdentifier(
+export function useLogoutCurrentUser(
   // @ts-ignore;
-  props: UserIdentifier
-): UserIdentifierViewProps {
+  props: LogoutCurrentUser
+): LogoutCurrentUserViewProps {
   const onSwitchClick = () => {
     setUserIdentity(undefined);
   };

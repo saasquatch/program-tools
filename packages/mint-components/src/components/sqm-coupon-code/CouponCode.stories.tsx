@@ -1,10 +1,11 @@
 import { h } from "@stencil/core";
 import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
+import scenario from "./sqm-coupon-code.feature";
 
 export default {
   title: "Components/Coupon Code",
   parameters: {
-    // scenario,
+    scenario,
   },
 };
 
@@ -14,7 +15,7 @@ const defaultProps: CopyTextViewProps = {
   open: false,
   copyButtonLabel: "Copy Coupon",
   errorText:
-    "Oops! Looks like we weren’t able to retrieve a code for you. Please try again later.",
+    "Oops! Looks like we weren’t able to retrieve a code for you. Please try again later or contact support.",
   inputPlaceholderText: "CODE ERROR",
 };
 

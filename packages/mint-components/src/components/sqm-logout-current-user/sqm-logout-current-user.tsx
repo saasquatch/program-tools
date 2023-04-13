@@ -4,21 +4,21 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { CopyTextViewProps } from "../views/copy-text-view";
 import {
-  UserIdentifierView,
-  UserIdentifierViewProps,
-} from "./sqm-user-identifier-view";
-import { useUserIdentifier } from "./useUserIdentifer";
+  LogoutCurrentUserView,
+  LogoutCurrentUserViewProps,
+} from "./sqm-logout-current-user-view";
+import { useLogoutCurrentUser } from "./useLogoutCurrentUser";
 
 /**
  * @uiName User Identifier
  * @exampleGroup Common Components
- * @example User Identifier - <sqm-user-identifier user-identification-text="Showing data for {email}" switch-user-link="www.example.com" switch-user-text="not you?"></sqm-user-identifier>
+ * @example User Identifier - <sqm-logout-current-user user-identification-text="Showing data for {email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
  */
 @Component({
-  tag: "sqm-user-identifier",
+  tag: "sqm-logout-current-user",
   shadow: true,
 })
-export class UserIdentifier {
+export class LogoutCurrentUser {
   /**
    * @required
    * @uiName User Identification Text
@@ -37,13 +37,15 @@ export class UserIdentifier {
 
   render() {
     const props = isDemo()
-      ? useDemoUserIdentifier(this)
-      : useUserIdentifier(this);
-    return <UserIdentifierView {...props} />;
+      ? useDemoLogoutCurrentUser(this)
+      : useLogoutCurrentUser(this);
+    return <LogoutCurrentUserView {...props} />;
   }
 }
 
-function useDemoUserIdentifier(props: UserIdentifier): UserIdentifierViewProps {
+function useDemoLogoutCurrentUser(
+  props: LogoutCurrentUser
+): LogoutCurrentUserViewProps {
   return deepmerge(
     {
       onSwitchClick: () => setUserIdentity(undefined),

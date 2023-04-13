@@ -1,7 +1,7 @@
 import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 
-export interface UserIdentifierViewProps {
+export interface LogoutCurrentUserViewProps {
   userIdentificationText: string;
   onSwitchClick: () => void;
   switchUserText: string;
@@ -27,7 +27,7 @@ const vanillaStyle = `
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export function UserIdentifierView(props: UserIdentifierViewProps) {
+export function LogoutCurrentUserView(props: LogoutCurrentUserViewProps) {
   const { userIdentificationText, onSwitchClick, switchUserText } = props;
 
   return (
