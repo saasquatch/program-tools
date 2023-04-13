@@ -6,6 +6,7 @@ import {
   lazilyStartUserContext,
   setUserIdentity,
   userIdentityFromJwt,
+  isDemo,
 } from "@saasquatch/component-environment";
 
 /**
@@ -33,7 +34,7 @@ export function useUserIdentity(): UserIdentity | undefined {
     | undefined;
 
   const validIdentity = userIdentityFromJwt(identity?.jwt);
-  if (identity && !validIdentity) {
+  if (!isDemo() && identity && !validIdentity) {
     // Likely that the JWT has expired
     setUserIdentity(undefined);
     return undefined;

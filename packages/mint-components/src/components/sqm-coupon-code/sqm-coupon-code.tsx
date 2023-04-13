@@ -24,6 +24,7 @@ export class CouponCode {
    * @uiWidget programSelector
    */
   @Prop() programId?: string;
+
   /**
    * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
    *
@@ -33,6 +34,7 @@ export class CouponCode {
     attribute: "tooltip-text",
   })
   tooltiptext: string = "Copied to Clipboard";
+
   /**
    * The number of milliseconds that the tooltip appears for
    *
@@ -42,24 +44,19 @@ export class CouponCode {
     attribute: "tooltip-lifespan",
   })
   tooltiplifespan: number = 1000;
+
   /**
    * Change the text alignment
    *
    * @uiName Align text
+   * @uiType string
+   * @uiEnum ["left", "center"]
+   * @uiEnumNames ["left", "center"]
    */
   @Prop({
     attribute: "text-align",
   })
   textAlign: "left" | "center" = "left";
-  /**
-   * Set copy button as icon
-   *
-   * @uiName Copy icon
-   */
-  @Prop({
-    attribute: "is-copy-icon",
-  })
-  isCopyIcon: boolean = true;
 
   /**
    * Set copy button label
@@ -72,14 +69,39 @@ export class CouponCode {
   copyButtonLabel: string = "Copy Coupon";
 
   /**
-   * Set the copy button outside the field
+   * Set the copy button style
    *
-   * @uiName Copy button outside
+   * @uiName Copy button style
+   * @uiType string
+   * @uiEnum ["icon", "button inside", "button outside", "button below"]
+   * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
    */
   @Prop({
-    attribute: "is-button-outside",
+    attribute: "copy-button-style",
   })
-  buttonOutside: boolean = true;
+  buttonStyle: "icon" | "button inside" | "button outside" | "button below" =
+    "icon";
+
+  /**
+   * Set error message
+   *
+   * @uiName Error message
+   */
+  @Prop({
+    attribute: "error-text",
+  })
+  errorText: string =
+    "Oops! Looks like we weren’t able to retrieve a code for you. Please try again later or contact support.";
+
+  /**
+   * Set coupon code placeholder for when there there is no coupon code to display
+   *
+   * @uiName Coupon code placeholder
+   */
+  @Prop({
+    attribute: "coupon-code-placeholder",
+  })
+  couponCodePlaceholder: string = "CODE ERROR";
 
   /**
    * @undocumented
@@ -108,10 +130,12 @@ function useDemoCouponCode(props: CouponCode): CopyTextViewProps {
     {
       copyString,
       tooltiptext: props.tooltiptext,
-      isCopyIcon: props.isCopyIcon,
       textAlign: props.textAlign,
-      buttonOutside: props.buttonOutside,
+      buttonStyle: props.buttonStyle,
       copyButtonLabel: props.copyButtonLabel,
+      errorText: props.errorText,
+      error: false,
+      couponCodePlaceholder: props.couponCodePlaceholder,
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility

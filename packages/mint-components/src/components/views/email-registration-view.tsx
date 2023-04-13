@@ -3,14 +3,17 @@ import {
   AuthButtonsContainer,
   AuthColumn,
   AuthWrapper,
+  ErrorStyles,
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 import { PoweredByImg } from "../sqm-portal-footer/PoweredByImg";
+import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export interface EmailRegistrationViewProps {
   states: {
     error: string;
     loading: boolean;
+    registrationFormState?: RegistrationFormState; // TODO HOOK - check if this type is good
   };
   callbacks: {
     submit: (event: any) => Promise<void>;
@@ -23,6 +26,8 @@ export interface EmailRegistrationViewProps {
     includeName?: boolean;
     topSlot?: VNode;
     bottomSlot?: VNode;
+    invalidEmailErrorMessage: string;
+    requiredFieldErrorMessage: string;
   };
 }
 
@@ -38,6 +43,7 @@ const style = {
     margin: "0",
   },
   ButtonsContainer: AuthButtonsContainer,
+  ErrorStyle: ErrorStyles,
 };
 
 const vanillaStyle = `
@@ -101,6 +107,23 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
           label={content.emailLabel || "Email"}
           disabled={states.loading}
           required
+          validationError={({ value }: { value: string }) => {
+            if (!value) {
+              return content.requiredFieldErrorMessage;
+            }
+            // this matches shoelace validation, but could be better
+            if (!value.includes("@")) {
+              return content.invalidEmailErrorMessage;
+            }
+          }}
+          {...(states.registrationFormState?.validationErrors?.email
+            ? {
+                class: sheet.classes.ErrorStyle,
+                helpText:
+                  states.registrationFormState?.validationErrors?.email ||
+                  content.requiredFieldErrorMessage,
+              }
+            : [])}
         ></sl-input>
 
         <div class={sheet.classes.ButtonsContainer}>

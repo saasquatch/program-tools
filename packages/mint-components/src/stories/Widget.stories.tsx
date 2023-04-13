@@ -4,10 +4,10 @@ import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
 import referralWidget from "../templates/ReferralWidget.html";
 import monoWidget from "../templates/MonoWidget.html";
 import loyaltyWidget from "../templates/LoyaltyWidget.html";
-import passwordlessReferrerPersonalized from "../templates/PasswordlessReferrerPersonalized.html";
-import passwordlessReferrerRegistration from "../templates/PasswordlessReferrerRegistration.html";
-import passwordlessReferredPersonalized from "../templates/PasswordlessReferredPersonalized.html";
-import passwordlessReferredRegistration from "../templates/PasswordlessReferredRegistration.html";
+import instantAccessReferrerShareWidget from "../templates/InstantAccessReferrerShareWidget.html";
+import instantAccessFriendCouponWidget from "../templates/InstantAccessFriendCouponWidget.html";
+import instantAccessReferrerRegistrationWidget from "../templates/InstantAccessReferrerRegistrationWidget.html";
+import instantAccessFriendRegistrationWidget from "../templates/InstantAccessFriendRegistrationWidget.html";
 
 import marked from "marked";
 
@@ -109,22 +109,26 @@ export const Loyalty = createHookStory(() => {
   );
 });
 
-export const PasswordlessReferrerPersonalized = createHookStory(() => {
-  const { states, callbacks } = useTemplate(passwordlessReferrerPersonalized);
+export const InstantAccessReferrerShareWidget = createHookStory(() => {
+  const { states, callbacks } = useTemplate(instantAccessReferrerShareWidget);
   return <TemplateView states={states} callbacks={callbacks} />;
 });
 
-export const PasswordlessReferrerRegistration = createHookStory(() => {
-  const { states, callbacks } = useTemplate(passwordlessReferrerRegistration);
+export const InstantAccessFriendCouponWidget = createHookStory(() => {
+  const { states, callbacks } = useTemplate(instantAccessFriendCouponWidget);
   return <TemplateView states={states} callbacks={callbacks} />;
 });
 
-export const PasswordlessReferredPersonalized = createHookStory(() => {
-  const { states, callbacks } = useTemplate(passwordlessReferredPersonalized);
+export const InstantAccessReferrerRegistrationWidget = createHookStory(() => {
+  const { states, callbacks } = useTemplate(
+    instantAccessReferrerRegistrationWidget
+  );
   return <TemplateView states={states} callbacks={callbacks} />;
 });
 
-export const PasswordlessReferredRegistration = createHookStory(() => {
-  const { states, callbacks } = useTemplate(passwordlessReferredRegistration);
+export const InstantAccessFriendRegistrationWidget = createHookStory(() => {
+  const { states, callbacks } = useTemplate(
+    instantAccessFriendRegistrationWidget
+  );
   return <TemplateView states={states} callbacks={callbacks} />;
 });

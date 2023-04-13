@@ -1,9 +1,9 @@
 import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 
-export interface UserIdentifierViewProps {
+export interface LogoutCurrentUserViewProps {
   userIdentificationText: string;
-  switchUserLink: string;
+  onSwitchClick: () => void;
   switchUserText: string;
 }
 
@@ -27,8 +27,8 @@ const vanillaStyle = `
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export function UserIdentifierView(props: UserIdentifierViewProps) {
-  const { userIdentificationText, switchUserLink, switchUserText } = props;
+export function LogoutCurrentUserView(props: LogoutCurrentUserViewProps) {
+  const { userIdentificationText, onSwitchClick, switchUserText } = props;
 
   return (
     <span class={sheet.classes.Container} part="sqm-base">
@@ -37,7 +37,7 @@ export function UserIdentifierView(props: UserIdentifierViewProps) {
         {vanillaStyle}
       </style>
       {userIdentificationText} (
-      <a class={sheet.classes.Link} href={switchUserLink} part="sqm-link">
+      <a class={sheet.classes.Link} onClick={onSwitchClick} part="sqm-link">
         {switchUserText}
       </a>
       )

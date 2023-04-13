@@ -1,12 +1,8 @@
-@author:johan
-@owner:johan
+@author:truman
+@owner:truman
 Feature: Coupon Code
 
     The coupon code component is a box that allows users to see and copy their coupon code for a given program
-
-    Background: Environment
-        Given there is a valid program ID in the environment
-        And there is a valid user ID and account ID in the environment
 
     @motivating
     Scenario: A Users sharelink can be copied to their clipboard
@@ -26,31 +22,28 @@ Feature: Coupon Code
         Then a tooltip appears for ~2 seconds
 
     @minutia
-    Scenario: Demo
-        Given isDemo() returns true
-        Then the coupon code is "https://www.example.com/sharelink/abc"
-        And the component won't be interactive
-        And the tooltip is hidden
+    Scenario: Component shows an error state when there are no coupon codes
+        Given a user is viewing the coupon code component
+        When there are no coupon code to display
+        Then the coupon code input box has a red border
+        And there is red help text about the error
+        And in place of the coupon code is "CODE ERROR"
+        When the copy button's position is set to "below"
+        Then the red help text is below the copy button
 
-    @minutia
-    Scenario: Program ID can be sourced from prop
-        Given the programId prop is set to "program-a"
-        And window.widgetIdent.programId is set to "program-b"
-        When the component renders
-        Then the coupon code is for "program-a"
+    @ui
+    Scenario: user can edit the error message and code placeholder
 
-    @minutia
-    Scenario: Program ID can be sourced from window
-        Given the programId prop is unset
-        And window.widgetIdent.programId is set to "program-b"
-        When the component renders
-        Then the coupon code is for "program-b"
+    @ui
+    Scenario: user can edit the alignment of the coupon code text
 
-    @minutia
-    Scenario: An analytic event is fired when a user copies their sharelink
-        Given a user viewing the coupon code component
-        And the component is rendered for "program-a"
-        When they click to copy their link
-        Then an "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT" analytic event is fired
-        And it is for "program-a"
-        And it has share medium "DIRECT"
+    @ui
+    Scenario Outline: The position of the copy button can be changed
+        Given a user is editing the coupon code component
+        When they change the option "Button style" to <option>
+        Then they see the copy button in <position>
+        Examples:
+            | option         | position                        |
+            | button inside  | inside the input, on the right  |
+            | button outside | outside the input, on the right |
+            | button below   | outside the input, below        |

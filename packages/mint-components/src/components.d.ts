@@ -15,13 +15,13 @@ import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-pro
 import { Spacing } from "./global/mixins";
 import { FunctionalComponent } from "@stencil/core";
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
+import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
 import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-fields-view";
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
-import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
 import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
@@ -157,25 +157,33 @@ export namespace Components {
     }
     interface SqmCouponCode {
         /**
-          * Set the copy button outside the field
-          * @uiName Copy button outside
+          * Set the copy button style
+          * @uiName Copy button style
+          * @uiType string
+          * @uiEnum ["icon", "button inside", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
          */
-        "buttonOutside": boolean;
+        "buttonStyle": "icon" | "button inside" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
          */
         "copyButtonLabel": string;
         /**
+          * Set coupon code placeholder for when there there is no coupon code to display
+          * @uiName Coupon code placeholder
+         */
+        "couponCodePlaceholder": string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Set copy button as icon
-          * @uiName Copy icon
+          * Set error message
+          * @uiName Error message
          */
-        "isCopyIcon": boolean;
+        "errorText": string;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -185,6 +193,9 @@ export namespace Components {
         /**
           * Change the text alignment
           * @uiName Align text
+          * @uiType string
+          * @uiEnum ["left", "center"]
+          * @uiEnumNames ["left", "center"]
          */
         "textAlign": "left" | "center";
         /**
@@ -518,6 +529,45 @@ export namespace Components {
          */
         "fieldType": "text" | "date" | "tel";
     }
+    interface SqmInstantAccessRegistration {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<EmailRegistrationViewProps>;
+        /**
+          * @uiName Email Field Label
+         */
+        "emailLabel": string;
+        /**
+          * @uiName First Name Field Label
+         */
+        "firstNameLabel": string;
+        /**
+          * @uiName Include name fields
+         */
+        "includeName": boolean;
+        /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage": string;
+        /**
+          * @uiName Last Name Field Label
+         */
+        "lastNameLabel": string;
+        /**
+          * @uiName Register Button Text
+         */
+        "registerLabel": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
+    }
     interface SqmLeaderboard {
         /**
           * Title displayed for users without names
@@ -642,6 +692,23 @@ export namespace Components {
          */
         "openInNewTab": boolean;
     }
+    interface SqmLogoutCurrentUser {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * @required 
+          * @uiName Switch User Text
+         */
+        "switchUserText": string;
+        /**
+          * @required 
+          * @uiName User Identification Text
+         */
+        "userIdentificationText": string;
+    }
     interface SqmNameFields {
         /**
           * @undocumented 
@@ -712,39 +779,6 @@ export namespace Components {
           * @uiName Password Label
          */
         "fieldLabel": string;
-    }
-    interface SqmPasswordlessRegistration {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<EmailRegistrationViewProps>;
-        /**
-          * @uiName Email Field Label
-         */
-        "emailLabel": string;
-        /**
-          * @uiName First Name Field Label
-         */
-        "firstNameLabel": string;
-        /**
-          * @uiName Include name fields
-         */
-        "includeName": boolean;
-        /**
-          * @uiName Last Name Field Label
-         */
-        "lastNameLabel": string;
-        /**
-          * Redirect participants to this page after they successfully register.
-          * @uiName Registration Redirect
-          * @uiWidget pageSelect
-         */
-        "nextPage": string;
-        /**
-          * @uiName Register Button Text
-         */
-        "registerLabel": string;
     }
     interface SqmPopupContainer {
         /**
@@ -1166,6 +1200,12 @@ export namespace Components {
          */
         "hideInputs": boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage": string;
+        /**
           * @uiName Login Button Text
          */
         "loginLabel": string;
@@ -1175,6 +1215,12 @@ export namespace Components {
           * @uiWidget pageSelect
          */
         "loginPath": string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network Error Message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage": string;
         /**
           * Redirect participants to this page from their verification email
           * @uiName Registration Redirect
@@ -1190,11 +1236,23 @@ export namespace Components {
          */
         "passwordLabel": string;
         /**
+          * The message to be displayed when password inputs do not match.
+          * @uiName Password Mismatch Message
+          * @uiWidget textArea
+         */
+        "passwordMismatchErrorMessage": string;
+        /**
           * The page that participants are redirected to from the verification email.
           * @uiName Email Verification Redirect
           * @uiWidget pageSelect
          */
         "redirectPath": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
         /**
           * @uiName Submit Button Text
          */
@@ -1655,19 +1713,25 @@ export namespace Components {
          */
         "includeName": boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage": string;
+        /**
           * @uiName Last Name Field Label
          */
         "lastNameLabel": string;
         /**
-          * Redirect participants to this page after they successfully register.
-          * @uiName Registration Redirect
-          * @uiWidget pageSelect
-         */
-        "nextPage": string;
-        /**
           * @uiName Register Button Text
          */
         "registerLabel": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
     }
     interface SqmRewardExchangeList {
         /**
@@ -2178,10 +2242,13 @@ export namespace Components {
     }
     interface SqmShareCode {
         /**
-          * Set the copy button outside the field
-          * @uiName Copy button outside
+          * Set the copy button style
+          * @uiName Copy button style
+          * @uiType string
+          * @uiEnum ["icon", "button inside", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
          */
-        "buttonOutside": boolean;
+        "buttonStyle": "icon" | "button inside" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -2193,11 +2260,6 @@ export namespace Components {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Set copy button as icon
-          * @uiName Copy icon
-         */
-        "isCopyIcon": boolean;
-        /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
@@ -2206,6 +2268,9 @@ export namespace Components {
         /**
           * Change the text alignment
           * @uiName Align text
+          * @uiType string
+          * @uiEnum ["left", "center"]
+          * @uiEnumNames ["left", "center"]
          */
         "textAlign": "left" | "center";
         /**
@@ -2221,10 +2286,13 @@ export namespace Components {
     }
     interface SqmShareLink {
         /**
-          * Set the copy button outside the field
-          * @uiName Copy button outside
+          * Set the copy button style
+          * @uiName Copy button style
+          * @uiType string
+          * @uiEnum ["icon", "button inside", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
          */
-        "buttonOutside": boolean;
+        "buttonStyle": "icon" | "button inside" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -2236,11 +2304,6 @@ export namespace Components {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Set copy button as icon
-          * @uiName Copy icon
-         */
-        "isCopyIcon": boolean;
-        /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
@@ -2249,6 +2312,9 @@ export namespace Components {
         /**
           * Change the text alignment
           * @uiName Align text
+          * @uiType string
+          * @uiEnum ["left", "center"]
+          * @uiEnumNames ["left", "center"]
          */
         "textAlign": "left" | "center";
         /**
@@ -2532,28 +2598,6 @@ export namespace Components {
          */
         "textAlign": "left" | "center" | "right";
     }
-    interface SqmUserIdentifier {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<CopyTextViewProps>;
-        /**
-          * @required 
-          * @uiName Switch User Link
-         */
-        "switchUserLink": string;
-        /**
-          * @required 
-          * @uiName Switch User Text
-         */
-        "switchUserText": string;
-        /**
-          * @required 
-          * @uiName User Identification Text
-         */
-        "userIdentificationText": string;
-    }
     interface SqmUserName {
         /**
           * @undocumented 
@@ -2686,6 +2730,12 @@ declare global {
         prototype: HTMLSqmInputFieldElement;
         new (): HTMLSqmInputFieldElement;
     };
+    interface HTMLSqmInstantAccessRegistrationElement extends Components.SqmInstantAccessRegistration, HTMLStencilElement {
+    }
+    var HTMLSqmInstantAccessRegistrationElement: {
+        prototype: HTMLSqmInstantAccessRegistrationElement;
+        new (): HTMLSqmInstantAccessRegistrationElement;
+    };
     interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
     }
     var HTMLSqmLeaderboardElement: {
@@ -2703,6 +2753,12 @@ declare global {
     var HTMLSqmLinkButtonElement: {
         prototype: HTMLSqmLinkButtonElement;
         new (): HTMLSqmLinkButtonElement;
+    };
+    interface HTMLSqmLogoutCurrentUserElement extends Components.SqmLogoutCurrentUser, HTMLStencilElement {
+    }
+    var HTMLSqmLogoutCurrentUserElement: {
+        prototype: HTMLSqmLogoutCurrentUserElement;
+        new (): HTMLSqmLogoutCurrentUserElement;
     };
     interface HTMLSqmNameFieldsElement extends Components.SqmNameFields, HTMLStencilElement {
     }
@@ -2733,12 +2789,6 @@ declare global {
     var HTMLSqmPasswordFieldElement: {
         prototype: HTMLSqmPasswordFieldElement;
         new (): HTMLSqmPasswordFieldElement;
-    };
-    interface HTMLSqmPasswordlessRegistrationElement extends Components.SqmPasswordlessRegistration, HTMLStencilElement {
-    }
-    var HTMLSqmPasswordlessRegistrationElement: {
-        prototype: HTMLSqmPasswordlessRegistrationElement;
-        new (): HTMLSqmPasswordlessRegistrationElement;
     };
     interface HTMLSqmPopupContainerElement extends Components.SqmPopupContainer, HTMLStencilElement {
     }
@@ -3112,12 +3162,6 @@ declare global {
         prototype: HTMLSqmTitledSectionElement;
         new (): HTMLSqmTitledSectionElement;
     };
-    interface HTMLSqmUserIdentifierElement extends Components.SqmUserIdentifier, HTMLStencilElement {
-    }
-    var HTMLSqmUserIdentifierElement: {
-        prototype: HTMLSqmUserIdentifierElement;
-        new (): HTMLSqmUserIdentifierElement;
-    };
     interface HTMLSqmUserNameElement extends Components.SqmUserName, HTMLStencilElement {
     }
     var HTMLSqmUserNameElement: {
@@ -3144,15 +3188,16 @@ declare global {
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-image": HTMLSqmImageElement;
         "sqm-input-field": HTMLSqmInputFieldElement;
+        "sqm-instant-access-registration": HTMLSqmInstantAccessRegistrationElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-link-button": HTMLSqmLinkButtonElement;
+        "sqm-logout-current-user": HTMLSqmLogoutCurrentUserElement;
         "sqm-name-fields": HTMLSqmNameFieldsElement;
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
         "sqm-password-field": HTMLSqmPasswordFieldElement;
-        "sqm-passwordless-registration": HTMLSqmPasswordlessRegistrationElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
         "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
         "sqm-portal-container": HTMLSqmPortalContainerElement;
@@ -3215,7 +3260,6 @@ declare global {
         "sqm-timeline": HTMLSqmTimelineElement;
         "sqm-timeline-entry": HTMLSqmTimelineEntryElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
-        "sqm-user-identifier": HTMLSqmUserIdentifierElement;
         "sqm-user-name": HTMLSqmUserNameElement;
     }
 }
@@ -3335,25 +3379,33 @@ declare namespace LocalJSX {
     }
     interface SqmCouponCode {
         /**
-          * Set the copy button outside the field
-          * @uiName Copy button outside
+          * Set the copy button style
+          * @uiName Copy button style
+          * @uiType string
+          * @uiEnum ["icon", "button inside", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
          */
-        "buttonOutside"?: boolean;
+        "buttonStyle"?: "icon" | "button inside" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
          */
         "copyButtonLabel"?: string;
         /**
+          * Set coupon code placeholder for when there there is no coupon code to display
+          * @uiName Coupon code placeholder
+         */
+        "couponCodePlaceholder"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Set copy button as icon
-          * @uiName Copy icon
+          * Set error message
+          * @uiName Error message
          */
-        "isCopyIcon"?: boolean;
+        "errorText"?: string;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -3363,6 +3415,9 @@ declare namespace LocalJSX {
         /**
           * Change the text alignment
           * @uiName Align text
+          * @uiType string
+          * @uiEnum ["left", "center"]
+          * @uiEnumNames ["left", "center"]
          */
         "textAlign"?: "left" | "center";
         /**
@@ -3696,6 +3751,45 @@ declare namespace LocalJSX {
          */
         "fieldType"?: "text" | "date" | "tel";
     }
+    interface SqmInstantAccessRegistration {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<EmailRegistrationViewProps>;
+        /**
+          * @uiName Email Field Label
+         */
+        "emailLabel"?: string;
+        /**
+          * @uiName First Name Field Label
+         */
+        "firstNameLabel"?: string;
+        /**
+          * @uiName Include name fields
+         */
+        "includeName"?: boolean;
+        /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
+          * @uiName Last Name Field Label
+         */
+        "lastNameLabel"?: string;
+        /**
+          * @uiName Register Button Text
+         */
+        "registerLabel"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
+    }
     interface SqmLeaderboard {
         /**
           * Title displayed for users without names
@@ -3820,6 +3914,23 @@ declare namespace LocalJSX {
          */
         "openInNewTab"?: boolean;
     }
+    interface SqmLogoutCurrentUser {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * @required 
+          * @uiName Switch User Text
+         */
+        "switchUserText"?: string;
+        /**
+          * @required 
+          * @uiName User Identification Text
+         */
+        "userIdentificationText"?: string;
+    }
     interface SqmNameFields {
         /**
           * @undocumented 
@@ -3890,39 +4001,6 @@ declare namespace LocalJSX {
           * @uiName Password Label
          */
         "fieldLabel"?: string;
-    }
-    interface SqmPasswordlessRegistration {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<EmailRegistrationViewProps>;
-        /**
-          * @uiName Email Field Label
-         */
-        "emailLabel"?: string;
-        /**
-          * @uiName First Name Field Label
-         */
-        "firstNameLabel"?: string;
-        /**
-          * @uiName Include name fields
-         */
-        "includeName"?: boolean;
-        /**
-          * @uiName Last Name Field Label
-         */
-        "lastNameLabel"?: string;
-        /**
-          * Redirect participants to this page after they successfully register.
-          * @uiName Registration Redirect
-          * @uiWidget pageSelect
-         */
-        "nextPage"?: string;
-        /**
-          * @uiName Register Button Text
-         */
-        "registerLabel"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -4344,6 +4422,12 @@ declare namespace LocalJSX {
          */
         "hideInputs"?: boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
           * @uiName Login Button Text
          */
         "loginLabel"?: string;
@@ -4353,6 +4437,12 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "loginPath"?: string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network Error Message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page from their verification email
           * @uiName Registration Redirect
@@ -4368,11 +4458,23 @@ declare namespace LocalJSX {
          */
         "passwordLabel"?: string;
         /**
+          * The message to be displayed when password inputs do not match.
+          * @uiName Password Mismatch Message
+          * @uiWidget textArea
+         */
+        "passwordMismatchErrorMessage"?: string;
+        /**
           * The page that participants are redirected to from the verification email.
           * @uiName Email Verification Redirect
           * @uiWidget pageSelect
          */
         "redirectPath"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
         /**
           * @uiName Submit Button Text
          */
@@ -4819,19 +4921,25 @@ declare namespace LocalJSX {
          */
         "includeName"?: boolean;
         /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid Email Message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
           * @uiName Last Name Field Label
          */
         "lastNameLabel"?: string;
         /**
-          * Redirect participants to this page after they successfully register.
-          * @uiName Registration Redirect
-          * @uiWidget pageSelect
-         */
-        "nextPage"?: string;
-        /**
           * @uiName Register Button Text
          */
         "registerLabel"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required Field Message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
     }
     interface SqmRewardExchangeList {
         /**
@@ -5332,10 +5440,13 @@ declare namespace LocalJSX {
     }
     interface SqmShareCode {
         /**
-          * Set the copy button outside the field
-          * @uiName Copy button outside
+          * Set the copy button style
+          * @uiName Copy button style
+          * @uiType string
+          * @uiEnum ["icon", "button inside", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
          */
-        "buttonOutside"?: boolean;
+        "buttonStyle"?: "icon" | "button inside" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -5347,11 +5458,6 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Set copy button as icon
-          * @uiName Copy icon
-         */
-        "isCopyIcon"?: boolean;
-        /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
@@ -5360,6 +5466,9 @@ declare namespace LocalJSX {
         /**
           * Change the text alignment
           * @uiName Align text
+          * @uiType string
+          * @uiEnum ["left", "center"]
+          * @uiEnumNames ["left", "center"]
          */
         "textAlign"?: "left" | "center";
         /**
@@ -5375,10 +5484,13 @@ declare namespace LocalJSX {
     }
     interface SqmShareLink {
         /**
-          * Set the copy button outside the field
-          * @uiName Copy button outside
+          * Set the copy button style
+          * @uiName Copy button style
+          * @uiType string
+          * @uiEnum ["icon", "button inside", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
          */
-        "buttonOutside"?: boolean;
+        "buttonStyle"?: "icon" | "button inside" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -5390,11 +5502,6 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Set copy button as icon
-          * @uiName Copy icon
-         */
-        "isCopyIcon"?: boolean;
-        /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
@@ -5403,6 +5510,9 @@ declare namespace LocalJSX {
         /**
           * Change the text alignment
           * @uiName Align text
+          * @uiType string
+          * @uiEnum ["left", "center"]
+          * @uiEnumNames ["left", "center"]
          */
         "textAlign"?: "left" | "center";
         /**
@@ -5685,28 +5795,6 @@ declare namespace LocalJSX {
          */
         "textAlign"?: "left" | "center" | "right";
     }
-    interface SqmUserIdentifier {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<CopyTextViewProps>;
-        /**
-          * @required 
-          * @uiName Switch User Link
-         */
-        "switchUserLink"?: string;
-        /**
-          * @required 
-          * @uiName Switch User Text
-         */
-        "switchUserText"?: string;
-        /**
-          * @required 
-          * @uiName User Identification Text
-         */
-        "userIdentificationText"?: string;
-    }
     interface SqmUserName {
         /**
           * @undocumented 
@@ -5743,15 +5831,16 @@ declare namespace LocalJSX {
         "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-image": SqmImage;
         "sqm-input-field": SqmInputField;
+        "sqm-instant-access-registration": SqmInstantAccessRegistration;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-link-button": SqmLinkButton;
+        "sqm-logout-current-user": SqmLogoutCurrentUser;
         "sqm-name-fields": SqmNameFields;
         "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
         "sqm-password-field": SqmPasswordField;
-        "sqm-passwordless-registration": SqmPasswordlessRegistration;
         "sqm-popup-container": SqmPopupContainer;
         "sqm-portal-change-password": SqmPortalChangePassword;
         "sqm-portal-container": SqmPortalContainer;
@@ -5814,7 +5903,6 @@ declare namespace LocalJSX {
         "sqm-timeline": SqmTimeline;
         "sqm-timeline-entry": SqmTimelineEntry;
         "sqm-titled-section": SqmTitledSection;
-        "sqm-user-identifier": SqmUserIdentifier;
         "sqm-user-name": SqmUserName;
     }
 }
@@ -5841,15 +5929,16 @@ declare module "@stencil/core" {
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-image": LocalJSX.SqmImage & JSXBase.HTMLAttributes<HTMLSqmImageElement>;
             "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
+            "sqm-instant-access-registration": LocalJSX.SqmInstantAccessRegistration & JSXBase.HTMLAttributes<HTMLSqmInstantAccessRegistrationElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-link-button": LocalJSX.SqmLinkButton & JSXBase.HTMLAttributes<HTMLSqmLinkButtonElement>;
+            "sqm-logout-current-user": LocalJSX.SqmLogoutCurrentUser & JSXBase.HTMLAttributes<HTMLSqmLogoutCurrentUserElement>;
             "sqm-name-fields": LocalJSX.SqmNameFields & JSXBase.HTMLAttributes<HTMLSqmNameFieldsElement>;
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
-            "sqm-passwordless-registration": LocalJSX.SqmPasswordlessRegistration & JSXBase.HTMLAttributes<HTMLSqmPasswordlessRegistrationElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
             "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
             "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;
@@ -5912,7 +6001,6 @@ declare module "@stencil/core" {
             "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;
             "sqm-timeline-entry": LocalJSX.SqmTimelineEntry & JSXBase.HTMLAttributes<HTMLSqmTimelineEntryElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
-            "sqm-user-identifier": LocalJSX.SqmUserIdentifier & JSXBase.HTMLAttributes<HTMLSqmUserIdentifierElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
         }
     }

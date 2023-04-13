@@ -50,6 +50,17 @@ Feature: Portal Footer
             | has prop          |       | isn't shown |
             | doesn't have prop |       | is shown    |
 
+    Scenario Outline: Support text is shown by default
+        Given the footer <mayHaveProp> "hide-support-text" with <value>
+        Then the support text <mayBeShown>
+        Examples:
+            | mayHaveProp       | value | mayBeShown  |
+            | has prop          | true  | isn't shown |
+            | has prop          | false | is shown    |
+            | has prop          | test  | isn't shown |
+            | has prop          |       | isn't shown |
+            | doesn't have prop |       | is shown    |
+
     Scenario: Powered By Saasquatch links out to "https://saasquatch.com"
         Given the footer has the powered by SaaSquatch image
         When a user clicks on it

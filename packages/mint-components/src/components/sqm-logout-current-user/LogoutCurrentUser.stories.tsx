@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
-import scenario from "./sqm-user-identifier.feature";
-import { UserIdentifierView } from "./sqm-user-identifier-view";
+import scenario from "./sqm-logout-current-user.feature";
+import { LogoutCurrentUserView } from "./sqm-logout-current-user-view";
 
 export default {
   title: "Components/User Identifier",
@@ -12,10 +12,10 @@ export default {
 const defaultProps = {
   userIdentificationText:
     "Currently showing referral data for noah.clarke@saasquatch.com",
-  switchUserLink: "example.com",
+  onSwitchClick: () => console.log("clicked"),
   switchUserText: "not you?",
 };
 
 export const Default = () => {
-  return <UserIdentifierView {...defaultProps} />;
+  return <LogoutCurrentUserView {...defaultProps} />;
 };

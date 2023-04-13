@@ -1,15 +1,16 @@
-import { useUpsertPasswordlessUserMutation } from "@saasquatch/component-boilerplate";
+import { useUpsertInstantAccessUserMutation } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
 
-export function usePasswordlessRegistration() {
+export function useInstantAccessRegistration(options?: {
+  includeCookies?: boolean;
+}) {
   const cookie = new URLSearchParams(window.location.search);
 
   const cookies = cookie?.get("_saasquatch");
-  console.log({ cookie });
 
   const [request, { loading, errors, data }] =
-    useUpsertPasswordlessUserMutation();
+    useUpsertInstantAccessUserMutation();
   const [error, setError] = useState("");
 
   const submit = async (event: any) => {
@@ -23,7 +24,7 @@ export function usePasswordlessRegistration() {
       firstName: formData.firstName,
       lastName: formData.lastName,
       email: formData.email,
-      ...(cookies ? { cookies } : {}),
+      ...(options?.includeCookies && cookies ? { cookies } : {}),
     };
 
     const result = await request(variables);
