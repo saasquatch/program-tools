@@ -14,8 +14,6 @@ const defaultProps: CopyTextViewProps = {
   copyString: "THANKSJANE125uv125",
   open: false,
   copyButtonLabel: "Copy Coupon",
-  errorText:
-    "Oops! Looks like we weren’t able to retrieve a code for you. Please try again later or contact support.",
   inputPlaceholderText: "CODE ERROR",
 };
 
@@ -52,14 +50,27 @@ export const CopyButtonBelow = () => {
     <CopyTextView {...defaultProps} buttonStyle={"button below"}></CopyTextView>
   );
 };
-export const Error = () => {
-  return <CopyTextView {...defaultProps} error={true}></CopyTextView>;
+export const ErrorPending = () => {
+  return <CopyTextView {...defaultProps} errorState={"PENDING"}></CopyTextView>;
+};
+export const ErrorCancelled = () => {
+  return (
+    <CopyTextView {...defaultProps} errorState={"CANCELLED"}></CopyTextView>
+  );
+};
+export const ErrorRedeemed = () => {
+  return (
+    <CopyTextView {...defaultProps} errorState={"REDEEMED"}></CopyTextView>
+  );
+};
+export const ErrorExpired = () => {
+  return <CopyTextView {...defaultProps} errorState={"EXPIRED"}></CopyTextView>;
 };
 export const ErrorButtonBelow = () => {
   return (
     <CopyTextView
       {...defaultProps}
-      error={true}
+      errorState={"PENDING"}
       buttonStyle="button below"
     ></CopyTextView>
   );

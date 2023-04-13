@@ -90,8 +90,41 @@ export class CouponCode {
   @Prop({
     attribute: "error-text",
   })
-  errorText: string =
+  pendingErrorText: string =
     "Oops! Looks like we weren’t able to retrieve a code for you. Please try again later or contact support.";
+
+  /**
+   * Set error message
+   *
+   * @uiName Error message
+   */
+  @Prop({
+    attribute: "error-text",
+  })
+  cancelledErrorText: string =
+    "Oops! Your coupon code is cancelled. Please try again later or contact support.";
+
+  /**
+   * Set error message
+   *
+   * @uiName Error message
+   */
+  @Prop({
+    attribute: "error-text",
+  })
+  expiredErrorText: string =
+    "Oops! Your coupon code is expired. Please try again later or contact support.";
+
+  /**
+   * Set error message
+   *
+   * @uiName Error message
+   */
+  @Prop({
+    attribute: "error-text",
+  })
+  redeemedErrorText: string =
+    "Oops! Your coupon code has already been redeemed. Please try again later or contact support.";
 
   /**
    * Set coupon code placeholder for when there there is no coupon code to display
@@ -133,7 +166,10 @@ function useDemoCouponCode(props: CouponCode): CopyTextViewProps {
       textAlign: props.textAlign,
       buttonStyle: props.buttonStyle,
       copyButtonLabel: props.copyButtonLabel,
-      errorText: props.errorText,
+      pendingErrorText: props.pendingErrorText,
+      cancelledErrorText: props.cancelledErrorText,
+      expiredErrorText: props.expiredErrorText,
+      redeemedErrorText: props.redeemedErrorText,
       error: false,
       couponCodePlaceholder: props.couponCodePlaceholder,
       open,
