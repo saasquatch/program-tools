@@ -16,34 +16,81 @@ interface CouponCodeProps {
   tooltiplifespan: number;
 }
 
-const MessageLinkQuery = gql`
-  query ($programId: ID) {
+type FuelTankReward = {
+  fuelTankCode: string;
+  fuelTankType: string;
+  statuses: string;
+  dateGiven: number;
+  dateExpires: number;
+  dateRedeemed: number;
+  dateCancelled: number;
+  dateScheduledFor: number;
+  datePendingForUnhandledError: number;
+};
+
+interface FuelTankRewardsQueryResult {
+  fuelTankRewardsQuery: {
+    user: {
+      instantAccessRewards: {
+        data: FuelTankReward[];
+        totalCount: number;
+        count: number;
+      };
+    };
+  };
+}
+
+const FuelTankRewardsQuery = gql`
+  query fuelTankRewardsQuery {
     user: viewer {
       ... on User {
-        referralCode(programId: $programId)
+        instantAccessRewards(filter: { type_eq: FUELTANK }) {
+          data {
+            fuelTankCode
+            fuelTankType
+            statuses
+            dateGiven
+            dateExpires
+            dateRedeemed
+            dateCancelled
+            dateScheduledFor
+            datePendingForUnhandledError
+          }
+          count
+          totalCount
+        }
       }
     }
   }
 `;
 
-const WIDGET_ENGAGEMENT_EVENT = gql`
-  mutation loadEvent($eventMeta: UserAnalyticsEvent!) {
-    createUserAnalyticsEvent(eventMeta: $eventMeta)
-  }
-`;
-
 export function useCouponCode(props: CouponCodeProps): CopyTextViewProps {
-  const { programId = useProgramId() } = props;
   const user = useUserIdentity();
-  const engagementMedium = useEngagementMedium();
 
-  const { data } = useQuery(MessageLinkQuery, { programId }, !user?.jwt);
-  const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
+  const { data, loading, refetch, errors } =
+    useQuery<FuelTankRewardsQueryResult>(FuelTankRewardsQuery, {}, !user?.jwt);
 
-  const copyString =
-    data?.user?.referralCode ??
-    // Shown during loading
-    "...";
+  const getStatus = (reward: FuelTankReward | undefined) => {
+    const possibleStates = [
+      "REDEEMED",
+      "CANCELLED",
+      "EXPIRED",
+      "PENDING",
+      "AVAILABLE",
+    ];
+
+    if (reward.statuses.length === 1) return reward.statuses[0];
+
+    return possibleStates.find(
+      (state) => reward.statuses.includes(state) && state
+    );
+  };
+
+  const reward =
+    data?.fuelTankRewardsQuery?.user?.instantAccessRewards?.data?.[0];
+
+  const rewardStatus = getStatus(reward);
+  const copyString = reward?.fuelTankCode || "...";
 
   const [open, setOpen] = useState(false);
 
@@ -53,19 +100,7 @@ export function useCouponCode(props: CouponCodeProps): CopyTextViewProps {
     navigator.clipboard.writeText(copyString);
     setOpen(true);
     setTimeout(() => setOpen(false), props.tooltiplifespan);
-    sendLoadEvent({
-      eventMeta: {
-        programId,
-        id: user?.id,
-        accountId: user?.accountId,
-        type: "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT",
-        meta: {
-          engagementMedium,
-          couponMedium: "DIRECT",
-        },
-      },
-    });
   }
 
-  return { ...props, onClick, open, copyString };
+  return { ...props, onClick, open, copyString, rewardStatus };
 }

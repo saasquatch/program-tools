@@ -6,6 +6,7 @@ export interface CopyTextViewProps {
   copyString: string;
   tooltiptext: string;
   open: boolean;
+  rewardStatus: string;
   copyButtonLabel?: string;
   disabled?: boolean;
   textAlign?: "left" | "center";
