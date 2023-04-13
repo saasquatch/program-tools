@@ -52,7 +52,7 @@ export function PortalContainerView(
   const styleString = sheet.toString();
 
   return (
-    <div class={sheet.classes.Container} part={'sqm-base'}>
+    <div class={sheet.classes.Container} part={"sqm-base"}>
       <style type="text/css">
         {vanillaStyle}
         {styleString}

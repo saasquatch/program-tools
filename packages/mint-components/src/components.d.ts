@@ -1501,6 +1501,11 @@ export namespace Components {
     }
     interface SqmReferralCard {
         /**
+          * @uiName Remove border
+          * @uiType boolean
+         */
+        "removeBorder": boolean;
+        /**
           * @uiName Vertical Aligment
           * @uiType string
           * @uiEnum ["start", "center", "end"]
@@ -4745,6 +4750,11 @@ declare namespace LocalJSX {
     interface SqmProgramMenu {
     }
     interface SqmReferralCard {
+        /**
+          * @uiName Remove border
+          * @uiType boolean
+         */
+        "removeBorder"?: boolean;
         /**
           * @uiName Vertical Aligment
           * @uiType string
