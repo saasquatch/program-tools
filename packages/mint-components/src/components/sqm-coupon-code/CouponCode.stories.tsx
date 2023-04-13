@@ -15,6 +15,7 @@ const defaultProps: CopyTextViewProps = {
   open: false,
   copyButtonLabel: "Copy Coupon",
   inputPlaceholderText: "CODE ERROR",
+  rewardStatus: "AVAILABLE",
 };
 
 export const CouponCode = () => {
@@ -51,26 +52,46 @@ export const CopyButtonBelow = () => {
   );
 };
 export const ErrorPending = () => {
-  return <CopyTextView {...defaultProps} errorState={"PENDING"}></CopyTextView>;
+  return (
+    <CopyTextView
+      {...defaultProps}
+      rewardStatus={"PENDING"}
+      errorText="Oops! Looks like we weren’t able to retrieve a code for you. Please try again later or contact support."
+    ></CopyTextView>
+  );
 };
 export const ErrorCancelled = () => {
   return (
-    <CopyTextView {...defaultProps} errorState={"CANCELLED"}></CopyTextView>
+    <CopyTextView
+      {...defaultProps}
+      rewardStatus={"CANCELLED"}
+      errorText="Oops! Your coupon code is cancelled. Please try again later or contact support."
+    ></CopyTextView>
   );
 };
 export const ErrorRedeemed = () => {
   return (
-    <CopyTextView {...defaultProps} errorState={"REDEEMED"}></CopyTextView>
+    <CopyTextView
+      {...defaultProps}
+      rewardStatus={"REDEEMED"}
+      errorText="Oops! Your coupon code has already been redeemed. Please try again later or contact support."
+    ></CopyTextView>
   );
 };
 export const ErrorExpired = () => {
-  return <CopyTextView {...defaultProps} errorState={"EXPIRED"}></CopyTextView>;
+  return (
+    <CopyTextView
+      {...defaultProps}
+      rewardStatus={"EXPIRED"}
+      errorText="Oops! Your coupon code is expired. Please try again later or contact support."
+    ></CopyTextView>
+  );
 };
 export const ErrorButtonBelow = () => {
   return (
     <CopyTextView
       {...defaultProps}
-      errorState={"PENDING"}
+      rewardStatus={"PENDING"}
       buttonStyle="button below"
     ></CopyTextView>
   );

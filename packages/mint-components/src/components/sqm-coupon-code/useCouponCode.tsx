@@ -28,6 +28,13 @@ type FuelTankReward = {
   datePendingForUnhandledError: number;
 };
 
+export type rewardStatusType =
+  | "REDEEMED"
+  | "CANCELLED"
+  | "EXPIRED"
+  | "PENDING"
+  | "AVAILABLE";
+
 interface FuelTankRewardsQueryResult {
   fuelTankRewardsQuery: {
     user: {
@@ -89,7 +96,7 @@ export function useCouponCode(props: CouponCodeProps): CopyTextViewProps {
   const reward =
     data?.fuelTankRewardsQuery?.user?.instantAccessRewards?.data?.[0];
 
-  const rewardStatus = getStatus(reward);
+  const rewardStatus = getStatus(reward) as rewardStatusType;
   const copyString = reward?.fuelTankCode || "...";
 
   const [open, setOpen] = useState(false);

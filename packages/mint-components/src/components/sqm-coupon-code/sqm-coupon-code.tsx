@@ -152,7 +152,22 @@ export class CouponCode {
     const props = isDemo()
       ? useDemoCouponCode(thisProps)
       : useCouponCode(thisProps);
-    return <CopyTextView {...props} />;
+
+    let errorText = "An error occurred";
+    switch (props.rewardStatus) {
+      case "CANCELLED":
+        errorText = this.cancelledErrorText;
+      case "PENDING":
+        errorText = this.pendingErrorText;
+      case "EXPIRED":
+        errorText = this.expiredErrorText;
+      case "REDEEMED":
+        errorText = this.redeemedErrorText;
+      case "AVAILABLE":
+        errorText = "";
+    }
+
+    return <CopyTextView {...props} errorText={errorText} />;
   }
 }
 
@@ -170,7 +185,7 @@ function useDemoCouponCode(props: CouponCode): CopyTextViewProps {
       cancelledErrorText: props.cancelledErrorText,
       expiredErrorText: props.expiredErrorText,
       redeemedErrorText: props.redeemedErrorText,
-      error: false,
+      rewardStatus: "AVAILABLE",
       couponCodePlaceholder: props.couponCodePlaceholder,
       open,
       onClick: () => {

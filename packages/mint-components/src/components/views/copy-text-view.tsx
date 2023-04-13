@@ -1,21 +1,18 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { HostBlock, P } from "../../global/mixins";
+import { rewardStatusType } from "../sqm-coupon-code/useCouponCode";
 
 export interface CopyTextViewProps {
   copyString: string;
   tooltiptext: string;
   open: boolean;
-  rewardStatus: string;
   copyButtonLabel?: string;
   disabled?: boolean;
   textAlign?: "left" | "center";
   buttonStyle?: "button inside" | "button outside" | "button below" | "icon";
-  errorState?: "REDEEMED" | "CANCELLED" | "EXPIRED" | "PENDING";
-  pendingErrorText?: string;
-  cancelledErrorText?: string;
-  expiredErrorText?: string;
-  redeemedErrorText?: string;
+  rewardStatus?: rewardStatusType;
+  errorText?: string;
   inputPlaceholderText?: string;
 
   onClick?: () => void;
@@ -57,13 +54,7 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function CopyTextView(props: CopyTextViewProps) {
-  const {
-    buttonStyle = "icon",
-    pendingErrorText = "Oops! Looks like we weren’t able to retrieve a code for you. Please try again later or contact support.",
-    cancelledErrorText = "Oops! Your coupon code is cancelled. Please try again later or contact support.",
-    expiredErrorText = "Oops! Your coupon code is expired. Please try again later or contact support.",
-    redeemedErrorText = "Oops! Your coupon code has already been redeemed. Please try again later or contact support.",
-  } = props;
+  const { buttonStyle = "icon" } = props;
 
   const copyButton =
     buttonStyle === "icon" ? null : (
@@ -78,21 +69,8 @@ export function CopyTextView(props: CopyTextViewProps) {
         {props.copyButtonLabel || "Copy"}
       </sl-button>
     );
-
-  const error = props.errorState;
-  const errorText =
-    props.errorState === "CANCELLED"
-      ? cancelledErrorText
-      : props.errorState === "PENDING"
-      ? pendingErrorText
-      : props.errorState === "EXPIRED"
-      ? expiredErrorText
-      : props.errorState === "REDEEMED"
-      ? expiredErrorText
-      : "An error occured";
-
-  const inputText =
-    !props.copyString || error ? props.inputPlaceholderText : props.copyString;
+  const error = props.rewardStatus !== "AVAILABLE";
+  const inputText = error ? props.inputPlaceholderText : props.copyString;
 
   return (
     <div>
@@ -141,7 +119,7 @@ export function CopyTextView(props: CopyTextViewProps) {
             buttonStyle === "button below") &&
             copyButton}
         </div>
-        {error && <p class={sheet.classes.errorTextStyle}>{errorText}</p>}
+        {error && <p class={sheet.classes.errorTextStyle}>{props.errorText}</p>}
       </sl-tooltip>
     </div>
   );
