@@ -19,9 +19,10 @@ const style = {
 };
 
 const vanillaStyle = `
-:host{
+:host, sqm-logout-current-user{
   display: inline;   
 }
+
 `;
 
 const sheet = createStyleSheet(style);

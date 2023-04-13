@@ -5,21 +5,28 @@
     padding-size="none"
     wrap-direction="wrap"
     secondary-background="#FEFDFF"
+    min-height="200"
     ><sqm-referral-card
-      vertical-alignment="center"
+      vertical-alignment="start"
       remove-border
       slot="secondary-column"
     >
-      <sqm-portal-footer
-        support-email="support@example.com"
-        show-powered-by="true"
-        padding-bottom="x-small"
-        padding-left="none"
-        padding-right="none"
-        padding-top="none"
+      <sqm-portal-container
+        display="flex"
         slot="footer"
-        hide-support-text
-      ></sqm-portal-footer
+        gap="small"
+        justify-content="center"
+      >
+        <sqm-logout-current-user></sqm-logout-current-user>
+        <sqm-portal-footer
+          support-email="support@example.com"
+          show-powered-by="true"
+          padding-bottom="x-small"
+          padding-left="none"
+          padding-right="none"
+          padding-top="none"
+          hide-support-text
+        ></sqm-portal-footer></sqm-portal-container
       ><sqm-titled-section
         text-align="center"
         label-margin="none"
@@ -31,28 +38,30 @@
           you&apos;ll get up to &#x24;1200 credit!
         </p></sqm-titled-section
       >
-      <sqm-timeline icon="circle" slot="left">
-        <sqm-timeline-entry
-          reward="$50"
-          unit="visa giftcard"
-          desc="You refer a friend"
-          icon="circle"
-        >
-        </sqm-timeline-entry>
-        <sqm-timeline-entry
-          reward="$200"
-          unit="visa giftcard"
-          desc="Our sales team qualifies your friend as a good fit for our Enterprise plan"
-          icon="circle"
-        >
-        </sqm-timeline-entry>
-        <sqm-timeline-entry
-          reward="$1000"
-          unit="visa giftcard"
-          desc="Your friend purchases an Enterprise plan"
-          icon="circle"
-        >
-        </sqm-timeline-entry></sqm-timeline
+      <sqm-portal-container slot="left" gap="small" padding="none"
+        ><p style="margin: 0">Get rewarded when your friend uses Klip</p>
+        <sqm-timeline icon="circle">
+          <sqm-timeline-entry
+            reward="$50"
+            unit="visa giftcard"
+            desc="You refer a friend"
+            icon="circle"
+          >
+          </sqm-timeline-entry>
+          <sqm-timeline-entry
+            reward="$200"
+            unit="visa giftcard"
+            desc="Our sales team qualifies your friend as a good fit for our Enterprise plan"
+            icon="circle"
+          >
+          </sqm-timeline-entry>
+          <sqm-timeline-entry
+            reward="$1000"
+            unit="visa giftcard"
+            desc="Your friend purchases an Enterprise plan"
+            icon="circle"
+          >
+          </sqm-timeline-entry></sqm-timeline></sqm-portal-container
       ><sqm-portal-container
         gap="small"
         direction="column"
@@ -62,7 +71,7 @@
         slot="right"
       >
         <div>
-          <p>Choose how you want to share:</p>
+          <p style="margin: 0">Choose how you want to share:</p>
           <sub>Your unique referral link:</sub>
         </div>
         <sqm-share-link
