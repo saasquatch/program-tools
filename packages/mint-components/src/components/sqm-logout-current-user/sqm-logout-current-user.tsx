@@ -10,9 +10,9 @@ import {
 import { useLogoutCurrentUser } from "./useLogoutCurrentUser";
 
 /**
- * @uiName User Identifier
+ * @uiName Logout Current User
  * @exampleGroup Common Components
- * @example User Identifier - <sqm-logout-current-user user-identification-text="Showing data for {email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
+ * @example Logout Current User - <sqm-logout-current-user user-identification-text="Showing data for {email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
  */
 @Component({
   tag: "sqm-logout-current-user",

@@ -1,7 +1,7 @@
 @author:noah
 @owner:noah
 
-Feature: User Identifier
+Feature: Logout Current User
 
   Scenario: A user on an instant access widget
     Given a user viewing an instant access widget
