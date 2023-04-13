@@ -69,7 +69,8 @@ export function CopyTextView(props: CopyTextViewProps) {
         {props.copyButtonLabel || "Copy"}
       </sl-button>
     );
-  const error = props.rewardStatus !== "AVAILABLE";
+
+  const error = props.rewardStatus && props.rewardStatus !== "AVAILABLE";
   const inputText = error ? props.inputPlaceholderText : props.copyString;
 
   return (

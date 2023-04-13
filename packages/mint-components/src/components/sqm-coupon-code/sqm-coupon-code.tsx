@@ -167,6 +167,8 @@ export class CouponCode {
         errorText = "";
     }
 
+    console.log("ASDASDASD");
+
     return <CopyTextView {...props} errorText={errorText} />;
   }
 }

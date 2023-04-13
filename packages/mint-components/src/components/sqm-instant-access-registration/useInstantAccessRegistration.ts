@@ -1,4 +1,4 @@
-import { useUpsertInstantAccessUserMutation } from "@saasquatch/component-boilerplate";
+import { useAuthenticateManagedIdentityWithInstantAccess } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
 
@@ -10,7 +10,7 @@ export function useInstantAccessRegistration(options?: {
   const cookies = cookie?.get("_saasquatch");
 
   const [request, { loading, errors, data }] =
-    useUpsertInstantAccessUserMutation();
+    useAuthenticateManagedIdentityWithInstantAccess();
   const [error, setError] = useState("");
 
   const submit = async (event: any) => {
