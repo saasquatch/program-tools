@@ -3,7 +3,7 @@ import scenario from "./sqm-logout-current-user.feature";
 import { LogoutCurrentUserView } from "./sqm-logout-current-user-view";
 
 export default {
-  title: "Components/User Identifier",
+  title: "Components/Logout Current User",
   parameters: {
     scenario,
   },
