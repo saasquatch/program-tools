@@ -12,3 +12,11 @@ Feature: Passwordless registration
 
     @ui
     Scenario: Slotted content can be included
+
+    @motivating
+    Scenario: The component is customizable to have first name and last name enable
+        Given the customer wants to ask for name details in the form
+        Then they enable First name field
+        And it is not mandatory
+        And they enable Last name field
+        And it is not mandatory
