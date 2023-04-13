@@ -165,6 +165,11 @@ export namespace Components {
          */
         "buttonStyle": "icon" | "button inside" | "button outside" | "button below";
         /**
+          * Set error message
+          * @uiName Error message
+         */
+        "cancelledErrorText": string;
+        /**
           * Set copy button label
           * @uiName Copy button label
          */
@@ -183,13 +188,23 @@ export namespace Components {
           * Set error message
           * @uiName Error message
          */
-        "errorText": string;
+        "expiredErrorText": string;
+        /**
+          * Set error message
+          * @uiName Error message
+         */
+        "pendingErrorText": string;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Set error message
+          * @uiName Error message
+         */
+        "redeemedErrorText": string;
         /**
           * Change the text alignment
           * @uiName Align text
@@ -3387,6 +3402,11 @@ declare namespace LocalJSX {
          */
         "buttonStyle"?: "icon" | "button inside" | "button outside" | "button below";
         /**
+          * Set error message
+          * @uiName Error message
+         */
+        "cancelledErrorText"?: string;
+        /**
           * Set copy button label
           * @uiName Copy button label
          */
@@ -3405,13 +3425,23 @@ declare namespace LocalJSX {
           * Set error message
           * @uiName Error message
          */
-        "errorText"?: string;
+        "expiredErrorText"?: string;
+        /**
+          * Set error message
+          * @uiName Error message
+         */
+        "pendingErrorText"?: string;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Set error message
+          * @uiName Error message
+         */
+        "redeemedErrorText"?: string;
         /**
           * Change the text alignment
           * @uiName Align text
