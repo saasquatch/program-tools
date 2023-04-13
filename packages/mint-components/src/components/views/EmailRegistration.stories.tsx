@@ -53,6 +53,18 @@ export const WithSlots = () => (
   />
 );
 
+export const NoBorder = () => (
+  <EmailRegistrationView
+    {...{
+      ...defaultProps,
+      content: {
+        ...defaultProps.content,
+        removeBorder: true,
+      },
+    }}
+  />
+);
+
 export const Loading = () => (
   <EmailRegistrationView
     {...{

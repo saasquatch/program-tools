@@ -577,6 +577,10 @@ export namespace Components {
          */
         "registerLabel": string;
         /**
+          * @uiName Remove the border
+         */
+        "removeBorder": boolean;
+        /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required Field Message
           * @uiWidget textArea
@@ -1741,6 +1745,10 @@ export namespace Components {
           * @uiName Register Button Text
          */
         "registerLabel": string;
+        /**
+          * @uiName Remove the border
+         */
+        "removeBorder": boolean;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required Field Message
@@ -3814,6 +3822,10 @@ declare namespace LocalJSX {
          */
         "registerLabel"?: string;
         /**
+          * @uiName Remove the border
+         */
+        "removeBorder"?: boolean;
+        /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required Field Message
           * @uiWidget textArea
@@ -4964,6 +4976,10 @@ declare namespace LocalJSX {
           * @uiName Register Button Text
          */
         "registerLabel"?: string;
+        /**
+          * @uiName Remove the border
+         */
+        "removeBorder"?: boolean;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required Field Message
