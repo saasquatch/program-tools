@@ -1,70 +1,67 @@
-<sqm-brand brand="Nunito Sans" slot brand-color="#4326c4ff">
-  <sqm-hero
-    background="https://blogcdn.snackmagic.com/wp-content/uploads/2021/12/Screen-Shot-2022-01-06-at-3.23.58-AM.png"
-    columns="2"
-    padding-size="large"
-    wrap-direction="wrap"
-    secondary-background="#FEFDFF"
-    slot
+<sqm-hero
+  background="https://blogcdn.snackmagic.com/wp-content/uploads/2021/12/Screen-Shot-2022-01-06-at-3.23.58-AM.png"
+  columns="2"
+  padding-size="large"
+  wrap-direction="wrap"
+  secondary-background="#FEFDFF"
+  slot
+>
+  <sqm-portal-container
+    slot="secondary-column"
+    direction="column"
+    padding="none"
+    gap="xx-large"
+    max-width="770px"
+    center
+    display="grid"
   >
-    <sqm-portal-container
-      slot="secondary-column"
-      direction="column"
-      padding="none"
-      gap="xx-large"
-      max-width="770px"
-      center
-      display="grid"
-    >
-      <sqm-referral-card vertical-alignment="start" remove-border>
-        <sqm-portal-container
-          gap="large"
-          direction="column"
-          display="flex"
-          justify-content="center"
-          max-width="100%"
+    <sqm-referral-card vertical-alignment="start" remove-border>
+      <sqm-portal-container
+        gap="large"
+        direction="column"
+        display="flex"
+        justify-content="center"
+        max-width="100%"
+        padding="none"
+        slot="header"
+      >
+        <sqm-titled-section
+          text-align="center"
+          label-margin="xxx-small"
           padding="none"
-          slot="header"
         >
-          <sqm-titled-section
-            text-align="center"
-            label-margin="xxx-small"
-            padding="none"
-          >
-            <h1 slot="label">You got $50 off thanks to a friend!</h1>
-            <p slot="content">
-              <span>
-                Description about sharing the products wiht friends will make
-                your life 100 times better!
-              </span>
-            </p>
-          </sqm-titled-section>
+          <h1 slot="label">You got $50 off thanks to a friend!</h1>
+          <p slot="content">
+            <span>
+              Description about sharing the products wiht friends will make your
+              life 100 times better!
+            </span>
+          </p>
+        </sqm-titled-section>
 
-          <sqm-portal-container>
-            <p>
-              The coupon code has some conditions that are described concisely
-              in this paragraph so that you don’t get upset if the code doesn’t
-              work
-            </p></sqm-portal-container
-          >
+        <sqm-portal-container>
+          <p>
+            The coupon code has some conditions that are described concisely in
+            this paragraph so that you don’t get upset if the code doesn’t work
+          </p></sqm-portal-container
+        >
 
-          <sqm-coupon-code copy-button-style="button below"></sqm-coupon-code>
-        </sqm-portal-container>
+        <sqm-coupon-code copy-button-style="button below"></sqm-coupon-code>
+      </sqm-portal-container>
 
-        <sqm-portal-footer
-          slot="footer"
-          terms-link="https://example.com"
-          terms-text="Terms And Conditions"
-          show-powered-by="true"
-          padding-bottom="none"
-          padding-left="none"
-          padding-right="none"
-          padding-top="none"
-          hide-support-text
-          terms-text="Terms & Conditions"
-          terms-link="https://example.com"
-        ></sqm-portal-footer>
-      </sqm-referral-card>
-    </sqm-portal-container>
-  </sqm-hero>
-</sqm-brand>
+      <sqm-portal-footer
+        slot="footer"
+        terms-link="https://example.com"
+        terms-text="Terms And Conditions"
+        show-powered-by="true"
+        padding-bottom="none"
+        padding-left="none"
+        padding-right="none"
+        padding-top="none"
+        hide-support-text
+        terms-text="Terms & Conditions"
+        terms-link="https://example.com"
+      ></sqm-portal-footer>
+    </sqm-referral-card>
+  </sqm-portal-container>
+</sqm-hero>
