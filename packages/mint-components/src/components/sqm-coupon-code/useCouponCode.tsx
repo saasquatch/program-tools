@@ -92,16 +92,13 @@ export function useCouponCode(props: CouponCodeProps): CopyTextViewProps {
     return state;
   };
 
-  console.log({ data });
   const reward = data?.user?.instantAccessRewards?.data?.[0];
 
   const rewardStatus = getStatus(reward) as RewardStatusType;
   const dateAvailable =
-    rewardStatus === "PENDING"
-      ? new Date(reward?.dateScheduledFor).toDateString()
+    rewardStatus === "PENDING" && reward.dateScheduledFor
+      ? new Date(reward.dateScheduledFor).toDateString()
       : undefined;
-
-  console.log({ rewardStatus, dateAvailable });
 
   const copyString = reward?.fuelTankCode || "...";
 

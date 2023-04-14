@@ -152,8 +152,6 @@ export class CouponCode {
       ? useDemoCouponCode(thisProps)
       : useCouponCode(thisProps);
 
-    console.log({ props });
-
     const getRewardStatusText = (status: RewardStatusType) => {
       switch (status) {
         case "CANCELLED":
