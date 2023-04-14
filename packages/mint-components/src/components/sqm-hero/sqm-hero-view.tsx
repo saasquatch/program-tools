@@ -5,6 +5,7 @@ import { isMobile, isValidColor } from "../../utilities";
 export interface HeroProps {
   states: {
     columns: 1 | 2;
+    minHeight: number;
     background?: string;
     secondaryBackground?: string;
     paddingSize: "none" | "small" | "medium" | "large";
@@ -111,12 +112,14 @@ export function HeroView(props: HeroProps) {
         )}`,
       },
       "@media screen and (min-width: 1023px)": { flex: "1 1 0" },
+      minHeight: `${states.minHeight}px`,
       display: "block",
     },
     SingleColumnContainer: {
       background: `no-repeat center/cover ${parseBackground(
         states.background
       )}`,
+      minHeight: `${states.minHeight}px`,
       flex: "1 1 0",
     },
     Container: {

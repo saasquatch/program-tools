@@ -371,6 +371,11 @@ export namespace Components {
          */
         "columns": 1 | 2;
         /**
+          * Minimum height of each column including when they are stacked on mobile
+          * @uiName Mininum Height (in px)
+         */
+        "minHeight": number;
+        /**
           * @uiName Padding Size
           * @uiEnum ["none", "small", "medium","large"]
           * @uiEnumNames ["None", "Small", "Medium", "Large"]
@@ -3620,6 +3625,11 @@ declare namespace LocalJSX {
           * @uiEnumNames ["One", "Two"]
          */
         "columns"?: 1 | 2;
+        /**
+          * Minimum height of each column including when they are stacked on mobile
+          * @uiName Mininum Height (in px)
+         */
+        "minHeight"?: number;
         /**
           * @uiName Padding Size
           * @uiEnum ["none", "small", "medium","large"]
