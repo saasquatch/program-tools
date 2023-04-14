@@ -29,6 +29,10 @@ export interface EmailRegistrationViewProps {
     bottomSlot?: VNode;
     invalidEmailErrorMessage: string;
     requiredFieldErrorMessage: string;
+    paddingTop?: string;
+    paddingRight?: string;
+    paddingBottom?: string;
+    paddingLeft?: string;
   };
 }
 
@@ -70,6 +74,10 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
       class={sheet.classes.Wrapper}
       style={{
         border: `${content.removeBorder ? "none" : "1px solid #eaeaea"}`,
+        "padding-top": `var(--sl-spacing-${content.paddingTop})`,
+        "padding-right": `var(--sl-spacing-${content.paddingRight})`,
+        "padding-bottom": `var(--sl-spacing-${content.paddingBottom})`,
+        "padding-left": `var(--sl-spacing-${content.paddingLeft})`,
       }}
     >
       <style type="text/css">
