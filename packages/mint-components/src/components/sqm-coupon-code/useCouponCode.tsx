@@ -1,11 +1,8 @@
 import {
-  useEngagementMedium,
-  useMutation,
   useProgramId,
   useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useDomContext, useEffect } from "@saasquatch/stencil-hooks";
 import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { CopyTextViewProps } from "../views/copy-text-view";
@@ -28,30 +25,32 @@ type FuelTankReward = {
   datePendingForUnhandledError: number;
 };
 
-export type rewardStatusType =
+export type RewardStatusType =
+  | "AVAILABLE"
+  | "EXPIRED"
   | "REDEEMED"
   | "CANCELLED"
-  | "EXPIRED"
   | "PENDING"
-  | "AVAILABLE";
+  | "EMPTY_TANK"
+  | "ERROR";
 
 interface FuelTankRewardsQueryResult {
-  fuelTankRewardsQuery: {
-    user: {
-      instantAccessRewards: {
-        data: FuelTankReward[];
-        totalCount: number;
-        count: number;
-      };
+  user: {
+    instantAccessRewards: {
+      data: FuelTankReward[];
+      totalCount: number;
+      count: number;
     };
   };
 }
 
 const FuelTankRewardsQuery = gql`
-  query fuelTankRewardsQuery {
+  query fuelTankRewardsQuery($programId: ID!) {
     user: viewer {
       ... on User {
-        instantAccessRewards(filter: { type_eq: FUELTANK }) {
+        instantAccessRewards(
+          filter: { type_eq: FUELTANK, programId_eq: $programId }
+        ) {
           data {
             fuelTankCode
             fuelTankType
@@ -73,30 +72,37 @@ const FuelTankRewardsQuery = gql`
 
 export function useCouponCode(props: CouponCodeProps): CopyTextViewProps {
   const user = useUserIdentity();
+  const programId = useProgramId();
 
   const { data, loading, refetch, errors } =
-    useQuery<FuelTankRewardsQueryResult>(FuelTankRewardsQuery, {}, !user?.jwt);
+    useQuery<FuelTankRewardsQueryResult>(
+      FuelTankRewardsQuery,
+      { programId },
+      !user?.jwt
+    );
 
   const getStatus = (reward: FuelTankReward | undefined) => {
-    const possibleStates = [
-      "REDEEMED",
-      "CANCELLED",
-      "EXPIRED",
-      "PENDING",
-      "AVAILABLE",
-    ];
+    if (!reward || !reward.statuses) return "ERROR";
 
-    if (reward.statuses.length === 1) return reward.statuses[0];
+    const state = reward.statuses[0];
 
-    return possibleStates.find(
-      (state) => reward.statuses.includes(state) && state
-    );
+    if (state === "PENDING" && reward.dateScheduledFor === null)
+      return "EMPTY_TANK";
+
+    return state;
   };
 
-  const reward =
-    data?.fuelTankRewardsQuery?.user?.instantAccessRewards?.data?.[0];
+  console.log({ data });
+  const reward = data?.user?.instantAccessRewards?.data?.[0];
 
-  const rewardStatus = getStatus(reward) as rewardStatusType;
+  const rewardStatus = getStatus(reward) as RewardStatusType;
+  const dateAvailable =
+    rewardStatus === "PENDING"
+      ? new Date(reward?.dateScheduledFor).toDateString()
+      : undefined;
+
+  console.log({ rewardStatus, dateAvailable });
+
   const copyString = reward?.fuelTankCode || "...";
 
   const [open, setOpen] = useState(false);
@@ -109,5 +115,13 @@ export function useCouponCode(props: CouponCodeProps): CopyTextViewProps {
     setTimeout(() => setOpen(false), props.tooltiplifespan);
   }
 
-  return { ...props, onClick, open, copyString, rewardStatus };
+  return {
+    ...props,
+    onClick,
+    open,
+    copyString,
+    rewardStatus,
+    dateAvailable,
+    loading,
+  };
 }

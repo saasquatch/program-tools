@@ -3,7 +3,7 @@ import { Component, Prop, h } from "@stencil/core";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
 import { getProps } from "../../utils/utils";
-import { useCouponCode } from "./useCouponCode";
+import { RewardStatusType, useCouponCode } from "./useCouponCode";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
 
@@ -90,8 +90,7 @@ export class CouponCode {
   @Prop({
     attribute: "error-text",
   })
-  pendingErrorText: string =
-    "Oops! Looks like we weren’t able to retrieve a code for you. Please try again later or contact support.";
+  pendingErrorText: string = "Your reward will be available on ";
 
   /**
    * Set error message
@@ -153,21 +152,30 @@ export class CouponCode {
       ? useDemoCouponCode(thisProps)
       : useCouponCode(thisProps);
 
-    let errorText = "An error occurred";
-    switch (props.rewardStatus) {
-      case "CANCELLED":
-        errorText = this.cancelledErrorText;
-      case "PENDING":
-        errorText = this.pendingErrorText;
-      case "EXPIRED":
-        errorText = this.expiredErrorText;
-      case "REDEEMED":
-        errorText = this.redeemedErrorText;
-      case "AVAILABLE":
-        errorText = "";
-    }
+    console.log({ props });
 
-    console.log("ASDASDASD");
+    const getRewardStatusText = (status: RewardStatusType) => {
+      switch (status) {
+        case "CANCELLED":
+          return this.cancelledErrorText;
+        case "PENDING":
+          return `${this.pendingErrorText}${props.dateAvailable}`;
+        case "EXPIRED":
+          return this.expiredErrorText;
+        case "REDEEMED":
+          return this.redeemedErrorText;
+        case "AVAILABLE":
+          return "";
+        case "EMPTY_TANK":
+          // TODO: Replace
+          return "An error happened, please contact customer support or try again later.";
+        default:
+          // TODO: Replace
+          return "An error occurred, please contact customer support.";
+      }
+    };
+
+    const errorText = getRewardStatusText(props.rewardStatus);
 
     return <CopyTextView {...props} errorText={errorText} />;
   }

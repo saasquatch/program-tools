@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { HostBlock, P } from "../../global/mixins";
-import { rewardStatusType } from "../sqm-coupon-code/useCouponCode";
+import { RewardStatusType } from "../sqm-coupon-code/useCouponCode";
 
 export interface CopyTextViewProps {
   copyString: string;
@@ -11,9 +11,11 @@ export interface CopyTextViewProps {
   disabled?: boolean;
   textAlign?: "left" | "center";
   buttonStyle?: "button inside" | "button outside" | "button below" | "icon";
-  rewardStatus?: rewardStatusType;
+  rewardStatus?: RewardStatusType;
   errorText?: string;
   inputPlaceholderText?: string;
+  dateAvailable?: string;
+  loading?: boolean;
 
   onClick?: () => void;
 }
