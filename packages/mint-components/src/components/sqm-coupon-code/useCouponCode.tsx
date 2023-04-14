@@ -84,7 +84,7 @@ export function useCouponCode(props: CouponCodeProps): CopyTextViewProps {
   const getStatus = (reward: FuelTankReward | undefined) => {
     if (!reward || !reward.statuses) return "ERROR";
 
-    const state = reward.statuses[0];
+    const state = reward.statuses[reward.statuses.length - 1];
 
     if (state === "PENDING" && reward.dateScheduledFor === null)
       return "EMPTY_TANK";
