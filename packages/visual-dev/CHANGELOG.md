@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [1.7.1] - 2023-04-06
+
+### Changed
+
+- Components changed
+  - \<TagInput>
+    - Reduce height to match normal inputs
+
 ## [1.7.0] - 2023-04-06
 
 ### Added
