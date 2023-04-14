@@ -9,6 +9,7 @@
 
 | Property            | Attribute            | Description | Type                           | Default   |
 | ------------------- | -------------------- | ----------- | ------------------------------ | --------- |
+| `removeBorder`      | `remove-border`      |             | `boolean`                      | `false`   |
 | `verticalAlignment` | `vertical-alignment` |             | `"center" \| "end" \| "start"` | `"start"` |
 
 
