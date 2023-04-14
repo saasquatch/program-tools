@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { Host, h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { HostBlock, P } from "../../global/mixins";
 import { rewardStatusType } from "../sqm-coupon-code/useCouponCode";
@@ -41,6 +41,12 @@ const style = {
   },
 };
 
+const vanillaStyle = `
+  :host{
+    display: block;   
+    width: 100%;
+  }
+`;
 const textAlignStyle = `
   :host{
     display: block;
@@ -77,6 +83,7 @@ export function CopyTextView(props: CopyTextViewProps) {
     <div>
       <style type="text/css">
         {styleString}
+        {vanillaStyle}
         {props.textAlign === "center" && textAlignStyle}
       </style>
       <sl-tooltip
