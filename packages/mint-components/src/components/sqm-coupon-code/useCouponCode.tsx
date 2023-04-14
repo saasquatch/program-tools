@@ -97,7 +97,11 @@ export function useCouponCode(props: CouponCodeProps): CopyTextViewProps {
   const rewardStatus = getStatus(reward) as RewardStatusType;
   const dateAvailable =
     rewardStatus === "PENDING" && reward.dateScheduledFor
-      ? new Date(reward.dateScheduledFor).toDateString()
+      ? new Date(reward.dateScheduledFor).toLocaleDateString("default", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })
       : undefined;
 
   const copyString = reward?.fuelTankCode || "...";
