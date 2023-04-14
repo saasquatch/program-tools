@@ -371,6 +371,11 @@ export namespace Components {
          */
         "columns": 1 | 2;
         /**
+          * Minimum height of each column including when they are stacked on mobile
+          * @uiName Mininum Height (in px)
+         */
+        "minHeight": number;
+        /**
           * @uiName Padding Size
           * @uiEnum ["none", "small", "medium","large"]
           * @uiEnumNames ["None", "Small", "Medium", "Large"]
@@ -576,6 +581,10 @@ export namespace Components {
           * @uiName Register Button Text
          */
         "registerLabel": string;
+        /**
+          * @uiName Remove the border
+         */
+        "removeBorder": boolean;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required Field Message
@@ -1497,6 +1506,11 @@ export namespace Components {
     }
     interface SqmReferralCard {
         /**
+          * @uiName Remove border
+          * @uiType boolean
+         */
+        "removeBorder": boolean;
+        /**
           * @uiName Vertical Aligment
           * @uiType string
           * @uiEnum ["start", "center", "end"]
@@ -1741,6 +1755,10 @@ export namespace Components {
           * @uiName Register Button Text
          */
         "registerLabel": string;
+        /**
+          * @uiName Remove the border
+         */
+        "removeBorder": boolean;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required Field Message
@@ -3608,6 +3626,11 @@ declare namespace LocalJSX {
          */
         "columns"?: 1 | 2;
         /**
+          * Minimum height of each column including when they are stacked on mobile
+          * @uiName Mininum Height (in px)
+         */
+        "minHeight"?: number;
+        /**
           * @uiName Padding Size
           * @uiEnum ["none", "small", "medium","large"]
           * @uiEnumNames ["None", "Small", "Medium", "Large"]
@@ -3813,6 +3836,10 @@ declare namespace LocalJSX {
           * @uiName Register Button Text
          */
         "registerLabel"?: string;
+        /**
+          * @uiName Remove the border
+         */
+        "removeBorder"?: boolean;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required Field Message
@@ -4734,6 +4761,11 @@ declare namespace LocalJSX {
     }
     interface SqmReferralCard {
         /**
+          * @uiName Remove border
+          * @uiType boolean
+         */
+        "removeBorder"?: boolean;
+        /**
           * @uiName Vertical Aligment
           * @uiType string
           * @uiEnum ["start", "center", "end"]
@@ -4964,6 +4996,10 @@ declare namespace LocalJSX {
           * @uiName Register Button Text
          */
         "registerLabel"?: string;
+        /**
+          * @uiName Remove the border
+         */
+        "removeBorder"?: boolean;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required Field Message

@@ -1,39 +1,50 @@
-<sqm-brand>
-  <sqm-portal-container
-    direction="column"
-    padding="none"
-    gap="xx-large"
-    max-width="770px"
-    center
-    display="grid"
-  >
-    <sqm-referral-card vertical-alignment="start">
-      <sqm-titled-section
+<sqm-brand brand-color="#4225c4" brand-font="Nunito Sans"
+  ><sqm-hero
+    background="https://blogcdn.snackmagic.com/wp-content/uploads/2021/12/Screen-Shot-2022-01-06-at-3.23.58-AM.png"
+    columns="2"
+    padding-size="none"
+    wrap-direction="wrap"
+    secondary-background="#FEFDFF"
+    min-height="200"
+    ><sqm-referral-card
+      vertical-alignment="start"
+      remove-border
+      slot="secondary-column"
+    >
+      <sqm-portal-container
+        display="flex"
+        slot="footer"
+        gap="small"
+        justify-content="center"
+      >
+        <sqm-logout-current-user></sqm-logout-current-user>
+        <sqm-portal-footer
+          support-email="support@example.com"
+          show-powered-by="true"
+          padding-bottom="x-small"
+          padding-left="none"
+          padding-right="none"
+          padding-top="none"
+          hide-support-text
+        ></sqm-portal-footer></sqm-portal-container
+      ><sqm-titled-section
         text-align="center"
-        label-margin="xxx-small"
+        label-margin="none"
         padding="none"
         slot="header"
-      >
-        <h3 slot="label">Share &#x24;50 with friends</h3>
+        ><h1 slot="content">Invite your friends to unlock rewards!</h1>
         <p slot="content">
-          They&#x2019;ll get a &#x24;50 credit towards a new account and
-          you&#x2019;ll get up to &#x24;1200
-        </p>
-      </sqm-titled-section>
-      <sqm-portal-container
-        gap="large"
-        slot="left"
-        direction="column"
-        display="grid"
-        max-width="100%"
-        padding="none"
+          They&apos;ll get a &#x24;50 credit towards a new account and
+          you&apos;ll get up to &#x24;1200 credit!
+        </p></sqm-titled-section
       >
-        <p>How to get rewarded!</p>
+      <sqm-portal-container slot="left" gap="small" padding="none"
+        ><p style="margin: 0">Get rewarded when your friend uses Klip</p>
         <sqm-timeline icon="circle">
           <sqm-timeline-entry
             reward="$50"
             unit="visa giftcard"
-            desc="Your friend purchases a Business plan"
+            desc="You refer a friend"
             icon="circle"
           >
           </sqm-timeline-entry>
@@ -50,75 +61,49 @@
             desc="Your friend purchases an Enterprise plan"
             icon="circle"
           >
-          </sqm-timeline-entry>
-        </sqm-timeline>
-      </sqm-portal-container>
-      <sqm-portal-container
-        gap="large"
-        slot="right"
+          </sqm-timeline-entry></sqm-timeline></sqm-portal-container
+      ><sqm-portal-container
+        gap="small"
         direction="column"
         display="grid"
         max-width="100%"
         padding="none"
+        slot="right"
       >
-        <p>Choose how you want to share:</p>
-        <p><sub>Your unique referral link:</sub></p>
+        <div>
+          <p style="margin: 0">Choose how you want to share:</p>
+          <sub>Your unique referral link:</sub>
+        </div>
         <sqm-share-link
           tooltip-text="Copied to Clipboard"
           tooltip-lifespan="1000"
         >
         </sqm-share-link>
-        <sqm-portal-container
-          gap="x-small"
-          direction="column"
-          display="grid"
-          max-width="100%"
-          padding="none"
+        <sqm-share-button
+          medium="email"
+          icon-slot="prefix"
+          size="medium"
+          type="default"
         >
-          <sqm-share-button
-            medium="email"
-            icon-slot="prefix"
-            size="medium"
-            type="default"
-          >
-            Share via email
-          </sqm-share-button>
-          <sqm-share-button
-            medium="linkedin"
-            icon-slot="prefix"
-            size="medium"
-            type="default"
-          >
-            Share on LinkedIn
-          </sqm-share-button>
-          <sqm-share-button
-            medium="twitter"
-            icon-slot="prefix"
-            size="medium"
-            type="default"
-          >
-            Tweet about us
-          </sqm-share-button>
-        </sqm-portal-container>
-      </sqm-portal-container>
-      <sqm-portal-container
-        slot="footer"
-        direction="column"
-        gap="small"
-        justify-content="center"
-        display="flex"
-        padding="large"
-      >
-        <sqm-logout-current-user
-          switch-user-link="https://www.example.com"
-        ></sqm-logout-current-user
-        ><sqm-portal-footer
-          padding-top="none"
-          padding-bottom="none"
-          padding-left="none"
-          padding-right="none"
-        ></sqm-portal-footer>
-      </sqm-portal-container>
-    </sqm-referral-card>
-  </sqm-portal-container>
+          Share via email
+        </sqm-share-button>
+        <sqm-share-button
+          medium="linkedin"
+          icon-slot="prefix"
+          size="medium"
+          type="default"
+        >
+          Share on LinkedIn
+        </sqm-share-button>
+        <sqm-share-button
+          medium="twitter"
+          icon-slot="prefix"
+          size="medium"
+          type="default"
+        >
+          Tweet about us
+        </sqm-share-button>
+      </sqm-portal-container></sqm-referral-card
+    >
+  </sqm-hero>
 </sqm-brand>

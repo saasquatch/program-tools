@@ -1,29 +1,30 @@
-<sqm-brand>
-  <sqm-instant-access-registration include-name="true">
-    <sqm-titled-section
-      text-align="center"
-      label-margin="xxx-small"
-      padding="none"
-      slot="top-slot"
-    >
-      <h3 slot="label">Share &#x24;50 with friends</h3>
-      <p slot="content">
-        They&#x2019;ll get a &#x24;50 credit towards a new account and
-        you&#x2019;ll get up to &#x24;1200
-      </p>
-    </sqm-titled-section>
-
-    <sqm-portal-footer
-      hide-support-text="true"
-      terms-link="https://example.com"
-      terms-text="Terms And Conditions"
-      faq-text="FAQ"
-      show-powered-by="true"
-      padding-bottom="none"
-      padding-left="none"
-      padding-right="none"
-      padding-top="none"
-      slot="bottom-slot"
-    ></sqm-portal-footer>
-  </sqm-instant-access-registration>
-</sqm-brand>
+<sqm-brand brand="Nunito Sans" slot brand-color="#4326c4ff"
+  ><sqm-hero
+    background="https://blogcdn.snackmagic.com/wp-content/uploads/2021/12/Screen-Shot-2022-01-06-at-3.23.58-AM.png"
+    columns="2"
+    padding-size="large"
+    wrap-direction="wrap"
+    secondary-background="#FEFDFF"
+    slot
+    ><sqm-instant-access-registration
+      slot="secondary-column"
+      include-name
+      remove-border
+      ><sqm-titled-section
+        text-align="center"
+        label-margin="small"
+        padding="none"
+        slot="top-slot"
+        ><div slot="label"><h1>Share &#x24;50 with friends!</h1></div>
+        <div slot="content">
+          <p>
+            <span
+              >They&#x2019;ll get a &#x24;50 credit towards a new account and
+              you&#x2019;ll get up to &#x24;1200 credit!</span
+            >
+          </p>
+        </div></sqm-titled-section
+      ></sqm-instant-access-registration
+    ></sqm-hero
+  ></sqm-brand
+>

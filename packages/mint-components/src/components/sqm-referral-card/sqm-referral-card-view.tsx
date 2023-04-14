@@ -4,6 +4,7 @@ import { createStyleSheet } from "../../styling/JSS";
 
 export interface ReferralCardViewProps {
   verticalAlignment: "start" | "center" | "end";
+  removeBorder?: boolean;
   slots: {
     left: VNode;
     right: VNode;
@@ -13,7 +14,6 @@ export interface ReferralCardViewProps {
 }
 const style = {
   Container: {
-    border: "1px solid var(--sl-color-neutral-300)",
     borderRadius: "var(--sl-border-radius-large)",
     color: "var(--sl-color-neutral-900)",
     background: "var(--sl-color-neutral-0)",
@@ -68,7 +68,15 @@ const vanillaStyle = `
 
 export function ReferralCardView(props: ReferralCardViewProps) {
   return (
-    <div part="sqm-referral-card-container" class={sheet.classes.Container}>
+    <div
+      part="sqm-referral-card-container"
+      class={sheet.classes.Container}
+      style={{
+        border: `${
+          props.removeBorder ? "none" : "1px solid var(--sl-color-neutral-300)"
+        }`,
+      }}
+    >
       <style type="text/css">
         {styleString}
         {vanillaStyle}

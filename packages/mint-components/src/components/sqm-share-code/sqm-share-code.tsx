@@ -109,6 +109,7 @@ function useDemoShareCode(props: ShareCode): CopyTextViewProps {
       textAlign: props.textAlign,
       copyButtonLabel: props.copyButtonLabel,
       buttonStyle: props.buttonStyle,
+      rewardStatus: "AVAILABLE",
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility

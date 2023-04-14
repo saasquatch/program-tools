@@ -52,6 +52,11 @@ export class InstantAccessRegistration {
   @Prop() includeName: boolean = false;
 
   /**
+   * @uiName Remove the border
+   */
+  @Prop() removeBorder: boolean = false;
+
+  /**
    * The message to be displayed when a required field is not filled.
    *
    * @uiName Required Field Message
@@ -90,6 +95,7 @@ export class InstantAccessRegistration {
       firstNameLabel: this.firstNameLabel,
       lastNameLabel: this.lastNameLabel,
       includeName: this.includeName,
+      removeBorder: this.removeBorder,
       invalidEmailErrorMessage: this.invalidEmailErrorMessage,
       requiredFieldErrorMessage: this.requiredFieldErrorMessage,
 

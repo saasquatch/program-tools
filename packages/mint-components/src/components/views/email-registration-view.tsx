@@ -19,6 +19,7 @@ export interface EmailRegistrationViewProps {
     submit: (event: any) => Promise<void>;
   };
   content: {
+    removeBorder?: boolean;
     emailLabel?: string;
     firstNameLabel?: string;
     lastNameLabel?: string;
@@ -65,7 +66,12 @@ const styleString = sheet.toString();
 export function EmailRegistrationView(props: EmailRegistrationViewProps) {
   const { states, callbacks, content } = props;
   return (
-    <div class={sheet.classes.Wrapper}>
+    <div
+      class={sheet.classes.Wrapper}
+      style={{
+        border: `${content.removeBorder ? "none" : "1px solid #eaeaea"}`,
+      }}
+    >
       <style type="text/css">
         {vanillaStyle}
         {styleString}

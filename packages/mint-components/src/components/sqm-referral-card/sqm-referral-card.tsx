@@ -26,6 +26,12 @@ export class ReferralCard {
    */
   @Prop() verticalAlignment: "start" | "center" | "end" = "start";
 
+  /**
+   * @uiName Remove border
+   * @uiType boolean
+   */
+  @Prop() removeBorder: boolean = false;
+
   constructor() {
     withHooks(this);
   }

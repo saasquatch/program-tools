@@ -145,6 +145,16 @@ export const WithFooter = () => {
   );
 };
 
+export const NoBorder = () => {
+  return (
+    <sqm-referral-card remove-border="true">
+      {timeline("right", 3)}
+      {sharebutton("left")}
+      <sqm-portal-footer slot="footer" />
+    </sqm-referral-card>
+  );
+};
+
 export const ReferralCardGeneric = () => {
   return (
     <sqm-referral-card vertical-alignment="center">
