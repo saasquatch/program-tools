@@ -22,6 +22,10 @@ const defaultProps: EmailRegistrationViewProps = {
   content: {
     invalidEmailErrorMessage: "Must be a valid email address",
     requiredFieldErrorMessage: "Cannot be empty",
+    paddingTop: "large",
+    paddingRight: "large",
+    paddingBottom: "large",
+    paddingLeft: "large",
   },
   // content: { pageLabel: "Share 50$ with your friend now!" },
 };

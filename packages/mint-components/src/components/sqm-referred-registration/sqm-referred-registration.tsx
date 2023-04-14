@@ -76,6 +76,31 @@ export class ReferredRegistration {
   @Prop() invalidEmailErrorMessage: string = "Must be a valid email address";
 
   /**
+   * @uiName Padding Top
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+   */
+  @Prop() paddingTop: string = "large";
+  /**
+   * @uiName Padding Right
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+   */
+  @Prop() paddingRight: string = "large";
+  /**
+   * @uiName Padding Bottom
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+   */
+  @Prop() paddingBottom: string = "large";
+  /**
+   * @uiName Padding Left
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+   */
+  @Prop() paddingLeft: string = "large";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -101,6 +126,10 @@ export class ReferredRegistration {
       removeBorder: this.removeBorder,
       invalidEmailErrorMessage: this.invalidEmailErrorMessage,
       requiredFieldErrorMessage: this.requiredFieldErrorMessage,
+      paddingTop: this.paddingTop,
+      paddingBottom: this.paddingBottom,
+      paddingLeft: this.paddingLeft,
+      paddingRight: this.paddingRight,
 
       // slots
       topSlot: <slot name="top-slot" />,
