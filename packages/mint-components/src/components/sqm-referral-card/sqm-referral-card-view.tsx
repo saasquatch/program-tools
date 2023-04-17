@@ -11,28 +11,33 @@ export interface ReferralCardViewProps {
     header: VNode;
     footer: VNode;
   };
+  paddingTop?: string;
+  paddingRight?: string;
+  paddingBottom?: string;
+  paddingLeft?: string;
 }
 const style = {
   Container: {
     borderRadius: "var(--sl-border-radius-large)",
     color: "var(--sl-color-neutral-900)",
     background: "var(--sl-color-neutral-0)",
+    display: "flex",
+    flexDirection: "column",
+    rowGap: "var(--sl-spacing-large)",
   },
   EndContainer: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "0 var(--sl-spacing-large)",
   },
   ColumnContainer: {
     "& p": { margin: "0" },
     display: "flex",
+    columnGap: "calc(2 * var(--sl-spacing-medium))",
 
     "& .left": {
       boxSizing: "border-box",
       width: "50%",
-      padding: "var(--sl-spacing-large)",
-      paddingRight: "var(--sl-spacing-medium)",
       "@media (max-width: 499px)": {
         width: "100%",
         // padding: "0",
@@ -42,8 +47,6 @@ const style = {
     "& .right": {
       boxSizing: "border-box",
       width: "50%",
-      padding: "var(--sl-spacing-large)",
-      paddingLeft: "var(--sl-spacing-medium)",
       "@media (max-width: 499px)": {
         width: "100%",
         // padding: "0",
@@ -75,6 +78,10 @@ export function ReferralCardView(props: ReferralCardViewProps) {
         border: `${
           props.removeBorder ? "none" : "1px solid var(--sl-color-neutral-300)"
         }`,
+        "padding-top": `var(--sl-spacing-${props.paddingTop})`,
+        "padding-right": `var(--sl-spacing-${props.paddingRight})`,
+        "padding-bottom": `var(--sl-spacing-${props.paddingBottom})`,
+        "padding-left": `var(--sl-spacing-${props.paddingLeft})`,
       }}
     >
       <style type="text/css">
