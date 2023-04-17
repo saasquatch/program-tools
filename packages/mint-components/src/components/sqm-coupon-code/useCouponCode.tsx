@@ -84,7 +84,7 @@ export function useCouponCode(props: CouponCodeProps): CopyTextViewProps {
   const getStatus = (reward: FuelTankReward | undefined) => {
     if (!reward || !reward.statuses) return "ERROR";
 
-    const state = reward.statuses[0];
+    const state = reward.statuses[reward.statuses.length - 1];
 
     if (state === "PENDING" && reward.dateScheduledFor === null)
       return "EMPTY_TANK";
@@ -97,7 +97,11 @@ export function useCouponCode(props: CouponCodeProps): CopyTextViewProps {
   const rewardStatus = getStatus(reward) as RewardStatusType;
   const dateAvailable =
     rewardStatus === "PENDING" && reward.dateScheduledFor
-      ? new Date(reward.dateScheduledFor).toDateString()
+      ? new Date(reward.dateScheduledFor).toLocaleDateString("default", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })
       : undefined;
 
   const copyString = reward?.fuelTankCode || "...";

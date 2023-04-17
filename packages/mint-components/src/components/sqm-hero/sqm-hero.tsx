@@ -28,7 +28,7 @@ export class Hero {
    *
    * @uiName Mininum Height (in px)
    */
-  @Prop() minHeight: number;
+  @Prop() minHeight: number = 200;
 
   /**
    * Can be an image url, colour or Shoelace variable.
