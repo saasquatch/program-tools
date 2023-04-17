@@ -551,6 +551,11 @@ export namespace Components {
     }
     interface SqmInstantAccessRegistration {
         /**
+          * @uiName Background color
+          * @uiType string
+         */
+        "backgroundColor": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -1530,6 +1535,11 @@ export namespace Components {
     }
     interface SqmReferralCard {
         /**
+          * @uiName Background color
+          * @uiType string
+         */
+        "backgroundColor": string;
+        /**
           * @uiName Remove border
           * @uiType boolean
          */
@@ -1748,6 +1758,11 @@ export namespace Components {
         "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmReferredRegistration {
+        /**
+          * @uiName Background color
+          * @uiType string
+         */
+        "backgroundColor": string;
         /**
           * @undocumented 
           * @uiType object
@@ -3854,6 +3869,11 @@ declare namespace LocalJSX {
     }
     interface SqmInstantAccessRegistration {
         /**
+          * @uiName Background color
+          * @uiType string
+         */
+        "backgroundColor"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -4833,6 +4853,11 @@ declare namespace LocalJSX {
     }
     interface SqmReferralCard {
         /**
+          * @uiName Background color
+          * @uiType string
+         */
+        "backgroundColor"?: string;
+        /**
           * @uiName Remove border
           * @uiType boolean
          */
@@ -5037,6 +5062,11 @@ declare namespace LocalJSX {
         "deletedUser"?: string;
     }
     interface SqmReferredRegistration {
+        /**
+          * @uiName Background color
+          * @uiType string
+         */
+        "backgroundColor"?: string;
         /**
           * @undocumented 
           * @uiType object

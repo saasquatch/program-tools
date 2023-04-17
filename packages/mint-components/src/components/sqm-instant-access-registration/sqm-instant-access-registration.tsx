@@ -103,6 +103,12 @@ export class InstantAccessRegistration {
    */
   @Prop() demoData?: DemoData<EmailRegistrationViewProps>;
 
+  /**
+   * @uiName Background color
+   * @uiType string
+   */
+  @Prop() backgroundColor: string = "var(--sl-color-neutral-0)";
+
   constructor() {
     withHooks(this);
   }
@@ -127,6 +133,7 @@ export class InstantAccessRegistration {
       paddingBottom: this.paddingBottom,
       paddingLeft: this.paddingLeft,
       paddingRight: this.paddingRight,
+      backgroundColor: this.backgroundColor,
 
       // slots
       topSlot: <slot name="top-slot" />,

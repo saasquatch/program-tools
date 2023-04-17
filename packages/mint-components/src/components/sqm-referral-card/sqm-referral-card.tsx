@@ -32,6 +32,12 @@ export class ReferralCard {
    */
   @Prop() removeBorder: boolean = false;
 
+  /**
+   * @uiName Background color
+   * @uiType string
+   */
+  @Prop() backgroundColor: string = "var(--sl-color-neutral-0)";
+
   constructor() {
     withHooks(this);
   }

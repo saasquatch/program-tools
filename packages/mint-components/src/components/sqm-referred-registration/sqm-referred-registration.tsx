@@ -101,6 +101,12 @@ export class ReferredRegistration {
   @Prop() paddingLeft: string = "large";
 
   /**
+   * @uiName Background color
+   * @uiType string
+   */
+  @Prop() backgroundColor: string = "var(--sl-color-neutral-0)";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -130,6 +136,7 @@ export class ReferredRegistration {
       paddingBottom: this.paddingBottom,
       paddingLeft: this.paddingLeft,
       paddingRight: this.paddingRight,
+      backgroundColor: this.backgroundColor,
 
       // slots
       topSlot: <slot name="top-slot" />,
