@@ -15,7 +15,7 @@
     center
     display="grid"
   >
-    <sqm-referral-card vertical-alignment="start" remove-border>
+    <div>
       <sqm-portal-container
         gap="large"
         direction="column"
@@ -47,21 +47,19 @@
         >
 
         <sqm-coupon-code copy-button-style="button inside"></sqm-coupon-code>
+        <sqm-portal-footer
+          terms-link="https://example.com"
+          terms-text="Terms And Conditions"
+          show-powered-by="true"
+          padding-bottom="none"
+          padding-left="none"
+          padding-right="none"
+          padding-top="none"
+          hide-support-text
+          terms-text="Terms & Conditions"
+          terms-link="https://example.com"
+        ></sqm-portal-footer>
       </sqm-portal-container>
-
-      <sqm-portal-footer
-        slot="footer"
-        terms-link="https://example.com"
-        terms-text="Terms And Conditions"
-        show-powered-by="true"
-        padding-bottom="none"
-        padding-left="none"
-        padding-right="none"
-        padding-top="none"
-        hide-support-text
-        terms-text="Terms & Conditions"
-        terms-link="https://example.com"
-      ></sqm-portal-footer>
-    </sqm-referral-card>
+    </div>
   </sqm-portal-container>
 </sqm-hero>
