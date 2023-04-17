@@ -68,7 +68,7 @@ export function CopyTextView(props: CopyTextViewProps) {
     buttonStyle === "icon" ? null : (
       <sl-button
         onClick={() => props.onClick?.()}
-        size="small"
+        size={`${buttonStyle == "button inside" ? "small" : "medium"}`}
         style={{ width: `${buttonStyle === "button below" && "100%"}` }}
         disabled={props.disabled}
         slot="suffix"
