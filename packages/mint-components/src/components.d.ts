@@ -1535,10 +1535,29 @@ export namespace Components {
     }
     interface SqmReferralCard {
         /**
+          * @Prop () paddingLeft: string = "large";
           * @uiName Background color
           * @uiType string
          */
         "backgroundColor": string;
+        /**
+          * @uiName Padding Bottom
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "paddingBottom": string;
+        /**
+          * @uiName Padding Right
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "paddingRight": string;
+        /**
+          * @uiName Padding Top
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "paddingTop": string;
         /**
           * @uiName Remove border
           * @uiType boolean
@@ -4853,10 +4872,29 @@ declare namespace LocalJSX {
     }
     interface SqmReferralCard {
         /**
+          * @Prop () paddingLeft: string = "large";
           * @uiName Background color
           * @uiType string
          */
         "backgroundColor"?: string;
+        /**
+          * @uiName Padding Bottom
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "paddingBottom"?: string;
+        /**
+          * @uiName Padding Right
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "paddingRight"?: string;
+        /**
+          * @uiName Padding Top
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "paddingTop"?: string;
         /**
           * @uiName Remove border
           * @uiType boolean
