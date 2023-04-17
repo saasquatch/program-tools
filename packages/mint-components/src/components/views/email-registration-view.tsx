@@ -117,7 +117,7 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
           exportparts="label: input-label"
           type="email"
           name="/email"
-          label={content.emailLabel || "Email"}
+          label={content.emailLabel || "Email *"}
           disabled={states.loading}
           required
           validationError={({ value }: { value: string }) => {
