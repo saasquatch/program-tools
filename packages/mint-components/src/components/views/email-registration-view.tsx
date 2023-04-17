@@ -101,7 +101,6 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
             name="/firstName"
             label={content.firstNameLabel || "First Name"}
             disabled={states.loading}
-            required
           ></sl-input>
         )}
         {content.includeName && (
@@ -111,7 +110,6 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
             name="/lastName"
             label={content.lastNameLabel || "Last Name"}
             disabled={states.loading}
-            required
           ></sl-input>
         )}
 
@@ -119,7 +117,7 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
           exportparts="label: input-label"
           type="email"
           name="/email"
-          label={content.emailLabel || "Email"}
+          label={content.emailLabel || "Email *"}
           disabled={states.loading}
           required
           validationError={({ value }: { value: string }) => {
