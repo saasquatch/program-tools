@@ -2,17 +2,16 @@
   ><sqm-hero
     background="https://blogcdn.snackmagic.com/wp-content/uploads/2021/12/Screen-Shot-2022-01-06-at-3.23.58-AM.png"
     columns="2"
-    padding-size="large"
+    padding-size="small"
     wrap-direction="wrap"
     secondary-background="#FEFDFF"
     slot
     ><sqm-portal-container gap="small" slot="secondary-column"
       ><sqm-instant-access-registration
-        remove-border
-        padding-bottom="none"
-        padding-left="none"
-        padding-right="none"
-        padding-top="none"
+        padding-bottom="large"
+        padding-left="x-large"
+        padding-right="x-large"
+        padding-top="large"
         ><sqm-titled-section
           text-align="center"
           label-margin="small"
@@ -27,21 +26,23 @@
               >
             </p>
           </div></sqm-titled-section
-        ></sqm-instant-access-registration
-      >
-      <div>
-        <p style="text-align: center">
-          By clicking the “Start Referring” button, you are agreeing to our
-          <a href="https://example.com">Terms & Conditions</a> to our referral
-          program
-        </p>
-        <sqm-portal-footer
-          support-email="support@example.com"
-          show-powered-by="true"
-          padding-bottom="x-small"
-          padding-left="none"
-          padding-right="none"
-          padding-top="none"
-          hide-support-text
-        ></sqm-portal-footer></div></sqm-portal-container></sqm-hero
+        >
+
+        <div slot="bottom-slot">
+          <p style="text-align: center">
+            By clicking the “Start Referring” button, you are agreeing to our
+            <a href="https://example.com">Terms & Conditions</a> to our referral
+            program
+          </p>
+          <sqm-portal-footer
+            support-email="support@example.com"
+            show-powered-by="true"
+            padding-bottom="x-small"
+            padding-left="none"
+            padding-right="none"
+            padding-top="none"
+            hide-support-text
+          ></sqm-portal-footer>
+        </div>
+      </sqm-instant-access-registration> </sqm-portal-container></sqm-hero
 ></sqm-brand>
