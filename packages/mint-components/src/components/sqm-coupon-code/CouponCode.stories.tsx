@@ -51,6 +51,11 @@ export const CopyButtonBelow = () => {
     <CopyTextView {...defaultProps} buttonStyle={"button below"}></CopyTextView>
   );
 };
+
+export const Loading = () => {
+  return <CopyTextView {...defaultProps} loading={true}></CopyTextView>;
+};
+
 export const ErrorPending = () => {
   return (
     <CopyTextView

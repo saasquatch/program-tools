@@ -23,7 +23,6 @@ export interface CopyTextViewProps {
 const style = {
   HostBlock: HostBlock,
   inputStyle: {
-    "&::part(base)": { background: "white", opacity: "1", cursor: "pointer" },
     "&::part(input)": { textOverflow: "ellipsis" },
     width: "100%",
   },
@@ -78,7 +77,8 @@ export function CopyTextView(props: CopyTextViewProps) {
       </sl-button>
     );
 
-  const error = props.rewardStatus && props.rewardStatus !== "AVAILABLE";
+  const error =
+    !props.loading && props.rewardStatus && props.rewardStatus !== "AVAILABLE";
   const inputText = error ? props.inputPlaceholderText : props.copyString;
 
   return (
@@ -110,8 +110,9 @@ export function CopyTextView(props: CopyTextViewProps) {
               error ? sheet.classes.inputErrorStyle : ""
             }`}
             exportparts="label: input-label"
-            value={inputText}
+            value={props.loading ? "Loading..." : inputText}
             readonly
+            disabled={props.loading}
             style={{}}
           >
             {buttonStyle === "icon" ? (
@@ -119,7 +120,7 @@ export function CopyTextView(props: CopyTextViewProps) {
                 onClick={() => props.onClick?.()}
                 slot="suffix"
                 name="files"
-                disabled={props.disabled}
+                disabled={props.disabled || props.loading}
               />
             ) : (
               buttonStyle === "button inside" && copyButton

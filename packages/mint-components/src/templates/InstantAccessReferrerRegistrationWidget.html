@@ -27,15 +27,8 @@
               >
             </p>
           </div></sqm-titled-section
-        ></sqm-instant-access-registration
-      >
-      <div>
-        <p style="text-align: center">
-          By clicking the “Start Referring” button, you are agreeing to our
-          <a href="https://example.com">Terms & Conditions</a> to our referral
-          program
-        </p>
-        <sqm-portal-footer
+        ><sqm-portal-footer
+          slot="bottom-slot"
           support-email="support@example.com"
           show-powered-by="true"
           padding-bottom="x-small"
@@ -43,5 +36,8 @@
           padding-right="none"
           padding-top="none"
           hide-support-text
-        ></sqm-portal-footer></div></sqm-portal-container></sqm-hero
+          terms-text="Terms & Conditions"
+          terms-link="https://example.com"
+        ></sqm-portal-footer
+      ></sqm-instant-access-registration> </sqm-portal-container></sqm-hero
 ></sqm-brand>

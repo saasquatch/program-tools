@@ -69,6 +69,18 @@ export const NoBorder = () => (
   />
 );
 
+export const BackgroundColor = () => (
+  <EmailRegistrationView
+    {...{
+      ...defaultProps,
+      content: {
+        ...defaultProps.content,
+        backgroundColor: "aquamarine",
+      },
+    }}
+  />
+);
+
 export const Loading = () => (
   <EmailRegistrationView
     {...{

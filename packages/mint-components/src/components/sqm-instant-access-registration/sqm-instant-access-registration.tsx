@@ -12,6 +12,7 @@ import { useInstantAccessRegistration } from "./useInstantAccessRegistration";
 
 /**
  * @uiName Instant Access Registration
+ * @compatibility Built for instant access
  * @slots [{"name":"top-slot","title":"Widget Content"},{"name":"bottom-slot","title":"Widget Content"}]
  */
 @Component({
@@ -103,6 +104,12 @@ export class InstantAccessRegistration {
    */
   @Prop() demoData?: DemoData<EmailRegistrationViewProps>;
 
+  /**
+   * @uiName Background color
+   * @uiType string
+   */
+  @Prop() backgroundColor: string = "var(--sl-color-neutral-0)";
+
   constructor() {
     withHooks(this);
   }
@@ -127,6 +134,7 @@ export class InstantAccessRegistration {
       paddingBottom: this.paddingBottom,
       paddingLeft: this.paddingLeft,
       paddingRight: this.paddingRight,
+      backgroundColor: this.backgroundColor,
 
       // slots
       topSlot: <slot name="top-slot" />,

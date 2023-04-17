@@ -155,6 +155,16 @@ export const NoBorder = () => {
   );
 };
 
+export const BackgroundColor = () => {
+  return (
+    <sqm-referral-card background-color="aquamarine">
+      {timeline("right", 3)}
+      {sharebutton("left")}
+      <sqm-portal-footer slot="footer" />
+    </sqm-referral-card>
+  );
+};
+
 export const ReferralCardGeneric = () => {
   return (
     <sqm-referral-card vertical-alignment="center">
