@@ -9,6 +9,7 @@ import deepmerge from "deepmerge";
 
 /**
  * @uiName Coupon Code
+ * @compatibility Built for instant access
  * @exampleGroup Sharing
  * @example Coupon Code - <sqm-coupon-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-coupon-code>
  */
