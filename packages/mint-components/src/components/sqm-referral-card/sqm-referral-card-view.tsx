@@ -5,6 +5,7 @@ import { createStyleSheet } from "../../styling/JSS";
 export interface ReferralCardViewProps {
   verticalAlignment: "start" | "center" | "end";
   removeBorder?: boolean;
+  backgroundColor: string;
   slots: {
     left: VNode;
     right: VNode;
@@ -82,6 +83,7 @@ export function ReferralCardView(props: ReferralCardViewProps) {
         "padding-right": `var(--sl-spacing-${props.paddingRight})`,
         "padding-bottom": `var(--sl-spacing-${props.paddingBottom})`,
         "padding-left": `var(--sl-spacing-${props.paddingLeft})`,
+        backgroundColor: props.backgroundColor,
       }}
     >
       <style type="text/css">

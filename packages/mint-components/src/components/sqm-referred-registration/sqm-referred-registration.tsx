@@ -15,6 +15,7 @@ import {
 
 /**
  * @uiName Microsite Registration
+ * @compatibility Built for instant access
  * @slots [{"name":"top-slot","title":"Widget Content"},{"name":"bottom-slot","title":"Widget Content"}]
  */
 @Component({
@@ -101,6 +102,12 @@ export class ReferredRegistration {
   @Prop() paddingLeft: string = "large";
 
   /**
+   * @uiName Background color
+   * @uiType string
+   */
+  @Prop() backgroundColor: string = "var(--sl-color-neutral-0)";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -130,6 +137,7 @@ export class ReferredRegistration {
       paddingBottom: this.paddingBottom,
       paddingLeft: this.paddingLeft,
       paddingRight: this.paddingRight,
+      backgroundColor: this.backgroundColor,
 
       // slots
       topSlot: <slot name="top-slot" />,

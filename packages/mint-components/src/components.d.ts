@@ -551,6 +551,11 @@ export namespace Components {
     }
     interface SqmInstantAccessRegistration {
         /**
+          * @uiName Background color
+          * @uiType string
+         */
+        "backgroundColor": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -1530,17 +1535,17 @@ export namespace Components {
     }
     interface SqmReferralCard {
         /**
+          * @Prop () paddingLeft: string = "large";
+          * @uiName Background color
+          * @uiType string
+         */
+        "backgroundColor": string;
+        /**
           * @uiName Padding Bottom
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom": string;
-        /**
-          * @uiName Padding Left
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "paddingLeft": string;
         /**
           * @uiName Padding Right
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
@@ -1772,6 +1777,11 @@ export namespace Components {
         "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmReferredRegistration {
+        /**
+          * @uiName Background color
+          * @uiType string
+         */
+        "backgroundColor": string;
         /**
           * @undocumented 
           * @uiType object
@@ -3878,6 +3888,11 @@ declare namespace LocalJSX {
     }
     interface SqmInstantAccessRegistration {
         /**
+          * @uiName Background color
+          * @uiType string
+         */
+        "backgroundColor"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -4857,17 +4872,17 @@ declare namespace LocalJSX {
     }
     interface SqmReferralCard {
         /**
+          * @Prop () paddingLeft: string = "large";
+          * @uiName Background color
+          * @uiType string
+         */
+        "backgroundColor"?: string;
+        /**
           * @uiName Padding Bottom
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom"?: string;
-        /**
-          * @uiName Padding Left
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "paddingLeft"?: string;
         /**
           * @uiName Padding Right
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
@@ -5085,6 +5100,11 @@ declare namespace LocalJSX {
         "deletedUser"?: string;
     }
     interface SqmReferredRegistration {
+        /**
+          * @uiName Background color
+          * @uiType string
+         */
+        "backgroundColor"?: string;
         /**
           * @undocumented 
           * @uiType object
