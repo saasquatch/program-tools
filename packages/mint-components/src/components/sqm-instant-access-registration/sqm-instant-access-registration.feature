@@ -20,7 +20,19 @@ Feature: Instant access referrer registration
 
     @ui
     Scenario: Slotted content can be included
-
+        Given a user a viewing the follow component HTML
+            """
+            <sqm-referred-registration>
+            <div slot='top-slot'>
+            top slot
+            </div>
+            <div slot='bottom-slot'>
+            bottom slot
+            </div>
+            </sqm-referred-registration>
+            """
+        Then the top slot is above the form inputs
+        And the bottom slot is below the form inputs
 
     @ui
     Scenario: First name and last name input fields can be hidden

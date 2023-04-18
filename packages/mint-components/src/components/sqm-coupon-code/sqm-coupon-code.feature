@@ -42,9 +42,19 @@ Feature: Coupon Code
 
     @ui
     Scenario: user can edit the error message and code placeholder
+        Given a user is editing the coupon code component
+        When they see an option called "Invalid Email Message"
+        And an option called "Required Field Message"
 
     @ui
     Scenario: user can edit the alignment of the coupon code text
+        Given a user is editing the coupon code component
+        When they change the option "Align text" to <option>
+        Then they see the text in <position>
+        Examples:
+            | option | position |
+            | left   | left     |
+            | center | center   |
 
     @ui
     Scenario Outline: The position of the copy button can be changed
