@@ -57,7 +57,7 @@ const textAlignStyle = `
     text-align: center;
   }
 `;
-const loadingStyles = `
+const disabledStyles = `
   sl-input::part(input){
     cursor: default;
   }
@@ -87,19 +87,21 @@ export function CopyTextView(props: CopyTextViewProps) {
     !props.loading && props.rewardStatus && props.rewardStatus !== "AVAILABLE";
   const inputText = error ? props.inputPlaceholderText : props.copyString;
 
+  const disabled = error || props.loading || props.disabled;
+
   return (
     <div>
       <style type="text/css">
         {styleString}
         {vanillaStyle}
         {props.textAlign === "center" && textAlignStyle}
-        {props.loading && loadingStyles}
+        {disabled && disabledStyles}
       </style>
       <sl-tooltip
         trigger="manual"
         content={props.tooltiptext}
         placement="top-end"
-        disabled={props.disabled}
+        disabled={disabled}
         open={props.open}
         skidding={-20}
       >
@@ -119,14 +121,14 @@ export function CopyTextView(props: CopyTextViewProps) {
             exportparts="label: input-label"
             value={props.loading ? "Loading..." : inputText}
             readonly
-            disabled={props.loading}
+            disabled={disabled}
           >
             {buttonStyle === "icon" ? (
               <sl-icon-button
                 onClick={() => props.onClick?.()}
                 slot="suffix"
                 name="files"
-                disabled={props.disabled || props.loading}
+                disabled={disabled}
               />
             ) : (
               buttonStyle === "button inside" && copyButton
