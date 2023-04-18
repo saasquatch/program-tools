@@ -1,6 +1,7 @@
 import { getEnvironmentSDK } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Listen } from "@stencil/core";
+import { CloseButtonView } from "./sqm-close-button-view";
 
 /**
  * @uiName Popup widget Close Button
@@ -22,18 +23,14 @@ export class CloseButton {
       sdk.type === "SquatchJS2" &&
       sdk.widgetIdent?.engagementMedium === "POPUP";
 
+    if (isPopup) return <div style={{ display: "none" }}></div>;
+
     const onClick = () => {
       if (sdk.type === "SquatchJS2") {
         sdk.api.close?.();
       }
     };
 
-    return isPopup ? (
-      <span style={{ fontSize: "24px", cursor: "pointer" }} onClick={onClick}>
-        X
-      </span>
-    ) : (
-      <span style={{ display: "none" }}></span>
-    );
+    return <CloseButtonView onClick={onClick} />;
   }
 }
