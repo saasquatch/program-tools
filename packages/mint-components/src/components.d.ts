@@ -168,7 +168,8 @@ export namespace Components {
         "buttonStyle": "icon" | "button inside" | "button outside" | "button below";
         /**
           * Set error message
-          * @uiName Error message
+          * @uiWidget textArea
+          * @uiName Cancelled error message
          */
         "cancelledErrorText": string;
         /**
@@ -188,12 +189,14 @@ export namespace Components {
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
           * Set error message
-          * @uiName Error message
+          * @uiWidget textArea
+          * @uiName Expired error message
          */
         "expiredErrorText": string;
         /**
           * Set error message
-          * @uiName Error message
+          * @uiWidget textArea
+          * @uiName Pending message
          */
         "pendingErrorText": string;
         /**
@@ -204,7 +207,8 @@ export namespace Components {
         "programId"?: string;
         /**
           * Set error message
-          * @uiName Error message
+          * @uiWidget textArea
+          * @uiName Already redeemed error message
          */
         "redeemedErrorText": string;
         /**
@@ -554,6 +558,7 @@ export namespace Components {
     interface SqmInstantAccessRegistration {
         /**
           * @uiName Background color
+          * @uiWidget color
           * @uiType string
          */
         "backgroundColor": string;
@@ -586,24 +591,28 @@ export namespace Components {
         "lastNameLabel": string;
         /**
           * @uiName Padding Bottom
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom": string;
         /**
           * @uiName Padding Left
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft": string;
         /**
           * @uiName Padding Right
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight": string;
         /**
           * @uiName Padding Top
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -1024,24 +1033,28 @@ export namespace Components {
         "hideSupportText": boolean;
         /**
           * @uiName Padding Bottom
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom": string;
         /**
           * @uiName Padding Left
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft": string;
         /**
           * @uiName Padding Right
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight": string;
         /**
           * @uiName Padding Top
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -1538,29 +1551,34 @@ export namespace Components {
     interface SqmReferralCard {
         /**
           * @uiName Background color
+          * @uiWidget color
           * @uiType string
          */
         "backgroundColor": string;
         /**
           * @uiName Padding Bottom
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom": string;
         /**
           * @uiName Padding Left
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft": string;
         /**
           * @uiName Padding Right
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight": string;
         /**
           * @uiName Padding Top
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -1786,6 +1804,7 @@ export namespace Components {
     interface SqmReferredRegistration {
         /**
           * @uiName Background color
+          * @uiWidget color
           * @uiType string
          */
         "backgroundColor": string;
@@ -1818,24 +1837,28 @@ export namespace Components {
         "lastNameLabel": string;
         /**
           * @uiName Padding Bottom
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom": string;
         /**
           * @uiName Padding Left
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft": string;
         /**
           * @uiName Padding Right
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight": string;
         /**
           * @uiName Padding Top
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -3519,7 +3542,8 @@ declare namespace LocalJSX {
         "buttonStyle"?: "icon" | "button inside" | "button outside" | "button below";
         /**
           * Set error message
-          * @uiName Error message
+          * @uiWidget textArea
+          * @uiName Cancelled error message
          */
         "cancelledErrorText"?: string;
         /**
@@ -3539,12 +3563,14 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
           * Set error message
-          * @uiName Error message
+          * @uiWidget textArea
+          * @uiName Expired error message
          */
         "expiredErrorText"?: string;
         /**
           * Set error message
-          * @uiName Error message
+          * @uiWidget textArea
+          * @uiName Pending message
          */
         "pendingErrorText"?: string;
         /**
@@ -3555,7 +3581,8 @@ declare namespace LocalJSX {
         "programId"?: string;
         /**
           * Set error message
-          * @uiName Error message
+          * @uiWidget textArea
+          * @uiName Already redeemed error message
          */
         "redeemedErrorText"?: string;
         /**
@@ -3905,6 +3932,7 @@ declare namespace LocalJSX {
     interface SqmInstantAccessRegistration {
         /**
           * @uiName Background color
+          * @uiWidget color
           * @uiType string
          */
         "backgroundColor"?: string;
@@ -3937,24 +3965,28 @@ declare namespace LocalJSX {
         "lastNameLabel"?: string;
         /**
           * @uiName Padding Bottom
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom"?: string;
         /**
           * @uiName Padding Left
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft"?: string;
         /**
           * @uiName Padding Right
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight"?: string;
         /**
           * @uiName Padding Top
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -4375,24 +4407,28 @@ declare namespace LocalJSX {
         "hideSupportText"?: boolean;
         /**
           * @uiName Padding Bottom
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom"?: string;
         /**
           * @uiName Padding Left
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft"?: string;
         /**
           * @uiName Padding Right
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight"?: string;
         /**
           * @uiName Padding Top
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -4889,29 +4925,34 @@ declare namespace LocalJSX {
     interface SqmReferralCard {
         /**
           * @uiName Background color
+          * @uiWidget color
           * @uiType string
          */
         "backgroundColor"?: string;
         /**
           * @uiName Padding Bottom
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom"?: string;
         /**
           * @uiName Padding Left
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft"?: string;
         /**
           * @uiName Padding Right
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight"?: string;
         /**
           * @uiName Padding Top
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -5123,6 +5164,7 @@ declare namespace LocalJSX {
     interface SqmReferredRegistration {
         /**
           * @uiName Background color
+          * @uiWidget color
           * @uiType string
          */
         "backgroundColor"?: string;
@@ -5155,24 +5197,28 @@ declare namespace LocalJSX {
         "lastNameLabel"?: string;
         /**
           * @uiName Padding Bottom
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom"?: string;
         /**
           * @uiName Padding Left
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft"?: string;
         /**
           * @uiName Padding Right
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight"?: string;
         /**
           * @uiName Padding Top
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */

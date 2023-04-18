@@ -34,24 +34,28 @@ export class ReferralCard {
 
   /**
    * @uiName Padding Top
+   * @uiGroup Padding
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingTop: string = "large";
   /**
    * @uiName Padding Right
+   * @uiGroup Padding
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingRight: string = "large";
   /**
    * @uiName Padding Bottom
+   * @uiGroup Padding
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingBottom: string = "large";
   /**
    * @uiName Padding Left
+   * @uiGroup Padding
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
@@ -59,9 +63,10 @@ export class ReferralCard {
 
   /**
    * @uiName Background color
+   * @uiWidget color
    * @uiType string
    */
-  @Prop() backgroundColor: string = "var(--sl-color-neutral-0)";
+  @Prop() backgroundColor: string = "#ffffff";
 
   constructor() {
     withHooks(this);

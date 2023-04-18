@@ -86,7 +86,8 @@ export class CouponCode {
   /**
    * Set error message
    *
-   * @uiName Error message
+   * @uiWidget textArea
+   * @uiName Pending message
    */
   @Prop({
     attribute: "error-text",
@@ -96,7 +97,8 @@ export class CouponCode {
   /**
    * Set error message
    *
-   * @uiName Error message
+   * @uiWidget textArea
+   * @uiName Cancelled error message
    */
   @Prop({
     attribute: "error-text",
@@ -107,7 +109,8 @@ export class CouponCode {
   /**
    * Set error message
    *
-   * @uiName Error message
+   * @uiWidget textArea
+   * @uiName Expired error message
    */
   @Prop({
     attribute: "error-text",
@@ -118,7 +121,8 @@ export class CouponCode {
   /**
    * Set error message
    *
-   * @uiName Error message
+   * @uiWidget textArea
+   * @uiName Already redeemed error message
    */
   @Prop({
     attribute: "error-text",
