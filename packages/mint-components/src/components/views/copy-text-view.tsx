@@ -9,7 +9,7 @@ export interface CopyTextViewProps {
   open: boolean;
   copyButtonLabel?: string;
   disabled?: boolean;
-  textAlign?: "left" | "center";
+  textAlign?: "left" | "center" | "right";
   buttonStyle?: "button inside" | "button outside" | "button below" | "icon";
   rewardStatus?: RewardStatusType;
   errorText?: string;
@@ -49,14 +49,17 @@ const vanillaStyle = `
     width: 100%;
   }
 `;
-const textAlignStyle = `
-  :host{
-    display: block;
-  }
-  sl-input::part(input){
-    text-align: center;
-  }
-`;
+const textAlignStyle = {
+  right: `
+sl-input::part(input){
+  text-align: right;
+}
+`,
+  center: `  sl-input::part(input){
+  text-align: center;
+}`,
+  left: ``,
+};
 const loadingStyles = `
   sl-input::part(input){
     cursor: default;
@@ -92,7 +95,7 @@ export function CopyTextView(props: CopyTextViewProps) {
       <style type="text/css">
         {styleString}
         {vanillaStyle}
-        {props.textAlign === "center" && textAlignStyle}
+        {textAlignStyle[props.textAlign]}
         {props.loading && loadingStyles}
       </style>
       <sl-tooltip
