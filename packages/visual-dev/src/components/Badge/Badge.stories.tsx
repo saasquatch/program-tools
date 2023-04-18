@@ -166,3 +166,9 @@ export const smallBadgePill = () => (
     Small Badge
   </BadgeView>
 );
+
+export const smallBadgePillWithIcon = () => (
+  <BadgeView status="default_style" size="small" pill icon="gift">
+    Small Badge
+  </BadgeView>
+);

@@ -41,10 +41,7 @@ const BadgeDiv = styled.div<StyleProps>`
       ? "var(--sq-spacing-xxx-large);"
       : "var(--sq-spacing-xx-small);"};
   ${(props) => props.size === "small" && Styles.small}
-  ${(props) =>
-    props.pill &&
-    props.size === "small" &&
-    "padding: var(--sq-spacing-xxx-small) var(--sq-spacing-x-small);"}
+
   ${(props) => props.customCSS}
 `;
 
@@ -78,7 +75,6 @@ export const BadgeView = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
                 ? "var(--sq-icon-size-small)"
                 : "var(--sq-icon-size-badge)"
             }
-            customCSS="+ span { margin-left: var(--sq-spacing-x-small); }"
           />
         )}
         {children && <span>{children}</span>}

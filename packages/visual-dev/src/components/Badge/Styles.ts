@@ -8,6 +8,10 @@ export const base = css`
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
   width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sq-spacing-x-small);
 `;
 
 export const pill_false = css`
@@ -19,13 +23,13 @@ export const pill_true = css`
 
 export const default_style = css`
   background-color: var(--sq-border);
-  border: 1px solid var(--sq-text);
+  border: 1px solid var(--sq-text-subdued);
   color: var(--sq-text);
 `;
 
 export const success = css`
   background-color: var(--sq-surface-success-subdued);
-  border: 1px solid var(--sq-badge-text-success);
+  border: 1px solid var(--sq-surface-success);
   color: var(--sq-badge-text-success);
 `;
 
@@ -50,4 +54,7 @@ export const info = css`
 export const small = css`
   padding: var(--sq-spacing-xxx-small) var(--sq-spacing-xx-small);
   font-weight: var(--sq-font-weight-regular);
+  font-size: var(--sq-font-size-small);
+  gap: var(--sq-spacing-xx-small);
+  height: var(--sq-spacing-medium);
 `;
