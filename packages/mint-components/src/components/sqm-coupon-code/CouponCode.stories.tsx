@@ -35,6 +35,9 @@ export const CustomTooltipDuration = () => {
 export const TextAlignCenter = () => {
   return <sqm-coupon-code textAlign="center"></sqm-coupon-code>;
 };
+export const TextAlignRight = () => {
+  return <sqm-coupon-code textAlign="right"></sqm-coupon-code>;
+};
 export const CopyButton = () => {
   return <sqm-coupon-code buttonStyle="button outside"></sqm-coupon-code>;
 };
