@@ -79,3 +79,10 @@ Feature: Hero Unit
             | wrap         | 1      |
             | wrap-reverse | 2      |
             |              | 1      |
+
+    Scenario: Minimum height can be customized
+        Given a user a viewing the hero layout component
+        Then they see an option labeled "Mininum Height (in px)"
+        When they change the value to "500"
+        Then the hero image minimum height is 500px
+        And the change is reflected in mobile view

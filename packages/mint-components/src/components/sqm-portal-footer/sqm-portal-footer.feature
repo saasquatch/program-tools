@@ -65,3 +65,9 @@ Feature: Portal Footer
         Given the footer has the powered by SaaSquatch image
         When a user clicks on it
         Then they will be redirected to "https://saasquatch.com" in a new page
+
+    Scenario: Support text can be hidden
+        Given a user is viewing the footer component
+        Then they see an option called "Hide the support text"
+        When they toggle this option
+        Then the footer support text is hidden

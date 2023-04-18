@@ -21,7 +21,7 @@ Feature: Coupon Code
         And the clipboard icon is clicked
         Then a tooltip appears for ~2 seconds
 
-    @minutia
+    @ui
     Scenario: Component shows an error state when there are no coupon codes
         Given a user is viewing the coupon code component
         When there are no coupon code to display
@@ -32,10 +32,29 @@ Feature: Coupon Code
         Then the red help text is below the copy button
 
     @ui
+    Scenario: Component shows an loading state
+        Given a user is viewing the coupon code component
+        When the coupon code is loading in
+        Then the text inside the input is "Loading..."
+        And the coupon code input box has a gray background
+        And the cursor is set to "default"
+        And the user cannot copy the text
+
+    @ui
     Scenario: user can edit the error message and code placeholder
+        Given a user is editing the coupon code component
+        When they see an option called "Invalid Email Message"
+        And an option called "Required Field Message"
 
     @ui
     Scenario: user can edit the alignment of the coupon code text
+        Given a user is editing the coupon code component
+        When they change the option "Align text" to <option>
+        Then they see the text in <position>
+        Examples:
+            | option | position |
+            | left   | left     |
+            | center | center   |
 
     @ui
     Scenario Outline: The position of the copy button can be changed

@@ -20,7 +20,19 @@ Feature: Instant access referrer registration
 
     @ui
     Scenario: Slotted content can be included
-
+        Given a user a viewing the follow component HTML
+            """
+            <sqm-referred-registration>
+            <div slot='top-slot'>
+            top slot
+            </div>
+            <div slot='bottom-slot'>
+            bottom slot
+            </div>
+            </sqm-referred-registration>
+            """
+        Then the top slot is above the form inputs
+        And the bottom slot is below the form inputs
 
     @ui
     Scenario: First name and last name input fields can be hidden
@@ -33,3 +45,45 @@ Feature: Instant access referrer registration
     Scenario: Input labels can be customized
         Given a user is editing the instant access registration component
         Then they see an option labeled "Include name fields"
+
+    @ui
+    Scenario Outline: Container border can be toggled
+        Given a user is viewing the registration component
+        And the prop "remove-border" has <value>
+        Then the registration component <maybe> includes a border
+        Examples:
+            | value | maybe    |
+            | true  | does     |
+            | false | does not |
+
+    @motivating
+    @ui
+    Scenario: Component background color can be customized
+        Given a user is viewing the registration component
+        And the prop "background-color" has <value>
+        Then the background has color <backgroundColor>
+        Examples:
+            | value                 | backgroundColor                     |
+            | empty (default value) | var(--sl-color-neutral-0) (#ffffff) |
+            | aquamarine            | #7fffd4                             |
+
+    @motivating
+    @ui
+    Scenario Outline: Container padding can be customized
+        Given prop "padding" has <value>
+        Then <padding> is applied to content
+
+        Examples:
+            | value      | padding    |
+            | none       | no padding |
+            | xxx-small  | xxx-small  |
+            | xx-small   | xx-small   |
+            | x-small    | x-small    |
+            | small      | small      |
+            | medium     | medium     |
+            | large      | large      |
+            | x-large    | x-large    |
+            | xx-large   | xx-large   |
+            | xxx-large  | xxx-large  |
+            | xxxx-large | xxxx-large |
+            | N/A        | no padding |

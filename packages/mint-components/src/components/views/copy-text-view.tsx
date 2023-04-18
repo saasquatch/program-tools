@@ -24,6 +24,7 @@ const style = {
   HostBlock: HostBlock,
   inputStyle: {
     "&::part(input)": { textOverflow: "ellipsis" },
+    "&::part(base)": { cursor: "pointer" },
     width: "100%",
   },
   inputErrorStyle: {
@@ -54,6 +55,11 @@ const textAlignStyle = `
   }
   sl-input::part(input){
     text-align: center;
+  }
+`;
+const loadingStyles = `
+  sl-input::part(input){
+    cursor: default;
   }
 `;
 
@@ -87,6 +93,7 @@ export function CopyTextView(props: CopyTextViewProps) {
         {styleString}
         {vanillaStyle}
         {props.textAlign === "center" && textAlignStyle}
+        {props.loading && loadingStyles}
       </style>
       <sl-tooltip
         trigger="manual"
@@ -113,7 +120,6 @@ export function CopyTextView(props: CopyTextViewProps) {
             value={props.loading ? "Loading..." : inputText}
             readonly
             disabled={props.loading}
-            style={{}}
           >
             {buttonStyle === "icon" ? (
               <sl-icon-button
