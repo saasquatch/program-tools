@@ -8,6 +8,13 @@ export interface CloseButtonViewProps {
 
 const style = {
   HostBlock: HostBlock,
+  icon: {
+    fontSize: "24px",
+    cursor: "pointer",
+    position: "absolute",
+    top: "var(--sl-spacing-medium)",
+    right: "var(--sl-spacing-medium)",
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -19,7 +26,7 @@ export function CloseButtonView(props: CloseButtonViewProps) {
   return (
     <div>
       <style type="text/css">{styleString}</style>
-      <span style={{ fontSize: "24px", cursor: "pointer" }} onClick={onClick}>
+      <span class={sheet.classes.icon} onClick={onClick}>
         X
       </span>
     </div>
