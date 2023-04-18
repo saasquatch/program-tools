@@ -55,6 +55,24 @@ export const CopyButtonBelow = () => {
 export const Loading = () => {
   return <CopyTextView {...defaultProps} loading={true}></CopyTextView>;
 };
+export const CopyButtonLoading = () => {
+  return (
+    <CopyTextView
+      {...defaultProps}
+      buttonStyle="button outside"
+      loading={true}
+    ></CopyTextView>
+  );
+};
+export const CopyButtonInsideLoading = () => {
+  return (
+    <CopyTextView
+      {...defaultProps}
+      buttonStyle={"button inside"}
+      loading={true}
+    ></CopyTextView>
+  );
+};
 
 export const ErrorPending = () => {
   return (
