@@ -27,7 +27,7 @@ export const RadioInputStyle = css`
 `;
 
 export const RadioButtonStyle = css`
-  margin-top: 2.5px;
+  margin-top: 2px;
   width: 14px;
   height: 14px;
   border: 1.5px solid var(--sq-text);

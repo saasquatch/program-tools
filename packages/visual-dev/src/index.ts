@@ -75,6 +75,12 @@ import { ModalView } from "./components/Modal";
 import { SliderView } from "./components/Slider";
 import { TagInputView } from "./components/TagInput";
 import { DisplayDropdown } from "./components/DisplayDropdown";
+import { ProgressBarView } from "./components/ProgressBar";
+import { DetailsView } from "./components/Details";
+import { ScrollNavView } from "./components/ScrollNav";
+import { useSelectDemo } from "./components/Select/useSelectDemo";
+import { useMultiSelectDemo } from "./components/Select/useMultiSelectDemo";
+import { useComboboxDemo } from "./components/Select/useComboboxDemo";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -163,4 +169,10 @@ export {
   TabsView,
   SliderView,
   DisplayDropdown,
+  ProgressBarView,
+  DetailsView,
+  ScrollNavView,
+  useSelectDemo,
+  useMultiSelectDemo,
+  useComboboxDemo,
 };

@@ -13,6 +13,18 @@ export const Item = css`
     background: var(--sq-surface-hover);
   }
 `;
+
+export const ItemDisabled = css`
+  ${Item}
+  cursor: default;
+  background: var(--sq-surface-subdued);
+  color: var(--sq-placeholder-text-on-secondary);
+
+  &:hover {
+    background: var(--sq-surface-subdued);
+  }
+`;
+
 export const ItemContainer = css`
   position: absolute;
   z-index: 100;
@@ -86,7 +98,7 @@ export const SelectInputStyle = css`
 
 export const SelectedValue = css`
   padding-top: var(--sq-spacing-xxx-small);
-  margin: auto 0;
+  margin: 4px 0 auto;
   text-indent: 0px;
   text-overflow: ellipsis;
   overflow: hidden;

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.7] - 2023-03-30
+
+### Changed
+
+- Changed components:
+  - \<sqm-hero-image>
+    - Fix a bug that would sometimes cause the image to expand vertically forever when in an iframe.
+
 ## [1.6.6] - 2023-01-17
 
 ### Changed
@@ -632,7 +640,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.6...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.7...HEAD
+[1.6.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.7
 [1.6.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.6
 [1.6.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.5
 [1.6.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.4

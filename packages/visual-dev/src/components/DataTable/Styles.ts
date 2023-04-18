@@ -99,6 +99,18 @@ export const SkeletonDiv = css`
   border-radius: var(--sq-border-radius-pill);
 `;
 
+export const ShimmerStyles = css`
+  /* using https://stackoverflow.com/questions/68216941/make-css-shimmer-effect-work-an-already-loaded-image */
+  mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right / 300% 100%;
+  background-repeat: no-repeat;
+  animation: shimmer 2s infinite;
+  @keyframes shimmer {
+    100% {
+      mask-position: left;
+    }
+  }
+`;
+
 export const PopoverDiv = css`
   background: var(--sq-surface);
   border: 1px solid var(--sq-border);

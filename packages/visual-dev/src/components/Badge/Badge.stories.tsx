@@ -121,7 +121,10 @@ export const badgeIconPill = () => (
 );
 
 export const badgeCSS = () => (
-  <BadgeView status="info" customCSS="color: yellow; background: blue;">
+  <BadgeView
+    status="info"
+    customCSS="color: yellow; background: blue; font-size: 10px"
+  >
     CSS Badge
   </BadgeView>
 );
