@@ -155,6 +155,8 @@ export namespace Components {
          */
         "errorMessage": string;
     }
+    interface SqmCloseButton {
+    }
     interface SqmCouponCode {
         /**
           * Set the copy button style
@@ -2767,6 +2769,12 @@ declare global {
         prototype: HTMLSqmCheckboxFieldElement;
         new (): HTMLSqmCheckboxFieldElement;
     };
+    interface HTMLSqmCloseButtonElement extends Components.SqmCloseButton, HTMLStencilElement {
+    }
+    var HTMLSqmCloseButtonElement: {
+        prototype: HTMLSqmCloseButtonElement;
+        new (): HTMLSqmCloseButtonElement;
+    };
     interface HTMLSqmCouponCodeElement extends Components.SqmCouponCode, HTMLStencilElement {
     }
     var HTMLSqmCouponCodeElement: {
@@ -3290,6 +3298,7 @@ declare global {
         "sqm-brand": HTMLSqmBrandElement;
         "sqm-card-feed": HTMLSqmCardFeedElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
+        "sqm-close-button": HTMLSqmCloseButtonElement;
         "sqm-coupon-code": HTMLSqmCouponCodeElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
@@ -3491,6 +3500,8 @@ declare namespace LocalJSX {
           * @uiName Unchecked Error Message
          */
         "errorMessage"?: string;
+    }
+    interface SqmCloseButton {
     }
     interface SqmCouponCode {
         /**
@@ -6048,6 +6059,7 @@ declare namespace LocalJSX {
         "sqm-brand": SqmBrand;
         "sqm-card-feed": SqmCardFeed;
         "sqm-checkbox-field": SqmCheckboxField;
+        "sqm-close-button": SqmCloseButton;
         "sqm-coupon-code": SqmCouponCode;
         "sqm-divided-layout": SqmDividedLayout;
         "sqm-dropdown-field": SqmDropdownField;
@@ -6146,6 +6158,7 @@ declare module "@stencil/core" {
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
+            "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;

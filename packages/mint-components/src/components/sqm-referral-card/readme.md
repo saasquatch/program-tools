@@ -7,10 +7,14 @@
 
 ## Properties
 
-| Property            | Attribute            | Description | Type                           | Default   |
-| ------------------- | -------------------- | ----------- | ------------------------------ | --------- |
-| `removeBorder`      | `remove-border`      |             | `boolean`                      | `false`   |
-| `verticalAlignment` | `vertical-alignment` |             | `"center" \| "end" \| "start"` | `"start"` |
+| Property            | Attribute            | Description | Type                           | Default                       |
+| ------------------- | -------------------- | ----------- | ------------------------------ | ----------------------------- |
+| `backgroundColor`   | `background-color`   |             | `string`                       | `"var(--sl-color-neutral-0)"` |
+| `paddingBottom`     | `padding-bottom`     |             | `string`                       | `"large"`                     |
+| `paddingRight`      | `padding-right`      |             | `string`                       | `"large"`                     |
+| `paddingTop`        | `padding-top`        |             | `string`                       | `"large"`                     |
+| `removeBorder`      | `remove-border`      |             | `boolean`                      | `false`                       |
+| `verticalAlignment` | `vertical-alignment` |             | `"center" \| "end" \| "start"` | `"start"`                     |
 
 
 ## Dependencies
