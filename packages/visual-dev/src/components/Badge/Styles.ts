@@ -1,7 +1,7 @@
 import { css } from "styled-components";
 
 export const base = css`
-  padding: var(--sq-spacing-x-small) var(--sq-spacing-small);
+  padding: var(--sq-spacing-x-small) 10px;
   color: var(--sq-text);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: var(--sq-font-weight-bold);
@@ -12,6 +12,7 @@ export const base = css`
   align-items: center;
   justify-content: center;
   gap: var(--sq-spacing-x-small);
+  max-height: 25px;
 `;
 
 export const pill_false = css`
