@@ -1,7 +1,6 @@
 import { Host, h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { HostBlock, P } from "../../global/mixins";
-import { RewardStatusType } from "../sqm-coupon-code/useCouponCode";
 
 export interface CopyTextViewProps {
   copyString: string;
@@ -10,8 +9,8 @@ export interface CopyTextViewProps {
   copyButtonLabel?: string;
   disabled?: boolean;
   textAlign?: "left" | "center" | "right";
-  buttonStyle?: "button inside" | "button outside" | "button below" | "icon";
-  rewardStatus?: RewardStatusType;
+  buttonStyle?: "button outside" | "button below" | "icon";
+  error?: boolean;
   errorText?: string;
   inputPlaceholderText?: string;
   dateAvailable?: string;
@@ -53,9 +52,9 @@ const textAlignStyle = {
   right: `
 sl-input::part(input){
   text-align: right;
-}
-`,
-  center: `  sl-input::part(input){
+}`,
+  center: `  
+sl-input::part(input){
   text-align: center;
 }`,
   left: ``,
@@ -77,7 +76,7 @@ export function CopyTextView(props: CopyTextViewProps) {
     buttonStyle === "icon" ? null : (
       <sl-button
         onClick={() => props.onClick?.()}
-        size={`${buttonStyle == "button inside" ? "small" : "medium"}`}
+        size={"medium"}
         style={{ width: `${buttonStyle === "button below" && "100%"}` }}
         disabled={props.disabled}
         slot="suffix"
@@ -87,8 +86,7 @@ export function CopyTextView(props: CopyTextViewProps) {
       </sl-button>
     );
 
-  const error =
-    !props.loading && props.rewardStatus && props.rewardStatus !== "AVAILABLE";
+  const error = !props.loading && props.error;
   const inputText = error ? props.inputPlaceholderText : props.copyString;
 
   const disabled = error || props.loading || props.disabled;
@@ -127,15 +125,13 @@ export function CopyTextView(props: CopyTextViewProps) {
             readonly
             disabled={disabled}
           >
-            {buttonStyle === "icon" ? (
+            {buttonStyle === "icon" && (
               <sl-icon-button
                 onClick={() => props.onClick?.()}
                 slot="suffix"
                 name="files"
                 disabled={disabled}
               />
-            ) : (
-              buttonStyle === "button inside" && copyButton
             )}
           </sl-input>
           {(buttonStyle === "button outside" ||

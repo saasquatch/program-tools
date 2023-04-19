@@ -157,30 +157,7 @@ export class CouponCode {
       ? useDemoCouponCode(thisProps)
       : useCouponCode(thisProps);
 
-    const getRewardStatusText = (status: RewardStatusType) => {
-      switch (status) {
-        case "CANCELLED":
-          return this.cancelledErrorText;
-        case "PENDING":
-          return `${this.pendingErrorText}${props.dateAvailable}`;
-        case "EXPIRED":
-          return this.expiredErrorText;
-        case "REDEEMED":
-          return this.redeemedErrorText;
-        case "AVAILABLE":
-          return "";
-        case "EMPTY_TANK":
-          // TODO: Replace
-          return "An error happened, please contact customer support or try again later.";
-        default:
-          // TODO: Replace
-          return "An error occurred, please contact customer support.";
-      }
-    };
-
-    const errorText = getRewardStatusText(props.rewardStatus);
-
-    return <CopyTextView {...props} errorText={errorText} />;
+    return <CopyTextView {...props} />;
   }
 }
 
@@ -194,7 +171,7 @@ function useDemoCouponCode(props: CouponCode): CopyTextViewProps {
       textAlign: props.textAlign,
       buttonStyle: props.buttonStyle,
       copyButtonLabel: props.copyButtonLabel,
-      rewardStatus: "AVAILABLE",
+      error: false,
       couponCodePlaceholder: props.couponCodePlaceholder,
       open,
       onClick: () => {

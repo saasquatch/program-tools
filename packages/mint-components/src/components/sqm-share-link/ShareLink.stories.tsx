@@ -65,18 +65,6 @@ export const CopyButton = () => {
     ></CopyTextView>
   );
 };
-export const CopyButtonInside = () => {
-  return (
-    <CopyTextView
-      {...{
-        copyString: "https://noah.example.com",
-        open: false,
-        tooltiptext: "Copied!",
-        buttonStyle: "button inside",
-      }}
-    ></CopyTextView>
-  );
-};
 export const CopyButtonBelow = () => {
   return (
     <CopyTextView

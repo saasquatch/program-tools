@@ -15,7 +15,7 @@ const defaultProps: CopyTextViewProps = {
   open: false,
   copyButtonLabel: "Copy Coupon",
   inputPlaceholderText: "CODE ERROR",
-  rewardStatus: "AVAILABLE",
+  error: true,
 };
 
 export const CouponCode = () => {
@@ -41,14 +41,6 @@ export const TextAlignRight = () => {
 export const CopyButton = () => {
   return <sqm-coupon-code buttonStyle="button outside"></sqm-coupon-code>;
 };
-export const CopyButtonInside = () => {
-  return (
-    <CopyTextView
-      {...defaultProps}
-      buttonStyle={"button inside"}
-    ></CopyTextView>
-  );
-};
 export const CopyButtonBelow = () => {
   return (
     <CopyTextView {...defaultProps} buttonStyle={"button below"}></CopyTextView>
@@ -67,21 +59,20 @@ export const CopyButtonLoading = () => {
     ></CopyTextView>
   );
 };
-export const CopyButtonInsideLoading = () => {
+export const CopyButtonBelowLoading = () => {
   return (
     <CopyTextView
       {...defaultProps}
-      buttonStyle={"button inside"}
+      buttonStyle="button below"
       loading={true}
     ></CopyTextView>
   );
 };
-
 export const ErrorPending = () => {
   return (
     <CopyTextView
       {...defaultProps}
-      rewardStatus={"PENDING"}
+      error={true}
       errorText="Oops! Looks like we weren’t able to retrieve a code for you. Please try again later or contact support."
     ></CopyTextView>
   );
@@ -90,7 +81,7 @@ export const ErrorCancelled = () => {
   return (
     <CopyTextView
       {...defaultProps}
-      rewardStatus={"CANCELLED"}
+      error={true}
       errorText="Oops! Your coupon code is cancelled. Please try again later or contact support."
     ></CopyTextView>
   );
@@ -99,7 +90,7 @@ export const ErrorRedeemed = () => {
   return (
     <CopyTextView
       {...defaultProps}
-      rewardStatus={"REDEEMED"}
+      error={true}
       errorText="Oops! Your coupon code has already been redeemed. Please try again later or contact support."
     ></CopyTextView>
   );
@@ -108,7 +99,7 @@ export const ErrorExpired = () => {
   return (
     <CopyTextView
       {...defaultProps}
-      rewardStatus={"EXPIRED"}
+      error={true}
       errorText="Oops! Your coupon code is expired. Please try again later or contact support."
     ></CopyTextView>
   );
@@ -117,7 +108,7 @@ export const ErrorButtonBelow = () => {
   return (
     <CopyTextView
       {...defaultProps}
-      rewardStatus={"PENDING"}
+      error={true}
       buttonStyle="button below"
     ></CopyTextView>
   );

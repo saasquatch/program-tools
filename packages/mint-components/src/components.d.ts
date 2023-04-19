@@ -2390,10 +2390,10 @@ export namespace Components {
           * Set the copy button style
           * @uiName Copy button style
           * @uiType string
-          * @uiEnum ["icon", "button inside", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
+          * @uiEnum ["icon", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button outside", "button below"]
          */
-        "buttonStyle": "icon" | "button inside" | "button outside" | "button below";
+        "buttonStyle": "icon" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -2434,10 +2434,10 @@ export namespace Components {
           * Set the copy button style
           * @uiName Copy button style
           * @uiType string
-          * @uiEnum ["icon", "button inside", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
+          * @uiEnum ["icon", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button outside", "button below"]
          */
-        "buttonStyle": "icon" | "button inside" | "button outside" | "button below";
+        "buttonStyle": "icon" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -5740,10 +5740,10 @@ declare namespace LocalJSX {
           * Set the copy button style
           * @uiName Copy button style
           * @uiType string
-          * @uiEnum ["icon", "button inside", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
+          * @uiEnum ["icon", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button outside", "button below"]
          */
-        "buttonStyle"?: "icon" | "button inside" | "button outside" | "button below";
+        "buttonStyle"?: "icon" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
@@ -5784,10 +5784,10 @@ declare namespace LocalJSX {
           * Set the copy button style
           * @uiName Copy button style
           * @uiType string
-          * @uiEnum ["icon", "button inside", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
+          * @uiEnum ["icon", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button outside", "button below"]
          */
-        "buttonStyle"?: "icon" | "button inside" | "button outside" | "button below";
+        "buttonStyle"?: "icon" | "button outside" | "button below";
         /**
           * Set copy button label
           * @uiName Copy button label
