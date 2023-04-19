@@ -82,7 +82,7 @@ export const SwitchView = React.forwardRef<
           type="checkbox"
           id={id}
           ref={forwardedRef}
-          onChange={onChange}
+          onChange={() => onChange()}
         />
         <SwitchButtonLabel htmlFor={id} />
       </SwitchContainerDiv>

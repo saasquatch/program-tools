@@ -1,7 +1,9 @@
 // Convenient re-export for the noop gql tag
 export { default as gql } from "noop-tag";
 
-export * from "./types";
+export * from "./auth";
+export * from "./auth0WorkloadIdentityCredentialProvider";
 export * from "./config";
-export * from "./service";
 export * from "./metrics";
+export * from "./service";
+export * from "./types";
