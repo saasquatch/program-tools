@@ -117,6 +117,7 @@ export const ErrorButtonBelow = () => {
     <CopyTextView
       {...defaultProps}
       error={true}
+      errorText="Oops! Your coupon code is expired. Please try again later or contact support."
       buttonStyle="button below"
     ></CopyTextView>
   );
