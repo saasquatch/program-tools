@@ -93,6 +93,7 @@ export const ModalView = React.forwardRef<React.ElementRef<"div">, ModalProps>(
                   size="24px"
                   customCSS="vertical-align: bottom; float: right; cursor: pointer; margin-left: 50px;"
                   onClick={onClose}
+                  cursor="pointer"
                 />
               </ModalHeader>
               {children}

@@ -32,6 +32,7 @@ interface PenpalParentMethods<IntegrationConfig, FormConfig> {
   ): Promise<void>;
   navigateToNewPortalURL(url: string): Promise<void>;
   scrollTo(scrollX: number, scrollY: number): Promise<void>;
+  disableIntegration(): Promise<void>;
   getFileStackConfig(): Promise<FileStackConfig>;
 }
 
@@ -72,6 +73,7 @@ interface PenpalContextMethods<IntegrationConfig, FormConfig> {
   getFileStackConfig(): Promise<FileStackConfig>;
   navigatePortal(url: string): Promise<void>;
   scrollTo(scrollX: number, scrollY: number): Promise<void>;
+  disableIntegration(): Promise<void>;
   closeFormConfig(): Promise<void>;
   setShouldCancelDisableCallback: (fn: () => Promise<boolean>) => void;
 }
@@ -223,13 +225,19 @@ export function PenpalContextProvider<
   }, [assertConnected, saveFormConfig, state]);
 
   const scrollTo = useCallback(
-    async (scrollX:number, scrollY:number) => {
+    async (scrollX: number, scrollY: number) => {
       assertConnected();
       const parent = await penpalConnectionRef.current!.promise;
       await parent.scrollTo(scrollX, scrollY);
     },
     [assertConnected]
   );
+
+  const disableIntegration = useCallback(async () => {
+    assertConnected();
+    const parent = await penpalConnectionRef.current!.promise;
+    await parent.disableIntegration();
+  }, [assertConnected]);
 
   useEffect(() => {
     (async () => {
@@ -317,6 +325,7 @@ export function PenpalContextProvider<
       getFileStackConfig,
       navigatePortal,
       scrollTo,
+      disableIntegration,
       closeFormConfig,
       setShouldCancelDisableCallback,
     }),
@@ -329,6 +338,7 @@ export function PenpalContextProvider<
       getFileStackConfig,
       navigatePortal,
       scrollTo,
+      disableIntegration,
       closeFormConfig,
       setShouldCancelDisableCallback,
     ]

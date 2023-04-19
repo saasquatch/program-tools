@@ -30,7 +30,7 @@ export const ModalHeaderStyle = css`
   // border-radius: 8px 8px 0 0;
   font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-bold);
-  font-size: var(--sq-font-size-header-one);
+  font-size: var(--sq-font-size-header-three);
   line-height: var(--sq-line-height-header-one);
   color: var(--sq-surface);
 `;

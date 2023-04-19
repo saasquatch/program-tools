@@ -75,6 +75,22 @@ export class BaseConfig {
   @key("METRICS_ENABLED")
   @optional(false)
   public metricsEnabled!: boolean;
+
+  @key("GOOGLE_WORKLOAD_IDENTITY_PROJECT_ID")
+  @optional("")
+  public googleWorkloadIdentityProjectId!: string;
+
+  @key("GOOGLE_WORKLOAD_IDENTITY_POOL")
+  @optional("")
+  public googleWorkloadIdentityPool!: string;
+
+  @key("GOOGLE_WORKLOAD_IDENTITY_PROVIDER")
+  @optional("")
+  public googleWorkloadIdentityProvider!: string;
+
+  @key("GOOGLE_WORKLOAD_IDENTITY_SERVICE_ACCOUNT_EMAIL")
+  @optional("")
+  public googleWorkloadIdentityServiceAccountEmail!: string;
 }
 
 export async function loadConfig<T extends BaseConfig>(

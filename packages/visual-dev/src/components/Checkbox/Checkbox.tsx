@@ -5,7 +5,7 @@ import { IconView } from "../Icon";
 import * as Styles from "./Styles";
 
 type InputProps = OptionProps &
-  Omit<Partial<React.ComponentProps<"input">>, "translate" | "value">;
+  Omit<Partial<React.ComponentProps<"input">>, "translate" | "value" | "css">;
 
 export interface OptionProps {
   /**
@@ -29,7 +29,7 @@ export interface OptionProps {
    */
   id?: string;
   /**
-   * Custon CSS applied to the checkbox container
+   * Custom CSS applied to the checkbox container
    */
   customContainerCSS?: CSSProp;
 }
@@ -79,7 +79,7 @@ export const CheckboxView = React.forwardRef<
           isDisabled={disabled}
           id={id}
           ref={forwardedRef}
-          onChange={onChange}
+          onChange={() => onChange()}
         />
         <CheckboxDiv isDisabled={disabled}>
           <IconView icon="checkmark" customCSS={CheckboxTick} />

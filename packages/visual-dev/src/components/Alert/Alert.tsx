@@ -11,18 +11,29 @@ export interface OptionProps {
   /**
    * Title displayed at top of alert
    */
-  title: string;
+  title?: string;
   /**
    * Content displayed inside alert below title
    */
   children: React.ReactNode;
+
+  /**
+   * Slot to overwrite the existing default icons
+   */
+  iconSlot?: React.ReactNode;
 }
 
 export interface StyleProps {
   /**
    * Alert type that affects border, background, and text colours
    */
-  type: "critical" | "warning" | "success" | "info";
+  type:
+    | "critical"
+    | "warning"
+    | "success"
+    | "info"
+    | "textWarning"
+    | "textCritical";
   /**
    * Custom CSS applied to alert
    */
@@ -39,8 +50,22 @@ const icons = {
   critical: (
     <IconView icon={"alert"} color="var(--sq-surface-critical)" size="23px" />
   ),
+  textCritical: (
+    <IconView
+      icon={"alert_alt"}
+      color="var(--sq-surface-critical)"
+      size="23px"
+    />
+  ),
   warning: (
     <IconView icon={"alert"} color="var(--sq-surface-warning)" size="23px" />
+  ),
+  textWarning: (
+    <IconView
+      icon={"alert_alt"}
+      color="var(--sq-surface-warning)"
+      size="23px"
+    />
   ),
   success: (
     <IconView
@@ -54,8 +79,16 @@ const icons = {
 
 export const AlertView = React.forwardRef<React.ElementRef<"div">, AlertProps>(
   (props, forwardedRef) => {
-    const { type: variant, title, children, customCSS = {}, ...rest } = props;
-
+    const {
+      type: variant,
+      iconSlot,
+      title,
+      children,
+      customCSS = {},
+      ...rest
+    } = props;
+    const textBannerWithNoTitle =
+      (!title && variant === "textWarning") || variant === "textCritical";
     return (
       <AlertDiv
         {...rest}
@@ -63,10 +96,12 @@ export const AlertView = React.forwardRef<React.ElementRef<"div">, AlertProps>(
         ref={forwardedRef}
         customCSS={customCSS}
       >
-        {icons[variant]}
+        {iconSlot ? iconSlot : icons[variant]}
         <div>
           <strong>{title}</strong>
-          <div>{children}</div>
+          <div style={{ paddingTop: textBannerWithNoTitle ? "2px" : "0px" }}>
+            {children}
+          </div>
         </div>
       </AlertDiv>
     );
