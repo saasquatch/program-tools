@@ -39,11 +39,19 @@ export const TextAlignRight = () => {
   return <sqm-coupon-code textAlign="right"></sqm-coupon-code>;
 };
 export const CopyButton = () => {
-  return <sqm-coupon-code buttonStyle="button outside"></sqm-coupon-code>;
+  return (
+    <sqm-coupon-code
+      {...defaultProps}
+      buttonStyle="button outside"
+    ></sqm-coupon-code>
+  );
 };
 export const CopyButtonBelow = () => {
   return (
-    <CopyTextView {...defaultProps} buttonStyle={"button below"}></CopyTextView>
+    <sqm-coupon-code
+      {...defaultProps}
+      buttonStyle={"button below"}
+    ></sqm-coupon-code>
   );
 };
 

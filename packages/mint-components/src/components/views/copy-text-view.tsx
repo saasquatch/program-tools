@@ -88,8 +88,9 @@ export function CopyTextView(props: CopyTextViewProps) {
 
   const error = !props.loading && props.error;
   const inputText = error ? props.inputPlaceholderText : props.copyString;
-
   const disabled = error || props.loading || props.disabled;
+  const tooltipPlacement =
+    props.buttonStyle === "button below" ? "top" : "top-end";
 
   return (
     <div>
@@ -102,7 +103,7 @@ export function CopyTextView(props: CopyTextViewProps) {
       <sl-tooltip
         trigger="manual"
         content={props.tooltiptext}
-        placement="top-end"
+        placement={tooltipPlacement}
         disabled={disabled}
         open={props.open}
         skidding={-20}
