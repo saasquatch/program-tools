@@ -1,7 +1,7 @@
 {
   "name": "@saasquatch/paypal-components",
   "title": "PayPal Components",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Component library that integrates with our Paypal Payouts integration. Built with Shoelace components by Saasquatch.",
   "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1668096533/squatch-assets/PayPal/For_PayPal.svg",
   "raisins": "docs/raisins.json",
@@ -85,7 +85,7 @@
     "url": "git+https://github.com/saasquatch/program-tools.git",
     "directory": "packages/paypal-components"
   },
-  "author": "SaaSquatch Team",
+  "author": "Referral SaaSquatch Inc.",
   "bugs": {
     "url": "https://github.com/saasquatch/program-tools"
   },

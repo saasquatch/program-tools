@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/component-boilerplate",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "private": false,
   "description": "Boilerplate for writing web components for the SaaSquatch widget environments",
   "source": "src/index.ts",
@@ -16,8 +16,8 @@
     "test": "jest --forceExit",
     "test-watch": "jest --watch"
   },
-  "author": "SaaSquatch",
-  "license": "ISC",
+  "author": "Referral SaaSquatch Inc.",
+  "license": "MIT",
   "devDependencies": {
     "@graphql-tools/mock": "^7.0.0",
     "@saasquatch/stencil-hooks": "^2.0.0",

@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/vanilla-components-assets",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Assets for the widget",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -8,6 +8,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "author": "@saasquatch",
+  "author": "Referral SaaSquatch Inc.",
   "license": "MIT"
 }
