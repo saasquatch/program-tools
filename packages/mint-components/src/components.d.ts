@@ -218,7 +218,7 @@ export namespace Components {
           * @uiEnum ["left", "center"]
           * @uiEnumNames ["left", "center"]
          */
-        "textAlign": "left" | "center";
+        "textAlign": "left" | "center" | "right";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -2417,7 +2417,7 @@ export namespace Components {
           * @uiEnum ["left", "center"]
           * @uiEnumNames ["left", "center"]
          */
-        "textAlign": "left" | "center";
+        "textAlign": "left" | "center" | "right";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -2461,7 +2461,7 @@ export namespace Components {
           * @uiEnum ["left", "center"]
           * @uiEnumNames ["left", "center"]
          */
-        "textAlign": "left" | "center";
+        "textAlign": "left" | "center" | "right";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip Lifespan
@@ -3592,7 +3592,7 @@ declare namespace LocalJSX {
           * @uiEnum ["left", "center"]
           * @uiEnumNames ["left", "center"]
          */
-        "textAlign"?: "left" | "center";
+        "textAlign"?: "left" | "center" | "right";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -5767,7 +5767,7 @@ declare namespace LocalJSX {
           * @uiEnum ["left", "center"]
           * @uiEnumNames ["left", "center"]
          */
-        "textAlign"?: "left" | "center";
+        "textAlign"?: "left" | "center" | "right";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -5811,7 +5811,7 @@ declare namespace LocalJSX {
           * @uiEnum ["left", "center"]
           * @uiEnumNames ["left", "center"]
          */
-        "textAlign"?: "left" | "center";
+        "textAlign"?: "left" | "center" | "right";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip Lifespan

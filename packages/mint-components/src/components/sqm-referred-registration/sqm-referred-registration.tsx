@@ -14,7 +14,7 @@ import {
 } from "../views/email-registration-view";
 
 /**
- * @uiName Microsite Registration
+ * @uiName Instant Access Friend Registration
  * @compatibility Built for instant access
  * @slots [{"name":"top-slot","title":"Widget Content"},{"name":"bottom-slot","title":"Widget Content"}]
  */

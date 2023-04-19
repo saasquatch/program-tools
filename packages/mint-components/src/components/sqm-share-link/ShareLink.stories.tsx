@@ -49,6 +49,9 @@ export const Error = () => {
 export const TextAlignCenter = () => {
   return <sqm-share-link textAlign="center"></sqm-share-link>;
 };
+export const TextAlignRight = () => {
+  return <sqm-share-link textAlign="right"></sqm-share-link>;
+};
 
 export const CopyButton = () => {
   return (

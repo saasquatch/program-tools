@@ -53,7 +53,7 @@ export class ShareCode {
   @Prop({
     attribute: "text-align",
   })
-  textAlign: "left" | "center" = "left";
+  textAlign: "left" | "center" | "right" = "left";
 
   /**
    * Set copy button label

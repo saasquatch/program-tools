@@ -17,6 +17,9 @@ export const CustomTooltipText = () => {
 export const TextAlignCenter = () => {
   return <sqm-share-code textAlign="center"></sqm-share-code>;
 };
+export const TextAlignRight = () => {
+  return <sqm-share-code textAlign="right"></sqm-share-code>;
+};
 
 export const CustomTooltipDuration = () => {
   return (
