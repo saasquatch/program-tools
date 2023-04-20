@@ -16,7 +16,7 @@ export class PortalFooter {
   ignored = true;
 
   /**
-   * @uiName Hide the support text
+   * @uiName Hide support message
    */
   @Prop() hideSupportText: boolean = false;
   /**
@@ -24,7 +24,7 @@ export class PortalFooter {
    */
   @Prop() supportEmail: string = "support@example.com";
   /**
-   * @uiName Support Text
+   * @uiName Support message
    * @uiWidget textArea
    */
   @Prop() supportText: string = "For program support, contact {email}";
@@ -53,28 +53,28 @@ export class PortalFooter {
    */
   @Prop() poweredByLink: string = "https://saasquatch.com";
   /**
-   * @uiName Padding Top
+   * @uiName Top padding
    * @uiGroup Padding
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingTop: string = "large";
   /**
-   * @uiName Padding Right
+   * @uiName Right padding
    * @uiGroup Padding
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingRight: string = "large";
   /**
-   * @uiName Padding Bottom
+   * @uiName Bottom padding
    * @uiGroup Padding
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingBottom: string = "large";
   /**
-   * @uiName Padding Left
+   * @uiName Left padding
    * @uiGroup Padding
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]

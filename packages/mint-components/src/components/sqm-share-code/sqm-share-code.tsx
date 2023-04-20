@@ -45,7 +45,7 @@ export class ShareCode {
   /**
    * Change the text alignment
    *
-   * @uiName Align text
+   * @uiName Share code alignment
    * @uiType string
    * @uiEnum ["left", "center"]
    * @uiEnumNames ["left", "center"]
@@ -56,8 +56,6 @@ export class ShareCode {
   textAlign: "left" | "center" | "right" = "left";
 
   /**
-   * Set copy button label
-   *
    * @uiName Copy button label
    */
   @Prop({
@@ -66,9 +64,9 @@ export class ShareCode {
   copyButtonLabel: string = "Copy Code";
 
   /**
-   * Set the copy button style
+   * Set the copy button style and placement.
    *
-   * @uiName Copy button style
+   * @uiName Style
    * @uiType string
    * @uiEnum ["icon", "button outside", "button below"]
    * @uiEnumNames ["icon", "button outside", "button below"]

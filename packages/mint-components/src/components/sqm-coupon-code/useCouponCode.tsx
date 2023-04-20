@@ -12,9 +12,9 @@ interface CouponCodeProps {
   tooltiptext: string;
   tooltiplifespan: number;
   cancelledErrorText: string;
-  pendingErrorText: string;
   expiredErrorText: string;
-  redeemedErrorText: string;
+  fullfillmentErrorText: string;
+  genericErrorText: string;
 }
 
 type FuelTankReward = {
@@ -124,20 +124,14 @@ export function useCouponCode(props: CouponCodeProps): CopyTextViewProps {
     switch (status) {
       case "CANCELLED":
         return props.cancelledErrorText;
-      case "PENDING":
-        return `${props.pendingErrorText}${dateAvailable}`;
       case "EXPIRED":
         return props.expiredErrorText;
-      case "REDEEMED":
-        return props.redeemedErrorText;
       case "AVAILABLE":
         return "";
       case "EMPTY_TANK":
-        // TODO: Replace
-        return "An error happened, please contact customer support or try again later.";
+        return props.fullfillmentErrorText;
       default:
-        // TODO: Replace
-        return "An error occurred, please contact customer support.";
+        return props.genericErrorText;
     }
   };
 

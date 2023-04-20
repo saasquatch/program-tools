@@ -49,7 +49,7 @@ export class CouponCode {
   /**
    * Change the text alignment
    *
-   * @uiName Align text
+   * @uiName Coupon code alignment
    * @uiType string
    * @uiEnum ["left", "center"]
    * @uiEnumNames ["left", "center"]
@@ -60,8 +60,6 @@ export class CouponCode {
   textAlign: "left" | "center" | "right" = "left";
 
   /**
-   * Set copy button label
-   *
    * @uiName Copy button label
    */
   @Prop({
@@ -70,68 +68,72 @@ export class CouponCode {
   copyButtonLabel: string = "Copy Coupon";
 
   /**
-   * Set the copy button style
+   * Set the copy button style and placement.
    *
-   * @uiName Copy button style
+   * @uiName Style
    * @uiType string
-   * @uiEnum ["icon", "button inside", "button outside", "button below"]
-   * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
+   * @uiEnum ["icon", "button outside", "button below"]
+   * @uiEnumNames ["icon", "button outside", "button below"]
    */
   @Prop({
     attribute: "copy-button-style",
   })
-  buttonStyle: "icon" | "button inside" | "button outside" | "button below" =
-    "icon";
+  buttonStyle: "icon" | "button outside" | "button below" = "icon";
 
   /**
-   * Set error message
+   * Display this message when the coupon code has been cancelled.
    *
    * @uiWidget textArea
-   * @uiName Pending message
+   * @uiName Cancelled code error message
+   * @uiGroup Coupon code error
    */
   @Prop({
-    attribute: "error-text",
-  })
-  pendingErrorText: string = "Your reward will be available on ";
-
-  /**
-   * Set error message
-   *
-   * @uiWidget textArea
-   * @uiName Cancelled error message
-   */
-  @Prop({
-    attribute: "error-text",
+    attribute: "cancelled-error-text",
   })
   cancelledErrorText: string =
-    "Oops! Your coupon code is cancelled. Please try again later or contact support.";
+    "This code has been cancelled. Please reach out to the Support team for help resolving this issue.";
 
   /**
-   * Set error message
+   * Display this message when the coupon code has expired.
    *
    * @uiWidget textArea
-   * @uiName Expired error message
+   * @uiName Expired code error message
+   * @uiGroup Coupon code error
    */
   @Prop({
-    attribute: "error-text",
+    attribute: "expired-error-text",
   })
   expiredErrorText: string =
-    "Oops! Your coupon code is expired. Please try again later or contact support.";
+    "Looks like this code has expired. Please reach out to the Support team for help resolving this issue.";
 
   /**
-   * Set error message
+   * Display this message when the code fails to load due to a fulfillment error.
    *
    * @uiWidget textArea
-   * @uiName Already redeemed error message
+   * @uiName Code fulfillment error message
+   * @uiGroup Coupon code error
+   */
+  @Prop({
+    attribute: "fullfilled-error-text",
+  })
+  fullfillmentErrorText: string =
+    "We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue.";
+
+  /**
+   * Display this message when the code fails to load due to an unspecified error.
+   *
+   * @uiWidget textArea
+   * @uiName Code retrieval error message
+   * @uiGroup Coupon code error
    */
   @Prop({
     attribute: "error-text",
   })
-  redeemedErrorText: string =
-    "Oops! Your coupon code has already been redeemed. Please try again later or contact support.";
+  genericErrorText: string =
+    "We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue.";
 
   /**
-   * Set coupon code placeholder for when there there is no coupon code to display
+   * Display this text when the coupon code can’t be retrieved.
    *
    * @uiName Coupon code placeholder
    */
