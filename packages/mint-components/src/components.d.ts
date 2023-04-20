@@ -159,27 +159,28 @@ export namespace Components {
     }
     interface SqmCouponCode {
         /**
-          * Set the copy button style
-          * @uiName Copy button style
+          * Set the copy button style and placement.
+          * @uiName Style
           * @uiType string
-          * @uiEnum ["icon", "button inside", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
+          * @uiEnum ["icon", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button outside", "button below"]
          */
-        "buttonStyle": "icon" | "button inside" | "button outside" | "button below";
+        "buttonStyle": "icon" | "button outside" | "button below";
         /**
-          * Set error message
+          * Display this message when the coupon code has been cancelled.
           * @uiWidget textArea
-          * @uiName Cancelled error message
+          * @uiName Cancelled code error message
+          * @uiGroup Coupon code error
          */
         "cancelledErrorText": string;
         /**
-          * Set copy button label
           * @uiName Copy button label
          */
         "copyButtonLabel": string;
         /**
-          * Set coupon code placeholder for when there there is no coupon code to display
+          * Display this text when the coupon code can’t be retrieved.
           * @uiName Coupon code placeholder
+          * @uiGroup Coupon code error
          */
         "couponCodePlaceholder": string;
         /**
@@ -188,17 +189,26 @@ export namespace Components {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Set error message
+          * Display this message when the coupon code has expired.
           * @uiWidget textArea
-          * @uiName Expired error message
+          * @uiName Expired code error message
+          * @uiGroup Coupon code error
          */
         "expiredErrorText": string;
         /**
-          * Set error message
+          * Display this message when the code fails to load due to a fulfillment error.
           * @uiWidget textArea
-          * @uiName Pending message
+          * @uiName Code fulfillment error message
+          * @uiGroup Coupon code error
          */
-        "pendingErrorText": string;
+        "fullfillmentErrorText": string;
+        /**
+          * Display this message when the code fails to load due to an unspecified error.
+          * @uiWidget textArea
+          * @uiName Code retrieval error message
+          * @uiGroup Coupon code error
+         */
+        "genericErrorText": string;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -206,14 +216,8 @@ export namespace Components {
          */
         "programId"?: string;
         /**
-          * Set error message
-          * @uiWidget textArea
-          * @uiName Already redeemed error message
-         */
-        "redeemedErrorText": string;
-        /**
           * Change the text alignment
-          * @uiName Align text
+          * @uiName Coupon code alignment
           * @uiType string
           * @uiEnum ["left", "center"]
           * @uiEnumNames ["left", "center"]
@@ -1028,32 +1032,32 @@ export namespace Components {
          */
         "hidePoweredBy": boolean;
         /**
-          * @uiName Hide the support text
+          * @uiName Hide support message
          */
         "hideSupportText": boolean;
         /**
-          * @uiName Padding Bottom
+          * @uiName Bottom padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom": string;
         /**
-          * @uiName Padding Left
+          * @uiName Left padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft": string;
         /**
-          * @uiName Padding Right
+          * @uiName Right padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight": string;
         /**
-          * @uiName Padding Top
+          * @uiName Top padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
@@ -1068,7 +1072,7 @@ export namespace Components {
          */
         "supportEmail": string;
         /**
-          * @uiName Support Text
+          * @uiName Support message
           * @uiWidget textArea
          */
         "supportText": string;
@@ -1556,28 +1560,28 @@ export namespace Components {
          */
         "backgroundColor": string;
         /**
-          * @uiName Padding Bottom
+          * @uiName Bottom padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom": string;
         /**
-          * @uiName Padding Left
+          * @uiName Left padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft": string;
         /**
-          * @uiName Padding Right
+          * @uiName Right padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight": string;
         /**
-          * @uiName Padding Top
+          * @uiName Top padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
@@ -2387,15 +2391,14 @@ export namespace Components {
     }
     interface SqmShareCode {
         /**
-          * Set the copy button style
-          * @uiName Copy button style
+          * Set the copy button style and placement.
+          * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button outside", "button below"]
           * @uiEnumNames ["icon", "button outside", "button below"]
          */
         "buttonStyle": "icon" | "button outside" | "button below";
         /**
-          * Set copy button label
           * @uiName Copy button label
          */
         "copyButtonLabel": string;
@@ -2412,7 +2415,7 @@ export namespace Components {
         "programId"?: string;
         /**
           * Change the text alignment
-          * @uiName Align text
+          * @uiName Share code alignment
           * @uiType string
           * @uiEnum ["left", "center"]
           * @uiEnumNames ["left", "center"]
@@ -2431,15 +2434,14 @@ export namespace Components {
     }
     interface SqmShareLink {
         /**
-          * Set the copy button style
-          * @uiName Copy button style
+          * Set the copy button style and placement.
+          * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button outside", "button below"]
           * @uiEnumNames ["icon", "button outside", "button below"]
          */
         "buttonStyle": "icon" | "button outside" | "button below";
         /**
-          * Set copy button label
           * @uiName Copy button label
          */
         "copyButtonLabel": string;
@@ -2456,7 +2458,7 @@ export namespace Components {
         "programId"?: string;
         /**
           * Change the text alignment
-          * @uiName Align text
+          * @uiName Share link alignment
           * @uiType string
           * @uiEnum ["left", "center"]
           * @uiEnumNames ["left", "center"]
@@ -3533,27 +3535,28 @@ declare namespace LocalJSX {
     }
     interface SqmCouponCode {
         /**
-          * Set the copy button style
-          * @uiName Copy button style
+          * Set the copy button style and placement.
+          * @uiName Style
           * @uiType string
-          * @uiEnum ["icon", "button inside", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
+          * @uiEnum ["icon", "button outside", "button below"]
+          * @uiEnumNames ["icon", "button outside", "button below"]
          */
-        "buttonStyle"?: "icon" | "button inside" | "button outside" | "button below";
+        "buttonStyle"?: "icon" | "button outside" | "button below";
         /**
-          * Set error message
+          * Display this message when the coupon code has been cancelled.
           * @uiWidget textArea
-          * @uiName Cancelled error message
+          * @uiName Cancelled code error message
+          * @uiGroup Coupon code error
          */
         "cancelledErrorText"?: string;
         /**
-          * Set copy button label
           * @uiName Copy button label
          */
         "copyButtonLabel"?: string;
         /**
-          * Set coupon code placeholder for when there there is no coupon code to display
+          * Display this text when the coupon code can’t be retrieved.
           * @uiName Coupon code placeholder
+          * @uiGroup Coupon code error
          */
         "couponCodePlaceholder"?: string;
         /**
@@ -3562,17 +3565,26 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Set error message
+          * Display this message when the coupon code has expired.
           * @uiWidget textArea
-          * @uiName Expired error message
+          * @uiName Expired code error message
+          * @uiGroup Coupon code error
          */
         "expiredErrorText"?: string;
         /**
-          * Set error message
+          * Display this message when the code fails to load due to a fulfillment error.
           * @uiWidget textArea
-          * @uiName Pending message
+          * @uiName Code fulfillment error message
+          * @uiGroup Coupon code error
          */
-        "pendingErrorText"?: string;
+        "fullfillmentErrorText"?: string;
+        /**
+          * Display this message when the code fails to load due to an unspecified error.
+          * @uiWidget textArea
+          * @uiName Code retrieval error message
+          * @uiGroup Coupon code error
+         */
+        "genericErrorText"?: string;
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -3580,14 +3592,8 @@ declare namespace LocalJSX {
          */
         "programId"?: string;
         /**
-          * Set error message
-          * @uiWidget textArea
-          * @uiName Already redeemed error message
-         */
-        "redeemedErrorText"?: string;
-        /**
           * Change the text alignment
-          * @uiName Align text
+          * @uiName Coupon code alignment
           * @uiType string
           * @uiEnum ["left", "center"]
           * @uiEnumNames ["left", "center"]
@@ -4402,32 +4408,32 @@ declare namespace LocalJSX {
          */
         "hidePoweredBy"?: boolean;
         /**
-          * @uiName Hide the support text
+          * @uiName Hide support message
          */
         "hideSupportText"?: boolean;
         /**
-          * @uiName Padding Bottom
+          * @uiName Bottom padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom"?: string;
         /**
-          * @uiName Padding Left
+          * @uiName Left padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft"?: string;
         /**
-          * @uiName Padding Right
+          * @uiName Right padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight"?: string;
         /**
-          * @uiName Padding Top
+          * @uiName Top padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
@@ -4442,7 +4448,7 @@ declare namespace LocalJSX {
          */
         "supportEmail"?: string;
         /**
-          * @uiName Support Text
+          * @uiName Support message
           * @uiWidget textArea
          */
         "supportText"?: string;
@@ -4930,28 +4936,28 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * @uiName Padding Bottom
+          * @uiName Bottom padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom"?: string;
         /**
-          * @uiName Padding Left
+          * @uiName Left padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft"?: string;
         /**
-          * @uiName Padding Right
+          * @uiName Right padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight"?: string;
         /**
-          * @uiName Padding Top
+          * @uiName Top padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
@@ -5737,15 +5743,14 @@ declare namespace LocalJSX {
     }
     interface SqmShareCode {
         /**
-          * Set the copy button style
-          * @uiName Copy button style
+          * Set the copy button style and placement.
+          * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button outside", "button below"]
           * @uiEnumNames ["icon", "button outside", "button below"]
          */
         "buttonStyle"?: "icon" | "button outside" | "button below";
         /**
-          * Set copy button label
           * @uiName Copy button label
          */
         "copyButtonLabel"?: string;
@@ -5762,7 +5767,7 @@ declare namespace LocalJSX {
         "programId"?: string;
         /**
           * Change the text alignment
-          * @uiName Align text
+          * @uiName Share code alignment
           * @uiType string
           * @uiEnum ["left", "center"]
           * @uiEnumNames ["left", "center"]
@@ -5781,15 +5786,14 @@ declare namespace LocalJSX {
     }
     interface SqmShareLink {
         /**
-          * Set the copy button style
-          * @uiName Copy button style
+          * Set the copy button style and placement.
+          * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button outside", "button below"]
           * @uiEnumNames ["icon", "button outside", "button below"]
          */
         "buttonStyle"?: "icon" | "button outside" | "button below";
         /**
-          * Set copy button label
           * @uiName Copy button label
          */
         "copyButtonLabel"?: string;
@@ -5806,7 +5810,7 @@ declare namespace LocalJSX {
         "programId"?: string;
         /**
           * Change the text alignment
-          * @uiName Align text
+          * @uiName Share link alignment
           * @uiType string
           * @uiEnum ["left", "center"]
           * @uiEnumNames ["left", "center"]

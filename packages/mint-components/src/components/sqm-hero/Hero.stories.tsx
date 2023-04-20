@@ -287,3 +287,25 @@ export const TwoColumnLoginWithImgElement = () => {
     </div>
   );
 };
+
+export const MinHeight = () => {
+  const props = {
+    states: {
+      columns: 2 as const,
+      wrapDirection: "wrap" as const,
+      paddingSize: "large" as const,
+      minHeight: 600,
+      background:
+        "https://images.unsplash.com/photo-1487528278747-ba99ed528ebc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+    },
+    content: {
+      secondaryColumn: (
+        <div>
+          <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
+          <sqm-portal-login></sqm-portal-login>
+        </div>
+      ),
+    },
+  };
+  return <HeroView {...props}></HeroView>;
+};
