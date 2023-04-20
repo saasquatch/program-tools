@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/integration-boilerplate-node",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Node/Express boilerplate for building SaaSquatch integrations",
   "engines": {
     "node": ">=14"
@@ -18,8 +18,8 @@
     "test:coverage": "jest --coverage",
     "prepublishOnly": "npm run build"
   },
-  "author": "Johan Venter <johan@saasquatch.com>",
-  "license": "ISC",
+  "author": "ReferralSaaSquatch.com, Inc.",
+  "license": "MIT",
   "devDependencies": {
     "@types/auth0": "^2.35.11",
     "@types/compression": "^1.7.0",
