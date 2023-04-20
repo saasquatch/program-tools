@@ -134,12 +134,16 @@ export function CopyTextView(props: CopyTextViewProps) {
                 disabled={disabled}
               />
             )}
+            {error && (
+              <p slot="help-text" class={sheet.classes.errorTextStyle}>
+                {props.errorText}
+              </p>
+            )}
           </sl-input>
           {(buttonStyle === "button outside" ||
             buttonStyle === "button below") &&
             copyButton}
         </div>
-        {error && <p class={sheet.classes.errorTextStyle}>{props.errorText}</p>}
       </sl-tooltip>
     </div>
   );
