@@ -54,7 +54,7 @@ export function Details(props): VNode {
         <input type="checkbox" id={"details-" + rid} />
         <label class="details" htmlFor={"details-" + rid}>
           <sl-icon
-            exportparts="base: task-card-chevron-icon"
+            exportparts="base: chevron-icon"
             name="chevron-down"
           ></sl-icon>
         </label>
