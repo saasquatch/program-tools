@@ -51,7 +51,7 @@ const styleString = sheet.toString();
 export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
   const { states, callbacks, content } = props;
   return (
-    <div class={sheet.classes.Wrapper} part="sqm-forgot-password-container">
+    <div class={sheet.classes.Wrapper} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}

@@ -939,10 +939,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   if (states.noExchangeOptions) return states.content.text.empty;
 
   return (
-    <div
-      class={sheet.classes.Container}
-      part="sqm-reward-exchange-list-container"
-    >
+    <div class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">{styleString}</style>
       <div>
         {stageMap()}

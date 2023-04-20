@@ -154,7 +154,7 @@ export function HeroView(props: HeroProps) {
 
   // NOTE: Spacing on the columns is controlled on the slots itself. For example using inline styling
   return (
-    <div class={sheet.classes.Container} part="sqm-hero-container">
+    <div class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}
@@ -162,16 +162,16 @@ export function HeroView(props: HeroProps) {
       {states.columns == 2 ? (
         <div
           class={sheet.classes.TwoColumnContainer}
-          part="sqm-hero-two-col-container"
+          part="sqm-two-col-container"
         >
           <div
-            part="sqm-hero-primary-col"
+            part="sqm-two-col-primary-col"
             class={`${sheet.classes.ColumnWrapper} ${sheet.classes.ColumnPadding}`}
           >
             {content.primaryColumn}
           </div>
           <div
-            part="sqm-hero-secondary-col"
+            part="sqm-two-col-secondary-col"
             class={`${sheet.classes.ColumnWrapper} ${sheet.classes.ColumnPadding}`}
           >
             {content.secondaryColumn}
@@ -179,7 +179,7 @@ export function HeroView(props: HeroProps) {
         </div>
       ) : (
         <div
-          part="sqm-hero-primary-col"
+          part="sqm-single-col"
           class={`${sheet.classes.SingleColumnContainer} ${sheet.classes.ColumnPadding}`}
         >
           {content.primaryColumn}

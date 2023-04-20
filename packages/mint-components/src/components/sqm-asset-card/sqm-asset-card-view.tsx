@@ -55,10 +55,10 @@ export const AssetCardView = (props: AssetCardViewProps) => {
   } = props;
 
   return (
-    <div class={sheet.classes.CardContainer} part="sqm-asset-card-container">
+    <div class={sheet.classes.CardContainer} part="sqm-base">
       <style type="text/css">{styleString}</style>
       <div class={sheet.classes.TextContainer}>
-        <p class={sheet.classes.Title} part="sqm-asset-card-title">
+        <p class={sheet.classes.Title} part="sqm-title">
           {titleText}
         </p>
         <svg
