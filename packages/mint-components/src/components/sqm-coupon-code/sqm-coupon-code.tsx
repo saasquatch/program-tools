@@ -51,8 +51,8 @@ export class CouponCode {
    *
    * @uiName Coupon code alignment
    * @uiType string
-   * @uiEnum ["left", "center"]
-   * @uiEnumNames ["left", "center"]
+   * @uiEnum ["left", "center", "right"]
+   * @uiEnumNames ["Left", "Center", "Right"]
    */
   @Prop({
     attribute: "text-align",
@@ -72,13 +72,13 @@ export class CouponCode {
    *
    * @uiName Style
    * @uiType string
-   * @uiEnum ["icon", "button outside", "button below"]
-   * @uiEnumNames ["icon", "button outside", "button below"]
+   * @uiEnum ["icon", "button-outside", "button-below"]
+   * @uiEnumNames ["Icon", "Button outside", "Button below"]
    */
   @Prop({
     attribute: "copy-button-style",
   })
-  buttonStyle: "icon" | "button outside" | "button below" = "icon";
+  buttonStyle: "icon" | "button-outside" | "button-below" = "icon";
 
   /**
    * Display this message when the coupon code has been cancelled.

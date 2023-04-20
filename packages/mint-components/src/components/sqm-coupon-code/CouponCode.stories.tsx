@@ -42,7 +42,7 @@ export const CopyButton = () => {
   return (
     <sqm-coupon-code
       {...defaultProps}
-      buttonStyle="button outside"
+      buttonStyle="button-outside"
     ></sqm-coupon-code>
   );
 };
@@ -50,7 +50,7 @@ export const CopyButtonBelow = () => {
   return (
     <sqm-coupon-code
       {...defaultProps}
-      buttonStyle={"button below"}
+      buttonStyle={"button-below"}
     ></sqm-coupon-code>
   );
 };
@@ -62,7 +62,7 @@ export const CopyButtonLoading = () => {
   return (
     <CopyTextView
       {...defaultProps}
-      buttonStyle="button outside"
+      buttonStyle="button-outside"
       loading={true}
     ></CopyTextView>
   );
@@ -71,7 +71,7 @@ export const CopyButtonBelowLoading = () => {
   return (
     <CopyTextView
       {...defaultProps}
-      buttonStyle="button below"
+      buttonStyle="button-below"
       loading={true}
     ></CopyTextView>
   );
@@ -118,7 +118,7 @@ export const ErrorButtonBelow = () => {
       {...defaultProps}
       error={true}
       errorText="Oops! Your coupon code is expired. Please try again later or contact support."
-      buttonStyle="button below"
+      buttonStyle="button-below"
     ></CopyTextView>
   );
 };
