@@ -73,7 +73,7 @@ const vanillaStyle = `
 export function ReferralCardView(props: ReferralCardViewProps) {
   return (
     <div
-      part="sqm-referral-card-container"
+      part="sqm-base"
       class={sheet.classes.Container}
       style={{
         border: `${
@@ -91,7 +91,7 @@ export function ReferralCardView(props: ReferralCardViewProps) {
         {vanillaStyle}
       </style>
       <div class={sheet.classes.EndContainer}>{props.slots.header}</div>
-      <div part="sqm-columns" class={sheet.classes.ColumnContainer}>
+      <div part="sqm-column-container" class={sheet.classes.ColumnContainer}>
         <div
           class="left"
           style={{

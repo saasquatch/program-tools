@@ -71,7 +71,7 @@ export function PortalFooterView(props: PortalFooterViewProps) {
   const styleString = sheet.toString();
 
   return (
-    <div class={sheet.classes.Container} part="sqm-footer-container">
+    <div class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}

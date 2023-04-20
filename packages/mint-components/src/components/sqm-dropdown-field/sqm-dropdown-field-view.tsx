@@ -54,10 +54,7 @@ export function DropdownFieldView(props: DropdownFieldViewProps) {
   const { states, content } = props;
   const validationErrors = states?.registrationFormState?.validationErrors;
   return (
-    <div
-      class={sheet.classes.FieldContainer}
-      part="sqm-dropdown-field-container"
-    >
+    <div class={sheet.classes.FieldContainer} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}

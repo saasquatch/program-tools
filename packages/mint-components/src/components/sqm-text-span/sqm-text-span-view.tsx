@@ -57,7 +57,7 @@ const vanillaStyle = `
 
 export function TextSpanView(props: TextSpanView, children: VNode) {
   return (
-    <span class={sheet.classes[props.type]} part="sqm-text-span">
+    <span class={sheet.classes[props.type]} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}

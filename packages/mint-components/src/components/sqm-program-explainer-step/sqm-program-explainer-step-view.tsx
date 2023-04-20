@@ -75,38 +75,26 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
   }`;
 
   return (
-    <div
-      class={sheet.classes.Container}
-      part="sqm-program-explainer-step-container"
-    >
+    <div class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">{styleString}</style>
       <div>
         {props.imageUrl ? (
           <img
             class={sheet.classes.Media}
             src={props.imageUrl}
-            part="sqm-program-explainer-step-media"
+            part="sqm-media"
           />
         ) : (
-          <div
-            class={sheet.classes.Media}
-            part="sqm-program-explainer-step-media"
-          >
+          <div class={sheet.classes.Media} part="sqm-media">
             <sl-icon name={props.icon} />
           </div>
         )}
       </div>
       <div class={sheet.classes.Text}>
-        <div
-          class={sheet.classes.Header}
-          part="sqm-program-explainer-step-header"
-        >
+        <div class={sheet.classes.Header} part="sqm-header">
           {props.header}
         </div>
-        <div
-          class={sheet.classes.Description}
-          part="sqm-program-explainer-step-description"
-        >
+        <div class={sheet.classes.Description} part="sqm-description">
           {props.description}
         </div>
       </div>

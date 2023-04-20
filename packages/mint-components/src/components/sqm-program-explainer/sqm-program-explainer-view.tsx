@@ -48,20 +48,17 @@ export function ProgramExplainerView(
   }`;
 
   return (
-    <div class={sheet.classes.Container} part="sqm-program-explainer-container">
+    <div class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">
         {styleString}
         {vanillaStyle}
       </style>
       <div class={sheet.classes.Header}>
-        <div class={sheet.classes.Header} part="sqm-program-explainer-header">
+        <div class={sheet.classes.Header} part="sqm-header">
           {props.header}
         </div>
       </div>
-      <div
-        class={sheet.classes.Grid}
-        part="sqm-program-explainer-grid-container"
-      >
+      <div class={sheet.classes.Grid} part="sqm-grid-container">
         {children}
       </div>
     </div>

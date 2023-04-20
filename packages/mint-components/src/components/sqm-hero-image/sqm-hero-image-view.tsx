@@ -137,7 +137,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
   }`;
 
   return (
-    <div class={sheet.classes.Container} part="sqm-hero-image-container">
+    <div class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}
@@ -151,10 +151,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
   function OverlayView() {
     return (
       <div class={sheet.classes.Background}>
-        <div
-          class={sheet.classes.Overlay}
-          part="sqm-hero-image-overlay-container"
-        >
+        <div class={sheet.classes.Overlay} part="sqm-overlay">
           {props.header && (
             <div class={sheet.classes.Header}>{props.header}</div>
           )}
@@ -188,19 +185,19 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
             <img
               class={sheet.classes.Image}
               src={props.imageUrl}
-              part="sqm-hero-image"
+              part="sqm-columns-image"
             ></img>
           </div>
-          <div class="text-area" part="sqm-hero-image-text-area">
+          <div class="text-area" part="sqm-columns-text-area">
             {props.header && (
-              <div class={sheet.classes.Header} part="sqm-hero-image-header">
+              <div class={sheet.classes.Header} part="sqm-columns-header">
                 {props.header}
               </div>
             )}
             {props.description && (
               <div
                 class={sheet.classes.Description}
-                part="sqm-hero-image-description"
+                part="sqm-columns-description"
               >
                 {props.description}
               </div>

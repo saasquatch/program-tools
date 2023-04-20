@@ -61,15 +61,15 @@ export function PortalFrameView(props: PortalFrameViewProps, children: VNode) {
     <div
       style={{ minHeight: notFullScreen ? "100%" : "100vh" }}
       class={sheet.classes.Frame}
-      part="sqm-portal-frame-container"
+      part="sqm-base"
     >
       <style type="text/css">{styleString}</style>
-      <div class={sheet.classes.HeaderWrapper} part="sqm-portal-frame-header">
+      <div class={sheet.classes.HeaderWrapper} part="sqm-header">
         {data.header}
         <slot name="sqm-navigation-menu" />
       </div>
       {children}
-      <div class={sheet.classes.FooterWrapper} part="sqm-portal-frame-footer">
+      <div class={sheet.classes.FooterWrapper} part="sqm-footer">
         {data.footer}
       </div>
     </div>

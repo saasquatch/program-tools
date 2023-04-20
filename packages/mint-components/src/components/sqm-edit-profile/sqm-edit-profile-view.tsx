@@ -45,10 +45,10 @@ const EditProfileView = (props: EditProfileViewProps) => {
     return (
       <div
         class={`CardWrapper ${!states.showEdit && "ShowEdit"}`}
-        part="sqm-edit-profile-container"
+        part="sqm-base"
       >
         <h2
-          part="sqm-edit-profile-header"
+          part="sqm-header"
           style={{
             fontSize: "var(--sl-font-size-x-large)",
             margin: "0px",
@@ -139,11 +139,11 @@ const EditProfileView = (props: EditProfileViewProps) => {
   return (
     <div
       class={`CardWrapper FormWrapper ${!states.showEdit && "ShowEdit"}`}
-      part="sqm-edit-profile-container"
+      part="sqm-base"
     >
       <div class="FormSection">
         <h2
-          part="sqm-edit-profile-header"
+          part="sqm-header"
           style={{
             fontSize: "var(--sl-font-size-x-large)",
             marginBottom: "0px",
