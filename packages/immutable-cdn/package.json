@@ -35,7 +35,6 @@
     "publish-next": "np --no-cleanup --any-branch --tag=next",
     "publish-latest": "np --any-branch --tag=latest"
   },
-  "peerDependencies": {},
   "husky": {
     "hooks": {
       "pre-commit": "tsdx lint"
@@ -45,7 +44,7 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.5",
     "husky": "^7.0.4",
-    "np": "^7.6.0",
+    "np": "^7.7.0",
     "size-limit": "^7.0.5",
     "tsdx": "^0.14.1",
     "tslib": "^2.3.1",
