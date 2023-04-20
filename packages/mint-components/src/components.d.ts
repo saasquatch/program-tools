@@ -162,10 +162,10 @@ export namespace Components {
           * Set the copy button style and placement.
           * @uiName Style
           * @uiType string
-          * @uiEnum ["icon", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button outside", "button below"]
+          * @uiEnum ["icon", "button-outside", "button-below"]
+          * @uiEnumNames ["icon", "Button outside", "Button below"]
          */
-        "buttonStyle": "icon" | "button outside" | "button below";
+        "buttonStyle": "icon" | "button-outside" | "button-below";
         /**
           * Display this message when the coupon code has been cancelled.
           * @uiWidget textArea
@@ -2394,10 +2394,10 @@ export namespace Components {
           * Set the copy button style and placement.
           * @uiName Style
           * @uiType string
-          * @uiEnum ["icon", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button outside", "button below"]
+          * @uiEnum ["icon", "button-outside", "button-below"]
+          * @uiEnumNames ["icon", "Button outside", "Button below"]
          */
-        "buttonStyle": "icon" | "button outside" | "button below";
+        "buttonStyle": "icon" | "button-outside" | "button-below";
         /**
           * @uiName Copy button label
          */
@@ -2437,10 +2437,10 @@ export namespace Components {
           * Set the copy button style and placement.
           * @uiName Style
           * @uiType string
-          * @uiEnum ["icon", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button outside", "button below"]
+          * @uiEnum ["icon", "button-outside", "button-below"]
+          * @uiEnumNames ["icon", "Button outside", "Button below"]
          */
-        "buttonStyle": "icon" | "button outside" | "button below";
+        "buttonStyle": "icon" | "button-outside" | "button-below";
         /**
           * @uiName Copy button label
          */
@@ -3538,10 +3538,10 @@ declare namespace LocalJSX {
           * Set the copy button style and placement.
           * @uiName Style
           * @uiType string
-          * @uiEnum ["icon", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button outside", "button below"]
+          * @uiEnum ["icon", "button-outside", "button-below"]
+          * @uiEnumNames ["icon", "Button outside", "Button below"]
          */
-        "buttonStyle"?: "icon" | "button outside" | "button below";
+        "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
           * Display this message when the coupon code has been cancelled.
           * @uiWidget textArea
@@ -5746,10 +5746,10 @@ declare namespace LocalJSX {
           * Set the copy button style and placement.
           * @uiName Style
           * @uiType string
-          * @uiEnum ["icon", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button outside", "button below"]
+          * @uiEnum ["icon", "button-outside", "button-below"]
+          * @uiEnumNames ["icon", "Button outside", "Button below"]
          */
-        "buttonStyle"?: "icon" | "button outside" | "button below";
+        "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
           * @uiName Copy button label
          */
@@ -5789,10 +5789,10 @@ declare namespace LocalJSX {
           * Set the copy button style and placement.
           * @uiName Style
           * @uiType string
-          * @uiEnum ["icon", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button outside", "button below"]
+          * @uiEnum ["icon", "button-outside", "button-below"]
+          * @uiEnumNames ["icon", "Button outside", "Button below"]
          */
-        "buttonStyle"?: "icon" | "button outside" | "button below";
+        "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
           * @uiName Copy button label
          */

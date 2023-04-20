@@ -9,7 +9,7 @@ export interface CopyTextViewProps {
   copyButtonLabel?: string;
   disabled?: boolean;
   textAlign?: "left" | "center" | "right";
-  buttonStyle?: "button outside" | "button below" | "icon";
+  buttonStyle?: "button-outside" | "button-below" | "icon";
   error?: boolean;
   errorText?: string;
   inputPlaceholderText?: string;
@@ -77,7 +77,7 @@ export function CopyTextView(props: CopyTextViewProps) {
       <sl-button
         onClick={() => props.onClick?.()}
         size={"medium"}
-        style={{ width: `${buttonStyle === "button below" && "100%"}` }}
+        style={{ width: `${buttonStyle === "button-below" && "100%"}` }}
         disabled={props.disabled}
         slot="suffix"
         type="primary"
@@ -90,7 +90,7 @@ export function CopyTextView(props: CopyTextViewProps) {
   const inputText = error ? props.inputPlaceholderText : props.copyString;
   const disabled = error || props.loading || props.disabled;
   const tooltipPlacement =
-    props.buttonStyle === "button below" ? "top" : "top-end";
+    props.buttonStyle === "button-below" ? "top" : "top-end";
 
   return (
     <div>
@@ -112,7 +112,7 @@ export function CopyTextView(props: CopyTextViewProps) {
           class={sheet.classes.containerStyle}
           style={{
             flexDirection: `${
-              buttonStyle === "button below" ? "column" : "row"
+              buttonStyle === "button-below" ? "column" : "row"
             }`,
             width: "100%",
           }}
@@ -140,8 +140,8 @@ export function CopyTextView(props: CopyTextViewProps) {
               </p>
             )}
           </sl-input>
-          {(buttonStyle === "button outside" ||
-            buttonStyle === "button below") &&
+          {(buttonStyle === "button-outside" ||
+            buttonStyle === "button-below") &&
             copyButton}
         </div>
       </sl-tooltip>

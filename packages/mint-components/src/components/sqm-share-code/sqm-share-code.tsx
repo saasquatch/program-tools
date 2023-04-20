@@ -68,13 +68,13 @@ export class ShareCode {
    *
    * @uiName Style
    * @uiType string
-   * @uiEnum ["icon", "button outside", "button below"]
-   * @uiEnumNames ["icon", "button outside", "button below"]
+   * @uiEnum ["icon", "button-outside", "button-below"]
+   * @uiEnumNames ["icon", "Button outside", "Button below"]
    */
   @Prop({
     attribute: "copy-button-style",
   })
-  buttonStyle: "icon" | "button outside" | "button below" = "icon";
+  buttonStyle: "icon" | "button-outside" | "button-below" = "icon";
 
   /**
    * @undocumented
