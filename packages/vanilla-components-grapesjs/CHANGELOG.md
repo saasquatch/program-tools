@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.24] - 2023-04-20
 
 ### Changed
-- Updated license information
+- Updated license copyright to be in line with SaaSquatch open-source policy.
 
 ## [1.0.23] - 2021-01-18
 
