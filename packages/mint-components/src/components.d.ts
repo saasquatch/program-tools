@@ -163,7 +163,7 @@ export namespace Components {
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
-          * @uiEnumNames ["icon", "Button outside", "Button below"]
+          * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
         "buttonStyle": "icon" | "button-outside" | "button-below";
         /**
@@ -219,8 +219,8 @@ export namespace Components {
           * Change the text alignment
           * @uiName Coupon code alignment
           * @uiType string
-          * @uiEnum ["left", "center"]
-          * @uiEnumNames ["left", "center"]
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
         "textAlign": "left" | "center" | "right";
         /**
@@ -2395,7 +2395,7 @@ export namespace Components {
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
-          * @uiEnumNames ["icon", "Button outside", "Button below"]
+          * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
         "buttonStyle": "icon" | "button-outside" | "button-below";
         /**
@@ -2417,8 +2417,8 @@ export namespace Components {
           * Change the text alignment
           * @uiName Share code alignment
           * @uiType string
-          * @uiEnum ["left", "center"]
-          * @uiEnumNames ["left", "center"]
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
         "textAlign": "left" | "center" | "right";
         /**
@@ -2438,7 +2438,7 @@ export namespace Components {
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
-          * @uiEnumNames ["icon", "Button outside", "Button below"]
+          * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
         "buttonStyle": "icon" | "button-outside" | "button-below";
         /**
@@ -2460,8 +2460,8 @@ export namespace Components {
           * Change the text alignment
           * @uiName Share link alignment
           * @uiType string
-          * @uiEnum ["left", "center"]
-          * @uiEnumNames ["left", "center"]
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
         "textAlign": "left" | "center" | "right";
         /**
@@ -3539,7 +3539,7 @@ declare namespace LocalJSX {
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
-          * @uiEnumNames ["icon", "Button outside", "Button below"]
+          * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
@@ -3595,8 +3595,8 @@ declare namespace LocalJSX {
           * Change the text alignment
           * @uiName Coupon code alignment
           * @uiType string
-          * @uiEnum ["left", "center"]
-          * @uiEnumNames ["left", "center"]
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
         "textAlign"?: "left" | "center" | "right";
         /**
@@ -5747,7 +5747,7 @@ declare namespace LocalJSX {
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
-          * @uiEnumNames ["icon", "Button outside", "Button below"]
+          * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
@@ -5769,8 +5769,8 @@ declare namespace LocalJSX {
           * Change the text alignment
           * @uiName Share code alignment
           * @uiType string
-          * @uiEnum ["left", "center"]
-          * @uiEnumNames ["left", "center"]
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
         "textAlign"?: "left" | "center" | "right";
         /**
@@ -5790,7 +5790,7 @@ declare namespace LocalJSX {
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
-          * @uiEnumNames ["icon", "Button outside", "Button below"]
+          * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
@@ -5812,8 +5812,8 @@ declare namespace LocalJSX {
           * Change the text alignment
           * @uiName Share link alignment
           * @uiType string
-          * @uiEnum ["left", "center"]
-          * @uiEnumNames ["left", "center"]
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
         "textAlign"?: "left" | "center" | "right";
         /**
