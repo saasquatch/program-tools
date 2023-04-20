@@ -27,7 +27,7 @@ export function CloseButtonView(props: CloseButtonViewProps) {
     <div>
       <style type="text/css">{styleString}</style>
       <span class={sheet.classes.icon} onClick={onClick}>
-        X
+        ×
       </span>
     </div>
   );
