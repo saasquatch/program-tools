@@ -51,8 +51,8 @@ export class CouponCode {
    *
    * @uiName Coupon code alignment
    * @uiType string
-   * @uiEnum ["left", "center"]
-   * @uiEnumNames ["left", "center"]
+   * @uiEnum ["left", "center", "right"]
+   * @uiEnumNames ["Left", "Center", "Right"]
    */
   @Prop({
     attribute: "text-align",
@@ -73,7 +73,7 @@ export class CouponCode {
    * @uiName Style
    * @uiType string
    * @uiEnum ["icon", "button-outside", "button-below"]
-   * @uiEnumNames ["icon", "Button outside", "Button below"]
+   * @uiEnumNames ["Icon", "Button outside", "Button below"]
    */
   @Prop({
     attribute: "copy-button-style",

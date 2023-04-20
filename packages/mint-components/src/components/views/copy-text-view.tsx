@@ -34,11 +34,11 @@ const style = {
   containerStyle: {
     display: "flex",
     alignItems: "center",
-    gap: "8px",
+    gap: "var(--sl-spacing-x-small)",
   },
   errorTextStyle: {
     margin: "0",
-    color: "red",
+    color: "var(--sl-color-danger-500)",
   },
 };
 
