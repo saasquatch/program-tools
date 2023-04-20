@@ -16,7 +16,7 @@
     "test": "jest --forceExit",
     "test-watch": "jest --watch"
   },
-  "author": "Referral SaaSquatch Inc.",
+  "author": "ReferralSaaSquatch.com, Inc.",
   "license": "MIT",
   "devDependencies": {
     "@graphql-tools/mock": "^7.0.0",

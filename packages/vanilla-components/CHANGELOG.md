@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.6] - 2023-04-20
+
+### Changed
+- Updated license information
+
 ## [1.2.5] - 2022-09-28
 
 ### Changed
@@ -41,7 +46,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \<sqh-referral-list> show-referrer prop now prevents referrer from being queried when set to "false"
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/vanilla-components@1.2.5...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/vanilla-components@1.2.6...HEAD
+[1.2.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.6
 [1.2.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.5
 [1.2.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.4
 [1.2.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.3

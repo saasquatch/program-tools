@@ -26,7 +26,7 @@
   },
   "prettier": {},
   "name": "@saasquatch/jsonata-paths-extractor",
-  "author": "Referral SaaSquatch Inc.",
+  "author": "ReferralSaaSquatch.com, Inc.",
   "module": "dist/jsonata-paths.esm.js",
   "size-limit": [
     {

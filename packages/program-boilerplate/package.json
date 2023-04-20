@@ -15,7 +15,7 @@
     "deploy": "np",
     "test": "SSQT_LOG_LEVEL=emerg jest"
   },
-  "author": "Referral SaaSquatch Inc.",
+  "author": "ReferralSaaSquatch.com, Inc.",
   "license": "MIT",
   "devDependencies": {
     "@types/express": "^4.17.11",

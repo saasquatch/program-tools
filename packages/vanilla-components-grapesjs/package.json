@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/saasquatch/program-tools.git"
   },
-  "author": "Referral SaaSquatch Inc.",
+  "author": "ReferralSaaSquatch.com, Inc.",
   "license": "MIT",
   "babel": {
     "presets": [

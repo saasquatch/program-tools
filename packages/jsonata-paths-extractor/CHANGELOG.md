@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2023-04-20
+
+### Changed
+- Updated license information
+
 ## [1.0.0] - 2022-09-21
 
 First release of the JSONata paths extractor library. A single function is exported that
@@ -21,5 +26,6 @@ accepts a JSONata expression and returns the paths found in the expression.
 - Handle string lookups
 - Handle context of function
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fjsonata-paths-extractor%401.0.0...HEAD
-[0.1.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fjsonata-paths-extractor%401.0.0
+[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fjsonata-paths-extractor%401.0.1...HEAD
+[1.0.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fjsonata-paths-extractor%401.0.0
+[1.0.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fjsonata-paths-extractor%401.0.0

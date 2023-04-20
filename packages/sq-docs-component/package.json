@@ -24,7 +24,7 @@
     "@stencil/core": "^1.17.3"
   },
   "license": "MIT",
-  "author": "Referral SaaSquatch Inc.",
+  "author": "ReferralSaaSquatch.com, Inc.",
   "dependencies": {
     "@stencil/sass": "^1.3.2",
     "clipboard": "^2.0.6",

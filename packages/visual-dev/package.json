@@ -20,7 +20,7 @@
     "storybook:build": "cross-env NODE_ENV=storybook build-storybook -c .storybook -o .out"
   },
   "keywords": [],
-  "author": "Referral SaaSquatch Inc.",
+  "author": "ReferralSaaSquatch.com, Inc.",
   "license": "MIT",
   "dependencies": {
     "react-shadow": "^19.0.2"

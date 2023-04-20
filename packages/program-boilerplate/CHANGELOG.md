@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.7.1] - 2023-04-20
+
+### Changed
+- Updated license information
+
 ## [3.7.0] - 2023-01-17
 
 ### Added
@@ -45,7 +50,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch/program-boilerplate%403.7.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch/program-boilerplate%403.7.1...HEAD
+[3.7.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.7.1
 [3.7.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.7.0
 [3.6.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.6.1
 [3.6.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.6.0

@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/saasquatch/program-tools.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "ReferralSaaSquatch.com, Inc.",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/saasquatch/program-tools/issues"
   },

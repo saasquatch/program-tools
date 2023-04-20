@@ -18,7 +18,7 @@
     "test:coverage": "jest --coverage",
     "prepublishOnly": "npm run build"
   },
-  "author": "Referral SaaSquatch Inc.",
+  "author": "ReferralSaaSquatch.com, Inc.",
   "license": "MIT",
   "devDependencies": {
     "@types/auth0": "^2.35.11",

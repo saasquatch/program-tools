@@ -7,7 +7,7 @@
   },
   "description": "Thin wrapper around Winston to provide unified logging across SaaSquatch NodeJS services",
   "prettier": {},
-  "author": "Referral SaaSquatch Inc.",
+  "author": "ReferralSaaSquatch.com, Inc.",
   "engines": {
     "node": "^16 || ^18"
   },
