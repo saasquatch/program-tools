@@ -136,6 +136,7 @@ export class CouponCode {
    * Display this text when the coupon code can’t be retrieved.
    *
    * @uiName Coupon code placeholder
+   * @uiGroup Coupon code error
    */
   @Prop({
     attribute: "coupon-code-placeholder",
