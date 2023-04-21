@@ -23,7 +23,7 @@ export class CloseButton {
       sdk.type === "SquatchJS2" &&
       sdk.widgetIdent?.engagementMedium === "POPUP";
 
-    if (isPopup) return <div style={{ display: "none" }}></div>;
+    if (!isPopup) return <div style={{ display: "none" }}></div>;
 
     const onClick = () => {
       if (sdk.type === "SquatchJS2") {
