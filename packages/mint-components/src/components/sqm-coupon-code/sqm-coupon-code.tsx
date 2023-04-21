@@ -6,6 +6,7 @@ import { getProps } from "../../utils/utils";
 import { RewardStatusType, useCouponCode } from "./useCouponCode";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
+import { CouponCodeView, CouponCodeViewProps } from "./sqm-coupon-code-view";
 
 /**
  * @uiName Coupon Code
@@ -147,7 +148,7 @@ export class CouponCode {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<CopyTextViewProps>;
+  @Prop() demoData?: DemoData<CouponCodeViewProps>;
 
   constructor() {
     withHooks(this);
@@ -160,11 +161,11 @@ export class CouponCode {
       ? useDemoCouponCode(thisProps)
       : useCouponCode(thisProps);
 
-    return <CopyTextView {...props} />;
+    return <CouponCodeView {...props} />;
   }
 }
 
-function useDemoCouponCode(props: CouponCode): CopyTextViewProps {
+function useDemoCouponCode(props: CouponCode): CouponCodeViewProps {
   const [open, setOpen] = useState(false);
   const copyString = "THANKSJANE125uv125";
   return deepmerge(
