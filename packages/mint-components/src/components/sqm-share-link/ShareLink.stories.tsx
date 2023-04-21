@@ -72,7 +72,7 @@ export const CopyButtonBelow = () => {
         copyString: "https://noah.example.com",
         open: false,
         tooltiptext: "Copied!",
-        buttonStyle: "button below",
+        buttonStyle: "button-below",
       }}
     ></CopyTextView>
   );

@@ -204,7 +204,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
             )}
             {props.buttonText && (
               <sl-button
-                exportparts="base: sqm-hero-image-btn"
+                exportparts="base: sqm-hero-image-button"
                 class={sheet.classes.Button}
                 type="primary"
                 onClick={() =>

@@ -449,7 +449,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                 </span>
 
                 <sl-button
-                  exportparts="base: task-card-button"
+                  exportparts="base: button"
                   id="sl-button"
                   class={
                     taskUnavailable
