@@ -167,6 +167,7 @@ graph TD;
   sqm-referral-table-status-column --> sqm-referral-table-status-cell
   sqm-referral-table-date-column --> sqm-referral-table-date-cell
   sqm-referral-table-rewards-column --> sqm-referral-table-rewards-cell
+  sqm-coupon-code --> sqm-form-message
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
