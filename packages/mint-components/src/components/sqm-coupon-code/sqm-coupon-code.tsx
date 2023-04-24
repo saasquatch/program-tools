@@ -82,6 +82,14 @@ export class CouponCode {
   buttonStyle: "icon" | "button-outside" | "button-below" = "icon";
 
   /**
+   * @uiName Coupon code label
+   */
+  @Prop({
+    attribute: "coupon-code-label",
+  })
+  couponCodeLabel: string = "Your coupon code:";
+
+  /**
    * Display this message when the coupon code has been cancelled.
    *
    * @uiWidget textArea
@@ -133,7 +141,7 @@ export class CouponCode {
     "We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue.";
 
   /**
-   * Display this message when the coupon code is pending.
+   * Display this message when the coupon code not available yet. Use the ICU message, {unpendDate}, to show the date the code will be available.
    *
    * @uiWidget textArea
    * @uiName Code pending error message
@@ -202,6 +210,7 @@ function useDemoCouponCode(props: CouponCode): CouponCodeViewProps {
       copyButtonLabel: props.copyButtonLabel,
       error: false,
       couponCodePlaceholder: props.couponCodePlaceholder,
+      couponCodeLabel: props.couponCodeLabel,
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility

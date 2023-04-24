@@ -132,7 +132,7 @@ export function useCouponCode(props: CouponCodeProps): CouponCodeViewProps {
       case "EMPTY_TANK":
         return props.fullfillmentErrorText;
       case "PENDING":
-        return props.pendingErrorText;
+        return props.pendingErrorText.replace("{unpendDate}", dateAvailable);
       case "REDEEMED":
         return props.redeemedErrorText;
       case "AVAILABLE":

@@ -15,7 +15,8 @@ const defaultProps: CouponCodeViewProps = {
   open: false,
   copyButtonLabel: "Copy Coupon",
   inputPlaceholderText: "CODE ERROR",
-  error: true,
+  couponCodeLabel: "Your coupon code:",
+  error: false,
 };
 
 export const CouponCode = () => {

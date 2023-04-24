@@ -179,6 +179,10 @@ export namespace Components {
          */
         "copyButtonLabel": string;
         /**
+          * @uiName Coupon code label
+         */
+        "couponCodeLabel": string;
+        /**
           * Display this text when the coupon code can’t be retrieved.
           * @uiName Coupon code placeholder
           * @uiGroup Coupon code error
@@ -211,7 +215,7 @@ export namespace Components {
          */
         "genericErrorText": string;
         /**
-          * Display this message when the coupon code is pending.
+          * Display this message when the coupon code not available yet. Use the ICU message, {unpendDate}, to show the date the code will be available.
           * @uiWidget textArea
           * @uiName Code pending error message
           * @uiGroup Coupon code error
@@ -3569,6 +3573,10 @@ declare namespace LocalJSX {
          */
         "copyButtonLabel"?: string;
         /**
+          * @uiName Coupon code label
+         */
+        "couponCodeLabel"?: string;
+        /**
           * Display this text when the coupon code can’t be retrieved.
           * @uiName Coupon code placeholder
           * @uiGroup Coupon code error
@@ -3601,7 +3609,7 @@ declare namespace LocalJSX {
          */
         "genericErrorText"?: string;
         /**
-          * Display this message when the coupon code is pending.
+          * Display this message when the coupon code not available yet. Use the ICU message, {unpendDate}, to show the date the code will be available.
           * @uiWidget textArea
           * @uiName Code pending error message
           * @uiGroup Coupon code error
