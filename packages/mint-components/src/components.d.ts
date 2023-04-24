@@ -211,11 +211,25 @@ export namespace Components {
          */
         "genericErrorText": string;
         /**
+          * Display this message when the coupon code is pending.
+          * @uiWidget textArea
+          * @uiName Code pending error message
+          * @uiGroup Coupon code error
+         */
+        "pendingErrorText": string;
+        /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Display this message when the coupon code has already been redeemed.
+          * @uiWidget textArea
+          * @uiName Redeemed code error message
+          * @uiGroup Coupon code error
+         */
+        "redeemedErrorText": string;
         /**
           * Change the text alignment
           * @uiName Coupon code alignment
@@ -3587,11 +3601,25 @@ declare namespace LocalJSX {
          */
         "genericErrorText"?: string;
         /**
+          * Display this message when the coupon code is pending.
+          * @uiWidget textArea
+          * @uiName Code pending error message
+          * @uiGroup Coupon code error
+         */
+        "pendingErrorText"?: string;
+        /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Display this message when the coupon code has already been redeemed.
+          * @uiWidget textArea
+          * @uiName Redeemed code error message
+          * @uiGroup Coupon code error
+         */
+        "redeemedErrorText"?: string;
         /**
           * Change the text alignment
           * @uiName Coupon code alignment

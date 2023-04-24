@@ -95,6 +95,18 @@ export class CouponCode {
     "This code has been cancelled. Please reach out to the Support team for help resolving this issue.";
 
   /**
+   * Display this message when the coupon code has already been redeemed.
+   *
+   * @uiWidget textArea
+   * @uiName Redeemed code error message
+   * @uiGroup Coupon code error
+   */
+  @Prop({
+    attribute: "redeemed-error-text",
+  })
+  redeemedErrorText: string = "Looks like you’ve already redeemed this code.";
+
+  /**
    * Display this message when the coupon code has expired.
    *
    * @uiWidget textArea
@@ -121,6 +133,19 @@ export class CouponCode {
     "We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue.";
 
   /**
+   * Display this message when the coupon code is pending.
+   *
+   * @uiWidget textArea
+   * @uiName Code pending error message
+   * @uiGroup Coupon code error
+   */
+  @Prop({
+    attribute: "pending-error-text",
+  })
+  pendingErrorText: string =
+    "We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue.";
+
+  /**
    * Display this message when the code fails to load due to an unspecified error.
    *
    * @uiWidget textArea
@@ -142,7 +167,7 @@ export class CouponCode {
   @Prop({
     attribute: "coupon-code-placeholder",
   })
-  couponCodePlaceholder: string = "CODE ERROR";
+  couponCodePlaceholder: string = "...";
 
   /**
    * @undocumented
