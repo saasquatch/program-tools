@@ -30,7 +30,7 @@ export class ReferredRegistration {
    * @uiName Email Field Label
    */
   @Prop()
-  emailLabel: string = "Email *";
+  emailLabel: string = "Email";
 
   /**
    * @uiName First Name Field Label

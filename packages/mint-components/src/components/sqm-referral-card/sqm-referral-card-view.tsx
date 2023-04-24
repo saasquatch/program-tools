@@ -1,5 +1,4 @@
 import { h, VNode } from "@stencil/core";
-import { Spacing } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 
 export interface ReferralCardViewProps {
@@ -37,26 +36,6 @@ const style = {
     gridAutoColumns: "minmax(0, 1fr)",
     gridAutoFlow: "column",
     gap: "calc(2 * var(--sl-spacing-medium))",
-
-    // "& > ::slotted(*)": {
-    //   boxSizing: "border-box",
-    //   flex: "1 1 0",
-    // },
-
-    // "& .left": {
-    //   boxSizing: "border-box",
-    //   width: "50%",
-    //   "@media (max-width: 499px)": {
-    //     width: "100%",
-    //   },
-    // },
-    // "& .right": {
-    //   boxSizing: "border-box",
-    //   width: "50%",
-    //   "@media (max-width: 499px)": {
-    //     width: "100%",
-    //   },
-    // },
 
     "@media (max-width: 499px)": {
       flexDirection: "column",
@@ -108,24 +87,9 @@ export function ReferralCardView(props: ReferralCardViewProps) {
           alignItems: props.verticalAlignment,
         }}
       >
-        {/* <div
-          class="left"
-          style={{
-            alignSelf: props.verticalAlignment,
-            width: onlyLeft ? "100%" : "",
-          }}
-        > */}
         {props.slots.left}
-        {/* </div>
-        <div
-          class="right"
-          style={{
-            alignSelf: props.verticalAlignment,
-            width: onlyRight ? "100%" : "",
-          }}
-        > */}
+
         {props.slots.right}
-        {/* </div> */}
       </div>
       <div class={sheet.classes.EndContainer}>{props.slots.footer}</div>
     </div>
