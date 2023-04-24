@@ -6,6 +6,7 @@ import { getProps } from "../../utils/utils";
 import { RewardStatusType, useCouponCode } from "./useCouponCode";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
+import { CouponCodeView, CouponCodeViewProps } from "./sqm-coupon-code-view";
 
 /**
  * @uiName Coupon Code
@@ -81,6 +82,14 @@ export class CouponCode {
   buttonStyle: "icon" | "button-outside" | "button-below" = "icon";
 
   /**
+   * @uiName Coupon code label
+   */
+  @Prop({
+    attribute: "coupon-code-label",
+  })
+  couponCodeLabel: string = "Your coupon code:";
+
+  /**
    * Display this message when the coupon code has been cancelled.
    *
    * @uiWidget textArea
@@ -92,6 +101,18 @@ export class CouponCode {
   })
   cancelledErrorText: string =
     "This code has been cancelled. Please reach out to the Support team for help resolving this issue.";
+
+  /**
+   * Display this message when the coupon code has already been redeemed.
+   *
+   * @uiWidget textArea
+   * @uiName Redeemed code error message
+   * @uiGroup Coupon code error
+   */
+  @Prop({
+    attribute: "redeemed-error-text",
+  })
+  redeemedErrorText: string = "Looks like you’ve already redeemed this code.";
 
   /**
    * Display this message when the coupon code has expired.
@@ -120,6 +141,19 @@ export class CouponCode {
     "We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue.";
 
   /**
+   * Display this message when the coupon code not available yet. Use the ICU message, {unpendDate}, to show the date the code will be available.
+   *
+   * @uiWidget textArea
+   * @uiName Code pending error message
+   * @uiGroup Coupon code error
+   */
+  @Prop({
+    attribute: "pending-error-text",
+  })
+  pendingErrorText: string =
+    "Your code will be available on {unpendDate}. Mark your calendar and come back then to redeem your reward!";
+
+  /**
    * Display this message when the code fails to load due to an unspecified error.
    *
    * @uiWidget textArea
@@ -141,13 +175,13 @@ export class CouponCode {
   @Prop({
     attribute: "coupon-code-placeholder",
   })
-  couponCodePlaceholder: string = "CODE ERROR";
+  couponCodePlaceholder: string = "...";
 
   /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<CopyTextViewProps>;
+  @Prop() demoData?: DemoData<CouponCodeViewProps>;
 
   constructor() {
     withHooks(this);
@@ -160,11 +194,11 @@ export class CouponCode {
       ? useDemoCouponCode(thisProps)
       : useCouponCode(thisProps);
 
-    return <CopyTextView {...props} />;
+    return <CouponCodeView {...props} />;
   }
 }
 
-function useDemoCouponCode(props: CouponCode): CopyTextViewProps {
+function useDemoCouponCode(props: CouponCode): CouponCodeViewProps {
   const [open, setOpen] = useState(false);
   const copyString = "THANKSJANE125uv125";
   return deepmerge(
@@ -176,6 +210,7 @@ function useDemoCouponCode(props: CouponCode): CopyTextViewProps {
       copyButtonLabel: props.copyButtonLabel,
       error: false,
       couponCodePlaceholder: props.couponCodePlaceholder,
+      couponCodeLabel: props.couponCodeLabel,
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility

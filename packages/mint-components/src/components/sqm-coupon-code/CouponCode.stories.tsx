@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
-import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
 import scenario from "./sqm-coupon-code.feature";
+import { CouponCodeView, CouponCodeViewProps } from "./sqm-coupon-code-view";
 
 export default {
   title: "Components/Coupon Code",
@@ -9,13 +9,14 @@ export default {
   },
 };
 
-const defaultProps: CopyTextViewProps = {
+const defaultProps: CouponCodeViewProps = {
   tooltiptext: "Copied to Clipboard",
   copyString: "THANKSJANE125uv125",
   open: false,
   copyButtonLabel: "Copy Coupon",
   inputPlaceholderText: "CODE ERROR",
-  error: true,
+  couponCodeLabel: "Your coupon code:",
+  error: false,
 };
 
 export const CouponCode = () => {
@@ -56,69 +57,63 @@ export const CopyButtonBelow = () => {
 };
 
 export const Loading = () => {
-  return <CopyTextView {...defaultProps} loading={true}></CopyTextView>;
+  return <CouponCodeView {...defaultProps} loading={true}></CouponCodeView>;
 };
 export const CopyButtonLoading = () => {
   return (
-    <CopyTextView
+    <CouponCodeView
       {...defaultProps}
       buttonStyle="button-outside"
       loading={true}
-    ></CopyTextView>
+    ></CouponCodeView>
   );
 };
 export const CopyButtonBelowLoading = () => {
   return (
-    <CopyTextView
+    <CouponCodeView
       {...defaultProps}
       buttonStyle="button-below"
       loading={true}
-    ></CopyTextView>
+    ></CouponCodeView>
   );
 };
 export const ErrorPending = () => {
   return (
-    <CopyTextView
+    <CouponCodeView
       {...defaultProps}
+      errorType="warning"
       error={true}
       errorText="Oops! Looks like we weren’t able to retrieve a code for you. Please try again later or contact support."
-    ></CopyTextView>
+    ></CouponCodeView>
   );
 };
 export const ErrorCancelled = () => {
   return (
-    <CopyTextView
+    <CouponCodeView
       {...defaultProps}
+      errorType="warning"
       error={true}
       errorText="Oops! Your coupon code is cancelled. Please try again later or contact support."
-    ></CopyTextView>
+    ></CouponCodeView>
   );
 };
 export const ErrorRedeemed = () => {
   return (
-    <CopyTextView
+    <CouponCodeView
       {...defaultProps}
+      errorType="success"
       error={true}
       errorText="Oops! Your coupon code has already been redeemed. Please try again later or contact support."
-    ></CopyTextView>
+    ></CouponCodeView>
   );
 };
 export const ErrorExpired = () => {
   return (
-    <CopyTextView
+    <CouponCodeView
       {...defaultProps}
+      errorType="warning"
       error={true}
       errorText="Oops! Your coupon code is expired. Please try again later or contact support."
-    ></CopyTextView>
-  );
-};
-export const ErrorButtonBelow = () => {
-  return (
-    <CopyTextView
-      {...defaultProps}
-      error={true}
-      errorText="Oops! Your coupon code is expired. Please try again later or contact support."
-      buttonStyle="button-below"
-    ></CopyTextView>
+    ></CouponCodeView>
   );
 };

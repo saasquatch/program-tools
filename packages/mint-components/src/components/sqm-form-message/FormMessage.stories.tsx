@@ -20,6 +20,14 @@ export const ErrorAlert = () => {
   );
 };
 
+export const WarningAlert = () => {
+  return (
+    <sqm-form-message type="warning">
+      <div>This is an error message</div>
+    </sqm-form-message>
+  );
+};
+
 export const InfoAlert = () => {
   return (
     <sqm-form-message type="info">
