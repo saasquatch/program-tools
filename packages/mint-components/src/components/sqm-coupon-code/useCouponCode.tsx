@@ -15,6 +15,8 @@ interface CouponCodeProps {
   cancelledErrorText: string;
   expiredErrorText: string;
   fullfillmentErrorText: string;
+  pendingErrorText: string;
+  redeemedErrorText: string;
   genericErrorText: string;
 }
 
@@ -127,10 +129,14 @@ export function useCouponCode(props: CouponCodeProps): CouponCodeViewProps {
         return props.cancelledErrorText;
       case "EXPIRED":
         return props.expiredErrorText;
-      case "AVAILABLE":
-        return "";
       case "EMPTY_TANK":
         return props.fullfillmentErrorText;
+      case "PENDING":
+        return props.pendingErrorText;
+      case "REDEEMED":
+        return props.redeemedErrorText;
+      case "AVAILABLE":
+        return "";
       default:
         return props.genericErrorText;
     }
@@ -138,10 +144,9 @@ export function useCouponCode(props: CouponCodeProps): CouponCodeViewProps {
   const getRewardStatusErrorType = (status: RewardStatusType) => {
     switch (status) {
       case "EXPIRED":
-        return "warning";
       case "EMPTY_TANK":
-        return "warning";
       case "CANCELLED":
+      case "ERROR":
         return "warning";
       case "PENDING":
         return "info";

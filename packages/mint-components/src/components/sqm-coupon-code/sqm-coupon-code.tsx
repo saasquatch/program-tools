@@ -143,7 +143,7 @@ export class CouponCode {
     attribute: "pending-error-text",
   })
   pendingErrorText: string =
-    "We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue.";
+    "Your code will be available on {unpendDate}. Mark your calendar and come back then to redeem your reward!";
 
   /**
    * Display this message when the code fails to load due to an unspecified error.
