@@ -12,7 +12,8 @@ import { useLogoutCurrentUser } from "./useLogoutCurrentUser";
 /**
  * @uiName Logout Current User
  * @exampleGroup Common Components
- * @example Logout Current User - <sqm-logout-current-user user-identification-text="Showing data for {email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
+ * @compatibility Built for instant access
+ * @example Logout Current User - <sqm-logout-current-user user-identification-text="{email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
  */
 @Component({
   tag: "sqm-logout-current-user",
@@ -29,6 +30,11 @@ export class LogoutCurrentUser {
    * @uiName Switch User Text
    */
   @Prop() switchUserText: string = "not you?";
+  /**
+   * @required
+   * @uiName Switch User Text
+   */
+  @Prop() switchUserLink: string = "#";
   /**
    * @undocumented
    * @uiType object

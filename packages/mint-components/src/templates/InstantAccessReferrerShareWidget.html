@@ -19,7 +19,11 @@
       gap="small"
       justify-content="center"
     >
-      <sqm-logout-current-user></sqm-logout-current-user>
+      <sqm-logout-current-user
+        user-identification-text="{email}"
+        switch-user-link="#"
+        switch-user-text="not you?"
+      ></sqm-logout-current-user>
       <sqm-portal-footer
         support-email="support@example.com"
         show-powered-by="true"
