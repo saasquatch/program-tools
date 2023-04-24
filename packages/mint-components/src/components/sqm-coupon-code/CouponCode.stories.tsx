@@ -77,13 +77,34 @@ export const CopyButtonBelowLoading = () => {
     ></CouponCodeView>
   );
 };
-export const ErrorPending = () => {
+
+export const ErrorGeneric = () => {
   return (
     <CouponCodeView
       {...defaultProps}
       errorType="warning"
       error={true}
-      errorText="Oops! Looks like we weren’t able to retrieve a code for you. Please try again later or contact support."
+      errorText="We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue."
+    ></CouponCodeView>
+  );
+};
+export const ErrorPending = () => {
+  return (
+    <CouponCodeView
+      {...defaultProps}
+      errorType="info"
+      error={true}
+      errorText="Your code will be available on April 24, 2023. Mark your calendar and come back then to redeem your reward!"
+    ></CouponCodeView>
+  );
+};
+export const ErrorFullfillment = () => {
+  return (
+    <CouponCodeView
+      {...defaultProps}
+      errorType="warning"
+      error={true}
+      errorText="We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue."
     ></CouponCodeView>
   );
 };
@@ -93,7 +114,18 @@ export const ErrorCancelled = () => {
       {...defaultProps}
       errorType="warning"
       error={true}
-      errorText="Oops! Your coupon code is cancelled. Please try again later or contact support."
+      errorText="This code has been cancelled. Please reach out to the Support team for help resolving this issue."
+    ></CouponCodeView>
+  );
+};
+
+export const ErrorExpired = () => {
+  return (
+    <CouponCodeView
+      {...defaultProps}
+      errorType="warning"
+      error={true}
+      errorText="Looks like this code has expired. Please reach out to the Support team for help resolving this issue."
     ></CouponCodeView>
   );
 };
@@ -103,17 +135,7 @@ export const ErrorRedeemed = () => {
       {...defaultProps}
       errorType="success"
       error={true}
-      errorText="Oops! Your coupon code has already been redeemed. Please try again later or contact support."
-    ></CouponCodeView>
-  );
-};
-export const ErrorExpired = () => {
-  return (
-    <CouponCodeView
-      {...defaultProps}
-      errorType="warning"
-      error={true}
-      errorText="Oops! Your coupon code is expired. Please try again later or contact support."
+      errorText="Looks like you’ve already redeemed this code."
     ></CouponCodeView>
   );
 };
