@@ -33,26 +33,30 @@ const style = {
   },
   ColumnContainer: {
     "& p": { margin: "0" },
-    display: "flex",
-    columnGap: "calc(2 * var(--sl-spacing-medium))",
+    display: "grid",
+    gridAutoColumns: "minmax(0, 1fr)",
+    gridAutoFlow: "column",
+    gap: "calc(2 * var(--sl-spacing-medium))",
 
-    "& .left": {
-      boxSizing: "border-box",
-      width: "50%",
-      "@media (max-width: 499px)": {
-        width: "100%",
-        // padding: "0",
-        // marginBottom: "var(--sl-spacing-large)",
-      },
-    },
-    "& .right": {
-      boxSizing: "border-box",
-      width: "50%",
-      "@media (max-width: 499px)": {
-        width: "100%",
-        // padding: "0",
-      },
-    },
+    // "& > ::slotted(*)": {
+    //   boxSizing: "border-box",
+    //   flex: "1 1 0",
+    // },
+
+    // "& .left": {
+    //   boxSizing: "border-box",
+    //   width: "50%",
+    //   "@media (max-width: 499px)": {
+    //     width: "100%",
+    //   },
+    // },
+    // "& .right": {
+    //   boxSizing: "border-box",
+    //   width: "50%",
+    //   "@media (max-width: 499px)": {
+    //     width: "100%",
+    //   },
+    // },
 
     "@media (max-width: 499px)": {
       flexDirection: "column",
@@ -71,6 +75,12 @@ const vanillaStyle = `
   `;
 
 export function ReferralCardView(props: ReferralCardViewProps) {
+  const onlyLeft = props.slots.left && !props.slots.right;
+  const onlyRight = props.slots.left && !props.slots.right;
+
+  console.log("left", props.slots.left);
+  console.log("right", props.slots.right);
+
   return (
     <div
       part="sqm-base"
@@ -91,23 +101,31 @@ export function ReferralCardView(props: ReferralCardViewProps) {
         {vanillaStyle}
       </style>
       <div class={sheet.classes.EndContainer}>{props.slots.header}</div>
-      <div part="sqm-column-container" class={sheet.classes.ColumnContainer}>
-        <div
+      <div
+        part="sqm-column-container"
+        class={sheet.classes.ColumnContainer}
+        style={{
+          alignItems: props.verticalAlignment,
+        }}
+      >
+        {/* <div
           class="left"
           style={{
             alignSelf: props.verticalAlignment,
+            width: onlyLeft ? "100%" : "",
           }}
-        >
-          {props.slots.left}
-        </div>
+        > */}
+        {props.slots.left}
+        {/* </div>
         <div
           class="right"
           style={{
             alignSelf: props.verticalAlignment,
+            width: onlyRight ? "100%" : "",
           }}
-        >
-          {props.slots.right}
-        </div>
+        > */}
+        {props.slots.right}
+        {/* </div> */}
       </div>
       <div class={sheet.classes.EndContainer}>{props.slots.footer}</div>
     </div>

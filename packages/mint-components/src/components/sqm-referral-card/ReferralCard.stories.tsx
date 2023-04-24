@@ -125,6 +125,14 @@ export const FlippedSlots = () => {
   );
 };
 
+export const NoLeft = () => {
+  return <sqm-referral-card>{timeline("right", 3)}</sqm-referral-card>;
+};
+
+export const NoRight = () => {
+  return <sqm-referral-card>{sharebutton("left")}</sqm-referral-card>;
+};
+
 export const WithHeader = () => {
   return (
     <sqm-referral-card>
