@@ -23,7 +23,6 @@ const styleString = sheet.toString();
 
 export function CouponCodeView(props: CouponCodeViewProps) {
   const error = !props.loading && props.error;
-
   return (
     <div>
       <style type="text/css">

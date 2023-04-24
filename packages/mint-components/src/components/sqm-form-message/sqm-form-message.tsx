@@ -67,7 +67,7 @@ export class FormMessage {
         <sl-alert
           exportparts="base: warningalert-base, icon:warningalert-icon"
           class="Warning"
-          type="primary"
+          type="warning"
           open
         >
           <sl-icon
