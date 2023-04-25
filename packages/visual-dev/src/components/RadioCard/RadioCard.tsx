@@ -58,7 +58,6 @@ const RadioLabel = styled.label<RadioLabelProps>`
   ${(props) => props.customCSS && props.customCSS}
   ${(props) =>
     props.isChecked &&
-    !props.disabled &&
     "border-color: var(--sq-action-primary-hovered); & * {border-color: var(--sq-action-primary-hovered);}"}
 
 ${(props) =>
