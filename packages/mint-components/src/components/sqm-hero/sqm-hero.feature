@@ -1,3 +1,6 @@
+@author:noah
+@owner:noah
+
 Feature: Hero Unit
 
     Background: A portal with a hero unit exists
