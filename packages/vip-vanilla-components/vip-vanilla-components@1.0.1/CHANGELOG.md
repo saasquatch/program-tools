@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Clone of `@samsquatch/vanilla-components@`1.0.31`
+- Clone of `@samsquatch/vanilla-components@1.0.31`
 - Default version for VIP widgets
 
 ## [1.0.0] - 2023-04-25
@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Initial release with updated license
-  - Clone of `@samsquatch/vanilla-components@`1.0.16`
+  - Clone of `@samsquatch/vanilla-components@1.0.16`
   - For use on Vacay's Demo site
 
 [unreleased]: https://github.com/saasquatch/program-tools/compare/vip-vanilla-components@1.0.1...HEAD
