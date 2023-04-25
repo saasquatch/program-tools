@@ -73,9 +73,6 @@ ${(props) =>
       & * {
         color: var(--sq-text-subdued);
       }
-      &:hover {
-        border: 2px solid transparent;
-      }
     `}
 ${(props) => props.customCSS}
 `;
