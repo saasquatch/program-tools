@@ -5,7 +5,7 @@ Feature: Coupon Code
     The coupon code component is a box that allows users to see and copy their coupon code for a given program
 
     @motivating
-    Scenario: A Users sharelink can be copied to their clipboard
+    Scenario: A Users coupon code can be copied to their clipboard
         Given tooltipText is "hello tooltip"
         When the component renders
         Then there is a textbox with the user's coupon code
@@ -31,33 +31,17 @@ Feature: Coupon Code
         And the reward has most recent status <status>
         And the dateScheduledFor field is <dateScheduledFor>
         Then the component's status is set to <componentStatus>
+        And the <errorMessageTextProp> is displayed under the input field
 
         Examples:
-            | status    | dateScheduledFor | componentStatus |
-            | AVAILABLE | null             | AVAILABLE       |
-            | EXPIRED   | null             | EXPIRED         |
-            | REDEEMED  | null             | REDEEMED        |
-            | CANCELLED | null             | CANCELLED       |
-            | PENDING   | null             | EMPTY_TANK      |
-            | PENDING   | 123412341234     | PENDING         |
-            | null      | null             | ERROR           |
-
-    @motivating
-    Scenario Outline: Component displays a error message text prop depending on reward status
-        Given the component has the internal reward status <status>
-        When the component is loaded
-        Then the <errorMessageTextProp> is displayed under the input field
-
-        Examples:
-            | status     | errorMessageTextProp  |
-            | AVAILABLE  | availableMessage      |
-            | EXPIRED    | expiredErrorMessage   |
-            | REDEEMED   | redeemedMessage       |
-            | CANCELLED  | cancelledErrorMessage |
-            | EMPTY_TANK | emptyTankErrorMessage |
-            | PENDING    | pendingErrorMessage   |
-            | ERROR      | genericErrorMessage   |
-
+            | status    | dateScheduledFor | componentStatus | errorMessageTextProp     |
+            | AVAILABLE | null             | AVAILABLE       | N/A                      |
+            | EXPIRED   | null             | EXPIRED         | expiredErrorMessage      |
+            | REDEEMED  | null             | REDEEMED        | redeemedMessage          |
+            | CANCELLED | null             | CANCELLED       | cancelledErrorMessage    |
+            | PENDING   | null             | EMPTY_TANK      | fullfillmentErrorMessage |
+            | PENDING   | 123412341234     | PENDING         | pendingErrorMessage      |
+            | null      | null             | ERROR           | genericErrorMessage      |
 
     @minutia
     Scenario: Tooltip lifespan defaults to 2000
@@ -98,6 +82,7 @@ Feature: Coupon Code
             | option | position |
             | left   | left     |
             | center | center   |
+            | right  | right    |
 
     @ui
     Scenario Outline: The position of the copy button can be changed

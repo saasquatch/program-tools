@@ -49,11 +49,12 @@ Feature: Referral Card
 	Scenario Outline: Container border can be toggled
 		Given a user is viewing the Referral Card component
 		And the prop "remove-border" has <value>
-		Then the referral card component <maybe> includes a border
+		Then the referral card component's border <maybe> removed
 		Examples:
-			| value | maybe    |
-			| true  | does     |
-			| false | does not |
+			| value            | maybe |
+			| true             | is    |
+			| false            | isn't |
+			| empty (no value) | is    |
 
 	@motivating
 	@ui
