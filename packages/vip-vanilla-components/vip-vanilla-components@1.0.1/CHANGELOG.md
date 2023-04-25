@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial release
+- Initial release with updated license
   - Clone of `@samsquatch/vanilla-components@`1.0.16`
   - For use on Vacay's Demo site
 
