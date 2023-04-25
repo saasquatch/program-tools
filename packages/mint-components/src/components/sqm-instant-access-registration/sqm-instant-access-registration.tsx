@@ -106,18 +106,18 @@ export class InstantAccessRegistration {
   @Prop() paddingLeft: string = "large";
 
   /**
-   * @undocumented
-   * @uiType object
-   */
-  @Prop() demoData?: DemoData<EmailRegistrationViewProps>;
-
-  /**
    * @uiName Background color
    * @uiWidget color
    * @uiGroup Card style
    * @uiType string
    */
   @Prop() backgroundColor: string = "#ffffff";
+
+  /**
+   * @undocumented
+   * @uiType object
+   */
+  @Prop() demoData?: DemoData<EmailRegistrationViewProps>;
 
   constructor() {
     withHooks(this);

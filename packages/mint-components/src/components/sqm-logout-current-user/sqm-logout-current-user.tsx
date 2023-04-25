@@ -27,12 +27,12 @@ export class LogoutCurrentUser {
   @Prop() userIdentificationText: string = "{email}";
   /**
    * @required
-   * @uiName Switch User Text
+   * @uiName Switch user button label
    */
   @Prop() switchUserText: string = "not you?";
   /**
    * @required
-   * @uiName Switch User Text
+   * @uiName Switch user button link
    */
   @Prop() switchUserLink: string = "#";
   /**

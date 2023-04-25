@@ -790,12 +790,12 @@ export namespace Components {
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
           * @required 
-          * @uiName Switch User Text
+          * @uiName Switch user button link
          */
         "switchUserLink": string;
         /**
           * @required 
-          * @uiName Switch User Text
+          * @uiName Switch user button label
          */
         "switchUserText": string;
         /**
@@ -1836,6 +1836,7 @@ export namespace Components {
         /**
           * @uiName Background color
           * @uiWidget color
+          * @uiGroup Card style
           * @uiType string
          */
         "backgroundColor": string;
@@ -1853,11 +1854,12 @@ export namespace Components {
          */
         "firstNameLabel": string;
         /**
+          * Require your participants to enter their first and last name.
           * @uiName Include name fields
          */
         "includeName": boolean;
         /**
-          * The message to be displayed when the email used is invalid or blocked.
+          * Display this message when the given email is invalid or blocked.
           * @uiName Invalid Email Message
           * @uiWidget textArea
          */
@@ -1867,29 +1869,29 @@ export namespace Components {
          */
         "lastNameLabel": string;
         /**
-          * @uiName Padding Bottom
-          * @uiGroup Padding
+          * @uiName Bottom padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom": string;
         /**
-          * @uiName Padding Left
-          * @uiGroup Padding
+          * @uiName Left padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft": string;
         /**
-          * @uiName Padding Right
-          * @uiGroup Padding
+          * @uiName Right padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight": string;
         /**
-          * @uiName Padding Top
-          * @uiGroup Padding
+          * @uiName Top padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -1900,10 +1902,11 @@ export namespace Components {
         "registerLabel": string;
         /**
           * @uiName Remove the border
+          * @uiGroup Card style
          */
         "removeBorder": boolean;
         /**
-          * The message to be displayed when a required field is not filled.
+          * Display this message when a required field has not been filled out.
           * @uiName Required Field Message
           * @uiWidget textArea
          */
@@ -4192,12 +4195,12 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
           * @required 
-          * @uiName Switch User Text
+          * @uiName Switch user button link
          */
         "switchUserLink"?: string;
         /**
           * @required 
-          * @uiName Switch User Text
+          * @uiName Switch user button label
          */
         "switchUserText"?: string;
         /**
@@ -5224,6 +5227,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Background color
           * @uiWidget color
+          * @uiGroup Card style
           * @uiType string
          */
         "backgroundColor"?: string;
@@ -5241,11 +5245,12 @@ declare namespace LocalJSX {
          */
         "firstNameLabel"?: string;
         /**
+          * Require your participants to enter their first and last name.
           * @uiName Include name fields
          */
         "includeName"?: boolean;
         /**
-          * The message to be displayed when the email used is invalid or blocked.
+          * Display this message when the given email is invalid or blocked.
           * @uiName Invalid Email Message
           * @uiWidget textArea
          */
@@ -5255,29 +5260,29 @@ declare namespace LocalJSX {
          */
         "lastNameLabel"?: string;
         /**
-          * @uiName Padding Bottom
-          * @uiGroup Padding
+          * @uiName Bottom padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom"?: string;
         /**
-          * @uiName Padding Left
-          * @uiGroup Padding
+          * @uiName Left padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft"?: string;
         /**
-          * @uiName Padding Right
-          * @uiGroup Padding
+          * @uiName Right padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight"?: string;
         /**
-          * @uiName Padding Top
-          * @uiGroup Padding
+          * @uiName Top padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -5288,10 +5293,11 @@ declare namespace LocalJSX {
         "registerLabel"?: string;
         /**
           * @uiName Remove the border
+          * @uiGroup Card style
          */
         "removeBorder"?: boolean;
         /**
-          * The message to be displayed when a required field is not filled.
+          * Display this message when a required field has not been filled out.
           * @uiName Required Field Message
           * @uiWidget textArea
          */
