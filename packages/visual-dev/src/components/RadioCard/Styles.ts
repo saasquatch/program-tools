@@ -18,6 +18,9 @@ export const RadioLabelStyle = css`
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
   background-color: var(--sq-surface);
+  & * {
+    border-color: var(--sq-border);
+  }
 `;
 
 export const RadioGridStyle = css`
@@ -28,10 +31,6 @@ export const RadioGridStyle = css`
 
 export const RadioInputStyle = css`
   display: none;
-
-  &:checked + div {
-    border-color: var(--sq-action-primary);
-  }
 
   &:checked + div::after {
     transform: scale(1);
@@ -79,7 +78,8 @@ export const LeftSegmentStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-right: 1px solid var(--sq-border);
+  border-right-width: 1px;
+  border-right-style: solid;
 `;
 
 export const TitleContainerStyle = css`

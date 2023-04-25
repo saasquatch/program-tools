@@ -57,9 +57,14 @@ const RadioLabel = styled.label<RadioLabelProps>`
   ${Styles.RadioLabelStyle}
   ${(props) => props.customCSS && props.customCSS}
   ${(props) =>
-    props.isChecked && !props.disabled
-      ? "border: 2px solid var(--sq-action-primary-hovered);"
-      : "&:hover {border: 2px solid var(--sq-text-subdued);}"}
+    props.isChecked &&
+    !props.disabled &&
+    "border-color: var(--sq-action-primary-hovered); & * {border-color: var(--sq-action-primary-hovered);}"}
+
+${(props) =>
+    !props.isChecked &&
+    !props.disabled &&
+    "&:hover {border-color: var(--sq-text-subdued);}; &:hover * {border-color: var(--sq-text-subdued);}"}
 
     ${(props) =>
     props.disabled &&
@@ -88,10 +93,12 @@ const RadioTextDiv = styled.div`
   ${Styles.RadioTextStyle}
 `;
 
-const LeftSegmentDiv = styled.div<{ isChecked: boolean }>`
+const LeftSegmentDiv = styled.div<{ isChecked: boolean; disabled: boolean }>`
   ${Styles.LeftSegmentStyle}
   ${(props) =>
-    props.isChecked ? "color: var(--sq-action-primary-hovered);" : ""}
+    props.isChecked &&
+    !props.disabled &&
+    "color: var(--sq-action-primary-hovered);"}
 `;
 
 const RadioGridDiv = styled.div`
@@ -140,7 +147,7 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
           ref={forwardedRef}
         />
         {icon && (
-          <LeftSegmentDiv isChecked={selected}>
+          <LeftSegmentDiv isChecked={selected} disabled={disabled}>
             <IconView icon={icon} size="40px" color={icon_color} />
           </LeftSegmentDiv>
         )}
