@@ -12,7 +12,6 @@ const style = {
     fontSize: "24px",
     cursor: "pointer",
     position: "absolute",
-    top: "var(--sl-spacing-medium)",
     right: "var(--sl-spacing-medium)",
   },
 };
