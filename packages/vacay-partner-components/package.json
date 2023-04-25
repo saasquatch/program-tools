@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/vacay-partner-components",
-  "version": "1.0.0-0",
+  "version": "1.0.0",
   "description": "Partner Vanilla component library for the SaaSquatch platform",
   "main": "dist/index.js",
   "types": "dist/types/components.d.ts",
