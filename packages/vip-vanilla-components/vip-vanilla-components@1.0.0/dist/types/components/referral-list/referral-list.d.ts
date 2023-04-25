@@ -1,0 +1,38 @@
+import '../../stencil.core';
+export declare class ReferralList {
+    ishidden: boolean;
+    paginatemore: string;
+    paginateless: string;
+    noreferralsyet: string;
+    referralnamecolor: string;
+    referraltextcolor: string;
+    unknownuser: string;
+    showreferrer: boolean;
+    referrercontent: string;
+    referrervalue: string;
+    rewardcolor: string;
+    usefirstreward: boolean;
+    convertedcontent: string;
+    valuecontent: string;
+    pendingcolor: string;
+    pendingcontent: string;
+    pendingvalue: string;
+    expiredcolor: string;
+    expiredcontent: string;
+    expiredvalue: string;
+    cancelledcolor: string;
+    cancelledcontent: string;
+    cancelledvalue: string;
+    referrals: Referral[];
+    referralsCount: number;
+    referredBy: any;
+    rewards: Array<any>;
+    loading: boolean;
+    offset: number;
+    constructor();
+    componentWillLoad(): any;
+    getReferrals(offset?: number): any;
+    paginate(offset: any, event: any): any;
+    onError(e: Error): void;
+    render(): JSX.Element;
+}
