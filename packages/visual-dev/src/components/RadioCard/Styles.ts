@@ -37,29 +37,6 @@ export const RadioInputStyle = css`
   }
 `;
 
-export const RadioButtonStyle = css`
-  margin-top: 2.5px;
-  width: 14px;
-  height: 14px;
-  border: 1.5px solid var(--sq-text);
-  border-radius: 50%;
-  margin-right: var(--sq-spacing-large);
-  box-sizing: border-box;
-  padding: 1.5px;
-  flex-shrink: 0;
-
-  &::after {
-    content: "";
-    width: 8px;
-    height: 8px;
-    display: block;
-    background: var(--sq-action-primary);
-    border-radius: 100%;
-    transform: scale(0);
-    transition: transform 0.15s;
-  }
-`;
-
 export const RadioTextStyle = css`
   flex-direction: column;
   padding: var(--sq-spacing-large);
