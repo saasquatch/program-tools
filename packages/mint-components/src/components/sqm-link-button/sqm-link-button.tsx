@@ -23,7 +23,11 @@ export class LinkButton {
   @Prop() openInNewTab: boolean = false;
 
   render() {
-    return <LinkButtonView {...getProps(this)} />;
+    return (
+      <LinkButtonView {...getProps(this)}>
+        <slot />
+      </LinkButtonView>
+    );
   }
 }
 
