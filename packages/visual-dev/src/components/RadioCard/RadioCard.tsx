@@ -70,7 +70,7 @@ ${(props) =>
     css`
       cursor: default;
       background-color: var(--sq-border);
-      & * {
+      & ${RightSegmentDiv} {
         color: var(--sq-text-subdued);
       }
     `}
@@ -89,12 +89,9 @@ const RadioTextDiv = styled.div`
   ${Styles.RadioTextStyle}
 `;
 
-const LeftSegmentDiv = styled.div<{ isChecked: boolean; disabled: boolean }>`
+const LeftSegmentDiv = styled.div<{ isChecked: boolean }>`
   ${Styles.LeftSegmentStyle}
-  ${(props) =>
-    props.isChecked &&
-    !props.disabled &&
-    "color: var(--sq-action-primary-hovered);"}
+  ${(props) => props.isChecked && "color: var(--sq-action-primary-hovered);"}
 `;
 
 const RadioGridDiv = styled.div`
@@ -143,7 +140,7 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
           ref={forwardedRef}
         />
         {icon && (
-          <LeftSegmentDiv isChecked={selected} disabled={disabled}>
+          <LeftSegmentDiv isChecked={selected}>
             <IconView icon={icon} size="40px" color={icon_color} />
           </LeftSegmentDiv>
         )}
