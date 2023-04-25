@@ -7,44 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.2.6] - 2023-04-20
+## [1.0.0] - 2023-04-25
 
-### Changed
-- Updated license copyright to be in line with SaaSquatch open-source policy.
+### Added
 
-## [1.2.5] - 2022-09-28
+- Initial release
+  - Clone of `@samsquatch/vanilla-components@`1.0.16`
+  - For use on Vacay's Demo site
 
-### Changed
-
-- Added "Mobile and Desktop" and "Desktop Only" options to WhatsApp share buttons
-- Changed component:
-  -\<sqh-share-button-container>
-
-## [1.2.4] - 2022-06-08
-
-### Changed
-
-- Added [jsDocs](https://jsdoc.app/) to the following components to improve the editability experience in our new Raisins widget editor.
-- Changed components:
-  - \<sqh-close-button>
-  - \<sqh-copy-button>
-  - \<sqh-copy-link-button>
-  - \<sqh-global-container>
-  - \<sqh-image-component>
-  - \<sqh-partner-stat-component>
-  - \<sqh-referral-code>
-  - \<sqh-referral-list>
-  - \<sqh-reward-actions>
-  - \<sqh-share-button-container>
-  - \<sqh-stat-component>
-  - \<sqh-stats-container>
-  - \<sqh-text-component>
-
-## [1.2.3] - 2022-03-22
-
-### Changed
-
-- \<sqh-referral-list> show-referrer prop now prevents referrer from being queried when set to "false"
-
-[unreleased]: https://github.com/saasquatch/program-tools/compare/vanilla-components@1.2.6...HEAD
-[1.2.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.6
+[unreleased]: https://github.com/saasquatch/program-tools/compare/vip-vanilla-components@1.0.0...HEAD
+[1.0.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvip-vanilla-components%401.0.0
