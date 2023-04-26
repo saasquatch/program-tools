@@ -6,60 +6,49 @@
   secondary-background="#FEFDFF"
   slot
 >
-  <sqm-portal-container
+  <sqm-referral-card
+    vertical-alignment="start"
+    padding-bottom="small"
+    padding-left="x-large"
+    padding-right="x-large"
+    padding-top="small"
     slot="secondary-column"
-    direction="column"
-    padding="none"
-    gap="xx-large"
-    max-width="770px"
-    center
-    display="grid"
   >
-    <sqm-referral-card
-      vertical-alignment="start"
-      padding-bottom="small"
-      padding-left="x-large"
-      padding-right="x-large"
-      padding-top="small"
+    <sqm-portal-container
+      gap="large"
+      direction="column"
+      display="flex"
+      justify-content="center"
+      max-width="100%"
+      padding="none"
+      slot="header"
     >
-      <sqm-portal-container
-        gap="large"
-        direction="column"
-        display="flex"
-        justify-content="center"
-        max-width="100%"
+      <sqm-titled-section
+        text-align="center"
+        label-margin="xxx-small"
         padding="none"
-        slot="header"
       >
-        <sqm-titled-section
-          text-align="center"
-          label-margin="xxx-small"
-          padding="none"
-        >
-          <h1 slot="label">You got &#x24;50 off thanks to a friend!</h1>
-          <p slot="content">
-            <span>
-              Use this reward to get &#x24;50 off your next purchase.
-            </span>
-          </p>
-        </sqm-titled-section>
+        <h1 slot="label">You got &#x24;50 off thanks to a friend!</h1>
+        <p slot="content">
+          <span> Use this reward to get &#x24;50 off your next purchase. </span>
+        </p>
+      </sqm-titled-section>
 
-        <sqm-coupon-code copy-button-style="button-outside"></sqm-coupon-code>
-      </sqm-portal-container>
+      <sqm-coupon-code copy-button-style="button-outside"></sqm-coupon-code>
+    </sqm-portal-container>
 
-      <sqm-portal-footer
-        slot="footer"
-        terms-link="https://example.com"
-        terms-text="Terms And Conditions"
-        show-powered-by="true"
-        padding-bottom="none"
-        padding-left="none"
-        padding-right="none"
-        padding-top="none"
-        hide-support-text
-        terms-text="Terms & Conditions"
-        terms-link="https://example.com"
-      ></sqm-portal-footer>
-    </sqm-referral-card>
-  </sqm-portal-container>
+    <sqm-portal-footer
+      slot="footer"
+      terms-link="https://example.com"
+      terms-text="Terms And Conditions"
+      show-powered-by="true"
+      padding-bottom="none"
+      padding-left="none"
+      padding-right="none"
+      padding-top="none"
+      hide-support-text
+      terms-text="Terms & Conditions"
+      terms-link="https://example.com"
+    ></sqm-portal-footer>
+  </sqm-referral-card>
 </sqm-hero>

@@ -13,7 +13,7 @@ import { useInstantAccessRegistration } from "./useInstantAccessRegistration";
 /**
  * @uiName Instant Access Registration
  * @compatibility Built for instant access
- * @slots [{"name":"top-slot","title":"Top Content"},{"name":"bottom-slot","title":"Bottom Content"}]
+ * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
  */
 @Component({
   tag: "sqm-instant-access-registration",
@@ -146,8 +146,8 @@ export class InstantAccessRegistration {
       backgroundColor: this.backgroundColor,
 
       // slots
-      topSlot: <slot name="top-slot" />,
-      bottomSlot: <slot name="bottom-slot" />,
+      topSlot: <slot name="top" />,
+      bottomSlot: <slot name="bottom" />,
     };
     return (
       <EmailRegistrationView
