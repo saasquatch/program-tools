@@ -27,14 +27,14 @@ export class TaskCard {
   ignored = true;
 
   /**
-   * @uiName Reward Amount
+   * @uiName Reward amount
    * @uiGroup Reward
    */
   @Prop()
   rewardAmount: string = "0";
 
   /**
-   * @uiName Reward Unit
+   * @uiName Reward unit
    * @uiGroup Reward
    */
   @Prop()
@@ -55,7 +55,7 @@ export class TaskCard {
   description: string = "";
 
   /**
-   * @uiName Goal Repeatable
+   * @uiName Goal repeatable
    * @uiGroup Goal
    * @default
    */
@@ -65,14 +65,14 @@ export class TaskCard {
   /**
    * The number of times a task can be completed when repeatable.  Use zero for no limit (the default).
    *
-   * @uiName Repeat Amount
+   * @uiName Repeat amount
    * @uiGroup Reward
    */
   @Prop()
   finite: number = 0;
 
   /**
-   * @uiName Show Progress Bar
+   * @uiName Show progress bar
    * @uiGroup Goal
    * @default
    */
@@ -82,14 +82,14 @@ export class TaskCard {
   /**
    * Sets the goal for users progress to know when a task has been completed. If repeatable is checked, repeatable goals is an increment of this.
    *
-   * @uiName Goal Completion Number
+   * @uiName Goal completion number
    * @uiGroup Goal
    */
   @Prop()
   goal: number = 1;
 
   /**
-   * @uiName Progress Bar Steps
+   * @uiName Progress bar steps
    * @uiGroup Goal
    * @default
    */
@@ -99,7 +99,7 @@ export class TaskCard {
   /**
    * The unit displayed to the right of steps and progress numbers on the progress bar. Ex: $ for dollars
    *
-   * @uiName Progress Bar Unit
+   * @uiName Progress bar unit
    * @uiGroup Goal
    */
   @Prop()
@@ -108,7 +108,7 @@ export class TaskCard {
   /**
    * Displayed when a user views a task card after the reward duration interval.
    *
-   * @uiName Expiry Date Message
+   * @uiName Expiry date message
    * @uiGroup Task
    */
   @Prop() expiryMessage: string = "Ends {endDate}";
@@ -116,7 +116,7 @@ export class TaskCard {
   /**
    * Task cards are disabled to users outside of the duration. They are not disabled if no duration is configured.
    *
-   * @uiName Reward Duration
+   * @uiName Reward duration
    * @uiWidget dateRange
    * @uiWidgetOptions {"allowPastDates":true, "months": 1}
    * @uiGroup Reward
@@ -126,7 +126,7 @@ export class TaskCard {
   /**
    * Shown to users before the start of the task duration.
    *
-   * @uiName Start Date Message
+   * @uiName Start date message
    * @uiGroup Task
    */
   @Prop() startsOnMessage: string = "Starts {startDate}";
@@ -134,7 +134,7 @@ export class TaskCard {
   /**
    * Task cards are hidden from users outside of the duration. They are always displayed if no duration is configured.
    *
-   * @uiName Display Duration
+   * @uiName Display duration
    * @uiWidget dateRange
    * @uiWidgetOptions {"allowPastDates":true, "months": 1}
    * @uiGroup Task
@@ -144,7 +144,7 @@ export class TaskCard {
   /**
    * Shown to users after the end of the task duration.
    *
-   * @uiName Ended Date Message
+   * @uiName Ended date message
    * @uiGroup Task
    */
   @Prop() endedMessage: string = "Ended {endDate}";
@@ -152,7 +152,7 @@ export class TaskCard {
   /**
    * Displays the amount of times that a user has completed a repeatable task.
    *
-   * @uiName Completed Count Text
+   * @uiName Completed count text
    * @uiGroup Task
    * @uiWidget textArea
    */
@@ -160,22 +160,22 @@ export class TaskCard {
     "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}";
 
   /**
-   * @uiName Button Text
+   * @uiName Button text
    * @uiGroup Button
    */
   @Prop()
   buttonText: string = "Complete Action";
 
   /**
-   * @uiName Button Link
+   * @uiName Button link
    * @uiGroup Button
    */
   @Prop()
   buttonLink: string;
 
   /**
-   * Button Link Opens in New Tab
-   * @uiName Open In New Tab
+   * Button link opens in new tab
+   * @uiName Open in new tab
    * @uiGroup Button
    * @default
    */
@@ -185,7 +185,7 @@ export class TaskCard {
   /**
    * Select what type of stat to display for the goal. Manual paths are also supported.
    *
-   * @uiName Goal Progress Source
+   * @uiName Goal progress source
    * @required
    * @minLength 1
    * @uiWidget statTypeSelectWidget
@@ -198,7 +198,7 @@ export class TaskCard {
   /**
    * Optionally send an event to SaaSquatch when a user clicks the button. Enter your event key into this field.
    *
-   * @uiName Task Card Button Event Key
+   * @uiName Task card button event key
    * @uiGroup Button
    */
   @Prop() eventKey?: string;
@@ -206,7 +206,7 @@ export class TaskCard {
   /**
    * The ID of the program that is used to scope the task card. When no ID is specified, it defaults to the program context in which the component is rendered.
    *
-   * @uiName Program ID Override
+   * @uiName Program ID override
    * @uiWidget programSelector
    * @uiGroup Goal
    */

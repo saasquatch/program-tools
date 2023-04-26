@@ -28,7 +28,7 @@ export class ShareLink {
   /**
    * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
    *
-   * @uiName Tooltip Text
+   * @uiName Tooltip text
    */
   @Prop({
     attribute: "tooltip-text",
@@ -38,7 +38,7 @@ export class ShareLink {
   /**
    * The number of milliseconds that the tooltip appears for
    *
-   * @uiName Tooltip Lifespan
+   * @uiName Tooltip lifespan
    */
   @Prop({
     attribute: "tooltip-lifespan",

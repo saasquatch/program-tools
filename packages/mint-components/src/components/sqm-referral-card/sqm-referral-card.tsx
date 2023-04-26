@@ -19,7 +19,7 @@ export class ReferralCard {
   ignored = true;
 
   /**
-   * @uiName Vertical aligment
+   * @uiName Vertical alignment
    * @uiType string
    * @uiEnum ["start", "center", "end"]
    * @uiEnumNames ["Top", "Center", "Bottom"]

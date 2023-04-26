@@ -23,7 +23,7 @@ export class TitledSection {
   @Prop() label: string;
 
   /**
-   * @uiName Text Alignment
+   * @uiName Text alignment
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
@@ -33,7 +33,7 @@ export class TitledSection {
   /**
    * Margin applied to the bottom of the label slot
    *
-   * @uiName Label Bottom Margin
+   * @uiName Label bottom margin
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
@@ -42,7 +42,7 @@ export class TitledSection {
   /**
    * Padding applied to all 4 sides of the container
    *
-   * @uiName Section Padding
+   * @uiName Section padding
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]

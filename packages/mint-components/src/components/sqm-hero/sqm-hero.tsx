@@ -26,7 +26,7 @@ export class Hero {
   /**
    * Minimum height of each column including when they are stacked on mobile
    *
-   * @uiName Mininum Height (in px)
+   * @uiName Mininum height (in px)
    */
   @Prop() minHeight: number = 200;
 
@@ -38,7 +38,7 @@ export class Hero {
   @Prop() background?: string = "var(--sl-color-gray-50)";
 
   /**
-   * @uiName Padding Size
+   * @uiName Padding size
    * @uiEnum ["none", "small", "medium","large"]
    * @uiEnumNames ["None", "Small", "Medium", "Large"]
    */
@@ -47,14 +47,14 @@ export class Hero {
   /**
    * Secondary background image or color (for use in the right column)
    *
-   * @uiName Secondary Background
+   * @uiName Secondary background
    */
   @Prop() secondaryBackground?: string;
 
   /**
    * Flexbox wrap direction, accepts wrap or wrap-reverse
    *
-   * @uiName Wrap Direction
+   * @uiName Wrap direction
    * @uiEnum ["wrap", "wrap-reverse"]
    * @uiEnumNames ["Wrap", "Wrap Reverse"]
    */

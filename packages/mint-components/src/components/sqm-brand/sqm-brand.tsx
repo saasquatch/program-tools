@@ -18,7 +18,7 @@ export class BrandComponent {
   /**
    * Controls the primary brand color used in the Mint Components library.
    *
-   * @uiName Brand Color
+   * @uiName Brand color
    * @uiWidget color
    * @format color
    */
@@ -27,7 +27,7 @@ export class BrandComponent {
   /**
    * A font from the Google Fonts library used throughout the widget. This value is case sensitive.
    *
-   * @uiName Brand Font
+   * @uiName Brand font
    * @default "Nunito Sans"
    */
   @Prop() brandFont: string;

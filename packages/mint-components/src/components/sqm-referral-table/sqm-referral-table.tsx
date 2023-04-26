@@ -40,23 +40,23 @@ export class ReferralTable {
   /**
    * Number of referrals displayed per page
    *
-   * @uiName Referrals Per Page
+   * @uiName Referrals per page
    */
   @Prop() perPage: number = 4;
 
-  /** @uiName Hide Column Labels */
+  /** @uiName Hide column labels */
   @Prop() hideLabels?: boolean = false;
 
-  /** @uiName Previous Button Text  */
+  /** @uiName Previous button text  */
   @Prop() prevLabel?: string = "Prev";
 
-  /** @uiName View More Button Text  */
+  /** @uiName View More button text  */
   @Prop() moreLabel?: string = "Next";
 
   /**
    * Show referred by user in table
    *
-   * @uiName Show Referrer
+   * @uiName Show referrer
    * @default
    */
   @Prop() showReferrer?: boolean = false;
@@ -64,14 +64,14 @@ export class ReferralTable {
   /**
    * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
    *
-   * @uiName Hidden Mobile Columns
+   * @uiName Hidden mobile columns
    */
   @Prop() hiddenColumns?: string = "0";
 
-  /** @uiName Mobile Breakpoint  */
+  /** @uiName Mobile breakpoint  */
   @Prop() smBreakpoint?: number = 599;
 
-  /** @uiName Tablet Breakpoint  */
+  /** @uiName Tablet breakpoint  */
   @Prop() mdBreakpoint?: number = 799;
 
   /**

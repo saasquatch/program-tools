@@ -17,12 +17,12 @@ export class Image {
    * @uiWidget ImageUpload
    * @format url
    * @required
-   * @uiName Image Link
+   * @uiName Image link
    */
   @Prop() imageUrl: string;
 
   /**
-   * @uiName Position Alignment
+   * @uiName Position alignment
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
@@ -30,7 +30,7 @@ export class Image {
   @Prop() alignment: "left" | "center" | "right" = "center";
 
   /**
-   * @uiName Background Color
+   * @uiName Background color
    * @uiWidget color
    * @format color
    */
@@ -38,7 +38,7 @@ export class Image {
 
   /**
    * (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
-   * @uiName Minimum Height
+   * @uiName Minimum height
    */
   @Prop() minHeight?: string;
 

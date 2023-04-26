@@ -58,7 +58,7 @@ export class ReferredRegistration {
   @Prop() includeName: boolean = false;
 
   /**
-   * @uiName Remove the border
+   * @uiName Remove border
    * @uiGroup Card style
    */
   @Prop() removeBorder: boolean = false;

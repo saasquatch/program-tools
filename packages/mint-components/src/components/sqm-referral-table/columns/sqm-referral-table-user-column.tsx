@@ -15,19 +15,19 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
 })
 export class ReferralTableUserColumn implements ReferralTableColumn {
   /**
-   * @uiName User Column Title
+   * @uiName User column title
    */
   @Prop() columnTitle: string = "Customer";
   /**
    * Name displayed for unknown users
    *
-   * @uiName Anonymous User Text
+   * @uiName Anonymous user text
    */
   @Prop() anonymousUser: string = "Anonymous User";
   /**
    * Name displayed for deleted users
    *
-   * @uiName Deleted User Text
+   * @uiName Deleted user text
    */
   @Prop() deletedUser: string = "Deleted User";
 

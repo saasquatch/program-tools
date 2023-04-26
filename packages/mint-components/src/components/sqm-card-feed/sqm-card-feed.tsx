@@ -18,13 +18,13 @@ export class CardFeed {
   ignored = true;
 
   /**
-   * @uiName Card Width
+   * @uiName Card width
    */
   @Prop()
   width: number = 347;
 
   /**
-   * @uiName Column Gap
+   * @uiName Column gap
    * @uiType number
    */
   @Prop() gap: number = 24;
