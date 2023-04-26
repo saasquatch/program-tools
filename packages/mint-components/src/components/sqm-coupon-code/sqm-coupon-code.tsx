@@ -30,7 +30,7 @@ export class CouponCode {
   /**
    * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
    *
-   * @uiName Tooltip Text
+   * @uiName Tooltip text
    */
   @Prop({
     attribute: "tooltip-text",
@@ -48,8 +48,6 @@ export class CouponCode {
   tooltiplifespan: number = 1000;
 
   /**
-   * Change the text alignment
-   *
    * @uiName Coupon code alignment
    * @uiType string
    * @uiEnum ["left", "center", "right"]

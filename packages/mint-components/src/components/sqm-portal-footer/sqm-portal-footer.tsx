@@ -20,7 +20,7 @@ export class PortalFooter {
    */
   @Prop() hideSupportText: boolean = false;
   /**
-   * @uiName Support Email
+   * @uiName Support email
    */
   @Prop() supportEmail: string = "support@example.com";
   /**
@@ -29,19 +29,19 @@ export class PortalFooter {
    */
   @Prop() supportText: string = "For program support, contact {email}";
   /**
-   * @uiName Terms and Conditions Link
+   * @uiName Terms and conditions link
    */
   @Prop() termsLink?: string;
   /**
-   * @uiName Terms and Conditions Text
+   * @uiName Terms and conditions text
    */
   @Prop() termsText?: string;
   /**
-   * @uiName FAQ Link
+   * @uiName FAQ link
    */
   @Prop() faqLink?: string;
   /**
-   * @uiName FAQ Text
+   * @uiName FAQ text
    */
   @Prop() faqText?: string;
   /**
@@ -49,9 +49,10 @@ export class PortalFooter {
    */
   @Prop() hidePoweredBy: boolean = false;
   /**
-   * @uiName Powered By Link
+   * @uiName Powered By link
    */
-  @Prop() poweredByLink: string = "https://saasquatch.com";
+  @Prop() poweredByLink: string =
+    "https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget";
   /**
    * @uiName Top padding
    * @uiGroup Padding
