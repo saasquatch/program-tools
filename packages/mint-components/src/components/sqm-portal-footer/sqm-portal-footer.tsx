@@ -49,9 +49,10 @@ export class PortalFooter {
    */
   @Prop() hidePoweredBy: boolean = false;
   /**
-   * @uiName Powered by link
+   * @uiName Powered By link
    */
-  @Prop() poweredByLink: string = "https://saasquatch.com";
+  @Prop() poweredByLink: string =
+    "https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget";
   /**
    * @uiName Top padding
    * @uiGroup Padding

@@ -241,7 +241,6 @@ export namespace Components {
          */
         "redeemedErrorText": string;
         /**
-          * Change the text alignment
           * @uiName Coupon code alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
@@ -1097,7 +1096,7 @@ export namespace Components {
          */
         "paddingTop": string;
         /**
-          * @uiName Powered by link
+          * @uiName Powered By link
          */
         "poweredByLink": string;
         /**
@@ -3652,7 +3651,6 @@ declare namespace LocalJSX {
          */
         "redeemedErrorText"?: string;
         /**
-          * Change the text alignment
           * @uiName Coupon code alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
@@ -4508,7 +4506,7 @@ declare namespace LocalJSX {
          */
         "paddingTop"?: string;
         /**
-          * @uiName Powered by link
+          * @uiName Powered By link
          */
         "poweredByLink"?: string;
         /**

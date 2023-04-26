@@ -48,8 +48,6 @@ export class CouponCode {
   tooltiplifespan: number = 1000;
 
   /**
-   * Change the text alignment
-   *
    * @uiName Coupon code alignment
    * @uiType string
    * @uiEnum ["left", "center", "right"]
