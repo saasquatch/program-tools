@@ -1,16 +1,23 @@
 import { getEnvironmentSDK } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Listen } from "@stencil/core";
+import { Component, h, Listen, Prop } from "@stencil/core";
 import { CloseButtonView } from "./sqm-close-button-view";
 
 /**
- * @uiName Popup widget Close Button
+ * @uiName Popup Widget Close Button
  */
 @Component({
   tag: "sqm-close-button",
   shadow: true,
 })
 export class CloseButton {
+  /**
+   * @uiName Background color
+   * @uiWidget color
+   * @uiType string
+   */
+  @Prop() backgroundColor: string = "#000000";
+
   constructor() {
     withHooks(this);
   }
