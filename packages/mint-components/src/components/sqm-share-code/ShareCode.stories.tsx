@@ -17,6 +17,9 @@ export const CustomTooltipText = () => {
 export const TextAlignCenter = () => {
   return <sqm-share-code textAlign="center"></sqm-share-code>;
 };
+export const TextAlignRight = () => {
+  return <sqm-share-code textAlign="right"></sqm-share-code>;
+};
 
 export const CustomTooltipDuration = () => {
   return (
@@ -39,18 +42,6 @@ export const CopyButton = () => {
     ></CopyTextView>
   );
 };
-export const CopyButtonInside = () => {
-  return (
-    <CopyTextView
-      {...{
-        copyString: "https://noah.example.com",
-        open: false,
-        tooltiptext: "Copied!",
-        buttonStyle: "button inside",
-      }}
-    ></CopyTextView>
-  );
-};
 export const CopyButtonBelow = () => {
   return (
     <CopyTextView
@@ -58,7 +49,7 @@ export const CopyButtonBelow = () => {
         copyString: "https://noah.example.com",
         open: false,
         tooltiptext: "Copied!",
-        buttonStyle: "button below",
+        buttonStyle: "button-below",
       }}
     ></CopyTextView>
   );

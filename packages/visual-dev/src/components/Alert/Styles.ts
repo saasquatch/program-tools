@@ -18,14 +18,28 @@ export const AlertDiv = css`
   }
 `;
 
+const textAlertStyle = css`
+  background-color: transparent;
+  border: none;
+  padding: 0;
+`;
+
 export const critical = css`
   background-color: var(--sq-surface-critical-subdued);
   border-color: var(--sq-border-critical);
 `;
 
+export const textCritical = css`
+  ${textAlertStyle}
+`;
+
 export const warning = css`
   background-color: var(--sq-surface-warning-subdued);
   border-color: var(--sq-border-warning);
+`;
+
+export const textWarning = css`
+  ${textAlertStyle}
 `;
 
 export const success = css`

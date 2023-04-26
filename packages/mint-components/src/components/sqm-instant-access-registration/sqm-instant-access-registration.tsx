@@ -13,7 +13,7 @@ import { useInstantAccessRegistration } from "./useInstantAccessRegistration";
 /**
  * @uiName Instant Access Registration
  * @compatibility Built for instant access
- * @slots [{"name":"top-slot","title":"Widget Content"},{"name":"bottom-slot","title":"Widget Content"}]
+ * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
  */
 @Component({
   tag: "sqm-instant-access-registration",
@@ -27,7 +27,7 @@ export class InstantAccessRegistration {
    * @uiName Email Field Label
    */
   @Prop()
-  emailLabel: string = "Email *";
+  emailLabel: string = "Email";
 
   /**
    * @uiName First Name Field Label
@@ -48,17 +48,20 @@ export class InstantAccessRegistration {
   registerLabel: string = "Start Referring";
 
   /**
+   * Require your participants to enter their first and last name.
+   *
    * @uiName Include name fields
    */
   @Prop() includeName: boolean = false;
 
   /**
    * @uiName Remove the border
+   * @uiGroup Card style
    */
   @Prop() removeBorder: boolean = false;
 
   /**
-   * The message to be displayed when a required field is not filled.
+   * Display this message when a required field has not been filled out.
    *
    * @uiName Required Field Message
    * @uiWidget textArea
@@ -66,7 +69,7 @@ export class InstantAccessRegistration {
   @Prop() requiredFieldErrorMessage: string = "Cannot be empty";
 
   /**
-   * The message to be displayed when the email used is invalid or blocked.
+   * Display this message when the given email is invalid or blocked.
    *
    * @uiName Invalid Email Message
    * @uiWidget textArea
@@ -74,41 +77,47 @@ export class InstantAccessRegistration {
   @Prop() invalidEmailErrorMessage: string = "Must be a valid email address";
 
   /**
-   * @uiName Padding Top
+   * @uiName Top padding
+   * @uiGroup Card style
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingTop: string = "large";
   /**
-   * @uiName Padding Right
+   * @uiName Right padding
+   * @uiGroup Card style
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingRight: string = "large";
   /**
-   * @uiName Padding Bottom
+   * @uiName Bottom padding
+   * @uiGroup Card style
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingBottom: string = "large";
   /**
-   * @uiName Padding Left
+   * @uiName Left padding
+   * @uiGroup Card style
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingLeft: string = "large";
 
   /**
+   * @uiName Background color
+   * @uiWidget color
+   * @uiGroup Card style
+   * @uiType string
+   */
+  @Prop() backgroundColor: string = "#ffffff";
+
+  /**
    * @undocumented
    * @uiType object
    */
   @Prop() demoData?: DemoData<EmailRegistrationViewProps>;
-
-  /**
-   * @uiName Background color
-   * @uiType string
-   */
-  @Prop() backgroundColor: string = "var(--sl-color-neutral-0)";
 
   constructor() {
     withHooks(this);
@@ -137,8 +146,8 @@ export class InstantAccessRegistration {
       backgroundColor: this.backgroundColor,
 
       // slots
-      topSlot: <slot name="top-slot" />,
-      bottomSlot: <slot name="bottom-slot" />,
+      topSlot: <slot name="top" />,
+      bottomSlot: <slot name="bottom" />,
     };
     return (
       <EmailRegistrationView

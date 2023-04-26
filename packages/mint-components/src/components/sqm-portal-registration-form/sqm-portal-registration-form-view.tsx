@@ -88,7 +88,7 @@ export function PortalRegistrationFormView(
   }
 
   return (
-    <div class={sheet.classes.Wrapper} part="sqm-portal-registration-container">
+    <div class={sheet.classes.Wrapper} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}

@@ -62,6 +62,21 @@ export class FormMessage {
           <slot />
         </sl-alert>
       );
+    } else if (this.type === "warning") {
+      return (
+        <sl-alert
+          exportparts="base: warningalert-base, icon:warningalert-icon"
+          class="Warning"
+          type="warning"
+          open
+        >
+          <sl-icon
+            slot="icon"
+            name={`${this.icon ? this.icon : "exclamation-triangle"}`}
+          ></sl-icon>
+          <slot />
+        </sl-alert>
+      );
     } else {
       return (
         <sl-alert

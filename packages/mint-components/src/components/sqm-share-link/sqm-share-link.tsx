@@ -48,19 +48,17 @@ export class ShareLink {
   /**
    * Change the text alignment
    *
-   * @uiName Align text
+   * @uiName Share link alignment
    * @uiType string
-   * @uiEnum ["left", "center"]
-   * @uiEnumNames ["left", "center"]
+   * @uiEnum ["left", "center", "right"]
+   * @uiEnumNames ["Left", "Center", "Right"]
    */
   @Prop({
     attribute: "text-align",
   })
-  textAlign: "left" | "center" = "left";
+  textAlign: "left" | "center" | "right" = "left";
 
   /**
-   * Set copy button label
-   *
    * @uiName Copy button label
    */
   @Prop({
@@ -69,18 +67,17 @@ export class ShareLink {
   copyButtonLabel: string = "Copy Link";
 
   /**
-   * Set the copy button style
+   * Set the copy button style and placement.
    *
-   * @uiName Copy button style
+   * @uiName Style
    * @uiType string
-   * @uiEnum ["icon", "button inside", "button outside", "button below"]
-   * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
+   * @uiEnum ["icon", "button-outside", "button-below"]
+   * @uiEnumNames ["Icon", "Button outside", "Button below"]
    */
   @Prop({
     attribute: "copy-button-style",
   })
-  buttonStyle: "icon" | "button inside" | "button outside" | "button below" =
-    "icon";
+  buttonStyle: "icon" | "button-outside" | "button-below" = "icon";
 
   /**
    * @undocumented

@@ -1,5 +1,4 @@
 import { h, VNode } from "@stencil/core";
-import { Spacing } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 
 export interface ReferralCardViewProps {
@@ -33,26 +32,10 @@ const style = {
   },
   ColumnContainer: {
     "& p": { margin: "0" },
-    display: "flex",
-    columnGap: "calc(2 * var(--sl-spacing-medium))",
-
-    "& .left": {
-      boxSizing: "border-box",
-      width: "50%",
-      "@media (max-width: 499px)": {
-        width: "100%",
-        // padding: "0",
-        // marginBottom: "var(--sl-spacing-large)",
-      },
-    },
-    "& .right": {
-      boxSizing: "border-box",
-      width: "50%",
-      "@media (max-width: 499px)": {
-        width: "100%",
-        // padding: "0",
-      },
-    },
+    display: "grid",
+    gridAutoColumns: "minmax(0, 1fr)",
+    gridAutoFlow: "column",
+    gap: "calc(2 * var(--sl-spacing-medium))",
 
     "@media (max-width: 499px)": {
       flexDirection: "column",
@@ -71,9 +54,15 @@ const vanillaStyle = `
   `;
 
 export function ReferralCardView(props: ReferralCardViewProps) {
+  const onlyLeft = props.slots.left && !props.slots.right;
+  const onlyRight = props.slots.left && !props.slots.right;
+
+  console.log("left", props.slots.left);
+  console.log("right", props.slots.right);
+
   return (
     <div
-      part="sqm-referral-card-container"
+      part="sqm-base"
       class={sheet.classes.Container}
       style={{
         border: `${
@@ -91,23 +80,16 @@ export function ReferralCardView(props: ReferralCardViewProps) {
         {vanillaStyle}
       </style>
       <div class={sheet.classes.EndContainer}>{props.slots.header}</div>
-      <div part="sqm-columns" class={sheet.classes.ColumnContainer}>
-        <div
-          class="left"
-          style={{
-            alignSelf: props.verticalAlignment,
-          }}
-        >
-          {props.slots.left}
-        </div>
-        <div
-          class="right"
-          style={{
-            alignSelf: props.verticalAlignment,
-          }}
-        >
-          {props.slots.right}
-        </div>
+      <div
+        part="sqm-column-container"
+        class={sheet.classes.ColumnContainer}
+        style={{
+          alignItems: props.verticalAlignment,
+        }}
+      >
+        {props.slots.left}
+
+        {props.slots.right}
       </div>
       <div class={sheet.classes.EndContainer}>{props.slots.footer}</div>
     </div>

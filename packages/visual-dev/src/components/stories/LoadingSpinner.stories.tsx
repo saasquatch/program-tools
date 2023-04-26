@@ -40,6 +40,9 @@ export const Large = () => {
     </div>
   );
 };
+export const LargeNoMargin = () => {
+  return <LoadingSpinnerLarge margin="0px" />;
+};
 Large.parameters = {
   storyshots: { disable: true },
 };

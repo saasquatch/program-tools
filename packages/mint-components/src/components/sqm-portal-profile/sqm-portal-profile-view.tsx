@@ -103,7 +103,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
     : "";
 
   return (
-    <div class={sheet.classes.Container} part="sqm-portal-profile-container">
+    <div class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">{styleString}</style>
       <TextSpanView {...{ type: "h1" }}>{text.editProfileHeader}</TextSpanView>
       <TextSpanView {...{ type: "h2" }}>

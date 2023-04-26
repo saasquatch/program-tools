@@ -6,11 +6,18 @@ import {
 import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { CopyTextViewProps } from "../views/copy-text-view";
+import { CouponCodeViewProps } from "./sqm-coupon-code-view";
 
 interface CouponCodeProps {
   programId?: string;
   tooltiptext: string;
   tooltiplifespan: number;
+  cancelledErrorText: string;
+  expiredErrorText: string;
+  fullfillmentErrorText: string;
+  pendingErrorText: string;
+  redeemedErrorText: string;
+  genericErrorText: string;
 }
 
 type FuelTankReward = {
@@ -70,7 +77,7 @@ const FuelTankRewardsQuery = gql`
   }
 `;
 
-export function useCouponCode(props: CouponCodeProps): CopyTextViewProps {
+export function useCouponCode(props: CouponCodeProps): CouponCodeViewProps {
   const user = useUserIdentity();
   const programId = useProgramId();
 
@@ -116,13 +123,53 @@ export function useCouponCode(props: CouponCodeProps): CopyTextViewProps {
     setTimeout(() => setOpen(false), props.tooltiplifespan);
   }
 
+  const getRewardStatusText = (status: RewardStatusType) => {
+    switch (status) {
+      case "CANCELLED":
+        return props.cancelledErrorText;
+      case "EXPIRED":
+        return props.expiredErrorText;
+      case "EMPTY_TANK":
+        return props.fullfillmentErrorText;
+      case "PENDING":
+        return props.pendingErrorText.replace("{unpendDate}", dateAvailable);
+      case "REDEEMED":
+        return props.redeemedErrorText;
+      case "AVAILABLE":
+        return "";
+      default:
+        return props.genericErrorText;
+    }
+  };
+  const getRewardStatusErrorType = (status: RewardStatusType) => {
+    switch (status) {
+      case "EXPIRED":
+      case "EMPTY_TANK":
+      case "CANCELLED":
+      case "ERROR":
+        return "warning";
+      case "PENDING":
+        return "info";
+      case "REDEEMED":
+        return "success";
+      default:
+        return;
+    }
+  };
+
+  const errorText = getRewardStatusText(rewardStatus);
+  const errorType = getRewardStatusErrorType(rewardStatus);
+  const error = rewardStatus !== "AVAILABLE";
+
   return {
     ...props,
     onClick,
     open,
     copyString,
-    rewardStatus,
+    error,
+    errorText,
     dateAvailable,
     loading,
+    errorType,
   };
 }

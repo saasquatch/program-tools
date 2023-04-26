@@ -74,6 +74,7 @@ import * as EmailRegistration from "../views/EmailRegistration.stories";
 import * as CouponCode from "../sqm-coupon-code/CouponCode.stories";
 import * as LogoutCurrentUser from "../sqm-logout-current-user/LogoutCurrentUser.stories";
 import * as LinkButton from "../sqm-link-button/LinkButton.stories";
+import * as CloseButton from "../sqm-close-button/CloseButton.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -154,6 +155,7 @@ const stories = [
   LogoutCurrentUser,
   LinkButton,
   EmailRegistration,
+  CloseButton,
 ];
 
 /**

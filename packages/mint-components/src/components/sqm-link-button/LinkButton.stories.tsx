@@ -10,15 +10,22 @@ export default {
 };
 
 const defaultProps = {
-  buttonSlot: <span>Test Slot Content</span>,
   link: "https://example.com",
   openInNewTab: false,
 };
 
 export const Default = () => {
-  return <LinkButtonView {...defaultProps} />;
+  return (
+    <LinkButtonView {...defaultProps}>
+      <span>Test Slot Content</span>
+    </LinkButtonView>
+  );
 };
 
 export const OpenInNewTab = () => {
-  return <LinkButtonView {...{ ...defaultProps, openInNewTab: true }} />;
+  return (
+    <LinkButtonView {...{ ...defaultProps, openInNewTab: true }}>
+      <span>Test Slot Content</span>
+    </LinkButtonView>
+  );
 };

@@ -153,7 +153,7 @@ export function NavigationSidebarView(
   children: VNode
 ) {
   return (
-    <div class="container" part="sqm-navigation-container">
+    <div class="container" part="sqm-base">
       <style>{vanillaStyle}</style>
       <input type="checkbox" class="toggler" {...props} />
       <div class="hamburger">
@@ -161,7 +161,7 @@ export function NavigationSidebarView(
         <div class="line"></div>
         <div class="line"></div>
       </div>
-      <div class="menu-items" part="sqm-navigation-menu-items">
+      <div class="menu-items" part="sqm-items-container">
         {children}
       </div>
     </div>

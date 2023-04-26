@@ -8,6 +8,10 @@ export interface LinkButtonViewProps {
 
 const style = {
   Container: { display: "contents" },
+  Link: {
+    textDecoration: "none",
+    color: "unset,",
+  },
 };
 
 const vanillaStyle = `
@@ -19,7 +23,7 @@ const vanillaStyle = `
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export function LinkButtonView(props: LinkButtonViewProps) {
+export function LinkButtonView(props: LinkButtonViewProps, children: VNode) {
   const { link, openInNewTab } = props;
 
   return (
@@ -29,8 +33,13 @@ export function LinkButtonView(props: LinkButtonViewProps) {
         {vanillaStyle}
       </style>
       <sl-button exportparts="base: primarybutton-base">
-        <a href={link} target={openInNewTab ? "_blank" : ""} part="sqm-link">
-          <slot />
+        <a
+          class={sheet.classes.Link}
+          href={link}
+          target={openInNewTab ? "_blank" : ""}
+          part="sqm-link"
+        >
+          {children}
         </a>
       </sl-button>
     </span>

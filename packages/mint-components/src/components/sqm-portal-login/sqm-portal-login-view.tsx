@@ -56,7 +56,7 @@ const styleString = sheet.toString();
 export function PortalLoginView(props: PortalLoginViewProps) {
   const { states, callbacks, content } = props;
   return (
-    <div class={sheet.classes.Wrapper} part="sqm-portal-login-container">
+    <div class={sheet.classes.Wrapper} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}

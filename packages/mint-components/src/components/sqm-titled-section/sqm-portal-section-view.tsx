@@ -30,12 +30,9 @@ export function PortalSectionView(props: PortalSectionProps) {
   const styleString = sheet.toString();
 
   return (
-    <div
-      class={sheet.classes.SectionContainer}
-      part="sqm-portal-section-container"
-    >
+    <div class={sheet.classes.SectionContainer} part="sqm-base">
       <style type="text/css">{styleString}</style>
-      <div class={sheet.classes.LabelContainer} part="sqm-portal-section-label">
+      <div class={sheet.classes.LabelContainer} part="sqm-label">
         {props.label}
       </div>
       {props.content}

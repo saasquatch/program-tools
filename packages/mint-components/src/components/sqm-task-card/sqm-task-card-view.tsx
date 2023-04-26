@@ -273,7 +273,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       )}
       {!states.loading && taskEnded && (
         <div class={sheet.classes.Ended}>
-          <span class="icon" part="test">
+          <span class="icon">
             <sl-icon
               exportparts="base: task-card-icon"
               name="exclamation-triangle-fill"
@@ -293,7 +293,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         </div>
       )}
       <div
-        part="sqm-card-container-inner"
+        part="sqm-style-container"
         style={{
           borderRadius:
             taskUnavailable &&
@@ -449,7 +449,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                 </span>
 
                 <sl-button
-                  exportparts="base: task-card-button"
+                  exportparts="base: button"
                   id="sl-button"
                   class={
                     taskUnavailable

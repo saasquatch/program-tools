@@ -6,6 +6,7 @@ import { getProps } from "../../utils/utils";
 import { RewardStatusType, useCouponCode } from "./useCouponCode";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
+import { CouponCodeView, CouponCodeViewProps } from "./sqm-coupon-code-view";
 
 /**
  * @uiName Coupon Code
@@ -49,19 +50,17 @@ export class CouponCode {
   /**
    * Change the text alignment
    *
-   * @uiName Align text
+   * @uiName Coupon code alignment
    * @uiType string
-   * @uiEnum ["left", "center"]
-   * @uiEnumNames ["left", "center"]
+   * @uiEnum ["left", "center", "right"]
+   * @uiEnumNames ["Left", "Center", "Right"]
    */
   @Prop({
     attribute: "text-align",
   })
-  textAlign: "left" | "center" = "left";
+  textAlign: "left" | "center" | "right" = "left";
 
   /**
-   * Set copy button label
-   *
    * @uiName Copy button label
    */
   @Prop({
@@ -70,77 +69,119 @@ export class CouponCode {
   copyButtonLabel: string = "Copy Coupon";
 
   /**
-   * Set the copy button style
+   * Set the copy button style and placement.
    *
-   * @uiName Copy button style
+   * @uiName Style
    * @uiType string
-   * @uiEnum ["icon", "button inside", "button outside", "button below"]
-   * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
+   * @uiEnum ["icon", "button-outside", "button-below"]
+   * @uiEnumNames ["Icon", "Button outside", "Button below"]
    */
   @Prop({
     attribute: "copy-button-style",
   })
-  buttonStyle: "icon" | "button inside" | "button outside" | "button below" =
-    "icon";
+  buttonStyle: "icon" | "button-outside" | "button-below" = "icon";
 
   /**
-   * Set error message
-   *
-   * @uiName Error message
+   * @uiName Coupon code label
    */
   @Prop({
-    attribute: "error-text",
+    attribute: "coupon-code-label",
   })
-  pendingErrorText: string = "Your reward will be available on ";
+  couponCodeLabel: string = "Your coupon code:";
 
   /**
-   * Set error message
+   * Display this message when the coupon code has been cancelled.
    *
-   * @uiName Error message
+   * @uiWidget textArea
+   * @uiName Cancelled code error message
+   * @uiGroup Coupon code error
    */
   @Prop({
-    attribute: "error-text",
+    attribute: "cancelled-error-text",
   })
   cancelledErrorText: string =
-    "Oops! Your coupon code is cancelled. Please try again later or contact support.";
+    "This code has been cancelled. Please reach out to the Support team for help resolving this issue.";
 
   /**
-   * Set error message
+   * Display this message when the coupon code has already been redeemed.
    *
-   * @uiName Error message
+   * @uiWidget textArea
+   * @uiName Redeemed code error message
+   * @uiGroup Coupon code error
    */
   @Prop({
-    attribute: "error-text",
+    attribute: "redeemed-error-text",
+  })
+  redeemedErrorText: string = "Looks like you’ve already redeemed this code.";
+
+  /**
+   * Display this message when the coupon code has expired.
+   *
+   * @uiWidget textArea
+   * @uiName Expired code error message
+   * @uiGroup Coupon code error
+   */
+  @Prop({
+    attribute: "expired-error-text",
   })
   expiredErrorText: string =
-    "Oops! Your coupon code is expired. Please try again later or contact support.";
+    "Looks like this code has expired. Please reach out to the Support team for help resolving this issue.";
 
   /**
-   * Set error message
+   * Display this message when the code fails to load due to a fulfillment error.
    *
-   * @uiName Error message
+   * @uiWidget textArea
+   * @uiName Code fulfillment error message
+   * @uiGroup Coupon code error
+   */
+  @Prop({
+    attribute: "fullfilled-error-text",
+  })
+  fullfillmentErrorText: string =
+    "We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue.";
+
+  /**
+   * Display this message when the coupon code not available yet. Use the ICU message, {unpendDate}, to show the date the code will be available.
+   *
+   * @uiWidget textArea
+   * @uiName Code pending error message
+   * @uiGroup Coupon code error
+   */
+  @Prop({
+    attribute: "pending-error-text",
+  })
+  pendingErrorText: string =
+    "Your code will be available on {unpendDate}. Mark your calendar and come back then to redeem your reward!";
+
+  /**
+   * Display this message when the code fails to load due to an unspecified error.
+   *
+   * @uiWidget textArea
+   * @uiName Code retrieval error message
+   * @uiGroup Coupon code error
    */
   @Prop({
     attribute: "error-text",
   })
-  redeemedErrorText: string =
-    "Oops! Your coupon code has already been redeemed. Please try again later or contact support.";
+  genericErrorText: string =
+    "We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue.";
 
   /**
-   * Set coupon code placeholder for when there there is no coupon code to display
+   * Display this text when the coupon code can’t be retrieved.
    *
    * @uiName Coupon code placeholder
+   * @uiGroup Coupon code error
    */
   @Prop({
     attribute: "coupon-code-placeholder",
   })
-  couponCodePlaceholder: string = "CODE ERROR";
+  couponCodePlaceholder: string = "...";
 
   /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<CopyTextViewProps>;
+  @Prop() demoData?: DemoData<CouponCodeViewProps>;
 
   constructor() {
     withHooks(this);
@@ -153,34 +194,11 @@ export class CouponCode {
       ? useDemoCouponCode(thisProps)
       : useCouponCode(thisProps);
 
-    const getRewardStatusText = (status: RewardStatusType) => {
-      switch (status) {
-        case "CANCELLED":
-          return this.cancelledErrorText;
-        case "PENDING":
-          return `${this.pendingErrorText}${props.dateAvailable}`;
-        case "EXPIRED":
-          return this.expiredErrorText;
-        case "REDEEMED":
-          return this.redeemedErrorText;
-        case "AVAILABLE":
-          return "";
-        case "EMPTY_TANK":
-          // TODO: Replace
-          return "An error happened, please contact customer support or try again later.";
-        default:
-          // TODO: Replace
-          return "An error occurred, please contact customer support.";
-      }
-    };
-
-    const errorText = getRewardStatusText(props.rewardStatus);
-
-    return <CopyTextView {...props} errorText={errorText} />;
+    return <CouponCodeView {...props} />;
   }
 }
 
-function useDemoCouponCode(props: CouponCode): CopyTextViewProps {
+function useDemoCouponCode(props: CouponCode): CouponCodeViewProps {
   const [open, setOpen] = useState(false);
   const copyString = "THANKSJANE125uv125";
   return deepmerge(
@@ -190,8 +208,9 @@ function useDemoCouponCode(props: CouponCode): CopyTextViewProps {
       textAlign: props.textAlign,
       buttonStyle: props.buttonStyle,
       copyButtonLabel: props.copyButtonLabel,
-      rewardStatus: "AVAILABLE",
+      error: false,
       couponCodePlaceholder: props.couponCodePlaceholder,
+      couponCodeLabel: props.couponCodeLabel,
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility

@@ -49,6 +49,9 @@ export const Error = () => {
 export const TextAlignCenter = () => {
   return <sqm-share-link textAlign="center"></sqm-share-link>;
 };
+export const TextAlignRight = () => {
+  return <sqm-share-link textAlign="right"></sqm-share-link>;
+};
 
 export const CopyButton = () => {
   return (
@@ -62,18 +65,6 @@ export const CopyButton = () => {
     ></CopyTextView>
   );
 };
-export const CopyButtonInside = () => {
-  return (
-    <CopyTextView
-      {...{
-        copyString: "https://noah.example.com",
-        open: false,
-        tooltiptext: "Copied!",
-        buttonStyle: "button inside",
-      }}
-    ></CopyTextView>
-  );
-};
 export const CopyButtonBelow = () => {
   return (
     <CopyTextView
@@ -81,7 +72,7 @@ export const CopyButtonBelow = () => {
         copyString: "https://noah.example.com",
         open: false,
         tooltiptext: "Copied!",
-        buttonStyle: "button below",
+        buttonStyle: "button-below",
       }}
     ></CopyTextView>
   );

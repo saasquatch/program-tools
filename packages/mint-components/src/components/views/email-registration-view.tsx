@@ -3,11 +3,14 @@ import {
   AuthButtonsContainer,
   AuthColumn,
   AuthWrapper,
+  Column,
   ErrorStyles,
+  gap,
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 import { PoweredByImg } from "../sqm-portal-footer/PoweredByImg";
 import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
+import { BottomTabs } from "../sqm-tabs/Tabs.stories";
 
 export interface EmailRegistrationViewProps {
   states: {
@@ -38,7 +41,10 @@ export interface EmailRegistrationViewProps {
 }
 
 const style = {
-  Wrapper: AuthWrapper,
+  Wrapper: {
+    ...AuthWrapper,
+    ...gap({ direction: "column", size: "var(--sl-spacing-small)" }),
+  },
   Column: AuthColumn,
   ForgotButtonContainer: {
     display: "inline",
@@ -102,7 +108,7 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
             name="/firstName"
             label={content.firstNameLabel || "First Name"}
             disabled={states.loading}
-            required={false}
+            required
           ></sl-input>
         )}
         {content.includeName && (
@@ -112,7 +118,7 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
             name="/lastName"
             label={content.lastNameLabel || "Last Name"}
             disabled={states.loading}
-            required={false}
+            required
           ></sl-input>
         )}
 
@@ -120,7 +126,7 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
           exportparts="label: input-label"
           type="email"
           name="/email"
-          label={content.emailLabel || "Email *"}
+          label={content.emailLabel || "Email"}
           disabled={states.loading}
           required
           validationError={({ value }: { value: string }) => {

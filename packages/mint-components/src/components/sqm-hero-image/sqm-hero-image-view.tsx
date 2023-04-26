@@ -43,9 +43,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       display: "block",
       width: "100%",
       height: "100%",
-      maxWidth: "max-content",
       objectFit: "cover",
-      margin: "auto",
     },
     Background: {
       backgroundImage: `url(${props.imageUrl})`,
@@ -80,6 +78,9 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
         width: props.imagePercentage ? props.imagePercentage + "%" : "50%",
         padding: "var(--sl-spacing-" + props.paddingImage + ")",
         boxSizing: "border-box",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         "@media (max-width: 599px)": {
           width: "100%",
         },
@@ -136,7 +137,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
   }`;
 
   return (
-    <div class={sheet.classes.Container} part="sqm-hero-image-container">
+    <div class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}
@@ -150,10 +151,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
   function OverlayView() {
     return (
       <div class={sheet.classes.Background}>
-        <div
-          class={sheet.classes.Overlay}
-          part="sqm-hero-image-overlay-container"
-        >
+        <div class={sheet.classes.Overlay} part="sqm-overlay">
           {props.header && (
             <div class={sheet.classes.Header}>{props.header}</div>
           )}
@@ -187,26 +185,26 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
             <img
               class={sheet.classes.Image}
               src={props.imageUrl}
-              part="sqm-hero-image"
+              part="sqm-columns-image"
             ></img>
           </div>
-          <div class="text-area" part="sqm-hero-image-text-area">
+          <div class="text-area" part="sqm-columns-text-area">
             {props.header && (
-              <div class={sheet.classes.Header} part="sqm-hero-image-header">
+              <div class={sheet.classes.Header} part="sqm-columns-header">
                 {props.header}
               </div>
             )}
             {props.description && (
               <div
                 class={sheet.classes.Description}
-                part="sqm-hero-image-description"
+                part="sqm-columns-description"
               >
                 {props.description}
               </div>
             )}
             {props.buttonText && (
               <sl-button
-                exportparts="base: sqm-hero-image-btn"
+                exportparts="base: sqm-hero-image-button"
                 class={sheet.classes.Button}
                 type="primary"
                 onClick={() =>

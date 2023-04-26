@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
-import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
 import scenario from "./sqm-coupon-code.feature";
+import { CouponCodeView, CouponCodeViewProps } from "./sqm-coupon-code-view";
 
 export default {
   title: "Components/Coupon Code",
@@ -9,13 +9,14 @@ export default {
   },
 };
 
-const defaultProps: CopyTextViewProps = {
+const defaultProps: CouponCodeViewProps = {
   tooltiptext: "Copied to Clipboard",
   copyString: "THANKSJANE125uv125",
   open: false,
   copyButtonLabel: "Copy Coupon",
   inputPlaceholderText: "CODE ERROR",
-  rewardStatus: "AVAILABLE",
+  couponCodeLabel: "Your coupon code:",
+  error: false,
 };
 
 export const CouponCode = () => {
@@ -35,69 +36,106 @@ export const CustomTooltipDuration = () => {
 export const TextAlignCenter = () => {
   return <sqm-coupon-code textAlign="center"></sqm-coupon-code>;
 };
-export const CopyButton = () => {
-  return <sqm-coupon-code buttonStyle="button outside"></sqm-coupon-code>;
+export const TextAlignRight = () => {
+  return <sqm-coupon-code textAlign="right"></sqm-coupon-code>;
 };
-export const CopyButtonInside = () => {
+export const CopyButton = () => {
   return (
-    <CopyTextView
+    <sqm-coupon-code
       {...defaultProps}
-      buttonStyle={"button inside"}
-    ></CopyTextView>
+      buttonStyle="button-outside"
+    ></sqm-coupon-code>
   );
 };
 export const CopyButtonBelow = () => {
   return (
-    <CopyTextView {...defaultProps} buttonStyle={"button below"}></CopyTextView>
+    <sqm-coupon-code
+      {...defaultProps}
+      buttonStyle={"button-below"}
+    ></sqm-coupon-code>
   );
 };
 
 export const Loading = () => {
-  return <CopyTextView {...defaultProps} loading={true}></CopyTextView>;
+  return <CouponCodeView {...defaultProps} loading={true}></CouponCodeView>;
+};
+export const CopyButtonLoading = () => {
+  return (
+    <CouponCodeView
+      {...defaultProps}
+      buttonStyle="button-outside"
+      loading={true}
+    ></CouponCodeView>
+  );
+};
+export const CopyButtonBelowLoading = () => {
+  return (
+    <CouponCodeView
+      {...defaultProps}
+      buttonStyle="button-below"
+      loading={true}
+    ></CouponCodeView>
+  );
 };
 
+export const ErrorGeneric = () => {
+  return (
+    <CouponCodeView
+      {...defaultProps}
+      errorType="warning"
+      error={true}
+      errorText="We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue."
+    ></CouponCodeView>
+  );
+};
 export const ErrorPending = () => {
   return (
-    <CopyTextView
+    <CouponCodeView
       {...defaultProps}
-      rewardStatus={"PENDING"}
-      errorText="Oops! Looks like we weren’t able to retrieve a code for you. Please try again later or contact support."
-    ></CopyTextView>
+      errorType="info"
+      error={true}
+      errorText="Your code will be available on April 24, 2023. Mark your calendar and come back then to redeem your reward!"
+    ></CouponCodeView>
+  );
+};
+export const ErrorFullfillment = () => {
+  return (
+    <CouponCodeView
+      {...defaultProps}
+      errorType="warning"
+      error={true}
+      errorText="We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue."
+    ></CouponCodeView>
   );
 };
 export const ErrorCancelled = () => {
   return (
-    <CopyTextView
+    <CouponCodeView
       {...defaultProps}
-      rewardStatus={"CANCELLED"}
-      errorText="Oops! Your coupon code is cancelled. Please try again later or contact support."
-    ></CopyTextView>
+      errorType="warning"
+      error={true}
+      errorText="This code has been cancelled. Please reach out to the Support team for help resolving this issue."
+    ></CouponCodeView>
+  );
+};
+
+export const ErrorExpired = () => {
+  return (
+    <CouponCodeView
+      {...defaultProps}
+      errorType="warning"
+      error={true}
+      errorText="Looks like this code has expired. Please reach out to the Support team for help resolving this issue."
+    ></CouponCodeView>
   );
 };
 export const ErrorRedeemed = () => {
   return (
-    <CopyTextView
+    <CouponCodeView
       {...defaultProps}
-      rewardStatus={"REDEEMED"}
-      errorText="Oops! Your coupon code has already been redeemed. Please try again later or contact support."
-    ></CopyTextView>
-  );
-};
-export const ErrorExpired = () => {
-  return (
-    <CopyTextView
-      {...defaultProps}
-      rewardStatus={"EXPIRED"}
-      errorText="Oops! Your coupon code is expired. Please try again later or contact support."
-    ></CopyTextView>
-  );
-};
-export const ErrorButtonBelow = () => {
-  return (
-    <CopyTextView
-      {...defaultProps}
-      rewardStatus={"PENDING"}
-      buttonStyle="button below"
-    ></CopyTextView>
+      errorType="success"
+      error={true}
+      errorText="Looks like you’ve already redeemed this code."
+    ></CouponCodeView>
   );
 };

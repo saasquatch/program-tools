@@ -9,7 +9,7 @@ import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
-import { CopyTextViewProps } from "./components/views/copy-text-view";
+import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
@@ -18,6 +18,7 @@ import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-fiel
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
+import { CopyTextViewProps } from "./components/views/copy-text-view";
 import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-fields-view";
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
@@ -156,44 +157,74 @@ export namespace Components {
         "errorMessage": string;
     }
     interface SqmCloseButton {
+        /**
+          * @uiName Background color
+          * @uiWidget color
+          * @uiType string
+         */
+        "backgroundColor": string;
     }
     interface SqmCouponCode {
         /**
-          * Set the copy button style
-          * @uiName Copy button style
+          * Set the copy button style and placement.
+          * @uiName Style
           * @uiType string
-          * @uiEnum ["icon", "button inside", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
+          * @uiEnum ["icon", "button-outside", "button-below"]
+          * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
-        "buttonStyle": "icon" | "button inside" | "button outside" | "button below";
+        "buttonStyle": "icon" | "button-outside" | "button-below";
         /**
-          * Set error message
-          * @uiName Error message
+          * Display this message when the coupon code has been cancelled.
+          * @uiWidget textArea
+          * @uiName Cancelled code error message
+          * @uiGroup Coupon code error
          */
         "cancelledErrorText": string;
         /**
-          * Set copy button label
           * @uiName Copy button label
          */
         "copyButtonLabel": string;
         /**
-          * Set coupon code placeholder for when there there is no coupon code to display
+          * @uiName Coupon code label
+         */
+        "couponCodeLabel": string;
+        /**
+          * Display this text when the coupon code can’t be retrieved.
           * @uiName Coupon code placeholder
+          * @uiGroup Coupon code error
          */
         "couponCodePlaceholder": string;
         /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<CopyTextViewProps>;
+        "demoData"?: DemoData<CouponCodeViewProps>;
         /**
-          * Set error message
-          * @uiName Error message
+          * Display this message when the coupon code has expired.
+          * @uiWidget textArea
+          * @uiName Expired code error message
+          * @uiGroup Coupon code error
          */
         "expiredErrorText": string;
         /**
-          * Set error message
-          * @uiName Error message
+          * Display this message when the code fails to load due to a fulfillment error.
+          * @uiWidget textArea
+          * @uiName Code fulfillment error message
+          * @uiGroup Coupon code error
+         */
+        "fullfillmentErrorText": string;
+        /**
+          * Display this message when the code fails to load due to an unspecified error.
+          * @uiWidget textArea
+          * @uiName Code retrieval error message
+          * @uiGroup Coupon code error
+         */
+        "genericErrorText": string;
+        /**
+          * Display this message when the coupon code not available yet. Use the ICU message, {unpendDate}, to show the date the code will be available.
+          * @uiWidget textArea
+          * @uiName Code pending error message
+          * @uiGroup Coupon code error
          */
         "pendingErrorText": string;
         /**
@@ -203,18 +234,20 @@ export namespace Components {
          */
         "programId"?: string;
         /**
-          * Set error message
-          * @uiName Error message
+          * Display this message when the coupon code has already been redeemed.
+          * @uiWidget textArea
+          * @uiName Redeemed code error message
+          * @uiGroup Coupon code error
          */
         "redeemedErrorText": string;
         /**
           * Change the text alignment
-          * @uiName Align text
+          * @uiName Coupon code alignment
           * @uiType string
-          * @uiEnum ["left", "center"]
-          * @uiEnumNames ["left", "center"]
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
-        "textAlign": "left" | "center";
+        "textAlign": "left" | "center" | "right";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -554,6 +587,8 @@ export namespace Components {
     interface SqmInstantAccessRegistration {
         /**
           * @uiName Background color
+          * @uiWidget color
+          * @uiGroup Card style
           * @uiType string
          */
         "backgroundColor": string;
@@ -571,11 +606,12 @@ export namespace Components {
          */
         "firstNameLabel": string;
         /**
+          * Require your participants to enter their first and last name.
           * @uiName Include name fields
          */
         "includeName": boolean;
         /**
-          * The message to be displayed when the email used is invalid or blocked.
+          * Display this message when the given email is invalid or blocked.
           * @uiName Invalid Email Message
           * @uiWidget textArea
          */
@@ -585,25 +621,29 @@ export namespace Components {
          */
         "lastNameLabel": string;
         /**
-          * @uiName Padding Bottom
+          * @uiName Bottom padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom": string;
         /**
-          * @uiName Padding Left
+          * @uiName Left padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft": string;
         /**
-          * @uiName Padding Right
+          * @uiName Right padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight": string;
         /**
-          * @uiName Padding Top
+          * @uiName Top padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -614,10 +654,11 @@ export namespace Components {
         "registerLabel": string;
         /**
           * @uiName Remove the border
+          * @uiGroup Card style
          */
         "removeBorder": boolean;
         /**
-          * The message to be displayed when a required field is not filled.
+          * Display this message when a required field has not been filled out.
           * @uiName Required Field Message
           * @uiWidget textArea
          */
@@ -755,7 +796,12 @@ export namespace Components {
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
           * @required 
-          * @uiName Switch User Text
+          * @uiName Switch user button link
+         */
+        "switchUserLink": string;
+        /**
+          * @required 
+          * @uiName Switch user button label
          */
         "switchUserText": string;
         /**
@@ -1019,29 +1065,33 @@ export namespace Components {
          */
         "hidePoweredBy": boolean;
         /**
-          * @uiName Hide the support text
+          * @uiName Hide support message
          */
         "hideSupportText": boolean;
         /**
-          * @uiName Padding Bottom
+          * @uiName Bottom padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom": string;
         /**
-          * @uiName Padding Left
+          * @uiName Left padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft": string;
         /**
-          * @uiName Padding Right
+          * @uiName Right padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight": string;
         /**
-          * @uiName Padding Top
+          * @uiName Top padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -1055,7 +1105,7 @@ export namespace Components {
          */
         "supportEmail": string;
         /**
-          * @uiName Support Text
+          * @uiName Support message
           * @uiWidget textArea
          */
         "supportText": string;
@@ -1538,29 +1588,34 @@ export namespace Components {
     interface SqmReferralCard {
         /**
           * @uiName Background color
+          * @uiWidget color
           * @uiType string
          */
         "backgroundColor": string;
         /**
-          * @uiName Padding Bottom
+          * @uiName Bottom padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom": string;
         /**
-          * @uiName Padding Left
+          * @uiName Left padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft": string;
         /**
-          * @uiName Padding Right
+          * @uiName Right padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight": string;
         /**
-          * @uiName Padding Top
+          * @uiName Top padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -1786,6 +1841,8 @@ export namespace Components {
     interface SqmReferredRegistration {
         /**
           * @uiName Background color
+          * @uiWidget color
+          * @uiGroup Card style
           * @uiType string
          */
         "backgroundColor": string;
@@ -1803,11 +1860,12 @@ export namespace Components {
          */
         "firstNameLabel": string;
         /**
+          * Require your participants to enter their first and last name.
           * @uiName Include name fields
          */
         "includeName": boolean;
         /**
-          * The message to be displayed when the email used is invalid or blocked.
+          * Display this message when the given email is invalid or blocked.
           * @uiName Invalid Email Message
           * @uiWidget textArea
          */
@@ -1817,25 +1875,29 @@ export namespace Components {
          */
         "lastNameLabel": string;
         /**
-          * @uiName Padding Bottom
+          * @uiName Bottom padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom": string;
         /**
-          * @uiName Padding Left
+          * @uiName Left padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft": string;
         /**
-          * @uiName Padding Right
+          * @uiName Right padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight": string;
         /**
-          * @uiName Padding Top
+          * @uiName Top padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -1846,10 +1908,11 @@ export namespace Components {
         "registerLabel": string;
         /**
           * @uiName Remove the border
+          * @uiGroup Card style
          */
         "removeBorder": boolean;
         /**
-          * The message to be displayed when a required field is not filled.
+          * Display this message when a required field has not been filled out.
           * @uiName Required Field Message
           * @uiWidget textArea
          */
@@ -2364,15 +2427,14 @@ export namespace Components {
     }
     interface SqmShareCode {
         /**
-          * Set the copy button style
-          * @uiName Copy button style
+          * Set the copy button style and placement.
+          * @uiName Style
           * @uiType string
-          * @uiEnum ["icon", "button inside", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
+          * @uiEnum ["icon", "button-outside", "button-below"]
+          * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
-        "buttonStyle": "icon" | "button inside" | "button outside" | "button below";
+        "buttonStyle": "icon" | "button-outside" | "button-below";
         /**
-          * Set copy button label
           * @uiName Copy button label
          */
         "copyButtonLabel": string;
@@ -2389,12 +2451,12 @@ export namespace Components {
         "programId"?: string;
         /**
           * Change the text alignment
-          * @uiName Align text
+          * @uiName Share code alignment
           * @uiType string
-          * @uiEnum ["left", "center"]
-          * @uiEnumNames ["left", "center"]
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
-        "textAlign": "left" | "center";
+        "textAlign": "left" | "center" | "right";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -2408,15 +2470,14 @@ export namespace Components {
     }
     interface SqmShareLink {
         /**
-          * Set the copy button style
-          * @uiName Copy button style
+          * Set the copy button style and placement.
+          * @uiName Style
           * @uiType string
-          * @uiEnum ["icon", "button inside", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
+          * @uiEnum ["icon", "button-outside", "button-below"]
+          * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
-        "buttonStyle": "icon" | "button inside" | "button outside" | "button below";
+        "buttonStyle": "icon" | "button-outside" | "button-below";
         /**
-          * Set copy button label
           * @uiName Copy button label
          */
         "copyButtonLabel": string;
@@ -2433,12 +2494,12 @@ export namespace Components {
         "programId"?: string;
         /**
           * Change the text alignment
-          * @uiName Align text
+          * @uiName Share link alignment
           * @uiType string
-          * @uiEnum ["left", "center"]
-          * @uiEnumNames ["left", "center"]
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
-        "textAlign": "left" | "center";
+        "textAlign": "left" | "center" | "right";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip Lifespan
@@ -3507,44 +3568,74 @@ declare namespace LocalJSX {
         "errorMessage"?: string;
     }
     interface SqmCloseButton {
+        /**
+          * @uiName Background color
+          * @uiWidget color
+          * @uiType string
+         */
+        "backgroundColor"?: string;
     }
     interface SqmCouponCode {
         /**
-          * Set the copy button style
-          * @uiName Copy button style
+          * Set the copy button style and placement.
+          * @uiName Style
           * @uiType string
-          * @uiEnum ["icon", "button inside", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
+          * @uiEnum ["icon", "button-outside", "button-below"]
+          * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
-        "buttonStyle"?: "icon" | "button inside" | "button outside" | "button below";
+        "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * Set error message
-          * @uiName Error message
+          * Display this message when the coupon code has been cancelled.
+          * @uiWidget textArea
+          * @uiName Cancelled code error message
+          * @uiGroup Coupon code error
          */
         "cancelledErrorText"?: string;
         /**
-          * Set copy button label
           * @uiName Copy button label
          */
         "copyButtonLabel"?: string;
         /**
-          * Set coupon code placeholder for when there there is no coupon code to display
+          * @uiName Coupon code label
+         */
+        "couponCodeLabel"?: string;
+        /**
+          * Display this text when the coupon code can’t be retrieved.
           * @uiName Coupon code placeholder
+          * @uiGroup Coupon code error
          */
         "couponCodePlaceholder"?: string;
         /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<CopyTextViewProps>;
+        "demoData"?: DemoData<CouponCodeViewProps>;
         /**
-          * Set error message
-          * @uiName Error message
+          * Display this message when the coupon code has expired.
+          * @uiWidget textArea
+          * @uiName Expired code error message
+          * @uiGroup Coupon code error
          */
         "expiredErrorText"?: string;
         /**
-          * Set error message
-          * @uiName Error message
+          * Display this message when the code fails to load due to a fulfillment error.
+          * @uiWidget textArea
+          * @uiName Code fulfillment error message
+          * @uiGroup Coupon code error
+         */
+        "fullfillmentErrorText"?: string;
+        /**
+          * Display this message when the code fails to load due to an unspecified error.
+          * @uiWidget textArea
+          * @uiName Code retrieval error message
+          * @uiGroup Coupon code error
+         */
+        "genericErrorText"?: string;
+        /**
+          * Display this message when the coupon code not available yet. Use the ICU message, {unpendDate}, to show the date the code will be available.
+          * @uiWidget textArea
+          * @uiName Code pending error message
+          * @uiGroup Coupon code error
          */
         "pendingErrorText"?: string;
         /**
@@ -3554,18 +3645,20 @@ declare namespace LocalJSX {
          */
         "programId"?: string;
         /**
-          * Set error message
-          * @uiName Error message
+          * Display this message when the coupon code has already been redeemed.
+          * @uiWidget textArea
+          * @uiName Redeemed code error message
+          * @uiGroup Coupon code error
          */
         "redeemedErrorText"?: string;
         /**
           * Change the text alignment
-          * @uiName Align text
+          * @uiName Coupon code alignment
           * @uiType string
-          * @uiEnum ["left", "center"]
-          * @uiEnumNames ["left", "center"]
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
-        "textAlign"?: "left" | "center";
+        "textAlign"?: "left" | "center" | "right";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -3905,6 +3998,8 @@ declare namespace LocalJSX {
     interface SqmInstantAccessRegistration {
         /**
           * @uiName Background color
+          * @uiWidget color
+          * @uiGroup Card style
           * @uiType string
          */
         "backgroundColor"?: string;
@@ -3922,11 +4017,12 @@ declare namespace LocalJSX {
          */
         "firstNameLabel"?: string;
         /**
+          * Require your participants to enter their first and last name.
           * @uiName Include name fields
          */
         "includeName"?: boolean;
         /**
-          * The message to be displayed when the email used is invalid or blocked.
+          * Display this message when the given email is invalid or blocked.
           * @uiName Invalid Email Message
           * @uiWidget textArea
          */
@@ -3936,25 +4032,29 @@ declare namespace LocalJSX {
          */
         "lastNameLabel"?: string;
         /**
-          * @uiName Padding Bottom
+          * @uiName Bottom padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom"?: string;
         /**
-          * @uiName Padding Left
+          * @uiName Left padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft"?: string;
         /**
-          * @uiName Padding Right
+          * @uiName Right padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight"?: string;
         /**
-          * @uiName Padding Top
+          * @uiName Top padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -3965,10 +4065,11 @@ declare namespace LocalJSX {
         "registerLabel"?: string;
         /**
           * @uiName Remove the border
+          * @uiGroup Card style
          */
         "removeBorder"?: boolean;
         /**
-          * The message to be displayed when a required field is not filled.
+          * Display this message when a required field has not been filled out.
           * @uiName Required Field Message
           * @uiWidget textArea
          */
@@ -4106,7 +4207,12 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
           * @required 
-          * @uiName Switch User Text
+          * @uiName Switch user button link
+         */
+        "switchUserLink"?: string;
+        /**
+          * @required 
+          * @uiName Switch user button label
          */
         "switchUserText"?: string;
         /**
@@ -4370,29 +4476,33 @@ declare namespace LocalJSX {
          */
         "hidePoweredBy"?: boolean;
         /**
-          * @uiName Hide the support text
+          * @uiName Hide support message
          */
         "hideSupportText"?: boolean;
         /**
-          * @uiName Padding Bottom
+          * @uiName Bottom padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom"?: string;
         /**
-          * @uiName Padding Left
+          * @uiName Left padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft"?: string;
         /**
-          * @uiName Padding Right
+          * @uiName Right padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight"?: string;
         /**
-          * @uiName Padding Top
+          * @uiName Top padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -4406,7 +4516,7 @@ declare namespace LocalJSX {
          */
         "supportEmail"?: string;
         /**
-          * @uiName Support Text
+          * @uiName Support message
           * @uiWidget textArea
          */
         "supportText"?: string;
@@ -4889,29 +4999,34 @@ declare namespace LocalJSX {
     interface SqmReferralCard {
         /**
           * @uiName Background color
+          * @uiWidget color
           * @uiType string
          */
         "backgroundColor"?: string;
         /**
-          * @uiName Padding Bottom
+          * @uiName Bottom padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom"?: string;
         /**
-          * @uiName Padding Left
+          * @uiName Left padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft"?: string;
         /**
-          * @uiName Padding Right
+          * @uiName Right padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight"?: string;
         /**
-          * @uiName Padding Top
+          * @uiName Top padding
+          * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -5123,6 +5238,8 @@ declare namespace LocalJSX {
     interface SqmReferredRegistration {
         /**
           * @uiName Background color
+          * @uiWidget color
+          * @uiGroup Card style
           * @uiType string
          */
         "backgroundColor"?: string;
@@ -5140,11 +5257,12 @@ declare namespace LocalJSX {
          */
         "firstNameLabel"?: string;
         /**
+          * Require your participants to enter their first and last name.
           * @uiName Include name fields
          */
         "includeName"?: boolean;
         /**
-          * The message to be displayed when the email used is invalid or blocked.
+          * Display this message when the given email is invalid or blocked.
           * @uiName Invalid Email Message
           * @uiWidget textArea
          */
@@ -5154,25 +5272,29 @@ declare namespace LocalJSX {
          */
         "lastNameLabel"?: string;
         /**
-          * @uiName Padding Bottom
+          * @uiName Bottom padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingBottom"?: string;
         /**
-          * @uiName Padding Left
+          * @uiName Left padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingLeft"?: string;
         /**
-          * @uiName Padding Right
+          * @uiName Right padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingRight"?: string;
         /**
-          * @uiName Padding Top
+          * @uiName Top padding
+          * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
@@ -5183,10 +5305,11 @@ declare namespace LocalJSX {
         "registerLabel"?: string;
         /**
           * @uiName Remove the border
+          * @uiGroup Card style
          */
         "removeBorder"?: boolean;
         /**
-          * The message to be displayed when a required field is not filled.
+          * Display this message when a required field has not been filled out.
           * @uiName Required Field Message
           * @uiWidget textArea
          */
@@ -5691,15 +5814,14 @@ declare namespace LocalJSX {
     }
     interface SqmShareCode {
         /**
-          * Set the copy button style
-          * @uiName Copy button style
+          * Set the copy button style and placement.
+          * @uiName Style
           * @uiType string
-          * @uiEnum ["icon", "button inside", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
+          * @uiEnum ["icon", "button-outside", "button-below"]
+          * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
-        "buttonStyle"?: "icon" | "button inside" | "button outside" | "button below";
+        "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * Set copy button label
           * @uiName Copy button label
          */
         "copyButtonLabel"?: string;
@@ -5716,12 +5838,12 @@ declare namespace LocalJSX {
         "programId"?: string;
         /**
           * Change the text alignment
-          * @uiName Align text
+          * @uiName Share code alignment
           * @uiType string
-          * @uiEnum ["left", "center"]
-          * @uiEnumNames ["left", "center"]
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
-        "textAlign"?: "left" | "center";
+        "textAlign"?: "left" | "center" | "right";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -5735,15 +5857,14 @@ declare namespace LocalJSX {
     }
     interface SqmShareLink {
         /**
-          * Set the copy button style
-          * @uiName Copy button style
+          * Set the copy button style and placement.
+          * @uiName Style
           * @uiType string
-          * @uiEnum ["icon", "button inside", "button outside", "button below"]
-          * @uiEnumNames ["icon", "button inside", "button outside", "button below"]
+          * @uiEnum ["icon", "button-outside", "button-below"]
+          * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
-        "buttonStyle"?: "icon" | "button inside" | "button outside" | "button below";
+        "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * Set copy button label
           * @uiName Copy button label
          */
         "copyButtonLabel"?: string;
@@ -5760,12 +5881,12 @@ declare namespace LocalJSX {
         "programId"?: string;
         /**
           * Change the text alignment
-          * @uiName Align text
+          * @uiName Share link alignment
           * @uiType string
-          * @uiEnum ["left", "center"]
-          * @uiEnumNames ["left", "center"]
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
-        "textAlign"?: "left" | "center";
+        "textAlign"?: "left" | "center" | "right";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip Lifespan
