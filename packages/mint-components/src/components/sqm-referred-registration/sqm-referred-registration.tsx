@@ -16,7 +16,7 @@ import {
 /**
  * @uiName Instant Access Friend Registration
  * @compatibility Built for instant access
- * @slots [{"name":"top-slot","title":"Widget Content"},{"name":"bottom-slot","title":"Widget Content"}]
+ * @slots [{"name":"top-slot","title":"Top Content"},{"name":"bottom-slot","title":"Bottom Content"}]
  */
 @Component({
   tag: "sqm-referred-registration",

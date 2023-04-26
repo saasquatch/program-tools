@@ -6,11 +6,16 @@ Feature: Logout Current User
   Background:
     Given a user viewing an instant access widget
 
+  @motivating
+  @ui
   Scenario: A user on an instant access widget
     Given the user is identified
     And the user is logged in
-    Then the component identifies the user by email
+    Then the component identifies the user by displaying their email in an ICU string
+    And the users email displayed in the ICU string using hte "{email}" variable
 
+  @motivating
+  @ui
   Scenario: Users can switch who they are identified as through a link
     Given the user is identified
     And the user is logged in

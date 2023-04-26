@@ -54,3 +54,25 @@ Feature: Share Link
     Then an "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT" analytic event is fired
     And it is for "program-a"
     And it has share medium "DIRECT"
+
+  @ui
+  Scenario: user can edit the alignment of the share link text
+    Given a user is editing the share link component
+    When they change the option "Align text" to <option>
+    Then they see the text in <position>
+    Examples:
+      | option | position |
+      | left   | left     |
+      | center | center   |
+      | right  | right    |
+
+  @ui
+  Scenario Outline: The position of the copy button can be changed
+    Given a user is editing the share link component
+    When they change the option "Button style" to <option>
+    Then they see the copy button in <position>
+    Examples:
+      | option         | position                        |
+      | button inside  | inside the input, on the right  |
+      | button outside | outside the input, on the right |
+      | button below   | outside the input, below        |

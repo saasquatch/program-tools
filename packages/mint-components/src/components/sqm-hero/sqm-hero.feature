@@ -1,3 +1,6 @@
+@author:noah
+@owner:noah
+
 Feature: Hero Unit
 
     Background: A portal with a hero unit exists
@@ -80,9 +83,11 @@ Feature: Hero Unit
             | wrap-reverse | 2      |
             |              | 1      |
 
-    Scenario: Minimum height can be customized
-        Given a user a viewing the hero layout component
-        Then they see an option labeled "Mininum Height (in px)"
-        When they change the value to "500"
-        Then the hero image minimum height is 500px
+    Scenario Outline: Minimum height can be customized
+        Given the option "Mininum Height (in px)" is <value>
+        Then the hero image minimum height is <effectiveValue>
         And the change is reflected in mobile view
+        Examples:
+            | value | effectiveValue |
+            | unset | 200px          |
+            | 200px | 500px          |
