@@ -23,7 +23,7 @@ Feature: Coupon Code
     Scenario: The first reward is the reward that is displayed
         Given a user has at least one fueltank reward
         And the fueltank reward is available
-        Then the coupon-code component shows the first reward returned
+        Then the coupon code component shows the first reward returned
 
     @motivating
     Scenario Outline: Coupon code has multiple states depending on reward status
@@ -42,6 +42,20 @@ Feature: Coupon Code
             | PENDING   | null             | EMPTY_TANK      | fullfillmentErrorMessage |
             | PENDING   | 123412341234     | PENDING         | pendingErrorMessage      |
             | null      | null             | ERROR           | genericErrorMessage      |
+
+    Scenario Outline: Coupon code's error message text props are grouped
+        Given a user is viewing the coupon code component
+        Then they see <prop>
+        And <prop> is grouped under "Coupon code error"
+        Examples:
+            | prop                     |
+            | N/A                      |
+            | expiredErrorMessage      |
+            | redeemedMessage          |
+            | cancelledErrorMessage    |
+            | fullfillmentErrorMessage |
+            | pendingErrorMessage      |
+            | genericErrorMessage      |
 
     @minutia
     Scenario: Tooltip lifespan defaults to 2000
