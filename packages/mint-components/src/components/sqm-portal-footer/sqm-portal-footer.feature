@@ -39,35 +39,29 @@ Feature: Portal Footer
             | has          | support@saasquatch.com | has          | For support please contact {email} | support@saasquatch.com | For support please contact support@saasquatch.com |
             | doesn't have | N/A                    | doesn't have | N/A                                | support@example.com    | For program support, contact support@example.com  |
 
-    Scenario Outline: Powered by SaaSquatch is shown by default
+    Scenario Outline: Powered by SaaSquatch can be hidden
         Given the footer <mayHaveProp> "hide-powered-by" with <value>
         Then the powered by SaaSquatch image <mayBeShown>
         Examples:
-            | mayHaveProp       | value | mayBeShown  |
-            | has prop          | true  | isn't shown |
-            | has prop          | false | is shown    |
-            | has prop          | test  | isn't shown |
-            | has prop          |       | isn't shown |
-            | doesn't have prop |       | is shown    |
+            | mayHaveProp       | value          | mayBeShown  |
+            | has prop          | true (default) | isn't shown |
+            | has prop          | false          | is shown    |
+            | has prop          | test           | isn't shown |
+            | has prop          |                | isn't shown |
+            | doesn't have prop |                | is shown    |
 
-    Scenario Outline: Support text is shown by default
+    Scenario Outline: Support text can be hidden
         Given the footer <mayHaveProp> "hide-support-text" with <value>
         Then the support text <mayBeShown>
         Examples:
-            | mayHaveProp       | value | mayBeShown  |
-            | has prop          | true  | isn't shown |
-            | has prop          | false | is shown    |
-            | has prop          | test  | isn't shown |
-            | has prop          |       | isn't shown |
-            | doesn't have prop |       | is shown    |
+            | mayHaveProp       | value           | mayBeShown  |
+            | has prop          | false (default) | is shown    |
+            | has prop          | true            | isn't shown |
+            | has prop          | test            | isn't shown |
+            | has prop          |                 | isn't shown |
+            | doesn't have prop |                 | is shown    |
 
     Scenario: Powered By Saasquatch links out to marketing website
         Given the footer has the powered by SaaSquatch image
         When a user clicks on it
         Then they will be redirected to "https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget" in a new page
-
-    Scenario: Support text can be hidden
-        Given a user is viewing the footer component
-        Then they see an option called "Hide the support text"
-        When they toggle this option
-        Then the footer support text is hidden
