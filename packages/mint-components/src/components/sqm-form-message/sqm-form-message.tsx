@@ -15,7 +15,7 @@ export class FormMessage {
   ignored = true;
 
   /**
-   * @uiName Alert Type
+   * @uiName Alert type
    */
   @Prop() type: string;
   /**

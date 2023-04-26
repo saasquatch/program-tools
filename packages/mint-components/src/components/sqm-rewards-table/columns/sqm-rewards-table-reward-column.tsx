@@ -14,22 +14,22 @@ import { RewardTableColumn } from "./RewardTableColumn";
 })
 export class RewardsTableColumn implements RewardTableColumn {
   /**
-   * @uiName Reward Column Title
+   * @uiName Reward column title
    */
   @Prop() columnTitle: string = "Reward";
 
   /**
-   * @uiName Redeemed Amount Text
+   * @uiName Redeemed amount text
    */
   @Prop() redeemedText: string = "{redeemedAmount} redeemed";
 
   /**
-   * @uiName Remaining Amount Text
+   * @uiName Remaining amount text
    */
   @Prop() availableText: string = "{availableAmount} remaining";
 
   /**
-   * @uiName Copied Fuel Tank Text
+   * @uiName Copied fuel tank text
    */
   @Prop() copyText: string = "Copied!";
 

@@ -27,25 +27,25 @@ export class ReferredRegistration {
   ignored = true;
 
   /**
-   * @uiName Email Field Label
+   * @uiName Email field label
    */
   @Prop()
   emailLabel: string = "Email";
 
   /**
-   * @uiName First Name Field Label
+   * @uiName First name field label
    */
   @Prop()
   firstNameLabel: string = "First Name";
 
   /**
-   * @uiName Last Name Field Label
+   * @uiName Last name field label
    */
   @Prop()
   lastNameLabel: string = "Last Name";
 
   /**
-   * @uiName Register Button Text
+   * @uiName Register button text
    */
   @Prop()
   registerLabel: string = "Start Referring";
@@ -58,7 +58,7 @@ export class ReferredRegistration {
   @Prop() includeName: boolean = false;
 
   /**
-   * @uiName Remove the border
+   * @uiName Remove border
    * @uiGroup Card style
    */
   @Prop() removeBorder: boolean = false;
@@ -66,7 +66,7 @@ export class ReferredRegistration {
   /**
    * Display this message when a required field has not been filled out.
    *
-   * @uiName Required Field Message
+   * @uiName Required field message
    * @uiWidget textArea
    */
   @Prop() requiredFieldErrorMessage: string = "Cannot be empty";
@@ -74,7 +74,7 @@ export class ReferredRegistration {
   /**
    * Display this message when the given email is invalid or blocked.
    *
-   * @uiName Invalid Email Message
+   * @uiName Invalid email message
    * @uiWidget textArea
    */
   @Prop() invalidEmailErrorMessage: string = "Must be a valid email address";

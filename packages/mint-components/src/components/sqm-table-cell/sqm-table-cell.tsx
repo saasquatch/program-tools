@@ -9,7 +9,7 @@ import { Component, h, Prop, Host } from "@stencil/core";
   shadow: true,
 })
 export class TableCell {
-  /** @uiName Column Span  */
+  /** @uiName Column span  */
   @Prop() colspan: number = 1;
   /** @uiName Padding */
   @Prop() padding: string = "15px 10px";

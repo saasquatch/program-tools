@@ -17,25 +17,25 @@ export class PopupContainer {
   /**
    * Show Powered By SaaSquatch link
    *
-   * @uiName Show Powered By
+   * @uiName Show powered by
    */
   @Prop() poweredBy: boolean;
   /**
    * Display a close button on the popup
    *
-   * @uiName Show Close Button
+   * @uiName Show close button
    */
   @Prop() closeButton: boolean;
   /**
    * Text inside the close button
    *
-   * @uiName Close Button Text
+   * @uiName Close button text
    */
   @Prop() closeButtonText: string;
   /**
    * Specify padding on the popup contents when in embedded mode
    *
-   * @uiName Embed Padding
+   * @uiName Embed padding
    * @uiType string
    * @uiEnum ["none", "small", "medium", "large"]
    * @uiEnumNames ["None", "Small", "Medium", "Large"]
@@ -43,7 +43,7 @@ export class PopupContainer {
   @Prop() embedPadding?: "none" | "small" | "medium" | "large";
   /**
    * Specify padding on the popup contents when in popup mode
-   * @uiName Popup Padding
+   * @uiName Popup padding
    * @uiType string
    * @uiEnum ["none", "small", "medium", "large"]
    * @uiEnumNames ["None", "Small", "Medium", "Large"]

@@ -20,7 +20,7 @@ export class PortalFooter {
    */
   @Prop() hideSupportText: boolean = false;
   /**
-   * @uiName Support Email
+   * @uiName Support email
    */
   @Prop() supportEmail: string = "support@example.com";
   /**
@@ -29,27 +29,27 @@ export class PortalFooter {
    */
   @Prop() supportText: string = "For program support, contact {email}";
   /**
-   * @uiName Terms and Conditions Link
+   * @uiName Terms and conditions link
    */
   @Prop() termsLink?: string;
   /**
-   * @uiName Terms and Conditions Text
+   * @uiName Terms and conditions text
    */
   @Prop() termsText?: string;
   /**
-   * @uiName FAQ Link
+   * @uiName FAQ link
    */
   @Prop() faqLink?: string;
   /**
-   * @uiName FAQ Text
+   * @uiName FAQ text
    */
   @Prop() faqText?: string;
   /**
-   * @uiName Hide Powered By SaaSquatch
+   * @uiName Hide powered by SaaSquatch
    */
   @Prop() hidePoweredBy: boolean = false;
   /**
-   * @uiName Powered By Link
+   * @uiName Powered by link
    */
   @Prop() poweredByLink: string = "https://saasquatch.com";
   /**

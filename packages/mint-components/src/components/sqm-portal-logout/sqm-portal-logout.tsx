@@ -18,7 +18,7 @@ export class PortalLogout {
   /**
    * Redirect participants to this page when they log out.
    *
-   * @uiName Logout Redirect Path
+   * @uiName Logout redirect path
    * @uiWidget pageSelect
    */
   @Prop()

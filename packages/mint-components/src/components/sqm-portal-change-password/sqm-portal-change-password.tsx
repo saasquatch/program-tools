@@ -22,35 +22,35 @@ export class PortalChangePassword {
   ignored = true;
 
   /**
-   * @uiName Change Password Modal Header
+   * @uiName Change password modal header
    */
   @Prop() modalChangePasswordHeader: string = "Change Password";
 
   /**
    * Found in modal
    *
-   * @uiName Cancel Button Text
+   * @uiName Cancel button text
    */
   @Prop() cancelText: string = "Cancel";
 
   /**
    * Found in modal
    *
-   * @uiName Change Password Button Text
+   * @uiName Change password button text
    */
   @Prop() changePasswordButtonText: string = "Change Password";
 
   /**
    * Found in modal
    *
-   * @uiName New Password Field Label
+   * @uiName New password field label
    */
   @Prop() passwordFieldLabel: string = "New Password";
 
   /**
    * Found in modal
    *
-   * @uiName Confirm Password Label
+   * @uiName Confirm password Label
    */
   @Prop()
   confirmPasswordFieldLabel: string = "Confirm New Password";
@@ -58,7 +58,7 @@ export class PortalChangePassword {
   /**
    * Successful password change message
    *
-   * @uiName Successful Password Change Message
+   * @uiName Successful password change message
    * @uiWidget textArea
    */
   @Prop() successMessage: string = "Your password has been updated.";
@@ -66,12 +66,12 @@ export class PortalChangePassword {
   /**
    * Portal change password section header
    *
-   * @uiName Change Password Header
+   * @uiName Change password header
    */
   @Prop() portalChangePasswordHeader: string = "Password";
 
   /**
-   * @uiName Change Password Button Text
+   * @uiName Change password button text
    */
   @Prop() portalChangePasswordButtonText: string = "Change your password...";
 

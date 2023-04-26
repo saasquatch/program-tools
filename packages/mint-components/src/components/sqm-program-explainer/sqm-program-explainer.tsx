@@ -18,19 +18,19 @@ export class ProgramExplainer {
   ignored = true;
 
   /**
-   * @uiName Header Text
+   * @uiName Header text
    */
   @Prop() header: string;
 
   /**
-   * @uiName Header Text Color
+   * @uiName Header text color
    * @uiWidget color
    * @format color
    */
   @Prop() textColor: string;
 
   /**
-   * @uiName Header Background Color
+   * @uiName Header background color
    * @uiWidget color
    * @format color
    */

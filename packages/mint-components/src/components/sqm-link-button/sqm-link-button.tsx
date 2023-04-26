@@ -14,11 +14,11 @@ import { LinkButtonView } from "./sqm-link-button-view";
 export class LinkButton {
   /**
    * @required
-   * @uiName User Identification Text
+   * @uiName Link
    */
   @Prop() link: string;
   /**
-   * @uiName User Identification Text
+   * @uiName Open link in new tab
    */
   @Prop() openInNewTab: boolean = false;
 

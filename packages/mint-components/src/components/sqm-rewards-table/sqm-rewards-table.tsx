@@ -37,28 +37,28 @@ export class RewardsTable {
    */
   @Prop() programId: string;
 
-  /** @uiName Number of rewards per page */
+  /** @uiName Rewards per page */
   @Prop() perPage: number = 4;
 
-  /** @uiName Hide Column Labels */
+  /** @uiName Hide column labels */
   @Prop() hideLabels?: boolean = false;
 
   /** @uiName Previous button text  */
   @Prop() prevLabel?: string = "Prev";
 
-  /** @uiName View More button text  */
+  /** @uiName View more button text  */
   @Prop() moreLabel?: string = "Next";
 
   /**
    * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
    *
-   *  @uiName Mobile Hidden Columns  */
+   *  @uiName Mobile hidden columns  */
   @Prop() hiddenColumns?: string = "0";
 
-  /** @uiName Mobile Breakpoint  */
+  /** @uiName Mobile breakpoint  */
   @Prop() smBreakpoint?: number = 599;
 
-  /** @uiName Tablet Breakpoint  */
+  /** @uiName Tablet breakpoint  */
   @Prop() mdBreakpoint?: number = 799;
 
   /**

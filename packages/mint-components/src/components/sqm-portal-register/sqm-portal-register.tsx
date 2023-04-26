@@ -24,7 +24,7 @@ export class PortalRegister {
   /**
    * Redirect participants to this page from their verification email
    *
-   * @uiName Registration Redirect
+   * @uiName Registration redirect
    * @uiWidget pageSelect
    */
   @Prop()
@@ -33,49 +33,49 @@ export class PortalRegister {
   /**
    * The page that participants are redirected to from the verification email.
    *
-   * @uiName Email Verification Redirect
+   * @uiName Email verification redirect
    * @uiWidget pageSelect
    */
   @Prop()
   redirectPath: string = "/verifyEmail";
 
   /**
-   * @uiName Email Field Label
+   * @uiName Email field label
    */
   @Prop()
   emailLabel: string = "Email";
 
   /**
-   * @uiName Password Field Label
+   * @uiName Password field label
    */
   @Prop()
   passwordLabel: string = "Password";
 
   /**
-   * @uiName Submit Button Text
+   * @uiName Submit button text
    */
   @Prop()
   submitLabel: string = "Register";
 
   /**
-   * @uiName Login Button Text
+   * @uiName Login button text
    */
   @Prop()
   loginLabel: string = "Sign in";
 
   /**
-   * @uiName Confirm Password Field Label
+   * @uiName Confirm password field label
    */
   @Prop() confirmPasswordLabel: string = "Confirm Password";
 
   /**
-   * @uiName Show Confirm Password Field
+   * @uiName Show confirm password field
    */
   @Prop()
   confirmPassword: boolean = false;
 
   /**
-   * @uiName Disable Password Validation
+   * @uiName Disable password validation
    */
   @Prop()
   disablePasswordValidation: boolean = false;
@@ -83,13 +83,13 @@ export class PortalRegister {
   /**
    * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
    *
-   * @uiName Hide Default Fields
+   * @uiName Hide default fields
    */
   @Prop()
   hideInputs: boolean = false;
 
   /**
-   * @uiName Header Text
+   * @uiName Header text
    */
   @Prop()
   pageLabel: string = "Register";
@@ -97,7 +97,7 @@ export class PortalRegister {
   /**
    * Redirect participants to this page after clicking the login button.
    *
-   * @uiName Login Redirect
+   * @uiName Login redirect
    * @uiWidget pageSelect
    */
   @Prop() loginPath: string = "/login";
@@ -105,7 +105,7 @@ export class PortalRegister {
   /**
    * The message to be displayed when a required field is not filled.
    *
-   * @uiName Required Field Message
+   * @uiName Required field message
    * @uiWidget textArea
    */
   @Prop() requiredFieldErrorMessage: string = "Cannot be empty";
@@ -113,7 +113,7 @@ export class PortalRegister {
   /**
    * The message to be displayed when a the form submission fails unexpectedly.
    *
-   * @uiName Network Error Message
+   * @uiName Network error message
    * @uiWidget textArea
    */
   @Prop() networkErrorMessage: string = "Network request failed.";
@@ -121,7 +121,7 @@ export class PortalRegister {
   /**
    * The message to be displayed when password inputs do not match.
    *
-   * @uiName Password Mismatch Message
+   * @uiName Password mismatch message
    * @uiWidget textArea
    */
   @Prop() passwordMismatchErrorMessage: string = "Passwords do not match.";
@@ -129,7 +129,7 @@ export class PortalRegister {
   /**
    * The message to be displayed when the email used is invalid or blocked.
    *
-   * @uiName Invalid Email Message
+   * @uiName Invalid email message
    * @uiWidget textArea
    */
   @Prop() invalidEmailErrorMessage: string = "Must be a valid email address";

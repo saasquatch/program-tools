@@ -23,19 +23,19 @@ export class InputField {
 
   /**
    * This name is used as the key for this form field on submission. The name must be unique within this specific form.
-   * 
-   * @uiName Input Name Attribute
+   *
+   * @uiName Input name attribute
    * @required
    */
   @Prop() fieldName: string;
 
   /**
-   * @uiName Input Label
+   * @uiName Input label
    */
   @Prop() fieldLabel: string;
 
   /**
-   * @uiName Input Type
+   * @uiName Input type
    * @uiType string
    * @uiEnum ["text", "date", "tel"]
    * @uiEnumNames ["Text", "Date", "Phone Number"]
@@ -43,7 +43,7 @@ export class InputField {
   @Prop() fieldType: "text" | "date" | "tel" = "text";
 
   /**
-   * @uiName Required Error Message
+   * @uiName Required error message
    */
   @Prop() errorMessage: string = "Cannot be empty";
 

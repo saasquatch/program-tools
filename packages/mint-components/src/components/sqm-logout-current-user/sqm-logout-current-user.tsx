@@ -22,7 +22,7 @@ import { useLogoutCurrentUser } from "./useLogoutCurrentUser";
 export class LogoutCurrentUser {
   /**
    * @required
-   * @uiName User Identification Text
+   * @uiName User identification text
    */
   @Prop() userIdentificationText: string = "{email}";
   /**

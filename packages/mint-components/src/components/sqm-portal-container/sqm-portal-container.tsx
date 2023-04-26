@@ -40,7 +40,7 @@ export class PortalContainer {
    */
   @Prop() gap: Spacing = "xxx-large";
 
-  /** @uiName Minimum Width */
+  /** @uiName Minimum width */
   @Prop() minWidth?: string;
 
   /**
@@ -54,7 +54,7 @@ export class PortalContainer {
   /**
    * Define how this container distributes its contents along the main-axis.
    *
-   * @uiName Justify Content
+   * @uiName Justify content
    * @uiType string
    * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
    * @uiEnumNames ["Start", "Center", "End", "Space Between", "Space Around", "Space Evenly"]
@@ -73,7 +73,7 @@ export class PortalContainer {
   @Prop() maxWidth?: string = "100%";
 
   /**
-   * @uiName Center Content
+   * @uiName Center content
    */
   @Prop() center?: boolean;
 

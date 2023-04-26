@@ -23,38 +23,38 @@ export class PortalEmailVerification {
   /**
    * Redirect participants to this page from their verification email.
    *
-   * @uiName Email Redirect
+   * @uiName Email redirect
    * @uiWidget pageSelect
    */
   @Prop()
   redirectPath: string = "/verifyEmail";
 
   /**
-   * @uiName Email Verification Header Text
+   * @uiName Email verification header text
    */
   @Prop() emailVerificationHeader: string = "Verify your email";
 
   /**
-   * @uiName Re-send Email Button Text
+   * @uiName Re-send email button text
    */
   @Prop() resendEmailButtonText: string = "Re-send Email";
 
   /**
-   * @uiName Email Verification Body Text
+   * @uiName Email verification body text
    * @uiWidget textArea
    */
   @Prop() verifyMessage: string =
     "A verification email was sent to {email}. Please verify your email to continue to the portal. Resending an email will invalidate the previous email.";
 
   /**
-   * @uiName Email Verification Status Text
+   * @uiName Email verification status text
    * @uiWidget textArea
    */
   @Prop() verificationStatusMessage: string =
     "Checking verification status in {countdown}";
 
   /**
-   * @uiName Email Verification Checking Text
+   * @uiName Email verification checking text
    * @uiWidget textArea
    */
   @Prop() verificationLoadingMessage: string = "Checking verification status";

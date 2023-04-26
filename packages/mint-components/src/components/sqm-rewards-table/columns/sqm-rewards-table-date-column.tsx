@@ -15,12 +15,12 @@ import { RewardTableColumn } from "./RewardTableColumn";
 })
 export class RewardTableDateColumn implements RewardTableColumn {
   /**
-   * @uiName Date Column Title
+   * @uiName Date column title
    */
   @Prop() columnTitle: string = "Date received";
 
   /**
-   * @uiName Date Displayed
+   * @uiName Date displayed
    * @uiType string
    * @uiEnum ["dateGiven",
    * "dateExpires",
