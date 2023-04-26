@@ -13,7 +13,7 @@ import { useInstantAccessRegistration } from "./useInstantAccessRegistration";
 /**
  * @uiName Instant Access Registration
  * @compatibility Built for instant access
- * @slots [{"name":"top-slot","title":"Widget Content"},{"name":"bottom-slot","title":"Widget Content"}]
+ * @slots [{"name":"top-slot","title":"Top Content"},{"name":"bottom-slot","title":"Bottom Content"}]
  */
 @Component({
   tag: "sqm-instant-access-registration",
