@@ -13,34 +13,12 @@
     padding-right="x-large"
     padding-top="small"
   >
-    <sqm-portal-container
-      display="flex"
-      slot="footer"
-      gap="small"
-      justify-content="center"
-    >
-      <sqm-logout-current-user
-        user-identification-text="{email}"
-        switch-user-link="#"
-        switch-user-text="not you?"
-      ></sqm-logout-current-user>
-      <sqm-portal-footer
-        support-email="support@example.com"
-        show-powered-by="true"
-        padding-bottom="x-small"
-        padding-left="none"
-        padding-right="none"
-        padding-top="none"
-        hide-support-text
-        terms-text="Terms And Conditions"
-        terms-link="https://example.com"
-      ></sqm-portal-footer></sqm-portal-container
-    ><sqm-titled-section
+    <sqm-titled-section
       text-align="center"
       label-margin="none"
       padding="none"
       slot="header"
-      ><h1 slot="content">Invite your friends to unlock rewards!</h1>
+      ><h1 slot="label">Invite your friends to unlock rewards!</h1>
       <p slot="content">
         They&#x2019;ll get a &#x24;50 credit towards a new account and
         you&#x2019;ll get a &#x24;50 in credit for each friend you refer.
@@ -52,7 +30,7 @@
       display="grid"
       max-width="100%"
       padding="none"
-      slot="right"
+      slot="left"
     >
       <p style="margin: 0">Choose how you want to share:</p>
       <sqm-share-link
@@ -83,7 +61,28 @@
         type="default"
       >
         Tweet about us
-      </sqm-share-button>
-    </sqm-portal-container></sqm-referral-card
-  >
+      </sqm-share-button> </sqm-portal-container
+    ><sqm-portal-container
+      display="flex"
+      slot="footer"
+      gap="small"
+      justify-content="center"
+    >
+      <sqm-logout-current-user
+        user-identification-text="{email}"
+        switch-user-link="#"
+        switch-user-text="not you?"
+      ></sqm-logout-current-user>
+      <sqm-portal-footer
+        support-email="support@example.com"
+        show-powered-by="true"
+        padding-bottom="x-small"
+        padding-left="none"
+        padding-right="none"
+        padding-top="none"
+        hide-support-text
+        terms-text="Terms And Conditions"
+        terms-link="https://example.com"
+      ></sqm-portal-footer></sqm-portal-container
+  ></sqm-referral-card>
 </sqm-hero>
