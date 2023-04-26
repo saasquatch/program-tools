@@ -2,14 +2,25 @@
 Feature: Instant access referrer registration
 
   @motivating
-  Scenario: User's must provide an email to register
+  Scenario: Form has content validation for email input
     Given a user is trying to register as a referrer
-    When they do not provide an email
+    When they <error action>
     And they submit the form
-    Then an error appears telling the user to provide their email
-    When they provide an email
-    And they submit the form
-    Then they are logged in to the instant access widget
+    Then an error tells the user <message>
+      Examples
+      | error action            | message                    |
+      | do not provide an email | that email cannot be empty |
+      | give an invalid email   | the email is invalid       |
+
+  @motivating
+  Scenario: Name fields are required when included
+    Given a user is viewing the registration component
+    When the "Include name fields" option is set to "true"
+    Then the inputs for the first and last name fields are required
+    And the user cannot submit the form without filling first and last names
+    When the "Include name fields" option is set to "false"
+    Then the inputs don't exist and are not required
+    And the user can submit the form
 
   @motivating
   Scenario: Users are notified if registration fails
@@ -30,7 +41,9 @@ Feature: Instant access referrer registration
   Scenario: Successful registration upserts a user
     Given a user has entered a valid email
     And they submit the form
-    And the submission is successful
+    Then the input is disabled
+    And the button is in a loading state
+    When the submission is successful
     Then a new user has been upserted to SaaSquatch
 
   @ui
@@ -53,6 +66,7 @@ Feature: Instant access referrer registration
   Scenario: First name and last name input fields can be hidden
     Given a user is editing the instant access registration component
     Then they see an option labeled "Include name fields"
+    And the default is set to "false"
     When they toggle the option
     Then the first name and last name input field visibility is toggled
 
@@ -60,16 +74,21 @@ Feature: Instant access referrer registration
   Scenario: Input labels can be customized
     Given a user is editing the instant access registration component
     Then they see an option labeled "Include name fields"
+    And the default value is "false"
+    And the user also sees options for "First name field label" and "Last name field label"
+    And the defaults are "First Name" and "Last name"
 
   @ui
   Scenario Outline: Container border can be toggled
     Given a user is viewing the registration component
-    And the prop "remove-border" has <value>
-    Then the registration component <maybe> includes a border
+    Then the default value for the prop "remove-border" is "true"
+    When "remove-border" has <value>
+    Then the registration component's border <maybe> removed
     Examples:
-      | value | maybe    |
-      | true  | does     |
-      | false | does not |
+      | value            | maybe |
+      | true             | is    |
+      | false            | isn't |
+      | empty (no value) | is    |
 
   @motivating
   @ui
@@ -85,8 +104,11 @@ Feature: Instant access referrer registration
   @motivating
   @ui
   Scenario Outline: Container padding can be customized
-    Given prop "padding" has <value>
+    Given a user is looking at the component
+    Then the default values for "padding-top", "padding-bottom", "padding-left", "padding-right" is "large"
+    When prop "padding-top" has <value>
     Then <padding> is applied to content
+    And the same applies to "padding-bottom", "padding-left", "padding-right"
 
     Examples:
       | value      | padding    |

@@ -59,25 +59,30 @@ Feature: Instant access referred registration
 
   @ui
   Scenario: First name and last name input fields can be hidden
-    Given a user is editing the instant access registration component
+    Given a user is editing the registration component
     Then they see an option labeled "Include name fields"
+    And the default is set to "false"
     When they toggle the option
     Then the first name and last name input field visibility is toggled
 
   @ui
   Scenario: Input labels can be customized
-    Given a user is editing the instant access registration component
+    Given a user is editing the registration component
     Then they see an option labeled "Include name fields"
-
+    And the default value is "false"
+    And the user also sees options for "First name field label" and "Last name field label"
+    And the defaults are "First Name" and "Last name"
   @ui
   Scenario Outline: Container border can be toggled
     Given a user is viewing the registration component
-    And the prop "remove-border" has <value>
-    Then the registration component <maybe> includes a border
+    Then the default value for the prop "remove-border" is "true"
+    When "remove-border" has <value>
+    Then the registration component's border <maybe> removed
     Examples:
-      | value | maybe    |
-      | true  | does     |
-      | false | does not |
+      | value            | maybe |
+      | true             | is    |
+      | false            | isn't |
+      | empty (no value) | is    |
 
   @motivating
   @ui
@@ -93,8 +98,11 @@ Feature: Instant access referred registration
   @motivating
   @ui
   Scenario Outline: Container padding can be customized
-    Given prop "padding" has <value>
+    Given a user is looking at the component
+    Then the default values for "padding-top", "padding-bottom", "padding-left", "padding-right" is "large"
+    When prop "padding-top" has <value>
     Then <padding> is applied to content
+    And the same applies to "padding-bottom", "padding-left", "padding-right"
 
     Examples:
       | value      | padding    |

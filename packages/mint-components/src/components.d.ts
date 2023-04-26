@@ -241,7 +241,6 @@ export namespace Components {
          */
         "redeemedErrorText": string;
         /**
-          * Change the text alignment
           * @uiName Coupon code alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
@@ -255,7 +254,7 @@ export namespace Components {
         "tooltiplifespan": number;
         /**
           * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
-          * @uiName Tooltip Text
+          * @uiName Tooltip text
          */
         "tooltiptext": string;
     }
@@ -598,11 +597,11 @@ export namespace Components {
          */
         "demoData"?: DemoData<EmailRegistrationViewProps>;
         /**
-          * @uiName Email Field Label
+          * @uiName Email field label
          */
         "emailLabel": string;
         /**
-          * @uiName First Name Field Label
+          * @uiName First name field label
          */
         "firstNameLabel": string;
         /**
@@ -612,12 +611,12 @@ export namespace Components {
         "includeName": boolean;
         /**
           * Display this message when the given email is invalid or blocked.
-          * @uiName Invalid Email Message
+          * @uiName Invalid email message
           * @uiWidget textArea
          */
         "invalidEmailErrorMessage": string;
         /**
-          * @uiName Last Name Field Label
+          * @uiName Last name field label
          */
         "lastNameLabel": string;
         /**
@@ -649,7 +648,7 @@ export namespace Components {
          */
         "paddingTop": string;
         /**
-          * @uiName Register Button Text
+          * @uiName Register button text
          */
         "registerLabel": string;
         /**
@@ -659,7 +658,7 @@ export namespace Components {
         "removeBorder": boolean;
         /**
           * Display this message when a required field has not been filled out.
-          * @uiName Required Field Message
+          * @uiName Required field message
           * @uiWidget textArea
          */
         "requiredFieldErrorMessage": string;
@@ -1053,11 +1052,11 @@ export namespace Components {
     }
     interface SqmPortalFooter {
         /**
-          * @uiName FAQ Link
+          * @uiName FAQ link
          */
         "faqLink"?: string;
         /**
-          * @uiName FAQ Text
+          * @uiName FAQ text
          */
         "faqText"?: string;
         /**
@@ -1097,11 +1096,11 @@ export namespace Components {
          */
         "paddingTop": string;
         /**
-          * @uiName Powered By Link
+          * @uiName Powered By link
          */
         "poweredByLink": string;
         /**
-          * @uiName Support Email
+          * @uiName Support email
          */
         "supportEmail": string;
         /**
@@ -1110,11 +1109,11 @@ export namespace Components {
          */
         "supportText": string;
         /**
-          * @uiName Terms and Conditions Link
+          * @uiName Terms and conditions link
          */
         "termsLink"?: string;
         /**
-          * @uiName Terms and Conditions Text
+          * @uiName Terms and conditions text
          */
         "termsText"?: string;
     }
@@ -1626,7 +1625,7 @@ export namespace Components {
          */
         "removeBorder": boolean;
         /**
-          * @uiName Vertical Aligment
+          * @uiName Vertical aligment
           * @uiType string
           * @uiEnum ["start", "center", "end"]
           * @uiEnumNames ["Top", "Center", "Bottom"]
@@ -1852,11 +1851,11 @@ export namespace Components {
          */
         "demoData"?: DemoData<EmailRegistrationViewProps>;
         /**
-          * @uiName Email Field Label
+          * @uiName Email field label
          */
         "emailLabel": string;
         /**
-          * @uiName First Name Field Label
+          * @uiName First name field label
          */
         "firstNameLabel": string;
         /**
@@ -1866,12 +1865,12 @@ export namespace Components {
         "includeName": boolean;
         /**
           * Display this message when the given email is invalid or blocked.
-          * @uiName Invalid Email Message
+          * @uiName Invalid email message
           * @uiWidget textArea
          */
         "invalidEmailErrorMessage": string;
         /**
-          * @uiName Last Name Field Label
+          * @uiName Last name field label
          */
         "lastNameLabel": string;
         /**
@@ -1903,7 +1902,7 @@ export namespace Components {
          */
         "paddingTop": string;
         /**
-          * @uiName Register Button Text
+          * @uiName Register button text
          */
         "registerLabel": string;
         /**
@@ -1913,7 +1912,7 @@ export namespace Components {
         "removeBorder": boolean;
         /**
           * Display this message when a required field has not been filled out.
-          * @uiName Required Field Message
+          * @uiName Required field message
           * @uiWidget textArea
          */
         "requiredFieldErrorMessage": string;
@@ -3652,7 +3651,6 @@ declare namespace LocalJSX {
          */
         "redeemedErrorText"?: string;
         /**
-          * Change the text alignment
           * @uiName Coupon code alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
@@ -3666,7 +3664,7 @@ declare namespace LocalJSX {
         "tooltiplifespan"?: number;
         /**
           * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
-          * @uiName Tooltip Text
+          * @uiName Tooltip text
          */
         "tooltiptext"?: string;
     }
@@ -4009,11 +4007,11 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<EmailRegistrationViewProps>;
         /**
-          * @uiName Email Field Label
+          * @uiName Email field label
          */
         "emailLabel"?: string;
         /**
-          * @uiName First Name Field Label
+          * @uiName First name field label
          */
         "firstNameLabel"?: string;
         /**
@@ -4023,12 +4021,12 @@ declare namespace LocalJSX {
         "includeName"?: boolean;
         /**
           * Display this message when the given email is invalid or blocked.
-          * @uiName Invalid Email Message
+          * @uiName Invalid email message
           * @uiWidget textArea
          */
         "invalidEmailErrorMessage"?: string;
         /**
-          * @uiName Last Name Field Label
+          * @uiName Last name field label
          */
         "lastNameLabel"?: string;
         /**
@@ -4060,7 +4058,7 @@ declare namespace LocalJSX {
          */
         "paddingTop"?: string;
         /**
-          * @uiName Register Button Text
+          * @uiName Register button text
          */
         "registerLabel"?: string;
         /**
@@ -4070,7 +4068,7 @@ declare namespace LocalJSX {
         "removeBorder"?: boolean;
         /**
           * Display this message when a required field has not been filled out.
-          * @uiName Required Field Message
+          * @uiName Required field message
           * @uiWidget textArea
          */
         "requiredFieldErrorMessage"?: string;
@@ -4464,11 +4462,11 @@ declare namespace LocalJSX {
     }
     interface SqmPortalFooter {
         /**
-          * @uiName FAQ Link
+          * @uiName FAQ link
          */
         "faqLink"?: string;
         /**
-          * @uiName FAQ Text
+          * @uiName FAQ text
          */
         "faqText"?: string;
         /**
@@ -4508,11 +4506,11 @@ declare namespace LocalJSX {
          */
         "paddingTop"?: string;
         /**
-          * @uiName Powered By Link
+          * @uiName Powered By link
          */
         "poweredByLink"?: string;
         /**
-          * @uiName Support Email
+          * @uiName Support email
          */
         "supportEmail"?: string;
         /**
@@ -4521,11 +4519,11 @@ declare namespace LocalJSX {
          */
         "supportText"?: string;
         /**
-          * @uiName Terms and Conditions Link
+          * @uiName Terms and conditions link
          */
         "termsLink"?: string;
         /**
-          * @uiName Terms and Conditions Text
+          * @uiName Terms and conditions text
          */
         "termsText"?: string;
     }
@@ -5037,7 +5035,7 @@ declare namespace LocalJSX {
          */
         "removeBorder"?: boolean;
         /**
-          * @uiName Vertical Aligment
+          * @uiName Vertical aligment
           * @uiType string
           * @uiEnum ["start", "center", "end"]
           * @uiEnumNames ["Top", "Center", "Bottom"]
@@ -5249,11 +5247,11 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<EmailRegistrationViewProps>;
         /**
-          * @uiName Email Field Label
+          * @uiName Email field label
          */
         "emailLabel"?: string;
         /**
-          * @uiName First Name Field Label
+          * @uiName First name field label
          */
         "firstNameLabel"?: string;
         /**
@@ -5263,12 +5261,12 @@ declare namespace LocalJSX {
         "includeName"?: boolean;
         /**
           * Display this message when the given email is invalid or blocked.
-          * @uiName Invalid Email Message
+          * @uiName Invalid email message
           * @uiWidget textArea
          */
         "invalidEmailErrorMessage"?: string;
         /**
-          * @uiName Last Name Field Label
+          * @uiName Last name field label
          */
         "lastNameLabel"?: string;
         /**
@@ -5300,7 +5298,7 @@ declare namespace LocalJSX {
          */
         "paddingTop"?: string;
         /**
-          * @uiName Register Button Text
+          * @uiName Register button text
          */
         "registerLabel"?: string;
         /**
@@ -5310,7 +5308,7 @@ declare namespace LocalJSX {
         "removeBorder"?: boolean;
         /**
           * Display this message when a required field has not been filled out.
-          * @uiName Required Field Message
+          * @uiName Required field message
           * @uiWidget textArea
          */
         "requiredFieldErrorMessage"?: string;
