@@ -21,7 +21,7 @@ export function useAuthTemplateSwitch() {
     function updateTemplates(changes) {
       const isAuth = !!authToken;
 
-      console.log({changes})
+      console.log({ changes });
 
       const templates = slot.querySelectorAll<HTMLTemplateElement>(`template`);
       const template = Array.from(templates).find(t => t.slot === (isAuth ? 'logged-in' : 'logged-out'));
@@ -37,6 +37,8 @@ export function useAuthTemplateSwitch() {
     }
 
     useTemplateChildren(slot, updateTemplates);
+
+    // run first time
     updateTemplates({});
   }, [slot, container, authToken]);
 

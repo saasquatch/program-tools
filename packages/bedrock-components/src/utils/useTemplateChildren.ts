@@ -1,13 +1,13 @@
-export function useTemplateChildren(host, callback) {
+export function useTemplateChildren(parent, callback) {
   const parentObserver = new MutationObserver(listenForTemplateChanges);
   const childTemplateObserver = new MutationObserver(callback);
 
-  parentObserver.observe(host, {
+  parentObserver.observe(parent, {
     childList: true,
     // We only care about immediate children templates
-    subtree: true,
+    subtree: false,
   });
-  listenForTemplateChanges({ addedNodes: host.querySelectorAll('template') });
+  listenForTemplateChanges({ addedNodes: parent.querySelectorAll('template') });
 
   function listenForTemplateChanges(mutationList) {
     // Be smart, only look at the mutation list
