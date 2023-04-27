@@ -599,7 +599,6 @@ export const WithStickyFooter = () => {
   const [active, setActive] = useState(true);
   const handleChange = useCallback(() => setActive(!active), [active]);
 
-  const arr = Array.from(Array(20).keys());
   return (
     <div style={{ height: 900 }}>
       <Button buttonType="secondary" onClick={handleChange}>
@@ -612,12 +611,18 @@ export const WithStickyFooter = () => {
       >
         <ModalView.ModalContentView stickyFooter={true}>
           <ModalView.ModalContentTextView>
-            {arr.map((el: number) => (
-              <>
-                <br />
-                <div key={el}>test</div>
-              </>
-            ))}
+            <div style={{ backgroundColor: "lightgrey", height: "800px" }}>
+              Configure actions which will be completed when the form is
+              submitted by a user.
+              <br />
+              <br />
+              You need to first enable and configure the Salesforce integration
+              on the &nbsp;{" "}
+              <span style={{ color: "#1f97d2", userSelect: "none" }}>
+                {" "}
+                Integrations Page{" "}
+              </span>
+            </div>
             <br />
             <div>test last line</div>
           </ModalView.ModalContentTextView>
@@ -630,6 +635,52 @@ export const WithStickyFooter = () => {
               }}
             />
           </ModalView.ModalContentFooter>
+        </ModalView.ModalContentView>
+      </ModalView>
+    </div>
+  );
+};
+
+export const MaxHeight = () => {
+  const [active, setActive] = useState(true);
+  const handleChange = useCallback(() => setActive(!active), [active]);
+  const [containerHeight, setContainerHeight] = useState(500);
+  return (
+    <div style={{ height: containerHeight + "px" }}>
+      <Button buttonType="secondary" onClick={handleChange}>
+        Open Modal
+      </Button>
+      <input
+        type="number"
+        value={containerHeight}
+        onChange={(e) => setContainerHeight(parseInt(e.target.value))}
+      />
+      <ModalView
+        title="Salesforce Submit Actions"
+        open={active}
+        onClose={handleChange}
+      >
+        <ModalView.ModalContentView maxHeight="800px">
+          <ModalView.ModalContentTextView>
+            <div style={{ backgroundColor: "lightgrey", height: "800px" }}>
+              Configure actions which will be completed when the form is
+              submitted by a user.
+              <br />
+              <br />
+              You need to first enable and configure the Salesforce integration
+              on the &nbsp;{" "}
+              <span style={{ color: "#1f97d2", userSelect: "none" }}>
+                {" "}
+                Integrations Page{" "}
+              </span>
+            </div>
+          </ModalView.ModalContentTextView>
+          <ModalView.ModalContentActionView
+            primaryAction={{
+              text: "Close",
+              onAction: handleChange,
+            }}
+          />
         </ModalView.ModalContentView>
       </ModalView>
     </div>

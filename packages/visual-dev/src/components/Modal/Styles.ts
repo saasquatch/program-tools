@@ -9,6 +9,8 @@ export const ModalBackdropStyle = css`
   right: 0;
   bottom: 0;
   left: 0;
+  padding: var(--sq-spacing-x-large);
+  box-sizing: border-box;
 `;
 
 export const ModalDivStyle = css`
@@ -20,6 +22,8 @@ export const ModalDivStyle = css`
   overflow: hidden;
   margin: auto;
   padding: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
 `;
 
 export const ModalHeaderStyle = css`
