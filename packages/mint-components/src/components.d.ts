@@ -606,6 +606,11 @@ export namespace Components {
          */
         "firstNameLabel": string;
         /**
+          * @uiName Include border
+          * @uiGroup Card style
+         */
+        "includeBorder": boolean;
+        /**
           * Require your participants to enter their first and last name.
           * @uiName Include name fields
          */
@@ -652,11 +657,6 @@ export namespace Components {
           * @uiName Register button text
          */
         "registerLabel": string;
-        /**
-          * @uiName Remove border
-          * @uiGroup Card style
-         */
-        "removeBorder": boolean;
         /**
           * Display this message when a required field has not been filled out.
           * @uiName Required field message
@@ -1593,6 +1593,11 @@ export namespace Components {
          */
         "backgroundColor": string;
         /**
+          * @uiName Include border
+          * @uiType boolean
+         */
+        "includeBorder": boolean;
+        /**
           * @uiName Bottom padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
@@ -1620,11 +1625,6 @@ export namespace Components {
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingTop": string;
-        /**
-          * @uiName Remove border
-          * @uiType boolean
-         */
-        "removeBorder": boolean;
         /**
           * @uiName Vertical alignment
           * @uiType string
@@ -1860,6 +1860,11 @@ export namespace Components {
          */
         "firstNameLabel": string;
         /**
+          * @uiName Include border
+          * @uiGroup Card style
+         */
+        "includeBorder": boolean;
+        /**
           * Require your participants to enter their first and last name.
           * @uiName Include name fields
          */
@@ -1906,11 +1911,6 @@ export namespace Components {
           * @uiName Register button text
          */
         "registerLabel": string;
-        /**
-          * @uiName Remove border
-          * @uiGroup Card style
-         */
-        "removeBorder": boolean;
         /**
           * Display this message when a required field has not been filled out.
           * @uiName Required field message
@@ -4017,6 +4017,11 @@ declare namespace LocalJSX {
          */
         "firstNameLabel"?: string;
         /**
+          * @uiName Include border
+          * @uiGroup Card style
+         */
+        "includeBorder"?: boolean;
+        /**
           * Require your participants to enter their first and last name.
           * @uiName Include name fields
          */
@@ -4063,11 +4068,6 @@ declare namespace LocalJSX {
           * @uiName Register button text
          */
         "registerLabel"?: string;
-        /**
-          * @uiName Remove border
-          * @uiGroup Card style
-         */
-        "removeBorder"?: boolean;
         /**
           * Display this message when a required field has not been filled out.
           * @uiName Required field message
@@ -5004,6 +5004,11 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
+          * @uiName Include border
+          * @uiType boolean
+         */
+        "includeBorder"?: boolean;
+        /**
           * @uiName Bottom padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
@@ -5031,11 +5036,6 @@ declare namespace LocalJSX {
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingTop"?: string;
-        /**
-          * @uiName Remove border
-          * @uiType boolean
-         */
-        "removeBorder"?: boolean;
         /**
           * @uiName Vertical alignment
           * @uiType string
@@ -5257,6 +5257,11 @@ declare namespace LocalJSX {
          */
         "firstNameLabel"?: string;
         /**
+          * @uiName Include border
+          * @uiGroup Card style
+         */
+        "includeBorder"?: boolean;
+        /**
           * Require your participants to enter their first and last name.
           * @uiName Include name fields
          */
@@ -5303,11 +5308,6 @@ declare namespace LocalJSX {
           * @uiName Register button text
          */
         "registerLabel"?: string;
-        /**
-          * @uiName Remove border
-          * @uiGroup Card style
-         */
-        "removeBorder"?: boolean;
         /**
           * Display this message when a required field has not been filled out.
           * @uiName Required field message
