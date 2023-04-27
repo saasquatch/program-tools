@@ -80,6 +80,14 @@ export class ReferredRegistration {
   @Prop() invalidEmailErrorMessage: string = "Must be a valid email address";
 
   /**
+   * The message to be displayed when a the form submission fails unexpectedly.
+   *
+   * @uiName Network Error Message
+   * @uiWidget textArea
+   */
+  @Prop() networkErrorMessage: string = "Network request failed.";
+
+  /**
    * @uiName Top padding
    * @uiGroup Card style
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
@@ -118,6 +126,12 @@ export class ReferredRegistration {
 
   /**
    * @undocumented
+   * @uiType boolean
+   */
+  @Prop() includeCookies?: boolean = true;
+
+  /**
+   * @undocumented
    * @uiType object
    */
   @Prop() demoData?: DemoData<EmailRegistrationViewProps>;
@@ -131,7 +145,7 @@ export class ReferredRegistration {
   render() {
     const { states, callbacks } = isDemo()
       ? useRegistrationDemo(this)
-      : useInstantAccessRegistration({ includeCookies: true });
+      : useInstantAccessRegistration(this);
 
     const content = {
       emailLabel: this.emailLabel,

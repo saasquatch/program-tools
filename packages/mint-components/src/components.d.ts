@@ -606,6 +606,11 @@ export namespace Components {
          */
         "firstNameLabel": string;
         /**
+          * @undocumented 
+          * @uiType boolean
+         */
+        "includeCookies"?: boolean;
+        /**
           * Require your participants to enter their first and last name.
           * @uiName Include name fields
          */
@@ -620,6 +625,12 @@ export namespace Components {
           * @uiName Last Name Field Label
          */
         "lastNameLabel": string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network Error Message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage": string;
         /**
           * @uiName Bottom padding
           * @uiGroup Card style
@@ -1860,6 +1871,11 @@ export namespace Components {
          */
         "firstNameLabel": string;
         /**
+          * @undocumented 
+          * @uiType boolean
+         */
+        "includeCookies"?: boolean;
+        /**
           * Require your participants to enter their first and last name.
           * @uiName Include name fields
          */
@@ -1874,6 +1890,12 @@ export namespace Components {
           * @uiName Last Name Field Label
          */
         "lastNameLabel": string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network Error Message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage": string;
         /**
           * @uiName Bottom padding
           * @uiGroup Card style
@@ -4017,6 +4039,11 @@ declare namespace LocalJSX {
          */
         "firstNameLabel"?: string;
         /**
+          * @undocumented 
+          * @uiType boolean
+         */
+        "includeCookies"?: boolean;
+        /**
           * Require your participants to enter their first and last name.
           * @uiName Include name fields
          */
@@ -4031,6 +4058,12 @@ declare namespace LocalJSX {
           * @uiName Last Name Field Label
          */
         "lastNameLabel"?: string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network Error Message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage"?: string;
         /**
           * @uiName Bottom padding
           * @uiGroup Card style
@@ -5257,6 +5290,11 @@ declare namespace LocalJSX {
          */
         "firstNameLabel"?: string;
         /**
+          * @undocumented 
+          * @uiType boolean
+         */
+        "includeCookies"?: boolean;
+        /**
           * Require your participants to enter their first and last name.
           * @uiName Include name fields
          */
@@ -5271,6 +5309,12 @@ declare namespace LocalJSX {
           * @uiName Last Name Field Label
          */
         "lastNameLabel"?: string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network Error Message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage"?: string;
         /**
           * @uiName Bottom padding
           * @uiGroup Card style

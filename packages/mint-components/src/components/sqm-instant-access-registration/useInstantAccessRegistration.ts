@@ -1,49 +1,88 @@
 import { useAuthenticateManagedIdentityWithInstantAccess } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
+import { useRegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
+import { InstantAccessRegistration } from "./sqm-instant-access-registration";
+import { ValidationErrorFunction } from "../sqm-portal-register/usePortalRegister";
 
-export function useInstantAccessRegistration(options?: {
-  includeCookies?: boolean;
-}) {
+export function useInstantAccessRegistration(props: InstantAccessRegistration) {
   const cookie = new URLSearchParams(window.location.search);
 
   const cookies = cookie?.get("_saasquatch");
 
+  const { registrationFormState, setRegistrationFormState } =
+    useRegistrationFormState();
   const [request, { loading, errors, data }] =
     useAuthenticateManagedIdentityWithInstantAccess();
   const [error, setError] = useState("");
 
   const submit = async (event: any) => {
     setError("");
+    let formControls = event.target.getFormControls();
     let formData = event.detail.formData;
+    let validationErrors: Record<string, string> = {};
 
-    formData?.forEach((value: any, key: string) => {
+    formControls?.map((control) => {
+      if (!control.name) return;
+      const key = control.name;
+      const value = control.value;
+
       jsonpointer.set(formData, key, value);
+      if (control.required && !value) {
+        jsonpointer.set(validationErrors, key, props.requiredFieldErrorMessage);
+      }
+      // custom validation
+      if (typeof control.validationError === "function") {
+        const validate = control.validationError as ValidationErrorFunction;
+        const validationError = validate({ control, key, value });
+        if (validationError)
+          jsonpointer.set(validationErrors, key, validationError);
+      }
     });
+
     const variables = {
       firstName: formData.firstName,
       lastName: formData.lastName,
       email: formData.email,
-      ...(options?.includeCookies && cookies ? { cookies } : {}),
+      ...(props?.includeCookies && cookies ? { cookies } : {}),
     };
 
-    const result = await request(variables);
-    if (result instanceof Error) {
-      if (result?.message || result?.["response"]?.["error"])
-        setError("Network request failed.");
-      return;
+    try {
+      const result = await request(variables);
+      if (result instanceof Error) {
+        throw result;
+      }
+      setRegistrationFormState({
+        ...registrationFormState,
+        loading: false,
+        error: "",
+        validationErrors: {},
+      });
+    } catch (error) {
+      // check for invalid email
+      if (error?.message?.includes("is not valid")) {
+        setRegistrationFormState({
+          ...registrationFormState,
+          loading: false,
+          error: "",
+          validationErrors: { email: props.invalidEmailErrorMessage },
+        });
+      } else {
+        setRegistrationFormState({
+          ...registrationFormState,
+          loading: false,
+          error: props.networkErrorMessage,
+          validationErrors: {},
+        });
+      }
     }
   };
-
-  const errorMessage =
-    errors?.response?.errors?.[0]?.extensions?.message ||
-    errors?.response?.errors?.[0]?.message ||
-    error;
 
   return {
     states: {
       loading,
-      error: errorMessage,
+      error: registrationFormState?.error,
+      registrationFormState,
     },
     callbacks: {
       submit,

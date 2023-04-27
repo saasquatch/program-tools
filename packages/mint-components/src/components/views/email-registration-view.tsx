@@ -76,6 +76,12 @@ const styleString = sheet.toString();
 
 export function EmailRegistrationView(props: EmailRegistrationViewProps) {
   const { states, callbacks, content } = props;
+
+  console.log({ states });
+
+  const emailValidationRegex =
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   return (
     <div
       class={sheet.classes.Wrapper}
@@ -133,8 +139,8 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
             if (!value) {
               return content.requiredFieldErrorMessage;
             }
-            // this matches shoelace validation, but could be better
-            if (!value.includes("@")) {
+            console.log({ value });
+            if (!value.match(emailValidationRegex)) {
               return content.invalidEmailErrorMessage;
             }
           }}
