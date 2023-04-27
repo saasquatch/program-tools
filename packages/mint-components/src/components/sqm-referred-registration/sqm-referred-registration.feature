@@ -86,7 +86,7 @@ Feature: Instant access referred registration
 
     @motivating
     @ui
-    Scenario: Component background color can be customized
+    Scenario Outline: Component background color can be customized
         Given a user is viewing the registration component
         And the prop "background-color" has <value>
         Then the background has color <backgroundColor>

@@ -2,7 +2,7 @@
 Feature: Instant access referrer registration
 
     @motivating
-    Scenario: Form has content validation for email input
+    Scenario Outline: Form has content validation for email input
         Given a user is trying to register as a referrer
         When they <error action>
         And they submit the form
@@ -81,7 +81,7 @@ Feature: Instant access referrer registration
 
     @motivating
     @ui
-    Scenario: Component background color can be customized
+    Scenario Outline: Component background color can be customized
         Given a user is viewing the registration component
         And the prop "background-color" has <value>
         Then the background has color <backgroundColor>
