@@ -120,7 +120,6 @@ export function HeroView(props: HeroProps) {
         states.background
       )}`,
       minHeight: `${states.minHeight}px`,
-      flex: "1 1 0",
     },
     Container: {
       width: "100%",

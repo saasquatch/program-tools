@@ -30,6 +30,19 @@ export const LoginOneColumn = () => {
     </div>
   );
 };
+export const LoginOneColumnWithMinHeight = () => {
+  return (
+    <sqm-hero
+      background="https://blogcdn.snackmagic.com/wp-content/uploads/2021/12/Screen-Shot-2022-01-06-at-3.23.58-AM.png"
+      columns={1}
+      padding-size="medium"
+      wrap-direction="wrap"
+      secondary-background="#FFFFFF"
+    >
+      <sqm-portal-login></sqm-portal-login>
+    </sqm-hero>
+  );
+};
 
 export const LoginOneColumnWithColor = () => {
   const props = {
