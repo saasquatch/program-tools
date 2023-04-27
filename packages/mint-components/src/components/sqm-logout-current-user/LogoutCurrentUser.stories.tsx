@@ -10,7 +10,7 @@ export default {
 };
 
 const defaultProps = {
-  userIdentificationText:
+  filledInEmailText:
     "Currently showing referral data for noah.clarke@saasquatch.com",
   onSwitchClick: () => console.log("clicked"),
   switchUserText: "not you?",

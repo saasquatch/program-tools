@@ -2,7 +2,7 @@ import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 
 export interface LogoutCurrentUserViewProps {
-  userIdentificationText: string;
+  filledInEmailText: string;
   onSwitchClick: () => void;
   switchUserText: string;
 }
@@ -29,7 +29,7 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function LogoutCurrentUserView(props: LogoutCurrentUserViewProps) {
-  const { userIdentificationText, onSwitchClick, switchUserText } = props;
+  const { filledInEmailText, onSwitchClick, switchUserText } = props;
 
   return (
     <span class={sheet.classes.Container} part="sqm-base">
@@ -37,7 +37,7 @@ export function LogoutCurrentUserView(props: LogoutCurrentUserViewProps) {
         {styleString}
         {vanillaStyle}
       </style>
-      {userIdentificationText} (
+      {filledInEmailText} (
       <a class={sheet.classes.Link} onClick={onSwitchClick} part="sqm-link">
         {switchUserText}
       </a>

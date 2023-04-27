@@ -8,6 +8,7 @@ import {
   LogoutCurrentUserViewProps,
 } from "./sqm-logout-current-user-view";
 import { useLogoutCurrentUser } from "./useLogoutCurrentUser";
+import { withHooks } from "@saasquatch/stencil-hooks";
 
 /**
  * @uiName Logout Current User
@@ -34,18 +35,24 @@ export class LogoutCurrentUser {
    * @required
    * @uiName Switch user button link
    */
-  @Prop() switchUserLink: string = "#";
-  /**
-   * @undocumented
-   * @uiType object
-   */
   @Prop() demoData?: DemoData<CopyTextViewProps>;
+
+  constructor() {
+    withHooks(this);
+  }
+  disconnectedCallback() {}
 
   render() {
     const props = isDemo()
       ? useDemoLogoutCurrentUser(this)
       : useLogoutCurrentUser(this);
-    return <LogoutCurrentUserView {...props} />;
+
+    const content = {
+      userIdentificationText: this.userIdentificationText,
+      switchUserText: this.switchUserText,
+    };
+
+    return <LogoutCurrentUserView {...props} {...content} />;
   }
 }
 
@@ -55,7 +62,7 @@ function useDemoLogoutCurrentUser(
   return deepmerge(
     {
       onSwitchClick: () => setUserIdentity(undefined),
-      userIdentificationText: props.userIdentificationText,
+      filledInEmailText: "john@example.com",
       switchUserText: props.switchUserText,
     },
     props.demoData || {},

@@ -10,11 +10,11 @@
 | Property            | Attribute            | Description | Type                           | Default     |
 | ------------------- | -------------------- | ----------- | ------------------------------ | ----------- |
 | `backgroundColor`   | `background-color`   |             | `string`                       | `"#ffffff"` |
+| `includeBorder`     | `include-border`     |             | `boolean`                      | `true`      |
 | `paddingBottom`     | `padding-bottom`     |             | `string`                       | `"large"`   |
 | `paddingLeft`       | `padding-left`       |             | `string`                       | `"large"`   |
 | `paddingRight`      | `padding-right`      |             | `string`                       | `"large"`   |
 | `paddingTop`        | `padding-top`        |             | `string`                       | `"large"`   |
-| `removeBorder`      | `remove-border`      |             | `boolean`                      | `false`     |
 | `verticalAlignment` | `vertical-alignment` |             | `"center" \| "end" \| "start"` | `"start"`   |
 
 
