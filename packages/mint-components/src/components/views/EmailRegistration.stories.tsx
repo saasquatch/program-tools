@@ -27,7 +27,6 @@ const defaultProps: EmailRegistrationViewProps = {
     paddingBottom: "large",
     paddingLeft: "large",
   },
-  // content: { pageLabel: "Share 50$ with your friend now!" },
 };
 
 export const Default = () => <EmailRegistrationView {...defaultProps} />;
@@ -63,7 +62,7 @@ export const NoBorder = () => (
       ...defaultProps,
       content: {
         ...defaultProps.content,
-        removeBorder: true,
+        includeBorder: false,
       },
     }}
   />

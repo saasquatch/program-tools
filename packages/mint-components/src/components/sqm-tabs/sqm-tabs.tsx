@@ -19,7 +19,7 @@ export class Tabs {
   /**
    * Used to specify the placement of the tabs
    *
-   * @uiName Tabs Placement
+   * @uiName Tabs placement
    * @uiType string
    * @uiEnum ["left", "right", "bottom", "top"]
    * @uiEnumNames ["Left", "Right", "Bottom", "Top"]

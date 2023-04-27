@@ -88,6 +88,6 @@ Feature: Hero Unit
         Then the hero image minimum height is <effectiveValue>
         And the change is reflected in mobile view
         Examples:
-            | value | effectiveValue |
-            | unset | 200px          |
-            | 200px | 500px          |
+            | value                 | effectiveValue |
+            | unset (default value) | 200px          |
+            | 200px                 | 500px          |

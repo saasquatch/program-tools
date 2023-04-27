@@ -1,6 +1,7 @@
 import { useToken } from '@saasquatch/component-boilerplate';
 import { useEffect, useState } from '@saasquatch/universal-hooks';
 import debugFn from 'debug';
+import { useTemplateChildren } from '../../utils/useTemplateChildren';
 const debug = debugFn('sq:useAuthTemplateSwitch');
 
 export function useAuthTemplateSwitch() {
@@ -17,18 +18,28 @@ export function useAuthTemplateSwitch() {
       return;
     }
 
-    const isAuth = !!authToken;
-    const templates = slot.querySelectorAll<HTMLTemplateElement>(`template`);
-    const template = Array.from(templates).find(t => t.slot === (isAuth ? 'logged-in' : 'logged-out'));
+    function updateTemplates(changes) {
+      const isAuth = !!authToken;
 
-    const prev = Array.from(container.querySelectorAll('*')).filter(e => e.slot === 'shown');
-    prev.forEach(p => container.removeChild(p));
+      console.log({ changes });
 
-    const clone = template.content.cloneNode(true);
-    const wrapper = document.createElement('div');
-    wrapper.slot = 'shown';
-    wrapper.appendChild(clone);
-    container.appendChild(wrapper);
+      const templates = slot.querySelectorAll<HTMLTemplateElement>(`template`);
+      const template = Array.from(templates).find(t => t.slot === (isAuth ? 'logged-in' : 'logged-out'));
+
+      const prev = Array.from(container.querySelectorAll('*')).filter(e => e.slot === 'shown');
+      prev.forEach(p => container.removeChild(p));
+
+      const clone = template.content.cloneNode(true);
+      const wrapper = document.createElement('div');
+      wrapper.slot = 'shown';
+      wrapper.appendChild(clone);
+      container.appendChild(wrapper);
+    }
+
+    useTemplateChildren(slot, updateTemplates);
+
+    // run first time
+    updateTemplates({});
   }, [slot, container, authToken]);
 
   return {

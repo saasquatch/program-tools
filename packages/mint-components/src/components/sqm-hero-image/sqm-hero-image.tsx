@@ -23,33 +23,33 @@ export class HeroImage {
   @Prop() imageUrl: string;
 
   /**
-   * @uiName Overlay Color
+   * @uiName Overlay color
    * @uiWidget color
    * @format color
    */
   @Prop() overlayColor?: string;
 
   /**
-   * @uiName Overlay Opacity
+   * @uiName Overlay opacity
    */
   @Prop() overlayOpacity: string = "0.75";
 
   /**
-   * @uiName Text Color
+   * @uiName Text color
    * @uiWidget color
    * @format color
    */
   @Prop() textColor?: string;
 
   /**
-   * @uiName Background Color
+   * @uiName Background color
    * @uiWidget color
    * @format color
    */
   @Prop() backgroundColor?: string;
 
   /**
-   * @uiName Image Layout
+   * @uiName Image layout
    * @uiType string
    * @uiEnum ["overlay", "columns"]
    * @uiEnumNames ["Overlay", "Two-column"]
@@ -57,13 +57,13 @@ export class HeroImage {
   @Prop() layout: "overlay" | "columns" = "overlay";
 
   /**
-   * @uiName Image Percentage
+   * @uiName Image percentage
    * @uiType number
    */
   @Prop() imagePercentage: number = 50;
 
   /**
-   * @uiName Image Position
+   * @uiName Image position
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
@@ -71,7 +71,7 @@ export class HeroImage {
   @Prop() imagePos: "left" | "center" | "right" = "center";
 
   /**
-   * @uiName Image Mobile Position
+   * @uiName Image mobile position
    * @uiType string
    * @uiEnum ["top", "bottom"]
    * @uiEnumNames ["Top", "Bottom"]
@@ -90,23 +90,23 @@ export class HeroImage {
   @Prop() description?: string;
 
   /**
-   * @uiName Button Text
+   * @uiName Button text
    */
   @Prop() buttonText?: string;
 
   /**
-   * @uiName Button Link
+   * @uiName Button link
    */
   @Prop() buttonLink?: string;
 
   /**
-   * @uiName Open Link in New Tab
+   * @uiName Open link in new tab
    * @default
    */
   @Prop() buttonNewTab?: boolean = false;
 
   /**
-   * @uiName Text Padding
+   * @uiName Text padding
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
@@ -114,7 +114,7 @@ export class HeroImage {
   @Prop() paddingText: Spacing = "xxxx-large";
 
   /**
-   * @uiName Image Padding
+   * @uiName Image padding
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]

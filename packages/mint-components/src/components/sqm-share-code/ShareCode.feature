@@ -14,7 +14,7 @@ Feature: Share Code
     When the component renders
     Then there is a textbox with the user's share code
     When the clipboard icon is clicked
-    Then the link is copied to clipboard
+    Then the code is copied to clipboard
     And a tooltip will appear for ~1 second
 
   @minutia
@@ -55,10 +55,13 @@ Feature: Share Code
     And it is for "program-a"
     And it has share medium "DIRECT"
 
+
   @ui
   Scenario: user can edit the alignment of the share code text
     Given a user is editing the share code component
-    When they change the option "Align text" to <option>
+    Then they see "Align text" props
+    And the default value is "left"
+    When they change the option to <option>
     Then they see the text in <position>
     Examples:
       | option | position |
@@ -69,10 +72,12 @@ Feature: Share Code
   @ui
   Scenario Outline: The position of the copy button can be changed
     Given a user is editing the share code component
-    When they change the option "Button style" to <option>
+    Then they see "Style" props
+    And the default value is "icon"
+    When they change the option to <option>
     Then they see the copy button in <position>
     Examples:
       | option         | position                        |
-      | button inside  | inside the input, on the right  |
       | button outside | outside the input, on the right |
       | button below   | outside the input, below        |
+      | icon           | inside the input as an icon     |

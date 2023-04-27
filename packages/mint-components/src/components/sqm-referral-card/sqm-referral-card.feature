@@ -47,9 +47,10 @@ Feature: Referral Card
 
 	@ui
 	Scenario Outline: Container border can be toggled
-		Given a user is viewing the Referral Card component
-		And the prop "remove-border" has <value>
-		Then the referral card component's border <maybe> removed
+		Given a user is viewing the referral card component
+		Then the default value for the prop "include-border" is "true"
+		When "include-border" has <value>
+		Then the referral card component's border <maybe> included
 		Examples:
 			| value            | maybe |
 			| true             | is    |
@@ -60,7 +61,8 @@ Feature: Referral Card
 	@ui
 	Scenario: Component background color can be customized
 		Given a user is viewing the Referral Card component
-		And the prop "background-color" has <value>
+		Then the default value is "#ffffff"
+		When the prop "background-color" has <value>
 		Then the background has color <backgroundColor>
 		Examples:
 			| value                 | backgroundColor                     |
@@ -70,8 +72,11 @@ Feature: Referral Card
 	@motivating
 	@ui
 	Scenario Outline: Container padding can be customized
-		Given prop "padding" has <value>
+		Given a user is looking at the component
+		Then the default values for "padding-top", "padding-bottom", "padding-left", "padding-right" is "large"
+		When prop "padding-top" has <value>
 		Then <padding> is applied to content
+		And the same applies to "padding-bottom", "padding-left", "padding-right"
 
 		Examples:
 			| value      | padding    |

@@ -17,7 +17,7 @@ export class SqmRoute {
 
   /**
    * Page Path URL for this route.
-   * @uiName Navigation Path Name
+   * @uiName Navigation path name
    */
   @Prop() path: string;
 

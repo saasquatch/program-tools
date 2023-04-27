@@ -19,7 +19,7 @@ export class ReferralCard {
   ignored = true;
 
   /**
-   * @uiName Vertical Aligment
+   * @uiName Vertical alignment
    * @uiType string
    * @uiEnum ["start", "center", "end"]
    * @uiEnumNames ["Top", "Center", "Bottom"]
@@ -27,10 +27,10 @@ export class ReferralCard {
   @Prop() verticalAlignment: "start" | "center" | "end" = "start";
 
   /**
-   * @uiName Remove border
+   * @uiName Include border
    * @uiType boolean
    */
-  @Prop() removeBorder: boolean = false;
+  @Prop() includeBorder: boolean = true;
 
   /**
    * @uiName Top padding

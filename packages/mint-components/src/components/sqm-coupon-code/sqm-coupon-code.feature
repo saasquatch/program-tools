@@ -10,7 +10,7 @@ Feature: Coupon Code
         When the component renders
         Then there is a textbox with the user's coupon code
         When the clipboard icon is clicked
-        Then the link is copied to clipboard
+        Then the code is copied to clipboard
         And a tooltip appears for ~1 second
 
     @motivating
@@ -23,7 +23,7 @@ Feature: Coupon Code
     Scenario: The first reward is the reward that is displayed
         Given a user has at least one fueltank reward
         And the fueltank reward is available
-        Then the coupon-code component shows the first reward returned
+        Then the coupon code component shows the first reward returned
 
     @motivating
     Scenario Outline: Coupon code has multiple states depending on reward status
@@ -42,6 +42,20 @@ Feature: Coupon Code
             | PENDING   | null             | EMPTY_TANK      | fullfillmentErrorMessage |
             | PENDING   | 123412341234     | PENDING         | pendingErrorMessage      |
             | null      | null             | ERROR           | genericErrorMessage      |
+
+    Scenario Outline: Coupon code's error message text props are grouped
+        Given a user is viewing the coupon code component
+        Then they see <prop>
+        And <prop> is grouped under "Coupon code error"
+        Examples:
+            | prop                     |
+            | N/A                      |
+            | expiredErrorMessage      |
+            | redeemedMessage          |
+            | cancelledErrorMessage    |
+            | fullfillmentErrorMessage |
+            | pendingErrorMessage      |
+            | genericErrorMessage      |
 
     @minutia
     Scenario: Tooltip lifespan defaults to 2000
@@ -76,7 +90,9 @@ Feature: Coupon Code
     @ui
     Scenario: user can edit the alignment of the coupon code text
         Given a user is editing the coupon code component
-        When they change the option "Align text" to <option>
+        Then they see "Align text" props
+        And the default value is "left"
+        When they change the option to <option>
         Then they see the text in <position>
         Examples:
             | option | position |
@@ -87,13 +103,15 @@ Feature: Coupon Code
     @ui
     Scenario Outline: The position of the copy button can be changed
         Given a user is editing the coupon code component
-        When they change the option "Button style" to <option>
+        Then they see "Style" props
+        And the default value is "icon"
+        When they change the option to <option>
         Then they see the copy button in <position>
         Examples:
             | option         | position                        |
-            | button inside  | inside the input, on the right  |
             | button outside | outside the input, on the right |
             | button below   | outside the input, below        |
+            | icon           | inside the input as an icon     |
 
     @minutia
     Scenario: ICU string converts to a date

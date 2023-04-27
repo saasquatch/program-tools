@@ -38,14 +38,14 @@ export class PortalPasswordField {
   /**
    * Label for password field
    *
-   * @uiName Password Label
+   * @uiName Password label
    */
   @Prop()
   fieldLabel: string = "Password";
 
   /**
    * Disable live password validation
-   * @uiName Disable Validation
+   * @uiName Disable validation
    */
   @Prop() disableValidation: boolean = false;
 
