@@ -57,20 +57,21 @@ const RadioLabel = styled.label<RadioLabelProps>`
   ${Styles.RadioLabelStyle}
   ${(props) => props.customCSS && props.customCSS}
   ${(props) =>
-    props.isChecked && !props.disabled
-      ? "border: 2px solid var(--sq-action-primary-hovered);"
-      : "&:hover {border: 2px solid var(--sq-text-subdued);}"}
+    props.isChecked &&
+    "border-color: var(--sq-action-primary-hovered); & * {border-color: var(--sq-action-primary-hovered);}"}
+
+${(props) =>
+    !props.isChecked &&
+    !props.disabled &&
+    "&:hover {border-color: var(--sq-text-subdued);}; &:hover * {border-color: var(--sq-text-subdued);}"}
 
     ${(props) =>
     props.disabled &&
     css`
       cursor: default;
       background-color: var(--sq-border);
-      & * {
+      & ${RightSegmentDiv} {
         color: var(--sq-text-subdued);
-      }
-      &:hover {
-        border: 2px solid transparent;
       }
     `}
 ${(props) => props.customCSS}
@@ -90,8 +91,7 @@ const RadioTextDiv = styled.div`
 
 const LeftSegmentDiv = styled.div<{ isChecked: boolean }>`
   ${Styles.LeftSegmentStyle}
-  ${(props) =>
-    props.isChecked ? "color: var(--sq-action-primary-hovered);" : ""}
+  ${(props) => props.isChecked && "color: var(--sq-action-primary-hovered);"}
 `;
 
 const RadioGridDiv = styled.div`

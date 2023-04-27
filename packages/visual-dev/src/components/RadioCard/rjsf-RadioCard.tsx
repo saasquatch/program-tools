@@ -41,11 +41,22 @@ export function isEnumArray(options: any): options is any[] {
 }
 
 export function RJSFRadioCardWidget(props: WidgetProps) {
-  const valueOptions = props?.options?.enumOptions;
-  const cardOptions = props?.options?.ruleOptions;
-  if (!isEnumArray(valueOptions) || !isEnumArray(cardOptions)) {
+  if (
+    !isEnumArray(props?.options?.enumOptions) ||
+    !isEnumArray(props?.options?.ruleOptions)
+  ) {
     return <></>;
   }
+
+  console.log();
+
+  const valueOptions = props?.options?.reverse
+    ? props?.options?.enumOptions?.reverse()
+    : props?.options?.enumOptions;
+  const cardOptions = props?.options?.reverse
+    ? props?.options?.ruleOptions?.reverse()
+    : props?.options?.ruleOptions;
+
   return (
     <RadioCardGroupView id={props.id}>
       {valueOptions?.map((option: unknown) => {
