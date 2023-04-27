@@ -26,14 +26,16 @@ export function useAuthTemplateSwitch() {
       const templates = slot.querySelectorAll<HTMLTemplateElement>(`template`);
       const template = Array.from(templates).find(t => t.slot === (isAuth ? 'logged-in' : 'logged-out'));
 
-      const prev = Array.from(container.querySelectorAll('*')).filter(e => e.slot === 'shown');
-      prev.forEach(p => container.removeChild(p));
+      if (template) {
+        const prev = Array.from(container.querySelectorAll('*')).filter(e => e.slot === 'shown');
+        prev.forEach(p => container.removeChild(p));
 
-      const clone = template.content.cloneNode(true);
-      const wrapper = document.createElement('div');
-      wrapper.slot = 'shown';
-      wrapper.appendChild(clone);
-      container.appendChild(wrapper);
+        const clone = template.content.cloneNode(true);
+        const wrapper = document.createElement('div');
+        wrapper.slot = 'shown';
+        wrapper.appendChild(clone);
+        container.appendChild(wrapper);
+      }
     }
 
     useTemplateChildren(slot, updateTemplates);
