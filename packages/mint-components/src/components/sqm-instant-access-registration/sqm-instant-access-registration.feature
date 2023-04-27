@@ -73,9 +73,9 @@ Feature: Instant access referrer registration
     @ui
     Scenario Outline: Container border can be toggled
         Given a user is viewing the registration component
-        Then the default value for the prop "remove-border" is "true"
-        When "remove-border" has <value>
-        Then the registration component's border <maybe> removed
+        Then the default value for the prop "include-border" is "true"
+        When "include-border" has <value>
+        Then the registration component's border <maybe> included
         Examples:
             | value            | maybe |
             | true             | is    |
