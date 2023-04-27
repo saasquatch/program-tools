@@ -13,13 +13,10 @@ Feature: Instant access referrer registration
             | give an invalid email   | the email is invalid       |
 
     @motivating
-    Scenario: Name fields are required when included
+    Scenario: Name fields are not required when included
         Given a user is viewing the registration component
         When the "Include name fields" option is set to "true"
-        Then the inputs for the first and last name fields are required
-        And the user cannot submit the form without filling first and last names
-        When the "Include name fields" option is set to "false"
-        Then the inputs don't exist and are not required
+        Then the inputs for the first and last name fields are not required
         And the user can submit the form
 
     @motivating

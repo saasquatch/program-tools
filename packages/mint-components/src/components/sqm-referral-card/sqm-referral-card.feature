@@ -19,7 +19,7 @@ Feature: Referral Card
 		Then the column layout switches to row layout
 		And the "left" slot content is displayed above the "right" slot content
 
-	@minutiae
+	@minutia
 	@ui
 	Scenario: Left or right column content spans the whole card if there is no content in the other column
 		Given a Referral Card component
@@ -59,7 +59,7 @@ Feature: Referral Card
 
 	@motivating
 	@ui
-	Scenario: Component background color can be customized
+	Scenario Outline: Component background color can be customized
 		Given a user is viewing the Referral Card component
 		Then the default value is "#ffffff"
 		When the prop "background-color" has <value>

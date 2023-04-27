@@ -52,7 +52,8 @@ Feature: Coupon Code
       | null      | null             | ERROR           | genericErrorMessage      |
 
   Scenario Outline: Coupon code's error message text props are grouped
-    Given a user is viewing the coupon code component
+    Given an end user is viewing the coupon code component in the widget editor
+    And they are looking at the component's properties
     Then they see <prop>
     And <prop> is grouped under "Coupon code error"
     Examples:

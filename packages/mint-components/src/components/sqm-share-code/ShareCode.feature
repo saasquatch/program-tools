@@ -57,7 +57,7 @@ Feature: Share Code
 
 
   @ui
-  Scenario: user can edit the alignment of the share code text
+  Scenario Outline: user can edit the alignment of the share code text
     Given a user is editing the share code component
     Then they see "Align text" props
     And the default value is "left"

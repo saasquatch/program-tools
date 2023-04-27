@@ -57,7 +57,7 @@ Feature: Share Link
 
 
   @ui
-  Scenario: user can edit the alignment of the share link text
+  Scenario Outline: user can edit the alignment of the share link text
     Given a user is editing the share link component
     Then they see "Align text" props
     And the default value is "left"
