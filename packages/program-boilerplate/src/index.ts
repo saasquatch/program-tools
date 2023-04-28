@@ -81,25 +81,6 @@ export function webtask(program: Program = {}): express.Application {
   app.use(compression());
   app.use(httpLogMiddleware(logger));
 
-  app.get("/*", (_req, res) => {
-    return res.status(200).contentType("text/html;charset=utf8").send(`
-      <!DOCTYPE html>
-      <html lang="en">
-        <head>
-          <meta charset="utf-8"/>
-
-          <title>Program Boilerplate</title>
-          <meta name="author" content="SaaSquatch"/>
-        </head>
-
-        <body>
-          <h1>
-            Hello World
-          </h1>
-        </body>
-      </html>`);
-  });
-
   app.post("/*", (req, res) => {
     const { json, code } = triggerProgram(req.body, program);
     return res.status(code).json(json);
