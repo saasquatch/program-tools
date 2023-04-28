@@ -18,30 +18,29 @@ export function useAuthTemplateSwitch() {
       return;
     }
 
-    function updateTemplates(changes) {
+    function updateTemplates() {
       const isAuth = !!authToken;
-
-      console.log({ changes });
-
       const templates = slot.querySelectorAll<HTMLTemplateElement>(`template`);
       const template = Array.from(templates).find(t => t.slot === (isAuth ? 'logged-in' : 'logged-out'));
 
       if (template) {
-        const prev = Array.from(container.querySelectorAll('*')).filter(e => e.slot === 'shown');
-        prev.forEach(p => container.removeChild(p));
-
-        const clone = template.content.cloneNode(true);
         const wrapper = document.createElement('div');
         wrapper.slot = 'shown';
-        wrapper.appendChild(clone);
-        container.appendChild(wrapper);
+
+        // use outerHTML if template's innerHTML is unset (only happens in Stencilbook)
+        const newContent = template.innerHTML || template.firstElementChild.outerHTML;
+
+        // if template contents are an exact match
+        if (newContent === container.innerHTML) {
+          debug("don't rerender");
+        } else if (template) {
+          container.innerHTML = newContent;
+        }
       }
     }
 
-    useTemplateChildren(slot, updateTemplates);
-
-    // run first time
-    updateTemplates({});
+    updateTemplates();
+    return useTemplateChildren({ parent: slot, callback: updateTemplates });
   }, [slot, container, authToken]);
 
   return {
