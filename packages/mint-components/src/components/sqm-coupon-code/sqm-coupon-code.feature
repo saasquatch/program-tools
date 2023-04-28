@@ -5,15 +5,6 @@ Feature: Coupon Code
   The coupon code component is a box that allows users to see and copy their coupon code for a given program
 
   @motivating
-  Scenario: A Users coupon code can be copied to their clipboard
-    Given tooltipText is "hello tooltip"
-    When the component renders
-    Then there is a textbox with the user's coupon code
-    When the clipboard icon is clicked
-    Then the code is copied to clipboard
-    And a tooltip appears for ~1 second
-
-  @motivating
   Scenario: Component only fetches codes from current program
     Given a user has multiple rewards from various programs
     When the component is loaded
