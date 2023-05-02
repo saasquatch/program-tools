@@ -48,6 +48,31 @@
           <p>Giftcards</p>
         </sqm-big-stat>
       </sqm-stat-container>
+      <sqp-account-details
+        schedule-header-text="Schedule"
+        integration-alert-text="Looks like this feature is turned off at the moment. Come back later to see if it’s enabled. "
+        integration-alert-header="PayPal payouts are currently disabled"
+        details-header-text="Payout details"
+        pay-pal-account-header-text="PayPal account"
+        connect-pay-pal-description-text="Connect your PayPal account to automatically receive payments/cash rewards."
+        connect-pay-pal-account-button-text="Connect account"
+        w-9-tax-label="Awaiting W-9 tax form"
+        upcoming-payment-label="Upcoming"
+        recent-payment-label="Recent payment"
+        other-currencies-label="other currencies"
+        next-payout-label="Next payout"
+        next-payment-label="Next payment"
+        header-text="PayPal account"
+        edit-text="Edit"
+        account-label="Account"
+        success-message="Success!"
+        submit-pay-pal-account-button-text="Connect account"
+        pay-pal-email-label-help-text="Enter the email used for your PayPal account."
+        pay-pal-email-label="PayPal email"
+        modal-connect-pay-pal-account-header="Connect PayPal account"
+        disconnect-account-header-text="Disconnect account"
+        disconnect-account-description-text="You will not be able to receive payments if you disconnect your PayPal account."
+      ></sqp-account-details>
       <sqm-portal-container
         gap="large"
         direction="column"
@@ -182,16 +207,24 @@
             in-progress-status-text="In Progress"
           >
           </sqm-referral-table-status-column>
-          <sqm-referral-table-rewards-column
+          <sqp-rewards-column
             column-title="Rewards"
             expiring-text="Expiring in"
             fuel-tank-text="Your code is"
             pending-for-text="{status} for {date}"
+            reward-blocked-text="Payout blocked on {date}."
+            reward-on-hold-text="Payout on hold and in review since {date}."
+            reward-paid-out-text="Paid out on {date}."
+            reward-payout-failed-text="This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on {date}."
+            reward-payout-in-progress-text="Payout processing started on {date}."
             reward-received-text="Reward received on"
-            status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }"
-            status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-          >
-          </sqm-referral-table-rewards-column>
+            reward-refunded-text="Payout refunded on {date}."
+            reward-returned-text="The email you provided does not link to an existing PayPal account. Payout expired on {date}."
+            reward-reversed-text="Payout reversed on {date}."
+            reward-unclaimed-text="The email you provided does not link to an existing PayPal account. Payout expires on {date}."
+            status-long-text="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} REDEEMED {Redeemed on} PENDING {Available on} EXPIRED {Reward expired on} SUCCESS {Paid out on} FAILED {This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on} PAYPAL_PENDING {Payout process started on} UNCLAIMED {The email you provided does not link to an existing PayPal account. Payout expires on} ONHOLD {Payout on hold and in review since} REFUNDED {Payout refunded on} RETURNED {Payout returned on} REVERSED {Payout reversed on} BLOCKED {Payout blocked on} other {Not available} }"
+            status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} EXPIRED {Expired} REDEEMED {Redeemed} PENDING {Pending} SUCCESS {Paid Out} FAILED {Failed} PAYPAL_PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} other {Not available}  }"
+          ></sqp-rewards-column>
           <sqm-referral-table-date-column
             column-title="Date referred"
             date-shown="dateReferralStarted"

@@ -968,6 +968,13 @@ export namespace Components {
     }
     interface SqmPortalContainer {
         /**
+          * @uiName Background color
+          * @uiWidget color
+          * @uiGroup Card style
+          * @uiType string
+         */
+        "backgroundColor"?: string;
+        /**
           * @uiName Center content
          */
         "center"?: boolean;
@@ -4395,6 +4402,13 @@ declare namespace LocalJSX {
         "successMessage"?: string;
     }
     interface SqmPortalContainer {
+        /**
+          * @uiName Background color
+          * @uiWidget color
+          * @uiGroup Card style
+          * @uiType string
+         */
+        "backgroundColor"?: string;
         /**
           * @uiName Center content
          */

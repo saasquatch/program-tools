@@ -77,6 +77,14 @@ export class PortalContainer {
    */
   @Prop() center?: boolean;
 
+  /**
+   * @uiName Background color
+   * @uiWidget color
+   * @uiGroup Card style
+   * @uiType string
+   */
+  @Prop() backgroundColor?: string = "#ffffff00";
+
   constructor() {
     withHooks(this);
   }

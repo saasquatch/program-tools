@@ -65,6 +65,8 @@ export class Hero {
   }
   disconnectedCallback() {}
 
+  // TODO: Improve empty slot behavior with useChildElements to check for empty slot
+
   render() {
     const props = {
       states: { ...getProps(this) },
