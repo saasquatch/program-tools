@@ -113,7 +113,6 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
             name="/firstName"
             label={content.firstNameLabel || "First Name"}
             disabled={states.loading}
-            required
           ></sl-input>
         )}
         {content.includeName && (
@@ -123,7 +122,6 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
             name="/lastName"
             label={content.lastNameLabel || "Last Name"}
             disabled={states.loading}
-            required
           ></sl-input>
         )}
 

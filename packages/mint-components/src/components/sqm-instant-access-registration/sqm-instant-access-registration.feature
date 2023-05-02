@@ -40,10 +40,10 @@ Feature: Instant access referrer registration
         Given a user a viewing the follow component HTML
             """
             <sqm-referred-registration>
-            <div slot='top-slot'>
+            <div slot='top'>
             top slot
             </div>
-            <div slot='bottom-slot'>
+            <div slot='bottom'>
             bottom slot
             </div>
             </sqm-referred-registration>

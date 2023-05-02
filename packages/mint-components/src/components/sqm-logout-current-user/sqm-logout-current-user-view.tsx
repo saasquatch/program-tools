@@ -12,6 +12,7 @@ const style = {
   Link: {
     textDecoration: "none",
     color: "var(--sl-color-primary-700)",
+    cursor: "pointer",
     "&:hover": {
       color: "var(--sl-color-primary-800)",
     },

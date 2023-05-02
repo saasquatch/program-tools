@@ -11,10 +11,10 @@ import { useLogoutCurrentUser } from "./useLogoutCurrentUser";
 import { withHooks } from "@saasquatch/stencil-hooks";
 
 /**
- * @uiName Logout Current User
+ * @uiName Sign out current user
  * @exampleGroup Common Components
  * @compatibility Built for instant access
- * @example Logout Current User - <sqm-logout-current-user user-identification-text="{email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
+ * @example Sign out current user - <sqm-logout-current-user user-identification-text="{email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
  */
 @Component({
   tag: "sqm-logout-current-user",

@@ -1,4 +1,4 @@
-export function useTemplateChildren(parent, callback) {
+export function useTemplateChildren({ parent, callback }) {
   const parentObserver = new MutationObserver(listenForTemplateChanges);
   const childTemplateObserver = new MutationObserver(callback);
 
@@ -11,8 +11,7 @@ export function useTemplateChildren(parent, callback) {
 
   function listenForTemplateChanges(mutationList) {
     // Be smart, only look at the mutation list
-    mutationList.addedNodes.forEach((t, idx) => {
-      console.log('Subscribe child template', idx);
+    mutationList.addedNodes?.forEach(t => {
       childTemplateObserver.observe(t.content, {
         childList: true,
         attributes: true,
@@ -21,4 +20,9 @@ export function useTemplateChildren(parent, callback) {
       });
     });
   }
+
+  return () => {
+    parentObserver.disconnect();
+    childTemplateObserver.disconnect();
+  };
 }
