@@ -358,7 +358,7 @@ export namespace Components {
     }
     interface SqmFormMessage {
         /**
-          * Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "bag-heart") at https://shoelace.style/components/icon
+          * Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon
           * @uiName Icon
          */
         "icon"?: string;
@@ -3786,7 +3786,7 @@ declare namespace LocalJSX {
     }
     interface SqmFormMessage {
         /**
-          * Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "bag-heart") at https://shoelace.style/components/icon
+          * Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon
           * @uiName Icon
          */
         "icon"?: string;

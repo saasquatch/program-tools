@@ -21,7 +21,7 @@ export class FormMessage {
    */
   @Prop() type: string;
   /**
-   * Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "bag-heart") at https://shoelace.style/components/icon
+   * Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon
    *
    * @uiName Icon
    */
