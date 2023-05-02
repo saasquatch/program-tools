@@ -2,6 +2,7 @@ import { useProgramId } from '@saasquatch/component-boilerplate';
 import { useEffect, useState } from '@saasquatch/universal-hooks';
 import debugFn from 'debug';
 import { useTemplateChildren } from '../../utils/useTemplateChildren';
+import { useChildElements } from '../../utils/useChildElements';
 const debug = debugFn('sq:useProgramSwitch');
 
 export type ProgramTemplate = {
@@ -13,6 +14,7 @@ export function useProgramSwitch() {
 
   const [slot, setSlot] = useState<HTMLElement>(undefined);
   const [container, setContainer] = useState<HTMLDivElement>(undefined);
+  const templates = useChildElements<HTMLTemplateElement>();
 
   useEffect(() => {
     if (!container || !slot) {
@@ -20,7 +22,7 @@ export function useProgramSwitch() {
       return;
     }
 
-    useTemplateChildren(slot, () => {
+    function updateTemplates() {
       // <template>
       const templates = slot.querySelectorAll<HTMLTemplateElement & ProgramTemplate>(`template`);
       const templatesArray = Array.from(templates);
@@ -62,8 +64,14 @@ export function useProgramSwitch() {
         container.innerHTML = newContent;
         container.dataset.programId = templateProgramId;
       }
+    }
+
+    updateTemplates();
+    return useTemplateChildren({
+      parent: slot,
+      callback: updateTemplates,
     });
-  }, [slot, container, programId]);
+  }, [slot, container, templates, programId]);
 
   return {
     callbacks: {
