@@ -106,7 +106,7 @@ export function CopyTextView(props: CopyTextViewProps) {
         placement={tooltipPlacement}
         disabled={disabled}
         open={props.open}
-        skidding={-20}
+        skidding={props.buttonStyle === "icon" ? -20 : 0}
       >
         <div
           class={sheet.classes.containerStyle}
