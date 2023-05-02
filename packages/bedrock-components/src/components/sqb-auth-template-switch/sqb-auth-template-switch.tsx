@@ -24,8 +24,8 @@ export class SqbAuthTemplateSwitch {
     const { setContainer, setSlot } = useAuthTemplateSwitch();
 
     return (
-      <Host>
-        <div ref={setSlot}>
+      <Host style={{ position: 'relative' }}>
+        <div ref={setSlot} style={{ display: 'contents' }}>
           <slot name="logged-out" />
           <slot name="logged-in" />
         </div>
