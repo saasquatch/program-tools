@@ -38,6 +38,11 @@ export class CloseButton {
       }
     };
 
-    return <CloseButtonView onClick={onClick} />;
+    return (
+      <CloseButtonView
+        onClick={onClick}
+        backgroundColor={this.backgroundColor}
+      />
+    );
   }
 }
