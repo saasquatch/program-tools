@@ -10,6 +10,7 @@ interface PortalContainerViewProps {
   display?: string;
   minWidth?: string;
   maxWidth?: string;
+  backgrounColor?: string;
   justifyContent?:
     | "start"
     | "center"
@@ -38,7 +39,8 @@ export function PortalContainerView(
         props.padding === "none" ? "0" : `var(--sl-spacing-${props.padding})`,
       maxWidth: props.maxWidth,
       margin: props.center && "auto",
-      justifyContent: props.justifyContent,
+      justifyContent: props.justifyContent || "transparent",
+      backgroundColor: props.backgrounColor,
     },
   };
 

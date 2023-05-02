@@ -75,7 +75,7 @@ Feature: Portal Container
 
 	@motivating
 	@ui
-	Scenario Outline: Content can be aligned along the x-axis 
+	Scenario Outline: Content can be aligned along the x-axis
 		Given prop "justify-content" has <value>
 		Then content within the container is aligned <alignment>
 
@@ -88,3 +88,16 @@ Feature: Portal Container
 			| space-between | with space between |
 			| space-around  | with space around  |
 			| space-evenly  | with space evenly  |
+
+
+	@motivating
+	@ui
+	Scenario Outline: Component background color can be customized
+		Given a user is viewing the Portal Container component
+		Then the default value is "#ffffff00"
+		When the prop "background-color" has <value>
+		Then the background has color <backgroundColor>
+		Examples:
+			| value                 | backgroundColor                     |
+			| empty (default value) | var(--sl-color-neutral-0) (#ffffff) |
+			| aquamarine            | #7fffd4                             |

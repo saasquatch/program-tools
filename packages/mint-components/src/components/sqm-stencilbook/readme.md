@@ -44,6 +44,7 @@
 - [sqm-user-name](../sqm-user-name)
 - [sqm-program-menu](../sqm-program-menu)
 - [sqm-portal-login](../sqm-portal-login)
+- [sqm-hero](../sqm-hero)
 - [sqm-portal-change-password](../sqm-portal-change-password)
 - [sqm-referral-iframe](../sqm-referral-iframe)
 - [sqm-checkbox-field](../sqm-checkbox-field)
@@ -112,6 +113,7 @@ graph TD;
   sqm-stencilbook --> sqm-user-name
   sqm-stencilbook --> sqm-program-menu
   sqm-stencilbook --> sqm-portal-login
+  sqm-stencilbook --> sqm-hero
   sqm-stencilbook --> sqm-portal-change-password
   sqm-stencilbook --> sqm-referral-iframe
   sqm-stencilbook --> sqm-checkbox-field

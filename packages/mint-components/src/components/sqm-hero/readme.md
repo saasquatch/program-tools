@@ -17,6 +17,19 @@
 | `wrapDirection`       | `wrap-direction`       | Flexbox wrap direction, accepts wrap or wrap-reverse                    | `"wrap" \| "wrap-reverse"`                 | `"wrap"`                    |
 
 
+## Dependencies
+
+### Used by
+
+ - [sqm-stencilbook](../sqm-stencilbook)
+
+### Graph
+```mermaid
+graph TD;
+  sqm-stencilbook --> sqm-hero
+  style sqm-hero fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
