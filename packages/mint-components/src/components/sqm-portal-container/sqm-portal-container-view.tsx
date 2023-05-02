@@ -10,7 +10,7 @@ interface PortalContainerViewProps {
   display?: string;
   minWidth?: string;
   maxWidth?: string;
-  backgrounColor?: string;
+  backgroundColor?: string;
   justifyContent?:
     | "start"
     | "center"
@@ -40,7 +40,7 @@ export function PortalContainerView(
       maxWidth: props.maxWidth,
       margin: props.center && "auto",
       justifyContent: props.justifyContent || "transparent",
-      backgroundColor: props.backgrounColor,
+      backgroundColor: props.backgroundColor,
     },
   };
 
