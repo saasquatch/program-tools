@@ -8,6 +8,8 @@ import instantAccessReferrerShareWidget from "../templates/InstantAccessReferrer
 import instantAccessFriendCouponWidget from "../templates/InstantAccessFriendCouponWidget.html";
 import instantAccessReferrerRegistrationWidget from "../templates/InstantAccessReferrerRegistrationWidget.html";
 import instantAccessFriendRegistrationWidget from "../templates/InstantAccessFriendRegistrationWidget.html";
+import paypalReferralWidget from "../templates/PaypalReferralWidget.html";
+import paypalMonoWidget from "../templates/PaypalMonoWidget.html";
 
 import marked from "marked";
 
@@ -111,6 +113,16 @@ export const Loyalty = createHookStory(() => {
 
 export const InstantAccessReferrerShareWidget = createHookStory(() => {
   const { states, callbacks } = useTemplate(instantAccessReferrerShareWidget);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const PaypalMonoWidget = createHookStory(() => {
+  const { states, callbacks } = useTemplate(paypalMonoWidget);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const PaypalReferralWidget = createHookStory(() => {
+  const { states, callbacks } = useTemplate(paypalReferralWidget);
   return <TemplateView states={states} callbacks={callbacks} />;
 });
 

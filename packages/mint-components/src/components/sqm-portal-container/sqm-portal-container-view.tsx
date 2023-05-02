@@ -39,8 +39,8 @@ export function PortalContainerView(
         props.padding === "none" ? "0" : `var(--sl-spacing-${props.padding})`,
       maxWidth: props.maxWidth,
       margin: props.center && "auto",
-      justifyContent: props.justifyContent || "transparent",
-      backgroundColor: props.backgroundColor,
+      justifyContent: props.justifyContent,
+      backgroundColor: props.backgroundColor || "transparent",
     },
   };
 
@@ -52,6 +52,8 @@ export function PortalContainerView(
 
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
+
+  console.log(props);
 
   return (
     <div class={sheet.classes.Container} part={"sqm-base"}>
