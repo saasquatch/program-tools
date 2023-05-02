@@ -59,11 +59,11 @@ Feature: Hero Unit
         Given a hero unit with <backgroundPropValue>
         Then the background will be <background>
         Examples:
-            | background                                                  | background               |
-            | https://images.unsplash.com/photo-1599676821464-3555954838d | image of misty mountains |
-            | LightSlateGrey                                              | light slate grey         |
-            | #00FF00                                                     | green                    |
-            | rgb(128,0,128)                                              | purple                   |
+            | background                                                   | background               |
+            | https://images.unsplash.com/photo-1599676821464-3555954838dc | image of misty mountains |
+            | LightSlateGrey                                               | light slate grey         |
+            | #00FF00                                                      | green                    |
+            | rgb(128,0,128)                                               | purple                   |
 
     Scenario Outline: Wrap Direction can be configured for mobile experiences
         Given a hero unit with the following HTML
