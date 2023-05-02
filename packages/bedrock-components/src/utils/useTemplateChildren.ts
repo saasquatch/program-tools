@@ -10,10 +10,8 @@ export function useTemplateChildren({ parent, callback }) {
   listenForTemplateChanges({ addedNodes: parent.querySelectorAll('template') });
 
   function listenForTemplateChanges(mutationList) {
-    console.log({ mutationList });
     // Be smart, only look at the mutation list
-    mutationList.addedNodes?.forEach((t, idx) => {
-      console.log('Subscribe child template', idx);
+    mutationList.addedNodes?.forEach(t => {
       childTemplateObserver.observe(t.content, {
         childList: true,
         attributes: true,
