@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description                                                                                                                | Type     | Default     |
-| -------- | --------- | -------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `icon`   | `icon`    | Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "bag-heart") at https://shoelace.style/components/icon | `string` | `undefined` |
-| `type`   | `type`    | Options include "success", "info", "warning", and "error"                                                                  | `string` | `undefined` |
+| Property | Attribute | Description                                                                                                            | Type     | Default     |
+| -------- | --------- | ---------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `icon`   | `icon`    | Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon | `string` | `undefined` |
+| `type`   | `type`    | Options include "success", "info", "warning", and "error"                                                              | `string` | `undefined` |
 
 
 ## Dependencies
