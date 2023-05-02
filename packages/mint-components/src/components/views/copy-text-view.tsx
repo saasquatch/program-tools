@@ -76,7 +76,7 @@ export function CopyTextView(props: CopyTextViewProps) {
   const inputText = error ? props.inputPlaceholderText : props.copyString;
   const disabled = error || props.loading || props.disabled;
   const tooltipPlacement =
-    props.buttonStyle === "button-below" ? "top" : "top-end";
+    props.buttonStyle === "button-below" ? "bottom" : "top-end";
 
   const copyButton =
     buttonStyle === "icon" ? null : (
