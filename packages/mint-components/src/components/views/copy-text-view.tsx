@@ -72,25 +72,25 @@ const styleString = sheet.toString();
 export function CopyTextView(props: CopyTextViewProps) {
   const { buttonStyle = "icon" } = props;
 
+  const error = !props.loading && props.error;
+  const inputText = error ? props.inputPlaceholderText : props.copyString;
+  const disabled = error || props.loading || props.disabled;
+  const tooltipPlacement =
+    props.buttonStyle === "button-below" ? "top" : "top-end";
+
   const copyButton =
     buttonStyle === "icon" ? null : (
       <sl-button
         onClick={() => props.onClick?.()}
         size={"medium"}
         style={{ width: `${buttonStyle === "button-below" && "100%"}` }}
-        disabled={props.disabled}
+        disabled={disabled}
         slot="suffix"
         type="primary"
       >
         {props.copyButtonLabel || "Copy"}
       </sl-button>
     );
-
-  const error = !props.loading && props.error;
-  const inputText = error ? props.inputPlaceholderText : props.copyString;
-  const disabled = error || props.loading || props.disabled;
-  const tooltipPlacement =
-    props.buttonStyle === "button-below" ? "top" : "top-end";
 
   return (
     <div>
