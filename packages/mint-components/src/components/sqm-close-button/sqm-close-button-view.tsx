@@ -15,6 +15,7 @@ const style = {
     position: "absolute",
     right: "var(--sl-spacing-medium)",
     top: "0",
+    zIndex: "100",
   },
 };
 

@@ -77,6 +77,12 @@ export function CopyTextView(props: CopyTextViewProps) {
   const disabled = error || props.loading || props.disabled;
   const tooltipPlacement =
     props.buttonStyle === "button-below" ? "bottom" : "top-end";
+  const offset =
+    props.buttonStyle === "icon"
+      ? -20
+      : props.buttonStyle === "button-outside"
+      ? -45
+      : 0;
 
   const copyButton =
     buttonStyle === "icon" ? null : (
@@ -106,7 +112,7 @@ export function CopyTextView(props: CopyTextViewProps) {
         placement={tooltipPlacement}
         disabled={disabled}
         open={props.open}
-        skidding={props.buttonStyle === "icon" ? -20 : 0}
+        skidding={offset}
       >
         <div
           class={sheet.classes.containerStyle}

@@ -82,12 +82,6 @@ Feature: Coupon Code
     And the user cannot copy the text
 
   @ui
-  Scenario: user can edit the error message and code placeholder
-    Given a user is editing the coupon code component
-    When they see an option called "Invalid Email Message"
-    And an option called "Required Field Message"
-
-  @ui
   Scenario Outline: user can edit the alignment of the coupon code text
     Given a user is editing the coupon code component
     Then they see "Align text" props

@@ -70,14 +70,14 @@ Feature: Instant access referrer registration
     @ui
     Scenario Outline: Container border can be toggled
         Given a user is viewing the registration component
-        Then the default value for the prop "include-border" is "true"
-        When "include-border" has <value>
-        Then the registration component's border <maybe> included
+        Then the default value for the prop "hide-border" is "false"
+        When "hide-border" has <value>
+        Then the registration component's border <maybe> hidden
         Examples:
             | value            | maybe |
             | true             | is    |
             | false            | isn't |
-            | empty (no value) | is    |
+            | empty (no value) | isn't |
 
     @motivating
     @ui
