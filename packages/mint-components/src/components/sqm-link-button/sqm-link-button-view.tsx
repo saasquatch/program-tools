@@ -1,16 +1,24 @@
 import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 
+export type ButtonType =
+  | "default"
+  | "primary"
+  | "success"
+  | "neutral"
+  | "warning"
+  | "danger";
 export interface LinkButtonViewProps {
   link: string;
   openInNewTab: boolean;
+  buttonType?: ButtonType;
 }
 
 const style = {
   Container: { display: "contents" },
   Link: {
     textDecoration: "none",
-    color: "unset,",
+    color: "inherit",
   },
 };
 
@@ -24,7 +32,7 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function LinkButtonView(props: LinkButtonViewProps, children: VNode) {
-  const { link, openInNewTab } = props;
+  const { link, openInNewTab, buttonType = "primary" } = props;
 
   return (
     <span class={sheet.classes.Container} part="sqm-base">
@@ -32,11 +40,11 @@ export function LinkButtonView(props: LinkButtonViewProps, children: VNode) {
         {styleString}
         {vanillaStyle}
       </style>
-      <sl-button exportparts="base: primarybutton-base">
+      <sl-button type={buttonType} exportparts="base: primarybutton-base">
         <a
           class={sheet.classes.Link}
           href={link}
-          target={openInNewTab ? "_blank" : ""}
+          target={openInNewTab ? "_blank" : "_parent"}
           part="sqm-link"
         >
           {children}

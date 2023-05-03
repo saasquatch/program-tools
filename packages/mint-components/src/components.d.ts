@@ -18,6 +18,7 @@ import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-fiel
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
+import { ButtonType } from "./components/sqm-link-button/sqm-link-button-view";
 import { CopyTextViewProps } from "./components/views/copy-text-view";
 import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-fields-view";
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
@@ -789,6 +790,10 @@ export namespace Components {
         "unrankedText": string;
     }
     interface SqmLinkButton {
+        /**
+          * @uiName Button type
+         */
+        "buttonType"?: ButtonType;
         /**
           * @required 
           * @uiName Link
@@ -4224,6 +4229,10 @@ declare namespace LocalJSX {
         "unrankedText"?: string;
     }
     interface SqmLinkButton {
+        /**
+          * @uiName Button type
+         */
+        "buttonType"?: ButtonType;
         /**
           * @required 
           * @uiName Link

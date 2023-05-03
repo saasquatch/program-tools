@@ -1,6 +1,6 @@
 import { Component, h, Prop } from "@stencil/core";
 import { getProps } from "../../utils/utils";
-import { LinkButtonView } from "./sqm-link-button-view";
+import { ButtonType, LinkButtonView } from "./sqm-link-button-view";
 
 /**
  * @uiName Link Button
@@ -21,6 +21,10 @@ export class LinkButton {
    * @uiName Open link in new tab
    */
   @Prop() openInNewTab: boolean = false;
+  /**
+   * @uiName Button type
+   */
+  @Prop() buttonType?: ButtonType = "primary";
 
   render() {
     return (

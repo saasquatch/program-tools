@@ -29,3 +29,13 @@ export const OpenInNewTab = () => {
     </LinkButtonView>
   );
 };
+
+export const DefaultType = () => {
+  return (
+    <LinkButtonView
+      {...{ ...defaultProps, openInNewTab: true, buttonType: "default" }}
+    >
+      <span>Test Slot Content</span>
+    </LinkButtonView>
+  );
+};
