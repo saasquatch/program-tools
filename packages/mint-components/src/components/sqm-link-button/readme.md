@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property       | Attribute         | Description | Type      | Default     |
-| -------------- | ----------------- | ----------- | --------- | ----------- |
-| `link`         | `link`            |             | `string`  | `undefined` |
-| `openInNewTab` | `open-in-new-tab` |             | `boolean` | `false`     |
+| Property       | Attribute         | Description | Type                                                                        | Default     |
+| -------------- | ----------------- | ----------- | --------------------------------------------------------------------------- | ----------- |
+| `buttonType`   | `button-type`     |             | `"danger" \| "default" \| "neutral" \| "primary" \| "success" \| "warning"` | `"primary"` |
+| `link`         | `link`            |             | `string`                                                                    | `undefined` |
+| `openInNewTab` | `open-in-new-tab` |             | `boolean`                                                                   | `false`     |
 
 
 ----------------------------------------------
