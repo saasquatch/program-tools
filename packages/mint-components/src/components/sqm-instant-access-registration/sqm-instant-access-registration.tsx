@@ -55,10 +55,10 @@ export class InstantAccessRegistration {
   @Prop() includeName: boolean = false;
 
   /**
-   * @uiName Include border
+   * @uiName Hide border
    * @uiGroup Card style
    */
-  @Prop() includeBorder: boolean = true;
+  @Prop() hideBorder: boolean = false;
 
   /**
    * Display this message when a required field has not been filled out.
@@ -150,7 +150,7 @@ export class InstantAccessRegistration {
       firstNameLabel: this.firstNameLabel,
       lastNameLabel: this.lastNameLabel,
       includeName: this.includeName,
-      includeBorder: this.includeBorder,
+      hideBorder: this.hideBorder,
       invalidEmailErrorMessage: this.invalidEmailErrorMessage,
       requiredFieldErrorMessage: this.requiredFieldErrorMessage,
       paddingTop: this.paddingTop,

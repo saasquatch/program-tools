@@ -606,10 +606,10 @@ export namespace Components {
          */
         "firstNameLabel": string;
         /**
-          * @uiName Include border
+          * @uiName Hide border
           * @uiGroup Card style
          */
-        "includeBorder": boolean;
+        "hideBorder": boolean;
         /**
           * @undocumented 
           * @uiType boolean
@@ -1873,10 +1873,10 @@ export namespace Components {
          */
         "firstNameLabel": string;
         /**
-          * @uiName Include border
+          * @uiName Hide border
           * @uiGroup Card style
          */
-        "includeBorder": boolean;
+        "hideBorder": boolean;
         /**
           * @undocumented 
           * @uiType boolean
@@ -4041,10 +4041,10 @@ declare namespace LocalJSX {
          */
         "firstNameLabel"?: string;
         /**
-          * @uiName Include border
+          * @uiName Hide border
           * @uiGroup Card style
          */
-        "includeBorder"?: boolean;
+        "hideBorder"?: boolean;
         /**
           * @undocumented 
           * @uiType boolean
@@ -5294,10 +5294,10 @@ declare namespace LocalJSX {
          */
         "firstNameLabel"?: string;
         /**
-          * @uiName Include border
+          * @uiName Hide border
           * @uiGroup Card style
          */
-        "includeBorder"?: boolean;
+        "hideBorder"?: boolean;
         /**
           * @undocumented 
           * @uiType boolean

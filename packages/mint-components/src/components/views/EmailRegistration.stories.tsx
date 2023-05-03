@@ -62,7 +62,7 @@ export const NoBorder = () => (
       ...defaultProps,
       content: {
         ...defaultProps.content,
-        includeBorder: false,
+        hideBorder: true,
       },
     }}
   />
