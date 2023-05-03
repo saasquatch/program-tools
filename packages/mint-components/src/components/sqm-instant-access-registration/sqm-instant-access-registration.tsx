@@ -82,7 +82,8 @@ export class InstantAccessRegistration {
    * @uiName Network Error Message
    * @uiWidget textArea
    */
-  @Prop() networkErrorMessage: string = "Network request failed.";
+  @Prop() networkErrorMessage: string =
+    "There was a problem signing you in. Please wait a moment and try again. If this problem continues, contact Support for help resolving this issue.";
 
   /**
    * @uiName Top padding
