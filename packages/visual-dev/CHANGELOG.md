@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Fixed a build issue which meant 1.7.2 changes weren't applied.
+- Fixed a build issue which caused 1.7.2 changes to not be applied.
 
 ## [1.7.2] - 2023-05-03
 
