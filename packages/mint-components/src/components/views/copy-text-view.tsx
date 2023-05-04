@@ -22,7 +22,7 @@ export interface CopyTextViewProps {
 const style = {
   HostBlock: HostBlock,
   inputStyle: {
-    "&::part(input)": { textOverflow: "ellipsis" },
+    "&::part(input)": { textOverflow: "ellipsis", width: "100%" },
     "&::part(base)": { cursor: "pointer" },
     width: "100%",
   },
