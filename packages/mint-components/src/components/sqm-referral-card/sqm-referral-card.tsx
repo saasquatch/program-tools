@@ -27,10 +27,10 @@ export class ReferralCard {
   @Prop() verticalAlignment: "start" | "center" | "end" = "start";
 
   /**
-   * @uiName Include border
+   * @uiName Hide border
    * @uiType boolean
    */
-  @Prop() includeBorder: boolean = true;
+  @Prop() hideBorder: boolean = false;
 
   /**
    * @uiName Top padding

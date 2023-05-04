@@ -3,7 +3,7 @@ import { createStyleSheet } from "../../styling/JSS";
 
 export interface ReferralCardViewProps {
   verticalAlignment: "start" | "center" | "end";
-  includeBorder?: boolean;
+  hideBorder?: boolean;
   backgroundColor: string;
   slots: {
     left: VNode;
@@ -56,7 +56,6 @@ const vanillaStyle = `
   `;
 
 export function ReferralCardView(props: ReferralCardViewProps) {
-  const { includeBorder = true } = props;
   const onlyLeft = props.slots.left && !props.slots.right;
   const onlyRight = props.slots.left && !props.slots.right;
 
@@ -66,7 +65,7 @@ export function ReferralCardView(props: ReferralCardViewProps) {
       class={sheet.classes.Container}
       style={{
         border: `${
-          includeBorder ? "1px solid var(--sl-color-neutral-300);" : "none;"
+          props.hideBorder ? "none" : "1px solid var(--sl-color-neutral-300)"
         }`,
 
         "padding-top": `var(--sl-spacing-${props.paddingTop})`,

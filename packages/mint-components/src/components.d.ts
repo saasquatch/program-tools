@@ -1611,10 +1611,10 @@ export namespace Components {
          */
         "backgroundColor": string;
         /**
-          * @uiName Include border
+          * @uiName Hide border
           * @uiType boolean
          */
-        "includeBorder": boolean;
+        "hideBorder": boolean;
         /**
           * @uiName Bottom padding
           * @uiGroup Padding
@@ -5050,10 +5050,10 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * @uiName Include border
+          * @uiName Hide border
           * @uiType boolean
          */
-        "includeBorder"?: boolean;
+        "hideBorder"?: boolean;
         /**
           * @uiName Bottom padding
           * @uiGroup Padding
