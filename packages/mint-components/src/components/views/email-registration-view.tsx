@@ -150,7 +150,14 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
             : [])}
         ></sl-input>
 
-        <div class={sheet.classes.ButtonsContainer}>
+        <div
+          class={sheet.classes.ButtonsContainer}
+          style={{
+            paddingTop: `${
+              content.includeName ? "var(--sl-spacing-medium)" : "0"
+            }`,
+          }}
+        >
           <sl-button
             submit
             loading={states.loading}
