@@ -77,12 +77,13 @@ export class ReferredRegistration {
    * @uiName Invalid email message
    * @uiWidget textArea
    */
-  @Prop() invalidEmailErrorMessage: string = "Must be a valid email address";
+  @Prop() invalidEmailErrorMessage: string =
+    "Please enter a valid email address";
 
   /**
-   * The message to be displayed when a the form submission fails unexpectedly.
+   * Display this message when the form submission unexpectedly fails.
    *
-   * @uiName Network Error Message
+   * @uiName Network error message
    * @uiWidget textArea
    */
   @Prop() networkErrorMessage: string =
