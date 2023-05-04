@@ -38,7 +38,9 @@ const style = {
     gap: "calc(2 * var(--sl-spacing-medium))",
 
     "@media (max-width: 499px)": {
-      flexDirection: "column",
+      gridAutoFlow: "unset",
+      gridAutoColumns: "unset",
+      gridTemplateColumns: "1fr",
       border: "none",
     },
   },
