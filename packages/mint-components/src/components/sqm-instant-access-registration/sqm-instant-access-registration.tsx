@@ -65,6 +65,7 @@ export class InstantAccessRegistration {
    *
    * @uiName Required field message
    * @uiWidget textArea
+   * @uiGroup Error messages
    */
   @Prop() requiredFieldErrorMessage: string = "Cannot be empty";
 
@@ -73,14 +74,17 @@ export class InstantAccessRegistration {
    *
    * @uiName Invalid email message
    * @uiWidget textArea
+   * @uiGroup Error messages
    */
-  @Prop() invalidEmailErrorMessage: string = "Must be a valid email address";
+  @Prop() invalidEmailErrorMessage: string =
+    "Please enter a valid email address";
 
   /**
-   * The message to be displayed when a the form submission fails unexpectedly.
+   * Display this message when the form submission unexpectedly fails.
    *
-   * @uiName Network Error Message
+   * @uiName Network error message
    * @uiWidget textArea
+   * @uiGroup Error messages
    */
   @Prop() networkErrorMessage: string =
     "There was a problem signing you in. Please wait a moment and try again. If this problem continues, contact Support for help resolving this issue.";

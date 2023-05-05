@@ -110,7 +110,7 @@ export function CopyTextView(props: CopyTextViewProps) {
         trigger="manual"
         content={props.tooltiptext}
         placement={tooltipPlacement}
-        disabled={disabled}
+        disabled={props.disabled}
         open={props.open}
         skidding={offset}
       >

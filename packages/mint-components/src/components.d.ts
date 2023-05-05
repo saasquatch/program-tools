@@ -632,8 +632,8 @@ export namespace Components {
          */
         "lastNameLabel": string;
         /**
-          * The message to be displayed when a the form submission fails unexpectedly.
-          * @uiName Network Error Message
+          * Display this message when the form submission unexpectedly fails.
+          * @uiName Network error message
           * @uiWidget textArea
          */
         "networkErrorMessage": string;
@@ -1611,10 +1611,10 @@ export namespace Components {
          */
         "backgroundColor": string;
         /**
-          * @uiName Include border
+          * @uiName Hide border
           * @uiType boolean
          */
-        "includeBorder": boolean;
+        "hideBorder": boolean;
         /**
           * @uiName Bottom padding
           * @uiGroup Padding
@@ -1903,8 +1903,8 @@ export namespace Components {
          */
         "lastNameLabel": string;
         /**
-          * The message to be displayed when a the form submission fails unexpectedly.
-          * @uiName Network Error Message
+          * Display this message when the form submission unexpectedly fails.
+          * @uiName Network error message
           * @uiWidget textArea
          */
         "networkErrorMessage": string;
@@ -4071,8 +4071,8 @@ declare namespace LocalJSX {
          */
         "lastNameLabel"?: string;
         /**
-          * The message to be displayed when a the form submission fails unexpectedly.
-          * @uiName Network Error Message
+          * Display this message when the form submission unexpectedly fails.
+          * @uiName Network error message
           * @uiWidget textArea
          */
         "networkErrorMessage"?: string;
@@ -5050,10 +5050,10 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * @uiName Include border
+          * @uiName Hide border
           * @uiType boolean
          */
-        "includeBorder"?: boolean;
+        "hideBorder"?: boolean;
         /**
           * @uiName Bottom padding
           * @uiGroup Padding
@@ -5328,8 +5328,8 @@ declare namespace LocalJSX {
          */
         "lastNameLabel"?: string;
         /**
-          * The message to be displayed when a the form submission fails unexpectedly.
-          * @uiName Network Error Message
+          * Display this message when the form submission unexpectedly fails.
+          * @uiName Network error message
           * @uiWidget textArea
          */
         "networkErrorMessage"?: string;

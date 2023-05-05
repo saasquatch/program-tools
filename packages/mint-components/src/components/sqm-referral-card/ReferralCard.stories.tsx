@@ -155,7 +155,7 @@ export const WithFooter = () => {
 
 export const NoBorder = () => {
   return (
-    <sqm-referral-card include-border="false">
+    <sqm-referral-card hide-border="true">
       {timeline("right", 3)}
       {sharebutton("left")}
       <sqm-portal-footer slot="footer" />
