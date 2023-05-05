@@ -68,6 +68,7 @@ export class ReferredRegistration {
    *
    * @uiName Required field message
    * @uiWidget textArea
+   * @uiGroup Error messages
    */
   @Prop() requiredFieldErrorMessage: string = "Cannot be empty";
 
@@ -76,6 +77,7 @@ export class ReferredRegistration {
    *
    * @uiName Invalid email message
    * @uiWidget textArea
+   * @uiGroup Error messages
    */
   @Prop() invalidEmailErrorMessage: string =
     "Please enter a valid email address";
@@ -85,6 +87,7 @@ export class ReferredRegistration {
    *
    * @uiName Network error message
    * @uiWidget textArea
+   * @uiGroup Error messages
    */
   @Prop() networkErrorMessage: string =
     "There was a problem signing you in. Please wait a moment and try again. If this problem continues, contact Support for help resolving this issue.";

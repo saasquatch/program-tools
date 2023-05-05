@@ -10,7 +10,7 @@
 | Property            | Attribute            | Description | Type                           | Default     |
 | ------------------- | -------------------- | ----------- | ------------------------------ | ----------- |
 | `backgroundColor`   | `background-color`   |             | `string`                       | `"#ffffff"` |
-| `includeBorder`     | `include-border`     |             | `boolean`                      | `true`      |
+| `hideBorder`        | `hide-border`        |             | `boolean`                      | `false`     |
 | `paddingBottom`     | `padding-bottom`     |             | `string`                       | `"large"`   |
 | `paddingLeft`       | `padding-left`       |             | `string`                       | `"large"`   |
 | `paddingRight`      | `padding-right`      |             | `string`                       | `"large"`   |
