@@ -79,7 +79,7 @@ export const CheckboxView = React.forwardRef<
           isDisabled={disabled}
           id={id}
           ref={forwardedRef}
-          onChange={() => onChange()}
+          onChange={onChange}
         />
         <CheckboxDiv isDisabled={disabled}>
           <IconView icon="checkmark" customCSS={CheckboxTick} />
