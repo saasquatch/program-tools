@@ -625,6 +625,7 @@ export namespace Components {
           * Display this message when the given email is invalid or blocked.
           * @uiName Invalid email message
           * @uiWidget textArea
+          * @uiGroup Error messages
          */
         "invalidEmailErrorMessage": string;
         /**
@@ -635,6 +636,7 @@ export namespace Components {
           * Display this message when the form submission unexpectedly fails.
           * @uiName Network error message
           * @uiWidget textArea
+          * @uiGroup Error messages
          */
         "networkErrorMessage": string;
         /**
@@ -673,6 +675,7 @@ export namespace Components {
           * Display this message when a required field has not been filled out.
           * @uiName Required field message
           * @uiWidget textArea
+          * @uiGroup Error messages
          */
         "requiredFieldErrorMessage": string;
     }
@@ -1896,6 +1899,7 @@ export namespace Components {
           * Display this message when the given email is invalid or blocked.
           * @uiName Invalid email message
           * @uiWidget textArea
+          * @uiGroup Error messages
          */
         "invalidEmailErrorMessage": string;
         /**
@@ -1906,6 +1910,7 @@ export namespace Components {
           * Display this message when the form submission unexpectedly fails.
           * @uiName Network error message
           * @uiWidget textArea
+          * @uiGroup Error messages
          */
         "networkErrorMessage": string;
         /**
@@ -1944,6 +1949,7 @@ export namespace Components {
           * Display this message when a required field has not been filled out.
           * @uiName Required field message
           * @uiWidget textArea
+          * @uiGroup Error messages
          */
         "requiredFieldErrorMessage": string;
     }
@@ -4064,6 +4070,7 @@ declare namespace LocalJSX {
           * Display this message when the given email is invalid or blocked.
           * @uiName Invalid email message
           * @uiWidget textArea
+          * @uiGroup Error messages
          */
         "invalidEmailErrorMessage"?: string;
         /**
@@ -4074,6 +4081,7 @@ declare namespace LocalJSX {
           * Display this message when the form submission unexpectedly fails.
           * @uiName Network error message
           * @uiWidget textArea
+          * @uiGroup Error messages
          */
         "networkErrorMessage"?: string;
         /**
@@ -4112,6 +4120,7 @@ declare namespace LocalJSX {
           * Display this message when a required field has not been filled out.
           * @uiName Required field message
           * @uiWidget textArea
+          * @uiGroup Error messages
          */
         "requiredFieldErrorMessage"?: string;
     }
@@ -5321,6 +5330,7 @@ declare namespace LocalJSX {
           * Display this message when the given email is invalid or blocked.
           * @uiName Invalid email message
           * @uiWidget textArea
+          * @uiGroup Error messages
          */
         "invalidEmailErrorMessage"?: string;
         /**
@@ -5331,6 +5341,7 @@ declare namespace LocalJSX {
           * Display this message when the form submission unexpectedly fails.
           * @uiName Network error message
           * @uiWidget textArea
+          * @uiGroup Error messages
          */
         "networkErrorMessage"?: string;
         /**
@@ -5369,6 +5380,7 @@ declare namespace LocalJSX {
           * Display this message when a required field has not been filled out.
           * @uiName Required field message
           * @uiWidget textArea
+          * @uiGroup Error messages
          */
         "requiredFieldErrorMessage"?: string;
     }
