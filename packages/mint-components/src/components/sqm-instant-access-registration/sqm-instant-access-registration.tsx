@@ -65,6 +65,7 @@ export class InstantAccessRegistration {
    *
    * @uiName Required field message
    * @uiWidget textArea
+   * @uiGroup Error messages
    */
   @Prop() requiredFieldErrorMessage: string = "Cannot be empty";
 
@@ -73,6 +74,7 @@ export class InstantAccessRegistration {
    *
    * @uiName Invalid email message
    * @uiWidget textArea
+   * @uiGroup Error messages
    */
   @Prop() invalidEmailErrorMessage: string =
     "Please enter a valid email address";
@@ -82,6 +84,7 @@ export class InstantAccessRegistration {
    *
    * @uiName Network error message
    * @uiWidget textArea
+   * @uiGroup Error messages
    */
   @Prop() networkErrorMessage: string =
     "There was a problem signing you in. Please wait a moment and try again. If this problem continues, contact Support for help resolving this issue.";

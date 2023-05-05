@@ -135,7 +135,6 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
             if (!value) {
               return content.requiredFieldErrorMessage;
             }
-            console.log({ value });
             if (!value.match(emailValidationRegex)) {
               return content.invalidEmailErrorMessage;
             }
