@@ -13,6 +13,7 @@ import { useInstantAccessRegistration } from "./useInstantAccessRegistration";
 /**
  * @uiName Instant Access Registration
  * @compatibility Built for instant access
+ * @exampleGroup Instant Access
  * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
  */
 @Component({

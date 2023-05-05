@@ -1,9 +1,8 @@
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import { isDemo } from "@saasquatch/component-boilerplate";
-import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
 import { getProps } from "../../utils/utils";
-import { RewardStatusType, useCouponCode } from "./useCouponCode";
+import { useCouponCode } from "./useCouponCode";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
 import { CouponCodeView, CouponCodeViewProps } from "./sqm-coupon-code-view";
@@ -11,7 +10,7 @@ import { CouponCodeView, CouponCodeViewProps } from "./sqm-coupon-code-view";
 /**
  * @uiName Coupon Code
  * @compatibility Built for instant access
- * @exampleGroup Sharing
+ * @exampleGroup Instant Access
  * @example Coupon Code - <sqm-coupon-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-coupon-code>
  */
 @Component({

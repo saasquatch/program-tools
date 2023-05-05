@@ -12,7 +12,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 
 /**
  * @uiName Sign out current user
- * @exampleGroup Common Components
+ * @exampleGroup Instant Access
  * @compatibility Built for instant access
  * @example Sign out current user - <sqm-logout-current-user user-identification-text="{email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
  */
