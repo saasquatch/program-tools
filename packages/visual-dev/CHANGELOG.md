@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [1.7.4] - 2023-05-08
+
+### Changed
+
+- \<CheckboxView> and \<SwitchView>
+  - Fix a bug in onChange handling.
+
 ## [1.7.3] - 2023-05-04
 
 ### Changed
@@ -343,7 +350,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<TextArea>
   - \<Tooltip>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.7.3...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.7.4...HEAD
+[1.7.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.4
 [1.7.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.3
 [1.7.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.2
 [1.7.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.1
