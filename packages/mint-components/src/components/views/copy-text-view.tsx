@@ -23,7 +23,7 @@ const style = {
   HostBlock: HostBlock,
   inputStyle: {
     "&::part(input)": { textOverflow: "ellipsis", width: "100%" },
-    "&::part(base)": { cursor: "pointer" },
+    "&::part(base)": { cursor: "pointer", overflow: "visible" },
     width: "100%",
   },
   inputErrorStyle: {
@@ -35,6 +35,7 @@ const style = {
     display: "flex",
     alignItems: "center",
     gap: "var(--sl-spacing-x-small)",
+    width: "100%",
   },
   errorTextStyle: {
     margin: "0",
@@ -76,27 +77,41 @@ export function CopyTextView(props: CopyTextViewProps) {
   const inputText = error ? props.inputPlaceholderText : props.copyString;
   const disabled = error || props.loading || props.disabled;
   const tooltipPlacement =
-    props.buttonStyle === "button-below" ? "bottom" : "top-end";
-  const offset =
-    props.buttonStyle === "icon"
-      ? -20
+    props.buttonStyle === "button-below"
+      ? "bottom"
       : props.buttonStyle === "button-outside"
-      ? -45
-      : 0;
+      ? "top"
+      : "top-end";
 
-  const copyButton =
-    buttonStyle === "icon" ? null : (
-      <sl-button
-        onClick={() => props.onClick?.()}
-        size={"medium"}
-        style={{ width: `${buttonStyle === "button-below" && "100%"}` }}
-        disabled={disabled}
-        slot="suffix"
-        type="primary"
-      >
-        {props.copyButtonLabel || "Copy"}
-      </sl-button>
-    );
+  const copyButton = (
+    <sl-tooltip
+      trigger="manual"
+      content={props.tooltiptext}
+      placement={tooltipPlacement}
+      disabled={props.disabled}
+      open={props.open}
+      skidding={props.buttonStyle === "icon" ? -5 : 0}
+      slot="suffix"
+    >
+      {buttonStyle === "icon" ? (
+        <sl-icon-button
+          onClick={() => props.onClick?.()}
+          name="files"
+          disabled={disabled}
+        />
+      ) : (
+        <sl-button
+          onClick={() => props.onClick?.()}
+          size={"medium"}
+          style={{ width: `${buttonStyle === "button-below" && "100%"}` }}
+          disabled={disabled}
+          type="primary"
+        >
+          {props.copyButtonLabel || "Copy"}
+        </sl-button>
+      )}
+    </sl-tooltip>
+  );
 
   return (
     <div>
@@ -106,51 +121,32 @@ export function CopyTextView(props: CopyTextViewProps) {
         {textAlignStyle[props.textAlign]}
         {disabled && disabledStyles}
       </style>
-      <sl-tooltip
-        trigger="manual"
-        content={props.tooltiptext}
-        placement={tooltipPlacement}
-        disabled={props.disabled}
-        open={props.open}
-        skidding={offset}
+
+      <div
+        class={sheet.classes.containerStyle}
+        style={{
+          flexDirection: `${buttonStyle === "button-below" ? "column" : "row"}`,
+        }}
       >
-        <div
-          class={sheet.classes.containerStyle}
-          style={{
-            flexDirection: `${
-              buttonStyle === "button-below" ? "column" : "row"
-            }`,
-            width: "100%",
-          }}
+        <sl-input
+          class={`${sheet.classes.inputStyle} ${
+            error ? sheet.classes.inputErrorStyle : ""
+          }`}
+          exportparts="label: input-label"
+          value={props.loading ? "Loading..." : inputText}
+          readonly
+          disabled={disabled}
         >
-          <sl-input
-            class={`${sheet.classes.inputStyle} ${
-              error ? sheet.classes.inputErrorStyle : ""
-            }`}
-            exportparts="label: input-label"
-            value={props.loading ? "Loading..." : inputText}
-            readonly
-            disabled={disabled}
-          >
-            {buttonStyle === "icon" && (
-              <sl-icon-button
-                onClick={() => props.onClick?.()}
-                slot="suffix"
-                name="files"
-                disabled={disabled}
-              />
-            )}
-            {error && (
-              <p slot="help-text" class={sheet.classes.errorTextStyle}>
-                {props.errorText}
-              </p>
-            )}
-          </sl-input>
-          {(buttonStyle === "button-outside" ||
-            buttonStyle === "button-below") &&
-            copyButton}
-        </div>
-      </sl-tooltip>
+          {buttonStyle === "icon" && copyButton}
+          {error && (
+            <p slot="help-text" class={sheet.classes.errorTextStyle}>
+              {props.errorText}
+            </p>
+          )}
+        </sl-input>
+        {(buttonStyle === "button-outside" || buttonStyle === "button-below") &&
+          copyButton}
+      </div>
     </div>
   );
 }

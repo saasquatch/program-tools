@@ -47,11 +47,29 @@ export const CopyButton = () => {
     ></sqm-coupon-code>
   );
 };
+export const CopyButtonCustomLabel = () => {
+  return (
+    <sqm-coupon-code
+      {...defaultProps}
+      buttonStyle="button-outside"
+      copy-button-label="test long custom label"
+    ></sqm-coupon-code>
+  );
+};
 export const CopyButtonBelow = () => {
   return (
     <sqm-coupon-code
       {...defaultProps}
       buttonStyle={"button-below"}
+    ></sqm-coupon-code>
+  );
+};
+export const CopyButtonBelowCustomLabel = () => {
+  return (
+    <sqm-coupon-code
+      {...defaultProps}
+      buttonStyle={"button-below"}
+      copy-button-label="test long custom label"
     ></sqm-coupon-code>
   );
 };
