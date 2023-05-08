@@ -80,6 +80,15 @@ export const ImageAndShareButtons = () => {
   );
 };
 
+export const LimitWidth = () => {
+  return (
+    <sqm-referral-card limitWidth={true}>
+      {media("left")}
+      {sharebutton("right")}
+    </sqm-referral-card>
+  );
+};
+
 export const TimelineAndShareButtons = () => {
   return (
     <sqm-referral-card>

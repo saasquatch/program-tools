@@ -15,6 +15,7 @@ export interface ReferralCardViewProps {
   paddingRight?: string;
   paddingBottom?: string;
   paddingLeft?: string;
+  limitWidth: boolean;
 }
 const style = {
   Container: {
@@ -56,9 +57,6 @@ const vanillaStyle = `
   `;
 
 export function ReferralCardView(props: ReferralCardViewProps) {
-  const onlyLeft = props.slots.left && !props.slots.right;
-  const onlyRight = props.slots.left && !props.slots.right;
-
   return (
     <div
       part="sqm-base"
@@ -73,6 +71,7 @@ export function ReferralCardView(props: ReferralCardViewProps) {
         "padding-bottom": `var(--sl-spacing-${props.paddingBottom})`,
         "padding-left": `var(--sl-spacing-${props.paddingLeft})`,
         backgroundColor: props.backgroundColor,
+        maxWidth: `${props.limitWidth ? "600px" : "none"}`,
       }}
     >
       <style type="text/css">

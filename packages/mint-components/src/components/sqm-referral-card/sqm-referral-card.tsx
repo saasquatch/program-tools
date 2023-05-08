@@ -68,6 +68,12 @@ export class ReferralCard {
    */
   @Prop() backgroundColor: string = "#ffffff";
 
+  /**
+   * @uiName Limit width
+   * @uiType boolean
+   */
+  @Prop() limitWidth: boolean = false;
+
   constructor() {
     withHooks(this);
   }

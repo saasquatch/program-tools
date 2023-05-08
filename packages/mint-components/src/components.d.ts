@@ -622,7 +622,7 @@ export namespace Components {
          */
         "includeName": boolean;
         /**
-          * Display this message when the given email is invalid or blocked.
+          * Display this message when the given email is invalid.
           * @uiName Invalid email message
           * @uiWidget textArea
           * @uiGroup Error messages
@@ -1619,6 +1619,11 @@ export namespace Components {
          */
         "hideBorder": boolean;
         /**
+          * @uiName Limit width
+          * @uiType boolean
+         */
+        "limitWidth": boolean;
+        /**
           * @uiName Bottom padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
@@ -1896,7 +1901,7 @@ export namespace Components {
          */
         "includeName": boolean;
         /**
-          * Display this message when the given email is invalid or blocked.
+          * Display this message when the given email is invalid.
           * @uiName Invalid email message
           * @uiWidget textArea
           * @uiGroup Error messages
@@ -4067,7 +4072,7 @@ declare namespace LocalJSX {
          */
         "includeName"?: boolean;
         /**
-          * Display this message when the given email is invalid or blocked.
+          * Display this message when the given email is invalid.
           * @uiName Invalid email message
           * @uiWidget textArea
           * @uiGroup Error messages
@@ -5064,6 +5069,11 @@ declare namespace LocalJSX {
          */
         "hideBorder"?: boolean;
         /**
+          * @uiName Limit width
+          * @uiType boolean
+         */
+        "limitWidth"?: boolean;
+        /**
           * @uiName Bottom padding
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
@@ -5327,7 +5337,7 @@ declare namespace LocalJSX {
          */
         "includeName"?: boolean;
         /**
-          * Display this message when the given email is invalid or blocked.
+          * Display this message when the given email is invalid.
           * @uiName Invalid email message
           * @uiWidget textArea
           * @uiGroup Error messages
