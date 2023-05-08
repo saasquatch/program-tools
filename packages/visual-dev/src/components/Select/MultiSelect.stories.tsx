@@ -41,6 +41,30 @@ export function MultipleSelectCombobox() {
   );
 }
 
+// Attempt to recreate https://codesandbox.io/s/o4yp9vmm8z?file=/MultiDownshift.js but with a menu item, not keyboard shortcuts
+export function MultipleSelectCreatableCombobox() {
+  const props = useMultiSelectDemo({ selectItems: books, useCombobox: true });
+
+  return (
+    <SelectView.ContainerView {...props}>
+      <SelectView.HandleView {...props} />
+
+      <SelectView.FrameView {...props}>
+        <div>+ Create Reward "{props.functional.inputValue}"</div>
+        {props.items.map((item: any, index: number) => (
+          <SelectView.ItemView
+            {...{
+              functional: props.functional,
+              index,
+              item,
+            }}
+          />
+        ))}
+      </SelectView.FrameView>
+    </SelectView.ContainerView>
+  );
+}
+
 export function MultipleSelectFullWidth() {
   const props = useMultiSelectDemo({ selectItems: books });
 
