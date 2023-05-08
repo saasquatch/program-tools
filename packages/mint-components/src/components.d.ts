@@ -795,6 +795,8 @@ export namespace Components {
     interface SqmLinkButton {
         /**
           * @uiName Button type
+          * @uiType string
+          * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger"]
          */
         "buttonType"?: ButtonType;
         /**
@@ -4245,6 +4247,8 @@ declare namespace LocalJSX {
     interface SqmLinkButton {
         /**
           * @uiName Button type
+          * @uiType string
+          * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger"]
          */
         "buttonType"?: ButtonType;
         /**

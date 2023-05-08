@@ -23,6 +23,8 @@ export class LinkButton {
   @Prop() openInNewTab: boolean = false;
   /**
    * @uiName Button type
+   * @uiType string
+   * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger"]
    */
   @Prop() buttonType?: ButtonType = "primary";
 
