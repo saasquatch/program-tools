@@ -74,7 +74,7 @@ export class ReferredRegistration {
   @Prop() requiredFieldErrorMessage: string = "Cannot be empty";
 
   /**
-   * Display this message when the given email is invalid or blocked.
+   * Display this message when the given email is invalid.
    *
    * @uiName Invalid email message
    * @uiWidget textArea
