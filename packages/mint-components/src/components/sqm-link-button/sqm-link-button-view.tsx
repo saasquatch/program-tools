@@ -1,4 +1,4 @@
-import { h, VNode } from "@stencil/core";
+import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 
 export type ButtonType =
@@ -12,6 +12,7 @@ export interface LinkButtonViewProps {
   link: string;
   openInNewTab: boolean;
   buttonType?: ButtonType;
+  buttonText?: string;
 }
 
 const style = {
@@ -31,8 +32,8 @@ const vanillaStyle = `
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export function LinkButtonView(props: LinkButtonViewProps, children: VNode) {
-  const { link, openInNewTab, buttonType = "primary" } = props;
+export function LinkButtonView(props: LinkButtonViewProps) {
+  const { link, openInNewTab, buttonType = "primary", buttonText } = props;
 
   return (
     <span class={sheet.classes.Container} part="sqm-base">
@@ -47,7 +48,7 @@ export function LinkButtonView(props: LinkButtonViewProps, children: VNode) {
           target={openInNewTab ? "_blank" : "_parent"}
           part="sqm-link"
         >
-          {children}
+          {buttonText}
         </a>
       </sl-button>
     </span>

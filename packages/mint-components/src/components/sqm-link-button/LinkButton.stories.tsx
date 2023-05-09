@@ -12,21 +12,18 @@ export default {
 const defaultProps = {
   link: "https://example.com",
   openInNewTab: false,
+  buttonText: "Button Text",
 };
 
 export const Default = () => {
-  return (
-    <LinkButtonView {...defaultProps}>
-      <span>Test Slot Content</span>
-    </LinkButtonView>
-  );
+  return <LinkButtonView {...defaultProps}></LinkButtonView>;
 };
 
 export const OpenInNewTab = () => {
   return (
-    <LinkButtonView {...{ ...defaultProps, openInNewTab: true }}>
-      <span>Test Slot Content</span>
-    </LinkButtonView>
+    <LinkButtonView
+      {...{ ...defaultProps, openInNewTab: true }}
+    ></LinkButtonView>
   );
 };
 
@@ -34,8 +31,6 @@ export const DefaultType = () => {
   return (
     <LinkButtonView
       {...{ ...defaultProps, openInNewTab: true, buttonType: "default" }}
-    >
-      <span>Test Slot Content</span>
-    </LinkButtonView>
+    ></LinkButtonView>
   );
 };

@@ -11,6 +11,7 @@
 | ------------------- | -------------------- | ----------- | ------------------------------ | ----------- |
 | `backgroundColor`   | `background-color`   |             | `string`                       | `"#ffffff"` |
 | `hideBorder`        | `hide-border`        |             | `boolean`                      | `false`     |
+| `limitWidth`        | `limit-width`        |             | `boolean`                      | `false`     |
 | `paddingBottom`     | `padding-bottom`     |             | `string`                       | `"large"`   |
 | `paddingLeft`       | `padding-left`       |             | `string`                       | `"large"`   |
 | `paddingRight`      | `padding-right`      |             | `string`                       | `"large"`   |

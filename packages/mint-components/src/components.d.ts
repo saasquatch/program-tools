@@ -18,7 +18,6 @@ import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-fiel
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
-import { ButtonType } from "./components/sqm-link-button/sqm-link-button-view";
 import { CopyTextViewProps } from "./components/views/copy-text-view";
 import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-fields-view";
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
@@ -794,11 +793,21 @@ export namespace Components {
     }
     interface SqmLinkButton {
         /**
+          * @uiName Button text
+          * @uiType string
+         */
+        "buttonText"?: string;
+        /**
           * @uiName Button type
           * @uiType string
           * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger"]
          */
-        "buttonType"?: ButtonType;
+        "buttonType"?: | "default"
+    | "primary"
+    | "success"
+    | "neutral"
+    | "warning"
+    | "danger";
         /**
           * @required 
           * @uiName Link
@@ -4246,11 +4255,21 @@ declare namespace LocalJSX {
     }
     interface SqmLinkButton {
         /**
+          * @uiName Button text
+          * @uiType string
+         */
+        "buttonText"?: string;
+        /**
           * @uiName Button type
           * @uiType string
           * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger"]
          */
-        "buttonType"?: ButtonType;
+        "buttonType"?: | "default"
+    | "primary"
+    | "success"
+    | "neutral"
+    | "warning"
+    | "danger";
         /**
           * @required 
           * @uiName Link

@@ -26,14 +26,21 @@ export class LinkButton {
    * @uiType string
    * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger"]
    */
-  @Prop() buttonType?: ButtonType = "primary";
+  @Prop() buttonType?:
+    | "default"
+    | "primary"
+    | "success"
+    | "neutral"
+    | "warning"
+    | "danger" = "primary";
+  /**
+   * @uiName Button text
+   * @uiType string
+   */
+  @Prop() buttonText?: string = "Click here";
 
   render() {
-    return (
-      <LinkButtonView {...getProps(this)}>
-        <slot />
-      </LinkButtonView>
-    );
+    return <LinkButtonView {...getProps(this)}></LinkButtonView>;
   }
 }
 
