@@ -72,6 +72,7 @@ export function ReferralCardView(props: ReferralCardViewProps) {
         "padding-left": `var(--sl-spacing-${props.paddingLeft})`,
         backgroundColor: props.backgroundColor,
         maxWidth: `${props.limitWidth ? "600px" : "none"}`,
+        margin: `${props.limitWidth ? "auto" : "none"}`,
       }}
     >
       <style type="text/css">

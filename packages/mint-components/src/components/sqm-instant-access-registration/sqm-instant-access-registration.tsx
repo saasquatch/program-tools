@@ -14,6 +14,7 @@ import { useInstantAccessRegistration } from "./useInstantAccessRegistration";
  * @uiName Instant Access Registration
  * @compatibility Built for instant access
  * @exampleGroup Instant Access
+ * @example Instant Access Registration - <sqm-instant-access-registration></sqm-instant-access-registration>
  * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
  */
 @Component({

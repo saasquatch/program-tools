@@ -45,7 +45,7 @@ export function LinkButtonView(props: LinkButtonViewProps) {
         <a
           class={sheet.classes.Link}
           href={link}
-          target={openInNewTab ? "_blank" : "_parent"}
+          target={openInNewTab ? "_top" : "_parent"}
           part="sqm-link"
         >
           {buttonText}
