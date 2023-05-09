@@ -5,7 +5,7 @@ import { ButtonType, LinkButtonView } from "./sqm-link-button-view";
 /**
  * @uiName Link Button
  * @exampleGroup Common Components
- * @example Link Button - <sqm-link-button link="www.example.com" open-in-new-tab="true">Click here</sqm-link-button>
+ * @example Link Button - <sqm-link-button link="https://www.example.com" open-in-new-tab="true">Click here</sqm-link-button>
  */
 @Component({
   tag: "sqm-link-button",
@@ -13,6 +13,8 @@ import { ButtonType, LinkButtonView } from "./sqm-link-button-view";
 })
 export class LinkButton {
   /**
+   * URL that your button redirects to. Be sure to include the entire URL path (example: https://www.example.com)
+   *
    * @required
    * @uiName Link
    */
@@ -39,29 +41,16 @@ export class LinkButton {
    */
   @Prop() buttonText?: string = "Click here";
 
-  // clickHandler(e) {
-  //   // if (window["widgetIdent"].env === "demo") {
-  //   //   e.preventDefault();
-  //   //   return;
-  //   // }
-  //     e.preventDefault();
-
-  //     const url = this.link;
-  //     const target = "_blank";
-  //     window.open(url, target);
-
-  // }
-
-  // componentDidLoad() {
-  //   let el = this;
-  //   el.addEventListener("click", this.clickHandler.bind(this), false);
-  // }
-
   render() {
-    const url = this.link;
-    const target = this.openInNewTab ? "_blank" : "_parent";
-    window.open(url, target);
-    return <LinkButtonView {...getProps(this)}></LinkButtonView>;
+    const onClick = () => {
+      const url = this.link;
+      const target = this.openInNewTab ? "_blank" : "_parent";
+      window.open(url, target);
+    };
+
+    return (
+      <LinkButtonView {...{ ...getProps(this), onClick }}></LinkButtonView>
+    );
   }
 }
 
