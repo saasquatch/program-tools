@@ -39,7 +39,28 @@ export class LinkButton {
    */
   @Prop() buttonText?: string = "Click here";
 
+  // clickHandler(e) {
+  //   // if (window["widgetIdent"].env === "demo") {
+  //   //   e.preventDefault();
+  //   //   return;
+  //   // }
+  //     e.preventDefault();
+
+  //     const url = this.link;
+  //     const target = "_blank";
+  //     window.open(url, target);
+
+  // }
+
+  // componentDidLoad() {
+  //   let el = this;
+  //   el.addEventListener("click", this.clickHandler.bind(this), false);
+  // }
+
   render() {
+    const url = this.link;
+    const target = this.openInNewTab ? "_blank" : "_parent";
+    window.open(url, target);
     return <LinkButtonView {...getProps(this)}></LinkButtonView>;
   }
 }
