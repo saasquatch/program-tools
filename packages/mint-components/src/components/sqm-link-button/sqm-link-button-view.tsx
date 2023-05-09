@@ -13,6 +13,7 @@ export interface LinkButtonViewProps {
   openInNewTab: boolean;
   buttonType?: ButtonType;
   buttonText?: string;
+  onClick?: (e: Event) => void;
 }
 
 const style = {
@@ -33,7 +34,13 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function LinkButtonView(props: LinkButtonViewProps) {
-  const { link, openInNewTab, buttonType = "primary", buttonText } = props;
+  const {
+    onClick,
+    link,
+    openInNewTab,
+    buttonType = "primary",
+    buttonText,
+  } = props;
 
   return (
     <span class={sheet.classes.Container} part="sqm-base">
@@ -43,9 +50,10 @@ export function LinkButtonView(props: LinkButtonViewProps) {
       </style>
       <sl-button type={buttonType} exportparts="base: primarybutton-base">
         <a
+          onClick={onClick}
           class={sheet.classes.Link}
-          href={link}
-          target={openInNewTab ? "_top" : "_parent"}
+          // href={link}
+          // target={openInNewTab ? "_top" : "_parent"}
           part="sqm-link"
         >
           {buttonText}
