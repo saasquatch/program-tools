@@ -396,6 +396,7 @@ export namespace Components {
         /**
           * Can be an image url, colour or Shoelace variable.
           * @uiName Background
+          * @uiWidget Background
          */
         "background"?: string;
         /**
@@ -809,6 +810,7 @@ export namespace Components {
     | "warning"
     | "danger";
         /**
+          * URL that your button redirects to. Be sure to include the entire URL path (example: https://www.example.com)
           * @required 
           * @uiName Link
          */
@@ -3858,6 +3860,7 @@ declare namespace LocalJSX {
         /**
           * Can be an image url, colour or Shoelace variable.
           * @uiName Background
+          * @uiWidget Background
          */
         "background"?: string;
         /**
@@ -4271,6 +4274,7 @@ declare namespace LocalJSX {
     | "warning"
     | "danger";
         /**
+          * URL that your button redirects to. Be sure to include the entire URL path (example: https://www.example.com)
           * @required 
           * @uiName Link
          */
