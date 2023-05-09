@@ -396,6 +396,7 @@ export namespace Components {
         /**
           * Can be an image url, colour or Shoelace variable.
           * @uiName Background
+          * @uiWidget Background
          */
         "background"?: string;
         /**
@@ -3858,6 +3859,7 @@ declare namespace LocalJSX {
         /**
           * Can be an image url, colour or Shoelace variable.
           * @uiName Background
+          * @uiWidget Background
          */
         "background"?: string;
         /**
