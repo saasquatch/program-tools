@@ -34,6 +34,7 @@ export class Hero {
    * Can be an image url, colour or Shoelace variable.
    *
    * @uiName Background
+   * @uiWidget Background
    */
   @Prop() background?: string = "var(--sl-color-gray-50)";
 
