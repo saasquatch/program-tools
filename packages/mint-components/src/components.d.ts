@@ -420,6 +420,7 @@ export namespace Components {
         /**
           * Secondary background image or color (for use in the right column)
           * @uiName Secondary background
+          * @uiWidget Background
          */
         "secondaryBackground"?: string;
         /**
@@ -802,6 +803,7 @@ export namespace Components {
           * @uiName Button type
           * @uiType string
           * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger"]
+          * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger"]
          */
         "buttonType"?: | "default"
     | "primary"
@@ -3884,6 +3886,7 @@ declare namespace LocalJSX {
         /**
           * Secondary background image or color (for use in the right column)
           * @uiName Secondary background
+          * @uiWidget Background
          */
         "secondaryBackground"?: string;
         /**
@@ -4266,6 +4269,7 @@ declare namespace LocalJSX {
           * @uiName Button type
           * @uiType string
           * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger"]
+          * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger"]
          */
         "buttonType"?: | "default"
     | "primary"
