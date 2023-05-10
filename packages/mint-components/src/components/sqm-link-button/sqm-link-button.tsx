@@ -25,6 +25,7 @@ export class LinkButton {
    * @uiName Button type
    * @uiType string
    * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger"]
+   * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger"]
    */
   @Prop() buttonType?:
     | "default"
