@@ -10,11 +10,10 @@ export interface CloseButtonViewProps {
 const style = {
   HostBlock: HostBlock,
   icon: {
-    fontSize: "24px",
     cursor: "pointer",
     position: "absolute",
     right: "var(--sl-spacing-medium)",
-    top: "0",
+    top: "var(--sl-spacing-x-small)",
     zIndex: "100",
   },
 };
