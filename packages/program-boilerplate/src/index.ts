@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Response, Request } from "express";
 
 import {
   meetCustomFieldRules,
@@ -94,6 +94,14 @@ export function webtask(program: Program = {}): express.Application {
     // allow the request to continue if https is used
     next();
   });
+
+  const healthCheck = (_req: Request, res: Response) => {
+    return res.status(200).json({ status: "OK" });
+  };
+
+  app.get("/healthz", healthCheck);
+  app.get("/livez", healthCheck);
+  app.get("/readyz", healthCheck);
 
   app.post("/*", (context, res) => {
     const { json, code } = triggerProgram(context.body, program);
