@@ -78,6 +78,9 @@ import { DisplayDropdown } from "./components/DisplayDropdown";
 import { ProgressBarView } from "./components/ProgressBar";
 import { DetailsView } from "./components/Details";
 import { ScrollNavView } from "./components/ScrollNav";
+import { useSelectDemo } from "./components/Select/useSelectDemo";
+import { useMultiSelectDemo } from "./components/Select/useMultiSelectDemo";
+import { useComboboxDemo } from "./components/Select/useComboboxDemo";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -169,4 +172,7 @@ export {
   ProgressBarView,
   DetailsView,
   ScrollNavView,
+  useSelectDemo,
+  useMultiSelectDemo,
+  useComboboxDemo,
 };

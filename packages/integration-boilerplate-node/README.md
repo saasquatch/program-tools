@@ -67,20 +67,24 @@ Service configuration parameters are configured with environment variables, whic
 [`typed-config`](https://github.com/christav/typed-config) package. There are a number of built-in service configuration
 parameters common to all integrations. These are:
 
-| Environment Variable       | Property                | Default                    | Description                                                                                                  |
-| -------------------------- | ----------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| SERVICE_NAME               | serviceName             |                            | The name of the integration, in kebab case. For example: "my-cool-integration"                               |
-| PORT                       | port                    | 10000                      | The port on which to run the microservice                                                                    |
-| SERVER_LOG_LEVEL           | serverLogLevel          | info                       | The log level for the default logger                                                                         |
-| SERVER_LOG_FILE            | serverLogFile           |                            | The optional path to write server logs to                                                                    |
-| ENFORCE_HTTPS              | enforceHttps            | true                       | Enforce HTTPS on the Express server                                                                          |
-| PROXY_FRONTEND             | proxyFrontend           | <none>                     | Proxy the integration frontend through the Express server, specify a URL like http://localhost:3000          |
-| STATIC_FRONTEND_PATH       | staticFrontendPath      | .../../frontend/build      | The location (relative to your main module) of the integration's frontend (ignored if PROXY_FRONTEND is set) |
-| STATIC_FRONTEND_INDEX      | staticFrontendIndex     | index.html                 | The root file of your integration frontend (ignored if PROXY_FRONTEND is set)                                |
-| SAASQUATCH_APP_DOMAIN      | saasquatchAppDomain     | app.referralsaasquatch.com | The domain of the SaaSquatch core application                                                                |
-| SAASQUATCH_AUTH0_DOMAIN    | saasquatchAuth0Domain   | <none>                     | The Auth0 domain for OAuth authentication to the SaaSquatch API                                              |
-| SAASQUATCH_AUTH0_CLIENT_ID | saasquatchAuth0ClientId | <none>                     | The Auth0 client ID for OAuth authentication to the SaaSquatch API                                           |
-| SAASQUATCH_AUTH0_SECRET    | saasquatchAuth0Secret   | <none>                     | The Auth0 client secret for OAuth authentication to the SaaSquatch API                                       |
+| Environment Variable                           | Property                                  | Default                    | Description                                                                                                  |
+| ---------------------------------------------- | ----------------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| SERVICE_NAME                                   | serviceName                               |                            | The name of the integration, in kebab case. For example: "my-cool-integration"                               |
+| PORT                                           | port                                      | 10000                      | The port on which to run the microservice                                                                    |
+| SERVER_LOG_LEVEL                               | serverLogLevel                            | info                       | The log level for the default logger                                                                         |
+| SERVER_LOG_FILE                                | serverLogFile                             |                            | The optional path to write server logs to                                                                    |
+| ENFORCE_HTTPS                                  | enforceHttps                              | true                       | Enforce HTTPS on the Express server                                                                          |
+| PROXY_FRONTEND                                 | proxyFrontend                             | <none>                     | Proxy the integration frontend through the Express server, specify a URL like http://localhost:3000          |
+| STATIC_FRONTEND_PATH                           | staticFrontendPath                        | .../../frontend/build      | The location (relative to your main module) of the integration's frontend (ignored if PROXY_FRONTEND is set) |
+| STATIC_FRONTEND_INDEX                          | staticFrontendIndex                       | index.html                 | The root file of your integration frontend (ignored if PROXY_FRONTEND is set)                                |
+| SAASQUATCH_APP_DOMAIN                          | saasquatchAppDomain                       | app.referralsaasquatch.com | The domain of the SaaSquatch core application                                                                |
+| SAASQUATCH_AUTH0_DOMAIN                        | saasquatchAuth0Domain                     | <none>                     | The Auth0 domain for OAuth authentication to the SaaSquatch API                                              |
+| SAASQUATCH_AUTH0_CLIENT_ID                     | saasquatchAuth0ClientId                   | <none>                     | The Auth0 client ID for OAuth authentication to the SaaSquatch API                                           |
+| SAASQUATCH_AUTH0_SECRET                        | saasquatchAuth0Secret                     | <none>                     | The Auth0 client secret for OAuth authentication to the SaaSquatch API                                       |
+| GOOGLE_WORKLOAD_IDENTITY_PROJECT_ID            | googleWorkloadIdentityProjectId           | <none>                     | The project ID for Google Workload Identity Federation                                                       |
+| GOOGLE_WORKLOAD_IDENTITY_POOL                  | googleWorkloadIdentityPool                | <none>                     | The Google Workload Identity Federation pool                                                                 |
+| GOOGLE_WORKLOAD_IDENTITY_PROVIDER              | googleWorkloadIdentityProvider            | <none>                     | The Google Workload Identity Federation proivder                                                             |
+| GOOGLE_WORKLOAD_IDENTITY_SERVICE_ACCOUNT_EMAIL | googleWorkloadIdentityServiceAccountEmail | <none>                     | The email address of the Google service account to request credentials for via Workload Identity Federation  |
 
 The authentication parameters `SAASQUATCH_AUTH0_*` are required, and do not have defaults. Your service will not start
 without them.
@@ -315,3 +319,51 @@ main();
 ```
 
 The `graphql` function can be typed with the response, i.e `graphql<MyResponseType>(...)` and takes optional `variables` and `operationName` arguments.
+
+### Google Workload Identity Federation
+
+If your service requires access to Google services, typically you would generate a Service Account Key in JSON format, and place it within your environment as GOOGLE_APPLICATION_CREDENTIALS. Authorization is then controlled by the IAM permissions assigned to the service account.
+
+Service account keys are powerful, and require regular rotation to prevent them from being compromised. An alternative to service account keys is Workload Identity Federation, which can bind an identity from an OpenID Connect Identity Provider (such as Auth0) to a service account in GCP.
+
+As we already have Auth0 credentials for each service, it makes sense to use this method.
+
+Configuring Workload Identity Federation is described in the Google documentation: https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers
+
+In short, to successfully authorize access to Google services via Auth0 there are a number of configuration setups required:
+
+1.  Configure a pool and provider for Workload Identity Federation
+2.  Configure an API and machine-to-machine access for your Auth0 application
+3.  Provide the Workload Identity configuration options to the service to automatically configure Google libraries
+
+**Configure Workload Identity Federation**
+
+Create a pool in Workload Identity Federation and add a new provider. The provider's Issuer URL should be your Auth0's tenant URL e.g. `https://<tenant>.auth0.com/`.
+
+Under attribute mappings, you want to configure add at least the following:
+
+- `google.subject` -> `assertion.sub`
+- `attribute.iss` -> `assertion.iss`
+
+To limit the identities allowed to just your Auth0 application, add an attribute condition that checks the issuer and the subject (replacing your Auth0 tenant domain and the client ID of your application):
+
+```
+assertion.iss == 'https://<tenant>.auth0.com/' && assertion.sub == '<clientId>@clients'
+```
+
+Then, grant access to your service account to be used by the identities in the pool.
+
+**Configure Auth0**
+
+In Auth0, we need to configure a new API so that we can generate tokens with the subject of the identity pool. Add a new API with a URL like `https://iam.googleapis.com/projects/<projectNumber>/locations/global/workloadIdentityPools/<pool>/providers/<provider>`.
+
+Make sure to enable your Auth0 application for machine-to-machine access on this API.
+
+**Add service options**
+
+In your environment configure the following environment variables to automatically enable access to Google services via Workload Identity Federation:
+
+- `GOOGLE_WORKLOAD_IDENTITY_PROJECT_ID`
+- `GOOGLE_WORKLOAD_IDENTITY_POOL`
+- `GOOGLE_WORKLOAD_IDENTITY_PROVIDER`
+- `GOOGLE_WORKLOAD_IDENTITY_SERVICE_ACCOUNT_EMAIL`

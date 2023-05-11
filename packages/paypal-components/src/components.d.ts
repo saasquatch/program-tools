@@ -5,42 +5,11 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { Spacing } from "./global/mixins";
 import { DemoData } from "./global/demo";
 import { AccountDetailsViewProps } from "./components/sqp-account-details/sqp-account-details-view";
 import { AccountFormViewProps } from "./components/sqp-account-details/sqp-account-form-view";
 import { FunctionalComponent, VNode, VNodeData } from "@stencil/core";
 export namespace Components {
-    interface SqmTitledSection {
-        /**
-          * Text value shown when there is no label slot declared.
-          * @uiName Label
-         */
-        "label": string;
-        /**
-          * Margin applied to the bottom of the label slot
-          * @uiName Label Bottom Margin
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "labelMargin": Spacing;
-        /**
-          * Padding applied to all 4 sides of the container
-          * @uiName Section Padding
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "padding": Spacing;
-        /**
-          * @uiName Text Alignment
-          * @uiType string
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "textAlign": "left" | "center" | "right";
-    }
     interface SqpAccountDetails {
         /**
           * Text on a scheduled payout card to indicate that this reward is pending due to tax reasons.
@@ -562,12 +531,6 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLSqmTitledSectionElement extends Components.SqmTitledSection, HTMLStencilElement {
-    }
-    var HTMLSqmTitledSectionElement: {
-        prototype: HTMLSqmTitledSectionElement;
-        new (): HTMLSqmTitledSectionElement;
-    };
     interface HTMLSqpAccountDetailsElement extends Components.SqpAccountDetails, HTMLStencilElement {
     }
     var HTMLSqpAccountDetailsElement: {
@@ -623,7 +586,6 @@ declare global {
         new (): HTMLSqpStencilbookElement;
     };
     interface HTMLElementTagNameMap {
-        "sqm-titled-section": HTMLSqmTitledSectionElement;
         "sqp-account-details": HTMLSqpAccountDetailsElement;
         "sqp-graphql-client-provider": HTMLSqpGraphqlClientProviderElement;
         "sqp-hook-story-container": HTMLSqpHookStoryContainerElement;
@@ -636,36 +598,6 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    interface SqmTitledSection {
-        /**
-          * Text value shown when there is no label slot declared.
-          * @uiName Label
-         */
-        "label"?: string;
-        /**
-          * Margin applied to the bottom of the label slot
-          * @uiName Label Bottom Margin
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "labelMargin"?: Spacing;
-        /**
-          * Padding applied to all 4 sides of the container
-          * @uiName Section Padding
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-         */
-        "padding"?: Spacing;
-        /**
-          * @uiName Text Alignment
-          * @uiType string
-          * @uiEnum ["left", "center", "right"]
-          * @uiEnumNames ["Left", "Center", "Right"]
-         */
-        "textAlign"?: "left" | "center" | "right";
-    }
     interface SqpAccountDetails {
         /**
           * Text on a scheduled payout card to indicate that this reward is pending due to tax reasons.
@@ -1181,7 +1113,6 @@ declare namespace LocalJSX {
     interface SqpStencilbook {
     }
     interface IntrinsicElements {
-        "sqm-titled-section": SqmTitledSection;
         "sqp-account-details": SqpAccountDetails;
         "sqp-graphql-client-provider": SqpGraphqlClientProvider;
         "sqp-hook-story-container": SqpHookStoryContainer;
@@ -1197,7 +1128,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
             "sqp-account-details": LocalJSX.SqpAccountDetails & JSXBase.HTMLAttributes<HTMLSqpAccountDetailsElement>;
             "sqp-graphql-client-provider": LocalJSX.SqpGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqpGraphqlClientProviderElement>;
             "sqp-hook-story-container": LocalJSX.SqpHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqpHookStoryContainerElement>;
