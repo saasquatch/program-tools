@@ -1,19 +1,9 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 
-export type ButtonType =
-  | "default"
-  | "primary"
-  | "success"
-  | "neutral"
-  | "warning"
-  | "danger";
 export interface LinkButtonViewProps {
-  link: string;
-  openInNewTab: boolean;
-  buttonType?: ButtonType;
   buttonText?: string;
-  onClick?: (e: Event) => void;
+  onClick: (e: Event) => void;
 }
 
 const style = {
@@ -34,13 +24,7 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function LinkButtonView(props: LinkButtonViewProps) {
-  const {
-    onClick,
-    link,
-    openInNewTab,
-    buttonType = "primary",
-    buttonText,
-  } = props;
+  const { onClick, buttonText } = props;
 
   return (
     <span class={sheet.classes.Container} part="sqm-base">
@@ -48,14 +32,8 @@ export function LinkButtonView(props: LinkButtonViewProps) {
         {styleString}
         {vanillaStyle}
       </style>
-      <sl-button type={buttonType} exportparts="base: primarybutton-base">
-        <a
-          onClick={onClick}
-          class={sheet.classes.Link}
-          // href={link}
-          // target={openInNewTab ? "_top" : "_parent"}
-          part="sqm-link"
-        >
+      <sl-button type={"primary"} exportparts={"base: primarybutton-base"}>
+        <a onClick={onClick} class={sheet.classes.Link} part="sqm-link">
           {buttonText}
         </a>
       </sl-button>

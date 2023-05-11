@@ -800,18 +800,6 @@ export namespace Components {
          */
         "buttonText"?: string;
         /**
-          * @uiName Button type
-          * @uiType string
-          * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger"]
-          * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger"]
-         */
-        "buttonType"?: | "default"
-    | "primary"
-    | "success"
-    | "neutral"
-    | "warning"
-    | "danger";
-        /**
           * URL that your button redirects to. Be sure to include the entire URL path (example: https://www.example.com)
           * @required 
           * @uiName Link
@@ -4265,18 +4253,6 @@ declare namespace LocalJSX {
           * @uiType string
          */
         "buttonText"?: string;
-        /**
-          * @uiName Button type
-          * @uiType string
-          * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger"]
-          * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger"]
-         */
-        "buttonType"?: | "default"
-    | "primary"
-    | "success"
-    | "neutral"
-    | "warning"
-    | "danger";
         /**
           * URL that your button redirects to. Be sure to include the entire URL path (example: https://www.example.com)
           * @required 
