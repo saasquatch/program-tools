@@ -48,14 +48,11 @@ export function LinkButtonView(props: LinkButtonViewProps) {
         {styleString}
         {vanillaStyle}
       </style>
-      <sl-button type={buttonType} exportparts="base: primarybutton-base">
-        <a
-          onClick={onClick}
-          class={sheet.classes.Link}
-          // href={link}
-          // target={openInNewTab ? "_top" : "_parent"}
-          part="sqm-link"
-        >
+      <sl-button
+        type={buttonType}
+        exportparts={`base: ${buttonType}button-base`}
+      >
+        <a onClick={onClick} class={sheet.classes.Link} part="sqm-link">
           {buttonText}
         </a>
       </sl-button>
