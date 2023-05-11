@@ -478,6 +478,13 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
       {...functional.getComboboxProps()}
       isOpen={isOpen}
       errors={errors}
+      style={{
+        paddingRight: `${
+          clearable
+            ? " var(--sq-spacing-xxxx-large)"
+            : "var(--sq-spacing-xxx-large)"
+        }`,
+      }}
     >
       {tagsSlot && (
         <TagsSlotWrapperDiv
@@ -486,26 +493,24 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           {tagsSlot}
         </TagsSlotWrapperDiv>
       )}
-      <InputView
-        {...rest}
-        placeholder={placeholder}
-        type={"text"}
-        ref={ref}
-        errors={errors}
-        limitWidth={limitWidth}
-        customCSS={`
+      <div>
+        <InputView
+          {...rest}
+          placeholder={placeholder}
+          type={"text"}
+          ref={ref}
+          errors={errors}
+          limitWidth={limitWidth}
+          customCSS={`
               ${customCSS};
-              ${
-                clearable
-                  ? "padding-right: var(--sq-spacing-xxxx-large)"
-                  : "padding-right: var(--sq-spacing-xxx-large)"
-              };
+
               border: none !important;
               height: 32px;
             `}
-        disabled={disabled}
-        {...functional.getInputProps()}
-      />
+          disabled={disabled}
+          {...functional.getInputProps()}
+        />
+      </div>
       <ButtonContainerDiv>
         <IconButtonView
           disabled={disabled}

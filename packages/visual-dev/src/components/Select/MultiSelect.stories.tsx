@@ -1,5 +1,5 @@
 import { useMultipleSelection, useSelect } from "downshift";
-import React from "react";
+import React, { useState } from "react";
 import { TagView } from "../Tag";
 import { SelectView } from "./Select2";
 import { useMultiSelectDemo } from "./useMultiSelectDemo";
@@ -37,6 +37,42 @@ export function MultipleSelectCombobox() {
     <SelectView.ContainerView {...props}>
       <SelectView.HandleView {...props} />
       <SelectView.ListView {...props} />
+    </SelectView.ContainerView>
+  );
+}
+
+export function MultipleSelectCreatableCombobox() {
+  const [stateBooks, setStateBooks] = useState(books);
+  const props = {
+    ...useMultiSelectDemo({
+      selectItems: stateBooks,
+      useCombobox: true,
+    }),
+    limitWidth: false,
+  };
+
+  return (
+    <SelectView.ContainerView {...props}>
+      <SelectView.HandleView {...props} />
+
+      <SelectView.FrameView {...props}>
+        <div
+          onClick={() => {
+            setStateBooks([...stateBooks, props.functional.inputValue]);
+          }}
+        >
+          + Create Reward "{props.functional.inputValue}"
+        </div>
+        {props.items.map((item: any, index: number) => (
+          <SelectView.ItemView
+            {...{
+              functional: props.functional,
+              index,
+              item,
+            }}
+          />
+        ))}
+      </SelectView.FrameView>
     </SelectView.ContainerView>
   );
 }
