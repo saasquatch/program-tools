@@ -15,7 +15,6 @@ import { getProps } from "../../utils/utils";
 })
 export class Hero {
   /**
-   * Number of columns in the layout
    *
    * @uiName Columns
    * @uiEnum [1, 2]
@@ -26,7 +25,7 @@ export class Hero {
   /**
    * Minimum height of each column including when they are stacked on mobile
    *
-   * @uiName Mininum height (in px)
+   * @uiName Minimum height (in px)
    */
   @Prop() minHeight: number = 200;
 
