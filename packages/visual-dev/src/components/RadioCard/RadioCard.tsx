@@ -56,9 +56,7 @@ interface RadioLabelProps {
 const RadioLabel = styled.label<RadioLabelProps>`
   ${Styles.RadioLabelStyle}
   ${(props) => props.customCSS && props.customCSS}
-  ${(props) =>
-    props.isChecked &&
-    "border-color: var(--sq-action-primary-hovered); & * {border-color: var(--sq-action-primary-hovered);}"}
+
 
 ${(props) =>
     !props.isChecked &&
@@ -70,10 +68,17 @@ ${(props) =>
     css`
       cursor: default;
       background-color: var(--sq-border);
+      border-color: var(--sq-placeholder-text-on-secondary);
+      & * {
+        border-color: var(--sq-placeholder-text-on-secondary);
+      }
       & ${RightSegmentDiv} {
         color: var(--sq-text-subdued);
       }
     `}
+    ${(props) =>
+    props.isChecked &&
+    "border-color: var(--sq-action-primary-hovered); & * {border-color: var(--sq-action-primary-hovered);}"}
 ${(props) => props.customCSS}
 `;
 const RadioInput = styled.input<{ disabled: boolean }>`

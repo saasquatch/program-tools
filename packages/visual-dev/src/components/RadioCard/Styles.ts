@@ -3,13 +3,11 @@ import { css } from "styled-components";
 export const RadioLabelStyle = css`
   display: flex;
   flex-direction: row;
-  //   width: 85%;
   min-height: 95px;
   box-sizing: border-box;
   border: 2px solid var(--sq-border);
   border-radius: var(--sq-border-radius-normal);
   align-items: center;
-  //   margin: 10px;
   user-select: none;
   cursor: pointer;
   color: var(--sq-text);
