@@ -28,7 +28,10 @@ export function httpLogMiddleware(logger: winston.Logger) {
           ? "error"
           : res.statusCode >= 400
           ? "warn"
+          : ["/healthz", "/livez", "/readyz"].includes(req.url ?? "")
+          ? "debug"
           : "info";
+
       const message = { method, status, time, url, requestId };
 
       logger.log(level, {
