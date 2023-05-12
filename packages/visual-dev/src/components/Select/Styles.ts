@@ -159,3 +159,7 @@ export const ComboboxContainerDiv = css`
     border-color: var(--sq-focused);
   }
 `;
+
+export const InputWrapperDiv = css`
+  flex-grow: 1;
+`;

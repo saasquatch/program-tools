@@ -308,6 +308,10 @@ const LabelSpan = styled.span`
   ${Styles.LabelSpan}
 `;
 
+const InputWrapperDiv = styled.div`
+  ${Styles.InputWrapperDiv}
+`;
+
 const ComboboxContainerDiv = styled.div<{ isOpen: boolean; errors: boolean }>`
   ${Styles.ComboboxContainerDiv}
   ${(props) =>
@@ -493,7 +497,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           {tagsSlot}
         </TagsSlotWrapperDiv>
       )}
-      <div>
+      <InputWrapperDiv>
         <InputView
           {...rest}
           placeholder={placeholder}
@@ -510,7 +514,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           disabled={disabled}
           {...functional.getInputProps()}
         />
-      </div>
+      </InputWrapperDiv>
       <ButtonContainerDiv>
         <IconButtonView
           disabled={disabled}
