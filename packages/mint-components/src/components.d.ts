@@ -400,7 +400,6 @@ export namespace Components {
          */
         "background"?: string;
         /**
-          * Number of columns in the layout
           * @uiName Columns
           * @uiEnum [1, 2]
           * @uiEnumNames ["One", "Two"]
@@ -408,7 +407,7 @@ export namespace Components {
         "columns": 1 | 2;
         /**
           * Minimum height of each column including when they are stacked on mobile
-          * @uiName Mininum height (in px)
+          * @uiName Minimum height (in px)
          */
         "minHeight": number;
         /**
@@ -3854,7 +3853,6 @@ declare namespace LocalJSX {
          */
         "background"?: string;
         /**
-          * Number of columns in the layout
           * @uiName Columns
           * @uiEnum [1, 2]
           * @uiEnumNames ["One", "Two"]
@@ -3862,7 +3860,7 @@ declare namespace LocalJSX {
         "columns"?: 1 | 2;
         /**
           * Minimum height of each column including when they are stacked on mobile
-          * @uiName Mininum height (in px)
+          * @uiName Minimum height (in px)
          */
         "minHeight"?: number;
         /**

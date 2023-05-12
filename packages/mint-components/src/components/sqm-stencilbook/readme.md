@@ -74,6 +74,7 @@
 - [sqm-image](../sqm-image)
 - [sqm-titled-section](../sqm-titled-section)
 - [sqm-coupon-code](../sqm-coupon-code)
+- [sqm-link-button](../sqm-link-button)
 
 ### Graph
 ```mermaid
@@ -143,6 +144,7 @@ graph TD;
   sqm-stencilbook --> sqm-image
   sqm-stencilbook --> sqm-titled-section
   sqm-stencilbook --> sqm-coupon-code
+  sqm-stencilbook --> sqm-link-button
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
