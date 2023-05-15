@@ -1,11 +1,11 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
-import { isDemo } from "@saasquatch/component-boilerplate";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
+import { getProps } from "../../utils/utils";
 import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
 import { useShareLink } from "./useShareLink";
-import { getProps } from "../../utils/utils";
-import { DemoData } from "../../global/demo";
-import deepmerge from "deepmerge";
 
 /**
  * @uiName Share Link
@@ -26,7 +26,7 @@ export class ShareLink {
   @Prop() programId?: string;
 
   /**
-   * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+   * Shown inside a tooltip after someone has successfully copied the link to their clipboard
    *
    * @uiName Tooltip text
    */
@@ -67,7 +67,7 @@ export class ShareLink {
   copyButtonLabel: string = "Copy Link";
 
   /**
-   * Set the copy button style and placement.
+   * Set the copy button style and placement
    *
    * @uiName Style
    * @uiType string

@@ -1,13 +1,12 @@
 import { isDemo, setUserIdentity } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop, State } from "@stencil/core";
+import { Component, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import {
   EmailRegistrationView,
   EmailRegistrationViewProps,
 } from "../views/email-registration-view";
-
 import { useInstantAccessRegistration } from "./useInstantAccessRegistration";
 
 /**

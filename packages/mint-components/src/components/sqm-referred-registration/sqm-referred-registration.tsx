@@ -1,10 +1,6 @@
-import {
-  isDemo,
-  navigation,
-  setUserIdentity,
-} from "@saasquatch/component-boilerplate";
+import { isDemo, setUserIdentity } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop, State } from "@stencil/core";
+import { Component, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { useInstantAccessRegistration } from "../sqm-instant-access-registration/useInstantAccessRegistration";

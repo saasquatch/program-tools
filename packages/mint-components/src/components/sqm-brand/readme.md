@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property     | Attribute     | Description                                                                                    | Type     | Default     |
-| ------------ | ------------- | ---------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `brandColor` | `brand-color` | Controls the primary brand color used in the Mint Components library.                          | `string` | `undefined` |
-| `brandFont`  | `brand-font`  | A font from the Google Fonts library used throughout the widget. This value is case sensitive. | `string` | `undefined` |
+| Property     | Attribute     | Description                                                                                                                                                    | Type     | Default     |
+| ------------ | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `brandColor` | `brand-color` | Controls the primary brand color used in the Mint Components library.                                                                                          | `string` | `undefined` |
+| `brandFont`  | `brand-font`  | Enter a font from the Google Fonts library to use throughout your widget. This value is case sensitive. Some fonts may not require quotations. Example: Roboto | `string` | `undefined` |
 
 
 ## Dependencies
