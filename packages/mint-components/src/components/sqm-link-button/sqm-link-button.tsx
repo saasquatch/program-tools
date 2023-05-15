@@ -13,7 +13,7 @@ import { LinkButtonView } from "./sqm-link-button-view";
 })
 export class LinkButton {
   /**
-   * URL that your button redirects to. Be sure to include the entire URL path (example: https://www.example.com)
+   * Enter the URL where you want your participants redirected. Example: https://www.example.com
    *
    * @required
    * @uiName Link
