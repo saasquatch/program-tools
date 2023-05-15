@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { ButtonView } from "../Button";
-import { Dropdown } from "../Dropdown";
+import { DropdownView } from "../Dropdown";
 import { InputView } from "../Input";
 import { RadioActionView } from "../RadioAction";
 import { IconView } from "../Icon";
@@ -143,7 +143,7 @@ export const WithPrimaryAndSecondaryAction = () => {
             Select a program{" "}
             <span style={{ color: "#adadad" }}> (required) </span>
             <br />
-            <Dropdown
+            <DropdownView
               text="Referral Program"
               style={{ margin: "10px 0 10px 0", width: "518px" }}
             />
