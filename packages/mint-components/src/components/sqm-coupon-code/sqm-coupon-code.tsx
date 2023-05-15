@@ -1,11 +1,11 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
-import { isDemo } from "@saasquatch/component-boilerplate";
-import { getProps } from "../../utils/utils";
-import { useCouponCode } from "./useCouponCode";
-import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
+import { getProps } from "../../utils/utils";
 import { CouponCodeView, CouponCodeViewProps } from "./sqm-coupon-code-view";
+import { useCouponCode } from "./useCouponCode";
 
 /**
  * @uiName Coupon Code
