@@ -30,8 +30,36 @@ export function MultipleSelect() {
   );
 }
 
+export function MultipleSelectDisabled() {
+  const props = {
+    ...useMultiSelectDemo({ selectItems: books }),
+    disabled: true,
+  };
+
+  return (
+    <SelectView.ContainerView {...props}>
+      <SelectView.HandleView {...props} />
+      <SelectView.ListView {...props} />
+    </SelectView.ContainerView>
+  );
+}
+
 export function MultipleSelectCombobox() {
   const props = useMultiSelectDemo({ selectItems: books, useCombobox: true });
+
+  return (
+    <SelectView.ContainerView {...props}>
+      <SelectView.HandleView {...props} />
+      <SelectView.ListView {...props} />
+    </SelectView.ContainerView>
+  );
+}
+
+export function MultipleSelectComboboxDisabled() {
+  const props = {
+    ...useMultiSelectDemo({ selectItems: books, useCombobox: true }),
+    disabled: true,
+  };
 
   return (
     <SelectView.ContainerView {...props}>
