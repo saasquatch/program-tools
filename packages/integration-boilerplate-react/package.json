@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/integration-boilerplate-react",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Utilities for building SaaSquatch integration frontends in React",
   "engines": {
     "node": "^14"
@@ -18,8 +18,8 @@
     "test:coverage": "jest --coverage",
     "prepublishOnly": "npm run build"
   },
-  "author": "Johan Venter <johan@saasquatch.com>",
-  "license": "ISC",
+  "author": "ReferralSaaSquatch.com, Inc.",
+  "license": "MIT",
   "devDependencies": {
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.7",

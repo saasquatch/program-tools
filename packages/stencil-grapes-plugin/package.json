@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/stencil-grapes-plugin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A stencil docs generator for generating GrapesJS plugins",
   "source": "src/generator.ts",
   "main": "dist/generator.js",
@@ -28,10 +28,10 @@
     "url": "git+https://github.com/saasquatch/program-tools.git",
     "directory": "packages/stencil-grapes-plugin"
   },
-  "author": "SaaSquatch Team",
+  "author": "ReferralSaaSquatch.com, Inc.",
   "bugs": {
     "url": "https://github.com/saasquatch/program-tools"
   },
   "homepage": "https://github.com/saasquatch/program-tools",
-  "license": "ISC"
+  "license": "MIT"
 }

@@ -110,11 +110,3 @@ Start the dev server
 ```sh
 $ npm start
 ```
-
-
-
-
-
-## License
-
-BSD 3-Clause

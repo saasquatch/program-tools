@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/vanilla-components-grapesjs",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "description": "GrapesJS Plugin Boilerplate",
   "main": "dist/index.min.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/saasquatch/program-tools.git"
   },
-  "author": "SaaSquatch",
+  "author": "ReferralSaaSquatch.com, Inc.",
   "license": "MIT",
   "babel": {
     "presets": [

@@ -16,8 +16,8 @@
     "test": "jest --forceExit",
     "test-watch": "jest --watch"
   },
-  "author": "SaaSquatch",
-  "license": "ISC",
+  "author": "ReferralSaaSquatch.com, Inc.",
+  "license": "MIT",
   "devDependencies": {
     "@graphql-tools/mock": "^7.0.0",
     "@saasquatch/stencil-hooks": "^2.0.0",

@@ -1029,7 +1029,7 @@ export namespace Components {
         /**
           * @uiName WhatsApp Text
           * @uiGroup WhatsApp
-          * @default Whatspp
+          * @default WhatsApp
          */
         "whatsapptext": string;
         /**
@@ -2285,7 +2285,7 @@ declare namespace LocalJSX {
         /**
           * @uiName WhatsApp Text
           * @uiGroup WhatsApp
-          * @default Whatspp
+          * @default WhatsApp
          */
         "whatsapptext"?: string;
         /**
