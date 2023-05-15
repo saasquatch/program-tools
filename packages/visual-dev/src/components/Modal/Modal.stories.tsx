@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Button } from "../Button";
+import { ButtonView } from "../Button";
 import { Dropdown } from "../Dropdown";
 import { InputView } from "../Input";
 import { RadioActionView } from "../RadioAction";
@@ -17,9 +17,9 @@ export const WithPrimaryAction = () => {
   const handleChange = useCallback(() => setActive(!active), [active]);
   return (
     <div style={{ height: 300 }}>
-      <Button buttonType="secondary" onClick={handleChange}>
+      <ButtonView buttonType="secondary" onClick={handleChange}>
         Open Modal
-      </Button>
+      </ButtonView>
       <ModalView
         title="Salesforce Submit Actions"
         open={active}
@@ -55,9 +55,9 @@ export const WithCustomZIndex = () => {
   const handleChange = useCallback(() => setActive(!active), [active]);
   return (
     <div style={{ height: 300 }}>
-      <Button buttonType="secondary" onClick={handleChange}>
+      <ButtonView buttonType="secondary" onClick={handleChange}>
         Open Modal
-      </Button>
+      </ButtonView>
       <ModalView
         title="Salesforce Submit Actions"
         open={active}
@@ -94,9 +94,9 @@ export const WithPrimaryActionCustomTitle = () => {
   const handleChange = useCallback(() => setActive(!active), [active]);
   return (
     <div style={{ height: 300 }}>
-      <Button buttonType="secondary" onClick={handleChange}>
+      <ButtonView buttonType="secondary" onClick={handleChange}>
         Open Modal
-      </Button>
+      </ButtonView>
       <ModalView
         title="Salesforce Submit Actions"
         open={active}
@@ -134,9 +134,9 @@ export const WithPrimaryAndSecondaryAction = () => {
 
   return (
     <div style={{ height: 700 }}>
-      <Button buttonType="secondary" onClick={handleChange}>
+      <ButtonView buttonType="secondary" onClick={handleChange}>
         Open Modal
-      </Button>
+      </ButtonView>
       <ModalView title="Add Referral Code" open={active} onClose={handleChange}>
         <ModalView.ModalContentView>
           <ModalView.ModalContentTextView>
@@ -206,9 +206,9 @@ export const WithCriticalAction = () => {
   const handleChange = useCallback(() => setActive(!active), [active]);
   return (
     <div style={{ height: 300 }}>
-      <Button buttonType="secondary" onClick={handleChange}>
+      <ButtonView buttonType="secondary" onClick={handleChange}>
         Open Modal
-      </Button>
+      </ButtonView>
       <ModalView
         title="Salesforce Submit Actions"
         open={active}
@@ -221,8 +221,8 @@ export const WithCriticalAction = () => {
             <br />
             <span style={{ color: "#C71D06" }}>
               {" "}
-              This action cannot be undone{" "}
-            </span>{" "}
+              This action cannot be undone
+            </span>
           </ModalView.ModalContentTextView>
           <ModalView.ModalContentDividerView />
           <ModalView.ModalContentActionView
@@ -263,9 +263,9 @@ export const WithBanner = () => {
   );
   return (
     <div style={{ height: 750 }}>
-      <Button buttonType="secondary" onClick={handleChange}>
+      <ButtonView buttonType="secondary" onClick={handleChange}>
         Open Modal
-      </Button>
+      </ButtonView>
       <ModalView title="Signup Program" open={active} onClose={handleChange}>
         <ModalView.ModalContentView>
           <ModalView.ModalContentBannerView
@@ -323,9 +323,9 @@ export const WithHeaderAction = () => {
   const handleChange = useCallback(() => setActive(!active), [active]);
   return (
     <div style={{ height: 550 }}>
-      <Button buttonType="secondary" onClick={handleChange}>
+      <ButtonView buttonType="secondary" onClick={handleChange}>
         Open Modal
-      </Button>
+      </ButtonView>
       <ModalView
         title="Referral Program With Objectives Program"
         open={active}
@@ -373,9 +373,9 @@ export const WithMultipleSectionsAndActions = () => {
   const handleChange = useCallback(() => setActive(!active), [active]);
   return (
     <div style={{ height: 900 }}>
-      <Button buttonType="secondary" onClick={handleChange}>
+      <ButtonView buttonType="secondary" onClick={handleChange}>
         Open Modal
-      </Button>
+      </ButtonView>
       <ModalView title="Signup Program" open={active} onClose={handleChange}>
         <ModalView.ModalContentView>
           <ModalView.ModalContentTextView>
@@ -432,9 +432,9 @@ export const WithFormElements = () => {
   const handleChange = useCallback(() => setActive(!active), [active]);
   return (
     <div style={{ height: 700 }}>
-      <Button buttonType="secondary" onClick={handleChange}>
+      <ButtonView buttonType="secondary" onClick={handleChange}>
         Open Modal
-      </Button>
+      </ButtonView>
       <ModalView title="Add User" open={active} onClose={handleChange}>
         <ModalView.ModalContentView>
           <ModalView.ModalContentTextView>
@@ -492,9 +492,9 @@ export const WithCodeBlock = () => {
   const handleChange = useCallback(() => setActive(!active), [active]);
   return (
     <div style={{ height: 700 }}>
-      <Button buttonType="secondary" onClick={handleChange}>
+      <ButtonView buttonType="secondary" onClick={handleChange}>
         Open Modal
-      </Button>
+      </ButtonView>
       <ModalView title="Reward Details" open={active} onClose={handleChange}>
         <ModalView.ModalContentView>
           <ModalView.ModalContentCodeView>
@@ -568,9 +568,9 @@ export const WithCodeBlockOverflow = () => {
   const handleChange = useCallback(() => setActive(!active), [active]);
   return (
     <div style={{ height: 900 }}>
-      <Button buttonType="secondary" onClick={handleChange}>
+      <ButtonView buttonType="secondary" onClick={handleChange}>
         Open Modal
-      </Button>
+      </ButtonView>
       <ModalView title="Reward Details" open={active} onClose={handleChange}>
         <ModalView.ModalContentView>
           <ModalView.ModalContentCodeView>
@@ -601,9 +601,9 @@ export const WithStickyFooter = () => {
 
   return (
     <div style={{ height: 900 }}>
-      <Button buttonType="secondary" onClick={handleChange}>
+      <ButtonView buttonType="secondary" onClick={handleChange}>
         Open Modal
-      </Button>
+      </ButtonView>
       <ModalView
         title="Salesforce Submit Actions"
         open={active}
@@ -647,9 +647,9 @@ export const MaxHeight = () => {
   const [containerHeight, setContainerHeight] = useState(500);
   return (
     <div style={{ height: containerHeight + "px" }}>
-      <Button buttonType="secondary" onClick={handleChange}>
+      <ButtonView buttonType="secondary" onClick={handleChange}>
         Open Modal
-      </Button>
+      </ButtonView>
       <input
         type="number"
         value={containerHeight}
@@ -668,7 +668,7 @@ export const MaxHeight = () => {
               <br />
               <br />
               You need to first enable and configure the Salesforce integration
-              on the &nbsp;{" "}
+              on the &nbsp;
               <span style={{ color: "#1f97d2", userSelect: "none" }}>
                 {" "}
                 Integrations Page{" "}
