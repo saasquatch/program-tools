@@ -127,7 +127,7 @@ export const TagsSlotWrapper = css`
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  width: 100%;
+  width: auto;
   gap: var(--sq-spacing-xx-small);
   max-width: 100%;
 `;
@@ -158,4 +158,8 @@ export const ComboboxContainerDiv = css`
     outline: none;
     border-color: var(--sq-focused);
   }
+`;
+
+export const InputWrapperDiv = css`
+  flex-grow: 1;
 `;

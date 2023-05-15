@@ -55,12 +55,20 @@ export const CSSVariables = createGlobalStyle`
   --sq-surface-warning-subdued: #fcf8e3;
   --sq-border-warning: #f1c359;
   --sq-badge-surface-warning: #ffe3a1;
+  --sq-badge-text-warning: #92400E;
+
+  /* Info */
+  --sq-surface-info: #E0ECFF;
+  --sq-border-info: #6DA6FF;
+  --sq-badge-surface-info: #E0ECFF;
+  --sq-badge-text-info: #1260D9;
 
   /* Critical */
   --sq-surface-critical: #D14040;
   --sq-surface-critical-hovered: #C12F2F;
   --sq-surface-critical-subdued: #faf2ee;
   --sq-border-critical: #d14040;
+  --sq-badge-text-critical: #C12F2F;
   /* Deprecated */
   --sq-on-surface-critical: #D14040;
 

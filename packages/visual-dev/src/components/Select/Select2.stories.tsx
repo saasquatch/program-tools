@@ -38,6 +38,19 @@ export const Basic = () => {
   );
 };
 
+export const Disabled = () => {
+  const props = useSelectDemo({ items });
+  const disabledProps = { ...props, disabled: true };
+  return (
+    <StoryContainerDiv>
+      <SelectView.ContainerView {...props.functional}>
+        <SelectView.HandleView {...disabledProps} />
+        <SelectView.ListView {...disabledProps} />
+      </SelectView.ContainerView>
+    </StoryContainerDiv>
+  );
+};
+
 export const Placeholder = () => {
   const props = useSelectDemo({
     items,
@@ -129,7 +142,10 @@ export const CustomCSS = () => {
 export const Frame = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const items2 = ["Orca", "San Juan"];
-  const props = useSelectDemo({ items: [...items, ...items2] });
+  const props = {
+    ...useSelectDemo({ items: [...items, ...items2] }),
+    limitWidth: false,
+  };
   return (
     <StoryContainerDiv>
       <SelectView.ContainerView {...props}>

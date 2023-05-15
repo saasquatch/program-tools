@@ -3,9 +3,8 @@ import styled, { CSSProp } from "styled-components";
 import root from "react-shadow/styled-components";
 import * as Styles from "./Styles";
 
-type SwitchProps = Omit<
-  React.ComponentProps<"input">,
-  "value" | "css" | "label"
+type SwitchProps = Partial<
+  Omit<React.ComponentProps<"input">, "value" | "css" | "label">
 > &
   OptionProps &
   StyleProps;

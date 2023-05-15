@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [1.8.0] - 2023-05-15
+
+### Changed
+
+- Components changed
+  - \<BadgeView>
+    - Changed name of the default badge prop from `info` to `default-style`
+    - Added new badge style for `info`
+  - \<GlobalStyle>
+    - Added a new info colours as CSS variables
+  - \<ModalContentView>
+    - Added a new `maxHeight` prop
+  - \<RadioCardView>
+    - Improved handling of combined disabled and selected state (now shows selection)
+    - Improved the look of the disabled state
+  - \<SelectView>
+    - Improved handling of the combobox multiselect width so it no longer always line breaks as soon as a tag is added
+
 ## [1.7.4] - 2023-05-08
 
 ### Changed
@@ -350,7 +368,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<TextArea>
   - \<Tooltip>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.7.4...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.8.0...HEAD
+[1.8.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.8.0
 [1.7.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.4
 [1.7.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.3
 [1.7.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.2

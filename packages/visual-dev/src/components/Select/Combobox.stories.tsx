@@ -192,7 +192,7 @@ export const CustomCSS = () => {
   const props = useComboboxDemo({
     items,
   });
-  return <Select {...props} css="color: blue"></Select>;
+  return <Select {...props} customCSS="color: blue"></Select>;
 };
 
 export const Frame = () => {

@@ -195,3 +195,5 @@ export const checkmark_circle_filled = () => (
   <IconView icon={"checkmark_circle_filled"} />
 );
 export const globe = () => <IconView icon={"globe"} />;
+export const lock = () => <IconView icon={"lock"} />;
+export const unlock = () => <IconView icon={"unlock"} />;

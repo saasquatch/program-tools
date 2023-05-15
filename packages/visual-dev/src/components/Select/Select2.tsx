@@ -308,7 +308,15 @@ const LabelSpan = styled.span`
   ${Styles.LabelSpan}
 `;
 
-const ComboboxContainerDiv = styled.div<{ isOpen: boolean; errors: boolean }>`
+const InputWrapperDiv = styled.div`
+  ${Styles.InputWrapperDiv}
+`;
+
+const ComboboxContainerDiv = styled.div<{
+  isOpen: boolean;
+  errors: boolean;
+  disabled: boolean;
+}>`
   ${Styles.ComboboxContainerDiv}
   ${(props) =>
     props.isOpen
@@ -318,6 +326,8 @@ const ComboboxContainerDiv = styled.div<{ isOpen: boolean; errors: boolean }>`
     props.errors
       ? "border-color: var(--sq-border-critical); background-color: var(--sq-surface-critical-subdued);"
       : ""}
+  ${(props) =>
+    props.disabled ? "background: var(--sq-surface-input-disabled);" : ""}
 `;
 
 // Redeclare forwardRef for use with generic prop types.
@@ -380,6 +390,12 @@ const SelectContainerView = (props: SelectContainerViewProps) => {
     </ContainerDiv>
   );
 };
+
+const StyledIconButtonView = styled(IconButtonView)`
+  &:hover {
+    background: transparent;
+  }
+`;
 
 const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
   props: SelectHandleViewProps<ItemType>,
@@ -478,6 +494,14 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
       {...functional.getComboboxProps()}
       isOpen={isOpen}
       errors={errors}
+      disabled={disabled}
+      style={{
+        paddingRight: `${
+          clearable
+            ? " var(--sq-spacing-xxxx-large)"
+            : "var(--sq-spacing-xxx-large)"
+        }`,
+      }}
     >
       {tagsSlot && (
         <TagsSlotWrapperDiv
@@ -486,28 +510,26 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           {tagsSlot}
         </TagsSlotWrapperDiv>
       )}
-      <InputView
-        {...rest}
-        placeholder={placeholder}
-        type={"text"}
-        ref={ref}
-        errors={errors}
-        limitWidth={limitWidth}
-        customCSS={`
+      <InputWrapperDiv>
+        <InputView
+          {...rest}
+          placeholder={placeholder}
+          type={"text"}
+          ref={ref}
+          errors={errors}
+          limitWidth={limitWidth}
+          customCSS={`
+              background-color: transparent;
               ${customCSS};
-              ${
-                clearable
-                  ? "padding-right: var(--sq-spacing-xxxx-large)"
-                  : "padding-right: var(--sq-spacing-xxx-large)"
-              };
               border: none !important;
               height: 32px;
             `}
-        disabled={disabled}
-        {...functional.getInputProps()}
-      />
+          disabled={disabled}
+          {...functional.getInputProps()}
+        />
+      </InputWrapperDiv>
       <ButtonContainerDiv>
-        <IconButtonView
+        <StyledIconButtonView
           disabled={disabled}
           icon={"close"}
           borderless={true}
@@ -523,7 +545,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           }}
         />
         {customIcon ? (
-          <IconButtonView
+          <StyledIconButtonView
             disabled={disabled}
             icon={customIcon}
             borderless={true}
@@ -537,7 +559,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             {...functional.getToggleButtonProps()}
           />
         ) : (
-          <IconButtonView
+          <StyledIconButtonView
             disabled={disabled}
             icon={isOpen ? "chevron_up" : "chevron_down"}
             borderless={true}

@@ -220,3 +220,22 @@ export const Disabled = () => {
     </RadioCardView.GroupView>
   );
 };
+
+export const DisabledAndSelected = () => {
+  return (
+    <RadioCardView.GroupView>
+      <RadioCardView
+        title={"A title for this option"}
+        description={
+          "This is a default radio group button. Toggle it by clicking."
+        }
+        value={1}
+        optionValue={1}
+        onClick={void 0}
+        onChange={void 0}
+        icon="calendar"
+        disabled
+      />
+    </RadioCardView.GroupView>
+  );
+};

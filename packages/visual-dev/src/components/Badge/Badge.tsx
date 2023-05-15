@@ -2,6 +2,7 @@ import * as React from "react";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { IconKey, IconView } from "../Icon";
+import { dashToSnakeCase } from "../../utlis";
 
 type BadgeProps = OptionProps &
   StyleProps &
@@ -18,7 +19,7 @@ export interface StyleProps {
   /**
    * Badge variant, defines badge colour
    */
-  status: "info" | "success" | "critical" | "warning";
+  status: "default-style" | "success" | "critical" | "warning" | "info";
   /**
    * Display the badge with the pill style with rounded sides
    */
@@ -35,16 +36,16 @@ export interface StyleProps {
 
 const BadgeDiv = styled.div<StyleProps>`
   ${Styles.base}
-  ${(props) => Styles[props.status]}
+  ${(props) => {
+    // @ts-ignore
+    return Styles[dashToSnakeCase(props.status)];
+  }}
   border-radius: ${(props) =>
     props.pill
       ? "var(--sq-spacing-xxx-large);"
       : "var(--sq-spacing-xx-small);"};
   ${(props) => props.size === "small" && Styles.small}
-  ${(props) =>
-    props.pill &&
-    props.size === "small" &&
-    "padding: var(--sq-spacing-xxx-small) var(--sq-spacing-x-small);"}
+
   ${(props) => props.customCSS}
 `;
 
@@ -78,7 +79,6 @@ export const BadgeView = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
                 ? "var(--sq-icon-size-small)"
                 : "var(--sq-icon-size-badge)"
             }
-            customCSS="+ span { margin-left: var(--sq-spacing-x-small); }"
           />
         )}
         {children && <span>{children}</span>}
