@@ -5,7 +5,6 @@ import {
   useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useDomContext, useEffect } from "@saasquatch/stencil-hooks";
 import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { CopyTextViewProps } from "../views/copy-text-view";
