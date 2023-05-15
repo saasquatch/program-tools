@@ -9,6 +9,7 @@ import {
 } from "./sqm-logout-current-user-view";
 import { useLogoutCurrentUser } from "./useLogoutCurrentUser";
 import { withHooks } from "@saasquatch/stencil-hooks";
+import { getProps } from "../../utils/utils";
 
 /**
  * @uiName Sign out current user
@@ -45,7 +46,7 @@ export class LogoutCurrentUser {
   render() {
     const props = isDemo()
       ? useDemoLogoutCurrentUser(this)
-      : useLogoutCurrentUser(this);
+      : useLogoutCurrentUser(getProps(this));
 
     const content = {
       userIdentificationText: this.userIdentificationText,
