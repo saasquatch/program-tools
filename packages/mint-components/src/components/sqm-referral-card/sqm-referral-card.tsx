@@ -3,6 +3,7 @@ import { Component, h, Prop, State } from "@stencil/core";
 import { getProps } from "../../utils/utils";
 import { Spacing } from "../../global/mixins";
 import { ReferralCardView } from "./sqm-referral-card-view";
+import { useChildElements } from "../../tables/useChildElements";
 
 /**
  * @uiName Referral Card
@@ -87,8 +88,21 @@ export class ReferralCard {
       footer: <slot name="footer" />,
     };
 
+    const children = useChildElements<Element>();
+
+    const hasHeader =
+      children.findIndex((child) => child.slot === "header") > -1;
+
+    const hasFooter =
+      children.findIndex((child) => child.slot === "footer") > -1;
+
     return (
-      <ReferralCardView {...getProps(this)} slots={slots}>
+      <ReferralCardView
+        {...getProps(this)}
+        slots={slots}
+        hasHeader={hasHeader}
+        hasFooter={hasFooter}
+      >
         <slot />
       </ReferralCardView>
     );
