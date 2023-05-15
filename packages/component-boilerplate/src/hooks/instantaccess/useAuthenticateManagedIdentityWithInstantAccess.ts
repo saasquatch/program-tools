@@ -1,11 +1,7 @@
-import {
-  DecodedSquatchJWT,
-  setUserIdentity,
-} from "@saasquatch/component-environment";
+import { setUserIdentity } from "@saasquatch/component-environment";
 import gql from "graphql-tag";
-import decode from "jwt-decode";
-import { useMutation } from "../graphql/useMutation";
 import { BaseQueryData } from "../graphql/useBaseQuery";
+import { useMutation } from "../graphql/useMutation";
 interface AuthenticateManagedIdentityWithInstantAccessVariables {
   email: string;
   firstName: string;

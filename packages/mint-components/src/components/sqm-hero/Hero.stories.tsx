@@ -33,7 +33,7 @@ export const LoginOneColumn = () => {
 export const LoginOneColumnWithMinHeight = () => {
   return (
     <sqm-hero
-      background="https://blogcdn.snackmagic.com/wp-content/uploads/2021/12/Screen-Shot-2022-01-06-at-3.23.58-AM.png"
+      background="https://res.cloudinary.com/saasquatch-staging/image/upload/v1684181994/tenant_test_a7iws76wkk4az/u5xjyg3wb723ehyvpuvd.png"
       columns={1}
       padding-size="medium"
       wrap-direction="wrap"
