@@ -28,7 +28,7 @@ Feature: Share Code
   @minutia
   Scenario: Demo
     Given isDemo() returns true
-    Then the share code is "https://www.example.com/sharelink/abc"
+    Then the share code is "SHARECODE001"
     And the component won't be interactive
     And the tooltip is hidden
 
