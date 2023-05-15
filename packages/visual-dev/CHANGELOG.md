@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [1.8.0] - 2023-05-15
+
 ### Changed
 
 - Components changed
@@ -365,7 +367,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<TextArea>
   - \<Tooltip>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.7.4...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.8.0...HEAD
+[1.8.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.8.0
 [1.7.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.4
 [1.7.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.3
 [1.7.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.2
