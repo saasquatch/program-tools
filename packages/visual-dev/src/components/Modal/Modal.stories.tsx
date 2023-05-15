@@ -32,9 +32,8 @@ export const WithPrimaryAction = () => {
             <br />
             <br />
             You need to first enable and configure the Salesforce integration on
-            the &nbsp;{" "}
+            the{" "}
             <span style={{ color: "#1f97d2", userSelect: "none" }}>
-              {" "}
               Integrations Page{" "}
             </span>
           </ModalView.ModalContentTextView>
@@ -71,9 +70,8 @@ export const WithCustomZIndex = () => {
             <br />
             <br />
             You need to first enable and configure the Salesforce integration on
-            the &nbsp;{" "}
+            the{" "}
             <span style={{ color: "#1f97d2", userSelect: "none" }}>
-              {" "}
               Integrations Page{" "}
             </span>
           </ModalView.ModalContentTextView>
@@ -110,9 +108,8 @@ export const WithPrimaryActionCustomTitle = () => {
             <br />
             <br />
             You need to first enable and configure the Salesforce integration on
-            the &nbsp;{" "}
+            the{" "}
             <span style={{ color: "#1f97d2", userSelect: "none" }}>
-              {" "}
               Integrations Page{" "}
             </span>
           </ModalView.ModalContentTextView>
