@@ -56,7 +56,7 @@ export class ShareLink {
   @Prop({
     attribute: "text-align",
   })
-  textAlign: "left" | "center" | "right" = "left";
+  textAlign?: "left" | "center" | "right" = "left";
 
   /**
    * @uiName Copy button label
@@ -77,7 +77,7 @@ export class ShareLink {
   @Prop({
     attribute: "copy-button-style",
   })
-  buttonStyle: "icon" | "button-outside" | "button-below" = "icon";
+  buttonStyle?: "icon" | "button-outside" | "button-below" = "icon";
 
   /**
    * @undocumented

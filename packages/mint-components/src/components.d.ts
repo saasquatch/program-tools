@@ -172,7 +172,7 @@ export namespace Components {
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
-        "buttonStyle": "icon" | "button-outside" | "button-below";
+        "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
           * Display this message when the coupon code has been cancelled.
           * @uiWidget textArea
@@ -246,7 +246,7 @@ export namespace Components {
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
          */
-        "textAlign": "left" | "center" | "right";
+        "textAlign"?: "left" | "center" | "right";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -799,7 +799,7 @@ export namespace Components {
          */
         "buttonText"?: string;
         /**
-          * URL that your button redirects to. Be sure to include the entire URL path (example: https://www.example.com)
+          * Enter the URL where you want your participants redirected. Example: https://www.example.com
           * @required 
           * @uiName Link
          */
@@ -2475,11 +2475,11 @@ export namespace Components {
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
-        "buttonStyle": "icon" | "button-outside" | "button-below";
+        "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
           * @uiName Copy button label
          */
-        "copyButtonLabel": string;
+        "copyButtonLabel"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -2518,7 +2518,7 @@ export namespace Components {
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
-        "buttonStyle": "icon" | "button-outside" | "button-below";
+        "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
           * @uiName Copy button label
          */
@@ -2541,7 +2541,7 @@ export namespace Components {
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
          */
-        "textAlign": "left" | "center" | "right";
+        "textAlign"?: "left" | "center" | "right";
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -4252,7 +4252,7 @@ declare namespace LocalJSX {
          */
         "buttonText"?: string;
         /**
-          * URL that your button redirects to. Be sure to include the entire URL path (example: https://www.example.com)
+          * Enter the URL where you want your participants redirected. Example: https://www.example.com
           * @required 
           * @uiName Link
          */
