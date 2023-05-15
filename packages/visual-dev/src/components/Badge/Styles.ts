@@ -22,7 +22,7 @@ export const pill_true = css`
   border-radius: var(--sq-border-radius-pill);
 `;
 
-export const default_style = css`
+export const default-style = css`
   background-color: var(--sq-border);
   border: 1px solid var(--sq-text-subdued);
   color: var(--sq-text);

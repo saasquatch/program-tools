@@ -7,11 +7,11 @@ export default {
 };
 
 export const defaultBadge = () => (
-  <BadgeView status="default_style">Default Badge</BadgeView>
+  <BadgeView status="default-style">Default Badge</BadgeView>
 );
 
 export const defaultBadgeWithIcon = () => (
-  <BadgeView status="default_style" icon="gift">
+  <BadgeView status="default-style" icon="gift">
     Badge with icon
   </BadgeView>
 );
@@ -56,29 +56,29 @@ export const infoBadgeWithIcon = () => (
 );
 
 export const longBadge = () => (
-  <BadgeView status="default_style">
+  <BadgeView status="default-style">
     A badge with a really really long name
   </BadgeView>
 );
 
 export const longBadgeWithIcon = () => (
-  <BadgeView status="default_style" icon="gift">
+  <BadgeView status="default-style" icon="gift">
     A badge with a really really long name
   </BadgeView>
 );
 
 export const badgeIcon = () => (
-  <BadgeView status="default_style" icon="trash" />
+  <BadgeView status="default-style" icon="trash" />
 );
 
 export const defaultBadgePill = () => (
-  <BadgeView status="default_style" pill>
+  <BadgeView status="default-style" pill>
     Default Badge
   </BadgeView>
 );
 
 export const defaultBadgeWithIconPill = () => (
-  <BadgeView status="default_style" icon="gift" pill>
+  <BadgeView status="default-style" icon="gift" pill>
     Badge with icon
   </BadgeView>
 );
@@ -131,24 +131,24 @@ export const infoBadgeWithIconPill = () => (
 );
 
 export const longBadgePill = () => (
-  <BadgeView status="default_style" pill>
+  <BadgeView status="default-style" pill>
     A badge with a really really long name
   </BadgeView>
 );
 
 export const longBadgeWithIconPill = () => (
-  <BadgeView status="default_style" icon="gift" pill>
+  <BadgeView status="default-style" icon="gift" pill>
     A badge with a really really long name
   </BadgeView>
 );
 
 export const badgeIconPill = () => (
-  <BadgeView status="default_style" icon="trash" pill />
+  <BadgeView status="default-style" icon="trash" pill />
 );
 
 export const badgeCSS = () => (
   <BadgeView
-    status="default_style"
+    status="default-style"
     customCSS="color: yellow; background: blue; font-size: 10px"
   >
     CSS Badge
@@ -156,19 +156,19 @@ export const badgeCSS = () => (
 );
 
 export const smallBadge = () => (
-  <BadgeView status="default_style" size="small">
+  <BadgeView status="default-style" size="small">
     Small Badge
   </BadgeView>
 );
 
 export const smallBadgePill = () => (
-  <BadgeView status="default_style" size="small" pill>
+  <BadgeView status="default-style" size="small" pill>
     Small Badge
   </BadgeView>
 );
 
 export const smallBadgePillWithIcon = () => (
-  <BadgeView status="default_style" size="small" pill icon="gift">
+  <BadgeView status="default-style" size="small" pill icon="gift">
     Small Badge
   </BadgeView>
 );

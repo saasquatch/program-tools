@@ -18,7 +18,7 @@ export interface StyleProps {
   /**
    * Badge variant, defines badge colour
    */
-  status: "default_style" | "success" | "critical" | "warning" | "info";
+  status: "default-style" | "success" | "critical" | "warning" | "info";
   /**
    * Display the badge with the pill style with rounded sides
    */
