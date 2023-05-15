@@ -2,6 +2,7 @@ import * as React from "react";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { IconKey, IconView } from "../Icon";
+import { dashToSnakeCase } from "../../utlis";
 
 type BadgeProps = OptionProps &
   StyleProps &
@@ -35,7 +36,10 @@ export interface StyleProps {
 
 const BadgeDiv = styled.div<StyleProps>`
   ${Styles.base}
-  ${(props) => Styles[props.status]}
+  ${(props) => {
+    // @ts-ignore
+    return Styles[dashToSnakeCase(props.status)];
+  }}
   border-radius: ${(props) =>
     props.pill
       ? "var(--sq-spacing-xxx-large);"
