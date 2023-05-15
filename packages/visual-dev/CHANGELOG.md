@@ -13,7 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Components changed
   - \<BadgeView>
-    - Added a new style `default-style`
+    - Changed name of the default badge prop from `info` to `default-style`
+    - Added new badge style for `info`
   - \<GlobalStyle>
     - Added a new info colours as CSS variables
   - \<ModalContentView>
