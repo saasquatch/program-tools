@@ -312,7 +312,11 @@ const InputWrapperDiv = styled.div`
   ${Styles.InputWrapperDiv}
 `;
 
-const ComboboxContainerDiv = styled.div<{ isOpen: boolean; errors: boolean }>`
+const ComboboxContainerDiv = styled.div<{
+  isOpen: boolean;
+  errors: boolean;
+  disabled: boolean;
+}>`
   ${Styles.ComboboxContainerDiv}
   ${(props) =>
     props.isOpen
@@ -322,6 +326,8 @@ const ComboboxContainerDiv = styled.div<{ isOpen: boolean; errors: boolean }>`
     props.errors
       ? "border-color: var(--sq-border-critical); background-color: var(--sq-surface-critical-subdued);"
       : ""}
+  ${(props) =>
+    props.disabled ? "background: var(--sq-surface-input-disabled);" : ""}
 `;
 
 // Redeclare forwardRef for use with generic prop types.
@@ -384,6 +390,12 @@ const SelectContainerView = (props: SelectContainerViewProps) => {
     </ContainerDiv>
   );
 };
+
+const StyledIconButtonView = styled(IconButtonView)`
+  &:hover {
+    background: transparent;
+  }
+`;
 
 const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
   props: SelectHandleViewProps<ItemType>,
@@ -482,6 +494,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
       {...functional.getComboboxProps()}
       isOpen={isOpen}
       errors={errors}
+      disabled={disabled}
       style={{
         paddingRight: `${
           clearable
@@ -506,8 +519,8 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           errors={errors}
           limitWidth={limitWidth}
           customCSS={`
+              background-color: transparent;
               ${customCSS};
-
               border: none !important;
               height: 32px;
             `}
@@ -516,7 +529,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
         />
       </InputWrapperDiv>
       <ButtonContainerDiv>
-        <IconButtonView
+        <StyledIconButtonView
           disabled={disabled}
           icon={"close"}
           borderless={true}
@@ -532,7 +545,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           }}
         />
         {customIcon ? (
-          <IconButtonView
+          <StyledIconButtonView
             disabled={disabled}
             icon={customIcon}
             borderless={true}
@@ -546,7 +559,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             {...functional.getToggleButtonProps()}
           />
         ) : (
-          <IconButtonView
+          <StyledIconButtonView
             disabled={disabled}
             icon={isOpen ? "chevron_up" : "chevron_down"}
             borderless={true}
