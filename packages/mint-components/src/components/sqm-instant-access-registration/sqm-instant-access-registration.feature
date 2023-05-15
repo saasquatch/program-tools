@@ -7,7 +7,7 @@ Feature: Instant access referrer registration
         When they <error action>
         And they submit the form
         Then an error tells the user <message>
-            Examples
+        Examples:
             | error action            | message                    |
             | do not provide an email | that email cannot be empty |
             | give an invalid email   | the email is invalid       |

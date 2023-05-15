@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property       | Attribute         | Description                                                                                                  | Type      | Default        |
-| -------------- | ----------------- | ------------------------------------------------------------------------------------------------------------ | --------- | -------------- |
-| `buttonText`   | `button-text`     |                                                                                                              | `string`  | `"Click here"` |
-| `link`         | `link`            | URL that your button redirects to. Be sure to include the entire URL path (example: https://www.example.com) | `string`  | `undefined`    |
-| `openInNewTab` | `open-in-new-tab` |                                                                                                              | `boolean` | `false`        |
+| Property       | Attribute         | Description                                                                                 | Type      | Default        |
+| -------------- | ----------------- | ------------------------------------------------------------------------------------------- | --------- | -------------- |
+| `buttonText`   | `button-text`     |                                                                                             | `string`  | `"Click here"` |
+| `link`         | `link`            | Enter the URL where you want your participants redirected. Example: https://www.example.com | `string`  | `undefined`    |
+| `openInNewTab` | `open-in-new-tab` |                                                                                             | `boolean` | `false`        |
 
 
 ## Dependencies

@@ -16,6 +16,8 @@ export interface ReferralCardViewProps {
   paddingBottom?: string;
   paddingLeft?: string;
   limitWidth: boolean;
+  hasHeader: boolean;
+  hasFooter: boolean;
 }
 const style = {
   Container: {
@@ -79,7 +81,9 @@ export function ReferralCardView(props: ReferralCardViewProps) {
         {styleString}
         {vanillaStyle}
       </style>
-      <div class={sheet.classes.EndContainer}>{props.slots.header}</div>
+      {props.hasHeader && (
+        <div class={sheet.classes.EndContainer}>{props.slots.header}</div>
+      )}
       <div
         part="sqm-column-container"
         class={sheet.classes.ColumnContainer}
@@ -91,7 +95,9 @@ export function ReferralCardView(props: ReferralCardViewProps) {
 
         {props.slots.right}
       </div>
-      <div class={sheet.classes.EndContainer}>{props.slots.footer}</div>
+      {props.hasFooter && (
+        <div class={sheet.classes.EndContainer}>{props.slots.footer}</div>
+      )}
     </div>
   );
 }

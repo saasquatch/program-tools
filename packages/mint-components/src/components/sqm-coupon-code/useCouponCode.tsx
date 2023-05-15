@@ -5,7 +5,6 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
-import { CopyTextViewProps } from "../views/copy-text-view";
 import { CouponCodeViewProps } from "./sqm-coupon-code-view";
 
 interface CouponCodeProps {
