@@ -129,7 +129,10 @@ export const CustomCSS = () => {
 export const Frame = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const items2 = ["Orca", "San Juan"];
-  const props = useSelectDemo({ items: [...items, ...items2] });
+  const props = {
+    ...useSelectDemo({ items: [...items, ...items2] }),
+    limitWidth: false,
+  };
   return (
     <StoryContainerDiv>
       <SelectView.ContainerView {...props}>
