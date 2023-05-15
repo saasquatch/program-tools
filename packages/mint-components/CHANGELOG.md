@@ -7,10 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.6.8] - 2023-04-20
+## [1.6.8] - 2023-5-16
 
 ### Changed
+
 - Updated license copyright to be in line with SaaSquatch open-source policy.
+- Updated all component’s uiName to snake case
+- Changed components:
+  - \<sqm-hero>
+    - Updated background and secondary background’s uiWidget to background which supports color, Shoelace variables, and image uploads through Cloudinary
+    - Added prop to set minimum container height
+  - \<sqm-referral-card>
+    - Added prop to remove the card’s border
+    - Added prop to limit the container width
+    - Added padding props
+    - Updated referral card to autohide containers
 
 ## [1.6.7] - 2023-03-30
 
