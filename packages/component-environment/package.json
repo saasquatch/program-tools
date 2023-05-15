@@ -19,8 +19,8 @@
     "url": "https://github.com/saasquatch/program-tools",
     "directory": "packages/component-environment"
   },
-  "author": "Johan Venter <johan@saasquatch.com>",
-  "license": "ISC",
+  "author": "ReferralSaaSquatch.com, Inc.",
+  "license": "MIT",
   "devDependencies": {
     "@types/jest": "^28.1.4",
     "jest": "^28.1.2",

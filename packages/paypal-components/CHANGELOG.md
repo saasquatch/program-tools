@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 2023-04-20
+
+### Changed
+- Updated license copyright to be in line with SaaSquatch open-source policy.
+
 ## [1.0.1] - 2022-11-29
 
 ### Added
@@ -27,5 +32,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Used with \<sqm-rewards-table> from `@saasquatch/mint-components`
     - displays SaaSquatch reward statuses and additional reward statuses based on meta from PayPal transactions
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/paypal-components%401.0.1...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/paypal-components%401.0.2...HEAD
+[1.0.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fpaypal-components%401.0.2
 [1.0.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fpaypal-components%401.0.1

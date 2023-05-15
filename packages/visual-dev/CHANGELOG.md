@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [1.7.4] - 2023-05-08
+
+### Changed
+
+- \<CheckboxView> and \<SwitchView>
+  - Fix a bug in onChange handling.
+
+## [1.7.3] - 2023-05-04
+
+### Changed
+
+- Fixed a build issue which caused 1.7.2 changes to not be applied.
+
+## [1.7.2] - 2023-05-03
+
+### Changed
+
+- Components changed
+  - \<TagInput>
+    - Reduce height to match normal inputs
+
+## [1.7.1] - 2023-04-20
+
+### Changed
+
+- Updated license copyright to be in line with SaaSquatch open-source policy.
+
 ## [1.7.0] - 2023-04-06
 
 ### Added
@@ -323,7 +350,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<TextArea>
   - \<Tooltip>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.7.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.7.4...HEAD
+[1.7.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.4
+[1.7.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.3
+[1.7.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.2
+[1.7.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.1
 [1.7.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.0
 [1.6.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.6.0
 [1.5.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.5.0

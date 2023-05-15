@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.24] - 2023-04-20
+
+### Changed
+- Updated license copyright to be in line with SaaSquatch open-source policy.
+
 ## [1.0.23] - 2021-01-18
 
 ### Added
@@ -26,7 +31,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Published version broken - use `1.0.23`
 
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.0.23...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.0.24...HEAD
+[1.0.24]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%vanilla-components-grapesjs%401.0.24
 [1.0.23]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%vanilla-components-grapesjs%401.0.23
 [1.0.22]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%vanilla-components-grapesjs%401.0.22
 [1.0.20]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components-grapesjs%401.0.20

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.2] - 2023-04-20
+
+### Changed
+- Updated license copyright to be in line with SaaSquatch open-source policy.
+
 ## [2.4.1] - 2022-09-23
 
 ### Changed
@@ -50,6 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed the segment-add step incorrectly including quotes in the added segments (`A"`
   instead of `A`)
 
+[2.4.2]: https://github.com/saasquatch/picklesdoc/releases/tag/v2.4.2
 [2.4.1]: https://github.com/saasquatch/picklesdoc/releases/tag/v2.4.1
 [2.4.0]: https://github.com/saasquatch/picklesdoc/releases/tag/v2.4.0
 [2.3.0]: https://github.com/saasquatch/picklesdoc/releases/tag/v2.3.0
