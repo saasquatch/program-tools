@@ -23,6 +23,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Added padding props
     - Updated referral card to autohide containers
 
+Added
+
+- Added Components:
+  - \<sqm-coupon-code>
+  - \<sqm-logout-current-user>
+  - \<sqm-instant-access-registration>
+  - \<sqm-referred-registration>
+
 ## [1.6.7] - 2023-03-30
 
 ### Changed
