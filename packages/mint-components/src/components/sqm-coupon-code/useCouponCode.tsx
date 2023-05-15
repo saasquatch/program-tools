@@ -1,4 +1,6 @@
 import {
+  useEngagementMedium,
+  useMutation,
   useProgramId,
   useQuery,
   useUserIdentity,
@@ -76,9 +78,18 @@ const FuelTankRewardsQuery = gql`
   }
 `;
 
+const WIDGET_ENGAGEMENT_EVENT = gql`
+  mutation loadEvent($eventMeta: UserAnalyticsEvent!) {
+    createUserAnalyticsEvent(eventMeta: $eventMeta)
+  }
+`;
+
 export function useCouponCode(props: CouponCodeProps): CouponCodeViewProps {
   const user = useUserIdentity();
   const programId = useProgramId();
+  const engagementMedium = useEngagementMedium();
+
+  const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
 
   const { data, loading, refetch, errors } =
     useQuery<FuelTankRewardsQueryResult>(
@@ -120,6 +131,18 @@ export function useCouponCode(props: CouponCodeProps): CouponCodeViewProps {
     navigator.clipboard.writeText(copyString);
     setOpen(true);
     setTimeout(() => setOpen(false), props.tooltiplifespan);
+    sendLoadEvent({
+      eventMeta: {
+        programId,
+        id: user?.id,
+        accountId: user?.accountId,
+        type: "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT",
+        meta: {
+          engagementMedium,
+          shareMedium: "DIRECT",
+        },
+      },
+    });
   }
 
   const getRewardStatusText = (status: RewardStatusType) => {
