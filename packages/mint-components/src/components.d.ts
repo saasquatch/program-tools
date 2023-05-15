@@ -2469,7 +2469,7 @@ export namespace Components {
     }
     interface SqmShareCode {
         /**
-          * Set the copy button style and placement.
+          * Set the copy button style and placement
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
@@ -2505,14 +2505,14 @@ export namespace Components {
          */
         "tooltiplifespan": number;
         /**
-          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard
           * @uiName Tooltip text
          */
         "tooltiptext": string;
     }
     interface SqmShareLink {
         /**
-          * Set the copy button style and placement.
+          * Set the copy button style and placement
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
@@ -2548,7 +2548,7 @@ export namespace Components {
          */
         "tooltiplifespan": number;
         /**
-          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard
           * @uiName Tooltip text
          */
         "tooltiptext": string;
@@ -5898,7 +5898,7 @@ declare namespace LocalJSX {
     }
     interface SqmShareCode {
         /**
-          * Set the copy button style and placement.
+          * Set the copy button style and placement
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
@@ -5934,14 +5934,14 @@ declare namespace LocalJSX {
          */
         "tooltiplifespan"?: number;
         /**
-          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard
           * @uiName Tooltip text
          */
         "tooltiptext"?: string;
     }
     interface SqmShareLink {
         /**
-          * Set the copy button style and placement.
+          * Set the copy button style and placement
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
@@ -5977,7 +5977,7 @@ declare namespace LocalJSX {
          */
         "tooltiplifespan"?: number;
         /**
-          * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard
           * @uiName Tooltip text
          */
         "tooltiptext"?: string;

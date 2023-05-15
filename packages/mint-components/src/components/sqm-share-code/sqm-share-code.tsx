@@ -25,7 +25,7 @@ export class ShareCode {
    */
   @Prop() programId?: string;
   /**
-   * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+   * Shown inside a tooltip after someone has successfully copied the link to their clipboard
    *
    * @uiName Tooltip text
    */
@@ -64,7 +64,7 @@ export class ShareCode {
   copyButtonLabel?: string = "Copy Code";
 
   /**
-   * Set the copy button style and placement.
+   * Set the copy button style and placement
    *
    * @uiName Style
    * @uiType string
