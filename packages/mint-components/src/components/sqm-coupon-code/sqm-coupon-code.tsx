@@ -55,7 +55,7 @@ export class CouponCode {
   @Prop({
     attribute: "text-align",
   })
-  textAlign: "left" | "center" | "right" = "left";
+  textAlign?: "left" | "center" | "right" = "left";
 
   /**
    * @uiName Copy button label
@@ -76,7 +76,7 @@ export class CouponCode {
   @Prop({
     attribute: "copy-button-style",
   })
-  buttonStyle: "icon" | "button-outside" | "button-below" = "icon";
+  buttonStyle?: "icon" | "button-outside" | "button-below" = "icon";
 
   /**
    * @uiName Coupon code label

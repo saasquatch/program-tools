@@ -61,7 +61,7 @@ export class ShareCode {
   @Prop({
     attribute: "copy-button-label",
   })
-  copyButtonLabel: string = "Copy Code";
+  copyButtonLabel?: string = "Copy Code";
 
   /**
    * Set the copy button style and placement.
@@ -74,7 +74,7 @@ export class ShareCode {
   @Prop({
     attribute: "copy-button-style",
   })
-  buttonStyle: "icon" | "button-outside" | "button-below" = "icon";
+  buttonStyle?: "icon" | "button-outside" | "button-below" = "icon";
 
   /**
    * @undocumented
