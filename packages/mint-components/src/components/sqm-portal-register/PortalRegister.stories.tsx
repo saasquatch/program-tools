@@ -24,7 +24,12 @@ const defaultProps: PortalRegisterViewProps = {
   refs: {
     formRef: {},
   },
-  content: { pageLabel: "Register", confirmPasswordLabel: "Confirm Password" },
+  content: {
+    pageLabel: "Register",
+    confirmPasswordLabel: "Confirm Password",
+    requiredFieldErrorMessage: "Cannot be empty",
+    invalidEmailErrorMessage: "Must be a valid email address",
+  },
 };
 
 const errorProps: PortalRegisterViewProps = {
@@ -46,6 +51,8 @@ const errorProps: PortalRegisterViewProps = {
   content: {
     pageLabel: "Register",
     confirmPasswordLabel: "Confirm Password",
+    requiredFieldErrorMessage: "Cannot be empty",
+    invalidEmailErrorMessage: "Must be a valid email address",
   },
 };
 
@@ -65,7 +72,12 @@ const loadingProps: PortalRegisterViewProps = {
   refs: {
     formRef: {},
   },
-  content: { pageLabel: "Register", confirmPasswordLabel: "Confirm Password" },
+  content: {
+    pageLabel: "Register",
+    confirmPasswordLabel: "Confirm Password",
+    requiredFieldErrorMessage: "Cannot be empty",
+    invalidEmailErrorMessage: "Must be a valid email address",
+  },
 };
 
 const slottedProps: PortalRegisterViewProps = {
@@ -87,6 +99,8 @@ const slottedProps: PortalRegisterViewProps = {
   content: {
     pageLabel: "Register",
     confirmPasswordLabel: "Confirm Password",
+    requiredFieldErrorMessage: "Cannot be empty",
+    invalidEmailErrorMessage: "Must be a valid email address",
     formData: (
       <div>
         <sl-input

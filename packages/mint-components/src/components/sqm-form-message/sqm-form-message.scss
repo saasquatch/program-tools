@@ -9,6 +9,11 @@ sl-alert::part(base) {
   border-color: var(--sl-color-danger-200);
 }
 
+.Warning::part(base) {
+  background-color: var(--sl-color-warning-100);
+  border-color: var(--sl-color-warning-200);
+}
+
 .Success::part(base) {
   background-color: var(--sl-color-success-100);
   border-color: var(--sl-color-success-200);

@@ -1,0 +1,13 @@
+diff --git a/node_modules/@stencil/core/compiler/stencil.js b/node_modules/@stencil/core/compiler/stencil.js
+index 8e21dfb..63c663e 100644
+--- a/node_modules/@stencil/core/compiler/stencil.js
++++ b/node_modules/@stencil/core/compiler/stencil.js
+@@ -56322,7 +56322,7 @@ const getSystemLoader = async (config, compilerCtx, corePath, includePolyfills)
+ 
+   var resourcesUrl = scriptElm ? scriptElm.getAttribute('data-resources-url') || scriptElm.src : '';
+   var start = function() {
+-    var url = new URL('${corePath}', new URL(resourcesUrl, window.location.origin));
++    var url = new URL('${corePath}', new URL(resourcesUrl));
+     System.import(url.href);
+   };
+ 

@@ -27,17 +27,17 @@ export class DropdownField {
 
   /**
    * This name is used as the key for this form field on submission. The name must be unique within this specific form.
-   * @uiName Dropdown Name Attribute
+   * @uiName Dropdown name attribute
    * @required
    */
   @Prop() dropdownName: string;
 
   /**
-   * @uiName Dropdown Label
+   * @uiName Dropdown label
    */
   @Prop() dropdownLabel: string = "Select an option";
   /**
-   * @uiName Unselected Error Message
+   * @uiName Unselected error message
    */
   @Prop() errorMessage: string = "Select an option";
 

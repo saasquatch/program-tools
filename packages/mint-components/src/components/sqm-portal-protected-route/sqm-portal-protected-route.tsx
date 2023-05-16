@@ -18,13 +18,13 @@ export class PortalProtectedRoute {
   /**
    * Redirect participants to this page they are not logged in.
    *
-   * @uiName Unauthenticated Participant Redirect 
+   * @uiName Unauthenticated participant redirect
    */
   @Prop()
   redirectTo: string = "/";
 
   /**
-   * @uiName Require Email Verification
+   * @uiName Require email verification
    */
   @Prop()
   requireEmailVerification: boolean = false;
@@ -32,7 +32,7 @@ export class PortalProtectedRoute {
   /**
    * Redirect participants to this page when email verification is required but they have not verified their email.
    *
-   * @uiName Unverified Participant Redirect 
+   * @uiName Unverified participant redirect
    */
   @Prop()
   redirectToUnverified: string = "/emailVerification";

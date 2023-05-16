@@ -10,6 +10,7 @@ interface PortalContainerViewProps {
   display?: string;
   minWidth?: string;
   maxWidth?: string;
+  backgroundColor?: string;
   justifyContent?:
     | "start"
     | "center"
@@ -39,6 +40,7 @@ export function PortalContainerView(
       maxWidth: props.maxWidth,
       margin: props.center && "auto",
       justifyContent: props.justifyContent,
+      backgroundColor: props.backgroundColor || "transparent",
     },
   };
 
@@ -52,7 +54,7 @@ export function PortalContainerView(
   const styleString = sheet.toString();
 
   return (
-    <div class={sheet.classes.Container}>
+    <div class={sheet.classes.Container} part={"sqm-base"}>
       <style type="text/css">
         {vanillaStyle}
         {styleString}

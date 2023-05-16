@@ -19,13 +19,13 @@ export class UserName {
   @State() ignored = true;
 
   /**
-   * @uiName Unknown User Name
+   * @uiName Unknown user name
    */
   @Prop() fallback: string = "Anonymous User";
 
   /**
    * Text displayed while the participant’s name is loading.
-   * @uiName Loading Text
+   * @uiName Loading text
    */
   @Prop() loadingText: string = "...";
 

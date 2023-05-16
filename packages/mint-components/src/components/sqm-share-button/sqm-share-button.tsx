@@ -30,12 +30,11 @@ import deepmerge from "deepmerge";
   shadow: true,
 })
 export class ShareButton {
-
   /**
    * The social medium to share on. Share messages and links
    * will be pulled from your program config and tagged for analytics.
    *
-   * @uiName Share Medium
+   * @uiName Share medium
    * @uiType string
    * @required
    * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
@@ -68,23 +67,23 @@ export class ShareButton {
 
   /**
    * Configure border radius with pixel amount
-   * @uiName Border Radius
+   * @uiName Border radius
    */
   @Prop() borderradius?: number;
   /**
-   * @uiName Button Background Color
+   * @uiName Button background color
    * @uiWidget color
    * @format color
    */
   @Prop() backgroundcolor?: string;
   /**
-   * @uiName Button Text Color
+   * @uiName Button text color
    * @uiWidget color
    * @format color
    */
   @Prop() textcolor?: string;
   /**
-   * @uiName Display Pill
+   * @uiName Display pill
    */
   @Prop() pill?: boolean;
   /**
@@ -93,7 +92,7 @@ export class ShareButton {
   @Prop() disabled?: boolean;
   /**
    * @uiType string
-   * @uiName Button Style
+   * @uiName Button style
    * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
    * @uiEnumNames ["Primary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
    */
@@ -106,14 +105,14 @@ export class ShareButton {
     | "default"
     | "text" = "default";
   /**
-   * @uiName Button Size
+   * @uiName Button size
    * @uiType string
    * @uiEnum ["small", "medium", "large" ]
    * @uiEnumNames ["Small", "Medium", "Large"]
    */
   @Prop() size?: "small" | "medium" | "large";
   /**
-   * @uiName Icon Location
+   * @uiName Icon location
    * @uiType string
    * @uiEnum ["prefix", "suffix" ]
    * @uiEnumNames ["Prefix", "Suffix"]
@@ -128,23 +127,23 @@ export class ShareButton {
    */
   @Prop() icon?: string;
   /**
-   * @uiName Hide Icon
+   * @uiName Hide icon
    * @default
    */
   @Prop() hideicon?: boolean = false;
   /**
-   * @uiName Hide Text
+   * @uiName Hide text
    * @default
    */
   @Prop() hidetext?: boolean = false;
   /**
    * Title used for native sharing (mobile only)
-   * @uiName Share Title
+   * @uiName Share title
    */
   @Prop() sharetitle?: string;
   /**
    * Text used for native sharing (mobile only)
-   * @uiName Share Text
+   * @uiName Share text
    */
   @Prop() sharetext?: string;
 

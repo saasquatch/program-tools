@@ -58,7 +58,7 @@ export function DividedLayoutView(
   const styleString = sheet.toString();
 
   return (
-    <div class={sheet.classes.LayoutContainer}>
+    <div class={sheet.classes.LayoutContainer} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}

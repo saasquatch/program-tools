@@ -13,7 +13,7 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
 })
 export class ReferralTableGenericColumn implements ReferralTableColumn {
   /**
-   * @uiName Column Title
+   * @uiName Column title
    */
   @Prop() columnTitle: string;
 

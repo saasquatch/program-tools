@@ -15,17 +15,17 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
 })
 export class ReferralTableStatusColumn implements ReferralTableColumn {
   /**
-   * @uiName Column Title
+   * @uiName Column title
    */
   @Prop() columnTitle: string = "Status";
 
   /**
-   * @uiName Converted Status Text
+   * @uiName Converted status text
    */
   @Prop() convertedStatusText: string = "Converted";
 
   /**
-   * @uiName In Progress Status Text
+   * @uiName In progress status text
    */
   @Prop() inProgressStatusText: string = "In Progress";
 

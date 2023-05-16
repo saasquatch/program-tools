@@ -606,6 +606,12 @@ body {
 // .terms-link:hover {
 //   color: var(--sl-color-gray-600);
 // }
+
+h1, h2, h3, h4{
+  line-height: var(--sl-line-height-dense);
+}
+
+
 h2, .Title {
   font-size: var(--sl-font-size-large);
   font-weight: var(--sl-font-weight-semibold);

@@ -75,11 +75,13 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
     }
 
     if (!userId || !accountId) {
+      debug("No user information");
       return undefined;
     }
 
     // Check if the JWT has expired
     if (exp && Date.now() >= exp * 1000) {
+      debug("JWT has expired");
       return undefined;
     }
 
@@ -89,6 +91,7 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
       jwt,
     };
   } catch (e) {
+    debug("Invalid JWT");
     // Invalid JWT
     return undefined;
   }
@@ -97,8 +100,15 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
 function _getInitialValue(): UserIdentity | undefined {
   const sdk = getEnvironmentSDK();
   switch (sdk.type) {
+    case "SquatchIOS":
     case "SquatchAndroid":
     case "SquatchJS2":
+      if (!sdk.widgetIdent) return undefined;
+
+      const { userId, accountId, token } = sdk.widgetIdent;
+
+      if (!userId || !accountId || !token) return undefined;
+
       return {
         id: sdk.widgetIdent.userId,
         accountId: sdk.widgetIdent.accountId,

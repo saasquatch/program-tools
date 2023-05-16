@@ -19,7 +19,6 @@ import forgotPasswordTemplate from "../templates/ForgotPassword.html";
 import resetPasswordTemplate from "../templates/ResetPassword.html";
 import emailVerifiedTemplate from "../templates/EmailVerified.html";
 import emailVerificationTemplate from "../templates/EmailVerification.html";
-import marked from "marked";
 
 import LoginReadme from "../components/sqm-portal-login/readme.md";
 import ReferralIframeReadme from "../components/sqm-referral-iframe/readme.md";
@@ -30,7 +29,8 @@ import ResetPasswordReadme from "../components/sqm-portal-reset-password/readme.
 import EmailVerificationReadme from "../components/sqm-portal-email-verification/readme.md";
 import EmailVerifiedReadme from "../components/sqm-portal-verify-email/readme.md";
 
-import { navigation } from "@saasquatch/component-boilerplate";
+import { DefaultTemplateView } from "../utils/DefaultTemplateView";
+import { TemplateView } from "../utils/TemplateView";
 
 export default {
   title: "Templates / Portal",
@@ -43,107 +43,6 @@ function useTemplate(templateString: string) {
     states: { previewTemplate, editedTemplate },
     callbacks: { setEditedTemplate, setPreviewTemplate },
   };
-}
-
-function TemplateView(props) {
-  const { states, callbacks, readme } = props;
-
-  return [
-    <textarea
-      style={{ width: "100%", height: "300px" }}
-      onChange={(e: Event) =>
-        callbacks.setEditedTemplate((e.target as HTMLInputElement).value)
-      }
-    >
-      {states.editedTemplate}
-    </textarea>,
-    <button onClick={() => callbacks.setPreviewTemplate(states.editedTemplate)}>
-      Update Preview
-    </button>,
-    readme ? (
-      <details>
-        <summary>Props readme</summary>
-        <div innerHTML={marked(readme)}></div>
-      </details>
-    ) : (
-      ""
-    ),
-    <div innerHTML={states.previewTemplate}></div>,
-  ];
-}
-
-function Buttons({ callbacks, states, template }) {
-  return (
-    <div>
-      <button
-        onClick={() => callbacks.setPreviewTemplate(states.editedTemplate)}
-      >
-        Update Preview
-      </button>
-      <button
-        style={{ marginLeft: "10px" }}
-        onClick={() => callbacks.setPreviewTemplate(template)}
-      >
-        Preview Dashboard
-      </button>
-    </div>
-  );
-}
-
-function DefaultTemplateView(props) {
-  const { states, callbacks } = props;
-  return (
-    <div style={{ height: "50vh" }}>
-      <textarea
-        style={{ width: "100%", height: "300px" }}
-        onChange={(e: Event) =>
-          callbacks.setEditedTemplate((e.target as HTMLInputElement).value)
-        }
-      >
-        {states.editedTemplate}
-      </textarea>
-      <Buttons
-        states={states}
-        callbacks={callbacks}
-        template={props.template}
-      />
-      <h2>Navigation</h2>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(9, 80px)",
-          gridGap: "10px",
-        }}
-      >
-        <button onClick={() => navigation.push("/")}>Dashboard</button>
-        {props.leadSubmit && (
-          <button onClick={() => navigation.push("/refer")}>
-            Submit a Referral
-          </button>
-        )}
-        <button onClick={() => navigation.push("/activity")}>Activity</button>
-        <button onClick={() => navigation.push("/editProfile")}>
-          Edit Profile
-        </button>
-        <button onClick={() => navigation.push("/login")}>Login</button>
-        <button onClick={() => navigation.push("/register")}>Register</button>
-        <button onClick={() => navigation.push("/emailVerification")}>
-          Email Verification
-        </button>
-        <button onClick={() => navigation.push("/verifyEmail")}>
-          Verify Email
-        </button>
-        <button onClick={() => navigation.push("/forgotPassword")}>
-          Forgot Password
-        </button>
-        <button onClick={() => navigation.push("/resetPassword")}>
-          Reset Password
-        </button>
-      </div>
-      <br />
-      <div innerHTML={states.previewTemplate}></div>
-    </div>
-  );
 }
 
 export const DefaultPortal = createHookStory(() => {

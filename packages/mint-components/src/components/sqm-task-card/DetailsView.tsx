@@ -53,7 +53,10 @@ export function Details(props): VNode {
       <span class={sheet.classes.Description}>
         <input type="checkbox" id={"details-" + rid} />
         <label class="details" htmlFor={"details-" + rid}>
-          <sl-icon name="chevron-down"></sl-icon>
+          <sl-icon
+            exportparts="base: chevron-icon"
+            name="chevron-down"
+          ></sl-icon>
         </label>
         <span class="summary" progress-bar={props.progressBar}>
           {props.content.description}

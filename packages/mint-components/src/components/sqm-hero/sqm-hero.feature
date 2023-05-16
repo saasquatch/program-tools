@@ -1,3 +1,6 @@
+@author:noah
+@owner:noah
+
 Feature: Hero Unit
 
     Background: A portal with a hero unit exists
@@ -56,11 +59,11 @@ Feature: Hero Unit
         Given a hero unit with <backgroundPropValue>
         Then the background will be <background>
         Examples:
-            | background                                                  | background               |
-            | https://images.unsplash.com/photo-1599676821464-3555954838d | image of misty mountains |
-            | LightSlateGrey                                              | light slate grey         |
-            | #00FF00                                                     | green                    |
-            | rgb(128,0,128)                                              | purple                   |
+            | background                                                   | background               |
+            | https://images.unsplash.com/photo-1599676821464-3555954838dc | image of misty mountains |
+            | LightSlateGrey                                               | light slate grey         |
+            | #00FF00                                                      | green                    |
+            | rgb(128,0,128)                                               | purple                   |
 
     Scenario Outline: Wrap Direction can be configured for mobile experiences
         Given a hero unit with the following HTML
@@ -78,4 +81,13 @@ Feature: Hero Unit
             | value        | column |
             | wrap         | 1      |
             | wrap-reverse | 2      |
-            |              | 1      |
+            | <null>       | 1      |
+
+    Scenario Outline: Minimum height can be customized
+        Given the option "Mininum Height (in px)" is <value>
+        Then the hero image minimum height is <effectiveValue>
+        And the change is reflected in mobile view
+        Examples:
+            | value                 | effectiveValue |
+            | unset (default value) | 200px          |
+            | 200px                 | 500px          |

@@ -109,12 +109,12 @@ export function LeaderboardView(props: LeaderboardViewProps) {
   let userSeenFlag = false;
 
   return (
-    <div class={sheet.classes.Leaderboard}>
+    <div class={sheet.classes.Leaderboard} part="sqm-base">
       <style type="text/css">
         {styleString}
         {vanillaStyle}
       </style>
-      <table>
+      <table part="sqm-table">
         <tr>
           {styles.showRank && <th class="Rank">{styles.rankheading}</th>}
           <th class="User">{styles.usersheading}</th>

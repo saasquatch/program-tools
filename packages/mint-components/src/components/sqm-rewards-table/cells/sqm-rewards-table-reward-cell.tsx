@@ -215,9 +215,20 @@ export class RewardTableRewardsCell {
           <div>
             <style type="text/css">{styleString}</style>
             <div class={sheet.classes.Container}>
-              <span>{pimpedPrettyValue + " "}</span>
-              <br /> <div class={sheet.classes.Progress} />
-              <span class={sheet.classes.Subtext}>{progressBarSubtext}</span>
+              <span part="sqm-reward-cell-value">
+                {pimpedPrettyValue + " "}
+              </span>
+              <br />{" "}
+              <div
+                part="sqm-reward-cell-progress"
+                class={sheet.classes.Progress}
+              />
+              <span
+                part="sqm-reward-cell-subtext"
+                class={sheet.classes.Subtext}
+              >
+                {progressBarSubtext}
+              </span>
             </div>
           </div>
         );

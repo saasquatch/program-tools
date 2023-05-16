@@ -15,6 +15,7 @@ export const LoginOneColumn = () => {
       columns: 1 as const,
       wrapDirection: "wrap" as const,
       paddingSize: "large" as const,
+      minHeight: 0,
     },
     content: {
       primaryColumn: [
@@ -29,6 +30,19 @@ export const LoginOneColumn = () => {
     </div>
   );
 };
+export const LoginOneColumnWithMinHeight = () => {
+  return (
+    <sqm-hero
+      background="https://res.cloudinary.com/saasquatch/image/upload/v1683589933/Portal%20Assets/Screen-Shot-2022-01-06-at-3.23.58-AM.png"
+      columns={1}
+      padding-size="medium"
+      wrap-direction="wrap"
+      secondary-background="#FFFFFF"
+    >
+      <sqm-portal-login></sqm-portal-login>
+    </sqm-hero>
+  );
+};
 
 export const LoginOneColumnWithColor = () => {
   const props = {
@@ -36,6 +50,7 @@ export const LoginOneColumnWithColor = () => {
       columns: 1 as const,
       wrapDirection: "wrap" as const,
       paddingSize: "large" as const,
+      minHeight: 0,
 
       background: "LightSlateGrey",
     },
@@ -56,6 +71,7 @@ export const LoginOneColumnWithImage = () => {
       columns: 1 as const,
       wrapDirection: "wrap" as const,
       paddingSize: "large" as const,
+      minHeight: 0,
 
       background:
         "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
@@ -75,6 +91,7 @@ export const TwoColumnLoginLargePadding = () => {
       columns: 2 as const,
       wrapDirection: "wrap" as const,
       paddingSize: "large" as const,
+      minHeight: 0,
 
       background:
         "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
@@ -110,6 +127,7 @@ export const TwoColumnLoginMediumPadding = () => {
       columns: 2 as const,
       wrapDirection: "wrap" as const,
       paddingSize: "medium" as const,
+      minHeight: 0,
 
       background:
         "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
@@ -145,6 +163,7 @@ export const TwoColumnLoginSmallPadding = () => {
       columns: 2 as const,
       wrapDirection: "wrap" as const,
       paddingSize: "small" as const,
+      minHeight: 0,
 
       background:
         "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
@@ -180,6 +199,7 @@ export const TwoColumnLoginNoPadding = () => {
       columns: 2 as const,
       wrapDirection: "wrap" as const,
       paddingSize: "none" as const,
+      minHeight: 0,
 
       background:
         "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
@@ -216,6 +236,7 @@ export const TwoColumnLoginReverseWrap = () => {
       wrapDirection: "wrap-reverse" as const,
       background: "LightSlateGrey",
       paddingSize: "large" as const,
+      minHeight: 0,
 
       secondaryBackground:
         "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
@@ -250,6 +271,7 @@ export const TwoColumnLoginWithImgElement = () => {
       columns: 2 as const,
       wrapDirection: "wrap" as const,
       paddingSize: "large" as const,
+      minHeight: 0,
     },
     content: {
       primaryColumn: (
@@ -277,4 +299,26 @@ export const TwoColumnLoginWithImgElement = () => {
       <HeroView {...props}></HeroView>
     </div>
   );
+};
+
+export const MinHeight = () => {
+  const props = {
+    states: {
+      columns: 2 as const,
+      wrapDirection: "wrap" as const,
+      paddingSize: "large" as const,
+      minHeight: 600,
+      background:
+        "https://images.unsplash.com/photo-1487528278747-ba99ed528ebc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+    },
+    content: {
+      secondaryColumn: (
+        <div>
+          <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
+          <sqm-portal-login></sqm-portal-login>
+        </div>
+      ),
+    },
+  };
+  return <HeroView {...props}></HeroView>;
 };

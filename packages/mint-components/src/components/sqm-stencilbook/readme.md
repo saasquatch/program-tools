@@ -44,6 +44,7 @@
 - [sqm-user-name](../sqm-user-name)
 - [sqm-program-menu](../sqm-program-menu)
 - [sqm-portal-login](../sqm-portal-login)
+- [sqm-hero](../sqm-hero)
 - [sqm-portal-change-password](../sqm-portal-change-password)
 - [sqm-referral-iframe](../sqm-referral-iframe)
 - [sqm-checkbox-field](../sqm-checkbox-field)
@@ -69,8 +70,11 @@
 - [sqm-timeline](../sqm-timeline)
 - [sqm-timeline-entry](../sqm-timeline)
 - [sqm-referral-card](../sqm-referral-card)
+- [sqm-portal-footer](../sqm-portal-footer)
 - [sqm-image](../sqm-image)
 - [sqm-titled-section](../sqm-titled-section)
+- [sqm-coupon-code](../sqm-coupon-code)
+- [sqm-link-button](../sqm-link-button)
 
 ### Graph
 ```mermaid
@@ -110,6 +114,7 @@ graph TD;
   sqm-stencilbook --> sqm-user-name
   sqm-stencilbook --> sqm-program-menu
   sqm-stencilbook --> sqm-portal-login
+  sqm-stencilbook --> sqm-hero
   sqm-stencilbook --> sqm-portal-change-password
   sqm-stencilbook --> sqm-referral-iframe
   sqm-stencilbook --> sqm-checkbox-field
@@ -135,8 +140,11 @@ graph TD;
   sqm-stencilbook --> sqm-timeline
   sqm-stencilbook --> sqm-timeline-entry
   sqm-stencilbook --> sqm-referral-card
+  sqm-stencilbook --> sqm-portal-footer
   sqm-stencilbook --> sqm-image
   sqm-stencilbook --> sqm-titled-section
+  sqm-stencilbook --> sqm-coupon-code
+  sqm-stencilbook --> sqm-link-button
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
@@ -163,6 +171,7 @@ graph TD;
   sqm-referral-table-status-column --> sqm-referral-table-status-cell
   sqm-referral-table-date-column --> sqm-referral-table-date-cell
   sqm-referral-table-rewards-column --> sqm-referral-table-rewards-cell
+  sqm-coupon-code --> sqm-form-message
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

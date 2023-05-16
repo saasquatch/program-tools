@@ -26,32 +26,32 @@ export class Leaderboard {
   @Prop() programId?: string;
 
   /**
-   * @uiName User Column Heading
+   * @uiName User column heading
    */
   @Prop() usersheading: string;
   /**
-   * @uiName Stats Column Heading
+   * @uiName Stats column heading
    */
   @Prop() statsheading: string;
   /**
-   * @uiName Rank Column Heading
+   * @uiName Rank column heading
    */
   @Prop() rankheading?: string;
   /**
-   * @uiName Show Leaderboard Rank
+   * @uiName Show leaderboard rank
    */
   @Prop() showRank: boolean;
 
   /**
    * Hide the viewer's leaderboard row if not in the top results.
    *
-   * @uiName Hide Viewing User
+   * @uiName Hide viewing user
    * @default
    */
   @Prop() hideViewer: boolean = false;
 
   /**
-   * @uiName Rank Type
+   * @uiName Rank type
    * @uiType string
    * @uiEnum ["rowNumber", "rank", "denseRank"]
    * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
@@ -59,7 +59,7 @@ export class Leaderboard {
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
 
   /**
-   * @uiName Leaderboard Type
+   * @uiName Leaderboard type
    * @uiType string
    * @required
    * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
@@ -72,12 +72,12 @@ export class Leaderboard {
 
   /**
    * Title displayed for users without names
-   * @uiName Unknown User Text
+   * @uiName Unknown user text
    */
   @Prop() anonymousUser: string = "Anonymous User";
 
   /**
-   * @uiName Leaderboard Time Interval
+   * @uiName Leaderboard time interval
    * @uiWidget dateRange
    * @uiWidgetOptions {"allowPastDates":true, "months": 1}
    */
@@ -85,8 +85,8 @@ export class Leaderboard {
 
   /**
    * Control the maximum amount of rows displayed on the leaderboard.
-   * 
-   * @uiName Maximum Rows Number
+   *
+   * @uiName Maximum rows number
    */
   @Prop() maxRows: number = 10;
 

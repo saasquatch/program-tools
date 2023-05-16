@@ -12,21 +12,21 @@ export class HeroImage {
   /**
    * @uiWidget ImageUpload
    * @format url
-   * @uiName Logo Image
+   * @uiName Logo image
    */
   @Prop() imageUrl: string;
 
   /**
    * Page participants are navigated to after clicking the header logo.
    *
-   * @uiName Redirect Path
+   * @uiName Redirect path
    * @uiWidget pageSelect
    */
   @Prop()
   nextPage: string = "/";
 
   /**
-   * @uiName Logo Height
+   * @uiName Logo height
    */
   @Prop() height: number = 60;
 
@@ -38,7 +38,7 @@ export class HeroImage {
   render() {
     return (
       <Host>
-        <a href={this.nextPage}>
+        <a href={this.nextPage} part="sqm-link">
           <img style={{ height: `${this?.height}px` }} src={this?.imageUrl} />
         </a>
       </Host>

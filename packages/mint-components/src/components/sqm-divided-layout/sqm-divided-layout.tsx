@@ -22,10 +22,10 @@ export class DividedLayout {
    * @uiEnumNames ["Row", "Column"]
    */
   @Prop() direction: "row" | "column";
-  
+
   /**
    * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
-   * @uiName Border Style
+   * @uiName Border style
    */
   @Prop() dividerStyle: string = "1px solid #EAEAEA";
 

@@ -48,7 +48,10 @@ export function getEnvironmentSDK(): EnvironmentSDK {
   }
 
   // Vanilla components mutates `widgetIdent` for portal, causing boilerplate to render as SquatchJS2
-  if (window["widgetIdent"] && window["widgetIdent"]?.env !== "demo") {
+  if (
+    (window.frameElement as any)?.["squatchJsApi"] &&
+    window["widgetIdent"]?.env !== "demo"
+  ) {
     return {
       type: "SquatchJS2",
       //@ts-ignore
@@ -75,8 +78,9 @@ export function getTenantAlias(): string {
   const sdk = getEnvironmentSDK();
   switch (sdk.type) {
     case "SquatchAndroid":
+    case "SquatchIOS":
     case "SquatchJS2":
-      return sdk.widgetIdent.tenantAlias;
+      return sdk.widgetIdent?.tenantAlias;
     case "SquatchAdmin":
     case "None":
       return FAKE_TENANT;
@@ -90,8 +94,9 @@ export function getAppDomain(): string {
   const sdk = getEnvironmentSDK();
   switch (sdk.type) {
     case "SquatchAndroid":
+    case "SquatchIOS":
     case "SquatchJS2":
-      return sdk.widgetIdent.appDomain;
+      return sdk.widgetIdent?.appDomain || DEFAULT_DOMAIN;
     case "SquatchPortal":
       return sdk.env?.appDomain || DEFAULT_DOMAIN;
     case "SquatchAdmin":
@@ -104,8 +109,9 @@ export function getEngagementMedium(): EngagementMedium {
   const sdk = getEnvironmentSDK();
   switch (sdk.type) {
     case "SquatchJS2":
-      return sdk.widgetIdent.engagementMedium || DEFAULT_MEDIUM;
+      return sdk.widgetIdent?.engagementMedium || DEFAULT_MEDIUM;
     case "SquatchAndroid":
+    case "SquatchIOS":
     case "SquatchPortal":
     case "SquatchAdmin":
     case "None":
