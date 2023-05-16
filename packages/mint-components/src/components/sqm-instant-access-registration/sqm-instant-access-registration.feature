@@ -17,7 +17,7 @@ Feature: Instant access referrer registration
         Given a user is viewing the registration component
         When the "Include name fields" option is set to "true"
         Then the inputs for the first and last name fields are not required
-        And the user can submit the form
+        And the user can submit the form without adding them
 
     @motivating
     Scenario: Users are notified if registration fails
@@ -33,7 +33,7 @@ Feature: Instant access referrer registration
         Then the input is disabled
         And the button is in a loading state
         When the submission is successful
-        Then a new user has been upserted to SaaSquatch
+        Then a new user has been upserted to SaaSquatch as an instant access participant
 
     @ui
     Scenario: Slotted content can be included
