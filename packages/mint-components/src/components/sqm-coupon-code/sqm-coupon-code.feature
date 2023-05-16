@@ -114,10 +114,3 @@ Feature: Coupon Code
     And the program is configured for rewards to be pending
     Then the user will see an info alert banner
     And the ICU string is converted to the unpend date
-
-  @landmine
-  Scenario: ICU string does not work with automatic translations
-    Given a coupon code component has an ICU string in the "pendingErrorText" prop
-    And the component is translated
-    Then the automatic translation is not handled
-    And the ICU string might be translated and no longer work
