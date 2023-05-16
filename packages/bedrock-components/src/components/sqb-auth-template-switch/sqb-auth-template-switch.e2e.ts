@@ -1,266 +1,133 @@
-// import { E2EPage, newE2EPage } from "@stencil/core/testing";
+import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
-// function newRoute(id: string, path: string) {
-//   return /*html*/ `
-//   <sqm-route path="${path}">
-//     <div id=${id}></div>
-//   </sqm-route>`;
-// }
+function newTemplate(slot: string) {
+  return /*html*/ `
+  <template slot="${slot}">
+    <div id="${slot}">my content</div>
+  </template>`;
+}
 
-// function newTemplate(id: string, path: string) {
-//   return /*html*/ `
-//   <template path="${path}">
-//     <div id=${id}></div>
-//   </template>`;
-// }
+function newPageFunctions(page: Readonly<E2EPage>) {
+  return {
+    expectElement: async (selector: string) =>
+      // convert to string because jest pretty printing the object causes errors
+      expect((await page.find(selector))?.id).not.toBeUndefined(),
+    dontExpectElement: async (selector: string) => expect((await page.find(selector))?.id).toBeUndefined(),
+    expectTemplate: async (selector: string) => expect((await page.find('#' + selector))?.id).toBe(selector),
+    dontExpectTemplate: async (selector: string) => expect((await page.find('#' + selector))?.id).not.toBe(selector),
+  };
+}
 
-// function newPageFunctions(page: Readonly<E2EPage>) {
-//   return {
-//     expectElement: async (selector: string) =>
-//       // convert to string because jest pretty printing the object causes errors
-//       expect((await page.find(selector))?.id).not.toBeUndefined(),
-//     dontExpectElement: async (selector: string) =>
-//       expect((await page.find(selector))?.id).toBeUndefined(),
-//     expectTemplate: async (selector: string) =>
-//       expect((await page.find("#" + selector))?.id).not.toBeUndefined(),
-//     dontExpectTemplate: async (selector: string) =>
-//       expect((await page.find("#" + selector))?.id).toBeUndefined(),
-//     expectRoute: async (selector: string) =>
-//       expect(
-//         (await page.find('div[style="display: contents;"] > div#' + selector))
-//           ?.id
-//       ).not.toBeUndefined(),
-//     dontExpectRoute: async (selector: string) =>
-//       expect(
-//         (await page.find('div[style="display: contents;"] > div#' + selector))
-//           ?.id
-//       ).toBeUndefined(),
-//     history: {
-//       push: (path: string) =>
-//         page.evaluate((x) => window.squatchHistory.push(x), path),
-//       back: () => page.evaluate(() => window.squatchHistory.back()),
-//     },
-//   };
-// }
+global.console = {
+  ...console,
+  // uncomment to ignore a specific log level
+  //   log: jest.fn(),
+  // debug: jest.fn(),
+  // info: jest.fn(),
+  // warn: jest.fn(),
+  // suppress error logs - graphql errors are thrown on log out in test/demo environment
+  error: jest.fn(),
+};
 
-// describe("sqm-router", () => {
-//   test("Default route", async () => {
-//     const html = /*html*/ `
-//     <sqm-router>
-//       ${newRoute("RouteA", "/")}
-//       ${newRoute("RouteB", "/B")}
-//     </sqm-router>
-//     `;
+describe('sqb-auth-template-switch', () => {
+  test('Default template shown', async () => {
+    const html = /*html*/ `
+    <sqb-auth-template-switch>
+      ${newTemplate('logged-in')}
+      ${newTemplate('logged-out')}
+    </sqm-router>
+    `;
 
-//     const page = await newE2EPage();
-//     await page.setContent(html);
+    const page = await newE2EPage();
+    await page.setContent(html);
 
-//     const { expectElement, expectRoute, dontExpectRoute } = newPageFunctions(
-//       page
-//     );
+    const { expectElement, expectTemplate, dontExpectTemplate } = newPageFunctions(page);
 
-//     await expectElement("sqm-router");
+    await expectElement('sqb-auth-template-switch');
 
-//     await expectRoute("RouteA");
-//     await dontExpectRoute("RouteB");
+    await expectTemplate('logged-out');
+    await dontExpectTemplate('logged-in');
 
-//     page.close();
-//   });
+    page.close();
+  });
 
-//   test("Changing pages", async () => {
-//     const html = /*html*/ `
-//     <sqm-router>
-//       ${newRoute("RouteA", "/")}
-//       ${newRoute("RouteB", "/B")}
-//     </sqm-router>
-//     `;
+  test('Logging in', async () => {
+    const html = /*html*/ `
+    <sqb-auth-template-switch>
+      ${newTemplate('logged-in')}
+      ${newTemplate('logged-out')}
+    </sqm-router>
+    `;
 
-//     const page = await newE2EPage();
-//     await page.setContent(html);
+    const page = await newE2EPage();
+    await page.setContent(html);
 
-//     const {
-//       expectElement,
-//       expectRoute,
-//       dontExpectRoute,
-//       history,
-//     } = newPageFunctions(page);
+    const { expectElement, expectTemplate, dontExpectTemplate } = newPageFunctions(page);
 
-//     await expectElement("sqm-router");
+    await expectElement('sqb-auth-template-switch');
 
-//     await expectRoute("RouteA");
-//     await dontExpectRoute("RouteB");
+    await expectTemplate('logged-out');
+    await dontExpectTemplate('logged-in');
 
-//     await history.push("/B");
-//     await page.waitForChanges();
+    await page.evaluate(() => {
+      window.squatchUserIdentity.context = {
+        jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InRlc3Rlc3Rlc3QiLCJpZCI6InRlc3Rlc3Rlc3QifX0.qYnU5hNeIj9C_G3NogfG7btgCPGZC7JRXY0MG6a63zs',
+        accountId: 'testuser',
+        id: 'testuser',
+      };
+      return true;
+    });
 
-//     await dontExpectRoute("RouteA");
-//     await expectRoute("RouteB");
+    await page.waitForChanges();
 
-//     await history.push("/");
-//     await page.waitForChanges();
+    await expectTemplate('logged-in');
+    await dontExpectTemplate('logged-out');
 
-//     await expectRoute("RouteA");
-//     await dontExpectRoute("RouteB");
+    page.close();
+  });
 
-//     page.close();
-//   });
+  test('Logging out', async () => {
+    const html = /*html*/ `
+    <sqb-auth-template-switch>
+      ${newTemplate('logged-in')}
+      ${newTemplate('logged-out')}
+    </sqm-router>
+    `;
 
-//   test("Going back", async () => {
-//     const html = /*html*/ `
-//     <sqm-router>
-//       ${newRoute("RouteA", "/")}
-//       ${newRoute("RouteB", "/B")}
-//       ${newRoute("RouteC", "/C")}
-//     </sqm-router>
-//     `;
+    const page = await newE2EPage();
+    await page.setContent(html);
 
-//     const page = await newE2EPage();
-//     await page.setContent(html);
+    const { expectElement, expectTemplate, dontExpectTemplate } = newPageFunctions(page);
 
-//     const {
-//       expectElement,
-//       expectRoute,
-//       dontExpectRoute,
-//       history,
-//     } = newPageFunctions(page);
+    await expectElement('sqb-auth-template-switch');
 
-//     await expectElement("sqm-router");
+    await page.evaluate(() => {
+      window.squatchUserIdentity.context = {
+        jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InRlc3Rlc3Rlc3QiLCJpZCI6InRlc3Rlc3Rlc3QifX0.qYnU5hNeIj9C_G3NogfG7btgCPGZC7JRXY0MG6a63zs',
+        accountId: 'testuser',
+        id: 'testuser',
+      };
+      return true;
+    });
 
-//     await expectRoute("RouteA");
-//     await dontExpectRoute("RouteB");
-//     await dontExpectRoute("RouteC");
+    await page.waitForChanges();
 
-//     await history.push("/B");
-//     await page.waitForChanges();
+    await expectTemplate('logged-in');
+    await dontExpectTemplate('logged-out');
 
-//     await dontExpectRoute("RouteA");
-//     await expectRoute("RouteB");
-//     await dontExpectRoute("RouteC");
+    await page.evaluate(() => {
+      window.squatchUserIdentity.context = undefined;
+      return true;
+    });
 
-//     await history.push("/C");
-//     await page.waitForChanges();
+    await page.waitForChanges();
 
-//     await dontExpectRoute("RouteA");
-//     await dontExpectRoute("RouteB");
-//     await expectRoute("RouteC");
+    await expectTemplate('logged-out');
+    await dontExpectTemplate('logged-in');
 
-//     await history.back();
-//     await page.waitForChanges();
+    page.close();
+  });
+});
 
-//     await dontExpectRoute("RouteA");
-//     await expectRoute("RouteB");
-//     await dontExpectRoute("RouteC");
-
-//     await history.back();
-//     await page.waitForChanges();
-
-//     await expectRoute("RouteA");
-//     await dontExpectRoute("RouteB");
-//     await dontExpectRoute("RouteC");
-
-//     page.close();
-//   });
-
-//   test("Template has precedence over route", async () => {
-//     const html = /*html*/ `
-//     <sqm-router>
-//       ${newRoute("RouteA", "/")}
-//       ${newTemplate("RouteB", "/")}
-//       ${newRoute("RouteC", "/B")}
-//     </sqm-router>
-//     `;
-
-//     const page = await newE2EPage();
-//     await page.setContent(html);
-
-//     const {
-//       expectElement,
-//       expectTemplate,
-//       dontExpectTemplate,
-//       expectRoute,
-//       dontExpectRoute,
-//       history,
-//     } = newPageFunctions(page);
-
-//     await expectElement("sqm-router");
-
-//     await dontExpectRoute("RouteA");
-//     await expectTemplate("RouteB");
-//     await dontExpectRoute("RouteC");
-
-//     await history.push("/B");
-//     await page.waitForChanges();
-
-//     await dontExpectRoute("RouteA");
-//     await dontExpectTemplate("RouteB");
-//     await expectRoute("RouteC");
-
-//     await history.push("/");
-//     await page.waitForChanges();
-
-//     await dontExpectRoute("RouteA");
-//     await expectTemplate("RouteB");
-//     await dontExpectRoute("RouteC");
-
-//     page.close();
-//   });
-
-//   test("First matching element is chosen, with precedence", async () => {
-//     const html = /*html*/ `
-//     <sqm-router>
-//       ${newRoute("RootA", "/")}
-//       ${newRoute("RootB", "/")}
-//       ${newTemplate("RootC", "/")}
-//       ${newTemplate("RootD", "/")}
-//       ${newRoute("StuffA", "/stuff")}
-//       ${newRoute("StuffB", "/stuff")}
-//     </sqm-router>
-//     `;
-
-//     const page = await newE2EPage();
-//     await page.setContent(html);
-
-//     const {
-//       expectElement,
-//       expectTemplate,
-//       dontExpectTemplate,
-//       expectRoute,
-//       dontExpectRoute,
-//       history,
-//     } = newPageFunctions(page);
-
-//     await expectElement("sqm-router");
-
-//     await dontExpectRoute("RootA");
-//     await dontExpectRoute("RootB");
-//     await expectTemplate("RootC");
-//     await dontExpectTemplate("RootD");
-//     await dontExpectRoute("StuffA");
-//     await dontExpectRoute("StuffB");
-
-//     await history.push("/stuff");
-//     await page.waitForChanges();
-
-//     await dontExpectRoute("RootA");
-//     await dontExpectRoute("RootB");
-//     await dontExpectTemplate("RootC");
-//     await dontExpectTemplate("RootD");
-//     await expectRoute("StuffA");
-//     await dontExpectRoute("StuffB");
-
-//     await history.push("/");
-//     await page.waitForChanges();
-
-//     await dontExpectRoute("RootA");
-//     await dontExpectRoute("RootB");
-//     await expectTemplate("RootC");
-//     await dontExpectTemplate("RootD");
-//     await dontExpectRoute("StuffA");
-//     await dontExpectRoute("StuffB");
-
-//     page.close();
-//   });
-// });
-
-// // nice debugging tool
-// //   console.log(await page.evaluate(()=>document.body.innerHTML))
+// nice debugging tool
+//   console.log(await page.evaluate(()=>document.body.innerHTML))

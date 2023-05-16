@@ -7,10 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.6.8] - 2023-04-20
+## [1.6.8] - 2023-5-16
 
 ### Changed
+
 - Updated license copyright to be in line with SaaSquatch open-source policy.
+- Updated all component’s uiName to snake case
+- Changed components:
+  - \<sqm-hero>
+    - Updated background and secondary background’s uiWidget to background which supports color, Shoelace variables, and image uploads through Cloudinary
+    - Added prop to set minimum container height
+  - \<sqm-referral-card>
+    - Added prop to remove the card’s border
+    - Added prop to limit the container width
+    - Added padding props
+    - Updated referral card to autohide containers
+  - \<sqm-share-link>, \<sqm-share-code>
+    - Updated to use \<copy-text-view>
+    - Added prop for copy button style and label
+    - Added prop for text alignment
+
+### Added
+
+- Added Components:
+  - \<sqm-coupon-code> displays a coupon code with copy functionality
+    - Includes props to edit the error messages, copy button style and label, and text alignment
+  - \<sqm-logout-current-user> displays the current logged in user’s email and provides a switch user link
+  - \<sqm-instant-access-registration> adds the ability to register with just an email and no password
+    - Includes a top and bottom slot
+    - Includes props to edit background color, show and hide border, adjust padding, include name fields, edit field labels, and edit registration error messages
+  - \<sqm-referred-registration>
+    - Same as \<sqm-instant-access-registration> but for the friend experience
 
 ## [1.6.7] - 2023-03-30
 
