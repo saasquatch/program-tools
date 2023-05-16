@@ -17,7 +17,6 @@ jobs:
           - component-boilerplate
           - stencil-grapes-plugin
           - mint-components
-          - bedrock-components
           - integration-boilerplate-node
 
     steps:
