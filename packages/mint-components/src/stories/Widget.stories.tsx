@@ -14,7 +14,8 @@ import paypalMonoWidget from "../templates/PaypalMonoWidget.html";
 import marked from "marked";
 
 import { navigation } from "@saasquatch/component-boilerplate";
-import { TemplateView } from "./PortalTemplates.stories";
+import { DefaultTemplateView } from "../utils/DefaultTemplateView";
+import { TemplateView } from "../utils/TemplateView";
 
 export default {
   title: "Templates / Widgets",
@@ -35,47 +36,6 @@ function useTemplate(templateString: string) {
     states: { previewTemplate, editedTemplate },
     callbacks: { setEditedTemplate, setPreviewTemplate },
   };
-}
-
-function Buttons({ callbacks, states, template }) {
-  return (
-    <div>
-      <button
-        onClick={() => callbacks.setPreviewTemplate(states.editedTemplate)}
-      >
-        Update Preview
-      </button>
-      <button
-        style={{ marginLeft: "10px" }}
-        onClick={() => callbacks.setPreviewTemplate(template)}
-      >
-        Preview Dashboard
-      </button>
-    </div>
-  );
-}
-
-function DefaultTemplateView(props) {
-  const { states, callbacks } = props;
-  return (
-    <div style={{ height: "50vh" }}>
-      <textarea
-        style={{ width: "100%", height: "300px" }}
-        onChange={(e: Event) =>
-          callbacks.setEditedTemplate((e.target as HTMLInputElement).value)
-        }
-      >
-        {states.editedTemplate}
-      </textarea>
-      <Buttons
-        states={states}
-        callbacks={callbacks}
-        template={props.template}
-      />
-      <br />
-      <div innerHTML={states.previewTemplate}></div>
-    </div>
-  );
 }
 
 export const ReferralWidget = createHookStory(() => {
