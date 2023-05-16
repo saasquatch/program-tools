@@ -82,7 +82,7 @@ Feature: Coupon Code
     And the user cannot copy the text
 
   @ui
-  Scenario Outline: user can edit the alignment of the coupon code text
+  Scenario Outline: User can edit the alignment of the coupon code text
     Given a user is editing the coupon code component
     Then they see "Align text" props
     And the default value is "left"

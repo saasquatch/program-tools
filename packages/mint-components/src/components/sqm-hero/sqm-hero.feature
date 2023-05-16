@@ -81,7 +81,7 @@ Feature: Hero Unit
             | value        | column |
             | wrap         | 1      |
             | wrap-reverse | 2      |
-            |              | 1      |
+            | <null>       | 1      |
 
     Scenario Outline: Minimum height can be customized
         Given the option "Mininum Height (in px)" is <value>
