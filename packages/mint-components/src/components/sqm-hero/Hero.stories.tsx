@@ -33,7 +33,7 @@ export const LoginOneColumn = () => {
 export const LoginOneColumnWithMinHeight = () => {
   return (
     <sqm-hero
-      background="https://res.cloudinary.com/saasquatch-staging/image/upload/v1684181994/tenant_test_a7iws76wkk4az/u5xjyg3wb723ehyvpuvd.png"
+      background="https://res.cloudinary.com/saasquatch/image/upload/v1683589933/Portal%20Assets/Screen-Shot-2022-01-06-at-3.23.58-AM.png"
       columns={1}
       padding-size="medium"
       wrap-direction="wrap"
