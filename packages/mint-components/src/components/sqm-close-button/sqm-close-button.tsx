@@ -12,11 +12,11 @@ import { CloseButtonView } from "./sqm-close-button-view";
 })
 export class CloseButton {
   /**
-   * @uiName Background color
+   * @uiName Color
    * @uiWidget color
    * @uiType string
    */
-  @Prop() backgroundColor: string = "#000000";
+  @Prop() color: string = "#000000";
 
   constructor() {
     withHooks(this);
@@ -38,11 +38,6 @@ export class CloseButton {
       }
     };
 
-    return (
-      <CloseButtonView
-        onClick={onClick}
-        backgroundColor={this.backgroundColor}
-      />
-    );
+    return <CloseButtonView onClick={onClick} color={this.color} />;
   }
 }

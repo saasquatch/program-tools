@@ -158,11 +158,11 @@ export namespace Components {
     }
     interface SqmCloseButton {
         /**
-          * @uiName Background color
+          * @uiName Color
           * @uiWidget color
           * @uiType string
          */
-        "backgroundColor": string;
+        "color": string;
     }
     interface SqmCouponCode {
         /**
@@ -3611,11 +3611,11 @@ declare namespace LocalJSX {
     }
     interface SqmCloseButton {
         /**
-          * @uiName Background color
+          * @uiName Color
           * @uiWidget color
           * @uiType string
          */
-        "backgroundColor"?: string;
+        "color"?: string;
     }
     interface SqmCouponCode {
         /**

@@ -4,7 +4,7 @@ import { HostBlock, P } from "../../global/mixins";
 
 export interface CloseButtonViewProps {
   onClick?: () => void;
-  backgroundColor?: string;
+  color?: string;
 }
 
 const style = {
@@ -37,7 +37,7 @@ export function CloseButtonView(props: CloseButtonViewProps) {
         >
           <path
             d="M56 5.64L50.36 0L28 22.36L5.64 0L0 5.64L22.36 28L0 50.36L5.64 56L28 33.64L50.36 56L56 50.36L33.64 28L56 5.64Z"
-            fill={props.backgroundColor || "black"}
+            fill={props.color || "black"}
           />
         </svg>
       </span>

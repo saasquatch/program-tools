@@ -29,11 +29,11 @@ export const InAContainer = () => {
   );
 };
 
-export const BackgroundColor = () => {
+export const CustomColor = () => {
   return (
     <div style={containerStyles}>
       <CloseButtonView
-        {...{ ...defaultProps, backgroundColor: "blue" }}
+        {...{ ...defaultProps, color: "blue" }}
       ></CloseButtonView>
     </div>
   );

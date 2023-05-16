@@ -23,7 +23,7 @@ Feature: Popup close button
   @ui
   Scenario Outline: Color can be customized
     Given a user is viewing the close button
-    And the prop "background-color" has <value>
+    And the prop "color" has <value>
     Then the background has color <backgroundColor>
     Examples:
       | value                 | backgroundColor                     |
