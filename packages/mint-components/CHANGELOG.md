@@ -38,6 +38,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Includes props to edit background color, show and hide border, adjust padding, include name fields, edit field labels, and edit registration error messages
   - \<sqm-referred-registration>
     - Same as \<sqm-instant-access-registration> but for the friend experience
+  - \<sqm-close-button> can be included in an auto popup component to close the popup
+    - Includes prop to change the icon color
+    - Styled to be in the top right of the first `position: relative;` parent container
 
 ## [1.6.7] - 2023-03-30
 
