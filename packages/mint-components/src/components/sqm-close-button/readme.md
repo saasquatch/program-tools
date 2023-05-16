@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property          | Attribute          | Description | Type     | Default     |
-| ----------------- | ------------------ | ----------- | -------- | ----------- |
-| `backgroundColor` | `background-color` |             | `string` | `"#000000"` |
+| Property | Attribute | Description | Type     | Default     |
+| -------- | --------- | ----------- | -------- | ----------- |
+| `color`  | `color`   |             | `string` | `"#000000"` |
 
 
 ----------------------------------------------
