@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.6.8] - 2023-5-16
+## [1.6.9] - 2023-5-16
 
 ### Changed
 
@@ -38,6 +38,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Includes props to edit background color, show and hide border, adjust padding, include name fields, edit field labels, and edit registration error messages
   - \<sqm-referred-registration>
     - Same as \<sqm-instant-access-registration> but for the friend experience
+  - \<sqm-close-button> displays the close button on Popup Widgets
+
+## [1.6.8] - 2023-04-20
+
+### Changed
+- Updated license copyright to be in line with SaaSquatch open-source policy.
 
 ## [1.6.7] - 2023-03-30
 
