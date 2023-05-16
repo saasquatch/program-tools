@@ -11,9 +11,6 @@ import instantAccessFriendRegistrationWidget from "../templates/InstantAccessFri
 import paypalReferralWidget from "../templates/PaypalReferralWidget.html";
 import paypalMonoWidget from "../templates/PaypalMonoWidget.html";
 
-import marked from "marked";
-
-import { navigation } from "@saasquatch/component-boilerplate";
 import { DefaultTemplateView } from "../utils/DefaultTemplateView";
 import { TemplateView } from "../utils/TemplateView";
 
