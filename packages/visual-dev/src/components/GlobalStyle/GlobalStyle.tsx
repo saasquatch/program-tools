@@ -29,8 +29,8 @@ export const CSSVariables = createGlobalStyle`
   --sq-nav-text-on-secondary-subdued: #999999;
 
   /* Primary */
-  --sq-action-primary: #E79533;
-  --sq-action-primary-hovered: #DA8622;
+  --sq-action-primary: #14b1f7;
+  --sq-action-primary-hovered: #14b1f7;
   --sq-text-on-primary: #ffffff;
   --sq-action-primary-disabled: #e2e2e2;
 
