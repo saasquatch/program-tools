@@ -20,14 +20,16 @@ export interface OptionProps {
   /**
    * Content to display inside the button
    */
-  children?: React.ReactElement | string;
+  children?: React.ReactElement | React.ReactNode | string;
 }
+
+export type ButtonType = "primary" | "secondary" | "text";
 
 export interface StyleProps {
   /**
    * Button type, affects background and border colour
    */
-  buttonType?: "primary" | "secondary" | "text";
+  buttonType?: ButtonType;
   /**
    * Display the button in pill style with rounded sides
    */
@@ -77,7 +79,7 @@ export const ButtonView = React.forwardRef<
   ButtonProps
 >((props, forwardedRef) => {
   const {
-    buttonType: buttontype = "primary",
+    buttonType = "primary",
     pill = false,
     loading = false,
     critical = false,
@@ -93,7 +95,7 @@ export const ButtonView = React.forwardRef<
   return (
     <StyledButton
       {...rest}
-      buttonType={buttontype}
+      buttonType={buttonType}
       pill={pill}
       isLoading={loading}
       critical={critical}
@@ -124,13 +126,13 @@ export const ButtonView = React.forwardRef<
           )}
           {loadingAnimation(
             Styles.loading_anim[size],
-            buttontype == "primary"
+            buttonType == "primary"
               ? "var(--sq-action-primary)"
               : "var(--sq-action-secondary-border)"
           )}
         </>
       )}
-      {buttontype == "primary" && success && (
+      {buttonType == "primary" && success && (
         <>
           {children && (
             <span style={{ padding: Styles.anim_padding[size] }}></span>
