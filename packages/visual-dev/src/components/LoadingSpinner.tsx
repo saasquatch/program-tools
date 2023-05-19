@@ -76,9 +76,9 @@ const RingSmall = styled(RingDefault)<RingProps>`
     width: 14px;
     height: 14px;
     margin: 3px;
-    border: 2px solid ${(props) => props.color || `#f5a623`};
-    border-color: ${(props) => props.color || `#f5a623`} transparent transparent
-      transparent;
+    border: 2px solid ${(props) => props.color || `var(--sq-loading)`};
+    border-color: ${(props) => props.color || `var(--sq-loading)`} transparent
+      transparent transparent;
   }
 `;
 
@@ -119,9 +119,9 @@ const RingLarge = styled(RingDefault)<RingProps>`
   div {
     width: 55px;
     height: 55px;
-    border: 6px solid ${(props) => props.color || `#f5a623`};
-    border-color: ${(props) => props.color || `#f5a623`} transparent transparent
-      transparent;
+    border: 6px solid ${(props) => props.color || `var(--sq-loading)`};
+    border-color: ${(props) => props.color || `var(--sq-loading)`} transparent
+      transparent transparent;
   }
 `;
 
@@ -153,8 +153,8 @@ const TableSpinnerStyle = styled(RingDefault)<RingProps>`
   div {
     width: 55px;
     height: 55px;
-    border: 6px solid #f5a623;
-    border-color: #f5a623 transparent transparent transparent;
+    border: 6px solid var(--sq-loading);
+    border-color: var(--sq-loading) transparent transparent transparent;
   }
 `;
 
@@ -183,8 +183,8 @@ const TableInitialSpinnerStyle = styled(RingDefault)`
   div {
     width: 55px;
     height: 55px;
-    border: 6px solid #f5a623;
-    border-color: #f5a623 transparent transparent transparent;
+    border: 6px solid var(--sq-loading);
+    border-color: var(--sq-loading) transparent transparent transparent;
   }
 `;
 
