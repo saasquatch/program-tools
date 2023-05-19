@@ -20,6 +20,7 @@ export const CSSVariables = createGlobalStyle`
   --sq-text-subdued: #858585;
   --sq-border: #e2e2e2;
 
+
   /* Top Nav Bar */
   --sq-nav-surface-primary: #003b45;
   --sq-nav-text-on-primary: #ffffff;
@@ -164,7 +165,23 @@ export const CSSVariables = createGlobalStyle`
 } 
 `;
 
-export const TextRules = createGlobalStyle`
+export const LinkRules = createGlobalStyle`
+
+a{
+  color: var(--sq-text-interactive);
+  text-decoration: none;
+  
+  &:visited{
+    color: var(--sq-text-interactive-visited);
+  }
+
+  &:hover{
+    color: var(--sq-text-interactive-hovered);
+    text-decoration: underline;
+  }
+}`;
+
+export const TypographyRules = createGlobalStyle`
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -217,22 +234,23 @@ pre{
 }
 
 a{
+  
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
   font-weight: var(--sq-font-weight-regular);
   font-family: var(--sq-font-family-sans);
-  color: var(--sq-text-interactive);
-  text-decoration: none;
-  
-  &:visited{
-    color: var(--sq-text-interactive-visited)
-  }
-
-  &:hover{
-    color: var(--sq-text-interactive-hovered);
-  }
 }
+
 `;
+
+export const TextRules = () => {
+  return (
+    <>
+      <LinkRules />
+      <TextRules />
+    </>
+  );
+};
 
 export const LayoutRules = createGlobalStyle`
   hr{
