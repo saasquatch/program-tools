@@ -7,6 +7,18 @@ export const CSSVariables = createGlobalStyle`
 
   /* ~~~ Colors ~~~ */
 
+  /* Impact colors */
+  --iui-coal-black: #2D3E50;
+  --iui-strata-blue: #14B1F7;
+  --iui-serenity-gray: #CACFD3;
+  --iui-darker-than-black: #23313F;
+  --iui-pale-gray: #F2F3F4;
+  --iui-storm-gray: #6C7784;
+  --iui-bleakest-gray: #969EA7;
+  --iui-error-red: #C00800;
+  --iui-rose-pink: #EFC1BF;
+  --iui-leaf-green: #008917;
+
   /* Surface */
   --sq-surface: #ffffff;
   --sq-surface-subdued: #f6f6f6;
@@ -15,38 +27,38 @@ export const CSSVariables = createGlobalStyle`
   --sq-surface-dark: #232323;
 
   /* On Surface */
-  --sq-text: #575757;
-  --sq-text-dark: #232323;
-  --sq-text-subdued: #858585;
-  --sq-border: #e2e2e2;
+  --sq-text: var(--iui-coal-black);
+  --sq-text-dark: var(--iui-darker-than-black);
+  --sq-text-subdued: var(--iui-storm-gray);
+  --sq-border: var(--iui-serenity-gray);
 
   /* Top Nav Bar */
-  --sq-nav-surface-primary: #003b45;
+  --sq-nav-surface-primary: var(--iui-coal-black);
   --sq-nav-text-on-primary: #ffffff;
-  --sq-nav-text-on-primary-subdued: #999999;
+  --sq-nav-text-on-primary-subdued: var(--iui-bleakest-gray);
   --sq-nav-surface-secondary: #ffffff;
-  --sq-nav-text-on-secondary: #003b45;
-  --sq-nav-text-on-secondary-subdued: #999999;
+  --sq-nav-text-on-secondary: var(--iui-coal-black);
+  --sq-nav-text-on-secondary-subdued: var(--iui-bleakest-gray);
 
   /* Primary */
-  --sq-action-primary: #14b1f7;
-  --sq-action-primary-hovered: #14b1f7;
+  --sq-action-primary: var(--iui-strata-blue);
+  --sq-action-primary-hovered: var(--iui-strata-blue);
   --sq-text-on-primary: #ffffff;
-  --sq-action-primary-disabled: #e2e2e2;
+  --sq-action-primary-disabled: var(--iui-pale-gray);
 
   /* Secondary */
-  --sq-action-secondary: #ffffff;
-  --sq-action-secondary-hovered: #a6b9bd;
+  --sq-action-secondary: var(--iui-pale-gray);
+  --sq-action-secondary-hovered: var(--iui-pale-gray);
   --sq-action-secondary-border: #a6b9bd;
-  --sq-text-on-secondary: #575757;
-  --sq-text-on-secondary-hovered: #ffffff;
-  --sq-placeholder-text-on-secondary: #aaaaaa;
+  --sq-text-on-secondary: var(--iui-coal-black);
+  --sq-text-on-secondary-hovered: var(--iui-bleakest-gray);
+  --sq-placeholder-text-on-secondary: var(--iui-bleakest-gray);
 
   /* Success */
-  --sq-surface-success: #57ac59;
-  --sq-surface-success-hovered: #479449;
+  --sq-surface-success: var(--iui-leaf-green);
+  --sq-surface-success-hovered: var(--iui-leaf-green);
   --sq-surface-success-subdued: #e4fce3;
-  --sq-border-success: #57ac59;
+  --sq-border-success: var(--iui-leaf-green);
   --sq-badge-surface-success: #e6faf4;
   --sq-badge-text-success: #146352;
 
@@ -64,21 +76,21 @@ export const CSSVariables = createGlobalStyle`
   --sq-badge-text-info: #1260D9;
 
   /* Critical */
-  --sq-surface-critical: #D14040;
-  --sq-surface-critical-hovered: #C12F2F;
-  --sq-surface-critical-subdued: #faf2ee;
-  --sq-border-critical: #d14040;
+  --sq-surface-critical: var(--iui-error-red);
+  --sq-surface-critical-hovered: var(--iui-error-red);
+  --sq-surface-critical-subdued: var(--iui-rose-pink);
+  --sq-border-critical: var(--iui-error-red);
   --sq-badge-text-critical: #C12F2F;
   /* Deprecated */
   --sq-on-surface-critical: #D14040;
 
   /* Interactive */
-  --sq-text-interactive: #0088CC;
-  --sq-text-interactive-hovered: #016A9E;
+  --sq-text-interactive: var(--iui-strata-blue);
+  --sq-text-interactive-hovered: var(--iui-strata-blue);
   --sq-text-interactive-visited: #681DA8;
-  --sq-focused: #458edf;
+  --sq-focused: var(--iui-strata-blue);
   --sq-icon-interactive: #0088cc;
-  --sq-surface-hover: #eef6ff;
+  --sq-surface-hover: var(--iui-pale-gray);
 
   /* Docs site */
   --sq-docs-interactive: #007A5B;
