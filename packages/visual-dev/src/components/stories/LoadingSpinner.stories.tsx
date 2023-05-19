@@ -1,5 +1,5 @@
 import React from "react";
-import { LoadingSpinner, LoadingSpinnerLarge } from "../LoadingSpinner";
+import { LoadingSpinner } from "../LoadingSpinner";
 
 export default {
   title: "Components / Loading Spinner",
@@ -8,7 +8,7 @@ export default {
 export const Normal = () => {
   return (
     <div style={{ margin: "100px" }}>
-      <LoadingSpinner />
+      <LoadingSpinner.Normal />
     </div>
   );
 };
@@ -19,7 +19,7 @@ Normal.parameters = {
 export const NormalWithProps = () => {
   return (
     <div style={{ margin: "100px" }}>
-      <LoadingSpinner
+      <LoadingSpinner.Normal
         left={"50px"}
         paddingRight={"10px"}
         right={"10px"}
@@ -36,13 +36,21 @@ NormalWithProps.parameters = {
 export const Large = () => {
   return (
     <div style={{ margin: "100px" }}>
-      <LoadingSpinnerLarge />
+      <LoadingSpinner.Large />
     </div>
   );
 };
 export const LargeNoMargin = () => {
-  return <LoadingSpinnerLarge margin="0px" />;
+  return <LoadingSpinner.Large margin="0px" />;
 };
 Large.parameters = {
   storyshots: { disable: true },
+};
+
+export const TableInitialLoad = () => {
+  return <LoadingSpinner.TableInitial />;
+};
+
+export const Table = () => {
+  return <LoadingSpinner.Table />;
 };

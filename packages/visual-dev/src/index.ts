@@ -1,7 +1,4 @@
-import {
-  LoadingSpinner,
-  LoadingSpinnerLarge,
-} from "./components/LoadingSpinner";
+import { LoadingSpinner } from "./components/LoadingSpinner";
 import { Alert, AlertView } from "./components/Alert";
 import { Avatar, AvatarView } from "./components/Avatar";
 import { Badge, BadgeView } from "./components/Badge";
@@ -132,7 +129,6 @@ export {
   ListView,
   List,
   LoadingSpinner,
-  LoadingSpinnerLarge,
   ModalView,
   ObjectFieldTemplate,
   PopoverView,
