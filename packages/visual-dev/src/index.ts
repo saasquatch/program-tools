@@ -8,7 +8,12 @@ import { Badge, BadgeView } from "./components/Badge";
 import { Switch, SwitchView } from "./components/Switch";
 import { Tag, TagView } from "./components/Tag";
 import { Tooltip, TooltipView } from "./components/Tooltip";
-import { GlobalStyle, CSSVariables, TextRules } from "./components/GlobalStyle";
+import {
+  GlobalStyle,
+  CSSVariables,
+  TextRules,
+  LinkRules,
+} from "./components/GlobalStyle";
 import {
   Button,
   ButtonView,
@@ -116,6 +121,7 @@ export {
   ErrorListTemplate,
   FieldTemplate,
   GlobalStyle,
+  LinkRules,
   HoverPopover,
   IconView,
   Icon,
