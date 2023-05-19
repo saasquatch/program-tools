@@ -259,7 +259,7 @@ export const TextRules = () => {
   return (
     <>
       <LinkRules />
-      <TextRules />
+      <TypographyRules />
     </>
   );
 };
