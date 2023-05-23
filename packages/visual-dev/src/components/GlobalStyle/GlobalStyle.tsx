@@ -47,8 +47,9 @@ export const CSSVariables = createGlobalStyle`
   /* Primary */
   --sq-action-primary: var(--iui-strata-blue);
   --sq-action-primary-hovered: var(--iui-strata-blue);
-  --sq-text-on-primary: #ffffff;
   --sq-action-primary-disabled: var(--iui-pale-gray);
+  --sq-text-on-primary: #ffffff;
+  --sq-text-on-primary-disabled: var(--iui-bleakest-gray);
 
   /* Secondary */
   --sq-action-secondary: var(--iui-pale-gray);
@@ -175,7 +176,7 @@ export const CSSVariables = createGlobalStyle`
 
   /* Border Radii */
   --sq-border-radius-small: 2px;
-  --sq-border-radius-normal: 4px;
+  --sq-border-radius-normal: 8px;
   --sq-border-radius-pill: 9999px;
 } 
 `;
