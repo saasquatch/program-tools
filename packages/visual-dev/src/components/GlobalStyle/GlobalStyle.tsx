@@ -122,7 +122,7 @@ export const CSSVariables = createGlobalStyle`
   --sq-text-input-disabled: #bdbdbd;
 
   /* Typography */
-  --sq-font-family-sans: "Muli", var(--sq-font-family-sans);
+  --sq-font-family-sans: "Muli", "Helvetica Neue", Helvetica, sans-serif;;
   --sq-font-family-monospace: monospace;
 
   --sq-font-weight-regular: 400;
