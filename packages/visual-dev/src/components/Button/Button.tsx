@@ -61,7 +61,7 @@ const StyledButton = styled.button<
 >`
   ${Styles.universal_base}
   ${(props) => Styles[props.buttonType].base}
-  ${(props) => props.pill && Styles.pill}
+  /* ${(props) => props.pill && Styles.pill} */
   ${(props) => props.size == "small" && Styles.small}
   ${(props) => props.size == "medium" && Styles.medium}
   ${(props) => props.size == "large" && Styles.large}
