@@ -117,10 +117,6 @@ const DropdownDiv = styled.div<Required<StyleProps>>`
   ${(props) => props.customCSS}
 `;
 
-const ArrowStyleSpan = styled.span`
-  ${Styles.Arrow}
-`;
-
 const DropdownContentDiv = styled("div")<Dropdown2Props>`
   ${Styles.ContentDiv}
 
@@ -189,15 +185,21 @@ const HandleView = React.forwardRef<React.ElementRef<"button">, HandleProps>(
             color="inherit"
             size="16px"
             icon={icon}
-            style={{
-              margin: -3,
-              top: 2.5,
+            customCSS={{
+              marginTop: "var(--sq-spacing-x-small)",
               marginRight: "var(--sq-spacing-x-small)",
             }}
           />
         )}
         {children || placeholder}
-        <ArrowStyleSpan>{chevron_down}</ArrowStyleSpan>
+        <IconView
+          size="14px"
+          icon="chevron_down"
+          customCSS={{
+            marginTop: "var(--sq-spacing-xxx-small)",
+            marginLeft: "var(--sq-spacing-x-small)",
+          }}
+        />
       </ButtonView>
     );
   }
