@@ -82,7 +82,7 @@ const RingSmall = styled(RingDefault)<RingProps>`
   }
 `;
 
-export const LoadingSpinner = ({ ...props }: RingProps) => {
+const SmallSpinner = ({ ...props }: RingProps) => {
   const { bottom, right, left, paddingRight, color } = props;
   return (
     <RingSmall
@@ -125,7 +125,7 @@ const RingLarge = styled(RingDefault)<RingProps>`
   }
 `;
 
-export const LoadingSpinnerLarge = ({ ...props }: RingProps) => {
+const LoadingSpinnerLarge = ({ ...props }: RingProps) => {
   const { color, margin } = props;
   return (
     <RingLarge color={color} margin={margin}>
@@ -158,7 +158,7 @@ const TableSpinnerStyle = styled(RingDefault)<RingProps>`
   }
 `;
 
-export const TableSpinner = () => {
+const TableSpinner = () => {
   return (
     <TableSpinnerStyle>
       <div></div>
@@ -188,7 +188,7 @@ const TableInitialSpinnerStyle = styled(RingDefault)`
   }
 `;
 
-export const TableInitialLoad = () => {
+const TableInitialLoad = () => {
   return (
     <tr style={{ height: "160px" }}>
       <TableInitialSpinnerStyle>
@@ -199,4 +199,11 @@ export const TableInitialLoad = () => {
       </TableInitialSpinnerStyle>
     </tr>
   );
+};
+
+export const LoadingSpinner = {
+  Normal: SmallSpinner,
+  Large: LoadingSpinnerLarge,
+  TableInitial: TableInitialLoad,
+  Table: TableSpinner,
 };
