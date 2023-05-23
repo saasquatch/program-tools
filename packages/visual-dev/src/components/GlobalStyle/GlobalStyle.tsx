@@ -32,6 +32,9 @@ export const CSSVariables = createGlobalStyle`
   --sq-text-subdued: var(--iui-storm-gray);
   --sq-border: var(--iui-serenity-gray);
 
+  /* Loading */
+  --sq-loading: var(--iui-strata-blue);
+
 
   /* Top Nav Bar */
   --sq-nav-surface-primary: var(--iui-coal-black);
