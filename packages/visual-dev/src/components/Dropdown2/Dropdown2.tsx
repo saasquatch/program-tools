@@ -11,33 +11,17 @@ type Dropdown2Props = OptionProps &
 
 export interface OptionProps {
   /**
-   * Text displayed in dropdown handle
-   */
-  text?: string;
-  /**
    * Display the open dropdown menu
    */
   showMenu?: boolean;
-  /**
-   * Handle button type
-   */
-  buttonType: ButtonType;
   /**
    * Render the handle in the disabled (greyed out) state
    */
   disabled?: boolean;
   /**
-   * Key of an icon to render left of the text in the handle
-   */
-  icon?: IconKey;
-  /**
    * Show the menu able the handle instead of below
    */
   popUpwards?: boolean;
-  /**
-   * Onclick callback for dropdown handle, usually toggles the open state
-   */
-  onClickDropdown?: () => void;
   /**
    * Text displayed in place of items if no items are provided
    */
@@ -46,6 +30,37 @@ export interface OptionProps {
    * Dropdown content, almost always multiple Dropdown.Sublist or Dropdown.Item
    */
   children?: React.ReactNode;
+  /**
+   * Slot for the dropdown handle
+   */
+  handleSlot?: React.ReactNode;
+}
+
+export interface HandleProps {
+  /**
+   * Text displayed in dropdown handle
+   */
+  children: string | React.ReactNode | React.ReactNode[];
+  /**
+   * Key of an icon to render left of the text in the handle
+   */
+  icon?: IconKey;
+  /**
+   * Handle button type
+   */
+  buttonType?: ButtonType;
+  /**
+   * Onclick callback for dropdown handle, usually toggles the open state
+   */
+  onClickDropdown?: () => void;
+  /**
+   * Custom CSS applied to item
+   */
+  customCSS?: CSSProp;
+  /**
+   * Text display in button when no value is selected
+   */
+  placeholder?: string;
 }
 
 export interface DropdownItemProps {
@@ -73,10 +88,6 @@ export interface DropdownItemProps {
    * Display a checkmark before the item
    */
   checked?: boolean;
-  /**
-   * Text display in button when no value is selected
-   */
-  placeholder?: string;
 }
 
 export interface DropdownSublistProps {
@@ -110,28 +121,69 @@ const ArrowStyleSpan = styled.span`
   ${Styles.Arrow}
 `;
 
-export const Dropdown2View = React.forwardRef<
-  React.ElementRef<"div">,
-  Dropdown2Props
->((props, forwardedRef) => {
-  const {
-    text = "",
-    showMenu = false,
-    disabled = false,
-    popUpwards = false,
-    icon,
-    onClickDropdown,
-    children,
-    placeholder,
-    emptyText,
-    buttonType,
-    customCSS: customCSS = {},
-    ...rest
-  } = props;
+const DropdownContentDiv = styled("div")<Dropdown2Props>`
+  ${Styles.ContentDiv}
 
-  return (
-    <DropdownDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
-      <ButtonView buttonType={buttonType}>
+  ${(props) =>
+    props.popUpwards &&
+    `top: 2px; transform: translateY(calc(-100% + -1*var(--sq-spacing-x-small)));`}
+`;
+
+const EmptyTextSpan = styled("span")`
+  ${Styles.EmptyTextSpan}
+`;
+
+const Dropdown2View = React.forwardRef<React.ElementRef<"div">, Dropdown2Props>(
+  (props, forwardedRef) => {
+    const {
+      showMenu = false,
+      disabled = false,
+      popUpwards = false,
+      children,
+      placeholder,
+      emptyText,
+      customCSS: customCSS = {},
+      handleSlot = <div></div>,
+      ...rest
+    } = props;
+
+    return (
+      <DropdownDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+        {handleSlot}
+        {showMenu && (
+          <DropdownContentDiv popUpwards={popUpwards}>
+            {children ||
+              (emptyText && (
+                <ItemView>
+                  <EmptyTextSpan>{emptyText}</EmptyTextSpan>
+                </ItemView>
+              ))}
+          </DropdownContentDiv>
+        )}
+      </DropdownDiv>
+    );
+  }
+);
+
+const HandleView = React.forwardRef<React.ElementRef<"button">, HandleProps>(
+  (props, forwardedRef) => {
+    const {
+      placeholder,
+      icon,
+      buttonType = "primary",
+      customCSS = {},
+      onClickDropdown,
+      children,
+      ...rest
+    } = props;
+    return (
+      <ButtonView
+        buttonType={buttonType}
+        ref={forwardedRef}
+        onClick={onClickDropdown}
+        customCSS={customCSS}
+        {...rest}
+      >
         {icon && (
           <IconView
             color="inherit"
@@ -144,9 +196,80 @@ export const Dropdown2View = React.forwardRef<
             }}
           />
         )}
-        {text || placeholder}
+        {children || placeholder}
         <ArrowStyleSpan>{chevron_down}</ArrowStyleSpan>
       </ButtonView>
-    </DropdownDiv>
-  );
+    );
+  }
+);
+
+const DropdownItemDiv = styled("div")<Required<StyleProps>>`
+  ${Styles.ItemDiv}
+  ${(props) => props.customCSS}
+`;
+
+const ItemTitleContainerDiv = styled("div")`
+  ${Styles.ItemTitleContainerDiv}
+`;
+
+const ItemSideDescriptionSpan = styled("span")`
+  ${Styles.ItemSideDescriptionSpan}
+`;
+
+const ItemDescriptionP = styled("p")`
+  ${Styles.ItemDescriptionP}
+`;
+
+const ItemView = React.forwardRef<React.ElementRef<"div">, DropdownItemProps>(
+  (props, forwardedRef) => {
+    const {
+      onClick,
+      children,
+      checked,
+      description,
+      sideDescription,
+      customCSS = {},
+      ...rest
+    } = props;
+
+    return (
+      <DropdownItemDiv
+        onClick={onClick}
+        {...rest}
+        ref={forwardedRef}
+        customCSS={customCSS}
+      >
+        <ItemTitleContainerDiv>
+          {checked && <IconView icon="checkmark" size="18px" />}
+          {children}
+          {sideDescription && (
+            <ItemSideDescriptionSpan>{sideDescription}</ItemSideDescriptionSpan>
+          )}
+        </ItemTitleContainerDiv>
+        {description && <ItemDescriptionP>{description}</ItemDescriptionP>}
+      </DropdownItemDiv>
+    );
+  }
+);
+
+const DropdownNamespace = Object.assign(Dropdown2View, {
+  // SublistView: SublistView,
+  ItemView: ItemView,
+  HandleView: HandleView,
 });
+
+/**
+ * @deprecated use {@link Dropdown2View} instead
+ */
+const DropdownNamespaceDeprecated = Object.assign(Dropdown2View, {
+  // Sublist: SublistView,
+  ItemView: ItemView,
+  HandleView: HandleView,
+});
+
+export { DropdownNamespace as Dropdown2View };
+
+/**
+ * @deprecated use {@link Dropdown2View} instead
+ */
+export { DropdownNamespaceDeprecated as Dropdown };
