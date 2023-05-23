@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled, { CSSProp } from "styled-components";
+import styled, { CSSProp, css } from "styled-components";
 import { IconKey, IconView } from "../Icon";
 import * as Styles from "./Styles";
 import { ButtonType, ButtonView } from "../Button/Button";
@@ -121,7 +121,10 @@ const DropdownContentDiv = styled("div")<Dropdown2Props>`
 
   ${(props) =>
     props.popUpwards &&
-    `top: 2px; transform: translateY(calc(-100% + -1*var(--sq-spacing-x-small)));`}
+    css`
+      top: 0;
+      transform: translateY(calc(-100%));
+    `}
 `;
 
 const EmptyTextSpan = styled("span")`

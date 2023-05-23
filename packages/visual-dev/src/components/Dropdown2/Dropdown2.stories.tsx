@@ -54,8 +54,9 @@ export const Functional = () => {
 export const FunctionalUpwards = () => {
   const [enabled, setEnable] = useState(true);
   return (
-    <div style={{ height: 280 }}>
+    <div style={{ height: 250, paddingTop: 200 }}>
       <Dropdown2View
+        popUpwards
         showMenu={enabled}
         handleSlot={
           <Dropdown2View.HandleView onClickDropdown={() => setEnable(!enabled)}>
@@ -69,6 +70,54 @@ export const FunctionalUpwards = () => {
   );
 };
 
+export const FunctionalButtonType = () => {
+  const [enabled1, setEnable1] = useState(false);
+  const [enabled2, setEnable2] = useState(false);
+  const [enabled3, setEnable3] = useState(false);
+  return (
+    <div style={{ height: 280, display: "flex", gap: "40px" }}>
+      <Dropdown2View
+        showMenu={enabled1}
+        handleSlot={
+          <Dropdown2View.HandleView
+            buttonType="primary"
+            onClickDropdown={() => setEnable1(!enabled1)}
+          >
+            Primary button
+          </Dropdown2View.HandleView>
+        }
+      >
+        {defaultItems}
+      </Dropdown2View>
+      <Dropdown2View
+        showMenu={enabled2}
+        handleSlot={
+          <Dropdown2View.HandleView
+            buttonType="secondary"
+            onClickDropdown={() => setEnable2(!enabled2)}
+          >
+            Secondary button
+          </Dropdown2View.HandleView>
+        }
+      >
+        {defaultItems}
+      </Dropdown2View>
+      <Dropdown2View
+        showMenu={enabled3}
+        handleSlot={
+          <Dropdown2View.HandleView
+            buttonType="text"
+            onClickDropdown={() => setEnable3(!enabled3)}
+          >
+            Text button
+          </Dropdown2View.HandleView>
+        }
+      >
+        {defaultItems}
+      </Dropdown2View>
+    </div>
+  );
+};
 export const FunctionalIcon = () => {
   const [enabled, setEnable] = useState(true);
   return (
