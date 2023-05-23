@@ -253,8 +253,35 @@ const ItemView = React.forwardRef<React.ElementRef<"div">, DropdownItemProps>(
   }
 );
 
+const SublistDiv = styled("div")<Required<StyleProps>>`
+  ${Styles.SublistDiv}
+  ${(props) => props.customCSS}
+`;
+
+const DropdownSubItemDiv = styled("div")`
+  ${Styles.SubItemDiv}
+`;
+
+const DropdownSublistDiv = styled("div")`
+  ${Styles.DropdownSublistDiv}
+`;
+
+const SublistView = React.forwardRef<
+  React.ElementRef<"div">,
+  DropdownSublistProps
+>((props, forwardedRef) => {
+  const { name, children, customCSS = {}, ...rest } = props;
+
+  return (
+    <SublistDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+      <DropdownSublistDiv>{name}</DropdownSublistDiv>
+      <DropdownSubItemDiv>{children}</DropdownSubItemDiv>
+    </SublistDiv>
+  );
+});
+
 const DropdownNamespace = Object.assign(Dropdown2View, {
-  // SublistView: SublistView,
+  SublistView: SublistView,
   ItemView: ItemView,
   HandleView: HandleView,
 });
@@ -263,7 +290,7 @@ const DropdownNamespace = Object.assign(Dropdown2View, {
  * @deprecated use {@link Dropdown2View} instead
  */
 const DropdownNamespaceDeprecated = Object.assign(Dropdown2View, {
-  // Sublist: SublistView,
+  Sublist: SublistView,
   ItemView: ItemView,
   HandleView: HandleView,
 });

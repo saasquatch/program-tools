@@ -61,3 +61,23 @@ export const EmptyTextSpan = css`
   font-size: var(--sq-font-size-regular);
   font-style: italic;
 `;
+
+export const SublistDiv = css`
+  border-radius: inherit;
+`;
+
+export const SubItemDiv = css`
+  text-indent: var(--sq-spacing-small);
+  border-radius: inherit;
+`;
+
+export const DropdownSublistDiv = css`
+  padding: var(--sq-spacing-x-small) var(--sq-spacing-small);
+  border-radius: inherit;
+  user-select: none;
+  color: var(--sq-text);
+  font-family: var(--sq-font-family-sans);
+  font-weight: var(--sq-font-weight-bold);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
+`;

@@ -18,7 +18,7 @@ const defaultItems = (
       {" "}
       Dropdown Item{" "}
     </Dropdown2View.ItemView>
-    {/* <Dropdown2View.SublistView name="Dropdown Subtitle">
+    <Dropdown2View.SublistView name="Dropdown Subtitle">
       <Dropdown2View.ItemView onClick={exampleOnClick}>
         {" "}
         Dropdown Suboption{" "}
@@ -27,7 +27,7 @@ const defaultItems = (
         {" "}
         Dropdown Suboption{" "}
       </Dropdown2View.ItemView>
-    </Dropdown2View.SublistView> */}
+    </Dropdown2View.SublistView>
   </>
 );
 
@@ -141,7 +141,25 @@ export const Disabled = () => {
   );
 };
 
-// todo - make story
+export const MenuSuboptions = () => (
+  <div style={{ height: 280 }}>
+    <Dropdown2View
+      showMenu={true}
+      handleSlot={
+        <Dropdown2View.HandleView onClickDropdown={exampleOnClick}>
+          Menu Suboptions
+        </Dropdown2View.HandleView>
+      }
+    >
+      <Dropdown2View.SublistView name="Dropdown Subtitle">
+        <Dropdown2View.ItemView> Dropdown Suboption </Dropdown2View.ItemView>
+        <Dropdown2View.ItemView> Dropdown Suboption </Dropdown2View.ItemView>
+        <Dropdown2View.ItemView> Dropdown Suboption </Dropdown2View.ItemView>
+      </Dropdown2View.SublistView>
+    </Dropdown2View>
+  </div>
+);
+
 export const Description = () => {
   return (
     <div style={{ height: 280 }}>
@@ -164,7 +182,6 @@ export const Description = () => {
   );
 };
 
-// todo - make story
 export const SideDescription = () => {
   return (
     <div style={{ height: 280 }}>
@@ -187,7 +204,6 @@ export const SideDescription = () => {
   );
 };
 
-// todo - make story
 export const BothDescriptions = () => {
   return (
     <div style={{ height: 280 }}>
@@ -216,7 +232,6 @@ export const BothDescriptions = () => {
   );
 };
 
-// todo - make story
 export const Checked = () => {
   return (
     <div style={{ height: 280 }}>
@@ -228,7 +243,8 @@ export const Checked = () => {
           </Dropdown2View.HandleView>
         }
       >
-        {defaultItems}
+        <Dropdown2View.ItemView checked>Dropdown Item</Dropdown2View.ItemView>
+        <Dropdown2View.ItemView checked>Dropdown Item</Dropdown2View.ItemView>
       </Dropdown2View>
     </div>
   );
