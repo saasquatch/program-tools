@@ -3,7 +3,7 @@ import { css } from "styled-components";
 export const base = css`
   padding: var(--sq-spacing-x-small) 10px;
   color: var(--sq-text);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);

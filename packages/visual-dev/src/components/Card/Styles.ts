@@ -23,7 +23,7 @@ export const CardHeaderIconDiv = css`
   margin-right: 16px;
 `;
 export const CardHeaderTextDiv = css`
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-header-three);
   line-height: var(--sq-line-height-header-three);

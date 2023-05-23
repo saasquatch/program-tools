@@ -61,7 +61,7 @@
   --sq-surface-hover: #eef6ff;
 
   /* Typography */
-  --sq-font-family-sans: "Helvetica Neue", Helvetica, sans-serif;
+  --sq-font-family-sans: var(--sq-font-family-sans);
 
   --sq-font-weight-regular: 400;
   --sq-font-weight-semibold: 600;
