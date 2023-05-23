@@ -7,7 +7,7 @@ export const TextareaBoxStyle = css`
   height: 100%;
   color: var(--sq-text);
   background: var(--sq-surface);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-size: var(--sq-font-size-regular);
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
