@@ -3,7 +3,7 @@
 // Source / https://loading.io/css/
 
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { CSSProp, keyframes } from "styled-components";
 
 export interface RingProps {
   /**
@@ -30,6 +30,10 @@ export interface RingProps {
    * Spinner margin
    */
   margin?: string;
+  /**
+   * Additional custom CSS
+   */
+  customCSS?: CSSProp;
 }
 
 const rotate = keyframes`
@@ -72,6 +76,7 @@ const RingSmall = styled(RingDefault)<RingProps>`
   right: ${(props) => props.right || `2px`};
   left: ${(props) => props.left || `unset`};
   padding-right: ${(props) => props.paddingRight || `unset`};
+  ${(props) => props.customCSS}
   div {
     width: 14px;
     height: 14px;
@@ -83,7 +88,7 @@ const RingSmall = styled(RingDefault)<RingProps>`
 `;
 
 const SmallSpinner = ({ ...props }: RingProps) => {
-  const { bottom, right, left, paddingRight, color } = props;
+  const { bottom, right, left, paddingRight, color, customCSS } = props;
   return (
     <RingSmall
       bottom={bottom}
@@ -91,6 +96,7 @@ const SmallSpinner = ({ ...props }: RingProps) => {
       left={left}
       paddingRight={paddingRight}
       color={color}
+      customCSS={customCSS}
     >
       <div></div>
       <div></div>
@@ -126,9 +132,16 @@ const RingLarge = styled(RingDefault)<RingProps>`
 `;
 
 const LoadingSpinnerLarge = ({ ...props }: RingProps) => {
-  const { color, margin } = props;
+  const { bottom, right, left, paddingRight, color, customCSS } = props;
   return (
-    <RingLarge color={color} margin={margin}>
+    <RingLarge
+      bottom={bottom}
+      right={right}
+      left={left}
+      paddingRight={paddingRight}
+      color={color}
+      customCSS={customCSS}
+    >
       <div></div>
       <div></div>
       <div></div>
@@ -158,9 +171,17 @@ const TableSpinnerStyle = styled(RingDefault)<RingProps>`
   }
 `;
 
-const TableSpinner = () => {
+const TableSpinner = (props: RingProps) => {
+  const { bottom, right, left, paddingRight, color, customCSS } = props;
   return (
-    <TableSpinnerStyle>
+    <TableSpinnerStyle
+      bottom={bottom}
+      right={right}
+      left={left}
+      paddingRight={paddingRight}
+      color={color}
+      customCSS={customCSS}
+    >
       <div></div>
       <div></div>
       <div></div>
