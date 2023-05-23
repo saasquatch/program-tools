@@ -3,7 +3,6 @@ import styled, { CSSProp } from "styled-components";
 import { IconKey, IconView } from "../Icon";
 import * as Styles from "./Styles";
 import { ButtonType, ButtonView } from "../Button/Button";
-import { chevron_down } from "../Icon/SVGs";
 
 type Dropdown2Props = OptionProps &
   StyleProps &
@@ -14,10 +13,6 @@ export interface OptionProps {
    * Display the open dropdown menu
    */
   showMenu?: boolean;
-  /**
-   * Render the handle in the disabled (greyed out) state
-   */
-  disabled?: boolean;
   /**
    * Show the menu able the handle instead of below
    */
@@ -40,7 +35,7 @@ export interface HandleProps {
   /**
    * Text displayed in dropdown handle
    */
-  children: string | React.ReactNode | React.ReactNode[];
+  children?: string | React.ReactNode | React.ReactNode[];
   /**
    * Key of an icon to render left of the text in the handle
    */
@@ -61,6 +56,10 @@ export interface HandleProps {
    * Text display in button when no value is selected
    */
   placeholder?: string;
+  /**
+   * Render the handle in the disabled (greyed out) state
+   */
+  disabled?: boolean;
 }
 
 export interface DropdownItemProps {
@@ -133,7 +132,6 @@ const Dropdown2View = React.forwardRef<React.ElementRef<"div">, Dropdown2Props>(
   (props, forwardedRef) => {
     const {
       showMenu = false,
-      disabled = false,
       popUpwards = false,
       children,
       placeholder,
@@ -167,6 +165,7 @@ const HandleView = React.forwardRef<React.ElementRef<"button">, HandleProps>(
       placeholder,
       icon,
       buttonType = "primary",
+      disabled = false,
       customCSS = {},
       onClickDropdown,
       children,
@@ -174,6 +173,7 @@ const HandleView = React.forwardRef<React.ElementRef<"button">, HandleProps>(
     } = props;
     return (
       <ButtonView
+        disabled={disabled}
         buttonType={buttonType}
         ref={forwardedRef}
         onClick={onClickDropdown}
@@ -186,7 +186,6 @@ const HandleView = React.forwardRef<React.ElementRef<"button">, HandleProps>(
             size="16px"
             icon={icon}
             customCSS={{
-              marginTop: "var(--sq-spacing-x-small)",
               marginRight: "var(--sq-spacing-x-small)",
             }}
           />

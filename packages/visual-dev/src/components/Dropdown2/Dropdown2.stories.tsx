@@ -37,6 +37,8 @@ export const Functional = () => {
     <div style={{ height: 280 }}>
       <Dropdown2View
         showMenu={enabled}
+        placeholder="Placeholder"
+        emptyText="Empty text"
         handleSlot={
           <Dropdown2View.HandleView onClickDropdown={() => setEnable(!enabled)}>
             Test handle
@@ -127,9 +129,8 @@ export const Disabled = () => {
     <div style={{ height: 280 }}>
       <Dropdown2View
         showMenu={false}
-        disabled
         handleSlot={
-          <Dropdown2View.HandleView onClickDropdown={exampleOnClick}>
+          <Dropdown2View.HandleView onClickDropdown={exampleOnClick} disabled>
             Test handle
           </Dropdown2View.HandleView>
         }
@@ -152,7 +153,12 @@ export const Description = () => {
           </Dropdown2View.HandleView>
         }
       >
-        {defaultItems}
+        <Dropdown2View.ItemView description="description">
+          Dropdown Item
+        </Dropdown2View.ItemView>
+        <Dropdown2View.ItemView description="description">
+          Dropdown Item
+        </Dropdown2View.ItemView>
       </Dropdown2View>
     </div>
   );
@@ -170,7 +176,12 @@ export const SideDescription = () => {
           </Dropdown2View.HandleView>
         }
       >
-        {defaultItems}
+        <Dropdown2View.ItemView sideDescription="side">
+          Dropdown Item
+        </Dropdown2View.ItemView>
+        <Dropdown2View.ItemView sideDescription="side">
+          Dropdown Item
+        </Dropdown2View.ItemView>
       </Dropdown2View>
     </div>
   );
@@ -188,7 +199,18 @@ export const BothDescriptions = () => {
           </Dropdown2View.HandleView>
         }
       >
-        {defaultItems}
+        <Dropdown2View.ItemView
+          description="description"
+          sideDescription="side"
+        >
+          Dropdown Item
+        </Dropdown2View.ItemView>
+        <Dropdown2View.ItemView
+          description="description"
+          sideDescription="side"
+        >
+          Dropdown Item
+        </Dropdown2View.ItemView>
       </Dropdown2View>
     </div>
   );
@@ -252,6 +274,7 @@ export const NoItems = () => {
   return (
     <div style={{ height: 280 }}>
       <Dropdown2View
+        emptyText="Empty text"
         showMenu={true}
         handleSlot={
           <Dropdown2View.HandleView
