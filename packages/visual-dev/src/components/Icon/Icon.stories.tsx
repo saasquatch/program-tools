@@ -19,6 +19,67 @@ export const CSSCustom = () => (
     icon={"add"}
   />
 );
+
+const TestTooltipDiv = styled.div`
+  margin: 50px 50%;
+`;
+export const IconWithTooltip = () => (
+  <TestTooltipDiv>
+    <IconView icon={"add"} tooltip="Tooltip description" />
+  </TestTooltipDiv>
+);
+export const tooltipBottom = () => (
+  <TestTooltipDiv>
+    <IconView
+      icon={"add"}
+      tooltip="Tooltip description"
+      tooltipDirection="bottom"
+    />
+  </TestTooltipDiv>
+);
+export const tooltipLeft = () => (
+  <TestTooltipDiv>
+    <IconView
+      icon={"add"}
+      tooltip="A tooltip that explains something in detail"
+      tooltipDirection="left"
+    />
+  </TestTooltipDiv>
+);
+export const tooltipRight = () => (
+  <TestTooltipDiv>
+    <IconView
+      icon={"add"}
+      tooltip="A tooltip that explains something in detail"
+      tooltipDirection="right"
+    />
+  </TestTooltipDiv>
+);
+export const tooltipMaxWidth = () => (
+  <TestTooltipDiv>
+    <IconView
+      icon={"add"}
+      tooltip="A tooltip that explains something in detail. This is a longer tooltip."
+      tooltipDirection="bottom"
+      tooltipMaxWidth="400px"
+    />
+  </TestTooltipDiv>
+);
+export const tooltipCustomCSS = () => (
+  <TestTooltipDiv>
+    <IconView
+      icon={"add"}
+      tooltip="A tooltip that explains something in detail. This is a longer tooltip."
+      tooltipDirection="right"
+      tooltipMaxWidth="200px"
+      tooltipCustomCSS={{
+        fontSize: "20px",
+        fontWeight: "bold",
+        textAlign: "center",
+      }}
+    />
+  </TestTooltipDiv>
+);
 export const close = () => <IconView icon={"close"} />;
 export const ChevronDown = () => <IconView icon={"chevron_down"} />;
 export const ChevronUp = () => <IconView icon={"chevron_up"} />;
@@ -116,67 +177,6 @@ export const filled_package_logo = () => (
 );
 export const open_tab = () => <IconView icon={"open_tab"} />;
 export const refresh = () => <IconView icon={"refresh"} />;
-
-const TestTooltipDiv = styled.div`
-  margin: 50px 50%;
-`;
-export const IconWithTooltip = () => (
-  <TestTooltipDiv>
-    <IconView icon={"add"} tooltip="Tooltip description" />
-  </TestTooltipDiv>
-);
-export const tooltipBottom = () => (
-  <TestTooltipDiv>
-    <IconView
-      icon={"add"}
-      tooltip="Tooltip description"
-      tooltipDirection="bottom"
-    />
-  </TestTooltipDiv>
-);
-export const tooltipLeft = () => (
-  <TestTooltipDiv>
-    <IconView
-      icon={"add"}
-      tooltip="A tooltip that explains something in detail"
-      tooltipDirection="left"
-    />
-  </TestTooltipDiv>
-);
-export const tooltipRight = () => (
-  <TestTooltipDiv>
-    <IconView
-      icon={"add"}
-      tooltip="A tooltip that explains something in detail"
-      tooltipDirection="right"
-    />
-  </TestTooltipDiv>
-);
-export const tooltipMaxWidth = () => (
-  <TestTooltipDiv>
-    <IconView
-      icon={"add"}
-      tooltip="A tooltip that explains something in detail. This is a longer tooltip."
-      tooltipDirection="bottom"
-      tooltipMaxWidth="400px"
-    />
-  </TestTooltipDiv>
-);
-export const tooltipCustomCSS = () => (
-  <TestTooltipDiv>
-    <IconView
-      icon={"add"}
-      tooltip="A tooltip that explains something in detail. This is a longer tooltip."
-      tooltipDirection="right"
-      tooltipMaxWidth="200px"
-      tooltipCustomCSS={{
-        fontSize: "20px",
-        fontWeight: "bold",
-        textAlign: "center",
-      }}
-    />
-  </TestTooltipDiv>
-);
 export const first = () => <IconView icon={"first_badge"} />;
 export const infinity = () => <IconView icon={"infinity"} />;
 export const gift_filled = () => <IconView icon={"gift_filled"} />;
@@ -197,3 +197,5 @@ export const checkmark_circle_filled = () => (
 export const globe = () => <IconView icon={"globe"} />;
 export const lock = () => <IconView icon={"lock"} />;
 export const unlock = () => <IconView icon={"unlock"} />;
+export const download = () => <IconView icon={"download"} />;
+export const add_user = () => <IconView icon={"add_user"} />;
