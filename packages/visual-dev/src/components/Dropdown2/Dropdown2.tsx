@@ -303,4 +303,4 @@ export { DropdownNamespace as Dropdown2View };
 /**
  * @deprecated use {@link Dropdown2View} instead
  */
-export { DropdownNamespaceDeprecated as Dropdown };
+export { DropdownNamespaceDeprecated as Dropdown2 };
