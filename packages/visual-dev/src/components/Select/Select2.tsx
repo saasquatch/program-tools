@@ -320,7 +320,7 @@ const ComboboxContainerDiv = styled.div<{
   ${Styles.ComboboxContainerDiv}
   ${(props) =>
     props.isOpen
-      ? "border: 2px solid var(--sq-focused); border-bottom: none; border-radius: var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0; padding-bottom: var(--sq-spacing-xxx-small)"
+      ? "border: 1px solid var(--sq-focused); border-bottom: none; border-radius: var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0; padding-bottom: var(--sq-spacing-xxx-small)"
       : ""};
   ${(props) =>
     props.errors

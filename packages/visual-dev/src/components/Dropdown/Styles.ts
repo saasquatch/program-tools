@@ -37,7 +37,7 @@ export const ButtonDiv = css`
   display: flex;
   user-select: none;
   padding: 7px 12px;
-  border: 2px solid var(--sq-border);
+  border: 1px solid var(--sq-border);
   color: var(--sq-text);
   font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-regular);
@@ -52,7 +52,7 @@ export const ContentDiv = css`
   min-width: inherit;
   z-index: 100;
   background: #ffffff;
-  border: 2px solid var(--sq-text-interactive);
+  border: 1px solid var(--sq-text-interactive);
   box-sizing: border-box;
   &:empty {
     border: none;

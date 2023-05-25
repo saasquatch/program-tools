@@ -43,19 +43,19 @@ export const DataTableDiv = css`
 export const Row = {
   row: css`
     background: var(--sq-surface);
-    border: 2px solid var(--sq-border);
+    border: 1px solid var(--sq-border);
     border-top: 0px;
     box-sizing: border-box;
   `,
   header: css`
     font-weight: var(--sq-font-weight-bold);
     background: var(--sq-background);
-    border: 2px solid var(--sq-border);
+    border: 1px solid var(--sq-border);
     box-sizing: border-box;
   `,
   extra: css`
     background: var(--sq-background);
-    border: 2px solid var(--sq-border);
+    border: 1px solid var(--sq-border);
     box-sizing: border-box;
   `,
 };
@@ -146,7 +146,7 @@ export const PaginationDiv = css`
   padding: var(--sq-spacing-xx-small) 20px;
   align-items: center;
   background: var(--sq-background);
-  border: 2px solid var(--sq-border);
+  border: 1px solid var(--sq-border);
   border-top: 0px;
   box-sizing: border-box;
   min-height: 42px;

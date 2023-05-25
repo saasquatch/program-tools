@@ -2,13 +2,12 @@ import { css } from "styled-components";
 
 export const CardDiv = css`
   width: 277px;
-  height: 215px;
   background: var(--sq-surface);
-  border: 2px solid var(--sq-border);
+  border: 1px solid var(--sq-border);
   box-sizing: border-box;
   border-radius: var(--sq-border-radius-normal);
   color: var(--sq-text);
-  padding: var(--sq-spacing-x-small);
+  padding: var(--sq-spacing-medium) var(--sq-spacing-x-small);
 `;
 export const CardHeaderDiv = css`
 display: flex;
@@ -48,7 +47,7 @@ export const CardLongDiv = css`
   flex-direction: column;
 
   background: var(--sq-surface);
-  border: 2px solid var(--sq-border);
+  border: 1px solid var(--sq-border);
   box-sizing: border-box;
   border-radius: var(--sq-border-radius-normal);
   color: var(--sq-text);
@@ -84,7 +83,7 @@ export const CardEditDiv = css`
   width: 850px;
   height: 74px;
   background: var(--sq-surface);
-  border: 2px solid var(--sq-border);
+  border: 1px solid var(--sq-border);
   box-sizing: border-box;
   border-radius: var(--sq-border-radius-normal);
   color: var(--sq-text);

@@ -13,7 +13,7 @@ export const InputBoxStyle = css`
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
 
-  border: 2px solid var(--sq-border);
+  border: 1px solid var(--sq-border);
   border-radius: var(--sq-border-radius-normal);
 
   &[type="date"] {
@@ -50,7 +50,7 @@ export const ExtrasDiv = css`
 `;
 
 export const invalid = css`
-  border: 2px solid var(--sq-border-critical);
+  border: 1px solid var(--sq-border-critical);
   border-radius: var(--sq-border-radius-normal);
 
   &:focus {
