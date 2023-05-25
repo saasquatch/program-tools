@@ -38,6 +38,7 @@ export const CSSVariables = createGlobalStyle`
 
   /* Top Nav Bar */
   --sq-nav-surface-primary: var(--iui-coal-black);
+  --nav-surface-primary-subdued: rgba(255, 255, 255, 0.12);
   --sq-nav-text-on-primary: #ffffff;
   --sq-nav-text-on-primary-subdued: var(--iui-bleakest-gray);
   --sq-nav-surface-secondary: #ffffff;
