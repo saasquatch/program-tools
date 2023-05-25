@@ -34,7 +34,7 @@ const defaultItems = (
 export const Functional = () => {
   const [enabled, setEnable] = useState(true);
   return (
-    <div style={{ height: 280 }}>
+    <div style={{ height: 230 }}>
       <Dropdown2View
         showMenu={enabled}
         placeholder="Placeholder"
@@ -75,7 +75,14 @@ export const FunctionalButtonType = () => {
   const [enabled2, setEnable2] = useState(false);
   const [enabled3, setEnable3] = useState(false);
   return (
-    <div style={{ height: 280, display: "flex", gap: "40px" }}>
+    <div
+      style={{
+        height: 230,
+        display: "flex",
+        gap: "40px",
+        justifyContent: "center",
+      }}
+    >
       <Dropdown2View
         showMenu={enabled1}
         handleSlot={
@@ -118,10 +125,67 @@ export const FunctionalButtonType = () => {
     </div>
   );
 };
+
+export const FunctionalMenuPosition = () => {
+  const [enabled1, setEnable1] = useState(false);
+  const [enabled2, setEnable2] = useState(false);
+  const [enabled3, setEnable3] = useState(false);
+  return (
+    <div
+      style={{
+        height: 230,
+        display: "flex",
+        gap: "40px",
+        justifyContent: "center",
+      }}
+    >
+      <Dropdown2View
+        showMenu={enabled1}
+        menuPosition="left"
+        handleSlot={
+          <Dropdown2View.HandleView
+            onClickDropdown={() => setEnable1(!enabled1)}
+          >
+            Left menu
+          </Dropdown2View.HandleView>
+        }
+      >
+        {defaultItems}
+      </Dropdown2View>
+      <Dropdown2View
+        showMenu={enabled2}
+        menuPosition="center"
+        handleSlot={
+          <Dropdown2View.HandleView
+            onClickDropdown={() => setEnable2(!enabled2)}
+          >
+            Center menu
+          </Dropdown2View.HandleView>
+        }
+      >
+        {defaultItems}
+      </Dropdown2View>
+      <Dropdown2View
+        showMenu={enabled3}
+        menuPosition="right"
+        handleSlot={
+          <Dropdown2View.HandleView
+            onClickDropdown={() => setEnable3(!enabled3)}
+          >
+            Right menu
+          </Dropdown2View.HandleView>
+        }
+      >
+        {defaultItems}
+      </Dropdown2View>
+    </div>
+  );
+};
+
 export const FunctionalIcon = () => {
   const [enabled, setEnable] = useState(true);
   return (
-    <div style={{ height: 280 }}>
+    <div style={{ height: 230 }}>
       <Dropdown2View
         showMenu={enabled}
         handleSlot={
@@ -141,7 +205,7 @@ export const FunctionalIcon = () => {
 
 export const DefaultClosed = () => {
   return (
-    <div style={{ height: 280 }}>
+    <div style={{ height: 230 }}>
       <Dropdown2View
         showMenu={false}
         handleSlot={
@@ -158,7 +222,7 @@ export const DefaultClosed = () => {
 
 export const DefaultOpened = () => {
   return (
-    <div style={{ height: 280 }}>
+    <div style={{ height: 230 }}>
       <Dropdown2View
         showMenu={true}
         handleSlot={
@@ -175,7 +239,7 @@ export const DefaultOpened = () => {
 
 export const Disabled = () => {
   return (
-    <div style={{ height: 280 }}>
+    <div style={{ height: 230 }}>
       <Dropdown2View
         showMenu={false}
         handleSlot={
@@ -191,7 +255,7 @@ export const Disabled = () => {
 };
 
 export const MenuSuboptions = () => (
-  <div style={{ height: 280 }}>
+  <div style={{ height: 230 }}>
     <Dropdown2View
       showMenu={true}
       handleSlot={
@@ -211,7 +275,7 @@ export const MenuSuboptions = () => (
 
 export const Description = () => {
   return (
-    <div style={{ height: 280 }}>
+    <div style={{ height: 230 }}>
       <Dropdown2View
         showMenu={true}
         handleSlot={
@@ -233,7 +297,7 @@ export const Description = () => {
 
 export const SideDescription = () => {
   return (
-    <div style={{ height: 280 }}>
+    <div style={{ height: 230 }}>
       <Dropdown2View
         showMenu={true}
         handleSlot={
@@ -255,7 +319,7 @@ export const SideDescription = () => {
 
 export const BothDescriptions = () => {
   return (
-    <div style={{ height: 280 }}>
+    <div style={{ height: 230 }}>
       <Dropdown2View
         showMenu={true}
         handleSlot={
@@ -283,7 +347,7 @@ export const BothDescriptions = () => {
 
 export const Checked = () => {
   return (
-    <div style={{ height: 280 }}>
+    <div style={{ height: 230 }}>
       <Dropdown2View
         showMenu={true}
         handleSlot={
@@ -301,7 +365,7 @@ export const Checked = () => {
 
 export const PlaceholderWithoutText = () => {
   return (
-    <div style={{ height: 280 }}>
+    <div style={{ height: 230 }}>
       <Dropdown2View
         showMenu={false}
         handleSlot={
@@ -318,7 +382,7 @@ export const PlaceholderWithoutText = () => {
 };
 export const PlaceholderWithText = () => {
   return (
-    <div style={{ height: 280 }}>
+    <div style={{ height: 230 }}>
       <Dropdown2View
         showMenu={false}
         handleSlot={
@@ -337,7 +401,7 @@ export const PlaceholderWithText = () => {
 };
 export const NoItems = () => {
   return (
-    <div style={{ height: 280 }}>
+    <div style={{ height: 230 }}>
       <Dropdown2View
         emptyText="Empty text"
         showMenu={true}

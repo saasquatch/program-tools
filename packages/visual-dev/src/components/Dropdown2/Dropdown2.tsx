@@ -18,6 +18,10 @@ export interface OptionProps {
    */
   popUpwards?: boolean;
   /**
+   *
+   */
+  menuPosition?: "left" | "center" | "right";
+  /**
    * Text displayed in place of items if no items are provided
    */
   emptyText?: string;
@@ -123,8 +127,20 @@ const DropdownContentDiv = styled("div")<Dropdown2Props>`
     props.popUpwards &&
     css`
       top: 0;
-      transform: translateY(calc(-100%));
+      transform: translateY(-100%);
     `}
+
+  ${({ menuPosition }) =>
+    menuPosition === "left"
+      ? css`
+          right: 0;
+        `
+      : menuPosition === "center"
+      ? css`
+          transform: translateX(50%);
+          right: 50%;
+        `
+      : null}
 `;
 
 const EmptyTextSpan = styled("span")`
@@ -136,6 +152,7 @@ const Dropdown2View = React.forwardRef<React.ElementRef<"div">, Dropdown2Props>(
     const {
       showMenu = false,
       popUpwards = false,
+      menuPosition = "right",
       children,
       placeholder,
       emptyText,
@@ -148,7 +165,10 @@ const Dropdown2View = React.forwardRef<React.ElementRef<"div">, Dropdown2Props>(
       <DropdownDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
         {handleSlot}
         {showMenu && (
-          <DropdownContentDiv popUpwards={popUpwards}>
+          <DropdownContentDiv
+            popUpwards={popUpwards}
+            menuPosition={menuPosition}
+          >
             {children ||
               (emptyText && (
                 <ItemView>

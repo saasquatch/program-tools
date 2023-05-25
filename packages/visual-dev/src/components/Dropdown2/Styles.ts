@@ -2,7 +2,6 @@ import { css } from "styled-components";
 
 export const DropdownDiv = css`
   position: relative;
-  min-width: 191px;
   display: inline-block;
 `;
 
