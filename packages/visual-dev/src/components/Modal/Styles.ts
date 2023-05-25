@@ -19,7 +19,6 @@ export const ModalDivStyle = css`
   min-width: 558px;
   background-color: var(--sq-surface);
   border-radius: 8px;
-  overflow: hidden;
   margin: auto;
   padding: 0;
   display: grid;
@@ -30,6 +29,8 @@ export const ModalHeaderStyle = css`
   user-select: none;
   padding: var(--sq-spacing-large);
   background: var(--sq-nav-surface-primary);
+  margin-top: -1px;
+  border-radius: 8px 8px 0px 0px;
   box-sizing: border-box;
   // border-radius: 8px 8px 0 0;
   font-family: var(--sq-font-family-sans);
