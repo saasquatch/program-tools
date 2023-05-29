@@ -4,7 +4,7 @@ export const base = css`
   position: absolute;
   width: 40px;
   height: 20px;
-  border: 3px solid var(--sq-border);
+  border: 2px solid var(--sq-border);
   border-radius: var(--sq-border-radius-pill);
   background: var(--sq-surface-input-disabled);
   cursor: pointer;
@@ -16,9 +16,9 @@ export const base = css`
     border-radius: 50%;
     width: 20px;
     height: 20px;
-    margin: -3px;
+    margin: -2px;
     background: var(--sq-surface);
-    border: 3px solid var(--sq-border);
+    border: 2px solid var(--sq-border);
     transition: 0.1s;
     box-sizing: border-box;
   }
