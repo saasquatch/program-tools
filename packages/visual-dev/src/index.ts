@@ -39,7 +39,7 @@ import {
 import { Select, SelectView } from "./components/Select";
 import { FieldTemplate } from "./components/FieldTemplate";
 import { ObjectFieldTemplate } from "./components/ObjectFieldTemplate";
-// import { ArrayFieldTemplate } from "./components/ArrayFieldTemplate";
+import { ArrayFieldTemplate } from "./components/ArrayFieldTemplate";
 import { ErrorListTemplate } from "./components/ErrorListTemplate";
 import {
   RadioCard,
@@ -133,6 +133,7 @@ export {
   LoadingSpinner,
   ModalView,
   ObjectFieldTemplate,
+  ArrayFieldTemplate,
   PopoverView,
   Popover,
   RadioView,
