@@ -10,9 +10,10 @@ import { SemanticResourceAttributes } from "@opentelemetry/semantic-conventions"
 export function installInstrumentation(
   serviceName: string,
   hostName: string,
-  deploymentEnv: string
+  deploymentEnv: string,
+  url?: string
 ): void {
-  const metricExporter = new OTLPMetricExporter({});
+  const metricExporter = new OTLPMetricExporter({ url });
   const meterProvider = new MeterProvider({
     resource: new Resource({
       // Service version is required according to Datadog docs but we don't

@@ -494,7 +494,9 @@ export async function createIntegrationService<
     const hostName = `${config.serviceName}-${deploymentEnv}.${
       process.env["DYNO"] ?? hostname()
     }`;
-    installInstrumentation(config.serviceName, hostName, deploymentEnv);
+
+    const url = process.env["OTEL_EXPORTER_OTLP_ENDPOINT"];
+    installInstrumentation(config.serviceName, hostName, deploymentEnv, url);
   }
 
   // Enable workload identity federation if all the appropriate parameters have
