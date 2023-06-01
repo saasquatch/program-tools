@@ -2,7 +2,7 @@ import { httpLogMiddleware } from "@saasquatch/logger";
 import { hostname } from "os";
 import { IntegrationConfiguration } from "@saasquatch/schema/types/IntegrationConfig";
 import compression from "compression";
-import express, { Express, Response, Router } from "express";
+import express, { Express, Request, Response, Router } from "express";
 import enforce from "express-sslify";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import NodeCache from "node-cache";
@@ -386,6 +386,13 @@ export class IntegrationService<
 
     //  Support application/x-www-form-urlencoded bodies
     server.use(express.urlencoded({ extended: false }));
+
+    const healthCheck = (_req: Request, res: Response) =>
+      res.status(200).json({ status: "OK" });
+
+    server.get("/healthz", healthCheck);
+    server.get("/livez", healthCheck);
+    server.get("/readyz", healthCheck);
 
     const requireSaaSquatchSignature = createSaasquatchRequestMiddleware(
       this.auth,
