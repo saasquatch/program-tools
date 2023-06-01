@@ -91,10 +91,10 @@ export const CSSVariables = createGlobalStyle`
   --sq-on-surface-critical: #D14040;
 
   /* Interactive */
-  --sq-text-interactive: var(--iui-strata-blue);
-  --sq-text-interactive-hovered: var(--iui-strata-blue);
+  --sq-text-interactive: #0077DB;
+  --sq-text-interactive-hovered: #0077DB;
   --sq-text-interactive-visited: #681DA8;
-  --sq-focused: var(--iui-strata-blue);
+  --sq-focused: #0077DB;
   --sq-icon-interactive: #0088cc;
   --sq-surface-hover: var(--iui-pale-gray);
 
