@@ -7,8 +7,11 @@ import React from "react";
 import { IconKey, IconView } from "../Icon";
 import { DataTableView } from "../DataTable";
 
-export type SelectHandleViewProps<ItemType> = HandleOptionProps<ItemType> &
-  Partial<React.ComponentProps<"input">>;
+export type ItemTypeBase = string | number | boolean | object;
+
+export type SelectHandleViewProps<
+  ItemType extends ItemTypeBase
+> = HandleOptionProps<ItemType> & Partial<React.ComponentProps<"input">>;
 
 export interface SelectContainerViewProps {
   /**
@@ -164,19 +167,12 @@ export interface ListItemViewProps<ItemType> {
   customCSS?: CSSProp;
 }
 
-export type SelectFrameViewProps<ItemType> = Omit<
+export type SelectFrameViewProps<ItemType extends ItemTypeBase> = Omit<
   SelectListViewProps<ItemType>,
   "itemToNode" | "itemToString"
 > & { children: React.ReactNode | React.ReactNode[] };
 
 type SizeType = boolean | string;
-
-type ItemTypeBase =
-  | { description?: string }
-  | string
-  | number
-  | boolean
-  | object;
 
 const ItemContainerList = styled.ul<{
   errors: any;
@@ -337,7 +333,7 @@ declare module "react" {
   ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
 }
 
-const ItemView = <ItemType extends ItemTypeBase>(
+const ItemView = <ItemType,>(
   props: ListItemViewProps<ItemType> & Partial<React.ComponentProps<"input">>
 ) => {
   const {
@@ -345,22 +341,27 @@ const ItemView = <ItemType extends ItemTypeBase>(
     index,
     disabled = false,
     itemToString = itemToStringDefault,
-    itemToNode = itemToNodeDefault,
     functional,
     customCSS = {},
     ...rest
   } = props;
+
+  const itemAsString = itemToString(item);
+
+  const itemToNode = props.itemToNode
+    ? props.itemToNode(item)
+    : itemToNodeDefault<ItemType>(item, itemAsString);
 
   if (disabled) {
     return (
       //@ts-ignore
       <ListItemDisabled
         customCSS={customCSS}
-        key={`${itemToString(item)}-${index}`}
+        key={`${itemAsString}-${index}`}
         {...functional.getItemProps({ item, index, disabled: true })}
         {...rest}
       >
-        {itemToNode(item)}
+        {itemToNode}
       </ListItemDisabled>
     );
   }
@@ -373,7 +374,7 @@ const ItemView = <ItemType extends ItemTypeBase>(
       {...functional.getItemProps({ item, index })}
       {...rest}
     >
-      {itemToNode(item)}
+      {itemToNode}
     </ListItem>
   );
 };
@@ -413,7 +414,6 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
     functional,
     tagsSlot,
     itemToString = itemToStringDefault,
-    itemToNode = itemToNodeDefault,
     ...rest
   } = props;
 
@@ -579,16 +579,16 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
 interface itemsToNodeProps<ItemType> {
   items: Array<ItemType>;
   functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
-  itemToString: (item: ItemType | null) => string;
-  itemToNode: (item: ItemType) => React.ReactNode;
+  itemToString?: (item: ItemType | null) => string;
+  itemToNode?: (item: ItemType) => React.ReactNode;
 }
 
-const itemsToNode = <ItemType extends ItemTypeBase>(
+const itemsToNode = <ItemType,>(
   props: itemsToNodeProps<ItemType>
 ): React.ReactNode | React.ReactNode[] => {
   const { items, functional, itemToString, itemToNode } = props;
   return items.map((item, index) => (
-    <SelectView.ItemView
+    <SelectView.ItemView<ItemType>
       {...{
         functional,
         index,
@@ -667,38 +667,48 @@ function itemToStringDefault<ItemType>(item: ItemType | null): string {
   return `${item}`;
 }
 
+type ItemWithDescription<ItemType> = ItemType & { description: string };
+
+function hasDescription<ItemType>(
+  item: ItemType
+): item is ItemWithDescription<ItemType> {
+  return (
+    typeof item === "object" &&
+    (item as ItemWithDescription<ItemType>).hasOwnProperty("description")
+  );
+}
+
 function itemToNodeDefault<ItemType>(
-  item: ItemType & { description?: string }
-) {
-  if (typeof item === "object" && item !== null) {
-    return (
-      <>
-        <span>{itemToStringDefault(item)}</span>
-        {item.hasOwnProperty("description") && item.description && (
-          <>
-            <br />
-            <ItemDescriptionSpan>{item.description}</ItemDescriptionSpan>
-          </>
-        )}
-      </>
-    );
-  } else {
-    return <span>{itemToStringDefault(item)}</span>;
+  item: ItemType,
+  itemAsString: string
+): React.ReactNode {
+  if (item === null || item === undefined) {
+    return <></>;
   }
+  const description =
+    item && hasDescription<ItemType>(item) && item.description;
+
+  return (
+    <>
+      <span>{itemAsString}</span>
+      {description && (
+        <>
+          <br />
+          <ItemDescriptionSpan>{description}</ItemDescriptionSpan>
+        </>
+      )}
+    </>
+  );
 }
 
 const SelectInnerListView = <ItemType extends ItemTypeBase>(
   props: SelectListViewProps<ItemType>,
   ref: React.Ref<HTMLInputElement>
 ) => {
-  const {
-    itemToString = itemToStringDefault,
-    itemToNode = itemToNodeDefault,
-    ...rest
-  } = props;
+  const { itemToString, itemToNode, ...rest } = props;
   return (
     <SelectInnerFrameView {...{ ...rest, ref }}>
-      {itemsToNode({
+      {itemsToNode<ItemType>({
         items: props.items,
         functional: props.functional,
         itemToString,
