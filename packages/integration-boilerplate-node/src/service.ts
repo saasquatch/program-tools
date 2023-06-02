@@ -368,16 +368,16 @@ export class IntegrationService<
       });
     }
 
-    const healthCheck = (_req: Request, res: Response) =>
-      res.status(200).json({ status: "OK" });
-
-    server.use("/healthz", healthCheck);
-    server.use("/livez", healthCheck);
-    server.use("/readyz", healthCheck);
-
     // Force HTTPS for all requests
     if (this.config.enforceHttps) {
-      server.use(enforce.HTTPS({ trustProtoHeader: true }));
+      const enforceHttps = enforce.HTTPS({ trustProtoHeader: true });
+      server.use((req, res, next) => {
+        if (["/healthz", "/livez", "/readyz"].includes(req.path)) {
+          next();
+        } else {
+          enforceHttps(req, res, next);
+        }
+      });
     }
 
     // Support JSON bodies
@@ -393,6 +393,13 @@ export class IntegrationService<
 
     //  Support application/x-www-form-urlencoded bodies
     server.use(express.urlencoded({ extended: false }));
+
+    const healthCheck = (_req: Request, res: Response) =>
+      res.status(200).json({ status: "OK" });
+
+    server.get("/healthz", healthCheck);
+    server.get("/livez", healthCheck);
+    server.get("/readyz", healthCheck);
 
     const requireSaaSquatchSignature = createSaasquatchRequestMiddleware(
       this.auth,
