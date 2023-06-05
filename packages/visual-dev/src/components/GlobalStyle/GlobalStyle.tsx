@@ -16,7 +16,7 @@ export const CSSVariables = createGlobalStyle`
   --iui-storm-gray: #6C7784;
   --iui-bleakest-gray: #969EA7;
   --iui-error-red: #C00800;
-  --iui-rose-pink: #EFC1BF;
+  --iui-light-pink: #FFEFEE;
   --iui-leaf-green: #008917;
 
   /* Surface */
@@ -84,7 +84,7 @@ export const CSSVariables = createGlobalStyle`
   /* Critical */
   --sq-surface-critical: var(--iui-error-red);
   --sq-surface-critical-hovered: var(--iui-error-red);
-  --sq-surface-critical-subdued: var(--iui-rose-pink);
+  --sq-surface-critical-subdued: var(--iui-light-pink);
   --sq-border-critical: var(--iui-error-red);
   --sq-badge-text-critical: #C12F2F;
   /* Deprecated */
