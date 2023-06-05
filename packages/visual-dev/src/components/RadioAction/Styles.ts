@@ -28,11 +28,11 @@ export const RadioButtonStyle = css`
   margin-top: 2px;
   width: 14px;
   height: 14px;
-  border: 1.5px solid var(--sq-text);
+  border: 1px solid var(--sq-text);
   border-radius: 50%;
   margin-right: var(--sq-spacing-large);
   box-sizing: border-box;
-  padding: 1.5px;
+  padding: 2px;
   flex-shrink: 0;
 
   &::after {
