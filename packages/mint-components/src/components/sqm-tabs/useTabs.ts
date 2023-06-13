@@ -1,6 +1,6 @@
 import { useHost } from "@saasquatch/component-boilerplate";
 import { useEffect, useMemo } from "@saasquatch/universal-hooks";
-import { SlTabGroup } from "@shoelace-style/shoelace";
+import { SlTabGroup } from "@saasquatch/shoelace";
 import { useRerenderListener } from "../../tables/re-render";
 import { useChildElements } from "../../tables/useChildElements";
 
