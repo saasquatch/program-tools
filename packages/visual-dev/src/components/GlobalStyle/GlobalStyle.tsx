@@ -8,15 +8,23 @@ export const CSSVariables = createGlobalStyle`
   /* ~~~ Colors ~~~ */
 
   /* Impact colors */
+  --iui-almost-black: #29394A;
+  --iui-darker-black: #23313F;
   --iui-coal-black: #2D3E50;
   --iui-strata-blue: #14B1F7;
+  --iui-shaded-blue: #12A7EA;
+  --iui-sky-blue: #A4E0FB;
+  --iui-ice-blue: #F3FBFF;
   --iui-serenity-gray: #CACFD3;
-  --iui-darker-than-black: #23313F;
   --iui-pale-gray: #F2F3F4;
   --iui-storm-gray: #6C7784;
+  --iui-flash-gray: #EAEBED;
   --iui-bleakest-gray: #969EA7;
   --iui-error-red: #C00800;
+  --iui-impact-red: #E41B49;
   --iui-light-pink: #FFEFEE;
+  --iui-rose-pink: #EFC1BF;
+  --iui-light-orange: #F9ECD9;
   --iui-leaf-green: #008917;
 
   /* Surface */
