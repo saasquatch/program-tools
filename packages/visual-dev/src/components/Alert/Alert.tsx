@@ -11,7 +11,7 @@ export interface OptionProps {
   /**
    * Title displayed at top of alert
    */
-  title?: string;
+  title?: string | React.ReactNode;
   /**
    * Content displayed inside alert below title
    */
