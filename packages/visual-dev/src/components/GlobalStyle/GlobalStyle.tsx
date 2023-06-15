@@ -197,7 +197,7 @@ a{
   text-decoration: none;
   
   &:visited{
-    color: var(--sq-text-interactive-visited);
+    color: var(--sq-text-interactive);
   }
 
   &:hover{
