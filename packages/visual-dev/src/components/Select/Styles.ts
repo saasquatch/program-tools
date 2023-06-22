@@ -27,7 +27,7 @@ export const ItemDisabled = css`
 
 export const ItemContainer = css`
   position: absolute;
-  z-index: 100;
+  z-index: 9;
   box-sizing: border-box;
   list-style-type: none;
   width: 100%;
