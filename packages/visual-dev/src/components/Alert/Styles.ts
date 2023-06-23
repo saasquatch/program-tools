@@ -47,7 +47,12 @@ export const success = css`
   border-color: var(--sq-border-success);
 `;
 
-export const info = css`
+export const default_style = css`
   background-color: var(--sq-background);
   border-color: var(--sq-border);
+`;
+
+export const info = css`
+  background-color: var(--sq-surface-info);
+  border-color: var(--sq-border-info);
 `;

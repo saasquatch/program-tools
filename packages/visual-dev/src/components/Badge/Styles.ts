@@ -47,9 +47,9 @@ export const warning = css`
 `;
 
 export const info = css`
-  background-color: var(--sq-badge-surface-info);
+  background-color: var(--sq-surface-info);
   border: 1px solid var(--sq-border-info);
-  color: var(--sq-badge-text-info);
+  color: var(--sq-on-surface-info) !important;
 `;
 
 export const small = css`
