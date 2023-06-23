@@ -84,10 +84,9 @@ export const CSSVariables = createGlobalStyle`
   --sq-badge-text-warning: #92400E;
 
   /* Info */
-  --sq-surface-info: #E0ECFF;
-  --sq-border-info: #6DA6FF;
-  --sq-badge-surface-info: #E0ECFF;
-  --sq-badge-text-info: #1260D9;
+  --sq-border-info: #95beff;
+  --sq-surface-info: #e0ecff;
+  --sq-on-surface-info: #1260d9;
 
   /* Critical */
   --sq-surface-critical: var(--iui-error-red);
