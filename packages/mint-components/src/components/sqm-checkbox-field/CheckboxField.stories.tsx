@@ -52,7 +52,12 @@ const defaultRegisterProps: PortalRegisterViewProps = {
   refs: {
     formRef: {},
   },
-  content: { pageLabel: "Register", confirmPasswordLabel: "Confirm Password" },
+  content: {
+    pageLabel: "Register",
+    confirmPasswordLabel: "Confirm Password",
+    requiredFieldErrorMessage: "Cannot be empty",
+    invalidEmailErrorMessage: "Must be a valid email address",
+  },
 };
 
 export const Default = createHookStory(() => (

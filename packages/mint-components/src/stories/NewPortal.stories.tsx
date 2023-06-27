@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 import { BigStatView } from "../components/sqm-big-stat/sqm-big-stat-view";
 import { ShareButtonView } from "../components/sqm-share-button/sqm-share-button-view";
-import { ShareLinkView } from "../components/sqm-share-link/sqm-share-link-view";
+import { CopyTextView } from "../components/views/copy-text-view";
 import { createStyleSheet } from "../styling/JSS";
 import { NavigationSidebarView } from "../components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemView } from "../components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
@@ -58,7 +58,7 @@ const Sidebar = () => {
 
 export const Dashboard = () => {
   const sharelinkProps = {
-    shareString: "https://ssqt.co/johnsmithrox",
+    copyString: "https://ssqt.co/johnsmithrox",
     open: false,
     disabled: false,
     tooltiptext: "Share link copied",
@@ -66,7 +66,7 @@ export const Dashboard = () => {
   };
 
   const sharecodeProps = {
-    shareString: "JOHNSMITH1",
+    copyString: "JOHNSMITH1",
     open: false,
     disabled: false,
     tooltiptext: "Share code copied",
@@ -191,7 +191,7 @@ export const Dashboard = () => {
                   <h3>Share your referral link</h3>
                 </sqm-text>
               ),
-              content: <ShareLinkView {...sharelinkProps} />,
+              content: <CopyTextView {...sharelinkProps} />,
             }}
           ></PortalSectionView>
           <PortalSectionView
@@ -203,7 +203,7 @@ export const Dashboard = () => {
                   <h3>Share your referral code</h3>
                 </sqm-text>
               ),
-              content: <ShareLinkView {...sharecodeProps} />,
+              content: <CopyTextView {...sharecodeProps} />,
             }}
           ></PortalSectionView>
           <PortalSectionView

@@ -12,7 +12,7 @@ export interface PortalForgotPasswordViewProps {
     error: string;
     loading: boolean;
     success: boolean;
-    loginPath:string;
+    loginPath: string;
   };
   callbacks: {
     submit: (event: any) => Promise<void>;
@@ -51,7 +51,7 @@ const styleString = sheet.toString();
 export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
   const { states, callbacks, content } = props;
   return (
-    <div class={sheet.classes.Wrapper}>
+    <div class={sheet.classes.Wrapper} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}

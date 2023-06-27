@@ -34,6 +34,10 @@ export interface OptionProps {
    */
   icon?: IconKey;
   /**
+   * Icon displayed to the right of the title
+   */
+  titleIconSlot?: React.ReactNode;
+  /**
    * Custom CSS applied to Radio Card
    */
   customCSS?: CSSProp;
@@ -52,23 +56,29 @@ interface RadioLabelProps {
 const RadioLabel = styled.label<RadioLabelProps>`
   ${Styles.RadioLabelStyle}
   ${(props) => props.customCSS && props.customCSS}
-  ${(props) =>
-    props.isChecked && !props.disabled
-      ? "border: 2px solid var(--sq-action-primary-hovered);"
-      : "&:hover {border: 2px solid var(--sq-text-subdued);}"}
+
+
+${(props) =>
+    !props.isChecked &&
+    !props.disabled &&
+    "&:hover {border-color: var(--sq-text-subdued);}; &:hover * {border-color: var(--sq-text-subdued);}"}
 
     ${(props) =>
     props.disabled &&
     css`
       cursor: default;
       background-color: var(--sq-border);
+      border-color: var(--sq-placeholder-text-on-secondary);
       & * {
+        border-color: var(--sq-placeholder-text-on-secondary);
+      }
+      & ${RightSegmentDiv} {
         color: var(--sq-text-subdued);
       }
-      &:hover {
-        border: 2px solid transparent;
-      }
     `}
+    ${(props) =>
+    props.isChecked &&
+    "border-color: var(--sq-action-primary-hovered); & * {border-color: var(--sq-action-primary-hovered);}"}
 ${(props) => props.customCSS}
 `;
 const RadioInput = styled.input<{ disabled: boolean }>`
@@ -86,12 +96,19 @@ const RadioTextDiv = styled.div`
 
 const LeftSegmentDiv = styled.div<{ isChecked: boolean }>`
   ${Styles.LeftSegmentStyle}
-  ${(props) =>
-    props.isChecked ? "color: var(--sq-action-primary-hovered);" : ""}
+  ${(props) => props.isChecked && "color: var(--sq-action-primary-hovered);"}
 `;
 
 const RadioGridDiv = styled.div`
   ${Styles.RadioGridStyle}
+`;
+
+const TitleContainerDiv = styled.div`
+  ${Styles.TitleContainerStyle}
+`;
+
+const TitleP = styled.p`
+  ${Styles.TitleStyle}
 `;
 
 const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
@@ -102,6 +119,7 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
       title,
       description,
       icon = "",
+      titleIconSlot,
       customCSS = {},
       disabled = false,
       ...rest
@@ -134,12 +152,13 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
         <RightSegmentDiv>
           <RadioTextDiv>
             {title && (
-              <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
+              <TitleContainerDiv>
+                <TitleP>{title}</TitleP>
+                {titleIconSlot && titleIconSlot}
+              </TitleContainerDiv>
             )}
             {description && (
-              <div style={{ color: "var(--sq-text-subdued)" }}>
-                {description}
-              </div>
+              <div style={{ color: "inherit" }}>{description}</div>
             )}
           </RadioTextDiv>
         </RightSegmentDiv>

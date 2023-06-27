@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.9] - 2023-05-18
+
+### Changed
+- `@saasquatch/component-boilerplate` package bump
+
+## [1.3.8] - 2023-05-16
+
+### Added
+- \<sqb-auth-template-switch> - Automatically switch between "logged-in" and "logged-out" templates based on whether a valid User Identity has been set.
+
+## [1.3.7] - 2023-04-20
+
+### Changed
+- Updated license copyright to be in line with SaaSquatch open-source policy.
+
 ## [1.3.6] - 2022-07-25
 
 ### Added
@@ -102,7 +117,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqb-conditional-section>
   - \<sqb-program-section>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.3.6...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.3.7...HEAD
+[1.3.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.7
 [1.3.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.6
 [1.3.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.5
 [1.3.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.4

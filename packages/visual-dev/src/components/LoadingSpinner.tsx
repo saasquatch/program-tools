@@ -26,6 +26,10 @@ export interface RingProps {
    * Spinner colour
    */
   color?: string;
+  /**
+   * Spinner margin
+   */
+  margin?: string;
 }
 
 const rotate = keyframes`
@@ -98,7 +102,7 @@ export const LoadingSpinner = ({ ...props }: RingProps) => {
 
 // LARGE SPINNER FOR METRICS CARD
 const RingLarge = styled(RingDefault)<RingProps>`
-  margin: 55px calc(50% - 25px);
+  margin: ${(props) => props.margin || "55px calc(50% - 25px)"};
   opacity: 0.5;
 
   bottom: ${(props) => props.bottom || `14px`};
@@ -122,9 +126,9 @@ const RingLarge = styled(RingDefault)<RingProps>`
 `;
 
 export const LoadingSpinnerLarge = ({ ...props }: RingProps) => {
-  const { color } = props;
+  const { color, margin } = props;
   return (
-    <RingLarge color={color}>
+    <RingLarge color={color} margin={margin}>
       <div></div>
       <div></div>
       <div></div>

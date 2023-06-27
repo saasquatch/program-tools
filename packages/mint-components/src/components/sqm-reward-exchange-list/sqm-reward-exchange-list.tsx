@@ -35,69 +35,69 @@ export class SqmRewardExchangeList {
   /**
    * Error message shown when reward is not available
    *
-   * @uiName Not Available Error
+   * @uiName Not available error
    * @uiWidget textArea
    */
   @Prop() notAvailableError: string =
     "{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {{unavailableReasonCode}} }";
 
   /**
-   * @uiName Choose Reward Progress Title
+   * @uiName Choose reward progress title
    */
   @Prop() chooseRewardTitle: string = "Rewards";
 
   /**
-   * @uiName Choose Amount Progress Title
+   * @uiName Choose amount progress title
    */
   @Prop() chooseAmountTitle: string = "Select";
 
   /**
-   * @uiName Confirmation Progress Title
+   * @uiName Confirmation progress title
    */
   @Prop() confirmationTitle: string = "Confirm";
 
   /**
-   * @uiName Reward Title Text
+   * @uiName Reward title text
    */
   @Prop() rewardTitle: string = "Choose a reward";
 
   /**
-   * @uiName Cancel Button Text
+   * @uiName Cancel button text
    */
   @Prop() cancelText: string = "Cancel";
 
   /**
-   * @uiName Back Button Text
+   * @uiName Back button text
    */
   @Prop() backText: string = "Back";
 
   /**
-   * @uiName Continue Button Text
+   * @uiName Continue button text
    */
   @Prop() continueText: string = "Continue";
 
   /**
    * Displayed on the reward selection page.
-   * @uiName Continue to Confirmation Button Text
+   * @uiName Continue to confirmation button text
    */
   @Prop() continueToConfirmationText: string = "Continue to confirmation";
 
   /**
-   * @uiName Redeem Button Text
+   * @uiName Redeem button text
    */
   @Prop() redeemText: string = "Redeem";
 
   /**
    * Displayed as the header for the confirmation page.
    *
-   * @uiName Confirmation Title Text
+   * @uiName Confirmation title text
    */
   @Prop() redeemTitle: string = "Confirm and redeem";
 
   /**
    * Displayed on the success screen when a user successfully exchanges for a reward.
    *
-   * @uiName Redemption Success Message
+   * @uiName Redemption success message
    * @uiWidget textArea
    */
   @Prop() redemptionSuccessText: string =
@@ -106,7 +106,7 @@ export class SqmRewardExchangeList {
   /**
    * Displayed on the reward exchange cards.
    *
-   * @uiName Reward Exchange Amount Text
+   * @uiName Reward exchange amount text
    * @uiWidget textArea
    */
   @Prop() sourceAmountMessage: string =
@@ -115,17 +115,17 @@ export class SqmRewardExchangeList {
   /**
    * Shown when a user copies a fuel tank code
    *
-   * @uiName Tooltip Text
+   * @uiName Tooltip text
    */
   @Prop() tooltipText: string = "Copied";
 
   /**
-   * @uiName Done Text
+   * @uiName Done text
    */
   @Prop() doneText: string = "Done";
 
   /**
-   * @uiName Select Amount Text
+   * @uiName Select amount text
    * @uiWidget textArea
    */
   @Prop() selectText: string = "Select amount to receive";
@@ -133,7 +133,7 @@ export class SqmRewardExchangeList {
   /**
    * Shown if an error occurs when loading the reward exchange.
    *
-   * @uiName Reward List Error Message
+   * @uiName Reward list error message
    * @uiWidget textArea
    */
   @Prop() queryError: string =
@@ -142,54 +142,54 @@ export class SqmRewardExchangeList {
   /**
    * Shown if an error occurs during the reward exchange.
    *
-   * @uiName Redemption Error Message
+   * @uiName Redemption error message
    * @uiWidget textArea
    */
   @Prop() redemptionError: string =
     "An error occured trying to redeem this reward. Please try again";
 
   /**
-   * @uiName Not Enough Error Message
+   * @uiName Not enough error message
    * @uiWidget textArea
    */
   @Prop() notEnoughError: string =
     "Not enough {sourceUnit} to redeem for this reward";
 
   /**
-   * @uiName Reward Redeemed Text
+   * @uiName Reward redeemed text
    */
   @Prop() rewardRedeemedText: string = "Reward redeemed";
 
   /**
-   * @uiName Promo Code Text
+   * @uiName Promo code text
    */
   @Prop() promoCode: string = "Promo Code";
 
   /**
    * Set the number of placeholder cards to be shown in loading state.
    *
-   * @uiName Loading Cards
+   * @uiName Loading cards
    */
   @Prop() skeletonCardNum: number = 8;
 
   /**
    * Shown in the confirmation state.
    *
-   * @uiName Reward Row Title
+   * @uiName Reward row title
    */
   @Prop() rewardNameTitle: string = "Reward";
 
   /**
    * Shown in the confirmation state.
    *
-   * @uiName Reward Amount Row Title
+   * @uiName Reward amount row title
    */
   @Prop() rewardAmountTitle: string = "Reward Amount";
 
   /**
    * Shown in the confirmation state.
    *
-   * @uiName Cost Row Title
+   * @uiName Cost row title
    */
   @Prop() costTitle: string = "Cost to Redeem";
 

@@ -15,32 +15,32 @@ import { RewardTableColumn } from "./RewardTableColumn";
 })
 export class RewardTableUserColumn implements RewardTableColumn {
   /**
-   * @uiName Soruce Column Title
+   * @uiName Soruce column title
    */
   @Prop() columnTitle: string = "Source";
 
   /**
    * Name displayed for unknown users
    *
-   * @uiName Anonymous User Text
+   * @uiName Anonymous user text
    */
   @Prop() anonymousUser: string = "Anonymous User";
   /**
    * Name displayed for deleted users
    *
-   * @uiName Deleted User Text
+   * @uiName Deleted user text
    */
   @Prop() deletedUser: string = "Deleted User";
 
   /**
-   * @uiName Reward Exchange Label
+   * @uiName Reward exchange label
    */
   @Prop() rewardExchangeText: string = "Reward Exchange";
 
   /**
    * Shown when a reward has been created by a referral
    *
-   * @uiName Referral Text
+   * @uiName Referral text
    * @uiWidget textArea
    */
   @Prop() referralText: string =
@@ -48,8 +48,8 @@ export class RewardTableUserColumn implements RewardTableColumn {
 
   /**
    * Shown when a reward has been created by a source other than a referral.
-   * 
-   * @uiName Reward Source Text
+   *
+   * @uiName Reward source text
    * @uiWidget textArea
    */
   @Prop() rewardSourceText: string =

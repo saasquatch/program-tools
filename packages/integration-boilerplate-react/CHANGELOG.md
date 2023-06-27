@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.3] - 2023-04-20
+
+### Changed
+- Updated license copyright to be in line with SaaSquatch open-source policy.
+
+## [2.0.2] - 2023-04-10
+
+### Added
+
+- disableIntegration method for disabling the integration instead of using the default Disable button
+
 ## [2.0.1] - 2022-11-29
 
 ### Added
@@ -35,7 +46,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[unreleased]: https://github.com/sasquatch/integration-boilerplate-react/compare/v2.0.1...HEAD
+[unreleased]: https://github.com/sasquatch/integration-boilerplate-react/compare/v2.0.3...HEAD
+[2.0.3]: https://github.com/sasquatch/integration-boilerplate-react/releases/tag/v2.0.3
+[2.0.2]: https://github.com/sasquatch/integration-boilerplate-react/releases/tag/v2.0.2
 [2.0.1]: https://github.com/sasquatch/integration-boilerplate-react/releases/tag/v2.0.1
 [2.0.0]: https://github.com/sasquatch/integration-boilerplate-react/releases/tag/v2.0.0
 [1.0.0]: https://github.com/sasquatch/integration-boilerplate-react/releases/tag/v1.0.0

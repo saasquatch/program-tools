@@ -9,6 +9,8 @@ export const ModalBackdropStyle = css`
   right: 0;
   bottom: 0;
   left: 0;
+  padding: var(--sq-spacing-x-large);
+  box-sizing: border-box;
 `;
 
 export const ModalDivStyle = css`
@@ -20,6 +22,8 @@ export const ModalDivStyle = css`
   overflow: hidden;
   margin: auto;
   padding: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
 `;
 
 export const ModalHeaderStyle = css`
@@ -30,7 +34,7 @@ export const ModalHeaderStyle = css`
   // border-radius: 8px 8px 0 0;
   font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-bold);
-  font-size: var(--sq-font-size-header-one);
+  font-size: var(--sq-font-size-header-three);
   line-height: var(--sq-line-height-header-one);
   color: var(--sq-surface);
 `;

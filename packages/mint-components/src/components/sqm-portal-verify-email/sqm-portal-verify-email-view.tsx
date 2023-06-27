@@ -43,7 +43,7 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
 
   if (states.verified) {
     return (
-      <div class={sheet.classes.Wrapper}>
+      <div class={sheet.classes.Wrapper} part="sqm-base">
         <style type="text/css">
           {vanillaStyle}
           {styleString}
@@ -70,7 +70,7 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
 
   if (states.error || !data.oobCode) {
     return (
-      <div class={sheet.classes.Wrapper}>
+      <div class={sheet.classes.Wrapper} part="sqm-base">
         <style type="text/css">{styleString}</style>
         <TextSpanView type="h3">Verify your email</TextSpanView>
         <sqm-form-message type="error" exportparts="erroralert-icon">

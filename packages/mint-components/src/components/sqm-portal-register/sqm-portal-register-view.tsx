@@ -34,6 +34,8 @@ export interface PortalRegisterViewProps {
     submitLabel?: string;
     pageLabel?: string;
     confirmPasswordLabel: string;
+    requiredFieldErrorMessage: string;
+    invalidEmailErrorMessage: string;
   };
   refs: {
     formRef: any;
@@ -81,7 +83,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
   }
 
   return (
-    <div class={sheet.classes.Wrapper}>
+    <div class={sheet.classes.Wrapper} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}
@@ -110,11 +112,11 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             required
             validationError={({ value }: { value: string }) => {
               if (!value) {
-                return "Cannot be empty";
+                return content.requiredFieldErrorMessage;
               }
               // this matches shoelace validation, but could be better
               if (!value.includes("@")) {
-                return "Must be a valid email address";
+                return content.invalidEmailErrorMessage;
               }
             }}
             {...(states.registrationFormState?.validationErrors?.email
@@ -122,7 +124,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
                   class: sheet.classes.ErrorStyle,
                   helpText:
                     states.registrationFormState?.validationErrors?.email ||
-                    "Cannot be empty",
+                    content.requiredFieldErrorMessage,
                 }
               : [])}
           ></sl-input>
@@ -147,7 +149,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
                   class: sheet.classes.ErrorStyle,
                   helpText:
                     states.registrationFormState?.validationErrors
-                      ?.confirmPassword || "Cannot be empty",
+                      ?.confirmPassword || content.requiredFieldErrorMessage,
                 }
               : [])}
           ></sl-input>

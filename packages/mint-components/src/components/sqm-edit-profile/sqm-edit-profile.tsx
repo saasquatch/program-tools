@@ -26,32 +26,32 @@ export class EditProfile {
   /**
    * Enable editing button text
    *
-   * @uiName Edit Profile Text
+   * @uiName Edit profile text
    */
   @Prop() editprofiletext: string;
   /**
-   * @uiName Cancel Button Text
+   * @uiName Cancel button text
    */
   @Prop() canceltext: string;
   /**
-   * @uiName Info Button Text
+   * @uiName Info button text
    */
   @Prop() updatetext: string;
   /**
-   * @uiName First Name Label
+   * @uiName First name label
    */
   @Prop() firstnametext: string;
   /**
-   * @uiName Last Name Label
+   * @uiName Last name label
    */
   @Prop() lastnametext: string;
   /**
-   * @uiName Region Field Label
+   * @uiName Region field label
    */
   @Prop() currentregiontext: string;
   /**
    * Show or hide current region
-   * @uiName Show Region
+   * @uiName Show region
    */
   @Prop() showregion: boolean;
 

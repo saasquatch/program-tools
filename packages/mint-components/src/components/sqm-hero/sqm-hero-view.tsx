@@ -5,6 +5,7 @@ import { isMobile, isValidColor } from "../../utilities";
 export interface HeroProps {
   states: {
     columns: 1 | 2;
+    minHeight: number;
     background?: string;
     secondaryBackground?: string;
     paddingSize: "none" | "small" | "medium" | "large";
@@ -111,13 +112,14 @@ export function HeroView(props: HeroProps) {
         )}`,
       },
       "@media screen and (min-width: 1023px)": { flex: "1 1 0" },
+      minHeight: `${states.minHeight}px`,
       display: "block",
     },
     SingleColumnContainer: {
       background: `no-repeat center/cover ${parseBackground(
         states.background
       )}`,
-      flex: "1 1 0",
+      minHeight: `${states.minHeight}px`,
     },
     Container: {
       width: "100%",
@@ -151,19 +153,24 @@ export function HeroView(props: HeroProps) {
 
   // NOTE: Spacing on the columns is controlled on the slots itself. For example using inline styling
   return (
-    <div class={sheet.classes.Container}>
+    <div class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}
       </style>
       {states.columns == 2 ? (
-        <div class={sheet.classes.TwoColumnContainer}>
+        <div
+          class={sheet.classes.TwoColumnContainer}
+          part="sqm-two-col-container"
+        >
           <div
+            part="sqm-two-col-primary-col"
             class={`${sheet.classes.ColumnWrapper} ${sheet.classes.ColumnPadding}`}
           >
             {content.primaryColumn}
           </div>
           <div
+            part="sqm-two-col-secondary-col"
             class={`${sheet.classes.ColumnWrapper} ${sheet.classes.ColumnPadding}`}
           >
             {content.secondaryColumn}
@@ -171,6 +178,7 @@ export function HeroView(props: HeroProps) {
         </div>
       ) : (
         <div
+          part="sqm-single-col"
           class={`${sheet.classes.SingleColumnContainer} ${sheet.classes.ColumnPadding}`}
         >
           {content.primaryColumn}

@@ -1,7 +1,8 @@
-import { useMultipleSelection, useSelect, useCombobox } from "downshift";
-import React from "react";
+import { useMultipleSelection, useSelect } from "downshift";
+import React, { useState } from "react";
 import { TagView } from "../Tag";
 import { SelectView } from "./Select2";
+import { useMultiSelectDemo } from "./useMultiSelectDemo";
 
 export default {
   title: "Components / Multi Select",
@@ -18,316 +19,99 @@ const books = [
   "Meditations",
 ];
 
-function getBooksFilter(selectedItems: string[]) {
-  return function booksFilter(book: string) {
-    return selectedItems.indexOf(book) < 0;
-  };
-}
-
 export function MultipleSelect() {
-  const {
-    getSelectedItemProps,
-    getDropdownProps,
-    addSelectedItem,
-    removeSelectedItem,
-    selectedItems,
-  } = useMultipleSelection({ initialSelectedItems: [books[0], books[1]] });
-
-  const items = books.filter(getBooksFilter(selectedItems));
-  const functional = useSelect({
-    selectedItem: null,
-    defaultHighlightedIndex: 0, // after selection, highlight the first item.
-    items,
-    stateReducer: (_, actionAndChanges) => {
-      const { changes, type } = actionAndChanges;
-      switch (type) {
-        case useSelect.stateChangeTypes.MenuKeyDownEnter:
-        case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
-        case useSelect.stateChangeTypes.ItemClick:
-          return {
-            ...changes,
-            isOpen: true, // keep the menu open after selection.
-          };
-      }
-      return changes;
-    },
-    onStateChange: ({ type, selectedItem }) => {
-      switch (type) {
-        case useSelect.stateChangeTypes.MenuKeyDownEnter:
-        case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
-        case useSelect.stateChangeTypes.ItemClick:
-          if (selectedItem) {
-            addSelectedItem(selectedItem);
-          }
-          break;
-        default:
-          break;
-      }
-    },
-  });
-
-  const tagsSlot = (
-    <>
-      {selectedItems.map(function renderSelectedItem(
-        selectedItemForRender,
-        index
-      ) {
-        return (
-          <TagView
-            key={`selected-item-${index}`}
-            {...getSelectedItemProps({
-              selectedItem: selectedItemForRender,
-              index,
-            })}
-            onClickClose={(e) => {
-              e.stopPropagation();
-              removeSelectedItem(selectedItemForRender);
-            }}
-          >
-            {selectedItemForRender}
-          </TagView>
-        );
-      })}
-    </>
-  );
-
-  const props = {
-    getSelectedItemProps,
-    getDropdownProps,
-    addSelectedItem,
-    removeSelectedItem,
-    functional,
-    items,
-    tagsSlot,
-  };
+  const props = useMultiSelectDemo({ selectItems: books });
 
   return (
     <SelectView.ContainerView>
       <SelectView.HandleView {...props} />
-      <SelectView.ListView {...props} empty={!items.length} />
+      <SelectView.ListView {...props} />
+    </SelectView.ContainerView>
+  );
+}
+
+export function MultipleSelectDisabled() {
+  const props = {
+    ...useMultiSelectDemo({ selectItems: books }),
+    disabled: true,
+  };
+
+  return (
+    <SelectView.ContainerView {...props}>
+      <SelectView.HandleView {...props} />
+      <SelectView.ListView {...props} />
     </SelectView.ContainerView>
   );
 }
 
 export function MultipleSelectCombobox() {
-  const initialSelectedItems = [books[0], books[1]];
+  const props = useMultiSelectDemo({ selectItems: books, useCombobox: true });
 
-  function getFilteredBooksCombobox(
-    selectedItems: string[],
-    inputValue: string
-  ) {
-    const lowerCasedInputValue = inputValue.toLowerCase();
-
-    return books.filter(function filterBook(book) {
-      return (
-        !selectedItems.includes(book) &&
-        book.toLowerCase().includes(lowerCasedInputValue)
-      );
-    });
-  }
-
-  const [inputValue, setInputValue] = React.useState("");
-  const [selectedItems, setSelectedItems] = React.useState(
-    initialSelectedItems
+  return (
+    <SelectView.ContainerView {...props}>
+      <SelectView.HandleView {...props} />
+      <SelectView.ListView {...props} />
+    </SelectView.ContainerView>
   );
-  const items = React.useMemo(
-    () => getFilteredBooksCombobox(selectedItems, inputValue),
-    [selectedItems, inputValue]
-  );
-  const {
-    getSelectedItemProps,
-    getDropdownProps,
-    addSelectedItem,
-    removeSelectedItem,
-  } = useMultipleSelection({
-    selectedItems,
-    onStateChange({ selectedItems: newSelectedItems, type }) {
-      switch (type) {
-        case useMultipleSelection.stateChangeTypes.SelectedItemKeyDownBackspace:
-        case useMultipleSelection.stateChangeTypes.SelectedItemKeyDownDelete:
-        case useMultipleSelection.stateChangeTypes.DropdownKeyDownBackspace:
-        case useMultipleSelection.stateChangeTypes.FunctionRemoveSelectedItem:
-          setSelectedItems(newSelectedItems || []);
-          break;
-        default:
-          break;
-      }
-    },
-  });
+}
 
-  const functional = useCombobox({
-    items,
-    defaultHighlightedIndex: 0, // after selection, highlight the first item.
-    selectedItem: null,
-    stateReducer(_, actionAndChanges) {
-      const { changes, type } = actionAndChanges;
-
-      switch (type) {
-        case useCombobox.stateChangeTypes.InputKeyDownEnter:
-        case useCombobox.stateChangeTypes.ItemClick:
-        case useCombobox.stateChangeTypes.InputBlur:
-          return {
-            ...changes,
-            ...(changes.selectedItem && { isOpen: true, highlightedIndex: 0 }),
-          };
-        default:
-          return changes;
-      }
-    },
-    onStateChange({
-      inputValue: newInputValue,
-      type,
-      selectedItem: newSelectedItem,
-    }) {
-      switch (type) {
-        case useCombobox.stateChangeTypes.InputKeyDownEnter:
-        case useCombobox.stateChangeTypes.ItemClick:
-          const guardedSelectItems = selectedItems || [];
-
-          const newSelectedItems = newSelectedItem
-            ? [...guardedSelectItems, newSelectedItem]
-            : guardedSelectItems;
-
-          setSelectedItems(newSelectedItems);
-          break;
-
-        case useCombobox.stateChangeTypes.InputChange:
-          setInputValue(newInputValue || "");
-
-          break;
-        default:
-          break;
-      }
-    },
-  });
-
-  const tagsSlot = (
-    <>
-      {selectedItems.map(function renderSelectedItem(
-        selectedItemForRender,
-        index
-      ) {
-        return (
-          <TagView
-            key={`selected-item-${index}`}
-            {...getSelectedItemProps({
-              selectedItem: selectedItemForRender,
-              index,
-            })}
-            onClickClose={(e) => {
-              e.stopPropagation();
-              removeSelectedItem(selectedItemForRender);
-            }}
-          >
-            {selectedItemForRender}
-          </TagView>
-        );
-      })}
-    </>
-  );
-
+export function MultipleSelectComboboxDisabled() {
   const props = {
-    getSelectedItemProps,
-    getDropdownProps,
-    addSelectedItem,
-    removeSelectedItem,
-    functional,
-    items,
-    tagsSlot,
+    ...useMultiSelectDemo({ selectItems: books, useCombobox: true }),
+    disabled: true,
   };
 
   return (
     <SelectView.ContainerView {...props}>
       <SelectView.HandleView {...props} />
-      <SelectView.ListView {...props} empty={!items.length} />
+      <SelectView.ListView {...props} />
+    </SelectView.ContainerView>
+  );
+}
+
+export function MultipleSelectCreatableCombobox() {
+  const [stateBooks, setStateBooks] = useState(books);
+  const props = {
+    ...useMultiSelectDemo({
+      selectItems: stateBooks,
+      useCombobox: true,
+    }),
+    limitWidth: false,
+  };
+
+  return (
+    <SelectView.ContainerView {...props}>
+      <SelectView.HandleView {...props} />
+
+      <SelectView.FrameView {...props}>
+        <div
+          onClick={() => {
+            setStateBooks([...stateBooks, props.functional.inputValue]);
+          }}
+        >
+          + Create Reward "{props.functional.inputValue}"
+        </div>
+        {props.items.map((item: any, index: number) => (
+          <SelectView.ItemView
+            {...{
+              functional: props.functional,
+              index,
+              item,
+            }}
+          />
+        ))}
+      </SelectView.FrameView>
     </SelectView.ContainerView>
   );
 }
 
 export function MultipleSelectFullWidth() {
-  const {
-    getSelectedItemProps,
-    getDropdownProps,
-    addSelectedItem,
-    removeSelectedItem,
-    selectedItems,
-  } = useMultipleSelection({ initialSelectedItems: [books[0], books[1]] });
-
-  const items = books.filter(getBooksFilter(selectedItems));
-  const functional = useSelect({
-    selectedItem: null,
-    defaultHighlightedIndex: 0, // after selection, highlight the first item.
-    items,
-    stateReducer: (_, actionAndChanges) => {
-      const { changes, type } = actionAndChanges;
-      switch (type) {
-        case useSelect.stateChangeTypes.MenuKeyDownEnter:
-        case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
-        case useSelect.stateChangeTypes.ItemClick:
-          return {
-            ...changes,
-            isOpen: true, // keep the menu open after selection.
-          };
-      }
-      return changes;
-    },
-    onStateChange: ({ type, selectedItem }) => {
-      switch (type) {
-        case useSelect.stateChangeTypes.MenuKeyDownEnter:
-        case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
-        case useSelect.stateChangeTypes.ItemClick:
-          if (selectedItem) {
-            addSelectedItem(selectedItem);
-          }
-          break;
-        default:
-          break;
-      }
-    },
-  });
-
-  const tagsSlot = (
-    <>
-      {selectedItems.map(function renderSelectedItem(
-        selectedItemForRender,
-        index
-      ) {
-        return (
-          <TagView
-            key={`selected-item-${index}`}
-            {...getSelectedItemProps({
-              selectedItem: selectedItemForRender,
-              index,
-            })}
-            onClickClose={(e) => {
-              e.stopPropagation();
-              removeSelectedItem(selectedItemForRender);
-            }}
-          >
-            {selectedItemForRender}
-          </TagView>
-        );
-      })}
-    </>
-  );
-
-  const limitWidth = false;
-
-  const props = {
-    getSelectedItemProps,
-    getDropdownProps,
-    addSelectedItem,
-    removeSelectedItem,
-    functional,
-    items,
-    tagsSlot,
-    limitWidth,
-  };
+  const props = useMultiSelectDemo({ selectItems: books });
 
   return (
-    <SelectView.ContainerView {...props}>
-      <SelectView.HandleView {...props} />
-      <SelectView.ListView {...props} empty={!items.length} />
+    <SelectView.ContainerView {...props} limitWidth={false}>
+      <SelectView.HandleView {...props} limitWidth={false} />
+      <SelectView.ListView {...props} limitWidth={false} />
     </SelectView.ContainerView>
   );
 }
@@ -341,118 +125,25 @@ export function MultiSelectWithManyItems() {
     "1984",
     "Pride and Prejudice",
     "Meditations",
-    "To Kill a Mockingbird",
-    "War and Peace",
-    "The Idiot",
-    "A Picture of Dorian Gray",
-    "1984",
-    "Pride and Prejudice",
-    "Meditations",
-    "To Kill a Mockingbird",
-    "War and Peace",
-    "The Idiot",
-    "A Picture of Dorian Gray",
-    "1984",
-    "Pride and Prejudice",
-    "Meditations",
-    "To Kill a Mockingbird",
-    "War and Peace",
-    "The Idiot",
-    "A Picture of Dorian Gray",
-    "1984",
-    "Pride and Prejudice",
-    "Meditations",
+    "Harry Potter",
+    "The Lord of the Rings",
+    "The Alchemist",
+    "The Da Vince Code",
+    "The Twilight Saga",
+    "Gone with the Wind",
+    "Think and Grow Rich",
+    "A Tale of Two Cities",
+    "The Little Prince",
+    "The Hobbit",
+    "Atomic Habits",
   ];
 
-  const {
-    getSelectedItemProps,
-    getDropdownProps,
-    addSelectedItem,
-    removeSelectedItem,
-    selectedItems,
-  } = useMultipleSelection({
-    initialSelectedItems: [longBooks[0], longBooks[1]],
-  });
-
-  const items = longBooks.filter(getBooksFilter(selectedItems));
-  const functional = useSelect({
-    selectedItem: null,
-    defaultHighlightedIndex: 0, // after selection, highlight the first item.
-    items,
-    stateReducer: (_, actionAndChanges) => {
-      const { changes, type } = actionAndChanges;
-      switch (type) {
-        case useSelect.stateChangeTypes.MenuKeyDownEnter:
-        case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
-        case useSelect.stateChangeTypes.ItemClick:
-          return {
-            ...changes,
-            isOpen: true, // keep the menu open after selection.
-          };
-      }
-      return changes;
-    },
-    onStateChange: ({ type, selectedItem }) => {
-      switch (type) {
-        case useSelect.stateChangeTypes.MenuKeyDownEnter:
-        case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
-        case useSelect.stateChangeTypes.ItemClick:
-          if (selectedItem) {
-            addSelectedItem(selectedItem);
-          }
-          break;
-        default:
-          break;
-      }
-    },
-  });
-
-  const tagsSlot = (
-    <>
-      {selectedItems.map(function renderSelectedItem(
-        selectedItemForRender,
-        index
-      ) {
-        return (
-          <TagView
-            key={`selected-item-${index}`}
-            {...getSelectedItemProps({
-              selectedItem: selectedItemForRender,
-              index,
-            })}
-            onClickClose={(e) => {
-              e.stopPropagation();
-              removeSelectedItem(selectedItemForRender);
-            }}
-          >
-            {selectedItemForRender}
-          </TagView>
-        );
-      })}
-    </>
-  );
-
-  const limitWidth = false;
-
-  const props = {
-    getSelectedItemProps,
-    getDropdownProps,
-    addSelectedItem,
-    removeSelectedItem,
-    functional,
-    items,
-    tagsSlot,
-    limitWidth,
-  };
+  const props = useMultiSelectDemo({ selectItems: longBooks });
 
   return (
-    <SelectView.ContainerView {...props}>
-      <SelectView.HandleView {...props} />
-      <SelectView.ListView
-        limitHeight={true}
-        {...props}
-        empty={!items.length}
-      />
+    <SelectView.ContainerView {...props} limitWidth={false}>
+      <SelectView.HandleView {...props} limitWidth={false} />
+      <SelectView.ListView limitHeight={true} {...props} limitWidth={false} />
     </SelectView.ContainerView>
   );
 }

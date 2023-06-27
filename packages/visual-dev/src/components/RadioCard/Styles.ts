@@ -3,13 +3,11 @@ import { css } from "styled-components";
 export const RadioLabelStyle = css`
   display: flex;
   flex-direction: row;
-  //   width: 85%;
   min-height: 95px;
   box-sizing: border-box;
   border: 2px solid var(--sq-border);
   border-radius: var(--sq-border-radius-normal);
   align-items: center;
-  //   margin: 10px;
   user-select: none;
   cursor: pointer;
   color: var(--sq-text);
@@ -17,6 +15,10 @@ export const RadioLabelStyle = css`
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
+  background-color: var(--sq-surface);
+  & * {
+    border-color: var(--sq-border);
+  }
 `;
 
 export const RadioGridStyle = css`
@@ -28,35 +30,8 @@ export const RadioGridStyle = css`
 export const RadioInputStyle = css`
   display: none;
 
-  &:checked + div {
-    border-color: var(--sq-action-primary);
-  }
-
   &:checked + div::after {
     transform: scale(1);
-  }
-`;
-
-export const RadioButtonStyle = css`
-  margin-top: 2.5px;
-  width: 14px;
-  height: 14px;
-  border: 1.5px solid var(--sq-text);
-  border-radius: 50%;
-  margin-right: var(--sq-spacing-large);
-  box-sizing: border-box;
-  padding: 1.5px;
-  flex-shrink: 0;
-
-  &::after {
-    content: "";
-    width: 8px;
-    height: 8px;
-    display: block;
-    background: var(--sq-action-primary);
-    border-radius: 100%;
-    transform: scale(0);
-    transition: transform 0.15s;
   }
 `;
 
@@ -78,5 +53,21 @@ export const LeftSegmentStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-right: 1px solid var(--sq-border);
+  border-right-width: 1px;
+  border-right-style: solid;
+`;
+
+export const TitleContainerStyle = css`
+  display: flex;
+  gap: var(--sq-spacing-xx-small);
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: var(--sq-spacing-xx-small);
+`;
+
+export const TitleStyle = css`
+  font-weight: bold;
+  margin: 0px;
+  font-size: var(--sq-font-size-regular);
+  color: inherit;
 `;

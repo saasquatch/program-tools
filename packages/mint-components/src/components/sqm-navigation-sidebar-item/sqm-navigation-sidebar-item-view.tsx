@@ -51,6 +51,7 @@ export function NavigationSidebarItemView(
 
   return (
     <a
+      part="sqm-link"
       href={data.path}
       onClick={(e) => {
         e.preventDefault();
@@ -60,7 +61,9 @@ export function NavigationSidebarItemView(
     >
       <style type="text/css">{styleString}</style>
       <sl-icon class={sheet.classes.Icon} name={data.icon}></sl-icon>
-      <p class={sheet.classes.Label}>{data.label}</p>
+      <p class={sheet.classes.Label} part="sqm-label">
+        {data.label}
+      </p>
     </a>
   );
 }

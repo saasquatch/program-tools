@@ -7,9 +7,16 @@
 
 ## Properties
 
-| Property            | Attribute            | Description | Type                           | Default   |
-| ------------------- | -------------------- | ----------- | ------------------------------ | --------- |
-| `verticalAlignment` | `vertical-alignment` |             | `"center" \| "end" \| "start"` | `"start"` |
+| Property            | Attribute            | Description | Type                           | Default     |
+| ------------------- | -------------------- | ----------- | ------------------------------ | ----------- |
+| `backgroundColor`   | `background-color`   |             | `string`                       | `"#ffffff"` |
+| `hideBorder`        | `hide-border`        |             | `boolean`                      | `false`     |
+| `limitWidth`        | `limit-width`        |             | `boolean`                      | `false`     |
+| `paddingBottom`     | `padding-bottom`     |             | `string`                       | `"large"`   |
+| `paddingLeft`       | `padding-left`       |             | `string`                       | `"large"`   |
+| `paddingRight`      | `padding-right`      |             | `string`                       | `"large"`   |
+| `paddingTop`        | `padding-top`        |             | `string`                       | `"large"`   |
+| `verticalAlignment` | `vertical-alignment` |             | `"center" \| "end" \| "start"` | `"start"`   |
 
 
 ## Dependencies

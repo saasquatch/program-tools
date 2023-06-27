@@ -22,9 +22,8 @@ import { intl } from "../../global/global";
 export class LeaderboardRank {
   //Todo: Give this component a proper loading state
 
-
   /**
-   * @uiName Default Rank
+   * @uiName Default rank
    * @uiType string
    * @uiEnum ["rowNumber", "rank", "denseRank"]
    * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
@@ -32,14 +31,14 @@ export class LeaderboardRank {
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
 
   /**
-   * @uiName Rank Text
+   * @uiName Rank text
    * @uiWidget textArea
    */
   @Prop() rankText: string =
     "You are currently in {rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th} } place!";
 
   /**
-   * @uiName Leaderboard Type
+   * @uiName Leaderboard type
    * @uiType string
    * @required
    * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
@@ -51,12 +50,12 @@ export class LeaderboardRank {
     | "topPointEarners";
 
   /**
-   * @uiName Unranked Text
+   * @uiName Unranked text
    */
   @Prop() unrankedText: string;
 
   /**
-   * @uiName Leaderboard Time Interval
+   * @uiName Leaderboard time interval
    * @uiWidget dateRange
    * @uiWidgetOptions {"allowPastDates":true, "months": 1}
    */

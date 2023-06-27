@@ -80,6 +80,15 @@ export const ImageAndShareButtons = () => {
   );
 };
 
+export const LimitWidth = () => {
+  return (
+    <sqm-referral-card limitWidth={true}>
+      {media("left")}
+      {sharebutton("right")}
+    </sqm-referral-card>
+  );
+};
+
 export const TimelineAndShareButtons = () => {
   return (
     <sqm-referral-card>
@@ -121,6 +130,54 @@ export const FlippedSlots = () => {
     <sqm-referral-card>
       {timeline("right", 3)}
       {sharebutton("left")}
+    </sqm-referral-card>
+  );
+};
+
+export const NoLeft = () => {
+  return <sqm-referral-card>{timeline("right", 3)}</sqm-referral-card>;
+};
+
+export const NoRight = () => {
+  return <sqm-referral-card>{sharebutton("left")}</sqm-referral-card>;
+};
+
+export const WithHeader = () => {
+  return (
+    <sqm-referral-card>
+      <h3 slot="header">Header slot content</h3>
+      {timeline("right", 3)}
+      {sharebutton("left")}
+    </sqm-referral-card>
+  );
+};
+
+export const WithFooter = () => {
+  return (
+    <sqm-referral-card>
+      {timeline("right", 3)}
+      {sharebutton("left")}
+      <sqm-portal-footer slot="footer" />
+    </sqm-referral-card>
+  );
+};
+
+export const NoBorder = () => {
+  return (
+    <sqm-referral-card hide-border="true">
+      {timeline("right", 3)}
+      {sharebutton("left")}
+      <sqm-portal-footer slot="footer" />
+    </sqm-referral-card>
+  );
+};
+
+export const BackgroundColor = () => {
+  return (
+    <sqm-referral-card background-color="aquamarine">
+      {timeline("right", 3)}
+      {sharebutton("left")}
+      <sqm-portal-footer slot="footer" />
     </sqm-referral-card>
   );
 };

@@ -23,7 +23,7 @@ export class PortalResetPassword {
   /**
    * Redirect participants to this page when they successfully reset their password.
    *
-   * @uiName Successful Reset Redirect
+   * @uiName Successful reset redirect
    * @uiWidget pageSelect
    */
   @Prop()
@@ -32,50 +32,50 @@ export class PortalResetPassword {
   /**
    * Redirect participants to this page if password reset fails due to an outdated reset attempt.
    *
-   * @uiName Failed Reset Redirect
+   * @uiName Failed reset redirect
    * @uiWidget pageSelect
    */
   @Prop()
   failedPage: string = "/";
 
   /**
-   * @uiName Show Confirm Password Field
+   * @uiName Show confirm password field
    */
   @Prop()
   confirmPassword: boolean = false;
 
   /**
-   * @uiName Reset Password Header Text
+   * @uiName Reset password header text
    */
   @Prop() resetPasswordHeader: string = "Reset your password";
 
   /**
    * Displayed after a successful password reset.
    *
-   * @uiName Successful Password Reset Text
+   * @uiName Successful password reset text
    * @uiWidget textArea
    */
   @Prop() passwordResetHeader: string = "Password reset";
 
   /**
-   * @uiName Password Reset Button Text
+   * @uiName Password reset button text
    */
   @Prop() resetPasswordButtonText: string = "Reset Password";
 
   /**
    * Button text displayed after a successful password reset.
    *
-   * @uiName Continue Button Text
+   * @uiName Continue button text
    */
   @Prop() continueButtonText: string = "Continue";
 
   /**
-   * @uiName Password Confirmation Field Label
+   * @uiName Password confirmation field label
    */
   @Prop() confirmPasswordFieldLabel: string = "Confirm Password";
 
   /**
-   * @uiName Password Field Label
+   * @uiName Password field label
    */
   @Prop() passwordFieldLabel: string = "New Password";
 

@@ -25,7 +25,7 @@ export class BigStat {
    * Select what type of stat to display. Manual paths are also supported.
    *
    * @uiWidget statTypeSelectWidget
-   * @uiName Stat Type
+   * @uiName Stat type
    * @required
    * @uiWidgetOptions {"version": 1.1}
    */
@@ -34,7 +34,7 @@ export class BigStat {
   /**
    * Controls the order of the stat value & description column
    *
-   * @uiName Flex Reverse
+   * @uiName Flex reverse
    * @default
    */
   @Prop() flexReverse?: boolean = false;

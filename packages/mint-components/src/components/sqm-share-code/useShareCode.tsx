@@ -5,10 +5,9 @@ import {
   useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useDomContext, useEffect } from "@saasquatch/stencil-hooks";
 import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
-import { ShareLinkViewProps } from "../sqm-share-link/sqm-share-link-view";
+import { CopyTextViewProps } from "../views/copy-text-view";
 
 interface ShareCodeProps {
   programId?: string;
@@ -32,7 +31,7 @@ const WIDGET_ENGAGEMENT_EVENT = gql`
   }
 `;
 
-export function useShareCode(props: ShareCodeProps): ShareLinkViewProps {
+export function useShareCode(props: ShareCodeProps): CopyTextViewProps {
   const { programId = useProgramId() } = props;
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
@@ -40,7 +39,7 @@ export function useShareCode(props: ShareCodeProps): ShareLinkViewProps {
   const { data } = useQuery(MessageLinkQuery, { programId }, !user?.jwt);
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
 
-  const shareString =
+  const copyString =
     data?.user?.referralCode ??
     // Shown during loading
     "...";
@@ -50,7 +49,7 @@ export function useShareCode(props: ShareCodeProps): ShareLinkViewProps {
   function onClick() {
     // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
     // Only if called from a user-initiated event
-    navigator.clipboard.writeText(shareString);
+    navigator.clipboard.writeText(copyString);
     setOpen(true);
     setTimeout(() => setOpen(false), props.tooltiplifespan);
     sendLoadEvent({
@@ -67,5 +66,5 @@ export function useShareCode(props: ShareCodeProps): ShareLinkViewProps {
     });
   }
 
-  return { ...props, onClick, open, shareString };
+  return { ...props, onClick, open, copyString: copyString };
 }

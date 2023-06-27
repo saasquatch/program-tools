@@ -19,6 +19,16 @@ Feature: Referral Card
 		Then the column layout switches to row layout
 		And the "left" slot content is displayed above the "right" slot content
 
+	@minutia
+	@ui
+	Scenario: Left or right column content spans the whole card if there is no content in the other column
+		Given a Referral Card component
+		And there content in one column
+		And there is no content in the other column
+		Then the column with content spans 100% of the card width
+		And the column with content respects the container's padding
+		And the column without content has zero width
+
 	@motivating
 	@ui
 	Scenario Outline: Referral Card component content can be vertically aligned start, center, end
@@ -35,3 +45,50 @@ Feature: Referral Card
 			| end    | the bottom |
 			| N/A    | the top    |
 
+	@ui
+	Scenario Outline: Container border can be toggled
+		Given a user is viewing the referral card component
+		Then the default value for the prop "include-border" is "true"
+		When "include-border" has <value>
+		Then the referral card component's border <maybe> included
+		Examples:
+			| value            | maybe |
+			| true             | is    |
+			| false            | isn't |
+			| empty (no value) | is    |
+
+	@motivating
+	@ui
+	Scenario Outline: Component background color can be customized
+		Given a user is viewing the Referral Card component
+		Then the default value is "#ffffff"
+		When the prop "background-color" has <value>
+		Then the background has color <backgroundColor>
+		Examples:
+			| value                 | backgroundColor                     |
+			| empty (default value) | var(--sl-color-neutral-0) (#ffffff) |
+			| aquamarine            | #7fffd4                             |
+
+	@motivating
+	@ui
+	Scenario Outline: Container padding can be customized
+		Given a user is looking at the component
+		Then the default values for "padding-top", "padding-bottom", "padding-left", "padding-right" is "large"
+		When prop "padding-top" has <value>
+		Then <padding> is applied to content
+		And the same applies to "padding-bottom", "padding-left", "padding-right"
+
+		Examples:
+			| value      | padding    |
+			| none       | no padding |
+			| xxx-small  | xxx-small  |
+			| xx-small   | xx-small   |
+			| x-small    | x-small    |
+			| small      | small      |
+			| medium     | medium     |
+			| large      | large      |
+			| x-large    | x-large    |
+			| xx-large   | xx-large   |
+			| xxx-large  | xxx-large  |
+			| xxxx-large | xxxx-large |
+			| N/A        | no padding |
