@@ -23,7 +23,35 @@ function loadStory(imps: any) {
   };
 }
 
-type Layout = "desktop" | "tablet" | "mobile";
+function getStoryFromKey(key: string, stories: OrganisedStoryWithSubs) {
+  if (!key) return undefined;
+
+  const keys = decodeURIComponent(key).split("-");
+  const group = keys[0];
+  const parentTitle = keys[1];
+  const subKey = keys[2];
+
+  const s = stories?.[group]?.find(
+    (element) => element.story.title === parentTitle
+  );
+  const subStory = s.subs?.[subKey];
+
+  const selectedStory = {
+    key,
+    story: subStory,
+    parent: s?.story,
+    label: subStory?.name,
+  };
+
+  if (
+    selectedStory.key &&
+    selectedStory.story &&
+    selectedStory.parent &&
+    selectedStory.label
+  )
+    return selectedStory;
+  else return undefined;
+}
 
 export type Return = {
   class: string;
@@ -56,36 +84,17 @@ export function useStencilbook(
 
   const urlStoryKey = decodeURIComponent(window.location.hash).replace("#", "");
   const [Selected, setSelectedInternal] = useState<Selection>(
-    getStoryFromKey(urlStoryKey)
+    getStoryFromKey(urlStoryKey, stories)
   );
   const selectedKey = Selected?.key;
-  const [layout, setLayout] = useState<Layout>("desktop");
-  const [showSidebar, setShowSidebar] = useState<boolean>(true);
-  const [darkCanvas, setDarkCanvas] = useState<boolean>(false);
 
-  function getStoryFromKey(key?: string) {
-    if (!key) return undefined;
-
-    const keys = decodeURIComponent(key).split("-");
-    const group = keys[0];
-    const parentTitle = keys[1];
-    const subKey = keys[2];
-
-    const s = stories[group]?.find(
-      (element) => element.story.title === parentTitle
-    );
-    const subStory = s.subs[subKey];
-    return {
-      key,
-      story: subStory,
-      parent: s?.story,
-      label: subStory?.name,
-    };
-  }
   function setSelectedStory(key: string) {
     window.location.hash = encodeURIComponent(key);
-    setSelectedInternal(getStoryFromKey(key));
+    setSelectedInternal(getStoryFromKey(key, stories));
   }
+
+  const [showSidebar, setShowSidebar] = useState<boolean>(true);
+  const [darkCanvas, setDarkCanvas] = useState<boolean>(false);
 
   const WidthSelector = () => {
     // Not the best way to display these buttons but don't wanna put too much time
@@ -108,8 +117,7 @@ export function useStencilbook(
   };
 
   // Mobile/tablet widths are based on avocode designs
-  const containerWidth =
-    layout === "mobile" ? "375px" : layout === "tablet" ? "768px" : "1124px";
+  const containerWidth = "1124px";
   const responsiveWidth = css`
     max-width: ${containerWidth};
     margin-left: ${showSidebar ? "250px" : "0px"};
@@ -158,20 +166,9 @@ export function useStencilbook(
                 <div class="group-wrapper">
                   {group !== "_" && <h4 class="group-header">{group}</h4>}
                   {stories[group].map((s) => {
-                    const [isOpen, setIsOpen] = useState<Boolean>(false);
                     return (
                       <li class="parentStory">
-                        <details
-                          style={{ marginBottom: "10px" }}
-                          open={
-                            isOpen ||
-                            selectedKey?.includes(`${group}-${s.story.title}`)
-                          }
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setIsOpen(!isOpen);
-                          }}
-                        >
+                        <details style={{ marginBottom: "10px" }}>
                           <summary style={{ outline: "none" }}>
                             {s.story.title}
                           </summary>
