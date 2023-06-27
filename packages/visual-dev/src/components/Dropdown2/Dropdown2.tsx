@@ -130,17 +130,7 @@ const DropdownContentDiv = styled("div")<Dropdown2Props>`
       transform: translateY(-100%);
     `}
 
-  ${({ menuPosition }) =>
-    menuPosition === "left"
-      ? css`
-          right: 0;
-        `
-      : menuPosition === "center"
-      ? css`
-          transform: translateX(50%);
-          right: 50%;
-        `
-      : null}
+  ${(props) => Styles.MenuPosition[props.menuPosition ?? "right"]}
 `;
 
 const EmptyTextSpan = styled("span")`
@@ -309,18 +299,4 @@ const DropdownNamespace = Object.assign(Dropdown2View, {
   HandleView: HandleView,
 });
 
-/**
- * @deprecated use {@link Dropdown2View} instead
- */
-const DropdownNamespaceDeprecated = Object.assign(Dropdown2View, {
-  Sublist: SublistView,
-  ItemView: ItemView,
-  HandleView: HandleView,
-});
-
 export { DropdownNamespace as Dropdown2View };
-
-/**
- * @deprecated use {@link Dropdown2View} instead
- */
-export { DropdownNamespaceDeprecated as Dropdown2 };

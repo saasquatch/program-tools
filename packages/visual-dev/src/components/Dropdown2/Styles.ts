@@ -80,3 +80,14 @@ export const DropdownSublistDiv = css`
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
 `;
+
+export const MenuPosition = {
+  left: css`
+    right: 0;
+  `,
+  center: css`
+    transform: translateX(50%);
+    right: 50%;
+  `,
+  right: css``,
+};
