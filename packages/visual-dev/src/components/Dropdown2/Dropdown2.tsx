@@ -18,7 +18,7 @@ export interface OptionProps {
    */
   popUpwards?: boolean;
   /**
-   *
+   *  Justification of dropdown menu
    */
   menuPosition?: "left" | "center" | "right";
   /**
