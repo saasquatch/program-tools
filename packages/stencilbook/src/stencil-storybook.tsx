@@ -158,9 +158,20 @@ export function useStencilbook(
                 <div class="group-wrapper">
                   {group !== "_" && <h4 class="group-header">{group}</h4>}
                   {stories[group].map((s) => {
+                    const [isOpen, setIsOpen] = useState<Boolean>(false);
                     return (
                       <li class="parentStory">
-                        <details style={{ marginBottom: "10px" }}>
+                        <details
+                          style={{ marginBottom: "10px" }}
+                          open={
+                            isOpen ||
+                            selectedKey?.includes(`${group}-${s.story.title}`)
+                          }
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setIsOpen(!isOpen);
+                          }}
+                        >
                           <summary style={{ outline: "none" }}>
                             {s.story.title}
                           </summary>
