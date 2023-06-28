@@ -34,7 +34,7 @@ function getStoryFromKey(key: string, stories: OrganisedStoryWithSubs) {
   const s = stories?.[group]?.find(
     (element) => element.story.title === parentTitle
   );
-  const subStory = s.subs?.[subKey];
+  const subStory = s?.subs?.[subKey];
 
   const selectedStory = {
     key,
