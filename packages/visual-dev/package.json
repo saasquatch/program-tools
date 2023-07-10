@@ -15,9 +15,9 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test --passWithNoTests",
-    "test-storyshots": "tsdx test --passWithNoTests",
+    "storybook:storyshots": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
-    "test-storybook": "cross-env NODE_ENV=storybook test-storybook --coverage --url http://localhost:9001/",
+    "storybook:coverage": "cross-env NODE_ENV=storybook test-storybook --coverage --url http://localhost:9001/",
     "storybook": "cross-env NODE_ENV=storybook storybook dev -p 9001 -c .storybook",
     "storybook:build": "cross-env NODE_ENV=storybook storybook build -c .storybook -o .out"
   },
