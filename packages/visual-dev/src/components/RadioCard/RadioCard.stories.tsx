@@ -252,8 +252,7 @@ export const IconSlot = () => {
         optionValue={1}
         onClick={void 0}
         onChange={void 0}
-        icon="action" // this icon does not show as iconSlot takes precedence
-        iconSlot={
+        icon={
           <svg
             viewBox="0 0 192 192"
             fill="none"

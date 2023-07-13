@@ -32,11 +32,7 @@ export interface OptionProps {
   /**
    * Icon displayed in the left side section of the card
    */
-  icon?: IconKey;
-  /**
-   * Slot displayed in the left side section of the card. Takes precedence over icon
-   */
-  iconSlot?: React.ReactNode;
+  icon?: IconKey | React.ReactNode;
   /**
    * Icon displayed to the right of the title
    */
@@ -130,7 +126,6 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
       titleIconSlot,
       customCSS = {},
       disabled = false,
-      iconSlot,
       ...rest
     } = props;
 
@@ -153,13 +148,12 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
           readOnly
           ref={forwardedRef}
         />
-
-        {(iconSlot || icon) && (
+        {icon && (
           <LeftSegmentDiv isChecked={selected}>
-            {iconSlot ? (
+            {React.isValidElement(icon) ? (
               <IconSlotDiv>{iconSlot}</IconSlotDiv>
             ) : (
-              icon && <IconView icon={icon} size="40px" color={icon_color} />
+              <IconView icon={icon} size="40px" color={icon_color} />
             )}
           </LeftSegmentDiv>
         )}
