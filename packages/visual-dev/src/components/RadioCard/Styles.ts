@@ -71,3 +71,8 @@ export const TitleStyle = css`
   font-size: var(--sq-font-size-regular);
   color: inherit;
 `;
+
+export const IconSlotStyle = css`
+  height: 40px;
+  width: 40px;
+`;

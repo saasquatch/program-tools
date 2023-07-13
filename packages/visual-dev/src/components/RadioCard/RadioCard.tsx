@@ -116,8 +116,7 @@ const TitleP = styled.p`
 `;
 
 const IconSlotDiv = styled.div`
-  height: 40px;
-  width: 40px;
+  ${Styles.IconSlotStyle}
 `;
 
 const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
