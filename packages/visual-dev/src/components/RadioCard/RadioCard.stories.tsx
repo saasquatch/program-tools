@@ -239,3 +239,37 @@ export const DisabledAndSelected = () => {
     </RadioCardView.GroupView>
   );
 };
+
+export const IconSlot = () => {
+  return (
+    <RadioCardView.GroupView>
+      <RadioCardView
+        title={"A title for this option"}
+        description={
+          "This is a default radio group button. Toggle it by clicking."
+        }
+        value={1}
+        optionValue={1}
+        onClick={void 0}
+        onChange={void 0}
+        icon="action" // this icon does not show as iconSlot takes precedence
+        iconSlot={
+          <svg
+            viewBox="0 0 192 192"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="96" cy="96" r="96" fill="#D9D9D9" />
+            <circle cx="60.5" cy="61.5" r="12.5" fill="black" />
+            <circle cx="136.5" cy="61.5" r="12.5" fill="black" />
+            <path
+              d="M41 125C61.6667 142.667 112.7 167.4 151.5 125"
+              stroke="black"
+            />
+          </svg>
+        }
+        disabled
+      />
+    </RadioCardView.GroupView>
+  );
+};
