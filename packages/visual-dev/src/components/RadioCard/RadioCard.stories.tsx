@@ -248,7 +248,7 @@ export const IconSlot = () => {
         description={
           "This is a default radio group button. Toggle it by clicking."
         }
-        value={1}
+        value={0}
         optionValue={1}
         onClick={void 0}
         onChange={void 0}
@@ -268,7 +268,6 @@ export const IconSlot = () => {
             />
           </svg>
         }
-        disabled
       />
     </RadioCardView.GroupView>
   );
