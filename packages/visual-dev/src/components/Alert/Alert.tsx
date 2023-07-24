@@ -88,7 +88,9 @@ export const AlertView = React.forwardRef<React.ElementRef<"div">, AlertProps>(
       ...rest
     } = props;
     const textBannerWithNoTitle =
-      (!title && variant === "textWarning") || variant === "textCritical";
+      (!title && variant === "textWarning") ||
+      variant === "textCritical" ||
+      !title;
     return (
       <AlertDiv
         {...rest}
@@ -99,7 +101,13 @@ export const AlertView = React.forwardRef<React.ElementRef<"div">, AlertProps>(
         {iconSlot ? iconSlot : icons[variant]}
         <div>
           <strong>{title}</strong>
-          <div style={{ paddingTop: textBannerWithNoTitle ? "2px" : "0px" }}>
+          <div
+            style={{
+              paddingTop: textBannerWithNoTitle
+                ? "var(--sq-spacing-xxx-small)"
+                : "0px",
+            }}
+          >
             {children}
           </div>
         </div>
