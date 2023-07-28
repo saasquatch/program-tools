@@ -3,6 +3,8 @@ import styled, { CSSProp } from "styled-components";
 import { IconKey, IconView } from "../Icon";
 import { loadingAnimation, successAnimation } from "./Animations";
 import * as Styles from "./Styles";
+//@ts-ignore
+import { register } from "@impactinc/ui-component-library";
 
 export type ButtonProps = OptionProps &
   StyleProps &
@@ -92,9 +94,14 @@ export const ButtonView = React.forwardRef<
     ...rest
   } = props;
 
+  if (customElements.get("uicl-btn") === undefined) {
+    register();
+  }
   return (
-    <StyledButton
+    <uicl-btn
       {...rest}
+      class={buttonType}
+      is-multi-clickable={true}
       buttonType={buttonType}
       pill={pill}
       isLoading={loading}
@@ -102,7 +109,7 @@ export const ButtonView = React.forwardRef<
       success={success}
       size={size}
       ref={forwardedRef}
-      customCSS={customCSS}
+      // customCSS={customCSS}
     >
       {iconLocation == "left" && icon && (
         <IconView
@@ -140,7 +147,7 @@ export const ButtonView = React.forwardRef<
           {successAnimation(Styles.checkmark_anim[size])}
         </>
       )}
-    </StyledButton>
+    </uicl-btn>
   );
 });
 
