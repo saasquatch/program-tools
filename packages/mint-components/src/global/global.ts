@@ -66,7 +66,7 @@ import {
   SlTooltip,
   setBasePath,
   registerIconLibrary,
-} from "@shoelace-style/shoelace";
+} from "@saasquatch/shoelace";
 
 try {
   setBasePath("/dist/shoelace");
