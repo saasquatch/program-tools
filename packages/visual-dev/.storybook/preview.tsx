@@ -1,0 +1,27 @@
+import type { Preview } from "@storybook/react";
+import React from "react";
+import { GlobalStyle } from "../src/components/GlobalStyle";
+
+const preview: Preview = {
+  parameters: {
+    actions: { argTypesRegex: "^on[A-Z].*" },
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/,
+      },
+    },
+  },
+};
+
+export default preview;
+
+const withGlobalStyles = (Story, context) => {
+  return (
+    <>
+      <GlobalStyle />
+      <Story {...context} />
+    </>
+  );
+};
+export const decorators = [withGlobalStyles];
