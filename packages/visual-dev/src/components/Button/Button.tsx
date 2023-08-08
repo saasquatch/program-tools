@@ -1,10 +1,10 @@
 import * as React from "react";
-import styled, { CSSProp } from "styled-components";
+import { CSSProp } from "styled-components";
 import { IconKey, IconView } from "../Icon";
 import { loadingAnimation, successAnimation } from "./Animations";
 import * as Styles from "./Styles";
 //@ts-ignore
-import { register } from "@impactinc/ui-component-library";
+import { register } from "@impactinc/ui-component-library/web-components";
 
 export type ButtonProps = OptionProps &
   StyleProps &
@@ -58,23 +58,23 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const StyledButton = styled.button<
-  Required<Omit<StyleProps, "loading">> & { isLoading: boolean }
->`
-  ${Styles.universal_base}
-  ${(props) => Styles[props.buttonType].base}
-  /* ${(props) => props.pill && Styles.pill} */
-  ${(props) => props.size == "small" && Styles.small}
-  ${(props) => props.size == "medium" && Styles.medium}
-  ${(props) => props.size == "large" && Styles.large}
-  ${(props) => props.critical && Styles[props.buttonType].critical}
-  ${(props) => props.success && Styles[props.buttonType].success}
-  ${(props) =>
-    props.isLoading &&
-    props.buttonType != "text" &&
-    Styles[props.buttonType].loading}
-  ${(props) => props.customCSS}
-`;
+// const StyledButton = styled.button<
+//   Required<Omit<StyleProps, "loading">> & { isLoading: boolean }
+// >`
+//   ${Styles.universal_base}
+//   ${(props) => Styles[props.buttonType].base}
+//   /* ${(props) => props.pill && Styles.pill} */
+//   ${(props) => props.size == "small" && Styles.small}
+//   ${(props) => props.size == "medium" && Styles.medium}
+//   ${(props) => props.size == "large" && Styles.large}
+//   ${(props) => props.critical && Styles[props.buttonType].critical}
+//   ${(props) => props.success && Styles[props.buttonType].success}
+//   ${(props) =>
+//     props.isLoading &&
+//     props.buttonType != "text" &&
+//     Styles[props.buttonType].loading}
+//   ${(props) => props.customCSS}
+// `;
 
 export const ButtonView = React.forwardRef<
   React.ElementRef<"button">,
