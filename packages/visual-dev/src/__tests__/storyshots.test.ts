@@ -17,7 +17,7 @@ const beforeScreenshot = () => {
 
 initStoryshots({
   test: imageSnapshot({
-    storybookUrl: "http://localhost:9001/",
+    storybookUrl: "http://localhost:7001/",
     getMatchOptions,
     beforeScreenshot,
   }),
