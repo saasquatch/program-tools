@@ -1,10 +1,8 @@
 import * as React from "react";
-import { CSSProp } from "styled-components";
+import styled, { CSSProp } from "styled-components";
 import { IconKey, IconView } from "../Icon";
 import { loadingAnimation, successAnimation } from "./Animations";
 import * as Styles from "./Styles";
-//@ts-ignore
-import { register } from "@impactinc/ui-component-library/web-components";
 
 export type ButtonProps = OptionProps &
   StyleProps &
@@ -58,7 +56,7 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-// const StyledButton = styled.button<
+// const StyledButton = styled.uicl-button<
 //   Required<Omit<StyleProps, "loading">> & { isLoading: boolean }
 // >`
 //   ${Styles.universal_base}
@@ -75,6 +73,16 @@ export interface StyleProps {
 //     Styles[props.buttonType].loading}
 //   ${(props) => props.customCSS}
 // `;
+
+const StyledButton = styled("uicl-btn")<{ customCSS: CSSProp }>`
+  color: red;
+  margin: 100px;
+  &::part(base) {
+    ${(props) => props.customCSS}
+
+    color: red;
+  }
+`;
 
 export const ButtonView = React.forwardRef<
   React.ElementRef<"button">,
@@ -94,11 +102,8 @@ export const ButtonView = React.forwardRef<
     ...rest
   } = props;
 
-  if (customElements.get("uicl-btn") === undefined) {
-    register();
-  }
   return (
-    <uicl-btn
+    <StyledButton
       {...rest}
       class={buttonType}
       is-multi-clickable={true}
@@ -109,7 +114,7 @@ export const ButtonView = React.forwardRef<
       success={success}
       size={size}
       ref={forwardedRef}
-      // customCSS={customCSS}
+      customCSS={customCSS}
     >
       {iconLocation == "left" && icon && (
         <IconView
@@ -147,7 +152,7 @@ export const ButtonView = React.forwardRef<
           {successAnimation(Styles.checkmark_anim[size])}
         </>
       )}
-    </uicl-btn>
+    </StyledButton>
   );
 });
 
