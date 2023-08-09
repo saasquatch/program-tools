@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<AlertView>
     - Improved spacing when alert has no title
   - \<IconView>
-    - Two new icons
+    - Two new icons (cookie and upload)
 
 ## [1.8.0] - 2023-05-15
 
