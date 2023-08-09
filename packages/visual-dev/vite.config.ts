@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import friendlyTypeImports from "rollup-plugin-friendly-type-imports";
 
 export default defineConfig({
   build: {
@@ -17,5 +18,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react()],
+  plugins: [react(), friendlyTypeImports()],
 });

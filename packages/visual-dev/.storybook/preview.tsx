@@ -1,4 +1,4 @@
-import type { Preview } from "@storybook/react";
+import type { Preview, StoryFn } from "@storybook/react";
 import React from "react";
 import { GlobalStyle } from "../src/components/GlobalStyle";
 
@@ -16,7 +16,7 @@ const preview: Preview = {
 
 export default preview;
 
-const withGlobalStyles = (Story, context) => {
+const withGlobalStyles = (Story: StoryFn, context: any) => {
   return (
     <>
       <GlobalStyle />
