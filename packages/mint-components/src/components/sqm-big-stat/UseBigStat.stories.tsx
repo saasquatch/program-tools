@@ -247,3 +247,5 @@ export const CustomFieldWithTextLabel = createHookStory(() => {
     "Thing Count"
   );
 });
+
+export const Traffic = createHookStory(() => View("/traffic", "/(traffic)"));

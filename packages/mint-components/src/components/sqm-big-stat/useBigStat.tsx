@@ -603,6 +603,34 @@ const rewardsBalanceQuery = (
   );
 };
 
+const trafficQuery = () => {
+  return debugQuery(
+    gql`
+      query traffic {
+        viewer: viewer {
+          ... on User {
+            stats(
+              programId: $programId
+            ) {
+              traffic
+              }
+            }
+          }
+        }
+      }
+    `,
+    {},
+    (res) => {
+      const traffic = res.data?.viewer?.stats.traffic;
+      const fallback = 0;
+      return {
+        value: traffic || fallback,
+        statvalue: traffic || fallback,
+      };
+    }
+  );
+};
+
 // functions are of the form (programId: string, ...args: string) => string
 export const queries: {
   [key: string]: {
@@ -669,6 +697,10 @@ export const queries: {
     label: "Custom Fields",
     query: customFieldsQuery,
   },
+  traffic: {
+    label: "Traffic",
+    query: trafficQuery,
+  },
 };
 
 // this should be exposed in documentation somehow
@@ -707,6 +739,10 @@ export const StatPaths = [
     name: "rewardBalance",
     route:
       "/(rewardBalance)/:statType/:unit/:format([prettyValue|value]*)?/:global?",
+  },
+  {
+    name: "traffic",
+    route: "/(traffic)",
   },
 ];
 
