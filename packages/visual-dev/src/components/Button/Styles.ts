@@ -36,7 +36,6 @@ export const anim_padding = {
 
 export const universal_base = css`
   cursor: pointer;
-
   border: none;
   border-radius: var(--sq-border-radius-normal);
   font-family: var(--sq-font-family-sans);
@@ -72,27 +71,6 @@ export const large = css`
 // BUTTON PRIMARY VARIANTS
 
 export const primary = {
-  base: css`
-    color: var(--sq-surface);
-    background: var(--sq-action-primary);
-    box-shadow: none;
-    border: none;
-
-    &:hover {
-      box-shadow: 0px 1px 4px var(--iui-serenity-gray);
-      background: var(--sq-action-primary-hovered);
-    }
-
-    &:disabled {
-      cursor: not-allowed;
-      color: var(--sq-text-on-primary-disabled);
-      background: var(--sq-action-primary-disabled);
-      &:hover {
-        box-shadow: none;
-        background: var(--sq-action-primary-disabled);
-      }
-    }
-  `,
   critical: css`
     background: var(--sq-surface-critical);
     &:hover {
@@ -104,7 +82,6 @@ export const primary = {
     &:hover {
       background: var(--sq-surface-success-hovered);
     }
-
     &:disabled {
       cursor: not-allowed;
       background: var(--sq-surface-success);
@@ -126,20 +103,6 @@ export const primary = {
 // BUTTON SECONDARY VARIANTS
 
 export const secondary = {
-  base: css`
-    color: var(--sq-text-on-secondary);
-    background: var(--iui-pale-gray);
-
-    &:hover {
-      box-shadow: 0px 1px 4px var(--iui-serenity-gray);
-      background: var(--sq-action-secondary-hovered);
-    }
-
-    &:disabled {
-      color: var(--sq-text-on-primary-disabled);
-      cursor: not-allowed;
-    }
-  `,
   critical: css`
     color: var(--sq-surface-critical);
     &:hover {
@@ -168,20 +131,6 @@ export const secondary = {
 // BUTTON TEXT VARIANTS
 
 export const text = {
-  base: css`
-    color: var(--sq-text);
-    border: none;
-    background: none;
-
-    &:hover {
-      background-color: var(--iui-pale-gray);
-    }
-
-    &:disabled {
-      cursor: not-allowed;
-      color: var(--sq-text-on-primary-disabled);
-    }
-  `,
   critical: css`
     color: var(--sq-surface-critical-hovered);
   `,
@@ -190,49 +139,13 @@ export const text = {
   `,
 };
 
-// export const text_small = css`
-//   font-size: var(--sq-font-size-button-small);
-//   line-height: var(--sq-line-height-button-small);
-// `;
-// export const text_medium = css`
-//   font-size: var(--sq-font-size-button-medium);
-//   line-height: var(--sq-line-height-button-medium);
-// `;
-// export const text_large = css`
-//   font-size: var(--sq-font-size-button-large);
-//   line-height: var(--sq-line-height-button-large);
-// `;
-
 // BUTTON ICON VARIANTS
 
 export const icon = {
   base: css`
-    cursor: pointer;
-
     padding: 0;
-
-    border: none;
-    border-radius: var(--sq-border-radius-normal);
-    border: 1px solid var(--sq-action-secondary-border);
-
-    color: var(--sq-text-on-secondary);
-    background: var(--sq-action-secondary);
-
-    &:hover {
-      color: var(--sq-text-on-secondary-hovered);
-      background: var(--sq-action-secondary-hovered);
-    }
-
-    &:disabled {
-      cursor: not-allowed;
-      color: var(--sq-action-primary-disabled);
-      border-color: var(--sq-action-primary-disabled);
-      &:hover {
-        color: var(--sq-action-primary-disabled);
-        background: var(--sq-action-secondary);
-      }
-    }
   `,
+
   mini: css`
     width: 20px;
     height: 20px;

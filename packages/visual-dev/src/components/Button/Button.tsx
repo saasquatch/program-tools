@@ -56,31 +56,21 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-// const StyledButton = styled.uicl-button<
-//   Required<Omit<StyleProps, "loading">> & { isLoading: boolean }
-// >`
-//   ${Styles.universal_base}
-//   ${(props) => Styles[props.buttonType].base}
-//   /* ${(props) => props.pill && Styles.pill} */
-//   ${(props) => props.size == "small" && Styles.small}
-//   ${(props) => props.size == "medium" && Styles.medium}
-//   ${(props) => props.size == "large" && Styles.large}
-//   ${(props) => props.critical && Styles[props.buttonType].critical}
-//   ${(props) => props.success && Styles[props.buttonType].success}
-//   ${(props) =>
-//     props.isLoading &&
-//     props.buttonType != "text" &&
-//     Styles[props.buttonType].loading}
-//   ${(props) => props.customCSS}
-// `;
-
-const StyledButton = styled("uicl-btn")<{ customCSS: CSSProp }>`
-  color: red;
-  margin: 100px;
-  &::part(base) {
+const StyleWrapperDiv = styled.div<
+  Required<Omit<StyleProps, "loading">> & { isLoading: boolean }
+>`
+  display: contents;
+  uicl-btn::part(base) {
+    ${(props) => props.size == "small" && Styles.small}
+    ${(props) => props.size == "large" && Styles.large}
+    ${(props) => props.critical && Styles[props.buttonType].critical}
+    ${(props) => props.success && Styles[props.buttonType].success}
+    ${(props) =>
+      props.isLoading &&
+      props.buttonType != "text" &&
+      Styles[props.buttonType].loading}
+    ${(props) => props.pill && Styles.pill}
     ${(props) => props.customCSS}
-
-    color: red;
   }
 `;
 
@@ -99,60 +89,66 @@ export const ButtonView = React.forwardRef<
     size = "medium",
     children,
     customCSS = {},
+    disabled = false,
     ...rest
   } = props;
 
   return (
-    <StyledButton
-      {...rest}
-      class={buttonType}
-      is-multi-clickable={true}
+    <StyleWrapperDiv
       buttonType={buttonType}
+      customCSS={customCSS}
       pill={pill}
       isLoading={loading}
       critical={critical}
       success={success}
       size={size}
-      ref={forwardedRef}
-      customCSS={customCSS}
     >
-      {iconLocation == "left" && icon && (
-        <IconView
-          cursor={"inherit"}
-          icon={icon}
-          size={Styles.icon_size[size]}
-        />
-      )}
-      <span> {children} </span>
-      {iconLocation == "right" && icon && (
-        <IconView
-          cursor={"inherit"}
-          icon={icon}
-          size={Styles.icon_size[size]}
-        />
-      )}
-      {loading && props.buttonType != "text" && (
-        <>
-          {children && (
-            <span style={{ padding: Styles.anim_padding[size] }}></span>
-          )}
-          {loadingAnimation(
-            Styles.loading_anim[size],
-            buttonType == "primary"
-              ? "var(--sq-action-primary)"
-              : "var(--sq-action-secondary-border)"
-          )}
-        </>
-      )}
-      {buttonType == "primary" && success && (
-        <>
-          {children && (
-            <span style={{ padding: Styles.anim_padding[size] }}></span>
-          )}
-          {successAnimation(Styles.checkmark_anim[size])}
-        </>
-      )}
-    </StyledButton>
+      <uicl-btn
+        {...rest}
+        disabled={disabled ? true : null}
+        is-disabled={disabled || loading ? true : null}
+        class={buttonType}
+        is-multi-clickable={true}
+        ref={forwardedRef}
+      >
+        {iconLocation == "left" && icon && (
+          <IconView
+            cursor={"inherit"}
+            icon={icon}
+            size={Styles.icon_size[size]}
+          />
+        )}
+        <span> {children} </span>
+        {iconLocation == "right" && icon && (
+          <IconView
+            cursor={"inherit"}
+            icon={icon}
+            size={Styles.icon_size[size]}
+          />
+        )}
+        {loading && props.buttonType != "text" && (
+          <>
+            {children && (
+              <span style={{ padding: Styles.anim_padding[size] }}></span>
+            )}
+            {loadingAnimation(
+              Styles.loading_anim[size],
+              buttonType == "primary"
+                ? "var(--sq-action-primary)"
+                : "var(--sq-action-secondary-border)"
+            )}
+          </>
+        )}
+        {buttonType == "primary" && success && (
+          <>
+            {children && (
+              <span style={{ padding: Styles.anim_padding[size] }}></span>
+            )}
+            {successAnimation(Styles.checkmark_anim[size])}
+          </>
+        )}
+      </uicl-btn>
+    </StyleWrapperDiv>
   );
 });
 

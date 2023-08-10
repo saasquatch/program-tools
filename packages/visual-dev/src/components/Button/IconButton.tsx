@@ -41,13 +41,15 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const StyledButton = styled.button<Required<StyleProps>>`
-  ${Styles.icon.base}
-  ${(props) => props.borderless && Styles.icon.borderless}
-  ${(props) => props.circle && Styles.icon.circle}
-  ${(props) => props.primary && Styles.primary.base}
-  ${(props) => props.size == "mini" && Styles.icon[props.size]}
-  ${(props) => props.customCSS}
+const StyleWrapperDiv = styled.div<Required<StyleProps>>`
+  display: contents;
+  uicl-btn::part(base) {
+    ${Styles.icon.base}
+    ${(props) => props.borderless && Styles.icon.borderless}
+    ${(props) => props.circle && Styles.icon.circle}
+    ${(props) => props.size == "mini" && Styles.icon[props.size]}
+    ${(props) => props.customCSS}
+  }
 `;
 
 export const IconButtonView = React.forwardRef<
@@ -67,24 +69,28 @@ export const IconButtonView = React.forwardRef<
   } = props;
 
   return (
-    <StyledButton
-      {...rest}
+    <StyleWrapperDiv
       circle={circle}
       primary={primary}
       borderless={borderless}
       size={size}
-      ref={forwardedRef}
       tabIndex={0}
       customCSS={customCSS}
     >
-      <IconView
-        icon={icon}
-        size={Styles.icon_only_size[size]}
-        style={{ display: "block" }}
-        customCSS={icon_css}
-        cursor={"inherit"}
-      />
-    </StyledButton>
+      <uicl-btn
+        {...rest}
+        ref={forwardedRef}
+        className={primary ? "primary" : "secondary"}
+      >
+        <IconView
+          icon={icon}
+          size={Styles.icon_only_size[size]}
+          style={{ display: "block" }}
+          customCSS={icon_css}
+          cursor={"inherit"}
+        />
+      </uicl-btn>
+    </StyleWrapperDiv>
   );
 });
 
