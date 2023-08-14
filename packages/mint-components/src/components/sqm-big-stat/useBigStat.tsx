@@ -609,11 +609,8 @@ const trafficQuery = () => {
       query traffic {
         viewer: viewer {
           ... on User {
-            stats(
-              programId: $programId
-            ) {
+            stats {
               traffic
-              }
             }
           }
         }
@@ -623,6 +620,7 @@ const trafficQuery = () => {
     (res) => {
       const traffic = res.data?.viewer?.stats.traffic;
       const fallback = 0;
+
       return {
         value: traffic || fallback,
         statvalue: traffic || fallback,
