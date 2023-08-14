@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.14] - 2023-08-14
+
+### Updated
+
+- Added new stat type
+- Changed components:
+  - \<sqm-big-stat>
+    - added new `/traffic` stat
+    - Uses the "traffic" stat on the user object
+
 ## [1.6.13] - 2023-08-02
 
 ### Fixed
@@ -706,7 +716,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.13...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.14...HEAD
+[1.6.14]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.14
 [1.6.13]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.13
 [1.6.12]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.12
 [1.6.11]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.11
