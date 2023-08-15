@@ -62,7 +62,6 @@ export const IconButtonView = React.forwardRef<
     primary = false,
     circle = false,
     size = "medium",
-    children,
     icon_css = {},
     customCSS = {},
     ...rest

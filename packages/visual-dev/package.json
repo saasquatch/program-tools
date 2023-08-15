@@ -27,7 +27,8 @@
   "license": "MIT",
   "dependencies": {
     "@impactinc/ui-component-library": "file:../../../ui-component-library/impactinc-ui-component-library-0.20.6.tgz",
-    "react-shadow": "^19.0.2"
+    "react-shadow": "^19.0.2",
+    "wc-react": "^0.5.1"
   },
   "devDependencies": {
     "@rjsf/core": "^2.4.1",

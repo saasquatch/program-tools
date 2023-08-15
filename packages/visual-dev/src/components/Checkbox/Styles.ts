@@ -41,22 +41,7 @@ export const CheckboxInputStyle = css`
   }
 `;
 export const CheckboxStyle = css`
-  display: flex;
-  width: 16px;
-  height: 16px;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 0 1px var(--sq-text);
   margin-right: 18px;
-  flex-shrink: 0;
-  border-radius: 2px;
-  & svg {
-    cursor: pointer;
-  }
-
-  &:hover {
-    box-shadow: 0 0 0 2px var(--sq-text);
-  }
 `;
 
 export const checked_border = css`

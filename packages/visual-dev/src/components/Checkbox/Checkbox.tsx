@@ -1,8 +1,8 @@
 import * as React from "react";
 import root from "react-shadow/styled-components";
-import styled, { css, CSSProp } from "styled-components";
-import { IconView } from "../Icon";
+import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
+import { wrapWc } from "wc-react";
 
 type InputProps = OptionProps &
   Omit<Partial<React.ComponentProps<"input">>, "translate" | "value" | "css">;
@@ -15,7 +15,7 @@ export interface OptionProps {
   /**
    * Callback triggered on checkbox click
    */
-  onChange?: any;
+  onChange?: (e: any) => void;
   /**
    * Label adjacent to checkbox
    */
@@ -34,67 +34,59 @@ export interface OptionProps {
   customContainerCSS?: CSSProp;
 }
 
-const ShadowDom = styled(root.div)<{ customContainerCSS?: CSSProp }>`
+const ShadowDom = styled(root.div)`
   display: contents;
+`;
+
+const StyleWrapperDiv = styled.div<{ customContainerCSS?: CSSProp }>`
+  display: inline;
   ${(props) => props.customContainerCSS}
 `;
 
-const CheckboxLabel = styled.label<{ isDisabled?: any }>`
+const CheckboxLabel = styled.label<{
+  isDisabled?: any;
+}>`
   ${Styles.CheckboxLabelStyle}
   ${(props) => props.isDisabled && Styles.disabled_color}
 `;
-const CheckboxTick = css`
-  ${Styles.CheckboxTickStyle}
-`;
-const CheckboxInput = styled.input<{ isDisabled?: any }>`
-  ${Styles.CheckboxInputStyle}
-  ${(props) =>
-    props.isDisabled == true ? Styles.checked_disabled : Styles.checked_border}
-`;
-const CheckboxDiv = styled.div<{ isDisabled?: any }>`
+
+const UICLCheckbox = styled(wrapWc("uicl-checkbox"))`
   ${Styles.CheckboxStyle}
-  ${(props) => props.isDisabled && Styles.disabled_bg}
 `;
 
-export const CheckboxView = React.forwardRef<
-  React.ElementRef<"input">,
-  InputProps
->((props, forwardedRef) => {
-  const {
-    id,
-    value,
-    onChange,
-    label = "",
-    disabled,
-    customContainerCSS = {},
-    ...rest
-  } = props;
-  return (
-    <ShadowDom customContainerCSS={customContainerCSS}>
-      <CheckboxLabel htmlFor={id} isDisabled={disabled}>
-        <CheckboxInput
-          {...rest}
-          checked={value}
-          type="checkbox"
-          isDisabled={disabled}
-          id={id}
-          ref={forwardedRef}
-          onChange={onChange}
-        />
-        <CheckboxDiv isDisabled={disabled}>
-          <IconView icon="checkmark" customCSS={CheckboxTick} />
-        </CheckboxDiv>
-        <div
-          style={{
-            marginTop: "calc(-1*var(--sq-spacing-xxx-small))",
-          }}
-        >
-          {label ? label : ""}
-        </div>
-      </CheckboxLabel>
-    </ShadowDom>
-  );
-});
+export const CheckboxView = React.forwardRef<HTMLElement, InputProps>(
+  (props, forwardedRef) => {
+    const {
+      id,
+      value,
+      label = "",
+      disabled,
+      customContainerCSS = {},
+      onChange = (e) => console.log("change", e),
+      ...rest
+    } = props;
+
+    return (
+      <StyleWrapperDiv customContainerCSS={customContainerCSS}>
+        <ShadowDom>
+          <CheckboxLabel htmlFor={id} isDisabled={disabled}>
+            <UICLCheckbox
+              is-submit-unchecked={false}
+              is-toggle-display={false}
+              id={id}
+              is-read-only={disabled ? true : null}
+              model-value={value ? true : null}
+              ref={forwardedRef}
+              update:model-value={(e: any) => onChange(e)}
+              {...rest}
+            />
+            <div>{label ? label : ""}</div>
+          </CheckboxLabel>
+        </ShadowDom>
+      </StyleWrapperDiv>
+    );
+  }
+);
 
 /**
  * @deprecated use {@link CheckboxView} instead
