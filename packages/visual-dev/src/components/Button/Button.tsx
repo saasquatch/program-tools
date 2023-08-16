@@ -3,7 +3,7 @@ import styled, { CSSProp } from "styled-components";
 import { IconKey, IconView } from "../Icon";
 import { loadingAnimation, successAnimation } from "./Animations";
 import * as Styles from "./Styles";
-import { wrapWc } from "wc-react";
+import { wrapWc } from "../../wc-react";
 
 export type ButtonProps = OptionProps &
   StyleProps &
@@ -112,6 +112,7 @@ export const ButtonView = React.forwardRef<
         is-disabled={disabled || loading ? true : null}
         className={buttonType}
         is-multi-clickable={true}
+        tester="test"
         ref={forwardedRef}
       >
         {iconLocation == "left" && icon && (

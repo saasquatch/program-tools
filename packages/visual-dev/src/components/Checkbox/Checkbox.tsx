@@ -2,7 +2,7 @@ import * as React from "react";
 import root from "react-shadow/styled-components";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
-import { wrapWc } from "wc-react";
+import { wrapWc } from "../../wc-react";
 
 type InputProps = OptionProps &
   Omit<Partial<React.ComponentProps<"input">>, "translate" | "value" | "css">;
