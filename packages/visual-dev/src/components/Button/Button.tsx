@@ -3,6 +3,7 @@ import styled, { CSSProp } from "styled-components";
 import { IconKey, IconView } from "../Icon";
 import { loadingAnimation, successAnimation } from "./Animations";
 import * as Styles from "./Styles";
+import { wrapWc } from "wc-react";
 
 export type ButtonProps = OptionProps &
   StyleProps &
@@ -74,6 +75,8 @@ const StyleWrapperDiv = styled.div<
   }
 `;
 
+const UICLButton = wrapWc("uicl-btn");
+
 export const ButtonView = React.forwardRef<
   React.ElementRef<"button">,
   ButtonProps
@@ -103,11 +106,11 @@ export const ButtonView = React.forwardRef<
       success={success}
       size={size}
     >
-      <uicl-btn
+      <UICLButton
         {...rest}
         disabled={disabled ? true : null}
         is-disabled={disabled || loading ? true : null}
-        class={buttonType}
+        className={buttonType}
         is-multi-clickable={true}
         ref={forwardedRef}
       >
@@ -147,7 +150,7 @@ export const ButtonView = React.forwardRef<
             {successAnimation(Styles.checkmark_anim[size])}
           </>
         )}
-      </uicl-btn>
+      </UICLButton>
     </StyleWrapperDiv>
   );
 });
