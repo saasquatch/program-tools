@@ -120,6 +120,8 @@ export {
   ButtonDropdownView,
   ErrorListTemplate,
   FieldTemplate,
+  FormSectionView,
+  FieldLabelPairView,
   GlobalStyle,
   LinkRules,
   HoverPopover,

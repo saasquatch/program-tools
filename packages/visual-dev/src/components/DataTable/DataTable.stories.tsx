@@ -484,7 +484,7 @@ export const FormSubmissionTableFilterView = () => {
   );
 };
 
-export const paginationFunctional = () => {
+export const PaginationFunctional = () => {
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(10);
 

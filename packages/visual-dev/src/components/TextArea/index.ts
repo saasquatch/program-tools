@@ -1,2 +1,2 @@
-export * from "./Textarea";
-export * from "./rjsf-Textarea";
+export { TextareaView, Textarea } from "./Textarea";
+export { RJSFTextarea } from "./rjsf-Textarea";

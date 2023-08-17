@@ -1,1 +1,1 @@
-export * from "./ArrayFieldTemplate";
+export { ArrayFieldTemplate, Arra } from "./ArrayFieldTemplate";

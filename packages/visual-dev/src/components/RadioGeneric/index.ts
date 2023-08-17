@@ -1,1 +1,1 @@
-export * from "./RadioGeneric";
+export { RadioGenericView, RadioOption } from "./RadioGeneric";

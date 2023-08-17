@@ -9,7 +9,7 @@ export default {
 export const Functional = () => {
   const [count, setCount] = useState(0);
 
-  let states = [false, false, false];
+  const states = [false, false, false];
 
   states[count] = true;
 

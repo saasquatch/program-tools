@@ -1,2 +1,2 @@
-export * from "./Radio";
-export * from "./rjsf-Radio"
+export { RadioGroupView, RadioView, RadioGroup, Radio } from "./Radio";
+export { RJSFRadio } from "./rjsf-Radio";
