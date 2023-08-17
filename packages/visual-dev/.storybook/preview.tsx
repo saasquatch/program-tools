@@ -1,7 +1,7 @@
 import type { Preview, StoryFn } from "@storybook/react";
 import React from "react";
 import { GlobalStyle } from "../src/components/GlobalStyle";
-import "@impactinc/ui-component-library/styles"
+import "@impactinc/ui-component-library/styles";
 //@ts-ignore
 import { register } from "@impactinc/ui-component-library/web-components";
 

@@ -1,2 +1,3 @@
-export { ButtonView, Button, ButtonProps } from "./Button";
+export { ButtonView, Button } from "./Button";
 export { IconButton, IconButtonView } from "./IconButton";
+export type { ButtonProps } from "./Button";

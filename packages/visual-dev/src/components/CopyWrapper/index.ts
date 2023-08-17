@@ -1,1 +1,1 @@
-export * from "./CopyWrapper";
+export { CopyWrapperView, CopyWrapper } from "./CopyWrapper";

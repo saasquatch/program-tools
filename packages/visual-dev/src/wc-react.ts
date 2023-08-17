@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 // Forked from https://github.com/nmetulev/wc-react/
 // MIT License
 

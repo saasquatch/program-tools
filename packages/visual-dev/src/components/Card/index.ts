@@ -1,3 +1,3 @@
-export * from "./Card";
-export * from "./CardLong";
-export * from "./CardEdit";
+export { Card, CardView } from "./Card";
+export { CardLongView, CardLong } from "./CardLong";
+export { CardEditView, CardEdit } from "./CardEdit";

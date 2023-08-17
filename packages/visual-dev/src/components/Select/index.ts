@@ -1,2 +1,2 @@
-export * from "./Select";
-export * from "./Select2";
+export { Select } from "./Select";
+export { SelectView } from "./Select2";
