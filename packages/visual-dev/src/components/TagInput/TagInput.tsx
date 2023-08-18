@@ -1,8 +1,8 @@
 import React from "react";
 import styled, { CSSProp } from "styled-components";
 import { IconButtonView } from "../Button";
-import { InputWidthType } from "../Input";
 import * as Styles from "./Styles";
+import { InputWidthType } from "../Input/Input";
 
 export type TagInputViewProps = OptionProps &
   StyleProps &

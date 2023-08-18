@@ -1,1 +1,1 @@
-export * from "./Dropdown2";
+export { Dropdown2View } from "./Dropdown2";

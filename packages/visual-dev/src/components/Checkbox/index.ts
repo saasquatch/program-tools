@@ -1,2 +1,2 @@
-export * from "./Checkbox";
-export * from "./rjsf-Checkbox"
+export { CheckboxView, Checkbox } from "./Checkbox";
+export { RJSFCheckbox } from "./rjsf-Checkbox";

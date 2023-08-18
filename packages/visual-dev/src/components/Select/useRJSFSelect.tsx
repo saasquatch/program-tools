@@ -1,7 +1,7 @@
 import { WidgetProps } from "@rjsf/core";
 import { useSelect } from "downshift";
-import { OptionProps } from ".";
 import { isEnumArray } from "../RadioCard";
+import { OptionProps } from "./Select";
 
 export function useRJSFSelect(props: WidgetProps): OptionProps<any> | null {
   const items = props?.options?.enumOptions;

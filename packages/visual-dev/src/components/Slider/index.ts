@@ -1,1 +1,1 @@
-export * from "./Slider";
+export { SliderView } from "./Slider";

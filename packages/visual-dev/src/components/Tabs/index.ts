@@ -1,1 +1,1 @@
-export * from './Tabs'
+export { TabsView, Tabs } from "./Tabs";

@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import friendlyTypeImports from "rollup-plugin-friendly-type-imports";
+import dts from "vite-plugin-dts";
 
 export default defineConfig({
   build: {
@@ -18,5 +18,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), friendlyTypeImports()],
+  plugins: [react(), dts()],
 });

@@ -1,1 +1,1 @@
-export * from "./Tag";
+export { TagView, Tag } from "./Tag";

@@ -1,1 +1,1 @@
-export * from "./ProgressBar";
+export { ProgressBarView } from "./ProgressBar";

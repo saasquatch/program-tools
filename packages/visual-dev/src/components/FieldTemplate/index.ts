@@ -1,1 +1,1 @@
-export * from "./FieldTemplate";
+export { FieldTemplate } from "./FieldTemplate";
