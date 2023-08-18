@@ -205,3 +205,32 @@ Feature: Big Stat
       | value     | filter                        |
       | program-b | { programId_eq: "program-b" } |
       | program-c | { programId_eq: "program-c" } |
+
+  @landmine
+  Scenario Outline: Rewards redeemed by week and month stats only include rewards that have been fully redeemed
+    Given statType prop is <statType>
+    And the user has fully redeemed a $50.00 USD reward
+    And the user has redeemed <amountRedeemed> of a $50.00 USD reward
+    Then the stat displays <statValue>
+    Examples:
+      | statType                                | amountRedeemed | statValue |
+      | /rewardsRedeemed/CREDIT/USD/global      | $0.00          | $50.00    |
+      | /rewardsRedeemedWeek/CREDIT/USD/global  | $0.00          | $50.00    |
+      | /rewardsRedeemedMonth/CREDIT/USD/global | $0.00          | $50.00    |
+      | /rewardsRedeemed/CREDIT/USD/global      | $25.00         | $75.00    |
+      | /rewardsRedeemedWeek/CREDIT/USD/global  | $25.00         | $50.00    |
+      | /rewardsRedeemedMonth/CREDIT/USD/global | $25.00         | $50.00    |
+      | /rewardsRedeemed/CREDIT/USD/global      | $50.00         | $100.00   |
+      | /rewardsRedeemedWeek/CREDIT/USD/global  | $50.00         | $100.00   |
+      | /rewardsRedeemedMonth/CREDIT/USD/global | $50.00         | $100.00   |
+
+  @landmine
+  Scenario Outline: Rewards redeemed by week and month stats can only count up to 1000 redeemed rewards during the period
+    Given statType prop is <statType>
+    And the user has fully redeemed 1001 $1.00 USD rewards in the past <timeframe>
+    Then the stat displays <statValue>
+    Examples:
+      | statType                                | timeframe | statValue |
+      | /rewardsRedeemed/CREDIT/USD/global      | N/A       | $1001.00  |
+      | /rewardsRedeemedWeek/CREDIT/USD/global  | week      | $1000.00  |
+      | /rewardsRedeemedMonth/CREDIT/USD/global | month     | $1000.00  |
