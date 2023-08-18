@@ -5,6 +5,8 @@ import { IconKey, IconView } from "../Icon";
 import React from "react";
 //@ts-ignore
 import { register } from "@impactinc/ui-component-library/web-components";
+import { wcBoolean } from "../../utlis";
+import { wrapWc } from "../../wc-react";
 
 type InputProps = OptionProps & Partial<React.ComponentProps<"input">>;
 
@@ -92,76 +94,83 @@ const ContainerDiv = styled.div<{
       : "max-width: 100%;"}
   ${(props) => props.customContainerCSS}
 `;
+const StyleWrapperDiv = styled.div<{ customContainerCSS?: CSSProp }>`
+  display: inline;
+  ${(props) => props.customContainerCSS}
+`;
 
-export const InputView = React.forwardRef<
-  React.ElementRef<"input">,
-  InputProps
->((props, forwardedRef) => {
-  const {
-    icon,
-    position = "right",
-    type = "text",
-    buttons = false,
-    errors: rawErrors,
-    customCSS = {},
-    customContainerCSS = {},
-    limitWidth = true,
-    required = false,
-    disabled = null,
-    ...rest
-  } = props;
+const UICLTextInput = styled(wrapWc("uicl-text-input"))``;
 
+export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
+  (props, forwardedRef) => {
+    const {
+      icon,
+      position = "right",
+      type = "text",
+      buttons = false,
+      errors: rawErrors,
+      customCSS = {},
+      customContainerCSS = {},
+      limitWidth = true,
+      required = false,
+      disabled = false,
+      ...rest
+    } = props;
 
-  if (customElements.get("uicl-btn") === undefined) {
-    register();
+    if (customElements.get("uicl-text-input") === undefined) {
+      register();
+    }
+    return (
+      <StyleWrapperDiv customContainerCSS={customContainerCSS}>
+        <ShadowDom>
+          <UICLTextInput
+            field-name="args.fieldName"
+            // class="{'full-width': args.isFullWidth}"
+            is-auto-width={wcBoolean(false)}
+            // inner-text-left="args.innerLeftText"
+            // inner-text-right="args.innerRightText"
+            max-length="1000"
+            is-disabled={wcBoolean(disabled)}
+            is-read-only={wcBoolean(false)}
+            size="20"
+            type="text"
+            {...rest}
+          ></UICLTextInput>
+        </ShadowDom>
+      </StyleWrapperDiv>
+    );
+
+    // return (
+    //   <ShadowDom>
+    //     <ContainerDiv
+    //       customContainerCSS={customContainerCSS}
+    //       limitWidth={limitWidth}
+    //     >
+    //       <StyledInput
+    //         {...rest}
+    //         type={type}
+    //         position={position}
+    //         ref={forwardedRef}
+    //         isInvalid={rawErrors}
+    //         customCSS={customCSS}
+    //         hasIcon={icon || buttons ? true : false}
+    //         required={required}
+    //       />
+    //       {icon && (
+    //         <ExtrasDiv position={position}>
+    //           <IconView
+    //             icon={icon}
+    //             size={"22px"}
+    //             color="var(--sq-text-subdued)"
+    //           />
+    //         </ExtrasDiv>
+    //       )}
+    //       <ExtrasDiv position={position}>{buttons}</ExtrasDiv>
+    //     </ContainerDiv>
+    //   </ShadowDom>
+    // );
   }
-  return (
-    <uicl-text-input
-    v-model="dataModel.value"
-    field-name="args.fieldName"
-    // class="{'full-width': args.isFullWidth}"
-    is-auto-width={null}
-    // inner-text-left="args.innerLeftText"
-    // inner-text-right="args.innerRightText"
-    max-length="1000"
-    is-disabled={disabled}
-    is-read-only={null}
-    size="20"
-    type="text"
-    
-    {...rest}></uicl-text-input>
-  )
-
-  // return (
-  //   <ShadowDom>
-  //     <ContainerDiv
-  //       customContainerCSS={customContainerCSS}
-  //       limitWidth={limitWidth}
-  //     >
-  //       <StyledInput
-  //         {...rest}
-  //         type={type}
-  //         position={position}
-  //         ref={forwardedRef}
-  //         isInvalid={rawErrors}
-  //         customCSS={customCSS}
-  //         hasIcon={icon || buttons ? true : false}
-  //         required={required}
-  //       />
-  //       {icon && (
-  //         <ExtrasDiv position={position}>
-  //           <IconView
-  //             icon={icon}
-  //             size={"22px"}
-  //             color="var(--sq-text-subdued)"
-  //           />
-  //         </ExtrasDiv>
-  //       )}
-  //       <ExtrasDiv position={position}>{buttons}</ExtrasDiv>
-  //     </ContainerDiv>
-  //   </ShadowDom>
-  // );
-});
+);
 
 /**
  * @deprecated use {@link InputView} instead
