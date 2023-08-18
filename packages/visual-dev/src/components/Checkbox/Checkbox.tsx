@@ -3,6 +3,7 @@ import root from "react-shadow/styled-components";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { wrapWc } from "../../wc-react";
+import { wcBoolean } from "../../utlis";
 
 type InputProps = OptionProps &
   Omit<Partial<React.ComponentProps<"input">>, "translate" | "value" | "css">;
@@ -71,11 +72,9 @@ export const CheckboxView = React.forwardRef<HTMLElement, InputProps>(
         <ShadowDom>
           <CheckboxLabel htmlFor={id} isDisabled={disabled}>
             <UICLCheckbox
-              is-submit-unchecked={false}
-              is-toggle-display={false}
               id={id}
-              is-read-only={disabled ? true : null}
-              model-value={value ? true : null}
+              isReadOnly={wcBoolean(disabled)}
+              modelValue={wcBoolean(value)}
               ref={forwardedRef}
               update:model-value={(e: any) => onChange(e)}
               {...rest}

@@ -10,43 +10,43 @@ export interface FieldLabelPairViewProps {
   /**
    * If the contained field is disabled or not.
    */
-  isDisabled: boolean;
+  isDisabled?: boolean;
   /**
    * If the contained field is read only or not.
    */
-  isReadOnly: boolean;
+  isReadOnly?: boolean;
   /**
    * The primary label for the field outside of the field containing element.
    */
-  mainLabel: string;
+  mainLabel?: string;
   /**
    * A label that will appear above the field, but inside the field container.
    */
-  topFieldLabel: string;
+  topFieldLabel?: string;
   /**
    * A label that will appear to the left of the field inside of the field container.
    */
-  leftFieldLabel: string;
+  leftFieldLabel?: string;
   /**
    * A label that will appear to the right of the field inside of the field container.
    */
-  rightFieldLabel: string;
+  rightFieldLabel?: string;
   /**
    * A tooltip that will appear next to the main label.
    */
-  labelTooltip: string;
+  labelTooltip?: string;
   /**
    * A tooltip that will appear to the right of the field inside of the field container.
    */
-  fieldTooltip: string;
+  fieldTooltip?: string;
   /**
    * A required marker that will show next to the main label.
    */
-  isRequired: boolean;
+  isRequired?: boolean;
   /**
    * If the element has children or not.
    */
-  isParent: boolean;
+  isParent?: boolean;
   /**
    * If there is another child field below
    */
@@ -58,11 +58,11 @@ export interface FieldLabelPairViewProps {
   /**
    * An array of errors to display below the field.
    */
-  errors: Array<string>;
+  errors?: Array<string>;
   /**
    * User instruction for filling the field
    */
-  instructions: string;
+  instructions?: string;
   /**
    * Field slot
    */
@@ -73,10 +73,10 @@ const IUIFieldLabelPair = wrapWc("uicl-field-label-pair");
 
 export const FieldLabelPairView = (props: FieldLabelPairViewProps) => {
   const {
+    mainLabel,
     isVisible,
     isDisabled,
     isReadOnly,
-    mainLabel,
     topFieldLabel,
     leftFieldLabel,
     rightFieldLabel,
@@ -86,26 +86,27 @@ export const FieldLabelPairView = (props: FieldLabelPairViewProps) => {
     isParent,
     isChild,
     isChildDisplayBelow,
-    errors,
+    errors = [],
     instructions,
     children,
   } = props;
   return (
     <IUIFieldLabelPair
-      is-visible={wcBoolean(isVisible)}
-      is-disabled={wcBoolean(isDisabled)}
-      is-read-only={wcBoolean(isReadOnly)}
-      is-required={wcBoolean(isRequired)}
-      is-parent={wcBoolean(isParent)}
-      is-child={wcBoolean(isChild)}
-      is-child-display-below={wcBoolean(isChildDisplayBelow)}
-      main-label={mainLabel}
-      top-field-label={topFieldLabel}
-      left-field-label={leftFieldLabel}
-      right-field-label={rightFieldLabel}
-      label-tooltip={labelTooltip}
-      field-tooltip={fieldTooltip}
       errors={errors}
+      isVisible={wcBoolean(isVisible)}
+      isDisabled={wcBoolean(isDisabled)}
+      isReadOnly={wcBoolean(isReadOnly)}
+      isRequired={wcBoolean(isRequired)}
+      isParent={wcBoolean(isParent)}
+      isChild={wcBoolean(isChild)}
+      isChildDisplayBelow={wcBoolean(isChildDisplayBelow)}
+      mainLabel={mainLabel}
+      topFieldLabel={topFieldLabel}
+      leftFieldLabel={leftFieldLabel}
+      rightFieldLabel={rightFieldLabel}
+      //TODO: Fix once poppable works in uicl
+      // labelTooltip={labelTooltip}
+      // fieldTooltip={fieldTooltip}
       instructions={instructions}
     >
       {children}

@@ -4,6 +4,7 @@ import { IconKey, IconView } from "../Icon";
 import { loadingAnimation, successAnimation } from "./Animations";
 import * as Styles from "./Styles";
 import { wrapWc } from "../../wc-react";
+import { wcBoolean } from "../../utlis";
 
 export type ButtonProps = OptionProps &
   StyleProps &
@@ -108,11 +109,9 @@ export const ButtonView = React.forwardRef<
     >
       <UICLButton
         {...rest}
-        disabled={disabled ? true : null}
-        is-disabled={disabled || loading ? true : null}
+        disabled={disabled}
+        isDisabled={wcBoolean(disabled || loading)}
         className={buttonType}
-        is-multi-clickable={true}
-        tester="test"
         ref={forwardedRef}
       >
         {iconLocation == "left" && icon && (
