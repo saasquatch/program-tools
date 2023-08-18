@@ -11,13 +11,13 @@ export default {
 };
 
 function setupGraphQL() {
-  const id = "nynellie";
+  const id = "zach.harrison@referralsaasquatch.com";
   const accountId = id;
-  const programId = "ny-post-referrals";
+  const programId = "klip-referral-program";
 
   //@ts-ignore
   window.widgetIdent = {
-    tenantAlias: "test_a7yoz8854cf6x",
+    tenantAlias: "test_a74miwdpofztj",
     appDomain: "https://staging.referralsaasquatch.com",
     programId,
   };
@@ -26,7 +26,7 @@ function setupGraphQL() {
     setUserIdentity({
       accountId,
       id,
-      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6Im55bmVsbGllIiwiaWQiOiJueW5lbGxpZSJ9fQ.3KV974VPLgk4tD8LQfJTi4IPkKCmnaB8w48HzVJYDuI",
+      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiYWNjb3VudElkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIn19.Wi8Vd5r64g5n8VNhiY-v5cqFcLwGxPG3Wi3dVSfkFZI",
     });
     return () => {
       window.widgetIdent = undefined;
@@ -174,8 +174,38 @@ export const RewardsAssignedCashUSD = createHookStory(() =>
 );
 export const RewardsRedeemed = createHookStory(() =>
   View(
-    "/rewardsRedeemed/CREDIT/COFFEE",
+    "/rewardsRedeemed/CREDIT/USD",
     "/(rewardsRedeemed)/:statType/:unit/:global?"
+  )
+);
+export const RewardsRedeemedWeek = createHookStory(() =>
+  View(
+    "/rewardsRedeemedWeek/CREDIT/USD",
+    "/(rewardsRedeemedWeek)/:statType/:unit/:global?"
+  )
+);
+export const RewardsRedeemedMonth = createHookStory(() =>
+  View(
+    "/rewardsRedeemedMonth/CREDIT/USD",
+    "/(rewardsRedeemedMonth)/:statType/:unit/:global?"
+  )
+);
+export const RewardsRedeemedGlobal = createHookStory(() =>
+  View(
+    "/rewardsRedeemed/CREDIT/USD/global",
+    "/(rewardsRedeemed)/:statType/:unit/:global?"
+  )
+);
+export const RewardsRedeemedWeekGlobal = createHookStory(() =>
+  View(
+    "/rewardsRedeemedWeek/CREDIT/USD/global",
+    "/(rewardsRedeemedWeek)/:statType/:unit/:global?"
+  )
+);
+export const RewardsRedeemedMonthGlobal = createHookStory(() =>
+  View(
+    "/rewardsRedeemedMonth/CREDIT/USD/global",
+    "/(rewardsRedeemedMonth)/:statType/:unit/:global?"
   )
 );
 export const RewardsAvailable = createHookStory(() =>

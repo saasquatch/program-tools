@@ -436,6 +436,156 @@ const rewardsRedeemedQuery = (
   );
 };
 
+const rewardsRedeemedWeekQuery = (
+  programId: string,
+  locale: string,
+  type: string,
+  unit: string,
+  global = ""
+) => {
+  return debugQuery(
+    gql`
+      query ($programId: ID, $type: RewardType, $unit: String!) {
+        viewer: viewer {
+          ... on User {
+            rewards(
+              limit: 1000
+              filter: {
+                programId_eq: $programId
+                type_eq: $type
+                unit_eq: $unit
+                dateRedeemed_timeframe: "this_week"
+              }
+            ) {
+              data {
+                redeemedCredit
+              }
+              totalCount
+            }
+          }
+        }
+      }
+    `,
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      type,
+      unit,
+    },
+    (res) => {
+      const rewardData = res.data?.viewer?.rewards?.data;
+      const fallback = 0;
+      const redeemedTotal = rewardData?.reduce(
+        (total, reward) => (total += reward.redeemedCredit),
+        fallback
+      );
+
+      if (redeemedTotal !== undefined) {
+        const query = `query formatRewardPrettyValue(
+          $value: Int!
+          $unit: String!
+          $locale: RSLocale
+        ) {
+          formatRewardPrettyValue(
+          value: $value
+          unit: $unit
+          locale: $locale
+          formatType: UNIT_FORMATTED
+        )}`;
+
+        const result = useQuery(query, {
+          value: redeemedTotal,
+          unit,
+          locale,
+        });
+        return {
+          value: redeemedTotal || fallback,
+          statvalue: result?.data?.formatRewardPrettyValue,
+        };
+      }
+
+      return {
+        value: fallback,
+        statvalue: "...",
+      };
+    }
+  );
+};
+
+const rewardsRedeemedMonthQuery = (
+  programId: string,
+  locale: string,
+  type: string,
+  unit: string,
+  global = ""
+) => {
+  return debugQuery(
+    gql`
+      query ($programId: ID, $type: RewardType, $unit: String!) {
+        viewer: viewer {
+          ... on User {
+            rewards(
+              limit: 1000
+              filter: {
+                programId_eq: $programId
+                type_eq: $type
+                unit_eq: $unit
+                dateRedeemed_timeframe: "this_month"
+              }
+            ) {
+              data {
+                redeemedCredit
+              }
+              totalCount
+            }
+          }
+        }
+      }
+    `,
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      type,
+      unit,
+    },
+    (res) => {
+      const rewardData = res.data?.viewer?.rewards?.data;
+      const fallback = 0;
+      const redeemedTotal = rewardData?.reduce(
+        (total, reward) => (total += reward.redeemedCredit),
+        fallback
+      );
+
+      if (redeemedTotal !== undefined) {
+        const query = `query formatRewardPrettyValue(
+          $value: Int!
+          $unit: String!
+          $locale: RSLocale
+        ) {
+          formatRewardPrettyValue(
+          value: $value
+          unit: $unit
+          locale: $locale
+          formatType: UNIT_FORMATTED
+        )}`;
+
+        const result = useQuery(query, {
+          value: redeemedTotal,
+          unit,
+          locale,
+        });
+        return {
+          value: redeemedTotal || fallback,
+          statvalue: result?.data?.formatRewardPrettyValue,
+        };
+      }
+
+      return {
+        value: fallback,
+        statvalue: "...",
+      };
+    }
+  );
+};
+
 const rewardsAssignedQuery = (
   programId: string,
   locale: string,
@@ -647,6 +797,14 @@ export const queries: {
     label: "Rewards Paid",
     query: rewardsRedeemedQuery,
   },
+  rewardsRedeemedMonth: {
+    label: "Rewards Paid - This Month",
+    query: rewardsRedeemedMonthQuery,
+  },
+  rewardsRedeemedWeek: {
+    label: "Rewards Paid - This Week",
+    query: rewardsRedeemedWeekQuery,
+  },
   rewardsAvailable: {
     label: "Rewards Available",
     query: rewardsAvailableQuery,
@@ -728,6 +886,14 @@ export const StatPaths = [
   {
     name: "rewardsRedeemed",
     route: "/(rewardsRedeemed)/:statType/:unit/:global?",
+  },
+  {
+    name: "rewardsRedeemedWeek",
+    route: "/(rewardsRedeemedWeek)/:statType/:unit/:global?",
+  },
+  {
+    name: "rewardsRedeemedMonth",
+    route: "/(rewardsRedeemedMonth)/:statType/:unit/:global?",
   },
   {
     name: "rewardsAvailable",
