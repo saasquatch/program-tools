@@ -172,6 +172,18 @@ export const RewardsAssignedCashUSD = createHookStory(() =>
     "/(rewardsAssigned)/:statType/:unit/:global?"
   )
 );
+export const RewardsPending = createHookStory(() =>
+  View(
+    "/rewardsPending/CREDIT/USD",
+    "/(rewardsPending)/:statType/:unit/:global?"
+  )
+);
+export const RewardsPendingGlobal = createHookStory(() =>
+  View(
+    "/rewardsPending/CREDIT/USD/global",
+    "/(rewardsPending)/:statType/:unit/:global?"
+  )
+);
 export const RewardsRedeemed = createHookStory(() =>
   View(
     "/rewardsRedeemed/CREDIT/USD",

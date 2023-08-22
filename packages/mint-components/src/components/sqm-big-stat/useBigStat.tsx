@@ -383,6 +383,59 @@ const rewardsWeekQuery = (
   );
 };
 
+const rewardsPendingQuery = (
+  programId: string,
+  locale: string,
+  type: string,
+  unit: string,
+  global = ""
+) => {
+  return debugQuery(
+    gql`
+      query (
+        $programId: ID
+        $type: RewardType
+        $unit: String!
+        $locale: RSLocale
+      ) {
+        fallback: formatRewardPrettyValue(
+          value: 0
+          unit: $unit
+          locale: $locale
+          formatType: UNIT_FORMATTED
+        )
+        viewer: viewer {
+          ... on User {
+            rewardBalanceDetails(
+              programId: $programId
+              filter: { type_eq: $type, unit_eq: $unit }
+              locale: $locale
+            ) {
+              ... on CreditRewardBalance {
+                prettyPendingCredit
+              }
+            }
+          }
+        }
+      }
+    `,
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      type,
+      unit,
+      locale,
+    },
+    (res) => {
+      const arr = res.data?.viewer?.rewardBalanceDetails;
+      const fallback = res.data?.fallback;
+      return {
+        value: arr?.[0]?.prettyPendingCredit || 0,
+        statvalue: arr?.[0]?.prettyPendingCredit || fallback,
+      };
+    }
+  );
+};
+
 const rewardsRedeemedQuery = (
   programId: string,
   locale: string,
@@ -793,6 +846,10 @@ export const queries: {
     label: "Rewards Earned",
     query: rewardsAssignedQuery,
   },
+  rewardsPending: {
+    label: "Rewards Pending",
+    query: rewardsPendingQuery,
+  },
   rewardsRedeemed: {
     label: "Rewards Paid",
     query: rewardsRedeemedQuery,
@@ -882,6 +939,10 @@ export const StatPaths = [
   {
     name: "rewardsAssigned",
     route: "/(rewardsAssigned)/:statType/:unit/:global?",
+  },
+  {
+    name: "rewardsPending",
+    route: "/(rewardsPending)/:statType/:unit/:global?",
   },
   {
     name: "rewardsRedeemed",

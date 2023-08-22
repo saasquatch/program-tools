@@ -15,7 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed components:
   - \<sqm-big-stat>
     - added new `/traffic` stat
-    - Uses the "traffic" stat on the user object
+      - Uses the "traffic" stat on the user object
+    - added new `/rewardsRedeemedWeek` stat
+      - Gives a sum of rewards that have been fully redeemed by the user this week
+    - added new `/rewardsRedeemedWeek` stat
+      - Gives a sum of rewards that have been fully redeemed by the user this month
+    - added new `/rewardsPending` stat
+      - Gives a sum of the user's rewards that are currently pending
 
 ## [1.6.13] - 2023-08-02
 
