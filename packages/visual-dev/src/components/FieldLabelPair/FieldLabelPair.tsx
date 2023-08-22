@@ -2,7 +2,10 @@ import React from "react";
 import { wrapWc } from "../../wc-react";
 import { wcBoolean } from "../../utlis";
 
-export interface FieldLabelPairViewProps {
+export type FieldLabelPairViewProps = OptionProps &
+  Partial<React.ComponentProps<"div">>;
+
+export interface OptionProps {
   /**
    * Is shown
    */
@@ -80,8 +83,8 @@ export const FieldLabelPairView = (props: FieldLabelPairViewProps) => {
     topFieldLabel,
     leftFieldLabel,
     rightFieldLabel,
-    labelTooltip,
-    fieldTooltip,
+    // labelTooltip,
+    // fieldTooltip,
     isRequired,
     isParent,
     isChild,
@@ -89,7 +92,11 @@ export const FieldLabelPairView = (props: FieldLabelPairViewProps) => {
     errors = [],
     instructions,
     children,
+    className,
   } = props;
+
+  console.log("visual-dev field label pair", props);
+
   return (
     <IUIFieldLabelPair
       errors={errors}
@@ -108,6 +115,7 @@ export const FieldLabelPairView = (props: FieldLabelPairViewProps) => {
       // labelTooltip={labelTooltip}
       // fieldTooltip={fieldTooltip}
       instructions={instructions}
+      className={className}
     >
       {children}
     </IUIFieldLabelPair>

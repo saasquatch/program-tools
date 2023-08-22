@@ -1,5 +1,7 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
+//@ts-ignore
+import UICLStyles from "@impactinc/ui-component-library/dist/style.css?inline";
 
 export const CSSVariables = createGlobalStyle`
 :root {
@@ -315,3 +317,7 @@ export const GlobalStyle = () => {
     </>
   );
 };
+
+export const UICLRules = createGlobalStyle`
+${UICLStyles}
+`;

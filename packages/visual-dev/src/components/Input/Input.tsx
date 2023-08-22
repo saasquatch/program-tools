@@ -1,7 +1,6 @@
 import root from "react-shadow/styled-components";
 import styled, { CSSProp } from "styled-components";
-import * as Styles from "./Styles";
-import { IconKey, IconView } from "../Icon";
+import { IconKey } from "../Icon";
 import React from "react";
 //@ts-ignore
 import { register } from "@impactinc/ui-component-library/web-components";
@@ -63,37 +62,6 @@ const ShadowDom = styled(root.div)`
   display: contents;
 `;
 
-const StyledInput = styled.input<{
-  isInvalid: boolean;
-  position: string;
-  hasIcon: boolean;
-  customCSS: CSSProp;
-}>`
-  ${Styles.InputBoxStyle}
-  ${(props) => (props.isInvalid ? Styles.invalid : "")}
-  ${(props) => props.hasIcon && "padding-right: var(--sq-spacing-xxx-large);"}
-  ${(props) => (props.position == "left" ? "text-indent: 46px;" : "")}
-  ${(props) => props.customCSS}
-`;
-
-const ExtrasDiv = styled.div<{ position: string }>`
-  ${Styles.ExtrasDiv}
-  ${(props) => (props.position == "left" ? "left: 12px;" : "right: 12px;")}
-`;
-
-const ContainerDiv = styled.div<{
-  customContainerCSS: CSSProp;
-  limitWidth: InputWidthType;
-}>`
-  ${Styles.Container}
-  ${(props) =>
-    props.limitWidth
-      ? typeof props.limitWidth === "string"
-        ? `max-width: ${props.limitWidth};`
-        : "max-width: 300px;"
-      : "max-width: 100%;"}
-  ${(props) => props.customContainerCSS}
-`;
 const StyleWrapperDiv = styled.div<{ customContainerCSS?: CSSProp }>`
   display: inline;
   ${(props) => props.customContainerCSS}
@@ -102,7 +70,7 @@ const StyleWrapperDiv = styled.div<{ customContainerCSS?: CSSProp }>`
 const UICLTextInput = styled(wrapWc("uicl-text-input"))``;
 
 export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
-  (props, forwardedRef) => {
+  (props) => {
     const {
       icon,
       position = "right",
