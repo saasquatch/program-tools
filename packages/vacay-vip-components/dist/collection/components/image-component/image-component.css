@@ -1,0 +1,7 @@
+sqh-image-component {
+  display: block; }
+  sqh-image-component div {
+    position: relative; }
+  sqh-image-component img {
+    max-width: 100%;
+    height: auto; }

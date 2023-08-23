@@ -1,0 +1,63 @@
+sqh-referral-list {
+  display: block;
+
+  .squatch-no-referrals-yet {
+    background: white;
+    border-color: #adadad;
+    border: 1px solid;
+    border-color: #cccccc;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 5px;
+    padding: 6px 12px;
+    width: 165px;
+  }
+
+  .squatch-referrals-scroll-container {
+    min-height: 255px;
+  }
+
+  .squatch-referrals-scroll-action-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+
+    .squatch-referrals-scroll-action {
+      background: white;
+      border: 1px solid;
+      border-color: #cccccc;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 20px;
+      margin: 5px;
+      padding: 6px 12px;
+      width: 120px;
+
+      &.disabled {
+        cursor: default;
+        opacity: 0.5;
+
+        &:hover {
+          background: white;
+          border-color: #cccccc;
+        }
+
+        &:active {
+          border-style: solid;
+        }
+      }
+
+      &:hover {
+        background: #e6e6e6;
+        border-color: #adadad;
+      }
+
+      &:active,
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

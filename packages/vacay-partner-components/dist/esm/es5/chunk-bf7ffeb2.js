@@ -1,0 +1,8 @@
+var cutHex = function (s) { return "#" == s.charAt(0) ? s.substring(1) : s; }, cutRgb = function (s) { return s.substring(4, s.length - 1); }, hexToRgb = function (s) { var e = cutHex(s); return "rgb(" + parseInt(e.substring(0, 2), 16) + ", " + parseInt(e.substring(2, 4), 16) + ", " + parseInt(e.substring(4, 6), 16) + ")"; }, isHex = function (s) { return !!s.match(/^#[0-9a-f]{6}$/i); }, isRgb = function (s) { var e = cutRgb(s).split(", "); return 3 === e.length && e.every(function (s) { return parseInt(s) >= 0 && parseInt(s) <= 255; }); }, shadeColor = function (s, e) { if (!isHex(s) && !isRgb(s))
+    return; var t = isHex(s) ? hexToRgb(s) : s, a = e / 100; return "rgb(" + cutRgb(t).split(", ").map(function (s) { return Math.floor(parseInt(s) * (1 - a)); }).join(", ") + ")"; }, hasClass = function (s, e) { return s.classList ? s.classList.contains(e) : !!s.className.match(new RegExp("(\\s|^)" + e + "(\\s|$)")); }, addClass = function (s, e) { s.classList ? s.classList.add(e) : hasClass(s, e) || (s.className += " " + e); }, removeClass = function (s, e) { if (s.classList)
+    s.classList.remove(e);
+else if (hasClass(s, e)) {
+    var t = new RegExp("(\\s|^)" + e + "(\\s|$)");
+    s.className = s.className.replace(t, " ");
+} }, detectMobileSafari = function () { return /iP(ad|hone|od).+Version\/[\d\.]+.*Safari/i.test(window.navigator.userAgent); }, uuid = function s(e) { return e ? (e ^ 16 * Math.random() >> e / 4).toString(16) : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, s); };
+export { shadeColor as a, addClass as b, removeClass as c, uuid as d, detectMobileSafari as e };

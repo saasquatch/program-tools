@@ -1,0 +1,40 @@
+sqh-partner-stat-component {
+  text-align: center;
+  width: 140px;
+  float: left; }
+  sqh-partner-stat-component > div {
+    padding: 10px; }
+  sqh-partner-stat-component .stat-value {
+    font-size: 20px;
+    line-height: 20px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-weight: 300; }
+  sqh-partner-stat-component .stat-description {
+    text-transform: uppercase;
+    font-size: 12px; }
+
+@media (max-width: 499px) {
+  sqh-partner-stat-component {
+    width: 100%;
+    text-align: left;
+    background: #f2f2f2;
+    border: 1px solid #ddd; }
+    sqh-partner-stat-component:first-child {
+      border-radius: 4px 4px 0 0; }
+    sqh-partner-stat-component:last-child {
+      border-radius: 0 0 4px 4px; } }
+
+@media (max-width: 499px) {
+  sqh-partner-stat-component .stat-value {
+    font-size: 22px;
+    float: left;
+    width: 60px;
+    text-align: center;
+    margin: 0 10px 0 0; } }
+
+@media (max-width: 499px) {
+  sqh-partner-stat-component .stat-description {
+    line-height: 20px;
+    padding-left: 100px;
+    overflow-wrap: break-word; } }
