@@ -26,13 +26,13 @@ export class CheckboxField {
 
   /**
    * This name is used as the key for this form field on submission. The name must be unique within this specific form.
-   * @uiName Checkbox Name Attribute
+   * @uiName Checkbox name attribute
    * @required
    */
   @Prop() checkboxName: string;
 
   /**
-   * @uiName Checkbox Label
+   * @uiName Checkbox label
    * @uiWidget textArea
    */
   @Prop() checkboxLabel: string = "By signing up you agree to the {labelLink}";
@@ -40,17 +40,17 @@ export class CheckboxField {
   /**
    * Used with link text if the checkbox label contains {labelLink}
    *
-   * @uiName Checkbox Label Link
+   * @uiName Checkbox label link
    */
   @Prop() checkboxLabelLink: string = "https://example.com";
 
   /**
-   * @uiName Checkbox Label Link Text
+   * @uiName Checkbox label link lext
    */
   @Prop() checkboxLabelLinkText: string = "Terms and Conditions";
 
   /**
-   * @uiName Unchecked Error Message
+   * @uiName Unchecked error message
    */
   @Prop() errorMessage: string = "Must be checked";
 

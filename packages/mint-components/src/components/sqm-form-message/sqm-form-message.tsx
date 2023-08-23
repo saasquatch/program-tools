@@ -15,11 +15,13 @@ export class FormMessage {
   ignored = true;
 
   /**
-   * @uiName Alert Type
+   * Options include "success", "info", "warning", and "error"
+   *
+   * @uiName Alert type
    */
   @Prop() type: string;
   /**
-   * Icon to use in alert
+   * Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon
    *
    * @uiName Icon
    */
@@ -58,6 +60,21 @@ export class FormMessage {
           <sl-icon
             slot="icon"
             name={`${this.icon ? this.icon : "info-circle"}`}
+          ></sl-icon>
+          <slot />
+        </sl-alert>
+      );
+    } else if (this.type === "warning") {
+      return (
+        <sl-alert
+          exportparts="base: warningalert-base, icon:warningalert-icon"
+          class="Warning"
+          type="warning"
+          open
+        >
+          <sl-icon
+            slot="icon"
+            name={`${this.icon ? this.icon : "exclamation-triangle"}`}
           ></sl-icon>
           <slot />
         </sl-alert>

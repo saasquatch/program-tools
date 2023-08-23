@@ -19,12 +19,12 @@ export class TimelineReward {
   ignored = true;
 
   /**
-   * @uiName Reward Amount
+   * @uiName Reward amount
    */
   @Prop() reward: string;
 
   /**
-   * @uiName Reward Unit
+   * @uiName Reward unit
    */
   @Prop() unit: string;
 

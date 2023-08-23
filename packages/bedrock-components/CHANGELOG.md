@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.9] - 2023-05-18
+
+### Changed
+- `@saasquatch/component-boilerplate` package bump
+
+## [1.3.8] - 2023-05-16
+
+### Added
+- \<sqb-auth-template-switch> - Automatically switch between "logged-in" and "logged-out" templates based on whether a valid User Identity has been set.
 
 ## [1.3.7] - 2023-04-20
 

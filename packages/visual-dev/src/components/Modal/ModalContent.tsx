@@ -87,13 +87,21 @@ type ModalContentProps = ContentOptions &
 
 export interface ContentOptions {
   children?: React.ReactNode;
+  /**
+   * Set the footer to always show at the bottom
+   */
   stickyFooter?: boolean;
+  /**
+   * Max height of the container, use a valid CSS size value (px, %)
+   */
+  maxHeight?: string;
 }
 
 const ModalContentDiv = styled.div<
-  Required<StyleProps & { stickyFooter: boolean }>
+  Required<StyleProps & { stickyFooter: boolean; maxHeight: string }>
 >`
   ${Styles.ModalContentDivStyle}
+  ${(props) => props.maxHeight && `max-height: ${props.maxHeight};`}
   ${(props) => props.customCSS}
   ${(props) =>
     props.stickyFooter &&
@@ -116,13 +124,20 @@ export const ModalContentView = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps
 >((props, forwardedRef) => {
-  const { children, customCSS = {}, stickyFooter = false, ...rest } = props;
+  const {
+    children,
+    customCSS = {},
+    maxHeight = "",
+    stickyFooter = false,
+    ...rest
+  } = props;
   return (
     <ModalContentDiv
       {...rest}
       ref={forwardedRef}
       customCSS={customCSS}
       stickyFooter={stickyFooter}
+      maxHeight={maxHeight}
     >
       {children}
     </ModalContentDiv>

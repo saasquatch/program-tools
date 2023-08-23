@@ -14,7 +14,7 @@ import { TabView } from "./sqm-tab-view";
   tag: "sqm-tab",
 })
 export class Tab {
-  /** @uiName Tab Title  */
+  /** @uiName Tab title  */
   @Prop() header: string;
 
   constructor() {

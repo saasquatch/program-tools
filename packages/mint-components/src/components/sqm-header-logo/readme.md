@@ -14,6 +14,13 @@
 | `nextPage` | `next-page` | Page participants are navigated to after clicking the header logo. | `string` | `"/"`       |
 
 
+## Shadow Parts
+
+| Part         | Description |
+| ------------ | ----------- |
+| `"sqm-link"` |             |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

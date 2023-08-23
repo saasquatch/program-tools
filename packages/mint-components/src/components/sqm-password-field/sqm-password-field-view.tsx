@@ -44,7 +44,7 @@ export function PortalResetPasswordView(props: PortalPasswordFieldViewProps) {
   const { states, callbacks } = props;
 
   return (
-    <div class={sheet.classes.InputContainer}>
+    <div class={sheet.classes.InputContainer} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}

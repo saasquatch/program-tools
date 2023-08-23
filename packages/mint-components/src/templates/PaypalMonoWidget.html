@@ -1,0 +1,398 @@
+<sqm-brand brand-color="#4225c4" brand-font="Nunito Sans">
+  <sqm-portal-container
+    direction="column"
+    padding="small"
+    gap="xxx-large"
+    display="grid"
+    max-width="100%"
+    background-color="#ffffff"
+  >
+    <sqm-portal-container
+      direction="column"
+      padding="none"
+      gap="xxx-large"
+      display="grid"
+      max-width="100%"
+    >
+      <sqm-hero-image
+        image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"
+        header="MyCompany Rewards"
+        description="Refer friends and complete tasks to earn rewards"
+        layout="columns"
+        image-pos="right"
+        background-color="#F9F9F9"
+        image-mobile-pos="top"
+        image-percentage="50"
+        padding-image="none"
+        padding-text="xxxx-large"
+      >
+      </sqm-hero-image>
+    </sqm-portal-container>
+    <sqm-portal-container
+      direction="column"
+      padding="none"
+      gap="xxx-large"
+      max-width="770px"
+      center
+      display="grid"
+    >
+      <sqm-stat-container space="xxx-large" display="flex">
+        <sqm-big-stat
+          flex-reverse="true"
+          alignment="left"
+          stat-type="/referralsCount"
+        >
+          <p>Referrals</p>
+        </sqm-big-stat>
+        <sqm-big-stat
+          flex-reverse="true"
+          alignment="left"
+          stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"
+        >
+          <p>Giftcards Earned</p>
+        </sqm-big-stat>
+        <sqm-big-stat
+          flex-reverse="true"
+          alignment="left"
+          stat-type="/rewardBalance/CREDIT/POINT/value/global"
+        >
+          <p>Points Balance</p>
+        </sqm-big-stat>
+      </sqm-stat-container>
+      <sqp-account-details
+        schedule-header-text="Schedule"
+        integration-alert-text="Looks like this feature is turned off at the moment. Come back later to see if it’s enabled. "
+        integration-alert-header="PayPal payouts are currently disabled"
+        details-header-text="Payout details"
+        pay-pal-account-header-text="PayPal account"
+        connect-pay-pal-description-text="Connect your PayPal account to automatically receive payments/cash rewards."
+        connect-pay-pal-account-button-text="Connect account"
+        w-9-tax-label="Awaiting W-9 tax form"
+        upcoming-payment-label="Upcoming"
+        recent-payment-label="Recent payment"
+        other-currencies-label="other currencies"
+        next-payout-label="Next payout"
+        next-payment-label="Next payment"
+        header-text="PayPal account"
+        edit-text="Edit"
+        account-label="Account"
+        success-message="Success!"
+        submit-pay-pal-account-button-text="Connect account"
+        pay-pal-email-label-help-text="Enter the email used for your PayPal account."
+        pay-pal-email-label="PayPal email"
+        modal-connect-pay-pal-account-header="Connect PayPal account"
+        disconnect-account-header-text="Disconnect account"
+        disconnect-account-description-text="You will not be able to receive payments if you disconnect your PayPal account."
+      ></sqp-account-details>
+      <sqm-portal-container
+        gap="xx-large"
+        direction="column"
+        display="grid"
+        max-width="100%"
+        padding="none"
+      >
+        <sqm-titled-section
+          text-align="center"
+          label-margin="xxx-small"
+          padding="none"
+        >
+          <h3 slot="label">Share $50 with friends</h3>
+          <p slot="content">
+            They’ll get a $50 credit towards a new account and you’ll get up to
+            $1200
+          </p>
+        </sqm-titled-section>
+        <sqm-referral-card vertical-alignment="start">
+          <sqm-portal-container
+            gap="large"
+            slot="left"
+            direction="column"
+            display="grid"
+            max-width="100%"
+            padding="none"
+          >
+            <p>
+              They’ll get a $50 credit towards a new account and you’ll get:
+            </p>
+            <sqm-timeline icon="circle">
+              <sqm-timeline-entry
+                reward="$50"
+                unit="visa giftcard"
+                desc="Your friend purchases a Business plan"
+                icon="circle"
+              >
+              </sqm-timeline-entry>
+              <sqm-timeline-entry
+                reward="$200"
+                unit="visa giftcard"
+                desc="Our sales team qualifies your friend as a good fit for our Enterprise plan"
+                icon="circle"
+              >
+              </sqm-timeline-entry>
+              <sqm-timeline-entry
+                reward="$1000"
+                unit="visa giftcard"
+                desc="Your friend purchases an Enterprise plan"
+                icon="circle"
+              >
+              </sqm-timeline-entry>
+            </sqm-timeline>
+          </sqm-portal-container>
+          <sqm-portal-container
+            gap="large"
+            slot="right"
+            direction="column"
+            display="grid"
+            max-width="100%"
+            padding="none"
+          >
+            <p>Choose how you want to share:</p>
+            <p><sub>Your unique referral link:</sub></p>
+            <sqm-share-link
+              tooltip-text="Copied to Clipboard"
+              tooltip-lifespan="1000"
+            >
+            </sqm-share-link>
+            <sqm-portal-container
+              gap="x-small"
+              direction="column"
+              display="grid"
+              max-width="100%"
+              padding="none"
+            >
+              <sqm-share-button
+                medium="email"
+                icon-slot="prefix"
+                size="medium"
+                type="default"
+              >
+                Share via email
+              </sqm-share-button>
+              <sqm-share-button
+                medium="linkedin"
+                icon-slot="prefix"
+                size="medium"
+                type="default"
+              >
+                Share on LinkedIn
+              </sqm-share-button>
+              <sqm-share-button
+                medium="twitter"
+                icon-slot="prefix"
+                size="medium"
+                type="default"
+              >
+                Tweet about us
+              </sqm-share-button>
+            </sqm-portal-container>
+          </sqm-portal-container>
+        </sqm-referral-card>
+        <sqm-portal-container
+          gap="xx-large"
+          direction="column"
+          display="grid"
+          max-width="100%"
+          min-width=""
+          padding="none"
+        >
+          <sqm-titled-section text-align="center" label-margin="xxx-small">
+            <h3 slot="label">Earn more rewards</h3>
+            <p slot="content">
+              Get points while using our product. Use those points to redeem
+              rewards like one free month of Enterprise or two plane tickets to
+              anywhere in North America
+            </p>
+          </sqm-titled-section>
+          <sqm-card-feed gap="24" width="347">
+            <sqm-task-card
+              reward-amount="20"
+              goal="1"
+              card-title="Complete a Survey"
+              description="Fill out our NPS survey and get 20 points for giving us honest feedback."
+              button-text="Take survey"
+              reward-unit="Points"
+              completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
+              ended-message="Ended {endDate}"
+              expiry-message="Ends {endDate}"
+              finite="0"
+              starts-on-message="Starts {startDate}"
+            >
+            </sqm-task-card>
+            <sqm-task-card
+              reward-amount="250"
+              goal="500"
+              show-progress-bar
+              card-title="Spend $500"
+              description="Earn 250 points when you spend $500 or more."
+              button-text="See plans"
+              completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
+              ended-message="Ended {endDate}"
+              expiry-message="Ends {endDate}"
+              progress-bar-unit="$"
+              finite="0"
+              reward-unit="Points"
+              starts-on-message="Starts {startDate}"
+            >
+            </sqm-task-card>
+            <sqm-task-card
+              goal="1"
+              reward-amount="50"
+              card-title="Follow Us on Twitter"
+              description="Earn 50 points when you follow us on Twitter!"
+              button-text="Follow"
+              button-link="https://twitter.com/"
+              open-new-tab="true"
+              event-key="socialFollow"
+              completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
+              ended-message="Ended {endDate}"
+              expiry-message="Ends {endDate}"
+              finite="0"
+              reward-unit="Points"
+              starts-on-message="Starts {startDate}"
+            >
+            </sqm-task-card>
+            <sqm-task-card
+              reward-amount="1"
+              reward-unit="Free Month"
+              goal="1"
+              card-title="Upgrade Your Plan"
+              description="Receive one free month for being a committed customer when you upgrade your plan."
+              button-text="Upgrade"
+              completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
+              ended-message="Ended {endDate}"
+              expiry-message="Ends {endDate}"
+              open-new-tab="false"
+              finite="0"
+              starts-on-message="Starts {startDate}"
+            >
+            </sqm-task-card>
+          </sqm-card-feed>
+        </sqm-portal-container>
+        <sqm-tabs>
+          <sqm-tab header="Referral history">
+            <sqm-referral-table
+              per-page="4"
+              hidden-columns="2"
+              more-label="Next"
+              prev-label="Prev"
+              sm-breakpoint="599"
+              md-breakpoint="799"
+            >
+              <sqm-referral-table-user-column
+                column-title="User"
+                anonymous-user="Anonymous User"
+                deleted-user="Deleted User"
+              >
+              </sqm-referral-table-user-column>
+              <sqm-referral-table-status-column
+                column-title="Referral status"
+                converted-status-text="Converted"
+                in-progress-status-text="In Progress"
+              >
+              </sqm-referral-table-status-column>
+              <sqp-rewards-column
+                column-title="Rewards"
+                expiring-text="Expiring in"
+                fuel-tank-text="Your code is"
+                pending-for-text="{status} for {date}"
+                reward-blocked-text="Payout blocked on {date}."
+                reward-on-hold-text="Payout on hold and in review since {date}."
+                reward-paid-out-text="Paid out on {date}."
+                reward-payout-failed-text="This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on {date}."
+                reward-payout-in-progress-text="Payout processing started on {date}."
+                reward-received-text="Reward received on"
+                reward-refunded-text="Payout refunded on {date}."
+                reward-returned-text="The email you provided does not link to an existing PayPal account. Payout expired on {date}."
+                reward-reversed-text="Payout reversed on {date}."
+                reward-unclaimed-text="The email you provided does not link to an existing PayPal account. Payout expires on {date}."
+                status-long-text="{status, select, INPROGRESS {In Progress} TRANSFERRED {Transferred} AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} REDEEMED {Redeemed on} PENDING {Available on} EXPIRED {Reward expired on} SUCCESS {Paid out on} FAILED {This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on} PAYPAL_PENDING {Payout process started on} UNCLAIMED {The email you provided does not link to an existing PayPal account. Payout expires on} ONHOLD {Payout on hold and in review since} REFUNDED {Payout refunded on} RETURNED {Payout returned on} REVERSED {Payout reversed on} BLOCKED {Payout blocked on} other {Not available} }"
+                status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} EXPIRED {Expired} REDEEMED {Redeemed} PENDING {Pending} SUCCESS {Paid Out} FAILED {Failed} PAYPAL_PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} other {Not available}  }"
+              ></sqp-rewards-column>
+              <sqm-referral-table-date-column
+                column-title="Date referred"
+                date-shown="dateReferralStarted"
+              >
+              </sqm-referral-table-date-column>
+              <sqm-empty
+                slot="empty"
+                empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png"
+                empty-state-header="View your referral details"
+                empty-state-text="Refer a friend to view the status of your referrals and rewards earned"
+              >
+              </sqm-empty>
+            </sqm-referral-table>
+          </sqm-tab>
+          <sqm-tab header="Reward history">
+            <sqm-rewards-table
+              per-page="4"
+              program-id=""
+              hidden-columns="0"
+              more-label="Next"
+              prev-label="Prev"
+              sm-breakpoint="599"
+              md-breakpoint="799"
+            >
+              <sqm-rewards-table-reward-column
+                available-text="{availableAmount} remaining"
+                column-title="Reward"
+                copy-text="Copied!"
+                redeemed-text="{redeemedAmount} redeemed"
+              >
+              </sqm-rewards-table-reward-column>
+              <sqm-rewards-table-source-column
+                anonymous-user="Anonymous User"
+                column-title="Source"
+                deleted-user="Deleted User"
+                referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}"
+                reward-exchange-text="Reward Exchange"
+                reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"
+              >
+              </sqm-rewards-table-source-column>
+              <sqp-status-column
+                column-title="Status"
+                expiry-text="Expires on "
+                pending-scheduled="Until"
+                pending-unhandled="Fulfillment error"
+                pending-us-tax="W-9 required"
+                reward-blocked-text="Payout blocked on"
+                reward-on-hold-text="Payout on hold and in review since"
+                reward-paid-out-text="Paid out on"
+                reward-payout-failed-text="This payout will be retried up to 3 times. If it still fails it will be retried in the next payout cycle. Last attempted on"
+                reward-payout-in-progress-text="Payout processing started on"
+                reward-refunded-text="Payout refunded on"
+                reward-returned-text="The email you provided does not link to an existing PayPal account. Payout expired on"
+                reward-reversed-text="Payout reversed on"
+                reward-unclaimed-text="The email you provided does not link to an existing PayPal account. Payout expires on"
+                status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} EXPIRED {Expired} REDEEMED {Redeemed} PENDING {Pending} SUCCESS {Paid Out} FAILED {Failed} PAYPAL_PENDING {In progress} UNCLAIMED {Unclaimed} ONHOLD {In progress} REFUNDED {Refunded} RETURNED {Returned} REVERSED {Reversed} BLOCKED {Blocked} other {Not available}  }"
+              ></sqp-status-column>
+              <sqm-rewards-table-date-column
+                column-title="Date received"
+                date-shown="dateGiven"
+              >
+              </sqm-rewards-table-date-column>
+              <sqm-empty
+                slot="empty"
+                empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png"
+                empty-state-header="View your rewards"
+                empty-state-text="Refer friends and complete tasks to view the details of your rewards"
+              >
+              </sqm-empty>
+            </sqm-rewards-table>
+          </sqm-tab>
+        </sqm-tabs>
+      </sqm-portal-container>
+      <sqm-portal-footer
+        support-email="support@example.com"
+        terms-link="https://example.com"
+        faq-link="https://example.com"
+        terms-text="Terms And Conditions"
+        faq-text="FAQ"
+        show-powered-by="true"
+        padding-bottom="none"
+        padding-left="none"
+        padding-right="none"
+        padding-top="none"
+      ></sqm-portal-footer>
+    </sqm-portal-container>
+  </sqm-portal-container>
+</sqm-brand>

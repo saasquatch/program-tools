@@ -1,44 +1,49 @@
 import { h, VNode } from "@stencil/core";
-import { Spacing } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 
 export interface ReferralCardViewProps {
   verticalAlignment: "start" | "center" | "end";
+  hideBorder?: boolean;
+  backgroundColor: string;
   slots: {
     left: VNode;
     right: VNode;
+    header: VNode;
+    footer: VNode;
   };
+  paddingTop?: string;
+  paddingRight?: string;
+  paddingBottom?: string;
+  paddingLeft?: string;
+  limitWidth: boolean;
+  hasHeader: boolean;
+  hasFooter: boolean;
 }
 const style = {
   Container: {
-    display: "flex",
+    borderRadius: "var(--sl-border-radius-large)",
     color: "var(--sl-color-neutral-900)",
     background: "var(--sl-color-neutral-0)",
-    "& .left": {
-      boxSizing: "border-box",
-      width: "50%",
-      padding: "var(--sl-spacing-large)",
-      paddingRight: "var(--sl-spacing-medium)",
-      "@media (max-width: 499px)": {
-        width: "100%",
-        padding: "0",
-        marginBottom: "var(--sl-spacing-xx-large)",
-      },
-    },
-    "& .right": {
-      boxSizing: "border-box",
-      width: "50%",
-      padding: "var(--sl-spacing-large)",
-      paddingLeft: "var(--sl-spacing-medium)",
-      "@media (max-width: 499px)": {
-        width: "100%",
-        padding: "0",
-      },
-    },
-    border: "1px solid var(--sl-color-neutral-300)",
-    borderRadius: "var(--sl-border-radius-large)",
+    display: "flex",
+    flexDirection: "column",
+    rowGap: "var(--sl-spacing-large)",
+  },
+  EndContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  ColumnContainer: {
+    "& p": { margin: "0" },
+    display: "grid",
+    gridAutoColumns: "minmax(0, 1fr)",
+    gridAutoFlow: "column",
+    gap: "calc(2 * var(--sl-spacing-medium))",
+
     "@media (max-width: 499px)": {
-      flexDirection: "column",
+      gridAutoFlow: "unset",
+      gridAutoColumns: "unset",
+      gridTemplateColumns: "1fr",
       border: "none",
     },
   },
@@ -55,29 +60,44 @@ const vanillaStyle = `
 
 export function ReferralCardView(props: ReferralCardViewProps) {
   return (
-    <div>
+    <div
+      part="sqm-base"
+      class={sheet.classes.Container}
+      style={{
+        border: `${
+          props.hideBorder ? "none" : "1px solid var(--sl-color-neutral-300)"
+        }`,
+
+        "padding-top": `var(--sl-spacing-${props.paddingTop})`,
+        "padding-right": `var(--sl-spacing-${props.paddingRight})`,
+        "padding-bottom": `var(--sl-spacing-${props.paddingBottom})`,
+        "padding-left": `var(--sl-spacing-${props.paddingLeft})`,
+        backgroundColor: props.backgroundColor,
+        maxWidth: `${props.limitWidth ? "600px" : "none"}`,
+        margin: `${props.limitWidth ? "auto" : "none"}`,
+      }}
+    >
       <style type="text/css">
         {styleString}
         {vanillaStyle}
       </style>
-      <div class={sheet.classes.Container}>
-        <div
-          class="left"
-          style={{
-            alignSelf: props.verticalAlignment,
-          }}
-        >
-          {props.slots.left}
-        </div>
-        <div
-          class="right"
-          style={{
-            alignSelf: props.verticalAlignment,
-          }}
-        >
-          {props.slots.right}
-        </div>
+      {props.hasHeader && (
+        <div class={sheet.classes.EndContainer}>{props.slots.header}</div>
+      )}
+      <div
+        part="sqm-column-container"
+        class={sheet.classes.ColumnContainer}
+        style={{
+          alignItems: props.verticalAlignment,
+        }}
+      >
+        {props.slots.left}
+
+        {props.slots.right}
       </div>
+      {props.hasFooter && (
+        <div class={sheet.classes.EndContainer}>{props.slots.footer}</div>
+      )}
     </div>
   );
 }

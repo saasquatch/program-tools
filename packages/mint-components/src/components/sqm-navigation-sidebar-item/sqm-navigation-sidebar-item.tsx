@@ -22,7 +22,7 @@ import { useNavigationSidebarItem } from "./useNavigationSidebarItem";
 })
 export class NavigationSidebarItem {
   /**
-   * @uiName Navigation Path
+   * @uiName Navigation path
    * @uiWidget pageSelect
    */
   @Prop() path: string;

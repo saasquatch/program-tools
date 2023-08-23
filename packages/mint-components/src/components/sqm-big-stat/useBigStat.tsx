@@ -181,7 +181,7 @@ const referralsWeekQuery = (programId: string) => {
 
   const filter = {
     ...programFilter,
-    dateReferralStarted_timeframe: "this_month",
+    dateReferralStarted_timeframe: "this_week",
   };
   return debugQuery(
     gql`

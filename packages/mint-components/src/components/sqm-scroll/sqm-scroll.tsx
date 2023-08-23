@@ -17,7 +17,7 @@ export class Scroll {
   ignored = true;
 
   /**
-   * @uiName Button Type
+   * @uiName Button type
    * @uiType string
    * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
    * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger", "Text"]
@@ -33,26 +33,26 @@ export class Scroll {
     | "text" = "default";
 
   /**
-   * @uiName Button Text
+   * @uiName Button text
    */
   @Prop() buttonText: string;
 
   /**
    * The name of the HTML tag you would like to scroll to. E.g referral-table
    *
-   * @uiName Scroll Tag Name
+   * @uiName Scroll tag name
    */
   @Prop() scrollTagName?: string;
 
   /**
    * ID applied to the HTML tag you would like to scroll to. E.g tab-1
    *
-   * @uiName Scroll Id
+   * @uiName Scroll ID
    */
   @Prop() scrollId?: string;
 
   /**
-   * @uiName Scroll Animation Style
+   * @uiName Scroll animation style
    * @uiType string
    * @uiEnum ["smooth", "auto"]
    * @uiEnumNames ["Smooth", "Auto"]
@@ -89,7 +89,7 @@ export class Scroll {
   @Prop() circle: boolean;
 
   /**
-   * @uiName Icon Slot
+   * @uiName Icon slot
    * @uiType string
    * @uiEnum ["prefix", "suffix"]
    * @uiEnumNames ["Prefix", "Suffix"]
@@ -105,7 +105,7 @@ export class Scroll {
   /**
    * The button becomes full width if the screen size is smaller than 500px
    *
-   * @uiName Full Width on Mobile
+   * @uiName Full width on mobile
    */
   @Prop() mobile?: boolean;
 

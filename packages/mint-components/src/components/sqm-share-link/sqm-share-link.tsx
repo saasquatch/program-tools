@@ -1,11 +1,11 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
-import { isDemo } from "@saasquatch/component-boilerplate";
-import { ShareLinkView, ShareLinkViewProps } from "./sqm-share-link-view";
-import { useShareLink } from "./useShareLink";
-import { getProps } from "../../utils/utils";
-import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
+import { getProps } from "../../utils/utils";
+import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
+import { useShareLink } from "./useShareLink";
 
 /**
  * @uiName Share Link
@@ -24,19 +24,21 @@ export class ShareLink {
    * @uiWidget programSelector
    */
   @Prop() programId?: string;
+
   /**
-   * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+   * Shown inside a tooltip after someone has successfully copied the link to their clipboard
    *
-   * @uiName Tooltip Text
+   * @uiName Tooltip text
    */
   @Prop({
     attribute: "tooltip-text",
   })
   tooltiptext: string = "Copied to Clipboard";
+
   /**
    * The number of milliseconds that the tooltip appears for
    *
-   * @uiName Tooltip Lifespan
+   * @uiName Tooltip lifespan
    */
   @Prop({
     attribute: "tooltip-lifespan",
@@ -44,10 +46,44 @@ export class ShareLink {
   tooltiplifespan: number = 1000;
 
   /**
+   * Change the text alignment
+   *
+   * @uiName Share link alignment
+   * @uiType string
+   * @uiEnum ["left", "center", "right"]
+   * @uiEnumNames ["Left", "Center", "Right"]
+   */
+  @Prop({
+    attribute: "text-align",
+  })
+  textAlign?: "left" | "center" | "right" = "left";
+
+  /**
+   * @uiName Copy button label
+   */
+  @Prop({
+    attribute: "copy-button-label",
+  })
+  copyButtonLabel: string = "Copy Link";
+
+  /**
+   * Set the copy button style and placement
+   *
+   * @uiName Style
+   * @uiType string
+   * @uiEnum ["icon", "button-outside", "button-below"]
+   * @uiEnumNames ["Icon", "Button outside", "Button below"]
+   */
+  @Prop({
+    attribute: "copy-button-style",
+  })
+  buttonStyle?: "icon" | "button-outside" | "button-below" = "icon";
+
+  /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<ShareLinkViewProps>;
+  @Prop() demoData?: DemoData<CopyTextViewProps>;
 
   constructor() {
     withHooks(this);
@@ -59,22 +95,26 @@ export class ShareLink {
     const props = isDemo()
       ? useDemoShareLink(thisProps)
       : useShareLink(thisProps);
-    return <ShareLinkView {...props} />;
+    return <CopyTextView {...props} />;
   }
 }
 
-function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
+function useDemoShareLink(props: ShareLink): CopyTextViewProps {
   const [open, setOpen] = useState(false);
-  const shareString = "https://www.example.com/sharelink/abc";
+  const copyString = "https://www.example.com/sharelink/abc";
   return deepmerge(
     {
-      shareString,
+      copyString: copyString,
       tooltiptext: props.tooltiptext,
+      textAlign: props.textAlign,
+      buttonStyle: props.buttonStyle,
+      copyButtonLabel: props.copyButtonLabel,
+      rewardStatus: "AVAILABLE",
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
         // Only if called from a user-initiated event
-        navigator.clipboard.writeText(shareString);
+        navigator.clipboard.writeText(copyString);
         setOpen(true);
         setTimeout(() => setOpen(false), props.tooltiplifespan);
       },

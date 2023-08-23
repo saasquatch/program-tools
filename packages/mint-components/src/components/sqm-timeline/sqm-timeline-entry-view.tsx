@@ -71,12 +71,12 @@ export function TimelineEntryView(props: TimelineEntryProps): VNode {
   const timeline_icon = props.icon ?? props.iconState;
 
   return (
-    <div class={sheet.classes.TimelineReward}>
+    <div class={sheet.classes.TimelineReward} part="sqm-base">
       <style type="text/css">
         {styleString}
         {vanillaStyle}
       </style>
-      <div class="container">
+      <div class="container" part="sqm-entry-container">
         <div class="line">/</div>
         <div class="step">
           {timeline_icon === "gift" && (
@@ -91,10 +91,16 @@ export function TimelineEntryView(props: TimelineEntryProps): VNode {
           )}
           <div>
             <div>
-              <span class="reward">{props.reward}</span>
-              <span class="unit">{props.unit}</span>
+              <span class="reward" part="sqm-reward">
+                {props.reward}
+              </span>
+              <span class="unit" part="sqm-unit">
+                {props.unit}
+              </span>
             </div>
-            <div class="description">{props.desc}</div>
+            <div class="description" part="sqm-description">
+              {props.desc}
+            </div>
           </div>
         </div>
       </div>

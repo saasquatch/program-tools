@@ -20,58 +20,58 @@ export class PortalLogin {
   /**
    * Redirect participants to this page after they successfully login.
    *
-   * @uiName Login Redirect
+   * @uiName Login redirect
    * @uiWidget pageSelect
    */
   @Prop()
   nextPage: string = "/";
 
   /**
-   * @uiName Email Field Label
+   * @uiName Email field label
    */
   @Prop()
   emailLabel: string = "Email";
 
   /**
-   * @uiName Password Field Label
+   * @uiName Password field label
    */
   @Prop()
   passwordLabel: string = "Password";
 
   /**
-   * @uiName Submit Button Text
+   * @uiName Submit button text
    */
   @Prop()
   submitLabel: string = "Sign In";
 
   /**
    * Redirect participants to this page to reset their password
-   * @uiName Forgot Password Redirect
+   * @uiName Forgot password redirect
    * @uiWidget pageSelect
    */
   @Prop() forgotPasswordPath: string = "/forgotPassword";
 
   /**
-   * @uiName Forgot Password Text
+   * @uiName Forgot password text
    */
   @Prop()
   forgotPasswordLabel: string = "Forgot Password?";
 
   /**
-   * @uiName Register Button Text
+   * @uiName Register button text
    */
   @Prop()
   registerLabel: string = "Register";
 
   /**
    * Redirect participants to this page to start registration.
-   * @uiName Register Button Redirect
+   * @uiName Register button redirect
    * @uiWidget pageSelect
    */
   @Prop() registerPath: string = "/register";
 
   /**
-   * @uiName Heading Label
+   * @uiName Heading label
    * @uiWidget textArea
    */
   @Prop() pageLabel: string = "Sign in to your account";

@@ -16,58 +16,67 @@ export class PortalFooter {
   ignored = true;
 
   /**
-   * @uiName Support Email
+   * @uiName Hide support message
+   */
+  @Prop() hideSupportText: boolean = false;
+  /**
+   * @uiName Support email
    */
   @Prop() supportEmail: string = "support@example.com";
   /**
-   * @uiName Support Text
+   * @uiName Support message
    * @uiWidget textArea
    */
   @Prop() supportText: string = "For program support, contact {email}";
   /**
-   * @uiName Terms and Conditions Link
+   * @uiName Terms and conditions link
    */
   @Prop() termsLink?: string;
   /**
-   * @uiName Terms and Conditions Text
+   * @uiName Terms and conditions text
    */
   @Prop() termsText?: string;
   /**
-   * @uiName FAQ Link
+   * @uiName FAQ link
    */
   @Prop() faqLink?: string;
   /**
-   * @uiName FAQ Text
+   * @uiName FAQ text
    */
   @Prop() faqText?: string;
   /**
-   * @uiName Hide Powered By SaaSquatch
+   * @uiName Hide powered by SaaSquatch
    */
   @Prop() hidePoweredBy: boolean = false;
   /**
-   * @uiName Powered By Link
+   * @uiName Powered By link
    */
-  @Prop() poweredByLink: string = "https://saasquatch.com";
+  @Prop() poweredByLink: string =
+    "https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget";
   /**
-   * @uiName Padding Top
+   * @uiName Top padding
+   * @uiGroup Padding
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingTop: string = "large";
   /**
-   * @uiName Padding Right
+   * @uiName Right padding
+   * @uiGroup Padding
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingRight: string = "large";
   /**
-   * @uiName Padding Bottom
+   * @uiName Bottom padding
+   * @uiGroup Padding
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingBottom: string = "large";
   /**
-   * @uiName Padding Left
+   * @uiName Left padding
+   * @uiGroup Padding
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */

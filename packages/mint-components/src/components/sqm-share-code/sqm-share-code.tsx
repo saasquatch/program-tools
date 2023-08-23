@@ -1,14 +1,11 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
-import { isDemo } from "@saasquatch/component-boilerplate";
-import {
-  ShareLinkView,
-  ShareLinkViewProps,
-} from "../sqm-share-link/sqm-share-link-view";
-import { getProps } from "../../utils/utils";
-import { useShareCode } from "./useShareCode";
-import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
+import { getProps } from "../../utils/utils";
+import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
+import { useShareCode } from "./useShareCode";
 
 /**
  * @uiName Share Code
@@ -28,9 +25,9 @@ export class ShareCode {
    */
   @Prop() programId?: string;
   /**
-   * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
+   * Shown inside a tooltip after someone has successfully copied the link to their clipboard
    *
-   * @uiName Tooltip Text
+   * @uiName Tooltip text
    */
   @Prop({
     attribute: "tooltip-text",
@@ -46,10 +43,44 @@ export class ShareCode {
   })
   tooltiplifespan: number = 1000;
   /**
+   * Change the text alignment
+   *
+   * @uiName Share code alignment
+   * @uiType string
+   * @uiEnum ["left", "center", "right"]
+   * @uiEnumNames ["Left", "Center", "Right"]
+   */
+  @Prop({
+    attribute: "text-align",
+  })
+  textAlign: "left" | "center" | "right" = "left";
+
+  /**
+   * @uiName Copy button label
+   */
+  @Prop({
+    attribute: "copy-button-label",
+  })
+  copyButtonLabel?: string = "Copy Code";
+
+  /**
+   * Set the copy button style and placement
+   *
+   * @uiName Style
+   * @uiType string
+   * @uiEnum ["icon", "button-outside", "button-below"]
+   * @uiEnumNames ["Icon", "Button outside", "Button below"]
+   */
+  @Prop({
+    attribute: "copy-button-style",
+  })
+  buttonStyle?: "icon" | "button-outside" | "button-below" = "icon";
+
+  /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<ShareLinkViewProps>;
+  @Prop() demoData?: DemoData<CopyTextViewProps>;
 
   constructor() {
     withHooks(this);
@@ -61,22 +92,26 @@ export class ShareCode {
     const props = isDemo()
       ? useDemoShareCode(thisProps)
       : useShareCode(thisProps);
-    return <ShareLinkView {...props} />;
+    return <CopyTextView {...props} />;
   }
 }
 
-function useDemoShareCode(props: ShareCode): ShareLinkViewProps {
+function useDemoShareCode(props: ShareCode): CopyTextViewProps {
   const [open, setOpen] = useState(false);
-  const shareString = "SHARECODE001";
+  const copyString = "SHARECODE001";
   return deepmerge(
     {
-      shareString,
+      copyString: copyString,
       tooltiptext: props.tooltiptext,
+      textAlign: props.textAlign,
+      copyButtonLabel: props.copyButtonLabel,
+      buttonStyle: props.buttonStyle,
+      rewardStatus: "AVAILABLE",
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
         // Only if called from a user-initiated event
-        navigator.clipboard.writeText(shareString);
+        navigator.clipboard.writeText(copyString);
         setOpen(true);
         setTimeout(() => setOpen(false), props.tooltiplifespan);
       },

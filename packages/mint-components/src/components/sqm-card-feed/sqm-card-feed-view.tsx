@@ -34,7 +34,9 @@ export function CardFeedView(props: CardFeedViewProps, children: VNode) {
         {styleString}
         {vanillaStyle}
       </style>
-      <div class={sheet.classes.Container}>{children}</div>
+      <div class={sheet.classes.Container} part="sqm-base">
+        {children}
+      </div>
     </div>
   );
 }

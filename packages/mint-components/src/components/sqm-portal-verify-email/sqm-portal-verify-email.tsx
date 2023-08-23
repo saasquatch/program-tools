@@ -23,7 +23,7 @@ export class PortalVerifyEmail {
   /**
    * Redirect participants to this page when they successfully verify their email.
    *
-   * @uiName Successful Verification Redirect
+   * @uiName Successful verification redirect
    * @uiWidget pageSelect
    */
   @Prop()
@@ -32,7 +32,7 @@ export class PortalVerifyEmail {
   /**
    * Redirect participants to this page if verification fails due to an outdated verification attempt.
    *
-   * @uiName Failed Verification Redirect
+   * @uiName Failed verification redirect
    * @uiWidget pageSelect
    */
   @Prop()

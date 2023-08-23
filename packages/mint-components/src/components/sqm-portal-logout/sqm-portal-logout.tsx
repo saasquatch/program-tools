@@ -5,6 +5,7 @@ import { usePortalLogout } from "./usePortalLogout";
 
 /**
  * @uiName Microsite Logout
+ * @compatibility Built for instant access
  */
 @Component({
   tag: "sqm-portal-logout",
@@ -17,7 +18,7 @@ export class PortalLogout {
   /**
    * Redirect participants to this page when they log out.
    *
-   * @uiName Logout Redirect Path
+   * @uiName Logout redirect path
    * @uiWidget pageSelect
    */
   @Prop()

@@ -43,8 +43,12 @@ const EditProfileView = (props: EditProfileViewProps) => {
 
   if (states.showEdit) {
     return (
-      <div class={`CardWrapper ${!states.showEdit && "ShowEdit"}`}>
+      <div
+        class={`CardWrapper ${!states.showEdit && "ShowEdit"}`}
+        part="sqm-base"
+      >
         <h2
+          part="sqm-header"
           style={{
             fontSize: "var(--sl-font-size-x-large)",
             margin: "0px",
@@ -133,9 +137,13 @@ const EditProfileView = (props: EditProfileViewProps) => {
   }
 
   return (
-    <div class={`CardWrapper FormWrapper ${!states.showEdit && "ShowEdit"}`}>
+    <div
+      class={`CardWrapper FormWrapper ${!states.showEdit && "ShowEdit"}`}
+      part="sqm-base"
+    >
       <div class="FormSection">
         <h2
+          part="sqm-header"
           style={{
             fontSize: "var(--sl-font-size-x-large)",
             marginBottom: "0px",

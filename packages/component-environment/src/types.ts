@@ -161,6 +161,10 @@ export type EnvironmentSDK =
       widgetIdent: WidgetIdent;
     }
   | {
+      type: "SquatchIOS";
+      widgetIdent: WidgetIdent;
+    }
+  | {
       type: "SquatchPortal";
       env: PortalEnv;
     }

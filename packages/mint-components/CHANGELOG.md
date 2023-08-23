@@ -7,9 +7,70 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.13] - 2023-08-02
+
+### Fixed
+
+- `@saasquatch/shoelace` update merged into master and published
+
+## [1.6.12] - 2023-07-27
+
+### Fixed
+
+- \<sqm-big-stat>
+  - `/referralsWeek` properly queries `this_week` instead of `this_month`
+
+## [1.6.11] - 2023-06-14
+
+### Changed
+
+- Swap `@shoelace-style/shoelace` for `@saasquatch/shoelace` to fix tooltip and dropdown issues
+
+## [1.6.10] - 2023-05-18
+
+### Changed
+
+- `@saasquatch/component-boilerplate` package bump
+
+## [1.6.9] - 2023-05-16
+
+### Changed
+
+- Updated license copyright to be in line with SaaSquatch open-source policy.
+- Updated all component’s uiName to snake case
+- Changed components:
+  - \<sqm-hero>
+    - Updated background and secondary background’s uiWidget to background which supports color, Shoelace variables, and image uploads through Cloudinary
+    - Added prop to set minimum container height
+  - \<sqm-referral-card>
+    - Added prop to remove the card’s border
+    - Added prop to limit the container width
+    - Added padding props
+    - Updated referral card to autohide containers
+  - \<sqm-share-link>, \<sqm-share-code>
+    - Updated to use \<copy-text-view>
+    - Added prop for copy button style and label
+    - Added prop for text alignment
+
+### Added
+
+- Added Components:
+  - \<sqm-coupon-code> displays a coupon code with copy functionality
+    - Includes props to edit the error messages, copy button style and label, and text alignment
+  - \<sqm-logout-current-user> displays the current logged in user’s email and provides a switch user link
+  - \<sqm-instant-access-registration> adds the ability to register with just an email and no password
+    - Includes a top and bottom slot
+    - Includes props to edit background color, show and hide border, adjust padding, include name fields, edit field labels, and edit registration error messages
+  - \<sqm-referred-registration>
+    - Same as \<sqm-instant-access-registration> but for the friend experience
+  - \<sqm-close-button> displays the close button on Popup Widgets
+    - Includes prop to change the icon color
+    - Styled to be in the top right of the first `position: relative;` parent container
+
 ## [1.6.8] - 2023-04-20
 
 ### Changed
+
 - Updated license copyright to be in line with SaaSquatch open-source policy.
 
 ## [1.6.7] - 2023-03-30
@@ -645,7 +706,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.8...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.13...HEAD
+[1.6.13]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.13
+[1.6.12]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.12
+[1.6.11]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.11
+[1.6.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.10
+[1.6.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.9
 [1.6.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.8
 [1.6.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.7
 [1.6.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.6

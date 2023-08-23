@@ -1,7 +1,7 @@
 {
   "name": "@saasquatch/paypal-components",
   "title": "PayPal Components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Component library that integrates with our Paypal Payouts integration. Built with Shoelace components by Saasquatch.",
   "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1668096533/squatch-assets/PayPal/For_PayPal.svg",
   "raisins": "docs/raisins.json",
@@ -70,7 +70,7 @@
     "@saasquatch/stencil-hooks": "^2.0.2",
     "@saasquatch/stencilbook": "^1.0.0",
     "@saasquatch/universal-hooks": "^1.0.0",
-    "@shoelace-style/shoelace": "^2.0.0-beta.32",
+    "@saasquatch/shoelace": "^1.0.0",
     "babel-polyfill": "^6.26.0",
     "deepmerge": "^4.2.2",
     "graphql": "^15.5.0",

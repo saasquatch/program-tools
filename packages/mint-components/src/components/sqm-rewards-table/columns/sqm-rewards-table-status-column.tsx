@@ -15,12 +15,12 @@ import { RewardTableColumn } from "./RewardTableColumn";
 })
 export class RewardTableStatusColumn implements RewardTableColumn {
   /**
-   * @uiName Column Title
+   * @uiName Column title
    */
   @Prop() columnTitle: string = "Status";
 
   /**
-   * @uiName Reward Status Text
+   * @uiName Reward status text
    * @uiWidget textArea
    */
   @Prop() statusText: string =
@@ -29,28 +29,28 @@ export class RewardTableStatusColumn implements RewardTableColumn {
   /**
    * Text shown before the date of an expiring reward.
    *
-   * @uiName Expiry Date Prefix
+   * @uiName Expiry date prefix
    */
   @Prop() expiryText: string = "Expires on ";
 
   /**
    * Displayed when a reward is pending due to W9 compliance.
    *
-   * @uiName W9 Pending Text
+   * @uiName W9 pending text
    */
   @Prop() pendingUsTax: string = "W-9 required";
 
   /**
    * Text shown before the available date of a pending reward.
    *
-   * @uiName Pending Date Prefix
+   * @uiName Pending date prefix
    */
   @Prop() pendingScheduled: string = "Until";
 
   /**
    * Displayed when fulfillment error occured when creating a reward.
    *
-   * @uiName Unhandled Error Text
+   * @uiName Unhandled error text
    */
   @Prop() pendingUnhandled: string = "Fulfillment error";
 

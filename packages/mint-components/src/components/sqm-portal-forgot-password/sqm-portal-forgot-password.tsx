@@ -23,39 +23,39 @@ export class PortalForgotPassword {
   /**
    * Redirect participants to this page after they verify their email.
    *
-   * @uiName Email Redirect
+   * @uiName Email redirect
    * @uiWidget pageSelect
    */
   @Prop()
   redirectPath: string = "/resetPassword";
 
   /**
-   * @uiName Email Field Label
+   * @uiName Email field label
    */
   @Prop()
   emailLabel: string = "Email";
 
   /**
-   * @uiName Password Reset Button Text
+   * @uiName Password reset button text
    */
   @Prop()
   submitLabel: string = "Request Password Reset";
 
   /**
-   * @uiName Login Redirect Path
+   * @uiName Login redirect path
    * @uiWidget pageSelect
    */
   @Prop() loginPath: string = "/login";
 
   /**
-   * @uiName Header Text
+   * @uiName Header text
    * @uiWidget textArea
    */
   @Prop() headerText: string =
     "Enter your email below to receive a password reset link.";
 
   /**
-   * Sign In Link Text
+   * Sign in link text
    */
   @Prop() loginText: string = "Sign In";
 

@@ -81,8 +81,9 @@ export function webtask(program: Program = {}): express.Application {
   app.use(compression());
   app.use(httpLogMiddleware(logger));
 
-  const healthCheck = (_req: Request, res: Response) =>
-    res.status(200).json({ status: "OK" });
+  const healthCheck = (_req: Request, res: Response) => {
+    return res.status(200).json({ status: "OK" });
+  };
 
   app.get("/healthz", healthCheck);
   app.get("/livez", healthCheck);
