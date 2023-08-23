@@ -1,12 +1,12 @@
 import root from "react-shadow/styled-components";
 import styled, { CSSProp } from "styled-components";
-import * as Styles from "./Styles";
 import { IconKey, IconView } from "../Icon";
 import React from "react";
 //@ts-ignore
 import { register } from "@impactinc/ui-component-library/web-components";
 import { wcBoolean } from "../../utlis";
 import { wrapWc } from "../../wc-react";
+import * as Styles from "./Styles";
 
 type InputProps = OptionProps & Partial<React.ComponentProps<"input">>;
 
@@ -105,13 +105,12 @@ const StyleWrapperDiv = styled.div<{
         ? `max-width: ${props.limitWidth};`
         : "max-width: 226px;"
       : "max-width: 100%;"}
-  ${(props) => props.customContainerCSS}
 `;
 
 const UICLTextInput = styled(wrapWc("uicl-text-input"))``;
 
 export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
-  (props, forwardedRef) => {
+  (props) => {
     const {
       icon,
       position = "right",

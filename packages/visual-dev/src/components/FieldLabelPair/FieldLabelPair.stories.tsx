@@ -17,7 +17,7 @@ const defaultProps: FieldLabelPairViewProps = {
   labelTooltip: "Label Tooltip",
   fieldTooltip: "Field Tooltip",
   isRequired: false,
-  isParent: true,
+  isParent: false,
   isChildDisplayBelow: true,
   isChild: true,
   errors: [],

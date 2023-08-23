@@ -2,7 +2,10 @@ import React from "react";
 import { wrapWc } from "../../wc-react";
 import { wcBoolean } from "../../utlis";
 
-export interface FormSectionViewProps {
+export type FormSectionViewProps = OptionProps &
+  Partial<React.ComponentProps<"div">>;
+
+export interface OptionProps {
   /**
    * Content for the tooltip after the section label
    */
@@ -60,16 +63,18 @@ export const FormSectionView = (props: FormSectionViewProps) => {
     isAdvanced,
     isSubformSection,
     isAdvancedShown,
-    isVisible,
+    isVisible = true,
     isDisplayColumn,
     isOptional,
     optionalLabel,
     heading,
     description,
     advancedSettingsLabel,
-    labelTooltip,
+    // labelTooltip,
     children,
+    className,
   } = props;
+
   return (
     <IUIFormSection
       is-advanced={wcBoolean(isAdvanced)}
@@ -82,7 +87,8 @@ export const FormSectionView = (props: FormSectionViewProps) => {
       heading={heading}
       description={description}
       advanced-settings-label={advancedSettingsLabel}
-      label-tooltip={labelTooltip}
+      // label-tooltip={labelTooltip}
+      className={className}
     >
       {children}
     </IUIFormSection>

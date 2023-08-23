@@ -10,6 +10,7 @@ import {
   CSSVariables,
   TextRules,
   LinkRules,
+  UICLRules,
 } from "./components/GlobalStyle";
 import {
   Button,
@@ -86,13 +87,16 @@ import { useComboboxDemo } from "./components/Select/useComboboxDemo";
 import { Dropdown2View } from "./components/Dropdown2";
 import { FormSectionView } from "./components/FormSection/";
 import { FieldLabelPairView } from "./components/FieldLabelPair/";
+import { wcBoolean } from "./utlis";
 //@ts-ignore
 import { register as RegisterUICL } from "@impactinc/ui-component-library/web-components";
 
 /// <reference types="styled-components/cssprop" />
 
 export {
+  UICLRules,
   RegisterUICL,
+  wcBoolean,
   Accordion,
   AccordionView,
   Alert,
