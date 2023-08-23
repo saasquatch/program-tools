@@ -81,6 +81,21 @@ export function webtask(program: Program = {}): express.Application {
   app.use(compression());
   app.use(httpLogMiddleware(logger));
 
+  // Enforce HTTPS. The server does not redirect http -> https
+  // because OWASP advises not to
+  app.use((req, res, next) => {
+    if (
+      process.env.NODE_ENV === "production" &&
+      req.header("X-Forwarded-Proto") !== "https" &&
+      !["/healthz", "/livez", "/readyz"].includes(req.path)
+    ) {
+      return res.status(403).send({ message: "SSL required" });
+    }
+
+    // allow the request to continue if https is used
+    next();
+  });
+
   const healthCheck = (_req: Request, res: Response) => {
     return res.status(200).json({ status: "OK" });
   };
