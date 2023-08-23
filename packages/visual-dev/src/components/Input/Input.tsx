@@ -94,8 +94,17 @@ const ContainerDiv = styled.div<{
       : "max-width: 100%;"}
   ${(props) => props.customContainerCSS}
 `;
-const StyleWrapperDiv = styled.div<{ customContainerCSS?: CSSProp }>`
-  display: inline;
+const StyleWrapperDiv = styled.div<{
+  customContainerCSS: CSSProp;
+  limitWidth: InputWidthType;
+}>`
+  ${Styles.Container}
+  ${(props) =>
+    props.limitWidth
+      ? typeof props.limitWidth === "string"
+        ? `max-width: ${props.limitWidth};`
+        : "max-width: 226px;"
+      : "max-width: 100%;"}
   ${(props) => props.customContainerCSS}
 `;
 
@@ -121,14 +130,15 @@ export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
       register();
     }
     return (
-      <StyleWrapperDiv customContainerCSS={customContainerCSS}>
+      <StyleWrapperDiv
+        customContainerCSS={customContainerCSS}
+        limitWidth={limitWidth}
+      >
         <ShadowDom>
           <UICLTextInput
+            ref={forwardedRef}
             field-name="args.fieldName"
-            // class="{'full-width': args.isFullWidth}"
             is-auto-width={wcBoolean(false)}
-            // inner-text-left="args.innerLeftText"
-            // inner-text-right="args.innerRightText"
             max-length="1000"
             is-disabled={wcBoolean(disabled)}
             is-read-only={wcBoolean(false)}
@@ -136,6 +146,16 @@ export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
             type="text"
             {...rest}
           ></UICLTextInput>
+          {icon && (
+            <ExtrasDiv position={position}>
+              <IconView
+                icon={icon}
+                size={"22px"}
+                color="var(--sq-text-subdued)"
+              />
+            </ExtrasDiv>
+          )}
+          <ExtrasDiv position={position}>{buttons}</ExtrasDiv>
         </ShadowDom>
       </StyleWrapperDiv>
     );
@@ -156,16 +176,7 @@ export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
     //         hasIcon={icon || buttons ? true : false}
     //         required={required}
     //       />
-    //       {icon && (
-    //         <ExtrasDiv position={position}>
-    //           <IconView
-    //             icon={icon}
-    //             size={"22px"}
-    //             color="var(--sq-text-subdued)"
-    //           />
-    //         </ExtrasDiv>
-    //       )}
-    //       <ExtrasDiv position={position}>{buttons}</ExtrasDiv>
+
     //     </ContainerDiv>
     //   </ShadowDom>
     // );
