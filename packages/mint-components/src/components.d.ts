@@ -2675,6 +2675,11 @@ export namespace Components {
          */
         "goal": number;
         /**
+          * @uiName Hide CTA button
+          * @uiGroup Button
+         */
+        "hideButton"?: boolean;
+        /**
           * Button link opens in new tab
           * @uiName Open in new tab
           * @uiGroup Button
@@ -6103,6 +6108,11 @@ declare namespace LocalJSX {
           * @uiGroup Goal
          */
         "goal"?: number;
+        /**
+          * @uiName Hide CTA button
+          * @uiGroup Button
+         */
+        "hideButton"?: boolean;
         /**
           * Button link opens in new tab
           * @uiName Open in new tab
