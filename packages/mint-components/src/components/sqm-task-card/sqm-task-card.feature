@@ -193,3 +193,11 @@ Feature: Task Card
 			| 0             | isn't |
 			| 1             | is    |
 			| 2             | is    |
+
+	@motivating
+	Scenario: CTA Button can be hidden on the task card
+		Given a Task Card
+		And it has default prop values set
+		And "hideButton" is true
+		Then the task card is shown
+		And the button is hidden
