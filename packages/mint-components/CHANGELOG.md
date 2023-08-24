@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.15] - 2023-08-24
+
+### Updated
+
+- Changed components:
+  - \<sqm-task-card>
+    - added new `hideButton` prop
+      - Hides the CTA button on the task card
+
 ## [1.6.14] - 2023-08-23
 
 ### Updated
@@ -722,7 +731,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.14...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.15...HEAD
+[1.6.15]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.15
 [1.6.14]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.14
 [1.6.13]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.13
 [1.6.12]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.12
