@@ -170,6 +170,9 @@ Feature: Big Stat
       | rewardsWeek                     | is    |
       | rewardsAssigned                 | is    |
       | rewardsRedeemed                 | is    |
+      | rewardsRedeemedWeek             | is    |
+      | rewardsRedeemedMonth            | is    |
+      | rewardsPending                  | is    |
       | rewardsAvailable                | is    |
       | rewardBalance                   | is    |
 
@@ -205,3 +208,93 @@ Feature: Big Stat
       | value     | filter                        |
       | program-b | { programId_eq: "program-b" } |
       | program-c | { programId_eq: "program-c" } |
+
+
+  @motivating
+  Scenario: "/rewardsReedemedWeek" stat shows rewards that have been redeemed this week
+    Given a user reeemed the following rewards
+      | reward     | dateRedeemed | programId |
+      | $1.00 USD  | 2023-08-18   | A         |
+      | $1.00 CAD  | 2023-08-18   | A         |
+      | $1.00 AUD  | 2023-08-18   | A         |
+      | $1.00 USD  | 2023-08-10   | A         |
+      | $20.00 USD | 2023-08-18   | B         |
+      | $20.00 CAD | 2023-08-18   | B         |
+      | $20.00 AUD | 2023-08-18   | B         |
+      | $20.00 USD | 2023-08-01   | B         |
+      | $20.00 GBP | 2023-08-01   | B         |
+      | $20.00 GBP | 2023-08-20   |           |
+    And the current date is "2023-08-22"
+    And the program of the stat is <programId>
+    And the statType is <statType>
+    Then the stat displays <statValue>
+      | programId | statType                               | statValue |
+      | A         | /rewardsReedemedWeek/CREDIT/USD        | USD1.00   |
+      | A         | /rewardsReedemedWeek/CREDIT/CAD        | CAD1.00   |
+      | A         | /rewardsReedemedWeek/CREDIT/AUD        | AUD1.00   |
+      | B         | /rewardsReedemedWeek/CREDIT/USD        | USD20.00  |
+      | B         | /rewardsReedemedWeek/CREDIT/CAD        | CAD20.00  |
+      | B         | /rewardsReedemedWeek/CREDIT/AUD        | AUD20.00  |
+      | N/A       | /rewardsReedemedWeek/CREDIT/USD/global | USD21.00  |
+      | N/A       | /rewardsReedemedWeek/CREDIT/CAD/global | CAD21.00  |
+      | N/A       | /rewardsReedemedWeek/CREDIT/GBP/global | GBP20.00  |
+
+  @motivating
+  Scenario: "/rewardsReedemedMonth" stat shows rewards that have been redeemed this month
+    Given a user reeemed the following rewards
+      | reward     | dateRedeemed | programId |
+      | $1.00 USD  | 2023-08-18   | A         |
+      | $1.00 CAD  | 2023-08-18   | A         |
+      | $1.00 AUD  | 2023-08-18   | A         |
+      | $1.00 USD  | 2023-07-31   | A         |
+      | $20.00 USD | 2023-08-18   | B         |
+      | $20.00 CAD | 2023-08-18   | B         |
+      | $20.00 AUD | 2023-08-18   | B         |
+      | $20.00 USD | 2023-08-01   | B         |
+      | $20.00 GBP | 2023-08-01   | B         |
+      | $20.00 GBP | 2023-08-20   |           |
+      | $20.00 GBP | 2023-07-31   |           |
+    And the current date is "2023-08-22"
+    And the program of the stat is <programId>
+    And the statType is <statType>
+    Then the stat displays <statValue>
+      | programId | statType                                | statValue |
+      | A         | /rewardsReedemedMonth/CREDIT/USD        | USD1.00   |
+      | A         | /rewardsReedemedMonth/CREDIT/CAD        | CAD1.00   |
+      | A         | /rewardsReedemedMonth/CREDIT/AUD        | AUD1.00   |
+      | B         | /rewardsReedemedMonth/CREDIT/USD        | USD20.00  |
+      | B         | /rewardsReedemedMonth/CREDIT/CAD        | CAD20.00  |
+      | B         | /rewardsReedemedMonth/CREDIT/AUD        | AUD20.00  |
+      | N/A       | /rewardsReedemedMonth/CREDIT/USD/global | USD41.00  |
+      | N/A       | /rewardsReedemedMonth/CREDIT/CAD/global | CAD21.00  |
+      | N/A       | /rewardsReedemedMonth/CREDIT/GBP/global | GBP40.00  |
+
+
+  @landmine
+  Scenario Outline: Rewards redeemed by week and month stats only include rewards that have been fully redeemed
+    Given statType prop is <statType>
+    And the user has fully redeemed a $50.00 USD reward
+    And the user has redeemed <amountRedeemed> of a $50.00 USD reward
+    Then the stat displays <statValue>
+    Examples:
+      | statType                                | amountRedeemed | statValue |
+      | /rewardsRedeemed/CREDIT/USD/global      | $0.00          | $50.00    |
+      | /rewardsRedeemedWeek/CREDIT/USD/global  | $0.00          | $50.00    |
+      | /rewardsRedeemedMonth/CREDIT/USD/global | $0.00          | $50.00    |
+      | /rewardsRedeemed/CREDIT/USD/global      | $25.00         | $75.00    |
+      | /rewardsRedeemedWeek/CREDIT/USD/global  | $25.00         | $50.00    |
+      | /rewardsRedeemedMonth/CREDIT/USD/global | $25.00         | $50.00    |
+      | /rewardsRedeemed/CREDIT/USD/global      | $50.00         | $100.00   |
+      | /rewardsRedeemedWeek/CREDIT/USD/global  | $50.00         | $100.00   |
+      | /rewardsRedeemedMonth/CREDIT/USD/global | $50.00         | $100.00   |
+
+  @landmine
+  Scenario Outline: Rewards redeemed by week and month stats can only count up to 1000 redeemed rewards during the period
+    Given statType prop is <statType>
+    And the user has fully redeemed 1001 $1.00 USD rewards in the past <timeframe>
+    Then the stat displays <statValue>
+    Examples:
+      | statType                                | timeframe | statValue |
+      | /rewardsRedeemed/CREDIT/USD/global      | N/A       | $1001.00  |
+      | /rewardsRedeemedWeek/CREDIT/USD/global  | week      | $1000.00  |
+      | /rewardsRedeemedMonth/CREDIT/USD/global | month     | $1000.00  |
