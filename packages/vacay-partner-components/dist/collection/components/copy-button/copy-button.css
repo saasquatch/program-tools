@@ -1,0 +1,35 @@
+sqh-copy-button {
+  display: block; }
+  sqh-copy-button .sqh-align-button {
+    text-align: center;
+    position: relative;
+    margin: 20px 0; }
+    sqh-copy-button .sqh-align-button .sqh-copy-button {
+      width: 100%;
+      text-align: center;
+      padding: 8px;
+      cursor: pointer; }
+    sqh-copy-button .sqh-align-button .label {
+      padding: .2em .6em .3em;
+      font-size: 11px;
+      font-weight: bold;
+      line-height: 1;
+      color: #fff;
+      text-align: center;
+      white-space: nowrap;
+      border-radius: .25em;
+      background-color: #35b21e; }
+      sqh-copy-button .sqh-align-button .label:empty {
+        display: none; }
+    sqh-copy-button .sqh-align-button .fade {
+      opacity: 0;
+      -webkit-transition: opacity .15s linear;
+      -o-transition: opacity .15s linear;
+      transition: opacity .15s linear; }
+      sqh-copy-button .sqh-align-button .fade.in {
+        opacity: 1; }
+    sqh-copy-button .sqh-align-button #squatch-copy-notification {
+      position: absolute;
+      left: 215px;
+      bottom: 35px;
+      z-index: 2; }

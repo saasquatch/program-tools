@@ -7,8 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.6.10] - 2023-05-18
+## [1.6.13] - 2023-08-02
+
+### Fixed
+
+- `@saasquatch/shoelace` update merged into master and published
+
+## [1.6.12] - 2023-07-27
+
+### Fixed
+
+- \<sqm-big-stat>
+  - `/referralsWeek` properly queries `this_week` instead of `this_month`
+
+## [1.6.11] - 2023-06-14
+
 ### Changed
+
+- Swap `@shoelace-style/shoelace` for `@saasquatch/shoelace` to fix tooltip and dropdown issues
+
+## [1.6.10] - 2023-05-18
+
+### Changed
+
 - `@saasquatch/component-boilerplate` package bump
 
 ## [1.6.9] - 2023-05-16
@@ -685,7 +706,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.9...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.13...HEAD
+[1.6.13]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.13
+[1.6.12]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.12
+[1.6.11]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.11
+[1.6.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.10
 [1.6.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.9
 [1.6.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.8
 [1.6.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.7

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [1.9.0] - 2023-08-08
+
+### Changed
+
+- Components changed
+  - \<AlertView>
+    - Improved spacing when alert has no title
+  - \<IconView>
+    - Two new icons (cookie and upload)
+
 ## [1.8.0] - 2023-05-15
 
 ### Changed
@@ -368,7 +378,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<TextArea>
   - \<Tooltip>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.8.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.9.0...HEAD
+[1.9.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.9.0
 [1.8.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.8.0
 [1.7.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.4
 [1.7.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.3

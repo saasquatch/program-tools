@@ -1,0 +1,58 @@
+sqh-progress-indicator {
+  display: block; }
+  sqh-progress-indicator .container-loading {
+    display: none;
+    left: calc(50% - 50px);
+    position: absolute;
+    text-align: center;
+    top: 45%;
+    width: 100px; }
+  sqh-progress-indicator:not(.hydrated) .container-loading {
+    display: block;
+    visibility: visible; }
+  sqh-progress-indicator .loading-icon {
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 45%;
+    z-index: 1000; }
+  sqh-progress-indicator .loading-icon-tr .loading-icon {
+    position: relative;
+    top: 0; }
+  sqh-progress-indicator .loading-icon > div {
+    background-color: #439B76;
+    height: 100%;
+    margin: 1px;
+    width: 6px;
+    display: inline-block;
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out; }
+  sqh-progress-indicator .loading-icon .bar2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s; }
+  sqh-progress-indicator .loading-icon .bar3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s; }
+  sqh-progress-indicator .loading-icon .bar4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s; }
+  sqh-progress-indicator .loading-icon .bar5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s; }
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4); }
+  20% {
+    -webkit-transform: scaleY(1); } }
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4); }
+  20% {
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1); } }

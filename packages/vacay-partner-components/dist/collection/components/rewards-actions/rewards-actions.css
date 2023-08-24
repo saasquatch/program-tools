@@ -1,0 +1,14 @@
+sqh-rewards-actions .squatch-referrals-actions {
+  text-align: center; }
+  sqh-rewards-actions .squatch-referrals-actions .btn {
+    margin-left: 10px;
+    width: 120px; }
+    sqh-rewards-actions .squatch-referrals-actions .btn:first-child {
+      margin-left: 0; }
+    @media (max-width: 499px) {
+      sqh-rewards-actions .squatch-referrals-actions .btn {
+        font-size: 13px;
+        width: 85px;
+        padding-left: 6px;
+        padding-right: 6px;
+        margin-left: 7px; } }
