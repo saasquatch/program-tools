@@ -1,9 +1,9 @@
 {
   "name": "@saasquatch/integration-boilerplate-react",
-  "version": "2.0.4-0",
+  "version": "2.0.4-2",
   "description": "Utilities for building SaaSquatch integration frontends in React",
   "engines": {
-    "node": "^14"
+    "node": ">=14"
   },
   "files": [
     "dist/"

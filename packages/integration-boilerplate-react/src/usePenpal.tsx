@@ -90,6 +90,7 @@ interface PenpalContextConnectedState<IntegrationConfig, FormConfig> {
   tenantAlias: string;
   integrationConfig: Partial<IntegrationConfig>;
   formConfig: Partial<FormConfig>;
+  flavor: string;
 }
 
 type PenpalContextState<IntegrationConfig, FormConfig> =
