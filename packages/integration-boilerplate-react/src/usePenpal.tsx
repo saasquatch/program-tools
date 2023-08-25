@@ -33,7 +33,6 @@ interface PenpalParentMethods<IntegrationConfig, FormConfig> {
   navigateToNewPortalURL(url: string): Promise<void>;
   scrollTo(scrollX: number, scrollY: number): Promise<void>;
   disableIntegration(): Promise<void>;
-  getFlavor(): Promise<string>;
   getFileStackConfig(): Promise<FileStackConfig>;
 }
 
@@ -50,6 +49,7 @@ interface DisplayConfiguration<IntegrationConfig, FormConfig> {
   integrationConfig: IntegrationConfig;
   formConfig?: FormConfig;
   formType?: "submit_actions" | "initial_data_actions";
+  flavor: string;
 }
 
 type IntegrationConfigPatch = Array<{ op: string; path: string; value?: any }>;
@@ -75,7 +75,6 @@ interface PenpalContextMethods<IntegrationConfig, FormConfig> {
   navigatePortal(url: string): Promise<void>;
   scrollTo(scrollX: number, scrollY: number): Promise<void>;
   disableIntegration(): Promise<void>;
-  getFlavor(): Promise<string>;
   closeFormConfig(): Promise<void>;
   setShouldCancelDisableCallback: (fn: () => Promise<boolean>) => void;
 }
@@ -241,12 +240,6 @@ export function PenpalContextProvider<
     await parent.disableIntegration();
   }, [assertConnected]);
 
-  const getFlavor = useCallback(async () => {
-    assertConnected();
-    const parent = await penpalConnectionRef.current!.promise;
-    return await parent.getFlavor();
-  }, [assertConnected]);
-
   useEffect(() => {
     (async () => {
       penpalConnectionRef.current = connectToParent({
@@ -258,6 +251,7 @@ export function PenpalContextProvider<
             integrationConfig,
             formConfig,
             formType,
+            flavor,
           }: DisplayConfiguration<IntegrationConfig, FormConfig>) {
             let mode = ConfigMode.Unknown;
 
@@ -285,6 +279,7 @@ export function PenpalContextProvider<
               tenantAlias,
               integrationConfig,
               formConfig: formConfig || {},
+              flavor,
             });
           },
 
@@ -334,7 +329,6 @@ export function PenpalContextProvider<
       navigatePortal,
       scrollTo,
       disableIntegration,
-      getFlavor,
       closeFormConfig,
       setShouldCancelDisableCallback,
     }),
@@ -347,7 +341,6 @@ export function PenpalContextProvider<
       getFileStackConfig,
       navigatePortal,
       scrollTo,
-      getFlavor,
       disableIntegration,
       closeFormConfig,
       setShouldCancelDisableCallback,
