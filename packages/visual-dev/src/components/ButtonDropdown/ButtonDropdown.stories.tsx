@@ -1,33 +1,33 @@
 import React, { useState } from "react";
-import { Dropdown2View } from "./Dropdown2";
+import { ButtonDropdownView } from "./ButtonDropdown";
 
 export default {
-  title: "Components / Dropdown2",
-  component: Dropdown2View,
+  title: "Components / Button Dropdown",
+  component: ButtonDropdownView,
 };
 
 const exampleOnClick = () => alert("You clicked a dropdown item.");
 
 const defaultItems = (
   <>
-    <Dropdown2View.ItemView onClick={exampleOnClick}>
+    <ButtonDropdownView.ItemView onClick={exampleOnClick}>
       {" "}
       Dropdown Item{" "}
-    </Dropdown2View.ItemView>
-    <Dropdown2View.ItemView onClick={exampleOnClick}>
+    </ButtonDropdownView.ItemView>
+    <ButtonDropdownView.ItemView onClick={exampleOnClick}>
       {" "}
       Dropdown Item{" "}
-    </Dropdown2View.ItemView>
-    <Dropdown2View.SublistView name="Dropdown Subtitle">
-      <Dropdown2View.ItemView onClick={exampleOnClick}>
+    </ButtonDropdownView.ItemView>
+    <ButtonDropdownView.SublistView name="Dropdown Subtitle">
+      <ButtonDropdownView.ItemView onClick={exampleOnClick}>
         {" "}
         Dropdown Suboption{" "}
-      </Dropdown2View.ItemView>
-      <Dropdown2View.ItemView onClick={exampleOnClick}>
+      </ButtonDropdownView.ItemView>
+      <ButtonDropdownView.ItemView onClick={exampleOnClick}>
         {" "}
         Dropdown Suboption{" "}
-      </Dropdown2View.ItemView>
-    </Dropdown2View.SublistView>
+      </ButtonDropdownView.ItemView>
+    </ButtonDropdownView.SublistView>
   </>
 );
 
@@ -35,18 +35,20 @@ export const Functional = () => {
   const [enabled, setEnable] = useState(true);
   return (
     <div style={{ height: 230 }}>
-      <Dropdown2View
+      <ButtonDropdownView
         showMenu={enabled}
         placeholder="Placeholder"
         emptyText="Empty text"
         handleSlot={
-          <Dropdown2View.HandleView onClickDropdown={() => setEnable(!enabled)}>
+          <ButtonDropdownView.HandleView
+            onClickDropdown={() => setEnable(!enabled)}
+          >
             Test handle
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
         {defaultItems}
-      </Dropdown2View>
+      </ButtonDropdownView>
     </div>
   );
 };
@@ -55,17 +57,19 @@ export const FunctionalUpwards = () => {
   const [enabled, setEnable] = useState(true);
   return (
     <div style={{ height: 250, paddingTop: 200 }}>
-      <Dropdown2View
+      <ButtonDropdownView
         popUpwards
         showMenu={enabled}
         handleSlot={
-          <Dropdown2View.HandleView onClickDropdown={() => setEnable(!enabled)}>
+          <ButtonDropdownView.HandleView
+            onClickDropdown={() => setEnable(!enabled)}
+          >
             Test handle
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
         {defaultItems}
-      </Dropdown2View>
+      </ButtonDropdownView>
     </div>
   );
 };
@@ -83,45 +87,45 @@ export const FunctionalButtonType = () => {
         justifyContent: "center",
       }}
     >
-      <Dropdown2View
+      <ButtonDropdownView
         showMenu={enabled1}
         handleSlot={
-          <Dropdown2View.HandleView
+          <ButtonDropdownView.HandleView
             buttonType="primary"
             onClickDropdown={() => setEnable1(!enabled1)}
           >
             Primary button
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
         {defaultItems}
-      </Dropdown2View>
-      <Dropdown2View
+      </ButtonDropdownView>
+      <ButtonDropdownView
         showMenu={enabled2}
         handleSlot={
-          <Dropdown2View.HandleView
+          <ButtonDropdownView.HandleView
             buttonType="secondary"
             onClickDropdown={() => setEnable2(!enabled2)}
           >
             Secondary button
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
         {defaultItems}
-      </Dropdown2View>
-      <Dropdown2View
+      </ButtonDropdownView>
+      <ButtonDropdownView
         showMenu={enabled3}
         handleSlot={
-          <Dropdown2View.HandleView
+          <ButtonDropdownView.HandleView
             buttonType="text"
             onClickDropdown={() => setEnable3(!enabled3)}
           >
             Text button
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
         {defaultItems}
-      </Dropdown2View>
+      </ButtonDropdownView>
     </div>
   );
 };
@@ -139,45 +143,45 @@ export const FunctionalMenuPosition = () => {
         justifyContent: "center",
       }}
     >
-      <Dropdown2View
+      <ButtonDropdownView
         showMenu={enabled1}
         menuPosition="left"
         handleSlot={
-          <Dropdown2View.HandleView
+          <ButtonDropdownView.HandleView
             onClickDropdown={() => setEnable1(!enabled1)}
           >
             Left menu
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
         {defaultItems}
-      </Dropdown2View>
-      <Dropdown2View
+      </ButtonDropdownView>
+      <ButtonDropdownView
         showMenu={enabled2}
         menuPosition="center"
         handleSlot={
-          <Dropdown2View.HandleView
+          <ButtonDropdownView.HandleView
             onClickDropdown={() => setEnable2(!enabled2)}
           >
             Center menu
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
         {defaultItems}
-      </Dropdown2View>
-      <Dropdown2View
+      </ButtonDropdownView>
+      <ButtonDropdownView
         showMenu={enabled3}
         menuPosition="right"
         handleSlot={
-          <Dropdown2View.HandleView
+          <ButtonDropdownView.HandleView
             onClickDropdown={() => setEnable3(!enabled3)}
           >
             Right menu
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
         {defaultItems}
-      </Dropdown2View>
+      </ButtonDropdownView>
     </div>
   );
 };
@@ -186,19 +190,19 @@ export const FunctionalIcon = () => {
   const [enabled, setEnable] = useState(true);
   return (
     <div style={{ height: 230 }}>
-      <Dropdown2View
+      <ButtonDropdownView
         showMenu={enabled}
         handleSlot={
-          <Dropdown2View.HandleView
+          <ButtonDropdownView.HandleView
             icon="calendar"
             onClickDropdown={() => setEnable(!enabled)}
           >
             Test handle
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
         {defaultItems}
-      </Dropdown2View>
+      </ButtonDropdownView>
     </div>
   );
 };
@@ -206,16 +210,16 @@ export const FunctionalIcon = () => {
 export const DefaultClosed = () => {
   return (
     <div style={{ height: 230 }}>
-      <Dropdown2View
+      <ButtonDropdownView
         showMenu={false}
         handleSlot={
-          <Dropdown2View.HandleView onClickDropdown={exampleOnClick}>
+          <ButtonDropdownView.HandleView onClickDropdown={exampleOnClick}>
             Test handle
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
         {defaultItems}
-      </Dropdown2View>
+      </ButtonDropdownView>
     </div>
   );
 };
@@ -223,16 +227,16 @@ export const DefaultClosed = () => {
 export const DefaultOpened = () => {
   return (
     <div style={{ height: 230 }}>
-      <Dropdown2View
+      <ButtonDropdownView
         showMenu={true}
         handleSlot={
-          <Dropdown2View.HandleView onClickDropdown={exampleOnClick}>
+          <ButtonDropdownView.HandleView onClickDropdown={exampleOnClick}>
             Test handle
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
         {defaultItems}
-      </Dropdown2View>
+      </ButtonDropdownView>
     </div>
   );
 };
@@ -240,57 +244,69 @@ export const DefaultOpened = () => {
 export const Disabled = () => {
   return (
     <div style={{ height: 230 }}>
-      <Dropdown2View
+      <ButtonDropdownView
         showMenu={false}
         handleSlot={
-          <Dropdown2View.HandleView onClickDropdown={exampleOnClick} disabled>
+          <ButtonDropdownView.HandleView
+            onClickDropdown={exampleOnClick}
+            disabled
+          >
             Test handle
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
         {defaultItems}
-      </Dropdown2View>
+      </ButtonDropdownView>
     </div>
   );
 };
 
 export const MenuSuboptions = () => (
   <div style={{ height: 230 }}>
-    <Dropdown2View
+    <ButtonDropdownView
       showMenu={true}
       handleSlot={
-        <Dropdown2View.HandleView onClickDropdown={exampleOnClick}>
+        <ButtonDropdownView.HandleView onClickDropdown={exampleOnClick}>
           Menu Suboptions
-        </Dropdown2View.HandleView>
+        </ButtonDropdownView.HandleView>
       }
     >
-      <Dropdown2View.SublistView name="Dropdown Subtitle">
-        <Dropdown2View.ItemView> Dropdown Suboption </Dropdown2View.ItemView>
-        <Dropdown2View.ItemView> Dropdown Suboption </Dropdown2View.ItemView>
-        <Dropdown2View.ItemView> Dropdown Suboption </Dropdown2View.ItemView>
-      </Dropdown2View.SublistView>
-    </Dropdown2View>
+      <ButtonDropdownView.SublistView name="Dropdown Subtitle">
+        <ButtonDropdownView.ItemView>
+          {" "}
+          Dropdown Suboption{" "}
+        </ButtonDropdownView.ItemView>
+        <ButtonDropdownView.ItemView>
+          {" "}
+          Dropdown Suboption{" "}
+        </ButtonDropdownView.ItemView>
+        <ButtonDropdownView.ItemView>
+          {" "}
+          Dropdown Suboption{" "}
+        </ButtonDropdownView.ItemView>
+      </ButtonDropdownView.SublistView>
+    </ButtonDropdownView>
   </div>
 );
 
 export const Description = () => {
   return (
     <div style={{ height: 230 }}>
-      <Dropdown2View
+      <ButtonDropdownView
         showMenu={true}
         handleSlot={
-          <Dropdown2View.HandleView onClickDropdown={exampleOnClick}>
+          <ButtonDropdownView.HandleView onClickDropdown={exampleOnClick}>
             Test handle
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
-        <Dropdown2View.ItemView description="description">
+        <ButtonDropdownView.ItemView description="description">
           Dropdown Item
-        </Dropdown2View.ItemView>
-        <Dropdown2View.ItemView description="description">
+        </ButtonDropdownView.ItemView>
+        <ButtonDropdownView.ItemView description="description">
           Dropdown Item
-        </Dropdown2View.ItemView>
-      </Dropdown2View>
+        </ButtonDropdownView.ItemView>
+      </ButtonDropdownView>
     </div>
   );
 };
@@ -298,21 +314,21 @@ export const Description = () => {
 export const SideDescription = () => {
   return (
     <div style={{ height: 230 }}>
-      <Dropdown2View
+      <ButtonDropdownView
         showMenu={true}
         handleSlot={
-          <Dropdown2View.HandleView onClickDropdown={exampleOnClick}>
+          <ButtonDropdownView.HandleView onClickDropdown={exampleOnClick}>
             Test handle
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
-        <Dropdown2View.ItemView sideDescription="side">
+        <ButtonDropdownView.ItemView sideDescription="side">
           Dropdown Item
-        </Dropdown2View.ItemView>
-        <Dropdown2View.ItemView sideDescription="side">
+        </ButtonDropdownView.ItemView>
+        <ButtonDropdownView.ItemView sideDescription="side">
           Dropdown Item
-        </Dropdown2View.ItemView>
-      </Dropdown2View>
+        </ButtonDropdownView.ItemView>
+      </ButtonDropdownView>
     </div>
   );
 };
@@ -320,27 +336,27 @@ export const SideDescription = () => {
 export const BothDescriptions = () => {
   return (
     <div style={{ height: 230 }}>
-      <Dropdown2View
+      <ButtonDropdownView
         showMenu={true}
         handleSlot={
-          <Dropdown2View.HandleView onClickDropdown={exampleOnClick}>
+          <ButtonDropdownView.HandleView onClickDropdown={exampleOnClick}>
             Test handle
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
-        <Dropdown2View.ItemView
+        <ButtonDropdownView.ItemView
           description="description"
           sideDescription="side"
         >
           Dropdown Item
-        </Dropdown2View.ItemView>
-        <Dropdown2View.ItemView
+        </ButtonDropdownView.ItemView>
+        <ButtonDropdownView.ItemView
           description="description"
           sideDescription="side"
         >
           Dropdown Item
-        </Dropdown2View.ItemView>
-      </Dropdown2View>
+        </ButtonDropdownView.ItemView>
+      </ButtonDropdownView>
     </div>
   );
 };
@@ -348,17 +364,21 @@ export const BothDescriptions = () => {
 export const Checked = () => {
   return (
     <div style={{ height: 230 }}>
-      <Dropdown2View
+      <ButtonDropdownView
         showMenu={true}
         handleSlot={
-          <Dropdown2View.HandleView onClickDropdown={exampleOnClick}>
+          <ButtonDropdownView.HandleView onClickDropdown={exampleOnClick}>
             Test handle
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
-        <Dropdown2View.ItemView checked>Dropdown Item</Dropdown2View.ItemView>
-        <Dropdown2View.ItemView checked>Dropdown Item</Dropdown2View.ItemView>
-      </Dropdown2View>
+        <ButtonDropdownView.ItemView checked>
+          Dropdown Item
+        </ButtonDropdownView.ItemView>
+        <ButtonDropdownView.ItemView checked>
+          Dropdown Item
+        </ButtonDropdownView.ItemView>
+      </ButtonDropdownView>
     </div>
   );
 };
@@ -366,54 +386,54 @@ export const Checked = () => {
 export const PlaceholderWithoutText = () => {
   return (
     <div style={{ height: 230 }}>
-      <Dropdown2View
+      <ButtonDropdownView
         showMenu={false}
         handleSlot={
-          <Dropdown2View.HandleView
+          <ButtonDropdownView.HandleView
             onClickDropdown={exampleOnClick}
             placeholder="Test placeholder"
-          ></Dropdown2View.HandleView>
+          ></ButtonDropdownView.HandleView>
         }
       >
         {defaultItems}
-      </Dropdown2View>
+      </ButtonDropdownView>
     </div>
   );
 };
 export const PlaceholderWithText = () => {
   return (
     <div style={{ height: 230 }}>
-      <Dropdown2View
+      <ButtonDropdownView
         showMenu={false}
         handleSlot={
-          <Dropdown2View.HandleView
+          <ButtonDropdownView.HandleView
             onClickDropdown={exampleOnClick}
             placeholder="Test placeholder"
           >
             Menu options
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
       >
         {defaultItems}
-      </Dropdown2View>
+      </ButtonDropdownView>
     </div>
   );
 };
 export const NoItems = () => {
   return (
     <div style={{ height: 230 }}>
-      <Dropdown2View
+      <ButtonDropdownView
         emptyText="Empty text"
         showMenu={true}
         handleSlot={
-          <Dropdown2View.HandleView
+          <ButtonDropdownView.HandleView
             onClickDropdown={exampleOnClick}
             placeholder="Test placeholder"
           >
             Menu options
-          </Dropdown2View.HandleView>
+          </ButtonDropdownView.HandleView>
         }
-      ></Dropdown2View>
+      ></ButtonDropdownView>
     </div>
   );
 };
