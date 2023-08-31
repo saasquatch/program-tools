@@ -110,7 +110,7 @@ const StyleWrapperDiv = styled.div<{
 const UICLTextInput = styled(wrapWc("uicl-text-input"))``;
 
 export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
-  (props) => {
+  (props, forwardedRef) => {
     const {
       icon,
       position = "right",
@@ -158,27 +158,6 @@ export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
         </ShadowDom>
       </StyleWrapperDiv>
     );
-
-    // return (
-    //   <ShadowDom>
-    //     <ContainerDiv
-    //       customContainerCSS={customContainerCSS}
-    //       limitWidth={limitWidth}
-    //     >
-    //       <StyledInput
-    //         {...rest}
-    //         type={type}
-    //         position={position}
-    //         ref={forwardedRef}
-    //         isInvalid={rawErrors}
-    //         customCSS={customCSS}
-    //         hasIcon={icon || buttons ? true : false}
-    //         required={required}
-    //       />
-
-    //     </ContainerDiv>
-    //   </ShadowDom>
-    // );
   }
 );
 
