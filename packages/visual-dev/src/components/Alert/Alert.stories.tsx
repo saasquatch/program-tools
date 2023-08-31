@@ -4,7 +4,7 @@ import { IconView } from "../Icon";
 
 export default {
   title: "Components / Alert",
-  component: AlertView
+  component: AlertView,
 };
 
 export const default_style = () => (
