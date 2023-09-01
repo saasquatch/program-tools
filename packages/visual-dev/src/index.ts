@@ -1,4 +1,4 @@
-import { LoadingSpinner } from "./components/LoadingSpinner";
+import { LoadingSpinner } from "./components/LoadingSpinner/LoadingSpinner";
 import { Alert, AlertView } from "./components/Alert";
 import { Avatar, AvatarView } from "./components/Avatar";
 import { Badge, BadgeView } from "./components/Badge";
