@@ -36,7 +36,11 @@ import {
   RJSFPasswordInput,
 } from "./components/Input";
 
-import { Select, SelectHandleViewProps, SelectView } from "./components/Select";
+import {
+  Select,
+  type SelectHandleViewProps,
+  SelectView,
+} from "./components/Select";
 import { FieldTemplate } from "./components/FieldTemplate";
 import { ObjectFieldTemplate } from "./components/ObjectFieldTemplate";
 import { ArrayFieldTemplate } from "./components/ArrayFieldTemplate";
@@ -46,7 +50,7 @@ import {
   RadioCardView,
   RJSFRadioCardWidget,
 } from "./components/RadioCard";
-import { Icon, IconKey, IconView } from "./components/Icon";
+import { Icon, type IconKey, IconView } from "./components/Icon";
 import { RJSFTextarea, Textarea, TextareaView } from "./components/TextArea";
 import { RJSFSelect } from "./components/Select/rjsf-Select";
 import { RJSFRadioActionWidget } from "./components/RadioAction/rjsf-RadioAction";
@@ -84,7 +88,7 @@ import { useSelectDemo } from "./components/Select/useSelectDemo";
 import { useMultiSelectDemo } from "./components/Select/useMultiSelectDemo";
 import { useComboboxDemo } from "./components/Select/useComboboxDemo";
 import { ButtonDropdownView } from "./components/ButtonDropdown";
-import { OptionProps as RadioCardOptionProps } from "./components/RadioCard";
+import type { RadioCardOptionProps } from "./components/RadioCard";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -120,8 +124,6 @@ export {
   ButtonDropdownView,
   ErrorListTemplate,
   FieldTemplate,
-  FormSectionView,
-  FieldLabelPairView,
   GlobalStyle,
   LinkRules,
   HoverPopover,
