@@ -4,7 +4,7 @@ import { IconKey, IconView } from "../Icon";
 import * as Styles from "./Styles";
 import { ButtonType, ButtonView } from "../Button/Button";
 
-type Dropdown2Props = OptionProps &
+type ButtonDropdownProps = OptionProps &
   StyleProps &
   Partial<React.ComponentProps<"div">>;
 
@@ -120,7 +120,7 @@ const DropdownDiv = styled.div<Required<StyleProps>>`
   ${(props) => props.customCSS}
 `;
 
-const DropdownContentDiv = styled("div")<Dropdown2Props>`
+const DropdownContentDiv = styled("div")<ButtonDropdownProps>`
   ${Styles.ContentDiv}
 
   ${(props) =>
@@ -137,40 +137,38 @@ const EmptyTextSpan = styled("span")`
   ${Styles.EmptyTextSpan}
 `;
 
-const Dropdown2View = React.forwardRef<React.ElementRef<"div">, Dropdown2Props>(
-  (props, forwardedRef) => {
-    const {
-      showMenu = false,
-      popUpwards = false,
-      menuPosition = "right",
-      children,
-      placeholder,
-      emptyText,
-      customCSS: customCSS = {},
-      handleSlot = <div></div>,
-      ...rest
-    } = props;
+const ButtonDropdownView = React.forwardRef<
+  React.ElementRef<"div">,
+  ButtonDropdownProps
+>((props, forwardedRef) => {
+  const {
+    showMenu = false,
+    popUpwards = false,
+    menuPosition = "right",
+    children,
+    placeholder,
+    emptyText,
+    customCSS: customCSS = {},
+    handleSlot = <div></div>,
+    ...rest
+  } = props;
 
-    return (
-      <DropdownDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
-        {handleSlot}
-        {showMenu && (
-          <DropdownContentDiv
-            popUpwards={popUpwards}
-            menuPosition={menuPosition}
-          >
-            {children ||
-              (emptyText && (
-                <ItemView>
-                  <EmptyTextSpan>{emptyText}</EmptyTextSpan>
-                </ItemView>
-              ))}
-          </DropdownContentDiv>
-        )}
-      </DropdownDiv>
-    );
-  }
-);
+  return (
+    <DropdownDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+      {handleSlot}
+      {showMenu && (
+        <DropdownContentDiv popUpwards={popUpwards} menuPosition={menuPosition}>
+          {children ||
+            (emptyText && (
+              <ItemView>
+                <EmptyTextSpan>{emptyText}</EmptyTextSpan>
+              </ItemView>
+            ))}
+        </DropdownContentDiv>
+      )}
+    </DropdownDiv>
+  );
+});
 
 const HandleView = React.forwardRef<React.ElementRef<"button">, HandleProps>(
   (props, forwardedRef) => {
@@ -293,10 +291,10 @@ const SublistView = React.forwardRef<
   );
 });
 
-const DropdownNamespace = Object.assign(Dropdown2View, {
+const DropdownNamespace = Object.assign(ButtonDropdownView, {
   SublistView: SublistView,
   ItemView: ItemView,
   HandleView: HandleView,
 });
 
-export { DropdownNamespace as Dropdown2View };
+export { DropdownNamespace as ButtonDropdownView };

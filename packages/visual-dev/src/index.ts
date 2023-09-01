@@ -83,7 +83,7 @@ import { ScrollNavView } from "./components/ScrollNav";
 import { useSelectDemo } from "./components/Select/useSelectDemo";
 import { useMultiSelectDemo } from "./components/Select/useMultiSelectDemo";
 import { useComboboxDemo } from "./components/Select/useComboboxDemo";
-import { Dropdown2View } from "./components/Dropdown2";
+import { ButtonDropdownView } from "./components/ButtonDropdown";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -116,7 +116,7 @@ export {
   DataTable,
   Dropdown,
   DropdownView,
-  Dropdown2View,
+  ButtonDropdownView,
   ErrorListTemplate,
   FieldTemplate,
   GlobalStyle,
