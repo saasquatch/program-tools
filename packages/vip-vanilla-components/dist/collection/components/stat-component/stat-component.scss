@@ -1,0 +1,61 @@
+sqh-stat-component{
+  text-align: center;
+  width: 140px;
+  float: left;
+
+  > div {
+    padding: 10px;
+  }
+
+  .stat-value {
+    white-space: nowrap;
+    font-size: 30px;
+    line-height: 20px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-weight: 300;
+  }
+  
+  .stat-description {
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+}
+
+
+// May end up in CSS in JS so it's user controlled
+
+sqh-stat-component {
+  @media (max-width: 499px) {
+    width: 100%;
+    text-align: left;
+    background: #f2f2f2;
+    border: 1px solid #ddd;
+
+    &:first-child {
+      border-radius: 4px 4px 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 4px 4px;
+    }
+  }
+
+  .stat-value {
+    @media (max-width: 499px) {
+      font-size: 22px;
+      float: left;
+      width: 60px;
+      text-align: center;
+      margin: 0 10px 0 0;
+    }
+  }
+
+  .stat-description {
+    @media (max-width: 499px) {
+      line-height: 20px;
+      padding-left: 100px;
+      overflow-wrap: break-word;
+    }
+  }
+}

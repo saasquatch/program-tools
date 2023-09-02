@@ -4,7 +4,7 @@ import { IconView } from ".";
 
 export default {
   title: "Components / Icon",
-  component: IconView
+  component: IconView,
 };
 
 export const add = () => <IconView icon={"add"} />;
@@ -75,7 +75,7 @@ export const tooltipCustomCSS = () => (
       tooltipCustomCSS={{
         fontSize: "20px",
         fontWeight: "bold",
-        textAlign: "center"
+        textAlign: "center",
       }}
     />
   </TestTooltipDiv>
@@ -211,5 +211,6 @@ export const globe = () => <IconView icon={"globe"} />;
 export const lock = () => <IconView icon={"lock"} />;
 export const unlock = () => <IconView icon={"unlock"} />;
 export const download = () => <IconView icon={"download"} />;
-export const upload = () => <IconView icon={"upload"} />;
 export const add_user = () => <IconView icon={"add_user"} />;
+export const upload = () => <IconView icon={"upload"} />;
+export const cookie = () => <IconView icon={"cookie"} />;
