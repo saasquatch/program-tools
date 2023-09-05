@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.4] - 2023-09-05
+
+### Changed
+
+- Updated configuration types to include portal flavor
+
 ## [2.0.3] - 2023-04-20
 
 ### Changed
+
 - Updated license copyright to be in line with SaaSquatch open-source policy.
 
 ## [2.0.2] - 2023-04-10
@@ -46,7 +53,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[unreleased]: https://github.com/sasquatch/integration-boilerplate-react/compare/v2.0.3...HEAD
+[unreleased]: https://github.com/sasquatch/integration-boilerplate-react/compare/v2.0.4...HEAD
+[2.0.4]: https://github.com/sasquatch/integration-boilerplate-react/releases/tag/v2.0.4
 [2.0.3]: https://github.com/sasquatch/integration-boilerplate-react/releases/tag/v2.0.3
 [2.0.2]: https://github.com/sasquatch/integration-boilerplate-react/releases/tag/v2.0.2
 [2.0.1]: https://github.com/sasquatch/integration-boilerplate-react/releases/tag/v2.0.1
