@@ -10,6 +10,8 @@ import {
   CSSVariables,
   TextRules,
   LinkRules,
+  TypographyRules,
+  FontFamilyRules,
 } from "./components/GlobalStyle";
 import {
   Button,
@@ -92,7 +94,6 @@ export {
   AccordionView,
   Alert,
   AlertView,
-  // ArrayFieldTemplate,
   Avatar,
   AvatarView,
   Badge,
@@ -180,4 +181,6 @@ export {
   useSelectDemo,
   useMultiSelectDemo,
   useComboboxDemo,
+  TypographyRules,
+  FontFamilyRules,
 };
