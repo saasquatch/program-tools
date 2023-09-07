@@ -46,6 +46,7 @@ export const ItemSideDescriptionSpan = css`
   font-size: var(--sq-font-size-regular);
   color: var(--sq-placeholder-text-on-secondary);
   margin-left: auto;
+  padding-left: var(--sq-spacing-x-small);
 `;
 
 export const ItemDescriptionP = css`

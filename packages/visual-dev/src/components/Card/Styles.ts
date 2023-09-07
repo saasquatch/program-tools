@@ -45,6 +45,7 @@ export const CardLongDiv = css`
   height: 211px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 
   background: var(--sq-surface);
   border: 1px solid var(--sq-border);
