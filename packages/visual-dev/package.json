@@ -24,6 +24,9 @@
   "keywords": [],
   "author": "ReferralSaaSquatch.com, Inc.",
   "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "react-shadow": "^19.0.2"
   },
