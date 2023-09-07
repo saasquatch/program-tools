@@ -10,7 +10,7 @@ export const InputBoxStyle = css`
   color: #575757;
   background: #ffffff;
 
-  border: 2px solid #e2e2e2;
+  border: 1px solid var(--sq-border);
   border-radius: var(--sq-border-radius-normal);
 
   &::placeholder {

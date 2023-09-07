@@ -7,8 +7,11 @@ import React from "react";
 import { IconKey, IconView } from "../Icon";
 import { DataTableView } from "../DataTable";
 
-export type SelectHandleViewProps<ItemType> = HandleOptionProps<ItemType> &
-  Partial<React.ComponentProps<"input">>;
+export type ItemTypeBase = string | number | boolean | object;
+
+export type SelectHandleViewProps<
+  ItemType extends ItemTypeBase
+> = HandleOptionProps<ItemType> & Partial<React.ComponentProps<"input">>;
 
 export interface SelectContainerViewProps {
   /**
@@ -164,19 +167,12 @@ export interface ListItemViewProps<ItemType> {
   customCSS?: CSSProp;
 }
 
-export type SelectFrameViewProps<ItemType> = Omit<
+export type SelectFrameViewProps<ItemType extends ItemTypeBase> = Omit<
   SelectListViewProps<ItemType>,
   "itemToNode" | "itemToString"
 > & { children: React.ReactNode | React.ReactNode[] };
 
 type SizeType = boolean | string;
-
-type ItemTypeBase =
-  | { description?: string }
-  | string
-  | number
-  | boolean
-  | object;
 
 const ItemContainerList = styled.ul<{
   errors: any;
@@ -186,37 +182,37 @@ const ItemContainerList = styled.ul<{
   customCSS: CSSProp;
 }>`
   ${Styles.ItemContainer}
-  ${(props) =>
+  ${props =>
     props.errors &&
     "border-color: var(--sq-border-critical); background-color: var(--sq-surface-critical-subdued);"}
-  ${(props) =>
+  ${props =>
     props.limitWidth
       ? typeof props.limitWidth === "string"
         ? `max-width: ${props.limitWidth};`
         : "max-width: 300px;"
       : "max-width: 100%;"}
-  ${(props) =>
+  ${props =>
     props.limitHeight
       ? typeof props.limitHeight === "string"
         ? `max-height: ${props.limitHeight};`
         : "max-height: 200px;"
       : "max-height: auto;"}
-      ${(props) =>
-    props.empty && "& li:hover {background: white; cursor: default;}"}
-    ${(props) => props.customCSS}
+      ${props =>
+        props.empty && "& li:hover {background: white; cursor: default;}"}
+    ${props => props.customCSS}
 `;
 
 const ListItem = styled.li<{ isHighlighted?: boolean; customCSS?: CSSProp }>`
   ${Styles.Item}
-  ${(props) =>
+  ${props =>
     props.isHighlighted ? "background-color: var(--sq-surface-hover);" : ""}
-    ${(props) => props.customCSS}
+    ${props => props.customCSS}
 `;
 
 const ListItemDisabled = styled.li<{ customCSS?: CSSProp }>`
   ${Styles.ItemDisabled}
 
-  ${(props) => props.customCSS}
+  ${props => props.customCSS}
 `;
 
 const ButtonContainerDiv = styled.div`
@@ -232,13 +228,13 @@ const ContainerDiv = styled("div")<{
   limitWidth: SizeType;
 }>`
   ${Styles.Container}
-  ${(props) =>
+  ${props =>
     props.limitWidth
       ? typeof props.limitWidth === "string"
         ? `max-width: ${props.limitWidth};`
         : "max-width: 300px;"
       : "max-width: 100%;"}
-  ${(props) => props.customContainerCSS}
+  ${props => props.customContainerCSS}
 `;
 
 const TagsSlotWrapperDiv = styled.div`
@@ -252,20 +248,20 @@ const SelectInputButton = styled.button<{
   customCSS: CSSProp;
 }>`
   ${Styles.SelectInputStyle}
-  ${(props) =>
+  ${props =>
     props.disabled &&
     "background: var(--sq-surface-input-disabled); cursor: default;"}
-        ${(props) =>
-    `border-radius: ${
-      props.isOpen
-        ? "var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0"
-        : "var(--sq-border-radius-normal)"
-    };`}
-  ${(props) =>
+        ${props =>
+          `border-radius: ${
+            props.isOpen
+              ? "var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0"
+              : "var(--sq-border-radius-normal)"
+          };`}
+  ${props =>
     props.isOpen &&
     !props.disabled &&
     "border-color: var(--sq-focused); border-bottom: none; padding-bottom: var(--sq-spacing-xxx-small);"}
-  ${(props) =>
+  ${props =>
     !props.isOpen &&
     !props.disabled &&
     `&:hover{
@@ -276,24 +272,24 @@ const SelectInputButton = styled.button<{
     } ;
   }`}
 
-  ${(props) =>
+  ${props =>
     !props.disabled &&
     `&:focus {
     border-color: var(--sq-focused);
   }`}
 
-  ${(props) =>
+  ${props =>
     props.errors &&
     "border-color: var(--sq-border-critical); background: var(--sq-surface-critical-subdued);"}
 
-  ${(props) => props.customCSS}
+  ${props => props.customCSS}
 `;
 
 const SelectedValueSpan = styled.span<{
   subdued: boolean;
 }>`
   ${Styles.SelectedValue}
-  ${(props) => props.subdued && "color: var(--sq-text-subdued)"}
+  ${props => props.subdued && "color: var(--sq-text-subdued)"}
 `;
 
 const ButtonDiv = styled.div`
@@ -318,15 +314,15 @@ const ComboboxContainerDiv = styled.div<{
   disabled: boolean;
 }>`
   ${Styles.ComboboxContainerDiv}
-  ${(props) =>
+  ${props =>
     props.isOpen
-      ? "border: 2px solid var(--sq-focused); border-bottom: none; border-radius: var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0; padding-bottom: var(--sq-spacing-xxx-small)"
+      ? "border: 1px solid var(--sq-focused); border-bottom: none; border-radius: var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0; padding-bottom: var(--sq-spacing-xxx-small)"
       : ""};
-  ${(props) =>
+  ${props =>
     props.errors
       ? "border-color: var(--sq-border-critical); background-color: var(--sq-surface-critical-subdued);"
       : ""}
-  ${(props) =>
+  ${props =>
     props.disabled ? "background: var(--sq-surface-input-disabled);" : ""}
 `;
 
@@ -337,7 +333,7 @@ declare module "react" {
   ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
 }
 
-const ItemView = <ItemType extends ItemTypeBase>(
+const ItemView = <ItemType,>(
   props: ListItemViewProps<ItemType> & Partial<React.ComponentProps<"input">>
 ) => {
   const {
@@ -345,22 +341,27 @@ const ItemView = <ItemType extends ItemTypeBase>(
     index,
     disabled = false,
     itemToString = itemToStringDefault,
-    itemToNode = itemToNodeDefault,
     functional,
     customCSS = {},
     ...rest
   } = props;
+
+  const itemAsString = itemToString(item);
+
+  const itemToNode = props.itemToNode
+    ? props.itemToNode(item)
+    : itemToNodeDefault<ItemType>(item, itemAsString);
 
   if (disabled) {
     return (
       //@ts-ignore
       <ListItemDisabled
         customCSS={customCSS}
-        key={`${itemToString(item)}-${index}`}
+        key={`${itemAsString}-${index}`}
         {...functional.getItemProps({ item, index, disabled: true })}
         {...rest}
       >
-        {itemToNode(item)}
+        {itemToNode}
       </ListItemDisabled>
     );
   }
@@ -373,7 +374,7 @@ const ItemView = <ItemType extends ItemTypeBase>(
       {...functional.getItemProps({ item, index })}
       {...rest}
     >
-      {itemToNode(item)}
+      {itemToNode}
     </ListItem>
   );
 };
@@ -413,7 +414,6 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
     functional,
     tagsSlot,
     itemToString = itemToStringDefault,
-    itemToNode = itemToNodeDefault,
     ...rest
   } = props;
 
@@ -455,12 +455,12 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           size="mini"
           customCSS={{
             display: showClear,
-            color: "var(--sq-text-subdued)",
+            color: "var(--sq-text-subdued)"
           }}
           icon_css={{
             margin: "auto",
             height: "16px",
-            width: "16px",
+            width: "16px"
           }}
           color={"var(--sq-text-subdued)"}
           onClick={(e: React.MouseEvent<HTMLElement>) => {
@@ -500,7 +500,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           clearable
             ? " var(--sq-spacing-xxxx-large)"
             : "var(--sq-spacing-xxx-large)"
-        }`,
+        }`
       }}
     >
       {tagsSlot && (
@@ -526,6 +526,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             `}
           disabled={disabled}
           {...functional.getInputProps()}
+          onClick={() => functional.openMenu()}
         />
       </InputWrapperDiv>
       <ButtonContainerDiv>
@@ -536,7 +537,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           size="mini"
           customCSS={{
             color: "var(--sq-text-subdued)",
-            display: showClear,
+            display: showClear
           }}
           icon_css={{ marginTop: "var(--sq-spacing-xxx-small)" }}
           onClick={(e: React.MouseEvent<HTMLElement>) => {
@@ -551,10 +552,10 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             borderless={true}
             size="small"
             customCSS={{
-              padding: "var(--sq-spacing-x-small)",
+              padding: "var(--sq-spacing-x-small)"
             }}
             icon_css={{
-              color: "var(--sq-text-subdued)",
+              color: "var(--sq-text-subdued)"
             }}
             {...functional.getToggleButtonProps()}
           />
@@ -566,7 +567,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             size="small"
             customCSS={{ padding: "var(--sq-spacing-x-small)" }}
             icon_css={{
-              color: "var(--sq-text-subdued)",
+              color: "var(--sq-text-subdued)"
             }}
             {...functional.getToggleButtonProps()}
           />
@@ -579,22 +580,22 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
 interface itemsToNodeProps<ItemType> {
   items: Array<ItemType>;
   functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
-  itemToString: (item: ItemType | null) => string;
-  itemToNode: (item: ItemType) => React.ReactNode;
+  itemToString?: (item: ItemType | null) => string;
+  itemToNode?: (item: ItemType) => React.ReactNode;
 }
 
-const itemsToNode = <ItemType extends ItemTypeBase>(
+const itemsToNode = <ItemType,>(
   props: itemsToNodeProps<ItemType>
 ): React.ReactNode | React.ReactNode[] => {
   const { items, functional, itemToString, itemToNode } = props;
   return items.map((item, index) => (
-    <SelectView.ItemView
+    <SelectView.ItemView<ItemType>
       {...{
         functional,
         index,
         item,
         itemToNode,
-        itemToString,
+        itemToString
       }}
     />
   ));
@@ -632,7 +633,7 @@ const SelectInnerFrameView = <ItemType extends ItemTypeBase>(
         <LabelSpan>No results found</LabelSpan>
       </EmptyContainerDiv>
     ),
-    customCSS = {},
+    customCSS = {}
   } = props;
 
   const isOpen = !disabled && functional.isOpen;
@@ -667,42 +668,52 @@ function itemToStringDefault<ItemType>(item: ItemType | null): string {
   return `${item}`;
 }
 
+type ItemWithDescription<ItemType> = ItemType & { description: string };
+
+function hasDescription<ItemType>(
+  item: ItemType
+): item is ItemWithDescription<ItemType> {
+  return (
+    typeof item === "object" &&
+    (item as ItemWithDescription<ItemType>).hasOwnProperty("description")
+  );
+}
+
 function itemToNodeDefault<ItemType>(
-  item: ItemType & { description?: string }
-) {
-  if (typeof item === "object" && item !== null) {
-    return (
-      <>
-        <span>{itemToStringDefault(item)}</span>
-        {item.hasOwnProperty("description") && item.description && (
-          <>
-            <br />
-            <ItemDescriptionSpan>{item.description}</ItemDescriptionSpan>
-          </>
-        )}
-      </>
-    );
-  } else {
-    return <span>{itemToStringDefault(item)}</span>;
+  item: ItemType,
+  itemAsString: string
+): React.ReactNode {
+  if (item === null || item === undefined) {
+    return <></>;
   }
+  const description =
+    item && hasDescription<ItemType>(item) && item.description;
+
+  return (
+    <>
+      <span>{itemAsString}</span>
+      {description && (
+        <>
+          <br />
+          <ItemDescriptionSpan>{description}</ItemDescriptionSpan>
+        </>
+      )}
+    </>
+  );
 }
 
 const SelectInnerListView = <ItemType extends ItemTypeBase>(
   props: SelectListViewProps<ItemType>,
   ref: React.Ref<HTMLInputElement>
 ) => {
-  const {
-    itemToString = itemToStringDefault,
-    itemToNode = itemToNodeDefault,
-    ...rest
-  } = props;
+  const { itemToString, itemToNode, ...rest } = props;
   return (
     <SelectInnerFrameView {...{ ...rest, ref }}>
-      {itemsToNode({
+      {itemsToNode<ItemType>({
         items: props.items,
         functional: props.functional,
         itemToString,
-        itemToNode,
+        itemToNode
       })}
     </SelectInnerFrameView>
   );
@@ -715,5 +726,5 @@ export const SelectView = {
   ContainerView: SelectContainerView,
   ItemView: ItemView,
   ItemToNode: itemToNodeDefault,
-  ItemToString: itemToStringDefault,
+  ItemToString: itemToStringDefault
 };

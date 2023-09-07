@@ -2,13 +2,12 @@ import { css } from "styled-components";
 
 export const CardDiv = css`
   width: 277px;
-  height: 215px;
   background: var(--sq-surface);
-  border: 2px solid var(--sq-border);
+  border: 1px solid var(--sq-border);
   box-sizing: border-box;
   border-radius: var(--sq-border-radius-normal);
   color: var(--sq-text);
-  padding: var(--sq-spacing-x-small);
+  padding: var(--sq-spacing-medium) var(--sq-spacing-x-small);
 `;
 export const CardHeaderDiv = css`
 display: flex;
@@ -23,7 +22,7 @@ export const CardHeaderIconDiv = css`
   margin-right: 16px;
 `;
 export const CardHeaderTextDiv = css`
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-header-three);
   line-height: var(--sq-line-height-header-three);
@@ -46,9 +45,10 @@ export const CardLongDiv = css`
   height: 211px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 
   background: var(--sq-surface);
-  border: 2px solid var(--sq-border);
+  border: 1px solid var(--sq-border);
   box-sizing: border-box;
   border-radius: var(--sq-border-radius-normal);
   color: var(--sq-text);
@@ -84,7 +84,7 @@ export const CardEditDiv = css`
   width: 850px;
   height: 74px;
   background: var(--sq-surface);
-  border: 2px solid var(--sq-border);
+  border: 1px solid var(--sq-border);
   box-sizing: border-box;
   border-radius: var(--sq-border-radius-normal);
   color: var(--sq-text);

@@ -60,7 +60,7 @@ export const ProgressBarView = React.forwardRef<
     customCSS = {},
     currentStep,
     steps,
-    barColor = "var(--sq-border-success)",
+    barColor = "var(--sq-loading)",
     ...rest
   } = props;
   return (

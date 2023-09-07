@@ -7,12 +7,12 @@ export const TextareaBoxStyle = css`
   height: 100%;
   color: var(--sq-text);
   background: var(--sq-surface);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-size: var(--sq-font-size-regular);
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
 
-  border: 2px solid var(--sq-border);
+  border: 1px solid var(--sq-border);
   border-radius: var(--sq-border-radius-normal);
 
   &::placeholder {
@@ -39,7 +39,7 @@ export const TextareaBoxStyle = css`
 
 export const invalid = css`
   background: var(--sq-surface-critical-subdued);
-  border: 2px solid var(--sq-border-critical);
+  border: 1px solid var(--sq-border-critical);
   border-radius: var(--sq-border-radius-normal);
 
   &:focus {

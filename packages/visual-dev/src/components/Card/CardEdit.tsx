@@ -84,7 +84,6 @@ export const CardEditView = React.forwardRef<
                     size="mini"
                     customCSS="position: relative; left: -30px;"
                     primary
-                    icon_css="margin: -10px; top: 9px;"
                     onClick={() => {
                       setLocked(false);
                     }}

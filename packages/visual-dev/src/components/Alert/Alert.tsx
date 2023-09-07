@@ -11,7 +11,7 @@ export interface OptionProps {
   /**
    * Title displayed at top of alert
    */
-  title?: string;
+  title?: string | React.ReactNode;
   /**
    * Content displayed inside alert below title
    */
@@ -28,6 +28,7 @@ export interface StyleProps {
    * Alert type that affects border, background, and text colours
    */
   type:
+    | "default_style"
     | "critical"
     | "warning"
     | "success"
@@ -42,11 +43,12 @@ export interface StyleProps {
 
 const AlertDiv = styled.div<Required<StyleProps>>`
   ${Styles.AlertDiv}
-  ${(props) => Styles[props.type]}
-  ${(props) => props.customCSS}
+  ${props => Styles[props.type]}
+  ${props => props.customCSS}
 `;
 
 const icons = {
+  default_style: <IconView icon={"help"} color="var(--sq-text)" size="23px" />,
   critical: (
     <IconView icon={"alert"} color="var(--sq-surface-critical)" size="23px" />
   ),
@@ -74,7 +76,7 @@ const icons = {
       size="23px"
     />
   ),
-  info: <IconView icon={"help"} color="var(--sq-text)" size="23px" />,
+  info: <IconView icon={"help"} color="var(--sq-on-surface-info)" size="23px" />
 };
 
 export const AlertView = React.forwardRef<React.ElementRef<"div">, AlertProps>(
