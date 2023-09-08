@@ -13,27 +13,22 @@ module.exports = {
   ],
   babel: async (options) => ({
     ...options,
-
-    plugins: [
-      "@babel/plugin-proposal-optional-chaining",
-      "@babel/plugin-transform-runtime",
-    ],
   }),
   webpackFinal: async (config) => {
-    config.module.rules[0].use[0].options.plugins[1] = [
-      "@babel/plugin-proposal-class-properties",
-      { loose: true },
-    ];
-
     config.module.rules.push({
       test: /\.(stories|story)\.[tj]sx?$/,
       loader: require.resolve("@storybook/source-loader"),
       exclude: [/node_modules/],
       enforce: "pre",
     });
-
     config.resolve.extensions.push(".ts", ".tsx", ".mdx");
-
     return config;
+  },
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {},
+  },
+  docs: {
+    autodocs: true,
   },
 };

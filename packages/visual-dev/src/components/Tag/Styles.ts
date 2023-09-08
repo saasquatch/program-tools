@@ -19,7 +19,7 @@ export const textSegment = css`
   font-size: 14px;
   font-style: normal;
   line-height: 20px;
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   color: var(--sq-text-dark);
 `;
 

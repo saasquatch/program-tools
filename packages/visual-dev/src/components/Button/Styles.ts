@@ -39,9 +39,8 @@ export const universal_base = css`
 
   border: none;
   border-radius: var(--sq-border-radius-normal);
-
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
-  font-weight: var(--sq-font-weight-bold);
+  font-family: var(--sq-font-family-sans);
+  font-weight: var(--sq-font-weight-regular);
   height: max-content;
 `;
 // PILL VARIANTS
@@ -53,13 +52,13 @@ export const pill = css`
 // SIZE VARIANTS
 
 export const small = css`
-  padding: var(--sq-spacing-xxx-small) var(--sq-spacing-small);
+  padding: var(--sq-spacing-x-small) var(--sq-spacing-small);
   font-size: var(--sq-font-size-button-small);
   line-height: var(--sq-line-height-button-small);
 `;
 
 export const medium = css`
-  padding: var(--sq-spacing-xxx-small) var(--sq-spacing-medium);
+  padding: var(--sq-spacing-x-small) var(--sq-spacing-medium);
   font-size: var(--sq-font-size-button-medium);
   line-height: var(--sq-line-height-button-medium);
 `;
@@ -80,13 +79,16 @@ export const primary = {
     border: none;
 
     &:hover {
+      box-shadow: 0px 1px 4px var(--iui-serenity-gray);
       background: var(--sq-action-primary-hovered);
     }
 
     &:disabled {
       cursor: not-allowed;
+      color: var(--sq-text-on-primary-disabled);
       background: var(--sq-action-primary-disabled);
       &:hover {
+        box-shadow: none;
         background: var(--sq-action-primary-disabled);
       }
     }
@@ -114,6 +116,7 @@ export const primary = {
   loading: css`
     cursor: wait;
     background: var(--sq-action-primary-disabled);
+    color: var(--sq-text-on-primary-disabled);
     &:hover {
       background: var(--sq-action-primary-disabled);
     }
@@ -124,58 +127,39 @@ export const primary = {
 
 export const secondary = {
   base: css`
-    box-shadow: inset 0 0 0 1px var(--sq-action-secondary-border);
-
     color: var(--sq-text-on-secondary);
-    background: var(--sq-action-secondary);
+    background: var(--iui-pale-gray);
 
     &:hover {
-      color: var(--sq-text-on-secondary-hovered);
+      box-shadow: 0px 1px 4px var(--iui-serenity-gray);
       background: var(--sq-action-secondary-hovered);
     }
 
     &:disabled {
+      color: var(--sq-text-on-primary-disabled);
       cursor: not-allowed;
-      color: var(--sq-action-primary-disabled);
-      box-shadow: inset 0 0 0 1px var(--sq-action-primary-disabled);
-      &:hover {
-        color: var(--sq-action-primary-disabled);
-        background: var(--sq-action-secondary);
-      }
     }
   `,
   critical: css`
     color: var(--sq-surface-critical);
-    box-shadow: inset 0 0 0 1px var(--sq-surface-critical);
     &:hover {
-      color: var(--sq-text-on-secondary-hovered);
-      background: var(--sq-surface-critical-hovered);
+      background: var(--sq-action-secondary-hovered);
     }
   `,
   success: css`
     color: var(--sq-surface-success);
-    box-shadow: inset 0 0 0 1px var(--sq-surface-success);
     &:hover {
-      color: var(--sq-text-on-secondary-hovered);
-      background: var(--sq-surface-success-hovered);
+      background: var(--sq-action-secondary-hovered);
     }
-
     &:disabled {
       cursor: not-allowed;
       color: var(--sq-surface-success);
-      box-shadow: inset 0 0 0 1px var(--sq-surface-success);
-      &:hover{
-      color: var(--sq-surface-success);
-
-      }
     }
   `,
   loading: css`
     cursor: wait;
-    color: var(--sq-action-primary-disabled);
-    box-shadow: inset 0 0 0 1px var(--sq-action-primary-disabled);
+    color: var(--sq-text-on-primary-disabled);
     &:hover {
-      color: var(--sq-action-primary-disabled);
       background: var(--sq-action-secondary);
     }
   `,
@@ -185,21 +169,17 @@ export const secondary = {
 
 export const text = {
   base: css`
-    border: none;
     color: var(--sq-text);
+    border: none;
     background: none;
 
     &:hover {
-      text-decoration: underline;
+      background-color: var(--iui-pale-gray);
     }
 
     &:disabled {
       cursor: not-allowed;
-      color: var(--sq-action-primary-disabled);
-      border-color: var(--sq-action-primary-disabled);
-      &:hover {
-        text-decoration: none;
-      }
+      color: var(--sq-text-on-primary-disabled);
     }
   `,
   critical: css`

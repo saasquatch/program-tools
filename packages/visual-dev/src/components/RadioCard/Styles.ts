@@ -5,7 +5,7 @@ export const RadioLabelStyle = css`
   flex-direction: row;
   min-height: 95px;
   box-sizing: border-box;
-  border: 2px solid var(--sq-border);
+  border: 1px solid var(--sq-border);
   border-radius: var(--sq-border-radius-normal);
   align-items: center;
   user-select: none;

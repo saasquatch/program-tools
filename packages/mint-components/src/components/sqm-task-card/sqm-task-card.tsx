@@ -213,6 +213,12 @@ export class TaskCard {
   @Prop() programId?: string;
 
   /**
+   * @uiName Hide CTA button
+   * @uiGroup Button
+   */
+  @Prop() hideButton?: boolean = false;
+
+  /**
    * @undocumented
    * @uiType object
    */

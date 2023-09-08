@@ -7,6 +7,26 @@ export const CSSVariables = createGlobalStyle`
 
   /* ~~~ Colors ~~~ */
 
+  /* Impact colors */
+  --iui-almost-black: #29394A;
+  --iui-darker-black: #23313F;
+  --iui-coal-black: #2D3E50;
+  --iui-strata-blue: #14B1F7;
+  --iui-shaded-blue: #12A7EA;
+  --iui-sky-blue: #A4E0FB;
+  --iui-ice-blue: #F3FBFF;
+  --iui-serenity-gray: #CACFD3;
+  --iui-pale-gray: #F2F3F4;
+  --iui-storm-gray: #6C7784;
+  --iui-flash-gray: #EAEBED;
+  --iui-bleakest-gray: #969EA7;
+  --iui-error-red: #C00800;
+  --iui-impact-red: #E41B49;
+  --iui-light-pink: #FFEFEE;
+  --iui-rose-pink: #EFC1BF;
+  --iui-light-orange: #F9ECD9;
+  --iui-leaf-green: #008917;
+
   /* Surface */
   --sq-surface: #ffffff;
   --sq-surface-subdued: #f6f6f6;
@@ -15,38 +35,44 @@ export const CSSVariables = createGlobalStyle`
   --sq-surface-dark: #232323;
 
   /* On Surface */
-  --sq-text: #575757;
-  --sq-text-dark: #232323;
-  --sq-text-subdued: #858585;
-  --sq-border: #e2e2e2;
+  --sq-text: var(--iui-coal-black);
+  --sq-text-dark: var(--iui-darker-than-black);
+  --sq-text-subdued: var(--iui-storm-gray);
+  --sq-border: var(--iui-serenity-gray);
+
+  /* Loading */
+  --sq-loading: var(--iui-strata-blue);
+
 
   /* Top Nav Bar */
-  --sq-nav-surface-primary: #003b45;
+  --sq-nav-surface-primary: var(--iui-coal-black);
+  --sq-nav-surface-primary-subdued: rgba(255, 255, 255, 0.12);
   --sq-nav-text-on-primary: #ffffff;
-  --sq-nav-text-on-primary-subdued: #999999;
+  --sq-nav-text-on-primary-subdued: var(--iui-bleakest-gray);
   --sq-nav-surface-secondary: #ffffff;
-  --sq-nav-text-on-secondary: #003b45;
-  --sq-nav-text-on-secondary-subdued: #999999;
+  --sq-nav-text-on-secondary: var(--iui-coal-black);
+  --sq-nav-text-on-secondary-subdued: var(--iui-bleakest-gray);
 
   /* Primary */
-  --sq-action-primary: #E79533;
-  --sq-action-primary-hovered: #DA8622;
+  --sq-action-primary: var(--iui-strata-blue);
+  --sq-action-primary-hovered: var(--iui-strata-blue);
+  --sq-action-primary-disabled: var(--iui-pale-gray);
   --sq-text-on-primary: #ffffff;
-  --sq-action-primary-disabled: #e2e2e2;
+  --sq-text-on-primary-disabled: var(--iui-bleakest-gray);
 
   /* Secondary */
-  --sq-action-secondary: #ffffff;
-  --sq-action-secondary-hovered: #a6b9bd;
+  --sq-action-secondary: var(--iui-pale-gray);
+  --sq-action-secondary-hovered: var(--iui-pale-gray);
   --sq-action-secondary-border: #a6b9bd;
-  --sq-text-on-secondary: #575757;
-  --sq-text-on-secondary-hovered: #ffffff;
-  --sq-placeholder-text-on-secondary: #aaaaaa;
+  --sq-text-on-secondary: var(--iui-coal-black);
+  --sq-text-on-secondary-hovered: var(--iui-bleakest-gray);
+  --sq-placeholder-text-on-secondary: var(--iui-bleakest-gray);
 
   /* Success */
-  --sq-surface-success: #57ac59;
-  --sq-surface-success-hovered: #479449;
+  --sq-surface-success: var(--iui-leaf-green);
+  --sq-surface-success-hovered: var(--iui-leaf-green);
   --sq-surface-success-subdued: #e4fce3;
-  --sq-border-success: #57ac59;
+  --sq-border-success: var(--iui-leaf-green);
   --sq-badge-surface-success: #e6faf4;
   --sq-badge-text-success: #146352;
 
@@ -58,27 +84,26 @@ export const CSSVariables = createGlobalStyle`
   --sq-badge-text-warning: #92400E;
 
   /* Info */
-  --sq-surface-info: #E0ECFF;
-  --sq-border-info: #6DA6FF;
-  --sq-badge-surface-info: #E0ECFF;
-  --sq-badge-text-info: #1260D9;
+  --sq-border-info: #95beff;
+  --sq-surface-info: #e0ecff;
+  --sq-on-surface-info: #1260d9;
 
   /* Critical */
-  --sq-surface-critical: #D14040;
-  --sq-surface-critical-hovered: #C12F2F;
-  --sq-surface-critical-subdued: #faf2ee;
-  --sq-border-critical: #d14040;
+  --sq-surface-critical: var(--iui-error-red);
+  --sq-surface-critical-hovered: var(--iui-error-red);
+  --sq-surface-critical-subdued: var(--iui-light-pink);
+  --sq-border-critical: var(--iui-error-red);
   --sq-badge-text-critical: #C12F2F;
   /* Deprecated */
   --sq-on-surface-critical: #D14040;
 
   /* Interactive */
-  --sq-text-interactive: #0088CC;
-  --sq-text-interactive-hovered: #016A9E;
+  --sq-text-interactive: #0077DB;
+  --sq-text-interactive-hovered: #0077DB;
   --sq-text-interactive-visited: #681DA8;
-  --sq-focused: #458edf;
+  --sq-focused: #0077DB;
   --sq-icon-interactive: #0088cc;
-  --sq-surface-hover: #eef6ff;
+  --sq-surface-hover: var(--iui-pale-gray);
 
   /* Docs site */
   --sq-docs-interactive: #007A5B;
@@ -105,7 +130,7 @@ export const CSSVariables = createGlobalStyle`
   --sq-text-input-disabled: #bdbdbd;
 
   /* Typography */
-  --sq-font-family-sans: "Helvetica Neue", Helvetica, sans-serif;
+  --sq-font-family-sans: "Muli", "Helvetica Neue", Helvetica, sans-serif;;
   --sq-font-family-monospace: monospace;
 
   --sq-font-weight-regular: 400;
@@ -159,12 +184,28 @@ export const CSSVariables = createGlobalStyle`
 
   /* Border Radii */
   --sq-border-radius-small: 2px;
-  --sq-border-radius-normal: 4px;
+  --sq-border-radius-normal: 8px;
   --sq-border-radius-pill: 9999px;
 } 
 `;
 
-export const TextRules = createGlobalStyle`
+export const LinkRules = createGlobalStyle`
+
+a{
+  color: var(--sq-text-interactive);
+  text-decoration: none;
+  
+  &:visited{
+    color: var(--sq-text-interactive);
+  }
+
+  &:hover{
+    color: var(--sq-text-interactive-hovered);
+    text-decoration: underline;
+  }
+}`;
+
+export const TypographyRules = createGlobalStyle`
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -217,22 +258,123 @@ pre{
 }
 
 a{
+  
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
   font-weight: var(--sq-font-weight-regular);
   font-family: var(--sq-font-family-sans);
-  color: var(--sq-text-interactive);
-  text-decoration: none;
-  
-  &:visited{
-    color: var(--sq-text-interactive-visited)
-  }
-
-  &:hover{
-    color: var(--sq-text-interactive-hovered);
-  }
 }
+
 `;
+
+export const TextRules = () => {
+  return (
+    <>
+      <FontFamilyRules />
+      <LinkRules />
+      <TypographyRules />
+    </>
+  );
+};
+
+export const FontFamilyRules = createGlobalStyle`
+/* fonts */
+/* vietnamese */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afT3GLQjUwkQ1OQ.woff2)
+    format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+    U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afTzGLQjUwkQ1OQ.woff2)
+    format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afTLGLQjUwkQ.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afT3GLQjUwkQ1OQ.woff2)
+    format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+    U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afTzGLQjUwkQ1OQ.woff2)
+    format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afTLGLQjUwkQ.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afT3GLQjUwkQ1OQ.woff2)
+    format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+    U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afTzGLQjUwkQ1OQ.woff2)
+    format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afTLGLQjUwkQ.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}`;
 
 export const LayoutRules = createGlobalStyle`
   hr{

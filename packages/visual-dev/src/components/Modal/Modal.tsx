@@ -44,9 +44,13 @@ export interface OptionProps {
 
 export interface StyleProps {
   /**
-   * Custon CSS applied to the modal container
+   * Custom CSS applied to the modal container
    */
   customCSS?: CSSProp;
+  /**
+   * Max width applied to the modal container
+   */
+  maxWidth?: string;
   /**
    * Custom CSS applied to the modal title
    */
@@ -58,9 +62,10 @@ const ModalBackdrop = styled.div<{ zIndex?: number }>`
   ${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : "z-index: 1;")}
 `;
 
-const ModalDiv = styled.div<{ customCSS?: CSSProp }>`
+const ModalDiv = styled.div<{ customCSS?: CSSProp; maxWidth?: string }>`
   ${Styles.ModalDivStyle}
   ${(props) => props.customCSS}
+  ${(props) => props.maxWidth && `max-width: ${props.maxWidth};`}
 `;
 
 const ModalHeader = styled.div<{ customTitleCSS?: CSSProp }>`

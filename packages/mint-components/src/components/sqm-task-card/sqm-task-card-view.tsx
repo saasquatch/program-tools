@@ -28,6 +28,7 @@ export type TaskCardViewProps = {
     buttonLink: string;
     openNewTab: boolean;
     eventKey?: string;
+    hideButton?: boolean;
   };
   states: {
     loading: boolean;
@@ -447,28 +448,31 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                     </span>
                   )}
                 </span>
-
-                <sl-button
-                  exportparts="base: button"
-                  id="sl-button"
-                  class={
-                    taskUnavailable
-                      ? "action neutral"
-                      : taskComplete
-                      ? "action disabled"
-                      : "action"
-                  }
-                  type="primary"
-                  size="small"
-                  onClick={callbacks.onClick}
-                  loading={states.loadingEvent}
-                  disabled={taskComplete || taskUnavailable}
-                  style={{
-                    opacity: taskComplete || taskUnavailable ? "0.45" : "1",
-                  }}
-                >
-                  {content.buttonText}
-                </sl-button>
+                {content.hideButton ? (
+                  ""
+                ) : (
+                  <sl-button
+                    exportparts="base: button"
+                    id="sl-button"
+                    class={
+                      taskUnavailable
+                        ? "action neutral"
+                        : taskComplete
+                        ? "action disabled"
+                        : "action"
+                    }
+                    type="primary"
+                    size="small"
+                    onClick={callbacks.onClick}
+                    loading={states.loadingEvent}
+                    disabled={taskComplete || taskUnavailable}
+                    style={{
+                      opacity: taskComplete || taskUnavailable ? "0.45" : "1",
+                    }}
+                  >
+                    {content.buttonText}
+                  </sl-button>
+                )}
               </div>
             )}
           </div>

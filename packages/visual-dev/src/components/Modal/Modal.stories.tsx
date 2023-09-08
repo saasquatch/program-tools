@@ -683,3 +683,48 @@ export const MaxHeight = () => {
     </div>
   );
 };
+
+export const MaxWidth = () => {
+  const [active, setActive] = useState(true);
+  const handleChange = useCallback(() => setActive(!active), [active]);
+  const [containerHeight, setContainerHeight] = useState(500);
+  return (
+    <div style={{ height: containerHeight + "px" }}>
+      <ButtonView buttonType="secondary" onClick={handleChange}>
+        Open Modal
+      </ButtonView>
+      <input
+        type="number"
+        value={containerHeight}
+        onChange={(e) => setContainerHeight(parseInt(e.target.value))}
+      />
+      <ModalView
+        maxWidth="200px"
+        title="Salesforce Submit Actions"
+        open={active}
+        onClose={handleChange}
+      >
+        <ModalView.ModalContentView>
+          <ModalView.ModalContentTextView>
+            Configure actions which will be completed when the form is submitted
+            by a user.
+            <br />
+            <br />
+            You need to first enable and configure the Salesforce integration on
+            the{" "}
+            <span style={{ color: "#1f97d2", userSelect: "none" }}>
+              Integrations Page{" "}
+            </span>
+          </ModalView.ModalContentTextView>
+          <ModalView.ModalContentDividerView />
+          <ModalView.ModalContentActionView
+            primaryAction={{
+              text: "Close",
+              onAction: handleChange,
+            }}
+          />
+        </ModalView.ModalContentView>
+      </ModalView>
+    </div>
+  );
+};

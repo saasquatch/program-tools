@@ -1,0 +1,1254 @@
+{
+  "components": [
+    {
+      "tag": "sqh-close-button",
+      "dependencies": [],
+      "componentClass": "TwitterShareButton",
+      "componentPath": "components/close-button/close-button.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/close-button/close-button.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "text",
+          "type": "String",
+          "attr": "text"
+        }
+      ],
+      "listeners": [
+        {
+          "event": "click",
+          "method": "handleClick",
+          "passive": false,
+          "capture": false
+        }
+      ],
+      "hostElement": {
+        "name": "closeButton"
+      }
+    },
+    {
+      "tag": "sqh-copy-button",
+      "dependencies": [],
+      "componentClass": "CopyButton",
+      "componentPath": "components/copy-button/copy-button.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/copy-button/copy-button.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "backgroundcolor",
+          "type": "String",
+          "attr": "backgroundcolor"
+        },
+        {
+          "name": "borderradius",
+          "type": "Number",
+          "attr": "borderradius"
+        },
+        {
+          "name": "codefontcolor",
+          "type": "String",
+          "attr": "codefontcolor"
+        },
+        {
+          "name": "codefontsize",
+          "type": "Number",
+          "attr": "codefontsize"
+        },
+        {
+          "name": "copyfailure",
+          "type": "String",
+          "attr": "copyfailure"
+        },
+        {
+          "name": "copysuccess",
+          "type": "String",
+          "attr": "copysuccess"
+        },
+        {
+          "name": "fontsize",
+          "type": "Number",
+          "attr": "fontsize"
+        },
+        {
+          "name": "ishidden",
+          "type": "Boolean",
+          "attr": "ishidden"
+        },
+        {
+          "name": "rewardkey",
+          "type": "String",
+          "attr": "rewardkey"
+        },
+        {
+          "name": "text",
+          "type": "String",
+          "attr": "text"
+        },
+        {
+          "name": "textcolor",
+          "type": "String",
+          "attr": "textcolor"
+        },
+        {
+          "name": "width",
+          "type": "Number",
+          "attr": "width"
+        }
+      ],
+      "states": [
+        {
+          "name": "fueltankcode"
+        }
+      ]
+    },
+    {
+      "tag": "sqh-copy-link-button",
+      "dependencies": [],
+      "componentClass": "CopyLinkButton",
+      "componentPath": "components/copy-link-button/copy-link-button.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/copy-link-button/copy-link-button.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "buttoncolor",
+          "type": "String",
+          "attr": "buttoncolor"
+        },
+        {
+          "name": "copyfailure",
+          "type": "String",
+          "attr": "copyfailure"
+        },
+        {
+          "name": "copysuccess",
+          "type": "String",
+          "attr": "copysuccess"
+        },
+        {
+          "name": "ishidden",
+          "type": "Boolean",
+          "attr": "ishidden"
+        },
+        {
+          "name": "text",
+          "type": "String",
+          "attr": "text"
+        },
+        {
+          "name": "textcolor",
+          "type": "String",
+          "attr": "textcolor"
+        }
+      ],
+      "states": [
+        {
+          "name": "sharelink"
+        }
+      ]
+    },
+    {
+      "tag": "sqh-global-container",
+      "dependencies": [],
+      "componentClass": "GlobalContainer",
+      "componentPath": "components/global-container/global-container.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/global-container/global-container.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "background",
+          "type": "String",
+          "attr": "background"
+        },
+        {
+          "name": "fontfamily",
+          "type": "String",
+          "attr": "fontfamily"
+        },
+        {
+          "name": "maxwidth",
+          "type": "String",
+          "attr": "maxwidth"
+        },
+        {
+          "name": "poweredby",
+          "type": "Boolean",
+          "attr": "poweredby"
+        }
+      ]
+    },
+    {
+      "tag": "sqh-image-component",
+      "dependencies": [],
+      "componentClass": "ImageComponent",
+      "componentPath": "components/image-component/image-component.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/image-component/image-component.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "alignment",
+          "type": "String",
+          "attr": "alignment"
+        },
+        {
+          "name": "borderradius",
+          "type": "Number",
+          "attr": "borderradius"
+        },
+        {
+          "name": "css",
+          "type": "String",
+          "attr": "css"
+        },
+        {
+          "name": "ishidden",
+          "type": "Boolean",
+          "attr": "ishidden"
+        },
+        {
+          "name": "url",
+          "type": "String",
+          "attr": "url"
+        },
+        {
+          "name": "width",
+          "type": "Number",
+          "attr": "width"
+        }
+      ]
+    },
+    {
+      "tag": "sqh-partner-stat-component",
+      "dependencies": [],
+      "componentClass": "StatComponent",
+      "componentPath": "components/partner-stat-component/partner-stat-component.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/partner-stat-component/partner-stat-component.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "ishidden",
+          "type": "Boolean",
+          "attr": "ishidden"
+        },
+        {
+          "name": "statcolor",
+          "type": "String",
+          "attr": "statcolor"
+        },
+        {
+          "name": "statdescription",
+          "type": "String",
+          "attr": "statdescription"
+        },
+        {
+          "name": "stattype",
+          "type": "String",
+          "attr": "stattype",
+          "watch": [
+            "stattypeHandler"
+          ]
+        },
+        {
+          "name": "statvalue",
+          "type": "String",
+          "attr": "statvalue"
+        }
+      ],
+      "hostElement": {
+        "name": "elem"
+      },
+      "events": [
+        {
+          "event": "statAdded"
+        },
+        {
+          "event": "statTypeUpdated"
+        }
+      ]
+    },
+    {
+      "tag": "sqh-referral-code",
+      "dependencies": [],
+      "componentClass": "ReferralCode",
+      "componentPath": "components/referral-code/referral-code.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/referral-code/referral-code.scss"
+          ]
+        }
+      },
+      "states": [
+        {
+          "name": "referralcode"
+        }
+      ]
+    },
+    {
+      "tag": "sqh-referral-component",
+      "dependencies": [],
+      "componentClass": "ReferralComponent",
+      "componentPath": "components/referral-component/referral-component.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/referral-component/referral-component.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "referral",
+          "attr": "referral"
+        },
+        {
+          "name": "referraltype",
+          "type": "String",
+          "attr": "referraltype"
+        },
+        {
+          "name": "referralvariables",
+          "attr": "referralvariables"
+        },
+        {
+          "name": "unknownuser",
+          "attr": "unknownuser"
+        }
+      ]
+    },
+    {
+      "tag": "sqh-referral-list",
+      "dependencies": [
+        "sqh-referral-component"
+      ],
+      "componentClass": "ReferralList",
+      "componentPath": "components/referral-list/referral-list.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/referral-list/referral-list.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "cancelledcolor",
+          "type": "String",
+          "attr": "cancelledcolor"
+        },
+        {
+          "name": "cancelledcontent",
+          "type": "String",
+          "attr": "cancelledcontent"
+        },
+        {
+          "name": "cancelledvalue",
+          "type": "String",
+          "attr": "cancelledvalue"
+        },
+        {
+          "name": "convertedcontent",
+          "type": "String",
+          "attr": "convertedcontent"
+        },
+        {
+          "name": "expiredcolor",
+          "type": "String",
+          "attr": "expiredcolor"
+        },
+        {
+          "name": "expiredcontent",
+          "type": "String",
+          "attr": "expiredcontent"
+        },
+        {
+          "name": "expiredvalue",
+          "type": "String",
+          "attr": "expiredvalue"
+        },
+        {
+          "name": "ishidden",
+          "type": "Boolean",
+          "attr": "ishidden"
+        },
+        {
+          "name": "noreferralsyet",
+          "type": "String",
+          "attr": "noreferralsyet"
+        },
+        {
+          "name": "paginateless",
+          "type": "String",
+          "attr": "paginateless"
+        },
+        {
+          "name": "paginatemore",
+          "type": "String",
+          "attr": "paginatemore"
+        },
+        {
+          "name": "pendingcolor",
+          "type": "String",
+          "attr": "pendingcolor"
+        },
+        {
+          "name": "pendingcontent",
+          "type": "String",
+          "attr": "pendingcontent"
+        },
+        {
+          "name": "pendingvalue",
+          "type": "String",
+          "attr": "pendingvalue"
+        },
+        {
+          "name": "referralnamecolor",
+          "type": "String",
+          "attr": "referralnamecolor"
+        },
+        {
+          "name": "referraltextcolor",
+          "type": "String",
+          "attr": "referraltextcolor"
+        },
+        {
+          "name": "referrercontent",
+          "type": "String",
+          "attr": "referrercontent"
+        },
+        {
+          "name": "referrervalue",
+          "type": "String",
+          "attr": "referrervalue"
+        },
+        {
+          "name": "rewardcolor",
+          "type": "String",
+          "attr": "rewardcolor"
+        },
+        {
+          "name": "showreferrer",
+          "type": "Boolean",
+          "attr": "showreferrer"
+        },
+        {
+          "name": "unknownuser",
+          "type": "String",
+          "attr": "unknownuser"
+        },
+        {
+          "name": "usefirstreward",
+          "type": "Boolean",
+          "attr": "usefirstreward"
+        },
+        {
+          "name": "valuecontent",
+          "type": "String",
+          "attr": "valuecontent"
+        }
+      ],
+      "states": [
+        {
+          "name": "loading"
+        },
+        {
+          "name": "offset"
+        },
+        {
+          "name": "referrals"
+        },
+        {
+          "name": "referralsCount"
+        },
+        {
+          "name": "referredBy"
+        },
+        {
+          "name": "rewards"
+        }
+      ]
+    },
+    {
+      "tag": "sqh-rewards-actions",
+      "dependencies": [],
+      "componentClass": "RewardsActions",
+      "componentPath": "components/rewards-actions/rewards-actions.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/rewards-actions/rewards-actions.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "hidetext",
+          "type": "String",
+          "attr": "hidetext"
+        },
+        {
+          "name": "nexttext",
+          "type": "String",
+          "attr": "nexttext"
+        },
+        {
+          "name": "previoustext",
+          "type": "String",
+          "attr": "previoustext"
+        }
+      ]
+    },
+    {
+      "tag": "sqh-share-button",
+      "dependencies": [],
+      "componentClass": "ShareButton",
+      "componentPath": "components/share-button/share-button.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/share-button/share-button.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "backgroundcolor",
+          "type": "String",
+          "attr": "backgroundcolor"
+        },
+        {
+          "name": "className",
+          "type": "String",
+          "attr": "class-name"
+        },
+        {
+          "name": "displayrule",
+          "type": "String",
+          "attr": "displayrule"
+        },
+        {
+          "name": "icon",
+          "type": "String",
+          "attr": "icon"
+        },
+        {
+          "name": "iconhorizontal",
+          "type": "Number",
+          "attr": "iconhorizontal"
+        },
+        {
+          "name": "iconsize",
+          "type": "Number",
+          "attr": "iconsize"
+        },
+        {
+          "name": "iconvertical",
+          "type": "Number",
+          "attr": "iconvertical"
+        },
+        {
+          "name": "text",
+          "type": "String",
+          "attr": "text"
+        },
+        {
+          "name": "textcolor",
+          "type": "String",
+          "attr": "textcolor"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "attr": "type"
+        },
+        {
+          "name": "url",
+          "type": "String",
+          "attr": "url"
+        }
+      ],
+      "hostElement": {
+        "name": "button"
+      }
+    },
+    {
+      "tag": "sqh-share-button-container",
+      "dependencies": [
+        "sqh-share-button"
+      ],
+      "componentClass": "ShareButtonContainer",
+      "componentPath": "components/share-button-container/share-button-container.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/share-button-container/share-button-container.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "emailbackgroundcolor",
+          "type": "String",
+          "attr": "emailbackgroundcolor"
+        },
+        {
+          "name": "emailclassName",
+          "type": "String",
+          "attr": "emailclass-name"
+        },
+        {
+          "name": "emaildisplayrule",
+          "type": "String",
+          "attr": "emaildisplayrule"
+        },
+        {
+          "name": "emailicon",
+          "type": "String",
+          "attr": "emailicon"
+        },
+        {
+          "name": "emailiconhorizontal",
+          "type": "Number",
+          "attr": "emailiconhorizontal"
+        },
+        {
+          "name": "emailiconsize",
+          "type": "Number",
+          "attr": "emailiconsize"
+        },
+        {
+          "name": "emailiconvertical",
+          "type": "Number",
+          "attr": "emailiconvertical"
+        },
+        {
+          "name": "emailtext",
+          "type": "String",
+          "attr": "emailtext"
+        },
+        {
+          "name": "emailtextcolor",
+          "type": "String",
+          "attr": "emailtextcolor"
+        },
+        {
+          "name": "facebookbackgroundcolor",
+          "type": "String",
+          "attr": "facebookbackgroundcolor"
+        },
+        {
+          "name": "facebookclassName",
+          "type": "String",
+          "attr": "facebookclass-name"
+        },
+        {
+          "name": "facebookdisplayrule",
+          "type": "String",
+          "attr": "facebookdisplayrule"
+        },
+        {
+          "name": "facebookicon",
+          "type": "String",
+          "attr": "facebookicon"
+        },
+        {
+          "name": "facebookiconhorizontal",
+          "type": "Number",
+          "attr": "facebookiconhorizontal"
+        },
+        {
+          "name": "facebookiconsize",
+          "type": "Number",
+          "attr": "facebookiconsize"
+        },
+        {
+          "name": "facebookiconvertical",
+          "type": "Number",
+          "attr": "facebookiconvertical"
+        },
+        {
+          "name": "facebooktext",
+          "type": "String",
+          "attr": "facebooktext"
+        },
+        {
+          "name": "facebooktextcolor",
+          "type": "String",
+          "attr": "facebooktextcolor"
+        },
+        {
+          "name": "ishidden",
+          "type": "Boolean",
+          "attr": "ishidden"
+        },
+        {
+          "name": "linebackgroundcolor",
+          "type": "String",
+          "attr": "linebackgroundcolor"
+        },
+        {
+          "name": "lineclassName",
+          "type": "String",
+          "attr": "lineclass-name"
+        },
+        {
+          "name": "linedisplayrule",
+          "type": "String",
+          "attr": "linedisplayrule"
+        },
+        {
+          "name": "lineicon",
+          "type": "String",
+          "attr": "lineicon"
+        },
+        {
+          "name": "lineiconhorizontal",
+          "type": "Number",
+          "attr": "lineiconhorizontal"
+        },
+        {
+          "name": "lineiconsize",
+          "type": "Number",
+          "attr": "lineiconsize"
+        },
+        {
+          "name": "lineiconvertical",
+          "type": "Number",
+          "attr": "lineiconvertical"
+        },
+        {
+          "name": "linetext",
+          "type": "String",
+          "attr": "linetext"
+        },
+        {
+          "name": "linetextcolor",
+          "type": "String",
+          "attr": "linetextcolor"
+        },
+        {
+          "name": "linkedinbackgroundcolor",
+          "type": "String",
+          "attr": "linkedinbackgroundcolor"
+        },
+        {
+          "name": "linkedinclassName",
+          "type": "String",
+          "attr": "linkedinclass-name"
+        },
+        {
+          "name": "linkedindisplayrule",
+          "type": "String",
+          "attr": "linkedindisplayrule"
+        },
+        {
+          "name": "linkedinicon",
+          "type": "String",
+          "attr": "linkedinicon"
+        },
+        {
+          "name": "linkediniconhorizontal",
+          "type": "Number",
+          "attr": "linkediniconhorizontal"
+        },
+        {
+          "name": "linkediniconsize",
+          "type": "Number",
+          "attr": "linkediniconsize"
+        },
+        {
+          "name": "linkediniconvertical",
+          "type": "Number",
+          "attr": "linkediniconvertical"
+        },
+        {
+          "name": "linkedintext",
+          "type": "String",
+          "attr": "linkedintext"
+        },
+        {
+          "name": "linkedintextcolor",
+          "type": "String",
+          "attr": "linkedintextcolor"
+        },
+        {
+          "name": "messengerbackgroundcolor",
+          "type": "String",
+          "attr": "messengerbackgroundcolor"
+        },
+        {
+          "name": "messengerclassName",
+          "type": "String",
+          "attr": "messengerclass-name"
+        },
+        {
+          "name": "messengerdisplayrule",
+          "type": "String",
+          "attr": "messengerdisplayrule"
+        },
+        {
+          "name": "messengericon",
+          "type": "String",
+          "attr": "messengericon"
+        },
+        {
+          "name": "messengericonhorizontal",
+          "type": "Number",
+          "attr": "messengericonhorizontal"
+        },
+        {
+          "name": "messengericonsize",
+          "type": "Number",
+          "attr": "messengericonsize"
+        },
+        {
+          "name": "messengericonvertical",
+          "type": "Number",
+          "attr": "messengericonvertical"
+        },
+        {
+          "name": "messengertext",
+          "type": "String",
+          "attr": "messengertext"
+        },
+        {
+          "name": "messengertextcolor",
+          "type": "String",
+          "attr": "messengertextcolor"
+        },
+        {
+          "name": "pinterestbackgroundcolor",
+          "type": "String",
+          "attr": "pinterestbackgroundcolor"
+        },
+        {
+          "name": "pinterestclassName",
+          "type": "String",
+          "attr": "pinterestclass-name"
+        },
+        {
+          "name": "pinterestdisplayrule",
+          "type": "String",
+          "attr": "pinterestdisplayrule"
+        },
+        {
+          "name": "pinteresticon",
+          "type": "String",
+          "attr": "pinteresticon"
+        },
+        {
+          "name": "pinteresticonhorizontal",
+          "type": "Number",
+          "attr": "pinteresticonhorizontal"
+        },
+        {
+          "name": "pinteresticonsize",
+          "type": "Number",
+          "attr": "pinteresticonsize"
+        },
+        {
+          "name": "pinteresticonvertical",
+          "type": "Number",
+          "attr": "pinteresticonvertical"
+        },
+        {
+          "name": "pinteresttext",
+          "type": "String",
+          "attr": "pinteresttext"
+        },
+        {
+          "name": "pinteresttextcolor",
+          "type": "String",
+          "attr": "pinteresttextcolor"
+        },
+        {
+          "name": "smsbackgroundcolor",
+          "type": "String",
+          "attr": "smsbackgroundcolor"
+        },
+        {
+          "name": "smsclassName",
+          "type": "String",
+          "attr": "smsclass-name"
+        },
+        {
+          "name": "smsdisplayrule",
+          "type": "String",
+          "attr": "smsdisplayrule"
+        },
+        {
+          "name": "smsicon",
+          "type": "String",
+          "attr": "smsicon"
+        },
+        {
+          "name": "smsiconhorizontal",
+          "type": "Number",
+          "attr": "smsiconhorizontal"
+        },
+        {
+          "name": "smsiconsize",
+          "type": "Number",
+          "attr": "smsiconsize"
+        },
+        {
+          "name": "smsiconvertical",
+          "type": "Number",
+          "attr": "smsiconvertical"
+        },
+        {
+          "name": "smstext",
+          "type": "String",
+          "attr": "smstext"
+        },
+        {
+          "name": "smstextcolor",
+          "type": "String",
+          "attr": "smstextcolor"
+        },
+        {
+          "name": "twitterbackgroundcolor",
+          "type": "String",
+          "attr": "twitterbackgroundcolor"
+        },
+        {
+          "name": "twitterclassName",
+          "type": "String",
+          "attr": "twitterclass-name"
+        },
+        {
+          "name": "twitterdisplayrule",
+          "type": "String",
+          "attr": "twitterdisplayrule"
+        },
+        {
+          "name": "twittericon",
+          "type": "String",
+          "attr": "twittericon"
+        },
+        {
+          "name": "twittericonhorizontal",
+          "type": "Number",
+          "attr": "twittericonhorizontal"
+        },
+        {
+          "name": "twittericonsize",
+          "type": "Number",
+          "attr": "twittericonsize"
+        },
+        {
+          "name": "twittericonvertical",
+          "type": "Number",
+          "attr": "twittericonvertical"
+        },
+        {
+          "name": "twittertext",
+          "type": "String",
+          "attr": "twittertext"
+        },
+        {
+          "name": "twittertextcolor",
+          "type": "String",
+          "attr": "twittertextcolor"
+        },
+        {
+          "name": "whatsappbackgroundcolor",
+          "type": "String",
+          "attr": "whatsappbackgroundcolor"
+        },
+        {
+          "name": "whatsappclassName",
+          "type": "String",
+          "attr": "whatsappclass-name"
+        },
+        {
+          "name": "whatsappdisplayrule",
+          "type": "String",
+          "attr": "whatsappdisplayrule"
+        },
+        {
+          "name": "whatsappicon",
+          "type": "String",
+          "attr": "whatsappicon"
+        },
+        {
+          "name": "whatsappiconhorizontal",
+          "type": "Number",
+          "attr": "whatsappiconhorizontal"
+        },
+        {
+          "name": "whatsappiconsize",
+          "type": "Number",
+          "attr": "whatsappiconsize"
+        },
+        {
+          "name": "whatsappiconvertical",
+          "type": "Number",
+          "attr": "whatsappiconvertical"
+        },
+        {
+          "name": "whatsapptext",
+          "type": "String",
+          "attr": "whatsapptext"
+        },
+        {
+          "name": "whatsapptextcolor",
+          "type": "String",
+          "attr": "whatsapptextcolor"
+        }
+      ],
+      "states": [
+        {
+          "name": "emailurl"
+        },
+        {
+          "name": "facebookurl"
+        },
+        {
+          "name": "lineurl"
+        },
+        {
+          "name": "linkedinurl"
+        },
+        {
+          "name": "messengerurl"
+        },
+        {
+          "name": "pinteresturl"
+        },
+        {
+          "name": "smsurl"
+        },
+        {
+          "name": "twitterurl"
+        },
+        {
+          "name": "whatsappurl"
+        }
+      ]
+    },
+    {
+      "tag": "sqh-stat-component",
+      "dependencies": [],
+      "componentClass": "StatComponent",
+      "componentPath": "components/stat-component/stat-component.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/stat-component/stat-component.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "ishidden",
+          "type": "Boolean",
+          "attr": "ishidden"
+        },
+        {
+          "name": "statcolor",
+          "type": "String",
+          "attr": "statcolor"
+        },
+        {
+          "name": "statdescription",
+          "type": "String",
+          "attr": "statdescription"
+        },
+        {
+          "name": "stattype",
+          "type": "String",
+          "attr": "stattype",
+          "watch": [
+            "stattypeHandler"
+          ]
+        },
+        {
+          "name": "statvalue",
+          "type": "String",
+          "attr": "statvalue"
+        }
+      ],
+      "hostElement": {
+        "name": "elem"
+      },
+      "events": [
+        {
+          "event": "statAdded"
+        },
+        {
+          "event": "statTypeUpdated"
+        }
+      ]
+    },
+    {
+      "tag": "sqh-stats-container",
+      "dependencies": [],
+      "componentClass": "StatsContainer",
+      "componentPath": "components/stats-container/stats-container.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/stats-container/stats-container.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "ishidden",
+          "type": "Boolean",
+          "attr": "ishidden"
+        },
+        {
+          "name": "paddingbottom",
+          "type": "String",
+          "attr": "paddingbottom"
+        },
+        {
+          "name": "paddingtop",
+          "type": "String",
+          "attr": "paddingtop"
+        }
+      ],
+      "states": [
+        {
+          "name": "loading"
+        },
+        {
+          "name": "stats"
+        }
+      ],
+      "listeners": [
+        {
+          "event": "statAdded",
+          "method": "statAddedHandler",
+          "passive": false,
+          "capture": false
+        },
+        {
+          "event": "statTypeUpdated",
+          "method": "statTypeUpdatedHandler",
+          "passive": false,
+          "capture": false
+        }
+      ],
+      "hostElement": {
+        "name": "container"
+      }
+    },
+    {
+      "tag": "sqh-text-component",
+      "dependencies": [],
+      "componentClass": "TextComponent",
+      "componentPath": "components/text-component/text-component.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/text-component/text-component.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "background",
+          "type": "String",
+          "attr": "background"
+        },
+        {
+          "name": "color",
+          "type": "String",
+          "attr": "color"
+        },
+        {
+          "name": "fontfamily",
+          "type": "String",
+          "attr": "fontfamily"
+        },
+        {
+          "name": "fontsize",
+          "type": "String",
+          "attr": "fontsize"
+        },
+        {
+          "name": "height",
+          "type": "String",
+          "attr": "height"
+        },
+        {
+          "name": "ishidden",
+          "type": "Boolean",
+          "attr": "ishidden"
+        },
+        {
+          "name": "ismarkdown",
+          "type": "Boolean",
+          "attr": "ismarkdown"
+        },
+        {
+          "name": "padding",
+          "type": "String",
+          "attr": "padding"
+        },
+        {
+          "name": "paddingbottom",
+          "type": "String",
+          "attr": "paddingbottom"
+        },
+        {
+          "name": "paddingtop",
+          "type": "String",
+          "attr": "paddingtop"
+        },
+        {
+          "name": "text",
+          "type": "String",
+          "attr": "text"
+        },
+        {
+          "name": "textalign",
+          "type": "String",
+          "attr": "textalign"
+        }
+      ],
+      "hostElement": {
+        "name": "textEl"
+      }
+    }
+  ],
+  "collections": [],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "0.9.11",
+    "typescriptVersion": "2.9.2"
+  },
+  "bundles": []
+}
