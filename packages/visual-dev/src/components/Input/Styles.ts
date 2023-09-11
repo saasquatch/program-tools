@@ -5,15 +5,15 @@ export const InputBoxStyle = css`
   width: 100%;
   box-sizing: border-box;
   height: 36px;
-  text-indent: var(--sq-spacing-small);
+  text-indent: var(--sq-spacing-x-small);
   color: var(--sq-text);
   background: var(--sq-surface);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-size: var(--sq-font-size-regular);
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
 
-  border: 2px solid var(--sq-border);
+  border: 1px solid var(--sq-border);
   border-radius: var(--sq-border-radius-normal);
 
   &[type="date"] {
@@ -50,7 +50,7 @@ export const ExtrasDiv = css`
 `;
 
 export const invalid = css`
-  border: 2px solid var(--sq-border-critical);
+  border: 1px solid var(--sq-border-critical);
   border-radius: var(--sq-border-radius-normal);
 
   &:focus {

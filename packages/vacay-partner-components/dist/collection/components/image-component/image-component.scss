@@ -1,0 +1,12 @@
+sqh-image-component {
+  // sets default display type allowing component outline to appear
+  display: block;
+  div {
+    position: relative;
+  }
+    
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

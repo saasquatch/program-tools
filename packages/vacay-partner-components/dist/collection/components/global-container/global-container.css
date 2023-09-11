@@ -1,0 +1,86 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif; }
+
+sqh-global-container {
+  display: block;
+  max-width: 500px;
+  margin: 0 auto; }
+  sqh-global-container * {
+    box-sizing: border-box; }
+  sqh-global-container > div {
+    width: 100%;
+    display: block;
+    padding: 0 10px; }
+  sqh-global-container .sqh-attribution {
+    display: inherit;
+    text-align: center;
+    font-size: 10px;
+    color: lightgray;
+    text-decoration: none;
+    padding-bottom: 10px; }
+  sqh-global-container .container-loading {
+    display: none;
+    left: calc(50% - 50px);
+    position: absolute;
+    text-align: center;
+    top: 45%;
+    width: 100px; }
+  sqh-global-container:not(.hydrated) .container-loading {
+    display: block;
+    visibility: visible; }
+  sqh-global-container .loading-icon {
+    border-radius: 50%;
+    height: 50px;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    top: 45%;
+    z-index: 1000; }
+  sqh-global-container .loading-icon-tr .loading-icon {
+    position: relative;
+    top: 0; }
+  sqh-global-container .bar1 {
+    border: 6px solid rgba(9, 163, 212, 0.4);
+    border-radius: 50%;
+    border-left: 6px solid #FFF; }
+  sqh-global-container .loading-icon > div {
+    height: 40px;
+    margin: 1px;
+    width: 40px;
+    display: inline-block;
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-circle 1.2s infinite linear; }
+  sqh-global-container .loading-icon .bar2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s; }
+  sqh-global-container .loading-icon .bar3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s; }
+  sqh-global-container .loading-icon .bar4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s; }
+  sqh-global-container .loading-icon .bar5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s; }
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4); }
+  20% {
+    -webkit-transform: scaleY(1); } }
+
+@keyframes sk-circle {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4); }
+  20% {
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1); } }

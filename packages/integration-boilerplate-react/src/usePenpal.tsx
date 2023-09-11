@@ -49,6 +49,7 @@ interface DisplayConfiguration<IntegrationConfig, FormConfig> {
   integrationConfig: IntegrationConfig;
   formConfig?: FormConfig;
   formType?: "submit_actions" | "initial_data_actions";
+  flavor: string;
 }
 
 type IntegrationConfigPatch = Array<{ op: string; path: string; value?: any }>;
@@ -89,6 +90,7 @@ interface PenpalContextConnectedState<IntegrationConfig, FormConfig> {
   tenantAlias: string;
   integrationConfig: Partial<IntegrationConfig>;
   formConfig: Partial<FormConfig>;
+  flavor: string;
 }
 
 type PenpalContextState<IntegrationConfig, FormConfig> =
@@ -250,6 +252,7 @@ export function PenpalContextProvider<
             integrationConfig,
             formConfig,
             formType,
+            flavor,
           }: DisplayConfiguration<IntegrationConfig, FormConfig>) {
             let mode = ConfigMode.Unknown;
 
@@ -277,6 +280,7 @@ export function PenpalContextProvider<
               tenantAlias,
               integrationConfig,
               formConfig: formConfig || {},
+              flavor,
             });
           },
 

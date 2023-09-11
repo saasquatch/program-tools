@@ -30,7 +30,7 @@ jobs:
       - name: Node Setup
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version-file: "packages/visual-dev/package.json"
 
       - name: Install npm dependencies
         run: cd packages/visual-dev && npm install

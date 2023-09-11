@@ -1,0 +1,10 @@
+sqh-close-button .squatch-header-close {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  background: transparent;
+  border: 0;
+  color: #4486e1;
+  font-size: 12px; }
+  sqh-close-button .squatch-header-close:hover {
+    text-decoration: underline; }

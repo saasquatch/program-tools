@@ -5,9 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2023-06-28
+
+### Changed
+
+- Hot reload now keeps the selected story in view
+- Added URL param that represented the current selected story key
+- Removed bottom right layout/screen width options
+
 ## [1.0.1] - 2023-04-20
 
 ### Changed
+
 - Updated license copyright to be in line with SaaSquatch open-source policy.
 
 ## [1.0.0] - 2021-05-26

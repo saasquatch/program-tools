@@ -1,14 +1,18 @@
-import { useProgramId, useTick, useHost } from '@saasquatch/component-boilerplate';
-import { useRef, useEffect } from '@saasquatch/universal-hooks';
-import { SlMenu, SlMenuItem } from '@shoelace-style/shoelace';
-import { ProgramMenu } from './sqm-program-menu';
-import debugFn from 'debug';
+import {
+  useProgramId,
+  useTick,
+  useHost,
+} from "@saasquatch/component-boilerplate";
+import { useRef, useEffect } from "@saasquatch/universal-hooks";
+import { SlMenu, SlMenuItem } from "@saasquatch/shoelace";
+import { ProgramMenu } from "./sqm-program-menu";
+import debugFn from "debug";
 
-const debug = debugFn('sq:useProgramMenu');
+const debug = debugFn("sq:useProgramMenu");
 
 type SelectEvent = Event & { detail?: { item: SlMenuItem } };
 
-const UPDATE_PROGRAM_EVENT = 'sq:update-program-id';
+const UPDATE_PROGRAM_EVENT = "sq:update-program-id";
 
 export function useProgramMenu(props: ProgramMenu) {
   const programId = useProgramId();
@@ -19,7 +23,7 @@ export function useProgramMenu(props: ProgramMenu) {
   const [, rerender] = useTick();
 
   useEffect(() => {
-    ref.current?.addEventListener('sl-select', (e: SelectEvent) => {
+    ref.current?.addEventListener("sl-select", (e: SelectEvent) => {
       const programId = e.detail.item.value;
       // setProgramId(programId);
       host.dispatchEvent(
@@ -27,7 +31,7 @@ export function useProgramMenu(props: ProgramMenu) {
           detail: programId,
           bubbles: true,
           composed: true,
-        }),
+        })
       );
     });
   }, [ref.current]);

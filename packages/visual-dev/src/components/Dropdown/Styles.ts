@@ -19,7 +19,7 @@ export const DropdownSublistDiv = css`
   border-radius: inherit;
   user-select: none;
   color: var(--sq-text);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
@@ -37,9 +37,9 @@ export const ButtonDiv = css`
   display: flex;
   user-select: none;
   padding: 7px 12px;
-  border: 2px solid var(--sq-border);
+  border: 1px solid var(--sq-border);
   color: var(--sq-text);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
@@ -52,7 +52,7 @@ export const ContentDiv = css`
   min-width: inherit;
   z-index: 100;
   background: #ffffff;
-  border: 2px solid var(--sq-text-interactive);
+  border: 1px solid var(--sq-text-interactive);
   box-sizing: border-box;
   &:empty {
     border: none;
@@ -63,7 +63,7 @@ export const ItemDiv = css`
   padding: var(--sq-spacing-x-small) var(--sq-spacing-small);
   cursor: pointer;
   color: var(--sq-text);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);

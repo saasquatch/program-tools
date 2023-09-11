@@ -3,7 +3,7 @@
 // Source / https://loading.io/css/
 
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { CSSProp, keyframes } from "styled-components";
 
 export interface RingProps {
   /**
@@ -30,6 +30,10 @@ export interface RingProps {
    * Spinner margin
    */
   margin?: string;
+  /**
+   * Additional custom CSS
+   */
+  customCSS?: CSSProp;
 }
 
 const rotate = keyframes`
@@ -72,18 +76,19 @@ const RingSmall = styled(RingDefault)<RingProps>`
   right: ${(props) => props.right || `2px`};
   left: ${(props) => props.left || `unset`};
   padding-right: ${(props) => props.paddingRight || `unset`};
+  ${(props) => props.customCSS}
   div {
     width: 14px;
     height: 14px;
     margin: 3px;
-    border: 2px solid ${(props) => props.color || `#f5a623`};
-    border-color: ${(props) => props.color || `#f5a623`} transparent transparent
-      transparent;
+    border: 2px solid ${(props) => props.color || `var(--sq-loading)`};
+    border-color: ${(props) => props.color || `var(--sq-loading)`} transparent
+      transparent transparent;
   }
 `;
 
-export const LoadingSpinner = ({ ...props }: RingProps) => {
-  const { bottom, right, left, paddingRight, color } = props;
+const SmallSpinner = ({ ...props }: RingProps) => {
+  const { bottom, right, left, paddingRight, color, customCSS } = props;
   return (
     <RingSmall
       bottom={bottom}
@@ -91,6 +96,7 @@ export const LoadingSpinner = ({ ...props }: RingProps) => {
       left={left}
       paddingRight={paddingRight}
       color={color}
+      customCSS={customCSS}
     >
       <div></div>
       <div></div>
@@ -119,16 +125,23 @@ const RingLarge = styled(RingDefault)<RingProps>`
   div {
     width: 55px;
     height: 55px;
-    border: 6px solid ${(props) => props.color || `#f5a623`};
-    border-color: ${(props) => props.color || `#f5a623`} transparent transparent
-      transparent;
+    border: 6px solid ${(props) => props.color || `var(--sq-loading)`};
+    border-color: ${(props) => props.color || `var(--sq-loading)`} transparent
+      transparent transparent;
   }
 `;
 
-export const LoadingSpinnerLarge = ({ ...props }: RingProps) => {
-  const { color, margin } = props;
+const LoadingSpinnerLarge = ({ ...props }: RingProps) => {
+  const { bottom, right, left, paddingRight, color, customCSS } = props;
   return (
-    <RingLarge color={color} margin={margin}>
+    <RingLarge
+      bottom={bottom}
+      right={right}
+      left={left}
+      paddingRight={paddingRight}
+      color={color}
+      customCSS={customCSS}
+    >
       <div></div>
       <div></div>
       <div></div>
@@ -153,14 +166,22 @@ const TableSpinnerStyle = styled(RingDefault)<RingProps>`
   div {
     width: 55px;
     height: 55px;
-    border: 6px solid #f5a623;
-    border-color: #f5a623 transparent transparent transparent;
+    border: 6px solid var(--sq-loading);
+    border-color: var(--sq-loading) transparent transparent transparent;
   }
 `;
 
-export const TableSpinner = () => {
+const TableSpinner = (props: RingProps) => {
+  const { bottom, right, left, paddingRight, color, customCSS } = props;
   return (
-    <TableSpinnerStyle>
+    <TableSpinnerStyle
+      bottom={bottom}
+      right={right}
+      left={left}
+      paddingRight={paddingRight}
+      color={color}
+      customCSS={customCSS}
+    >
       <div></div>
       <div></div>
       <div></div>
@@ -183,12 +204,12 @@ const TableInitialSpinnerStyle = styled(RingDefault)`
   div {
     width: 55px;
     height: 55px;
-    border: 6px solid #f5a623;
-    border-color: #f5a623 transparent transparent transparent;
+    border: 6px solid var(--sq-loading);
+    border-color: var(--sq-loading) transparent transparent transparent;
   }
 `;
 
-export const TableInitialLoad = () => {
+const TableInitialLoad = () => {
   return (
     <tr style={{ height: "160px" }}>
       <TableInitialSpinnerStyle>
@@ -199,4 +220,11 @@ export const TableInitialLoad = () => {
       </TableInitialSpinnerStyle>
     </tr>
   );
+};
+
+export const LoadingSpinner = {
+  Normal: SmallSpinner,
+  Large: LoadingSpinnerLarge,
+  TableInitial: TableInitialLoad,
+  Table: TableSpinner,
 };

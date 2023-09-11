@@ -4,8 +4,14 @@ import { IconView } from "../Icon";
 
 export default {
   title: "Components / Alert",
-  component: AlertView,
+  component: AlertView
 };
+
+export const default_style = () => (
+  <AlertView type="default_style" title="A default alert">
+    An explanation of what this alert is in multiple lines.
+  </AlertView>
+);
 
 export const critical = () => (
   <AlertView type="critical" title="A critical alert">
@@ -45,6 +51,29 @@ export const info = () => (
     An explanation of what this alert is in multiple lines.
   </AlertView>
 );
+
+export const infoStyle = () => (
+  <AlertView type="info" title="An info alert">
+    An explanation of what this alert is
+    <br />
+    in multiple lines.
+  </AlertView>
+);
+
+export const infoNoTitleSingleLines = () => (
+  <AlertView type="info">
+    An explanation of what this alert is a single line.
+  </AlertView>
+);
+
+export const infoNoTitleMultipleLines = () => (
+  <AlertView type="info">
+    An explanation of what this alert is
+    <br />
+    in multiple lines.
+  </AlertView>
+);
+
 export const customCSS = () => (
   <AlertView
     type="success"

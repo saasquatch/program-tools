@@ -719,6 +719,116 @@ export const TaskCardEnded = () => {
   );
 };
 
+export const TaskCardButtonHidden = () => {
+  const expire = {
+    rewardDuration: "2021-11-30T08:00:00.000Z/2021-12-01T08:00:00.000Z",
+  };
+  const expireRepeat = { ...expire, repeatable: true };
+  return (
+    <div style={storyFrame}>
+      <Resizer>
+        <h4>Not Repeatable</h4>
+        <TaskCardView
+          {...oneAction}
+          content={{ ...oneAction.content, description: "", hideButton: true }}
+          states={{ ...oneAction.states, progress: 0 }}
+        />
+        <h5 />
+        <TaskCardView
+          {...coupleActions}
+          content={{
+            ...coupleActions.content,
+            description: "",
+            hideButton: true,
+          }}
+          states={{ ...coupleActions.states, progress: 0 }}
+        />
+        <h5 />
+        <TaskCardView
+          {...manyActions}
+          content={{
+            ...manyActions.content,
+            description: "",
+            hideButton: true,
+          }}
+          states={{ ...manyActions.states, progress: 230 }}
+        />
+      </Resizer>
+      <Resizer>
+        <h4>Repeatable</h4>
+        <TaskCardView
+          {...oneAction}
+          content={{ ...oneAction.content, repeatable: true, hideButton: true }}
+          states={{ ...oneAction.states, progress: 2 }}
+        />
+        <h5 />
+        <TaskCardView
+          {...coupleActions}
+          content={{
+            ...coupleActions.content,
+            repeatable: true,
+            hideButton: true,
+          }}
+          states={{ ...coupleActions.states, progress: 7 }}
+        />
+        <h5 />
+        <TaskCardView
+          {...manyActions}
+          content={{
+            ...manyActions.content,
+            repeatable: true,
+            hideButton: true,
+          }}
+          states={{ ...manyActions.states, progress: 650 }}
+        />
+      </Resizer>
+      <Resizer>
+        <h4>Complete</h4>
+        <TaskCardView
+          {...oneAction}
+          content={{ ...oneAction.content, hideButton: true }}
+          states={{ ...oneAction.states, progress: 1 }}
+        />
+        <h5 />
+        <TaskCardView
+          {...coupleActions}
+          content={{ ...coupleActions.content, hideButton: true }}
+          states={{ ...coupleActions.states, progress: 5 }}
+        />
+        <h5 />
+        <TaskCardView
+          {...manyActions}
+          content={{ ...manyActions.content, hideButton: true }}
+          states={{ ...manyActions.states, progress: 500 }}
+        />
+      </Resizer>
+      <Resizer>
+        <h4>Unavailable</h4>
+        <TaskCardView
+          {...oneAction}
+          content={{ ...oneAction.content, hideButton: true }}
+          states={{ ...oneAction.states, progress: 0 }}
+          {...expireRepeat}
+        />
+        <h5 />
+        <TaskCardView
+          {...coupleActions}
+          content={{ ...coupleActions.content, hideButton: true }}
+          states={{ ...coupleActions.states, progress: 3 }}
+          {...expireRepeat}
+        />
+        <h5 />
+        <TaskCardView
+          {...manyActions}
+          content={{ ...manyActions.content, hideButton: true }}
+          states={{ ...manyActions.states, progress: 250 }}
+          {...expireRepeat}
+        />
+      </Resizer>
+    </div>
+  );
+};
+
 export const ProgressBar = () => {
   const props = {
     progress: 0,

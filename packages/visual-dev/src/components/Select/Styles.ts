@@ -27,14 +27,14 @@ export const ItemDisabled = css`
 
 export const ItemContainer = css`
   position: absolute;
-  z-index: 100;
+  z-index: 9;
   box-sizing: border-box;
   list-style-type: none;
   width: 100%;
   padding: 0;
   margin: 0;
   background: var(--sq-surface);
-  border: 2px solid var(--sq-focused);
+  border: 1px solid var(--sq-focused);
   border-radius: 0 0 var(--sq-border-radius-normal)
     var(--sq-border-radius-normal);
   border-top: none;
@@ -83,11 +83,11 @@ export const SelectInputStyle = css`
   text-indent: 6px;
   color: var(--sq-text);
   background: var(--sq-surface);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-size: var(--sq-font-size-regular);
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
-  border: 2px solid var(--sq-border);
+  border: 1px solid var(--sq-border);
   // border-radius: var(--sq-border-radius-normal);
   padding: 1px var(--sq-spacing-x-small);
 
@@ -151,7 +151,7 @@ export const LabelSpan = css`
 
 export const ComboboxContainerDiv = css`
   display: flex;
-  border: 2px solid var(--sq-border);
+  border: 1px solid var(--sq-border);
   border-radius: var(--sq-border-radius-normal);
   flex-wrap: wrap;
   &:focus {

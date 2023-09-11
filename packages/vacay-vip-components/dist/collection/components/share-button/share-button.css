@@ -1,0 +1,52 @@
+sqh-share-button {
+  display: inline-block; }
+  sqh-share-button .squatch-share-btn {
+    display: block;
+    text-align: center;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    border-radius: 4px;
+    width: 140px;
+    margin: 5px; }
+    sqh-share-button .squatch-share-btn .share-btn-text {
+      text-align: center;
+      padding-left: 30px; }
+    sqh-share-button .squatch-share-btn:focus {
+      outline: 0; }
+    sqh-share-button .squatch-share-btn.disabled, sqh-share-button .squatch-share-btn[disabled],
+    fieldset[disabled] sqh-share-button .squatch-share-btn {
+      cursor: not-allowed;
+      pointer-events: none;
+      opacity: .65;
+      -webkit-box-shadow: none;
+      box-shadow: none; }
+  sqh-share-button a {
+    position: relative;
+    text-decoration: none; }
+    sqh-share-button a .icon {
+      position: absolute;
+      left: 10px;
+      top: 6px;
+      width: 16px; }
+    sqh-share-button a:before {
+      bottom: -1px;
+      background: rgba(255, 255, 255, 0.18);
+      content: '';
+      left: -1px;
+      position: absolute;
+      top: -1px;
+      width: 40px; }
+
+@media (max-width: 499px) {
+  sqh-share-button {
+    display: block; } }
+
+@media (max-width: 499px) {
+  sqh-share-button .squatch-share-btn {
+    margin: 5px 0px;
+    width: auto; } }
