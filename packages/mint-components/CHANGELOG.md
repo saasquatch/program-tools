@@ -7,8 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.6.10] - 2023-05-18
+## [1.7.0] - 2023-09-11
+
 ### Changed
+
+- Change powered by link
+
+## [1.6.10] - 2023-05-18
+
+### Changed
+
 - `@saasquatch/component-boilerplate` package bump
 
 ## [1.6.9] - 2023-05-16
@@ -685,7 +693,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.9...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.7.0...HEAD
+[1.7.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.0
 [1.6.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.9
 [1.6.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.8
 [1.6.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.7
