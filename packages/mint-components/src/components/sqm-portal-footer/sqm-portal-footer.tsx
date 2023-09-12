@@ -45,7 +45,7 @@ export class PortalFooter {
    */
   @Prop() faqText?: string;
   /**
-   * @uiName Hide powered by SaaSquatch
+   * @uiName Hide powered with SaaSquatch by Impact.com
    */
   @Prop() hidePoweredBy: boolean = false;
   /**
