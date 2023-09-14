@@ -2,6 +2,8 @@ import * as React from "react";
 import styled, { CSSProp } from "styled-components";
 import root from "react-shadow/styled-components";
 import * as Styles from "./Styles";
+import { wrapWc } from "../../wc-react";
+import { wcBoolean } from "../../utlis";
 
 type SwitchProps = Partial<
   Omit<React.ComponentProps<"input">, "value" | "css" | "label">
@@ -40,21 +42,8 @@ const SwitchContainerDiv = styled.div<Required<StyleProps>>`
   ${(props) => props.customCSS}
 `;
 
-const SwitchButtonLabel = styled.label`
-  ${Styles.base}
-`;
 
-const SwitchBackgroundInput = styled.input<Required<{ color: string }>>`
-  ${Styles.off}
-  &:checked + ${SwitchButtonLabel} {
-    ${(props) =>
-      props.color === "critical" ? Styles.critical : Styles.success}
-    ${Styles.on}
-  }
-`;
-
-const ShadowDom = styled(root.div)`
-  display: contents;
+const UICLSwitch = styled(wrapWc("uicl-checkbox"))`
 `;
 
 export const SwitchView = React.forwardRef<
@@ -72,20 +61,18 @@ export const SwitchView = React.forwardRef<
   } = props;
 
   return (
-    <ShadowDom>
-      <SwitchContainerDiv customCSS={customCSS}>
-        <SwitchBackgroundInput
+  <SwitchContainerDiv customCSS={customCSS}>
+        <UICLSwitch
           {...rest}
           color={color}
-          checked={value || checked}
           type="checkbox"
+          modelValue={value || checked ? "true" : null}
+          isToggleDisplay={wcBoolean(true)}
+          update:model-value={(e: any) => onChange(e)}
           id={id}
           ref={forwardedRef}
-          onChange={onChange}
         />
-        <SwitchButtonLabel htmlFor={id} />
-      </SwitchContainerDiv>
-    </ShadowDom>
+  </SwitchContainerDiv>
   );
 });
 
