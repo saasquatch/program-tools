@@ -2,8 +2,6 @@ import root from "react-shadow/styled-components";
 import styled, { CSSProp } from "styled-components";
 import { IconKey, IconView } from "../Icon";
 import React from "react";
-//@ts-ignore
-import { register } from "@impactinc/ui-component-library/web-components";
 import { wcBoolean } from "../../utlis";
 import { wrapWc } from "../../wc-react";
 import * as Styles from "./Styles";
@@ -125,9 +123,6 @@ export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
       ...rest
     } = props;
 
-    if (customElements.get("uicl-text-input") === undefined) {
-      register();
-    }
     return (
       <StyleWrapperDiv
         customContainerCSS={customContainerCSS}

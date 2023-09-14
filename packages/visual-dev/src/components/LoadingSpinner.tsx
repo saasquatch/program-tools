@@ -1,9 +1,7 @@
-//@ts-check
-
 // Source / https://loading.io/css/
 
 import React from "react";
-import styled, { CSSProp, keyframes } from "styled-components";
+import styled, { CSSProp, css, keyframes } from "styled-components";
 
 export interface RingProps {
   /**
@@ -106,52 +104,53 @@ const SmallSpinner = ({ ...props }: RingProps) => {
   );
 };
 
-// LARGE SPINNER FOR METRICS CARD
-const RingLarge = styled(RingDefault)<RingProps>`
+const UICLDotReset = css`
+  uicl-loading-dots::part(animation){
+    height: 88px;
+    width: 88px;
+  }
+
+  uicl-loading-dots::part(base){
+    margin-top:0;
+    margin-left:0;
+  }
+`
+
+const RingLargeStyleDiv = styled.div<RingProps>`
   margin: ${(props) => props.margin || "55px calc(50% - 25px)"};
   opacity: 0.5;
-
   bottom: ${(props) => props.bottom || `14px`};
   right: ${(props) => props.right || `2px`};
   left: ${(props) => props.left || `unset`};
   padding-right: ${(props) => props.paddingRight || `unset`};
-
-  width: 80px;
-  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  div {
-    width: 55px;
-    height: 55px;
-    border: 6px solid ${(props) => props.color || `var(--sq-loading)`};
-    border-color: ${(props) => props.color || `var(--sq-loading)`} transparent
-      transparent transparent;
-  }
+  ${UICLDotReset}
 `;
+
 
 const LoadingSpinnerLarge = ({ ...props }: RingProps) => {
   const { bottom, right, left, paddingRight, color, customCSS } = props;
   return (
-    <RingLarge
-      bottom={bottom}
-      right={right}
-      left={left}
-      paddingRight={paddingRight}
-      color={color}
-      customCSS={customCSS}
-    >
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </RingLarge>
+    <RingLargeStyleDiv
+    bottom={bottom}
+    right={right}
+    left={left}
+    paddingRight={paddingRight}
+    color={color}
+    customCSS={customCSS}>
+    <uicl-loading-dots
+      x-offset="0"
+      y-offset="0"
+      position="static"
+    />
+      </RingLargeStyleDiv>
   );
 };
 
 // TODO: center this spinner based on the height of the parent container... you know, with magic.
-const TableSpinnerStyle = styled(RingDefault)<RingProps>`
+const TableStyleDiv = styled.div<RingProps>`
   position: absolute;
   top: 0;
   left: 0;
@@ -159,39 +158,32 @@ const TableSpinnerStyle = styled(RingDefault)<RingProps>`
   justify-content: center;
   align-items: center;
   background-color: rgb(255, 255, 255, 0.5);
+  z-index: 4;
   width: 100%;
   height: 100%;
-  z-index: 4;
-
-  div {
-    width: 55px;
-    height: 55px;
-    border: 6px solid var(--sq-loading);
-    border-color: var(--sq-loading) transparent transparent transparent;
-  }
+  ${UICLDotReset}
 `;
 
 const TableSpinner = (props: RingProps) => {
   const { bottom, right, left, paddingRight, color, customCSS } = props;
   return (
-    <TableSpinnerStyle
-      bottom={bottom}
-      right={right}
-      left={left}
-      paddingRight={paddingRight}
-      color={color}
-      customCSS={customCSS}
-    >
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </TableSpinnerStyle>
+    <TableStyleDiv       bottom={bottom}
+    right={right}
+    left={left}
+    paddingRight={paddingRight}
+    color={color}
+    customCSS={customCSS}>
+    <uicl-loading-dots
+
+      x-offset="0"
+      y-offset="0"
+      position="static"
+    />
+      </TableStyleDiv>
   );
 };
 
-const TableInitialSpinnerStyle = styled(RingDefault)`
-  height: 160px;
+const TableInitialStyleDiv = styled.tr`
   background: transparent;
   position: absolute;
   left: 0;
@@ -200,25 +192,20 @@ const TableInitialSpinnerStyle = styled(RingDefault)`
   align-items: center;
   width: 100%;
   z-index: 4;
-
-  div {
-    width: 55px;
-    height: 55px;
-    border: 6px solid var(--sq-loading);
-    border-color: var(--sq-loading) transparent transparent transparent;
-  }
+  height: 160px;
+  ${UICLDotReset}
 `;
 
 const TableInitialLoad = () => {
   return (
-    <tr style={{ height: "160px" }}>
-      <TableInitialSpinnerStyle>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </TableInitialSpinnerStyle>
-    </tr>
+    <TableInitialStyleDiv>
+      <uicl-loading-dots
+      x-offset="0"
+      y-offset="0"
+      position="static"
+      />
+
+    </TableInitialStyleDiv>
   );
 };
 
