@@ -84,8 +84,6 @@ const SVGStyleSpan = styled.span<Required<StyleProps>>`
 
   ${Styles.base}
 
-  color: pink !important;
-
   color: ${(props) => props.color};
   width: ${(props) =>
     default_size.hasOwnProperty(props.size)
