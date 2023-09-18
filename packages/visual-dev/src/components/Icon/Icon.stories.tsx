@@ -4,7 +4,7 @@ import { IconView } from ".";
 
 export default {
   title: "Components / Icon",
-  component: IconView
+  component: IconView,
 };
 
 export const add = () => <IconView icon={"add"} />;
@@ -17,6 +17,30 @@ export const CSSCustom = () => (
   <IconView
     customCSS="color: red; width: 50px; height: 50px; margin-left: 50px;"
     icon={"add"}
+  />
+);
+
+export const Impact = () => <IconView icon="impact" iconSet="impact" />;
+export const ImpactSizeSmall = () => (
+  <IconView size="small" icon="impact" iconSet="impact" />
+);
+export const ImpactSizeMedium = () => (
+  <IconView size="medium" icon="impact" iconSet="impact" />
+);
+export const ImpactSizeLarge = () => (
+  <IconView size="large" icon="impact" iconSet="impact" />
+);
+export const ImpactSizeBadge = () => (
+  <IconView size="badge" icon="impact" iconSet="impact" />
+);
+export const ImpactSizeCustom = () => (
+  <IconView size="88px" icon="impact" iconSet="impact" />
+);
+export const ImpactCSSCustom = () => (
+  <IconView
+    customCSS="color: red; width: 50px; height: 50px; margin-left: 50px;"
+    icon="impact"
+    iconSet="impact"
   />
 );
 
@@ -75,7 +99,7 @@ export const tooltipCustomCSS = () => (
       tooltipCustomCSS={{
         fontSize: "20px",
         fontWeight: "bold",
-        textAlign: "center"
+        textAlign: "center",
       }}
     />
   </TestTooltipDiv>

@@ -6,7 +6,7 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    "@storybook/addon-coverage"
+    "@storybook/addon-coverage",
   ],
   framework: {
     name: "@storybook/react-vite",
@@ -15,5 +15,11 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
+  staticDirs: [
+    {
+      from: "../node_modules/@impactinc/ui-component-library/dist",
+      to: "/",
+    },
+  ],
 };
 export default config;
