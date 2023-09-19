@@ -74,8 +74,8 @@ export const CheckboxView = React.forwardRef<HTMLElement, InputProps>(
             <UICLCheckbox
               id={id}
               isReadOnly={wcBoolean(disabled)}
-              modelValue={value ? "true" : null}
               ref={forwardedRef}
+              modelValue={value ? "true" : null}
               update:model-value={(e: any) => onChange(e)}
               {...rest}
             />
