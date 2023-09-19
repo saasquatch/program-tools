@@ -79,12 +79,13 @@ export const IconButtonView = React.forwardRef<
       <uicl-btn
         {...rest}
         ref={forwardedRef}
+        style={{display:"block"}}
         className={primary ? "primary" : "secondary"}
       >
         <IconView
           icon={icon}
           size={Styles.icon_only_size[size]}
-          style={{ display: "block" }}
+          style={{ display: "flex" }}
           customCSS={icon_css}
           cursor={"inherit"}
         />

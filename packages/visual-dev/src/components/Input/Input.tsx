@@ -1,4 +1,3 @@
-import root from "react-shadow/styled-components";
 import styled, { CSSProp } from "styled-components";
 import { IconKey, IconView } from "../Icon";
 import React from "react";
@@ -68,15 +67,11 @@ export interface OptionProps {
   limitWidth?: InputWidthType;
 }
 
-const StyledInput = styled.input<{
 
-}>`
-
-`;
 
 const ExtrasDiv = styled.div<{ position: string }>`
   ${Styles.ExtrasDiv}
-  ${(props) => (props.position == "left" ? "left: 12px;" : "right: 12px;")}
+  ${(props) => (props.position == "left" ? "left: 12px;" : "right: 18px;")}
 `;
 
 
@@ -95,6 +90,11 @@ const StyleWrapperDiv = styled.div<{
         : "max-width: 226px;"
       : "max-width: 100%;"}
   ${(props) => props.customContainerCSS}
+
+  uicl-text-input, uicl-text-input::part(base) {
+    width: 100%;
+    box-sizing: border-box;
+  }
 
   uicl-text-input::part(input) {
     color: "red";
@@ -136,12 +136,13 @@ export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
           <UICLTextInput
             {...rest}
             ref={forwardedRef}
-            field-name="args.fieldName"
-            is-auto-width={wcBoolean(false)}
-            is-disabled={disabled}
-            is-read-only={wcBoolean(disabled || false)}
+            isAutoWidth={wcBoolean(false)}
+            isDisabled={wcBoolean(disabled)}
+            isReadOnly={wcBoolean(disabled || false)}
             innerTextLeft={innerTextLeft}
             innerTextRight={innerTextRight}
+            validationFail={rawErrors ? "" : null}
+            maxLength={1000}
             size="20"
             type="text"
           ></UICLTextInput>
