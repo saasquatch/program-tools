@@ -122,6 +122,8 @@ export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
       disabled = false,
       innerTextLeft = null,
       innerTextRight = null,
+      onChange,
+      value,
       ...rest
     } = props;
 
@@ -143,6 +145,8 @@ export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
             innerTextRight={innerTextRight}
             validationFail={rawErrors ? "" : null}
             maxLength={1000}
+            modelValue={value}
+            update:model-value={(e: any) => onChange(e)}
             size="20"
             type="text"
           ></UICLTextInput>

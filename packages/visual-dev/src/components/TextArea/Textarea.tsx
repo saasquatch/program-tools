@@ -1,7 +1,8 @@
-import root from "react-shadow/styled-components";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import React from "react";
+import { wrapWc } from "../../wc-react";
+import { wcBoolean } from "../../utlis";
 
 type TextareaProps = OptionProps & Partial<React.ComponentProps<"textarea">>;
 
@@ -38,32 +39,35 @@ export interface OptionProps {
   height?: string;
 }
 
-const ShadowDom = styled(root.div)`
-  display: contents;
-`;
-
-const StyledTextarea = styled.textarea<{
-  isInvalid: boolean;
-  customCSS: CSSProp;
-}>`
-  ${Styles.TextareaBoxStyle}
-  ${(props) => (props.isInvalid ? Styles.invalid : "")}
-  ${(props) => props.customCSS}
-`;
-
 const ContainerDiv = styled.div<{
   limitWidth: TextareaSizeType;
-  height: string;
+  initialHeight: string;
+  customCSS: CSSProp;
 }>`
   ${Styles.Container}
+  ${(props) => `height: ${props.initialHeight};`}
   ${(props) =>
     props.limitWidth
       ? typeof props.limitWidth === "string"
         ? `max-width: ${props.limitWidth};`
         : "max-width: 300px;"
       : "max-width: 100%;"}
-  ${(props) => `height: ${props.height}`}
+
+  uicl-text-area {
+    height: 100%
+  }
+
+  uicl-text-area::part(base){
+    height: 100%
+  }
+
+  uicl-text-area::part(input){
+    ${(props) => props.customCSS}
+  }
 `;
+
+const UICLTextInput = wrapWc("uicl-text-area");
+
 
 export const TextareaView = React.forwardRef<
   React.ElementRef<"textarea">,
@@ -74,21 +78,32 @@ export const TextareaView = React.forwardRef<
     customCSS = {},
     limitWidth = true,
     height = "48px",
-    required = false,
+    disabled = false,
+    placeholder,
+    value,
+    onChange,
     ...rest
   } = props;
+
+  console.log(height)
+  console.log(limitWidth)
   return (
-    <ShadowDom>
-      <ContainerDiv height={height} limitWidth={limitWidth}>
-        <StyledTextarea
+      <ContainerDiv
+        customCSS={customCSS}
+        initialHeight={height}
+        limitWidth={limitWidth}
+      >
+        <UICLTextInput
           {...rest}
           ref={forwardedRef}
-          isInvalid={rawErrors}
-          customCSS={customCSS}
-          required={required}
+          isDisabled={wcBoolean(disabled)}
+          isReadOnly={wcBoolean(disabled || false)}
+          placeholder={placeholder}
+          modelValue={value}
+          update:model-value={(e: any) => onChange(e)}
+          validationFail={rawErrors ? "" : null}
         />
       </ContainerDiv>
-    </ShadowDom>
   );
 });
 
