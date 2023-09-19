@@ -85,7 +85,8 @@ export const primary = {
 
     &:disabled {
       cursor: not-allowed;
-      color: var(--sq-text-on-primary-disabled);
+      // color: var(--sq-text-on-primary-disabled);
+      color: red;
       background: var(--sq-action-primary-disabled);
       &:hover {
         box-shadow: none;
@@ -216,21 +217,18 @@ export const icon = {
     border: 1px solid var(--sq-action-secondary-border);
 
     color: var(--sq-text-on-secondary);
-    background: var(--sq-action-secondary);
+    background: var(--sq-surface);
 
-    &:hover {
-      color: var(--sq-text-on-secondary-hovered);
-      background: var(--sq-action-secondary-hovered);
-    }
+    // &:hover {
+    //   color: var(--sq-text-on-secondary-hovered);
+    //   background: var(--sq-action-secondary-hovered);
+    // }
 
     &:disabled {
       cursor: not-allowed;
-      color: var(--sq-action-primary-disabled);
-      border-color: var(--sq-action-primary-disabled);
-      &:hover {
-        color: var(--sq-action-primary-disabled);
-        background: var(--sq-action-secondary);
-      }
+      color: var(--iui-bleakest-gray);
+      border-color: var(--iui-bleakest-gray);
+      background: var(--sq-action-primary-disabled);
     }
   `,
   mini: css`

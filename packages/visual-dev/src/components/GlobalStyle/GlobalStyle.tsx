@@ -39,6 +39,7 @@ export const CSSVariables = createGlobalStyle`
   --sq-text-dark: var(--iui-darker-than-black);
   --sq-text-subdued: var(--iui-storm-gray);
   --sq-border: var(--iui-serenity-gray);
+  --sq-border-subdued: var(--iui-flash-gray);
 
   /* Loading */
   --sq-loading: var(--iui-strata-blue);

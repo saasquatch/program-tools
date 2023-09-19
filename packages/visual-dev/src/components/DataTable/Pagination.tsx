@@ -65,6 +65,10 @@ const ContainerDiv = styled.div`
   ${styles.PaginationContainer}
 `;
 
+const PageNumberContainerDiv = styled.div`
+  ${styles.PageNumberContainer}
+`;
+
 export const PaginationView = React.forwardRef<
   React.ElementRef<"div">,
   PopoverProps
@@ -103,61 +107,20 @@ export const PaginationView = React.forwardRef<
       ) : (
         <>
           {total !== null &&
-            `${total === 0 ? 0 : offset + 1} - ${Math.min(
+            `Displaying ${total === 0 ? 0 : offset + 1} - ${Math.min(
               offset + limit,
               total
             )} of ${total}`}
 
           <ContainerDiv>
-            <IconButtonView
-              borderless={true}
-              size="mini"
-              icon="chevron_left"
-              customCSS="margin: -3px; &:hover{background: none;}"
-              disabled={offset == 0}
-              onClick={() => {
-                updatePagination(limit, Math.max(offset - limit, 0));
-              }}
-            />
-
-            {filteredPages.map((p: number, i: number) => (
-              <React.Fragment key={`page-${i}`}>
-                {i != 0 && filteredPages[i - 1] + 1 != p && (
-                  <TextDiv style={{ cursor: "default" }}>...</TextDiv>
-                )}
-                <TextDiv
-                  selected={current_page === p}
-                  onClick={() => {
-                    updatePagination(limit, Math.max(limit * p, 0));
-                  }}
-                >
-                  {p + 1}
-                </TextDiv>
-              </React.Fragment>
-            ))}
-
-            <IconButtonView
-              size="mini"
-              icon="chevron_right"
-              borderless={true}
-              customCSS={`margin: -3px; &:hover{background: none;} ${
-                !hidePerPage && "margin-right: var(--sq-spacing-x-large);"
-              }`}
-              disabled={total != null ? offset + limit >= total : !hasNext}
-              onClick={() => {
-                updatePagination(limit, offset + limit);
-              }}
-            />
-
             {!hidePerPage && (
               <DropdownView
                 onClickDropdown={() => setDropdown(!dropdown)}
                 showMenu={dropdown}
                 center
-                pill
                 popUpwards
                 text={`${limit} Per Page`}
-                customCSS="min-width: 165px; width: 165px; display: inline-block; border-radius: 18px;"
+                customCSS="min-width: 125px; width: 125px; display: inline-block; border-radius: var(--sq-border-radius-normal);"
               >
                 <DropdownView.ItemView
                   onClick={() => {
@@ -185,6 +148,47 @@ export const PaginationView = React.forwardRef<
                 </DropdownView.ItemView>
               </DropdownView>
             )}
+            <PageNumberContainerDiv>
+              <IconButtonView
+                size="mini"
+                icon="chevron_left"
+                borderless={false}
+                circle={true}
+                customCSS="margin: -3px; display: flex; align-items: center; justify-content: center;border-radius: 50px; width: 30px; height: 30px;"
+                disabled={offset == 0}
+                onClick={() => {
+                  updatePagination(limit, Math.max(offset - limit, 0));
+                }}
+              />
+
+              {filteredPages.map((p: number, i: number) => (
+                <React.Fragment key={`page-${i}`}>
+                  {i != 0 && filteredPages[i - 1] + 1 != p && (
+                    <TextDiv style={{ cursor: "default" }}>...</TextDiv>
+                  )}
+                  <TextDiv
+                    selected={current_page === p}
+                    onClick={() => {
+                      updatePagination(limit, Math.max(limit * p, 0));
+                    }}
+                  >
+                    {p + 1}
+                  </TextDiv>
+                </React.Fragment>
+              ))}
+
+              <IconButtonView
+                size="mini"
+                icon="chevron_right"
+                borderless={false}
+                customCSS={`margin: -3px;display: flex; align-items: center; justify-content: center;border-radius: 50px; width: 30px; height: 30px; ${!hidePerPage &&
+                  "margin-right: var(--sq-spacing-x-large);"}`}
+                disabled={total != null ? offset + limit >= total : !hasNext}
+                onClick={() => {
+                  updatePagination(limit, offset + limit);
+                }}
+              />
+            </PageNumberContainerDiv>
           </ContainerDiv>
         </>
       )}

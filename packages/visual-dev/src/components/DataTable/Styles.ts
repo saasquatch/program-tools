@@ -43,15 +43,16 @@ export const DataTableDiv = css`
 export const Row = {
   row: css`
     background: var(--sq-surface);
-    border: 1px solid var(--sq-border);
+    border-bottom: 1px solid var(--sq-border-subdued);
     border-top: 0px;
     box-sizing: border-box;
   `,
   header: css`
     font-weight: var(--sq-font-weight-bold);
-    background: var(--sq-background);
-    border: 1px solid var(--sq-border);
+    background: var(--sq-surface);
+    border-bottom: 1px solid var(--sq-border);
     box-sizing: border-box;
+    min-height: 40px;
   `,
   extra: css`
     background: var(--sq-background);
@@ -83,7 +84,7 @@ export const ContentDiv = css`
   /* Body/Body Regular (14) */
 
   font-family: var(--sq-font-family-sans);
-  font-weight: var(--sq-font-weight-regular);
+  // font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
   /* identical to box height, or 143% */
@@ -116,7 +117,7 @@ export const PopoverDiv = css`
   border: 1px solid var(--sq-border);
   box-sizing: border-box;
   box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
+  // border-radius: 10px;
   div + div.action {
     margin-top: var(--sq-spacing-small);
   }
@@ -142,11 +143,10 @@ export const PopoverDividerDiv = css`
 
 export const PaginationDiv = css`
   display: flex;
-  background-color: var(--sq-background);
-  padding: var(--sq-spacing-xx-small) 20px;
+  padding: var(--sq-spacing-large) 0px;
   align-items: center;
-  background: var(--sq-background);
-  border: 1px solid var(--sq-border);
+  background: var(--sq-surface);
+  // border: 1px solid var(--sq-border);
   border-top: 0px;
   box-sizing: border-box;
   min-height: 42px;
@@ -169,4 +169,12 @@ export const PaginationContainer = css`
   display: flex;
   align-items: center;
   margin-left: auto;
+  gap: var(--sq-spacing-medium);
+`;
+
+export const PageNumberContainer = css`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: var(--sq-spacing-xxx-small);
 `;
