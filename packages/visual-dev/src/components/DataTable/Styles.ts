@@ -29,6 +29,20 @@ export const RowBase = css`
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
   color: var(--sq-text-dark);
+
+  & .actions-container {
+    visibility: hidden;
+    position: absolute;
+    transform: translateX(-10%);
+    right: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+    .actions-container {
+      visibility: visible;
+    }
+  }
 `;
 
 export const DataTableDiv = css`

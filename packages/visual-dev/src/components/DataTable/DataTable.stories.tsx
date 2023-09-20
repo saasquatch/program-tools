@@ -186,6 +186,46 @@ export const FormSubmissionTable = () => {
   );
 };
 
+export const FormSubmissionTableWithActionsSlot = () => {
+  return (
+    <>
+      <DataTableView.FilterView>
+        <Dropdown text="All Forms" customCSS="min-width: 112px;" />
+        <Dropdown text="Any Status" customCSS="min-width: 116px;" />
+        <Dropdown
+          text="30 Days"
+          icon="calendar"
+          customCSS="min-width: 142px;"
+        />
+      </DataTableView.FilterView>
+      <DataTableView
+        width="958px"
+        headerSlot={
+          <DataTableView.RowView variant="header">
+            {content_a}
+          </DataTableView.RowView>
+        }
+        footerSlot={
+          <DataTableView.PaginationView
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      >
+        <DataTableView.RowView actionsSlot={<div>ACTIONS SLOT</div>}>
+          {content_b}
+        </DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+      </DataTableView>
+    </>
+  );
+};
+
 export const FormSubmissionTableWithControllerMapping = () => {
   const headers = [
     <span style={{ flex: "1 1 100px", width: "100px" }}>Form</span>,

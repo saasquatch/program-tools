@@ -10,6 +10,10 @@ export interface OptionProps {
    * Content to display in row, one element per table cell
    */
   children?: any;
+  /**
+   * Optional prop used to show actions when a row is hovered
+   */
+  actionsSlot?: React.ReactNode;
 }
 
 export const TableRowView = React.forwardRef<
@@ -20,10 +24,9 @@ export const TableRowView = React.forwardRef<
     variant = "row",
     children,
     customCSS = {},
-
+    actionsSlot,
     ...rest
   } = props;
-
   return (
     <RowDiv
       variant={variant}
@@ -32,6 +35,7 @@ export const TableRowView = React.forwardRef<
       customCSS={customCSS}
     >
       {children}
+      <div className="actions-container">{actionsSlot && actionsSlot}</div>
     </RowDiv>
   );
 });
