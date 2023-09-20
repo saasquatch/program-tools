@@ -43,12 +43,22 @@ export interface StyleProps {
 
 const AlertDiv = styled.div<Required<StyleProps>>`
   ${Styles.AlertDiv}
-  ${props => Styles[props.type]}
-  ${props => props.customCSS}
+  ${(props) => Styles[props.type]}
+  ${(props) => props.customCSS}
+`;
+
+const ContentDiv = styled.div`
+  ${Styles.ContentDiv}
+`;
+
+const TitleSpan = styled.div`
+  ${Styles.TitleSpan}
 `;
 
 const icons = {
-  default_style: <IconView icon={"help"} color="var(--sq-text)" size="23px" />,
+  default_style: (
+    <IconView icon={"help"} color="var(--sq-action-primary)" size="23px" />
+  ),
   critical: (
     <IconView icon={"alert"} color="var(--sq-surface-critical)" size="23px" />
   ),
@@ -76,7 +86,7 @@ const icons = {
       size="23px"
     />
   ),
-  info: <IconView icon={"help"} color="var(--sq-on-surface-info)" size="23px" />
+  info: <IconView icon={"help"} color="var(--sq-action-primary)" size="23px" />,
 };
 
 export const AlertView = React.forwardRef<React.ElementRef<"div">, AlertProps>(
@@ -102,8 +112,8 @@ export const AlertView = React.forwardRef<React.ElementRef<"div">, AlertProps>(
       >
         {iconSlot ? iconSlot : icons[variant]}
         <div>
-          <strong>{title}</strong>
-          <div
+          <TitleSpan>{title}</TitleSpan>
+          <ContentDiv
             style={{
               paddingTop: textBannerWithNoTitle
                 ? "var(--sq-spacing-xxx-small)"
@@ -111,7 +121,7 @@ export const AlertView = React.forwardRef<React.ElementRef<"div">, AlertProps>(
             }}
           >
             {children}
-          </div>
+          </ContentDiv>
         </div>
       </AlertDiv>
     );

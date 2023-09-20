@@ -17,7 +17,7 @@ export const Basic = () => {
       style={{
         resize: "both",
         height: "400px",
-        overflow: "auto",
+        overflow: "visible",
         margin: "100px",
       }}
     >
@@ -35,7 +35,7 @@ export const CustomIcon = () => {
       style={{
         resize: "both",
         height: "400px",
-        overflow: "auto",
+        overflow: "visible",
         margin: "100px",
       }}
     >
@@ -53,7 +53,7 @@ export const FullWidth = () => {
       style={{
         resize: "both",
         height: "400px",
-        overflow: "auto",
+        overflow: "visible",
         margin: "100px",
       }}
     >
@@ -71,7 +71,7 @@ export const CustomWidth = () => {
       style={{
         resize: "both",
         height: "400px",
-        overflow: "auto",
+        overflow: "visible",
         margin: "100px",
       }}
     >
@@ -97,7 +97,7 @@ export const LimitHeight = () => {
       style={{
         resize: "both",
         height: "400px",
-        overflow: "auto",
+        overflow: "visible",
         margin: "100px",
       }}
     >
@@ -115,7 +115,7 @@ export const CustomHeight = () => {
       style={{
         resize: "both",
         height: "400px",
-        overflow: "auto",
+        overflow: "visible",
         margin: "100px",
       }}
     >
@@ -157,7 +157,7 @@ export const Loading = () => {
       style={{
         resize: "both",
         height: "400px",
-        overflow: "auto",
+        overflow: "visible",
         margin: "100px",
       }}
     >
@@ -180,7 +180,7 @@ export const LoadingCustomSlotContent = () => {
       style={{
         resize: "both",
         height: "400px",
-        overflow: "auto",
+        overflow: "visible",
         margin: "100px",
       }}
     >
@@ -203,7 +203,7 @@ export const Empty = () => {
       style={{
         resize: "both",
         height: "400px",
-        overflow: "auto",
+        overflow: "visible",
         margin: "100px",
       }}
     >

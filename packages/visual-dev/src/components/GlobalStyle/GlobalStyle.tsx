@@ -31,6 +31,7 @@ export const CSSVariables = createGlobalStyle`
   --sq-surface: #ffffff;
   --sq-surface-subdued: #f6f6f6;
   --sq-background: #f9f9f9;
+  --sq-backround-subdued: var(--iui-pale-gray)
   --sq-surface-overlay: rgba(0, 0, 0, 0.7);
   --sq-surface-dark: #232323;
 
@@ -39,6 +40,7 @@ export const CSSVariables = createGlobalStyle`
   --sq-text-dark: var(--iui-darker-than-black);
   --sq-text-subdued: var(--iui-storm-gray);
   --sq-border: var(--iui-serenity-gray);
+  --sq-border-hover: var(--iui-coal-black);
   --sq-border-subdued: var(--iui-flash-gray);
 
   /* Loading */
@@ -72,9 +74,9 @@ export const CSSVariables = createGlobalStyle`
   /* Success */
   --sq-surface-success: var(--iui-leaf-green);
   --sq-surface-success-hovered: var(--iui-leaf-green);
-  --sq-surface-success-subdued: #e4fce3;
+  --sq-surface-success-subdued: #D9FBDF;
   --sq-border-success: var(--iui-leaf-green);
-  --sq-badge-surface-success: #e6faf4;
+  --sq-badge-surface-success: #D9FBDF;
   --sq-badge-text-success: #146352;
 
   /* Warning */
@@ -187,6 +189,9 @@ export const CSSVariables = createGlobalStyle`
   --sq-border-radius-small: 2px;
   --sq-border-radius-normal: 8px;
   --sq-border-radius-pill: 9999px;
+
+  /* Shadows */
+  --iui-box-shadow-default: 0 1px 4px 0 var(--iui-bleakest-gray);
 } 
 `;
 
