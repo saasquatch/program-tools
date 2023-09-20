@@ -37,13 +37,13 @@ export const WithPrimaryAction = () => {
               Integrations Page{" "}
             </span>
           </ModalView.ModalContentTextView>
-          <ModalView.ModalContentActionView
-            primaryAction={{
-              text: "Close",
-              onAction: handleChange,
-            }}
-          />
         </ModalView.ModalContentView>
+        <ModalView.ModalContentActionView
+          primaryAction={{
+            text: "Close",
+            onAction: handleChange,
+          }}
+        />
       </ModalView>
     </div>
   );
@@ -75,13 +75,13 @@ export const WithCustomZIndex = () => {
               Integrations Page{" "}
             </span>
           </ModalView.ModalContentTextView>
-          <ModalView.ModalContentActionView
-            primaryAction={{
-              text: "Close",
-              onAction: handleChange,
-            }}
-          />
         </ModalView.ModalContentView>
+        <ModalView.ModalContentActionView
+          primaryAction={{
+            text: "Close",
+            onAction: handleChange,
+          }}
+        />
       </ModalView>
     </div>
   );
@@ -113,13 +113,13 @@ export const WithPrimaryActionCustomTitle = () => {
               Integrations Page{" "}
             </span>
           </ModalView.ModalContentTextView>
-          <ModalView.ModalContentActionView
-            primaryAction={{
-              text: "Close",
-              onAction: handleChange,
-            }}
-          />
         </ModalView.ModalContentView>
+        <ModalView.ModalContentActionView
+          primaryAction={{
+            text: "Close",
+            onAction: handleChange,
+          }}
+        />
       </ModalView>
     </div>
   );
@@ -182,17 +182,17 @@ export const WithPrimaryAndSecondaryAction = () => {
             />
           </ModalView.ModalContentTextView>
           <ModalView.ModalContentDividerView />
-          <ModalView.ModalContentActionView
-            primaryAction={{
-              text: "Save",
-              onAction: handleChange,
-            }}
-            secondaryAction={{
-              text: "Cancel",
-              onAction: handleChange,
-            }}
-          />
         </ModalView.ModalContentView>
+        <ModalView.ModalContentActionView
+          primaryAction={{
+            text: "Save",
+            onAction: handleChange,
+          }}
+          secondaryAction={{
+            text: "Cancel",
+            onAction: handleChange,
+          }}
+        />
       </ModalView>
     </div>
   );
@@ -222,18 +222,18 @@ export const WithCriticalAction = () => {
             </span>
           </ModalView.ModalContentTextView>
           <ModalView.ModalContentDividerView />
-          <ModalView.ModalContentActionView
-            primaryAction={{
-              text: "Confirm",
-              danger: true,
-              onAction: handleChange,
-            }}
-            secondaryAction={{
-              text: "Cancel",
-              onAction: handleChange,
-            }}
-          />
         </ModalView.ModalContentView>
+        <ModalView.ModalContentActionView
+          primaryAction={{
+            text: "Confirm",
+            danger: true,
+            onAction: handleChange,
+          }}
+          secondaryAction={{
+            text: "Cancel",
+            onAction: handleChange,
+          }}
+        />
       </ModalView>
     </div>
   );
@@ -299,17 +299,17 @@ export const WithBanner = () => {
             </ul>
           </ModalView.ModalContentTextView>
           <ModalView.ModalContentDividerView />
-          <ModalView.ModalContentActionView
-            primaryAction={{
-              text: "Create",
-              onAction: handleChange,
-            }}
-            secondaryAction={{
-              text: "Cancel",
-              onAction: handleChange,
-            }}
-          />
         </ModalView.ModalContentView>
+        <ModalView.ModalContentActionView
+          primaryAction={{
+            text: "Create",
+            onAction: handleChange,
+          }}
+          secondaryAction={{
+            text: "Cancel",
+            onAction: handleChange,
+          }}
+        />
       </ModalView>
     </div>
   );
@@ -349,17 +349,17 @@ export const WithHeaderAction = () => {
             <InputView disabled style={{ margin: "10px 0 10px 0" }} />
           </ModalView.ModalContentTextView>
           <ModalView.ModalContentDividerView />
-          <ModalView.ModalContentActionView
-            primaryAction={{
-              text: "Create",
-              onAction: handleChange,
-            }}
-            secondaryAction={{
-              text: "Cancel",
-              onAction: handleChange,
-            }}
-          />
         </ModalView.ModalContentView>
+        <ModalView.ModalContentActionView
+          primaryAction={{
+            text: "Create",
+            onAction: handleChange,
+          }}
+          secondaryAction={{
+            text: "Cancel",
+            onAction: handleChange,
+          }}
+        />
       </ModalView>
     </div>
   );
@@ -412,13 +412,13 @@ export const WithMultipleSectionsAndActions = () => {
             Re-enter New Password
             <InputView value="" style={{ margin: "10px 0 10px 0" }} />
           </ModalView.ModalContentTextView>
-          <ModalView.ModalContentActionView
-            primaryAction={{
-              text: "Save",
-              onAction: handleChange,
-            }}
-          />
         </ModalView.ModalContentView>
+        <ModalView.ModalContentActionView
+          primaryAction={{
+            text: "Save",
+            onAction: handleChange,
+          }}
+        />
       </ModalView>
     </div>
   );
@@ -449,17 +449,17 @@ export const WithFormElements = () => {
             <CheckboxView value={true} label={"Referrable"}></CheckboxView>
           </ModalView.ModalContentTextView>
           <ModalView.ModalContentDividerView />
-          <ModalView.ModalContentActionView
-            primaryAction={{
-              text: "Add",
-              onAction: handleChange,
-            }}
-            secondaryAction={{
-              text: "Cancel",
-              onAction: handleChange,
-            }}
-          />
         </ModalView.ModalContentView>
+        <ModalView.ModalContentActionView
+          primaryAction={{
+            text: "Add",
+            onAction: handleChange,
+          }}
+          secondaryAction={{
+            text: "Cancel",
+            onAction: handleChange,
+          }}
+        />
       </ModalView>
     </div>
   );
@@ -498,17 +498,17 @@ export const WithCodeBlock = () => {
             {code}
           </ModalView.ModalContentCodeView>
           <ModalView.ModalContentDividerView />
-          <ModalView.ModalContentActionView
-            primaryAction={{
-              text: "Add",
-              onAction: handleChange,
-            }}
-            secondaryAction={{
-              text: "Cancel",
-              onAction: handleChange,
-            }}
-          />
         </ModalView.ModalContentView>
+        <ModalView.ModalContentActionView
+          primaryAction={{
+            text: "Add",
+            onAction: handleChange,
+          }}
+          secondaryAction={{
+            text: "Cancel",
+            onAction: handleChange,
+          }}
+        />
       </ModalView>
     </div>
   );
@@ -574,19 +574,19 @@ export const WithCodeBlockOverflow = () => {
             {code}
           </ModalView.ModalContentCodeView>
           <ModalView.ModalContentDividerView />
-          <ModalView.ModalContentActionView
-            primaryAction={{
-              text: "Add",
-              onAction: handleChange,
-              pill: false,
-            }}
-            secondaryAction={{
-              text: "Cancel",
-              onAction: handleChange,
-              buttonType: "text",
-            }}
-          />
         </ModalView.ModalContentView>
+        <ModalView.ModalContentActionView
+          primaryAction={{
+            text: "Add",
+            onAction: handleChange,
+            pill: false,
+          }}
+          secondaryAction={{
+            text: "Cancel",
+            onAction: handleChange,
+            buttonType: "text",
+          }}
+        />
       </ModalView>
     </div>
   );
@@ -623,16 +623,16 @@ export const WithStickyFooter = () => {
             <br />
             <div>test last line</div>
           </ModalView.ModalContentTextView>
-          <ModalView.ModalContentFooter>
-            <ModalView.ModalContentDividerView />
-            <ModalView.ModalContentActionView
-              primaryAction={{
-                text: "Close",
-                onAction: handleChange,
-              }}
-            />
-          </ModalView.ModalContentFooter>
         </ModalView.ModalContentView>
+        <ModalView.ModalContentFooter>
+          <ModalView.ModalContentDividerView />
+          <ModalView.ModalContentActionView
+            primaryAction={{
+              text: "Close",
+              onAction: handleChange,
+            }}
+          />
+        </ModalView.ModalContentFooter>
       </ModalView>
     </div>
   );
@@ -672,13 +672,13 @@ export const MaxHeight = () => {
               </span>
             </div>
           </ModalView.ModalContentTextView>
-          <ModalView.ModalContentActionView
-            primaryAction={{
-              text: "Close",
-              onAction: handleChange,
-            }}
-          />
         </ModalView.ModalContentView>
+        <ModalView.ModalContentActionView
+          primaryAction={{
+            text: "Close",
+            onAction: handleChange,
+          }}
+        />
       </ModalView>
     </div>
   );
@@ -717,13 +717,14 @@ export const MaxWidth = () => {
             </span>
           </ModalView.ModalContentTextView>
           <ModalView.ModalContentDividerView />
-          <ModalView.ModalContentActionView
-            primaryAction={{
-              text: "Close",
-              onAction: handleChange,
-            }}
-          />
         </ModalView.ModalContentView>
+        <ModalView.ModalContentActionView
+          slot="footer"
+          primaryAction={{
+            text: "Close",
+            onAction: handleChange,
+          }}
+        />
       </ModalView>
     </div>
   );

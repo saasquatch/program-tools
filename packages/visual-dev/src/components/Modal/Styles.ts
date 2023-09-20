@@ -13,32 +13,6 @@ export const ModalBackdropStyle = css`
   box-sizing: border-box;
 `;
 
-export const ModalDivStyle = css`
-  position: relative;
-  white-space: pre-wrap;
-  min-width: 500px;
-  background-color: var(--sq-surface);
-  border-radius: 8px;
-  margin: auto;
-  padding: 0;
-  display: grid;
-  grid-template-rows: auto 1fr;
-`;
-
-export const ModalHeaderStyle = css`
-  user-select: none;
-  padding: var(--sq-spacing-large);
-  background: var(--sq-nav-surface-primary);
-  margin-top: -1px;
-  border-radius: 8px 8px 0px 0px;
-  box-sizing: border-box;
-  font-family: var(--sq-font-family-sans);
-  font-weight: var(--sq-font-weight-bold);
-  font-size: var(--sq-font-size-header-three);
-  line-height: var(--sq-line-height-header-one);
-  color: var(--sq-surface);
-`;
-
 export const ModalActionDivStyle = css`
   margin-top: 10px;
   box-sizing: border-box;
@@ -50,7 +24,7 @@ export const ModalActionDivStyle = css`
 export const ModalActionFooterDivStyle = css`
   position: absolute;
   bottom: 0;
-  width: calc(100% - var(--sq-spacing-large) * 2);
+  width: calc(100%);
   box-sizing: border-box;
   background-color: white;
   padding: var(--sq-spacing-large) 0;
@@ -104,13 +78,7 @@ export const CodeDivStyle = css`
   line-height: var(--sq-line-height-regular);
 `;
 
-export const DividerDivStyle = css`
-  height: 1px;
-  width: calc(100% + 40px);
-  background: var(--sq-border);
-  margin: var(--sq-spacing-large) calc(-1 * var(--sq-spacing-large));
-  padding-right: 40px;
-`;
+export const DividerDivStyle = css``;
 
 export const ModalBannerDivStyle = css`
   user-select: none;

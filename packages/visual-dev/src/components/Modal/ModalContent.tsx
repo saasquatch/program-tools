@@ -31,13 +31,7 @@ export const ModalContentActionView = React.forwardRef<
   React.ElementRef<"div">,
   ModalActionProps
 >((props, forwardedRef) => {
-  const {
-    primaryAction,
-    secondaryAction,
-    children,
-    customCSS = {},
-    ...rest
-  } = props;
+  const { primaryAction, secondaryAction, customCSS = {}, ...rest } = props;
 
   const {
     onAction: primaryOnAction,
@@ -54,11 +48,17 @@ export const ModalContentActionView = React.forwardRef<
   } = secondaryAction || {};
 
   return (
-    <ModalActionDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+    <ModalActionDiv
+      {...rest}
+      ref={forwardedRef}
+      customCSS={customCSS}
+      slot="footer"
+    >
       {secondaryAction && (
         <Button
           buttonType="secondary"
           pill
+          critical={secondaryDanger}
           onClick={secondaryOnAction}
           style={{ marginRight: 25 }}
           {...secondaryOptions}
@@ -189,7 +189,7 @@ export const ModalContentDividerView = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps
 >((props, forwardedRef) => {
-  const { children, customCSS = {}, ...rest } = props;
+  const { customCSS = {}, ...rest } = props;
 
   return <DividerDiv {...rest} ref={forwardedRef} customCSS={customCSS} />;
 });
@@ -202,7 +202,7 @@ export const ModalContentBannerView = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps & { banner: any }
 >((props, forwardedRef) => {
-  const { banner, children, customCSS = {}, ...rest } = props;
+  const { banner, customCSS = {}, ...rest } = props;
 
   return (
     <ModalBannerDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
@@ -220,7 +220,7 @@ export const ModalContentTopActionView = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps & { action: any }
 >((props, forwardedRef) => {
-  const { action, children, customCSS = {}, ...rest } = props;
+  const { action, customCSS = {}, ...rest } = props;
 
   return (
     <ModalBackDiv
@@ -246,7 +246,12 @@ export const ModalContentFooter = React.forwardRef<
   const { children, customCSS = {}, ...rest } = props;
 
   return (
-    <ModalFooterDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+    <ModalFooterDiv
+      {...rest}
+      ref={forwardedRef}
+      slot="footer"
+      customCSS={customCSS}
+    >
       {children}
     </ModalFooterDiv>
   );
