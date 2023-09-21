@@ -81,10 +81,12 @@ export const CSSVariables = createGlobalStyle`
 
   /* Warning */
   --sq-surface-warning: #f1c359;
+  --sq-icon-warning: #EEBA00;
   --sq-surface-warning-subdued: #fcf8e3;
   --sq-border-warning: #f1c359;
   --sq-badge-surface-warning: #ffe3a1;
   --sq-badge-text-warning: #92400E;
+  --sq-decorative-orange: #EF8626;
 
   /* Info */
   --sq-border-info: #95beff;
