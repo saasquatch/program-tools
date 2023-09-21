@@ -72,8 +72,14 @@ export const FormSectionView = (props: FormSectionViewProps) => {
     advancedSettingsLabel,
     // labelTooltip,
     children,
-    className,
+    className = "",
   } = props;
+
+  const computedClasses = `${!heading && "no-heading"} ${
+    isAdvanced && "advanced"
+  } ${isSubformSection && "subFormSection"} ${
+    isDisplayColumn && "display-column"
+  } ${className}`;
 
   return (
     <IUIFormSection
@@ -88,7 +94,7 @@ export const FormSectionView = (props: FormSectionViewProps) => {
       description={description}
       advanced-settings-label={advancedSettingsLabel}
       // label-tooltip={labelTooltip}
-      className={className}
+      className={computedClasses}
     >
       {children}
     </IUIFormSection>

@@ -31,7 +31,7 @@ export const Default = () => {
 
 export const WithFieldLabelPair = () => {
   return (
-    <FormSectionView {...defaultProps}>
+    <FormSectionView {...{ ...defaultProps, isDisplayColumn: true }}>
       <FieldLabelPairDefault />
     </FormSectionView>
   );

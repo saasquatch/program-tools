@@ -1,5 +1,6 @@
 import React from "react";
 import { FieldLabelPairView, FieldLabelPairViewProps } from "./FieldLabelPair";
+import { FunctionalInput } from "../Input/Input.stories";
 
 export default {
   title: "Components / Field Label Pair",
@@ -25,6 +26,26 @@ const defaultProps: FieldLabelPairViewProps = {
 };
 
 export const FieldLabelPairDefault = () => {
-  return <FieldLabelPairView {...defaultProps}></FieldLabelPairView>;
+  return (
+    <FieldLabelPairView {...defaultProps}>
+      <FunctionalInput />
+    </FieldLabelPairView>
+  );
 };
 FieldLabelPairDefault.storyName = "Default";
+
+export const MainLabelOnly = () => {
+  return (
+    <FieldLabelPairView
+      {...{
+        ...defaultProps,
+        topFieldLabel: undefined,
+        leftFieldLabel: undefined,
+        rightFieldLabel: undefined,
+        instructions: undefined,
+      }}
+    >
+      <FunctionalInput />
+    </FieldLabelPairView>
+  );
+};

@@ -92,11 +92,12 @@ export const FieldLabelPairView = (props: FieldLabelPairViewProps) => {
     errors = [],
     instructions,
     children,
-    className,
+    className = "",
   } = props;
 
-  console.log("visual-dev field label pair", props);
-
+  const computedClasses = `${isChild && "child"} ${
+    isParent || (isChildDisplayBelow && "parent")
+  } ${errors && "error"} ${isDisabled && "disabled"} ${className}`;
   return (
     <IUIFieldLabelPair
       errors={errors}
@@ -115,7 +116,7 @@ export const FieldLabelPairView = (props: FieldLabelPairViewProps) => {
       // labelTooltip={labelTooltip}
       // fieldTooltip={fieldTooltip}
       instructions={instructions}
-      className={className}
+      className={computedClasses}
     >
       {children}
     </IUIFieldLabelPair>
