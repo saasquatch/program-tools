@@ -6,7 +6,10 @@ import { wrapWc } from "../../wc-react";
 import { wcBoolean } from "../../utlis";
 
 type InputProps = OptionProps &
-  Omit<Partial<React.ComponentProps<"input">>, "translate" | "value" | "css">;
+  Omit<
+    Partial<React.ComponentProps<"input">>,
+    "translate" | "value" | "css" | "rel" | "rev" | "content"
+  >;
 
 export interface OptionProps {
   /**

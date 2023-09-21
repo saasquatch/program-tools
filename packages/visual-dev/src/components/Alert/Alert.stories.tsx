@@ -51,6 +51,29 @@ export const info = () => (
     An explanation of what this alert is in multiple lines.
   </AlertView>
 );
+
+export const infoStyle = () => (
+  <AlertView type="info" title="An info alert">
+    An explanation of what this alert is
+    <br />
+    in multiple lines.
+  </AlertView>
+);
+
+export const infoNoTitleSingleLines = () => (
+  <AlertView type="info">
+    An explanation of what this alert is a single line.
+  </AlertView>
+);
+
+export const infoNoTitleMultipleLines = () => (
+  <AlertView type="info">
+    An explanation of what this alert is
+    <br />
+    in multiple lines.
+  </AlertView>
+);
+
 export const customCSS = () => (
   <AlertView
     type="success"

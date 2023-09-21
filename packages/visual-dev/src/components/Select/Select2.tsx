@@ -9,9 +9,8 @@ import { DataTableView } from "../DataTable";
 
 export type ItemTypeBase = string | number | boolean | object;
 
-export type SelectHandleViewProps<
-  ItemType extends ItemTypeBase
-> = HandleOptionProps<ItemType> & Partial<React.ComponentProps<"input">>;
+export type SelectHandleViewProps<ItemType extends ItemTypeBase> =
+  HandleOptionProps<ItemType> & Partial<React.ComponentProps<"input">>;
 
 export interface SelectContainerViewProps {
   /**
@@ -179,40 +178,42 @@ const ItemContainerList = styled.ul<{
   limitWidth: SizeType;
   limitHeight: SizeType;
   empty: boolean;
+  isOpen: boolean;
   customCSS: CSSProp;
 }>`
   ${Styles.ItemContainer}
-  ${props =>
+  ${(props) =>
     props.errors &&
     "border-color: var(--sq-border-critical); background-color: var(--sq-surface-critical-subdued);"}
-  ${props =>
+  ${(props) =>
     props.limitWidth
       ? typeof props.limitWidth === "string"
         ? `max-width: ${props.limitWidth};`
         : "max-width: 300px;"
       : "max-width: 100%;"}
-  ${props =>
+  ${(props) =>
     props.limitHeight
       ? typeof props.limitHeight === "string"
         ? `max-height: ${props.limitHeight};`
         : "max-height: 200px;"
       : "max-height: auto;"}
-      ${props =>
-        props.empty && "& li:hover {background: white; cursor: default;}"}
-    ${props => props.customCSS}
+      ${(props) =>
+    props.empty && "& li:hover {background: white; cursor: default;}"}
+    ${(props) => !props.isOpen && "visibility: hidden"}
+    ${(props) => props.customCSS}
 `;
 
 const ListItem = styled.li<{ isHighlighted?: boolean; customCSS?: CSSProp }>`
   ${Styles.Item}
-  ${props =>
+  ${(props) =>
     props.isHighlighted ? "background-color: var(--sq-surface-hover);" : ""}
-    ${props => props.customCSS}
+    ${(props) => props.customCSS}
 `;
 
 const ListItemDisabled = styled.li<{ customCSS?: CSSProp }>`
   ${Styles.ItemDisabled}
 
-  ${props => props.customCSS}
+  ${(props) => props.customCSS}
 `;
 
 const ButtonContainerDiv = styled.div`
@@ -228,13 +229,13 @@ const ContainerDiv = styled("div")<{
   limitWidth: SizeType;
 }>`
   ${Styles.Container}
-  ${props =>
+  ${(props) =>
     props.limitWidth
       ? typeof props.limitWidth === "string"
         ? `max-width: ${props.limitWidth};`
         : "max-width: 300px;"
       : "max-width: 100%;"}
-  ${props => props.customContainerCSS}
+  ${(props) => props.customContainerCSS}
 `;
 
 const TagsSlotWrapperDiv = styled.div`
@@ -244,52 +245,40 @@ const TagsSlotWrapperDiv = styled.div`
 const SelectInputButton = styled.button<{
   disabled: boolean | undefined;
   errors: any;
-  isOpen: boolean;
   customCSS: CSSProp;
 }>`
   ${Styles.SelectInputStyle}
-  ${props =>
+  ${(props) =>
     props.disabled &&
     "background: var(--sq-surface-input-disabled); cursor: default;"}
-        ${props =>
-          `border-radius: ${
-            props.isOpen
-              ? "var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0"
-              : "var(--sq-border-radius-normal)"
-          };`}
-  ${props =>
-    props.isOpen &&
-    !props.disabled &&
-    "border-color: var(--sq-focused); border-bottom: none; padding-bottom: var(--sq-spacing-xxx-small);"}
-  ${props =>
-    !props.isOpen &&
+  ${(props) =>
     !props.disabled &&
     `&:hover{
     border-color: ${
       props.errors
         ? "var(--sq-surface-critical-hovered)"
-        : "var(--sq-action-secondary-border)"
+        : "var(--sq-border-hover)"
     } ;
   }`}
 
-  ${props =>
+  ${(props) =>
     !props.disabled &&
     `&:focus {
-    border-color: var(--sq-focused);
+    border-color: var(--sq-border-hover);
   }`}
 
-  ${props =>
+  ${(props) =>
     props.errors &&
     "border-color: var(--sq-border-critical); background: var(--sq-surface-critical-subdued);"}
 
-  ${props => props.customCSS}
+  ${(props) => props.customCSS}
 `;
 
 const SelectedValueSpan = styled.span<{
   subdued: boolean;
 }>`
   ${Styles.SelectedValue}
-  ${props => props.subdued && "color: var(--sq-text-subdued)"}
+  ${(props) => props.subdued && "color: var(--sq-text-subdued)"}
 `;
 
 const ButtonDiv = styled.div`
@@ -309,20 +298,15 @@ const InputWrapperDiv = styled.div`
 `;
 
 const ComboboxContainerDiv = styled.div<{
-  isOpen: boolean;
   errors: boolean;
   disabled: boolean;
 }>`
   ${Styles.ComboboxContainerDiv}
-  ${props =>
-    props.isOpen
-      ? "border: 1px solid var(--sq-focused); border-bottom: none; border-radius: var(--sq-border-radius-normal) var(--sq-border-radius-normal) 0 0; padding-bottom: var(--sq-spacing-xxx-small)"
-      : ""};
-  ${props =>
+  ${(props) =>
     props.errors
       ? "border-color: var(--sq-border-critical); background-color: var(--sq-surface-critical-subdued);"
       : ""}
-  ${props =>
+  ${(props) =>
     props.disabled ? "background: var(--sq-surface-input-disabled);" : ""}
 `;
 
@@ -455,17 +439,17 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           size="mini"
           customCSS={{
             display: showClear,
-            color: "var(--sq-text-subdued)"
+            color: "var(--sq-text-subdued)",
           }}
           icon_css={{
             margin: "auto",
             height: "16px",
-            width: "16px"
+            width: "16px",
           }}
           color={"var(--sq-text-subdued)"}
           onClick={(e: React.MouseEvent<HTMLElement>) => {
             e.stopPropagation();
-            functional.selectItem((null as unknown) as ItemType);
+            functional.selectItem(null as unknown as ItemType);
           }}
         />
         {customIcon ? (
@@ -500,12 +484,14 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           clearable
             ? " var(--sq-spacing-xxxx-large)"
             : "var(--sq-spacing-xxx-large)"
-        }`
+        }`,
       }}
     >
       {tagsSlot && (
         <TagsSlotWrapperDiv
-          style={{ padding: "1px var(--sq-spacing-x-small)" }}
+          style={{
+            padding: "var(--sq-spacing-xx-small) var(--sq-spacing-x-small)",
+          }}
         >
           {tagsSlot}
         </TagsSlotWrapperDiv>
@@ -537,12 +523,12 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           size="mini"
           customCSS={{
             color: "var(--sq-text-subdued)",
-            display: showClear
+            display: showClear,
           }}
           icon_css={{ marginTop: "var(--sq-spacing-xxx-small)" }}
           onClick={(e: React.MouseEvent<HTMLElement>) => {
             e.stopPropagation();
-            functional.selectItem((null as unknown) as ItemType);
+            functional.selectItem(null as unknown as ItemType);
           }}
         />
         {customIcon ? (
@@ -552,10 +538,10 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             borderless={true}
             size="small"
             customCSS={{
-              padding: "var(--sq-spacing-x-small)"
+              padding: "var(--sq-spacing-x-small)",
             }}
             icon_css={{
-              color: "var(--sq-text-subdued)"
+              color: "var(--sq-text-subdued)",
             }}
             {...functional.getToggleButtonProps()}
           />
@@ -567,7 +553,7 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             size="small"
             customCSS={{ padding: "var(--sq-spacing-x-small)" }}
             icon_css={{
-              color: "var(--sq-text-subdued)"
+              color: "var(--sq-text-subdued)",
             }}
             {...functional.getToggleButtonProps()}
           />
@@ -595,7 +581,7 @@ const itemsToNode = <ItemType,>(
         index,
         item,
         itemToNode,
-        itemToString
+        itemToString,
       }}
     />
   ));
@@ -633,10 +619,11 @@ const SelectInnerFrameView = <ItemType extends ItemTypeBase>(
         <LabelSpan>No results found</LabelSpan>
       </EmptyContainerDiv>
     ),
-    customCSS = {}
+    customCSS = {},
   } = props;
 
   const isOpen = !disabled && functional.isOpen;
+  console.log(isOpen);
 
   return (
     <ItemContainerList
@@ -644,6 +631,7 @@ const SelectInnerFrameView = <ItemType extends ItemTypeBase>(
       limitHeight={limitHeight}
       errors={errors}
       empty={empty}
+      isOpen={isOpen}
       ref={ref}
       customCSS={customCSS}
       {...functional.getMenuProps()}
@@ -713,7 +701,7 @@ const SelectInnerListView = <ItemType extends ItemTypeBase>(
         items: props.items,
         functional: props.functional,
         itemToString,
-        itemToNode
+        itemToNode,
       })}
     </SelectInnerFrameView>
   );
@@ -726,5 +714,5 @@ export const SelectView = {
   ContainerView: SelectContainerView,
   ItemView: ItemView,
   ItemToNode: itemToNodeDefault,
-  ItemToString: itemToStringDefault
+  ItemToString: itemToStringDefault,
 };

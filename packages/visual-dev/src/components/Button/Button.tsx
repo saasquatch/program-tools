@@ -6,7 +6,6 @@ import * as Styles from "./Styles";
 import { wrapWc } from "../../wc-react";
 import { wcBoolean } from "../../utlis";
 
-
 export type ButtonProps = OptionProps &
   StyleProps &
   Partial<React.ComponentProps<"button">>;

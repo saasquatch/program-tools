@@ -9,6 +9,7 @@ export const Item = css`
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
   border-radius: inherit;
+  border-radius: var(--sq-border-radius-normal);
   &:hover {
     background: var(--sq-surface-hover);
   }
@@ -31,15 +32,14 @@ export const ItemContainer = css`
   box-sizing: border-box;
   list-style-type: none;
   width: 100%;
-  padding: 0;
+  padding: var(--sq-spacing-xx-small);
   margin: 0;
   background: var(--sq-surface);
-  border: 1px solid var(--sq-focused);
-  border-radius: 0 0 var(--sq-border-radius-normal)
-    var(--sq-border-radius-normal);
+  border-radius: var(--sq-border-radius-normal);
   border-top: none;
   outline: none;
   overflow-y: auto;
+  box-shadow: var(--iui-box-shadow-default);
 
   &:empty {
     border: none;
@@ -88,8 +88,8 @@ export const SelectInputStyle = css`
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
   border: 1px solid var(--sq-border);
-  // border-radius: var(--sq-border-radius-normal);
-  padding: 1px var(--sq-spacing-x-small);
+  border-radius: var(--sq-border-radius-normal);
+  padding: var(--sq-spacing-xx-small) var(--sq-spacing-x-small);
 
   &:focus {
     border-color: var(--sq-focused);

@@ -7,6 +7,70 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+## [2.0.0] - 2023-09-07
+
+### Changed
+
+- Moved to webpack 5 build for storybook
+- Update to Storybook 7
+- Add code coverage with istanbul
+- Components added
+  - \<ButtonDropdownView>
+    - New dropdown menu with button style handle
+- Components changed
+  - \<AlertView>
+    - Update to new design system
+  - \<ButtonView>
+    - Update to new design system
+    - Remove pill style
+  - \<CheckboxView>
+    - Update to new design system
+  - \<DataTableView>
+    - Update to new design system
+  - \<GlobalStyle>
+    - Update to new design system including new style tokens as CSS variables
+    - Export font families, link styles, and typography styles as `FontFamilyRules`, `LinkRules`, and `TypographyRules` respectively.
+  - \<IconView>
+    - Add user, impact, and download icons added
+  - \<InputView>
+    - Update to new design system
+  - \<LoadingSpinner>
+    - Update to new design system
+    - **Breaking** change exports to use dot notation
+  - \<ModalView>
+    - Update to new design system
+    - Add new `maxWidth` prop
+  - \<RadioView>
+    - Update to new design system
+  - \<RadioActionView>
+    - Update to new design system
+  - \<RadioCardView>
+    - Update to new design system
+  - \<SelectView>
+    - Update to new design system
+  - \<SwitchView>
+    - Update to new design system
+  - \<TabsView>
+    - Update to new design system
+  - \<TagView>
+    - Update to new design system
+  - \<TagInputView>
+    - Update to new design system
+  - \<TextAreaView>
+    - Update to new design system
+  - \<TextAreaView>
+    - Update to new design system
+
+## [1.9.0] - 2023-08-08
+
+### Changed
+
+- Components changed
+  - \<AlertView>
+    - Improved spacing when alert has no title
+  - \<IconView>
+    - Two new icons (cookie and upload)
+
 ## [1.8.0] - 2023-05-15
 
 ### Changed
@@ -295,7 +359,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<Select>
     - added new props
     - changed the html element type of the container from div button to accomadate tabbing through inputs in a form
-  - <GlobalStyle>
+  - \<GlobalStyle>
     - updated pixel sizing for our font sizing & line height CSS variables
 
 - Updated the following components to use new CSS variables
@@ -368,7 +432,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<TextArea>
   - \<Tooltip>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%401.8.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/visual-dev%402.0.0...HEAD
+[2.0.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%402.0.0
+[1.9.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.9.0
 [1.8.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.8.0
 [1.7.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.4
 [1.7.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/visual-dev%401.7.3

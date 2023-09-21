@@ -11,6 +11,8 @@ import {
   TextRules,
   LinkRules,
   UICLRules,
+  TypographyRules,
+  FontFamilyRules,
 } from "./components/GlobalStyle";
 import {
   Button,
@@ -84,12 +86,12 @@ import { ScrollNavView } from "./components/ScrollNav";
 import { useSelectDemo } from "./components/Select/useSelectDemo";
 import { useMultiSelectDemo } from "./components/Select/useMultiSelectDemo";
 import { useComboboxDemo } from "./components/Select/useComboboxDemo";
-import { Dropdown2View } from "./components/Dropdown2";
 import { FormSectionView } from "./components/FormSection/";
 import { FieldLabelPairView } from "./components/FieldLabelPair/";
 import { wcBoolean } from "./utlis";
 //@ts-ignore
 import { register as RegisterUICL } from "@impactinc/ui-component-library/web-components";
+import { ButtonDropdownView } from "./components/ButtonDropdown";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -101,7 +103,6 @@ export {
   AccordionView,
   Alert,
   AlertView,
-  // ArrayFieldTemplate,
   Avatar,
   AvatarView,
   Badge,
@@ -125,7 +126,7 @@ export {
   DataTable,
   Dropdown,
   DropdownView,
-  Dropdown2View,
+  ButtonDropdownView,
   ErrorListTemplate,
   FieldTemplate,
   FormSectionView,
@@ -191,4 +192,6 @@ export {
   useSelectDemo,
   useMultiSelectDemo,
   useComboboxDemo,
+  TypographyRules,
+  FontFamilyRules,
 };

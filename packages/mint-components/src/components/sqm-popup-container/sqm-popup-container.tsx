@@ -15,7 +15,7 @@ import { getProps } from "../../utils/utils";
 })
 export class PopupContainer {
   /**
-   * Show Powered By SaaSquatch link
+   * Show Powered with SaaSquatch by Impact.com link
    *
    * @uiName Show powered by
    */

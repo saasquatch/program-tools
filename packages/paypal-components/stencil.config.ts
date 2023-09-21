@@ -90,11 +90,11 @@ export const config: Config = {
       copy({
         targets: [
           {
-            src: "node_modules/@shoelace-style/shoelace/dist/assets",
+            src: "node_modules/@saasquatch/shoelace/dist/assets",
             dest: "shoelace",
           },
           {
-            src: "node_modules/@shoelace-style/shoelace/dist/themes",
+            src: "node_modules/@saasquatch/shoelace/dist/themes",
             dest: "shoelace/themes",
           },
         ],

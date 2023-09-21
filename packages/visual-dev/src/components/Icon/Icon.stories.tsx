@@ -235,5 +235,6 @@ export const globe = () => <IconView icon={"globe"} />;
 export const lock = () => <IconView icon={"lock"} />;
 export const unlock = () => <IconView icon={"unlock"} />;
 export const download = () => <IconView icon={"download"} />;
-export const upload = () => <IconView icon={"upload"} />;
 export const add_user = () => <IconView icon={"add_user"} />;
+export const upload = () => <IconView icon={"upload"} />;
+export const cookie = () => <IconView icon={"cookie"} />;

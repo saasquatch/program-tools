@@ -13,7 +13,7 @@
 | `closeButtonText` | `close-button-text` | Text inside the close button                                | `string`                                   | `undefined` |
 | `embedPadding`    | `embed-padding`     | Specify padding on the popup contents when in embedded mode | `"large" \| "medium" \| "none" \| "small"` | `undefined` |
 | `popupPadding`    | `popup-padding`     | Specify padding on the popup contents when in popup mode    | `"large" \| "medium" \| "none" \| "small"` | `undefined` |
-| `poweredBy`       | `powered-by`        | Show Powered By SaaSquatch link                             | `boolean`                                  | `undefined` |
+| `poweredBy`       | `powered-by`        | Show Powered with SaaSquatch by Impact.com link             | `boolean`                                  | `undefined` |
 
 
 ----------------------------------------------

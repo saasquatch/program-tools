@@ -48,8 +48,9 @@ export function getEnvironmentSDK(): EnvironmentSDK {
   }
 
   // Vanilla components mutates `widgetIdent` for portal, causing boilerplate to render as SquatchJS2
+  // IOS widgets are currently counted as being in SquatchJS2 environment
   if (
-    (window.frameElement as any)?.["squatchJsApi"] &&
+    (window["widgetIdent"] || (window.frameElement as any)?.["squatchJsApi"]) &&
     window["widgetIdent"]?.env !== "demo"
   ) {
     return {

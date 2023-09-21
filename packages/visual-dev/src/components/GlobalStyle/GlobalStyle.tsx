@@ -33,6 +33,7 @@ export const CSSVariables = createGlobalStyle`
   --sq-surface: #ffffff;
   --sq-surface-subdued: #f6f6f6;
   --sq-background: #f9f9f9;
+  --sq-backround-subdued: var(--iui-pale-gray)
   --sq-surface-overlay: rgba(0, 0, 0, 0.7);
   --sq-surface-dark: #232323;
 
@@ -41,6 +42,8 @@ export const CSSVariables = createGlobalStyle`
   --sq-text-dark: var(--iui-darker-than-black);
   --sq-text-subdued: var(--iui-storm-gray);
   --sq-border: var(--iui-serenity-gray);
+  --sq-border-hover: var(--iui-coal-black);
+  --sq-border-subdued: var(--iui-flash-gray);
 
   /* Loading */
   --sq-loading: var(--iui-strata-blue);
@@ -73,9 +76,9 @@ export const CSSVariables = createGlobalStyle`
   /* Success */
   --sq-surface-success: var(--iui-leaf-green);
   --sq-surface-success-hovered: var(--iui-leaf-green);
-  --sq-surface-success-subdued: #e4fce3;
+  --sq-surface-success-subdued: #D9FBDF;
   --sq-border-success: var(--iui-leaf-green);
-  --sq-badge-surface-success: #e6faf4;
+  --sq-badge-surface-success: #D9FBDF;
   --sq-badge-text-success: #146352;
 
   /* Warning */
@@ -188,6 +191,9 @@ export const CSSVariables = createGlobalStyle`
   --sq-border-radius-small: 2px;
   --sq-border-radius-normal: 8px;
   --sq-border-radius-pill: 9999px;
+
+  /* Shadows */
+  --iui-box-shadow-default: 0 1px 4px 0 var(--iui-bleakest-gray);
 } 
 `;
 
@@ -272,11 +278,111 @@ a{
 export const TextRules = () => {
   return (
     <>
+      <FontFamilyRules />
       <LinkRules />
       <TypographyRules />
     </>
   );
 };
+
+export const FontFamilyRules = createGlobalStyle`
+/* fonts */
+/* vietnamese */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afT3GLQjUwkQ1OQ.woff2)
+    format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+    U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afTzGLQjUwkQ1OQ.woff2)
+    format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afTLGLQjUwkQ.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afT3GLQjUwkQ1OQ.woff2)
+    format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+    U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afTzGLQjUwkQ1OQ.woff2)
+    format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afTLGLQjUwkQ.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afT3GLQjUwkQ1OQ.woff2)
+    format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+    U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afTzGLQjUwkQ1OQ.woff2)
+    format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Muli";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/muli/v28/7Auwp_0qiz-afTLGLQjUwkQ.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}`;
 
 export const LayoutRules = createGlobalStyle`
   hr{
