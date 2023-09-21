@@ -79,8 +79,8 @@ export const IconButtonView = React.forwardRef<
       <uicl-btn
         {...rest}
         ref={forwardedRef}
-        style={{display:"block"}}
-        className={primary ? "primary" : "secondary"}
+        style={{ display: "block" }}
+        class={primary ? "primary" : borderless ? "tertiary" : "secondary"}
       >
         <IconView
           icon={icon}

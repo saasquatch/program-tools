@@ -59,10 +59,13 @@ export interface StyleProps {
 }
 
 const StyleWrapperDiv = styled.div<
-  Required<Omit<StyleProps, "loading">> & { isLoading: boolean }
+  Required<Omit<StyleProps, "loading" | "pill">> & {
+    isLoading: boolean;
+  }
 >`
-  display: contents;
+  display: block;
   uicl-btn::part(base) {
+    ${Styles.universal_base}
     ${(props) => props.size == "small" && Styles.small}
     ${(props) => props.size == "large" && Styles.large}
     ${(props) => props.critical && Styles[props.buttonType].critical}
@@ -71,7 +74,7 @@ const StyleWrapperDiv = styled.div<
       props.isLoading &&
       props.buttonType != "text" &&
       Styles[props.buttonType].loading}
-    ${(props) => props.pill && Styles.pill}
+    margin-right: 0 !important;
     ${(props) => props.customCSS}
   }
 `;
@@ -84,7 +87,6 @@ export const ButtonView = React.forwardRef<
 >((props, forwardedRef) => {
   const {
     buttonType = "primary",
-    pill = false,
     loading = false,
     critical = false,
     success = false,
@@ -94,24 +96,27 @@ export const ButtonView = React.forwardRef<
     children,
     customCSS = {},
     disabled = false,
+    style,
     ...rest
   } = props;
+
+  const UICLBtnType = buttonType === "text" ? "tertiary" : buttonType;
 
   return (
     <StyleWrapperDiv
       buttonType={buttonType}
       customCSS={customCSS}
-      pill={pill}
       isLoading={loading}
-      critical={critical}
-      success={success}
+      critical={critical && !disabled}
+      success={success && !disabled}
       size={size}
+      style={style}
     >
       <UICLButton
         {...rest}
-        disabled={disabled}
+        disabled={disabled || loading}
         isDisabled={wcBoolean(disabled || loading)}
-        className={buttonType}
+        className={UICLBtnType}
         ref={forwardedRef}
       >
         {iconLocation == "left" && icon && (

@@ -35,17 +35,8 @@ export const anim_padding = {
 // BASE BUTTON STYLING
 
 export const universal_base = css`
-  cursor: pointer;
-  border: none;
-  border-radius: var(--sq-border-radius-normal);
-  font-family: var(--sq-font-family-sans);
+  border: none !important;
   font-weight: var(--sq-font-weight-regular);
-  height: max-content;
-`;
-// PILL VARIANTS
-
-export const pill = css`
-  border-radius: var(--sq-border-radius-pill);
 `;
 
 // SIZE VARIANTS
@@ -82,13 +73,6 @@ export const primary = {
     &:hover {
       background: var(--sq-surface-success-hovered);
     }
-    &:disabled {
-      cursor: not-allowed;
-      background: var(--sq-surface-success);
-      &:hover {
-        background: var(--sq-surface-success);
-      }
-    }
   `,
   loading: css`
     cursor: wait;
@@ -113,10 +97,6 @@ export const secondary = {
     color: var(--sq-surface-success);
     &:hover {
       background: var(--sq-action-secondary-hovered);
-    }
-    &:disabled {
-      cursor: not-allowed;
-      color: var(--sq-surface-success);
     }
   `,
   loading: css`
@@ -144,6 +124,7 @@ export const text = {
 export const icon = {
   base: css`
     padding: 0;
+    cursor: pointer;
   `,
 
   mini: css`
@@ -155,14 +136,10 @@ export const icon = {
     border-radius: var(--sq-border-radius-pill);
   `,
   borderless: css`
-    border: none;
     background: transparent;
     &:hover {
       color: var(--sq-action-secondary-border);
       background: var(--sq-action-secondary);
-    }
-    &:disabled:hover {
-      background: transparent;
     }
   `,
 };

@@ -1,6 +1,6 @@
 import * as React from "react";
 import root from "react-shadow/styled-components";
-import styled, { css, CSSProp } from "styled-components";
+import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { IconKey, IconView } from "../Icon";
 import { wrapWc } from "../../wc-react";
@@ -26,11 +26,11 @@ export interface OptionProps {
   /**
    * Main title at the top of the card
    */
-  title?: string ;
+  title?: string;
   /**
    * Description in the card below the title
    */
-  description?: string ;
+  description?: string;
   /**
    * Icon displayed in the left side section of the card
    */
@@ -49,8 +49,7 @@ const ShadowDom = styled(root.div)`
   display: contents;
 `;
 
-
-const RadioLabel = styled.label<{customCSS: CSSProp}>`
+const RadioLabel = styled.label<{ customCSS: CSSProp }>`
   ${Styles.RadioLabelStyle}
   ${(props) => props.customCSS}
 `;
@@ -59,13 +58,11 @@ const RadioInput = styled.input<{ disabled: boolean }>`
   ${(props) => props.disabled && "border-color: unset;"}
 `;
 
-
 const RadioGridDiv = styled.div`
   ${Styles.RadioGridStyle}
 `;
 
-
-const UICLRadioCard = wrapWc("uicl-card-radio-button")
+const UICLRadioCard = wrapWc("uicl-card-radio-button");
 
 const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
   (props, forwardedRef) => {
@@ -75,7 +72,6 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
       title,
       description,
       icon = "",
-      titleIconSlot,
       customCSS = {},
       disabled = false,
       ...rest
@@ -83,12 +79,8 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
 
     const selected = value === optionValue;
 
-
     return (
-      <RadioLabel
-        htmlFor={rest.id}
-        customCSS={customCSS}
-      >
+      <RadioLabel htmlFor={rest.id} customCSS={customCSS}>
         <RadioInput
           {...rest}
           type="radio"
@@ -97,27 +89,18 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
           readOnly
           ref={forwardedRef}
         />
-        <UICLRadioCard isDisabled={wcBoolean(disabled)} optionDescription={description} optionName={title} checked={wcBoolean(selected)}>
-          {icon ? <IconView icon={icon} size="40px" slot="icon" /> : <span slot="icon"/>}
+        <UICLRadioCard
+          isDisabled={wcBoolean(disabled)}
+          optionDescription={description}
+          optionName={title}
+          checked={wcBoolean(selected)}
+        >
+          {icon ? (
+            <IconView icon={icon} size="40px" slot="icon" />
+          ) : (
+            <span slot="icon" />
+          )}
         </UICLRadioCard>
-        {/* {icon && (
-          <LeftSegmentDiv isChecked={selected}>
-            
-          </LeftSegmentDiv>
-        )}
-        <RightSegmentDiv>
-          <RadioTextDiv>
-            {title && (
-              <TitleContainerDiv>
-                <TitleP>{title}</TitleP>
-                {titleIconSlot && titleIconSlot}
-              </TitleContainerDiv>
-            )}
-            {description && (
-              <div style={{ color: "inherit" }}>{description}</div>
-            )}
-          </RadioTextDiv>
-        </RightSegmentDiv> */}
       </RadioLabel>
     );
   }

@@ -17,9 +17,11 @@ export const ModalActionDivStyle = css`
   margin-top: 10px;
   box-sizing: border-box;
   border-radius: 0 0 8px 8px;
+  gap: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 10px 0 0;
 `;
 export const ModalActionFooterDivStyle = css`
   position: absolute;
@@ -34,7 +36,6 @@ export const ModalContentDivStyle = css`
   max-height: 650px;
   overflow: hidden;
   overflow-y: overlay;
-
   ::-webkit-scrollbar {
     width: 6px;
   }

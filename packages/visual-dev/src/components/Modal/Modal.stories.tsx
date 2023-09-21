@@ -135,7 +135,7 @@ export const WithPrimaryAndSecondaryAction = () => {
         Open Modal
       </ButtonView>
       <ModalView title="Add Referral Code" open={active} onClose={handleChange}>
-        <ModalView.ModalContentView>
+        <ModalView.ModalContentView isConfirmation>
           <ModalView.ModalContentTextView>
             Select a program{" "}
             <span style={{ color: "#adadad" }}> (required) </span>
@@ -184,6 +184,7 @@ export const WithPrimaryAndSecondaryAction = () => {
           <ModalView.ModalContentDividerView />
         </ModalView.ModalContentView>
         <ModalView.ModalContentActionView
+          isConfirmation
           primaryAction={{
             text: "Save",
             onAction: handleChange,

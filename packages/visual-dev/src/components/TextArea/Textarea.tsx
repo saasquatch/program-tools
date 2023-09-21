@@ -54,20 +54,19 @@ const ContainerDiv = styled.div<{
       : "max-width: 100%;"}
 
   uicl-text-area {
-    height: 100%
+    height: 100%;
   }
 
-  uicl-text-area::part(base){
-    height: 100%
+  uicl-text-area::part(base) {
+    height: 100%;
   }
 
-  uicl-text-area::part(input){
+  uicl-text-area::part(input) {
     ${(props) => props.customCSS}
   }
 `;
 
 const UICLTextInput = wrapWc("uicl-text-area");
-
 
 export const TextareaView = React.forwardRef<
   React.ElementRef<"textarea">,
@@ -85,25 +84,23 @@ export const TextareaView = React.forwardRef<
     ...rest
   } = props;
 
-  console.log(height)
-  console.log(limitWidth)
   return (
-      <ContainerDiv
-        customCSS={customCSS}
-        initialHeight={height}
-        limitWidth={limitWidth}
-      >
-        <UICLTextInput
-          {...rest}
-          ref={forwardedRef}
-          isDisabled={wcBoolean(disabled)}
-          isReadOnly={wcBoolean(disabled || false)}
-          placeholder={placeholder}
-          modelValue={value}
-          update:model-value={(e: any) => onChange(e)}
-          validationFail={rawErrors ? "" : null}
-        />
-      </ContainerDiv>
+    <ContainerDiv
+      customCSS={customCSS}
+      initialHeight={height}
+      limitWidth={limitWidth}
+    >
+      <UICLTextInput
+        {...rest}
+        ref={forwardedRef}
+        isDisabled={wcBoolean(disabled)}
+        isReadOnly={wcBoolean(disabled || false)}
+        placeholder={placeholder}
+        modelValue={value}
+        update:model-value={(e: any) => onChange(e)}
+        validationFail={rawErrors ? "" : null}
+      />
+    </ContainerDiv>
   );
 });
 

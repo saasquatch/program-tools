@@ -22,6 +22,10 @@ export interface OptionProps {
    */
   open?: boolean;
   /**
+   * Is a confirmation style modal
+   */
+  isConfirmation?: boolean;
+  /**
    * Callback triggered when the "X" in the top right of the modal is clicked
    */
   onClose: any;
@@ -65,7 +69,7 @@ const ModalBackdrop = styled.div<{
   uicl-modal-view::part(title) {
     ${(props) => props.customTitleCSS}
   }
-  uicl-modal-view::part(base) {
+  uicl-modal-view::part(modal-base) {
     ${(props) => props.maxWidth && `max-width: ${props.maxWidth};`}
     ${(props) => props.customCSS}
   }
@@ -82,6 +86,7 @@ export const ModalView = React.forwardRef<React.ElementRef<"div">, ModalProps>(
       onClose,
       zIndex,
       children,
+      isConfirmation = false,
       customCSS = {},
       customTitleCSS = {},
       ...rest
@@ -105,6 +110,7 @@ export const ModalView = React.forwardRef<React.ElementRef<"div">, ModalProps>(
               hasFooterSlot={wcBoolean(true)}
               width="100%"
               close={() => onClose()}
+              isConfirmation={wcBoolean(isConfirmation)}
             >
               {children}
             </UICLModalView>
