@@ -94,8 +94,6 @@ const StyleWrapperDiv = styled.div<{
   }
 
   uicl-text-input::part(input) {
-    color: "red";
-    margin: "20px";
     ${(props) =>
       props.hasIcon &&
       `padding-${props.position}: var(--sq-spacing-xxx-large);`}
@@ -116,7 +114,6 @@ export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
       customCSS = {},
       customContainerCSS = {},
       limitWidth = true,
-      required = false,
       disabled = false,
       innerTextLeft = null,
       innerTextRight = null,
@@ -137,8 +134,8 @@ export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
           {...rest}
           ref={forwardedRef}
           isAutoWidth={wcBoolean(false)}
-          isDisabled={wcBoolean(disabled)}
-          isReadOnly={wcBoolean(disabled || false)}
+          // isDisabled={null}
+          // isReadOnly={wcBoolean(disabled || false)}
           innerTextLeft={innerTextLeft}
           innerTextRight={innerTextRight}
           validationFail={rawErrors ? "" : null}

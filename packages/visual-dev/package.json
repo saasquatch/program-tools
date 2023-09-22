@@ -118,8 +118,5 @@
   "bugs": {
     "url": "https://github.com/saasquatch/program-tools/issues"
   },
-  "homepage": "https://github.com/saasquatch/program-tools#readme",
-  "bundleDependencies": [
-    "@impactinc/ui-component-library"
-  ]
+  "homepage": "https://github.com/saasquatch/program-tools#readme"
 }

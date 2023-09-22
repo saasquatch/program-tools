@@ -27,7 +27,9 @@ export const FullWidth = () => (
   <InputView value="Input Text" limitWidth={false} />
 );
 
-export const InputDisabled = () => <InputView value="Input Text" disabled />;
+export const InputDisabled = () => (
+  <InputView value="Input Text 123" disabled />
+);
 
 export const Placeholder = () => <InputView placeholder="Placeholder Text" />;
 
