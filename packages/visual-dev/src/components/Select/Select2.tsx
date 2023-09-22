@@ -508,11 +508,10 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
           ref={ref}
           errors={errors}
           limitWidth={limitWidth}
-          customCSS={`
+          customLabelCSS={`
               background-color: transparent;
-              ${customCSS};
               border: none !important;
-              height: 32px;
+              ${customCSS};
             `}
           disabled={disabled}
           {...functional.getInputProps()}

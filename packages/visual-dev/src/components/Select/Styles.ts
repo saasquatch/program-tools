@@ -91,8 +91,10 @@ export const SelectInputStyle = css`
   border-radius: var(--sq-border-radius-normal);
   padding: var(--sq-spacing-xx-small) var(--sq-spacing-x-small);
 
-  &:focus {
-    border-color: var(--sq-focused);
+  &:focus,
+  &:hover {
+    outline: none;
+    border-color: var(--sq-border-hover);
   }
 `;
 
@@ -154,9 +156,10 @@ export const ComboboxContainerDiv = css`
   border: 1px solid var(--sq-border);
   border-radius: var(--sq-border-radius-normal);
   flex-wrap: wrap;
-  &:focus {
+  &:focus,
+  &:hover {
     outline: none;
-    border-color: var(--sq-focused);
+    border-color: var(--sq-border-hover);
   }
 `;
 

@@ -58,22 +58,23 @@ export interface OptionProps {
    */
   customCSS?: CSSProp;
   /**
-   * Custon CSS applied to the input container
+   * Custom CSS applied to the input container
    */
   customContainerCSS?: CSSProp;
+  /**
+   * Custom CSS applied to the input label
+   */
+  customLabelCSS?: CSSProp;
   /**
    * Limit the input width using a valid CSS size value (e.g. px, %) [default 300px]
    */
   limitWidth?: InputWidthType;
 }
 
-
-
 const ExtrasDiv = styled.div<{ position: string }>`
   ${Styles.ExtrasDiv}
   ${(props) => (props.position == "left" ? "left: 12px;" : "right: 18px;")}
 `;
-
 
 const StyleWrapperDiv = styled.div<{
   customContainerCSS: CSSProp;
@@ -81,6 +82,7 @@ const StyleWrapperDiv = styled.div<{
   position: string;
   hasIcon: boolean;
   customCSS: CSSProp;
+  customLabelCSS: CSSProp;
 }>`
   ${Styles.Container}
   ${(props) =>
@@ -96,19 +98,27 @@ const StyleWrapperDiv = styled.div<{
     box-sizing: border-box;
   }
 
+  uicl-text-input::part(base) {
+    width: 100%;
+    box-sizing: border-box;
+    ${(props) => props.customLabelCSS}
+  }
+
   uicl-text-input::part(input) {
     color: "red";
     margin: "20px";
-    ${(props) => (props.hasIcon && `padding-${props.position}: var(--sq-spacing-xxx-large);`)}
+    ${(props) =>
+      props.hasIcon &&
+      `padding-${props.position}: var(--sq-spacing-xxx-large);`}
     ${(props) => props.customCSS}
   }
 `;
 
 const UICLTextInput = wrapWc("uicl-text-input");
 
-
 export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
   (props, forwardedRef) => {
+    console.log(props.customCSS);
     const {
       icon,
       position = "right",
@@ -117,6 +127,7 @@ export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
       errors: rawErrors,
       customCSS = {},
       customContainerCSS = {},
+      customLabelCSS = {},
       limitWidth = true,
       required = false,
       disabled = false,
@@ -130,36 +141,37 @@ export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <StyleWrapperDiv
         customContainerCSS={customContainerCSS}
+        customLabelCSS={customLabelCSS}
         customCSS={customCSS}
         hasIcon={icon || buttons ? true : false}
         position={position}
         limitWidth={limitWidth}
       >
-          <UICLTextInput
-            {...rest}
-            ref={forwardedRef}
-            isAutoWidth={wcBoolean(false)}
-            isDisabled={wcBoolean(disabled)}
-            isReadOnly={wcBoolean(disabled || false)}
-            innerTextLeft={innerTextLeft}
-            innerTextRight={innerTextRight}
-            validationFail={rawErrors ? "" : null}
-            maxLength={1000}
-            modelValue={value}
-            update:model-value={(e: any) => onChange(e)}
-            size="20"
-            type="text"
-          ></UICLTextInput>
-          {icon && (
-            <ExtrasDiv position={position}>
-              <IconView
-                icon={icon}
-                size={"22px"}
-                color="var(--sq-text-subdued)"
-              />
-            </ExtrasDiv>
-          )}
-          <ExtrasDiv position={position}>{buttons}</ExtrasDiv>
+        <UICLTextInput
+          {...rest}
+          ref={forwardedRef}
+          isAutoWidth={wcBoolean(false)}
+          isDisabled={wcBoolean(disabled)}
+          isReadOnly={wcBoolean(disabled || false)}
+          innerTextLeft={innerTextLeft}
+          innerTextRight={innerTextRight}
+          validationFail={rawErrors ? "" : null}
+          maxLength={1000}
+          modelValue={value}
+          update:model-value={(e: any) => onChange(e)}
+          size="20"
+          type={type}
+        ></UICLTextInput>
+        {icon && (
+          <ExtrasDiv position={position}>
+            <IconView
+              icon={icon}
+              size={"22px"}
+              color="var(--sq-text-subdued)"
+            />
+          </ExtrasDiv>
+        )}
+        <ExtrasDiv position={position}>{buttons}</ExtrasDiv>
       </StyleWrapperDiv>
     );
   }
