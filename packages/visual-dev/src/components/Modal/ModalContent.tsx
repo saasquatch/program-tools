@@ -16,14 +16,18 @@ interface ActionProps {
 export interface ActionOptions {
   primaryAction?: ActionProps & Omit<ButtonProps, "ref">;
   secondaryAction?: ActionProps & Omit<ButtonProps, "ref">;
+  isConfirmation?: boolean;
 }
 
 export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const ModalActionDiv = styled.div<Required<StyleProps>>`
+const ModalActionDiv = styled.div<
+  Required<StyleProps> & { isConfirmation: boolean }
+>`
   ${Styles.ModalActionDivStyle}
+  ${(props) => props.isConfirmation && "width: 100%;"}
   ${(props) => props.customCSS}
 `;
 
@@ -34,7 +38,7 @@ export const ModalContentActionView = React.forwardRef<
   const {
     primaryAction,
     secondaryAction,
-    children,
+    isConfirmation = false,
     customCSS = {},
     ...rest
   } = props;
@@ -50,31 +54,42 @@ export const ModalContentActionView = React.forwardRef<
     onAction: secondaryOnAction,
     text: secondaryText,
     danger: secondaryDanger,
+
     ...secondaryOptions
   } = secondaryAction || {};
 
+  const buttonWidth = isConfirmation ? "100%" : "auto";
+
   return (
-    <ModalActionDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
-      {secondaryAction && (
-        <Button
-          buttonType="secondary"
-          pill
-          onClick={secondaryOnAction}
-          style={{ marginRight: 25 }}
-          {...secondaryOptions}
-        >
-          {secondaryText}
-        </Button>
-      )}
+    <ModalActionDiv
+      {...rest}
+      isConfirmation={isConfirmation}
+      ref={forwardedRef}
+      customCSS={customCSS}
+      slot="footer"
+    >
       {primaryAction && (
         <Button
           buttonType="primary"
-          pill
           onClick={primaryOnAction}
           critical={primaryDanger}
+          style={{ width: buttonWidth }}
+          customCSS={{ width: buttonWidth }}
           {...primaryOptions}
         >
           {primaryText}
+        </Button>
+      )}
+      {secondaryAction && (
+        <Button
+          buttonType="text"
+          critical={secondaryDanger}
+          onClick={secondaryOnAction}
+          style={{ width: buttonWidth }}
+          customCSS={{ width: buttonWidth }}
+          {...secondaryOptions}
+        >
+          {secondaryText}
         </Button>
       )}
     </ModalActionDiv>
@@ -95,13 +110,26 @@ export interface ContentOptions {
    * Max height of the container, use a valid CSS size value (px, %)
    */
   maxHeight?: string;
+  /**
+   * Is a confirmation style modal
+   */
+  isConfirmation?: boolean;
 }
 
 const ModalContentDiv = styled.div<
-  Required<StyleProps & { stickyFooter: boolean; maxHeight: string }>
+  Required<
+    StyleProps & {
+      stickyFooter: boolean;
+      maxHeight: string;
+      isConfirmation: boolean;
+    }
+  >
 >`
   ${Styles.ModalContentDivStyle}
+  ${(props) =>
+    props.isConfirmation && `rgba(0, 0, 0, 0.75) 0px -10px 10px -17px inset;`}
   ${(props) => props.maxHeight && `max-height: ${props.maxHeight};`}
+  ${(props) => props.isConfirmation && `padding: 0 var(--sq-spacing-large);`}
   ${(props) => props.customCSS}
   ${(props) =>
     props.stickyFooter &&
@@ -129,6 +157,7 @@ export const ModalContentView = React.forwardRef<
     customCSS = {},
     maxHeight = "",
     stickyFooter = false,
+    isConfirmation = false,
     ...rest
   } = props;
   return (
@@ -138,6 +167,7 @@ export const ModalContentView = React.forwardRef<
       customCSS={customCSS}
       stickyFooter={stickyFooter}
       maxHeight={maxHeight}
+      isConfirmation={isConfirmation}
     >
       {children}
     </ModalContentDiv>
@@ -189,7 +219,7 @@ export const ModalContentDividerView = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps
 >((props, forwardedRef) => {
-  const { children, customCSS = {}, ...rest } = props;
+  const { customCSS = {}, ...rest } = props;
 
   return <DividerDiv {...rest} ref={forwardedRef} customCSS={customCSS} />;
 });
@@ -202,7 +232,7 @@ export const ModalContentBannerView = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps & { banner: any }
 >((props, forwardedRef) => {
-  const { banner, children, customCSS = {}, ...rest } = props;
+  const { banner, customCSS = {}, ...rest } = props;
 
   return (
     <ModalBannerDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
@@ -220,7 +250,7 @@ export const ModalContentTopActionView = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps & { action: any }
 >((props, forwardedRef) => {
-  const { action, children, customCSS = {}, ...rest } = props;
+  const { action, customCSS = {}, ...rest } = props;
 
   return (
     <ModalBackDiv
@@ -246,7 +276,12 @@ export const ModalContentFooter = React.forwardRef<
   const { children, customCSS = {}, ...rest } = props;
 
   return (
-    <ModalFooterDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+    <ModalFooterDiv
+      {...rest}
+      ref={forwardedRef}
+      slot="footer"
+      customCSS={customCSS}
+    >
       {children}
     </ModalFooterDiv>
   );

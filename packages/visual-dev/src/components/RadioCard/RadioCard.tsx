@@ -1,8 +1,10 @@
 import * as React from "react";
 import root from "react-shadow/styled-components";
-import styled, { css, CSSProp } from "styled-components";
+import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { IconKey, IconView } from "../Icon";
+import { wrapWc } from "../../wc-react";
+import { wcBoolean } from "../../utlis";
 
 type GroupProps = React.ComponentProps<"input">;
 
@@ -24,11 +26,11 @@ export interface OptionProps {
   /**
    * Main title at the top of the card
    */
-  title?: string | React.ReactNode;
+  title?: string;
   /**
    * Description in the card below the title
    */
-  description?: string | React.ReactNode;
+  description?: string;
   /**
    * Icon displayed in the left side section of the card
    */
@@ -47,69 +49,20 @@ const ShadowDom = styled(root.div)`
   display: contents;
 `;
 
-interface RadioLabelProps {
-  isChecked: boolean;
-  customCSS: CSSProp;
-  disabled: boolean;
-}
-
-const RadioLabel = styled.label<RadioLabelProps>`
+const RadioLabel = styled.label<{ customCSS: CSSProp }>`
   ${Styles.RadioLabelStyle}
-  ${(props) => props.customCSS && props.customCSS}
-
-
-${(props) =>
-    !props.isChecked &&
-    !props.disabled &&
-    "&:hover {border-color: var(--sq-text-subdued);}; &:hover * {border-color: var(--sq-text-subdued);}"}
-
-    ${(props) =>
-    props.disabled &&
-    css`
-      cursor: default;
-      background-color: var(--sq-border);
-      border-color: var(--sq-placeholder-text-on-secondary);
-      & * {
-        border-color: var(--sq-placeholder-text-on-secondary);
-      }
-      & ${RightSegmentDiv} {
-        color: var(--sq-text-subdued);
-      }
-    `}
-    ${(props) =>
-    props.isChecked &&
-    "border-color: var(--sq-action-primary-hovered); & * {border-color: var(--sq-action-primary-hovered);}"}
-${(props) => props.customCSS}
+  ${(props) => props.customCSS}
 `;
 const RadioInput = styled.input<{ disabled: boolean }>`
   ${Styles.RadioInputStyle}
   ${(props) => props.disabled && "border-color: unset;"}
 `;
 
-const RightSegmentDiv = styled.div`
-  ${Styles.RightSegmentStyle}
-`;
-
-const RadioTextDiv = styled.div`
-  ${Styles.RadioTextStyle}
-`;
-
-const LeftSegmentDiv = styled.div<{ isChecked: boolean }>`
-  ${Styles.LeftSegmentStyle}
-  ${(props) => props.isChecked && "color: var(--sq-action-primary-hovered);"}
-`;
-
 const RadioGridDiv = styled.div`
   ${Styles.RadioGridStyle}
 `;
 
-const TitleContainerDiv = styled.div`
-  ${Styles.TitleContainerStyle}
-`;
-
-const TitleP = styled.p`
-  ${Styles.TitleStyle}
-`;
+const UICLRadioCard = wrapWc("uicl-card-radio-button");
 
 const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
   (props, forwardedRef) => {
@@ -119,7 +72,6 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
       title,
       description,
       icon = "",
-      titleIconSlot,
       customCSS = {},
       disabled = false,
       ...rest
@@ -127,15 +79,8 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
 
     const selected = value === optionValue;
 
-    const icon_color = selected ? "var(--sq-action-primary-hovered)" : "";
-
     return (
-      <RadioLabel
-        disabled={disabled}
-        htmlFor={rest.id}
-        isChecked={selected}
-        customCSS={customCSS}
-      >
+      <RadioLabel htmlFor={rest.id} customCSS={customCSS}>
         <RadioInput
           {...rest}
           type="radio"
@@ -144,24 +89,18 @@ const RadioCardView = React.forwardRef<React.ElementRef<"input">, InputProps>(
           readOnly
           ref={forwardedRef}
         />
-        {icon && (
-          <LeftSegmentDiv isChecked={selected}>
-            <IconView icon={icon} size="40px" color={icon_color} />
-          </LeftSegmentDiv>
-        )}
-        <RightSegmentDiv>
-          <RadioTextDiv>
-            {title && (
-              <TitleContainerDiv>
-                <TitleP>{title}</TitleP>
-                {titleIconSlot && titleIconSlot}
-              </TitleContainerDiv>
-            )}
-            {description && (
-              <div style={{ color: "inherit" }}>{description}</div>
-            )}
-          </RadioTextDiv>
-        </RightSegmentDiv>
+        <UICLRadioCard
+          isDisabled={wcBoolean(disabled)}
+          optionDescription={description}
+          optionName={title}
+          checked={wcBoolean(selected)}
+        >
+          {icon ? (
+            <IconView icon={icon} size="40px" slot="icon" />
+          ) : (
+            <span slot="icon" />
+          )}
+        </UICLRadioCard>
       </RadioLabel>
     );
   }

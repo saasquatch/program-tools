@@ -1,1 +1,1 @@
-export * from "./ErrorListTemplate";
+export { ErrorListTemplate } from "./ErrorListTemplate";

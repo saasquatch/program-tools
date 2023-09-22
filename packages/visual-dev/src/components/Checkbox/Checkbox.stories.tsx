@@ -6,12 +6,12 @@ export default {
   component: CheckboxView,
 };
 
-export const functional = () => {
+export const Functional = () => {
   const [value, setValue] = useState(false);
   return (
     <CheckboxView
       label={"Checkbox"}
-      value={value}
+      value={false}
       onChange={() => console.log("change!")}
       onClick={() => setValue(!value)}
     />

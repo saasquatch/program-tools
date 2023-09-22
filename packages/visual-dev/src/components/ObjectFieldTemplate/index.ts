@@ -1,1 +1,1 @@
-export * from "./ObjectFieldTemplate";
+export { ObjectFieldTemplate } from "./ObjectFieldTemplate";

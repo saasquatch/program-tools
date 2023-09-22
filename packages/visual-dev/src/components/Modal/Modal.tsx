@@ -1,7 +1,8 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import { IconView } from "../Icon";
 import * as Styles from "./Styles";
+import { wrapWc } from "../../wc-react";
+import { wcBoolean } from "../../utlis";
 
 type ModalProps = OptionProps &
   StyleProps &
@@ -13,21 +14,21 @@ export interface OptionProps {
    */
   title: string;
   /**
+   * Subtitle
+   */
+  subTitle?: string;
+  /**
    * Display the open modal
    */
   open?: boolean;
   /**
+   * Is a confirmation style modal
+   */
+  isConfirmation?: boolean;
+  /**
    * Callback triggered when the "X" in the top right of the modal is clicked
    */
   onClose: any;
-  /**
-   * Callback triggered when the primary modal action button is clicked (if available)
-   */
-  primaryAction?: any;
-  /**
-   * Callback triggered when the secondary modal action button is clicked (if available)
-   */
-  secondaryAction?: any;
   /**
    * Z-index used to overlay the modal over existing content (prefer a construct like react portals)
    */
@@ -57,30 +58,35 @@ export interface StyleProps {
   customTitleCSS?: CSSProp;
 }
 
-const ModalBackdrop = styled.div<{ zIndex?: number }>`
+const ModalBackdrop = styled.div<{
+  zIndex?: number;
+  customCSS: CSSProp;
+  customTitleCSS: CSSProp;
+  maxWidth?: string;
+}>`
   ${Styles.ModalBackdropStyle}
   ${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : "z-index: 1;")}
+  uicl-modal-view::part(title) {
+    ${(props) => props.customTitleCSS}
+  }
+  uicl-modal-view::part(modal-base) {
+    ${(props) => props.maxWidth && `max-width: ${props.maxWidth};`}
+    ${(props) => props.customCSS}
+  }
 `;
 
-const ModalDiv = styled.div<{ customCSS?: CSSProp; maxWidth?: string }>`
-  ${Styles.ModalDivStyle}
-  ${(props) => props.customCSS}
-  ${(props) => props.maxWidth && `max-width: ${props.maxWidth};`}
-`;
-
-const ModalHeader = styled.div<{ customTitleCSS?: CSSProp }>`
-  ${Styles.ModalHeaderStyle}
-  ${(props) => props.customTitleCSS}
-`;
+const UICLModalView = wrapWc("uicl-modal-view");
 
 export const ModalView = React.forwardRef<React.ElementRef<"div">, ModalProps>(
   (props, forwardedRef) => {
     const {
       title,
+      subTitle,
       open = false,
       onClose,
       zIndex,
       children,
+      isConfirmation = false,
       customCSS = {},
       customTitleCSS = {},
       ...rest
@@ -88,21 +94,26 @@ export const ModalView = React.forwardRef<React.ElementRef<"div">, ModalProps>(
     return (
       <div>
         {open && (
-          <ModalBackdrop zIndex={zIndex}>
-            <ModalDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
-              <ModalHeader customTitleCSS={customTitleCSS}>
-                {title}
-                <IconView
-                  icon="close"
-                  color="#fff"
-                  size="24px"
-                  customCSS="vertical-align: bottom; float: right; cursor: pointer; margin-left: 50px;"
-                  onClick={onClose}
-                  cursor="pointer"
-                />
-              </ModalHeader>
+          <ModalBackdrop
+            zIndex={zIndex}
+            customCSS={customCSS}
+            customTitleCSS={customTitleCSS}
+          >
+            <UICLModalView
+              {...rest}
+              ref={forwardedRef}
+              show={open}
+              title={title}
+              subTitle={subTitle}
+              hasIframe={wcBoolean(false)}
+              hasContentSlot={wcBoolean(true)}
+              hasFooterSlot={wcBoolean(true)}
+              width="100%"
+              close={() => onClose()}
+              isConfirmation={wcBoolean(isConfirmation)}
+            >
               {children}
-            </ModalDiv>
+            </UICLModalView>
           </ModalBackdrop>
         )}
       </div>

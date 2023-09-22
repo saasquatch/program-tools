@@ -1,1 +1,1 @@
-export * from "./Accordion";
+export { AccordionView, Accordion } from "./Accordion";

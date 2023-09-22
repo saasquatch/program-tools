@@ -31,6 +31,10 @@ export const InputDisabled = () => <InputView value="Input Text" disabled />;
 
 export const Placeholder = () => <InputView placeholder="Placeholder Text" />;
 
+export const InnerTextLeft = () => <InputView innerTextLeft="Left Text" />;
+
+export const InnerTextRight = () => <InputView innerTextRight="Right Text" />;
+
 export const PlaceholderDisabled = () => (
   <InputView placeholder="Placeholder Text" disabled />
 );

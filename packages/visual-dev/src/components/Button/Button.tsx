@@ -3,6 +3,8 @@ import styled, { CSSProp } from "styled-components";
 import { IconKey, IconView } from "../Icon";
 import { loadingAnimation, successAnimation } from "./Animations";
 import * as Styles from "./Styles";
+import { wrapWc } from "../../wc-react";
+import { wcBoolean } from "../../utlis";
 
 export type ButtonProps = OptionProps &
   StyleProps &
@@ -56,22 +58,28 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const StyledButton = styled.button<
-  Required<Omit<StyleProps, "loading">> & { isLoading: boolean }
+const StyleWrapperDiv = styled.div<
+  Required<Omit<StyleProps, "loading" | "pill">> & {
+    isLoading: boolean;
+  }
 >`
-  ${Styles.universal_base}
-  ${(props) => Styles[props.buttonType].base}
-  ${(props) => props.size == "small" && Styles.small}
-  ${(props) => props.size == "medium" && Styles.medium}
-  ${(props) => props.size == "large" && Styles.large}
-  ${(props) => props.critical && Styles[props.buttonType].critical}
-  ${(props) => props.success && Styles[props.buttonType].success}
-  ${(props) =>
-    props.isLoading &&
-    props.buttonType != "text" &&
-    Styles[props.buttonType].loading}
-  ${(props) => props.customCSS}
+  display: block;
+  uicl-btn::part(base) {
+    ${Styles.universal_base}
+    ${(props) => props.size == "small" && Styles.small}
+    ${(props) => props.size == "large" && Styles.large}
+    ${(props) => props.critical && Styles[props.buttonType].critical}
+    ${(props) => props.success && Styles[props.buttonType].success}
+    ${(props) =>
+      props.isLoading &&
+      props.buttonType != "text" &&
+      Styles[props.buttonType].loading}
+    margin-right: 0 !important;
+    ${(props) => props.customCSS}
+  }
 `;
+
+const UICLButton = wrapWc("uicl-btn");
 
 export const ButtonView = React.forwardRef<
   React.ElementRef<"button">,
@@ -79,7 +87,6 @@ export const ButtonView = React.forwardRef<
 >((props, forwardedRef) => {
   const {
     buttonType = "primary",
-    pill = false,
     loading = false,
     critical = false,
     success = false,
@@ -88,58 +95,68 @@ export const ButtonView = React.forwardRef<
     size = "medium",
     children,
     customCSS = {},
+    disabled = false,
+    style,
     ...rest
   } = props;
 
+  const UICLBtnType = buttonType === "text" ? "tertiary" : buttonType;
+
   return (
-    <StyledButton
-      {...rest}
+    <StyleWrapperDiv
       buttonType={buttonType}
-      pill={pill}
-      isLoading={loading}
-      critical={critical}
-      success={success}
-      size={size}
-      ref={forwardedRef}
       customCSS={customCSS}
+      isLoading={loading}
+      critical={critical && !disabled}
+      success={success && !disabled}
+      size={size}
+      style={style}
     >
-      {iconLocation == "left" && icon && (
-        <IconView
-          cursor={"inherit"}
-          icon={icon}
-          size={Styles.icon_size[size]}
-        />
-      )}
-      <span> {children} </span>
-      {iconLocation == "right" && icon && (
-        <IconView
-          cursor={"inherit"}
-          icon={icon}
-          size={Styles.icon_size[size]}
-        />
-      )}
-      {loading && props.buttonType != "text" && (
-        <>
-          {children && (
-            <span style={{ padding: Styles.anim_padding[size] }}></span>
-          )}
-          {loadingAnimation(
-            Styles.loading_anim[size],
-            buttonType == "primary"
-              ? "var(--sq-action-primary)"
-              : "var(--sq-action-secondary-border)"
-          )}
-        </>
-      )}
-      {buttonType == "primary" && success && (
-        <>
-          {children && (
-            <span style={{ padding: Styles.anim_padding[size] }}></span>
-          )}
-          {successAnimation(Styles.checkmark_anim[size])}
-        </>
-      )}
-    </StyledButton>
+      <UICLButton
+        {...rest}
+        disabled={disabled || loading}
+        isDisabled={wcBoolean(disabled || loading)}
+        className={UICLBtnType}
+        ref={forwardedRef}
+      >
+        {iconLocation == "left" && icon && (
+          <IconView
+            cursor={"inherit"}
+            icon={icon}
+            size={Styles.icon_size[size]}
+          />
+        )}
+        <span> {children} </span>
+        {iconLocation == "right" && icon && (
+          <IconView
+            cursor={"inherit"}
+            icon={icon}
+            size={Styles.icon_size[size]}
+          />
+        )}
+        {loading && props.buttonType != "text" && (
+          <>
+            {children && (
+              <span style={{ padding: Styles.anim_padding[size] }}></span>
+            )}
+            {loadingAnimation(
+              Styles.loading_anim[size],
+              buttonType == "primary"
+                ? "var(--sq-action-primary)"
+                : "var(--sq-action-secondary-border)"
+            )}
+          </>
+        )}
+        {buttonType == "primary" && success && (
+          <>
+            {children && (
+              <span style={{ padding: Styles.anim_padding[size] }}></span>
+            )}
+            {successAnimation(Styles.checkmark_anim[size])}
+          </>
+        )}
+      </UICLButton>
+    </StyleWrapperDiv>
   );
 });
 

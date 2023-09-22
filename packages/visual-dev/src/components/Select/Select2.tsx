@@ -297,6 +297,10 @@ const InputWrapperDiv = styled.div`
   ${Styles.InputWrapperDiv}
 `;
 
+const MockButton = styled.button`
+  ${Styles.MockButton}
+`;
+
 const ComboboxContainerDiv = styled.div<{
   errors: boolean;
   disabled: boolean;
@@ -531,33 +535,18 @@ const SelectHandleInnerView = <ItemType extends ItemTypeBase>(
             functional.selectItem(null as unknown as ItemType);
           }}
         />
-        {customIcon ? (
-          <StyledIconButtonView
-            disabled={disabled}
-            icon={customIcon}
-            borderless={true}
-            size="small"
-            customCSS={{
-              padding: "var(--sq-spacing-x-small)",
-            }}
-            icon_css={{
-              color: "var(--sq-text-subdued)",
-            }}
-            {...functional.getToggleButtonProps()}
+        <MockButton {...functional.getToggleButtonProps()}>
+          <IconView
+            icon={
+              customIcon ? customIcon : isOpen ? "chevron_up" : "chevron_down"
+            }
+            size={"small"}
+            customCSS={
+              "padding: var(--sq-spacing-x-small); box-sizing: content-box;"
+            }
+            color={"var(--sq-text-subdued)"}
           />
-        ) : (
-          <StyledIconButtonView
-            disabled={disabled}
-            icon={isOpen ? "chevron_up" : "chevron_down"}
-            borderless={true}
-            size="small"
-            customCSS={{ padding: "var(--sq-spacing-x-small)" }}
-            icon_css={{
-              color: "var(--sq-text-subdued)",
-            }}
-            {...functional.getToggleButtonProps()}
-          />
-        )}
+        </MockButton>
       </ButtonContainerDiv>
     </ComboboxContainerDiv>
   );
@@ -623,7 +612,6 @@ const SelectInnerFrameView = <ItemType extends ItemTypeBase>(
   } = props;
 
   const isOpen = !disabled && functional.isOpen;
-  console.log(isOpen);
 
   return (
     <ItemContainerList

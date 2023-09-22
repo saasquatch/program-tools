@@ -1,8 +1,9 @@
-import root from "react-shadow/styled-components";
 import styled, { CSSProp } from "styled-components";
-import * as Styles from "./Styles";
 import { IconKey, IconView } from "../Icon";
 import React from "react";
+import { wcBoolean } from "../../utlis";
+import { wrapWc } from "../../wc-react";
+import * as Styles from "./Styles";
 
 type InputProps = OptionProps & Partial<React.ComponentProps<"input">>;
 
@@ -32,6 +33,17 @@ export interface OptionProps {
   /**
    * Key of an icon to display inside the input field
    */
+  /**
+   * Inner text left
+   */
+  innerTextLeft?: string;
+  /**
+   * Inner text right
+   */
+  innerTextRight?: string;
+  /**
+   * Inner icon right
+   */
   icon?: IconKey;
   /**
    * Button to display inside the input field
@@ -55,89 +67,103 @@ export interface OptionProps {
   limitWidth?: InputWidthType;
 }
 
-const ShadowDom = styled(root.div)`
-  display: contents;
-`;
 
-const StyledInput = styled.input<{
-  isInvalid: boolean;
-  position: string;
-  hasIcon: boolean;
-  customCSS: CSSProp;
-}>`
-  ${Styles.InputBoxStyle}
-  ${(props) => (props.isInvalid ? Styles.invalid : "")}
-  ${(props) => props.hasIcon && "padding-right: var(--sq-spacing-xxx-large);"}
-  ${(props) => (props.position == "left" ? "text-indent: 46px;" : "")}
-  ${(props) => props.customCSS}
-`;
 
 const ExtrasDiv = styled.div<{ position: string }>`
   ${Styles.ExtrasDiv}
-  ${(props) => (props.position == "left" ? "left: 12px;" : "right: 12px;")}
+  ${(props) => (props.position == "left" ? "left: 12px;" : "right: 18px;")}
 `;
 
-const ContainerDiv = styled.div<{
+
+const StyleWrapperDiv = styled.div<{
   customContainerCSS: CSSProp;
   limitWidth: InputWidthType;
+  position: string;
+  hasIcon: boolean;
+  customCSS: CSSProp;
 }>`
   ${Styles.Container}
   ${(props) =>
     props.limitWidth
       ? typeof props.limitWidth === "string"
         ? `max-width: ${props.limitWidth};`
-        : "max-width: 300px;"
+        : "max-width: 226px;"
       : "max-width: 100%;"}
   ${(props) => props.customContainerCSS}
+
+  uicl-text-input, uicl-text-input::part(base) {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  uicl-text-input::part(input) {
+    color: "red";
+    margin: "20px";
+    ${(props) => (props.hasIcon && `padding-${props.position}: var(--sq-spacing-xxx-large);`)}
+    ${(props) => props.customCSS}
+  }
 `;
 
-export const InputView = React.forwardRef<
-  React.ElementRef<"input">,
-  InputProps
->((props, forwardedRef) => {
-  const {
-    icon,
-    position = "right",
-    type = "text",
-    buttons = false,
-    errors: rawErrors,
-    customCSS = {},
-    customContainerCSS = {},
-    limitWidth = true,
-    required = false,
-    ...rest
-  } = props;
+const UICLTextInput = wrapWc("uicl-text-input");
 
-  return (
-    <ShadowDom>
-      <ContainerDiv
+
+export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
+  (props, forwardedRef) => {
+    const {
+      icon,
+      position = "right",
+      type = "text",
+      buttons = false,
+      errors: rawErrors,
+      customCSS = {},
+      customContainerCSS = {},
+      limitWidth = true,
+      required = false,
+      disabled = false,
+      innerTextLeft = null,
+      innerTextRight = null,
+      onChange,
+      value,
+      ...rest
+    } = props;
+
+    return (
+      <StyleWrapperDiv
         customContainerCSS={customContainerCSS}
+        customCSS={customCSS}
+        hasIcon={icon || buttons ? true : false}
+        position={position}
         limitWidth={limitWidth}
       >
-        <StyledInput
-          {...rest}
-          type={type}
-          position={position}
-          ref={forwardedRef}
-          isInvalid={rawErrors}
-          customCSS={customCSS}
-          hasIcon={icon || buttons ? true : false}
-          required={required}
-        />
-        {icon && (
-          <ExtrasDiv position={position}>
-            <IconView
-              icon={icon}
-              size={"22px"}
-              color="var(--sq-text-subdued)"
-            />
-          </ExtrasDiv>
-        )}
-        <ExtrasDiv position={position}>{buttons}</ExtrasDiv>
-      </ContainerDiv>
-    </ShadowDom>
-  );
-});
+          <UICLTextInput
+            {...rest}
+            ref={forwardedRef}
+            isAutoWidth={wcBoolean(false)}
+            isDisabled={wcBoolean(disabled)}
+            isReadOnly={wcBoolean(disabled || false)}
+            innerTextLeft={innerTextLeft}
+            innerTextRight={innerTextRight}
+            validationFail={rawErrors ? "" : null}
+            maxLength={1000}
+            modelValue={value}
+            update:model-value={(e: any) => onChange(e)}
+            size="20"
+            type="text"
+          ></UICLTextInput>
+          {icon && (
+            <ExtrasDiv position={position}>
+              <IconView
+                icon={icon}
+                size={"22px"}
+                color="var(--sq-text-subdued)"
+              />
+            </ExtrasDiv>
+          )}
+          <ExtrasDiv position={position}>{buttons}</ExtrasDiv>
+      </StyleWrapperDiv>
+    );
+  }
+);
 
 /**
  * @deprecated use {@link InputView} instead
