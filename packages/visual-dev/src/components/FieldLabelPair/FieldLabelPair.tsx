@@ -21,7 +21,7 @@ export interface OptionProps {
   /**
    * The primary label for the field outside of the field containing element.
    */
-  mainLabel?: string;
+  mainLabel?: React.ReactNode | string;
   /**
    * A label that will appear above the field, but inside the field container.
    */
@@ -65,7 +65,7 @@ export interface OptionProps {
   /**
    * User instruction for filling the field
    */
-  instructions?: string;
+  instructions?: React.ReactNode | string;
   /**
    * Field slot
    */

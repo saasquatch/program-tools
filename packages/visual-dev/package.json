@@ -104,9 +104,6 @@
       "optional": true
     }
   },
-  "bundledDependencies": [
-    "@impactinc/ui-component-library"
-  ],
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "jsdom",
@@ -121,5 +118,8 @@
   "bugs": {
     "url": "https://github.com/saasquatch/program-tools/issues"
   },
-  "homepage": "https://github.com/saasquatch/program-tools#readme"
+  "homepage": "https://github.com/saasquatch/program-tools#readme",
+  "bundleDependencies": [
+    "@impactinc/ui-component-library"
+  ]
 }
