@@ -104,6 +104,9 @@
       "optional": true
     }
   },
+  "bundledDependencies": [
+    "@impactinc/ui-component-library"
+  ],
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "jsdom",
