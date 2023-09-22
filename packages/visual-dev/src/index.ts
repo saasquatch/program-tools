@@ -86,6 +86,7 @@ import { useSelectDemo } from "./components/Select/useSelectDemo";
 import { useMultiSelectDemo } from "./components/Select/useMultiSelectDemo";
 import { useComboboxDemo } from "./components/Select/useComboboxDemo";
 import { ButtonDropdownView } from "./components/ButtonDropdown";
+import { StatusView } from "./components/Status";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -163,6 +164,7 @@ export {
   SelectView,
   SwitchView,
   Switch,
+  StatusView,
   TagView,
   Tag,
   TagInputView,
