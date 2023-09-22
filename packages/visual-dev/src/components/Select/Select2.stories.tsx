@@ -23,7 +23,7 @@ const DescriptionP = styled(TitleP)`
 const StoryContainerDiv = styled.div`
   resize: both;
   height: 400px;
-  overflow: auto;
+  overflow: visible;
   margin: 100px;
 `;
 export const Basic = () => {

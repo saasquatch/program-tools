@@ -48,8 +48,6 @@ export function RJSFRadioCardWidget(props: WidgetProps) {
     return <></>;
   }
 
-  console.log();
-
   const valueOptions = props?.options?.reverse
     ? props?.options?.enumOptions?.reverse()
     : props?.options?.enumOptions;

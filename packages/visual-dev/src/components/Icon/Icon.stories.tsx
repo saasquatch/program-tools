@@ -20,6 +20,30 @@ export const CSSCustom = () => (
   />
 );
 
+export const Impact = () => <IconView icon="impact" iconSet="impact" />;
+export const ImpactSizeSmall = () => (
+  <IconView size="small" icon="impact" iconSet="impact" />
+);
+export const ImpactSizeMedium = () => (
+  <IconView size="medium" icon="impact" iconSet="impact" />
+);
+export const ImpactSizeLarge = () => (
+  <IconView size="large" icon="impact" iconSet="impact" />
+);
+export const ImpactSizeBadge = () => (
+  <IconView size="badge" icon="impact" iconSet="impact" />
+);
+export const ImpactSizeCustom = () => (
+  <IconView size="88px" icon="impact" iconSet="impact" />
+);
+export const ImpactCSSCustom = () => (
+  <IconView
+    customCSS="color: red; width: 50px; height: 50px; margin-left: 50px;"
+    icon="impact"
+    iconSet="impact"
+  />
+);
+
 const TestTooltipDiv = styled.div`
   margin: 50px 50%;
 `;

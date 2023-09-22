@@ -472,3 +472,6 @@ export const primaryPillIconLargeRight = () => (
     Icon Text
   </Button>
 );
+export const CustomCSS = () => (
+  <Button customCSS={{ color: "red", padding: "20px" }}>Icon Text</Button>
+);

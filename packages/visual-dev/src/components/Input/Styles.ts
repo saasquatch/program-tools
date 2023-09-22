@@ -45,7 +45,8 @@ export const InputBoxStyle = css`
 
 export const ExtrasDiv = css`
   position: absolute;
-  top: 8px;
+  top: 50%;
+  transform: translateY(-50%);
   display: inline-flex;
 `;
 

@@ -10,6 +10,7 @@ import {
   CSSVariables,
   TextRules,
   LinkRules,
+  UICLRules,
   TypographyRules,
   FontFamilyRules,
 } from "./components/GlobalStyle";
@@ -85,12 +86,20 @@ import { ScrollNavView } from "./components/ScrollNav";
 import { useSelectDemo } from "./components/Select/useSelectDemo";
 import { useMultiSelectDemo } from "./components/Select/useMultiSelectDemo";
 import { useComboboxDemo } from "./components/Select/useComboboxDemo";
+import { FormSectionView } from "./components/FormSection/";
+import { FieldLabelPairView } from "./components/FieldLabelPair/";
+import { wcBoolean } from "./utlis";
+//@ts-ignore
+import { register as RegisterUICL } from "@impactinc/ui-component-library/web-components";
 import { ButtonDropdownView } from "./components/ButtonDropdown";
 import { StatusView } from "./components/Status";
 
 /// <reference types="styled-components/cssprop" />
 
 export {
+  UICLRules,
+  RegisterUICL,
+  wcBoolean,
   Accordion,
   AccordionView,
   Alert,
@@ -121,6 +130,8 @@ export {
   ButtonDropdownView,
   ErrorListTemplate,
   FieldTemplate,
+  FormSectionView,
+  FieldLabelPairView,
   GlobalStyle,
   LinkRules,
   HoverPopover,

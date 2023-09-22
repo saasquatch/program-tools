@@ -163,3 +163,15 @@ export const ComboboxContainerDiv = css`
 export const InputWrapperDiv = css`
   flex-grow: 1;
 `;
+
+export const MockButton = css`
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--sq-border-radius-normal);
+
+  &:hover:not(:disabled) {
+    background: var(--sq-action-secondary);
+  }
+`;

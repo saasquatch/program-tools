@@ -4,16 +4,35 @@ import * as Styles from "./Styles";
 import * as SVGs from "./SVGs";
 import { tooltip as TooltipStyles } from "../Tooltip/Styles";
 
-export type IconProps = OptionProps &
-  TooltipStyleProps &
-  StyleProps &
-  Partial<React.ComponentProps<"div">>;
+export type IconProps = SaasquatchIcon | ImpactIcon;
 
-export interface OptionProps {
+type SharedProps = OptionProps & TooltipStyleProps &
+  StyleProps &
+  Partial<React.ComponentProps<"div">>
+
+interface ImpactIcon extends SharedProps {
+  /**
+   * Icon set to query
+   */
+  iconSet: "impact";
+  /**
+   * Icon key
+   */
+    icon: string;
+}
+
+interface SaasquatchIcon extends SharedProps {
+  /**
+   * Icon set to query
+   */
+  iconSet?: "saasquatch";
   /**
    * Icon key
    */
   icon: IconKey;
+}
+
+export interface OptionProps {
   /**
    * Add a tooltip to icon
    */
@@ -61,6 +80,8 @@ const default_size = {
 };
 
 const SVGStyleSpan = styled.span<Required<StyleProps>>`
+  &, uicl-icon::part(base){
+
   ${Styles.base}
 
   color: ${(props) => props.color};
@@ -72,6 +93,7 @@ const SVGStyleSpan = styled.span<Required<StyleProps>>`
     default_size.hasOwnProperty(props.size)
       ? default_size[props.size as Size]
       : props.size};
+
   ${(props) => props.customCSS}
 
   ${(props) =>
@@ -101,6 +123,8 @@ const SVGStyleSpan = styled.span<Required<StyleProps>>`
       default_size.hasOwnProperty(props.size)
         ? default_size[props.size as Size]
         : props.size};
+  }
+
   }
 `;
 
@@ -134,6 +158,7 @@ export const IconView = React.forwardRef<React.ElementRef<"div">, IconProps>(
   (props, forwardedRef) => {
     const {
       icon,
+      iconSet = "saasquatch",
       color = "inherit",
       size = "medium",
       cursor = "inherit",
@@ -166,7 +191,7 @@ export const IconView = React.forwardRef<React.ElementRef<"div">, IconProps>(
             {tooltip}
           </TooltipDiv>
         )}
-        {Object.keys(SVGs).includes(icon) ? SVGs[icon] : SVGs["placeholder"]}
+        {iconSet === "saasquatch" ? Object.keys(SVGs).includes(icon) ? SVGs[icon as IconKey]  : SVGs["placeholder"] : <uicl-icon name={icon} title={icon} />}
       </SVGStyleSpan>
     );
   }

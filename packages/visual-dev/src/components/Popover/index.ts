@@ -1,2 +1,2 @@
-export * from "./Popover";
-export * from "./HoverPopover";
+export { PopoverView, Popover } from "./Popover";
+export { HoverPopover } from "./HoverPopover";
