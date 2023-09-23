@@ -161,7 +161,7 @@ export const FormSubmissionTable = () => {
         />
       </DataTableView.FilterView>
       <DataTableView
-        width="958px"
+        // width="100%"
         headerSlot={
           <DataTableView.RowView variant="header">
             {content_a}
@@ -199,7 +199,6 @@ export const FormSubmissionTableWithActionsSlot = () => {
         />
       </DataTableView.FilterView>
       <DataTableView
-        width="958px"
         headerSlot={
           <DataTableView.RowView variant="header">
             {content_a}

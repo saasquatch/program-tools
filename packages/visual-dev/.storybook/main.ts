@@ -7,6 +7,7 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-coverage",
+    "@storybook/addon-docs",
   ],
   framework: {
     name: "@storybook/react-vite",
@@ -14,6 +15,7 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: "tag",
+    defaultName: "Docs",
   },
   staticDirs: [
     {

@@ -5,6 +5,7 @@ import { IconView } from ".";
 export default {
   title: "Components / Icon",
   component: IconView,
+  tags: ["autodocs"],
 };
 
 export const add = () => <IconView icon={"add"} />;

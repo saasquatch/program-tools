@@ -76,7 +76,7 @@ const getIcon = (status: StyleProps["status"]) => {
     case "invalid":
       return {
         text: "Invalid",
-        icon: "invalid",
+        icon: "alert_alt",
         iconColor: "var(--sq-decorative-orange)",
       };
   }

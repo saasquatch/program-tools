@@ -29,14 +29,14 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
-    "@impactinc/ui-component-library": "file:../../../ui-component-library/impactinc-ui-component-library-0.20.6.tgz",
+    "@impactinc/ui-component-library": "file:../../../../ui-component-library-repo/ui-component-library/impactinc-ui-component-library-0.20.6.tgz",
     "react-shadow": "^20.4.0"
   },
   "devDependencies": {
     "@rjsf/core": "^2.4.1",
     "@storybook/addon-a11y": "^7.2.1",
     "@storybook/addon-coverage": "^0.0.9",
-    "@storybook/addon-docs": "^7.2.1",
+    "@storybook/addon-docs": "^7.4.4",
     "@storybook/addon-essentials": "^7.2.1",
     "@storybook/addon-interactions": "^7.2.1",
     "@storybook/addon-knobs": "^7.0.2",
@@ -104,9 +104,6 @@
       "optional": true
     }
   },
-  "bundledDependencies": [
-    "@impactinc/ui-component-library"
-  ],
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "jsdom",
