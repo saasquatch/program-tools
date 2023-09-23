@@ -118,7 +118,6 @@ const UICLTextInput = wrapWc("uicl-text-input");
 
 export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
   (props, forwardedRef) => {
-    console.log(props.customCSS);
     const {
       icon,
       position = "right",
@@ -129,7 +128,6 @@ export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
       customContainerCSS = {},
       customLabelCSS = {},
       limitWidth = true,
-      required = false,
       disabled = false,
       innerTextLeft = null,
       innerTextRight = null,
@@ -151,7 +149,7 @@ export const InputView = React.forwardRef<HTMLInputElement, InputProps>(
           {...rest}
           ref={forwardedRef}
           isAutoWidth={wcBoolean(false)}
-          isDisabled={wcBoolean(disabled)}
+          isDisabled={wcBoolean(disabled || false)}
           isReadOnly={wcBoolean(disabled || false)}
           innerTextLeft={innerTextLeft}
           innerTextRight={innerTextRight}

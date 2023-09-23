@@ -127,7 +127,7 @@ const ModalContentDiv = styled.div<
 >`
   ${Styles.ModalContentDivStyle}
   ${(props) =>
-    props.isConfirmation && `rgba(0, 0, 0, 0.75) 0px -10px 10px -17px inset;`}
+    !props.isConfirmation && `rgba(0, 0, 0, 0.75) 0px -10px 10px -17px inset;`}
   ${(props) => props.maxHeight && `max-height: ${props.maxHeight};`}
   ${(props) => props.isConfirmation && `padding: 0 var(--sq-spacing-large);`}
   ${(props) => props.customCSS}

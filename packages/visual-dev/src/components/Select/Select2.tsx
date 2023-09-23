@@ -199,8 +199,8 @@ const ItemContainerList = styled.ul<{
       : "max-height: auto;"}
       ${(props) =>
     props.empty && "& li:hover {background: white; cursor: default;}"}
-    ${(props) => !props.isOpen && "visibility: hidden"}
     ${(props) => props.customCSS}
+    ${(props) => !props.isOpen && "visibility: hidden; padding: 0;"}
 `;
 
 const ListItem = styled.li<{ isHighlighted?: boolean; customCSS?: CSSProp }>`

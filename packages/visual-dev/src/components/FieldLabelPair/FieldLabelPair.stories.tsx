@@ -49,3 +49,16 @@ export const MainLabelOnly = () => {
     </FieldLabelPairView>
   );
 };
+
+export const WithErrors = () => {
+  return (
+    <FieldLabelPairView
+      {...{
+        ...defaultProps,
+        errors: ["Error 1", "Error 2"],
+      }}
+    >
+      <FunctionalInput />
+    </FieldLabelPairView>
+  );
+};

@@ -1,6 +1,7 @@
 import React from "react";
 import { wrapWc } from "../../wc-react";
 import { wcBoolean } from "../../utlis";
+import styled, { CSSProp } from "styled-components";
 
 export type FieldLabelPairViewProps = OptionProps &
   Partial<React.ComponentProps<"div">>;
@@ -21,7 +22,7 @@ export interface OptionProps {
   /**
    * The primary label for the field outside of the field containing element.
    */
-  mainLabel?: string;
+  mainLabel?: React.ReactNode | string;
   /**
    * A label that will appear above the field, but inside the field container.
    */
@@ -63,9 +64,13 @@ export interface OptionProps {
    */
   errors?: Array<string>;
   /**
+   * Custom container CSS
+   */
+  customContainerCSS?: CSSProp;
+  /**
    * User instruction for filling the field
    */
-  instructions?: string;
+  instructions?: React.ReactNode | string;
   /**
    * Field slot
    */
@@ -74,10 +79,14 @@ export interface OptionProps {
 
 const IUIFieldLabelPair = wrapWc("uicl-field-label-pair");
 
+const StyleDiv = styled.div<{ customContainerCSS: CSSProp }>`
+  ${(props) => props.customContainerCSS}
+`;
+
 export const FieldLabelPairView = (props: FieldLabelPairViewProps) => {
   const {
     mainLabel,
-    isVisible,
+    isVisible = true,
     isDisabled,
     isReadOnly,
     topFieldLabel,
@@ -89,36 +98,43 @@ export const FieldLabelPairView = (props: FieldLabelPairViewProps) => {
     isParent,
     isChild,
     isChildDisplayBelow,
-    errors = [],
+    customContainerCSS = {},
+    errors = null,
     instructions,
     children,
     className = "",
   } = props;
 
-  const computedClasses = `${isChild && "child"} ${
-    isParent || (isChildDisplayBelow && "parent")
-  } ${errors && "error"} ${isDisabled && "disabled"} ${className}`;
+  const computedClasses = `${isChild ? "child" : ""} ${
+    isParent || (isChildDisplayBelow ? "parent" : "")
+  } ${errors && !errors.length ? "error" : ""} ${
+    isDisabled ? "disabled" : ""
+  } ${className}`;
+
   return (
-    <IUIFieldLabelPair
-      errors={errors}
-      isVisible={wcBoolean(isVisible)}
-      isDisabled={wcBoolean(isDisabled)}
-      isReadOnly={wcBoolean(isReadOnly)}
-      isRequired={wcBoolean(isRequired)}
-      isParent={wcBoolean(isParent)}
-      isChild={wcBoolean(isChild)}
-      isChildDisplayBelow={wcBoolean(isChildDisplayBelow)}
-      mainLabel={mainLabel}
-      topFieldLabel={topFieldLabel}
-      leftFieldLabel={leftFieldLabel}
-      rightFieldLabel={rightFieldLabel}
-      //TODO: Fix once poppable works in uicl
-      // labelTooltip={labelTooltip}
-      // fieldTooltip={fieldTooltip}
-      instructions={instructions}
-      className={computedClasses}
-    >
-      {children}
-    </IUIFieldLabelPair>
+    <StyleDiv customContainerCSS={customContainerCSS}>
+      <IUIFieldLabelPair
+        errors={errors}
+        isVisible={wcBoolean(isVisible)}
+        isDisabled={wcBoolean(isDisabled)}
+        isReadOnly={wcBoolean(isReadOnly)}
+        isRequired={wcBoolean(isRequired)}
+        isParent={wcBoolean(isParent)}
+        isChild={wcBoolean(isChild)}
+        isChildDisplayBelow={wcBoolean(isChildDisplayBelow)}
+        topFieldLabel={topFieldLabel}
+        leftFieldLabel={leftFieldLabel}
+        rightFieldLabel={rightFieldLabel}
+        //TODO: Fix once poppable works in uicl
+        // labelTooltip={labelTooltip}
+        // fieldTooltip={fieldTooltip}
+        className={computedClasses}
+        mainLabel={mainLabel ? "true" : null}
+      >
+        <span slot="instructions">{instructions}</span>
+        <span slot="mainLabel">{mainLabel}</span>
+        {children}
+      </IUIFieldLabelPair>
+    </StyleDiv>
   );
 };
