@@ -12,6 +12,7 @@ import {
 } from "../../Input";
 
 export default {
+  tags: ["autodocs"],
   title: "RJSF / Widgets / Input",
   component: Form,
 };

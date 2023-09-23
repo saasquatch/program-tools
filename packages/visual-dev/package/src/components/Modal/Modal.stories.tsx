@@ -8,6 +8,7 @@ import { CheckboxView } from "../Checkbox";
 import { ModalView } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Modal",
   component: ModalView,
 };

@@ -6,6 +6,7 @@ import { SelectView } from "./Select2";
 import { useComboboxDemo } from "./useComboboxDemo";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Combobox",
   component: Select,
 };

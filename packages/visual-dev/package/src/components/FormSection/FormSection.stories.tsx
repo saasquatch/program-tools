@@ -3,6 +3,7 @@ import { FormSectionView, FormSectionViewProps } from "./FormSection";
 import { FieldLabelPairDefault } from "../FieldLabelPair/FieldLabelPair.stories";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Form Section",
   component: FormSectionView,
 };

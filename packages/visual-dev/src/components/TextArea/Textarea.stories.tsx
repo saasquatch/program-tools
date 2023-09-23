@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TextareaView } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Textarea",
   component: TextareaView,
 };

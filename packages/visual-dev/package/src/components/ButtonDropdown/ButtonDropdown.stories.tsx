@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ButtonDropdownView } from "./ButtonDropdown";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Button Dropdown",
   component: ButtonDropdownView,
 };

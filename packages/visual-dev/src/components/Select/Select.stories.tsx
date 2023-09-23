@@ -4,6 +4,7 @@ import { Select } from ".";
 import { IconKey } from "../Icon";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Select",
   component: Select,
 };

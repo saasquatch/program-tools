@@ -8,6 +8,7 @@ import { FieldTemplate } from "../FieldTemplate";
 import { ObjectFieldTemplate } from "../ObjectFieldTemplate";
 
 export default {
+  tags: ["autodocs"],
   title: "RJSF / Error List Template",
   component: FieldTemplate,
 };

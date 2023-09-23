@@ -1,6 +1,7 @@
 import React from "react";
 import { ProgressBarView } from "./ProgressBar";
 export default {
+  tags: ["autodocs"],
   title: "Components / Progress Bar",
   component: ProgressBarView,
 };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "../Button";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Button / SecondaryButton",
   component: Button,
 };

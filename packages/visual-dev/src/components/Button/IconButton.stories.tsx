@@ -2,6 +2,7 @@ import React from "react";
 import { IconButton } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Button / IconButton",
   component: IconButton,
 };

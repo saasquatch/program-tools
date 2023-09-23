@@ -3,6 +3,7 @@ import { RadioCardView } from ".";
 import { IconView } from "../Icon";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / RadioCard",
   component: RadioCardView,
 };

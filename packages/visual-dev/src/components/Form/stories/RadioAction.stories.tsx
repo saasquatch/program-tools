@@ -5,6 +5,7 @@ import { Button } from "../../Button";
 import { RJSFRadioActionWidget } from "../../RadioAction/rjsf-RadioAction";
 
 export default {
+  tags: ["autodocs"],
   title: "RJSF / Widgets / RadioAction",
   component: Form,
 };

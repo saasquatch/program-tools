@@ -2,6 +2,7 @@ import React from "react";
 import { TextLinkView } from "./TextLink";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Text Link",
   component: TextLinkView,
 };

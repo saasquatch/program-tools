@@ -2,6 +2,7 @@ import React from "react";
 import { RadioView } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Radio",
   component: RadioView,
 };

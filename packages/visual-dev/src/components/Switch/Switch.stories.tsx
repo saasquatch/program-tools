@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { SwitchView } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Switch",
   component: SwitchView,
 };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CheckboxView } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Checkbox",
   component: CheckboxView,
 };

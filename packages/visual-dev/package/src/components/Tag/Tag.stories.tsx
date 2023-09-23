@@ -2,6 +2,7 @@ import React from "react";
 import { TagView } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Tag",
   component: TagView,
 };

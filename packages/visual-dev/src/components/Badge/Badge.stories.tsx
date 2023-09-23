@@ -2,6 +2,7 @@ import React from "react";
 import { Badge, BadgeView } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Badge",
   component: Badge,
 };

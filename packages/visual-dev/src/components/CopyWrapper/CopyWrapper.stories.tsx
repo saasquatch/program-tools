@@ -4,6 +4,7 @@ import { Icon } from "../..";
 import { TooltipView } from "../Tooltip";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Copy Wrapper",
   component: CopyWrapperView,
 };

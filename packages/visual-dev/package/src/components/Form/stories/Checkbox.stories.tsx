@@ -5,6 +5,7 @@ import { Button } from "../../Button";
 import { RJSFCheckbox } from "../../Checkbox";
 
 export default {
+  tags: ["autodocs"],
   title: "RJSF / Widgets / Checkbox",
   component: Form,
 };

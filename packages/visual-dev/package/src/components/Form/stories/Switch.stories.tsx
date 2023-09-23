@@ -5,6 +5,7 @@ import { Button } from "../../Button";
 import { RJSFSwitch } from "../../Switch";
 
 export default {
+  tags: ["autodocs"],
   title: "RJSF / Widgets / Switch",
   component: Form,
 };

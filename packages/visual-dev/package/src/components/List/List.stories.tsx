@@ -2,6 +2,7 @@ import * as React from "react";
 import { ListView } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / List",
   component: ListView,
 };

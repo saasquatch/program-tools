@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import { TagInputView, TagInputViewProps, TagView } from "./TagInput";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Tag Input",
   component: TagInputView,
 };

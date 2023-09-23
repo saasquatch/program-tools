@@ -3,6 +3,7 @@ import { useState } from "react";
 import { RadioGenericView } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Generic Radio",
   component: RadioGenericView,
 };

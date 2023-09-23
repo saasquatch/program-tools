@@ -2,6 +2,7 @@ import React from "react";
 import { CardContainer } from "./Layouts";
 
 export default {
+  tags: ["autodocs"],
   title: "Misc",
 };
 

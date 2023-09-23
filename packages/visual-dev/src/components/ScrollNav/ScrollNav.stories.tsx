@@ -2,6 +2,7 @@ import React from "react";
 import { ScrollNavView } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Scroll Nav",
 
   component: ScrollNavView,

@@ -5,6 +5,7 @@ import { Button } from "../../Button";
 import { RJSFTextarea } from "../../TextArea";
 
 export default {
+  tags: ["autodocs"],
   title: "RJSF / Widgets / Textarea",
   component: Form,
 };

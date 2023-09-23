@@ -3,6 +3,7 @@ import { FieldLabelPairView, FieldLabelPairViewProps } from "./FieldLabelPair";
 import { FunctionalInput } from "../Input/Input.stories";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Field Label Pair",
   component: FieldLabelPairView,
 };

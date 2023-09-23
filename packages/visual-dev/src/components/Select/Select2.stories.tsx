@@ -5,6 +5,7 @@ import { useSelectDemo } from "./useSelectDemo";
 import { useSelect } from "downshift";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Select v2",
   component: SelectView,
 };

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { InputView } from "../Input";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Tooltip",
   component: TooltipView,
 };

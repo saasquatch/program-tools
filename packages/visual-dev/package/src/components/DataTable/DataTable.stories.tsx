@@ -9,6 +9,7 @@ import { BannerView } from "./Banner";
 import { DataTableView } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / DataTable",
   component: DataTableView,
 };

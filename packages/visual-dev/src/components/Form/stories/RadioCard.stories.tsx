@@ -5,6 +5,7 @@ import { ButtonView } from "../../Button";
 import { RJSFRadioCardWidget } from "../../RadioCard";
 
 export default {
+  tags: ["autodocs"],
   title: "RJSF / Widgets / RadioCard",
   component: Form,
 };

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { IconView } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Icon",
   component: IconView,
 };

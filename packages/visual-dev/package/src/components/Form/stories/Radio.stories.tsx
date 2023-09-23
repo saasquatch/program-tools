@@ -5,6 +5,7 @@ import { Button } from "../../Button";
 import { RJSFRadio } from "../../Radio";
 
 export default {
+  tags: ["autodocs"],
   title: "RJSF / Widgets / Radio",
   component: Form,
 };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { RadioActionView, RadioActionGroupView } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / RadioAction",
   component: RadioActionView,
 };

@@ -5,6 +5,7 @@ import { useSelect } from "downshift";
 import { Select } from "../Select";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Input",
   component: InputView,
 };
