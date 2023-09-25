@@ -7,6 +7,7 @@ import { ObjectFieldTemplate } from "./ObjectFieldTemplate";
 import { FieldTemplate } from "../FieldTemplate";
 
 export default {
+  tags: ["autodocs"],
   title: "RJSF / Object Field Template",
   component: ObjectFieldTemplate,
 };

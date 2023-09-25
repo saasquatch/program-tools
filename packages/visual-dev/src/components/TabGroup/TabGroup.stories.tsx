@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Tab, TabGroup } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Tab",
   component: TabGroup,
 };

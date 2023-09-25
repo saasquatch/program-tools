@@ -3,6 +3,7 @@ import { CardView, CardEditView, CardLongView } from ".";
 import { Button } from "../Button";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Card",
   component: CardView,
 };

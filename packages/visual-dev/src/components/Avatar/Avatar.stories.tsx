@@ -2,6 +2,7 @@ import React from "react";
 import { AvatarView } from ".";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Avatar",
   component: AvatarView,
 };

@@ -90,7 +90,7 @@ export const RowView = React.forwardRef<React.ElementRef<"div">, RowViewProps>(
               {cell.text}
             </ContentDiv>
           ))}
-        <div className="actions-container">{actionsSlot && actionsSlot}</div>
+        {actionsSlot && <div className="actions-container">{actionsSlot}</div>}
       </RowDiv>
     );
   }

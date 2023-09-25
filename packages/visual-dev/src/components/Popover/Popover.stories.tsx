@@ -6,6 +6,7 @@ import { HoverPopover } from "./HoverPopover";
 import { CopyWrapperView } from "../CopyWrapper/CopyWrapper";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Popover",
   component: PopoverView,
 };

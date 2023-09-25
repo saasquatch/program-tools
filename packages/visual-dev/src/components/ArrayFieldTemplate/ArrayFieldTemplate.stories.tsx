@@ -8,6 +8,7 @@ import { ObjectFieldTemplate } from "../ObjectFieldTemplate";
 import { RJSFInput } from "../Input";
 
 export default {
+  tags: ["autodocs"],
   title: "RJSF / Array Field Template",
   component: ArrayFieldTemplate,
 };

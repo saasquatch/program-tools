@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IconView } from "../Icon";
 import { DetailsView } from "./Details";
 export default {
+  tags: ["autodocs"],
   title: "Components / Details",
   component: DetailsView,
 };

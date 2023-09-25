@@ -31,16 +31,35 @@ export const RowBase = css`
   color: var(--sq-text-dark);
 
   & .actions-container {
-    visibility: hidden;
+    // visibility: hidden;
+    opacity: 0;
     position: absolute;
-    transform: translateX(-10%);
     right: 0;
+    background: linear-gradient(270deg, white 0%, rgba(255, 255, 255, 0) 100%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    transition: opacity 0.4s;
+
+    &:first-child {
+      max-width: fit-content;
+      right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto 0; 
+      margin-right: 10px;
+    }
+}
   }
 
   &:hover {
     cursor: pointer;
     .actions-container {
-      visibility: visible;
+      // visibility: visible;
+      opacity: 1;
     }
   }
 `;
@@ -60,6 +79,7 @@ export const Row = {
     border-bottom: 1px solid var(--sq-border-subdued);
     border-top: 0px;
     box-sizing: border-box;
+    position: relative;
   `,
   header: css`
     font-weight: var(--sq-font-weight-bold);

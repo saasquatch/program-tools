@@ -3,6 +3,7 @@ import { AccordionView } from ".";
 import { SwitchView } from "../Switch";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Accordion",
   component: AccordionView,
 };

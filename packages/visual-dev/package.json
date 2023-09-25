@@ -36,7 +36,7 @@
     "@rjsf/core": "^2.4.1",
     "@storybook/addon-a11y": "^7.2.1",
     "@storybook/addon-coverage": "^0.0.9",
-    "@storybook/addon-docs": "^7.2.1",
+    "@storybook/addon-docs": "^7.4.4",
     "@storybook/addon-essentials": "^7.2.1",
     "@storybook/addon-interactions": "^7.2.1",
     "@storybook/addon-knobs": "^7.0.2",

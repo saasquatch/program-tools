@@ -5,6 +5,7 @@ import { SelectView } from "./Select2";
 import { useMultiSelectDemo } from "./useMultiSelectDemo";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Multi Select",
   component: SelectView,
 };

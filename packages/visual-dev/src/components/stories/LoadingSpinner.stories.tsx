@@ -2,6 +2,7 @@ import React from "react";
 import { LoadingSpinner } from "../LoadingSpinner";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Loading Spinner",
 };
 

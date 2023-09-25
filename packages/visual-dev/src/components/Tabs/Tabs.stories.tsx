@@ -3,6 +3,7 @@ import { Tabs, TabsView } from ".";
 import styled, { css } from "styled-components";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Tabs",
   component: TabsView,
 };

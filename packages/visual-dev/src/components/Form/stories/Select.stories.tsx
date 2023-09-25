@@ -4,6 +4,7 @@ import React from "react";
 import { Button, RJSFSelect } from "../../..";
 
 export default {
+  tags: ["autodocs"],
   title: "RJSF / Widgets / Select",
   component: Form,
 };

@@ -35,7 +35,7 @@ export const TableRowView = React.forwardRef<
       customCSS={customCSS}
     >
       {children}
-      <div className="actions-container">{actionsSlot && actionsSlot}</div>
+      {actionsSlot && <div className="actions-container">{actionsSlot}</div>}
     </RowDiv>
   );
 });

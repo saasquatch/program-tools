@@ -3,6 +3,7 @@ import { AlertView } from ".";
 import { IconView } from "../Icon";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / Alert",
   component: AlertView,
 };

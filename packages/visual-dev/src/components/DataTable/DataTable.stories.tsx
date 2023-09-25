@@ -7,8 +7,10 @@ import { HoverPopover, PopoverView } from "../Popover";
 import { BadgeView } from "../Badge";
 import { BannerView } from "./Banner";
 import { DataTableView } from ".";
+import { ButtonView } from "../Button";
 
 export default {
+  tags: ["autodocs"],
   title: "Components / DataTable",
   component: DataTableView,
 };
@@ -116,36 +118,36 @@ const content_b = [
   { text: text_b },
   { text: text_c },
   { text: text_d },
-  {
-    text: <IconView icon="actions" />,
-    width: "50px",
-    flex: 0.01,
-    center: true,
-  },
+  // {
+  //   text: <IconView icon="actions" />,
+  //   width: "50px",
+  //   flex: 0.01,
+  //   center: true,
+  // },
 ];
 const content_c = [
   { text: text_a },
   { text: text_b },
   { text: text_c },
   { text: text_e },
-  {
-    text: <IconView icon="actions" />,
-    width: "50px",
-    flex: 0.01,
-    center: true,
-  },
+  // {
+  //   text: <IconView icon="actions" />,
+  //   width: "50px",
+  //   flex: 0.01,
+  //   center: true,
+  // },
 ];
 const content_d = [
   { text: text_a },
   { text: text_b },
   { text: text_e_popover },
   { text: text_f },
-  {
-    text: <IconView icon="actions" />,
-    width: "50px",
-    flex: 0.01,
-    center: true,
-  },
+  // {
+  //   text: <IconView icon="actions" />,
+  //   width: "50px",
+  //   flex: 0.01,
+  //   center: true,
+  // },
 ];
 
 export const FormSubmissionTable = () => {
@@ -161,7 +163,7 @@ export const FormSubmissionTable = () => {
         />
       </DataTableView.FilterView>
       <DataTableView
-        width="958px"
+        // width="100%"
         headerSlot={
           <DataTableView.RowView variant="header">
             {content_a}
@@ -187,6 +189,20 @@ export const FormSubmissionTable = () => {
 };
 
 export const FormSubmissionTableWithActionsSlot = () => {
+  const actionsSlot = (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "8px",
+        width: "fit-content",
+      }}
+    >
+      <ButtonView buttonType="primary">Edit</ButtonView>
+      <ButtonView buttonType="secondary">Delete</ButtonView>
+    </div>
+  );
   return (
     <>
       <DataTableView.FilterView>
@@ -199,7 +215,6 @@ export const FormSubmissionTableWithActionsSlot = () => {
         />
       </DataTableView.FilterView>
       <DataTableView
-        width="958px"
         headerSlot={
           <DataTableView.RowView variant="header">
             {content_a}
@@ -214,13 +229,21 @@ export const FormSubmissionTableWithActionsSlot = () => {
           />
         }
       >
-        <DataTableView.RowView actionsSlot={<div>ACTIONS SLOT</div>}>
+        <DataTableView.RowView actionsSlot={actionsSlot}>
           {content_b}
         </DataTableView.RowView>
-        <DataTableView.RowView>{content_c}</DataTableView.RowView>
-        <DataTableView.RowView>{content_c}</DataTableView.RowView>
-        <DataTableView.RowView>{content_c}</DataTableView.RowView>
-        <DataTableView.RowView>{content_c}</DataTableView.RowView>
+        <DataTableView.RowView actionsSlot={actionsSlot}>
+          {content_c}
+        </DataTableView.RowView>
+        <DataTableView.RowView actionsSlot={actionsSlot}>
+          {content_c}
+        </DataTableView.RowView>
+        <DataTableView.RowView actionsSlot={actionsSlot}>
+          {content_c}
+        </DataTableView.RowView>
+        <DataTableView.RowView actionsSlot={actionsSlot}>
+          {content_c}
+        </DataTableView.RowView>
       </DataTableView>
     </>
   );
