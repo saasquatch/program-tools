@@ -1,1 +1,0 @@
-export { SliderView } from "./Slider";

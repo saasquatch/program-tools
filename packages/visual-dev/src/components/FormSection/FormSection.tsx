@@ -57,11 +57,9 @@ export interface OptionProps {
   children?: React.ReactNode;
 }
 
-const StyleDiv = styled.div`
-  width: 100%;
+const UICLFormSection = styled(wrapWc("uicl-form-section"))`
+  display: block;
 `;
-
-const UICLFormSection = wrapWc("uicl-form-section");
 
 export const FormSectionView = (props: FormSectionViewProps) => {
   const {
@@ -87,23 +85,22 @@ export const FormSectionView = (props: FormSectionViewProps) => {
   } ${className}`;
 
   return (
-    <StyleDiv>
-      <UICLFormSection
-        is-advanced={wcBoolean(isAdvanced)}
-        is-subform-section={wcBoolean(isSubformSection)}
-        is-advanced-shown={wcBoolean(isAdvancedShown)}
-        is-visible={wcBoolean(isVisible)}
-        is-display-column={wcBoolean(isDisplayColumn)}
-        is-optional={wcBoolean(isOptional)}
-        optional-label={optionalLabel}
-        heading={heading}
-        description={description}
-        advanced-settings-label={advancedSettingsLabel}
-        // label-tooltip={labelTooltip}
-        className={computedClasses}
-      >
-        {children}
-      </UICLFormSection>
-    </StyleDiv>
+    <UICLFormSection
+      is-advanced={wcBoolean(isAdvanced)}
+      is-subform-section={wcBoolean(isSubformSection)}
+      is-advanced-shown={wcBoolean(isAdvancedShown)}
+      is-visible={wcBoolean(isVisible)}
+      is-display-column={wcBoolean(isDisplayColumn)}
+      is-optional={wcBoolean(isOptional)}
+      optional-label={optionalLabel}
+      heading={heading}
+      description={description}
+      advanced-settings-label={advancedSettingsLabel}
+      // label-tooltip={labelTooltip}
+      className={computedClasses}
+      style={{ width: "100%" }}
+    >
+      {children}
+    </UICLFormSection>
   );
 };

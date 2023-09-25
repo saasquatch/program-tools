@@ -1,1 +1,0 @@
-export { ObjectFieldTemplate } from "./ObjectFieldTemplate";

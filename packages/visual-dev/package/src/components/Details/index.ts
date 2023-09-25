@@ -1,1 +1,0 @@
-export { DetailsView } from "./Details";

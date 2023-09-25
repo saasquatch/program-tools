@@ -117,6 +117,7 @@ export const ButtonView = React.forwardRef<
         disabled={disabled || loading}
         isDisabled={wcBoolean(disabled || loading)}
         className={UICLBtnType}
+        isMultiClickable={wcBoolean(true)}
         ref={forwardedRef}
       >
         {iconLocation == "left" && icon && (

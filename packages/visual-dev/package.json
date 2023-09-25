@@ -29,7 +29,7 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
-    "@impactinc/ui-component-library": "file:../../../ui-component-library/impactinc-ui-component-library-0.20.6.tgz",
+    "@impactinc/ui-component-library": "file:../../../ui-component-library/impactinc-ui-component-library-0.20.7-0.tgz",
     "react-shadow": "^20.4.0"
   },
   "devDependencies": {

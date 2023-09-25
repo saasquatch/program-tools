@@ -1,1 +1,0 @@
-export { ArrayFieldTemplate } from "./ArrayFieldTemplate";

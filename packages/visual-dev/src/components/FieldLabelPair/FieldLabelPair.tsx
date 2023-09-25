@@ -77,9 +77,10 @@ export interface OptionProps {
   children?: React.ReactNode;
 }
 
-const IUIFieldLabelPair = wrapWc("uicl-field-label-pair");
-
-const StyleDiv = styled.div<{ customContainerCSS: CSSProp }>`
+const IUIFieldLabelPair = styled(wrapWc("uicl-field-label-pair"))<{
+  customContainerCSS: CSSProp;
+}>`
+  display: block;
   ${(props) => props.customContainerCSS}
 `;
 
@@ -112,29 +113,28 @@ export const FieldLabelPairView = (props: FieldLabelPairViewProps) => {
   } ${className}`;
 
   return (
-    <StyleDiv customContainerCSS={customContainerCSS}>
-      <IUIFieldLabelPair
-        errors={errors}
-        isVisible={wcBoolean(isVisible)}
-        isDisabled={wcBoolean(isDisabled)}
-        isReadOnly={wcBoolean(isReadOnly)}
-        isRequired={wcBoolean(isRequired)}
-        isParent={wcBoolean(isParent)}
-        isChild={wcBoolean(isChild)}
-        isChildDisplayBelow={wcBoolean(isChildDisplayBelow)}
-        topFieldLabel={topFieldLabel}
-        leftFieldLabel={leftFieldLabel}
-        rightFieldLabel={rightFieldLabel}
-        //TODO: Fix once poppable works in uicl
-        // labelTooltip={labelTooltip}
-        // fieldTooltip={fieldTooltip}
-        className={computedClasses}
-        mainLabel={mainLabel ? "true" : null}
-      >
-        <span slot="instructions">{instructions}</span>
-        <span slot="mainLabel">{mainLabel}</span>
-        {children}
-      </IUIFieldLabelPair>
-    </StyleDiv>
+    <IUIFieldLabelPair
+      errors={errors}
+      isVisible={wcBoolean(isVisible)}
+      isDisabled={wcBoolean(isDisabled)}
+      isReadOnly={wcBoolean(isReadOnly)}
+      isRequired={wcBoolean(isRequired)}
+      isParent={wcBoolean(isParent)}
+      isChild={wcBoolean(isChild)}
+      isChildDisplayBelow={wcBoolean(isChildDisplayBelow)}
+      topFieldLabel={topFieldLabel}
+      leftFieldLabel={leftFieldLabel}
+      rightFieldLabel={rightFieldLabel}
+      //TODO: Fix once poppable works in uicl
+      // labelTooltip={labelTooltip}
+      // fieldTooltip={fieldTooltip}
+      className={computedClasses}
+      customContainerCSS={customContainerCSS}
+      mainLabel={mainLabel ? "true" : null}
+    >
+      <span slot="instructions">{instructions}</span>
+      <span slot="mainLabel">{mainLabel}</span>
+      {children}
+    </IUIFieldLabelPair>
   );
 };
