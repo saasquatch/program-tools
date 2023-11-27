@@ -91,6 +91,11 @@ const expiredReward = {
   statuses: ["EXPIRED", "AVAILABLE"],
   dateExpires: 1626850800000,
 };
+
+const deniedReward = {
+  statuses: ["DENIED", "AVAILABLE"],
+  dateExpires: 1626850800000,
+};
 const redeemedReward = {
   statuses: ["AVAILABLE", "EXPIRED", "REDEEMED"],
 };
@@ -418,6 +423,20 @@ export const Expired = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={[{ ...baseReward, ...expiredReward }]}
+      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      fuelTankText="Your code is"
+      rewardReceivedText="Reward received on"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const Denied = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseReward, ...deniedReward }]}
       statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
       statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
       fuelTankText="Your code is"
