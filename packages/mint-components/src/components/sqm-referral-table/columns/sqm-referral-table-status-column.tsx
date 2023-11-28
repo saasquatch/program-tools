@@ -47,21 +47,21 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
   @Method()
   async renderCell(data: Referral) {
     // TODO: Make ICU and more complete
-    let statusText = data.dateConverted
-      ? this.convertedStatusText
-      : this.inProgressStatusText;
+    let statusText: string;
 
-    let fraudStatus: "PENDING" | "AUTO_DENIED" | "MANUAL_DENIED" | "APPROVED" =
-      "APPROVED";
+    let fraudStatus: "PENDING" | "AUTO_DENIED" | "MANUAL_DENIED" | "APPROVED";
 
     const { autoModerationStatus, manualModerationStatus, moderationStatus } =
       data.fraudData;
+
     if (moderationStatus === "DENIED") {
       statusText = this.deniedStatusText;
 
       if (autoModerationStatus === "DENIED") {
         fraudStatus = "AUTO_DENIED";
-      } else if (manualModerationStatus === "DENIED") {
+      }
+
+      if (manualModerationStatus === "DENIED") {
         fraudStatus = "MANUAL_DENIED";
       }
     }
@@ -69,6 +69,11 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
     if (data.fraudData?.moderationStatus === "PENDING") {
       statusText = this.pendingReviewStatusText;
       fraudStatus = "PENDING";
+    }
+
+    if (data.fraudData?.moderationStatus === "APPROVED") {
+      fraudStatus = "APPROVED"
+      statusText = data.dateConverted ? this.convertedStatusText : this.inProgressStatusText
     }
 
     return (

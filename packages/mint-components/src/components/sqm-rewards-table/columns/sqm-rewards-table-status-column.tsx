@@ -24,7 +24,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
    * @uiWidget textArea
    */
   @Prop() statusText: string =
-    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
+    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} PENDING_REVIEW {Pending Review} DENIED {Denied} other {Not available} }";
 
   /**
    * Text shown before the date of an expiring reward.
