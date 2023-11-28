@@ -91,10 +91,14 @@ const expiredReward = {
   statuses: ["EXPIRED", "AVAILABLE"],
   dateExpires: 1626850800000,
 };
-
-const deniedReward = {
-  statuses: ["DENIED", "AVAILABLE"],
-  dateExpires: 1626850800000,
+const autoDeniedReward = {
+  statuses: ["AUTO_DENIED"],
+};
+const manualDeniedReward = {
+  statuses: ["MANUAL_DENIED"],
+};
+const pendingReviewReward = {
+  statuses: ["PENDING_REVIEW"],
 };
 const redeemedReward = {
   statuses: ["AVAILABLE", "EXPIRED", "REDEEMED"],
@@ -174,12 +178,17 @@ function getYears() {
   return DateTime.now().toMillis() + 200000000000;
 }
 
+const statusText =
+  "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} AUTO_DENIED {Denied} MANUAL_DENIED {Denied} PENDING_REVIEW {Pending Review} other {Not available} }";
+const statusLongText =
+  "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} AUTO_DENIED {Denied on} MANUAL_DENIED {Denied for self-referral on} PENDING_REVIEW {Pending since}  other {Not available} }";
+
 export const PendingNoUnpend = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={[{ ...baseReward, ...pendingReward, ...nullScheduledFor }]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -193,8 +202,8 @@ export const PendingNoUnpendNoDetails = () => {
     <sqm-referral-table-rewards-cell
       hideDetails={true}
       rewards={[{ ...baseReward, ...pendingReward, ...nullScheduledFor }]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -210,8 +219,8 @@ export const NarrowColumnWithWideText = () => {
         rewards={[
           { ...baseReward, ...pendingReward, dateScheduledFor: getDays() },
         ]}
-        statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-        statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+        statusText={statusText}
+        statusLongText={statusLongText}
         fuelTankText="Your code is"
         rewardReceivedText="Reward received on"
         expiringText="Expiring in"
@@ -219,8 +228,8 @@ export const NarrowColumnWithWideText = () => {
       ></sqm-referral-table-rewards-cell>
       <sqm-referral-table-rewards-cell
         rewards={[{ ...baseReward, ...pendingReward }]}
-        statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-        statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+        statusText={statusText}
+        statusLongText={statusLongText}
         fuelTankText="Your code is"
         rewardReceivedText="Reward received on"
         expiringText="Expiring in"
@@ -230,8 +239,8 @@ export const NarrowColumnWithWideText = () => {
         rewards={[
           { ...baseReward, ...pendingReward, dateScheduledFor: getYears() },
         ]}
-        statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-        statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+        statusText={statusText}
+        statusLongText={statusLongText}
         fuelTankText="Your code is"
         rewardReceivedText="Reward received on"
         expiringText="Expiring in"
@@ -247,8 +256,8 @@ export const PendingWithUnpend = () => {
       rewards={[
         { ...baseReward, ...pendingReward, dateScheduledFor: getSeconds() },
       ]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -258,8 +267,8 @@ export const PendingWithUnpend = () => {
       rewards={[
         { ...baseReward, ...pendingReward, dateScheduledFor: getMinutes() },
       ]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -269,8 +278,8 @@ export const PendingWithUnpend = () => {
       rewards={[
         { ...baseReward, ...pendingReward, dateScheduledFor: getHours() },
       ]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -280,8 +289,8 @@ export const PendingWithUnpend = () => {
       rewards={[
         { ...baseReward, ...pendingReward, dateScheduledFor: getDays() },
       ]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -291,8 +300,8 @@ export const PendingWithUnpend = () => {
       rewards={[
         { ...baseReward, ...pendingReward, dateScheduledFor: getMonths() },
       ]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -302,8 +311,8 @@ export const PendingWithUnpend = () => {
       rewards={[
         { ...baseReward, ...pendingReward, dateScheduledFor: getYears() },
       ]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -316,8 +325,8 @@ export const AvailableNoExpiry = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={[{ ...baseReward, ...availableReward, ...nullExpiresIn }]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -332,8 +341,8 @@ export const AvailableWithExpiry = () => {
       rewards={[
         { ...baseReward, ...availableReward, dateExpires: getSeconds() },
       ]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -343,8 +352,8 @@ export const AvailableWithExpiry = () => {
       rewards={[
         { ...baseReward, ...availableReward, dateExpires: getMinutes() },
       ]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -352,8 +361,8 @@ export const AvailableWithExpiry = () => {
     ></sqm-referral-table-rewards-cell>,
     <sqm-referral-table-rewards-cell
       rewards={[{ ...baseReward, ...availableReward, dateExpires: getHours() }]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -361,8 +370,8 @@ export const AvailableWithExpiry = () => {
     ></sqm-referral-table-rewards-cell>,
     <sqm-referral-table-rewards-cell
       rewards={[{ ...baseReward, ...availableReward, dateExpires: getDays() }]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -372,8 +381,8 @@ export const AvailableWithExpiry = () => {
       rewards={[
         { ...baseReward, ...availableReward, dateExpires: getMonths() },
       ]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -381,8 +390,8 @@ export const AvailableWithExpiry = () => {
     ></sqm-referral-table-rewards-cell>,
     <sqm-referral-table-rewards-cell
       rewards={[{ ...baseReward, ...availableReward, dateExpires: getYears() }]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -395,8 +404,8 @@ export const Redeemed = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={[{ ...baseReward, ...redeemedReward }]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -409,8 +418,8 @@ export const Cancelled = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={[{ ...baseReward, ...cancelledReward }]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -423,8 +432,8 @@ export const Expired = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={[{ ...baseReward, ...expiredReward }]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -433,12 +442,40 @@ export const Expired = () => {
   );
 };
 
-export const Denied = () => {
+export const AutoDenied = () => {
   return (
     <sqm-referral-table-rewards-cell
-      rewards={[{ ...baseReward, ...deniedReward }]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      rewards={[{ ...baseReward, ...autoDeniedReward }]}
+      statusText={statusText}
+      statusLongText={statusLongText}
+      fuelTankText="Your code is"
+      rewardReceivedText="Reward received on"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const ManualDenied = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseReward, ...manualDeniedReward }]}
+      statusText={statusText}
+      statusLongText={statusLongText}
+      fuelTankText="Your code is"
+      rewardReceivedText="Reward received on"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const PendingReview = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseReward, ...pendingReviewReward }]}
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -451,8 +488,8 @@ export const EmptyCell = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={zeroRewards}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -465,8 +502,8 @@ export const oneRewardCell = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={oneReward}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -479,8 +516,8 @@ export const twoRewardsCell = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={twoRewards}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -493,8 +530,8 @@ export const threeRewardsCell = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={threeRewards}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -507,8 +544,8 @@ export const fiveRewardsCell = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={fiveRewards}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -521,8 +558,8 @@ export const eightRewardsCell = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={eightRewards}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
@@ -535,8 +572,8 @@ export const tenRewardsCell = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={tenRewards}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
+      statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"

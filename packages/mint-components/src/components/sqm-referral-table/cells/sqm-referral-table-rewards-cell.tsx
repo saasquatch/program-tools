@@ -96,7 +96,7 @@ export class ReferralTableRewardsCell {
         "AVAILABLE",
         "PENDING_REVIEW",
         "AUTO_DENIED",
-        "MANUAL_DENIED"
+        "MANUAL_DENIED",
       ];
 
       if (states.length === 1) return states[0];
@@ -108,11 +108,13 @@ export class ReferralTableRewardsCell {
       switch (state) {
         case "REDEEMED":
           return "primary";
+        case "MANUAL_DENIED":
         case "EXPIRED":
-          return "danger";
         case "CANCELLED":
+        case "AUTO_DENIED":
           return "danger";
         case "PENDING":
+        case "PENDING_REVIEW":
           return "warning";
         case "AVAILABLE":
           return "success";
@@ -146,6 +148,9 @@ export class ReferralTableRewardsCell {
           status: state,
         }
       );
+
+      console.log(state);
+
       return (
         <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>
           <style type="text/css">{styleString}</style>
