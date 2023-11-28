@@ -38,23 +38,17 @@ export class ReferralTableStatusCell {
         case "AUTO_DENIED":
         case "MANUAL_DENIED":
           return "danger";
+        default:
+          return "warning";
       }
     };
+
     return (
       <div>
         <style type="text/css">{styleString}</style>
         <sl-badge
           pill
-          // FRAUD-TODO: Proper status tag. Consider converted and fraudStatus
-          type={
-            // this.fraudStatus && this.fraudStatus !== "APPROVED"
-            //   ? "danger"
-            //   : this.converted
-            //   ? "success"
-            //   : "warning"
-
-            getBadgeType(this.fraudStatus)
-          }
+          type={getBadgeType(this.fraudStatus)}
           class={sheet.classes.Badge}
         >
           {this.statusText}
