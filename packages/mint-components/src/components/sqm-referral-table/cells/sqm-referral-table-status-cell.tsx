@@ -28,6 +28,18 @@ export class ReferralTableStatusCell {
   @Prop() converted: boolean;
 
   render() {
+    const getBadgeType = (fraudStatus) => {
+      switch (fraudStatus) {
+        case this.converted:
+        case "APPROVED":
+          return "success";
+        case "PENDING_REVIEW":
+          return "warning";
+        case "AUTO_DENIED":
+        case "MANUAL_DENIED":
+          return "danger";
+      }
+    };
     return (
       <div>
         <style type="text/css">{styleString}</style>
@@ -35,11 +47,13 @@ export class ReferralTableStatusCell {
           pill
           // FRAUD-TODO: Proper status tag. Consider converted and fraudStatus
           type={
-            this.fraudStatus && this.fraudStatus !== "APPROVED"
-              ? "danger"
-              : this.converted
-              ? "success"
-              : "warning"
+            // this.fraudStatus && this.fraudStatus !== "APPROVED"
+            //   ? "danger"
+            //   : this.converted
+            //   ? "success"
+            //   : "warning"
+
+            getBadgeType(this.fraudStatus)
           }
           class={sheet.classes.Badge}
         >

@@ -6,6 +6,9 @@ import {
   PendingNoUnpend,
   PendingWithUnpend,
   Redeemed,
+  AutoDenied,
+  ManualDenied,
+  PendingReview,
 } from "./ReferralTableRewardsCell.stories";
 import scenario from "./referral-table.feature";
 
@@ -150,6 +153,26 @@ const simpleUserTableProps = {
         <sqm-referral-table-user-cell name="sjoseph@gmail.com"></sqm-referral-table-user-cell>,
         <sqm-referral-table-user-cell name="12/21/1984"></sqm-referral-table-user-cell>,
         <Cancelled />,
+      ],
+      [
+        <sqm-referral-table-user-cell name="Tom Smith"></sqm-referral-table-user-cell>,
+        <sqm-referral-table-status-cell
+          statusText="Pending review"
+          fraud-status="PENDING_REVIEW"
+          converted={false}
+        ></sqm-referral-table-status-cell>,
+        <sqm-referral-table-user-cell name="12/21/1984"></sqm-referral-table-user-cell>,
+        <PendingReview />,
+      ],
+      [
+        <sqm-referral-table-user-cell name="Tom Smith"></sqm-referral-table-user-cell>,
+        <sqm-referral-table-status-cell
+          statusText="Denied"
+          fraud-status="AUTO_DENIED"
+          converted={false}
+        ></sqm-referral-table-status-cell>,
+        <sqm-referral-table-user-cell name="12/21/1984"></sqm-referral-table-user-cell>,
+        <AutoDenied />,
       ],
     ],
   },
