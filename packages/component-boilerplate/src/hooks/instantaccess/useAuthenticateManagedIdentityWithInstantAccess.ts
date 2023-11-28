@@ -60,6 +60,7 @@ const CheckReferralFraudStatusQuery = `
       ... on User {
         id
         referredByReferral(programId: $programId) {
+          programId
           fraudData {
             moderationStatus
           }
