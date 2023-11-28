@@ -87,6 +87,7 @@ interface Reward {
   };
   referral?: Referral;
   pendingReasons?: string[];
+  cancelledReason?: "UNKNOWN" | "PROGRAM_GRAPH_MODERATION" | "SUSPECTED_FRAUD";
   rewardRedemptionTransactions: {
     data: [
       {

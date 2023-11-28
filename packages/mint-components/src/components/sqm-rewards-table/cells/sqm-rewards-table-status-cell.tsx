@@ -44,6 +44,10 @@ export class RewardTableStatusCell {
   @Prop() pendingUnhandled: string = "Fulfillment error";
 
   rewardStatus(reward: Reward) {
+    if (reward.referral?.fraudData?.moderationStatus === "DENIED")
+      return "DENIED";
+    if (reward.referral?.fraudData?.moderationStatus === "PENDING")
+      return "PENDING_REVIEW";
     if (reward.dateCancelled) return "CANCELLED";
     if (reward.statuses && reward.statuses.includes("EXPIRED"))
       return "EXPIRED";
