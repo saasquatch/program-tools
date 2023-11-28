@@ -1825,6 +1825,10 @@ export namespace Components {
     }
     interface SqmReferralTableStatusCell {
         "converted": boolean;
+        "fraudStatus"?: | "APPROVED"
+    | "PENDING"
+    | "MANUAL_DENIED"
+    | "AUTO_DENIED";
         "statusText": string;
     }
     interface SqmReferralTableStatusColumn {
@@ -1837,9 +1841,17 @@ export namespace Components {
          */
         "convertedStatusText": string;
         /**
+          * @uiName Denied status text
+         */
+        "deniedStatusText": string;
+        /**
           * @uiName In progress status text
          */
         "inProgressStatusText": string;
+        /**
+          * @uiName Pending review status text
+         */
+        "pendingReviewStatusText": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
@@ -5275,6 +5287,10 @@ declare namespace LocalJSX {
     }
     interface SqmReferralTableStatusCell {
         "converted"?: boolean;
+        "fraudStatus"?: | "APPROVED"
+    | "PENDING"
+    | "MANUAL_DENIED"
+    | "AUTO_DENIED";
         "statusText"?: string;
     }
     interface SqmReferralTableStatusColumn {
@@ -5287,9 +5303,17 @@ declare namespace LocalJSX {
          */
         "convertedStatusText"?: string;
         /**
+          * @uiName Denied status text
+         */
+        "deniedStatusText"?: string;
+        /**
           * @uiName In progress status text
          */
         "inProgressStatusText"?: string;
+        /**
+          * @uiName Pending review status text
+         */
+        "pendingReviewStatusText"?: string;
     }
     interface SqmReferralTableUserCell {
         "name"?: string;

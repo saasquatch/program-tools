@@ -20,14 +20,27 @@ const styleString = sheet.toString();
 })
 export class ReferralTableStatusCell {
   @Prop() statusText: string;
+  @Prop() fraudStatus?:
+    | "APPROVED"
+    | "PENDING_REVIEW"
+    | "MANUAL_DENIED"
+    | "AUTO_DENIED";
   @Prop() converted: boolean;
+
   render() {
     return (
       <div>
         <style type="text/css">{styleString}</style>
         <sl-badge
           pill
-          type={this.converted ? "success" : "warning"}
+          // FRAUD-TODO: Proper status tag. Consider converted and fraudStatus
+          type={
+            this.fraudStatus && this.fraudStatus !== "APPROVED"
+              ? "danger"
+              : this.converted
+              ? "success"
+              : "warning"
+          }
           class={sheet.classes.Badge}
         >
           {this.statusText}

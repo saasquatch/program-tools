@@ -94,6 +94,9 @@ export class ReferralTableRewardsCell {
         "EXPIRED",
         "PENDING",
         "AVAILABLE",
+        "PENDING_REVIEW",
+        "AUTO_DENIED",
+        "MANUAL_DENIED"
       ];
 
       if (states.length === 1) return states[0];

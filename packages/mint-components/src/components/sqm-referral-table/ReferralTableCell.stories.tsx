@@ -34,12 +34,37 @@ export const StatusCell = () => {
   return (
     <div>
       <sqm-referral-table-status-cell
-        statusText="Complete"
+        statusText="Converted"
+        converted={true}
+      ></sqm-referral-table-status-cell>
+      <sqm-referral-table-status-cell
+        statusText="In progress"
+        converted={false}
+      ></sqm-referral-table-status-cell>
+      <sqm-referral-table-status-cell
+        statusText="Pending review"
+        fraudStatus="PENDING"
+        converted={true}
+      ></sqm-referral-table-status-cell>
+      <sqm-referral-table-status-cell
+        statusText="Denied"
+        fraudStatus="AUTO_DENIED"
+        converted={false}
+      ></sqm-referral-table-status-cell>
+      <sqm-referral-table-status-cell
+        statusText="Denied"
+        fraudStatus="MANUAL_DENIED"
         converted={true}
       ></sqm-referral-table-status-cell>
       <sqm-referral-table-status-cell
         statusText="In Progress"
+        fraudStatus="APPROVED"
         converted={false}
+      ></sqm-referral-table-status-cell>
+      <sqm-referral-table-status-cell
+        statusText="Converted"
+        fraudStatus="APPROVED"
+        converted={true}
       ></sqm-referral-table-status-cell>
     </div>
   );

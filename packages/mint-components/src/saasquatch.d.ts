@@ -21,6 +21,11 @@ interface Referral {
       Saasquatch_Referral_Status__c: string;
     };
   };
+  fraudData?: {
+    moderationStatus: "PENDING" | "APPROVED" | "DENIED";
+    autoModerationStatus: "PENDING" | "APPROVED" | "DENIED";
+    manualModerationStatus: "PENDING" | "APPROVED" | "DENIED";
+  };
   rewards: Reward[];
 }
 

@@ -136,6 +136,11 @@ const GET_REFERRAL_DATA = gql`
               id
               name
             }
+            fraudData {
+              autoModerationStatus
+              manualModerationStatus
+              moderationStatus
+            }
             rewards(filter: $rewardFilter) {
               id
               type

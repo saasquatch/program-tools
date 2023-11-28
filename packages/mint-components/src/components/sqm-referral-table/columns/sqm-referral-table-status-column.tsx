@@ -29,6 +29,16 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
    */
   @Prop() inProgressStatusText: string = "In Progress";
 
+  /**
+   * @uiName Pending review status text
+   */
+  @Prop() pendingReviewStatusText: string = "Pending review";
+
+  /**
+   * @uiName Denied status text
+   */
+  @Prop() deniedStatusText: string = "Denied";
+
   constructor() {
     withHooks(this);
   }
@@ -37,12 +47,34 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
   @Method()
   async renderCell(data: Referral) {
     // TODO: Make ICU and more complete
-    const statusText = data.dateConverted
+    let statusText = data.dateConverted
       ? this.convertedStatusText
       : this.inProgressStatusText;
+
+    let fraudStatus: "PENDING" | "AUTO_DENIED" | "MANUAL_DENIED" | "APPROVED" =
+      "APPROVED";
+
+    const { autoModerationStatus, manualModerationStatus, moderationStatus } =
+      data.fraudData;
+    if (moderationStatus === "DENIED") {
+      statusText = this.deniedStatusText;
+
+      if (autoModerationStatus === "DENIED") {
+        fraudStatus = "AUTO_DENIED";
+      } else if (manualModerationStatus === "DENIED") {
+        fraudStatus = "MANUAL_DENIED";
+      }
+    }
+
+    if (data.fraudData?.moderationStatus === "PENDING") {
+      statusText = this.pendingReviewStatusText;
+      fraudStatus = "PENDING";
+    }
+
     return (
       <sqm-referral-table-status-cell
         status-text={statusText}
+        fraud-status={fraudStatus}
         converted={data.dateConverted ? true : false}
       ></sqm-referral-table-status-cell>
     );
