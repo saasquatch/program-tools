@@ -87,7 +87,7 @@ export class ReferralTableRewardsCell {
     const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
 
-    const getState = (states: Array<string>): string => {
+    const getState = (reward: Reward): string => {
       const possibleStates = [
         "REDEEMED",
         "CANCELLED",
@@ -99,9 +99,20 @@ export class ReferralTableRewardsCell {
         "MANUAL_DENIED",
       ];
 
-      if (states.length === 1) return states[0];
+      if (reward.referral?.fraudData?.moderationStatus !== "APPROVED") {
+        if (reward.referral?.fraudData?.moderationStatus === "PENDING")
+          return "PENDING_REVIEW";
+        if (reward.referral?.fraudData?.manualModerationStatus === "DENIED")
+          return "MANUAL_DENIED";
+        if (reward.referral?.fraudData?.autoModerationStatus === "DENIED")
+          return "AUTO_DENIED";
+      }
 
-      return possibleStates.find((state) => states.includes(state) && state);
+      if (reward.statuses.length === 1) return reward.statuses[0];
+
+      return possibleStates.find(
+        (state) => reward.statuses.includes(state) && state
+      );
     };
 
     const getSLBadgeType = (state: string): string => {
@@ -131,7 +142,7 @@ export class ReferralTableRewardsCell {
     };
 
     return this.rewards?.map((reward) => {
-      const state = getState(reward.statuses);
+      const state = getState(reward);
       const slBadgeType = getSLBadgeType(state);
       const badgeText = intl.formatMessage(
         { id: "statusShortMessage", defaultMessage: this.statusText },

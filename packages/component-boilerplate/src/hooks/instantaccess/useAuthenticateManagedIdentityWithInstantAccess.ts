@@ -59,10 +59,11 @@ const CheckReferralFraudStatusQuery = `
     viewer {
       ... on User {
         id
-        referredByReferral(programId: $programId) {
-          programId
-          fraudData {
-            moderationStatus
+        instantAccessRewards(filter: { programId_eq: $programId }) {
+          data {
+            id
+            pendingReasons
+            cancelledReason
           }
         }
       }
@@ -98,7 +99,12 @@ async function fetchFraud(programId: string, jwt: string) {
       throw new Error(JSON.stringify(json.errors, null, 2));
     }
 
-    return (json as any).data.viewer.referredByReferral || undefined;
+    const results = (json as any).data.viewer.instantAccessRewards?.data || [];
+    if (results.some((r) => r.cancelledReason === "SUSPECTED_FRAUD"))
+      return "DENIED";
+    else if (results.some((r) => r.pendingReasons.find("SUSPECTED_FRAUD")))
+      return "PENDING_REVIEW";
+    else return "APPROVED";
   } catch (e) {
     return undefined;
   }
@@ -126,12 +132,12 @@ export function useAuthenticateManagedIdentityWithInstantAccess(): [
       !(result instanceof Error) &&
       result.authenticateManagedIdentityWithInstantAccess
     ) {
-      const response = await fetchFraud(
+      const fraudStatus = await fetchFraud(
         programId,
         result.authenticateManagedIdentityWithInstantAccess.token
       );
 
-      if (response?.fraudData?.moderationStatus === "APPROVED") {
+      if (fraudStatus === "APPROVED") {
         const jwt = result.authenticateManagedIdentityWithInstantAccess.token;
         const email = result.authenticateManagedIdentityWithInstantAccess.email;
 
