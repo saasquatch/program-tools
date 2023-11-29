@@ -10,6 +10,15 @@ import {
   ManualDenied,
   PendingReview,
 } from "./ReferralTableRewardsCell.stories";
+import {
+  DateCell,
+  PendingReview as PendingReviewStatus,
+  Pending as PendingStatus,
+  AutoDenied as AutoDeniedStatus,
+  Converted as ConvertedStatus,
+  InProgress,
+  Pending,
+} from "./ReferralTableCell.stories";
 import scenario from "./referral-table.feature";
 
 export default {
@@ -138,40 +147,32 @@ const simpleUserTableProps = {
     rows: [
       [
         <sqm-referral-table-user-cell name="Joe Smith"></sqm-referral-table-user-cell>,
-        <sqm-referral-table-user-cell name="jsmith@gmail.com"></sqm-referral-table-user-cell>,
-        <sqm-referral-table-user-cell name="07/15/1902"></sqm-referral-table-user-cell>,
+        <PendingStatus />,
+        <DateCell />,
         <PendingNoUnpend />,
       ],
       [
         <sqm-referral-table-user-cell name="Bob Williams"></sqm-referral-table-user-cell>,
-        <sqm-referral-table-user-cell name="bwill@gmail.com"></sqm-referral-table-user-cell>,
-        <sqm-referral-table-user-cell name="09/05/1999"></sqm-referral-table-user-cell>,
+        <InProgress />,
+        <DateCell />,
         <AvailableNoExpiry />,
       ],
       [
         <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
-        <sqm-referral-table-user-cell name="sjoseph@gmail.com"></sqm-referral-table-user-cell>,
-        <sqm-referral-table-user-cell name="12/21/1984"></sqm-referral-table-user-cell>,
-        <Cancelled />,
+        <ConvertedStatus />,
+        <DateCell />,
+        <Redeemed />,
       ],
       [
         <sqm-referral-table-user-cell name="Tom Smith"></sqm-referral-table-user-cell>,
-        <sqm-referral-table-status-cell
-          statusText="Pending review"
-          fraud-status="PENDING_REVIEW"
-          converted={false}
-        ></sqm-referral-table-status-cell>,
-        <sqm-referral-table-user-cell name="12/21/1984"></sqm-referral-table-user-cell>,
+        <PendingReviewStatus />,
+        <DateCell />,
         <PendingReview />,
       ],
       [
         <sqm-referral-table-user-cell name="Tom Smith"></sqm-referral-table-user-cell>,
-        <sqm-referral-table-status-cell
-          statusText="Denied"
-          fraud-status="AUTO_DENIED"
-          converted={false}
-        ></sqm-referral-table-status-cell>,
-        <sqm-referral-table-user-cell name="12/21/1984"></sqm-referral-table-user-cell>,
+        <AutoDeniedStatus />,
+        <DateCell />,
         <AutoDenied />,
       ],
     ],
