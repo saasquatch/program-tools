@@ -1897,6 +1897,20 @@ export namespace Components {
          */
         "firstNameLabel": string;
         /**
+          * Display this message when there is suspected fraud.
+          * @uiName Fraud error message
+          * @uiWidget textArea
+          * @uiGroup Error messages
+         */
+        "fraudErrorMessage": string;
+        /**
+          * Display this message when there is suspected fraud.
+          * @uiName Fraud error message title
+          * @uiWidget textArea
+          * @uiGroup Error messages
+         */
+        "fraudErrorMessageTitle": string;
+        /**
           * @uiName Hide border
           * @uiGroup Card style
          */
@@ -5350,6 +5364,20 @@ declare namespace LocalJSX {
           * @uiName First name field label
          */
         "firstNameLabel"?: string;
+        /**
+          * Display this message when there is suspected fraud.
+          * @uiName Fraud error message
+          * @uiWidget textArea
+          * @uiGroup Error messages
+         */
+        "fraudErrorMessage"?: string;
+        /**
+          * Display this message when there is suspected fraud.
+          * @uiName Fraud error message title
+          * @uiWidget textArea
+          * @uiGroup Error messages
+         */
+        "fraudErrorMessageTitle"?: string;
         /**
           * @uiName Hide border
           * @uiGroup Card style

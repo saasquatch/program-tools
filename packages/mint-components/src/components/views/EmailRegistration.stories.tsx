@@ -26,6 +26,9 @@ const defaultProps: EmailRegistrationViewProps = {
     paddingRight: "large",
     paddingBottom: "large",
     paddingLeft: "large",
+    fraudErrorMessage:
+      "Our team will review this referral. If approved, you and your friend will receive your rewards. Need help? Reach out to our Support team.",
+    fraudErrorMessageTitle: "Looks like you tried referring yourself",
   },
 };
 
@@ -98,6 +101,18 @@ export const Error = () => (
       ...defaultProps,
       states: {
         error: "Something went wrong. Please try again.",
+        loading: false,
+      },
+    }}
+  />
+);
+
+export const FraudError = () => (
+  <EmailRegistrationView
+    {...{
+      ...defaultProps,
+      states: {
+        error: "FRAUD",
         loading: false,
       },
     }}

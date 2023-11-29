@@ -91,6 +91,24 @@ export class ReferredRegistration {
     "There was a problem signing you in. Please wait a moment and try again. If this problem continues, contact Support for help resolving this issue.";
 
   /**
+   * Display this message when there is suspected fraud.
+   *
+   * @uiName Fraud error message
+   * @uiWidget textArea
+   * @uiGroup Error messages
+   */
+  @Prop() fraudErrorMessage: string =
+    "Our team will review this referral. If approved, you and your friend will receive your rewards. Need help? Reach out to our Support team.";
+  /**
+   * Display this message when there is suspected fraud.
+   *
+   * @uiName Fraud error message title
+   * @uiWidget textArea
+   * @uiGroup Error messages
+   */
+  @Prop() fraudErrorMessageTitle: string =
+    "Looks like you tried referring yourself";
+  /**
    * @uiName Top padding
    * @uiGroup Card style
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
@@ -151,6 +169,8 @@ export class ReferredRegistration {
       : useInstantAccessRegistration(this);
 
     const content = {
+      fraudErrorMessage: this.fraudErrorMessage,
+      fraudErrorMessageTitle: this.fraudErrorMessageTitle,
       emailLabel: this.emailLabel,
       registerLabel: this.registerLabel,
       firstNameLabel: this.firstNameLabel,
@@ -164,7 +184,6 @@ export class ReferredRegistration {
       paddingLeft: this.paddingLeft,
       paddingRight: this.paddingRight,
       backgroundColor: this.backgroundColor,
-
       // slots
       topSlot: <slot name="top" />,
       bottomSlot: <slot name="bottom" />,
