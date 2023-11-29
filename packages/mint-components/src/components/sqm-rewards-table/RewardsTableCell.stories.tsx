@@ -459,7 +459,7 @@ export const StatusCellPendingUnhandled = () => {
 export const StatusCellPendingReview = () => {
   return (
     <sqm-rewards-table-status-cell
-      statusText="Pending Review"
+      statusText="Pending"
       reward={{
         ...rewardsData,
         referral: {

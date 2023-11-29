@@ -91,11 +91,8 @@ const expiredReward = {
   statuses: ["EXPIRED", "AVAILABLE"],
   dateExpires: 1626850800000,
 };
-const autoDeniedReward = {
-  statuses: ["AUTO_DENIED"],
-};
-const manualDeniedReward = {
-  statuses: ["MANUAL_DENIED"],
+const deniedReward = {
+  statuses: ["DENIED"],
 };
 const pendingReviewReward = {
   statuses: ["PENDING_REVIEW"],
@@ -442,24 +439,10 @@ export const Expired = () => {
   );
 };
 
-export const AutoDenied = () => {
+export const Denied = () => {
   return (
     <sqm-referral-table-rewards-cell
-      rewards={[{ ...baseReward, ...autoDeniedReward }]}
-      statusText={statusText}
-      statusLongText={statusLongText}
-      fuelTankText="Your code is"
-      rewardReceivedText="Reward received on"
-      expiringText="Expiring in"
-      pendingForText="{status} for {date}"
-    ></sqm-referral-table-rewards-cell>
-  );
-};
-
-export const ManualDenied = () => {
-  return (
-    <sqm-referral-table-rewards-cell
-      rewards={[{ ...baseReward, ...manualDeniedReward }]}
+      rewards={[{ ...baseReward, ...deniedReward }]}
       statusText={statusText}
       statusLongText={statusLongText}
       fuelTankText="Your code is"

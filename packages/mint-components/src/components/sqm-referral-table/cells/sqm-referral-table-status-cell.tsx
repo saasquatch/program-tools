@@ -25,11 +25,7 @@ const styleString = sheet.toString();
 })
 export class ReferralTableStatusCell {
   @Prop() statusText: string;
-  @Prop() fraudStatus?:
-    | "APPROVED"
-    | "PENDING_REVIEW"
-    | "MANUAL_DENIED"
-    | "AUTO_DENIED";
+  @Prop() fraudStatus?: "APPROVED" | "PENDING_REVIEW" | "DENIED";
   @Prop() converted: boolean;
 
   render() {
@@ -40,8 +36,7 @@ export class ReferralTableStatusCell {
           return "success";
         case "PENDING_REVIEW":
           return "warning";
-        case "AUTO_DENIED":
-        case "MANUAL_DENIED":
+        case "DENIED":
           return "danger";
         default:
           return "warning";

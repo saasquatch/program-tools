@@ -45,7 +45,7 @@ export const InProgress = () => (
 );
 export const PendingReview = () => (
   <sqm-referral-table-status-cell
-    status-text="Pending Review"
+    status-text="Pending"
     fraud-status="PENDING_REVIEW"
     converted={false}
   ></sqm-referral-table-status-cell>
@@ -57,17 +57,10 @@ export const Pending = () => (
     converted={false}
   ></sqm-referral-table-status-cell>
 );
-export const AutoDenied = () => (
+export const Denied = () => (
   <sqm-referral-table-status-cell
     status-text="Denied"
-    fraud-status="AUTO_DENIED"
-    converted={false}
-  ></sqm-referral-table-status-cell>
-);
-export const ManualDenied = () => (
-  <sqm-referral-table-status-cell
-    status-text="Denied"
-    fraud-status="MANUAL_DENIED"
+    fraud-status="DENIED"
     converted={false}
   ></sqm-referral-table-status-cell>
 );
