@@ -9,6 +9,11 @@ const style = {
       whiteSpace: "pre-line",
     },
   },
+  SubText: {
+    fontSize: "var(--sl-font-size-small)",
+    color: "var(--sl-color-neutral-500)",
+    margin: "0",
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -53,6 +58,9 @@ export class ReferralTableStatusCell {
         >
           {this.statusText}
         </sl-badge>
+        {this.fraudStatus === "PENDING_REVIEW" ? (
+          <p class={sheet.classes.SubText}>Awaiting review</p>
+        ) : null}
       </div>
     );
   }
