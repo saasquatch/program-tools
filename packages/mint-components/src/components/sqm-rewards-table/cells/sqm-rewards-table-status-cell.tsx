@@ -88,10 +88,11 @@ export class RewardTableStatusCell {
         ? "success"
         : rewardStatus === "REDEEMED"
         ? "primary"
-        : rewardStatus === "PENDING"
+        : rewardStatus === "PENDING" || rewardStatus === "PENDING_REVIEW"
         ? "warning"
         : "danger";
 
+    console.log("THE REWARD STATUS IS ", rewardStatus);
     const dateShown =
       this.reward.dateCancelled ||
       this.reward.dateExpires ||

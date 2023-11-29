@@ -395,6 +395,9 @@ export const StatusCellExpired = () => {
 const pending = {
   statuses: ["PENDING"],
 };
+const pendingReview = {
+  statuses: ["PENDING_REVIEW"],
+};
 const us_tax = {
   pendingReasons: ["US_TAX"],
 };
@@ -449,6 +452,60 @@ export const StatusCellPendingUnhandled = () => {
     <sqm-rewards-table-status-cell
       statusText="Pending"
       reward={{ ...rewardsData, ...pending, ...unhandled }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPendingReview = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Pending Review"
+      reward={{
+        ...rewardsData,
+        referral: {
+          id: "123",
+          dateConverted: 1640038417173,
+          dateReferralStarted: 1640038417173,
+          dateReferralPaid: 1640038417173,
+          dateReferralEnded: null,
+          moderationStatus: null,
+          rewards: null,
+          referrerUser: null,
+          referredUser: null,
+          fraudData: {
+            moderationStatus: "PENDING",
+            autoModerationStatus: "PENDING",
+            manualModerationStatus: "PENDING",
+          },
+        },
+      }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellDenied = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Denied"
+      reward={{
+        ...rewardsData,
+        referral: {
+          id: "123",
+          dateConverted: 1640038417173,
+          dateReferralStarted: 1640038417173,
+          dateReferralPaid: 1640038417173,
+          dateReferralEnded: null,
+          moderationStatus: null,
+          rewards: null,
+          referrerUser: null,
+          referredUser: null,
+          fraudData: {
+            moderationStatus: "DENIED",
+            autoModerationStatus: "DENIED",
+            manualModerationStatus: "DENIED",
+          },
+        },
+      }}
     ></sqm-rewards-table-status-cell>
   );
 };

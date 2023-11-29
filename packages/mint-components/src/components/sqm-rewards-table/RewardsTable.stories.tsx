@@ -19,6 +19,8 @@ import {
   StatusCellPending,
   StatusCellPendingUnhandled,
   StatusCellRedeemed,
+  StatusCellDenied,
+  StatusCellPendingReview,
 } from "./RewardsTableCell.stories";
 import scenario from "./rewards-table.feature";
 
@@ -136,6 +138,20 @@ const r_redeemed = [
   <DateCell />,
 ];
 
+const r_denied = [
+  <RewardsCellCreditRedeemed />,
+  <StatusCellDenied />,
+  <SourceCellManual />,
+  <DateCell />,
+];
+
+const r_pending_review = [
+  <RewardsCellCreditRedeemed />,
+  <StatusCellPendingReview />,
+  <SourceCellManual />,
+  <DateCell />,
+];
+
 const r_long = [
   <RewardsCellCreditLong />,
   <StatusCellAvailableExpiry />,
@@ -160,7 +176,14 @@ const r_fueltank_long = [
 export const RewardsTable = () => {
   return (
     <GenericTableView
-      {...rewardsTableProps([r_available, r_redeemed, r_cancelled, r_expired])}
+      {...rewardsTableProps([
+        r_available,
+        r_redeemed,
+        r_cancelled,
+        r_expired,
+        r_denied,
+        r_pending_review,
+      ])}
     ></GenericTableView>
   );
 };
