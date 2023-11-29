@@ -36,9 +36,9 @@
 - [sqm-table-row](../sqm-table-row)
 - [sqm-table-cell](../sqm-table-cell)
 - [sqm-referral-table-user-cell](../sqm-referral-table/cells)
-- [sqm-referral-table-status-cell](../sqm-referral-table/cells)
 - [sqm-referral-table-date-cell](../sqm-referral-table/cells)
 - [sqm-referral-table-cell](../sqm-referral-table/cells)
+- [sqm-referral-table-status-cell](../sqm-referral-table/cells)
 - [sqm-referral-table](../sqm-referral-table)
 - [sqm-referral-table-rewards-cell](../sqm-referral-table/cells)
 - [sqm-user-name](../sqm-user-name)
@@ -106,9 +106,9 @@ graph TD;
   sqm-stencilbook --> sqm-table-row
   sqm-stencilbook --> sqm-table-cell
   sqm-stencilbook --> sqm-referral-table-user-cell
-  sqm-stencilbook --> sqm-referral-table-status-cell
   sqm-stencilbook --> sqm-referral-table-date-cell
   sqm-stencilbook --> sqm-referral-table-cell
+  sqm-stencilbook --> sqm-referral-table-status-cell
   sqm-stencilbook --> sqm-referral-table
   sqm-stencilbook --> sqm-referral-table-rewards-cell
   sqm-stencilbook --> sqm-user-name

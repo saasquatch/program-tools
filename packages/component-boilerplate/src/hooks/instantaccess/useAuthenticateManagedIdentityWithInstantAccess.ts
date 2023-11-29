@@ -102,10 +102,13 @@ async function fetchFraud(programId: string, jwt: string) {
     const results = (json as any).data.viewer.instantAccessRewards?.data || [];
     if (results.some((r) => r.cancelledReason === "SUSPECTED_FRAUD"))
       return "DENIED";
-    else if (results.some((r) => r.pendingReasons.find("SUSPECTED_FRAUD")))
+    else if (
+      results.some((r) => r.pendingReasons.find((r) => r === "SUSPECTED_FRAUD"))
+    )
       return "PENDING_REVIEW";
     else return "APPROVED";
   } catch (e) {
+    console.error(e);
     return undefined;
   }
 }
