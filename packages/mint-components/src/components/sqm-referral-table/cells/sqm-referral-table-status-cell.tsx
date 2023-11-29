@@ -53,6 +53,9 @@ export class ReferralTableStatusCell {
         >
           {this.statusText}
         </sl-badge>
+        {this.fraudStatus === "PENDING_REVIEW" ? (
+          <p style={{ margin: "0" }}>Awaiting approval</p>
+        ) : null}
       </div>
     );
   }

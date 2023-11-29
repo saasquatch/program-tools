@@ -489,6 +489,8 @@ export const StatusCellDenied = () => {
       statusText="Denied"
       reward={{
         ...rewardsData,
+        dateCancelled: 10000,
+
         referral: {
           id: "123",
           dateConverted: 1640038417173,
