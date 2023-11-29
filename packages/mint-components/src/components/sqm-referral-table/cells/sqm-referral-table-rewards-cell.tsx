@@ -95,17 +95,14 @@ export class ReferralTableRewardsCell {
         "PENDING",
         "AVAILABLE",
         "PENDING_REVIEW",
-        "AUTO_DENIED",
-        "MANUAL_DENIED",
+        "DENIED",
       ];
 
       if (reward.referral?.fraudData?.moderationStatus !== "APPROVED") {
         if (reward.referral?.fraudData?.moderationStatus === "PENDING")
           return "PENDING_REVIEW";
-        if (reward.referral?.fraudData?.manualModerationStatus === "DENIED")
-          return "MANUAL_DENIED";
-        if (reward.referral?.fraudData?.autoModerationStatus === "DENIED")
-          return "AUTO_DENIED";
+        if (reward.referral?.fraudData?.moderationStatus === "DENIED")
+          return "DENIED";
       }
 
       if (reward.statuses.length === 1) return reward.statuses[0];
@@ -119,10 +116,9 @@ export class ReferralTableRewardsCell {
       switch (state) {
         case "REDEEMED":
           return "primary";
-        case "MANUAL_DENIED":
+        case "DENIED":
         case "EXPIRED":
         case "CANCELLED":
-        case "AUTO_DENIED":
           return "danger";
         case "PENDING":
         case "PENDING_REVIEW":
