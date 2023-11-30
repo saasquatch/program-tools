@@ -67,14 +67,12 @@ export function useInstantAccessRegistration(props: InstantAccessRegistration) {
           error: "",
           validationErrors: { email: props.invalidEmailErrorMessage },
         });
-
-        if (error?.name === "fraud_error") {
-          setRegistrationFormState({
-            ...registrationFormState,
-            loading: false,
-            error: "FRAUD",
-          });
-        }
+      } else if (error?.name === "fraud_error") {
+        setRegistrationFormState({
+          ...registrationFormState,
+          loading: false,
+          error: "FRAUD",
+        });
       } else {
         setRegistrationFormState({
           ...registrationFormState,

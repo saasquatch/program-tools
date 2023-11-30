@@ -148,7 +148,10 @@ export function useAuthenticateManagedIdentityWithInstantAccess(): [
           accountId: email,
         });
       } else {
-        return { name: "fraud_error", message: "Referral flagged as fraud." };
+        throw {
+          name: "fraud_error",
+          message: "Referral flagged as fraud.",
+        };
       }
     }
 
