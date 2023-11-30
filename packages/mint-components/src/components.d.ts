@@ -1825,10 +1825,8 @@ export namespace Components {
     }
     interface SqmReferralTableStatusCell {
         "converted": boolean;
-        "fraudStatus"?: | "APPROVED"
-    | "PENDING_REVIEW"
-    | "MANUAL_DENIED"
-    | "AUTO_DENIED";
+        "fraudStatus"?: "APPROVED" | "PENDING_REVIEW" | "DENIED";
+        "pendingReviewSubtext": string;
         "statusText": string;
     }
     interface SqmReferralTableStatusColumn {
@@ -1899,6 +1897,20 @@ export namespace Components {
           * @uiName First name field label
          */
         "firstNameLabel": string;
+        /**
+          * Display this message when there is suspected fraud.
+          * @uiName Fraud error message
+          * @uiWidget textArea
+          * @uiGroup Error messages
+         */
+        "fraudErrorMessage": string;
+        /**
+          * Display this message when there is suspected fraud.
+          * @uiName Fraud error message title
+          * @uiWidget textArea
+          * @uiGroup Error messages
+         */
+        "fraudErrorMessageTitle": string;
         /**
           * @uiName Hide border
           * @uiGroup Card style
@@ -5288,10 +5300,8 @@ declare namespace LocalJSX {
     }
     interface SqmReferralTableStatusCell {
         "converted"?: boolean;
-        "fraudStatus"?: | "APPROVED"
-    | "PENDING_REVIEW"
-    | "MANUAL_DENIED"
-    | "AUTO_DENIED";
+        "fraudStatus"?: "APPROVED" | "PENDING_REVIEW" | "DENIED";
+        "pendingReviewSubtext"?: string;
         "statusText"?: string;
     }
     interface SqmReferralTableStatusColumn {
@@ -5356,6 +5366,20 @@ declare namespace LocalJSX {
           * @uiName First name field label
          */
         "firstNameLabel"?: string;
+        /**
+          * Display this message when there is suspected fraud.
+          * @uiName Fraud error message
+          * @uiWidget textArea
+          * @uiGroup Error messages
+         */
+        "fraudErrorMessage"?: string;
+        /**
+          * Display this message when there is suspected fraud.
+          * @uiName Fraud error message title
+          * @uiWidget textArea
+          * @uiGroup Error messages
+         */
+        "fraudErrorMessageTitle"?: string;
         /**
           * @uiName Hide border
           * @uiGroup Card style
