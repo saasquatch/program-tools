@@ -7,15 +7,16 @@
 
 ## Properties
 
-| Property           | Attribute           | Description | Type     | Default               |
-| ------------------ | ------------------- | ----------- | -------- | --------------------- |
-| `expiryText`       | `expiry-text`       |             | `string` | `"Expires"`           |
-| `locale`           | `locale`            |             | `string` | `"en"`                |
-| `pendingScheduled` | `pending-scheduled` |             | `string` | `"Until"`             |
-| `pendingUnhandled` | `pending-unhandled` |             | `string` | `"Fulfillment error"` |
-| `pendingUsTax`     | `pending-us-tax`    |             | `string` | `"W-9 required"`      |
-| `reward`           | --                  |             | `Reward` | `undefined`           |
-| `statusText`       | `status-text`       |             | `string` | `undefined`           |
+| Property            | Attribute             | Description | Type     | Default               |
+| ------------------- | --------------------- | ----------- | -------- | --------------------- |
+| `expiryText`        | `expiry-text`         |             | `string` | `"Expires"`           |
+| `locale`            | `locale`              |             | `string` | `"en"`                |
+| `pendingReviewText` | `pending-review-text` |             | `string` | `"Awaiting review"`   |
+| `pendingScheduled`  | `pending-scheduled`   |             | `string` | `"Until"`             |
+| `pendingUnhandled`  | `pending-unhandled`   |             | `string` | `"Fulfillment error"` |
+| `pendingUsTax`      | `pending-us-tax`      |             | `string` | `"W-9 required"`      |
+| `reward`            | --                    |             | `Reward` | `undefined`           |
+| `statusText`        | `status-text`         |             | `string` | `undefined`           |
 
 
 ## Dependencies
