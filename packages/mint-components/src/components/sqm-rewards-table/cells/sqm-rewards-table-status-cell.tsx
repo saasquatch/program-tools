@@ -43,6 +43,7 @@ export class RewardTableStatusCell {
   @Prop() pendingScheduled: string = "Until";
   @Prop() pendingUnhandled: string = "Fulfillment error";
   @Prop() pendingReviewText: string = "Awaiting review";
+  @Prop() deniedText: string = "Detected self-referral";
 
   rewardStatus(reward: Reward) {
     if (reward.referral?.fraudData?.moderationStatus === "DENIED")
@@ -112,9 +113,12 @@ export class RewardTableStatusCell {
     const pendingReasons =
       rewardStatus === "PENDING" ? getRewardPendingReasons(this) : null;
 
-    const pendingReviewReasons =
-      rewardStatus === "PENDING_REVIEW" ? this.pendingReviewText : null;
-
+    const fraudStatusText =
+      rewardStatus === "PENDING_REVIEW"
+        ? this.pendingReviewText
+        : rewardStatus === "DENIED"
+        ? this.deniedText
+        : null;
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
@@ -130,7 +134,7 @@ export class RewardTableStatusCell {
           {statusText}
         </sl-badge>
         <p class={sheet.classes.Date}>
-          {pendingReasons || pendingReviewReasons || date}
+          {pendingReasons || fraudStatusText || date}
         </p>
       </div>
     );

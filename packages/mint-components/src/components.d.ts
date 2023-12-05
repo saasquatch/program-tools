@@ -1825,6 +1825,7 @@ export namespace Components {
     }
     interface SqmReferralTableStatusCell {
         "converted": boolean;
+        "deniedSubtext": string;
         "fraudStatus"?: "APPROVED" | "PENDING_REVIEW" | "DENIED";
         "pendingReviewSubtext": string;
         "statusText": string;
@@ -2256,6 +2257,7 @@ export namespace Components {
         "rewardSourceText": string;
     }
     interface SqmRewardsTableStatusCell {
+        "deniedText": string;
         "expiryText": string;
         "locale": string;
         "pendingReviewText": string;
@@ -5300,6 +5302,7 @@ declare namespace LocalJSX {
     }
     interface SqmReferralTableStatusCell {
         "converted"?: boolean;
+        "deniedSubtext"?: string;
         "fraudStatus"?: "APPROVED" | "PENDING_REVIEW" | "DENIED";
         "pendingReviewSubtext"?: string;
         "statusText"?: string;
@@ -5717,6 +5720,7 @@ declare namespace LocalJSX {
         "rewardSourceText"?: string;
     }
     interface SqmRewardsTableStatusCell {
+        "deniedText"?: string;
         "expiryText"?: string;
         "locale"?: string;
         "pendingReviewText"?: string;
