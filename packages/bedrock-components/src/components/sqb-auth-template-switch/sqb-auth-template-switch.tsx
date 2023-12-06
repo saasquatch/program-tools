@@ -7,7 +7,6 @@ import { useAuthTemplateSwitch } from './useAuthTemplateSwitch';
  *
  * @uiName Auth Template Switcher
  * @slots [{"name":"logged-out","title":"Logged out template"}, {"name": "logged-in", "title": "Logged in template"}]
- * @example Example - <sqb-auth-template-switch><template slot="logged-out"><p>Add your logged out content here!</p></template><template slot="logged-in"><p>Add your logged in content here!</p></template></sqb-auth-template-switch>
  * @canvasRenderer always-replace
  */
 @Component({
