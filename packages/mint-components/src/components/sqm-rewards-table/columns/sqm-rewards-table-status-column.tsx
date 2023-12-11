@@ -76,6 +76,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
         pendingScheduled={this.pendingScheduled}
         pendingUsTax={this.pendingUsTax}
         pendingUnhandled={this.pendingUnhandled}
+        pendingReviewText={this.pendingReviewText}
         locale={locale}
       ></sqm-rewards-table-status-cell>
     );
@@ -91,6 +92,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
       this.columnTitle,
       this.statusText,
       this.expiryText,
+      this.pendingReviewText,
       this.pendingScheduled,
       this.pendingUsTax,
       this.pendingUnhandled,
