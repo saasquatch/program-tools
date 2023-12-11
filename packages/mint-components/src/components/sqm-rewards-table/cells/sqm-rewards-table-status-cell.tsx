@@ -46,7 +46,6 @@ export class RewardTableStatusCell {
   @Prop() deniedText: string = "Detected self-referral";
 
   rewardStatus(reward: Reward) {
-    console.log({ reward });
     if (reward.referral?.fraudData?.moderationStatus === "DENIED")
       return "DENIED";
     if (reward.referral?.fraudData?.moderationStatus === "PENDING")
@@ -85,8 +84,6 @@ export class RewardTableStatusCell {
         status: rewardStatus,
       }
     );
-
-    console.log({ statusText, rewardStatus, statusText2: this.statusText });
 
     const badgeType =
       rewardStatus === "AVAILABLE"
