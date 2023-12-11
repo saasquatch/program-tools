@@ -25,7 +25,7 @@ const styleString = sheet.toString();
 })
 export class ReferralTableStatusCell {
   @Prop() statusText: string;
-  @Prop() fraudStatus?: "APPROVED" | "PENDING_REVIEW" | "DENIED";
+  @Prop() fraudStatus?: "APPROVED" | "PENDING" | "DENIED";
   @Prop() converted: boolean;
   @Prop() pendingReviewSubtext: string = "Awaiting review";
   @Prop() deniedSubtext: string = "Detected self-referral";
@@ -36,7 +36,7 @@ export class ReferralTableStatusCell {
         case this.converted:
         case "APPROVED":
           return "success";
-        case "PENDING_REVIEW":
+        case "PENDING":
           return "warning";
         case "DENIED":
           return "danger";
@@ -55,7 +55,7 @@ export class ReferralTableStatusCell {
         >
           {this.statusText}
         </sl-badge>
-        {this.fraudStatus === "PENDING_REVIEW" ? (
+        {this.fraudStatus === "PENDING" ? (
           <p class={sheet.classes.SubText}>{this.pendingReviewSubtext}</p>
         ) : this.fraudStatus === "DENIED" ? (
           <p class={sheet.classes.SubText}>{this.deniedSubtext}</p>
