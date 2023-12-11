@@ -24,7 +24,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
    * @uiWidget textArea
    */
   @Prop() statusText: string =
-    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} PENDING_REVIEW {Pending Review} DENIED {Denied} other {Not available} }";
+    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING, PENDING_REVIEW {Pending} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }";
 
   /**
    * Text shown before the date of an expiring reward.
@@ -53,6 +53,13 @@ export class RewardTableStatusColumn implements RewardTableColumn {
    * @uiName Unhandled error text
    */
   @Prop() pendingUnhandled: string = "Fulfillment error";
+
+  /**
+   *  Displayed when flagged for fraud.
+   *
+   * @uiName Pending review text
+   */
+  @Prop() pendingReviewText: string = "Awaiting review";
 
   constructor() {
     withHooks(this);

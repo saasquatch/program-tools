@@ -2278,6 +2278,11 @@ export namespace Components {
          */
         "expiryText": string;
         /**
+          * Displayed when flagged for fraud.
+          * @uiName Pending review text
+         */
+        "pendingReviewText": string;
+        /**
           * Text shown before the available date of a pending reward.
           * @uiName Pending date prefix
          */
@@ -5740,6 +5745,11 @@ declare namespace LocalJSX {
           * @uiName Expiry date prefix
          */
         "expiryText"?: string;
+        /**
+          * Displayed when flagged for fraud.
+          * @uiName Pending review text
+         */
+        "pendingReviewText"?: string;
         /**
           * Text shown before the available date of a pending reward.
           * @uiName Pending date prefix
