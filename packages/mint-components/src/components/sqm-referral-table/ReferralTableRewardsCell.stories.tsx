@@ -175,8 +175,10 @@ function getYears() {
   return DateTime.now().toMillis() + 200000000000;
 }
 
+// ZACH TODO: Fix these status's
+
 const statusText =
-  "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} AUTO_DENIED {Denied} MANUAL_DENIED {Denied} PENDING_REVIEW {Pending Review} other {Not available} }";
+  "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING, PENDING_REVIEW {Pending} EXPIRED {Expired} REDEEMED {Redeemed} AUTO_DENIED {Denied} MANUAL_DENIED {Denied} other {Not available} }";
 const statusLongText =
   "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} AUTO_DENIED {Denied on} MANUAL_DENIED {Denied for self-referral on} PENDING_REVIEW {Pending since}  other {Not available} }";
 
@@ -184,7 +186,7 @@ export const PendingNoUnpend = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={[{ ...baseReward, ...pendingReward, ...nullScheduledFor }]}
-      statusText={statusText}
+      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING, PENDING_REVIEW {Pending} EXPIRED {Expired} REDEEMED {Redeemed} AUTO_DENIED {Denied} MANUAL_DENIED {Denied} other {Not available} }"
       statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"

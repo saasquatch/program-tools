@@ -32,7 +32,7 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
   /**
    * @uiName Pending review status text
    */
-  @Prop() pendingReviewStatusText: string = "Pending review";
+  @Prop() pendingReviewStatusText: string = "Pending";
 
   /**
    * @uiName Denied status text
