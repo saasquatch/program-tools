@@ -56,7 +56,7 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
       statusText = this.deniedStatusText;
     } else if (fraudStatus === "PENDING") {
       statusText = this.pendingReviewStatusText;
-    } else if (fraudStatus === "APPROVED") {
+    } else {
       statusText = data.dateConverted
         ? this.convertedStatusText
         : this.inProgressStatusText;
