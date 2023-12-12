@@ -32,17 +32,11 @@ export class ReferralTableStatusCell {
 
   render() {
     const getBadgeType = (fraudStatus) => {
-      switch (fraudStatus) {
-        case this.converted:
-        case "APPROVED":
-          return "success";
-        case "PENDING":
-          return "warning";
-        case "DENIED":
-          return "danger";
-        default:
-          return "warning";
-      }
+      if (fraudStatus === "PENDING") return "warning";
+      if (fraudStatus === "DENIED") return "danger";
+
+      if (this.converted) return "success";
+      return "warning";
     };
 
     return (

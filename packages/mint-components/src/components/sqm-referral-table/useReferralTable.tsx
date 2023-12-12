@@ -160,6 +160,13 @@ const GET_REFERRAL_DATA = gql`
               statuses
               globalRewardKey
               programRewardKey
+              referral {
+                fraudData {
+                  autoModerationStatus
+                  manualModerationStatus
+                  moderationStatus
+                }
+              }
               meta {
                 status
                 integration {

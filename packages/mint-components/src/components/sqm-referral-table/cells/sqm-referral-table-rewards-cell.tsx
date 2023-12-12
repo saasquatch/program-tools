@@ -156,8 +156,6 @@ export class ReferralTableRewardsCell {
         }
       );
 
-      console.log(state);
-
       return (
         <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>
           <style type="text/css">{styleString}</style>
