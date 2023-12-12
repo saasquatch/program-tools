@@ -7,7 +7,7 @@ import { RewardTableColumn } from "./RewardTableColumn";
  * @uiName Reward Table Status Column
  * @validParents ["sqm-rewards-table"]
  * @exampleGroup Rewards
- * @example Reward Table Status Column - <sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error"></sqm-rewards-table-status-column>
+ * @example Reward Table Status Column - <sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error"></sqm-rewards-table-status-column>
  */
 @Component({
   tag: "sqm-rewards-table-status-column",

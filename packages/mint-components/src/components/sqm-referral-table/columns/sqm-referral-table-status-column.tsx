@@ -7,7 +7,7 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
  * @uiName Referral Table Status Column
  * @validParents ["sqm-referral-table"]
  * @exampleGroup Referrals
- * @example Referral Table Status Column - <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress"></sqm-referral-table-status-column>
+ * @example Referral Table Status Column - <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress"pending-review-status-text="Pending" denied-status-text="Denied"></sqm-referral-table-status-column>
  */
 @Component({
   tag: "sqm-referral-table-status-column",
