@@ -184,7 +184,7 @@ export const PendingNoUnpend = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={[{ ...baseReward, ...pendingReward, ...nullScheduledFor }]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+      statusText={statusText}
       statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
