@@ -68,7 +68,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   /**
    * Shown in the dropdown details when a reward was denied.
    *
-   * @uiname Reward denied help text
+   * @uiName Reward denied help text
    */
   @Prop() deniedHelpText: string =
     "Contact support if you think this is a mistake.";

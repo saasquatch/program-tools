@@ -1785,7 +1785,7 @@ export namespace Components {
         "columnTitle": string;
         /**
           * Shown in the dropdown details when a reward was denied.
-          * @uiname Reward denied help text
+          * @uiName Reward denied help text
          */
         "deniedHelpText": string;
         /**
@@ -5276,7 +5276,7 @@ declare namespace LocalJSX {
         "columnTitle"?: string;
         /**
           * Shown in the dropdown details when a reward was denied.
-          * @uiname Reward denied help text
+          * @uiName Reward denied help text
          */
         "deniedHelpText"?: string;
         /**
