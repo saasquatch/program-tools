@@ -7,7 +7,7 @@ import { RewardTableColumn } from "./RewardTableColumn";
  * @uiName Reward Table Status Column
  * @validParents ["sqm-rewards-table"]
  * @exampleGroup Rewards
- * @example Reward Table Status Column - <sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error"></sqm-rewards-table-status-column>
+ * @example Reward Table Status Column - <sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral"></sqm-rewards-table-status-column>
  */
 @Component({
   tag: "sqm-rewards-table-status-column",
@@ -61,6 +61,13 @@ export class RewardTableStatusColumn implements RewardTableColumn {
    */
   @Prop() pendingReviewText: string = "Awaiting review";
 
+  /**
+   *  Displayed when denied for fraud.
+   *
+   * @uiName Denied text
+   */
+  @Prop() deniedText: string = "Detected self-referral";
+
   constructor() {
     withHooks(this);
   }
@@ -77,6 +84,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
         pendingUsTax={this.pendingUsTax}
         pendingUnhandled={this.pendingUnhandled}
         pendingReviewText={this.pendingReviewText}
+        deniedText={this.deniedText}
         locale={locale}
       ></sqm-rewards-table-status-cell>
     );

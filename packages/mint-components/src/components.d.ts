@@ -1831,9 +1831,8 @@ export namespace Components {
     }
     interface SqmReferralTableStatusCell {
         "converted": boolean;
-        "deniedSubtext": string;
         "fraudStatus"?: "APPROVED" | "PENDING" | "DENIED";
-        "pendingReviewSubtext": string;
+        "statusSubText": string;
         "statusText": string;
     }
     interface SqmReferralTableStatusColumn {
@@ -1846,6 +1845,10 @@ export namespace Components {
          */
         "convertedStatusText": string;
         /**
+          * @uiName Denied status sub-text
+         */
+        "deniedStatusSubText": string;
+        /**
           * @uiName Denied status text
          */
         "deniedStatusText": string;
@@ -1853,6 +1856,10 @@ export namespace Components {
           * @uiName In progress status text
          */
         "inProgressStatusText": string;
+        /**
+          * @uiName Pending review status sub-text
+         */
+        "pendingReviewStatusSubText": string;
         /**
           * @uiName Pending review status text
          */
@@ -2278,6 +2285,11 @@ export namespace Components {
           * @uiName Column title
          */
         "columnTitle": string;
+        /**
+          * Displayed when denied for fraud.
+          * @uiName Denied text
+         */
+        "deniedText": string;
         /**
           * Text shown before the date of an expiring reward.
           * @uiName Expiry date prefix
@@ -5319,9 +5331,8 @@ declare namespace LocalJSX {
     }
     interface SqmReferralTableStatusCell {
         "converted"?: boolean;
-        "deniedSubtext"?: string;
         "fraudStatus"?: "APPROVED" | "PENDING" | "DENIED";
-        "pendingReviewSubtext"?: string;
+        "statusSubText"?: string;
         "statusText"?: string;
     }
     interface SqmReferralTableStatusColumn {
@@ -5334,6 +5345,10 @@ declare namespace LocalJSX {
          */
         "convertedStatusText"?: string;
         /**
+          * @uiName Denied status sub-text
+         */
+        "deniedStatusSubText"?: string;
+        /**
           * @uiName Denied status text
          */
         "deniedStatusText"?: string;
@@ -5341,6 +5356,10 @@ declare namespace LocalJSX {
           * @uiName In progress status text
          */
         "inProgressStatusText"?: string;
+        /**
+          * @uiName Pending review status sub-text
+         */
+        "pendingReviewStatusSubText"?: string;
         /**
           * @uiName Pending review status text
          */
@@ -5752,6 +5771,11 @@ declare namespace LocalJSX {
           * @uiName Column title
          */
         "columnTitle"?: string;
+        /**
+          * Displayed when denied for fraud.
+          * @uiName Denied text
+         */
+        "deniedText"?: string;
         /**
           * Text shown before the date of an expiring reward.
           * @uiName Expiry date prefix

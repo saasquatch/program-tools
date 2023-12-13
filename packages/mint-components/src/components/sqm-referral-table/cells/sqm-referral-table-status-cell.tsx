@@ -27,8 +27,7 @@ export class ReferralTableStatusCell {
   @Prop() statusText: string;
   @Prop() fraudStatus?: "APPROVED" | "PENDING" | "DENIED";
   @Prop() converted: boolean;
-  @Prop() pendingReviewSubtext: string = "Awaiting review";
-  @Prop() deniedSubtext: string = "Detected self-referral";
+  @Prop() statusSubText: string;
 
   render() {
     const getBadgeType = (fraudStatus) => {
@@ -49,10 +48,8 @@ export class ReferralTableStatusCell {
         >
           {this.statusText}
         </sl-badge>
-        {this.fraudStatus === "PENDING" ? (
-          <p class={sheet.classes.SubText}>{this.pendingReviewSubtext}</p>
-        ) : this.fraudStatus === "DENIED" ? (
-          <p class={sheet.classes.SubText}>{this.deniedSubtext}</p>
+        {this.statusSubText ? (
+          <p class={sheet.classes.SubText}>{this.statusSubText}</p>
         ) : null}
       </div>
     );
