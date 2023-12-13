@@ -7,7 +7,7 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
  * @uiName Referral Table Rewards Column
  * @validParents ["sqm-referral-table"]
  * @exampleGroup Referrals
- * @example Referral Table Rewards Column - <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}"></sqm-referral-table-rewards-column>
+ * @example Referral Table Rewards Column - <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake."></sqm-referral-table-rewards-column>
  */
 @Component({
   tag: "sqm-referral-table-rewards-column",
@@ -35,7 +35,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    * @uiWidget textArea
    */
   @Prop() statusLongText: string =
-    "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }";
+    "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }";
 
   /**
    * Shown in the dropdown details when a reward has an associated fuel tank code.
@@ -66,6 +66,14 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   @Prop() pendingForText: string = "{status} for {date}";
 
   /**
+   * Shown in the dropdown details when a reward was denied.
+   *
+   * @uiname Reward denied help text
+   */
+  @Prop() deniedHelpText: string =
+    "Contact support if you think this is a mistake.";
+
+  /**
    * @uiName Hide dropdown details of reward
    * @default
    */
@@ -89,6 +97,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
         expiringText={this.expiringText}
         pendingForText={this.pendingForText}
         hideDetails={this.hideDetails}
+        deniedHelpText={this.deniedHelpText}
         locale={locale}
         exportparts="sqm-cell-value"
       ></sqm-referral-table-rewards-cell>

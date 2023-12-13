@@ -175,23 +175,22 @@ function getYears() {
   return DateTime.now().toMillis() + 200000000000;
 }
 
-// ZACH TODO: Fix these status's
-
 const statusText =
-  "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING, PENDING_REVIEW {Pending} EXPIRED {Expired} REDEEMED {Redeemed} AUTO_DENIED {Denied} MANUAL_DENIED {Denied} other {Not available} }";
+  "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
 const statusLongText =
-  "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} AUTO_DENIED {Denied on} MANUAL_DENIED {Denied for self-referral on} PENDING_REVIEW {Pending since}  other {Not available} }";
+  "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} DENIED {Denied on} EXPIRED {Reward expired on} REDEEMED {Redeemed}  other {Not available} }";
 
 export const PendingNoUnpend = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={[{ ...baseReward, ...pendingReward, ...nullScheduledFor }]}
-      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING, PENDING_REVIEW {Pending} EXPIRED {Expired} REDEEMED {Redeemed} AUTO_DENIED {Denied} MANUAL_DENIED {Denied} other {Not available} }"
+      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
       statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>
   );
 };
@@ -207,6 +206,7 @@ export const PendingNoUnpendNoDetails = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>
   );
 };
@@ -224,6 +224,7 @@ export const NarrowColumnWithWideText = () => {
         rewardReceivedText="Reward received on"
         expiringText="Expiring in"
         pendingForText="{status} for {date}"
+        deniedHelpText="Contact support if you think this is a mistake."
       ></sqm-referral-table-rewards-cell>
       <sqm-referral-table-rewards-cell
         rewards={[{ ...baseReward, ...pendingReward }]}
@@ -233,6 +234,7 @@ export const NarrowColumnWithWideText = () => {
         rewardReceivedText="Reward received on"
         expiringText="Expiring in"
         pendingForText="Pending for 300,000,000 months and some change"
+        deniedHelpText="Contact support if you think this is a mistake."
       ></sqm-referral-table-rewards-cell>
       <sqm-referral-table-rewards-cell
         rewards={[
@@ -244,6 +246,7 @@ export const NarrowColumnWithWideText = () => {
         rewardReceivedText="Reward received on"
         expiringText="Expiring in"
         pendingForText="{status} for {date}"
+        deniedHelpText="Contact support if you think this is a mistake."
       ></sqm-referral-table-rewards-cell>
     </div>
   );
@@ -261,6 +264,7 @@ export const PendingWithUnpend = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>,
     <sqm-referral-table-rewards-cell
       rewards={[
@@ -272,6 +276,7 @@ export const PendingWithUnpend = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>,
     <sqm-referral-table-rewards-cell
       rewards={[
@@ -283,6 +288,7 @@ export const PendingWithUnpend = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>,
     <sqm-referral-table-rewards-cell
       rewards={[
@@ -294,6 +300,7 @@ export const PendingWithUnpend = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>,
     <sqm-referral-table-rewards-cell
       rewards={[
@@ -305,6 +312,7 @@ export const PendingWithUnpend = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>,
     <sqm-referral-table-rewards-cell
       rewards={[
@@ -316,6 +324,7 @@ export const PendingWithUnpend = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>,
   ];
 };
@@ -330,6 +339,7 @@ export const AvailableNoExpiry = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>
   );
 };
@@ -346,6 +356,7 @@ export const AvailableWithExpiry = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>,
     <sqm-referral-table-rewards-cell
       rewards={[
@@ -357,6 +368,7 @@ export const AvailableWithExpiry = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>,
     <sqm-referral-table-rewards-cell
       rewards={[{ ...baseReward, ...availableReward, dateExpires: getHours() }]}
@@ -366,6 +378,7 @@ export const AvailableWithExpiry = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>,
     <sqm-referral-table-rewards-cell
       rewards={[{ ...baseReward, ...availableReward, dateExpires: getDays() }]}
@@ -375,6 +388,7 @@ export const AvailableWithExpiry = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>,
     <sqm-referral-table-rewards-cell
       rewards={[
@@ -386,6 +400,7 @@ export const AvailableWithExpiry = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>,
     <sqm-referral-table-rewards-cell
       rewards={[{ ...baseReward, ...availableReward, dateExpires: getYears() }]}
@@ -395,6 +410,7 @@ export const AvailableWithExpiry = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>,
   ];
 };
@@ -409,6 +425,7 @@ export const Redeemed = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>
   );
 };
@@ -423,6 +440,7 @@ export const Cancelled = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>
   );
 };
@@ -437,6 +455,7 @@ export const Expired = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>
   );
 };
@@ -451,6 +470,7 @@ export const Denied = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>
   );
 };
@@ -465,6 +485,7 @@ export const PendingReview = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>
   );
 };
@@ -479,6 +500,7 @@ export const EmptyCell = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>
   );
 };
@@ -493,6 +515,7 @@ export const oneRewardCell = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>
   );
 };
@@ -507,6 +530,7 @@ export const twoRewardsCell = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>
   );
 };
@@ -521,6 +545,7 @@ export const threeRewardsCell = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>
   );
 };
@@ -535,6 +560,7 @@ export const fiveRewardsCell = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>
   );
 };
@@ -549,6 +575,7 @@ export const eightRewardsCell = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>
   );
 };
@@ -563,6 +590,7 @@ export const tenRewardsCell = () => {
       rewardReceivedText="Reward received on"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
     ></sqm-referral-table-rewards-cell>
   );
 };

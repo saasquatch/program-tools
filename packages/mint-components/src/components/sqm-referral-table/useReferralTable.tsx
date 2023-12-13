@@ -161,6 +161,7 @@ const GET_REFERRAL_DATA = gql`
               globalRewardKey
               programRewardKey
               referral {
+                dateModerated
                 fraudData {
                   autoModerationStatus
                   manualModerationStatus

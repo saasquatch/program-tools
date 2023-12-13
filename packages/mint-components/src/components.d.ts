@@ -1767,6 +1767,7 @@ export namespace Components {
         "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmReferralTableRewardsCell {
+        "deniedHelpText": string;
         "expiringText": string;
         "fuelTankText": string;
         "hideDetails": boolean;
@@ -1782,6 +1783,11 @@ export namespace Components {
           * @uiName Reward column title
          */
         "columnTitle": string;
+        /**
+          * Shown in the dropdown details when a reward was denied.
+          * @uiname Reward denied help text
+         */
+        "deniedHelpText": string;
         /**
           * Shown in the dropdown details when a reward has an expiry date.
           * @uiName Reward expiring text
@@ -5252,6 +5258,7 @@ declare namespace LocalJSX {
         "dateShown"?: ReferralDates;
     }
     interface SqmReferralTableRewardsCell {
+        "deniedHelpText"?: string;
         "expiringText"?: string;
         "fuelTankText"?: string;
         "hideDetails"?: boolean;
@@ -5267,6 +5274,11 @@ declare namespace LocalJSX {
           * @uiName Reward column title
          */
         "columnTitle"?: string;
+        /**
+          * Shown in the dropdown details when a reward was denied.
+          * @uiname Reward denied help text
+         */
+        "deniedHelpText"?: string;
         /**
           * Shown in the dropdown details when a reward has an expiry date.
           * @uiName Reward expiring text

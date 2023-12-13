@@ -93,6 +93,7 @@ const GET_REWARDS = gql`
             }
             referral {
               id
+              dateModerated
               referrerUser {
                 id
                 firstName

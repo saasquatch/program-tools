@@ -5,6 +5,7 @@ interface Referral {
   dateReferralPaid: number;
   dateReferralEnded: number;
   moderationStatus: string;
+  dateModerated: number | null;
   referredUser: {
     firstName: string;
     lastName: string;

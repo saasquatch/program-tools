@@ -18,6 +18,7 @@ export class ReferralTableRewardsCell {
   @Prop() rewardReceivedText: string;
   @Prop() expiringText: string;
   @Prop() pendingForText: string;
+  @Prop() deniedHelpText: string;
   @Prop() locale: string = "en";
   render() {
     intl.locale = this.locale;
@@ -156,6 +157,8 @@ export class ReferralTableRewardsCell {
         }
       );
 
+      console.log({ statusText, longText: this.statusLongText, state });
+
       return (
         <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>
           <style type="text/css">{styleString}</style>
@@ -219,6 +222,31 @@ export class ReferralTableRewardsCell {
             </div>
           </div>
           <div>
+            {state === "PENDING_REVIEW" && reward.referral?.dateModerated && (
+              <div>
+                <TextSpanView type="p">
+                  {statusText}{" "}
+                  <span class={sheet.classes.BoldText} part="sqm-cell-value">
+                    {DateTime.fromMillis(reward.referral.dateModerated)
+                      .setLocale(luxonLocale(this.locale))
+                      .toLocaleString(DateTime.DATE_MED)}
+                  </span>
+                </TextSpanView>
+              </div>
+            )}
+            {state === "DENIED" && reward.referral?.dateModerated && (
+              <div>
+                <TextSpanView type="p">
+                  {statusText}{" "}
+                  <span class={sheet.classes.BoldText} part="sqm-cell-value">
+                    {DateTime.fromMillis(reward.referral.dateModerated)
+                      .setLocale(luxonLocale(this.locale))
+                      .toLocaleString(DateTime.DATE_MED)}
+                  </span>
+                  .{this.deniedHelpText ? ` ${this.deniedHelpText}` : ``}
+                </TextSpanView>
+              </div>
+            )}
             {reward.dateGiven && (
               <div>
                 <TextSpanView type="p">
