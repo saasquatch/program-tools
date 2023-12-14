@@ -266,6 +266,9 @@ export default class Transaction {
           accountId: user.accountId,
         },
         rewardId,
+        // add the referralId only if the rewardIf is undefined
+        // this will cause a graph edge between the referral and the email for moderation
+        referralId: rewardId ? undefined : referralId,
         key: emailKey,
         queryVariables: queryVariables,
         query: rewardId

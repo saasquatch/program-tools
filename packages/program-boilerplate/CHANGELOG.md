@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.7.3] - 2023-12-14
+
+### Changed
+
+- Added referralId to email mutations when rewardId is not present; this will attach the email to the referral.
+
 ## [3.7.1] - 2023-04-20
 
 ### Changed
+
 - Updated license copyright to be in line with SaaSquatch open-source policy.
 
 ## [3.7.0] - 2023-01-17
