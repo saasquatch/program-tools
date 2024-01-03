@@ -291,3 +291,43 @@ export const CustomFieldWithTextLabel = createHookStory(() => {
 });
 
 export const Traffic = createHookStory(() => View("/traffic", "/(traffic)"));
+
+export const TrafficTwo = createHookStory(() =>
+  View("/userStats/traffic", "/(userStat)/:statId", "Traffic")
+);
+
+export const Referrals = createHookStory(() =>
+  View("/userStats/referrals", "/(userStat)/:statId", "Referrals")
+);
+
+export const Conversions = createHookStory(() =>
+  View("/userStats/conversions", "/(userStat)/:statId", "Conversions")
+);
+
+export const Goals = createHookStory(() =>
+  View("/userStats/goals", "/(userStat)/:statId", "Goals")
+);
+
+export const Rewards = createHookStory(() =>
+  View("/userStats/rewards", "/(userStat)/:statId", "Rewards")
+);
+
+export const WidgetLoads = createHookStory(() =>
+  View("/userStats/widgetLoads", "/(userStat)/:statId", "Widget Loads")
+);
+
+export const Revenue = createHookStory(() =>
+  View("/userStats/revenue", "/(userStat)/:statId", "Revenue")
+);
+
+export const GeneratedRevenue = createHookStory(() =>
+  View(
+    "/userStats/generatedRevenue",
+    "/(userStat)/:statId",
+    "Generated Revenue"
+  )
+);
+
+export const ReferredRevenue = createHookStory(() =>
+  View("/userStats/referredRevenue", "/(userStat)/:statId", "Referred Revenue")
+);
