@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.6.17] - 2023-10-23
+## [1.6.18] - 2024-01-03
 
 ### Added
 
@@ -25,6 +25,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
       - "/userStats/widgetLoads"
       - "/userStats/revenue"
       - "/userStats/generatedRevenue"
+
+## [1.6.17] - 2024-01-03
+
+### Fixed
+
+- Updated \<sqm-portal-email-verification> to allow editing of text in raisins
 
 ## [1.6.16] - 2023-09-12
 
@@ -756,7 +762,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.17...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.18...HEAD
+[1.6.18]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.18
 [1.6.17]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.17
 [1.6.16]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.16
 [1.6.15]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.15
