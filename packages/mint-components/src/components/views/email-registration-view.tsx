@@ -79,8 +79,6 @@ const styleString = sheet.toString();
 export function EmailRegistrationView(props: EmailRegistrationViewProps) {
   const { states, callbacks, content } = props;
 
-  console.log(props);
-
   const getErrorMessage = (
     error: string,
     fraudErrorMessage: string,
