@@ -242,6 +242,7 @@ describe("Transaction class", () => {
             },
             key: emailKey,
             rewardId: rewardId,
+            referralId: undefined,
             queryVariables: {
               userId: "reffererID",
               accountId: "reffererACCOUNTID",
@@ -271,6 +272,7 @@ describe("Transaction class", () => {
             },
             key: emailKey,
             rewardId: undefined,
+            referralId,
             queryVariables: {
               userId: "reffererID",
               accountId: "reffererACCOUNTID",
@@ -384,6 +386,7 @@ describe("Transaction class", () => {
           },
           key: emailKey,
           rewardId: rewardMutation.data.rewardId,
+          referralId: undefined,
           queryVariables: {
             userId: "reffererID",
             accountId: "reffererACCOUNTID",
