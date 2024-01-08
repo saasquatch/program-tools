@@ -821,12 +821,72 @@ const trafficQuery = () => {
     `,
     {},
     (res) => {
-      const traffic = res.data?.viewer?.stats.traffic;
+      const traffic = res.data?.viewer?.stats?.traffic;
       const fallback = 0;
 
       return {
         value: traffic || fallback,
         statvalue: traffic || fallback,
+      };
+    }
+  );
+};
+
+const userStatsQuery = (_programId, _locale, statId) => {
+  const statArg = {
+    [statId]: true,
+  };
+  const variables = {
+    traffic: false,
+    referrals: false,
+    conversions: false,
+    goals: false,
+    rewards: false,
+    widgetLoads: false,
+    revenue: false,
+    generatedRevenue: false,
+    referredRevenue: false,
+    ...statArg,
+  };
+
+  return debugQuery(
+    gql`
+      query userStat(
+        $traffic: Boolean!
+        $referrals: Boolean!
+        $conversions: Boolean!
+        $goals: Boolean!
+        $rewards: Boolean!
+        $widgetLoads: Boolean!
+        $revenue: Boolean!
+        $generatedRevenue: Boolean!
+        $referredRevenue: Boolean!
+      ) {
+        viewer: viewer {
+          ... on User {
+            stats {
+              traffic @include(if: $traffic)
+              referrals @include(if: $referrals)
+              conversions @include(if: $conversions)
+              goals @include(if: $goals)
+              rewards @include(if: $rewards)
+              widgetLoads @include(if: $widgetLoads)
+              revenue @include(if: $revenue)
+              generatedRevenue @include(if: $generatedRevenue)
+              referredRevenue @include(if: $referredRevenue)
+            }
+          }
+        }
+      }
+    `,
+    { ...variables },
+    (res) => {
+      const stat = res.data?.viewer?.stats?.[statId];
+      const fallback = 0;
+
+      return {
+        value: stat || fallback,
+        statvalue: stat || fallback,
       };
     }
   );
@@ -914,6 +974,10 @@ export const queries: {
     label: "Traffic",
     query: trafficQuery,
   },
+  userStats: {
+    label: "User Stat",
+    query: userStatsQuery,
+  },
 };
 
 // this should be exposed in documentation somehow
@@ -968,6 +1032,10 @@ export const StatPaths = [
   {
     name: "traffic",
     route: "/(traffic)",
+  },
+  {
+    name: "userStats",
+    route: "/(userStats)/:statId",
   },
 ];
 

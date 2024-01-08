@@ -37,6 +37,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Added a fraud check post-registration
     - A user will now not be given access if the referral created upon registration was deemed fraudulent
 
+## [1.6.18] - 2024-01-03
+
+### Added
+
+- Added additional stat types to display user stats
+- Changed components:
+  - \<sqm-big-stat>
+    - added new `/(userStats)/:statId` stat
+      - Pulls the stat number from the user stats object
+    - statId options:
+      - "/userStats/traffic"
+      - "/userStats/referrals"
+      - "/userStats/conversions"
+      - "/userStats/goals"
+      - "/userStats/rewards"
+      - "/userStats/widgetLoads"
+      - "/userStats/revenue"
+      - "/userStats/generatedRevenue"
+
+## [1.6.17] - 2024-01-03
+
+### Fixed
+
+- Updated \<sqm-portal-email-verification> to allow editing of text in raisins
 
 ## [1.6.16] - 2023-09-12
 
@@ -768,7 +792,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.16...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.18...HEAD
+[1.6.18]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.18
+[1.6.17]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.17
 [1.6.16]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.16
 [1.6.15]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.15
 [1.6.14]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.14

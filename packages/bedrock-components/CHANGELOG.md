@@ -9,40 +9,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.4.0] - 2023-01-08
 - `@saasquatch/component-boilerplate` package bump
+## [1.3.10] - 2024-01-03
+
+### Changed
+
+- Removed JSDoc example of component
 
 ## [1.3.9] - 2023-05-18
 
 ### Changed
+
 - `@saasquatch/component-boilerplate` package bump
 
 ## [1.3.8] - 2023-05-16
 
 ### Added
+
 - \<sqb-auth-template-switch> - Automatically switch between "logged-in" and "logged-out" templates based on whether a valid User Identity has been set.
 
 ## [1.3.7] - 2023-04-20
 
 ### Changed
+
 - Updated license copyright to be in line with SaaSquatch open-source policy.
 
 ## [1.3.6] - 2022-07-25
 
 ### Added
+
 - \<sqb-redirect> - Automatically redirects the user to a given path when rendered
 
 ## [1.3.5] - 2022-07-21
 
 ### Changed
+
 - \<sqb-program-section> updated to stop using flawed DOM context state hook in favour of directly creating a DOM context provider
 - Added [jsDocs](https://jsdoc.app/) to the following components to improve the editability experience in our new Raisins widget editor.
 - Changed components:
   - \<sqb-conditional-section>
   - \<sqb-program-switch>
 
-
 ## [1.3.4] - 2022-06-08
 
 ### Changed
+
 - Added [jsDocs](https://jsdoc.app/) to the following components to improve the editability experience in our new Raisins widget editor.
 - Changed components:
   - \<sqb-conditional-section>
@@ -120,7 +130,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqb-conditional-section>
   - \<sqb-program-section>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.3.7...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.3.10...HEAD
+[1.3.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.10
+[1.3.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.9
+[1.3.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.8
 [1.3.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.7
 [1.3.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.6
 [1.3.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.5

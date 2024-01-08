@@ -82,7 +82,7 @@ Feature: Instant access referred registration
             | value            | maybe |
             | true             | is    |
             | false            | isn't |
-            | empty (no value) | isn't |
+            | empty (no value) | is    |
 
     @motivating
     @ui
@@ -123,7 +123,7 @@ Feature: Instant access referred registration
     Scenario: A fraud check is made after successful participant registration
         Given a user has entered a valid email
         And they submit the form
-        When the participant registration is successful 
+        When the participant registration is successful
         Then another request is fired
         And the request checks the fraud data on their program specific referredByReferral
 
@@ -135,8 +135,7 @@ Feature: Instant access referred registration
         Then they are <action>
 
         Examples:
-          | status   | action                              |
-          | APPROVED | shown the logged-in view            |
-          | PENDING  | shown a pending review fraud alert  |
-          | DENIED   | shown a denied referral fraud alert |
-        
+            | status   | action                              |
+            | APPROVED | shown the logged-in view            |
+            | PENDING  | shown a pending review fraud alert  |
+            | DENIED   | shown a denied referral fraud alert |
