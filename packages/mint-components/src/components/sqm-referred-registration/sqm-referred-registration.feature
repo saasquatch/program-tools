@@ -82,7 +82,7 @@ Feature: Instant access referred registration
             | value            | maybe |
             | true             | is    |
             | false            | isn't |
-            | empty (no value) | isn't |
+            | empty (no value) | is    |
 
     @motivating
     @ui
@@ -118,3 +118,24 @@ Feature: Instant access referred registration
             | xxx-large  | xxx-large  |
             | xxxx-large | xxxx-large |
             | N/A        | no padding |
+
+    @motivating
+    Scenario: A fraud check is made after successful participant registration
+        Given a user has entered a valid email
+        And they submit the form
+        When the participant registration is successful
+        Then another request is fired
+        And the request checks the fraud data on their program specific referredByReferral
+
+    @motivating
+    Scenario Outline: Outcome of fraud check
+        Given a user has succesfully been registered
+        And the fraud check request returns a valid response
+        And the fraud status of the referral is <status>
+        Then they are <action>
+
+        Examples:
+            | status   | action                              |
+            | APPROVED | shown the logged-in view            |
+            | PENDING  | shown a pending review fraud alert  |
+            | DENIED   | shown a denied referral fraud alert |

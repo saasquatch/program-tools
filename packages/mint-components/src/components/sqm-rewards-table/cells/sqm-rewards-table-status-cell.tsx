@@ -42,8 +42,14 @@ export class RewardTableStatusCell {
   @Prop() pendingUsTax: string = "W-9 required";
   @Prop() pendingScheduled: string = "Until";
   @Prop() pendingUnhandled: string = "Fulfillment error";
+  @Prop() pendingReviewText: string = "Awaiting review";
+  @Prop() deniedText: string = "Detected self-referral";
 
   rewardStatus(reward: Reward) {
+    if (reward.referral?.fraudData?.moderationStatus === "DENIED")
+      return "DENIED";
+    if (reward.referral?.fraudData?.moderationStatus === "PENDING")
+      return "PENDING_REVIEW";
     if (reward.dateCancelled) return "CANCELLED";
     if (reward.statuses && reward.statuses.includes("EXPIRED"))
       return "EXPIRED";
@@ -84,7 +90,7 @@ export class RewardTableStatusCell {
         ? "success"
         : rewardStatus === "REDEEMED"
         ? "primary"
-        : rewardStatus === "PENDING"
+        : rewardStatus === "PENDING" || rewardStatus === "PENDING_REVIEW"
         ? "warning"
         : "danger";
 
@@ -107,6 +113,12 @@ export class RewardTableStatusCell {
     const pendingReasons =
       rewardStatus === "PENDING" ? getRewardPendingReasons(this) : null;
 
+    const fraudStatusText =
+      rewardStatus === "PENDING_REVIEW"
+        ? this.pendingReviewText
+        : rewardStatus === "DENIED"
+        ? this.deniedText
+        : null;
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
@@ -121,7 +133,9 @@ export class RewardTableStatusCell {
         >
           {statusText}
         </sl-badge>
-        <p class={sheet.classes.Date}>{pendingReasons || date}</p>
+        <p class={sheet.classes.Date}>
+          {pendingReasons || fraudStatusText || date}
+        </p>
       </div>
     );
 
@@ -136,6 +150,7 @@ export class RewardTableStatusCell {
               ?.setLocale(luxonLocale(luxonLocale(prop.locale || "en")))
               .toLocaleString(DateTime.DATE_MED),
         UNHANDLED_ERROR: prop.pendingUnhandled,
+        SUSPECTED_FRAUD: prop.pendingReview,
       };
       return [prop.reward.pendingReasons]
         .map((s: string): string => pendingCodeMap[s] ?? s)

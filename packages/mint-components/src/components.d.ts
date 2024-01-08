@@ -1767,6 +1767,7 @@ export namespace Components {
         "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmReferralTableRewardsCell {
+        "deniedHelpText": string;
         "expiringText": string;
         "fuelTankText": string;
         "hideDetails": boolean;
@@ -1782,6 +1783,11 @@ export namespace Components {
           * @uiName Reward column title
          */
         "columnTitle": string;
+        /**
+          * Shown in the dropdown details when a reward was denied.
+          * @uiName Reward denied help text
+         */
+        "deniedHelpText": string;
         /**
           * Shown in the dropdown details when a reward has an expiry date.
           * @uiName Reward expiring text
@@ -1825,6 +1831,8 @@ export namespace Components {
     }
     interface SqmReferralTableStatusCell {
         "converted": boolean;
+        "fraudStatus"?: FraudStatus;
+        "statusSubText": string;
         "statusText": string;
     }
     interface SqmReferralTableStatusColumn {
@@ -1837,9 +1845,25 @@ export namespace Components {
          */
         "convertedStatusText": string;
         /**
+          * @uiName Denied status sub-text
+         */
+        "deniedStatusSubText": string;
+        /**
+          * @uiName Denied status text
+         */
+        "deniedStatusText": string;
+        /**
           * @uiName In progress status text
          */
         "inProgressStatusText": string;
+        /**
+          * @uiName Pending review status sub-text
+         */
+        "pendingReviewStatusSubText": string;
+        /**
+          * @uiName Pending review status text
+         */
+        "pendingReviewStatusText": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
@@ -1887,6 +1911,20 @@ export namespace Components {
           * @uiName First name field label
          */
         "firstNameLabel": string;
+        /**
+          * Display this message when there is suspected fraud.
+          * @uiName Fraud error message
+          * @uiWidget textArea
+          * @uiGroup Error messages
+         */
+        "fraudErrorMessage": string;
+        /**
+          * Display this message when there is suspected fraud.
+          * @uiName Fraud error message title
+          * @uiWidget textArea
+          * @uiGroup Error messages
+         */
+        "fraudErrorMessageTitle": string;
         /**
           * @uiName Hide border
           * @uiGroup Card style
@@ -2232,8 +2270,10 @@ export namespace Components {
         "rewardSourceText": string;
     }
     interface SqmRewardsTableStatusCell {
+        "deniedText": string;
         "expiryText": string;
         "locale": string;
+        "pendingReviewText": string;
         "pendingScheduled": string;
         "pendingUnhandled": string;
         "pendingUsTax": string;
@@ -2246,10 +2286,20 @@ export namespace Components {
          */
         "columnTitle": string;
         /**
+          * Displayed when denied for fraud.
+          * @uiName Denied text
+         */
+        "deniedText": string;
+        /**
           * Text shown before the date of an expiring reward.
           * @uiName Expiry date prefix
          */
         "expiryText": string;
+        /**
+          * Displayed when flagged for fraud.
+          * @uiName Pending review text
+         */
+        "pendingReviewText": string;
         /**
           * Text shown before the available date of a pending reward.
           * @uiName Pending date prefix
@@ -5220,6 +5270,7 @@ declare namespace LocalJSX {
         "dateShown"?: ReferralDates;
     }
     interface SqmReferralTableRewardsCell {
+        "deniedHelpText"?: string;
         "expiringText"?: string;
         "fuelTankText"?: string;
         "hideDetails"?: boolean;
@@ -5235,6 +5286,11 @@ declare namespace LocalJSX {
           * @uiName Reward column title
          */
         "columnTitle"?: string;
+        /**
+          * Shown in the dropdown details when a reward was denied.
+          * @uiName Reward denied help text
+         */
+        "deniedHelpText"?: string;
         /**
           * Shown in the dropdown details when a reward has an expiry date.
           * @uiName Reward expiring text
@@ -5275,6 +5331,8 @@ declare namespace LocalJSX {
     }
     interface SqmReferralTableStatusCell {
         "converted"?: boolean;
+        "fraudStatus"?: FraudStatus;
+        "statusSubText"?: string;
         "statusText"?: string;
     }
     interface SqmReferralTableStatusColumn {
@@ -5287,9 +5345,25 @@ declare namespace LocalJSX {
          */
         "convertedStatusText"?: string;
         /**
+          * @uiName Denied status sub-text
+         */
+        "deniedStatusSubText"?: string;
+        /**
+          * @uiName Denied status text
+         */
+        "deniedStatusText"?: string;
+        /**
           * @uiName In progress status text
          */
         "inProgressStatusText"?: string;
+        /**
+          * @uiName Pending review status sub-text
+         */
+        "pendingReviewStatusSubText"?: string;
+        /**
+          * @uiName Pending review status text
+         */
+        "pendingReviewStatusText"?: string;
     }
     interface SqmReferralTableUserCell {
         "name"?: string;
@@ -5331,6 +5405,20 @@ declare namespace LocalJSX {
           * @uiName First name field label
          */
         "firstNameLabel"?: string;
+        /**
+          * Display this message when there is suspected fraud.
+          * @uiName Fraud error message
+          * @uiWidget textArea
+          * @uiGroup Error messages
+         */
+        "fraudErrorMessage"?: string;
+        /**
+          * Display this message when there is suspected fraud.
+          * @uiName Fraud error message title
+          * @uiWidget textArea
+          * @uiGroup Error messages
+         */
+        "fraudErrorMessageTitle"?: string;
         /**
           * @uiName Hide border
           * @uiGroup Card style
@@ -5668,8 +5756,10 @@ declare namespace LocalJSX {
         "rewardSourceText"?: string;
     }
     interface SqmRewardsTableStatusCell {
+        "deniedText"?: string;
         "expiryText"?: string;
         "locale"?: string;
+        "pendingReviewText"?: string;
         "pendingScheduled"?: string;
         "pendingUnhandled"?: string;
         "pendingUsTax"?: string;
@@ -5682,10 +5772,20 @@ declare namespace LocalJSX {
          */
         "columnTitle"?: string;
         /**
+          * Displayed when denied for fraud.
+          * @uiName Denied text
+         */
+        "deniedText"?: string;
+        /**
           * Text shown before the date of an expiring reward.
           * @uiName Expiry date prefix
          */
         "expiryText"?: string;
+        /**
+          * Displayed when flagged for fraud.
+          * @uiName Pending review text
+         */
+        "pendingReviewText"?: string;
         /**
           * Text shown before the available date of a pending reward.
           * @uiName Pending date prefix

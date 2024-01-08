@@ -5,6 +5,7 @@ interface Referral {
   dateReferralPaid: number;
   dateReferralEnded: number;
   moderationStatus: string;
+  dateModerated: number | null;
   referredUser: {
     firstName: string;
     lastName: string;
@@ -21,6 +22,11 @@ interface Referral {
       Saasquatch_Referral_Status__c: string;
     };
   };
+  fraudData?: {
+    moderationStatus: "PENDING" | "APPROVED" | "DENIED";
+    autoModerationStatus: "PENDING" | "APPROVED" | "DENIED";
+    manualModerationStatus: "PENDING" | "APPROVED" | "DENIED";
+  };
   rewards: Reward[];
 }
 
@@ -33,6 +39,8 @@ interface Referrer {
   };
   rewards: Reward[];
 }
+
+type FraudStatus = "PENDING" | "DENIED" | "APPROVED";
 
 interface Reward {
   id: string;
@@ -82,6 +90,7 @@ interface Reward {
   };
   referral?: Referral;
   pendingReasons?: string[];
+  cancelledReason?: "UNKNOWN" | "PROGRAM_GRAPH_MODERATION" | "SUSPECTED_FRAUD";
   rewardRedemptionTransactions: {
     data: [
       {

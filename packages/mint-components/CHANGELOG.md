@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] - 2023-01-08
+
+### Added
+
+- Added support for fraud referral moderation to multiple components
+
+### Changed
+
+- Changed components:
+  - \<sqm-referral-table-status-cell>
+    - Added optional `fraudStatus` enum prop
+    - Added `statusSubText` string prop
+  - \<sqm-referral-table-status-column>
+    - Added `pendingReviewStatusText` string prop
+    - Added `deniedStatusText` string prop
+    - Added `pendingReviewStatusSubText` string prop
+    - Added `deniedStatusSubText` string prop
+  - \<sqm-referral-table-rewards-cell>
+    - Added `deniedHelpText` string prop
+  - \<sqm-referral-table-rewards-column>
+    - Added support for `PENDING_REVIEW` and `DENIED` statuses in `statusText` string prop
+    - Added support for `PENDING_REVIEW` and `DENIED` statuses in `statusLongText` string prop
+    - Added `deniedHelpText` string prop
+  - \<sqm-rewards-table-status-cell>
+    - Added optional `fraudStatus` enum prop
+    - Added `pendingReviewText` string prop
+    - Added `deniedText` string prop
+  - \<sqm-rewards-table-status-column>
+    - Added support for `PENDING_REVIEW` and `DENIED` statuses in `statusText` string prop
+    - Added support for `PENDING_REVIEW` and `DENIED` statuses in `statusLongText` string prop
+    - Added `pendingReviewText` string prop
+    - Added `deniedText` string prop
+  - \<sqm-referred-registration>
+    - Added a fraud check post-registration
+    - A user will now not be given access if the referral created upon registration was deemed fraudulent
+
 ## [1.6.18] - 2024-01-03
 
 ### Added

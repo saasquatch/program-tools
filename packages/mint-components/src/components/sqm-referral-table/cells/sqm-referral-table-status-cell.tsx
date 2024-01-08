@@ -9,6 +9,11 @@ const style = {
       whiteSpace: "pre-line",
     },
   },
+  SubText: {
+    fontSize: "var(--sl-font-size-small)",
+    color: "var(--sl-color-neutral-500)",
+    margin: "0",
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -20,18 +25,32 @@ const styleString = sheet.toString();
 })
 export class ReferralTableStatusCell {
   @Prop() statusText: string;
+  @Prop() fraudStatus?: FraudStatus;
   @Prop() converted: boolean;
+  @Prop() statusSubText: string;
+
   render() {
+    const getBadgeType = (fraudStatus) => {
+      if (fraudStatus === "PENDING") return "warning";
+      if (fraudStatus === "DENIED") return "danger";
+
+      if (this.converted) return "success";
+      return "warning";
+    };
+
     return (
       <div>
         <style type="text/css">{styleString}</style>
         <sl-badge
           pill
-          type={this.converted ? "success" : "warning"}
+          type={getBadgeType(this.fraudStatus)}
           class={sheet.classes.Badge}
         >
           {this.statusText}
         </sl-badge>
+        {this.statusSubText ? (
+          <p class={sheet.classes.SubText}>{this.statusSubText}</p>
+        ) : null}
       </div>
     );
   }

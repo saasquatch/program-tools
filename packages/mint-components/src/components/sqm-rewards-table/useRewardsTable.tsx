@@ -77,6 +77,7 @@ const GET_REWARDS = gql`
             }
             statuses
             pendingReasons
+            cancelledReason
             globalRewardKey
             programRewardKey
             rewardSource
@@ -92,6 +93,7 @@ const GET_REWARDS = gql`
             }
             referral {
               id
+              dateModerated
               referrerUser {
                 id
                 firstName
@@ -101,6 +103,11 @@ const GET_REWARDS = gql`
                 id
                 firstName
                 lastName
+              }
+              fraudData {
+                moderationStatus
+                autoModerationStatus
+                manualModerationStatus
               }
             }
             rewardRedemptionTransactions {
