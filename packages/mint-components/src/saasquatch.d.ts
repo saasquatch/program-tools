@@ -40,6 +40,8 @@ interface Referrer {
   rewards: Reward[];
 }
 
+type FraudStatus = "PENDING" | "DENIED" | "APPROVED";
+
 interface Reward {
   id: string;
   type: string;

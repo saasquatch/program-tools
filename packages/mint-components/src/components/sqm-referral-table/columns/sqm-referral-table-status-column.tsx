@@ -60,8 +60,7 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
     let statusText: string;
     let statusSubText: string;
 
-    const fraudStatus: "PENDING" | "DENIED" | "APPROVED" =
-      data?.fraudData?.moderationStatus;
+    const fraudStatus: FraudStatus = data?.fraudData?.moderationStatus;
 
     if (fraudStatus === "DENIED") {
       statusText = this.deniedStatusText;

@@ -1831,7 +1831,7 @@ export namespace Components {
     }
     interface SqmReferralTableStatusCell {
         "converted": boolean;
-        "fraudStatus"?: "APPROVED" | "PENDING" | "DENIED";
+        "fraudStatus"?: FraudStatus;
         "statusSubText": string;
         "statusText": string;
     }
@@ -5331,7 +5331,7 @@ declare namespace LocalJSX {
     }
     interface SqmReferralTableStatusCell {
         "converted"?: boolean;
-        "fraudStatus"?: "APPROVED" | "PENDING" | "DENIED";
+        "fraudStatus"?: FraudStatus;
         "statusSubText"?: string;
         "statusText"?: string;
     }

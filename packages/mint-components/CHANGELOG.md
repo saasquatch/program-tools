@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.7.0] - 2023-12-13
+## [1.7.0] - 2023-01-08
 - Added support for fraud referral moderation to multiple components
 - Changed components:
   - \<sqm-referral-table-status-cell>

@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2023-01-08
+- `@saasquatch/component-boilerplate` package bump
+
 ## [1.3.9] - 2023-05-18
 
 ### Changed

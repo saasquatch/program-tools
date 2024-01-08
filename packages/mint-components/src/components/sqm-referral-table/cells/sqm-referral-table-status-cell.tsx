@@ -25,7 +25,7 @@ const styleString = sheet.toString();
 })
 export class ReferralTableStatusCell {
   @Prop() statusText: string;
-  @Prop() fraudStatus?: "APPROVED" | "PENDING" | "DENIED";
+  @Prop() fraudStatus?: FraudStatus;
   @Prop() converted: boolean;
   @Prop() statusSubText: string;
 
