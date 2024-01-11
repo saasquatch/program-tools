@@ -104,9 +104,7 @@ export const AllMediums = () => {
         <span>Linkedin</span>
       </sqm-share-button>
       <br />
-      <sqm-share-button medium="twitter">
-        <span>Twitter</span>
-      </sqm-share-button>
+      <sqm-share-button medium="twitter"></sqm-share-button>
       <br />
       <sqm-share-button medium="pinterest">
         <span>Pinterest</span>

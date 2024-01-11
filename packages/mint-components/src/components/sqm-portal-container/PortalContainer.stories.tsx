@@ -31,7 +31,7 @@ export const TooWideRow = () => (
         Email a friend
       </sqm-share-button>
       <sqm-share-button medium="twitter" size="medium" class="hydrated">
-        Tweet about us
+        Post about us on X
       </sqm-share-button>
       <sqm-share-button medium="facebook" size="medium" class="hydrated">
         Share on Facebook
@@ -52,7 +52,7 @@ export const TooWideSmallGap = () => (
         Email a friend
       </sqm-share-button>
       <sqm-share-button medium="twitter" size="medium" class="hydrated">
-        Tweet about us
+        Post about us on X
       </sqm-share-button>
       <sqm-share-button medium="facebook" size="medium" class="hydrated">
         Share on Facebook
@@ -78,7 +78,7 @@ export const TooWidePadding = () => (
         Email a friend
       </sqm-share-button>
       <sqm-share-button medium="twitter" size="medium" class="hydrated">
-        Tweet about us
+        Post about us on X
       </sqm-share-button>
       <sqm-share-button medium="facebook" size="medium" class="hydrated">
         Share on Facebook
@@ -104,7 +104,7 @@ export const TooWideDisplayFlex = () => (
         Email a friend
       </sqm-share-button>
       <sqm-share-button medium="twitter" size="medium" class="hydrated">
-        Tweet about us
+        Post about us on X
       </sqm-share-button>
       <sqm-share-button medium="facebook" size="medium" class="hydrated">
         Share on Facebook
@@ -130,7 +130,7 @@ export const HalfWidth = () => (
         Email a friend
       </sqm-share-button>
       <sqm-share-button medium="twitter" size="medium" class="hydrated">
-        Tweet about us
+        Post about us on X
       </sqm-share-button>
       <sqm-share-button medium="facebook" size="medium" class="hydrated">
         Share on Facebook
@@ -157,7 +157,7 @@ export const HalfWidthCenter = () => (
         Email a friend
       </sqm-share-button>
       <sqm-share-button medium="twitter" size="medium" class="hydrated">
-        Tweet about us
+        Post about us on X
       </sqm-share-button>
       <sqm-share-button medium="facebook" size="medium" class="hydrated">
         Share on Facebook
@@ -178,7 +178,7 @@ export const FullWidth = () => (
         Email a friend
       </sqm-share-button>
       <sqm-share-button medium="twitter" size="medium" class="hydrated">
-        Tweet about us
+        Post about us on X
       </sqm-share-button>
       <sqm-share-button medium="facebook" size="medium" class="hydrated">
         Share on Facebook

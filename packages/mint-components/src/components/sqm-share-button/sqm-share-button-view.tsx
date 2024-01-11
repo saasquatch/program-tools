@@ -43,7 +43,7 @@ export interface ShareButtonViewProps {
 
 const medium = {
   facebook: { color: "#1877f2", text: "#fff", icon: "facebook" },
-  twitter: { color: "#1da1f2", text: "#fff", icon: "twitter" },
+  twitter: { color: "#000000", text: "#fff", icon: "twitter-x" },
   email: { color: "#666666", text: "#fff", icon: "envelope" },
   direct: { color: "var(--sl-color-primary-500)", text: "#fff", icon: "send" },
   linkedin: { color: "#0077b5", text: "#fff", icon: "linkedin" },
