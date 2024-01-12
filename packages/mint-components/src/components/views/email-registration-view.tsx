@@ -23,6 +23,8 @@ export interface EmailRegistrationViewProps {
   };
   content: {
     hideBorder?: boolean;
+    fraudErrorMessage?: string;
+    fraudErrorMessageTitle?: string;
     emailLabel?: string;
     firstNameLabel?: string;
     lastNameLabel?: string;
@@ -77,6 +79,23 @@ const styleString = sheet.toString();
 export function EmailRegistrationView(props: EmailRegistrationViewProps) {
   const { states, callbacks, content } = props;
 
+  const getErrorMessage = (
+    error: string,
+    fraudErrorMessage: string,
+    fraudErrorMessageTitle: string
+  ) => {
+    return error === "FRAUD" ? (
+      <sqm-form-message type="error" exportparts="erroralert-icon">
+        <b>{fraudErrorMessageTitle}</b>
+        <div part="erroralert-text">{fraudErrorMessage}</div>
+      </sqm-form-message>
+    ) : (
+      <sqm-form-message type="error" exportparts="erroralert-icon">
+        <div part="erroralert-text">{error}</div>
+      </sqm-form-message>
+    );
+  };
+
   const emailValidationRegex =
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -99,12 +118,12 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
       {content.topSlot}
 
       <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
-        {props.states.error && (
-          <sqm-form-message type="error" exportparts="erroralert-icon">
-            <div part="erroralert-text">{props.states.error}</div>
-          </sqm-form-message>
-        )}
-
+        {props.states.error &&
+          getErrorMessage(
+            props.states.error,
+            props.content.fraudErrorMessage,
+            props.content.fraudErrorMessageTitle
+          )}
         {content.includeName && (
           <sl-input
             exportparts="label: input-label"
@@ -123,7 +142,6 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
             disabled={states.loading}
           ></sl-input>
         )}
-
         <sl-input
           exportparts="label: input-label"
           type="email"
@@ -148,7 +166,6 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
               }
             : [])}
         ></sl-input>
-
         <div
           class={sheet.classes.ButtonsContainer}
           style={{

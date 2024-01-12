@@ -95,10 +95,9 @@ function usePortalEmailVerificationDemo(
       },
       content: {
         email: "test@example.com",
-        verifyMessage:
-          "A verification email was sent to {email}. Please verify your email to continue to the portal.",
-        emailVerificationHeader: "Verify your email",
-        resendEmailButtonText: "Re-send Email",
+        verifyMessage: props.verifyMessage,
+        emailVerificationHeader: props.emailVerificationHeader,
+        resendEmailButtonText: props.resendEmailButtonText,
         verificationLoadingMessage: props.verificationLoadingMessage,
         verificationStatusMessage: props.verificationStatusMessage,
       },

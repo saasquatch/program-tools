@@ -18,6 +18,7 @@ export class ReferralTableRewardsCell {
   @Prop() rewardReceivedText: string;
   @Prop() expiringText: string;
   @Prop() pendingForText: string;
+  @Prop() deniedHelpText: string;
   @Prop() locale: string = "en";
   render() {
     intl.locale = this.locale;
@@ -87,29 +88,41 @@ export class ReferralTableRewardsCell {
     const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
 
-    const getState = (states: Array<string>): string => {
+    const getState = (reward: Reward): string => {
       const possibleStates = [
         "REDEEMED",
         "CANCELLED",
         "EXPIRED",
         "PENDING",
         "AVAILABLE",
+        "PENDING_REVIEW",
+        "DENIED",
       ];
 
-      if (states.length === 1) return states[0];
+      if (reward.referral?.fraudData?.moderationStatus !== "APPROVED") {
+        if (reward.referral?.fraudData?.moderationStatus === "PENDING")
+          return "PENDING_REVIEW";
+        if (reward.referral?.fraudData?.moderationStatus === "DENIED")
+          return "DENIED";
+      }
 
-      return possibleStates.find((state) => states.includes(state) && state);
+      if (reward.statuses.length === 1) return reward.statuses[0];
+
+      return possibleStates.find(
+        (state) => reward.statuses.includes(state) && state
+      );
     };
 
     const getSLBadgeType = (state: string): string => {
       switch (state) {
         case "REDEEMED":
           return "primary";
+        case "DENIED":
         case "EXPIRED":
-          return "danger";
         case "CANCELLED":
           return "danger";
         case "PENDING":
+        case "PENDING_REVIEW":
           return "warning";
         case "AVAILABLE":
           return "success";
@@ -126,7 +139,7 @@ export class ReferralTableRewardsCell {
     };
 
     return this.rewards?.map((reward) => {
-      const state = getState(reward.statuses);
+      const state = getState(reward);
       const slBadgeType = getSLBadgeType(state);
       const badgeText = intl.formatMessage(
         { id: "statusShortMessage", defaultMessage: this.statusText },
@@ -143,6 +156,7 @@ export class ReferralTableRewardsCell {
           status: state,
         }
       );
+
       return (
         <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>
           <style type="text/css">{styleString}</style>
@@ -206,6 +220,31 @@ export class ReferralTableRewardsCell {
             </div>
           </div>
           <div>
+            {state === "PENDING_REVIEW" && reward.referral?.dateModerated && (
+              <div>
+                <TextSpanView type="p">
+                  {statusText}{" "}
+                  <span class={sheet.classes.BoldText} part="sqm-cell-value">
+                    {DateTime.fromMillis(reward.referral.dateModerated)
+                      .setLocale(luxonLocale(this.locale))
+                      .toLocaleString(DateTime.DATE_MED)}
+                  </span>
+                </TextSpanView>
+              </div>
+            )}
+            {state === "DENIED" && reward.referral?.dateModerated && (
+              <div>
+                <TextSpanView type="p">
+                  {statusText}{" "}
+                  <span class={sheet.classes.BoldText} part="sqm-cell-value">
+                    {DateTime.fromMillis(reward.referral.dateModerated)
+                      .setLocale(luxonLocale(this.locale))
+                      .toLocaleString(DateTime.DATE_MED)}
+                  </span>
+                  .{this.deniedHelpText ? ` ${this.deniedHelpText}` : ``}
+                </TextSpanView>
+              </div>
+            )}
             {reward.dateGiven && (
               <div>
                 <TextSpanView type="p">

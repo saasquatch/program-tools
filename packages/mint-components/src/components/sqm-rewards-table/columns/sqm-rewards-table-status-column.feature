@@ -25,12 +25,14 @@ Feature: Reward Table Status Column
         When they view the reward table
         Then the status of their reward is displayed in <pillColour> pill with <text>
         Examples:
-            | status    | text      | pillColour |
-            | AVAILABLE | Available | Green      |
-            | CANCELLED | Cancelled | Red        |
-            | PENDING   | Pending   | Orange     |
-            | EXPIRED   | Expired   | Red        |
-            | REDEEMED  | Redeemed  | Blue       |
+            | status         | text           | pillColour |
+            | AVAILABLE      | Available      | Green      |
+            | CANCELLED      | Cancelled      | Red        |
+            | PENDING        | Pending        | Orange     |
+            | EXPIRED        | Expired        | Red        |
+            | REDEEMED       | Redeemed       | Blue       |
+            | PENDING_REVIEW | Pending Review | Orange     |
+            | DENIED         | Denied         | Red        |
 
     @motivating
     Scenario Outline: Reward status related information is displayed under status pills
@@ -49,21 +51,25 @@ Feature: Reward Table Status Column
             | pending reward with a end date         | localized pending for date in format "Month-Day-Year" |
             | pending reward due to W9               | W-9 required                                          |
             | pending reward due to fufillment error | Fulfillment error                                     |
+            | reward pending review of referral      | Pending review                                        |
+            | cancelled reward from denied referral  | Flagged as fraud                                      |
 
     @motivating
     Scenario Outline: Statuses can be customized
-        Given the "status-text" prop is "{status, select, AVAILABLE {Redeem me!} CANCELLED {Unavailable} PENDING {Coming soon!} EXPIRED {Past due} REDEEMED {Spent}}"
+        Given the "status-text" prop is "{status, select, AVAILABLE {Redeem me!} CANCELLED {Unavailable} PENDING {Coming soon!} EXPIRED {Past due} REDEEMED {Spent} PENDING_REVIEW {Pending Review!} DENIED {Unlucky!}}"
         And a user
         And they have a <status> reward
         When they view the reward table
         Then the status of their reward is displayed in <pillColour> pill with <text>
         Examples:
-            | status    | text         | pillColour |
-            | AVAILABLE | Redeem me!   | Green      |
-            | CANCELLED | Unavailable  | Red        |
-            | PENDING   | Coming soon! | Orange     |
-            | EXPIRED   | Past due     | Red        |
-            | REDEEMED  | Spent        | Blue       |
+            | status         | text            | pillColour |
+            | AVAILABLE      | Redeem me!      | Green      |
+            | CANCELLED      | Unavailable     | Red        |
+            | PENDING        | Coming soon!    | Orange     |
+            | EXPIRED        | Past due        | Red        |
+            | REDEEMED       | Spent           | Blue       |
+            | PENDING_REVIEW | Pending Review! | Orange     |
+            | DENIED         | Unlucky!        | Red        |
 
     @minutia
     @ui

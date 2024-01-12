@@ -7,6 +7,83 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.2] - 2023-01-12
+
+### Fixed
+
+- Changed components:
+  - \<sqm-share-link>
+    - use DIRECT as the shareMedium of the sharelink
+
+## [1.7.1] - 2023-01-12
+
+### Fixed
+
+- Changed components:
+  - \<sqm-share-link>
+    - Correctly uses the current engagementMedium when retrieving the sharelink
+
+## [1.7.0] - 2023-01-08
+
+### Added
+
+- Added support for fraud referral moderation to multiple components
+
+### Changed
+
+- Changed components:
+  - \<sqm-referral-table-status-cell>
+    - Added optional `fraudStatus` enum prop
+    - Added `statusSubText` string prop
+  - \<sqm-referral-table-status-column>
+    - Added `pendingReviewStatusText` string prop
+    - Added `deniedStatusText` string prop
+    - Added `pendingReviewStatusSubText` string prop
+    - Added `deniedStatusSubText` string prop
+  - \<sqm-referral-table-rewards-cell>
+    - Added `deniedHelpText` string prop
+  - \<sqm-referral-table-rewards-column>
+    - Added support for `PENDING_REVIEW` and `DENIED` statuses in `statusText` string prop
+    - Added support for `PENDING_REVIEW` and `DENIED` statuses in `statusLongText` string prop
+    - Added `deniedHelpText` string prop
+  - \<sqm-rewards-table-status-cell>
+    - Added optional `fraudStatus` enum prop
+    - Added `pendingReviewText` string prop
+    - Added `deniedText` string prop
+  - \<sqm-rewards-table-status-column>
+    - Added support for `PENDING_REVIEW` and `DENIED` statuses in `statusText` string prop
+    - Added support for `PENDING_REVIEW` and `DENIED` statuses in `statusLongText` string prop
+    - Added `pendingReviewText` string prop
+    - Added `deniedText` string prop
+  - \<sqm-referred-registration>
+    - Added a fraud check post-registration
+    - A user will now not be given access if the referral created upon registration was deemed fraudulent
+
+## [1.6.18] - 2024-01-03
+
+### Added
+
+- Added additional stat types to display user stats
+- Changed components:
+  - \<sqm-big-stat>
+    - added new `/(userStats)/:statId` stat
+      - Pulls the stat number from the user stats object
+    - statId options:
+      - "/userStats/traffic"
+      - "/userStats/referrals"
+      - "/userStats/conversions"
+      - "/userStats/goals"
+      - "/userStats/rewards"
+      - "/userStats/widgetLoads"
+      - "/userStats/revenue"
+      - "/userStats/generatedRevenue"
+
+## [1.6.17] - 2024-01-03
+
+### Fixed
+
+- Updated \<sqm-portal-email-verification> to allow editing of text in raisins
+
 ## [1.6.16] - 2023-09-12
 
 ### Changed
@@ -737,7 +814,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.16...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.7.2...HEAD
+[1.7.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.2
+[1.7.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.1
+[1.7.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.0
+[1.6.18]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.18
+[1.6.17]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.17
 [1.6.16]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.16
 [1.6.15]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.15
 [1.6.14]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.14

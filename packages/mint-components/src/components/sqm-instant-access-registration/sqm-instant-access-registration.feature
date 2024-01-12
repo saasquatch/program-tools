@@ -77,7 +77,7 @@ Feature: Instant access referrer registration
             | value            | maybe |
             | true             | is    |
             | false            | isn't |
-            | empty (no value) | isn't |
+            | empty (no value) | is    |
 
     @motivating
     @ui

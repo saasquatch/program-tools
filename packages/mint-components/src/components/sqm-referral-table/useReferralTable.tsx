@@ -136,6 +136,11 @@ const GET_REFERRAL_DATA = gql`
               id
               name
             }
+            fraudData {
+              autoModerationStatus
+              manualModerationStatus
+              moderationStatus
+            }
             rewards(filter: $rewardFilter) {
               id
               type
@@ -155,6 +160,14 @@ const GET_REFERRAL_DATA = gql`
               statuses
               globalRewardKey
               programRewardKey
+              referral {
+                dateModerated
+                fraudData {
+                  autoModerationStatus
+                  manualModerationStatus
+                  moderationStatus
+                }
+              }
               meta {
                 status
                 integration {

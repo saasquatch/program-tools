@@ -30,25 +30,45 @@ export const EmptyCell = () => (
   <sqm-sqm-referral-table-cell>-</sqm-sqm-referral-table-cell>
 );
 
-export const StatusCell = () => {
-  return (
-    <div>
-      <sqm-referral-table-status-cell
-        statusText="Complete"
-        converted={true}
-      ></sqm-referral-table-status-cell>
-      <sqm-referral-table-status-cell
-        statusText="In Progress"
-        converted={false}
-      ></sqm-referral-table-status-cell>
-    </div>
-  );
-};
+export const Converted = () => (
+  <sqm-referral-table-status-cell
+    status-text="Converted"
+    fraud-status="APPROVED"
+    converted={true}
+  ></sqm-referral-table-status-cell>
+);
+export const InProgress = () => (
+  <sqm-referral-table-status-cell
+    status-text="In Progress"
+    converted={false}
+  ></sqm-referral-table-status-cell>
+);
+export const PendingReview = () => (
+  <sqm-referral-table-status-cell
+    status-text="Pending"
+    fraud-status="PENDING_REVIEW"
+    converted={false}
+  ></sqm-referral-table-status-cell>
+);
+export const Pending = () => (
+  <sqm-referral-table-status-cell
+    status-text="Pending"
+    // fraud-status="PENDING_REVIEW"
+    converted={false}
+  ></sqm-referral-table-status-cell>
+);
+export const Denied = () => (
+  <sqm-referral-table-status-cell
+    status-text="Denied"
+    fraud-status="DENIED"
+    converted={false}
+  ></sqm-referral-table-status-cell>
+);
 
 export const DateCell = () => {
   return (
     <sqm-referral-table-date-cell
-      date={800000000000}
+      date={900000000000}
     ></sqm-referral-table-date-cell>
   );
 };
