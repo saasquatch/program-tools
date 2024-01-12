@@ -19,7 +19,11 @@ const MessageLinkQuery = gql`
   query ($programId: ID, $engagementMedium: UserEngagementMedium!) {
     user: viewer {
       ... on User {
-        shareLink(programId: $programId, engagementMedium: $engagementMedium)
+        shareLink(
+          programId: $programId
+          engagementMedium: $engagementMedium
+          shareMedium: DIRECT
+        )
       }
     }
   }
