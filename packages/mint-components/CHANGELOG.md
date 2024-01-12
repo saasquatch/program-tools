@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.2] - 2023-01-12
+
+### Fixed
+
+- Changed components:
+  - \<sqm-share-link>
+    - use DIRECT as the shareMedium of the sharelink
+
 ## [1.7.1] - 2023-01-12
 
 ### Fixed
@@ -806,7 +814,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.7.1...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.7.2...HEAD
+[1.7.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.2
 [1.7.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.1
 [1.7.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.0
 [1.6.18]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.18
