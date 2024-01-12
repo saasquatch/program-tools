@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.7.0] - 2023-01-08
 
+### Fixed
+
+- Changed components:
+  - \<sqm-share-link>
+    - Correctly uses the current engagementMedium when retrieving the sharelink
+
+## [1.7.0] - 2023-01-08
+
 ### Added
 
 - Added support for fraud referral moderation to multiple components
@@ -798,7 +806,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.6.18...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.7.1...HEAD
+[1.7.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.1
+[1.7.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.0
 [1.6.18]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.18
 [1.6.17]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.17
 [1.6.16]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.6.16

@@ -16,10 +16,10 @@ interface ShareLinkProps {
 }
 
 const MessageLinkQuery = gql`
-  query ($programId: ID) {
+  query ($programId: ID, $engagementMedium: UserEngagementMedium!) {
     user: viewer {
       ... on User {
-        shareLink(programId: $programId)
+        shareLink(programId: $programId, engagementMedium: $engagementMedium)
       }
     }
   }
@@ -36,7 +36,11 @@ export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
 
-  const { data } = useQuery(MessageLinkQuery, { programId }, !user?.jwt);
+  const { data } = useQuery(
+    MessageLinkQuery,
+    { programId, engagementMedium },
+    !user?.jwt
+  );
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
 
   const copyString =
