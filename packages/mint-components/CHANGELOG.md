@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.1] - 2024-01-12
+
+### Changed
+
+- Added twitter-x icon
+- Updated templates using `Tweet about us` copy to `Post about us on X`
+- Updated stories using `Tweet about us` copy to `Post about us on X`
+- Changed components:
+  - \<sqm-share-button>
+    - Updated medium value 'twitter' to use `twitter-x` icon and color to `#000000`
+
 ## [1.7.0] - 2023-01-08
 
 ### Added
