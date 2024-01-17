@@ -3,7 +3,7 @@ import { createStyleSheet } from "../../styling/JSS";
 
 export interface IframeViewProps {
   iframeSrc: string;
-  iframeTitle?: string;
+  iframeTitle: string;
   iframeHeight: string;
   iframeWidth: string;
 }
@@ -18,6 +18,7 @@ export function IframeView(props: IframeViewProps) {
       height: iframeHeight,
     },
     IFrame: {
+      overflow: "scroll",
       position: "absolute",
       width: "100%",
       height: "100%",
@@ -37,7 +38,7 @@ export function IframeView(props: IframeViewProps) {
       <iframe
         class={sheet.classes.IFrame}
         src={iframeSrc}
-        title={iframeTitle ? iframeTitle : ""}
+        title={iframeTitle}
       />
     </div>
   );

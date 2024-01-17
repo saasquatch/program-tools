@@ -10,7 +10,6 @@ import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-v
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
-import { IframeViewProps } from "./components/sqm-iframe/sqm-iframe-view";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
@@ -273,29 +272,6 @@ export namespace Components {
          */
         "dividerStyle": string;
     }
-    interface SqmDocumentIframe {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<IframeViewProps>;
-        /**
-          * Define the height of the iframe with any valid CSS height value. Example: 100px, 5rem, or auto.
-          * @uiName IFrame height
-         */
-        "iframeHeight": string;
-        /**
-          * URL of iframe to display
-          * @uiName IFrame source
-          * @required
-         */
-        "iframeSrc": string;
-        /**
-          * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
-          * @uiName IFrame width
-         */
-        "iframeWidth": string;
-    }
     interface SqmDropdownField {
         /**
           * @undocumented 
@@ -548,6 +524,30 @@ export namespace Components {
     }
     interface SqmHookStoryContainer {
         "hookStory": FunctionalComponent;
+    }
+    interface SqmIframe {
+        /**
+          * Define the height of the iframe with any valid CSS height value. Example: 100px, 5rem, or auto.
+          * @uiName IFrame height
+         */
+        "iframeHeight": string;
+        /**
+          * URL of iframe to display
+          * @uiName IFrame source
+          * @required
+         */
+        "iframeSrc": string;
+        /**
+          * Title of iframe
+          * @uiName IFrame title
+          * @required
+         */
+        "iframeTitle": string;
+        /**
+          * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
+          * @uiName IFrame width
+         */
+        "iframeWidth": string;
     }
     interface SqmImage {
         /**
@@ -2974,12 +2974,6 @@ declare global {
         prototype: HTMLSqmDividedLayoutElement;
         new (): HTMLSqmDividedLayoutElement;
     };
-    interface HTMLSqmDocumentIframeElement extends Components.SqmDocumentIframe, HTMLStencilElement {
-    }
-    var HTMLSqmDocumentIframeElement: {
-        prototype: HTMLSqmDocumentIframeElement;
-        new (): HTMLSqmDocumentIframeElement;
-    };
     interface HTMLSqmDropdownFieldElement extends Components.SqmDropdownField, HTMLStencilElement {
     }
     var HTMLSqmDropdownFieldElement: {
@@ -3033,6 +3027,12 @@ declare global {
     var HTMLSqmHookStoryContainerElement: {
         prototype: HTMLSqmHookStoryContainerElement;
         new (): HTMLSqmHookStoryContainerElement;
+    };
+    interface HTMLSqmIframeElement extends Components.SqmIframe, HTMLStencilElement {
+    }
+    var HTMLSqmIframeElement: {
+        prototype: HTMLSqmIframeElement;
+        new (): HTMLSqmIframeElement;
     };
     interface HTMLSqmImageElement extends Components.SqmImage, HTMLStencilElement {
     }
@@ -3494,7 +3494,6 @@ declare global {
         "sqm-close-button": HTMLSqmCloseButtonElement;
         "sqm-coupon-code": HTMLSqmCouponCodeElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
-        "sqm-document-iframe": HTMLSqmDocumentIframeElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-empty": HTMLSqmEmptyElement;
@@ -3504,6 +3503,7 @@ declare global {
         "sqm-hero": HTMLSqmHeroElement;
         "sqm-hero-image": HTMLSqmHeroImageElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
+        "sqm-iframe": HTMLSqmIframeElement;
         "sqm-image": HTMLSqmImageElement;
         "sqm-input-field": HTMLSqmInputFieldElement;
         "sqm-instant-access-registration": HTMLSqmInstantAccessRegistrationElement;
@@ -3811,29 +3811,6 @@ declare namespace LocalJSX {
          */
         "dividerStyle"?: string;
     }
-    interface SqmDocumentIframe {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<IframeViewProps>;
-        /**
-          * Define the height of the iframe with any valid CSS height value. Example: 100px, 5rem, or auto.
-          * @uiName IFrame height
-         */
-        "iframeHeight"?: string;
-        /**
-          * URL of iframe to display
-          * @uiName IFrame source
-          * @required
-         */
-        "iframeSrc"?: string;
-        /**
-          * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
-          * @uiName IFrame width
-         */
-        "iframeWidth"?: string;
-    }
     interface SqmDropdownField {
         /**
           * @undocumented 
@@ -4086,6 +4063,30 @@ declare namespace LocalJSX {
     }
     interface SqmHookStoryContainer {
         "hookStory"?: FunctionalComponent;
+    }
+    interface SqmIframe {
+        /**
+          * Define the height of the iframe with any valid CSS height value. Example: 100px, 5rem, or auto.
+          * @uiName IFrame height
+         */
+        "iframeHeight"?: string;
+        /**
+          * URL of iframe to display
+          * @uiName IFrame source
+          * @required
+         */
+        "iframeSrc"?: string;
+        /**
+          * Title of iframe
+          * @uiName IFrame title
+          * @required
+         */
+        "iframeTitle"?: string;
+        /**
+          * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
+          * @uiName IFrame width
+         */
+        "iframeWidth"?: string;
     }
     interface SqmImage {
         /**
@@ -6441,7 +6442,6 @@ declare namespace LocalJSX {
         "sqm-close-button": SqmCloseButton;
         "sqm-coupon-code": SqmCouponCode;
         "sqm-divided-layout": SqmDividedLayout;
-        "sqm-document-iframe": SqmDocumentIframe;
         "sqm-dropdown-field": SqmDropdownField;
         "sqm-edit-profile": SqmEditProfile;
         "sqm-empty": SqmEmpty;
@@ -6451,6 +6451,7 @@ declare namespace LocalJSX {
         "sqm-hero": SqmHero;
         "sqm-hero-image": SqmHeroImage;
         "sqm-hook-story-container": SqmHookStoryContainer;
+        "sqm-iframe": SqmIframe;
         "sqm-image": SqmImage;
         "sqm-input-field": SqmInputField;
         "sqm-instant-access-registration": SqmInstantAccessRegistration;
@@ -6541,7 +6542,6 @@ declare module "@stencil/core" {
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
-            "sqm-document-iframe": LocalJSX.SqmDocumentIframe & JSXBase.HTMLAttributes<HTMLSqmDocumentIframeElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
@@ -6551,6 +6551,7 @@ declare module "@stencil/core" {
             "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
             "sqm-hero-image": LocalJSX.SqmHeroImage & JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
+            "sqm-iframe": LocalJSX.SqmIframe & JSXBase.HTMLAttributes<HTMLSqmIframeElement>;
             "sqm-image": LocalJSX.SqmImage & JSXBase.HTMLAttributes<HTMLSqmImageElement>;
             "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
             "sqm-instant-access-registration": LocalJSX.SqmInstantAccessRegistration & JSXBase.HTMLAttributes<HTMLSqmInstantAccessRegistrationElement>;

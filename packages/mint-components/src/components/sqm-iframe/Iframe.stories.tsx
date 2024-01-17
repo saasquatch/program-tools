@@ -9,21 +9,21 @@ export default {
   },
 };
 
-const props: IframeViewProps = {
-  iframeSrc: "https://example.com",
-  iframeHeight: "100%",
-  iframeWidth: "100%",
-};
-
 export const DefaultIframe = () => {
+  const defaultProps: IframeViewProps = {
+    iframeSrc: "https://example.com",
+    iframeHeight: "100%",
+    iframeWidth: "100%",
+    iframeTitle: "example",
+  };
   return (
     <div style={{ width: "1000px", height: "1000px" }}>
-      <IframeView {...props} />
+      <IframeView {...defaultProps} />
     </div>
   );
 };
 
-export const ReferralIframeError = () => {
+export const IframeError = () => {
   return (
     <div style={{ width: "1000px", height: "1000px" }}>
       <sqm-iframe></sqm-iframe>

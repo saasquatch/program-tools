@@ -1,17 +1,14 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Prop, State } from "@stencil/core";
 import { getProps, getMissingProps } from "../../utils/utils";
-import { IframeView, IframeViewProps } from "./sqm-iframe-view";
-import { isDemo } from "@saasquatch/component-boilerplate";
-import { DemoData } from "../../global/demo";
+import { IframeView } from "./sqm-iframe-view";
 import { RequiredPropsError } from "../../utils/RequiredPropsError";
 
 /**
  * @uiName Iframe
- * @example Iframe - <sqm-iframe link="https://www.example.com" />
  */
 @Component({
-  tag: "sqm-document-iframe",
+  tag: "sqm-iframe",
 })
 export class SQMIframe {
   @State()
@@ -23,22 +20,21 @@ export class SQMIframe {
    */
   @Prop() iframeSrc: string;
   /**
+   * Title of iframe
+   * @uiName IFrame title
+   * @required
+   */
+  @Prop() iframeTitle: string = "";
+  /**
    * Define the height of the iframe with any valid CSS height value. Example: 100px, 5rem, or auto.
    * @uiName IFrame height
    */
-
   @Prop() iframeHeight: string = "100%";
   /**
    * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
    * @uiName IFrame width
    */
   @Prop() iframeWidth: string = "100%";
-
-  /**
-   * @undocumented
-   * @uiType object
-   */
-  @Prop() demoData?: DemoData<IframeViewProps>;
 
   constructor() {
     withHooks(this);
@@ -53,7 +49,7 @@ export class SQMIframe {
         value: this.iframeSrc,
       },
     ]);
-    console.log("fire missing");
+
     if (missingProps) {
       return (
         <RequiredPropsError
