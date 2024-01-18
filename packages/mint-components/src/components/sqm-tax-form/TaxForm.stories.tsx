@@ -3,6 +3,10 @@ import {
   TaxFormStepOneView,
   TaxFormStepOneProps,
 } from "./sqm-tax-form-step-1-view";
+import {
+  TaxFormStepTwoProps,
+  TaxFormStepTwoView,
+} from "./sqm-tax-form-step-2-view";
 
 export default {
   title: "Components/Tax Form",
@@ -36,6 +40,28 @@ const stepOneProps: TaxFormStepOneProps = {
     allowBankingCollection:
       "I allow impact.com to collect my tax and banking information",
     submitButton: "Continue",
+  },
+};
+
+const stepTwoProps: TaxFormStepTwoProps = {
+  states: {
+    loading: false,
+    submitDisabled: false,
+    formState: {
+      checked: "w9",
+    },
+  },
+  callbacks: {
+    onSubmit: (props: any) => console.log("Submit"),
+    onChange: (e) => console.log("Submit"),
+    onBack: () => console.log("Submit"),
+  },
+  text: {
+    w9: "W9: For all partners based in the United States (for all individuals and entities).",
+    w8: "W8-BEN: For individuals not in the United States partnered with brands based in the United States.",
+    w8e: "W8-BEN-E: for entities not in the United States partnered with brads based in the United States",
+    submitButton: "Continue",
+    backButton: "Back",
   },
 };
 
@@ -79,4 +105,8 @@ export const StepOneWithError = () => {
       }}
     />
   );
+};
+
+export const StepTwo = () => {
+  return <TaxFormStepTwoView {...stepTwoProps} />;
 };
