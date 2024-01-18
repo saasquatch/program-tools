@@ -182,12 +182,10 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
             : undefined
         }
       />
-      <sl-input
+      <sl-checkbox
         exportparts="label: input-label"
         value={formState.allowBankingCollection}
-        type="checkbox"
         onInput={callbacks.onChange}
-        label={text.allowBankingCollection}
         disabled={states.loading}
         // Copied from edit form, may need to keep
         // {...(formState.errors?.allowBankingCollection &&
@@ -202,7 +200,9 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
             ? formState.errors?.allowBankingCollection.message
             : undefined
         }
-      />
+      >
+        {text.allowBankingCollection}
+      </sl-checkbox>
       <sl-button
         type="primary"
         loading={states.loading}

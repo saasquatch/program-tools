@@ -40,19 +40,43 @@ const stepOneProps: TaxFormStepOneProps = {
 };
 
 export const StepOne = () => {
+  return <TaxFormStepOneView {...stepOneProps} />;
+};
+
+export const StepOneLoading = () => {
   return (
     <TaxFormStepOneView
-      states={stepOneProps.states}
-      callbacks={stepOneProps.callbacks}
-      text={stepOneProps.text}
+      {...stepOneProps}
+      states={{ ...stepOneProps.states, loading: true }}
     />
   );
 };
 
-export const StepOneTest = () => {
-  return <TaxFormStepOneView {...stepOneProps} />;
+export const StepOneDisabled = () => {
+  return (
+    <TaxFormStepOneView
+      {...stepOneProps}
+      states={{ ...stepOneProps.states, submitDisabled: true }}
+    />
+  );
 };
 
-export const Test = () => {
-  return <div>Does this work?</div>;
+export const StepOneWithError = () => {
+  return (
+    <TaxFormStepOneView
+      {...stepOneProps}
+      states={{
+        ...stepOneProps.states,
+        formState: {
+          ...stepOneProps.states.formState,
+          errors: {
+            firstName: {
+              status: "invalid",
+              message: "Please enter your first name",
+            },
+          },
+        },
+      }}
+    />
+  );
 };
