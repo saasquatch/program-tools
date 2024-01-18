@@ -1,17 +1,30 @@
 import { useDomContext } from "@saasquatch/stencil-hooks";
-import {
-  TAX_AND_CASH_PAGE_STATE,
-  TaxContextType,
-} from "../sqm-tax-and-cash/useTaxAndCash";
+import { StateType, getContextName } from "../../utils/useParentState";
+import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/useTaxAndCash";
 
 export function useTaxForm() {
-  const formState = useDomContext<TaxContextType>(TAX_AND_CASH_PAGE_STATE);
+  console.log({
+    stuff: useDomContext<StateType<string>>(
+      getContextName(TAX_CONTEXT_NAMESPACE)
+    ),
+  });
 
-  console.log({ formState });
+  const state = useDomContext<StateType<string>>(
+    getContextName(TAX_CONTEXT_NAMESPACE)
+  );
+
+  if (!state)
+    return {
+      loading: true,
+      step: "",
+      setStep: () => {},
+    };
+
+  const [step, setStep] = state;
 
   return {
-    loading: !formState,
-    step: formState?.step,
-    setStep: formState?.setStep,
+    loading: !state,
+    step: step,
+    setStep: setStep,
   };
 }

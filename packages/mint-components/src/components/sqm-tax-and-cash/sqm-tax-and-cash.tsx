@@ -3,7 +3,7 @@ import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { UserNameViewProps } from "./sqm-tax-and-cash-view";
-import { TAX_AND_CASH_PAGE_VALUE, useTaxAndCash } from "./useTaxAndCash";
+import { useTaxAndCash } from "./useTaxAndCash";
 
 /**
  * @uiName Tax And Cash
@@ -36,7 +36,7 @@ export class TaxAndCash {
     console.log({ props, step: props.step });
     return (
       <div>
-        <sqm-context-router contextName={TAX_AND_CASH_PAGE_VALUE}>
+        <sqm-context-router contextName={props.namespace}>
           <sqm-route path="/1">
             <sqm-tax-form />
           </sqm-route>

@@ -1,9 +1,10 @@
 import { useHost } from "@saasquatch/component-boilerplate";
-import { useDomContextState } from "@saasquatch/dom-context-hooks";
+import {
+  getContextValueName,
+  useParentState,
+} from "../../utils/useParentState";
 
-export const TAX_AND_CASH_PAGE_VALUE = "sq:tax-and-cash-value";
-
-export const TAX_AND_CASH_PAGE_STATE = "sq:tax-and-cash-state";
+export const TAX_CONTEXT_NAMESPACE = "sq:tax-and-cash";
 
 export type TaxContextType = {
   step: string;
@@ -12,15 +13,10 @@ export type TaxContextType = {
 export function useTaxAndCash() {
   const host = useHost();
 
-  const [step, setStep] = useDomContextState<string>(
+  const [step, setStep] = useParentState<string>({
     host,
-    TAX_AND_CASH_PAGE_VALUE,
-    "/1"
-  );
-
-  useDomContextState<TaxContextType>(host, TAX_AND_CASH_PAGE_STATE, {
-    step,
-    setStep,
+    namespace: TAX_CONTEXT_NAMESPACE,
+    initialValue: "/1",
   });
 
   console.log({ step });
@@ -28,5 +24,6 @@ export function useTaxAndCash() {
   return {
     step,
     setStep,
+    namespace: getContextValueName(TAX_CONTEXT_NAMESPACE),
   };
 }
