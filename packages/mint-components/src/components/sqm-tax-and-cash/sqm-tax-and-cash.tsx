@@ -37,16 +37,7 @@ export class TaxAndCash {
     return (
       <div>
         <sqm-context-router contextName={props.namespace}>
-          <sqm-route path="/1">
-            <sqm-tax-form />
-          </sqm-route>
-          <sqm-route path="/2">
-            <sqm-docusign-form />
-          </sqm-route>
-          <sqm-route path="/3">
-            <sqm-cash-form />
-          </sqm-route>
-          <sqm-route path="/4">confirmation screen</sqm-route>
+          <slot />
         </sqm-context-router>
       </div>
     );
