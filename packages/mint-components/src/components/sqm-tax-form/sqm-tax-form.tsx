@@ -4,7 +4,6 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { useTaxForm } from "./useTaxForm";
-import { LoadingSkeleton } from "../../tables/TableSlots";
 
 /**
  * @uiName Tax And Cash
@@ -34,8 +33,6 @@ export class TaxForm {
     // const props = isDemo() ? useUserNameDemo(this) : useUserName();
     const props = useTaxForm();
 
-    console.log({ props });
-    if (props.loading) return <LoadingSkeleton />;
     return (
       <Host>
         step 1{" "}

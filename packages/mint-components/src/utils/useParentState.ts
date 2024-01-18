@@ -1,14 +1,15 @@
 import { useDomContextState } from "@saasquatch/dom-context-hooks";
+import { useDomContext } from "@saasquatch/stencil-hooks";
 
-type ParentStateProps = {
+export type StateType<T> = [value?: T, setValue?: (value: T) => void];
+
+type ParentStateProps<T> = {
   host: HTMLElement;
   namespace: string;
-  initialValue: unknown;
+  initialValue: T;
 };
 
-export type StateType<T> = [value: T, setValue: (value: T) => void];
-
-export function useParentState<T>(props: ParentStateProps): StateType<T> {
+export function useParentState<T>(props: ParentStateProps<T>): StateType<T> {
   const [value, setValue] = useDomContextState<T>(
     props.host,
     getContextValueName(props.namespace),
@@ -22,6 +23,14 @@ export function useParentState<T>(props: ParentStateProps): StateType<T> {
   );
 
   return [value, setValue];
+}
+
+export function useParent<T>(namespace: string): StateType<T | undefined> {
+  const parent = useDomContext<StateType<T | undefined>>(
+    getContextName(namespace)
+  );
+  if (!parent) return [undefined, undefined];
+  return parent;
 }
 
 export function getContextValueName(namespace: string) {

@@ -34,7 +34,7 @@ export class CashForm {
     const props = useTaxForm();
 
     console.log({ props });
-    if (props.loading) return <LoadingSkeleton />;
+
     return (
       <Host>
         Step 3<sl-button onClick={() => props.setStep("/2")}>back</sl-button>
