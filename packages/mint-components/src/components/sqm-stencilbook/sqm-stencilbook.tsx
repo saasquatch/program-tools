@@ -75,7 +75,7 @@ import * as CouponCode from "../sqm-coupon-code/CouponCode.stories";
 import * as LogoutCurrentUser from "../sqm-logout-current-user/LogoutCurrentUser.stories";
 import * as LinkButton from "../sqm-link-button/LinkButton.stories";
 import * as CloseButton from "../sqm-close-button/CloseButton.stories";
-import * as TaxForm from "../sqm-tax-form/TaxForm.stories";
+import * as TaxForm from "../tax-and-cash/sqm-tax-form/TaxForm.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";

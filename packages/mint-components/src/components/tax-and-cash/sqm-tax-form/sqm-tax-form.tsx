@@ -1,9 +1,9 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop, State } from "@stencil/core";
+import { Component, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
-import { DemoData } from "../../global/demo";
-import { UserNameViewProps } from "./sqm-tax-and-cash-view";
-import { useTaxAndCash } from "./useTaxAndCash";
+import { DemoData } from "../../../global/demo";
+import { useTaxForm } from "./useTaxForm";
+import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
 
 /**
  * @uiName Tax And Cash
@@ -11,10 +11,10 @@ import { useTaxAndCash } from "./useTaxAndCash";
  * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
  */
 @Component({
-  tag: "sqm-tax-and-cash",
+  tag: "sqm-tax-form",
   shadow: false,
 })
-export class TaxAndCash {
+export class TaxForm {
   @State() ignored = true;
 
   /**
@@ -31,19 +31,25 @@ export class TaxAndCash {
 
   render() {
     // const props = isDemo() ? useUserNameDemo(this) : useUserName();
-    const props = useTaxAndCash();
+    const props = useTaxForm();
 
-    console.log({ props, step: props.step });
     return (
-      <div>
-        <sqm-context-router contextName={props.namespace}>
-          <slot />
-        </sqm-context-router>
-      </div>
+      <Host>
+        step 1{" "}
+        <sl-button
+          type="primary"
+          onClick={() => {
+            console.log("clicked");
+            props.setStep("/2");
+          }}
+        >
+          continue
+        </sl-button>
+      </Host>
     );
   }
 }
 
-function useTaxAndCashDemo(props: TaxAndCash): UserNameViewProps {
+function useTaxAndCashDemo(props: TaxForm) {
   return deepmerge({}, props.demoData || {}, { arrayMerge: (_, a) => a });
 }

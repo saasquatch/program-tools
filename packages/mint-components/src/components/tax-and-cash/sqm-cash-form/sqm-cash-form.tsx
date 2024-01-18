@@ -1,9 +1,9 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
-import { DemoData } from "../../global/demo";
+import { DemoData } from "../../../global/demo";
 import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
-import { useTaxForm } from "./useTaxForm";
+import { useTaxForm } from "../sqm-tax-form/useTaxForm";
 
 /**
  * @uiName Tax And Cash
@@ -11,10 +11,10 @@ import { useTaxForm } from "./useTaxForm";
  * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
  */
 @Component({
-  tag: "sqm-tax-form",
+  tag: "sqm-cash-form",
   shadow: false,
 })
-export class TaxForm {
+export class CashForm {
   @State() ignored = true;
 
   /**
@@ -30,26 +30,19 @@ export class TaxForm {
   disconnectedCallback() {}
 
   render() {
-    // const props = isDemo() ? useUserNameDemo(this) : useUserName();
     const props = useTaxForm();
+
+    console.log({ props });
 
     return (
       <Host>
-        step 1{" "}
-        <sl-button
-          type="primary"
-          onClick={() => {
-            console.log("clicked");
-            props.setStep("/2");
-          }}
-        >
-          continue
-        </sl-button>
+        Step 3<sl-button onClick={() => props.setStep("/2")}>back</sl-button>
+        <sl-button onClick={() => props.setStep("/4")}>continue</sl-button>
       </Host>
     );
   }
 }
 
-function useTaxAndCashDemo(props: TaxForm) {
+function useTaxAndCashDemo(props: CashForm) {
   return deepmerge({}, props.demoData || {}, { arrayMerge: (_, a) => a });
 }

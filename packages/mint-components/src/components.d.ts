@@ -8,7 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
-import { UserNameViewProps } from "./components/sqm-tax-and-cash/sqm-tax-and-cash-view";
+import { UserNameViewProps } from "./components/tax-and-cash/sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";

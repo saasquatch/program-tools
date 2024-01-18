@@ -1,10 +1,8 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
-import { DemoData } from "../../global/demo";
+import { DemoData } from "../../../global/demo";
 import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
-
-import { LoadingSkeleton } from "../../tables/TableSlots";
 import { useTaxForm } from "../sqm-tax-form/useTaxForm";
 
 /**

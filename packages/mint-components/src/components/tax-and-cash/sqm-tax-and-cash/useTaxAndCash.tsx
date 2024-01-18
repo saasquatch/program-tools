@@ -2,7 +2,7 @@ import { useHost } from "@saasquatch/component-boilerplate";
 import {
   getContextValueName,
   useParentState,
-} from "../../utils/useParentState";
+} from "../../../utils/useParentState";
 
 export const TAX_CONTEXT_NAMESPACE = "sq:tax-and-cash";
 
