@@ -29,12 +29,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Node Setup
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 18.x
 
       - name: Setup private NPM registries
         env:
