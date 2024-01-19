@@ -2,8 +2,12 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
-import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
-import { useTaxForm } from "../sqm-tax-form/useTaxForm";
+import { getProps } from "../../../utils/utils";
+import {
+  TaxFormStepTwoProps,
+  TaxFormStepTwoView,
+} from "../sqm-tax-form/sqm-tax-form-step-2-view";
+import { useDocusignForm } from "./useDocusignForm";
 
 /**
  * @uiName Tax And Cash
@@ -14,14 +18,20 @@ import { useTaxForm } from "../sqm-tax-form/useTaxForm";
   tag: "sqm-docusign-form",
   shadow: false,
 })
-export class TaxForm {
+export class DocusignForm {
   @State() ignored = true;
+
+  @Prop() w9: string = "W9";
+  @Prop() w8: string = "W8-BEN";
+  @Prop() w8e: string = "W8-BEN-E";
+  @Prop() submitButton: string = "Continue";
+  @Prop() backButton: string = "Back";
 
   /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<UserNameViewProps>;
+  @Prop() demoData?: DemoData<TaxFormStepTwoProps>;
 
   constructor() {
     withHooks(this);
@@ -31,19 +41,36 @@ export class TaxForm {
 
   render() {
     // const props = isDemo() ? useUserNameDemo(this) : useUserName();
-    const props = useTaxForm();
+    const props = useDocusignForm(getProps(this));
 
     console.log({ props });
 
     return (
       <Host>
-        Step 2<sl-button onClick={() => props.setStep("/1")}>back</sl-button>
-        <sl-button onClick={() => props.setStep("/3")}>continue</sl-button>
+        <TaxFormStepTwoView
+          states={{
+            loading: false,
+            submitDisabled: false,
+            formState: {
+              checked: "w9",
+              errors: undefined,
+              error: "",
+            },
+          }}
+          callbacks={{
+            onSubmit: () => props.setStep("/3"),
+            onChange: function (e: any): void {
+              throw new Error("Function not implemented.");
+            },
+            onBack: () => props.setStep("/1"),
+          }}
+          text={{ ...props.text }}
+        />
       </Host>
     );
   }
 }
 
-function useTaxAndCashDemo(props: TaxForm) {
+function useTaxAndCashDemo(props) {
   return deepmerge({}, props.demoData || {}, { arrayMerge: (_, a) => a });
 }

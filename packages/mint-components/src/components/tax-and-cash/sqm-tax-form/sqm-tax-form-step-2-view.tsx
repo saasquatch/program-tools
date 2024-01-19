@@ -69,8 +69,8 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
           type="secondary"
           loading={states.loading}
           disabled={states.submitDisabled}
-          onClick={(e) => {
-            callbacks.onSubmit(e);
+          onClick={() => {
+            callbacks.onBack();
           }}
           exportparts="base: secondarybutton-base"
         >

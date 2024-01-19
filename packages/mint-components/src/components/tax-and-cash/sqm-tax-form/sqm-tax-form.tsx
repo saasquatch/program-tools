@@ -2,8 +2,10 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
-import { useTaxForm } from "./useTaxForm";
+import { getProps } from "../../../utils/utils";
 import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
+import { TaxFormStepOneView } from "./sqm-tax-form-step-1-view";
+import { useTaxForm } from "./useTaxForm";
 
 /**
  * @uiName Tax And Cash
@@ -23,6 +25,16 @@ export class TaxForm {
    */
   @Prop() demoData?: DemoData<UserNameViewProps>;
 
+  @Prop()
+  firstName: string = "First name";
+  @Prop() lastName: string = "Last name";
+  @Prop() email: string = "Email";
+  @Prop() country: string = "Country";
+  @Prop() currency: string = "Currency";
+  @Prop() indirectTaxNumber: string = "Tax Number";
+  @Prop() allowBankingCollection: string = "I agree to the terms";
+  @Prop() submitButton: string = "Submit";
+
   constructor() {
     withHooks(this);
   }
@@ -31,20 +43,36 @@ export class TaxForm {
 
   render() {
     // const props = isDemo() ? useUserNameDemo(this) : useUserName();
-    const props = useTaxForm();
+    const props = useTaxForm(getProps(this));
 
     return (
       <Host>
-        step 1{" "}
-        <sl-button
-          type="primary"
-          onClick={() => {
-            console.log("clicked");
-            props.setStep("/2");
+        <TaxFormStepOneView
+          states={{
+            loading: false,
+            submitDisabled: false,
+            formState: {
+              firstName: "",
+              lastName: "",
+              email: "",
+              country: "",
+              currency: "",
+              indirectTaxNumber: "",
+              allowBankingCollection: false,
+              errors: undefined,
+              error: "",
+            },
           }}
-        >
-          continue
-        </sl-button>
+          callbacks={{
+            onSubmit: () => props.setStep("/2"),
+            onChange: function (e: any): void {
+              throw new Error("Function not implemented.");
+            },
+          }}
+          text={{
+            ...props.text,
+          }}
+        />
       </Host>
     );
   }

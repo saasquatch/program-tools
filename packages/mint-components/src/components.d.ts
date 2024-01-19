@@ -11,6 +11,7 @@ import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { UserNameViewProps } from "./components/tax-and-cash/sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
+import { TaxFormStepTwoProps } from "./components/tax-and-cash/sqm-tax-form/sqm-tax-form-step-2-view";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
@@ -284,11 +285,16 @@ export namespace Components {
         "dividerStyle": string;
     }
     interface SqmDocusignForm {
+        "backButton": string;
         /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<UserNameViewProps>;
+        "demoData"?: DemoData<TaxFormStepTwoProps>;
+        "submitButton": string;
+        "w8": string;
+        "w8e": string;
+        "w9": string;
     }
     interface SqmDropdownField {
         /**
@@ -2828,11 +2834,19 @@ export namespace Components {
         "demoData"?: DemoData<UserNameViewProps>;
     }
     interface SqmTaxForm {
+        "allowBankingCollection": string;
+        "country": string;
+        "currency": string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UserNameViewProps>;
+        "email": string;
+        "firstName": string;
+        "indirectTaxNumber": string;
+        "lastName": string;
+        "submitButton": string;
     }
     interface SqmText {
     }
@@ -3858,11 +3872,16 @@ declare namespace LocalJSX {
         "dividerStyle"?: string;
     }
     interface SqmDocusignForm {
+        "backButton"?: string;
         /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<UserNameViewProps>;
+        "demoData"?: DemoData<TaxFormStepTwoProps>;
+        "submitButton"?: string;
+        "w8"?: string;
+        "w8e"?: string;
+        "w9"?: string;
     }
     interface SqmDropdownField {
         /**
@@ -6378,11 +6397,19 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<UserNameViewProps>;
     }
     interface SqmTaxForm {
+        "allowBankingCollection"?: string;
+        "country"?: string;
+        "currency"?: string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UserNameViewProps>;
+        "email"?: string;
+        "firstName"?: string;
+        "indirectTaxNumber"?: string;
+        "lastName"?: string;
+        "submitButton"?: string;
     }
     interface SqmText {
     }

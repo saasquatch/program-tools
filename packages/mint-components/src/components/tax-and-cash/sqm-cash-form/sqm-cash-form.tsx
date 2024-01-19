@@ -2,8 +2,9 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
+import { getProps } from "../../../utils/utils";
 import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
-import { useTaxForm } from "../sqm-tax-form/useTaxForm";
+import { useCashForm } from "./useCashForm";
 
 /**
  * @uiName Tax And Cash
@@ -30,7 +31,7 @@ export class CashForm {
   disconnectedCallback() {}
 
   render() {
-    const props = useTaxForm();
+    const props = useCashForm(getProps(this));
 
     console.log({ props });
 
