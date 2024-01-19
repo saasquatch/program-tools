@@ -8,8 +8,10 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
+import { UserNameViewProps } from "./components/tax-and-cash/sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
+import { TaxFormStepTwoProps } from "./components/tax-and-cash/sqm-tax-form/sqm-tax-form-step-2-view";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
@@ -39,7 +41,7 @@ import { ReferralDates } from "./components/sqm-referral-table/useReferralTable"
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
-import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
+import { UserNameViewProps as UserNameViewProps1 } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
     interface RaisinsPlopTarget {
         "renderCell": () => Promise<any>;
@@ -121,6 +123,13 @@ export namespace Components {
          */
         "width": number;
     }
+    interface SqmCashForm {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UserNameViewProps>;
+    }
     interface SqmCheckboxField {
         /**
           * @uiName Checkbox label
@@ -163,6 +172,9 @@ export namespace Components {
           * @uiType string
          */
         "color": string;
+    }
+    interface SqmContextRouter {
+        "contextName": string;
     }
     interface SqmCouponCode {
         /**
@@ -273,6 +285,18 @@ export namespace Components {
         "dividerStyle": string;
     }
     interface SqmDocusignEmbed {
+    }
+    interface SqmDocusignForm {
+        "backButton": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<TaxFormStepTwoProps>;
+        "submitButton": string;
+        "w8": string;
+        "w8e": string;
+        "w9": string;
     }
     interface SqmDropdownField {
         /**
@@ -2804,6 +2828,40 @@ export namespace Components {
          */
         "steps": boolean;
     }
+    interface SqmTaxAndCash {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UserNameViewProps>;
+    }
+    interface SqmTaxForm {
+        "allowBankingCollection": string;
+        "country": string;
+        "currency": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UserNameViewProps>;
+        "email": string;
+        "firstName": string;
+        "indirectTaxNumber": string;
+        "lastName": string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
+        "submitButton": string;
+    }
     interface SqmText {
     }
     interface SqmTextSpan {
@@ -2928,6 +2986,12 @@ declare global {
         prototype: HTMLSqmCardFeedElement;
         new (): HTMLSqmCardFeedElement;
     };
+    interface HTMLSqmCashFormElement extends Components.SqmCashForm, HTMLStencilElement {
+    }
+    var HTMLSqmCashFormElement: {
+        prototype: HTMLSqmCashFormElement;
+        new (): HTMLSqmCashFormElement;
+    };
     interface HTMLSqmCheckboxFieldElement extends Components.SqmCheckboxField, HTMLStencilElement {
     }
     var HTMLSqmCheckboxFieldElement: {
@@ -2939,6 +3003,12 @@ declare global {
     var HTMLSqmCloseButtonElement: {
         prototype: HTMLSqmCloseButtonElement;
         new (): HTMLSqmCloseButtonElement;
+    };
+    interface HTMLSqmContextRouterElement extends Components.SqmContextRouter, HTMLStencilElement {
+    }
+    var HTMLSqmContextRouterElement: {
+        prototype: HTMLSqmContextRouterElement;
+        new (): HTMLSqmContextRouterElement;
     };
     interface HTMLSqmCouponCodeElement extends Components.SqmCouponCode, HTMLStencilElement {
     }
@@ -2957,6 +3027,12 @@ declare global {
     var HTMLSqmDocusignEmbedElement: {
         prototype: HTMLSqmDocusignEmbedElement;
         new (): HTMLSqmDocusignEmbedElement;
+    };
+    interface HTMLSqmDocusignFormElement extends Components.SqmDocusignForm, HTMLStencilElement {
+    }
+    var HTMLSqmDocusignFormElement: {
+        prototype: HTMLSqmDocusignFormElement;
+        new (): HTMLSqmDocusignFormElement;
     };
     interface HTMLSqmDropdownFieldElement extends Components.SqmDropdownField, HTMLStencilElement {
     }
@@ -3426,6 +3502,18 @@ declare global {
         prototype: HTMLSqmTaskCardElement;
         new (): HTMLSqmTaskCardElement;
     };
+    interface HTMLSqmTaxAndCashElement extends Components.SqmTaxAndCash, HTMLStencilElement {
+    }
+    var HTMLSqmTaxAndCashElement: {
+        prototype: HTMLSqmTaxAndCashElement;
+        new (): HTMLSqmTaxAndCashElement;
+    };
+    interface HTMLSqmTaxFormElement extends Components.SqmTaxForm, HTMLStencilElement {
+    }
+    var HTMLSqmTaxFormElement: {
+        prototype: HTMLSqmTaxFormElement;
+        new (): HTMLSqmTaxFormElement;
+    };
     interface HTMLSqmTextElement extends Components.SqmText, HTMLStencilElement {
     }
     var HTMLSqmTextElement: {
@@ -3468,11 +3556,14 @@ declare global {
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-brand": HTMLSqmBrandElement;
         "sqm-card-feed": HTMLSqmCardFeedElement;
+        "sqm-cash-form": HTMLSqmCashFormElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
         "sqm-close-button": HTMLSqmCloseButtonElement;
+        "sqm-context-router": HTMLSqmContextRouterElement;
         "sqm-coupon-code": HTMLSqmCouponCodeElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
         "sqm-docusign-embed": HTMLSqmDocusignEmbedElement;
+        "sqm-docusign-form": HTMLSqmDocusignFormElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-empty": HTMLSqmEmptyElement;
@@ -3551,6 +3642,8 @@ declare global {
         "sqm-table-row": HTMLSqmTableRowElement;
         "sqm-tabs": HTMLSqmTabsElement;
         "sqm-task-card": HTMLSqmTaskCardElement;
+        "sqm-tax-and-cash": HTMLSqmTaxAndCashElement;
+        "sqm-tax-form": HTMLSqmTaxFormElement;
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
         "sqm-timeline": HTMLSqmTimelineElement;
@@ -3638,6 +3731,13 @@ declare namespace LocalJSX {
          */
         "width"?: number;
     }
+    interface SqmCashForm {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UserNameViewProps>;
+    }
     interface SqmCheckboxField {
         /**
           * @uiName Checkbox label
@@ -3680,6 +3780,9 @@ declare namespace LocalJSX {
           * @uiType string
          */
         "color"?: string;
+    }
+    interface SqmContextRouter {
+        "contextName"?: string;
     }
     interface SqmCouponCode {
         /**
@@ -3790,6 +3893,18 @@ declare namespace LocalJSX {
         "dividerStyle"?: string;
     }
     interface SqmDocusignEmbed {
+    }
+    interface SqmDocusignForm {
+        "backButton"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<TaxFormStepTwoProps>;
+        "submitButton"?: string;
+        "w8"?: string;
+        "w8e"?: string;
+        "w9"?: string;
     }
     interface SqmDropdownField {
         /**
@@ -6297,6 +6412,40 @@ declare namespace LocalJSX {
          */
         "steps"?: boolean;
     }
+    interface SqmTaxAndCash {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UserNameViewProps>;
+    }
+    interface SqmTaxForm {
+        "allowBankingCollection"?: string;
+        "country"?: string;
+        "currency"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UserNameViewProps>;
+        "email"?: string;
+        "firstName"?: string;
+        "indirectTaxNumber"?: string;
+        "lastName"?: string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
+        "submitButton"?: string;
+    }
     interface SqmText {
     }
     interface SqmTextSpan {
@@ -6394,11 +6543,14 @@ declare namespace LocalJSX {
         "sqm-big-stat": SqmBigStat;
         "sqm-brand": SqmBrand;
         "sqm-card-feed": SqmCardFeed;
+        "sqm-cash-form": SqmCashForm;
         "sqm-checkbox-field": SqmCheckboxField;
         "sqm-close-button": SqmCloseButton;
+        "sqm-context-router": SqmContextRouter;
         "sqm-coupon-code": SqmCouponCode;
         "sqm-divided-layout": SqmDividedLayout;
         "sqm-docusign-embed": SqmDocusignEmbed;
+        "sqm-docusign-form": SqmDocusignForm;
         "sqm-dropdown-field": SqmDropdownField;
         "sqm-edit-profile": SqmEditProfile;
         "sqm-empty": SqmEmpty;
@@ -6477,6 +6629,8 @@ declare namespace LocalJSX {
         "sqm-table-row": SqmTableRow;
         "sqm-tabs": SqmTabs;
         "sqm-task-card": SqmTaskCard;
+        "sqm-tax-and-cash": SqmTaxAndCash;
+        "sqm-tax-form": SqmTaxForm;
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
         "sqm-timeline": SqmTimeline;
@@ -6494,11 +6648,14 @@ declare module "@stencil/core" {
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
+            "sqm-cash-form": LocalJSX.SqmCashForm & JSXBase.HTMLAttributes<HTMLSqmCashFormElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;
+            "sqm-context-router": LocalJSX.SqmContextRouter & JSXBase.HTMLAttributes<HTMLSqmContextRouterElement>;
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
             "sqm-docusign-embed": LocalJSX.SqmDocusignEmbed & JSXBase.HTMLAttributes<HTMLSqmDocusignEmbedElement>;
+            "sqm-docusign-form": LocalJSX.SqmDocusignForm & JSXBase.HTMLAttributes<HTMLSqmDocusignFormElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
@@ -6577,6 +6734,8 @@ declare module "@stencil/core" {
             "sqm-table-row": LocalJSX.SqmTableRow & JSXBase.HTMLAttributes<HTMLSqmTableRowElement>;
             "sqm-tabs": LocalJSX.SqmTabs & JSXBase.HTMLAttributes<HTMLSqmTabsElement>;
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
+            "sqm-tax-and-cash": LocalJSX.SqmTaxAndCash & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashElement>;
+            "sqm-tax-form": LocalJSX.SqmTaxForm & JSXBase.HTMLAttributes<HTMLSqmTaxFormElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
             "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;

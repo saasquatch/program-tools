@@ -6,7 +6,7 @@ import {
 import scenario from "./sqm-portal-reset-password.feature";
 
 export default {
-  title: "Components/Portal Reset Password",
+  title: "Components/Microsite Reset Password",
   parameters: {
     scenario,
   },

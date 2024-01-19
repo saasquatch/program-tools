@@ -1,11 +1,8 @@
 import { h } from "@stencil/core";
-import {
-  PortalLoginView,
-  PortalLoginViewProps,
-} from "./sqm-portal-login-view";
+import { PortalLoginView, PortalLoginViewProps } from "./sqm-portal-login-view";
 
 export default {
-  title: "Components/Portal Login",
+  title: "Components/Microsite Login",
 };
 
 const defaultProps: PortalLoginViewProps = {
@@ -18,7 +15,7 @@ const defaultProps: PortalLoginViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
-  content:{pageLabel:"Sign in to your account"}
+  content: { pageLabel: "Sign in to your account" },
 };
 
 const errorProps: PortalLoginViewProps = {
@@ -31,7 +28,7 @@ const errorProps: PortalLoginViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
-  content:{pageLabel:"Sign in to your account"}
+  content: { pageLabel: "Sign in to your account" },
 };
 
 const loadingProps: PortalLoginViewProps = {
@@ -44,7 +41,7 @@ const loadingProps: PortalLoginViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
-  content:{pageLabel:"Sign in to your account"}
+  content: { pageLabel: "Sign in to your account" },
 };
 
 export const Default = () => <PortalLoginView {...defaultProps} />;

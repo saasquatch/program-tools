@@ -5,7 +5,7 @@ import {
 } from "./sqm-portal-register-view";
 
 export default {
-  title: "Components/Portal Register",
+  title: "Components/Microstite Register",
 };
 
 const defaultProps: PortalRegisterViewProps = {
