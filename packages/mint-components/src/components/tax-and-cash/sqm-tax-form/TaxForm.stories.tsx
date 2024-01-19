@@ -7,6 +7,10 @@ import {
   TaxFormStepTwoProps,
   TaxFormStepTwoView,
 } from "./sqm-tax-form-step-2-view";
+import {
+  TaxDocumentSubmittedProps,
+  TaxDocumentSubmittedView,
+} from "./sqm-tax-document-submitted-view";
 
 export default {
   title: "Components/Tax Form",
@@ -68,6 +72,63 @@ const stepTwoProps: TaxFormStepTwoProps = {
   },
 };
 
+const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
+  states: {
+    status: "ACTIVE",
+    documentType: "W9",
+    dateSubmitted: "Jan 18th, 2025",
+  },
+  callbacks: { onClick: () => console.log("Submit new Form") },
+  text: {
+    status: "ACTIVE",
+    documentType: "W9",
+    dateSubmitted: "Jan 18th, 2025",
+  },
+};
+
+const documentSubmittedNotVerifiedProps: TaxDocumentSubmittedProps = {
+  states: {
+    status: "NOT_VERIFIED",
+    documentType: "W9",
+    dateSubmitted: "Jan 18th, 2025",
+  },
+  callbacks: { onClick: () => console.log("Submit new Form") },
+  text: {
+    status: "NOT_VERIFIED",
+    documentType: "W9",
+    dateSubmitted: "Jan 18th, 2025",
+  },
+};
+const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
+  states: {
+    status: "NOT_ACTIVE",
+    documentType: "W8-BEN",
+    dateSubmitted: "Jan 18th, 2025",
+  },
+  callbacks: { onClick: () => console.log("Submit new Form") },
+  text: {
+    status: "NOT_ACTIVE",
+    documentType: "W8-BEN",
+    dateSubmitted: "Jan 18th, 2025",
+  },
+};
+
+const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
+  states: {
+    status: "EXPIRED",
+    documentType: "W8-BEN-E",
+    dateSubmitted: "Jan 18th, 2025",
+    dateExpired: "Jan 18th, 2026",
+  },
+  callbacks: { onClick: () => console.log("Submit new Form") },
+  text: {
+    status: "EXPIRED",
+    documentType: "W8-BEN-E",
+    dateSubmitted: "Jan 18th, 2025",
+    dateExpired: "Jan 18th, 2026",
+  },
+};
+
 export const StepOne = () => {
   return <TaxFormStepOneView {...stepOneProps} />;
 };
@@ -112,4 +173,20 @@ export const StepOneWithError = () => {
 
 export const StepTwo = () => {
   return <TaxFormStepTwoView {...stepTwoProps} />;
+};
+
+export const TaxDocumentSubmittedActive = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedActiveProps} />;
+};
+
+export const TaxDocumentSubmittedNotVerified = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedNotVerifiedProps} />;
+};
+
+export const TaxDocumentSubmittedNotActive = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedNotActiveProps} />;
+};
+
+export const TaxDocumentSubmittedExpired = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedExpiredProps} />;
 };
