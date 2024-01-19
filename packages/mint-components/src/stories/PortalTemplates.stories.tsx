@@ -33,7 +33,7 @@ import { DefaultTemplateView } from "../utils/DefaultTemplateView";
 import { TemplateView } from "../utils/TemplateView";
 
 export default {
-  title: "Templates / Portal",
+  title: "Templates / Microsite",
 };
 
 function useTemplate(templateString: string) {
@@ -45,7 +45,7 @@ function useTemplate(templateString: string) {
   };
 }
 
-export const DefaultPortal = createHookStory(() => {
+export const DefaultMicrosite = createHookStory(() => {
   const { states, callbacks } = useTemplate(portalTemplate);
   return (
     <DefaultTemplateView
@@ -56,7 +56,7 @@ export const DefaultPortal = createHookStory(() => {
   );
 });
 
-export const MultiProgramPortal = createHookStory(() => {
+export const MultiProgramMicrosite = createHookStory(() => {
   const { states, callbacks } = useTemplate(multiProgramTemplate);
   return (
     <DefaultTemplateView
@@ -67,7 +67,7 @@ export const MultiProgramPortal = createHookStory(() => {
   );
 });
 
-export const LeadSubmitPortal = createHookStory(() => {
+export const LeadSubmitMicrosite = createHookStory(() => {
   const { states, callbacks } = useTemplate(portalLeadSubmitTemplate);
   return (
     <DefaultTemplateView
