@@ -3,6 +3,7 @@ import { h } from "@stencil/core";
 import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
 import portalTemplate from "../templates/Portal.html";
 import portalLeadSubmitTemplate from "../templates/PortalLeadSubmit.html";
+import taxAndCashTemplate from "../templates/TaxAndCash.html";
 import portalLeadSubmitTemplateWithDashboard from "../templates/PortalLeadSubmitWithDashboard.html";
 import portalTemplateWithDashboard from "../templates/PortalWithDashboard.html";
 import multiProgramTemplate from "../templates/MultiProgramPortal.html";
@@ -75,6 +76,17 @@ export const LeadSubmitMicrosite = createHookStory(() => {
       callbacks={callbacks}
       template={portalLeadSubmitTemplateWithDashboard}
       leadSubmit={true}
+    />
+  );
+});
+
+export const TaxAndCash = createHookStory(() => {
+  const { states, callbacks } = useTemplate(taxAndCashTemplate);
+  return (
+    <DefaultTemplateView
+      states={states}
+      callbacks={callbacks}
+      template={taxAndCashTemplate}
     />
   );
 });
