@@ -76,6 +76,7 @@ import * as LogoutCurrentUser from "../sqm-logout-current-user/LogoutCurrentUser
 import * as LinkButton from "../sqm-link-button/LinkButton.stories";
 import * as CloseButton from "../sqm-close-button/CloseButton.stories";
 import * as TaxForm from "../tax-and-cash/sqm-tax-form/TaxForm.stories";
+import * as RadioCard from "../sqm-radio-card/RadioCard.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -158,6 +159,7 @@ const stories = [
   EmailRegistration,
   CloseButton,
   TaxForm,
+  RadioCard,
 ];
 
 /**
