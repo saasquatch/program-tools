@@ -50,7 +50,7 @@ const stepTwoProps: TaxFormStepTwoProps = {
     loading: false,
     submitDisabled: false,
     formState: {
-      checked: "w9",
+      checked: undefined,
     },
   },
   callbacks: {
@@ -59,9 +59,18 @@ const stepTwoProps: TaxFormStepTwoProps = {
     onBack: () => console.log("Submit"),
   },
   text: {
-    w9: "W9: For all partners based in the United States (for all individuals and entities).",
-    w8: "W8-BEN: For individuals not in the United States partnered with brands based in the United States.",
-    w8e: "W8-BEN-E: for entities not in the United States partnered with brads based in the United States",
+    step: "Step",
+    stepOf: "of",
+    indirectTax: "Indirect Tax",
+    indirectTaxDescription:
+      "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.",
+    indirectTaxDetails: "Indirect Tax Details",
+    indirectTaxDetailsDescription:
+      "Not sure if you are registered for indirect tax? Contact our Support team to find out more.",
+    hstCanada: "I am registered for HST in Canada",
+    otherRegion:
+      "I am registered for Indirect Tax in a different Country / Region",
+    notRegistered: "I am not registered for Indirect Tax",
     submitButton: "Continue",
     backButton: "Back",
   },
@@ -111,4 +120,49 @@ export const StepOneWithError = () => {
 
 export const StepTwo = () => {
   return <TaxFormStepTwoView {...stepTwoProps} />;
+};
+
+export const StepTwoHSTChecked = () => {
+  return (
+    <TaxFormStepTwoView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        formState: {
+          ...stepTwoProps.states.formState,
+          checked: "hstCanada",
+        },
+      }}
+    />
+  );
+};
+
+export const StepTwoOtherRegionChecked = () => {
+  return (
+    <TaxFormStepTwoView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        formState: {
+          ...stepTwoProps.states.formState,
+          checked: "otherRegion",
+        },
+      }}
+    />
+  );
+};
+
+export const StepTwoNotRegisteredChecked = () => {
+  return (
+    <TaxFormStepTwoView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        formState: {
+          ...stepTwoProps.states.formState,
+          checked: "notRegistered",
+        },
+      }}
+    />
+  );
 };
