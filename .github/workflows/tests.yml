@@ -13,7 +13,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
-      packages: read
+      packages: write
 
     strategy:
       matrix:
@@ -39,7 +39,7 @@ jobs:
           IMPACT_PACKAGE_TOKEN: ${{ secrets.IMPACT_PACKAGE_TOKEN }}
         run: |
           cd packages/${{ matrix.package }}
-          echo "//npm.pkg.github.com/saasquatch/:_authToken=$IMPACT_PACKAGE_TOKEN" >> ./.npmrc
+          echo "//npm.pkg.github.com/saasquatch/:_authToken=$GITHUB_TOKEN" >> ./.npmrc
           echo "//npm.pkg.github.com/impactinc/:_authToken=$IMPACT_PACKAGE_TOKEN" >> ./.npmrc
           echo "@saasquatch:registry=https://npm.pkg.github.com/saasquatch/" >> ./.npmrc
           echo "@impactinc:registry=https://npm.pkg.github.com/impactinc/" >> ./.npmrc
