@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Response, Request } from "express";
 
 import {
   meetCustomFieldRules,
@@ -86,7 +86,8 @@ export function webtask(program: Program = {}): express.Application {
   app.use((req, res, next) => {
     if (
       process.env.NODE_ENV === "production" &&
-      req.header("X-Forwarded-Proto") !== "https"
+      req.header("X-Forwarded-Proto") !== "https" &&
+      !["/healthz", "/livez", "/readyz"].includes(req.path)
     ) {
       return res.status(403).send({ message: "SSL required" });
     }
@@ -95,10 +96,17 @@ export function webtask(program: Program = {}): express.Application {
     next();
   });
 
-  app.post("/*", (context, res) => {
-    const { json, code } = triggerProgram(context.body, program);
+  const healthCheck = (_req: Request, res: Response) => {
+    return res.status(200).json({ status: "OK" });
+  };
 
-    res.status(code).json(json);
+  app.get("/healthz", healthCheck);
+  app.get("/livez", healthCheck);
+  app.get("/readyz", healthCheck);
+
+  app.post("/*", (req, res) => {
+    const { json, code } = triggerProgram(req.body, program);
+    return res.status(code).json(json);
   });
 
   return app;
