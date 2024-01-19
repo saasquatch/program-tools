@@ -13,7 +13,7 @@ const defaultProps: RadioCardViewProps = {
 };
 
 export const DefaultView = () => {
-  return <RadioCardView {...defaultProps}>Radio Card</RadioCardView>;
+  return <RadioCardView {...defaultProps} />;
 };
 
 export const Selected = () => {
