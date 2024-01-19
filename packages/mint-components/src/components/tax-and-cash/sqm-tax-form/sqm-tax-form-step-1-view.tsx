@@ -30,6 +30,9 @@ export interface TaxFormStepOneProps {
     allowBankingCollection: string;
     submitButton: string;
   };
+  refs: {
+    formRef: any;
+  };
 }
 
 export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
@@ -38,10 +41,16 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
     states: { formState },
     callbacks,
     text,
+    refs,
   } = props;
 
   return (
-    <form class="FormWrapper" onSubmit={callbacks.onSubmit}>
+    <sl-form
+      class={"FormWrapper"}
+      onSl-submit={callbacks.onSubmit}
+      ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
+      novalidate
+    >
       <sl-input
         exportparts="label: input-label"
         value={formState.firstName}
@@ -54,7 +63,7 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
         //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
         //   : [])}
         id="firstName"
-        name="firstName"
+        name="/firstName"
         error={
           formState.errors?.firstName &&
           formState.errors?.firstName.status !== "valid"
@@ -74,7 +83,7 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
         //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
         //   : [])}
         id="lastName"
-        name="lastName"
+        name="/lastName"
         error={
           formState.errors?.lastName &&
           formState.errors?.lastName.status !== "valid"
@@ -94,30 +103,10 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
         //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
         //   : [])}
         id="email"
-        name="email"
+        name="/email"
         error={
           formState.errors?.email && formState.errors?.email.status !== "valid"
             ? formState.errors?.email.message
-            : undefined
-        }
-      />
-      <sl-input
-        exportparts="label: input-label"
-        value={formState.country}
-        onInput={callbacks.onChange}
-        label={text.country}
-        disabled={states.loading}
-        // Copied from edit form, may need to keep
-        // {...(formState.errors?.country &&
-        // formState.errors?.country.status !== "valid"
-        //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
-        //   : [])}
-        id="country"
-        name="country"
-        error={
-          formState.errors?.country &&
-          formState.errors?.country.status !== "valid"
-            ? formState.errors?.country.message
             : undefined
         }
       />
@@ -134,7 +123,7 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
         //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
         //   : [])}
         id="country"
-        name="country"
+        name="/country"
         error={
           formState.errors?.country &&
           formState.errors?.country.status !== "valid"
@@ -154,7 +143,7 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
         //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
         //   : [])}
         id="currency"
-        name="currency"
+        name="/currency"
         error={
           formState.errors?.currency &&
           formState.errors?.currency.status !== "valid"
@@ -174,7 +163,7 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
         //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
         //   : [])}
         id="indirectTaxNumber"
-        name="indirectTaxNumber"
+        name="/indirectTaxNumber"
         error={
           formState.errors?.indirectTaxNumber &&
           formState.errors?.indirectTaxNumber.status !== "valid"
@@ -193,7 +182,7 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
         //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
         //   : [])}
         id="allowBankingCollection"
-        name="allowBankingCollection"
+        name="/allowBankingCollection"
         error={
           formState.errors?.allowBankingCollection &&
           formState.errors?.allowBankingCollection.status !== "valid"
@@ -207,15 +196,12 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
         type="primary"
         loading={states.loading}
         disabled={states.submitDisabled}
-        onClick={(e) => {
-          callbacks.onSubmit(e);
-        }}
         submit
         exportparts="base: primarybutton-base"
       >
         {text.submitButton}
       </sl-button>
-    </form>
+    </sl-form>
   );
 };
 

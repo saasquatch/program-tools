@@ -41,6 +41,9 @@ const stepOneProps: TaxFormStepOneProps = {
       "I allow impact.com to collect my tax and banking information",
     submitButton: "Continue",
   },
+  refs: {
+    formRef: () => {},
+  },
 };
 
 const stepTwoProps: TaxFormStepTwoProps = {

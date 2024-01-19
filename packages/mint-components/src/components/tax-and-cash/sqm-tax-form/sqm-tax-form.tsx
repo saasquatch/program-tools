@@ -14,7 +14,7 @@ import { useTaxForm } from "./useTaxForm";
  */
 @Component({
   tag: "sqm-tax-form",
-  shadow: false,
+  shadow: true,
 })
 export class TaxForm {
   @State() ignored = true;
@@ -34,6 +34,22 @@ export class TaxForm {
   @Prop() indirectTaxNumber: string = "Tax Number";
   @Prop() allowBankingCollection: string = "I agree to the terms";
   @Prop() submitButton: string = "Submit";
+
+  /**
+   * The message to be displayed when a required field is not filled.
+   *
+   * @uiName Required field message
+   * @uiWidget textArea
+   */
+  @Prop() requiredFieldErrorMessage: string = "Cannot be empty";
+
+  /**
+   * The message to be displayed when a the form submission fails unexpectedly.
+   *
+   * @uiName Network error message
+   * @uiWidget textArea
+   */
+  @Prop() networkErrorMessage: string = "Network request failed.";
 
   constructor() {
     withHooks(this);
@@ -64,14 +80,13 @@ export class TaxForm {
             },
           }}
           callbacks={{
-            onSubmit: () => props.setStep("/2"),
+            onSubmit: props.onSubmit,
             onChange: function (e: any): void {
-              throw new Error("Function not implemented.");
+              // throw new Error("Function not implemented.");
             },
           }}
-          text={{
-            ...props.text,
-          }}
+          text={props.text}
+          refs={props.refs}
         />
       </Host>
     );

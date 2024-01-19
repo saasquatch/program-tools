@@ -2846,6 +2846,18 @@ export namespace Components {
         "firstName": string;
         "indirectTaxNumber": string;
         "lastName": string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
         "submitButton": string;
     }
     interface SqmText {
@@ -6409,6 +6421,18 @@ declare namespace LocalJSX {
         "firstName"?: string;
         "indirectTaxNumber"?: string;
         "lastName"?: string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
         "submitButton"?: string;
     }
     interface SqmText {
