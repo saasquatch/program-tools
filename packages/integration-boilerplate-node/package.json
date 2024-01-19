@@ -20,6 +20,9 @@
   },
   "author": "ReferralSaaSquatch.com, Inc.",
   "license": "MIT",
+  "resolutions": {
+    "source-map": "^0.7.4"
+  },
   "devDependencies": {
     "@types/auth0": "^2.35.11",
     "@types/compression": "^1.7.0",
@@ -34,6 +37,7 @@
     "jest": "^27.0.4",
     "jest-cucumber": "^3.0.1",
     "msw": "^0.29.0",
+    "source-map": "^0.7.4",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.2.1",
     "typescript": "^4.3.2"
