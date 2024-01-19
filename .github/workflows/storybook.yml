@@ -20,8 +20,9 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: "read"
-      id-token: "write"
+      contents: read
+      id-token: write
+      packages: read
 
     steps:
       - name: Checkout
@@ -32,8 +33,19 @@ jobs:
         with:
           node-version-file: "packages/visual-dev/package.json"
 
+      - name: Setup private NPM registries
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IMPACT_PACKAGE_TOKEN: ${{ secrets.IMPACT_PACKAGE_TOKEN }}
+        run: |
+          cd packages/visual-dev
+          echo "//npm.pkg.github.com/saasquatch:_authToken=$GITHUB_TOKEN" >> ./.npmrc
+          echo "//npm.pkg.github.com/impactinc:_authToken=$IMPACT_PACKAGE_TOKEN" >> ./.npmrc
+          echo "@saasquatch:registry=https://npm.pkg.github.com/saasquatch" >> ./.npmrc
+          echo "@impactinc:registry=https://npm.pkg.github.com/impactinc" >> ./.npmrc
+
       - name: Install npm dependencies
-        run: cd packages/visual-dev && npm install
+        run: cd packages/visual-dev && npm ci
 
       - name: Build
         run: cd packages/visual-dev && npm run storybook:build
