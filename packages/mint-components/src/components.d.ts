@@ -272,6 +272,8 @@ export namespace Components {
          */
         "dividerStyle": string;
     }
+    interface SqmDocusignEmbed {
+    }
     interface SqmDropdownField {
         /**
           * @undocumented 
@@ -2950,6 +2952,12 @@ declare global {
         prototype: HTMLSqmDividedLayoutElement;
         new (): HTMLSqmDividedLayoutElement;
     };
+    interface HTMLSqmDocusignEmbedElement extends Components.SqmDocusignEmbed, HTMLStencilElement {
+    }
+    var HTMLSqmDocusignEmbedElement: {
+        prototype: HTMLSqmDocusignEmbedElement;
+        new (): HTMLSqmDocusignEmbedElement;
+    };
     interface HTMLSqmDropdownFieldElement extends Components.SqmDropdownField, HTMLStencilElement {
     }
     var HTMLSqmDropdownFieldElement: {
@@ -3464,6 +3472,7 @@ declare global {
         "sqm-close-button": HTMLSqmCloseButtonElement;
         "sqm-coupon-code": HTMLSqmCouponCodeElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
+        "sqm-docusign-embed": HTMLSqmDocusignEmbedElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-empty": HTMLSqmEmptyElement;
@@ -3779,6 +3788,8 @@ declare namespace LocalJSX {
           * @uiName Border style
          */
         "dividerStyle"?: string;
+    }
+    interface SqmDocusignEmbed {
     }
     interface SqmDropdownField {
         /**
@@ -6387,6 +6398,7 @@ declare namespace LocalJSX {
         "sqm-close-button": SqmCloseButton;
         "sqm-coupon-code": SqmCouponCode;
         "sqm-divided-layout": SqmDividedLayout;
+        "sqm-docusign-embed": SqmDocusignEmbed;
         "sqm-dropdown-field": SqmDropdownField;
         "sqm-edit-profile": SqmEditProfile;
         "sqm-empty": SqmEmpty;
@@ -6486,6 +6498,7 @@ declare module "@stencil/core" {
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
+            "sqm-docusign-embed": LocalJSX.SqmDocusignEmbed & JSXBase.HTMLAttributes<HTMLSqmDocusignEmbedElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;

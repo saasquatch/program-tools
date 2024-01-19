@@ -30,7 +30,7 @@
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "specs": "picklesdoc xlsx src docs --testers=2",
-    "serve:package": "serve . --cors",
+    "serve:package": "serve . --cors -l 5000",
     "start:raisins": "run-p start serve:package",
     "postinstall": "patch-package"
   },
