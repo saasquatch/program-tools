@@ -7,8 +7,14 @@ import {
 import { useParent } from "../../../utils/useParentState";
 import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/useTaxAndCash";
 import { TaxForm } from "./sqm-tax-form";
-import { useRegisterWithEmailAndPasswordMutation } from "@saasquatch/component-boilerplate";
+import {
+  setUserIdentity,
+  useQuery,
+  useRegisterWithEmailAndPasswordMutation,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
 import jsonpointer from "jsonpointer";
+import { gql } from "graphql-request";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -34,14 +40,73 @@ export type InitialData = {
   [key: string]: string;
 };
 
+const GET_USER = gql`
+  query {
+    viewer {
+      ... on User {
+        firstName
+        lastName
+        email
+        countryCode
+        customFields
+      }
+    }
+  }
+`;
+
 export function useTaxForm(props: TaxForm) {
   const formRef = useRef<HTMLFormElement>(null);
   const [formState, setFormState] = useState({});
 
-  const [request, { loading, errors, data }] =
-    useRegisterWithEmailAndPasswordMutation();
-
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
+
+  /**** DEMO DATA */
+
+  const id = "zach.harrison@referralsaasquatch.com";
+  const accountId = id;
+  const programId = "klip-referral-program";
+
+  //@ts-ignore
+  window.widgetIdent = {
+    tenantAlias: "test_a74miwdpofztj",
+    appDomain: "https://staging.referralsaasquatch.com",
+    programId,
+  };
+
+  useEffect(() => {
+    setUserIdentity({
+      accountId,
+      id,
+      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiYWNjb3VudElkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIn19.Wi8Vd5r64g5n8VNhiY-v5cqFcLwGxPG3Wi3dVSfkFZI",
+    });
+    return () => {
+      window.widgetIdent = undefined;
+      setUserIdentity(undefined);
+    };
+  }, []);
+  /*** */
+
+  const user = useUserIdentity();
+
+  const { data, loading } = useQuery(GET_USER, {
+    id: user?.id,
+    accountId: user?.accountId,
+  });
+
+  useEffect(() => {
+    console.log({ data });
+    const user = data?.viewer;
+    if (!user) return;
+
+    setFormState({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      countryCode: user.countryCode,
+      currency: user.customFields?.currency,
+      indirectTaxNumber: user.customFields?.indirectTaxNumber,
+    });
+  }, [data]);
 
   // const inputFunction = useCallback((e) => {
 
@@ -138,17 +203,21 @@ export function useTaxForm(props: TaxForm) {
     //     validationErrors: {},
     //   });
     // }
+
+    setStep("/2");
   }
 
   return {
     step: step,
     setStep: setStep,
     onSubmit,
+    loading,
     text: {
       ...props,
     },
     refs: {
       formRef,
     },
+    formState: { ...formState },
   };
 }

@@ -65,25 +65,12 @@ export class TaxForm {
       <Host>
         <TaxFormStepOneView
           states={{
-            loading: false,
+            loading: props.loading,
             submitDisabled: false,
-            formState: {
-              firstName: "",
-              lastName: "",
-              email: "",
-              country: "",
-              currency: "",
-              indirectTaxNumber: "",
-              allowBankingCollection: false,
-              errors: undefined,
-              error: "",
-            },
+            formState: props.formState,
           }}
           callbacks={{
             onSubmit: props.onSubmit,
-            onChange: function (e: any): void {
-              // throw new Error("Function not implemented.");
-            },
           }}
           text={props.text}
           refs={props.refs}

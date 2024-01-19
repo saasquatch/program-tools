@@ -20,7 +20,7 @@ const stepOneProps: TaxFormStepOneProps = {
       firstName: "Bob",
       lastName: "Testerson",
       email: "bobtesterson@example.com",
-      country: "US",
+      countryCode: "US",
       currency: "fghdfgsd",
       indirectTaxNumber: "sfgdfdgs",
       allowBankingCollection: true,
@@ -28,7 +28,6 @@ const stepOneProps: TaxFormStepOneProps = {
   },
   callbacks: {
     onSubmit: (props: any) => console.log("Submit"),
-    onChange: (e) => console.log("Submit"),
   },
   text: {
     firstName: "First name",
