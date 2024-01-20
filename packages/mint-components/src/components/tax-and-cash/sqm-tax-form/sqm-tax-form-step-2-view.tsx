@@ -1,14 +1,16 @@
-import { h } from "@stencil/core";
+import { VNode, h } from "@stencil/core";
 
 export interface TaxFormStepTwoProps {
   states: {
     loading: boolean;
     submitDisabled: boolean;
     formState: {
-      checked?: "w9" | "w8" | "w8e";
+      checked: "hstCanada" | "otherRegion" | "notRegistered" | undefined;
       errors?: any;
       error?: string;
     };
+    registeredInCanadaDetailsSlot?: VNode;
+    registeredInDifferentCountryDetailsSlot?: VNode;
   };
   callbacks: {
     onSubmit: (props: any) => void;
@@ -16,9 +18,15 @@ export interface TaxFormStepTwoProps {
     onBack: () => void;
   };
   text: {
-    w9: string;
-    w8: string;
-    w8e: string;
+    step: string;
+    stepOf: string;
+    indirectTax: string;
+    indirectTaxDescription: string;
+    indirectTaxDetails: string;
+    indirectTaxDetailsDescription: string;
+    hstCanada: string;
+    otherRegion: string;
+    notRegistered: string;
     submitButton: string;
     backButton: string;
   };
@@ -34,35 +42,49 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
 
   return (
     <form class="FormWrapper" onSubmit={callbacks.onSubmit}>
+      <div>
+        <div>
+          <p>
+            {text.step} 2 {text.stepOf} 4
+          </p>
+          <h3>{text.indirectTax}</h3>
+        </div>
+        <p>{text.indirectTaxDescription}</p>
+
+        <div>
+          <h4>{text.indirectTaxDetails}</h4>
+          <p>{text.indirectTaxDetailsDescription}</p>
+        </div>
+      </div>
       <sl-checkbox
         exportparts="label: input-label"
-        value={formState.checked === "w9"}
+        value={formState.checked === "hstCanada"}
         onInput={callbacks.onChange}
         disabled={states.loading}
-        id="w9"
-        name="w9"
+        id="hstCanada"
+        name="hstCanada"
       >
-        {text.w9}
+        {text.hstCanada}
       </sl-checkbox>
       <sl-checkbox
         exportparts="label: input-label"
-        value={formState.checked === "w8"}
+        value={formState.checked === "otherRegion"}
         onInput={callbacks.onChange}
         disabled={states.loading}
-        id="w8"
-        name="w8"
+        id="otherRegion"
+        name="otherRegion"
       >
-        {text.w8}
+        {text.otherRegion}
       </sl-checkbox>
       <sl-checkbox
         exportparts="label: input-label"
-        value={formState.checked === "w8e"}
+        value={formState.checked === "notRegistered"}
         onInput={callbacks.onChange}
         disabled={states.loading}
-        id="w8e"
-        name="w8e"
+        id="notRegistered"
+        name="notRegistered"
       >
-        {text.w8e}
+        {text.notRegistered}
       </sl-checkbox>
       <div class="BtnContainer">
         <sl-button

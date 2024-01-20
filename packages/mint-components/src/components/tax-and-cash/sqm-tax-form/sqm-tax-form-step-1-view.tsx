@@ -5,20 +5,19 @@ export interface TaxFormStepOneProps {
     loading: boolean;
     submitDisabled: boolean;
     formState: {
-      firstName: string;
-      lastName: string;
-      email: string;
-      country: string;
-      currency: string;
-      indirectTaxNumber: string;
-      allowBankingCollection: boolean;
+      firstName?: string;
+      lastName?: string;
+      email?: string;
+      countryCode?: string;
+      currency?: string;
+      indirectTaxNumber?: string;
+      allowBankingCollection?: boolean;
       errors?: any;
       error?: string;
     };
   };
   callbacks: {
     onSubmit: (props: any) => void;
-    onChange: (e) => void;
   };
   text: {
     firstName: string;
@@ -54,7 +53,6 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
       <sl-input
         exportparts="label: input-label"
         value={formState.firstName}
-        onInput={callbacks.onChange}
         label={text.firstName}
         disabled={states.loading}
         // Copied from edit form, may need to keep
@@ -74,7 +72,6 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
       <sl-input
         exportparts="label: input-label"
         value={formState.lastName}
-        onInput={callbacks.onChange}
         label={text.lastName}
         disabled={states.loading}
         // Copied from edit form, may need to keep
@@ -94,7 +91,6 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
       <sl-input
         exportparts="label: input-label"
         value={formState.email}
-        onInput={callbacks.onChange}
         label={text.email}
         disabled={states.loading}
         // Copied from edit form, may need to keep
@@ -113,8 +109,7 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
 
       <sl-input
         exportparts="label: input-label"
-        value={formState.country}
-        onInput={callbacks.onChange}
+        value={formState.countryCode}
         label={text.country}
         disabled={states.loading}
         // Copied from edit form, may need to keep
@@ -134,7 +129,6 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
       <sl-input
         exportparts="label: input-label"
         value={formState.currency}
-        onInput={callbacks.onChange}
         label={text.currency}
         disabled={states.loading}
         // Copied from edit form, may need to keep
@@ -154,7 +148,6 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
       <sl-input
         exportparts="label: input-label"
         value={formState.indirectTaxNumber}
-        onInput={callbacks.onChange}
         label={text.indirectTaxNumber}
         disabled={states.loading}
         // Copied from edit form, may need to keep
@@ -174,7 +167,6 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
       <sl-checkbox
         exportparts="label: input-label"
         value={formState.allowBankingCollection}
-        onInput={callbacks.onChange}
         disabled={states.loading}
         // Copied from edit form, may need to keep
         // {...(formState.errors?.allowBankingCollection &&

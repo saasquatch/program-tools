@@ -52,7 +52,7 @@ export class DocusignForm {
             loading: false,
             submitDisabled: false,
             formState: {
-              checked: "w9",
+              checked: "hstCanada",
               errors: undefined,
               error: "",
             },
