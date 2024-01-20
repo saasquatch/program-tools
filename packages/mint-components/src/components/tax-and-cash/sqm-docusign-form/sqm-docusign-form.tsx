@@ -47,7 +47,7 @@ export class DocusignForm {
 
     return (
       <Host>
-        <TaxFormStepTwoView
+        {/* <TaxFormStepTwoView
           states={{
             loading: false,
             submitDisabled: false,
@@ -65,7 +65,7 @@ export class DocusignForm {
             onBack: () => props.setStep("/1"),
           }}
           text={{ ...props.text }}
-        />
+        /> */}
       </Host>
     );
   }
