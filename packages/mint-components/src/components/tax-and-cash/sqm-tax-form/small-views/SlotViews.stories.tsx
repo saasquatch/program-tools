@@ -3,6 +3,7 @@ import {
   IndirectDetailsSlotView,
   IndirectDetailsSlotViewProps,
 } from "./IndirectTaxDetailsView";
+import { indirectDetailsSlotText } from "../defaultTextCopy";
 
 export default {
   title: "Components/Slot Views",
@@ -22,8 +23,8 @@ const registeredInOtherRegion: IndirectDetailsSlotViewProps = {
     onChange: (e) => console.log("Submit"),
   },
   text: {
-    selectedRegion: "Country / Region of Indirect Tax",
-    vatNumber: "VAT number",
+    selectedRegion: indirectDetailsSlotText.selectedRegion,
+    vatNumber: indirectDetailsSlotText.vatNumber,
   },
 };
 
@@ -41,8 +42,8 @@ const registeredInCanada: IndirectDetailsSlotViewProps = {
     onChange: (e) => console.log("Submit"),
   },
   text: {
-    province: "Province",
-    indirectTaxNumber: "Indirect Tax",
+    province: indirectDetailsSlotText.province,
+    indirectTaxNumber: indirectDetailsSlotText.indirectTaxNumber,
   },
 };
 

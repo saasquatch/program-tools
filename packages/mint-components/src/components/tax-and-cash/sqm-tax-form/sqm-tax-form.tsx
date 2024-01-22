@@ -6,6 +6,7 @@ import { getProps } from "../../../utils/utils";
 import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { TaxFormStepOneView } from "./sqm-tax-form-step-1-view";
 import { useTaxForm } from "./useTaxForm";
+import { taxFormStepOneText } from "./defaultTextCopy";
 
 /**
  * @uiName Tax And Cash
@@ -26,14 +27,15 @@ export class TaxForm {
   @Prop() demoData?: DemoData<UserNameViewProps>;
 
   @Prop()
-  firstName: string = "First name";
-  @Prop() lastName: string = "Last name";
-  @Prop() email: string = "Email";
-  @Prop() country: string = "Country";
-  @Prop() currency: string = "Currency";
-  @Prop() indirectTaxNumber: string = "Tax Number";
-  @Prop() allowBankingCollection: string = "I agree to the terms";
-  @Prop() submitButton: string = "Submit";
+  firstName: string = taxFormStepOneText.firstName;
+  @Prop() lastName: string = taxFormStepOneText.lastName;
+  @Prop() email: string = taxFormStepOneText.email;
+  @Prop() country: string = taxFormStepOneText.country;
+  @Prop() currency: string = taxFormStepOneText.currency;
+  @Prop() indirectTaxNumber: string = taxFormStepOneText.indirectTaxNumber;
+  @Prop() allowBankingCollection: string =
+    taxFormStepOneText.allowBankingCollection;
+  @Prop() submitButton: string = taxFormStepOneText.submitButton;
 
   /**
    * The message to be displayed when a required field is not filled.
