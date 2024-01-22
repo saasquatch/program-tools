@@ -141,6 +141,7 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
   },
 };
 
+// STEP ONE
 export const StepOne = () => {
   return <TaxFormStepOneView {...stepOneProps} />;
 };
@@ -183,25 +184,11 @@ export const StepOneWithError = () => {
   );
 };
 
+// STEP TWO
 export const StepTwo = () => {
   return <TaxFormStepTwoView {...stepTwoProps} />;
 };
 
-export const TaxDocumentSubmittedActive = () => {
-  return <TaxDocumentSubmittedView {...documentSubmittedActiveProps} />;
-};
-
-export const TaxDocumentSubmittedNotVerified = () => {
-  return <TaxDocumentSubmittedView {...documentSubmittedNotVerifiedProps} />;
-};
-
-export const TaxDocumentSubmittedNotActive = () => {
-  return <TaxDocumentSubmittedView {...documentSubmittedNotActiveProps} />;
-};
-
-export const TaxDocumentSubmittedExpired = () => {
-  return <TaxDocumentSubmittedView {...documentSubmittedExpiredProps} />;
-};
 export const StepTwoHSTChecked = () => {
   return (
     <TaxFormStepTwoView
@@ -247,4 +234,20 @@ export const StepTwoNotRegisteredChecked = () => {
       }}
     />
   );
+};
+
+export const TaxDocumentSubmittedActive = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedActiveProps} />;
+};
+
+export const TaxDocumentSubmittedNotVerified = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedNotVerifiedProps} />;
+};
+
+export const TaxDocumentSubmittedNotActive = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedNotActiveProps} />;
+};
+
+export const TaxDocumentSubmittedExpired = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedExpiredProps} />;
 };
