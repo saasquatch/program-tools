@@ -7,6 +7,8 @@ export interface TaxDocumentSubmittedProps {
     documentType: "W9" | "W8-BEN-E" | "W8-BEN";
     dateSubmitted: string;
     dateExpired?: string;
+    taxAlertHeader?: string;
+    taxAlertMessage?: string;
   };
   callbacks: { onClick: (props: any) => void };
   text: {
@@ -14,6 +16,8 @@ export interface TaxDocumentSubmittedProps {
     documentType: string;
     dateSubmitted: string;
     dateExpired?: string;
+    taxAlertHeader?: string;
+    taxAlertMessage?: string;
   };
 }
 
@@ -117,7 +121,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
       <div>
         <h3>Banking Information</h3>
         <div class={sheet.classes.BankingInformationContainer}>
-          {/* AL: Placeholder for banking information*/}
+          {/* AL: Placeholder for banking information. TBD with design with what belongs here */}
           <div
             style={{
               width: "700px",
