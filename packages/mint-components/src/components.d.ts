@@ -551,6 +551,30 @@ export namespace Components {
     interface SqmHookStoryContainer {
         "hookStory": FunctionalComponent;
     }
+    interface SqmIframe {
+        /**
+          * Define the height of the iframe with any valid CSS height value. Example: 100px, 5rem, or auto.
+          * @uiName IFrame height
+         */
+        "iframeHeight": string;
+        /**
+          * URL of iframe to display
+          * @uiName IFrame source
+          * @required
+         */
+        "iframeSrc": string;
+        /**
+          * Title of iframe
+          * @uiName IFrame title
+          * @required
+         */
+        "iframeTitle": string;
+        /**
+          * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
+          * @uiName IFrame width
+         */
+        "iframeWidth": string;
+    }
     interface SqmImage {
         /**
           * @uiName Position alignment
@@ -3088,6 +3112,12 @@ declare global {
         prototype: HTMLSqmHookStoryContainerElement;
         new (): HTMLSqmHookStoryContainerElement;
     };
+    interface HTMLSqmIframeElement extends Components.SqmIframe, HTMLStencilElement {
+    }
+    var HTMLSqmIframeElement: {
+        prototype: HTMLSqmIframeElement;
+        new (): HTMLSqmIframeElement;
+    };
     interface HTMLSqmImageElement extends Components.SqmImage, HTMLStencilElement {
     }
     var HTMLSqmImageElement: {
@@ -3573,6 +3603,7 @@ declare global {
         "sqm-hero": HTMLSqmHeroElement;
         "sqm-hero-image": HTMLSqmHeroImageElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
+        "sqm-iframe": HTMLSqmIframeElement;
         "sqm-image": HTMLSqmImageElement;
         "sqm-input-field": HTMLSqmInputFieldElement;
         "sqm-instant-access-registration": HTMLSqmInstantAccessRegistrationElement;
@@ -4158,6 +4189,30 @@ declare namespace LocalJSX {
     }
     interface SqmHookStoryContainer {
         "hookStory"?: FunctionalComponent;
+    }
+    interface SqmIframe {
+        /**
+          * Define the height of the iframe with any valid CSS height value. Example: 100px, 5rem, or auto.
+          * @uiName IFrame height
+         */
+        "iframeHeight"?: string;
+        /**
+          * URL of iframe to display
+          * @uiName IFrame source
+          * @required
+         */
+        "iframeSrc"?: string;
+        /**
+          * Title of iframe
+          * @uiName IFrame title
+          * @required
+         */
+        "iframeTitle"?: string;
+        /**
+          * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
+          * @uiName IFrame width
+         */
+        "iframeWidth"?: string;
     }
     interface SqmImage {
         /**
@@ -6560,6 +6615,7 @@ declare namespace LocalJSX {
         "sqm-hero": SqmHero;
         "sqm-hero-image": SqmHeroImage;
         "sqm-hook-story-container": SqmHookStoryContainer;
+        "sqm-iframe": SqmIframe;
         "sqm-image": SqmImage;
         "sqm-input-field": SqmInputField;
         "sqm-instant-access-registration": SqmInstantAccessRegistration;
@@ -6665,6 +6721,7 @@ declare module "@stencil/core" {
             "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
             "sqm-hero-image": LocalJSX.SqmHeroImage & JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
+            "sqm-iframe": LocalJSX.SqmIframe & JSXBase.HTMLAttributes<HTMLSqmIframeElement>;
             "sqm-image": LocalJSX.SqmImage & JSXBase.HTMLAttributes<HTMLSqmImageElement>;
             "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
             "sqm-instant-access-registration": LocalJSX.SqmInstantAccessRegistration & JSXBase.HTMLAttributes<HTMLSqmInstantAccessRegistrationElement>;

@@ -75,6 +75,7 @@ import * as CouponCode from "../sqm-coupon-code/CouponCode.stories";
 import * as LogoutCurrentUser from "../sqm-logout-current-user/LogoutCurrentUser.stories";
 import * as LinkButton from "../sqm-link-button/LinkButton.stories";
 import * as CloseButton from "../sqm-close-button/CloseButton.stories";
+import * as Iframe from "../sqm-iframe/Iframe.stories";
 import * as TaxForm from "../tax-and-cash/sqm-tax-form/TaxForm.stories";
 import * as TaxFormSlots from "../tax-and-cash/sqm-tax-form/small-views/SlotViews.stories";
 import * as RadioCard from "../sqm-radio-card/RadioCard.stories";
@@ -160,6 +161,7 @@ const stories = [
   LinkButton,
   EmailRegistration,
   CloseButton,
+  Iframe,
   TaxForm,
   RadioCard,
   ProgressBar,
