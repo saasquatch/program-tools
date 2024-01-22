@@ -1,14 +1,17 @@
-import { h } from "@stencil/core";
+import { VNode, h } from "@stencil/core";
+import { createStyleSheet } from "../../../styling/JSS";
 
 export interface TaxFormStepTwoProps {
   states: {
     loading: boolean;
     submitDisabled: boolean;
     formState: {
-      checked?: "w9" | "w8" | "w8e";
+      checked: "hstCanada" | "otherRegion" | "notRegistered" | undefined;
       errors?: any;
       error?: string;
     };
+    registeredInCanadaDetailsSlot?: VNode;
+    registeredInDifferentCountryDetailsSlot?: VNode;
   };
   callbacks: {
     onSubmit: (props: any) => void;
@@ -16,13 +19,61 @@ export interface TaxFormStepTwoProps {
     onBack: () => void;
   };
   text: {
-    w9: string;
-    w8: string;
-    w8e: string;
+    step: string;
+    stepOf: string;
+    indirectTax: string;
+    indirectTaxDescription: string;
+    indirectTaxDetails: string;
+    indirectTaxDetailsDescription: string;
+    hstCanada: string;
+    otherRegion: string;
+    notRegistered: string;
     submitButton: string;
     backButton: string;
   };
 }
+
+const style = {
+  FormWrapper: {},
+  CheckboxContainer: {
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+    gap: "var(--sl-spacing-xx-small)",
+  },
+  TitleContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    gap: "var(--sl-spacing-small)",
+  },
+  BtnContainer: {},
+};
+
+const sheet = createStyleSheet(style);
+const styleString = sheet.toString();
+
+const vanillaStyle = `
+    :host{
+      display: block;   
+    }
+    * {
+        p {
+            margin: 0;
+        }
+    }
+    // sl-checkbox::part(base) {
+
+    //     position: absolute;
+    //     top: 16px;
+    //     right: 16px;
+    // }
+    // sl-checkbox::part(control) {
+    //     border-radius: 50%;
+    // }
+  `;
 
 export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
   const {
@@ -32,39 +83,68 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
     text,
   } = props;
 
+  const { classes } = sheet;
+
   return (
     <form class="FormWrapper" onSubmit={callbacks.onSubmit}>
-      <sl-checkbox
-        exportparts="label: input-label"
-        value={formState.checked === "w9"}
-        onInput={callbacks.onChange}
-        disabled={states.loading}
-        id="w9"
-        name="w9"
-      >
-        {text.w9}
-      </sl-checkbox>
-      <sl-checkbox
-        exportparts="label: input-label"
-        value={formState.checked === "w8"}
-        onInput={callbacks.onChange}
-        disabled={states.loading}
-        id="w8"
-        name="w8"
-      >
-        {text.w8}
-      </sl-checkbox>
-      <sl-checkbox
-        exportparts="label: input-label"
-        value={formState.checked === "w8e"}
-        onInput={callbacks.onChange}
-        disabled={states.loading}
-        id="w8e"
-        name="w8e"
-      >
-        {text.w8e}
-      </sl-checkbox>
-      <div class="BtnContainer">
+      <style type="text/css">
+        {styleString}
+        {vanillaStyle}
+      </style>
+      <div>
+        <div>
+          <p>
+            {text.step} 2 {text.stepOf} 4
+          </p>
+          <h3>{text.indirectTax}</h3>
+        </div>
+        <p>{text.indirectTaxDescription}</p>
+
+        <div>
+          <h4>{text.indirectTaxDetails}</h4>
+          <p>{text.indirectTaxDetailsDescription}</p>
+        </div>
+      </div>
+      <div class={classes.CheckboxContainer}>
+        <sl-checkbox
+          exportparts="label: input-label"
+          value={formState.checked === "hstCanada"}
+          checked={formState.checked === "hstCanada"}
+          onInput={callbacks.onChange}
+          disabled={states.loading}
+          id="hstCanada"
+          name="hstCanada"
+        >
+          {text.hstCanada}
+        </sl-checkbox>
+        {formState.checked === "hstCanada" &&
+          states.registeredInCanadaDetailsSlot}
+        <sl-checkbox
+          exportparts="label: input-label"
+          value={formState.checked === "otherRegion"}
+          checked={formState.checked === "otherRegion"}
+          onInput={callbacks.onChange}
+          disabled={states.loading}
+          id="otherRegion"
+          name="otherRegion"
+        >
+          {text.otherRegion}
+        </sl-checkbox>
+        {formState.checked === "otherRegion" &&
+          states.registeredInDifferentCountryDetailsSlot}
+        <sl-checkbox
+          exportparts="label: input-label"
+          value={formState.checked === "notRegistered"}
+          checked={formState.checked === "notRegistered"}
+          onInput={callbacks.onChange}
+          disabled={states.loading}
+          id="notRegistered"
+          name="notRegistered"
+        >
+          {text.notRegistered}
+        </sl-checkbox>
+      </div>
+      <div class={classes.BtnContainer}>
         <sl-button
           type="secondary"
           loading={states.loading}

@@ -47,12 +47,12 @@ export class DocusignForm {
 
     return (
       <Host>
-        <TaxFormStepTwoView
+        {/* <TaxFormStepTwoView
           states={{
             loading: false,
             submitDisabled: false,
             formState: {
-              checked: "w9",
+              checked: "hstCanada",
               errors: undefined,
               error: "",
             },
@@ -65,7 +65,7 @@ export class DocusignForm {
             onBack: () => props.setStep("/1"),
           }}
           text={{ ...props.text }}
-        />
+        /> */}
       </Host>
     );
   }

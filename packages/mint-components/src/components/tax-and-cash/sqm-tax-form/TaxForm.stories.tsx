@@ -7,6 +7,10 @@ import {
   TaxFormStepTwoProps,
   TaxFormStepTwoView,
 } from "./sqm-tax-form-step-2-view";
+import {
+  TaxDocumentSubmittedProps,
+  TaxDocumentSubmittedView,
+} from "./sqm-tax-document-submitted-view";
 
 export default {
   title: "Components/Tax Form",
@@ -20,7 +24,7 @@ const stepOneProps: TaxFormStepOneProps = {
       firstName: "Bob",
       lastName: "Testerson",
       email: "bobtesterson@example.com",
-      country: "US",
+      countryCode: "US",
       currency: "fghdfgsd",
       indirectTaxNumber: "sfgdfdgs",
       allowBankingCollection: true,
@@ -28,7 +32,6 @@ const stepOneProps: TaxFormStepOneProps = {
   },
   callbacks: {
     onSubmit: (props: any) => console.log("Submit"),
-    onChange: (e) => console.log("Submit"),
   },
   text: {
     firstName: "First name",
@@ -51,7 +54,7 @@ const stepTwoProps: TaxFormStepTwoProps = {
     loading: false,
     submitDisabled: false,
     formState: {
-      checked: "w9",
+      checked: undefined,
     },
   },
   callbacks: {
@@ -60,11 +63,77 @@ const stepTwoProps: TaxFormStepTwoProps = {
     onBack: () => console.log("Submit"),
   },
   text: {
-    w9: "W9: For all partners based in the United States (for all individuals and entities).",
-    w8: "W8-BEN: For individuals not in the United States partnered with brands based in the United States.",
-    w8e: "W8-BEN-E: for entities not in the United States partnered with brads based in the United States",
+    step: "Step",
+    stepOf: "of",
+    indirectTax: "Indirect Tax",
+    indirectTaxDescription:
+      "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.",
+    indirectTaxDetails: "Indirect Tax Details",
+    indirectTaxDetailsDescription:
+      "Not sure if you are registered for indirect tax? Contact our Support team to find out more.",
+    hstCanada: "I am registered for HST in Canada",
+    otherRegion:
+      "I am registered for Indirect Tax in a different Country / Region",
+    notRegistered: "I am not registered for Indirect Tax",
     submitButton: "Continue",
     backButton: "Back",
+  },
+};
+
+const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
+  states: {
+    status: "ACTIVE",
+    documentType: "W9",
+    dateSubmitted: "Jan 18th, 2025",
+  },
+  callbacks: { onClick: () => console.log("Submit new Form") },
+  text: {
+    status: "ACTIVE",
+    documentType: "W9",
+    dateSubmitted: "Jan 18th, 2025",
+  },
+};
+
+const documentSubmittedNotVerifiedProps: TaxDocumentSubmittedProps = {
+  states: {
+    status: "NOT_VERIFIED",
+    documentType: "W9",
+    dateSubmitted: "Jan 18th, 2025",
+  },
+  callbacks: { onClick: () => console.log("Submit new Form") },
+  text: {
+    status: "NOT_VERIFIED",
+    documentType: "W9",
+    dateSubmitted: "Jan 18th, 2025",
+  },
+};
+const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
+  states: {
+    status: "NOT_ACTIVE",
+    documentType: "W8-BEN",
+    dateSubmitted: "Jan 18th, 2025",
+  },
+  callbacks: { onClick: () => console.log("Submit new Form") },
+  text: {
+    status: "NOT_ACTIVE",
+    documentType: "W8-BEN",
+    dateSubmitted: "Jan 18th, 2025",
+  },
+};
+
+const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
+  states: {
+    status: "EXPIRED",
+    documentType: "W8-BEN-E",
+    dateSubmitted: "Jan 18th, 2025",
+    dateExpired: "Jan 18th, 2026",
+  },
+  callbacks: { onClick: () => console.log("Submit new Form") },
+  text: {
+    status: "EXPIRED",
+    documentType: "W8-BEN-E",
+    dateSubmitted: "Jan 18th, 2025",
+    dateExpired: "Jan 18th, 2026",
   },
 };
 
@@ -112,4 +181,64 @@ export const StepOneWithError = () => {
 
 export const StepTwo = () => {
   return <TaxFormStepTwoView {...stepTwoProps} />;
+};
+
+export const TaxDocumentSubmittedActive = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedActiveProps} />;
+};
+
+export const TaxDocumentSubmittedNotVerified = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedNotVerifiedProps} />;
+};
+
+export const TaxDocumentSubmittedNotActive = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedNotActiveProps} />;
+};
+
+export const TaxDocumentSubmittedExpired = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedExpiredProps} />;
+};
+export const StepTwoHSTChecked = () => {
+  return (
+    <TaxFormStepTwoView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        formState: {
+          ...stepTwoProps.states.formState,
+          checked: "hstCanada",
+        },
+      }}
+    />
+  );
+};
+
+export const StepTwoOtherRegionChecked = () => {
+  return (
+    <TaxFormStepTwoView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        formState: {
+          ...stepTwoProps.states.formState,
+          checked: "otherRegion",
+        },
+      }}
+    />
+  );
+};
+
+export const StepTwoNotRegisteredChecked = () => {
+  return (
+    <TaxFormStepTwoView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        formState: {
+          ...stepTwoProps.states.formState,
+          checked: "notRegistered",
+        },
+      }}
+    />
+  );
 };
