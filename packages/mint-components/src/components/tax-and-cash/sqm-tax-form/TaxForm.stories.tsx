@@ -11,6 +11,10 @@ import {
   TaxDocumentSubmittedProps,
   TaxDocumentSubmittedView,
 } from "./sqm-tax-document-submitted-view";
+import {
+  RegisteredInCanada,
+  RegisteredInOtherRegion,
+} from "./small-views/SlotViews.stories";
 
 export default {
   title: "Components/Tax Form",
@@ -204,6 +208,7 @@ export const StepTwoHSTChecked = () => {
       {...stepTwoProps}
       states={{
         ...stepTwoProps.states,
+        registeredInCanadaDetailsSlot: <RegisteredInCanada />,
         formState: {
           ...stepTwoProps.states.formState,
           checked: "hstCanada",
@@ -219,6 +224,7 @@ export const StepTwoOtherRegionChecked = () => {
       {...stepTwoProps}
       states={{
         ...stepTwoProps.states,
+        registeredInDifferentCountryDetailsSlot: <RegisteredInOtherRegion />,
         formState: {
           ...stepTwoProps.states.formState,
           checked: "otherRegion",
