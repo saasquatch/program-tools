@@ -6,6 +6,11 @@ import { getProps } from "../../../utils/utils";
 import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { TaxFormStepOneView } from "./sqm-tax-form-step-1-view";
 import { useTaxForm } from "./useTaxForm";
+import {
+  taxFormDocumentSubmittedText,
+  taxFormStepOneText,
+  // taxFormDocumentSubmitted,
+} from "./defaultTextCopy";
 
 /**
  * @uiName Tax And Cash
@@ -26,15 +31,42 @@ export class TaxForm {
   @Prop() demoData?: DemoData<UserNameViewProps>;
 
   @Prop()
-  firstName: string = "First name";
-  @Prop() lastName: string = "Last name";
-  @Prop() email: string = "Email";
-  @Prop() country: string = "Country";
-  @Prop() currency: string = "Currency";
-  @Prop() indirectTaxNumber: string = "Tax Number";
-  @Prop() allowBankingCollection: string = "I agree to the terms";
-  @Prop() submitButton: string = "Submit";
+  firstName: string = taxFormStepOneText.firstName;
+  @Prop() lastName: string = taxFormStepOneText.lastName;
+  @Prop() email: string = taxFormStepOneText.email;
+  @Prop() country: string = taxFormStepOneText.country;
+  @Prop() currency: string = taxFormStepOneText.currency;
+  @Prop() indirectTaxNumber: string = taxFormStepOneText.indirectTaxNumber;
+  @Prop() allowBankingCollection: string =
+    taxFormStepOneText.allowBankingCollection;
+  @Prop() submitButton: string = taxFormStepOneText.submitButton;
 
+  // Tax Document Submitted View props
+  @Prop() activeStatusText: string = taxFormDocumentSubmittedText.status.active;
+  @Prop() notActiveStatusText: string =
+    taxFormDocumentSubmittedText.status.notActive;
+  @Prop() notVerifiedStatusText: string =
+    taxFormDocumentSubmittedText.status.notVerified;
+  @Prop() expiredStatusText: string =
+    taxFormDocumentSubmittedText.status.expired;
+  @Prop() submittedOnText: string =
+    taxFormDocumentSubmittedText.badge.submittedOn;
+  @Prop() awaitingReviewText: string =
+    taxFormDocumentSubmittedText.badge.awaitingReview;
+  @Prop() expiredOnText: string = taxFormDocumentSubmittedText.badge.expiredOn;
+  @Prop() taxAlertHeader?: string = taxFormDocumentSubmittedText.taxAlertHeader;
+  @Prop() taxAlertMessage?: string =
+    taxFormDocumentSubmittedText.taxAlertMessage;
+  @Prop() bankingInformationHeader: string =
+    taxFormDocumentSubmittedText.bankingInformationSectionHeader;
+  @Prop() taxDocumentSectionHeader: string =
+    taxFormDocumentSubmittedText.taxDocumentSectionHeader;
+  @Prop() taxDocumentSectionSubHeader?: string =
+    taxFormDocumentSubmittedText.taxDocumentSectionSubHeader;
+  // @Prop() error?: string = taxFormDocumentSubmitted.taxAlertHeader;
+  @Prop() step?: "step";
+  @Prop() stepOf?: "of";
+  @Prop() personalInformation?: "Personal Information";
   /**
    * The message to be displayed when a required field is not filled.
    *
@@ -72,6 +104,7 @@ export class TaxForm {
           callbacks={{
             onSubmit: props.onSubmit,
           }}
+          //@ts-ignore
           text={props.text}
           refs={props.refs}
         />

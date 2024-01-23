@@ -1,5 +1,6 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
+import { intl } from "../../../global/global";
 
 export interface TaxDocumentSubmittedProps {
   states: {
@@ -10,10 +11,23 @@ export interface TaxDocumentSubmittedProps {
   };
   callbacks: { onClick: (props: any) => void };
   text: {
-    status: string;
-    documentType: string;
-    dateSubmitted: string;
-    dateExpired?: string;
+    status: {
+      active?: string;
+      notActive?: string;
+      notVerified?: string;
+      expired?: string;
+    };
+    badge: {
+      submittedOn?: string;
+      awaitingReview?: string;
+      expiredOn?: string;
+    };
+    bankingInformationSectionHeader: string;
+    taxDocumentSectionHeader: string;
+    taxAlertHeader?: string;
+    taxAlertMessage?: string;
+    taxDocumentSectionSubHeader: string;
+    newFormButton: string;
   };
 }
 
@@ -56,33 +70,41 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
     NOT_VERIFIED: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
         <sl-badge type="info" pill class={sheet.classes.BadgeContainer}>
-          Not Verified
+          {text.status.notVerified}
         </sl-badge>
-        <p>Awaiting review. Submitted on {text.dateSubmitted}</p>
+        <p>
+          {text.badge.awaitingReview} {states.dateSubmitted}
+        </p>
       </div>
     ),
     ACTIVE: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
         <sl-badge type="success" pill class={sheet.classes.BadgeContainer}>
-          Active
+          {text.status.active}
         </sl-badge>
-        <p>Submitted on {text.dateSubmitted}</p>
+        <p>
+          {text.badge.submittedOn} {states.dateSubmitted}
+        </p>
       </div>
     ),
     NOT_ACTIVE: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
         <sl-badge type="danger" pill class={sheet.classes.BadgeContainer}>
-          Not Active
+          {text.status.notActive}
         </sl-badge>
-        <p>Submitted on {text.dateSubmitted}</p>
+        <p>
+          {text.badge.submittedOn} {states.dateSubmitted}
+        </p>
       </div>
     ),
     EXPIRED: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
         <sl-badge type="danger" pill class={sheet.classes.BadgeContainer}>
-          Expired
+          {text.status.expired}
         </sl-badge>
-        <p>Expired on {text.dateSubmitted}</p>
+        <p>
+          {text.badge.expiredOn} {states.dateSubmitted}
+        </p>
       </div>
     ),
   };
@@ -92,19 +114,52 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
       <sl-alert type="danger" open class={sheet.classes.WarningAlertContainer}>
         <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
         <strong>
-          Your {text.documentType} tax form has personal information that
-          doesn't match your profile.
+          {intl.formatMessage(
+            {
+              id: `taxAlertHeader`,
+              defaultMessage: text.taxAlertHeader,
+            },
+            {
+              documentType: states.documentType,
+            }
+          )}
         </strong>
         <br />
-        Please resubmit a new {text.documentType} form.
+        {intl.formatMessage(
+          {
+            id: `taxAlertMessage`,
+            defaultMessage: text.taxAlertMessage,
+          },
+          {
+            documentType: states.documentType,
+          }
+        )}
       </sl-alert>
     ),
     EXPIRED: (
       <sl-alert type="danger" open class={sheet.classes.WarningAlertContainer}>
         <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-        <strong>Your {text.documentType} tax form has expired.</strong>
+        <strong>
+          {intl.formatMessage(
+            {
+              id: `taxAlertHeader`,
+              defaultMessage: text.taxAlertHeader,
+            },
+            {
+              documentType: states.documentType,
+            }
+          )}
+        </strong>
         <br />
-        Please submit a new {text.documentType} form.
+        {intl.formatMessage(
+          {
+            id: `taxAlertMessage`,
+            defaultMessage: text.taxAlertMessage,
+          },
+          {
+            documentType: states.documentType,
+          }
+        )}
       </sl-alert>
     ),
   };
@@ -115,9 +170,9 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
       {(states.status === "NOT_ACTIVE" || states.status === "EXPIRED") &&
         alertMap[states.status]}
       <div>
-        <h3>Banking Information</h3>
+        <h3>{text.bankingInformationSectionHeader}</h3>
         <div class={sheet.classes.BankingInformationContainer}>
-          {/* AL: Placeholder for banking information*/}
+          {/* AL: Placeholder for banking information. TBD with design with what belongs here */}
           <div
             style={{
               width: "700px",
@@ -128,8 +183,8 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         </div>
       </div>
       <div class={sheet.classes.TaxDocumentsContainer}>
-        <h3>Tax documents</h3>
-        <h4>{text.documentType} Tax Form</h4>
+        <h3>{text.taxDocumentSectionHeader}</h3>
+        <h4>{text.taxDocumentSectionSubHeader}</h4>
         {statusMap[states.status]}
       </div>
       <sl-button
@@ -137,7 +192,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         type="primary"
         class={sheet.classes.NewFormButton}
       >
-        Subit New Form
+        {text.newFormButton}
       </sl-button>
     </div>
   );

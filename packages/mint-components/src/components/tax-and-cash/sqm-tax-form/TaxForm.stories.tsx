@@ -11,6 +11,10 @@ import {
   TaxDocumentSubmittedProps,
   TaxDocumentSubmittedView,
 } from "./sqm-tax-document-submitted-view";
+import {
+  RegisteredInCanada,
+  RegisteredInOtherRegion,
+} from "./small-views/SlotViews.stories";
 
 export default {
   title: "Components/Tax Form",
@@ -43,6 +47,9 @@ const stepOneProps: TaxFormStepOneProps = {
     allowBankingCollection:
       "I allow impact.com to collect my tax and banking information",
     submitButton: "Continue",
+    step: "step",
+    stepOf: "of",
+    personalInformation: "Personal Information",
   },
   refs: {
     formRef: () => {},
@@ -88,9 +95,19 @@ const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: "ACTIVE",
-    documentType: "W9",
-    dateSubmitted: "Jan 18th, 2025",
+    status: {
+      active: "Active",
+    },
+    badge: {
+      submittedOn: "Submitted On",
+    },
+    bankingInformationSectionHeader: "Banking Information",
+    taxDocumentSectionHeader: "Tax Documents",
+    taxAlertHeader:
+      "Your W9 tax form has personal information that doesn't match your profile",
+    taxAlertMessage: "Please resubmit a new W9 form.",
+    taxDocumentSectionSubHeader: "W9 Tax Documents",
+    newFormButton: "Submit New Form",
   },
 };
 
@@ -102,22 +119,39 @@ const documentSubmittedNotVerifiedProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: "NOT_VERIFIED",
-    documentType: "W9",
-    dateSubmitted: "Jan 18th, 2025",
+    status: {
+      notVerified: "Not Verified",
+    },
+    badge: {
+      awaitingReview: "Awaiting Review. Submitted On",
+    },
+    bankingInformationSectionHeader: "Banking Information",
+    taxDocumentSectionHeader: "Tax Documents",
+    taxDocumentSectionSubHeader: "W9 Tax Documents",
+    newFormButton: "Submit New Form",
   },
 };
 const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
   states: {
     status: "NOT_ACTIVE",
-    documentType: "W8-BEN",
+    documentType: "W8-BEN-E",
     dateSubmitted: "Jan 18th, 2025",
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: "NOT_ACTIVE",
-    documentType: "W8-BEN",
-    dateSubmitted: "Jan 18th, 2025",
+    status: {
+      notActive: "Not Active",
+    },
+    badge: {
+      submittedOn: "Submitted On",
+    },
+    bankingInformationSectionHeader: "Banking Information",
+    taxDocumentSectionHeader: "Tax Documents",
+    taxAlertHeader:
+      "Your W8-BEN-E tax form has personal information that doesn't match your profile",
+    taxAlertMessage: "Please resubmit a new W8-BEN-E form.",
+    taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
+    newFormButton: "Submit New Form",
   },
 };
 
@@ -126,17 +160,25 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
     status: "EXPIRED",
     documentType: "W8-BEN-E",
     dateSubmitted: "Jan 18th, 2025",
-    dateExpired: "Jan 18th, 2026",
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: "EXPIRED",
-    documentType: "W8-BEN-E",
-    dateSubmitted: "Jan 18th, 2025",
-    dateExpired: "Jan 18th, 2026",
+    status: {
+      expired: "Expired",
+    },
+    badge: {
+      expiredOn: "Expired On",
+    },
+    bankingInformationSectionHeader: "Banking Information",
+    taxDocumentSectionHeader: "Tax Documents",
+    taxAlertHeader: "Your W8-BEN-E tax form has expired. ",
+    taxAlertMessage: "Please resubmit a new W8-BEN-E form.",
+    taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
+    newFormButton: "Submit New Form",
   },
 };
 
+// STEP ONE
 export const StepOne = () => {
   return <TaxFormStepOneView {...stepOneProps} />;
 };
@@ -179,31 +221,18 @@ export const StepOneWithError = () => {
   );
 };
 
+// STEP TWO
 export const StepTwo = () => {
   return <TaxFormStepTwoView {...stepTwoProps} />;
 };
 
-export const TaxDocumentSubmittedActive = () => {
-  return <TaxDocumentSubmittedView {...documentSubmittedActiveProps} />;
-};
-
-export const TaxDocumentSubmittedNotVerified = () => {
-  return <TaxDocumentSubmittedView {...documentSubmittedNotVerifiedProps} />;
-};
-
-export const TaxDocumentSubmittedNotActive = () => {
-  return <TaxDocumentSubmittedView {...documentSubmittedNotActiveProps} />;
-};
-
-export const TaxDocumentSubmittedExpired = () => {
-  return <TaxDocumentSubmittedView {...documentSubmittedExpiredProps} />;
-};
 export const StepTwoHSTChecked = () => {
   return (
     <TaxFormStepTwoView
       {...stepTwoProps}
       states={{
         ...stepTwoProps.states,
+        registeredInCanadaDetailsSlot: <RegisteredInCanada />,
         formState: {
           ...stepTwoProps.states.formState,
           checked: "hstCanada",
@@ -219,6 +248,7 @@ export const StepTwoOtherRegionChecked = () => {
       {...stepTwoProps}
       states={{
         ...stepTwoProps.states,
+        registeredInDifferentCountryDetailsSlot: <RegisteredInOtherRegion />,
         formState: {
           ...stepTwoProps.states.formState,
           checked: "otherRegion",
@@ -241,4 +271,20 @@ export const StepTwoNotRegisteredChecked = () => {
       }}
     />
   );
+};
+
+export const TaxDocumentSubmittedActive = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedActiveProps} />;
+};
+
+export const TaxDocumentSubmittedNotVerified = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedNotVerifiedProps} />;
+};
+
+export const TaxDocumentSubmittedNotActive = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedNotActiveProps} />;
+};
+
+export const TaxDocumentSubmittedExpired = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedExpiredProps} />;
 };

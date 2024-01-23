@@ -2836,7 +2836,10 @@ export namespace Components {
         "demoData"?: DemoData<UserNameViewProps>;
     }
     interface SqmTaxForm {
+        "activeStatusText": string;
         "allowBankingCollection": string;
+        "awaitingReviewText": string;
+        "bankingInformationHeader": string;
         "country": string;
         "currency": string;
         /**
@@ -2845,6 +2848,8 @@ export namespace Components {
          */
         "demoData"?: DemoData<UserNameViewProps>;
         "email": string;
+        "expiredOnText": string;
+        "expiredStatusText": string;
         "firstName": string;
         "indirectTaxNumber": string;
         "lastName": string;
@@ -2854,13 +2859,23 @@ export namespace Components {
           * @uiWidget textArea
          */
         "networkErrorMessage": string;
+        "notActiveStatusText": string;
+        "notVerifiedStatusText": string;
+        "personalInformation"?: "Personal Information";
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
          */
         "requiredFieldErrorMessage": string;
+        "step"?: "step";
+        "stepOf"?: "of";
         "submitButton": string;
+        "submittedOnText": string;
+        "taxAlertHeader"?: string;
+        "taxAlertMessage"?: string;
+        "taxDocumentSectionHeader": string;
+        "taxDocumentSectionSubHeader"?: string;
     }
     interface SqmText {
     }
@@ -6420,7 +6435,10 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<UserNameViewProps>;
     }
     interface SqmTaxForm {
+        "activeStatusText"?: string;
         "allowBankingCollection"?: string;
+        "awaitingReviewText"?: string;
+        "bankingInformationHeader"?: string;
         "country"?: string;
         "currency"?: string;
         /**
@@ -6429,6 +6447,8 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UserNameViewProps>;
         "email"?: string;
+        "expiredOnText"?: string;
+        "expiredStatusText"?: string;
         "firstName"?: string;
         "indirectTaxNumber"?: string;
         "lastName"?: string;
@@ -6438,13 +6458,23 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "networkErrorMessage"?: string;
+        "notActiveStatusText"?: string;
+        "notVerifiedStatusText"?: string;
+        "personalInformation"?: "Personal Information";
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
          */
         "requiredFieldErrorMessage"?: string;
+        "step"?: "step";
+        "stepOf"?: "of";
         "submitButton"?: string;
+        "submittedOnText"?: string;
+        "taxAlertHeader"?: string;
+        "taxAlertMessage"?: string;
+        "taxDocumentSectionHeader"?: string;
+        "taxDocumentSectionSubHeader"?: string;
     }
     interface SqmText {
     }
