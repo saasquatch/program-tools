@@ -14,6 +14,12 @@ Feature: Tax Document Submitted View
 		When they view Document Submitted
 		Then they see the status of their Tax Document and Banking Information
 
+	@motivating
+	Scenario: View Tax Document Submission is loading
+		Given the user has submitted a tax document
+		When they view Document Submitted
+		Then they see a loading spinner until the end users Tax Document data is available
+	
 	@minutia
 	@ui
 	Scenario Outline: The Tax Form header is displayed to the end users
