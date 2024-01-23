@@ -39,6 +39,7 @@ export interface TaxFormStepOneProps {
 }
 
 const style = {
+  FormWrapper: {},
   TextContainer: {
     display: "flex",
     justifyContent: "flex-start",
@@ -52,6 +53,7 @@ const style = {
     justifyContent: "flex-start",
     flexDirection: "column",
     gap: "24px",
+    paddingBottom: "36px",
   },
 
   BtnContainer: {
@@ -59,13 +61,50 @@ const style = {
     display: "flex",
     gap: "8px",
   },
+  CheckboxWrapper: {
+    display: "flex",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+  },
   DescriptionText: {
     color: "var(--sl-color-neutral-500)",
+  },
+
+  BoldText: {
+    fontWeight: "bold",
+  },
+  RoundedCheckbox: {
+    "&::part(control)": {
+      borderRadius: "50%",
+    },
   },
 };
 
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
+
+const vanillaStyle = `
+    :host{
+      display: block;   
+    }
+    * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+    }
+
+    p {
+      line-height: 18px;
+      color: var(--sl-color-gray-800);
+       font-size: var(--sl-font-size-small);
+    }
+
+    sl-radio-group::part(base) {
+      display: flex;
+      flex-direction: column;
+    }
+
+  `;
 
 export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
   const {
@@ -78,12 +117,15 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
   const { classes } = sheet;
   return (
     <sl-form
-      class={"FormWrapper"}
+      class={classes.FormWrapper}
       onSl-submit={callbacks.onSubmit}
       ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
       novalidate
     >
-      <style type="text/css">{styleString}</style>
+      <style type="text/css">
+        {styleString}
+        {vanillaStyle}
+      </style>
       <div class={classes.TextContainer}>
         <div>
           <p>
@@ -189,45 +231,46 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
               : undefined
           }
         />
-        <sl-input
-          exportparts="label: input-label"
-          value={formState.indirectTaxNumber}
-          label={text.indirectTaxNumber}
-          disabled={states.loading}
-          // Copied from edit form, may need to keep
-          // {...(formState.errors?.indirectTaxNumber &&
-          // formState.errors?.indirectTaxNumber.status !== "valid"
-          //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
-          //   : [])}
-          id="indirectTaxNumber"
-          name="/indirectTaxNumber"
-          error={
-            formState.errors?.indirectTaxNumber &&
-            formState.errors?.indirectTaxNumber.status !== "valid"
-              ? formState.errors?.indirectTaxNumber.message
-              : undefined
-          }
-        />
-        <sl-checkbox
-          exportparts="label: input-label"
-          value={formState.allowBankingCollection}
-          disabled={states.loading}
-          // Copied from edit form, may need to keep
-          // {...(formState.errors?.allowBankingCollection &&
-          // formState.errors?.allowBankingCollection.status !== "valid"
-          //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
-          //   : [])}
-          id="allowBankingCollection"
-          name="/allowBankingCollection"
-          error={
-            formState.errors?.allowBankingCollection &&
-            formState.errors?.allowBankingCollection.status !== "valid"
-              ? formState.errors?.allowBankingCollection.message
-              : undefined
-          }
-        >
-          {text.allowBankingCollection}
-        </sl-checkbox>
+        <div class={classes.CheckboxWrapper}>
+          <p class={classes.BoldText}>Participant type</p>
+          <sl-radio-group label="Select an option" name="a" value="3">
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <sl-radio
+                value="individualParticipant"
+                exportparts="base: radio-base"
+              >
+                I am an individual participant
+              </sl-radio>
+              <sl-radio value="businessEntity" exportparts="base: radio-base">
+                I represent an business entity
+              </sl-radio>
+            </div>
+          </sl-radio-group>
+        </div>
+        <div class={classes.CheckboxWrapper}>
+          <p class={classes.BoldText}>Tax and banking collection</p>
+          <sl-checkbox
+            exportparts="label: input-label"
+            value={formState.allowBankingCollection}
+            checked={formState.allowBankingCollection === true}
+            disabled={states.loading}
+            // Copied from edit form, may need to keep
+            // {...(formState.errors?.allowBankingCollection &&
+            // formState.errors?.allowBankingCollection.status !== "valid"
+            //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
+            //   : [])}
+            id="allowBankingCollection"
+            name="/allowBankingCollection"
+            error={
+              formState.errors?.allowBankingCollection &&
+              formState.errors?.allowBankingCollection.status !== "valid"
+                ? formState.errors?.allowBankingCollection.message
+                : undefined
+            }
+          >
+            {text.allowBankingCollection}
+          </sl-checkbox>
+        </div>
       </div>
       <sl-button
         type="primary"

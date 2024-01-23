@@ -140,7 +140,40 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
         </div>
       </div>
       <div class={classes.CheckboxContainer}>
-        <sl-checkbox
+        <sl-radio-group label="Select an option" name="a" value="3">
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <sl-radio
+              value="hstCanada"
+              exportparts="base: radio-base"
+              id="hstCanada"
+              name="hstCanada"
+            >
+              {text.hstCanada}
+            </sl-radio>
+            {formState.checked === "hstCanada" &&
+              states.registeredInCanadaDetailsSlot}
+            <sl-radio
+              value="otherRegion"
+              id="otherRegion"
+              exportparts="base: radio-base"
+              name="otherRegion"
+            >
+              {text.otherRegion}
+            </sl-radio>
+            {formState.checked === "otherRegion" &&
+              states.registeredInDifferentCountryDetailsSlot}
+
+            <sl-radio
+              value="notRegistered"
+              id="notRegistered"
+              exportparts="base: radio-base"
+              name="notRegistered"
+            >
+              {text.notRegistered}
+            </sl-radio>
+          </div>
+        </sl-radio-group>
+        {/* <sl-checkbox
           exportparts="label: input-label"
           value={formState.checked === "hstCanada"}
           checked={formState.checked === "hstCanada"}
@@ -176,7 +209,7 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
           name="notRegistered"
         >
           {text.notRegistered}
-        </sl-checkbox>
+        </sl-checkbox> */}
       </div>
       <div class={classes.BtnContainer}>
         <sl-button
