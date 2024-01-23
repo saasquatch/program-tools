@@ -2877,6 +2877,19 @@ export namespace Components {
         "taxDocumentSectionHeader": string;
         "taxDocumentSectionSubHeader"?: string;
     }
+    interface SqmTaxFormStep2 {
+        "backButton": string;
+        "hstCanada": string;
+        "indirectTax": string;
+        "indirectTaxDescription": string;
+        "indirectTaxDetails": string;
+        "indirectTaxDetailsDescription": string;
+        "notRegistered": string;
+        "otherRegion": string;
+        "step": string;
+        "stepOf": string;
+        "submitButton": string;
+    }
     interface SqmText {
     }
     interface SqmTextSpan {
@@ -3529,6 +3542,12 @@ declare global {
         prototype: HTMLSqmTaxFormElement;
         new (): HTMLSqmTaxFormElement;
     };
+    interface HTMLSqmTaxFormStep2Element extends Components.SqmTaxFormStep2, HTMLStencilElement {
+    }
+    var HTMLSqmTaxFormStep2Element: {
+        prototype: HTMLSqmTaxFormStep2Element;
+        new (): HTMLSqmTaxFormStep2Element;
+    };
     interface HTMLSqmTextElement extends Components.SqmText, HTMLStencilElement {
     }
     var HTMLSqmTextElement: {
@@ -3659,6 +3678,7 @@ declare global {
         "sqm-task-card": HTMLSqmTaskCardElement;
         "sqm-tax-and-cash": HTMLSqmTaxAndCashElement;
         "sqm-tax-form": HTMLSqmTaxFormElement;
+        "sqm-tax-form-step-2": HTMLSqmTaxFormStep2Element;
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
         "sqm-timeline": HTMLSqmTimelineElement;
@@ -6476,6 +6496,19 @@ declare namespace LocalJSX {
         "taxDocumentSectionHeader"?: string;
         "taxDocumentSectionSubHeader"?: string;
     }
+    interface SqmTaxFormStep2 {
+        "backButton"?: string;
+        "hstCanada"?: string;
+        "indirectTax"?: string;
+        "indirectTaxDescription"?: string;
+        "indirectTaxDetails"?: string;
+        "indirectTaxDetailsDescription"?: string;
+        "notRegistered"?: string;
+        "otherRegion"?: string;
+        "step"?: string;
+        "stepOf"?: string;
+        "submitButton"?: string;
+    }
     interface SqmText {
     }
     interface SqmTextSpan {
@@ -6661,6 +6694,7 @@ declare namespace LocalJSX {
         "sqm-task-card": SqmTaskCard;
         "sqm-tax-and-cash": SqmTaxAndCash;
         "sqm-tax-form": SqmTaxForm;
+        "sqm-tax-form-step-2": SqmTaxFormStep2;
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
         "sqm-timeline": SqmTimeline;
@@ -6766,6 +6800,7 @@ declare module "@stencil/core" {
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
             "sqm-tax-and-cash": LocalJSX.SqmTaxAndCash & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashElement>;
             "sqm-tax-form": LocalJSX.SqmTaxForm & JSXBase.HTMLAttributes<HTMLSqmTaxFormElement>;
+            "sqm-tax-form-step-2": LocalJSX.SqmTaxFormStep2 & JSXBase.HTMLAttributes<HTMLSqmTaxFormStep2Element>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
             "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;

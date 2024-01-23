@@ -19,7 +19,6 @@ const registeredInOtherRegion: IndirectDetailsSlotViewProps = {
     },
   },
   callbacks: {
-    onSubmit: (props: any) => console.log("Submit"),
     onChange: (e) => console.log("Submit"),
   },
   text: {
@@ -38,7 +37,6 @@ const registeredInCanada: IndirectDetailsSlotViewProps = {
     },
   },
   callbacks: {
-    onSubmit: (props: any) => console.log("Submit"),
     onChange: (e) => console.log("Submit"),
   },
   text: {

@@ -69,6 +69,7 @@ const stepTwoProps: TaxFormStepTwoProps = {
     onChange: (e) => console.log("Submit"),
     onBack: () => console.log("Submit"),
   },
+  refs: { formRef: { current: null } },
   text: {
     step: "Step",
     stepOf: "of",

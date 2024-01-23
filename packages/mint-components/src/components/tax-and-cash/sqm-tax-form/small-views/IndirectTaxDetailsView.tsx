@@ -15,7 +15,6 @@ export interface IndirectDetailsSlotViewProps {
     };
   };
   callbacks: {
-    onSubmit: (props: any) => void;
     onChange: (e) => void;
   };
   text: {
@@ -74,7 +73,7 @@ export const IndirectDetailsSlotView = (
   const { classes } = sheet;
 
   return (
-    <form class={classes.Container} onSubmit={callbacks.onSubmit}>
+    <form class={classes.Container}>
       <style type="text/css">
         {styleString}
         {vanillaStyle}
@@ -88,6 +87,7 @@ export const IndirectDetailsSlotView = (
             value={formState.selectedRegion}
             label={text.selectedRegion}
             disabled={states.loading}
+            // onInput={callbacks.onChange}
             // Copied from edit form, may need to keep
             // {...(formState.errors?.selectedRegion &&
             // formState.errors?.selectedRegion.status !== "valid"
@@ -112,6 +112,7 @@ export const IndirectDetailsSlotView = (
             value={formState.province}
             label={text.province}
             disabled={states.loading}
+            // onInput={callbacks.onChange}
             // Copied from edit form, may need to keep
             // {...(formState.errors?.province &&
             // formState.errors?.province.status !== "valid"
@@ -126,7 +127,7 @@ export const IndirectDetailsSlotView = (
                 : undefined
             }
           >
-            <sl-option value="option-1">Canada</sl-option>
+            <sl-option value="option-1">British Columbia</sl-option>
             <sl-option value="option-2">United Kingdom</sl-option>
           </sl-select>
         )}
@@ -137,6 +138,7 @@ export const IndirectDetailsSlotView = (
             value={formState.vatNumber}
             label={text.vatNumber}
             disabled={states.loading}
+            // onInput={(e) => callbacks.onChange({ vanNumber:  })}
             // Copied from edit form, may need to keep
             // {...(formState.errors?.vatNumber &&
             // formState.errors?.vatNumber.status !== "valid"
@@ -158,6 +160,7 @@ export const IndirectDetailsSlotView = (
             value={formState.indirectTaxNumber}
             label={text.indirectTaxNumber}
             disabled={states.loading}
+            // onInput={callbacks.onChange}
             // Copied from edit form, may need to keep
             // {...(formState.errors?.indirectTaxNumber &&
             // formState.errors?.indirectTaxNumber.status !== "valid"

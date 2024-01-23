@@ -31,6 +31,9 @@ export interface TaxFormStepTwoProps {
     submitButton: string;
     backButton: string;
   };
+  refs: {
+    formRef: any;
+  };
 }
 
 const style = {
@@ -105,12 +108,17 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
     states: { formState },
     callbacks,
     text,
+    refs,
   } = props;
 
   const { classes } = sheet;
 
   return (
-    <form class={classes.FormWrapper} onSubmit={callbacks.onSubmit}>
+    <sl-form
+      class={classes.FormWrapper}
+      onSl-submit={callbacks.onSubmit}
+      ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
+    >
       <style type="text/css">
         {styleString}
         {vanillaStyle}
@@ -136,7 +144,7 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
           exportparts="label: input-label"
           value={formState.checked === "hstCanada"}
           checked={formState.checked === "hstCanada"}
-          onInput={callbacks.onChange}
+          onInput={() => callbacks.onChange("hstCanada")}
           disabled={states.loading}
           id="hstCanada"
           name="hstCanada"
@@ -149,7 +157,7 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
           exportparts="label: input-label"
           value={formState.checked === "otherRegion"}
           checked={formState.checked === "otherRegion"}
-          onInput={callbacks.onChange}
+          onInput={() => callbacks.onChange("otherRegion")}
           disabled={states.loading}
           id="otherRegion"
           name="otherRegion"
@@ -162,7 +170,7 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
           exportparts="label: input-label"
           value={formState.checked === "notRegistered"}
           checked={formState.checked === "notRegistered"}
-          onInput={callbacks.onChange}
+          onInput={() => callbacks.onChange("notRegistered")}
           disabled={states.loading}
           id="notRegistered"
           name="notRegistered"
@@ -175,9 +183,6 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
           type="primary"
           loading={states.loading}
           disabled={states.submitDisabled}
-          onClick={(e) => {
-            callbacks.onSubmit(e);
-          }}
           submit
           exportparts="base: primarybutton-base"
         >
@@ -196,6 +201,6 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
           {text.backButton}
         </sl-button>
       </div>
-    </form>
+    </sl-form>
   );
 };
