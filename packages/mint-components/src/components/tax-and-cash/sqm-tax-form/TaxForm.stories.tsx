@@ -15,6 +15,7 @@ import {
   RegisteredInCanada,
   RegisteredInOtherRegion,
 } from "./small-views/SlotViews.stories";
+import { taxFormStepOneText } from "./defaultTextCopy";
 
 export default {
   title: "Components/Tax Form",
@@ -32,25 +33,13 @@ const stepOneProps: TaxFormStepOneProps = {
       currency: "fghdfgsd",
       indirectTaxNumber: "sfgdfdgs",
       allowBankingCollection: true,
+      participantType: "individualParticipant",
     },
   },
   callbacks: {
     onSubmit: (props: any) => console.log("Submit"),
   },
-  text: {
-    firstName: "First name",
-    lastName: "Last name",
-    email: "Email",
-    country: "Country",
-    currency: "Currency",
-    indirectTaxNumber: "Indirect Tax Number",
-    allowBankingCollection:
-      "I allow impact.com to collect my tax and banking information",
-    submitButton: "Continue",
-    step: "step",
-    stepOf: "of",
-    personalInformation: "Personal Information",
-  },
+  text: taxFormStepOneText,
   refs: {
     formRef: () => {},
   },

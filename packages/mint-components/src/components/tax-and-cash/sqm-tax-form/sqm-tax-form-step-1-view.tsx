@@ -13,6 +13,7 @@ export interface TaxFormStepOneProps {
       currency?: string;
       indirectTaxNumber?: string;
       allowBankingCollection?: boolean;
+      participantType: "individualParticipant" | "businessEntity" | undefined;
       errors?: any;
       error?: string;
     };
@@ -31,6 +32,10 @@ export interface TaxFormStepOneProps {
     step: string;
     stepOf: string;
     personalInformation: string;
+    individualParticipant: string;
+    businessEntity: string;
+    participantType: string;
+    taxAndBankingCollection: string;
     submitButton: string;
   };
   refs: {
@@ -232,23 +237,23 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
           }
         />
         <div class={classes.CheckboxWrapper}>
-          <p class={classes.BoldText}>Participant type</p>
+          <p class={classes.BoldText}>{text.participantType}</p>
           <sl-radio-group label="Select an option" name="a" value="3">
             <div style={{ display: "flex", flexDirection: "column" }}>
               <sl-radio
                 value="individualParticipant"
                 exportparts="base: radio-base"
               >
-                I am an individual participant
+                {text.individualParticipant}
               </sl-radio>
               <sl-radio value="businessEntity" exportparts="base: radio-base">
-                I represent an business entity
+                {text.businessEntity}
               </sl-radio>
             </div>
           </sl-radio-group>
         </div>
         <div class={classes.CheckboxWrapper}>
-          <p class={classes.BoldText}>Tax and banking collection</p>
+          <p class={classes.BoldText}> {text.taxAndBankingCollection}</p>
           <sl-checkbox
             exportparts="label: input-label"
             value={formState.allowBankingCollection}
