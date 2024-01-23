@@ -92,9 +92,19 @@ const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: "ACTIVE",
-    documentType: "W9",
-    dateSubmitted: "Jan 18th, 2025",
+    status: {
+      active: "Active",
+    },
+    badge: {
+      submittedOn: "Submitted On",
+    },
+    bankingInformationSectionHeader: "Banking Information",
+    taxDocumentSectionHeader: "Tax Documents",
+    taxAlertHeader:
+      "Your W9 tax form has personal information that doesn't match your profile",
+    taxAlertMessage: "Please resubmit a new W9 form.",
+    taxDocumentSectionSubHeader: "W9 Tax Documents",
+    newFormButton: "Submit New Form",
   },
 };
 
@@ -106,22 +116,39 @@ const documentSubmittedNotVerifiedProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: "NOT_VERIFIED",
-    documentType: "W9",
-    dateSubmitted: "Jan 18th, 2025",
+    status: {
+      notVerified: "Not Verified",
+    },
+    badge: {
+      awaitingReview: "Awaiting Review. Submitted On",
+    },
+    bankingInformationSectionHeader: "Banking Information",
+    taxDocumentSectionHeader: "Tax Documents",
+    taxDocumentSectionSubHeader: "W9 Tax Documents",
+    newFormButton: "Submit New Form",
   },
 };
 const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
   states: {
     status: "NOT_ACTIVE",
-    documentType: "W8-BEN",
+    documentType: "W8-BEN-E",
     dateSubmitted: "Jan 18th, 2025",
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: "NOT_ACTIVE",
-    documentType: "W8-BEN",
-    dateSubmitted: "Jan 18th, 2025",
+    status: {
+      notActive: "Not Active",
+    },
+    badge: {
+      submittedOn: "Submitted On",
+    },
+    bankingInformationSectionHeader: "Banking Information",
+    taxDocumentSectionHeader: "Tax Documents",
+    taxAlertHeader:
+      "Your W8-BEN-E tax form has personal information that doesn't match your profile",
+    taxAlertMessage: "Please resubmit a new W8-BEN-E form.",
+    taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
+    newFormButton: "Submit New Form",
   },
 };
 
@@ -130,14 +157,21 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
     status: "EXPIRED",
     documentType: "W8-BEN-E",
     dateSubmitted: "Jan 18th, 2025",
-    dateExpired: "Jan 18th, 2026",
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: "EXPIRED",
-    documentType: "W8-BEN-E",
-    dateSubmitted: "Jan 18th, 2025",
-    dateExpired: "Jan 18th, 2026",
+    status: {
+      expired: "Expired",
+    },
+    badge: {
+      expiredOn: "Expired On",
+    },
+    bankingInformationSectionHeader: "Banking Information",
+    taxDocumentSectionHeader: "Tax Documents",
+    taxAlertHeader: "Your W8-BEN-E tax form has expired. ",
+    taxAlertMessage: "Please resubmit a new W8-BEN-E form.",
+    taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
+    newFormButton: "Submit New Form",
   },
 };
 

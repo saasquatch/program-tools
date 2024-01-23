@@ -12,13 +12,13 @@ Feature: Tax Document Submitted View
 	Scenario: View Tax Document Submitted
 		Given the user has submitted a tax document
 		When they view Document Submitted
-		Then they should see the status of their Tax Document and Banking Information
+		Then they see the status of their Tax Document and Banking Information
 
 	@minutia
 	@ui
-	Scenario Outline: The Tax Form header is controlled via <documentType> prop
-	Given the <documentType>
-	Then the Tax Form header will display "<documentType> Tax Form"
+	Scenario Outline: The Tax Form header is displayed to the end users
+	Given the user has submitted a W9/W8-BEN/W8-BEN-E Tax form
+	Then the Tax Form header displays "<documentType> Tax Form"
 	Examples:
 		| documentType |
 		| W9 		   |
@@ -27,10 +27,10 @@ Feature: Tax Document Submitted View
 
 	@minutia
 	@ui
-	Scenario Outline: The Tax Document Submitted badge view is controlled via props
+	Scenario Outline: The date submitted and status of a Tax Form is displayed to end users
 		Given the Tax Document is currently <status>
 		When they view the Tax Document Submitted
-		And they will see a badge with <status> text and a respective <badgeVariant>
+		Then they see a badge with <status> text and a respective <badgeVariant>
 		Then they see a message indicating "<taxStatusMessage> on <dateSubmitted>"
 		Examples: 
 			| status       | badgeVariant | taxStatusMessage              | dateSubmitted   |
@@ -41,17 +41,17 @@ Feature: Tax Document Submitted View
 
 	@minutia
 	@ui
-	Scenario Outline: A Warning Alert appears based on the <status> prop
+	Scenario Outline: A Warning Alert is displayed if the end users tax form is invalid
 	Given the <status> is "NOT_ACTIVE" or "EXPIRED"
-	Then a warning alert indicating the <documentType> with a <taxAlertHeader> and <taxAlertMessage> will appear
+	Then a warning alert indicating the <documentType> with a <taxAlertHeader> and <taxAlertMessage>
 	Examples:
 		| status 	 | documentType | taxAlertHeader 															 		| taxAlertMessage 				  				|
 		| NOT_ACTIVE | W9       	| Your W9 tax form has personal information that doesn't match your profile. 		| Please resubmit a new W9 form. 				|
-		| EXPIRED    | W8-BEN-E     | Your W8-BEN-E  tax form has personal information that doesn't match your profile. | Please resubmit a new W8-BEN-E form. 			|
+		| EXPIRED    | W8-BEN-E     | Your W8-BEN-E tax form has expired. 												| Please resubmit a new W8-BEN-E form. 			|
 
-
-
+	@unknown
 	Scenario: Submit New Tax Document Form
 		Given the user is viewing the Tax Document Submission
 		When they click the "Submit New Form" button
-		Then the system should trigger the callback to submit a new Tax Document Form
+		Then the system should trigger the callback
+		Then they are redirected to the first step to submit a new form
