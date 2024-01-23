@@ -15,6 +15,7 @@ import {
   RegisteredInCanada,
   RegisteredInOtherRegion,
 } from "./small-views/SlotViews.stories";
+import { taxFormStepOneText } from "./defaultTextCopy";
 
 export default {
   title: "Components/Tax Form",
@@ -29,28 +30,15 @@ const stepOneProps: TaxFormStepOneProps = {
       lastName: "Testerson",
       email: "bobtesterson@example.com",
       countryCode: "US",
-      currency: "fghdfgsd",
-      indirectTaxNumber: "sfgdfdgs",
+      currency: "CAD",
       allowBankingCollection: true,
+      participantType: "individualParticipant",
     },
   },
   callbacks: {
     onSubmit: (props: any) => console.log("Submit"),
   },
-  text: {
-    firstName: "First name",
-    lastName: "Last name",
-    email: "Email",
-    country: "Country",
-    currency: "Currency",
-    indirectTaxNumber: "Indirect Tax Number",
-    allowBankingCollection:
-      "I allow impact.com to collect my tax and banking information",
-    submitButton: "Continue",
-    step: "step",
-    stepOf: "of",
-    personalInformation: "Personal Information",
-  },
+  text: taxFormStepOneText,
   refs: {
     formRef: () => {},
   },
@@ -202,7 +190,7 @@ export const StepOneDisabled = () => {
   );
 };
 
-export const StepOneWithError = () => {
+export const StepOneWithErrors = () => {
   return (
     <TaxFormStepOneView
       {...stepOneProps}
@@ -211,10 +199,13 @@ export const StepOneWithError = () => {
         formState: {
           ...stepOneProps.states.formState,
           errors: {
-            firstName: {
-              status: "invalid",
-              message: "Please enter your first name",
-            },
+            firstName: true,
+            lastName: true,
+            email: true,
+            countryCode: true,
+            currency: true,
+            participantType: true,
+            allowBankingCollection: true,
           },
         },
       }}

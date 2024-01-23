@@ -2836,10 +2836,8 @@ export namespace Components {
         "demoData"?: DemoData<UserNameViewProps>;
     }
     interface SqmTaxForm {
-        "activeStatusText": string;
         "allowBankingCollection": string;
-        "awaitingReviewText": string;
-        "bankingInformationHeader": string;
+        "businessEntity"?: string;
         "country": string;
         "currency": string;
         /**
@@ -2848,10 +2846,9 @@ export namespace Components {
          */
         "demoData"?: DemoData<UserNameViewProps>;
         "email": string;
-        "expiredOnText": string;
-        "expiredStatusText": string;
         "firstName": string;
         "indirectTaxNumber": string;
+        "individualParticipant"?: string;
         "lastName": string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
@@ -2859,23 +2856,18 @@ export namespace Components {
           * @uiWidget textArea
          */
         "networkErrorMessage": string;
-        "notActiveStatusText": string;
-        "notVerifiedStatusText": string;
-        "personalInformation"?: "Personal Information";
+        "participantType"?: string;
+        "personalInformation"?: string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
          */
         "requiredFieldErrorMessage": string;
-        "step"?: "step";
-        "stepOf"?: "of";
+        "step"?: string;
+        "stepOf"?: string;
         "submitButton": string;
-        "submittedOnText": string;
-        "taxAlertHeader"?: string;
-        "taxAlertMessage"?: string;
-        "taxDocumentSectionHeader": string;
-        "taxDocumentSectionSubHeader"?: string;
+        "taxAndBankingCollection"?: string;
     }
     interface SqmTaxFormStep2 {
         "backButton": string;
@@ -6455,10 +6447,8 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<UserNameViewProps>;
     }
     interface SqmTaxForm {
-        "activeStatusText"?: string;
         "allowBankingCollection"?: string;
-        "awaitingReviewText"?: string;
-        "bankingInformationHeader"?: string;
+        "businessEntity"?: string;
         "country"?: string;
         "currency"?: string;
         /**
@@ -6467,10 +6457,9 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UserNameViewProps>;
         "email"?: string;
-        "expiredOnText"?: string;
-        "expiredStatusText"?: string;
         "firstName"?: string;
         "indirectTaxNumber"?: string;
+        "individualParticipant"?: string;
         "lastName"?: string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
@@ -6478,23 +6467,18 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "networkErrorMessage"?: string;
-        "notActiveStatusText"?: string;
-        "notVerifiedStatusText"?: string;
-        "personalInformation"?: "Personal Information";
+        "participantType"?: string;
+        "personalInformation"?: string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
          */
         "requiredFieldErrorMessage"?: string;
-        "step"?: "step";
-        "stepOf"?: "of";
+        "step"?: string;
+        "stepOf"?: string;
         "submitButton"?: string;
-        "submittedOnText"?: string;
-        "taxAlertHeader"?: string;
-        "taxAlertMessage"?: string;
-        "taxDocumentSectionHeader"?: string;
-        "taxDocumentSectionSubHeader"?: string;
+        "taxAndBankingCollection"?: string;
     }
     interface SqmTaxFormStep2 {
         "backButton"?: string;

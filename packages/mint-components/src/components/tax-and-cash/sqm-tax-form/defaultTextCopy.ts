@@ -18,9 +18,22 @@ export const taxFormStepOneText: TaxFormStepOneProps["text"] = {
   indirectTaxNumber: "Tax Number",
   allowBankingCollection: "I agree to the terms",
   submitButton: "Submit",
-  step: "step",
+  step: "Step",
   stepOf: "of",
   personalInformation: "Personal Information",
+  participantType: "Participant type",
+  businessEntity: "I represent a business entity",
+  individualParticipant: "I am an individual participant",
+  taxAndBankingCollection: "Tax and banking collection",
+  error: {
+    firstName: "Enter a first name",
+    lastName: "Enter a last name",
+    email: "Enter a valid email",
+    countryCode: "Select a country",
+    currency: "Select a currency",
+    allowBankingCollection: "This field is required",
+    participantType: "Select a participant type",
+  },
 };
 
 export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
