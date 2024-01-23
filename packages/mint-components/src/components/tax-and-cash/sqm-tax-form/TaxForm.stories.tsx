@@ -30,8 +30,7 @@ const stepOneProps: TaxFormStepOneProps = {
       lastName: "Testerson",
       email: "bobtesterson@example.com",
       countryCode: "US",
-      currency: "fghdfgsd",
-      indirectTaxNumber: "sfgdfdgs",
+      currency: "CAD",
       allowBankingCollection: true,
       participantType: "individualParticipant",
     },
@@ -191,7 +190,7 @@ export const StepOneDisabled = () => {
   );
 };
 
-export const StepOneWithError = () => {
+export const StepOneWithErrors = () => {
   return (
     <TaxFormStepOneView
       {...stepOneProps}
@@ -200,10 +199,13 @@ export const StepOneWithError = () => {
         formState: {
           ...stepOneProps.states.formState,
           errors: {
-            firstName: {
-              status: "invalid",
-              message: "Please enter your first name",
-            },
+            firstName: true,
+            lastName: true,
+            email: true,
+            countryCode: true,
+            currency: true,
+            participantType: true,
+            allowBankingCollection: true,
           },
         },
       }}
