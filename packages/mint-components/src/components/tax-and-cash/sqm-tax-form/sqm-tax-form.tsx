@@ -64,7 +64,9 @@ export class TaxForm {
   @Prop() taxDocumentSectionSubHeader?: string =
     taxFormDocumentSubmittedText.taxDocumentSectionSubHeader;
   // @Prop() error?: string = taxFormDocumentSubmitted.taxAlertHeader;
-
+  @Prop() step?: "step";
+  @Prop() stepOf?: "of";
+  @Prop() personalInformation?: "Personal Information";
   /**
    * The message to be displayed when a required field is not filled.
    *
@@ -102,6 +104,7 @@ export class TaxForm {
           callbacks={{
             onSubmit: props.onSubmit,
           }}
+          //@ts-ignore
           text={props.text}
           refs={props.refs}
         />

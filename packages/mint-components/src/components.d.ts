@@ -2861,12 +2861,15 @@ export namespace Components {
         "networkErrorMessage": string;
         "notActiveStatusText": string;
         "notVerifiedStatusText": string;
+        "personalInformation"?: "Personal Information";
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
          */
         "requiredFieldErrorMessage": string;
+        "step"?: "step";
+        "stepOf"?: "of";
         "submitButton": string;
         "submittedOnText": string;
         "taxAlertHeader"?: string;
@@ -6457,12 +6460,15 @@ declare namespace LocalJSX {
         "networkErrorMessage"?: string;
         "notActiveStatusText"?: string;
         "notVerifiedStatusText"?: string;
+        "personalInformation"?: "Personal Information";
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
          */
         "requiredFieldErrorMessage"?: string;
+        "step"?: "step";
+        "stepOf"?: "of";
         "submitButton"?: string;
         "submittedOnText"?: string;
         "taxAlertHeader"?: string;

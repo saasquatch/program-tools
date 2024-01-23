@@ -4,7 +4,7 @@ import { TaxDocumentSubmittedProps } from "./sqm-tax-document-submitted-view";
 
 export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
   selectedRegion: "Country / Region of Indirect Tax",
-vatNumber: "VAT number",
+  vatNumber: "VAT number",
   province: "Province",
   indirectTaxNumber: "Indirect Tax",
 };
@@ -18,6 +18,9 @@ export const taxFormStepOneText: TaxFormStepOneProps["text"] = {
   indirectTaxNumber: "Tax Number",
   allowBankingCollection: "I agree to the terms",
   submitButton: "Submit",
+  step: "step",
+  stepOf: "of",
+  personalInformation: "Personal Information",
 };
 
 export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
@@ -32,10 +35,11 @@ export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
     awaitingReview: "Awaiting review. Submitted on",
     expiredOn: "Expired on",
   },
-  taxAlertHeader: "Your {documentType} tax form has personal information that doesn't match your profile.",
+  taxAlertHeader:
+    "Your {documentType} tax form has personal information that doesn't match your profile.",
   taxAlertMessage: "Please resubmit a new {documentType} form.",
   bankingInformationSectionHeader: "Banking Information",
   taxDocumentSectionHeader: "Tax documents",
   taxDocumentSectionSubHeader: "{documentType} Tax Form",
-  newFormButton: "Submit New Form"
-}
+  newFormButton: "Submit New Form",
+};
