@@ -26,30 +26,31 @@ export function useTaxFormStepTwo(props: any) {
 
   const { data: _countries, loading } = useQuery(GET_COUNTRIES, {});
   const countries = _countries?.countries.data;
+
   /**** DEMO DATA */
 
   const id = "zach.harrison@referralsaasquatch.com";
   const accountId = id;
   const programId = "klip-referral-program";
 
-  //@ts-ignore
-  window.widgetIdent = {
-    tenantAlias: "test_a74miwdpofztj",
-    appDomain: "https://staging.referralsaasquatch.com",
-    programId,
-  };
+  // //@ts-ignore
+  // window.widgetIdent = {
+  //   tenantAlias: "test_a74miwdpofztj",
+  //   appDomain: "https://staging.referralsaasquatch.com",
+  //   programId,
+  // };
 
-  useEffect(() => {
-    setUserIdentity({
-      accountId,
-      id,
-      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiYWNjb3VudElkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIn19.Wi8Vd5r64g5n8VNhiY-v5cqFcLwGxPG3Wi3dVSfkFZI",
-    });
-    return () => {
-      window.widgetIdent = undefined;
-      setUserIdentity(undefined);
-    };
-  }, []);
+  // useEffect(() => {
+  //   setUserIdentity({
+  //     accountId,
+  //     id,
+  //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiYWNjb3VudElkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIn19.Wi8Vd5r64g5n8VNhiY-v5cqFcLwGxPG3Wi3dVSfkFZI",
+  //   });
+  //   return () => {
+  //     window.widgetIdent = undefined;
+  //     setUserIdentity(undefined);
+  //   };
+  // }, []);
   /*** */
 
   const onSubmit = (event: any) => {

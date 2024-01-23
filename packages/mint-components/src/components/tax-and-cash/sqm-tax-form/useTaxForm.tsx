@@ -79,10 +79,10 @@ export function useTaxForm(props: TaxForm) {
       id,
       jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiYWNjb3VudElkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIn19.Wi8Vd5r64g5n8VNhiY-v5cqFcLwGxPG3Wi3dVSfkFZI",
     });
-    return () => {
-      window.widgetIdent = undefined;
-      setUserIdentity(undefined);
-    };
+    // return () => {
+    //   window.widgetIdent = undefined;
+    //   setUserIdentity(undefined);
+    // };
   }, []);
   /*** */
 

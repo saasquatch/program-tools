@@ -87,12 +87,11 @@ export const IndirectDetailsSlotView = (
             value={formState.selectedRegion}
             label={text.selectedRegion}
             disabled={states.loading}
-            // onInput={callbacks.onChange}
             // Copied from edit form, may need to keep
-            // {...(formState.errors?.selectedRegion &&
-            // formState.errors?.selectedRegion.status !== "valid"
-            //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
-            //   : [])}
+            {...(formState.errors?.selectedRegion &&
+            formState.errors?.selectedRegion.status !== "valid"
+              ? { class: "errors?tyles", helpText: "Cannot be empty" }
+              : [])}
             id="selectedRegion"
             name="/selectedRegion"
             error={
@@ -112,12 +111,11 @@ export const IndirectDetailsSlotView = (
             value={formState.province}
             label={text.province}
             disabled={states.loading}
-            // onInput={callbacks.onChange}
             // Copied from edit form, may need to keep
-            // {...(formState.errors?.province &&
-            // formState.errors?.province.status !== "valid"
-            //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
-            //   : [])}
+            {...(formState.errors?.province &&
+            formState.errors?.province.status !== "valid"
+              ? { class: "errors?tyles", helpText: "Cannot be empty" }
+              : [])}
             id="province"
             name="/province"
             error={
@@ -138,12 +136,11 @@ export const IndirectDetailsSlotView = (
             value={formState.vatNumber}
             label={text.vatNumber}
             disabled={states.loading}
-            // onInput={(e) => callbacks.onChange({ vanNumber:  })}
             // Copied from edit form, may need to keep
-            // {...(formState.errors?.vatNumber &&
-            // formState.errors?.vatNumber.status !== "valid"
-            //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
-            //   : [])}
+            {...(formState.errors?.vatNumber &&
+            formState.errors?.vatNumber.status !== "valid"
+              ? { class: "errors?tyles", helpText: "Cannot be empty" }
+              : [])}
             id="vatNumber"
             name="/vatNumber"
             error={
@@ -162,10 +159,10 @@ export const IndirectDetailsSlotView = (
             disabled={states.loading}
             // onInput={callbacks.onChange}
             // Copied from edit form, may need to keep
-            // {...(formState.errors?.indirectTaxNumber &&
-            // formState.errors?.indirectTaxNumber.status !== "valid"
-            //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
-            //   : [])}
+            {...(formState.errors?.indirectTaxNumber &&
+            formState.errors?.indirectTaxNumber.status !== "valid"
+              ? { class: "errors?tyles", helpText: "Cannot be empty" }
+              : [])}
             id="indirectTaxNumber"
             name="/indirectTaxNumber"
             error={
