@@ -34,7 +34,11 @@ export interface TaxFormStepTwoProps {
 }
 
 const style = {
-  FormWrapper: {},
+  FormWrapper: {
+    display: "flex",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+  },
   CheckboxContainer: {
     display: "flex",
     alignItems: "flex-start",
@@ -49,7 +53,26 @@ const style = {
     justifyContent: "flex-start",
     gap: "var(--sl-spacing-small)",
   },
-  BtnContainer: {},
+  TextContainer: {
+    display: "flex",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+    gap: "24px",
+    paddingBottom: "16px",
+  },
+  BtnContainer: {
+    paddingTop: "36px",
+    display: "flex",
+    gap: "8px",
+  },
+  DescriptionText: {
+    color: "var(--sl-color-neutral-500)",
+  },
+  SecondaryBtn: {
+    "&::part(base)": {
+      color: "var(--sl-color-gray-800) !important",
+    },
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -60,19 +83,20 @@ const vanillaStyle = `
       display: block;   
     }
     * {
-        p {
-            margin: 0;
-        }
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
     }
-    // sl-checkbox::part(base) {
 
-    //     position: absolute;
-    //     top: 16px;
-    //     right: 16px;
-    // }
-    // sl-checkbox::part(control) {
-    //     border-radius: 50%;
-    // }
+    p {
+      line-height: 18px;
+      color: var(--sl-color-gray-800);
+       font-size: var(--sl-font-size-small);
+    }
+
+    sl-checkbox::part(control) {
+        border-radius: 50%;
+    }
   `;
 
 export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
@@ -86,12 +110,12 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
   const { classes } = sheet;
 
   return (
-    <form class="FormWrapper" onSubmit={callbacks.onSubmit}>
+    <form class={classes.FormWrapper} onSubmit={callbacks.onSubmit}>
       <style type="text/css">
         {styleString}
         {vanillaStyle}
       </style>
-      <div>
+      <div class={classes.TextContainer}>
         <div>
           <p>
             {text.step} 2 {text.stepOf} 4
@@ -102,7 +126,9 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
 
         <div>
           <h4>{text.indirectTaxDetails}</h4>
-          <p>{text.indirectTaxDetailsDescription}</p>
+          <p class={classes.DescriptionText}>
+            {text.indirectTaxDetailsDescription}
+          </p>
         </div>
       </div>
       <div class={classes.CheckboxContainer}>
@@ -146,17 +172,6 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
       </div>
       <div class={classes.BtnContainer}>
         <sl-button
-          type="secondary"
-          loading={states.loading}
-          disabled={states.submitDisabled}
-          onClick={() => {
-            callbacks.onBack();
-          }}
-          exportparts="base: secondarybutton-base"
-        >
-          {text.backButton}
-        </sl-button>
-        <sl-button
           type="primary"
           loading={states.loading}
           disabled={states.submitDisabled}
@@ -167,6 +182,18 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
           exportparts="base: primarybutton-base"
         >
           {text.submitButton}
+        </sl-button>
+        <sl-button
+          class={classes.SecondaryBtn}
+          type="text"
+          loading={states.loading}
+          disabled={states.submitDisabled}
+          onClick={() => {
+            callbacks.onBack();
+          }}
+          exportparts="base: secondarybutton-base"
+        >
+          {text.backButton}
         </sl-button>
       </div>
     </form>
