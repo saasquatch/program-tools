@@ -30,7 +30,6 @@ const stepOneProps: TaxFormStepOneProps = {
       email: "bobtesterson@example.com",
       countryCode: "US",
       currency: "fghdfgsd",
-      indirectTaxNumber: "sfgdfdgs",
       allowBankingCollection: true,
     },
   },
@@ -43,7 +42,6 @@ const stepOneProps: TaxFormStepOneProps = {
     email: "Email",
     country: "Country",
     currency: "Currency",
-    indirectTaxNumber: "Indirect Tax Number",
     allowBankingCollection:
       "I allow impact.com to collect my tax and banking information",
     submitButton: "Continue",

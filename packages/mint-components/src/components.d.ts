@@ -2851,7 +2851,6 @@ export namespace Components {
         "expiredOnText": string;
         "expiredStatusText": string;
         "firstName": string;
-        "indirectTaxNumber": string;
         "lastName": string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
@@ -6450,7 +6449,6 @@ declare namespace LocalJSX {
         "expiredOnText"?: string;
         "expiredStatusText"?: string;
         "firstName"?: string;
-        "indirectTaxNumber"?: string;
         "lastName"?: string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.

@@ -1,21 +1,13 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
+import { DropdownFieldView } from "../../sqm-dropdown-field/sqm-dropdown-field-view";
+import { FormState } from "./useTaxForm";
 
 export interface TaxFormStepOneProps {
   states: {
     loading: boolean;
     submitDisabled: boolean;
-    formState: {
-      firstName?: string;
-      lastName?: string;
-      email?: string;
-      countryCode?: string;
-      currency?: string;
-      indirectTaxNumber?: string;
-      allowBankingCollection?: boolean;
-      errors?: any;
-      error?: string;
-    };
+    formState: FormState;
   };
   callbacks: {
     onSubmit: (props: any) => void;
@@ -26,7 +18,6 @@ export interface TaxFormStepOneProps {
     email: string;
     country: string;
     currency: string;
-    indirectTaxNumber: string;
     allowBankingCollection: string;
     step: string;
     stepOf: string;
@@ -115,6 +106,8 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
     refs,
   } = props;
   const { classes } = sheet;
+
+  console.log({ formState });
   return (
     <sl-form
       class={classes.FormWrapper}
@@ -192,8 +185,25 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
               : undefined
           }
         />
-
-        <sl-input
+        <sqm-dropdown-field
+          dropdown-label={text.country}
+          dropdown-name="country"
+          error-message={formState.errors?.country}
+        >
+          <sl-menu-item value="US">United States</sl-menu-item>
+          <sl-menu-item value="CA">Canada</sl-menu-item>
+          <sl-menu-item value="AU">Australia</sl-menu-item>
+        </sqm-dropdown-field>
+        <sqm-dropdown-field
+          dropdown-label={text.currency}
+          dropdown-name="currency"
+          error-message={formState.errors?.country}
+        >
+          <sl-menu-item value="USD">USD</sl-menu-item>
+          <sl-menu-item value="CAD">CAD</sl-menu-item>
+          <sl-menu-item value="AUD">AUD</sl-menu-item>
+        </sqm-dropdown-field>
+        {/* <sl-input
           exportparts="label: input-label"
           value={formState.countryCode}
           label={text.country}
@@ -211,8 +221,17 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
               ? formState.errors?.country.message
               : undefined
           }
-        />
-        <sl-input
+        /> */}
+        {/* <DropdownFieldView
+          content={{
+            dropdownLabel: text.currency,
+            dropdownName: "/currency",
+            errorMessage: formState.errors?.currency?.message,
+            selectOptions: [],
+          }}
+          states={{}}
+        /> */}
+        {/* <sl-input
           exportparts="label: input-label"
           value={formState.currency}
           label={text.currency}
@@ -230,18 +249,29 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
               ? formState.errors?.currency.message
               : undefined
           }
-        />
+        /> */}
         <div class={classes.CheckboxWrapper}>
           <p class={classes.BoldText}>Participant type</p>
-          <sl-radio-group label="Select an option" name="a" value="3">
+          <sl-radio-group
+            label="Select an option"
+            name="/participantType"
+            value={formState.participantType}
+          >
             <div style={{ display: "flex", flexDirection: "column" }}>
               <sl-radio
-                value="individualParticipant"
+                name="/participantType"
                 exportparts="base: radio-base"
+                value="individualParticipant"
+                checked={formState.participantType === "individualParticipant"}
               >
                 I am an individual participant
               </sl-radio>
-              <sl-radio value="businessEntity" exportparts="base: radio-base">
+              <sl-radio
+                name="/participantType"
+                value="businessEntity"
+                exportparts="base: radio-base"
+                checked={formState.participantType === "businessEntity"}
+              >
                 I represent an business entity
               </sl-radio>
             </div>
@@ -251,8 +281,10 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
           <p class={classes.BoldText}>Tax and banking collection</p>
           <sl-checkbox
             exportparts="label: input-label"
-            value={formState.allowBankingCollection}
             checked={formState.allowBankingCollection === true}
+            onSl-change={(e) => {
+              e.target.value = e.target.checked;
+            }}
             disabled={states.loading}
             // Copied from edit form, may need to keep
             // {...(formState.errors?.allowBankingCollection &&

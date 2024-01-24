@@ -15,7 +15,6 @@ export const taxFormStepOneText: TaxFormStepOneProps["text"] = {
   email: "Email",
   country: "Country",
   currency: "Currency",
-  indirectTaxNumber: "Tax Number",
   allowBankingCollection: "I agree to the terms",
   submitButton: "Submit",
   step: "step",
