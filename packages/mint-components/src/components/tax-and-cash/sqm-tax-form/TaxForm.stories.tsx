@@ -15,7 +15,7 @@ import {
   RegisteredInCanada,
   RegisteredInOtherRegion,
 } from "./small-views/SlotViews.stories";
-import { taxFormStepOneText } from "./defaultTextCopy";
+import { taxFormStepOneText, taxFormStepTwoText } from "./defaultTextCopy";
 
 export default {
   title: "Components/Tax Form",
@@ -58,22 +58,7 @@ const stepTwoProps: TaxFormStepTwoProps = {
     onBack: () => console.log("Submit"),
   },
   refs: { formRef: { current: null } },
-  text: {
-    step: "Step",
-    stepOf: "of",
-    indirectTax: "Indirect Tax",
-    indirectTaxDescription:
-      "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.",
-    indirectTaxDetails: "Indirect Tax Details",
-    indirectTaxDetailsDescription:
-      "Not sure if you are registered for indirect tax? Contact our Support team to find out more.",
-    hstCanada: "I am registered for HST in Canada",
-    otherRegion:
-      "I am registered for Indirect Tax in a different Country / Region",
-    notRegistered: "I am not registered for Indirect Tax",
-    submitButton: "Continue",
-    backButton: "Back",
-  },
+  text: taxFormStepTwoText,
 };
 
 const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
@@ -216,6 +201,23 @@ export const StepOneWithErrors = () => {
 // STEP TWO
 export const StepTwo = () => {
   return <TaxFormStepTwoView {...stepTwoProps} />;
+};
+
+export const StepTwoWithError = () => {
+  return (
+    <TaxFormStepTwoView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        formState: {
+          ...stepTwoProps.states.formState,
+          errors: {
+            taxDetails: true,
+          },
+        },
+      }}
+    />
+  );
 };
 
 export const StepTwoHSTChecked = () => {

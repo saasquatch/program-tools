@@ -1,6 +1,7 @@
 import { IndirectDetailsSlotViewProps } from "./small-views/IndirectTaxDetailsView";
 import { TaxFormStepOneProps } from "./sqm-tax-form-step-1-view";
 import { TaxDocumentSubmittedProps } from "./sqm-tax-document-submitted-view";
+import { TaxFormStepTwoProps } from "./sqm-tax-form-step-2-view";
 
 export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
   selectedRegion: "Country / Region of Indirect Tax",
@@ -33,6 +34,26 @@ export const taxFormStepOneText: TaxFormStepOneProps["text"] = {
     currency: "Select a currency",
     allowBankingCollection: "This field is required",
     participantType: "Select a participant type",
+  },
+};
+
+export const taxFormStepTwoText: TaxFormStepTwoProps["text"] = {
+  step: "Step",
+  stepOf: "of",
+  indirectTax: "Indirect Tax",
+  indirectTaxDescription:
+    "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.",
+  indirectTaxDetails: "Indirect Tax Details",
+  indirectTaxDetailsDescription:
+    "Not sure if you are registered for indirect tax? Contact our Support team to find out more.",
+  hstCanada: "I am registered for HST in Canada",
+  otherRegion:
+    "I am registered for Indirect Tax in a different Country / Region",
+  notRegistered: "I am not registered for Indirect Tax",
+  submitButton: "Continue",
+  backButton: "Back",
+  error: {
+    taxDetails: "This field is required",
   },
 };
 
