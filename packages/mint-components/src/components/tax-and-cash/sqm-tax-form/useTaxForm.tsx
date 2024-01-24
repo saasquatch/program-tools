@@ -178,17 +178,11 @@ export function useTaxForm(props: TaxForm) {
       loading: true,
       error: "",
     });
-    const { email, password } = formData;
-    delete formData.email;
-    delete formData.password;
-    delete formData.confirmPassword;
+
     formData = { ...formData };
 
-    const variables = {
-      email,
-      password,
-      formData,
-    };
+    console.log({ formData });
+
     // try {
     //   const result = await request(variables);
     //   if (result instanceof Error) {
@@ -207,7 +201,7 @@ export function useTaxForm(props: TaxForm) {
     //   });
     // }
 
-    setStep("/2");
+    // setStep("/2");
   }
 
   return {
