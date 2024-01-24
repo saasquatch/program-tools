@@ -15,6 +15,7 @@ import {
   RegisteredInCanada,
   RegisteredInOtherRegion,
 } from "./small-views/SlotViews.stories";
+import { taxFormStepOneText, taxFormStepTwoText } from "./defaultTextCopy";
 
 export default {
   title: "Components/Tax Form",
@@ -29,26 +30,15 @@ const stepOneProps: TaxFormStepOneProps = {
       lastName: "Testerson",
       email: "bobtesterson@example.com",
       countryCode: "US",
-      currency: "fghdfgsd",
+      currency: "CAD",
       allowBankingCollection: true,
+      participantType: "individualParticipant",
     },
   },
   callbacks: {
     onSubmit: (props: any) => console.log("Submit"),
   },
-  text: {
-    firstName: "First name",
-    lastName: "Last name",
-    email: "Email",
-    country: "Country",
-    currency: "Currency",
-    allowBankingCollection:
-      "I allow impact.com to collect my tax and banking information",
-    submitButton: "Continue",
-    step: "step",
-    stepOf: "of",
-    personalInformation: "Personal Information",
-  },
+  text: taxFormStepOneText,
   refs: {
     formRef: () => {},
   },
@@ -67,22 +57,8 @@ const stepTwoProps: TaxFormStepTwoProps = {
     onChange: (e) => console.log("Submit"),
     onBack: () => console.log("Submit"),
   },
-  text: {
-    step: "Step",
-    stepOf: "of",
-    indirectTax: "Indirect Tax",
-    indirectTaxDescription:
-      "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.",
-    indirectTaxDetails: "Indirect Tax Details",
-    indirectTaxDetailsDescription:
-      "Not sure if you are registered for indirect tax? Contact our Support team to find out more.",
-    hstCanada: "I am registered for HST in Canada",
-    otherRegion:
-      "I am registered for Indirect Tax in a different Country / Region",
-    notRegistered: "I am not registered for Indirect Tax",
-    submitButton: "Continue",
-    backButton: "Back",
-  },
+  refs: { formRef: { current: null } },
+  text: taxFormStepTwoText,
 };
 
 const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
@@ -199,7 +175,7 @@ export const StepOneDisabled = () => {
   );
 };
 
-export const StepOneWithError = () => {
+export const StepOneWithErrors = () => {
   return (
     <TaxFormStepOneView
       {...stepOneProps}
@@ -208,10 +184,13 @@ export const StepOneWithError = () => {
         formState: {
           ...stepOneProps.states.formState,
           errors: {
-            firstName: {
-              status: "invalid",
-              message: "Please enter your first name",
-            },
+            firstName: true,
+            lastName: true,
+            email: true,
+            countryCode: true,
+            currency: true,
+            participantType: true,
+            allowBankingCollection: true,
           },
         },
       }}
@@ -222,6 +201,23 @@ export const StepOneWithError = () => {
 // STEP TWO
 export const StepTwo = () => {
   return <TaxFormStepTwoView {...stepTwoProps} />;
+};
+
+export const StepTwoWithError = () => {
+  return (
+    <TaxFormStepTwoView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        formState: {
+          ...stepTwoProps.states.formState,
+          errors: {
+            taxDetails: true,
+          },
+        },
+      }}
+    />
+  );
 };
 
 export const StepTwoHSTChecked = () => {

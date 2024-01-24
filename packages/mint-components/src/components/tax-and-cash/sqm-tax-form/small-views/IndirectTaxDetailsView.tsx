@@ -15,7 +15,6 @@ export interface IndirectDetailsSlotViewProps {
     };
   };
   callbacks: {
-    onSubmit: (props: any) => void;
     onChange: (e) => void;
   };
   text: {
@@ -74,7 +73,7 @@ export const IndirectDetailsSlotView = (
   const { classes } = sheet;
 
   return (
-    <form class={classes.Container} onSubmit={callbacks.onSubmit}>
+    <form class={classes.Container}>
       <style type="text/css">
         {styleString}
         {vanillaStyle}
@@ -89,10 +88,10 @@ export const IndirectDetailsSlotView = (
             label={text.selectedRegion}
             disabled={states.loading}
             // Copied from edit form, may need to keep
-            // {...(formState.errors?.selectedRegion &&
-            // formState.errors?.selectedRegion.status !== "valid"
-            //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
-            //   : [])}
+            {...(formState.errors?.selectedRegion &&
+            formState.errors?.selectedRegion.status !== "valid"
+              ? { class: "errors?tyles", helpText: "Cannot be empty" }
+              : [])}
             id="selectedRegion"
             name="/selectedRegion"
             error={
@@ -113,10 +112,10 @@ export const IndirectDetailsSlotView = (
             label={text.province}
             disabled={states.loading}
             // Copied from edit form, may need to keep
-            // {...(formState.errors?.province &&
-            // formState.errors?.province.status !== "valid"
-            //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
-            //   : [])}
+            {...(formState.errors?.province &&
+            formState.errors?.province.status !== "valid"
+              ? { class: "errors?tyles", helpText: "Cannot be empty" }
+              : [])}
             id="province"
             name="/province"
             error={
@@ -126,7 +125,7 @@ export const IndirectDetailsSlotView = (
                 : undefined
             }
           >
-            <sl-option value="option-1">Canada</sl-option>
+            <sl-option value="option-1">British Columbia</sl-option>
             <sl-option value="option-2">United Kingdom</sl-option>
           </sl-select>
         )}
@@ -138,10 +137,10 @@ export const IndirectDetailsSlotView = (
             label={text.vatNumber}
             disabled={states.loading}
             // Copied from edit form, may need to keep
-            // {...(formState.errors?.vatNumber &&
-            // formState.errors?.vatNumber.status !== "valid"
-            //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
-            //   : [])}
+            {...(formState.errors?.vatNumber &&
+            formState.errors?.vatNumber.status !== "valid"
+              ? { class: "errors?tyles", helpText: "Cannot be empty" }
+              : [])}
             id="vatNumber"
             name="/vatNumber"
             error={
@@ -158,11 +157,12 @@ export const IndirectDetailsSlotView = (
             value={formState.indirectTaxNumber}
             label={text.indirectTaxNumber}
             disabled={states.loading}
+            // onInput={callbacks.onChange}
             // Copied from edit form, may need to keep
-            // {...(formState.errors?.indirectTaxNumber &&
-            // formState.errors?.indirectTaxNumber.status !== "valid"
-            //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
-            //   : [])}
+            {...(formState.errors?.indirectTaxNumber &&
+            formState.errors?.indirectTaxNumber.status !== "valid"
+              ? { class: "errors?tyles", helpText: "Cannot be empty" }
+              : [])}
             id="indirectTaxNumber"
             name="/indirectTaxNumber"
             error={
