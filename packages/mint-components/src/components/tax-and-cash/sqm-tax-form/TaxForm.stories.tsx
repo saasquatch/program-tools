@@ -12,10 +12,20 @@ import {
   TaxDocumentSubmittedView,
 } from "./sqm-tax-document-submitted-view";
 import {
+  DocusignWrapper,
   RegisteredInCanada,
   RegisteredInOtherRegion,
+  TaxFormSelection,
 } from "./small-views/SlotViews.stories";
-import { taxFormStepOneText } from "./defaultTextCopy";
+import {
+  taxFormStepOneText,
+  taxFormStepThreeText,
+  taxFormStepTwoText,
+} from "./defaultTextCopy";
+import {
+  TaxFormStepThreeView,
+  TaxFormStepThreeViewProps,
+} from "./sqm-tax-form-step-3-view";
 
 export default {
   title: "Components/Tax Form",
@@ -30,8 +40,7 @@ const stepOneProps: TaxFormStepOneProps = {
       lastName: "Testerson",
       email: "bobtesterson@example.com",
       countryCode: "US",
-      currency: "fghdfgsd",
-      indirectTaxNumber: "sfgdfdgs",
+      currency: "CAD",
       allowBankingCollection: true,
       participantType: "individualParticipant",
     },
@@ -59,22 +68,7 @@ const stepTwoProps: TaxFormStepTwoProps = {
     onBack: () => console.log("Submit"),
   },
   refs: { formRef: { current: null } },
-  text: {
-    step: "Step",
-    stepOf: "of",
-    indirectTax: "Indirect Tax",
-    indirectTaxDescription:
-      "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.",
-    indirectTaxDetails: "Indirect Tax Details",
-    indirectTaxDetailsDescription:
-      "Not sure if you are registered for indirect tax? Contact our Support team to find out more.",
-    hstCanada: "I am registered for HST in Canada",
-    otherRegion:
-      "I am registered for Indirect Tax in a different Country / Region",
-    notRegistered: "I am not registered for Indirect Tax",
-    submitButton: "Continue",
-    backButton: "Back",
-  },
+  text: taxFormStepTwoText,
 };
 
 const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
@@ -85,12 +79,8 @@ const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: {
-      active: "Active",
-    },
-    badge: {
-      submittedOn: "Submitted On",
-    },
+    statusTextActive: "Active",
+    badgeTextSubmittedOn: "Submitted On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
     taxAlertHeader:
@@ -109,12 +99,8 @@ const documentSubmittedNotVerifiedProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: {
-      notVerified: "Not Verified",
-    },
-    badge: {
-      awaitingReview: "Awaiting Review. Submitted On",
-    },
+    statusTextNotVerified: "Not Verified",
+    badgeTextAwaitingReview: "Awaiting Review. Submitted On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
     taxDocumentSectionSubHeader: "W9 Tax Documents",
@@ -129,12 +115,8 @@ const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: {
-      notActive: "Not Active",
-    },
-    badge: {
-      submittedOn: "Submitted On",
-    },
+    statusTextNotActive: "Not Active",
+    badgeTextSubmittedOn: "Submitted On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
     taxAlertHeader:
@@ -153,12 +135,8 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: {
-      expired: "Expired",
-    },
-    badge: {
-      expiredOn: "Expired On",
-    },
+    statusTextExpired: "Expired",
+    badgeTextSubmittedOn: "Expired On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
     taxAlertHeader: "Your W8-BEN-E tax form has expired. ",
@@ -166,6 +144,22 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
     taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
     newFormButton: "Submit New Form",
   },
+};
+
+const stepThreeProps: TaxFormStepThreeViewProps = {
+  states: {
+    loading: false,
+    submitDisabled: false,
+    formState: {
+      formSubmisson: false,
+    },
+    formSlot: <DocusignWrapper />,
+  },
+  callbacks: {
+    onSubmit: (props: any) => console.log(props),
+    onBack: () => console.log("Back"),
+  },
+  text: taxFormStepThreeText,
 };
 
 // STEP ONE
@@ -191,7 +185,7 @@ export const StepOneDisabled = () => {
   );
 };
 
-export const StepOneWithError = () => {
+export const StepOneWithErrors = () => {
   return (
     <TaxFormStepOneView
       {...stepOneProps}
@@ -200,10 +194,13 @@ export const StepOneWithError = () => {
         formState: {
           ...stepOneProps.states.formState,
           errors: {
-            firstName: {
-              status: "invalid",
-              message: "Please enter your first name",
-            },
+            firstName: true,
+            lastName: true,
+            email: true,
+            countryCode: true,
+            currency: true,
+            participantType: true,
+            allowBankingCollection: true,
           },
         },
       }}
@@ -214,6 +211,23 @@ export const StepOneWithError = () => {
 // STEP TWO
 export const StepTwo = () => {
   return <TaxFormStepTwoView {...stepTwoProps} />;
+};
+
+export const StepTwoWithError = () => {
+  return (
+    <TaxFormStepTwoView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        formState: {
+          ...stepTwoProps.states.formState,
+          errors: {
+            taxDetails: true,
+          },
+        },
+      }}
+    />
+  );
 };
 
 export const StepTwoHSTChecked = () => {
@@ -258,6 +272,23 @@ export const StepTwoNotRegisteredChecked = () => {
           ...stepTwoProps.states.formState,
           checked: "notRegistered",
         },
+      }}
+    />
+  );
+};
+
+// STEP THREE
+export const StepThreeWithDocusign = () => {
+  return <TaxFormStepThreeView {...stepThreeProps} />;
+};
+
+export const StepThreeWithFormSelector = () => {
+  return (
+    <TaxFormStepThreeView
+      {...stepThreeProps}
+      states={{
+        ...stepThreeProps.states,
+        formSlot: <TaxFormSelection />,
       }}
     />
   );

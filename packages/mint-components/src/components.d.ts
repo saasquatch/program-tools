@@ -2835,11 +2835,24 @@ export namespace Components {
          */
         "demoData"?: DemoData<UserNameViewProps>;
     }
+    interface SqmTaxDocumentSubmitted {
+        "badgeTextAwaitingReview"?: string;
+        "badgeTextExpiredOn"?: string;
+        "badgeTextSubmittedOn"?: string;
+        "bankingInformationSectionHeader": string;
+        "newFormButton": string;
+        "statusTextActive"?: string;
+        "statusTextExpired"?: string;
+        "statusTextNotActive"?: string;
+        "statusTextNotVerified"?: string;
+        "taxAlertHeader"?: string;
+        "taxAlertMessage"?: string;
+        "taxDocumentSectionHeader": string;
+        "taxDocumentSectionSubHeader": string;
+    }
     interface SqmTaxForm {
-        "activeStatusText": string;
         "allowBankingCollection": string;
-        "awaitingReviewText": string;
-        "bankingInformationHeader": string;
+        "businessEntity"?: string;
         "country": string;
         "currency": string;
         /**
@@ -2848,10 +2861,8 @@ export namespace Components {
          */
         "demoData"?: DemoData<UserNameViewProps>;
         "email": string;
-        "expiredOnText": string;
-        "expiredStatusText": string;
         "firstName": string;
-        "indirectTaxNumber": string;
+        "individualParticipant"?: string;
         "lastName": string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
@@ -2859,23 +2870,18 @@ export namespace Components {
           * @uiWidget textArea
          */
         "networkErrorMessage": string;
-        "notActiveStatusText": string;
-        "notVerifiedStatusText": string;
-        "personalInformation"?: "Personal Information";
+        "participantType"?: string;
+        "personalInformation"?: string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
          */
         "requiredFieldErrorMessage": string;
-        "step"?: "step";
-        "stepOf"?: "of";
+        "step"?: string;
+        "stepOf"?: string;
         "submitButton": string;
-        "submittedOnText": string;
-        "taxAlertHeader"?: string;
-        "taxAlertMessage"?: string;
-        "taxDocumentSectionHeader": string;
-        "taxDocumentSectionSubHeader"?: string;
+        "taxAndBankingCollection"?: string;
     }
     interface SqmTaxFormStep2 {
         "backButton": string;
@@ -3536,6 +3542,12 @@ declare global {
         prototype: HTMLSqmTaxAndCashElement;
         new (): HTMLSqmTaxAndCashElement;
     };
+    interface HTMLSqmTaxDocumentSubmittedElement extends Components.SqmTaxDocumentSubmitted, HTMLStencilElement {
+    }
+    var HTMLSqmTaxDocumentSubmittedElement: {
+        prototype: HTMLSqmTaxDocumentSubmittedElement;
+        new (): HTMLSqmTaxDocumentSubmittedElement;
+    };
     interface HTMLSqmTaxFormElement extends Components.SqmTaxForm, HTMLStencilElement {
     }
     var HTMLSqmTaxFormElement: {
@@ -3677,6 +3689,7 @@ declare global {
         "sqm-tabs": HTMLSqmTabsElement;
         "sqm-task-card": HTMLSqmTaskCardElement;
         "sqm-tax-and-cash": HTMLSqmTaxAndCashElement;
+        "sqm-tax-document-submitted": HTMLSqmTaxDocumentSubmittedElement;
         "sqm-tax-form": HTMLSqmTaxFormElement;
         "sqm-tax-form-step-2": HTMLSqmTaxFormStep2Element;
         "sqm-text": HTMLSqmTextElement;
@@ -6454,11 +6467,24 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UserNameViewProps>;
     }
+    interface SqmTaxDocumentSubmitted {
+        "badgeTextAwaitingReview"?: string;
+        "badgeTextExpiredOn"?: string;
+        "badgeTextSubmittedOn"?: string;
+        "bankingInformationSectionHeader"?: string;
+        "newFormButton"?: string;
+        "statusTextActive"?: string;
+        "statusTextExpired"?: string;
+        "statusTextNotActive"?: string;
+        "statusTextNotVerified"?: string;
+        "taxAlertHeader"?: string;
+        "taxAlertMessage"?: string;
+        "taxDocumentSectionHeader"?: string;
+        "taxDocumentSectionSubHeader"?: string;
+    }
     interface SqmTaxForm {
-        "activeStatusText"?: string;
         "allowBankingCollection"?: string;
-        "awaitingReviewText"?: string;
-        "bankingInformationHeader"?: string;
+        "businessEntity"?: string;
         "country"?: string;
         "currency"?: string;
         /**
@@ -6467,10 +6493,8 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UserNameViewProps>;
         "email"?: string;
-        "expiredOnText"?: string;
-        "expiredStatusText"?: string;
         "firstName"?: string;
-        "indirectTaxNumber"?: string;
+        "individualParticipant"?: string;
         "lastName"?: string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
@@ -6478,23 +6502,18 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "networkErrorMessage"?: string;
-        "notActiveStatusText"?: string;
-        "notVerifiedStatusText"?: string;
-        "personalInformation"?: "Personal Information";
+        "participantType"?: string;
+        "personalInformation"?: string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
          */
         "requiredFieldErrorMessage"?: string;
-        "step"?: "step";
-        "stepOf"?: "of";
+        "step"?: string;
+        "stepOf"?: string;
         "submitButton"?: string;
-        "submittedOnText"?: string;
-        "taxAlertHeader"?: string;
-        "taxAlertMessage"?: string;
-        "taxDocumentSectionHeader"?: string;
-        "taxDocumentSectionSubHeader"?: string;
+        "taxAndBankingCollection"?: string;
     }
     interface SqmTaxFormStep2 {
         "backButton"?: string;
@@ -6693,6 +6712,7 @@ declare namespace LocalJSX {
         "sqm-tabs": SqmTabs;
         "sqm-task-card": SqmTaskCard;
         "sqm-tax-and-cash": SqmTaxAndCash;
+        "sqm-tax-document-submitted": SqmTaxDocumentSubmitted;
         "sqm-tax-form": SqmTaxForm;
         "sqm-tax-form-step-2": SqmTaxFormStep2;
         "sqm-text": SqmText;
@@ -6799,6 +6819,7 @@ declare module "@stencil/core" {
             "sqm-tabs": LocalJSX.SqmTabs & JSXBase.HTMLAttributes<HTMLSqmTabsElement>;
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
             "sqm-tax-and-cash": LocalJSX.SqmTaxAndCash & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashElement>;
+            "sqm-tax-document-submitted": LocalJSX.SqmTaxDocumentSubmitted & JSXBase.HTMLAttributes<HTMLSqmTaxDocumentSubmittedElement>;
             "sqm-tax-form": LocalJSX.SqmTaxForm & JSXBase.HTMLAttributes<HTMLSqmTaxFormElement>;
             "sqm-tax-form-step-2": LocalJSX.SqmTaxFormStep2 & JSXBase.HTMLAttributes<HTMLSqmTaxFormStep2Element>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
