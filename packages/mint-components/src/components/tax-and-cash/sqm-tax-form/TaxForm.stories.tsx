@@ -84,12 +84,8 @@ const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: {
-      active: "Active",
-    },
-    badge: {
-      submittedOn: "Submitted On",
-    },
+    statusTextActive: "Active",
+    badgeTextSubmittedOn: "Submitted On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
     taxAlertHeader:
@@ -108,12 +104,8 @@ const documentSubmittedNotVerifiedProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: {
-      notVerified: "Not Verified",
-    },
-    badge: {
-      awaitingReview: "Awaiting Review. Submitted On",
-    },
+    statusTextNotVerified: "Not Verified",
+    badgeTextAwaitingReview: "Awaiting Review. Submitted On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
     taxDocumentSectionSubHeader: "W9 Tax Documents",
@@ -128,12 +120,8 @@ const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: {
-      notActive: "Not Active",
-    },
-    badge: {
-      submittedOn: "Submitted On",
-    },
+    statusTextNotActive: "Not Active",
+    badgeTextSubmittedOn: "Submitted On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
     taxAlertHeader:
@@ -152,12 +140,8 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: {
-      expired: "Expired",
-    },
-    badge: {
-      expiredOn: "Expired On",
-    },
+    statusTextExpired: "Expired",
+    badgeTextSubmittedOn: "Expired On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
     taxAlertHeader: "Your W8-BEN-E tax form has expired. ",

@@ -140,39 +140,43 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
         </div>
       </div>
       <div class={classes.CheckboxContainer}>
-        <sl-radio-group name="a" value={formState.checked}>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <sl-radio
-              value="hstCanada"
-              exportparts="base: radio-base"
-              id="hstCanada"
-              name="hstCanada"
-            >
-              {text.hstCanada}
-            </sl-radio>
-            {formState.checked === "hstCanada" &&
-              states.registeredInCanadaDetailsSlot}
-            <sl-radio
-              value="otherRegion"
-              id="otherRegion"
-              exportparts="base: radio-base"
-              name="otherRegion"
-            >
-              {text.otherRegion}
-            </sl-radio>
-            {formState.checked === "otherRegion" &&
-              states.registeredInDifferentCountryDetailsSlot}
-
-            <sl-radio
-              value="notRegistered"
-              id="notRegistered"
-              exportparts="base: radio-base"
-              name="notRegistered"
-            >
-              {text.notRegistered}
-            </sl-radio>
-          </div>
-        </sl-radio-group>
+        <sl-checkbox
+          exportparts="label: input-label"
+          value={formState.checked === "hstCanada"}
+          checked={formState.checked === "hstCanada"}
+          onInput={() => callbacks.onChange("hstCanada")}
+          disabled={states.loading}
+          id="hstCanada"
+          name="/hstCanada"
+        >
+          {text.hstCanada}
+        </sl-checkbox>
+        {formState.checked === "hstCanada" &&
+          states.registeredInCanadaDetailsSlot}
+        <sl-checkbox
+          exportparts="label: input-label"
+          value={formState.checked === "otherRegion"}
+          checked={formState.checked === "otherRegion"}
+          onInput={() => callbacks.onChange("otherRegion")}
+          disabled={states.loading}
+          id="otherRegion"
+          name="/otherRegion"
+        >
+          {text.otherRegion}
+        </sl-checkbox>
+        {formState.checked === "otherRegion" &&
+          states.registeredInDifferentCountryDetailsSlot}
+        <sl-checkbox
+          exportparts="label: input-label"
+          value={formState.checked === "notRegistered"}
+          checked={formState.checked === "notRegistered"}
+          onInput={() => callbacks.onChange("notRegistered")}
+          disabled={states.loading}
+          id="notRegistered"
+          name="/notRegistered"
+        >
+          {text.notRegistered}
+        </sl-checkbox>
       </div>
       <div class={classes.BtnContainer}>
         <sl-button
@@ -188,7 +192,7 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
           class={classes.SecondaryBtn}
           type="text"
           loading={states.loading}
-          disabled={states.submitDisabled}
+          // disabled={states.submitDisabled}
           onClick={() => {
             callbacks.onBack();
           }}

@@ -1,9 +1,9 @@
-import { setUserIdentity, useQuery } from "@saasquatch/component-boilerplate";
-import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
-import { useParent } from "../../../utils/useParentState";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/useTaxAndCash";
+import { useQuery } from "@saasquatch/component-boilerplate";
+import { useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
+import { useParent } from "../../../utils/useParentState";
+import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/useTaxAndCash";
 
 const GET_COUNTRIES = gql`
   query getCurrencies {
@@ -18,13 +18,17 @@ const GET_COUNTRIES = gql`
 
 export function useTaxFormStepTwo(props: any) {
   const formRef = useRef<HTMLFormElement>(null);
+  const [loading, setLoading] = useState(false);
   const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
   const [option, setOption] = useState<
     "hstCanada" | "otherRegion" | "notRegistered"
   >(null);
   const [errors, setErrors] = useState({});
 
-  const { data: _countries, loading } = useQuery(GET_COUNTRIES, {});
+  const { data: _countries, loading: countriesLoading } = useQuery(
+    GET_COUNTRIES,
+    {}
+  );
   const countries = _countries?.countries.data;
 
   /**** DEMO DATA */
@@ -53,9 +57,15 @@ export function useTaxFormStepTwo(props: any) {
   // }, []);
   /*** */
 
-  const onSubmit = (event: any) => {
-    let formData: Record<string, string> = {};
+  const onSubmit = async (event: any) => {
+    if (!option) {
+      setErrors({ taxOption: true });
+      return;
+    }
+
+    let formData: Record<string, string> = { taxOption: option };
     let validationErrors: Record<string, string> = {};
+
     const controls = event.target.getFormControls();
     const optionFields = ["hstCanada", "otherRegion", "notRegistered"];
     controls.forEach((control) => {
@@ -63,6 +73,7 @@ export function useTaxFormStepTwo(props: any) {
 
       const key = control.name;
       const value = control.value;
+      console.log({ key, value });
       JSONPointer.set(formData, key, value);
 
       if (control.required && !value) {
@@ -70,27 +81,34 @@ export function useTaxFormStepTwo(props: any) {
       }
     });
 
-    if (!option) JSONPointer.set(validationErrors, "taxOption", true);
-
     if (Object.keys(validationErrors).length) {
       setErrors(validationErrors);
     }
 
     console.log({ formData });
 
+    setLoading(true);
     try {
       // Backend request
-      // setStep("/3");
+      setStep("/3");
     } catch (e) {
       setErrors({ graphqlError: true });
+    } finally {
+      setLoading(false);
     }
   };
 
+  const onBack = () => {
+    setStep("/1");
+  };
+
   return {
-    loading,
+    loading: loading || countriesLoading,
     countries,
     text: props,
+    onBack,
     onSubmit,
+    submitDisabled: !option,
     option,
     setOption,
     formRef,

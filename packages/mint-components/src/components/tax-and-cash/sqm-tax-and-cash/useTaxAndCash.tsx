@@ -13,6 +13,8 @@ export type TaxContextType = {
 export function useTaxAndCash() {
   const host = useHost();
 
+  // TODO: Load tax document status info
+
   const [step, setStep] = useParentState<string>({
     host,
     namespace: TAX_CONTEXT_NAMESPACE,

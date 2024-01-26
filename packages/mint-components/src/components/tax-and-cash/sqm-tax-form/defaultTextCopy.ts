@@ -37,17 +37,13 @@ export const taxFormStepOneText: TaxFormStepOneProps["text"] = {
 };
 
 export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
-  status: {
-    active: "Active",
-    notActive: "Not Active",
-    notVerified: "Not Verified",
-    expired: "Expired",
-  },
-  badge: {
-    submittedOn: "Submitted on",
-    awaitingReview: "Awaiting review. Submitted on",
-    expiredOn: "Expired on",
-  },
+  statusTextActive: "Active",
+  statusTextNotActive: "Not Active",
+  statusTextNotVerified: "Not Verified",
+  statusTextExpired: "Expired",
+  badgeTextSubmittedOn: "Submitted on",
+  badgeTextAwaitingReview: "Awaiting review. Submitted on",
+  badgeTextExpiredOn: "Expired on",
   taxAlertHeader:
     "Your {documentType} tax form has personal information that doesn't match your profile.",
   taxAlertMessage: "Please resubmit a new {documentType} form.",

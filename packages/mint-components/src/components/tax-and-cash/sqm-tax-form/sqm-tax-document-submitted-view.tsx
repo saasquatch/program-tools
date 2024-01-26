@@ -11,21 +11,17 @@ export interface TaxDocumentSubmittedProps {
   };
   callbacks: { onClick: (props: any) => void };
   text: {
-    status: {
-      active?: string;
-      notActive?: string;
-      notVerified?: string;
-      expired?: string;
-    };
-    badge: {
-      submittedOn?: string;
-      awaitingReview?: string;
-      expiredOn?: string;
-    };
-    bankingInformationSectionHeader: string;
-    taxDocumentSectionHeader: string;
+    statusTextActive?: string;
+    statusTextNotActive?: string;
+    statusTextNotVerified?: string;
+    statusTextExpired?: string;
+    badgeTextSubmittedOn?: string;
+    badgeTextAwaitingReview?: string;
+    badgeTextExpiredOn?: string;
     taxAlertHeader?: string;
     taxAlertMessage?: string;
+    bankingInformationSectionHeader: string;
+    taxDocumentSectionHeader: string;
     taxDocumentSectionSubHeader: string;
     newFormButton: string;
   };
@@ -70,40 +66,40 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
     NOT_VERIFIED: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
         <sl-badge type="info" pill class={sheet.classes.BadgeContainer}>
-          {text.status.notVerified}
+          {text.statusTextNotVerified}
         </sl-badge>
         <p>
-          {text.badge.awaitingReview} {states.dateSubmitted}
+          {text.badgeTextAwaitingReview} {states.dateSubmitted}
         </p>
       </div>
     ),
     ACTIVE: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
         <sl-badge type="success" pill class={sheet.classes.BadgeContainer}>
-          {text.status.active}
+          {text.statusTextActive}
         </sl-badge>
         <p>
-          {text.badge.submittedOn} {states.dateSubmitted}
+          {text.badgeTextSubmittedOn} {states.dateSubmitted}
         </p>
       </div>
     ),
     NOT_ACTIVE: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
         <sl-badge type="danger" pill class={sheet.classes.BadgeContainer}>
-          {text.status.notActive}
+          {text.statusTextNotActive}
         </sl-badge>
         <p>
-          {text.badge.submittedOn} {states.dateSubmitted}
+          {text.badgeTextSubmittedOn} {states.dateSubmitted}
         </p>
       </div>
     ),
     EXPIRED: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
         <sl-badge type="danger" pill class={sheet.classes.BadgeContainer}>
-          {text.status.expired}
+          {text.statusTextExpired}
         </sl-badge>
         <p>
-          {text.badge.expiredOn} {states.dateSubmitted}
+          {text.badgeTextExpiredOn} {states.dateExpired}
         </p>
       </div>
     ),
