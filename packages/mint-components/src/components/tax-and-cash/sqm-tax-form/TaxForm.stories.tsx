@@ -37,6 +37,7 @@ const stepOneProps: TaxFormStepOneProps = {
   },
   callbacks: {
     onSubmit: (props: any) => console.log("Submit"),
+    onRadioClick: (props: any) => console.log("Radio Click"),
   },
   text: taxFormStepOneText,
   refs: {
