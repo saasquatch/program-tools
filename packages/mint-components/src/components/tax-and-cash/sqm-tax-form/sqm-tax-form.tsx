@@ -99,6 +99,7 @@ export class TaxForm {
           states={{
             loading: props.loading,
             submitDisabled: false,
+            //@ts-ignore
             formState: props.formState,
           }}
           callbacks={{

@@ -79,6 +79,7 @@ import * as TaxForm from "../tax-and-cash/sqm-tax-form/TaxForm.stories";
 import * as TaxFormSlots from "../tax-and-cash/sqm-tax-form/small-views/SlotViews.stories";
 import * as RadioCard from "../sqm-radio-card/RadioCard.stories";
 import * as ProgressBar from "../sqm-task-card/progress-bar/ProgressBar.stories";
+import * as PayoutDetailsCard from "../tax-and-cash/sqm-payout-details-card/PayoutDetailsCard.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -164,6 +165,7 @@ const stories = [
   RadioCard,
   ProgressBar,
   TaxFormSlots,
+  PayoutDetailsCard,
 ];
 
 /**
