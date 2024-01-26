@@ -19,6 +19,7 @@ export interface TaxFormStepOneProps {
   };
   callbacks: {
     onSubmit: (props: any) => void;
+    onRadioClick: (value: string) => void;
   };
   text: {
     firstName: string;
@@ -140,6 +141,8 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
     refs,
   } = props;
   const { classes } = sheet;
+
+  console.log({ formState });
   return (
     <sl-form
       class={classes.FormWrapper}
@@ -165,91 +168,106 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
           value={formState.firstName}
           label={text.firstName}
           disabled={states.loading}
-          {...(formState.errors?.firstName && {
-            class: classes.ErrorInput,
-            helpText: text.error.firstName,
-          })}
+          {...(formState.errors?.firstName
+            ? {
+                class: classes.ErrorInput,
+                helpText: formState.errors.firstName,
+              }
+            : {})}
           id="firstName"
           name="/firstName"
+          required
         />
         <sl-input
           exportparts="label: input-label"
           value={formState.lastName}
           label={text.lastName}
           disabled={states.loading}
-          {...(formState.errors?.lastName && {
-            class: classes.ErrorInput,
-            helpText: text.error.lastName,
-          })}
+          {...(formState.errors?.lastName
+            ? {
+                class: classes.ErrorInput,
+                helpText: formState.errors.lastName,
+              }
+            : {})}
           id="lastName"
           name="/lastName"
+          required
         />
         <sl-input
           exportparts="label: input-label"
           value={formState.email}
           label={text.email}
           disabled={states.loading}
-          {...(formState.errors?.email && {
-            class: classes.ErrorInput,
-            helpText: text.error.email,
-          })}
+          {...(formState.errors?.email
+            ? {
+                class: classes.ErrorInput,
+                helpText: formState.errors.email,
+              }
+            : {})}
+          // {...{ helpText: formState.errors.email }}
           id="email"
           name="/email"
+          required
         />
 
-        <sl-input
+        <sl-select
           exportparts="label: input-label"
-          value={formState.countryCode}
+          name="/countryCode"
           label={text.country}
-          disabled={states.loading}
-          {...(formState.errors?.countryCode && {
-            class: classes.ErrorInput,
-            helpText: text.error.countryCode,
-          })}
-          id="country"
-          name="/country"
-        />
-        <sl-input
+          value={formState.countryCode}
+          {...(formState.errors?.countryCode
+            ? {
+                class: classes.ErrorInput,
+                helpText: formState.errors.countryCode,
+              }
+            : {})}
+          required
+        >
+          <sl-menu-item value="US">United States</sl-menu-item>
+          <sl-menu-item value="CA">Canada</sl-menu-item>
+          <sl-menu-item value="AU">Australia</sl-menu-item>
+        </sl-select>
+        <sl-select
           exportparts="label: input-label"
-          value={formState.currency}
-          label={text.currency}
-          disabled={states.loading}
-          {...(formState.errors?.currency && {
-            class: classes.ErrorInput,
-            helpText: text.error.currency,
-          })}
-          id="currency"
           name="/currency"
-        />
+          label={text.currency}
+          value={formState.currency}
+          {...(formState.errors?.currency
+            ? {
+                class: classes.ErrorInput,
+                helpText: formState.errors.currency,
+              }
+            : {})}
+          required
+        >
+          <sl-menu-item value="USD">USD</sl-menu-item>
+          <sl-menu-item value="CAD">CAD</sl-menu-item>
+          <sl-menu-item value="AUD">AUD</sl-menu-item>
+        </sl-select>
+
         <div class={classes.CheckboxWrapper}>
           <p class={classes.BoldText}>{text.participantType}</p>
-          <sl-radio-group
-            label="Select an option"
-            name="/participantType"
-            value={formState.participantType}
-          >
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <sl-radio
-                name="/participantType"
-                exportparts="base: radio-base"
-                value="individualParticipant"
-                checked={formState.participantType === "individualParticipant"}
-              >
-                {text.individualParticipant}
-              </sl-radio>
-              <sl-radio
-                // name="/participantType"
-                value="businessEntity"
-                exportparts="base: radio-base"
-                checked={formState.participantType === "businessEntity"}
-              >
-                {text.businessEntity}
-              </sl-radio>
-              {formState.errors?.participantType && (
-                <p class={classes.ErrorText}>{text.error.participantType}</p>
-              )}
-            </div>
-          </sl-radio-group>
+
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <sl-radio
+              exportparts="base: radio-base"
+              value="individualParticipant"
+              name="/participantType"
+            >
+              {text.individualParticipant}
+            </sl-radio>
+            <sl-radio
+              exportparts="base: radio-base"
+              value="businessEntity"
+              name="/participantType"
+            >
+              {text.businessEntity}
+            </sl-radio>
+          </div>
+
+          {formState.errors?.participantType && (
+            <p class={classes.ErrorText}>{text.error.participantType}</p>
+          )}
         </div>
         <div class={classes.CheckboxWrapper}>
           <p class={classes.BoldText}> {text.taxAndBankingCollection}</p>
@@ -260,10 +278,11 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
               e.target.value = e.target.checked;
             }}
             disabled={states.loading}
+            required
             // Copied from edit form, may need to keep
             // {...(formState.errors?.allowBankingCollection &&
             // formState.errors?.allowBankingCollection.status !== "valid"
-            //   ? { class: "errors?tyles", helpText: "Cannot be empty" }
+            //   ? { class: "errorstyles", helpText: "Cannot be empty" }
             //   : [])}
             id="allowBankingCollection"
             name="/allowBankingCollection"
@@ -271,7 +290,9 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
             {text.allowBankingCollection}
           </sl-checkbox>
           {formState.errors?.allowBankingCollection && (
-            <p class={classes.ErrorText}>{text.error.allowBankingCollection}</p>
+            <p class={classes.ErrorText}>
+              {formState.errors.allowBankingCollection}
+            </p>
           )}
         </div>
       </div>

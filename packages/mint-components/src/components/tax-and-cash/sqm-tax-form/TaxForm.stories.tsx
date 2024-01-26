@@ -12,10 +12,8 @@ import {
   TaxDocumentSubmittedView,
 } from "./sqm-tax-document-submitted-view";
 import {
-  DocusignWrapper,
   RegisteredInCanada,
   RegisteredInOtherRegion,
-  TaxFormSelection,
 } from "./small-views/SlotViews.stories";
 import {
   taxFormStepOneText,
@@ -26,6 +24,14 @@ import {
   TaxFormStepThreeView,
   TaxFormStepThreeViewProps,
 } from "./sqm-tax-form-step-3-view";
+import {
+  TaxFormStepThreeBView,
+  TaxFormStepThreeBViewProps,
+} from "./sqm-tax-form-step-3-b-view";
+import {
+  TaxFormStepThreeAView,
+  TaxFormStepThreeAViewProps,
+} from "./sqm-tax-form-step-3-a-view";
 
 export default {
   title: "Components/Tax Form",
@@ -47,6 +53,7 @@ const stepOneProps: TaxFormStepOneProps = {
   },
   callbacks: {
     onSubmit: (props: any) => console.log("Submit"),
+    onRadioClick: (props: any) => console.log("Radio Click"),
   },
   text: taxFormStepOneText,
   refs: {
@@ -146,14 +153,39 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
   },
 };
 
-const stepThreeProps: TaxFormStepThreeViewProps = {
+const stepThreeAProps: TaxFormStepThreeAViewProps = {
   states: {
     loading: false,
     submitDisabled: false,
     formState: {
       formSubmisson: false,
+      completedTaxForm: true,
     },
-    formSlot: <DocusignWrapper />,
+    docusignSlot: (
+      <div
+        style={{
+          border: "1px dashed black",
+          width: "600px",
+          height: "600px",
+        }}
+      ></div>
+    ),
+  },
+  callbacks: {
+    onSubmit: (props: any) => console.log(props),
+    onBack: () => console.log("Back"),
+  },
+  text: taxFormStepThreeText,
+};
+
+const stepThreeBProps: TaxFormStepThreeBViewProps = {
+  states: {
+    loading: false,
+    submitDisabled: false,
+    formState: {
+      formSubmisson: false,
+      selectedTaxForm: undefined,
+    },
   },
   callbacks: {
     onSubmit: (props: any) => console.log(props),
@@ -279,19 +311,11 @@ export const StepTwoNotRegisteredChecked = () => {
 
 // STEP THREE
 export const StepThreeWithDocusign = () => {
-  return <TaxFormStepThreeView {...stepThreeProps} />;
+  return <TaxFormStepThreeAView {...stepThreeAProps} />;
 };
 
 export const StepThreeWithFormSelector = () => {
-  return (
-    <TaxFormStepThreeView
-      {...stepThreeProps}
-      states={{
-        ...stepThreeProps.states,
-        formSlot: <TaxFormSelection />,
-      }}
-    />
-  );
+  return <TaxFormStepThreeBView {...stepThreeBProps} />;
 };
 
 export const TaxDocumentSubmittedActive = () => {

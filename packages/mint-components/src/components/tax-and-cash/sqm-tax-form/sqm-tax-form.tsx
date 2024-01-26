@@ -111,6 +111,7 @@ export class TaxForm {
           }}
           callbacks={{
             onSubmit: props.onSubmit,
+            onRadioClick: props.onRadioClick,
           }}
           //@ts-ignore
           text={props.text}

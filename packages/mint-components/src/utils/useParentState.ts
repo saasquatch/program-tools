@@ -29,8 +29,13 @@ export function useParent<T>(namespace: string): StateType<T | undefined> {
   const parent = useDomContext<StateType<T | undefined>>(
     getContextName(namespace)
   );
+
+  const parentValue = useDomContext<T | undefined>(
+    getContextValueName(namespace)
+  );
+
   if (!parent) return [undefined, undefined];
-  return parent;
+  return [parentValue, parent[1]];
 }
 
 export function getContextValueName(namespace: string) {

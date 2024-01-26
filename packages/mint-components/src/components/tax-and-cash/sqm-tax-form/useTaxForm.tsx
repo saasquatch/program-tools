@@ -111,6 +111,10 @@ export function useTaxForm(props: TaxForm) {
     });
   }, [data]);
 
+  function onRadioClick(value: string) {
+    setFormState({ ...formState, participantType: value });
+  }
+
   // const inputFunction = useCallback((e) => {
 
   //   const name = e.target?.type?.toLowerCase();
@@ -153,7 +157,13 @@ export function useTaxForm(props: TaxForm) {
       const key = control.name;
       const value = control.value;
 
-      jsonpointer.set(formData, key, value);
+      console.log({ control });
+
+      if (control.name === "/participantType") {
+        control.checked && jsonpointer.set(formData, key, value);
+      } else {
+        jsonpointer.set(formData, key, value);
+      }
       console.log({ formData });
       // required validation
       if (control.required && !value) {
@@ -208,6 +218,7 @@ export function useTaxForm(props: TaxForm) {
     step: step,
     setStep: setStep,
     onSubmit,
+    onRadioClick,
     loading,
     text: {
       ...props,
