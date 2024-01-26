@@ -25,6 +25,8 @@ export function useTaxFormStepTwo(props: any) {
   >(null);
   const [errors, setErrors] = useState({});
 
+  console.log("step2", { step });
+
   const { data: _countries, loading: countriesLoading } = useQuery(
     GET_COUNTRIES,
     {}
