@@ -1,7 +1,7 @@
 import { VNode, h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 
-export interface TaxFormStepThreeProps {
+export interface TaxFormStepThreeViewProps {
   states: {
     loading: boolean;
     submitDisabled: boolean;
@@ -22,11 +22,8 @@ export interface TaxFormStepThreeProps {
     submitButton: string;
     backButton: string;
     error: {
-      formSubmittion: string;
+      formSubmission: string;
     };
-  };
-  refs: {
-    formRef: any;
   };
 }
 
@@ -100,23 +97,18 @@ const vanillaStyle = `
     }
   `;
 
-export const TaxFormStepTwoView = (props: TaxFormStepThreeProps) => {
+export const TaxFormStepThreeView = (props: TaxFormStepThreeViewProps) => {
   const {
     states,
     states: { formState },
     callbacks,
     text,
-    refs,
   } = props;
 
   const { classes } = sheet;
 
   return (
-    <sl-form
-      class={classes.FormWrapper}
-      onSl-submit={callbacks.onSubmit}
-      ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
-    >
+    <sl-form class={classes.FormWrapper} onSl-submit={callbacks.onSubmit}>
       <style type="text/css">
         {styleString}
         {vanillaStyle}

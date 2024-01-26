@@ -2,6 +2,7 @@ import { IndirectDetailsSlotViewProps } from "./small-views/IndirectTaxDetailsVi
 import { TaxFormStepOneProps } from "./sqm-tax-form-step-1-view";
 import { TaxDocumentSubmittedProps } from "./sqm-tax-document-submitted-view";
 import { TaxFormStepTwoProps } from "./sqm-tax-form-step-2-view";
+import { TaxFormStepThreeViewProps } from "./sqm-tax-form-step-3-view";
 
 export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
   selectedRegion: "Country / Region of Indirect Tax",
@@ -53,6 +54,17 @@ export const taxFormStepTwoText: TaxFormStepTwoProps["text"] = {
   backButton: "Back",
   error: {
     taxDetails: "This field is required",
+  },
+};
+
+export const taxFormStepThreeText: TaxFormStepThreeViewProps["text"] = {
+  step: "Step",
+  stepOf: "of",
+  taxForm: "Tax form",
+  backButton: "Back",
+  submitButton: "Continue",
+  error: {
+    formSubmission: "",
   },
 };
 

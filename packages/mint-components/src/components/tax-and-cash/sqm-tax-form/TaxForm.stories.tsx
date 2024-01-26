@@ -12,10 +12,20 @@ import {
   TaxDocumentSubmittedView,
 } from "./sqm-tax-document-submitted-view";
 import {
+  DocusignWrapper,
   RegisteredInCanada,
   RegisteredInOtherRegion,
+  TaxFormSelection,
 } from "./small-views/SlotViews.stories";
-import { taxFormStepOneText, taxFormStepTwoText } from "./defaultTextCopy";
+import {
+  taxFormStepOneText,
+  taxFormStepThreeText,
+  taxFormStepTwoText,
+} from "./defaultTextCopy";
+import {
+  TaxFormStepThreeView,
+  TaxFormStepThreeViewProps,
+} from "./sqm-tax-form-step-3-view";
 
 export default {
   title: "Components/Tax Form",
@@ -152,6 +162,22 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
   },
 };
 
+const stepThreeProps: TaxFormStepThreeViewProps = {
+  states: {
+    loading: false,
+    submitDisabled: false,
+    formState: {
+      formSubmisson: false,
+    },
+    formSlot: <DocusignWrapper />,
+  },
+  callbacks: {
+    onSubmit: (props: any) => console.log(props),
+    onBack: () => console.log("Back"),
+  },
+  text: taxFormStepThreeText,
+};
+
 // STEP ONE
 export const StepOne = () => {
   return <TaxFormStepOneView {...stepOneProps} />;
@@ -262,6 +288,23 @@ export const StepTwoNotRegisteredChecked = () => {
           ...stepTwoProps.states.formState,
           checked: "notRegistered",
         },
+      }}
+    />
+  );
+};
+
+// STEP THREE
+export const StepThreeWithDocusign = () => {
+  return <TaxFormStepThreeView {...stepThreeProps} />;
+};
+
+export const StepThreeWithFormSelector = () => {
+  return (
+    <TaxFormStepThreeView
+      {...stepThreeProps}
+      states={{
+        ...stepThreeProps.states,
+        formSlot: <TaxFormSelection />,
       }}
     />
   );
