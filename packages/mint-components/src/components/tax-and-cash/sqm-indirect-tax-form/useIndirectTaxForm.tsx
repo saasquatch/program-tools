@@ -16,7 +16,7 @@ const GET_COUNTRIES = gql`
   }
 `;
 
-export function useTaxFormStepTwo(props: any) {
+export function useIndirectTaxForm(props: any) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);

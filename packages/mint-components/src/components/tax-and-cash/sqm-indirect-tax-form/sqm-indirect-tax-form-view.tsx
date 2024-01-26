@@ -108,7 +108,7 @@ const vanillaStyle = `
     }
   `;
 
-export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
+export const IndirectTaxFormView = (props: TaxFormStepTwoProps) => {
   const {
     states,
     states: { formState },

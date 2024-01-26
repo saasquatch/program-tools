@@ -109,7 +109,7 @@ const vanillaStyle = `
     }
   `;
 
-export const TaxFormStepThreeBView = (props: TaxFormStepThreeBViewProps) => {
+export const DocumentTypeFormView = (props: TaxFormStepThreeBViewProps) => {
   const {
     states,
     states: { formState },

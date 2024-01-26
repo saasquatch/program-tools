@@ -1,12 +1,12 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
-import { useTaxFormStepTwo } from "./useTaxFormStepTwo";
 import { getProps } from "../../../utils/utils";
-import { TaxFormStepTwoView } from "./sqm-tax-form-step-2-view";
-import { IndirectDetailsSlotView } from "./small-views/IndirectTaxDetailsView";
+import { IndirectDetailsSlotView } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
+import { IndirectTaxFormView } from "./sqm-indirect-tax-form-view";
+import { useIndirectTaxForm } from "./useIndirectTaxForm";
 
 @Component({
-  tag: "sqm-tax-form-step-2",
+  tag: "sqm-indirect-tax-form",
   shadow: true,
 })
 export class TaxFormStepTwo {
@@ -30,7 +30,7 @@ export class TaxFormStepTwo {
   disconnectedCallback() {}
 
   render() {
-    const props = useTaxFormStepTwo(getProps(this));
+    const props = useIndirectTaxForm(getProps(this));
 
     const registeredIn =
       props.option === "hstCanada"
@@ -53,7 +53,7 @@ export class TaxFormStepTwo {
 
     return (
       <Host>
-        <TaxFormStepTwoView
+        <IndirectTaxFormView
           callbacks={{
             onBack: props.onBack,
             onChange: props.setOption,

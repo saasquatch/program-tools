@@ -1,9 +1,9 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
-import { useTaxDocumentSubmitted } from "./useTaxDocumentSubmitted";
 import { getProps } from "../../../utils/utils";
+import { taxFormDocumentSubmittedText as defaults } from "../sqm-user-info-form/defaultTextCopy";
 import { TaxDocumentSubmittedView } from "./sqm-tax-document-submitted-view";
-import { taxFormDocumentSubmittedText as defaults } from "./defaultTextCopy";
+import { useTaxDocumentSubmitted } from "./useTaxDocumentSubmitted";
 
 @Component({ tag: "sqm-tax-document-submitted", shadow: true })
 export class TaxDocumentSubmitted {

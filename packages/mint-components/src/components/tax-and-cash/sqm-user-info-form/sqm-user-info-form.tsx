@@ -4,13 +4,9 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
-import { TaxFormStepOneView } from "./sqm-tax-form-step-1-view";
-import { useTaxForm } from "./useTaxForm";
-import {
-  taxFormDocumentSubmittedText,
-  taxFormStepOneText,
-  // taxFormDocumentSubmitted,
-} from "./defaultTextCopy";
+import { taxFormStepOneText } from "./defaultTextCopy";
+import { UserInfoFormView } from "./sqm-user-info-form-view";
+import { useTaxForm } from "./useUserInfoForm";
 
 /**
  * @uiName Tax And Cash
@@ -18,7 +14,7 @@ import {
  * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
  */
 @Component({
-  tag: "sqm-tax-form",
+  tag: "sqm-user-info-form",
   shadow: true,
 })
 export class TaxForm {
@@ -102,7 +98,7 @@ export class TaxForm {
 
     return (
       <Host>
-        <TaxFormStepOneView
+        <UserInfoFormView
           states={{
             loading: props.loading,
             submitDisabled: false,

@@ -11,7 +11,7 @@ import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { UserNameViewProps } from "./components/tax-and-cash/sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
-import { TaxFormStepTwoProps } from "./components/tax-and-cash/sqm-tax-form/sqm-tax-form-step-2-view";
+import { TaxFormStepTwoProps } from "./components/tax-and-cash/sqm-indirect-tax-form/sqm-indirect-tax-form-view";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
@@ -577,6 +577,19 @@ export namespace Components {
           * @uiName Minimum height
          */
         "minHeight"?: string;
+    }
+    interface SqmIndirectTaxForm {
+        "backButton": string;
+        "hstCanada": string;
+        "indirectTax": string;
+        "indirectTaxDescription": string;
+        "indirectTaxDetails": string;
+        "indirectTaxDetailsDescription": string;
+        "notRegistered": string;
+        "otherRegion": string;
+        "step": string;
+        "stepOf": string;
+        "submitButton": string;
     }
     interface SqmInputField {
         /**
@@ -2850,52 +2863,6 @@ export namespace Components {
         "taxDocumentSectionHeader": string;
         "taxDocumentSectionSubHeader": string;
     }
-    interface SqmTaxForm {
-        "allowBankingCollection": string;
-        "businessEntity"?: string;
-        "country": string;
-        "currency": string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<UserNameViewProps>;
-        "email": string;
-        "firstName": string;
-        "individualParticipant"?: string;
-        "lastName": string;
-        /**
-          * The message to be displayed when a the form submission fails unexpectedly.
-          * @uiName Network error message
-          * @uiWidget textArea
-         */
-        "networkErrorMessage": string;
-        "participantType"?: string;
-        "personalInformation"?: string;
-        /**
-          * The message to be displayed when a required field is not filled.
-          * @uiName Required field message
-          * @uiWidget textArea
-         */
-        "requiredFieldErrorMessage": string;
-        "step"?: string;
-        "stepOf"?: string;
-        "submitButton": string;
-        "taxAndBankingCollection"?: string;
-    }
-    interface SqmTaxFormStep2 {
-        "backButton": string;
-        "hstCanada": string;
-        "indirectTax": string;
-        "indirectTaxDescription": string;
-        "indirectTaxDetails": string;
-        "indirectTaxDetailsDescription": string;
-        "notRegistered": string;
-        "otherRegion": string;
-        "step": string;
-        "stepOf": string;
-        "submitButton": string;
-    }
     interface SqmText {
     }
     interface SqmTextSpan {
@@ -2971,6 +2938,39 @@ export namespace Components {
           * @uiEnumNames ["Left", "Center", "Right"]
          */
         "textAlign": "left" | "center" | "right";
+    }
+    interface SqmUserInfoForm {
+        "allowBankingCollection": string;
+        "businessEntity"?: string;
+        "country": string;
+        "currency": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UserNameViewProps>;
+        "email": string;
+        "firstName": string;
+        "individualParticipant"?: string;
+        "lastName": string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage": string;
+        "participantType"?: string;
+        "personalInformation"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
+        "step"?: string;
+        "stepOf"?: string;
+        "submitButton": string;
+        "taxAndBankingCollection"?: string;
     }
     interface SqmUserName {
         /**
@@ -3127,6 +3127,12 @@ declare global {
     var HTMLSqmImageElement: {
         prototype: HTMLSqmImageElement;
         new (): HTMLSqmImageElement;
+    };
+    interface HTMLSqmIndirectTaxFormElement extends Components.SqmIndirectTaxForm, HTMLStencilElement {
+    }
+    var HTMLSqmIndirectTaxFormElement: {
+        prototype: HTMLSqmIndirectTaxFormElement;
+        new (): HTMLSqmIndirectTaxFormElement;
     };
     interface HTMLSqmInputFieldElement extends Components.SqmInputField, HTMLStencilElement {
     }
@@ -3548,18 +3554,6 @@ declare global {
         prototype: HTMLSqmTaxDocumentSubmittedElement;
         new (): HTMLSqmTaxDocumentSubmittedElement;
     };
-    interface HTMLSqmTaxFormElement extends Components.SqmTaxForm, HTMLStencilElement {
-    }
-    var HTMLSqmTaxFormElement: {
-        prototype: HTMLSqmTaxFormElement;
-        new (): HTMLSqmTaxFormElement;
-    };
-    interface HTMLSqmTaxFormStep2Element extends Components.SqmTaxFormStep2, HTMLStencilElement {
-    }
-    var HTMLSqmTaxFormStep2Element: {
-        prototype: HTMLSqmTaxFormStep2Element;
-        new (): HTMLSqmTaxFormStep2Element;
-    };
     interface HTMLSqmTextElement extends Components.SqmText, HTMLStencilElement {
     }
     var HTMLSqmTextElement: {
@@ -3589,6 +3583,12 @@ declare global {
     var HTMLSqmTitledSectionElement: {
         prototype: HTMLSqmTitledSectionElement;
         new (): HTMLSqmTitledSectionElement;
+    };
+    interface HTMLSqmUserInfoFormElement extends Components.SqmUserInfoForm, HTMLStencilElement {
+    }
+    var HTMLSqmUserInfoFormElement: {
+        prototype: HTMLSqmUserInfoFormElement;
+        new (): HTMLSqmUserInfoFormElement;
     };
     interface HTMLSqmUserNameElement extends Components.SqmUserName, HTMLStencilElement {
     }
@@ -3620,6 +3620,7 @@ declare global {
         "sqm-hero-image": HTMLSqmHeroImageElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-image": HTMLSqmImageElement;
+        "sqm-indirect-tax-form": HTMLSqmIndirectTaxFormElement;
         "sqm-input-field": HTMLSqmInputFieldElement;
         "sqm-instant-access-registration": HTMLSqmInstantAccessRegistrationElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
@@ -3690,13 +3691,12 @@ declare global {
         "sqm-task-card": HTMLSqmTaskCardElement;
         "sqm-tax-and-cash": HTMLSqmTaxAndCashElement;
         "sqm-tax-document-submitted": HTMLSqmTaxDocumentSubmittedElement;
-        "sqm-tax-form": HTMLSqmTaxFormElement;
-        "sqm-tax-form-step-2": HTMLSqmTaxFormStep2Element;
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
         "sqm-timeline": HTMLSqmTimelineElement;
         "sqm-timeline-entry": HTMLSqmTimelineEntryElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
+        "sqm-user-info-form": HTMLSqmUserInfoFormElement;
         "sqm-user-name": HTMLSqmUserNameElement;
     }
 }
@@ -4233,6 +4233,19 @@ declare namespace LocalJSX {
           * @uiName Minimum height
          */
         "minHeight"?: string;
+    }
+    interface SqmIndirectTaxForm {
+        "backButton"?: string;
+        "hstCanada"?: string;
+        "indirectTax"?: string;
+        "indirectTaxDescription"?: string;
+        "indirectTaxDetails"?: string;
+        "indirectTaxDetailsDescription"?: string;
+        "notRegistered"?: string;
+        "otherRegion"?: string;
+        "step"?: string;
+        "stepOf"?: string;
+        "submitButton"?: string;
     }
     interface SqmInputField {
         /**
@@ -6482,52 +6495,6 @@ declare namespace LocalJSX {
         "taxDocumentSectionHeader"?: string;
         "taxDocumentSectionSubHeader"?: string;
     }
-    interface SqmTaxForm {
-        "allowBankingCollection"?: string;
-        "businessEntity"?: string;
-        "country"?: string;
-        "currency"?: string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<UserNameViewProps>;
-        "email"?: string;
-        "firstName"?: string;
-        "individualParticipant"?: string;
-        "lastName"?: string;
-        /**
-          * The message to be displayed when a the form submission fails unexpectedly.
-          * @uiName Network error message
-          * @uiWidget textArea
-         */
-        "networkErrorMessage"?: string;
-        "participantType"?: string;
-        "personalInformation"?: string;
-        /**
-          * The message to be displayed when a required field is not filled.
-          * @uiName Required field message
-          * @uiWidget textArea
-         */
-        "requiredFieldErrorMessage"?: string;
-        "step"?: string;
-        "stepOf"?: string;
-        "submitButton"?: string;
-        "taxAndBankingCollection"?: string;
-    }
-    interface SqmTaxFormStep2 {
-        "backButton"?: string;
-        "hstCanada"?: string;
-        "indirectTax"?: string;
-        "indirectTaxDescription"?: string;
-        "indirectTaxDetails"?: string;
-        "indirectTaxDetailsDescription"?: string;
-        "notRegistered"?: string;
-        "otherRegion"?: string;
-        "step"?: string;
-        "stepOf"?: string;
-        "submitButton"?: string;
-    }
     interface SqmText {
     }
     interface SqmTextSpan {
@@ -6603,6 +6570,39 @@ declare namespace LocalJSX {
          */
         "textAlign"?: "left" | "center" | "right";
     }
+    interface SqmUserInfoForm {
+        "allowBankingCollection"?: string;
+        "businessEntity"?: string;
+        "country"?: string;
+        "currency"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UserNameViewProps>;
+        "email"?: string;
+        "firstName"?: string;
+        "individualParticipant"?: string;
+        "lastName"?: string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage"?: string;
+        "participantType"?: string;
+        "personalInformation"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
+        "step"?: string;
+        "stepOf"?: string;
+        "submitButton"?: string;
+        "taxAndBankingCollection"?: string;
+    }
     interface SqmUserName {
         /**
           * @undocumented 
@@ -6643,6 +6643,7 @@ declare namespace LocalJSX {
         "sqm-hero-image": SqmHeroImage;
         "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-image": SqmImage;
+        "sqm-indirect-tax-form": SqmIndirectTaxForm;
         "sqm-input-field": SqmInputField;
         "sqm-instant-access-registration": SqmInstantAccessRegistration;
         "sqm-leaderboard": SqmLeaderboard;
@@ -6713,13 +6714,12 @@ declare namespace LocalJSX {
         "sqm-task-card": SqmTaskCard;
         "sqm-tax-and-cash": SqmTaxAndCash;
         "sqm-tax-document-submitted": SqmTaxDocumentSubmitted;
-        "sqm-tax-form": SqmTaxForm;
-        "sqm-tax-form-step-2": SqmTaxFormStep2;
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
         "sqm-timeline": SqmTimeline;
         "sqm-timeline-entry": SqmTimelineEntry;
         "sqm-titled-section": SqmTitledSection;
+        "sqm-user-info-form": SqmUserInfoForm;
         "sqm-user-name": SqmUserName;
     }
 }
@@ -6750,6 +6750,7 @@ declare module "@stencil/core" {
             "sqm-hero-image": LocalJSX.SqmHeroImage & JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-image": LocalJSX.SqmImage & JSXBase.HTMLAttributes<HTMLSqmImageElement>;
+            "sqm-indirect-tax-form": LocalJSX.SqmIndirectTaxForm & JSXBase.HTMLAttributes<HTMLSqmIndirectTaxFormElement>;
             "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
             "sqm-instant-access-registration": LocalJSX.SqmInstantAccessRegistration & JSXBase.HTMLAttributes<HTMLSqmInstantAccessRegistrationElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
@@ -6820,13 +6821,12 @@ declare module "@stencil/core" {
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
             "sqm-tax-and-cash": LocalJSX.SqmTaxAndCash & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashElement>;
             "sqm-tax-document-submitted": LocalJSX.SqmTaxDocumentSubmitted & JSXBase.HTMLAttributes<HTMLSqmTaxDocumentSubmittedElement>;
-            "sqm-tax-form": LocalJSX.SqmTaxForm & JSXBase.HTMLAttributes<HTMLSqmTaxFormElement>;
-            "sqm-tax-form-step-2": LocalJSX.SqmTaxFormStep2 & JSXBase.HTMLAttributes<HTMLSqmTaxFormStep2Element>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
             "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;
             "sqm-timeline-entry": LocalJSX.SqmTimelineEntry & JSXBase.HTMLAttributes<HTMLSqmTimelineEntryElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
+            "sqm-user-info-form": LocalJSX.SqmUserInfoForm & JSXBase.HTMLAttributes<HTMLSqmUserInfoFormElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
         }
     }

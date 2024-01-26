@@ -1,37 +1,33 @@
 import { h } from "@stencil/core";
 import {
-  TaxFormStepOneView,
-  TaxFormStepOneProps,
-} from "./sqm-tax-form-step-1-view";
+  DocumentTypeFormView,
+  TaxFormStepThreeBViewProps,
+} from "../sqm-document-type-form/sqm-document-type-form-view";
 import {
+  DocusignFormView,
+  TaxFormStepThreeAViewProps,
+} from "../sqm-docusign-form/sqm-docusign-form-view";
+import {
+  IndirectTaxFormView,
   TaxFormStepTwoProps,
-  TaxFormStepTwoView,
-} from "./sqm-tax-form-step-2-view";
+} from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
 import {
   TaxDocumentSubmittedProps,
   TaxDocumentSubmittedView,
-} from "./sqm-tax-document-submitted-view";
-import {
-  RegisteredInCanada,
-  RegisteredInOtherRegion,
-} from "./small-views/SlotViews.stories";
+} from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
 import {
   taxFormStepOneText,
   taxFormStepThreeText,
   taxFormStepTwoText,
 } from "./defaultTextCopy";
 import {
-  TaxFormStepThreeView,
-  TaxFormStepThreeViewProps,
-} from "./sqm-tax-form-step-3-view";
+  RegisteredInCanada,
+  RegisteredInOtherRegion,
+} from "./small-views/SlotViews.stories";
 import {
-  TaxFormStepThreeBView,
-  TaxFormStepThreeBViewProps,
-} from "./sqm-tax-form-step-3-b-view";
-import {
-  TaxFormStepThreeAView,
-  TaxFormStepThreeAViewProps,
-} from "./sqm-tax-form-step-3-a-view";
+  TaxFormStepOneProps,
+  UserInfoFormView,
+} from "./sqm-user-info-form-view";
 
 export default {
   title: "Components/Tax Form",
@@ -196,12 +192,12 @@ const stepThreeBProps: TaxFormStepThreeBViewProps = {
 
 // STEP ONE
 export const StepOne = () => {
-  return <TaxFormStepOneView {...stepOneProps} />;
+  return <UserInfoFormView {...stepOneProps} />;
 };
 
 export const StepOneLoading = () => {
   return (
-    <TaxFormStepOneView
+    <UserInfoFormView
       {...stepOneProps}
       states={{ ...stepOneProps.states, loading: true }}
     />
@@ -210,7 +206,7 @@ export const StepOneLoading = () => {
 
 export const StepOneDisabled = () => {
   return (
-    <TaxFormStepOneView
+    <UserInfoFormView
       {...stepOneProps}
       states={{ ...stepOneProps.states, submitDisabled: true }}
     />
@@ -219,7 +215,7 @@ export const StepOneDisabled = () => {
 
 export const StepOneWithErrors = () => {
   return (
-    <TaxFormStepOneView
+    <UserInfoFormView
       {...stepOneProps}
       states={{
         ...stepOneProps.states,
@@ -242,12 +238,12 @@ export const StepOneWithErrors = () => {
 
 // STEP TWO
 export const StepTwo = () => {
-  return <TaxFormStepTwoView {...stepTwoProps} />;
+  return <IndirectTaxFormView {...stepTwoProps} />;
 };
 
 export const StepTwoWithError = () => {
   return (
-    <TaxFormStepTwoView
+    <IndirectTaxFormView
       {...stepTwoProps}
       states={{
         ...stepTwoProps.states,
@@ -264,7 +260,7 @@ export const StepTwoWithError = () => {
 
 export const StepTwoHSTChecked = () => {
   return (
-    <TaxFormStepTwoView
+    <IndirectTaxFormView
       {...stepTwoProps}
       states={{
         ...stepTwoProps.states,
@@ -280,7 +276,7 @@ export const StepTwoHSTChecked = () => {
 
 export const StepTwoOtherRegionChecked = () => {
   return (
-    <TaxFormStepTwoView
+    <IndirectTaxFormView
       {...stepTwoProps}
       states={{
         ...stepTwoProps.states,
@@ -296,7 +292,7 @@ export const StepTwoOtherRegionChecked = () => {
 
 export const StepTwoNotRegisteredChecked = () => {
   return (
-    <TaxFormStepTwoView
+    <IndirectTaxFormView
       {...stepTwoProps}
       states={{
         ...stepTwoProps.states,
@@ -311,11 +307,11 @@ export const StepTwoNotRegisteredChecked = () => {
 
 // STEP THREE
 export const StepThreeWithDocusign = () => {
-  return <TaxFormStepThreeAView {...stepThreeAProps} />;
+  return <DocusignFormView {...stepThreeAProps} />;
 };
 
 export const StepThreeWithFormSelector = () => {
-  return <TaxFormStepThreeBView {...stepThreeBProps} />;
+  return <DocumentTypeFormView {...stepThreeBProps} />;
 };
 
 export const TaxDocumentSubmittedActive = () => {

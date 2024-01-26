@@ -1,20 +1,14 @@
 import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "@saasquatch/universal-hooks";
-import { useParent } from "../../../utils/useParentState";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/useTaxAndCash";
-import { TaxForm } from "./sqm-tax-form";
-import {
   setUserIdentity,
   useQuery,
-  useRegisterWithEmailAndPasswordMutation,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import jsonpointer from "jsonpointer";
+import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
+import jsonpointer from "jsonpointer";
+import { useParent } from "../../../utils/useParentState";
+import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/useTaxAndCash";
+import { TaxForm } from "./sqm-user-info-form";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
