@@ -1,8 +1,7 @@
 import { IndirectDetailsSlotViewProps } from "./small-views/IndirectTaxDetailsView";
-import { TaxFormStepOneProps } from "./sqm-tax-form-step-1-view";
-import { TaxDocumentSubmittedProps } from "./sqm-tax-document-submitted-view";
-import { TaxFormStepTwoProps } from "./sqm-tax-form-step-2-view";
-import { TaxFormStepThreeViewProps } from "./sqm-tax-form-step-3-view";
+import { TaxFormStepOneProps } from "./sqm-user-info-form-view";
+import { TaxDocumentSubmittedProps } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
+import { TaxFormStepTwoProps } from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
 
 export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
   selectedRegion: "Country / Region of Indirect Tax",
@@ -57,7 +56,7 @@ export const taxFormStepTwoText: TaxFormStepTwoProps["text"] = {
   },
 };
 
-export const taxFormStepThreeText: TaxFormStepThreeViewProps["text"] = {
+export const taxFormStepThreeText: any = {
   step: "Step",
   stepOf: "of",
   taxForm: "Tax form",

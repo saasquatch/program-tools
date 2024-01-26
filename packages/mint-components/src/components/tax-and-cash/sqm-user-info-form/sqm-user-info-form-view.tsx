@@ -132,7 +132,7 @@ const vanillaStyle = `
 
   `;
 
-export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
+export const UserInfoFormView = (props: TaxFormStepOneProps) => {
   const {
     states,
     states: { formState },

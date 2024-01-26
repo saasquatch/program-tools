@@ -3,10 +3,7 @@ import { Component, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import {
-  TaxFormStepTwoProps,
-  TaxFormStepTwoView,
-} from "../sqm-tax-form/sqm-tax-form-step-2-view";
+import { TaxFormStepTwoProps } from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
 import { useDocusignForm } from "./useDocusignForm";
 
 /**
