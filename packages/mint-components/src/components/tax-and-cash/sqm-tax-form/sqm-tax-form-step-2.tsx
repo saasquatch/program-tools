@@ -55,14 +55,14 @@ export class TaxFormStepTwo {
       <Host>
         <TaxFormStepTwoView
           callbacks={{
-            onBack: () => {},
+            onBack: props.onBack,
             onChange: props.setOption,
             onSubmit: props.onSubmit,
           }}
           states={{
             formState: { checked: props.option },
             loading: props.loading,
-            submitDisabled: props.loading,
+            submitDisabled: props.loading || props.submitDisabled,
             registeredInCanadaDetailsSlot: sharedSlot,
             registeredInDifferentCountryDetailsSlot: sharedSlot,
           }}

@@ -19,6 +19,10 @@ export interface DocusignWrapperSlotViewProps {
 const style = {
   Container: {
     width: "100%",
+    display: "flex",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+    gap: "16px",
   },
   RadioContainer: {
     width: "100%",
@@ -34,6 +38,17 @@ const style = {
   },
   BoldText: {
     fontWeight: "bold",
+  },
+
+  Link: {
+    color: "#14B1F7",
+    textDecoration: "none",
+    "&:visited": {
+      color: "#14B1F7",
+    },
+    "&:hover": {
+      textDecoration: "underline",
+    },
   },
 };
 
@@ -83,14 +98,18 @@ export const DocusignWrapperSlotView = (
       <h5 class={classes.BoldText}>W9 Tax Form</h5>
       <p>
         Participants based in the US and partnering with US-based brands need to
-        submit a W9 form. <a href="#">Not based in the US?</a>
+        submit a W9 form.{" "}
+        <a href="#" class={classes.Link}>
+          Not based in the US?
+        </a>
       </p>
       {formState.docusignSlot}
-
-      <p class={classes.BoldText}>Form submission</p>
-      <sl-checkbox checked={formState.completedTaxForm}>
-        I have completed and submitted my tax form
-      </sl-checkbox>
+      <div>
+        <p class={classes.BoldText}>Form submission</p>
+        <sl-checkbox checked={formState.completedTaxForm}>
+          I have completed and submitted my tax form
+        </sl-checkbox>
+      </div>
     </div>
   );
 };

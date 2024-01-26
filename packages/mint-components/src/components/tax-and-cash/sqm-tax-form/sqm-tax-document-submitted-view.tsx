@@ -1,6 +1,7 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 import { intl } from "../../../global/global";
+import { PayoutDetailsCardView, PayoutDetailsCardViewProps } from "../sqm-payout-details-card/sqm-payout-details-card";
 
 export interface TaxDocumentSubmittedProps {
   states: {
@@ -11,21 +12,17 @@ export interface TaxDocumentSubmittedProps {
   };
   callbacks: { onClick: (props: any) => void };
   text: {
-    status: {
-      active?: string;
-      notActive?: string;
-      notVerified?: string;
-      expired?: string;
-    };
-    badge: {
-      submittedOn?: string;
-      awaitingReview?: string;
-      expiredOn?: string;
-    };
-    bankingInformationSectionHeader: string;
-    taxDocumentSectionHeader: string;
+    statusTextActive?: string;
+    statusTextNotActive?: string;
+    statusTextNotVerified?: string;
+    statusTextExpired?: string;
+    badgeTextSubmittedOn?: string;
+    badgeTextAwaitingReview?: string;
+    badgeTextExpiredOn?: string;
     taxAlertHeader?: string;
     taxAlertMessage?: string;
+    bankingInformationSectionHeader: string;
+    taxDocumentSectionHeader: string;
     taxDocumentSectionSubHeader: string;
     newFormButton: string;
   };
@@ -38,7 +35,9 @@ const style = {
       borderTop: "none",
     },
   },
-  BankingInformationContainer: {},
+  BankingInformationContainer: {
+    maxWidth: "700px"
+  },
   TaxDocumentsContainer: {
     marginTop: "var(--sl-spacing-x-large)",
     borderTop: "1px solid var(--sl-color-neutral-200)",
@@ -66,44 +65,64 @@ const styleString = sheet.toString();
 export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
   const { states, text, callbacks } = props;
 
+  // AL: Not sure what states will be yet, placeholder for now
+  const testDetailsCardProps: PayoutDetailsCardViewProps = {
+    loading: false,
+    empty: false,
+    otherCurrencies: false,
+    mainCurrency: { currencyText: "USD", amountText: "100.00" },
+    status: "upcoming",
+    pendingStatusBadgeText: "Pending",
+    upcomingStatusBadgeText: "Upcoming",
+    nextPayoutStatusBadgeText: "Next payout",
+    pendingDetailedStatusText: "Check rewards table for available date",
+    upcomingDetailedStatusText: "November 1, 2022",
+    nextPayoutDetailedStatusText: "November 1, 2022",
+    otherCurrenciesText: "other currencies",
+    w9PendingText: "Awaiting W-9 tax form",
+    w9Pending: undefined,
+    hasDatePending: true,
+    hasW9Pending: false,
+  };
+
   const statusMap = {
     NOT_VERIFIED: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
         <sl-badge type="info" pill class={sheet.classes.BadgeContainer}>
-          {text.status.notVerified}
+          {text.statusTextNotVerified}
         </sl-badge>
         <p>
-          {text.badge.awaitingReview} {states.dateSubmitted}
+          {text.badgeTextAwaitingReview} {states.dateSubmitted}
         </p>
       </div>
     ),
     ACTIVE: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
         <sl-badge type="success" pill class={sheet.classes.BadgeContainer}>
-          {text.status.active}
+          {text.statusTextActive}
         </sl-badge>
         <p>
-          {text.badge.submittedOn} {states.dateSubmitted}
+          {text.badgeTextSubmittedOn} {states.dateSubmitted}
         </p>
       </div>
     ),
     NOT_ACTIVE: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
         <sl-badge type="danger" pill class={sheet.classes.BadgeContainer}>
-          {text.status.notActive}
+          {text.statusTextNotActive}
         </sl-badge>
         <p>
-          {text.badge.submittedOn} {states.dateSubmitted}
+          {text.badgeTextSubmittedOn} {states.dateSubmitted}
         </p>
       </div>
     ),
     EXPIRED: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
         <sl-badge type="danger" pill class={sheet.classes.BadgeContainer}>
-          {text.status.expired}
+          {text.statusTextExpired}
         </sl-badge>
         <p>
-          {text.badge.expiredOn} {states.dateSubmitted}
+          {text.badgeTextExpiredOn} {states.dateExpired}
         </p>
       </div>
     ),
@@ -173,13 +192,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         <h3>{text.bankingInformationSectionHeader}</h3>
         <div class={sheet.classes.BankingInformationContainer}>
           {/* AL: Placeholder for banking information. TBD with design with what belongs here */}
-          <div
-            style={{
-              width: "700px",
-              height: "150px",
-              border: "1px dotted gray",
-            }}
-          ></div>
+          <PayoutDetailsCardView {...testDetailsCardProps}/>
         </div>
       </div>
       <div class={sheet.classes.TaxDocumentsContainer}>

@@ -53,53 +53,10 @@ const registeredInCanada: IndirectDetailsSlotViewProps = {
   },
 };
 
-const taxFormSelectionProps: TaxFormSelectionSlotViewProps = {
-  states: {
-    loading: false,
-    formState: {
-      selectedTaxForm: undefined,
-    },
-  },
-  callbacks: {
-    onChange: (e) => console.log(e),
-  },
-  text: {},
-};
-
-const docusignWrapperProps: DocusignWrapperSlotViewProps = {
-  states: {
-    loading: false,
-    formState: {
-      docusignSlot: (
-        <div
-          style={{
-            border: "1px dashed black",
-            width: "600px",
-            height: "600px",
-          }}
-        ></div>
-      ),
-      completedTaxForm: true,
-    },
-  },
-  callbacks: {
-    onChange: (e) => console.log(e),
-  },
-  text: {},
-};
-
 export const RegisteredInOtherRegion = () => {
   return <IndirectDetailsSlotView {...registeredInOtherRegion} />;
 };
 
 export const RegisteredInCanada = () => {
   return <IndirectDetailsSlotView {...registeredInCanada} />;
-};
-
-export const TaxFormSelection = () => {
-  return <TaxFormSelectionSlotView {...taxFormSelectionProps} />;
-};
-
-export const DocusignWrapper = () => {
-  return <DocusignWrapperSlotView {...docusignWrapperProps} />;
 };

@@ -43,10 +43,9 @@ export class DocusignForm {
     // const props = isDemo() ? useUserNameDemo(this) : useUserName();
     const props = useDocusignForm(getProps(this));
 
-    console.log({ props });
-
     return (
       <Host>
+        <h2>{props.taxForm}</h2>
         {/* <TaxFormStepTwoView
           states={{
             loading: false,

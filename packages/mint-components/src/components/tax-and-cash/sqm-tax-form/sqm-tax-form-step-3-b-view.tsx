@@ -1,40 +1,29 @@
 import { VNode, h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 
-export interface TaxFormStepTwoProps {
+export interface TaxFormStepThreeBViewProps {
   states: {
     loading: boolean;
     submitDisabled: boolean;
     formState: {
-      checked: "hstCanada" | "otherRegion" | "notRegistered" | undefined;
+      formSubmisson: boolean;
+      selectedTaxForm: "w9" | "w8-ben" | "w8-ben-e" | undefined;
       errors?: any;
     };
-    registeredInCanadaDetailsSlot?: VNode;
-    registeredInDifferentCountryDetailsSlot?: VNode;
   };
   callbacks: {
     onSubmit: (props: any) => void;
-    onChange: (e) => void;
     onBack: () => void;
   };
   text: {
     step: string;
     stepOf: string;
-    indirectTax: string;
-    indirectTaxDescription: string;
-    indirectTaxDetails: string;
-    indirectTaxDetailsDescription: string;
-    hstCanada: string;
-    otherRegion: string;
-    notRegistered: string;
+    taxForm: string;
     submitButton: string;
     backButton: string;
     error: {
-      taxDetails: string;
+      formSubmission: string;
     };
-  };
-  refs: {
-    formRef: any;
   };
 }
 
@@ -74,13 +63,25 @@ const style = {
     color: "var(--sl-color-danger-500)",
     marginTop: "10px",
   },
-  DescriptionText: {
-    color: "var(--sl-color-neutral-500)",
-  },
   SecondaryBtn: {
     "&::part(base)": {
       color: "var(--sl-color-gray-800) !important",
     },
+  },
+  RadioContainer: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+    gap: "16px",
+    padding: "16px",
+  },
+  DescriptionText: {
+    color: "var(--sl-color-neutral-500)",
+    lineHeight: "22px",
+  },
+  BoldText: {
+    fontWeight: "bold",
   },
 };
 
@@ -108,23 +109,18 @@ const vanillaStyle = `
     }
   `;
 
-export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
+export const TaxFormStepThreeBView = (props: TaxFormStepThreeBViewProps) => {
   const {
     states,
     states: { formState },
     callbacks,
     text,
-    refs,
   } = props;
 
   const { classes } = sheet;
 
   return (
-    <sl-form
-      class={classes.FormWrapper}
-      onSl-submit={callbacks.onSubmit}
-      ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
-    >
+    <sl-form class={classes.FormWrapper} onSl-submit={callbacks.onSubmit}>
       <style type="text/css">
         {styleString}
         {vanillaStyle}
@@ -132,60 +128,39 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
       <div class={classes.TextContainer}>
         <div>
           <p>
-            {text.step} 2 {text.stepOf} 4
+            {text.step} 3 {text.stepOf} 4
           </p>
-          <h3>{text.indirectTax}</h3>
+          <h3>{text.taxForm}</h3>
         </div>
-        <p>{text.indirectTaxDescription}</p>
+      </div>
+      <p class={classes.BoldText}>Select a tax form</p>
 
-        <div>
-          <h4>{text.indirectTaxDetails}</h4>
-          <p class={classes.DescriptionText}>
-            {text.indirectTaxDetailsDescription}
-          </p>
+      <sl-radio-group value={formState.selectedTaxForm}>
+        <div class={classes.RadioContainer}>
+          <sl-radio value="w9">
+            <p class={classes.BoldText}>W9</p>
+            <p class={classes.DescriptionText}>
+              W9 For participants based in the US, joining the referral program
+              of a US-based company.
+            </p>
+          </sl-radio>
+          <sl-radio value="w8-ben">
+            <p class={classes.BoldText}> W8-BEN</p>
+            <p class={classes.DescriptionText}>
+              W8-BEN For individuals residing outside of the US, joining the
+              referral program of a US-based company.
+            </p>
+          </sl-radio>
+          <sl-radio value="w8-ben-e">
+            <p class={classes.BoldText}>W8-BEN-E</p>
+            <p class={classes.DescriptionText}>
+              W8-BEN-E For participants residing outside of the US who represent
+              a business entity, joining the referral program of a US-based
+              company.
+            </p>
+          </sl-radio>
         </div>
-      </div>
-      <div class={classes.CheckboxContainer}>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <sl-checkbox
-            exportparts="label: input-label"
-            checked={formState.checked === "hstCanada"}
-            onInput={() => callbacks.onChange("hstCanada")}
-            disabled={states.loading}
-            id="hstCanada"
-            name="/hstCanada"
-          >
-            {text.hstCanada}
-          </sl-checkbox>
-          {formState.checked === "hstCanada" &&
-            states.registeredInCanadaDetailsSlot}
-          <sl-checkbox
-            exportparts="label: input-label"
-            checked={formState.checked === "otherRegion"}
-            onInput={() => callbacks.onChange("otherRegion")}
-            disabled={states.loading}
-            id="otherRegion"
-            name="/otherRegion"
-          >
-            {text.otherRegion}
-          </sl-checkbox>
-          {formState.checked === "otherRegion" &&
-            states.registeredInDifferentCountryDetailsSlot}
-          <sl-checkbox
-            exportparts="label: input-label"
-            checked={formState.checked === "notRegistered"}
-            onInput={() => callbacks.onChange("notRegistered")}
-            disabled={states.loading}
-            id="notRegistered"
-            name="/notRegistered"
-          >
-            {text.notRegistered}
-          </sl-checkbox>
-          {formState.errors?.taxDetails && (
-            <p class={classes.ErrorText}>{text.error.taxDetails}</p>
-          )}
-        </div>
-      </div>
+      </sl-radio-group>
       <div class={classes.BtnContainer}>
         <sl-button
           type="primary"
@@ -200,7 +175,7 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
           class={classes.SecondaryBtn}
           type="text"
           loading={states.loading}
-          // disabled={states.submitDisabled}
+          disabled={states.submitDisabled}
           onClick={() => {
             callbacks.onBack();
           }}

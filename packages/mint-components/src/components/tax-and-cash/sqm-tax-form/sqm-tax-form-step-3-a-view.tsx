@@ -1,40 +1,30 @@
 import { VNode, h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 
-export interface TaxFormStepTwoProps {
+export interface TaxFormStepThreeAViewProps {
   states: {
     loading: boolean;
     submitDisabled: boolean;
     formState: {
-      checked: "hstCanada" | "otherRegion" | "notRegistered" | undefined;
+      formSubmisson: boolean;
+      completedTaxForm: boolean;
       errors?: any;
     };
-    registeredInCanadaDetailsSlot?: VNode;
-    registeredInDifferentCountryDetailsSlot?: VNode;
+    docusignSlot: VNode;
   };
   callbacks: {
     onSubmit: (props: any) => void;
-    onChange: (e) => void;
     onBack: () => void;
   };
   text: {
     step: string;
     stepOf: string;
-    indirectTax: string;
-    indirectTaxDescription: string;
-    indirectTaxDetails: string;
-    indirectTaxDetailsDescription: string;
-    hstCanada: string;
-    otherRegion: string;
-    notRegistered: string;
+    taxForm: string;
     submitButton: string;
     backButton: string;
     error: {
-      taxDetails: string;
+      formSubmission: string;
     };
-  };
-  refs: {
-    formRef: any;
   };
 }
 
@@ -77,9 +67,34 @@ const style = {
   DescriptionText: {
     color: "var(--sl-color-neutral-500)",
   },
+  BoldText: {
+    fontWeight: "bold",
+  },
   SecondaryBtn: {
     "&::part(base)": {
       color: "var(--sl-color-gray-800) !important",
+    },
+  },
+  AlertInnerContainer: {
+    display: "flex",
+    justifyContent: "flex-start",
+    gap: "8px",
+  },
+  Container: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+    gap: "16px",
+  },
+  Link: {
+    color: "#14B1F7",
+    textDecoration: "none",
+    "&:visited": {
+      color: "#14B1F7",
+    },
+    "&:hover": {
+      textDecoration: "underline",
     },
   },
 };
@@ -106,25 +121,32 @@ const vanillaStyle = `
     sl-checkbox::part(control) {
         border-radius: 50%;
     }
+
+    sl-alert::part(base) {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    sl-alert::part(message) {
+      padding: 0px;
+    }
   `;
 
-export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
+export const TaxFormStepThreeAView = (props: TaxFormStepThreeAViewProps) => {
   const {
     states,
     states: { formState },
     callbacks,
     text,
-    refs,
   } = props;
 
   const { classes } = sheet;
 
   return (
-    <sl-form
-      class={classes.FormWrapper}
-      onSl-submit={callbacks.onSubmit}
-      ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
-    >
+    <div class={classes.Container}>
       <style type="text/css">
         {styleString}
         {vanillaStyle}
@@ -132,60 +154,39 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
       <div class={classes.TextContainer}>
         <div>
           <p>
-            {text.step} 2 {text.stepOf} 4
+            {text.step} 3 {text.stepOf} 4
           </p>
-          <h3>{text.indirectTax}</h3>
+          <h3>{text.taxForm}</h3>
         </div>
-        <p>{text.indirectTaxDescription}</p>
+      </div>
+      <h5 class={classes.BoldText}>W9 Tax Form</h5>
+      <p>
+        Participants based in the US and partnering with US-based brands need to
+        submit a W9 form.
+        <a href="#" class={classes.Link}>
+          Not based in the US?
+        </a>
+      </p>
+      <sl-alert
+        exportparts="base: alert-base, icon:alert-icon"
+        class="Info"
+        type="primary"
+        open
+      >
+        <div class={classes.AlertInnerContainer}>
+          <sl-icon slot="icon" name="clock"></sl-icon>
+          Complete and submit your tax form to save your information
+        </div>
+      </sl-alert>
 
-        <div>
-          <h4>{text.indirectTaxDetails}</h4>
-          <p class={classes.DescriptionText}>
-            {text.indirectTaxDetailsDescription}
-          </p>
-        </div>
+      {states.docusignSlot}
+      <div>
+        <p class={classes.BoldText}>Form submission</p>
+        <sl-checkbox checked={formState.completedTaxForm}>
+          I have completed and submitted my tax form
+        </sl-checkbox>
       </div>
-      <div class={classes.CheckboxContainer}>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <sl-checkbox
-            exportparts="label: input-label"
-            checked={formState.checked === "hstCanada"}
-            onInput={() => callbacks.onChange("hstCanada")}
-            disabled={states.loading}
-            id="hstCanada"
-            name="/hstCanada"
-          >
-            {text.hstCanada}
-          </sl-checkbox>
-          {formState.checked === "hstCanada" &&
-            states.registeredInCanadaDetailsSlot}
-          <sl-checkbox
-            exportparts="label: input-label"
-            checked={formState.checked === "otherRegion"}
-            onInput={() => callbacks.onChange("otherRegion")}
-            disabled={states.loading}
-            id="otherRegion"
-            name="/otherRegion"
-          >
-            {text.otherRegion}
-          </sl-checkbox>
-          {formState.checked === "otherRegion" &&
-            states.registeredInDifferentCountryDetailsSlot}
-          <sl-checkbox
-            exportparts="label: input-label"
-            checked={formState.checked === "notRegistered"}
-            onInput={() => callbacks.onChange("notRegistered")}
-            disabled={states.loading}
-            id="notRegistered"
-            name="/notRegistered"
-          >
-            {text.notRegistered}
-          </sl-checkbox>
-          {formState.errors?.taxDetails && (
-            <p class={classes.ErrorText}>{text.error.taxDetails}</p>
-          )}
-        </div>
-      </div>
+
       <div class={classes.BtnContainer}>
         <sl-button
           type="primary"
@@ -200,7 +201,7 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
           class={classes.SecondaryBtn}
           type="text"
           loading={states.loading}
-          // disabled={states.submitDisabled}
+          disabled={states.submitDisabled}
           onClick={() => {
             callbacks.onBack();
           }}
@@ -209,6 +210,6 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
           {text.backButton}
         </sl-button>
       </div>
-    </sl-form>
+    </div>
   );
 };

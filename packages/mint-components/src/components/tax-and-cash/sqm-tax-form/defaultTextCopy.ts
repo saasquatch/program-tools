@@ -2,6 +2,7 @@ import { IndirectDetailsSlotViewProps } from "./small-views/IndirectTaxDetailsVi
 import { TaxFormStepOneProps } from "./sqm-tax-form-step-1-view";
 import { TaxDocumentSubmittedProps } from "./sqm-tax-document-submitted-view";
 import { TaxFormStepTwoProps } from "./sqm-tax-form-step-2-view";
+import { TaxFormStepThreeViewProps } from "./sqm-tax-form-step-3-view";
 
 export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
   selectedRegion: "Country / Region of Indirect Tax",
@@ -56,18 +57,25 @@ export const taxFormStepTwoText: TaxFormStepTwoProps["text"] = {
   },
 };
 
+export const taxFormStepThreeText: TaxFormStepThreeViewProps["text"] = {
+  step: "Step",
+  stepOf: "of",
+  taxForm: "Tax form",
+  backButton: "Back",
+  submitButton: "Continue",
+  error: {
+    formSubmission: "",
+  },
+};
+
 export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
-  status: {
-    active: "Active",
-    notActive: "Not Active",
-    notVerified: "Not Verified",
-    expired: "Expired",
-  },
-  badge: {
-    submittedOn: "Submitted on",
-    awaitingReview: "Awaiting review. Submitted on",
-    expiredOn: "Expired on",
-  },
+  statusTextActive: "Active",
+  statusTextNotActive: "Not Active",
+  statusTextNotVerified: "Not Verified",
+  statusTextExpired: "Expired",
+  badgeTextSubmittedOn: "Submitted on",
+  badgeTextAwaitingReview: "Awaiting review. Submitted on",
+  badgeTextExpiredOn: "Expired on",
   taxAlertHeader:
     "Your {documentType} tax form has personal information that doesn't match your profile.",
   taxAlertMessage: "Please resubmit a new {documentType} form.",

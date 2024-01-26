@@ -15,7 +15,23 @@ import {
   RegisteredInCanada,
   RegisteredInOtherRegion,
 } from "./small-views/SlotViews.stories";
-import { taxFormStepOneText, taxFormStepTwoText } from "./defaultTextCopy";
+import {
+  taxFormStepOneText,
+  taxFormStepThreeText,
+  taxFormStepTwoText,
+} from "./defaultTextCopy";
+import {
+  TaxFormStepThreeView,
+  TaxFormStepThreeViewProps,
+} from "./sqm-tax-form-step-3-view";
+import {
+  TaxFormStepThreeBView,
+  TaxFormStepThreeBViewProps,
+} from "./sqm-tax-form-step-3-b-view";
+import {
+  TaxFormStepThreeAView,
+  TaxFormStepThreeAViewProps,
+} from "./sqm-tax-form-step-3-a-view";
 
 export default {
   title: "Components/Tax Form",
@@ -70,12 +86,8 @@ const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: {
-      active: "Active",
-    },
-    badge: {
-      submittedOn: "Submitted On",
-    },
+    statusTextActive: "Active",
+    badgeTextSubmittedOn: "Submitted On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
     taxAlertHeader:
@@ -94,12 +106,8 @@ const documentSubmittedNotVerifiedProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: {
-      notVerified: "Not Verified",
-    },
-    badge: {
-      awaitingReview: "Awaiting Review. Submitted On",
-    },
+    statusTextNotVerified: "Not Verified",
+    badgeTextAwaitingReview: "Awaiting Review. Submitted On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
     taxDocumentSectionSubHeader: "W9 Tax Documents",
@@ -114,12 +122,8 @@ const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: {
-      notActive: "Not Active",
-    },
-    badge: {
-      submittedOn: "Submitted On",
-    },
+    statusTextNotActive: "Not Active",
+    badgeTextSubmittedOn: "Submitted On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
     taxAlertHeader:
@@ -138,12 +142,8 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    status: {
-      expired: "Expired",
-    },
-    badge: {
-      expiredOn: "Expired On",
-    },
+    statusTextExpired: "Expired",
+    badgeTextSubmittedOn: "Expired On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
     taxAlertHeader: "Your W8-BEN-E tax form has expired. ",
@@ -151,6 +151,47 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
     taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
     newFormButton: "Submit New Form",
   },
+};
+
+const stepThreeAProps: TaxFormStepThreeAViewProps = {
+  states: {
+    loading: false,
+    submitDisabled: false,
+    formState: {
+      formSubmisson: false,
+      completedTaxForm: true,
+    },
+    docusignSlot: (
+      <div
+        style={{
+          border: "1px dashed black",
+          width: "600px",
+          height: "600px",
+        }}
+      ></div>
+    ),
+  },
+  callbacks: {
+    onSubmit: (props: any) => console.log(props),
+    onBack: () => console.log("Back"),
+  },
+  text: taxFormStepThreeText,
+};
+
+const stepThreeBProps: TaxFormStepThreeBViewProps = {
+  states: {
+    loading: false,
+    submitDisabled: false,
+    formState: {
+      formSubmisson: false,
+      selectedTaxForm: undefined,
+    },
+  },
+  callbacks: {
+    onSubmit: (props: any) => console.log(props),
+    onBack: () => console.log("Back"),
+  },
+  text: taxFormStepThreeText,
 };
 
 // STEP ONE
@@ -266,6 +307,15 @@ export const StepTwoNotRegisteredChecked = () => {
       }}
     />
   );
+};
+
+// STEP THREE
+export const StepThreeWithDocusign = () => {
+  return <TaxFormStepThreeAView {...stepThreeAProps} />;
+};
+
+export const StepThreeWithFormSelector = () => {
+  return <TaxFormStepThreeBView {...stepThreeBProps} />;
 };
 
 export const TaxDocumentSubmittedActive = () => {
