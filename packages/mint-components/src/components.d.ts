@@ -2862,7 +2862,6 @@ export namespace Components {
         "demoData"?: DemoData<UserNameViewProps>;
         "email": string;
         "firstName": string;
-        "indirectTaxNumber": string;
         "individualParticipant"?: string;
         "lastName": string;
         /**
@@ -6495,7 +6494,6 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<UserNameViewProps>;
         "email"?: string;
         "firstName"?: string;
-        "indirectTaxNumber"?: string;
         "individualParticipant"?: string;
         "lastName"?: string;
         /**

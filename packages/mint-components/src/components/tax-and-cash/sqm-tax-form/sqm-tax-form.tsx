@@ -36,7 +36,6 @@ export class TaxForm {
   @Prop() email: string = taxFormStepOneText.email;
   @Prop() country: string = taxFormStepOneText.country;
   @Prop() currency: string = taxFormStepOneText.currency;
-  @Prop() indirectTaxNumber: string = taxFormStepOneText.indirectTaxNumber;
   @Prop() allowBankingCollection: string =
     taxFormStepOneText.allowBankingCollection;
   @Prop() step?: string = taxFormStepOneText.step;

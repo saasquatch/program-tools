@@ -24,12 +24,16 @@ export type ValidationErrorFunction = (input: {
 }) => string | undefined;
 
 export type FormState = {
-  error?: string;
-  validationErrors?: ValidationErrors;
   loading?: boolean;
-  disabled?: boolean;
-  disabledMessage?: string;
-  initialData?: InitialData;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  countryCode?: string;
+  currency?: string;
+  participantType?: string;
+  allowBankingCollection?: boolean;
+  errors?: any;
+  error?: string;
 };
 
 export type ValidationErrors = {
@@ -56,7 +60,7 @@ const GET_USER = gql`
 
 export function useTaxForm(props: TaxForm) {
   const formRef = useRef<HTMLFormElement>(null);
-  const [formState, setFormState] = useState({});
+  const [formState, setFormState] = useState<FormState>({});
 
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
 
@@ -104,7 +108,6 @@ export function useTaxForm(props: TaxForm) {
       email: user.email,
       countryCode: user.countryCode,
       currency: user.customFields?.currency,
-      indirectTaxNumber: user.customFields?.indirectTaxNumber,
     });
   }, [data]);
 
@@ -141,7 +144,9 @@ export function useTaxForm(props: TaxForm) {
     let formControls = event.target.getFormControls();
 
     let formData: Record<string, any> = {};
-    let validationErrors: Record<string, string> = {};
+    let errors: Record<string, string> = {};
+
+    console.log({ formControls });
     formControls?.forEach((control) => {
       if (!control.name) return;
 
@@ -149,43 +154,35 @@ export function useTaxForm(props: TaxForm) {
       const value = control.value;
 
       jsonpointer.set(formData, key, value);
+      console.log({ formData });
       // required validation
       if (control.required && !value) {
-        jsonpointer.set(validationErrors, key, props.requiredFieldErrorMessage);
+        jsonpointer.set(errors, key, props.requiredFieldErrorMessage);
       }
       // custom validation
       if (typeof control.validationError === "function") {
         const validate = control.validationError as ValidationErrorFunction;
         const validationError = validate({ control, key, value });
-        if (validationError)
-          jsonpointer.set(validationErrors, key, validationError);
+        if (validationError) jsonpointer.set(errors, key, validationError);
       }
     });
 
-    if (Object.keys(validationErrors).length) {
-      setFormState({ loading: false, error: "", validationErrors });
+    if (Object.keys(errors).length) {
+      setFormState({ ...formState, loading: false, error: "", errors });
       // early return for validation errors
       return;
     }
 
-    console.log({ formData });
-
     setFormState({
+      ...formState,
       loading: true,
       error: "",
-      validationErrors: {},
     });
-    const { email, password } = formData;
-    delete formData.email;
-    delete formData.password;
-    delete formData.confirmPassword;
+
     formData = { ...formData };
 
-    const variables = {
-      email,
-      password,
-      formData,
-    };
+    console.log({ formData });
+
     // try {
     //   const result = await request(variables);
     //   if (result instanceof Error) {
@@ -204,7 +201,7 @@ export function useTaxForm(props: TaxForm) {
     //   });
     // }
 
-    setStep("/2");
+    // setStep("/2");
   }
 
   return {

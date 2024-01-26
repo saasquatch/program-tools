@@ -11,7 +11,6 @@ export interface TaxFormStepOneProps {
       email?: string;
       countryCode?: string;
       currency?: string;
-      indirectTaxNumber?: string;
       allowBankingCollection?: boolean;
       participantType: "individualParticipant" | "businessEntity" | undefined;
       errors?: any;
@@ -27,7 +26,6 @@ export interface TaxFormStepOneProps {
     email: string;
     country: string;
     currency: string;
-    indirectTaxNumber: string;
     allowBankingCollection: string;
     step: string;
     stepOf: string;
@@ -225,15 +223,26 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
         />
         <div class={classes.CheckboxWrapper}>
           <p class={classes.BoldText}>{text.participantType}</p>
-          <sl-radio-group label="Select an option" name="a" value="3">
+          <sl-radio-group
+            label="Select an option"
+            name="/participantType"
+            value={formState.participantType}
+          >
             <div style={{ display: "flex", flexDirection: "column" }}>
               <sl-radio
-                value="individualParticipant"
+                name="/participantType"
                 exportparts="base: radio-base"
+                value="individualParticipant"
+                checked={formState.participantType === "individualParticipant"}
               >
                 {text.individualParticipant}
               </sl-radio>
-              <sl-radio value="businessEntity" exportparts="base: radio-base">
+              <sl-radio
+                // name="/participantType"
+                value="businessEntity"
+                exportparts="base: radio-base"
+                checked={formState.participantType === "businessEntity"}
+              >
                 {text.businessEntity}
               </sl-radio>
               {formState.errors?.participantType && (
@@ -246,8 +255,10 @@ export const TaxFormStepOneView = (props: TaxFormStepOneProps) => {
           <p class={classes.BoldText}> {text.taxAndBankingCollection}</p>
           <sl-checkbox
             exportparts="label: input-label"
-            value={formState.allowBankingCollection}
             checked={formState.allowBankingCollection === true}
+            onSl-change={(e) => {
+              e.target.value = e.target.checked;
+            }}
             disabled={states.loading}
             // Copied from edit form, may need to keep
             // {...(formState.errors?.allowBankingCollection &&
