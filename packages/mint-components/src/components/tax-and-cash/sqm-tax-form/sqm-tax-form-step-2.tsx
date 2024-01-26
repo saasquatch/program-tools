@@ -32,13 +32,13 @@ export class TaxFormStepTwo {
   render() {
     const props = useTaxFormStepTwo(getProps(this));
 
-    console.log({ countries: props.countries });
     const registeredIn =
       props.option === "hstCanada"
         ? "canada"
         : props.option === "otherRegion"
         ? "otherRegion"
         : null;
+
     const sharedSlot = (
       <IndirectDetailsSlotView
         callbacks={{

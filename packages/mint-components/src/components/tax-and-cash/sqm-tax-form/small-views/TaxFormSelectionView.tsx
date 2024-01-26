@@ -81,7 +81,7 @@ export const TaxFormSelectionSlotView = (
 
       <p class={classes.BoldText}>Select a tax form</p>
 
-      <sl-radio-group value={formState.selectedTaxForm}>
+      <sl-radio-group value={formState.selectedTaxForm} slon>
         <div class={classes.RadioContainer}>
           <sl-radio value="w9">
             <p class={classes.BoldText}>W9</p>

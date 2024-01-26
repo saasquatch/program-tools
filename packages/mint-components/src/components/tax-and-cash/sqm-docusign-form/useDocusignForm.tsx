@@ -4,54 +4,70 @@ import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/useTaxAndCash";
 import { DocusignForm } from "./sqm-docusign-form";
 import { useQuery, useUserIdentity } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { P } from "../../../global/mixins";
 
 const GET_USER_TAX_INFO = gql`
   query getUserTaxInfo($id: String!, $accountId: String!) {
-    id
-    accountId
-    firstName
-    lastName
-    email
-    countryCode
+    user(id: $id, accountId: $accountId) {
+      id
+      accountId
+      firstName
+      lastName
+      email
+      countryCode
+    }
   }
 `;
 
 // TODO: Fill out when API is released
-const SUBMIT_TAX_INFO = gql`
-  mutation submitTaxInfo ($vars: SubmitTaxInfoInput) {
+const GET_TAX_DOCUMENT = gql`
+  query getTaxDocument ($vars: TaxDocumentInput) {
   }
 `;
 
 export function useDocusignForm(props: DocusignForm) {
   const user = useUserIdentity();
-  const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
-  const [showTypeForm, setShowTypeForm] = useState<boolean>(false);
+  const [path, setPath] = useParent<string>(TAX_CONTEXT_NAMESPACE);
+  const [showDocumentTypes, setShowDocumentTypes] = useState<boolean>(false);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [errors, setErrors] = useState({});
-  const [currentForm, setCurrentForm] = useState<"W9" | "W8-BEN" | "W8-BEN-E">(
-    null
-  );
 
-  const variables = {
+  const splitPath = path.split("/");
+  const defaultDocumentType = splitPath.length === 3 ? splitPath[2] : undefined;
+
+  console.log({ path, defaultDocumentType });
+
+  const { data, loading } = useQuery(GET_USER_TAX_INFO, {
     id: user.id,
     accountId: user.accountId,
-  };
-  const { data, loading } = useQuery(GET_USER_TAX_INFO, variables);
+  });
+  const countryCode = data?.getUserTaxInfo?.user?.countryCode;
 
   // TODO: Replace with real backend data
-  const { data: taxInfo, loading: taxInfoLoading } = {
+  const {
+    data: taxInfo,
+    loading: taxInfoLoading,
+    refetch: refetchDocument,
+  } = {
     data: {
       taxForm: "W9" as const,
       documentUrl: "https://example.com",
     },
     loading: false,
+    refetch: (vars: any) => console.debug("REFETCHING"),
   };
 
   useEffect(() => {
-    if (!taxInfo?.taxForm) return;
+    if (countryCode && !defaultDocumentType) return;
 
-    setCurrentForm(taxInfo.taxForm);
-  }, [taxInfo]);
+    if (countryCode === "US") {
+      refetchDocument({ documentType: "W9" });
+    } else if (countryCode === "CA") {
+      refetchDocument({ documentType: "W8-BEN" });
+    } else {
+      refetchDocument({ documentType: "W8-BEN-E" });
+    }
+  }, [countryCode]);
 
   const onSubmit = () => {
     if (!formSubmitted) {
@@ -59,34 +75,25 @@ export function useDocusignForm(props: DocusignForm) {
       return;
     }
 
-    setStep("/4");
-  };
-
-  const onFormTypeSubmit = (e) => {
-    let selectedFormType: string;
-    const controls = e.target.getFormControls();
-    controls.forEach((control) => {
-      if (control.value) {
-        selectedFormType = control.name;
-      }
-    });
-
-    // Refetch data for new form
+    setPath("/4");
   };
 
   return {
-    text: { ...props },
-    errors,
-    step: step,
-    loading: loading || taxInfoLoading,
-    taxForm: currentForm,
-    documentUrl: taxInfo?.documentUrl,
-    formSubmitted,
-    showTypeForm,
-    setShowTypeForm,
-    onFormTypeSubmit,
-    setStep,
-    onSubmit,
-    toggleFormSubmitted: () => setFormSubmitted((x) => !x),
+    text: props,
+    states: {
+      errors,
+      loading: loading || taxInfoLoading,
+      formSubmitted,
+      showDocumentTypes,
+    },
+    data: {
+      taxForm: taxInfo?.taxForm,
+      documentUrl: taxInfo?.documentUrl,
+    },
+    callbacks: {
+      setShowDocumentTypes,
+      onSubmit,
+      toggleFormSubmitted: () => setFormSubmitted((x) => !x),
+    },
   };
 }

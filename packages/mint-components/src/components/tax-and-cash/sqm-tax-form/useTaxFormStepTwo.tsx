@@ -1,5 +1,5 @@
-import { useQuery } from "@saasquatch/component-boilerplate";
-import { useRef, useState } from "@saasquatch/universal-hooks";
+import { setUserIdentity, useQuery } from "@saasquatch/component-boilerplate";
+import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
 import { useParent } from "../../../utils/useParentState";
@@ -37,7 +37,7 @@ export function useTaxFormStepTwo(props: any) {
   const accountId = id;
   const programId = "klip-referral-program";
 
-  // //@ts-ignore
+  //@ts-ignore
   // window.widgetIdent = {
   //   tenantAlias: "test_a74miwdpofztj",
   //   appDomain: "https://staging.referralsaasquatch.com",

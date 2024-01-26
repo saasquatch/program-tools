@@ -201,7 +201,7 @@ export function useTaxForm(props: TaxForm) {
     //   });
     // }
 
-    // setStep("/2");
+    setStep("/2");
   }
 
   return {
