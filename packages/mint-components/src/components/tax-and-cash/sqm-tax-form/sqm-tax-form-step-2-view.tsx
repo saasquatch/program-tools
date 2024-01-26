@@ -150,6 +150,7 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
           <sl-checkbox
             exportparts="label: input-label"
             checked={formState.checked === "hstCanada"}
+            onInput={() => callbacks.onChange("hstCanada")}
             disabled={states.loading}
             id="hstCanada"
             name="/hstCanada"
@@ -161,6 +162,7 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
           <sl-checkbox
             exportparts="label: input-label"
             checked={formState.checked === "otherRegion"}
+            onInput={() => callbacks.onChange("otherRegion")}
             disabled={states.loading}
             id="otherRegion"
             name="/otherRegion"
@@ -172,6 +174,7 @@ export const TaxFormStepTwoView = (props: TaxFormStepTwoProps) => {
           <sl-checkbox
             exportparts="label: input-label"
             checked={formState.checked === "notRegistered"}
+            onInput={() => callbacks.onChange("notRegistered")}
             disabled={states.loading}
             id="notRegistered"
             name="/notRegistered"

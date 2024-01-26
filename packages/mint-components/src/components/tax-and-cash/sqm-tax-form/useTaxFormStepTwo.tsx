@@ -106,6 +106,7 @@ export function useTaxFormStepTwo(props: any) {
     loading: loading || countriesLoading,
     countries,
     text: props,
+    errors,
     onBack,
     onSubmit,
     submitDisabled: !option,
