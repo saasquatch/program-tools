@@ -6,7 +6,7 @@ export type StateType<T> = [value?: T, setValue?: (value: T) => void];
 type ParentStateProps<T> = {
   host: HTMLElement;
   namespace: string;
-  initialValue: T;
+  initialValue?: T;
 };
 
 export function useParentState<T>(props: ParentStateProps<T>): StateType<T> {
@@ -36,6 +36,25 @@ export function useParent<T>(namespace: string): StateType<T | undefined> {
 
   if (!parent) return [undefined, undefined];
   return [parentValue, parent[1]];
+}
+
+export function useSetParent<T>(
+  namespace: string
+): (value: T) => void | undefined {
+  const parent = useDomContext<StateType<T | undefined>>(
+    getContextName(namespace)
+  );
+  if (!parent) return undefined;
+  return parent[1];
+}
+
+export function useParentValue<T>(namespace: string): T | undefined {
+  const parentValue = useDomContext<T | undefined>(
+    getContextValueName(namespace)
+  );
+
+  if (!parentValue) undefined;
+  return parentValue;
 }
 
 export function getContextValueName(namespace: string) {

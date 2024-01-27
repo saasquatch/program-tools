@@ -100,7 +100,6 @@ export class TaxForm {
       <Host>
         <UserInfoFormView
           states={{
-            loading: props.loading,
             submitDisabled: false,
             //@ts-ignore
             formState: props.formState,

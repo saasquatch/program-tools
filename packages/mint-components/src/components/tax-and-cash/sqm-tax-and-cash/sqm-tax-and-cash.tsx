@@ -4,6 +4,7 @@ import deepmerge from "deepmerge";
 import { UserNameViewProps } from "./sqm-tax-and-cash-view";
 import { useTaxAndCash } from "./useTaxAndCash";
 import { DemoData } from "../../../global/demo";
+import { LoadingSkeleton } from "../../../tables/TableSlots";
 
 /**
  * @uiName Tax And Cash
@@ -34,6 +35,9 @@ export class TaxAndCash {
     const props = useTaxAndCash();
 
     console.log({ props, step: props.step });
+
+    if (props.loading) return <LoadingSkeleton />;
+
     return (
       <div>
         <sqm-context-router contextName={props.namespace}>

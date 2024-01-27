@@ -1,13 +1,10 @@
-import {
-  setUserIdentity,
-  useQuery,
-  useUserIdentity,
-} from "@saasquatch/component-boilerplate";
 import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
-import { gql } from "graphql-request";
 import jsonpointer from "jsonpointer";
-import { useParent } from "../../../utils/useParentState";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/useTaxAndCash";
+import { useParent, useParentValue } from "../../../utils/useParentState";
+import {
+  TAX_CONTEXT_NAMESPACE,
+  USER_CONTEXT_NAMESPACE,
+} from "../sqm-tax-and-cash/useTaxAndCash";
 import { TaxForm } from "./sqm-user-info-form";
 
 // returns either error message if invalid or undefined if valid
@@ -38,58 +35,14 @@ export type InitialData = {
   [key: string]: string;
 };
 
-const GET_USER = gql`
-  query {
-    viewer {
-      ... on User {
-        firstName
-        lastName
-        email
-        countryCode
-        customFields
-      }
-    }
-  }
-`;
-
 export function useTaxForm(props: TaxForm) {
   const formRef = useRef<HTMLFormElement>(null);
   const [formState, setFormState] = useState<FormState>({});
 
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
 
-  /**** DEMO DATA */
-
-  const id = "zach.harrison@referralsaasquatch.com";
-  const accountId = id;
-  const programId = "klip-referral-program";
-
-  //@ts-ignore
-  window.widgetIdent = {
-    tenantAlias: "test_a74miwdpofztj",
-    appDomain: "https://staging.referralsaasquatch.com",
-    programId,
-  };
-
-  useEffect(() => {
-    setUserIdentity({
-      accountId,
-      id,
-      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiYWNjb3VudElkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIn19.Wi8Vd5r64g5n8VNhiY-v5cqFcLwGxPG3Wi3dVSfkFZI",
-    });
-    // return () => {
-    //   window.widgetIdent = undefined;
-    //   setUserIdentity(undefined);
-    // };
-  }, []);
-  /*** */
-
-  const user = useUserIdentity();
-
-  const { data, loading } = useQuery(GET_USER, {
-    id: user?.id,
-    accountId: user?.accountId,
-  });
+  // TODO: user types
+  const data = useParentValue<any>(USER_CONTEXT_NAMESPACE);
 
   useEffect(() => {
     console.log({ data });
@@ -108,35 +61,6 @@ export function useTaxForm(props: TaxForm) {
   function onRadioClick(value: string) {
     setFormState({ ...formState, participantType: value });
   }
-
-  // const inputFunction = useCallback((e) => {
-
-  //   const name = e.target?.type?.toLowerCase();
-  //   if (name !== "tel") return;
-  //   const asYouType = new AsYouType("US");
-  //   e.target.value = asYouType.input(e.target.value);
-  // }, []);
-
-  // useEffect(() => {
-  //   if (!formRef.current) return;
-  //   const form = formRef.current;
-  //   form.addEventListener("sl-input", inputFunction);
-  //   return () => {
-  //     form.removeEventListener("sl-input", inputFunction);
-  //   };
-  // }, [formRef.current]);
-
-  // let errorMessage = "";
-  // if (errors?.response?.["error"]) {
-  //   errorMessage = props.networkErrorMessage;
-  // } else if (errors?.message && !errors?.response?.errors.length) {
-  //   errorMessage = props.networkErrorMessage;
-  // } else {
-  //   errorMessage =
-  //     errors?.response?.errors?.[0]?.extensions?.message ||
-  //     errors?.response?.errors?.[0]?.message ||
-  //     formState?.error;
-  // }
 
   async function onSubmit(event: any) {
     let formControls = event.target.getFormControls();
@@ -213,7 +137,6 @@ export function useTaxForm(props: TaxForm) {
     setStep: setStep,
     onSubmit,
     onRadioClick,
-    loading,
     text: {
       ...props,
     },
