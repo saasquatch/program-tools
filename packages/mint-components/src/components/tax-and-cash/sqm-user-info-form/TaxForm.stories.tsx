@@ -149,6 +149,26 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
   },
 };
 
+const documentSubmittedLoadingProps: TaxDocumentSubmittedProps = {
+  states: {
+    status: "EXPIRED",
+    documentType: "W8-BEN-E",
+    dateSubmitted: "Jan 18th, 2025",
+    loading: true,
+  },
+  callbacks: { onClick: () => console.log("Submit new Form") },
+  text: {
+    statusTextExpired: "Expired",
+    badgeTextSubmittedOn: "Expired On",
+    bankingInformationSectionHeader: "Banking Information",
+    taxDocumentSectionHeader: "Tax Documents",
+    taxAlertHeader: "Your W8-BEN-E tax form has expired. ",
+    taxAlertMessage: "Please resubmit a new W8-BEN-E form.",
+    taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
+    newFormButton: "Submit New Form",
+  },
+};
+
 const stepThreeAProps: TaxFormStepThreeAViewProps = {
   states: {
     loading: false,
@@ -328,4 +348,8 @@ export const TaxDocumentSubmittedNotActive = () => {
 
 export const TaxDocumentSubmittedExpired = () => {
   return <TaxDocumentSubmittedView {...documentSubmittedExpiredProps} />;
+};
+
+export const TaxDocumentSubmittedLoading = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedLoadingProps} />;
 };
