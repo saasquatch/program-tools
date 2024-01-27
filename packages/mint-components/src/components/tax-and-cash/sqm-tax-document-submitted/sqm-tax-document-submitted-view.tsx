@@ -1,7 +1,10 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 import { intl } from "../../../global/global";
-import { PayoutDetailsCardView, PayoutDetailsCardViewProps } from "../sqm-payout-details-card/sqm-payout-details-card";
+import {
+  PayoutDetailsCardView,
+  PayoutDetailsCardViewProps,
+} from "../sqm-payout-details-card/sqm-payout-details-card";
 
 export interface TaxDocumentSubmittedProps {
   states: {
@@ -9,6 +12,7 @@ export interface TaxDocumentSubmittedProps {
     documentType: "W9" | "W8-BEN-E" | "W8-BEN";
     dateSubmitted: string;
     dateExpired?: string;
+    loading?: boolean;
   };
   callbacks: { onClick: (props: any) => void };
   text: {
@@ -36,7 +40,7 @@ const style = {
     },
   },
   BankingInformationContainer: {
-    maxWidth: "700px"
+    maxWidth: "700px",
   },
   TaxDocumentsContainer: {
     marginTop: "var(--sl-spacing-x-large)",
@@ -56,6 +60,9 @@ const style = {
   },
   NewFormButton: {
     marginTop: "var(--sl-spacing-x-small)",
+  },
+  EditBankDetailsButton: {
+    marginTop: "var(--sl-spacing-medium)",
   },
 };
 
@@ -185,28 +192,40 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
 
   return (
     <div>
-      <style type="text/css">{styleString}</style>
-      {(states.status === "NOT_ACTIVE" || states.status === "EXPIRED") &&
-        alertMap[states.status]}
-      <div>
-        <h3>{text.bankingInformationSectionHeader}</h3>
-        <div class={sheet.classes.BankingInformationContainer}>
-          {/* AL: Placeholder for banking information. TBD with design with what belongs here */}
-          <PayoutDetailsCardView {...testDetailsCardProps}/>
+      {!states.loading ? (
+        <div>
+          <style type="text/css">{styleString}</style>
+          {(states.status === "NOT_ACTIVE" || states.status === "EXPIRED") &&
+            alertMap[states.status]}
+          <div>
+            <h3>{text.bankingInformationSectionHeader}</h3>
+            <div class={sheet.classes.BankingInformationContainer}>
+              {/* AL: Placeholder for banking information. TBD with design with what belongs here */}
+              <PayoutDetailsCardView {...testDetailsCardProps} />
+              <sl-button
+                type="default"
+                class={sheet.classes.EditBankDetailsButton}
+              >
+                Edit Bank Details
+              </sl-button>
+            </div>
+          </div>
+          <div class={sheet.classes.TaxDocumentsContainer}>
+            <h3>{text.taxDocumentSectionHeader}</h3>
+            <h4>{text.taxDocumentSectionSubHeader}</h4>
+            {statusMap[states.status]}
+          </div>
+          <sl-button
+            onClick={callbacks.onClick}
+            type="primary"
+            class={sheet.classes.NewFormButton}
+          >
+            {text.newFormButton}
+          </sl-button>
         </div>
-      </div>
-      <div class={sheet.classes.TaxDocumentsContainer}>
-        <h3>{text.taxDocumentSectionHeader}</h3>
-        <h4>{text.taxDocumentSectionSubHeader}</h4>
-        {statusMap[states.status]}
-      </div>
-      <sl-button
-        onClick={callbacks.onClick}
-        type="primary"
-        class={sheet.classes.NewFormButton}
-      >
-        {text.newFormButton}
-      </sl-button>
+      ) : (
+        <sl-spinner></sl-spinner>
+      )}
     </div>
   );
 };
