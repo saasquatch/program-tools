@@ -1,12 +1,18 @@
 import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
-import { useParent, useParentValue } from "../../../utils/useParentState";
+import {
+  useParent,
+  useParentState,
+  useParentValue,
+} from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
   USER_CONTEXT_NAMESPACE,
+  USER_INFO_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { TaxForm } from "./sqm-user-info-form";
+import { useHost } from "@saasquatch/component-boilerplate";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -16,7 +22,6 @@ export type ValidationErrorFunction = (input: {
 }) => string | undefined;
 
 export type FormState = {
-  loading?: boolean;
   firstName?: string;
   lastName?: string;
   email?: string;
@@ -37,10 +42,11 @@ export type InitialData = {
 };
 
 export function useTaxForm(props: TaxForm) {
+  const host = useHost();
   const formRef = useRef<HTMLFormElement>(null);
-  const [formState, setFormState] = useState<FormState>({});
 
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
+  const [formState, setFormState] = useParent<FormState>(USER_INFO_NAMESPACE);
 
   // TODO: user types
   const data = useParentValue<UserQuery>(USER_CONTEXT_NAMESPACE);
@@ -56,6 +62,7 @@ export function useTaxForm(props: TaxForm) {
       email: user.email,
       countryCode: user.countryCode,
       currency: user.customFields?.currency,
+      participantType: user.customFields?.participantType,
     });
   }, [data]);
 
@@ -83,7 +90,7 @@ export function useTaxForm(props: TaxForm) {
       } else {
         jsonpointer.set(formData, key, value);
       }
-      console.log({ formData });
+
       // required validation
       if (control.required && !value) {
         jsonpointer.set(errors, key, props.requiredFieldErrorMessage);
@@ -96,19 +103,17 @@ export function useTaxForm(props: TaxForm) {
       }
     });
 
+    console.log({ formData, errors });
+
     if (Object.keys(errors).length) {
-      setFormState({ ...formState, loading: false, error: "", errors });
+      setFormState({ ...formState, error: "", errors });
       // early return for validation errors
       return;
     }
 
-    setFormState({
-      ...formState,
-      loading: true,
-      error: "",
-    });
-
     formData = { ...formData };
+
+    setFormState(formData);
 
     console.log({ formData });
 
