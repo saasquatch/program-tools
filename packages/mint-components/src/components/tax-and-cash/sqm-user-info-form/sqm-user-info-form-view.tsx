@@ -253,6 +253,7 @@ export const UserInfoFormView = (props: TaxFormStepOneProps) => {
               exportparts="base: radio-base"
               value="individualParticipant"
               name="/participantType"
+              checked={formState.participantType === "individualParticipant"}
             >
               {text.individualParticipant}
             </sl-radio>
@@ -260,6 +261,7 @@ export const UserInfoFormView = (props: TaxFormStepOneProps) => {
               exportparts="base: radio-base"
               value="businessEntity"
               name="/participantType"
+              checked={formState.participantType === "businessEntity"}
             >
               {text.businessEntity}
             </sl-radio>
@@ -279,6 +281,7 @@ export const UserInfoFormView = (props: TaxFormStepOneProps) => {
             }}
             disabled={states.loading}
             required
+            value={formState.allowBankingCollection}
             // Copied from edit form, may need to keep
             // {...(formState.errors?.allowBankingCollection &&
             // formState.errors?.allowBankingCollection.status !== "valid"

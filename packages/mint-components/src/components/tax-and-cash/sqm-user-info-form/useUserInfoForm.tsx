@@ -59,6 +59,7 @@ export function useTaxForm(props: TaxForm) {
       countryCode: user.countryCode,
       currency: user.customFields?.currency,
       participantType: user.customFields?.participantType,
+      ...formState,
     });
   }, [data]);
 
