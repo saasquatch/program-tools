@@ -1,4 +1,3 @@
-import { useHost } from "@saasquatch/component-boilerplate";
 import { useEffect, useRef } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
 import { useParent, useParentValue } from "../../../utils/useParentState";
@@ -49,7 +48,7 @@ export function useTaxForm(props: TaxForm) {
   useEffect(() => {
     console.log({ data });
     const user = data?.viewer;
-    if (!user) return;
+    if (!user || step !== "/1") return;
 
     setFormState({
       firstName: user.firstName,
@@ -60,7 +59,7 @@ export function useTaxForm(props: TaxForm) {
       participantType: user.customFields?.participantType,
       ...formState,
     });
-  }, [data]);
+  }, [data, step]);
 
   function onRadioClick(value: string) {
     setFormState({ ...formState, participantType: value });
