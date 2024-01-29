@@ -3,9 +3,10 @@ import { Component, Element, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import { TaxFormStepTwoProps } from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
+import { IndirectTaxFormViewProps } from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
 import { useDocusignForm } from "./useDocusignForm";
 import { DocusignFormView } from "./sqm-docusign-form-view";
+import { docusignFormText } from "../sqm-user-info-form/defaultTextCopy";
 
 /**
  * @uiName Tax And Cash
@@ -20,18 +21,22 @@ export class DocusignForm {
   @Element() el;
   @State() ignored = true;
 
-  @Prop() step: string = "Step";
-  @Prop() stepOf: string = "of";
-  @Prop() taxForm: string = "Tax Form";
-  @Prop() submitButton: string = "Continue";
-  @Prop() backButton: string = "Back";
-  @Prop() formSubmissionError: string = "Form could not submit";
-
+  @Prop() step: string = docusignFormText.step;
+  @Prop() stepOf: string = docusignFormText.stepOf;
+  @Prop() taxForm: string = docusignFormText.taxForm;
+  @Prop() taxFormLabel: string = docusignFormText.taxFormLabel;
+  @Prop() taxFormDescription: string = docusignFormText.taxFormDescription;
+  @Prop() notBasedInUS: string = docusignFormText.notBasedInUS;
+  @Prop() banner: string = docusignFormText.banner;
+  @Prop() checkboxLabel: string = docusignFormText.checkboxLabel;
+  @Prop() checkboxDescription: string = docusignFormText.checkboxDescription;
+  @Prop() submitButton: string = docusignFormText.submitButton;
+  @Prop() backButton: string = docusignFormText.backButton;
   /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<TaxFormStepTwoProps>;
+  @Prop() demoData?: DemoData<IndirectTaxFormViewProps>;
 
   constructor() {
     withHooks(this);

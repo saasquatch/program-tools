@@ -1,7 +1,7 @@
 import { VNode, h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 
-export interface TaxFormStepTwoProps {
+export interface IndirectTaxFormViewProps {
   states: {
     loading: boolean;
     submitDisabled: boolean;
@@ -108,7 +108,7 @@ const vanillaStyle = `
     }
   `;
 
-export const IndirectTaxFormView = (props: TaxFormStepTwoProps) => {
+export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
   const {
     states,
     states: { formState },

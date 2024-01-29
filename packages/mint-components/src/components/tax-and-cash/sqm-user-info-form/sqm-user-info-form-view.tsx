@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 
-export interface TaxFormStepOneProps {
+export interface UserInfoFormViewProps {
   states: {
     loading: boolean;
     submitDisabled: boolean;
@@ -37,6 +37,7 @@ export interface TaxFormStepOneProps {
     taxAndBankingCollection: string;
     submitButton: string;
     error: {
+      general: string;
       firstName: string;
       lastName: string;
       email: string;
@@ -132,7 +133,7 @@ const vanillaStyle = `
 
   `;
 
-export const UserInfoFormView = (props: TaxFormStepOneProps) => {
+export const UserInfoFormView = (props: UserInfoFormViewProps) => {
   const {
     states,
     states: { formState },

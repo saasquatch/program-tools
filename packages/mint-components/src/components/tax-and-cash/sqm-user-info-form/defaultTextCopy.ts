@@ -1,8 +1,9 @@
 import { IndirectDetailsSlotViewProps } from "./small-views/IndirectTaxDetailsView";
-import { TaxFormStepOneProps } from "./sqm-user-info-form-view";
+import { UserInfoFormViewProps } from "./sqm-user-info-form-view";
 import { TaxDocumentSubmittedProps } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
-import { TaxFormStepTwoProps } from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
+import { IndirectTaxFormViewProps } from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
 import { DocumentTypeFormViewProps } from "../sqm-document-type-form/sqm-document-type-form-view";
+import { DocusignFormViewProps } from "../sqm-docusign-form/sqm-docusign-form-view";
 
 export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
   selectedRegion: "Country / Region of Indirect Tax",
@@ -11,7 +12,7 @@ export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
   indirectTaxNumber: "Indirect Tax",
 };
 
-export const taxFormStepOneText: TaxFormStepOneProps["text"] = {
+export const userInfoText: UserInfoFormViewProps["text"] = {
   firstName: "First name",
   lastName: "Last name",
   email: "Email",
@@ -27,6 +28,7 @@ export const taxFormStepOneText: TaxFormStepOneProps["text"] = {
   individualParticipant: "I am an individual participant",
   taxAndBankingCollection: "Tax and banking collection",
   error: {
+    general: "Network request failed.",
     firstName: "Enter a first name",
     lastName: "Enter a last name",
     email: "Enter a valid email",
@@ -37,7 +39,7 @@ export const taxFormStepOneText: TaxFormStepOneProps["text"] = {
   },
 };
 
-export const taxFormStepTwoText: TaxFormStepTwoProps["text"] = {
+export const indirectTaxFormText: IndirectTaxFormViewProps["text"] = {
   step: "Step",
   stepOf: "of",
   indirectTax: "Indirect Tax",
@@ -55,6 +57,21 @@ export const taxFormStepTwoText: TaxFormStepTwoProps["text"] = {
   error: {
     taxDetails: "This field is required",
   },
+};
+
+export const docusignFormText: DocusignFormViewProps["text"] = {
+  step: "Step",
+  stepOf: "of",
+  taxForm: "Tax form",
+  taxFormLabel: "W9 Tax Form",
+  taxFormDescription:
+    "Participants based in the US and partnering with US-based brands need to submit a W9 form.",
+  notBasedInUS: "Not based in the US?",
+  banner: "Complete and submit your tax form to save your information",
+  checkboxLabel: "Form submission",
+  checkboxDescription: "I have completed and submitted my tax form",
+  submitButton: "Continue",
+  backButton: "Back",
 };
 
 export const documentTypeFormText: DocumentTypeFormViewProps["text"] = {
