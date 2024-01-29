@@ -50,10 +50,24 @@ export type UserQuery = {
 export const USER_INFO_NAMESPACE = "sq:user-info-form";
 
 function getCurrentStep(user) {
-  if (!user.countryCode || !user.customFields?.currency) {
+  console.log({ user });
+  if (
+    !user.countryCode ||
+    !user.customFields?.currency ||
+    !user.customFields.participantType
+  ) {
     return "/1";
   }
-  return "/1";
+
+  if (!user.customFields.w9Type) {
+    return "/2";
+  }
+
+  if (!user.customFields.w9Submitted) {
+    return "/3b";
+  }
+
+  return "/loading";
 }
 
 export function useTaxAndCash() {
@@ -95,7 +109,7 @@ export function useTaxAndCash() {
     setUserIdentity({
       accountId,
       id,
-      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiYWNjb3VudElkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIn19.Wi8Vd5r64g5n8VNhiY-v5cqFcLwGxPG3Wi3dVSfkFZI",
+      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiYWNjb3VudElkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiZW1haWwiOiJ6YWNoLmhhcnJpc29uQHJlZmVycmFsc2Fhc3F1YXRjaC5jb20ifX0.vBPHefz1au0_O-Hub2q6m5S8t-D5EO9LxK_pd9rkLhQ",
     });
     // return () => {
     //   window.widgetIdent = undefined;
@@ -122,8 +136,6 @@ export function useTaxAndCash() {
       setStep(currentStep);
     }
   }, [data]);
-
-  console.log({ step });
 
   return {
     step,

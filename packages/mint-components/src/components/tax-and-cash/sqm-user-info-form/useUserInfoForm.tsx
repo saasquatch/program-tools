@@ -1,4 +1,3 @@
-import { useHost } from "@saasquatch/component-boilerplate";
 import { useEffect, useRef } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
 import { useParent, useParentValue } from "../../../utils/useParentState";
@@ -38,7 +37,6 @@ export type InitialData = {
 };
 
 export function useTaxForm(props: TaxForm) {
-  const host = useHost();
   const formRef = useRef<HTMLFormElement>(null);
 
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
@@ -50,7 +48,7 @@ export function useTaxForm(props: TaxForm) {
   useEffect(() => {
     console.log({ data });
     const user = data?.viewer;
-    if (!user) return;
+    if (!user || step !== "/1") return;
 
     setFormState({
       firstName: user.firstName,
@@ -61,7 +59,7 @@ export function useTaxForm(props: TaxForm) {
       participantType: user.customFields?.participantType,
       ...formState,
     });
-  }, [data]);
+  }, [data, step]);
 
   function onRadioClick(value: string) {
     setFormState({ ...formState, participantType: value });
@@ -72,8 +70,6 @@ export function useTaxForm(props: TaxForm) {
 
     let formData: Record<string, any> = {};
     let errors: Record<string, string> = {};
-
-    console.log({ formControls });
 
     try {
       formControls?.forEach((control) => {
@@ -110,37 +106,17 @@ export function useTaxForm(props: TaxForm) {
         );
       }
 
-      console.log({ formData, errors });
-
       if (Object.keys(errors).length) {
         setFormState({ ...formState, error: "", errors });
         // early return for validation errors
         return;
       }
 
-      formData = { ...formData };
+      const { allowBankingCollection, ...cleanData } = formData;
 
-      setFormState(formData);
+      setFormState(cleanData);
 
-      console.log({ formData });
-
-      // try {
-      //   const result = await request(variables);
-      //   if (result instanceof Error) {
-      //     throw result;
-      //   }
-      //   setFormState({
-      //     loading: false,
-      //     error: "",
-      //     validationErrors: {},
-      //   });
-      // } catch (error) {
-      //   setFormState({
-      //     loading: false,
-      //     error: props.networkErrorMessage,
-      //     validationErrors: {},
-      //   });
-      // }
+      console.log({ cleanData });
 
       setStep("/2");
     } catch {}

@@ -15,6 +15,7 @@ const GET_USER_TAX_INFO = gql`
       lastName
       email
       countryCode
+      customFields
     }
   }
 `;
@@ -52,7 +53,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
       documentUrl: "https://example.com",
     },
     loading: false,
-    refetch: (vars: any) => console.debug("REFETCHING", vars),
+    refetch: (_vars: any) => console.debug("REFETCHING", _vars),
   };
 
   useEffect(() => {

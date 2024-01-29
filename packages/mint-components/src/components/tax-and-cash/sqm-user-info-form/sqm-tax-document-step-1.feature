@@ -5,34 +5,50 @@ Feature: Tax Form Step One
 
 
 	Background: A user is prompted to enter their personal and initial tax information
-		Given a user is on the First step of the tax form
+		Given a user is on Tax Form Step One
 
 
     @minutia
     Scenario Outline: A user fills out Tax Form Step One with the required information
-    Given the user is on Tax Form Step One
-    When the user fills out the form with:
-      | First Name               | <firstName>             |
-      | Last Name                | <lastName>              |
-      | Email                    | <email>                 |
-      | Country Code             | <countryCode>           |
-      | Currency                 | <currency>              |
-      | Participant Type         | <participantType>       |
-      | Allow Banking Collection | <allowBankingCollection>|
-    And the user agrees to the terms which sets <allowBankingCollection> to true
-    Then the user can press the Submit button
+    When they fill out the form with:
+        | First Name               | <firstName>             |
+        | Last Name                | <lastName>              |
+        | Email                    | <email>                 |
+        | Country Code             | <countryCode>           |
+        | Currency                 | <currency>              |
+        | Participant Type         | <participantType>       |
+        | Allow Banking Collection | <allowBankingCollection>|
+    And they agree to the terms which sets <allowBankingCollection> to true
+    When they press the Submit button
     Then the form succesfully submits
     Examples:
-    | FirstName | LastName | Email                | CountryCode | Currency | ParticipantType         | AllowBankingCollection |
-    | John      | Doe      | john.doe@email.com   | US          | USD      | individualParticipant   | true                   |
-    | Bob       | Johnson  | bob.johnson@email.com| UK          | GBP      | individualParticipant   | true                   |
+        | FirstName | LastName | Email                | CountryCode | Currency | ParticipantType         | AllowBankingCollection |
+        | John      | Doe      | john.doe@email.com   | US          | USD      | individualParticipant   | true                   |
+        | Bob       | Johnson  | bob.johnson@email.com| CA          | CAD      | businessEntity          | true                   |
+        | Martin    | Renny    | bob.johnson@email.com| UK          | GBP      | individualParticipant   | true                   |
 
+    # AL: Need full list of countries
+    @minutia
+    Scenario: A user is filling out the form and selects their country
+    And the available options are:
+        | United States  |
+        | Canada         |
+        | Australia      |
+        | United Kingdom |
+
+    # AL: Need full list of currencies
+    @minutia
+    Scenario: A user is filling out the form and selects their currency
+    And the available options are:
+        | CAD |
+        | USD |
+        | GBP |
+        | AUS |
 
     @minutia
     @ui
     Scenario Outline: A user fills out Tax Form Step One with invalid values
-    Given the user is on Tax Form Step One
-    When the user fills out the form with invalid values for the follow fields:
+    When they fill out the form with invalid values for the following fields:
         | First Name               | <firstName>             |
         | Last Name                | <lastName>              |
         | Email                    | <email>                 |
@@ -53,5 +69,5 @@ Feature: Tax Form Step One
     @ui
     Scenario: The loading state is shown when the form is submitted
         Given the form is submitted
-        And the form fields are disabled
+        Then the form fields are disabled
         Then a loading spinner appears in the Submit button
