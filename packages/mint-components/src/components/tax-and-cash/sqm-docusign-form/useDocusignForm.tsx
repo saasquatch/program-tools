@@ -1,10 +1,10 @@
+import { useQuery, useUserIdentity } from "@saasquatch/component-boilerplate";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { h } from "@stencil/core";
 import { gql } from "graphql-request";
 import { useParent } from "../../../utils/useParentState";
 import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/useTaxAndCash";
 import { DocusignForm } from "./sqm-docusign-form";
-import { useQuery, useUserIdentity } from "@saasquatch/component-boilerplate";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { P } from "../../../global/mixins";
 
 const GET_USER_TAX_INFO = gql`
   query getUserTaxInfo($id: String!, $accountId: String!) {
@@ -15,6 +15,7 @@ const GET_USER_TAX_INFO = gql`
       lastName
       email
       countryCode
+      customFields
     }
   }
 `;
@@ -28,7 +29,6 @@ const GET_TAX_DOCUMENT = gql`
 export function useDocusignForm(props: DocusignForm) {
   const user = useUserIdentity();
   const [path, setPath] = useParent<string>(TAX_CONTEXT_NAMESPACE);
-  const [showDocumentTypes, setShowDocumentTypes] = useState<boolean>(false);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [errors, setErrors] = useState({});
 
@@ -54,7 +54,7 @@ export function useDocusignForm(props: DocusignForm) {
       documentUrl: "https://example.com",
     },
     loading: false,
-    refetch: (vars: any) => console.debug("REFETCHING"),
+    refetch: (_vars: any) => console.debug("REFETCHING"),
   };
 
   useEffect(() => {
@@ -79,21 +79,29 @@ export function useDocusignForm(props: DocusignForm) {
   };
 
   return {
-    text: props,
+    text: {
+      ...props,
+      error: {
+        formSubmission: props.formSubmissionError,
+      },
+    },
     states: {
-      errors,
+      submitDisabled: loading || taxInfoLoading || !formSubmitted,
       loading: loading || taxInfoLoading,
-      formSubmitted,
-      showDocumentTypes,
+      formState: {
+        completedTaxForm: formSubmitted,
+        errors,
+      },
     },
     data: {
       taxForm: taxInfo?.taxForm,
       documentUrl: taxInfo?.documentUrl,
     },
     callbacks: {
-      setShowDocumentTypes,
+      onShowDocumentType: () => setPath("/3b"),
       onSubmit,
       toggleFormSubmitted: () => setFormSubmitted((x) => !x),
+      onBack: () => setPath("/2"),
     },
   };
 }

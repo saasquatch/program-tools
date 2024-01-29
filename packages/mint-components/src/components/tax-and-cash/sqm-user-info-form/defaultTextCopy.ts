@@ -2,6 +2,7 @@ import { IndirectDetailsSlotViewProps } from "./small-views/IndirectTaxDetailsVi
 import { TaxFormStepOneProps } from "./sqm-user-info-form-view";
 import { TaxDocumentSubmittedProps } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
 import { TaxFormStepTwoProps } from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
+import { DocumentTypeFormViewProps } from "../sqm-document-type-form/sqm-document-type-form-view";
 
 export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
   selectedRegion: "Country / Region of Indirect Tax",
@@ -56,15 +57,22 @@ export const taxFormStepTwoText: TaxFormStepTwoProps["text"] = {
   },
 };
 
-export const taxFormStepThreeText: any = {
+export const documentTypeFormText: DocumentTypeFormViewProps["text"] = {
   step: "Step",
   stepOf: "of",
   taxForm: "Tax form",
   backButton: "Back",
   submitButton: "Continue",
-  error: {
-    formSubmission: "",
-  },
+  formLabel: "Select a tax form",
+  w9Label: "W9",
+  w9Description:
+    "W9 For participants based in the US, joining the referral program of a US-based company.",
+  w8Label: "W8-Ben",
+  w8Description:
+    "W8-BEN For individuals residing outside of the US, joining the referral program of a US-based company.",
+  w8ELabel: "W8-BEN-E",
+  w8EDescription:
+    "W8-BEN-E For participants residing outside of the US who represent a business entity, joining the referral program of a US-based company.",
 };
 
 export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {

@@ -6,13 +6,13 @@ export interface TaxFormStepThreeAViewProps {
     loading: boolean;
     submitDisabled: boolean;
     formState: {
-      formSubmisson: boolean;
       completedTaxForm: boolean;
       errors?: any;
     };
-    docusignSlot: VNode;
   };
   callbacks: {
+    onShowDocumentType: () => void;
+    toggleFormSubmitted: () => void;
     onSubmit: (props: any) => void;
     onBack: () => void;
   };
@@ -163,7 +163,7 @@ export const DocusignFormView = (props: TaxFormStepThreeAViewProps) => {
       <p>
         Participants based in the US and partnering with US-based brands need to
         submit a W9 form.
-        <a href="#" class={classes.Link}>
+        <a onClick={props.callbacks.onShowDocumentType} class={classes.Link}>
           Not based in the US?
         </a>
       </p>
@@ -179,10 +179,13 @@ export const DocusignFormView = (props: TaxFormStepThreeAViewProps) => {
         </div>
       </sl-alert>
 
-      {states.docusignSlot}
+      <slot name="docusign-iframe"></slot>
       <div>
         <p class={classes.BoldText}>Form submission</p>
-        <sl-checkbox checked={formState.completedTaxForm}>
+        <sl-checkbox
+          onSl-change={callbacks.toggleFormSubmitted}
+          checked={formState.completedTaxForm}
+        >
           I have completed and submitted my tax form
         </sl-checkbox>
       </div>

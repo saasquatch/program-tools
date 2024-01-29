@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 import {
   DocumentTypeFormView,
-  TaxFormStepThreeBViewProps,
+  DocumentTypeFormViewProps,
 } from "../sqm-document-type-form/sqm-document-type-form-view";
 import {
   DocusignFormView,
@@ -16,8 +16,8 @@ import {
   TaxDocumentSubmittedView,
 } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
 import {
+  documentTypeFormText,
   taxFormStepOneText,
-  taxFormStepThreeText,
   taxFormStepTwoText,
 } from "./defaultTextCopy";
 import {
@@ -48,7 +48,9 @@ const stepOneProps: TaxFormStepOneProps = {
     },
   },
   callbacks: {
+    // TODO: fix type
     onSubmit: (props: any) => console.log("Submit"),
+    // TODO: fix type
     onRadioClick: (props: any) => console.log("Radio Click"),
   },
   text: taxFormStepOneText,
@@ -66,7 +68,9 @@ const stepTwoProps: TaxFormStepTwoProps = {
     },
   },
   callbacks: {
+    // TODO: fix type
     onSubmit: (props: any) => console.log("Submit"),
+    // TODO: fix type
     onChange: (e) => console.log("Submit"),
     onBack: () => console.log("Submit"),
   },
@@ -193,37 +197,29 @@ const documentSubmittedLoadingProps: TaxDocumentSubmittedProps = {
   },
 };
 
-const stepThreeAProps: TaxFormStepThreeAViewProps = {
+const stepThreeAProps = {
   states: {
     loading: false,
     submitDisabled: false,
     formState: {
-      formSubmisson: false,
       completedTaxForm: true,
     },
-    docusignSlot: (
-      <div
-        style={{
-          border: "1px dashed black",
-          width: "600px",
-          height: "600px",
-        }}
-      ></div>
-    ),
   },
   callbacks: {
+    toggleFormSubmitted: () => console.log("Toggle checkbox"),
+    onShowDocumentType: () => console.log("To other form"),
     onSubmit: (props: any) => console.log(props),
     onBack: () => console.log("Back"),
   },
-  text: taxFormStepThreeText,
+  // TODO: fix this
+  // text: taxFormStepThreeText,
 };
 
-const stepThreeBProps: TaxFormStepThreeBViewProps = {
+const stepThreeBProps: DocumentTypeFormViewProps = {
   states: {
     loading: false,
     submitDisabled: false,
     formState: {
-      formSubmisson: false,
       selectedTaxForm: undefined,
     },
   },
@@ -231,7 +227,7 @@ const stepThreeBProps: TaxFormStepThreeBViewProps = {
     onSubmit: (props: any) => console.log(props),
     onBack: () => console.log("Back"),
   },
-  text: taxFormStepThreeText,
+  text: documentTypeFormText,
 };
 
 // STEP ONE
@@ -351,6 +347,7 @@ export const StepTwoNotRegisteredChecked = () => {
 
 // STEP THREE
 export const StepThreeWithDocusign = () => {
+  // @ts-ignore TODO: fix this
   return <DocusignFormView {...stepThreeAProps} />;
 };
 

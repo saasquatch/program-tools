@@ -5,6 +5,7 @@ import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { TaxFormStepTwoProps } from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
 import { useDocusignForm } from "./useDocusignForm";
+import { DocusignFormView } from "./sqm-docusign-form-view";
 
 /**
  * @uiName Tax And Cash
@@ -18,11 +19,12 @@ import { useDocusignForm } from "./useDocusignForm";
 export class DocusignForm {
   @State() ignored = true;
 
-  @Prop() w9: string = "W9";
-  @Prop() w8: string = "W8-BEN";
-  @Prop() w8e: string = "W8-BEN-E";
+  @Prop() step: string = "Step";
+  @Prop() stepOf: string = "of";
+  @Prop() taxForm: string = "Tax Form";
   @Prop() submitButton: string = "Continue";
   @Prop() backButton: string = "Back";
+  @Prop() formSubmissionError: string = "Form could not submit";
 
   /**
    * @undocumented
@@ -42,26 +44,11 @@ export class DocusignForm {
 
     return (
       <Host>
-        <h2>HELLO</h2>
-        {/* <TaxFormStepTwoView
-          states={{
-            loading: false,
-            submitDisabled: false,
-            formState: {
-              checked: "hstCanada",
-              errors: undefined,
-              error: "",
-            },
-          }}
-          callbacks={{
-            onSubmit: () => props.setStep("/3"),
-            onChange: function (e: any): void {
-              throw new Error("Function not implemented.");
-            },
-            onBack: () => props.setStep("/1"),
-          }}
-          text={{ ...props.text }}
-        /> */}
+        <DocusignFormView
+          callbacks={props.callbacks}
+          states={props.states}
+          text={props.text}
+        />
       </Host>
     );
   }

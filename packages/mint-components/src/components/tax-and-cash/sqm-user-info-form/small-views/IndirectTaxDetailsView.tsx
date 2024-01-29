@@ -14,6 +14,12 @@ export interface IndirectDetailsSlotViewProps {
       error?: string;
     };
   };
+  data: {
+    countries: {
+      countryCode: string;
+      displayName: string;
+    }[];
+  };
   callbacks: {
     onChange: (e) => void;
   };
@@ -82,6 +88,7 @@ export const IndirectDetailsSlotView = (
       <div class={classes.InputContainer}>
         {formState.registeredIn === "otherRegion" ? (
           <sl-select
+            required
             class={classes.Input}
             exportparts="label: input-label"
             value={formState.selectedRegion}
@@ -101,11 +108,13 @@ export const IndirectDetailsSlotView = (
                 : undefined
             }
           >
-            <sl-option value="option-1">Canada</sl-option>
-            <sl-option value="option-2">United Kingdom</sl-option>
+            {props.data.countries.map((c) => (
+              <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
+            ))}
           </sl-select>
         ) : (
           <sl-select
+            required
             exportparts="label: input-label"
             class={classes.Input}
             value={formState.province}
@@ -125,12 +134,24 @@ export const IndirectDetailsSlotView = (
                 : undefined
             }
           >
-            <sl-option value="option-1">British Columbia</sl-option>
-            <sl-option value="option-2">United Kingdom</sl-option>
+            <sl-menu-item value="ON">Ontario</sl-menu-item>
+            <sl-menu-item value="QC">Quebec</sl-menu-item>
+            <sl-menu-item value="NS">Nova Scotia</sl-menu-item>
+            <sl-menu-item value="NB">New Brunswick</sl-menu-item>
+            <sl-menu-item value="MB">Manitoba</sl-menu-item>
+            <sl-menu-item value="BC">British Columbia</sl-menu-item>
+            <sl-menu-item value="PE">Prince Edward Island</sl-menu-item>
+            <sl-menu-item value="SK">Saskatchewan</sl-menu-item>
+            <sl-menu-item value="AB">Alberta</sl-menu-item>
+            <sl-menu-item value="NL">Newfoundland</sl-menu-item>
+            <sl-menu-item value="NT">Northwest Territories</sl-menu-item>
+            <sl-menu-item value="YT">Yukon</sl-menu-item>
+            <sl-menu-item value="NU">Nunavut</sl-menu-item>
           </sl-select>
         )}
         {formState.registeredIn === "otherRegion" ? (
           <sl-input
+            required
             exportparts="label: input-label"
             class={classes.Input}
             value={formState.vatNumber}
@@ -152,6 +173,7 @@ export const IndirectDetailsSlotView = (
           />
         ) : (
           <sl-input
+            required
             exportparts="label: input-label"
             class={classes.Input}
             value={formState.indirectTaxNumber}

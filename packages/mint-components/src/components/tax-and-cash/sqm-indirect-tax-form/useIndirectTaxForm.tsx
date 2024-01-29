@@ -1,9 +1,17 @@
-import { setUserIdentity, useQuery } from "@saasquatch/component-boilerplate";
-import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
+import {
+  useMutation,
+  useQuery,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
+import { useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
-import { useParent } from "../../../utils/useParentState";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/useTaxAndCash";
+import { useParent, useParentValue } from "../../../utils/useParentState";
+import {
+  TAX_CONTEXT_NAMESPACE,
+  USER_INFO_NAMESPACE,
+} from "../sqm-tax-and-cash/useTaxAndCash";
+import { FormState } from "../sqm-user-info-form/useUserInfoForm";
 
 const GET_COUNTRIES = gql`
   query getCurrencies {
@@ -16,48 +24,36 @@ const GET_COUNTRIES = gql`
   }
 `;
 
+const UPSERT_USER = gql`
+  mutation ($userInput: UserInput!) {
+    upsertUser(userInput: $userInput) {
+      firstName
+      lastName
+    }
+  }
+`;
+
 export function useIndirectTaxForm(props: any) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
+  const userFormData = useParentValue<FormState>(USER_INFO_NAMESPACE);
+  const user = useUserIdentity();
+  const [upsertUser, upsertUserResponse] = useMutation(UPSERT_USER);
+
+  // from step 1
+  console.log({ userFormData });
+
   const [option, setOption] = useState<
     "hstCanada" | "otherRegion" | "notRegistered"
   >(null);
   const [errors, setErrors] = useState({});
-
-  console.log("step2", { step });
 
   const { data: _countries, loading: countriesLoading } = useQuery(
     GET_COUNTRIES,
     {}
   );
   const countries = _countries?.countries.data;
-
-  /**** DEMO DATA */
-
-  const id = "zach.harrison@referralsaasquatch.com";
-  const accountId = id;
-  const programId = "klip-referral-program";
-
-  //@ts-ignore
-  // window.widgetIdent = {
-  //   tenantAlias: "test_a74miwdpofztj",
-  //   appDomain: "https://staging.referralsaasquatch.com",
-  //   programId,
-  // };
-
-  // useEffect(() => {
-  //   setUserIdentity({
-  //     accountId,
-  //     id,
-  //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiYWNjb3VudElkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIn19.Wi8Vd5r64g5n8VNhiY-v5cqFcLwGxPG3Wi3dVSfkFZI",
-  //   });
-  //   return () => {
-  //     window.widgetIdent = undefined;
-  //     setUserIdentity(undefined);
-  //   };
-  // }, []);
-  /*** */
 
   const onSubmit = async (event: any) => {
     if (!option) {
@@ -79,20 +75,34 @@ export function useIndirectTaxForm(props: any) {
       JSONPointer.set(formData, key, value);
 
       if (control.required && !value) {
-        JSONPointer.set(validationErrors, key, true);
+        JSONPointer.set(validationErrors, key, { status: "invalid" });
       }
     });
 
     if (Object.keys(validationErrors).length) {
       setErrors(validationErrors);
+      return;
     }
 
-    console.log({ formData });
-
     setLoading(true);
+
+    const { currency, participantType, ...userData } = userFormData;
+
     try {
       // Backend request
-      setStep("/3");
+      await upsertUser({
+        userInput: {
+          id: user.id,
+          accountId: user.accountId,
+          ...userData,
+          customFields: {
+            currency,
+            participantType,
+          },
+        },
+      });
+
+      setStep("/3/W9");
     } catch (e) {
       setErrors({ graphqlError: true });
     } finally {

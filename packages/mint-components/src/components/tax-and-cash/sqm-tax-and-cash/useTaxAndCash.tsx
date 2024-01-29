@@ -10,6 +10,7 @@ import {
   getContextValueName,
   useParentState,
 } from "../../../utils/useParentState";
+import { FormState } from "../sqm-user-info-form/useUserInfoForm";
 
 export const TAX_CONTEXT_NAMESPACE = "sq:tax-and-cash";
 
@@ -34,6 +35,41 @@ const GET_USER = gql`
   }
 `;
 
+export type UserQuery = {
+  viewer: {
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    countryCode?: string;
+    customFields?: {
+      [key: string]: any;
+    };
+  };
+};
+
+export const USER_INFO_NAMESPACE = "sq:user-info-form";
+
+function getCurrentStep(user) {
+  console.log({ user });
+  if (
+    !user.countryCode ||
+    !user.customFields?.currency ||
+    !user.customFields.participantType
+  ) {
+    return "/1";
+  }
+
+  if (!user.customFields.w9Type) {
+    return "/2";
+  }
+
+  if (!user.customFields.w9Submitted) {
+    return "/3b";
+  }
+
+  return "/loading";
+}
+
 export function useTaxAndCash() {
   const host = useHost();
 
@@ -45,9 +81,15 @@ export function useTaxAndCash() {
     initialValue: "/1",
   });
 
-  const [_userData, setUserData] = useParentState<string>({
+  const [_userData, setUserData] = useParentState<UserQuery>({
     host,
     namespace: USER_CONTEXT_NAMESPACE,
+  });
+
+  useParentState<FormState>({
+    host,
+    namespace: USER_INFO_NAMESPACE,
+    initialValue: {},
   });
 
   /**** DEMO DATA */
@@ -67,7 +109,7 @@ export function useTaxAndCash() {
     setUserIdentity({
       accountId,
       id,
-      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiYWNjb3VudElkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIn19.Wi8Vd5r64g5n8VNhiY-v5cqFcLwGxPG3Wi3dVSfkFZI",
+      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiYWNjb3VudElkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiZW1haWwiOiJ6YWNoLmhhcnJpc29uQHJlZmVycmFsc2Fhc3F1YXRjaC5jb20ifX0.vBPHefz1au0_O-Hub2q6m5S8t-D5EO9LxK_pd9rkLhQ",
     });
     // return () => {
     //   window.widgetIdent = undefined;
@@ -78,7 +120,7 @@ export function useTaxAndCash() {
 
   const user = useUserIdentity();
 
-  const { data, loading } = useQuery(GET_USER, {
+  const { data, loading } = useQuery<UserQuery>(GET_USER, {
     id: user?.id,
     accountId: user?.accountId,
   });
@@ -86,10 +128,14 @@ export function useTaxAndCash() {
   useEffect(() => {
     if (data) {
       setUserData(data);
+      const user = data?.viewer;
+      if (!user) return;
+      const currentStep = getCurrentStep(user);
+
+      console.log({ currentStep });
+      setStep(currentStep);
     }
   }, [data]);
-
-  console.log({ step });
 
   return {
     step,
