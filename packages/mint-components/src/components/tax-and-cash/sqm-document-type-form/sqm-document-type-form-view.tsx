@@ -1,7 +1,7 @@
 import { VNode, h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 
-export interface TaxFormStepThreeBViewProps {
+export interface DocumentTypeFormViewProps {
   states: {
     loading: boolean;
     submitDisabled: boolean;
@@ -19,11 +19,15 @@ export interface TaxFormStepThreeBViewProps {
     step: string;
     stepOf: string;
     taxForm: string;
+    formLabel: string;
+    w9Label: string;
+    w9Description: string;
+    w8Label: string;
+    w8Description: string;
+    w8ELabel: string;
+    w8EDescription: string;
     submitButton: string;
     backButton: string;
-    error: {
-      formSubmission: string;
-    };
   };
 }
 
@@ -80,7 +84,7 @@ const style = {
     color: "var(--sl-color-neutral-500)",
     lineHeight: "22px",
   },
-  BoldText: {
+  LabelText: {
     fontWeight: "bold",
   },
 };
@@ -109,7 +113,7 @@ const vanillaStyle = `
     }
   `;
 
-export const DocumentTypeFormView = (props: TaxFormStepThreeBViewProps) => {
+export const DocumentTypeFormView = (props: DocumentTypeFormViewProps) => {
   const {
     states,
     states: { formState },
@@ -133,31 +137,21 @@ export const DocumentTypeFormView = (props: TaxFormStepThreeBViewProps) => {
           <h3>{text.taxForm}</h3>
         </div>
       </div>
-      <p class={classes.BoldText}>Select a tax form</p>
+      <p class={classes.LabelText}>{text.formLabel}</p>
 
       <sl-radio-group value={formState.selectedTaxForm}>
         <div class={classes.RadioContainer}>
           <sl-radio value="w9">
-            <p class={classes.BoldText}>W9</p>
-            <p class={classes.DescriptionText}>
-              W9 For participants based in the US, joining the referral program
-              of a US-based company.
-            </p>
+            <p class={classes.LabelText}>{text.w9Label}</p>
+            <p class={classes.DescriptionText}>{text.w9Description}</p>
           </sl-radio>
           <sl-radio value="w8-ben">
-            <p class={classes.BoldText}> W8-BEN</p>
-            <p class={classes.DescriptionText}>
-              W8-BEN For individuals residing outside of the US, joining the
-              referral program of a US-based company.
-            </p>
+            <p class={classes.LabelText}>{text.w8Label}</p>
+            <p class={classes.DescriptionText}>{text.w8Description}</p>
           </sl-radio>
           <sl-radio value="w8-ben-e">
-            <p class={classes.BoldText}>W8-BEN-E</p>
-            <p class={classes.DescriptionText}>
-              W8-BEN-E For participants residing outside of the US who represent
-              a business entity, joining the referral program of a US-based
-              company.
-            </p>
+            <p class={classes.LabelText}>{text.w8ELabel}</p>
+            <p class={classes.DescriptionText}>{text.w8EDescription}</p>
           </sl-radio>
         </div>
       </sl-radio-group>

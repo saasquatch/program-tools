@@ -2,26 +2,31 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
 import { getProps } from "../../../utils/utils";
 import { IndirectDetailsSlotView } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
-import { IndirectTaxFormView } from "./sqm-indirect-tax-form-view";
+import {
+  IndirectTaxFormView,
+  TaxFormStepTwoProps,
+} from "./sqm-indirect-tax-form-view";
 import { useIndirectTaxForm } from "./useIndirectTaxForm";
+import { taxFormStepTwoText } from "../sqm-user-info-form/defaultTextCopy";
 
 @Component({
   tag: "sqm-indirect-tax-form",
   shadow: true,
 })
 export class TaxFormStepTwo {
-  @Prop() step: string = "Step";
-  @Prop() stepOf: string = "of";
-  @Prop() indirectTax: string = "Indirect Taxes";
-  @Prop() indirectTaxDescription: string = "TODO";
-  @Prop() indirectTaxDetails: string = "Indirect Tax Details";
-  @Prop() indirectTaxDetailsDescription: string = "TODO";
-  @Prop() hstCanada: string = "I am registered for HST Canada";
-  @Prop() otherRegion: string =
-    "I am registered for Indirect Tax in a different Country / Region";
-  @Prop() notRegistered: string = "I am not registered for Indirect Tax";
-  @Prop() submitButton: string = "Continue";
-  @Prop() backButton: string = "Back";
+  @Prop() step: string = taxFormStepTwoText.step;
+  @Prop() stepOf: string = taxFormStepTwoText.stepOf;
+  @Prop() indirectTax: string = taxFormStepTwoText.indirectTax;
+  @Prop() indirectTaxDescription: string =
+    taxFormStepTwoText.indirectTaxDescription;
+  @Prop() indirectTaxDetails: string = taxFormStepTwoText.indirectTaxDetails;
+  @Prop() indirectTaxDetailsDescription: string =
+    taxFormStepTwoText.indirectTaxDetailsDescription;
+  @Prop() hstCanada: string = taxFormStepTwoText.hstCanada;
+  @Prop() otherRegion: string = taxFormStepTwoText.otherRegion;
+  @Prop() notRegistered: string = taxFormStepTwoText.notRegistered;
+  @Prop() submitButton: string = taxFormStepTwoText.submitButton;
+  @Prop() backButton: string = taxFormStepTwoText.backButton;
 
   constructor() {
     withHooks(this);

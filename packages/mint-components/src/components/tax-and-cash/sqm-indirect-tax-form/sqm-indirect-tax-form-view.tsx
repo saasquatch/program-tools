@@ -200,7 +200,6 @@ export const IndirectTaxFormView = (props: TaxFormStepTwoProps) => {
           class={classes.SecondaryBtn}
           type="text"
           loading={states.loading}
-          // disabled={states.submitDisabled}
           onClick={() => {
             callbacks.onBack();
           }}
