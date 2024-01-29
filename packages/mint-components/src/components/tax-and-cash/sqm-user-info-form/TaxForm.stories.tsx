@@ -48,7 +48,9 @@ const stepOneProps: TaxFormStepOneProps = {
     },
   },
   callbacks: {
+    // TODO: fix type
     onSubmit: (props: any) => console.log("Submit"),
+    // TODO: fix type
     onRadioClick: (props: any) => console.log("Radio Click"),
   },
   text: taxFormStepOneText,
@@ -66,7 +68,9 @@ const stepTwoProps: TaxFormStepTwoProps = {
     },
   },
   callbacks: {
+    // TODO: fix type
     onSubmit: (props: any) => console.log("Submit"),
+    // TODO: fix type
     onChange: (e) => console.log("Submit"),
     onBack: () => console.log("Submit"),
   },

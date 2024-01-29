@@ -8,7 +8,7 @@ export function useDocumentTypeForm(props: DocumentTypeForm) {
   const [errors, setErrors] = useState({});
   const [selectedTaxForm, setSelectedTaxForm] = useState(null);
 
-  const onSubmit = (args: any) => {};
+  const onSubmit = (_args: any) => {};
 
   return {
     callbacks: {

@@ -53,7 +53,7 @@ export function useDocusignForm(props: DocusignForm) {
       documentUrl: "https://example.com",
     },
     loading: false,
-    refetch: (vars: any) => console.debug("REFETCHING"),
+    refetch: (_vars: any) => console.debug("REFETCHING"),
   };
 
   useEffect(() => {
