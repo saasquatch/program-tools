@@ -1,10 +1,7 @@
-import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
+import { useHost } from "@saasquatch/component-boilerplate";
+import { useEffect, useRef } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
-import {
-  useParent,
-  useParentState,
-  useParentValue,
-} from "../../../utils/useParentState";
+import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
   USER_CONTEXT_NAMESPACE,
@@ -12,7 +9,6 @@ import {
   UserQuery,
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { TaxForm } from "./sqm-user-info-form";
-import { useHost } from "@saasquatch/component-boilerplate";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -77,65 +73,68 @@ export function useTaxForm(props: TaxForm) {
     let errors: Record<string, string> = {};
 
     console.log({ formControls });
-    formControls?.forEach((control) => {
-      if (!control.name) return;
 
-      const key = control.name;
-      const value = control.value;
+    try {
+      formControls?.forEach((control) => {
+        if (!control.name) return;
 
-      console.log({ control });
+        const key = control.name;
+        const value = control.value;
 
-      if (control.name === "/participantType") {
-        control.checked && jsonpointer.set(formData, key, value);
-      } else {
-        jsonpointer.set(formData, key, value);
+        console.log({ control });
+
+        if (control.name === "/participantType") {
+          control.checked && jsonpointer.set(formData, key, value);
+        } else {
+          jsonpointer.set(formData, key, value);
+        }
+
+        // required validation
+        if (control.required && !value) {
+          jsonpointer.set(errors, key, props.requiredFieldErrorMessage);
+        }
+        // custom validation
+        if (typeof control.validationError === "function") {
+          const validate = control.validationError as ValidationErrorFunction;
+          const validationError = validate({ control, key, value });
+          if (validationError) jsonpointer.set(errors, key, validationError);
+        }
+      });
+
+      console.log({ formData, errors });
+
+      if (Object.keys(errors).length) {
+        setFormState({ ...formState, error: "", errors });
+        // early return for validation errors
+        return;
       }
 
-      // required validation
-      if (control.required && !value) {
-        jsonpointer.set(errors, key, props.requiredFieldErrorMessage);
-      }
-      // custom validation
-      if (typeof control.validationError === "function") {
-        const validate = control.validationError as ValidationErrorFunction;
-        const validationError = validate({ control, key, value });
-        if (validationError) jsonpointer.set(errors, key, validationError);
-      }
-    });
+      formData = { ...formData };
 
-    console.log({ formData, errors });
+      setFormState(formData);
 
-    if (Object.keys(errors).length) {
-      setFormState({ ...formState, error: "", errors });
-      // early return for validation errors
-      return;
-    }
+      console.log({ formData });
 
-    formData = { ...formData };
+      // try {
+      //   const result = await request(variables);
+      //   if (result instanceof Error) {
+      //     throw result;
+      //   }
+      //   setFormState({
+      //     loading: false,
+      //     error: "",
+      //     validationErrors: {},
+      //   });
+      // } catch (error) {
+      //   setFormState({
+      //     loading: false,
+      //     error: props.networkErrorMessage,
+      //     validationErrors: {},
+      //   });
+      // }
 
-    setFormState(formData);
-
-    console.log({ formData });
-
-    // try {
-    //   const result = await request(variables);
-    //   if (result instanceof Error) {
-    //     throw result;
-    //   }
-    //   setFormState({
-    //     loading: false,
-    //     error: "",
-    //     validationErrors: {},
-    //   });
-    // } catch (error) {
-    //   setFormState({
-    //     loading: false,
-    //     error: props.networkErrorMessage,
-    //     validationErrors: {},
-    //   });
-    // }
-
-    setStep("/2");
+      setStep("/2");
+    } catch {}
   }
 
   return {
