@@ -15,6 +15,7 @@ const GET_USER_TAX_INFO = gql`
       lastName
       email
       countryCode
+      customFields
     }
   }
 `;

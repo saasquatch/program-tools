@@ -1,4 +1,8 @@
-import { useMutation, useQuery } from "@saasquatch/component-boilerplate";
+import {
+  useMutation,
+  useQuery,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
 import { useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
@@ -7,6 +11,7 @@ import {
   TAX_CONTEXT_NAMESPACE,
   USER_INFO_NAMESPACE,
 } from "../sqm-tax-and-cash/useTaxAndCash";
+import { FormState } from "../sqm-user-info-form/useUserInfoForm";
 
 const GET_COUNTRIES = gql`
   query getCurrencies {
@@ -32,7 +37,8 @@ export function useIndirectTaxForm(props: any) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
-  const userFormData = useParentValue(USER_INFO_NAMESPACE);
+  const userFormData = useParentValue<FormState>(USER_INFO_NAMESPACE);
+  const user = useUserIdentity();
   const [upsertUser, upsertUserResponse] = useMutation(UPSERT_USER);
 
   // from step 1
@@ -79,8 +85,23 @@ export function useIndirectTaxForm(props: any) {
     }
 
     setLoading(true);
+
+    const { currency, participantType, ...userData } = userFormData;
+
     try {
       // Backend request
+      await upsertUser({
+        userInput: {
+          id: user.id,
+          accountId: user.accountId,
+          ...userData,
+          customFields: {
+            currency,
+            participantType,
+          },
+        },
+      });
+
       setStep("/3/W9");
     } catch (e) {
       setErrors({ graphqlError: true });

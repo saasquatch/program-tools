@@ -38,7 +38,6 @@ export type InitialData = {
 };
 
 export function useTaxForm(props: TaxForm) {
-  const host = useHost();
   const formRef = useRef<HTMLFormElement>(null);
 
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
@@ -72,8 +71,6 @@ export function useTaxForm(props: TaxForm) {
 
     let formData: Record<string, any> = {};
     let errors: Record<string, string> = {};
-
-    console.log({ formControls });
 
     try {
       formControls?.forEach((control) => {
@@ -110,37 +107,17 @@ export function useTaxForm(props: TaxForm) {
         );
       }
 
-      console.log({ formData, errors });
-
       if (Object.keys(errors).length) {
         setFormState({ ...formState, error: "", errors });
         // early return for validation errors
         return;
       }
 
-      formData = { ...formData };
+      const { allowBankingCollection, ...cleanData } = formData;
 
-      setFormState(formData);
+      setFormState(cleanData);
 
-      console.log({ formData });
-
-      // try {
-      //   const result = await request(variables);
-      //   if (result instanceof Error) {
-      //     throw result;
-      //   }
-      //   setFormState({
-      //     loading: false,
-      //     error: "",
-      //     validationErrors: {},
-      //   });
-      // } catch (error) {
-      //   setFormState({
-      //     loading: false,
-      //     error: props.networkErrorMessage,
-      //     validationErrors: {},
-      //   });
-      // }
+      console.log({ cleanData });
 
       setStep("/2");
     } catch {}
