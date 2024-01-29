@@ -69,7 +69,7 @@ export const taxFormStepThreeText: any = {
 
 export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
   statusTextActive: "Active",
-  statusTextNotActive: "Not Active",
+  statusTextNotActive: "Invalid Tax Form",
   statusTextNotVerified: "Not Verified",
   statusTextExpired: "Expired",
   badgeTextSubmittedOn: "Submitted on",

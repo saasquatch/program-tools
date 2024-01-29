@@ -79,6 +79,7 @@ const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
     status: "ACTIVE",
     documentType: "W9",
     dateSubmitted: "Jan 18th, 2025",
+    dateExpired: "Dec 18th, 2025",
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
@@ -86,9 +87,8 @@ const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
     badgeTextSubmittedOn: "Submitted On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
-    taxAlertHeader:
-      "Your W9 tax form has personal information that doesn't match your profile",
-    taxAlertMessage: "Please resubmit a new W9 form.",
+    taxAlertHeader: "",
+    taxAlertMessage: "",
     taxDocumentSectionSubHeader: "W9 Tax Documents",
     newFormButton: "Submit New Form",
   },
@@ -118,7 +118,7 @@ const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    statusTextNotActive: "Not Active",
+    statusTextNotActive: "Invalid Tax Form",
     badgeTextSubmittedOn: "Submitted On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
@@ -135,6 +135,8 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
     status: "EXPIRED",
     documentType: "W8-BEN-E",
     dateSubmitted: "Jan 18th, 2025",
+    dateExpired: "Dec 18th, 2025",
+    expiresSoon: true,
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
@@ -144,6 +146,28 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
     taxDocumentSectionHeader: "Tax Documents",
     taxAlertHeader: "Your W8-BEN-E tax form has expired. ",
     taxAlertMessage: "Please resubmit a new W8-BEN-E form.",
+    taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
+    newFormButton: "Submit New Form",
+  },
+};
+
+const documentSubmittedExpiringSoonProps: TaxDocumentSubmittedProps = {
+  states: {
+    status: "ACTIVE",
+    documentType: "W8-BEN-E",
+    dateSubmitted: "Jan 18th, 2025",
+    dateExpired: "Feb 18th, 2025",
+    expiresSoon: true,
+  },
+  callbacks: { onClick: () => console.log("Submit new Form") },
+  text: {
+    statusTextActive: "Active",
+    badgeTextSubmittedOn: "Submitted On",
+    bankingInformationSectionHeader: "Banking Information",
+    taxDocumentSectionHeader: "Tax Documents",
+    taxAlertHeader: "Your W8-BEN-E tax form expires on {dateExpired}",
+    taxAlertMessage:
+      "Please submit a new W8-BEN-E form to continue receiving your rewards",
     taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
     newFormButton: "Submit New Form",
   },
@@ -348,6 +372,10 @@ export const TaxDocumentSubmittedNotActive = () => {
 
 export const TaxDocumentSubmittedExpired = () => {
   return <TaxDocumentSubmittedView {...documentSubmittedExpiredProps} />;
+};
+
+export const TaxDocumentSubmittedExpiringSoon = () => {
+  return <TaxDocumentSubmittedView {...documentSubmittedExpiringSoonProps} />;
 };
 
 export const TaxDocumentSubmittedLoading = () => {

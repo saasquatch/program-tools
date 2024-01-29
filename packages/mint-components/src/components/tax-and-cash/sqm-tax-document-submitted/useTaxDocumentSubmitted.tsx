@@ -15,6 +15,8 @@ export const useTaxDocumentSubmitted = (props: any) => {
         DateTime.fromMillis(dateSubmitted).toFormat("LLL dd, yyyy"),
       documentType: "W9" as const,
       status: "NOT_VERIFIED",
+      dateExpired: DateTime.fromMillis(dateSubmitted).toFormat("LLL dd, yyyy"),
+      expiresSoon: false,
     },
     callbacks: {
       // Need a way to redirect to the document type select form
