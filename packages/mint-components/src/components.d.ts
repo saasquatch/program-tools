@@ -286,13 +286,21 @@ export namespace Components {
     }
     interface SqmDocumentTypeForm {
         "backButton": string;
+        "formLabel": string;
         "formSubmissionError": string;
         "step": string;
         "stepOf": string;
         "submitButton": string;
         "taxForm": string;
+        "w8Description": string;
+        "w8EDescription": string;
+        "w8ELabel": string;
+        "w8Label": string;
+        "w9Description": string;
+        "w9Label": string;
     }
     interface SqmDocusignEmbed {
+        "url": string;
     }
     interface SqmDocusignForm {
         "backButton": string;
@@ -3958,13 +3966,21 @@ declare namespace LocalJSX {
     }
     interface SqmDocumentTypeForm {
         "backButton"?: string;
+        "formLabel"?: string;
         "formSubmissionError"?: string;
         "step"?: string;
         "stepOf"?: string;
         "submitButton"?: string;
         "taxForm"?: string;
+        "w8Description"?: string;
+        "w8EDescription"?: string;
+        "w8ELabel"?: string;
+        "w8Label"?: string;
+        "w9Description"?: string;
+        "w9Label"?: string;
     }
     interface SqmDocusignEmbed {
+        "url"?: string;
     }
     interface SqmDocusignForm {
         "backButton"?: string;

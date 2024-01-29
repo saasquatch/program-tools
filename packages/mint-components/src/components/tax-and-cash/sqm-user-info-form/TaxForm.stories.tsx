@@ -183,6 +183,7 @@ const stepThreeAProps: TaxFormStepThreeAViewProps = {
     onSubmit: (props: any) => console.log(props),
     onBack: () => console.log("Back"),
   },
+  // @ts-ignore
   text: taxFormStepThreeText,
 };
 

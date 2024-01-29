@@ -25,7 +25,8 @@ const GET_TAX_DOCUMENT = gql`
   }
 `;
 
-export function useDocusignForm(props: DocusignForm) {
+export function useDocusignForm(props: DocusignForm, el: any) {
+  console.log({ el });
   const user = useUserIdentity();
   const [path, setPath] = useParent<string>(TAX_CONTEXT_NAMESPACE);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
@@ -33,8 +34,6 @@ export function useDocusignForm(props: DocusignForm) {
 
   const splitPath = path.split("/");
   const defaultDocumentType = splitPath.length === 3 ? splitPath[2] : undefined;
-
-  console.log({ path, defaultDocumentType });
 
   const { data, loading } = useQuery(GET_USER_TAX_INFO, {
     id: user.id,
@@ -49,11 +48,11 @@ export function useDocusignForm(props: DocusignForm) {
     refetch: refetchDocument,
   } = {
     data: {
-      taxForm: "W9" as const,
+      taxForm: defaultDocumentType,
       documentUrl: "https://example.com",
     },
     loading: false,
-    refetch: (vars: any) => console.debug("REFETCHING"),
+    refetch: (vars: any) => console.debug("REFETCHING", vars),
   };
 
   useEffect(() => {
@@ -67,6 +66,14 @@ export function useDocusignForm(props: DocusignForm) {
       refetchDocument({ documentType: "W8-BEN-E" });
     }
   }, [countryCode]);
+
+  useEffect(() => {
+    // Load docusign iframe with given url
+    const slotted = el.querySelector("sqm-docusign-embed");
+    if (slotted) {
+      slotted.url = taxInfo.documentUrl;
+    }
+  }, [taxInfo.documentUrl]);
 
   const onSubmit = () => {
     if (!formSubmitted) {

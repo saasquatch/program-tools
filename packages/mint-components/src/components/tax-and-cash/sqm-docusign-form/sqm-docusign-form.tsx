@@ -1,5 +1,5 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Host, Prop, State } from "@stencil/core";
+import { Component, Element, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
@@ -17,6 +17,7 @@ import { DocusignFormView } from "./sqm-docusign-form-view";
   shadow: false,
 })
 export class DocusignForm {
+  @Element() el;
   @State() ignored = true;
 
   @Prop() step: string = "Step";
@@ -40,7 +41,7 @@ export class DocusignForm {
 
   render() {
     // const props = isDemo() ? useUserNameDemo(this) : useUserName();
-    const props = useDocusignForm(getProps(this));
+    const props = useDocusignForm(getProps(this), this.el);
 
     return (
       <Host>

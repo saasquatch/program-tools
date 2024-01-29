@@ -122,6 +122,8 @@ export const DocumentTypeFormView = (props: DocumentTypeFormViewProps) => {
 
   const { classes } = sheet;
 
+  console.log({ formState });
+
   return (
     <sl-form class={classes.FormWrapper} onSl-submit={callbacks.onSubmit}>
       <style type="text/css">
@@ -138,22 +140,20 @@ export const DocumentTypeFormView = (props: DocumentTypeFormViewProps) => {
       </div>
       <p class={classes.LabelText}>{text.formLabel}</p>
 
-      <sl-radio-group name="/documentType" value={formState.selectedTaxForm}>
-        <div class={classes.RadioContainer}>
-          <sl-radio value="w9">
-            <p class={classes.LabelText}>{text.w9Label}</p>
-            <p class={classes.DescriptionText}>{text.w9Description}</p>
-          </sl-radio>
-          <sl-radio value="w8-ben">
-            <p class={classes.LabelText}>{text.w8Label}</p>
-            <p class={classes.DescriptionText}>{text.w8Description}</p>
-          </sl-radio>
-          <sl-radio value="w8-ben-e">
-            <p class={classes.LabelText}>{text.w8ELabel}</p>
-            <p class={classes.DescriptionText}>{text.w8EDescription}</p>
-          </sl-radio>
-        </div>
-      </sl-radio-group>
+      <div class={classes.RadioContainer}>
+        <sl-radio value="w9" name="/documentType">
+          <p class={classes.LabelText}>{text.w9Label}</p>
+          <p class={classes.DescriptionText}>{text.w9Description}</p>
+        </sl-radio>
+        <sl-radio value="w8-ben" name="/documentType">
+          <p class={classes.LabelText}>{text.w8Label}</p>
+          <p class={classes.DescriptionText}>{text.w8Description}</p>
+        </sl-radio>
+        <sl-radio value="w8-ben-e" name="/documentType">
+          <p class={classes.LabelText}>{text.w8ELabel}</p>
+          <p class={classes.DescriptionText}>{text.w8EDescription}</p>
+        </sl-radio>
+      </div>
       <div class={classes.BtnContainer}>
         <sl-button
           type="primary"
