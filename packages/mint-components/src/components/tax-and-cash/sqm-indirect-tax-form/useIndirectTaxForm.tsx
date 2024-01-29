@@ -1,9 +1,12 @@
-import { setUserIdentity, useQuery } from "@saasquatch/component-boilerplate";
-import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
+import { useMutation, useQuery } from "@saasquatch/component-boilerplate";
+import { useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
-import { useParent } from "../../../utils/useParentState";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/useTaxAndCash";
+import { useParent, useParentValue } from "../../../utils/useParentState";
+import {
+  TAX_CONTEXT_NAMESPACE,
+  USER_INFO_NAMESPACE,
+} from "../sqm-tax-and-cash/useTaxAndCash";
 
 const GET_COUNTRIES = gql`
   query getCurrencies {
@@ -16,10 +19,25 @@ const GET_COUNTRIES = gql`
   }
 `;
 
+const UPSERT_USER = gql`
+  mutation ($userInput: UserInput!) {
+    upsertUser(userInput: $userInput) {
+      firstName
+      lastName
+    }
+  }
+`;
+
 export function useIndirectTaxForm(props: any) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
+  const userFormData = useParentValue(USER_INFO_NAMESPACE);
+  const [upsertUser, upsertUserResponse] = useMutation(UPSERT_USER);
+
+  // from step 1
+  console.log({ userFormData });
+
   const [option, setOption] = useState<
     "hstCanada" | "otherRegion" | "notRegistered"
   >(null);

@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 import {
   DocumentTypeFormView,
-  TaxFormStepThreeBViewProps,
+  DocumentTypeFormViewProps,
 } from "../sqm-document-type-form/sqm-document-type-form-view";
 import {
   DocusignFormView,
@@ -16,8 +16,8 @@ import {
   TaxDocumentSubmittedView,
 } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
 import {
+  documentTypeFormText,
   taxFormStepOneText,
-  taxFormStepThreeText,
   taxFormStepTwoText,
 } from "./defaultTextCopy";
 import {
@@ -186,7 +186,7 @@ const stepThreeAProps: TaxFormStepThreeAViewProps = {
   text: taxFormStepThreeText,
 };
 
-const stepThreeBProps: TaxFormStepThreeBViewProps = {
+const stepThreeBProps: DocumentTypeFormViewProps = {
   states: {
     loading: false,
     submitDisabled: false,
@@ -198,7 +198,7 @@ const stepThreeBProps: TaxFormStepThreeBViewProps = {
     onSubmit: (props: any) => console.log(props),
     onBack: () => console.log("Back"),
   },
-  text: taxFormStepThreeText,
+  text: documentTypeFormText,
 };
 
 // STEP ONE
