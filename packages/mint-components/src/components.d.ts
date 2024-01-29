@@ -284,6 +284,14 @@ export namespace Components {
          */
         "dividerStyle": string;
     }
+    interface SqmDocumentTypeForm {
+        "backButton": string;
+        "formSubmissionError": string;
+        "step": string;
+        "stepOf": string;
+        "submitButton": string;
+        "taxForm": string;
+    }
     interface SqmDocusignEmbed {
     }
     interface SqmDocusignForm {
@@ -293,10 +301,11 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<TaxFormStepTwoProps>;
+        "formSubmissionError": string;
+        "step": string;
+        "stepOf": string;
         "submitButton": string;
-        "w8": string;
-        "w8e": string;
-        "w9": string;
+        "taxForm": string;
     }
     interface SqmDropdownField {
         /**
@@ -3056,6 +3065,12 @@ declare global {
         prototype: HTMLSqmDividedLayoutElement;
         new (): HTMLSqmDividedLayoutElement;
     };
+    interface HTMLSqmDocumentTypeFormElement extends Components.SqmDocumentTypeForm, HTMLStencilElement {
+    }
+    var HTMLSqmDocumentTypeFormElement: {
+        prototype: HTMLSqmDocumentTypeFormElement;
+        new (): HTMLSqmDocumentTypeFormElement;
+    };
     interface HTMLSqmDocusignEmbedElement extends Components.SqmDocusignEmbed, HTMLStencilElement {
     }
     var HTMLSqmDocusignEmbedElement: {
@@ -3608,6 +3623,7 @@ declare global {
         "sqm-context-router": HTMLSqmContextRouterElement;
         "sqm-coupon-code": HTMLSqmCouponCodeElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
+        "sqm-document-type-form": HTMLSqmDocumentTypeFormElement;
         "sqm-docusign-embed": HTMLSqmDocusignEmbedElement;
         "sqm-docusign-form": HTMLSqmDocusignFormElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
@@ -3940,6 +3956,14 @@ declare namespace LocalJSX {
          */
         "dividerStyle"?: string;
     }
+    interface SqmDocumentTypeForm {
+        "backButton"?: string;
+        "formSubmissionError"?: string;
+        "step"?: string;
+        "stepOf"?: string;
+        "submitButton"?: string;
+        "taxForm"?: string;
+    }
     interface SqmDocusignEmbed {
     }
     interface SqmDocusignForm {
@@ -3949,10 +3973,11 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<TaxFormStepTwoProps>;
+        "formSubmissionError"?: string;
+        "step"?: string;
+        "stepOf"?: string;
         "submitButton"?: string;
-        "w8"?: string;
-        "w8e"?: string;
-        "w9"?: string;
+        "taxForm"?: string;
     }
     interface SqmDropdownField {
         /**
@@ -6631,6 +6656,7 @@ declare namespace LocalJSX {
         "sqm-context-router": SqmContextRouter;
         "sqm-coupon-code": SqmCouponCode;
         "sqm-divided-layout": SqmDividedLayout;
+        "sqm-document-type-form": SqmDocumentTypeForm;
         "sqm-docusign-embed": SqmDocusignEmbed;
         "sqm-docusign-form": SqmDocusignForm;
         "sqm-dropdown-field": SqmDropdownField;
@@ -6738,6 +6764,7 @@ declare module "@stencil/core" {
             "sqm-context-router": LocalJSX.SqmContextRouter & JSXBase.HTMLAttributes<HTMLSqmContextRouterElement>;
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
+            "sqm-document-type-form": LocalJSX.SqmDocumentTypeForm & JSXBase.HTMLAttributes<HTMLSqmDocumentTypeFormElement>;
             "sqm-docusign-embed": LocalJSX.SqmDocusignEmbed & JSXBase.HTMLAttributes<HTMLSqmDocusignEmbedElement>;
             "sqm-docusign-form": LocalJSX.SqmDocusignForm & JSXBase.HTMLAttributes<HTMLSqmDocusignFormElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;

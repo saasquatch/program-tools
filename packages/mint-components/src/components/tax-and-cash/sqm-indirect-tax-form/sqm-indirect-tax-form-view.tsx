@@ -124,6 +124,7 @@ export const IndirectTaxFormView = (props: TaxFormStepTwoProps) => {
       class={classes.FormWrapper}
       onSl-submit={callbacks.onSubmit}
       ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
+      novalidate
     >
       <style type="text/css">
         {styleString}

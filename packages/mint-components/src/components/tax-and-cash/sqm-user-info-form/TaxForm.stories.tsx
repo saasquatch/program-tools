@@ -174,20 +174,12 @@ const stepThreeAProps: TaxFormStepThreeAViewProps = {
     loading: false,
     submitDisabled: false,
     formState: {
-      formSubmisson: false,
       completedTaxForm: true,
     },
-    docusignSlot: (
-      <div
-        style={{
-          border: "1px dashed black",
-          width: "600px",
-          height: "600px",
-        }}
-      ></div>
-    ),
   },
   callbacks: {
+    toggleFormSubmitted: () => console.log("Toggle checkbox"),
+    onShowDocumentType: () => console.log("To other form"),
     onSubmit: (props: any) => console.log(props),
     onBack: () => console.log("Back"),
   },
@@ -199,7 +191,6 @@ const stepThreeBProps: TaxFormStepThreeBViewProps = {
     loading: false,
     submitDisabled: false,
     formState: {
-      formSubmisson: false,
       selectedTaxForm: undefined,
     },
   },

@@ -42,11 +42,13 @@ export class TaxFormStepTwo {
     const sharedSlot = (
       <IndirectDetailsSlotView
         callbacks={{
-          onChange: (e) => {
-            console.log("slot change:", e);
-          },
+          onChange: () => {},
         }}
-        states={{ formState: { registeredIn }, loading: props.loading }}
+        states={{
+          formState: { registeredIn, errors: props.errors },
+          loading: props.loading,
+        }}
+        data={{ countries: props.countries }}
         text={{}}
       ></IndirectDetailsSlotView>
     );

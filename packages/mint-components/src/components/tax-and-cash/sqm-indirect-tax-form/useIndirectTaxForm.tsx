@@ -25,39 +25,11 @@ export function useIndirectTaxForm(props: any) {
   >(null);
   const [errors, setErrors] = useState({});
 
-  console.log("step2", { step });
-
   const { data: _countries, loading: countriesLoading } = useQuery(
     GET_COUNTRIES,
     {}
   );
   const countries = _countries?.countries.data;
-
-  /**** DEMO DATA */
-
-  const id = "zach.harrison@referralsaasquatch.com";
-  const accountId = id;
-  const programId = "klip-referral-program";
-
-  //@ts-ignore
-  // window.widgetIdent = {
-  //   tenantAlias: "test_a74miwdpofztj",
-  //   appDomain: "https://staging.referralsaasquatch.com",
-  //   programId,
-  // };
-
-  // useEffect(() => {
-  //   setUserIdentity({
-  //     accountId,
-  //     id,
-  //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiYWNjb3VudElkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIn19.Wi8Vd5r64g5n8VNhiY-v5cqFcLwGxPG3Wi3dVSfkFZI",
-  //   });
-  //   return () => {
-  //     window.widgetIdent = undefined;
-  //     setUserIdentity(undefined);
-  //   };
-  // }, []);
-  /*** */
 
   const onSubmit = async (event: any) => {
     if (!option) {
@@ -79,20 +51,19 @@ export function useIndirectTaxForm(props: any) {
       JSONPointer.set(formData, key, value);
 
       if (control.required && !value) {
-        JSONPointer.set(validationErrors, key, true);
+        JSONPointer.set(validationErrors, key, { status: "invalid" });
       }
     });
 
     if (Object.keys(validationErrors).length) {
       setErrors(validationErrors);
+      return;
     }
-
-    console.log({ formData });
 
     setLoading(true);
     try {
       // Backend request
-      setStep("/3");
+      setStep("/3/W9");
     } catch (e) {
       setErrors({ graphqlError: true });
     } finally {

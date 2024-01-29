@@ -6,7 +6,6 @@ export interface TaxFormStepThreeBViewProps {
     loading: boolean;
     submitDisabled: boolean;
     formState: {
-      formSubmisson: boolean;
       selectedTaxForm: "w9" | "w8-ben" | "w8-ben-e" | undefined;
       errors?: any;
     };
@@ -135,23 +134,23 @@ export const DocumentTypeFormView = (props: TaxFormStepThreeBViewProps) => {
       </div>
       <p class={classes.BoldText}>Select a tax form</p>
 
-      <sl-radio-group value={formState.selectedTaxForm}>
+      <sl-radio-group name="/documentType" value={formState.selectedTaxForm}>
         <div class={classes.RadioContainer}>
-          <sl-radio value="w9">
+          <sl-radio value="w9" name="/w9">
             <p class={classes.BoldText}>W9</p>
             <p class={classes.DescriptionText}>
               W9 For participants based in the US, joining the referral program
               of a US-based company.
             </p>
           </sl-radio>
-          <sl-radio value="w8-ben">
+          <sl-radio value="w8-ben" name="/w8-ben">
             <p class={classes.BoldText}> W8-BEN</p>
             <p class={classes.DescriptionText}>
               W8-BEN For individuals residing outside of the US, joining the
               referral program of a US-based company.
             </p>
           </sl-radio>
-          <sl-radio value="w8-ben-e">
+          <sl-radio value="w8-ben-e" name="/w8-ben-e">
             <p class={classes.BoldText}>W8-BEN-E</p>
             <p class={classes.DescriptionText}>
               W8-BEN-E For participants residing outside of the US who represent
