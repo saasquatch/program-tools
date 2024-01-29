@@ -82,8 +82,6 @@ export function useTaxForm(props: TaxForm) {
         const key = control.name;
         const value = control.value;
 
-        console.log({ control });
-
         if (control.name === "/participantType") {
           control.checked && jsonpointer.set(formData, key, value);
         } else {
@@ -94,6 +92,7 @@ export function useTaxForm(props: TaxForm) {
         if (control.required && !value) {
           jsonpointer.set(errors, key, props.requiredFieldErrorMessage);
         }
+
         // custom validation
         if (typeof control.validationError === "function") {
           const validate = control.validationError as ValidationErrorFunction;
@@ -101,6 +100,15 @@ export function useTaxForm(props: TaxForm) {
           if (validationError) jsonpointer.set(errors, key, validationError);
         }
       });
+
+      // participant type validation
+      if (!formData.participantType) {
+        jsonpointer.set(
+          errors,
+          "/participantType",
+          props.requiredFieldErrorMessage
+        );
+      }
 
       console.log({ formData, errors });
 

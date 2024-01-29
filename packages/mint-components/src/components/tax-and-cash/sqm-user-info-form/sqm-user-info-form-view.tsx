@@ -268,7 +268,7 @@ export const UserInfoFormView = (props: TaxFormStepOneProps) => {
           </div>
 
           {formState.errors?.participantType && (
-            <p class={classes.ErrorText}>{text.error.participantType}</p>
+            <p class={classes.ErrorText}>{formState.errors?.participantType}</p>
           )}
         </div>
         <div class={classes.CheckboxWrapper}>
