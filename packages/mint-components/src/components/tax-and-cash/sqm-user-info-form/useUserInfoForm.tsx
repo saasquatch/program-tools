@@ -4,6 +4,7 @@ import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
   USER_CONTEXT_NAMESPACE,
+  UserQuery,
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { TaxForm } from "./sqm-user-info-form";
 
@@ -42,7 +43,7 @@ export function useTaxForm(props: TaxForm) {
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
 
   // TODO: user types
-  const data = useParentValue<any>(USER_CONTEXT_NAMESPACE);
+  const data = useParentValue<UserQuery>(USER_CONTEXT_NAMESPACE);
 
   useEffect(() => {
     console.log({ data });

@@ -34,6 +34,18 @@ const GET_USER = gql`
   }
 `;
 
+export type UserQuery = {
+  viewer: {
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    countryCode?: string;
+    customFields?: {
+      [key: string]: any;
+    };
+  };
+};
+
 export function useTaxAndCash() {
   const host = useHost();
 
@@ -45,7 +57,7 @@ export function useTaxAndCash() {
     initialValue: "/1",
   });
 
-  const [_userData, setUserData] = useParentState<string>({
+  const [_userData, setUserData] = useParentState<UserQuery>({
     host,
     namespace: USER_CONTEXT_NAMESPACE,
   });
@@ -78,7 +90,7 @@ export function useTaxAndCash() {
 
   const user = useUserIdentity();
 
-  const { data, loading } = useQuery(GET_USER, {
+  const { data, loading } = useQuery<UserQuery>(GET_USER, {
     id: user?.id,
     accountId: user?.accountId,
   });
