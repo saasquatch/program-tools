@@ -64,7 +64,7 @@ const stepOneProps: UserInfoFormViewProps = {
 const stepTwoProps: IndirectTaxFormViewProps = {
   states: {
     loading: false,
-    submitDisabled: false,
+    disabled: false,
     formState: {
       checked: undefined,
     },
@@ -82,6 +82,7 @@ const stepTwoProps: IndirectTaxFormViewProps = {
 
 const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
   states: {
+    disabled: false,
     status: "ACTIVE",
     documentType: "W9",
     dateSubmitted: "Jan 18th, 2025",
@@ -95,6 +96,7 @@ const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
 
 const documentSubmittedNotVerifiedProps: TaxDocumentSubmittedProps = {
   states: {
+    disabled: false,
     status: "NOT_VERIFIED",
     documentType: "W9",
     dateSubmitted: "Jan 18th, 2025",
@@ -106,6 +108,7 @@ const documentSubmittedNotVerifiedProps: TaxDocumentSubmittedProps = {
 };
 const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
   states: {
+    disabled: false,
     status: "NOT_ACTIVE",
     documentType: "W8-BEN-E",
     dateSubmitted: "Jan 18th, 2025",
@@ -118,6 +121,7 @@ const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
 
 const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
   states: {
+    disabled: false,
     status: "EXPIRED",
     documentType: "W8-BEN-E",
     dateSubmitted: "Jan 18th, 2025",
@@ -132,6 +136,7 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
 
 const documentSubmittedExpiringSoonProps: TaxDocumentSubmittedProps = {
   states: {
+    disabled: false,
     status: "ACTIVE",
     documentType: "W8-BEN-E",
     dateSubmitted: "Jan 18th, 2025",
@@ -146,6 +151,7 @@ const documentSubmittedExpiringSoonProps: TaxDocumentSubmittedProps = {
 
 const documentSubmittedLoadingProps: TaxDocumentSubmittedProps = {
   states: {
+    disabled: false,
     status: "ACTIVE",
     documentType: "W8-BEN-E",
     dateSubmitted: "Jan 18th, 2025",
@@ -160,7 +166,7 @@ const documentSubmittedLoadingProps: TaxDocumentSubmittedProps = {
 const docusignFormProps: DocusignFormViewProps = {
   states: {
     loading: false,
-    submitDisabled: false,
+    disabled: false,
     formState: {
       completedTaxForm: true,
     },
@@ -177,7 +183,7 @@ const docusignFormProps: DocusignFormViewProps = {
 const documentTypeFormProps: DocumentTypeFormViewProps = {
   states: {
     loading: false,
-    submitDisabled: false,
+    disabled: false,
     formState: {
       selectedTaxForm: undefined,
     },
@@ -286,6 +292,17 @@ export const StepTwoLoading = () => {
   );
 };
 
+export const StepTwoDisabled = () => {
+  return (
+    <IndirectTaxFormView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        disabled: true,
+      }}
+    />
+  );
+};
 export const StepTwoWithGeneralError = () => {
   return (
     <IndirectTaxFormView
@@ -387,8 +404,45 @@ export const StepThreeDocusignLoading = () => {
   );
 };
 
+export const StepThreeDocusignDisabled = () => {
+  // @ts-ignore TODO: fix this
+  return (
+    <DocusignFormView
+      {...docusignFormProps}
+      states={{
+        ...docusignFormProps.states,
+        disabled: true,
+      }}
+    />
+  );
+};
+
 export const StepThreeWithFormSelector = () => {
   return <DocumentTypeFormView {...documentTypeFormProps} />;
+};
+
+export const StepThreeWithFormSelectorLoading = () => {
+  return (
+    <DocumentTypeFormView
+      {...documentTypeFormProps}
+      states={{
+        ...documentTypeFormProps.states,
+        loading: true,
+      }}
+    />
+  );
+};
+
+export const StepThreeWithFormSelectorDisabled = () => {
+  return (
+    <DocumentTypeFormView
+      {...documentTypeFormProps}
+      states={{
+        ...documentTypeFormProps.states,
+        disabled: true,
+      }}
+    />
+  );
 };
 
 export const StepThreeFormSelectorWithGeneralError = () => {
@@ -437,10 +491,22 @@ export const TaxDocumentSubmittedWithGeneralError = () => {
     <TaxDocumentSubmittedView
       {...documentSubmittedActiveProps}
       states={{
-        ...documentSubmittedLoadingProps.states,
+        ...documentSubmittedActiveProps.states,
         errors: {
           general: true,
         },
+      }}
+    />
+  );
+};
+
+export const TaxDocumentSubmittedDisabled = () => {
+  return (
+    <TaxDocumentSubmittedView
+      {...documentSubmittedActiveProps}
+      states={{
+        ...documentSubmittedActiveProps.states,
+        disabled: true,
       }}
     />
   );

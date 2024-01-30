@@ -4,7 +4,7 @@ import { createStyleSheet } from "../../../styling/JSS";
 export interface IndirectTaxFormViewProps {
   states: {
     loading: boolean;
-    submitDisabled: boolean;
+    disabled: boolean;
     formState: {
       checked: "hstCanada" | "otherRegion" | "notRegistered" | undefined;
       errors?: any;
@@ -173,7 +173,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 exportparts="label: input-label"
                 checked={formState.checked === "hstCanada"}
                 onInput={() => callbacks.onChange("hstCanada")}
-                disabled={states.loading}
+                disabled={states.disabled}
                 id="hstCanada"
                 name="/hstCanada"
               >
@@ -184,7 +184,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 exportparts="label: input-label"
                 checked={formState.checked === "otherRegion"}
                 onInput={() => callbacks.onChange("otherRegion")}
-                disabled={states.loading}
+                disabled={states.disabled}
                 id="otherRegion"
                 name="/otherRegion"
               >
@@ -195,7 +195,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 exportparts="label: input-label"
                 checked={formState.checked === "notRegistered"}
                 onInput={() => callbacks.onChange("notRegistered")}
-                disabled={states.loading}
+                disabled={states.disabled}
                 id="notRegistered"
                 name="/notRegistered"
               >
@@ -209,8 +209,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
           <div class={classes.BtnContainer}>
             <sl-button
               type="primary"
-              loading={states.loading}
-              disabled={states.submitDisabled}
+              disabled={states.disabled}
               submit
               exportparts="base: primarybutton-base"
             >
@@ -219,7 +218,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
             <sl-button
               class={classes.SecondaryBtn}
               type="text"
-              loading={states.loading}
+              disabled={states.disabled}
               onClick={() => {
                 callbacks.onBack();
               }}
