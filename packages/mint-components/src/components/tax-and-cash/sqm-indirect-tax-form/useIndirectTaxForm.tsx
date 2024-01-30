@@ -12,6 +12,7 @@ import {
   USER_INFO_NAMESPACE,
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { FormState } from "../sqm-user-info-form/useUserInfoForm";
+import { optional } from "../../../utilities";
 
 const GET_COUNTRIES = gql`
   query getCurrencies {
@@ -61,7 +62,7 @@ export function useIndirectTaxForm(props: any) {
       return;
     }
 
-    let formData: Record<string, string> = {};
+    let formData: Record<string, string> = { taxOption: option };
     let validationErrors: Record<string, string> = {};
 
     const controls = event.target.getFormControls();
@@ -106,7 +107,11 @@ export function useIndirectTaxForm(props: any) {
           customFields: {
             currency,
             participantType,
-            ...formData,
+            ...optional("__taxOption", formData.taxOption),
+            ...optional("__taxProvince", formData.province),
+            ...optional("__taxCountry", formData.selectedRegion),
+            ...optional("__taxVatNumber", formData.vatNumber),
+            ...optional("__taxIndirectTaxNumber", formData.indirectTaxNumber),
           },
         },
       });
