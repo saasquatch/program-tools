@@ -176,7 +176,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           <h3>{text.personalInformation}</h3>
         </div>
       </div>
-      {formState.errors.general && (
+      {formState.errors?.general && (
         <sl-alert type="warning" open class={sheet.classes.AlertContainer}>
           <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
           <strong>{text.error.generalTitle}</strong>
