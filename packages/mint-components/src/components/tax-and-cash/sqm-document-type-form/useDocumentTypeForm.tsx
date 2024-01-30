@@ -46,6 +46,8 @@ export function useDocumentTypeForm(props: DocumentTypeForm) {
       ...props,
       error: {
         formSubmission: props.formSubmissionError,
+        generalTitle: props.generalErrorTitle,
+        generalDescription: props.generalErrorDescription,
       },
     },
   };

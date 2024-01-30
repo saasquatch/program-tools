@@ -289,6 +289,8 @@ export namespace Components {
         "formLabel": string;
         "formStep": string;
         "formSubmissionError": string;
+        "generalErrorDescription": string;
+        "generalErrorTitle": string;
         "submitButton": string;
         "taxForm": string;
         "w8Description": string;
@@ -312,6 +314,8 @@ export namespace Components {
          */
         "demoData"?: DemoData<IndirectTaxFormViewProps>;
         "formStep": string;
+        "generalErrorDescription": string;
+        "generalErrorTitle": string;
         "notBasedInUS": string;
         "submitButton": string;
         "taxForm": string;
@@ -601,6 +605,8 @@ export namespace Components {
     interface SqmIndirectTaxForm {
         "backButton": string;
         "formStep": string;
+        "generalErrorDescription": string;
+        "generalErrorTitle": string;
         "hstCanada": string;
         "indirectTax": string;
         "indirectTaxDescription": string;
@@ -2873,6 +2879,8 @@ export namespace Components {
         "badgeTextExpiredOn"?: string;
         "badgeTextSubmittedOn"?: string;
         "bankingInformationSectionHeader": string;
+        "generalErrorDescription": string;
+        "generalErrorTitle": string;
         "invalidForm"?: string;
         "newFormButton": string;
         "statusTextActive"?: string;
@@ -3983,6 +3991,8 @@ declare namespace LocalJSX {
         "formLabel"?: string;
         "formStep"?: string;
         "formSubmissionError"?: string;
+        "generalErrorDescription"?: string;
+        "generalErrorTitle"?: string;
         "submitButton"?: string;
         "taxForm"?: string;
         "w8Description"?: string;
@@ -4006,6 +4016,8 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<IndirectTaxFormViewProps>;
         "formStep"?: string;
+        "generalErrorDescription"?: string;
+        "generalErrorTitle"?: string;
         "notBasedInUS"?: string;
         "submitButton"?: string;
         "taxForm"?: string;
@@ -4295,6 +4307,8 @@ declare namespace LocalJSX {
     interface SqmIndirectTaxForm {
         "backButton"?: string;
         "formStep"?: string;
+        "generalErrorDescription"?: string;
+        "generalErrorTitle"?: string;
         "hstCanada"?: string;
         "indirectTax"?: string;
         "indirectTaxDescription"?: string;
@@ -6543,6 +6557,8 @@ declare namespace LocalJSX {
         "badgeTextExpiredOn"?: string;
         "badgeTextSubmittedOn"?: string;
         "bankingInformationSectionHeader"?: string;
+        "generalErrorDescription"?: string;
+        "generalErrorTitle"?: string;
         "invalidForm"?: string;
         "newFormButton"?: string;
         "statusTextActive"?: string;

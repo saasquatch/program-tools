@@ -31,6 +31,9 @@ export class DocusignForm {
   @Prop() checkboxDescription: string = docusignFormText.checkboxDescription;
   @Prop() submitButton: string = docusignFormText.submitButton;
   @Prop() backButton: string = docusignFormText.backButton;
+  @Prop() generalErrorTitle: string = docusignFormText.error.generalTitle;
+  @Prop() generalErrorDescription: string =
+    docusignFormText.error.generalDescription;
   /**
    * @undocumented
    * @uiType object

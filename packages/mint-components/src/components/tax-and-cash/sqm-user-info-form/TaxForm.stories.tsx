@@ -157,7 +157,7 @@ const documentSubmittedLoadingProps: TaxDocumentSubmittedProps = {
   },
 };
 
-const stepThreeAProps: DocusignFormViewProps = {
+const docusignFormProps: DocusignFormViewProps = {
   states: {
     loading: false,
     submitDisabled: false,
@@ -174,7 +174,7 @@ const stepThreeAProps: DocusignFormViewProps = {
   text: docusignFormText,
 };
 
-const stepThreeBProps: DocumentTypeFormViewProps = {
+const documentTypeFormProps: DocumentTypeFormViewProps = {
   states: {
     loading: false,
     submitDisabled: false,
@@ -274,6 +274,23 @@ export const StepTwoWithError = () => {
   );
 };
 
+export const StepTwoWithGeneralError = () => {
+  return (
+    <IndirectTaxFormView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        formState: {
+          ...stepTwoProps.states.formState,
+          errors: {
+            general: true,
+          },
+        },
+      }}
+    />
+  );
+};
+
 export const StepTwoHSTChecked = () => {
   return (
     <IndirectTaxFormView
@@ -323,11 +340,47 @@ export const StepTwoNotRegisteredChecked = () => {
 
 // STEP THREE
 export const StepThreeWithDocusign = () => {
-  return <DocusignFormView {...stepThreeAProps} />;
+  // @ts-ignore TODO: fix this
+  return <DocusignFormView {...docusignFormProps} />;
+};
+
+export const StepThreeDocusignWithGeneralError = () => {
+  // @ts-ignore TODO: fix this
+  return (
+    <DocusignFormView
+      {...docusignFormProps}
+      states={{
+        ...docusignFormProps.states,
+        formState: {
+          ...docusignFormProps.states.formState,
+          errors: {
+            general: true,
+          },
+        },
+      }}
+    />
+  );
 };
 
 export const StepThreeWithFormSelector = () => {
-  return <DocumentTypeFormView {...stepThreeBProps} />;
+  return <DocumentTypeFormView {...documentTypeFormProps} />;
+};
+
+export const StepThreeFormSelectorWithGeneralError = () => {
+  return (
+    <DocumentTypeFormView
+      {...documentTypeFormProps}
+      states={{
+        ...documentTypeFormProps.states,
+        formState: {
+          ...documentTypeFormProps.states.formState,
+          errors: {
+            general: true,
+          },
+        },
+      }}
+    />
+  );
 };
 
 export const TaxDocumentSubmittedActive = () => {
@@ -352,4 +405,18 @@ export const TaxDocumentSubmittedExpiringSoon = () => {
 
 export const TaxDocumentSubmittedLoading = () => {
   return <TaxDocumentSubmittedView {...documentSubmittedLoadingProps} />;
+};
+
+export const TaxDocumentSubmittedWithGeneralError = () => {
+  return (
+    <TaxDocumentSubmittedView
+      {...documentSubmittedActiveProps}
+      states={{
+        ...documentSubmittedLoadingProps.states,
+        errors: {
+          general: true,
+        },
+      }}
+    />
+  );
 };

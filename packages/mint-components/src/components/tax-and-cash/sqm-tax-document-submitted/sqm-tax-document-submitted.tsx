@@ -29,7 +29,8 @@ export class TaxDocumentSubmitted {
   @Prop() taxDocumentSectionSubHeader: string =
     defaults.taxDocumentSectionSubHeader;
   @Prop() newFormButton: string = defaults.newFormButton;
-
+  @Prop() generalErrorTitle: string = defaults.error.generalTitle;
+  @Prop() generalErrorDescription: string = defaults.error.generalDescription;
   constructor() {
     withHooks(this);
   }

@@ -30,6 +30,10 @@ export interface DocusignFormViewProps {
     checkboxDescription: string;
     submitButton: string;
     backButton: string;
+    error: {
+      generalTitle: string;
+      generalDescription: string;
+    };
   };
 }
 
@@ -80,6 +84,17 @@ const style = {
       color: "var(--sl-color-gray-800) !important",
     },
   },
+  ErrorAlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-red-100)",
+      borderTop: "none",
+      padding: "0 16px",
+    },
+
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-danger-500)",
+    },
+  },
   AlertInnerContainer: {
     display: "flex",
     justifyContent: "flex-start",
@@ -127,17 +142,6 @@ const vanillaStyle = `
         border-radius: 50%;
     }
 
-    sl-alert::part(base) {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      flex-direction: column;
-      padding: 20px;
-    }
-
-    sl-alert::part(message) {
-      padding: 0px;
-    }
   `;
 
 export const DocusignFormView = (props: DocusignFormViewProps) => {
@@ -162,6 +166,14 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           <h3>{text.taxForm}</h3>
         </div>
       </div>
+      {formState.errors?.general && (
+        <sl-alert type="warning" open class={sheet.classes.ErrorAlertContainer}>
+          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+          <strong>{text.error.generalTitle}</strong>
+          <br />
+          {text.error.generalDescription}
+        </sl-alert>
+      )}
       <h5 class={classes.BoldText}>
         {intl.formatMessage(
           { id: "tax-form-label", defaultMessage: text.taxFormLabel },

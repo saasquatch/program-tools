@@ -27,6 +27,8 @@ export interface DocumentTypeFormViewProps {
     submitButton: string;
     backButton: string;
     error: {
+      generalTitle: string;
+      generalDescription: string;
       formSubmission: string;
     };
   };
@@ -88,6 +90,19 @@ const style = {
   LabelText: {
     fontWeight: "bold",
   },
+
+  AlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-red-100)",
+      borderTop: "none",
+      padding: "0 16px",
+      marginBottom: "16px",
+    },
+
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-danger-500)",
+    },
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -138,6 +153,14 @@ export const DocumentTypeFormView = (props: DocumentTypeFormViewProps) => {
           <h3>{text.taxForm}</h3>
         </div>
       </div>
+      {formState.errors?.general && (
+        <sl-alert type="warning" open class={sheet.classes.AlertContainer}>
+          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+          <strong>{text.error.generalTitle}</strong>
+          <br />
+          {text.error.generalDescription}
+        </sl-alert>
+      )}
       <p class={classes.LabelText}>{text.formLabel}</p>
 
       <div class={classes.RadioContainer}>

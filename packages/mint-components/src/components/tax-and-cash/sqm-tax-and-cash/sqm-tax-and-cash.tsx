@@ -1,10 +1,15 @@
+import { isDemo, useHost } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop, State } from "@stencil/core";
+import { Component, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
-import { UserNameViewProps } from "./sqm-tax-and-cash-view";
-import { useTaxAndCash } from "./useTaxAndCash";
 import { DemoData } from "../../../global/demo";
 import { LoadingSkeleton } from "../../../tables/TableSlots";
+import {
+  getContextValueName,
+  useParentState,
+} from "../../../utils/useParentState";
+import { UserNameViewProps } from "./sqm-tax-and-cash-view";
+import { TAX_CONTEXT_NAMESPACE, useTaxAndCash } from "./useTaxAndCash";
 
 /**
  * @uiName Tax And Cash
@@ -31,23 +36,62 @@ export class TaxAndCash {
   disconnectedCallback() {}
 
   render() {
-    // const props = isDemo() ? useUserNameDemo(this) : useUserName();
+    // const props = isDemo() ? useTaxAndCashDemo(this) : useTaxAndCash();
     const props = useTaxAndCash();
 
-    console.log({ props, step: props.step });
+    console.log({ props, step: props.step, isDemo: isDemo() });
 
     if (props.loading) return <LoadingSkeleton />;
 
     return (
-      <div>
+      <Host>
+        <button onClick={() => props.setStep(getPrevStep(props.step))}>
+          prev
+        </button>{" "}
+        <button onClick={() => props.setStep(getNextStep(props.step))}>
+          next
+        </button>
         <sqm-context-router contextName={props.namespace}>
           <slot />
         </sqm-context-router>
-      </div>
+      </Host>
     );
   }
 }
 
-function useTaxAndCashDemo(props: TaxAndCash): UserNameViewProps {
-  return deepmerge({}, props.demoData || {}, { arrayMerge: (_, a) => a });
+function getNextStep(step: string) {
+  if (step === "/1") return "/2";
+  if (step === "/2") return "/3/W9";
+  if (step.includes("/3")) return "/4";
+  if (step === "/4") return "/submitted";
+  if (step === "/loading") return "/1";
+  return "/loading";
+}
+
+function getPrevStep(step: string) {
+  if (step === "/1") return "/1";
+  if (step === "/2") return "/1";
+  if (step.includes("/3")) return "/2";
+  if (step === "/4") return "/3/W9";
+  if (step === "/submitted") return "/4";
+  if (step === "/loading") return "/1";
+  return "/loading";
+}
+
+function useTaxAndCashDemo(props: TaxAndCash) {
+  const host = useHost();
+  const [step, setStep] = useParentState<string>({
+    host,
+    namespace: TAX_CONTEXT_NAMESPACE,
+    initialValue: "/1",
+  });
+  return deepmerge(
+    {
+      namespace: getContextValueName(TAX_CONTEXT_NAMESPACE),
+      step,
+      setStep,
+    },
+    props.demoData || {},
+    { arrayMerge: (_, a) => a }
+  );
 }
