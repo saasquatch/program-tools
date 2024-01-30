@@ -132,6 +132,8 @@ const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
     taxAlertMessage: "Please resubmit a new W8-BEN-E form.",
     taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
     newFormButton: "Submit New Form",
+    invalidForm:
+      "Ensure your information matches your profile and resubmit a new document",
   },
 };
 
@@ -146,7 +148,7 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
     statusTextExpired: "Expired",
-    badgeTextSubmittedOn: "Expired On",
+    badgeTextExpiredOn: "Expired On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
     taxAlertHeader: "Your W8-BEN-E tax form has expired. ",
@@ -180,20 +182,20 @@ const documentSubmittedExpiringSoonProps: TaxDocumentSubmittedProps = {
 
 const documentSubmittedLoadingProps: TaxDocumentSubmittedProps = {
   states: {
-    status: "EXPIRED",
+    status: "ACTIVE",
     documentType: "W8-BEN-E",
     dateSubmitted: "Jan 18th, 2025",
     loading: true,
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    statusTextExpired: "Expired",
-    badgeTextSubmittedOn: "Expired On",
+    statusTextActive: "Active",
+    badgeTextSubmittedOn: "Submitted On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
-    taxAlertHeader: "Your W8-BEN-E tax form has expired. ",
-    taxAlertMessage: "Please resubmit a new W8-BEN-E form.",
-    taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
+    taxAlertHeader: "",
+    taxAlertMessage: "",
+    taxDocumentSectionSubHeader: "W9 Tax Documents",
     newFormButton: "Submit New Form",
   },
 };

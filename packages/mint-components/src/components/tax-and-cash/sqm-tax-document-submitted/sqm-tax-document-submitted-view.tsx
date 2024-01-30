@@ -30,6 +30,7 @@ export interface TaxDocumentSubmittedProps {
     taxDocumentSectionHeader: string;
     taxDocumentSectionSubHeader: string;
     newFormButton: string;
+    invalidForm?: string;
   };
 }
 
@@ -50,8 +51,11 @@ const style = {
     maxWidth: "700px",
   },
   TaxDocumentsContainer: {
-    marginTop: "var(--sl-spacing-x-large)",
+    marginTop: "var(--sl-spacing-xx-large)",
     borderTop: "1px solid var(--sl-color-neutral-200)",
+  },
+  TaxDocumentsHeaderContainer: {
+    marginTop: "var(--sl-spacing-x-large)",
   },
   TaxFormDetailsContainer: {
     display: "flex",
@@ -69,7 +73,17 @@ const style = {
     marginTop: "var(--sl-spacing-x-small)",
   },
   EditBankDetailsButton: {
-    marginTop: "var(--sl-spacing-medium)",
+    marginTop: "var(--sl-spacing-x-large)",
+  },
+  SkeletonOne: {
+    width: "15%",
+    height: "10px",
+  },
+  SkeletonTwo: {
+    width: "25%",
+    height: "24px",
+    top: "-8px",
+    marginBottom: "var(--sl-spacing-xx-small)",
   },
 };
 
@@ -81,7 +95,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
 
   // AL: Not sure what states will be yet, placeholder for now
   const testDetailsCardProps: PayoutDetailsCardViewProps = {
-    loading: false,
+    loading: states.loading,
     empty: false,
     otherCurrencies: false,
     mainCurrency: { currencyText: "USD", amountText: "100.00" },
@@ -106,7 +120,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
           {text.statusTextNotVerified}
         </sl-badge>
         <p>
-          {text.badgeTextAwaitingReview} {states.dateSubmitted}
+          {text.badgeTextAwaitingReview} {states.dateSubmitted}.
         </p>
       </div>
     ),
@@ -117,7 +131,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         </sl-badge>
         <p>
           {text.badgeTextSubmittedOn} {states.dateSubmitted}, expiring on{" "}
-          {states.dateExpired}
+          {states.dateExpired}.
         </p>
       </div>
     ),
@@ -126,9 +140,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         <sl-badge type="danger" pill class={sheet.classes.BadgeContainer}>
           {text.statusTextNotActive}
         </sl-badge>
-        <p>
-          {text.badgeTextSubmittedOn} {states.dateSubmitted}
-        </p>
+        <p>{text.invalidForm}.</p>
       </div>
     ),
     EXPIRED: (
@@ -137,7 +149,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
           {text.statusTextExpired}
         </sl-badge>
         <p>
-          {text.badgeTextExpiredOn} {states.dateExpired}
+          {text.badgeTextExpiredOn} {states.dateExpired}.
         </p>
       </div>
     ),
@@ -230,53 +242,55 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
 
   return (
     <div>
-      {!states.loading ? (
+      <div>
+        <style type="text/css">{styleString}</style>
+        {(states.status === "NOT_ACTIVE" || states.status === "EXPIRED") &&
+          alertMap[states.status]}
+        {states.status === "ACTIVE" &&
+          states.expiresSoon &&
+          alertMap.EXPIRING_SOON}
         <div>
-          <style type="text/css">{styleString}</style>
-          {(states.status === "NOT_ACTIVE" || states.status === "EXPIRED") &&
-            alertMap[states.status]}
-          {states.status === "ACTIVE" &&
-            states.expiresSoon &&
-            alertMap.EXPIRING_SOON}
-          <div>
-            <h3>{text.bankingInformationSectionHeader}</h3>
-            <div class={sheet.classes.BankingInformationContainer}>
-              {/* AL: Placeholder for banking information. TBD with design with what belongs here */}
-              <PayoutDetailsCardView {...testDetailsCardProps} />
-              <sl-button
-                type="default"
-                class={sheet.classes.EditBankDetailsButton}
-              >
-                Edit Bank Details
-              </sl-button>
-            </div>
+          <h3>{text.bankingInformationSectionHeader}</h3>
+          <div class={sheet.classes.BankingInformationContainer}>
+            {/* AL: Placeholder for banking information. TBD with design with what belongs here */}
+            <PayoutDetailsCardView {...testDetailsCardProps} />
+            <sl-button
+              type="default"
+              class={sheet.classes.EditBankDetailsButton}
+            >
+              Edit Bank Details
+            </sl-button>
           </div>
-          <div class={sheet.classes.TaxDocumentsContainer}>
-            <h3>{text.taxDocumentSectionHeader}</h3>
-            <h4>
-              {intl.formatMessage(
-                {
-                  id: "section-subheader",
-                  defaultMessage: text.taxDocumentSectionSubHeader,
-                },
-                {
-                  documentType: states.documentType,
-                }
-              )}
-            </h4>
-            {statusMap[states.status]}
-          </div>
-          <sl-button
-            onClick={callbacks.onClick}
-            type="primary"
-            class={sheet.classes.NewFormButton}
-          >
-            {text.newFormButton}
-          </sl-button>
         </div>
-      ) : (
-        <sl-spinner></sl-spinner>
-      )}
+        <div class={sheet.classes.TaxDocumentsContainer}>
+          <div class={sheet.classes.TaxDocumentsHeaderContainer}>
+            <h3>{text.taxDocumentSectionHeader}</h3>
+            {states.loading ? (
+              <h4>
+                <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
+              </h4>
+            ) : (
+              <h4>{text.taxDocumentSectionSubHeader}</h4>
+            )}
+          </div>
+          <div>
+            {states.loading ? (
+              <div>
+                <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
+              </div>
+            ) : (
+              <span>{statusMap[states.status]}</span>
+            )}
+          </div>
+        </div>
+        <sl-button
+          onClick={callbacks.onClick}
+          type="default"
+          class={sheet.classes.NewFormButton}
+        >
+          {text.newFormButton}
+        </sl-button>
+      </div>
     </div>
   );
 };
