@@ -2862,6 +2862,7 @@ export namespace Components {
         "badgeTextExpiredOn"?: string;
         "badgeTextSubmittedOn"?: string;
         "bankingInformationSectionHeader": string;
+        "invalidForm"?: string;
         "newFormButton": string;
         "statusTextActive"?: string;
         "statusTextExpired"?: string;
@@ -6510,6 +6511,7 @@ declare namespace LocalJSX {
         "badgeTextExpiredOn"?: string;
         "badgeTextSubmittedOn"?: string;
         "bankingInformationSectionHeader"?: string;
+        "invalidForm"?: string;
         "newFormButton"?: string;
         "statusTextActive"?: string;
         "statusTextExpired"?: string;

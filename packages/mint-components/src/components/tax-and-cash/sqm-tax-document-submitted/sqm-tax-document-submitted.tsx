@@ -16,6 +16,7 @@ export class TaxDocumentSubmitted {
   @Prop() badgeTextExpiredOn?: string = defaults.badgeTextExpiredOn;
   @Prop() taxAlertHeader?: string = defaults.taxAlertHeader;
   @Prop() taxAlertMessage?: string = defaults.taxAlertMessage;
+  @Prop() invalidForm?: string = defaults.invalidForm;
   @Prop() bankingInformationSectionHeader: string =
     defaults.bankingInformationSectionHeader;
 

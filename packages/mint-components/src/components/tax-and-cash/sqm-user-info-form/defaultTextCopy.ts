@@ -83,6 +83,7 @@ export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
   badgeTextSubmittedOn: "Submitted on",
   badgeTextAwaitingReview: "Awaiting review. Submitted on",
   badgeTextExpiredOn: "Expired on",
+  invalidForm: "Ensure your information matches your profile and resubmit a new document.",
   taxAlertHeader:
     "Your {documentType} tax form has personal information that doesn't match your profile.",
   taxAlertMessage: "Please resubmit a new {documentType} form.",
