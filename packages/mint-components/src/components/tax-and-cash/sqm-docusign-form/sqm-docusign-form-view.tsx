@@ -1,5 +1,7 @@
 import { VNode, h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
+import { intl } from "../../../global/global";
+import { TaxDocumentType } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
 
 export interface DocusignFormViewProps {
   states: {
@@ -9,6 +11,7 @@ export interface DocusignFormViewProps {
       completedTaxForm: boolean;
       errors?: any;
     };
+    documentType?: TaxDocumentType;
   };
   callbacks: {
     onShowDocumentType: () => void;
@@ -140,7 +143,7 @@ const vanillaStyle = `
 export const DocusignFormView = (props: DocusignFormViewProps) => {
   const {
     states,
-    states: { formState },
+    states: { formState, documentType },
     callbacks,
     text,
   } = props;
@@ -159,7 +162,12 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           <h3>{text.taxForm}</h3>
         </div>
       </div>
-      <h5 class={classes.BoldText}>{text.taxFormLabel}</h5>
+      <h5 class={classes.BoldText}>
+        {intl.formatMessage(
+          { id: "tax-form-label", defaultMessage: text.taxFormLabel },
+          { documentType }
+        )}
+      </h5>
       <p>
         {text.taxFormDescription}
         <a onClick={callbacks.onShowDocumentType} class={classes.Link}>

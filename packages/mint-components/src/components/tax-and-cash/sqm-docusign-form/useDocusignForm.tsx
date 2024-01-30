@@ -1,21 +1,23 @@
 import { useQuery, useUserIdentity } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { h } from "@stencil/core";
 import { gql } from "graphql-request";
 import { useParent } from "../../../utils/useParentState";
 import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/useTaxAndCash";
 import { DocusignForm } from "./sqm-docusign-form";
+import { TaxDocumentType } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
 
 const GET_USER_TAX_INFO = gql`
-  query getUserTaxInfo($id: String!, $accountId: String!) {
-    user(id: $id, accountId: $accountId) {
-      id
-      accountId
-      firstName
-      lastName
-      email
-      countryCode
-      customFields
+  query getUserTaxInfo {
+    viewer {
+      ... on User {
+        id
+        accountId
+        firstName
+        lastName
+        email
+        countryCode
+        customFields
+      }
     }
   }
 `;
@@ -40,7 +42,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
     id: user.id,
     accountId: user.accountId,
   });
-  const countryCode = data?.getUserTaxInfo?.user?.countryCode;
+  const countryCode = data?.viewer?.countryCode;
 
   // TODO: Replace with real backend data
   const {
@@ -100,6 +102,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
         completedTaxForm: formSubmitted,
         errors,
       },
+      documentType: defaultDocumentType?.toUpperCase() as TaxDocumentType,
     },
     data: {
       taxForm: taxInfo?.taxForm,

@@ -7,7 +7,7 @@ import {
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { TaxDocumentType } from "./sqm-tax-document-submitted-view";
 
-function getDocumentType(user): TaxDocumentType {
+export function getDocumentType(user): TaxDocumentType {
   if (!user) return;
   if (user.countryCode === "US") return "W9";
   if (user.customFields.participantType === "individualParticipant")

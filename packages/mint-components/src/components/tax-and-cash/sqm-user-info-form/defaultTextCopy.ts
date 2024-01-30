@@ -60,7 +60,7 @@ export const indirectTaxFormText: IndirectTaxFormViewProps["text"] = {
 export const docusignFormText: DocusignFormViewProps["text"] = {
   formStep: "Step 3 of 4",
   taxForm: "Tax form",
-  taxFormLabel: "W9 Tax Form",
+  taxFormLabel: "{documentType} Tax Form",
   taxFormDescription:
     "Participants based in the US and partnering with US-based brands need to submit a W9 form.",
   notBasedInUS: "Not based in the US?",
