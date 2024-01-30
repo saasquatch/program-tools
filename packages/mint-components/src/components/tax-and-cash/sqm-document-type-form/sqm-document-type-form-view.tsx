@@ -15,8 +15,7 @@ export interface DocumentTypeFormViewProps {
     onBack: () => void;
   };
   text: {
-    step: string;
-    stepOf: string;
+    formStep: string;
     taxForm: string;
     formLabel: string;
     w9Label: string;
@@ -27,6 +26,9 @@ export interface DocumentTypeFormViewProps {
     w8EDescription: string;
     submitButton: string;
     backButton: string;
+    error: {
+      formSubmission: string;
+    };
   };
 }
 
@@ -132,9 +134,7 @@ export const DocumentTypeFormView = (props: DocumentTypeFormViewProps) => {
       </style>
       <div class={classes.TextContainer}>
         <div>
-          <p>
-            {text.step} 3 {text.stepOf} 4
-          </p>
+          <p>{text.formStep}</p>
           <h3>{text.taxForm}</h3>
         </div>
       </div>

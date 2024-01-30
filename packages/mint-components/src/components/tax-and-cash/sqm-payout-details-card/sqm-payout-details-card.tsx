@@ -121,7 +121,10 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
         {currencies?.map((currency) => {
           return (
             <div class={classes.CurrencyContainer}>
-              <p class={classes.SubCurrencyText}>{currency?.amountText}{currency?.currencyText}</p>
+              <p class={classes.SubCurrencyText}>
+                {currency?.amountText}
+                {currency?.currencyText}
+              </p>
             </div>
           );
         })}{" "}
@@ -193,9 +196,8 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
           <h1 class={classes.MainCurrency}>
             {hasDatePending || status !== "pending"
               ? mainCurrency?.amountText
-              : w9Pending?.[0]?.amountText}
-              {" "}
-              {mainCurrency.currencyText}
+              : w9Pending?.[0]?.amountText}{" "}
+            {mainCurrency.currencyText}
           </h1>
         )}
         {otherCurrencies !== undefined &&
@@ -217,14 +219,14 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
             {currencyList(w9Pending!)}
           </div>
         )}
-        <div style={{ display: "flex", gap: "var(--sl-spacing-small)"}}>
-          <span>
-          Card ***2381
-          </span>
-          <span>
-          Bank Name
-          </span>
-        </div>
+        {loading ? (
+          <sl-skeleton class={classes.SkeletonOne}></sl-skeleton>
+        ) : (
+          <div style={{ display: "flex", gap: "var(--sl-spacing-small)" }}>
+            <span>Card ***2381</span>
+            <span>Bank Name</span>
+          </div>
+        )}
       </div>
     </div>
   );

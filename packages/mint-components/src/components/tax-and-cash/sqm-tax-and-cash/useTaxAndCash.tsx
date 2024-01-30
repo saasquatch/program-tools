@@ -49,8 +49,9 @@ export type UserQuery = {
 
 export const USER_INFO_NAMESPACE = "sq:user-info-form";
 
-function getCurrentStep(user) {
-  console.log({ user });
+function getCurrentStep(user: UserQuery["viewer"]) {
+  // return "/submitted";
+  // @ts-ignore
   if (
     !user.countryCode ||
     !user.customFields?.currency ||
@@ -82,7 +83,7 @@ export function useTaxAndCash() {
   const [step, setStep] = useParentState<string>({
     host,
     namespace: TAX_CONTEXT_NAMESPACE,
-    initialValue: "/1",
+    initialValue: "/loading",
   });
 
   const [_userData, setUserData] = useParentState<UserQuery>({
@@ -130,6 +131,8 @@ export function useTaxAndCash() {
   });
 
   useEffect(() => {
+    if (!host || !user) return;
+
     if (data) {
       setUserData(data);
       const user = data?.viewer;
@@ -139,7 +142,7 @@ export function useTaxAndCash() {
       console.log({ currentStep });
       setStep(currentStep);
     }
-  }, [data]);
+  }, [host, user, data?.viewer?.email]);
 
   return {
     step,

@@ -5,11 +5,11 @@ import {
 } from "../sqm-document-type-form/sqm-document-type-form-view";
 import {
   DocusignFormView,
-  TaxFormStepThreeAViewProps,
+  DocusignFormViewProps,
 } from "../sqm-docusign-form/sqm-docusign-form-view";
 import {
   IndirectTaxFormView,
-  TaxFormStepTwoProps,
+  IndirectTaxFormViewProps,
 } from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
 import {
   TaxDocumentSubmittedProps,
@@ -17,15 +17,16 @@ import {
 } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
 import {
   documentTypeFormText,
-  taxFormStepOneText,
-  taxFormStepTwoText,
+  userInfoText,
+  indirectTaxFormText,
+  docusignFormText,
 } from "./defaultTextCopy";
 import {
   RegisteredInCanada,
   RegisteredInOtherRegion,
 } from "./small-views/SlotViews.stories";
 import {
-  TaxFormStepOneProps,
+  UserInfoFormViewProps,
   UserInfoFormView,
 } from "./sqm-user-info-form-view";
 
@@ -33,10 +34,10 @@ export default {
   title: "Components/Tax Form",
 };
 
-const stepOneProps: TaxFormStepOneProps = {
+const stepOneProps: UserInfoFormViewProps = {
   states: {
     loading: false,
-    submitDisabled: false,
+    disabled: false,
     formState: {
       firstName: "Bob",
       lastName: "Testerson",
@@ -53,13 +54,13 @@ const stepOneProps: TaxFormStepOneProps = {
     // TODO: fix type
     onRadioClick: (props: any) => console.log("Radio Click"),
   },
-  text: taxFormStepOneText,
+  text: userInfoText,
   refs: {
     formRef: () => {},
   },
 };
 
-const stepTwoProps: TaxFormStepTwoProps = {
+const stepTwoProps: IndirectTaxFormViewProps = {
   states: {
     loading: false,
     submitDisabled: false,
@@ -75,7 +76,7 @@ const stepTwoProps: TaxFormStepTwoProps = {
     onBack: () => console.log("Submit"),
   },
   refs: { formRef: { current: null } },
-  text: taxFormStepTwoText,
+  text: indirectTaxFormText,
 };
 
 const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
@@ -131,6 +132,8 @@ const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
     taxAlertMessage: "Please resubmit a new W8-BEN-E form.",
     taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
     newFormButton: "Submit New Form",
+    invalidForm:
+      "Ensure your information matches your profile and resubmit a new document",
   },
 };
 
@@ -145,7 +148,7 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
     statusTextExpired: "Expired",
-    badgeTextSubmittedOn: "Expired On",
+    badgeTextExpiredOn: "Expired On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
     taxAlertHeader: "Your W8-BEN-E tax form has expired. ",
@@ -179,25 +182,25 @@ const documentSubmittedExpiringSoonProps: TaxDocumentSubmittedProps = {
 
 const documentSubmittedLoadingProps: TaxDocumentSubmittedProps = {
   states: {
-    status: "EXPIRED",
+    status: "ACTIVE",
     documentType: "W8-BEN-E",
     dateSubmitted: "Jan 18th, 2025",
     loading: true,
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    statusTextExpired: "Expired",
-    badgeTextSubmittedOn: "Expired On",
+    statusTextActive: "Active",
+    badgeTextSubmittedOn: "Submitted On",
     bankingInformationSectionHeader: "Banking Information",
     taxDocumentSectionHeader: "Tax Documents",
-    taxAlertHeader: "Your W8-BEN-E tax form has expired. ",
-    taxAlertMessage: "Please resubmit a new W8-BEN-E form.",
-    taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
+    taxAlertHeader: "",
+    taxAlertMessage: "",
+    taxDocumentSectionSubHeader: "W9 Tax Documents",
     newFormButton: "Submit New Form",
   },
 };
 
-const stepThreeAProps = {
+const stepThreeAProps: DocusignFormViewProps = {
   states: {
     loading: false,
     submitDisabled: false,
@@ -211,8 +214,7 @@ const stepThreeAProps = {
     onSubmit: (props: any) => console.log(props),
     onBack: () => console.log("Back"),
   },
-  // TODO: fix this
-  // text: taxFormStepThreeText,
+  text: docusignFormText,
 };
 
 const stepThreeBProps: DocumentTypeFormViewProps = {
@@ -248,7 +250,7 @@ export const StepOneDisabled = () => {
   return (
     <UserInfoFormView
       {...stepOneProps}
-      states={{ ...stepOneProps.states, submitDisabled: true }}
+      states={{ ...stepOneProps.states, disabled: true }}
     />
   );
 };
@@ -269,6 +271,23 @@ export const StepOneWithErrors = () => {
             currency: true,
             participantType: true,
             allowBankingCollection: true,
+          },
+        },
+      }}
+    />
+  );
+};
+
+export const StepOneWithGeneralError = () => {
+  return (
+    <UserInfoFormView
+      {...stepOneProps}
+      states={{
+        ...stepOneProps.states,
+        formState: {
+          ...stepOneProps.states.formState,
+          errors: {
+            general: true,
           },
         },
       }}
@@ -347,7 +366,6 @@ export const StepTwoNotRegisteredChecked = () => {
 
 // STEP THREE
 export const StepThreeWithDocusign = () => {
-  // @ts-ignore TODO: fix this
   return <DocusignFormView {...stepThreeAProps} />;
 };
 

@@ -11,7 +11,7 @@ import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { UserNameViewProps } from "./components/tax-and-cash/sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
-import { TaxFormStepTwoProps } from "./components/tax-and-cash/sqm-indirect-tax-form/sqm-indirect-tax-form-view";
+import { IndirectTaxFormViewProps } from "./components/tax-and-cash/sqm-indirect-tax-form/sqm-indirect-tax-form-view";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
@@ -287,9 +287,8 @@ export namespace Components {
     interface SqmDocumentTypeForm {
         "backButton": string;
         "formLabel": string;
+        "formStep": string;
         "formSubmissionError": string;
-        "step": string;
-        "stepOf": string;
         "submitButton": string;
         "taxForm": string;
         "w8Description": string;
@@ -304,16 +303,20 @@ export namespace Components {
     }
     interface SqmDocusignForm {
         "backButton": string;
+        "banner": string;
+        "checkboxDescription": string;
+        "checkboxLabel": string;
         /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<TaxFormStepTwoProps>;
-        "formSubmissionError": string;
-        "step": string;
-        "stepOf": string;
+        "demoData"?: DemoData<IndirectTaxFormViewProps>;
+        "formStep": string;
+        "notBasedInUS": string;
         "submitButton": string;
         "taxForm": string;
+        "taxFormDescription": string;
+        "taxFormLabel": string;
     }
     interface SqmDropdownField {
         /**
@@ -597,6 +600,7 @@ export namespace Components {
     }
     interface SqmIndirectTaxForm {
         "backButton": string;
+        "formStep": string;
         "hstCanada": string;
         "indirectTax": string;
         "indirectTaxDescription": string;
@@ -604,9 +608,8 @@ export namespace Components {
         "indirectTaxDetailsDescription": string;
         "notRegistered": string;
         "otherRegion": string;
-        "step": string;
-        "stepOf": string;
         "submitButton": string;
+        "taxDetailsError": string;
     }
     interface SqmInputField {
         /**
@@ -2870,6 +2873,7 @@ export namespace Components {
         "badgeTextExpiredOn"?: string;
         "badgeTextSubmittedOn"?: string;
         "bankingInformationSectionHeader": string;
+        "invalidForm"?: string;
         "newFormButton": string;
         "statusTextActive"?: string;
         "statusTextExpired"?: string;
@@ -2958,36 +2962,43 @@ export namespace Components {
     }
     interface SqmUserInfoForm {
         "allowBankingCollection": string;
-        "businessEntity"?: string;
+        "allowBankingCollectionError": string;
+        "businessEntity": string;
         "country": string;
+        "countryError": string;
         "currency": string;
+        "currencyError": string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UserNameViewProps>;
         "email": string;
+        "emailError": string;
         "firstName": string;
-        "individualParticipant"?: string;
+        "firstNameError": string;
+        "formStep": string;
+        "generalErrorDescription": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "generalErrorTitle": string;
+        "individualParticipant": string;
         "lastName": string;
+        "lastNameError": string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
           * @uiWidget textArea
          */
         "networkErrorMessage": string;
-        "participantType"?: string;
-        "personalInformation"?: string;
-        /**
-          * The message to be displayed when a required field is not filled.
-          * @uiName Required field message
-          * @uiWidget textArea
-         */
-        "requiredFieldErrorMessage": string;
-        "step"?: string;
-        "stepOf"?: string;
+        "participantType": string;
+        "participantTypeError": string;
+        "personalInformation": string;
         "submitButton": string;
-        "taxAndBankingCollection"?: string;
+        "taxAndBankingCollection": string;
     }
     interface SqmUserName {
         /**
@@ -3967,9 +3978,8 @@ declare namespace LocalJSX {
     interface SqmDocumentTypeForm {
         "backButton"?: string;
         "formLabel"?: string;
+        "formStep"?: string;
         "formSubmissionError"?: string;
-        "step"?: string;
-        "stepOf"?: string;
         "submitButton"?: string;
         "taxForm"?: string;
         "w8Description"?: string;
@@ -3984,16 +3994,20 @@ declare namespace LocalJSX {
     }
     interface SqmDocusignForm {
         "backButton"?: string;
+        "banner"?: string;
+        "checkboxDescription"?: string;
+        "checkboxLabel"?: string;
         /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<TaxFormStepTwoProps>;
-        "formSubmissionError"?: string;
-        "step"?: string;
-        "stepOf"?: string;
+        "demoData"?: DemoData<IndirectTaxFormViewProps>;
+        "formStep"?: string;
+        "notBasedInUS"?: string;
         "submitButton"?: string;
         "taxForm"?: string;
+        "taxFormDescription"?: string;
+        "taxFormLabel"?: string;
     }
     interface SqmDropdownField {
         /**
@@ -4277,6 +4291,7 @@ declare namespace LocalJSX {
     }
     interface SqmIndirectTaxForm {
         "backButton"?: string;
+        "formStep"?: string;
         "hstCanada"?: string;
         "indirectTax"?: string;
         "indirectTaxDescription"?: string;
@@ -4284,9 +4299,8 @@ declare namespace LocalJSX {
         "indirectTaxDetailsDescription"?: string;
         "notRegistered"?: string;
         "otherRegion"?: string;
-        "step"?: string;
-        "stepOf"?: string;
         "submitButton"?: string;
+        "taxDetailsError"?: string;
     }
     interface SqmInputField {
         /**
@@ -6526,6 +6540,7 @@ declare namespace LocalJSX {
         "badgeTextExpiredOn"?: string;
         "badgeTextSubmittedOn"?: string;
         "bankingInformationSectionHeader"?: string;
+        "invalidForm"?: string;
         "newFormButton"?: string;
         "statusTextActive"?: string;
         "statusTextExpired"?: string;
@@ -6613,18 +6628,32 @@ declare namespace LocalJSX {
     }
     interface SqmUserInfoForm {
         "allowBankingCollection"?: string;
+        "allowBankingCollectionError"?: string;
         "businessEntity"?: string;
         "country"?: string;
+        "countryError"?: string;
         "currency"?: string;
+        "currencyError"?: string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UserNameViewProps>;
         "email"?: string;
+        "emailError"?: string;
         "firstName"?: string;
+        "firstNameError"?: string;
+        "formStep"?: string;
+        "generalErrorDescription"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "generalErrorTitle"?: string;
         "individualParticipant"?: string;
         "lastName"?: string;
+        "lastNameError"?: string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
@@ -6632,15 +6661,8 @@ declare namespace LocalJSX {
          */
         "networkErrorMessage"?: string;
         "participantType"?: string;
+        "participantTypeError"?: string;
         "personalInformation"?: string;
-        /**
-          * The message to be displayed when a required field is not filled.
-          * @uiName Required field message
-          * @uiWidget textArea
-         */
-        "requiredFieldErrorMessage"?: string;
-        "step"?: string;
-        "stepOf"?: string;
         "submitButton"?: string;
         "taxAndBankingCollection"?: string;
     }

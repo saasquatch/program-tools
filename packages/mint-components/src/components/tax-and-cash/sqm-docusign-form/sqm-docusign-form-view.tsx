@@ -1,7 +1,9 @@
 import { VNode, h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
+import { intl } from "../../../global/global";
+import { TaxDocumentType } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
 
-export interface TaxFormStepThreeAViewProps {
+export interface DocusignFormViewProps {
   states: {
     loading: boolean;
     submitDisabled: boolean;
@@ -9,6 +11,7 @@ export interface TaxFormStepThreeAViewProps {
       completedTaxForm: boolean;
       errors?: any;
     };
+    documentType?: TaxDocumentType;
   };
   callbacks: {
     onShowDocumentType: () => void;
@@ -17,14 +20,16 @@ export interface TaxFormStepThreeAViewProps {
     onBack: () => void;
   };
   text: {
-    step: string;
-    stepOf: string;
+    formStep: string;
     taxForm: string;
+    taxFormLabel: string;
+    taxFormDescription: string;
+    notBasedInUS: string;
+    banner: string;
+    checkboxLabel: string;
+    checkboxDescription: string;
     submitButton: string;
     backButton: string;
-    error: {
-      formSubmission: string;
-    };
   };
 }
 
@@ -135,10 +140,10 @@ const vanillaStyle = `
     }
   `;
 
-export const DocusignFormView = (props: TaxFormStepThreeAViewProps) => {
+export const DocusignFormView = (props: DocusignFormViewProps) => {
   const {
     states,
-    states: { formState },
+    states: { formState, documentType },
     callbacks,
     text,
   } = props;
@@ -153,18 +158,20 @@ export const DocusignFormView = (props: TaxFormStepThreeAViewProps) => {
       </style>
       <div class={classes.TextContainer}>
         <div>
-          <p>
-            {text.step} 3 {text.stepOf} 4
-          </p>
+          <p>{text.formStep}</p>
           <h3>{text.taxForm}</h3>
         </div>
       </div>
-      <h5 class={classes.BoldText}>W9 Tax Form</h5>
+      <h5 class={classes.BoldText}>
+        {intl.formatMessage(
+          { id: "tax-form-label", defaultMessage: text.taxFormLabel },
+          { documentType }
+        )}
+      </h5>
       <p>
-        Participants based in the US and partnering with US-based brands need to
-        submit a W9 form.
-        <a onClick={props.callbacks.onShowDocumentType} class={classes.Link}>
-          Not based in the US?
+        {text.taxFormDescription}
+        <a onClick={callbacks.onShowDocumentType} class={classes.Link}>
+          {text.notBasedInUS}
         </a>
       </p>
       <sl-alert
@@ -175,18 +182,15 @@ export const DocusignFormView = (props: TaxFormStepThreeAViewProps) => {
       >
         <div class={classes.AlertInnerContainer}>
           <sl-icon slot="icon" name="clock"></sl-icon>
-          Complete and submit your tax form to save your information
+          {text.banner}
         </div>
       </sl-alert>
 
       <slot name="docusign-iframe"></slot>
       <div>
-        <p class={classes.BoldText}>Form submission</p>
-        <sl-checkbox
-          onSl-change={callbacks.toggleFormSubmitted}
-          checked={formState.completedTaxForm}
-        >
-          I have completed and submitted my tax form
+        <p class={classes.BoldText}>{text.checkboxLabel}</p>
+        <sl-checkbox checked={formState.completedTaxForm}>
+          {text.checkboxDescription}
         </sl-checkbox>
       </div>
 

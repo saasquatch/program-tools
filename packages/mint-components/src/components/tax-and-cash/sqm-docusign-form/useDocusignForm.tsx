@@ -1,6 +1,5 @@
 import { useQuery, useUserIdentity } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { h } from "@stencil/core";
 import { gql } from "graphql-request";
 import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
@@ -9,20 +8,23 @@ import {
   UserQuery,
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { DocusignForm } from "./sqm-docusign-form";
+import { TaxDocumentType } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
 
-// const GET_USER_TAX_INFO = gql`
-//   query getUserTaxInfo($id: String!, $accountId: String!) {
-//     user(id: $id, accountId: $accountId) {
-//       id
-//       accountId
-//       firstName
-//       lastName
-//       email
-//       countryCode
-//       customFields
-//     }
-//   }
-// `;
+const GET_USER_TAX_INFO = gql`
+  query getUserTaxInfo {
+    viewer {
+      ... on User {
+        id
+        accountId
+        firstName
+        lastName
+        email
+        countryCode
+        customFields
+      }
+    }
+  }
+`;
 
 // TODO: Fill out when API is released
 const GET_TAX_DOCUMENT = gql`
@@ -89,7 +91,8 @@ export function useDocusignForm(props: DocusignForm, el: any) {
     text: {
       ...props,
       error: {
-        formSubmission: props.formSubmissionError,
+        // TODO: this prop was removed from the controller/view
+        // formSubmission: props.formSubmissionError,
       },
     },
     states: {
@@ -99,6 +102,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
         completedTaxForm: formSubmitted,
         errors,
       },
+      documentType: taxInfo.taxForm?.toUpperCase() as TaxDocumentType,
     },
     data: {
       taxForm: taxInfo?.taxForm,

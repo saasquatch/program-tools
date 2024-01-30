@@ -1,8 +1,9 @@
 import { IndirectDetailsSlotViewProps } from "./small-views/IndirectTaxDetailsView";
-import { TaxFormStepOneProps } from "./sqm-user-info-form-view";
+import { UserInfoFormViewProps } from "./sqm-user-info-form-view";
 import { TaxDocumentSubmittedProps } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
-import { TaxFormStepTwoProps } from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
+import { IndirectTaxFormViewProps } from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
 import { DocumentTypeFormViewProps } from "../sqm-document-type-form/sqm-document-type-form-view";
+import { DocusignFormViewProps } from "../sqm-docusign-form/sqm-docusign-form-view";
 
 export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
   selectedRegion: "Country / Region of Indirect Tax",
@@ -11,7 +12,7 @@ export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
   indirectTaxNumber: "Indirect Tax",
 };
 
-export const taxFormStepOneText: TaxFormStepOneProps["text"] = {
+export const userInfoText: UserInfoFormViewProps["text"] = {
   firstName: "First name",
   lastName: "Last name",
   email: "Email",
@@ -19,14 +20,16 @@ export const taxFormStepOneText: TaxFormStepOneProps["text"] = {
   currency: "Currency",
   allowBankingCollection: "I agree to the terms",
   submitButton: "Submit",
-  step: "Step",
-  stepOf: "of",
+  formStep: "Step 1 of 4",
   personalInformation: "Personal Information",
   participantType: "Participant type",
   businessEntity: "I represent a business entity",
   individualParticipant: "I am an individual participant",
   taxAndBankingCollection: "Tax and banking collection",
   error: {
+    generalTitle: "There was a problem submitting your information",
+    generalDescription:
+      "Please review your information and try again. If this problem continues, contact Support.",
     firstName: "Enter a first name",
     lastName: "Enter a last name",
     email: "Enter a valid email",
@@ -37,9 +40,8 @@ export const taxFormStepOneText: TaxFormStepOneProps["text"] = {
   },
 };
 
-export const taxFormStepTwoText: TaxFormStepTwoProps["text"] = {
-  step: "Step",
-  stepOf: "of",
+export const indirectTaxFormText: IndirectTaxFormViewProps["text"] = {
+  formStep: "Setp 2 of 4",
   indirectTax: "Indirect Tax",
   indirectTaxDescription:
     "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.",
@@ -57,9 +59,22 @@ export const taxFormStepTwoText: TaxFormStepTwoProps["text"] = {
   },
 };
 
+export const docusignFormText: DocusignFormViewProps["text"] = {
+  formStep: "Step 3 of 4",
+  taxForm: "Tax form",
+  taxFormLabel: "{documentType} Tax Form",
+  taxFormDescription:
+    "Participants based in the US and partnering with US-based brands need to submit a W9 form.",
+  notBasedInUS: "Not based in the US?",
+  banner: "Complete and submit your tax form to save your information",
+  checkboxLabel: "Form submission",
+  checkboxDescription: "I have completed and submitted my tax form",
+  submitButton: "Continue",
+  backButton: "Back",
+};
+
 export const documentTypeFormText: DocumentTypeFormViewProps["text"] = {
-  step: "Step",
-  stepOf: "of",
+  formStep: "Step 3 of 4",
   taxForm: "Tax form",
   backButton: "Back",
   submitButton: "Continue",
@@ -73,6 +88,9 @@ export const documentTypeFormText: DocumentTypeFormViewProps["text"] = {
   w8ELabel: "W8-BEN-E",
   w8EDescription:
     "W8-BEN-E For participants residing outside of the US who represent a business entity, joining the referral program of a US-based company.",
+  error: {
+    formSubmission: "error",
+  },
 };
 
 export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
@@ -83,6 +101,8 @@ export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
   badgeTextSubmittedOn: "Submitted on",
   badgeTextAwaitingReview: "Awaiting review. Submitted on",
   badgeTextExpiredOn: "Expired on",
+  invalidForm:
+    "Ensure your information matches your profile and resubmit a new document.",
   taxAlertHeader:
     "Your {documentType} tax form has personal information that doesn't match your profile.",
   taxAlertMessage: "Please resubmit a new {documentType} form.",
