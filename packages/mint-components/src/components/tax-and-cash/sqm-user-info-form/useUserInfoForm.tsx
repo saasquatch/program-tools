@@ -8,6 +8,7 @@ import {
   UserQuery,
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { TaxForm } from "./sqm-user-info-form";
+import { userInfoText } from "./defaultTextCopy";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -125,6 +126,15 @@ export function useTaxForm(props: TaxForm) {
     onRadioClick,
     text: {
       ...props,
+      error: {
+        firstName: props.firstNameError,
+        lastName: props.lastNameError,
+        email: props.emailError,
+        countryCode: props.countryError,
+        currency: props.currencyError,
+        allowBankingCollection: props.allowBankingCollectionError,
+        participantType: props.participantTypeError,
+      },
     },
     refs: {
       formRef,
