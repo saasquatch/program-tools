@@ -1,9 +1,11 @@
 import { VNode, h } from "@stencil/core";
 import { createStyleSheet } from "../../../../styling/JSS";
+import { formatDisplayName } from "@formatjs/intl";
 
 export interface IndirectDetailsSlotViewProps {
   states: {
     loading: boolean;
+    hide: boolean;
     formState: {
       registeredIn: "canada" | "otherRegion";
       selectedRegion?: string;
@@ -19,9 +21,6 @@ export interface IndirectDetailsSlotViewProps {
       countryCode: string;
       displayName: string;
     }[];
-  };
-  callbacks: {
-    onChange: (e) => void;
   };
   text: {
     selectedRegion?: string;
@@ -72,26 +71,25 @@ export const IndirectDetailsSlotView = (
   const {
     states,
     states: { formState },
-    callbacks,
     text,
   } = props;
 
   const { classes } = sheet;
 
   return (
-    <form class={classes.Container}>
-      <style type="text/css">
-        {styleString}
-        {vanillaStyle}
-      </style>
-      <hr class={classes.HR} />
-      <div class={classes.InputContainer}>
-        {formState.registeredIn === "otherRegion" ? (
+    <div style={states.hide ? { display: "none" } : {}}>
+      <form class={classes.Container}>
+        <style type="text/css">
+          {styleString}
+          {vanillaStyle}
+        </style>
+        <hr class={classes.HR} />
+        <div class={classes.InputContainer}>
           <sl-select
             required
             class={classes.Input}
             exportparts="label: input-label"
-            value={formState.selectedRegion}
+            // value={formState.selectedRegion}
             label={text.selectedRegion}
             disabled={states.loading}
             // Copied from edit form, may need to keep
@@ -108,16 +106,66 @@ export const IndirectDetailsSlotView = (
                 : undefined
             }
           >
-            {props.data.countries.map((c) => (
+            {props.data.countries?.map((c) => (
               <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
             ))}
           </sl-select>
-        ) : (
-          <sl-select
+          <sl-input
             required
             exportparts="label: input-label"
             class={classes.Input}
-            value={formState.province}
+            // value={formState.vatNumber}
+            label={text.vatNumber}
+            disabled={states.loading}
+            // Copied from edit form, may need to keep
+            {...(formState.errors?.vatNumber &&
+            formState.errors?.vatNumber.status !== "valid"
+              ? { class: "errors?tyles", helpText: "Cannot be empty" }
+              : [])}
+            id="vatNumber"
+            name="/vatNumber"
+            error={
+              formState.errors?.vatNumber &&
+              formState.errors?.vatNumber.status !== "valid"
+                ? formState.errors?.vatNumber.message
+                : undefined
+            }
+          />
+        </div>
+        <hr class={classes.HR} />
+      </form>
+    </div>
+  );
+};
+
+export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
+  const {
+    states,
+    states: { formState },
+    text,
+  } = props;
+
+  const { classes } = sheet;
+
+  return (
+    <div style={states.hide ? { display: "none" } : {}}>
+      <form class={classes.Container}>
+        <style type="text/css">
+          {styleString}
+          {vanillaStyle}
+        </style>
+        <hr class={classes.HR} />
+        <div class={classes.InputContainer}>
+          <sl-select
+            required
+            onSl-hide={() => {
+              const event = new Event("sl-after-hide");
+              dispatchEvent(event);
+            }}
+            onSl-after-hide={() => console.log("after hide")}
+            exportparts="label: input-label"
+            class={classes.Input}
+            // value={formState.province}
             label={text.province}
             disabled={states.loading}
             // Copied from edit form, may need to keep
@@ -148,38 +196,13 @@ export const IndirectDetailsSlotView = (
             <sl-menu-item value="YT">Yukon</sl-menu-item>
             <sl-menu-item value="NU">Nunavut</sl-menu-item>
           </sl-select>
-        )}
-        {formState.registeredIn === "otherRegion" ? (
           <sl-input
             required
             exportparts="label: input-label"
             class={classes.Input}
-            value={formState.vatNumber}
-            label={text.vatNumber}
-            disabled={states.loading}
-            // Copied from edit form, may need to keep
-            {...(formState.errors?.vatNumber &&
-            formState.errors?.vatNumber.status !== "valid"
-              ? { class: "errors?tyles", helpText: "Cannot be empty" }
-              : [])}
-            id="vatNumber"
-            name="/vatNumber"
-            error={
-              formState.errors?.vatNumber &&
-              formState.errors?.vatNumber.status !== "valid"
-                ? formState.errors?.vatNumber.message
-                : undefined
-            }
-          />
-        ) : (
-          <sl-input
-            required
-            exportparts="label: input-label"
-            class={classes.Input}
-            value={formState.indirectTaxNumber}
+            // value={formState.indirectTaxNumber}
             label={text.indirectTaxNumber}
             disabled={states.loading}
-            // onInput={callbacks.onChange}
             // Copied from edit form, may need to keep
             {...(formState.errors?.indirectTaxNumber &&
             formState.errors?.indirectTaxNumber.status !== "valid"
@@ -194,9 +217,9 @@ export const IndirectDetailsSlotView = (
                 : undefined
             }
           />
-        )}
-      </div>
-      <hr class={classes.HR} />
-    </form>
+        </div>
+        <hr class={classes.HR} />
+      </form>
+    </div>
   );
 };

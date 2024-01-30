@@ -36,10 +36,10 @@ const UPSERT_USER = gql`
 export function useIndirectTaxForm(props: any) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
+  const [upsertUser, upsertUserResponse] = useMutation(UPSERT_USER);
   const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
   const userFormData = useParentValue<FormState>(USER_INFO_NAMESPACE);
   const user = useUserIdentity();
-  const [upsertUser, upsertUserResponse] = useMutation(UPSERT_USER);
 
   // from step 1
   console.log({ userFormData });
@@ -123,7 +123,11 @@ export function useIndirectTaxForm(props: any) {
     onSubmit,
     submitDisabled: !option,
     option,
-    setOption,
+    onChange: (value) => {
+      console.log("onChange", { value, option });
+      if (option === value) return;
+      setOption(value);
+    },
     formRef,
   };
 }

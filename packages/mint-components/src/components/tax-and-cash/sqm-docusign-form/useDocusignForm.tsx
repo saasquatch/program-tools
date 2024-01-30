@@ -88,13 +88,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
   };
 
   return {
-    text: {
-      ...props,
-      error: {
-        // TODO: this prop was removed from the controller/view
-        // formSubmission: props.formSubmissionError,
-      },
-    },
+    text: props,
     states: {
       submitDisabled: taxInfoLoading || !formSubmitted,
       loading: taxInfoLoading,

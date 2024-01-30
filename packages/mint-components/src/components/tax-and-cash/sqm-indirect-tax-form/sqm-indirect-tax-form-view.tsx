@@ -149,31 +149,29 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
             exportparts="label: input-label"
             checked={formState.checked === "hstCanada"}
             onInput={() => callbacks.onChange("hstCanada")}
-            disabled={states.loading}
+            disabled={states.loading || formState.checked === "hstCanada"}
             id="hstCanada"
             name="/hstCanada"
           >
             {text.hstCanada}
           </sl-checkbox>
-          {formState.checked === "hstCanada" &&
-            states.registeredInCanadaDetailsSlot}
+          {states.registeredInCanadaDetailsSlot}
           <sl-checkbox
             exportparts="label: input-label"
             checked={formState.checked === "otherRegion"}
             onInput={() => callbacks.onChange("otherRegion")}
-            disabled={states.loading}
+            disabled={states.loading || formState.checked === "otherRegion"}
             id="otherRegion"
             name="/otherRegion"
           >
             {text.otherRegion}
           </sl-checkbox>
-          {formState.checked === "otherRegion" &&
-            states.registeredInDifferentCountryDetailsSlot}
+          {states.registeredInDifferentCountryDetailsSlot}
           <sl-checkbox
             exportparts="label: input-label"
             checked={formState.checked === "notRegistered"}
             onInput={() => callbacks.onChange("notRegistered")}
-            disabled={states.loading}
+            disabled={states.loading || formState.checked === "notRegistered"}
             id="notRegistered"
             name="/notRegistered"
           >

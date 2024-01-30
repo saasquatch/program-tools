@@ -12,6 +12,7 @@ export default {
 const registeredInOtherRegion: IndirectDetailsSlotViewProps = {
   states: {
     loading: false,
+    hide: false,
     formState: {
       registeredIn: "otherRegion",
       selectedRegion: "United Kindom",
@@ -20,10 +21,6 @@ const registeredInOtherRegion: IndirectDetailsSlotViewProps = {
   },
   data: {
     countries: [{ countryCode: "CA", displayName: "Canada" }],
-  },
-  callbacks: {
-    // TODO: fix type
-    onChange: (e) => console.log("Submit"),
   },
   text: {
     selectedRegion: indirectDetailsSlotText.selectedRegion,
@@ -34,6 +31,7 @@ const registeredInOtherRegion: IndirectDetailsSlotViewProps = {
 const registeredInCanada: IndirectDetailsSlotViewProps = {
   states: {
     loading: false,
+    hide: false,
     formState: {
       registeredIn: "canada",
       province: "British Columbia",
@@ -42,9 +40,6 @@ const registeredInCanada: IndirectDetailsSlotViewProps = {
   },
   data: {
     countries: [{ countryCode: "CA", displayName: "Canada" }],
-  },
-  callbacks: {
-    onChange: (e) => console.log("Submit"),
   },
   text: {
     province: indirectDetailsSlotText.province,
