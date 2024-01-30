@@ -67,6 +67,7 @@ export const useTaxDocumentSubmitted = (props: any) => {
       status: "NOT_VERIFIED",
       dateExpired,
       expiresSoon,
+      disabled: false,
       loading,
     },
     callbacks: {

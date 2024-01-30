@@ -11,6 +11,7 @@ export interface TaxDocumentSubmittedProps {
   states: {
     status: string;
     documentType: TaxDocumentType;
+    disabled: boolean;
     dateSubmitted: string;
     dateExpired?: string;
     expiresSoon?: boolean;
@@ -310,6 +311,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
             {/* AL: Placeholder for banking information. TBD with design with what belongs here */}
             <PayoutDetailsCardView {...testDetailsCardProps} />
             <sl-button
+              disabled={states.disabled || states.loading}
               type="default"
               class={sheet.classes.EditBankDetailsButton}
             >
@@ -349,6 +351,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
           </div>
         </div>
         <sl-button
+          disabled={states.disabled || states.loading}
           onClick={callbacks.onClick}
           type="default"
           class={sheet.classes.NewFormButton}

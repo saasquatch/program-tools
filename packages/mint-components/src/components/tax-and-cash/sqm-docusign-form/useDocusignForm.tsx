@@ -83,7 +83,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
       },
     },
     states: {
-      submitDisabled: taxInfoLoading || !formSubmitted,
+      disabled: taxInfoLoading || !formSubmitted,
       loading: taxInfoLoading,
       formState: {
         completedTaxForm: formSubmitted,
