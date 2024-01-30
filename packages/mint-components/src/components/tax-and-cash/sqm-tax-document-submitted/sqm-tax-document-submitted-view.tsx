@@ -270,7 +270,17 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                 <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
               </h4>
             ) : (
-              <h4>{text.taxDocumentSectionSubHeader}</h4>
+              <h4>
+                {intl.formatMessage(
+                  {
+                    id: "section-subheader",
+                    defaultMessage: text.taxDocumentSectionSubHeader,
+                  },
+                  {
+                    documentType: states.documentType,
+                  }
+                )}
+              </h4>
             )}
           </div>
           <div>
