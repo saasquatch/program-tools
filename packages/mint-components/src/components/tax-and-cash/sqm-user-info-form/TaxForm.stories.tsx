@@ -20,6 +20,7 @@ import {
   userInfoText,
   indirectTaxFormText,
   docusignFormText,
+  taxFormDocumentSubmittedText,
 } from "./defaultTextCopy";
 import {
   RegisteredInCanada,
@@ -88,14 +89,8 @@ const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    statusTextActive: "Active",
-    badgeTextSubmittedOn: "Submitted On",
-    bankingInformationSectionHeader: "Banking Information",
-    taxDocumentSectionHeader: "Tax Documents",
-    taxAlertHeader: "",
-    taxAlertMessage: "",
+    ...taxFormDocumentSubmittedText,
     taxDocumentSectionSubHeader: "W9 Tax Documents",
-    newFormButton: "Submit New Form",
   },
 };
 
@@ -107,12 +102,9 @@ const documentSubmittedNotVerifiedProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    statusTextNotVerified: "Not Verified",
-    badgeTextAwaitingReview: "Awaiting Review. Submitted On",
-    bankingInformationSectionHeader: "Banking Information",
-    taxDocumentSectionHeader: "Tax Documents",
+    ...taxFormDocumentSubmittedText,
+    badgeTextAwaitingReview: "Awaiting Review. Submitted on {dateSubmitted}.",
     taxDocumentSectionSubHeader: "W9 Tax Documents",
-    newFormButton: "Submit New Form",
   },
 };
 const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
@@ -123,15 +115,11 @@ const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    statusTextNotActive: "Invalid Tax Form",
-    badgeTextSubmittedOn: "Submitted On",
-    bankingInformationSectionHeader: "Banking Information",
-    taxDocumentSectionHeader: "Tax Documents",
+    ...taxFormDocumentSubmittedText,
     taxAlertHeader:
       "Your W8-BEN-E tax form has personal information that doesn't match your profile",
     taxAlertMessage: "Please resubmit a new W8-BEN-E form.",
     taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
-    newFormButton: "Submit New Form",
     invalidForm:
       "Ensure your information matches your profile and resubmit a new document",
   },
@@ -147,14 +135,11 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    statusTextExpired: "Expired",
-    badgeTextExpiredOn: "Expired On",
-    bankingInformationSectionHeader: "Banking Information",
-    taxDocumentSectionHeader: "Tax Documents",
-    taxAlertHeader: "Your W8-BEN-E tax form has expired. ",
+    ...taxFormDocumentSubmittedText,
+    badgeTextExpiredOn: "Expired On {dateExpired}.",
+    taxAlertHeader: "Your W8-BEN-E tax form has expired.",
     taxAlertMessage: "Please resubmit a new W8-BEN-E form.",
     taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
-    newFormButton: "Submit New Form",
   },
 };
 
@@ -168,15 +153,11 @@ const documentSubmittedExpiringSoonProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    statusTextActive: "Active",
-    badgeTextSubmittedOn: "Submitted On",
-    bankingInformationSectionHeader: "Banking Information",
-    taxDocumentSectionHeader: "Tax Documents",
+    ...taxFormDocumentSubmittedText,
     taxAlertHeader: "Your W8-BEN-E tax form expires on {dateExpired}",
     taxAlertMessage:
       "Please submit a new W8-BEN-E form to continue receiving your rewards",
     taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
-    newFormButton: "Submit New Form",
   },
 };
 
@@ -189,18 +170,11 @@ const documentSubmittedLoadingProps: TaxDocumentSubmittedProps = {
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
-    statusTextActive: "Active",
-    badgeTextSubmittedOn: "Submitted On",
-    bankingInformationSectionHeader: "Banking Information",
-    taxDocumentSectionHeader: "Tax Documents",
-    taxAlertHeader: "",
-    taxAlertMessage: "",
-    taxDocumentSectionSubHeader: "W9 Tax Documents",
-    newFormButton: "Submit New Form",
+    ...taxFormDocumentSubmittedText,
   },
 };
 
-const stepThreeAProps: DocusignFormViewProps = {
+const docusignFormProps: DocusignFormViewProps = {
   states: {
     loading: false,
     submitDisabled: false,
@@ -217,7 +191,7 @@ const stepThreeAProps: DocusignFormViewProps = {
   text: docusignFormText,
 };
 
-const stepThreeBProps: DocumentTypeFormViewProps = {
+const documentTypeFormProps: DocumentTypeFormViewProps = {
   states: {
     loading: false,
     submitDisabled: false,
@@ -317,6 +291,23 @@ export const StepTwoWithError = () => {
   );
 };
 
+export const StepTwoWithGeneralError = () => {
+  return (
+    <IndirectTaxFormView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        formState: {
+          ...stepTwoProps.states.formState,
+          errors: {
+            general: true,
+          },
+        },
+      }}
+    />
+  );
+};
+
 export const StepTwoHSTChecked = () => {
   return (
     <IndirectTaxFormView
@@ -366,11 +357,47 @@ export const StepTwoNotRegisteredChecked = () => {
 
 // STEP THREE
 export const StepThreeWithDocusign = () => {
-  return <DocusignFormView {...stepThreeAProps} />;
+  // @ts-ignore TODO: fix this
+  return <DocusignFormView {...docusignFormProps} />;
+};
+
+export const StepThreeDocusignWithGeneralError = () => {
+  // @ts-ignore TODO: fix this
+  return (
+    <DocusignFormView
+      {...docusignFormProps}
+      states={{
+        ...docusignFormProps.states,
+        formState: {
+          ...docusignFormProps.states.formState,
+          errors: {
+            general: true,
+          },
+        },
+      }}
+    />
+  );
 };
 
 export const StepThreeWithFormSelector = () => {
-  return <DocumentTypeFormView {...stepThreeBProps} />;
+  return <DocumentTypeFormView {...documentTypeFormProps} />;
+};
+
+export const StepThreeFormSelectorWithGeneralError = () => {
+  return (
+    <DocumentTypeFormView
+      {...documentTypeFormProps}
+      states={{
+        ...documentTypeFormProps.states,
+        formState: {
+          ...documentTypeFormProps.states.formState,
+          errors: {
+            general: true,
+          },
+        },
+      }}
+    />
+  );
 };
 
 export const TaxDocumentSubmittedActive = () => {
@@ -395,4 +422,18 @@ export const TaxDocumentSubmittedExpiringSoon = () => {
 
 export const TaxDocumentSubmittedLoading = () => {
   return <TaxDocumentSubmittedView {...documentSubmittedLoadingProps} />;
+};
+
+export const TaxDocumentSubmittedWithGeneralError = () => {
+  return (
+    <TaxDocumentSubmittedView
+      {...documentSubmittedActiveProps}
+      states={{
+        ...documentSubmittedLoadingProps.states,
+        errors: {
+          general: true,
+        },
+      }}
+    />
+  );
 };

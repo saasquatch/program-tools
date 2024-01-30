@@ -65,7 +65,11 @@ function getCurrentStep(user: UserQuery["viewer"]) {
   }
 
   if (!user.customFields.w9Submitted) {
-    return "/3b";
+    return `/3/${user.customFields.w9Type}`;
+  }
+
+  if (user.customFields.w9Submitted) {
+    return "/submitted";
   }
 
   return "/loading";

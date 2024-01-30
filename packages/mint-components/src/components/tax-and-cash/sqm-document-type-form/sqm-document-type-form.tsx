@@ -23,6 +23,9 @@ export class DocumentTypeForm {
   @Prop() backButton: string = documentTypeFormText.backButton;
   @Prop() formSubmissionError: string =
     documentTypeFormText.error.formSubmission;
+  @Prop() generalErrorTitle: string = documentTypeFormText.error.generalTitle;
+  @Prop() generalErrorDescription: string =
+    documentTypeFormText.error.generalDescription;
 
   constructor() {
     withHooks(this);
