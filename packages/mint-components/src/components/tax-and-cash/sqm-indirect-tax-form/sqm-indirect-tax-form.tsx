@@ -1,13 +1,10 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
 import { getProps } from "../../../utils/utils";
-import { IndirectDetailsSlotView } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
-import {
-  IndirectTaxFormView,
-  IndirectTaxFormViewProps,
-} from "./sqm-indirect-tax-form-view";
-import { useIndirectTaxForm } from "./useIndirectTaxForm";
 import { indirectTaxFormText } from "../sqm-user-info-form/defaultTextCopy";
+import { IndirectDetailsSlotView } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
+import { IndirectTaxFormView } from "./sqm-indirect-tax-form-view";
+import { useIndirectTaxForm } from "./useIndirectTaxForm";
 
 @Component({
   tag: "sqm-indirect-tax-form",
