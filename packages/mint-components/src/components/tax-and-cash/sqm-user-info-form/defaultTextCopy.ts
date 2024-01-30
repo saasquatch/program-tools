@@ -98,9 +98,10 @@ export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
   statusTextNotActive: "Invalid Tax Form",
   statusTextNotVerified: "Not Verified",
   statusTextExpired: "Expired",
-  badgeTextSubmittedOn: "Submitted on",
-  badgeTextAwaitingReview: "Awaiting review. Submitted on",
-  badgeTextExpiredOn: "Expired on",
+  badgeTextSubmittedOn: "Submitted on {dateSubmitted}",
+  badgeTextAwaitingReview: "Awaiting review. Submitted on {dateSubmitted}.",
+  badgeTextExpiredOn: "Expired on {dateExpired}.",
+  badgeTextExpiringSoon: ", expiring on {dateExpired}.",
   invalidForm:
     "Ensure your information matches your profile and resubmit a new document.",
   taxAlertHeader:

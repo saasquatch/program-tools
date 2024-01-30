@@ -25,6 +25,7 @@ export interface TaxDocumentSubmittedProps {
     badgeTextSubmittedOn?: string;
     badgeTextAwaitingReview?: string;
     badgeTextExpiredOn?: string;
+    badgeTextExpiringSoon?: string;
     taxAlertHeader?: string;
     taxAlertMessage?: string;
     bankingInformationSectionHeader: string;
@@ -121,7 +122,15 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
           {text.statusTextNotVerified}
         </sl-badge>
         <p>
-          {text.badgeTextAwaitingReview} {states.dateSubmitted}.
+          {intl.formatMessage(
+            {
+              id: `badgeTextAwaitingReview`,
+              defaultMessage: text.badgeTextAwaitingReview,
+            },
+            {
+              dateSubmitted: states.dateSubmitted,
+            }
+          )}
         </p>
       </div>
     ),
@@ -131,8 +140,24 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
           {text.statusTextActive}
         </sl-badge>
         <p>
-          {text.badgeTextSubmittedOn} {states.dateSubmitted}, expiring on{" "}
-          {states.dateExpired}.
+          {intl.formatMessage(
+            {
+              id: `badgeTextSubmittedOn`,
+              defaultMessage: text.badgeTextSubmittedOn,
+            },
+            {
+              dateSubmitted: states.dateSubmitted,
+            }
+          )}
+          {intl.formatMessage(
+            {
+              id: `badgeTextExpiringSoon`,
+              defaultMessage: text.badgeTextExpiringSoon,
+            },
+            {
+              dateExpired: states.dateExpired,
+            }
+          )}
         </p>
       </div>
     ),
@@ -150,7 +175,15 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
           {text.statusTextExpired}
         </sl-badge>
         <p>
-          {text.badgeTextExpiredOn} {states.dateExpired}.
+          {intl.formatMessage(
+            {
+              id: `badgeTextExpiredOn`,
+              defaultMessage: text.badgeTextExpiredOn,
+            },
+            {
+              dateExpired: states.dateExpired,
+            }
+          )}
         </p>
       </div>
     ),
@@ -198,6 +231,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
             },
             {
               documentType: states.documentType,
+              dateExpired: states.dateExpired,
             }
           )}
         </strong>
