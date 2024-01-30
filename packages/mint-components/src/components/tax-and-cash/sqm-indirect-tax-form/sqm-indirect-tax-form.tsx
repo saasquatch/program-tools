@@ -24,7 +24,9 @@ export class IndirectTaxForm {
   @Prop() submitButton: string = indirectTaxFormText.submitButton;
   @Prop() backButton: string = indirectTaxFormText.backButton;
   @Prop() taxDetailsError: string = indirectTaxFormText.error.taxDetails;
-
+  @Prop() generalErrorTitle: string = indirectTaxFormText.error.generalTitle;
+  @Prop() generalErrorDescription: string =
+    indirectTaxFormText.error.generalDescription;
   constructor() {
     withHooks(this);
   }

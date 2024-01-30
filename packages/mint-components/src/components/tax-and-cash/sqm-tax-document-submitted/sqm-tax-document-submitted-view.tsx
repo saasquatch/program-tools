@@ -15,6 +15,7 @@ export interface TaxDocumentSubmittedProps {
     dateExpired?: string;
     expiresSoon?: boolean;
     loading?: boolean;
+    errors?: any;
   };
   callbacks: { onClick: (props: any) => void };
   text: {
@@ -33,6 +34,10 @@ export interface TaxDocumentSubmittedProps {
     taxDocumentSectionSubHeader: string;
     newFormButton: string;
     invalidForm?: string;
+    error: {
+      generalTitle: string;
+      generalDescription: string;
+    };
   };
 }
 
@@ -279,6 +284,18 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
     <div>
       <div>
         <style type="text/css">{styleString}</style>
+        {states.errors?.general && (
+          <sl-alert
+            type="danger"
+            open
+            class={sheet.classes.WarningAlertContainer}
+          >
+            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+            <strong>{text.error.generalTitle}</strong>
+            <br />
+            {text.error.generalDescription}
+          </sl-alert>
+        )}
         {(states.status === "NOT_ACTIVE" || states.status === "EXPIRED") &&
           alertMap[states.status]}
         {states.status === "ACTIVE" &&

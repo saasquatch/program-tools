@@ -91,6 +91,8 @@ export function useDocusignForm(props: DocusignForm, el: any) {
     text: {
       ...props,
       error: {
+        generalTitle: props.generalErrorTitle,
+        generalDescription: props.generalErrorDescription,
         // TODO: this prop was removed from the controller/view
         // formSubmission: props.formSubmissionError,
       },

@@ -29,6 +29,8 @@ export interface IndirectTaxFormViewProps {
     submitButton: string;
     backButton: string;
     error: {
+      generalTitle: string;
+      generalDescription: string;
       taxDetails: string;
     };
   };
@@ -79,6 +81,17 @@ const style = {
   SecondaryBtn: {
     "&::part(base)": {
       color: "var(--sl-color-gray-800) !important",
+    },
+  },
+  AlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-red-100)",
+      borderTop: "none",
+      padding: "0 16px",
+    },
+
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-danger-500)",
     },
   },
 };
@@ -135,7 +148,14 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
           <h3>{text.indirectTax}</h3>
         </div>
         <p>{text.indirectTaxDescription}</p>
-
+        {formState.errors?.general && (
+          <sl-alert type="warning" open class={sheet.classes.AlertContainer}>
+            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+            <strong>{text.error.generalTitle}</strong>
+            <br />
+            {text.error.generalDescription}
+          </sl-alert>
+        )}
         <div>
           <h4>{text.indirectTaxDetails}</h4>
           <p class={classes.DescriptionText}>

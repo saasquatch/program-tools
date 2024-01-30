@@ -55,6 +55,9 @@ export const indirectTaxFormText: IndirectTaxFormViewProps["text"] = {
   submitButton: "Continue",
   backButton: "Back",
   error: {
+    generalTitle: "There was a problem submitting your information",
+    generalDescription:
+      "Please review your information and try again. If this problem continues, contact Support.",
     taxDetails: "This field is required",
   },
 };
@@ -71,6 +74,11 @@ export const docusignFormText: DocusignFormViewProps["text"] = {
   checkboxDescription: "I have completed and submitted my tax form",
   submitButton: "Continue",
   backButton: "Back",
+  error: {
+    generalTitle: "There was a problem submitting your information",
+    generalDescription:
+      "Please review your information and try again. If this problem continues, contact Support.",
+  },
 };
 
 export const documentTypeFormText: DocumentTypeFormViewProps["text"] = {
@@ -89,6 +97,9 @@ export const documentTypeFormText: DocumentTypeFormViewProps["text"] = {
   w8EDescription:
     "W8-BEN-E For participants residing outside of the US who represent a business entity, joining the referral program of a US-based company.",
   error: {
+    generalTitle: "There was a problem submitting your information",
+    generalDescription:
+      "Please review your information and try again. If this problem continues, contact Support.",
     formSubmission: "error",
   },
 };
@@ -111,4 +122,9 @@ export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
   taxDocumentSectionHeader: "Tax documents",
   taxDocumentSectionSubHeader: "{documentType} Tax Form",
   newFormButton: "Submit New Form",
+  error: {
+    generalTitle: "There was a problem submitting your information",
+    generalDescription:
+      "Please review your information and try again. If this problem continues, contact Support.",
+  },
 };
