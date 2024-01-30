@@ -2,23 +2,27 @@ import { useQuery, useUserIdentity } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { gql } from "graphql-request";
-import { useParent } from "../../../utils/useParentState";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/useTaxAndCash";
+import { useParent, useParentValue } from "../../../utils/useParentState";
+import {
+  TAX_CONTEXT_NAMESPACE,
+  USER_CONTEXT_NAMESPACE,
+  UserQuery,
+} from "../sqm-tax-and-cash/useTaxAndCash";
 import { DocusignForm } from "./sqm-docusign-form";
 
-const GET_USER_TAX_INFO = gql`
-  query getUserTaxInfo($id: String!, $accountId: String!) {
-    user(id: $id, accountId: $accountId) {
-      id
-      accountId
-      firstName
-      lastName
-      email
-      countryCode
-      customFields
-    }
-  }
-`;
+// const GET_USER_TAX_INFO = gql`
+//   query getUserTaxInfo($id: String!, $accountId: String!) {
+//     user(id: $id, accountId: $accountId) {
+//       id
+//       accountId
+//       firstName
+//       lastName
+//       email
+//       countryCode
+//       customFields
+//     }
+//   }
+// `;
 
 // TODO: Fill out when API is released
 const GET_TAX_DOCUMENT = gql`
@@ -27,20 +31,15 @@ const GET_TAX_DOCUMENT = gql`
 `;
 
 export function useDocusignForm(props: DocusignForm, el: any) {
-  console.log({ el });
-  const user = useUserIdentity();
   const [path, setPath] = useParent<string>(TAX_CONTEXT_NAMESPACE);
+  const user = useParentValue<UserQuery>(USER_CONTEXT_NAMESPACE);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [errors, setErrors] = useState({});
 
   const splitPath = path.split("/");
-  const defaultDocumentType = splitPath.length === 3 ? splitPath[2] : undefined;
+  const pathedDocumentType = splitPath.length === 3 ? splitPath[2] : undefined;
 
-  const { data, loading } = useQuery(GET_USER_TAX_INFO, {
-    id: user.id,
-    accountId: user.accountId,
-  });
-  const countryCode = data?.getUserTaxInfo?.user?.countryCode;
+  const savedUserTaxType = user?.viewer?.customFields?.w9Type;
 
   // TODO: Replace with real backend data
   const {
@@ -49,7 +48,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
     refetch: refetchDocument,
   } = {
     data: {
-      taxForm: defaultDocumentType,
+      taxForm: pathedDocumentType,
       documentUrl: "https://example.com",
     },
     loading: false,
@@ -57,16 +56,10 @@ export function useDocusignForm(props: DocusignForm, el: any) {
   };
 
   useEffect(() => {
-    if (countryCode && !defaultDocumentType) return;
+    if (pathedDocumentType === savedUserTaxType) return;
 
-    if (countryCode === "US") {
-      refetchDocument({ documentType: "W9" });
-    } else if (countryCode === "CA") {
-      refetchDocument({ documentType: "W8-BEN" });
-    } else {
-      refetchDocument({ documentType: "W8-BEN-E" });
-    }
-  }, [countryCode]);
+    refetchDocument({ documentType: pathedDocumentType });
+  }, [pathedDocumentType, savedUserTaxType]);
 
   useEffect(() => {
     // Load docusign iframe with given url
@@ -76,13 +69,20 @@ export function useDocusignForm(props: DocusignForm, el: any) {
     }
   }, [taxInfo.documentUrl]);
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (!formSubmitted) {
       setErrors({ submitCheckbox: true });
       return;
     }
 
-    setPath("/4");
+    // TODO: Check document is actually registered in the backend
+    try {
+      const documentResult = true;
+      if (documentResult) setPath("/submitted");
+      else throw Error();
+    } catch (e) {
+      setErrors({ formSubission: { status: "document-error" } });
+    }
   };
 
   return {
@@ -93,8 +93,8 @@ export function useDocusignForm(props: DocusignForm, el: any) {
       },
     },
     states: {
-      submitDisabled: loading || taxInfoLoading || !formSubmitted,
-      loading: loading || taxInfoLoading,
+      submitDisabled: taxInfoLoading || !formSubmitted,
+      loading: taxInfoLoading,
       formState: {
         completedTaxForm: formSubmitted,
         errors,
