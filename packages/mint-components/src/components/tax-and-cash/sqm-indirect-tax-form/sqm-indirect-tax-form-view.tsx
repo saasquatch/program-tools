@@ -163,69 +163,75 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
           </p>
         </div>
       </div>
-      <div class={classes.CheckboxContainer}>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <sl-checkbox
-            exportparts="label: input-label"
-            checked={formState.checked === "hstCanada"}
-            onInput={() => callbacks.onChange("hstCanada")}
-            disabled={states.loading}
-            id="hstCanada"
-            name="/hstCanada"
-          >
-            {text.hstCanada}
-          </sl-checkbox>
-          {formState.checked === "hstCanada" &&
-            states.registeredInCanadaDetailsSlot}
-          <sl-checkbox
-            exportparts="label: input-label"
-            checked={formState.checked === "otherRegion"}
-            onInput={() => callbacks.onChange("otherRegion")}
-            disabled={states.loading}
-            id="otherRegion"
-            name="/otherRegion"
-          >
-            {text.otherRegion}
-          </sl-checkbox>
-          {formState.checked === "otherRegion" &&
-            states.registeredInDifferentCountryDetailsSlot}
-          <sl-checkbox
-            exportparts="label: input-label"
-            checked={formState.checked === "notRegistered"}
-            onInput={() => callbacks.onChange("notRegistered")}
-            disabled={states.loading}
-            id="notRegistered"
-            name="/notRegistered"
-          >
-            {text.notRegistered}
-          </sl-checkbox>
-          {formState.errors?.taxDetails && (
-            <p class={classes.ErrorText}>{text.error.taxDetails}</p>
-          )}
+      {states.loading ? (
+        <sl-spinner style={{ fontSize: "50px", margin: "40px" }}></sl-spinner>
+      ) : (
+        <div>
+          <div class={classes.CheckboxContainer}>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <sl-checkbox
+                exportparts="label: input-label"
+                checked={formState.checked === "hstCanada"}
+                onInput={() => callbacks.onChange("hstCanada")}
+                disabled={states.loading}
+                id="hstCanada"
+                name="/hstCanada"
+              >
+                {text.hstCanada}
+              </sl-checkbox>
+              {formState.checked === "hstCanada" &&
+                states.registeredInCanadaDetailsSlot}
+              <sl-checkbox
+                exportparts="label: input-label"
+                checked={formState.checked === "otherRegion"}
+                onInput={() => callbacks.onChange("otherRegion")}
+                disabled={states.loading}
+                id="otherRegion"
+                name="/otherRegion"
+              >
+                {text.otherRegion}
+              </sl-checkbox>
+              {formState.checked === "otherRegion" &&
+                states.registeredInDifferentCountryDetailsSlot}
+              <sl-checkbox
+                exportparts="label: input-label"
+                checked={formState.checked === "notRegistered"}
+                onInput={() => callbacks.onChange("notRegistered")}
+                disabled={states.loading}
+                id="notRegistered"
+                name="/notRegistered"
+              >
+                {text.notRegistered}
+              </sl-checkbox>
+              {formState.errors?.taxDetails && (
+                <p class={classes.ErrorText}>{text.error.taxDetails}</p>
+              )}
+            </div>
+          </div>
+          <div class={classes.BtnContainer}>
+            <sl-button
+              type="primary"
+              loading={states.loading}
+              disabled={states.submitDisabled}
+              submit
+              exportparts="base: primarybutton-base"
+            >
+              {text.submitButton}
+            </sl-button>
+            <sl-button
+              class={classes.SecondaryBtn}
+              type="text"
+              loading={states.loading}
+              onClick={() => {
+                callbacks.onBack();
+              }}
+              exportparts="base: secondarybutton-base"
+            >
+              {text.backButton}
+            </sl-button>
+          </div>
         </div>
-      </div>
-      <div class={classes.BtnContainer}>
-        <sl-button
-          type="primary"
-          loading={states.loading}
-          disabled={states.submitDisabled}
-          submit
-          exportparts="base: primarybutton-base"
-        >
-          {text.submitButton}
-        </sl-button>
-        <sl-button
-          class={classes.SecondaryBtn}
-          type="text"
-          loading={states.loading}
-          onClick={() => {
-            callbacks.onBack();
-          }}
-          exportparts="base: secondarybutton-base"
-        >
-          {text.backButton}
-        </sl-button>
-      </div>
+      )}
     </sl-form>
   );
 };

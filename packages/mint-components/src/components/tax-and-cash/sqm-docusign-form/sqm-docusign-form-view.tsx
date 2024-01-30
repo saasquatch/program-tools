@@ -186,50 +186,56 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           {text.notBasedInUS}
         </a>
       </p>
-      <sl-alert
-        exportparts="base: alert-base, icon:alert-icon"
-        class="Info"
-        type="primary"
-        open
-      >
-        <div class={classes.AlertInnerContainer}>
-          <sl-icon slot="icon" name="clock"></sl-icon>
-          {text.banner}
+
+      {states.loading ? (
+        <sl-spinner style={{ fontSize: "50px", margin: "40px" }}></sl-spinner>
+      ) : (
+        <div>
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            class="Info"
+            type="primary"
+            open
+          >
+            <div class={classes.AlertInnerContainer}>
+              <sl-icon slot="icon" name="clock"></sl-icon>
+              {text.banner}
+            </div>
+          </sl-alert>
+          <slot name="docusign-iframe"></slot>
+          <div>
+            <p class={classes.BoldText}>{text.checkboxLabel}</p>
+            <sl-checkbox checked={formState.completedTaxForm}>
+              {text.checkboxDescription}
+            </sl-checkbox>
+          </div>
+
+          <div class={classes.BtnContainer}>
+            <sl-button
+              type="primary"
+              loading={states.loading}
+              disabled={states.submitDisabled}
+              submit
+              onClick={callbacks.onSubmit}
+              exportparts="base: primarybutton-base"
+            >
+              {text.submitButton}
+            </sl-button>
+            <sl-button
+              class={classes.SecondaryBtn}
+              type="text"
+              loading={states.loading}
+              disabled={states.loading}
+              onClick={() => {
+                callbacks.onBack();
+              }}
+              exportparts="base: secondarybutton-base"
+            >
+              {text.backButton}
+            </sl-button>
+          </div>
         </div>
-      </sl-alert>
-
-      <slot name="docusign-iframe"></slot>
-      <div>
-        <p class={classes.BoldText}>{text.checkboxLabel}</p>
-        <sl-checkbox checked={formState.completedTaxForm}>
-          {text.checkboxDescription}
-        </sl-checkbox>
-      </div>
-
-      <div class={classes.BtnContainer}>
-        <sl-button
-          type="primary"
-          loading={states.loading}
-          disabled={states.submitDisabled}
-          submit
-          onClick={callbacks.onSubmit}
-          exportparts="base: primarybutton-base"
-        >
-          {text.submitButton}
-        </sl-button>
-        <sl-button
-          class={classes.SecondaryBtn}
-          type="text"
-          loading={states.loading}
-          disabled={states.loading}
-          onClick={() => {
-            callbacks.onBack();
-          }}
-          exportparts="base: secondarybutton-base"
-        >
-          {text.backButton}
-        </sl-button>
-      </div>
+      )}
     </div>
   );
 };
