@@ -79,7 +79,7 @@ export function useTaxAndCash() {
   const [step, setStep] = useParentState<string>({
     host,
     namespace: TAX_CONTEXT_NAMESPACE,
-    initialValue: "/1",
+    initialValue: "/loading",
   });
 
   const [_userData, setUserData] = useParentState<UserQuery>({
@@ -127,6 +127,8 @@ export function useTaxAndCash() {
   });
 
   useEffect(() => {
+    if (!host || !user) return;
+
     if (data) {
       setUserData(data);
       const user = data?.viewer;
@@ -136,7 +138,7 @@ export function useTaxAndCash() {
       console.log({ currentStep });
       setStep(currentStep);
     }
-  }, [data?.viewer?.email]);
+  }, [host, user, data?.viewer?.email]);
 
   return {
     step,
