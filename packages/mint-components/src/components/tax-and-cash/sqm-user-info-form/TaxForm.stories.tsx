@@ -274,6 +274,18 @@ export const StepTwoWithError = () => {
   );
 };
 
+export const StepTwoLoading = () => {
+  return (
+    <IndirectTaxFormView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        loading: true,
+      }}
+    />
+  );
+};
+
 export const StepTwoWithGeneralError = () => {
   return (
     <IndirectTaxFormView
@@ -357,6 +369,19 @@ export const StepThreeDocusignWithGeneralError = () => {
             general: true,
           },
         },
+      }}
+    />
+  );
+};
+
+export const StepThreeDocusignLoading = () => {
+  // @ts-ignore TODO: fix this
+  return (
+    <DocusignFormView
+      {...docusignFormProps}
+      states={{
+        ...docusignFormProps.states,
+        loading: true,
       }}
     />
   );
