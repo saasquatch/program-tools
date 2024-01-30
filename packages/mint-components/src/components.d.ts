@@ -289,6 +289,8 @@ export namespace Components {
         "formLabel": string;
         "formStep": string;
         "formSubmissionError": string;
+        "generalErrorDescription": string;
+        "generalErrorTitle": string;
         "submitButton": string;
         "taxForm": string;
         "w8Description": string;
@@ -312,6 +314,8 @@ export namespace Components {
          */
         "demoData"?: DemoData<IndirectTaxFormViewProps>;
         "formStep": string;
+        "generalErrorDescription": string;
+        "generalErrorTitle": string;
         "notBasedInUS": string;
         "submitButton": string;
         "taxForm": string;
@@ -601,6 +605,8 @@ export namespace Components {
     interface SqmIndirectTaxForm {
         "backButton": string;
         "formStep": string;
+        "generalErrorDescription": string;
+        "generalErrorTitle": string;
         "hstCanada": string;
         "indirectTax": string;
         "indirectTaxDescription": string;
@@ -2871,16 +2877,22 @@ export namespace Components {
     interface SqmTaxDocumentSubmitted {
         "badgeTextAwaitingReview"?: string;
         "badgeTextExpiredOn"?: string;
+        "badgeTextExpiringSoon"?: string;
         "badgeTextSubmittedOn"?: string;
         "bankingInformationSectionHeader": string;
+        "generalErrorDescription": string;
+        "generalErrorTitle": string;
         "invalidForm"?: string;
         "newFormButton": string;
         "statusTextActive"?: string;
         "statusTextExpired"?: string;
         "statusTextNotActive"?: string;
         "statusTextNotVerified"?: string;
-        "taxAlertHeader"?: string;
+        "taxAlertHeaderExpiredOn"?: string;
+        "taxAlertHeaderExpiringSoon"?: string;
+        "taxAlertHeaderNotActive"?: string;
         "taxAlertMessage"?: string;
+        "taxAlertMessageExpiringSoon": string;
         "taxDocumentSectionHeader": string;
         "taxDocumentSectionSubHeader": string;
     }
@@ -3980,6 +3992,8 @@ declare namespace LocalJSX {
         "formLabel"?: string;
         "formStep"?: string;
         "formSubmissionError"?: string;
+        "generalErrorDescription"?: string;
+        "generalErrorTitle"?: string;
         "submitButton"?: string;
         "taxForm"?: string;
         "w8Description"?: string;
@@ -4003,6 +4017,8 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<IndirectTaxFormViewProps>;
         "formStep"?: string;
+        "generalErrorDescription"?: string;
+        "generalErrorTitle"?: string;
         "notBasedInUS"?: string;
         "submitButton"?: string;
         "taxForm"?: string;
@@ -4292,6 +4308,8 @@ declare namespace LocalJSX {
     interface SqmIndirectTaxForm {
         "backButton"?: string;
         "formStep"?: string;
+        "generalErrorDescription"?: string;
+        "generalErrorTitle"?: string;
         "hstCanada"?: string;
         "indirectTax"?: string;
         "indirectTaxDescription"?: string;
@@ -6538,16 +6556,22 @@ declare namespace LocalJSX {
     interface SqmTaxDocumentSubmitted {
         "badgeTextAwaitingReview"?: string;
         "badgeTextExpiredOn"?: string;
+        "badgeTextExpiringSoon"?: string;
         "badgeTextSubmittedOn"?: string;
         "bankingInformationSectionHeader"?: string;
+        "generalErrorDescription"?: string;
+        "generalErrorTitle"?: string;
         "invalidForm"?: string;
         "newFormButton"?: string;
         "statusTextActive"?: string;
         "statusTextExpired"?: string;
         "statusTextNotActive"?: string;
         "statusTextNotVerified"?: string;
-        "taxAlertHeader"?: string;
+        "taxAlertHeaderExpiredOn"?: string;
+        "taxAlertHeaderExpiringSoon"?: string;
+        "taxAlertHeaderNotActive"?: string;
         "taxAlertMessage"?: string;
+        "taxAlertMessageExpiringSoon"?: string;
         "taxDocumentSectionHeader"?: string;
         "taxDocumentSectionSubHeader"?: string;
     }

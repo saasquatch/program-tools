@@ -29,6 +29,8 @@ export interface IndirectTaxFormViewProps {
     submitButton: string;
     backButton: string;
     error: {
+      generalTitle: string;
+      generalDescription: string;
       taxDetails: string;
     };
   };
@@ -79,6 +81,17 @@ const style = {
   SecondaryBtn: {
     "&::part(base)": {
       color: "var(--sl-color-gray-800) !important",
+    },
+  },
+  AlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-red-100)",
+      borderTop: "none",
+      padding: "0 16px",
+    },
+
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-danger-500)",
     },
   },
 };
@@ -135,7 +148,14 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
           <h3>{text.indirectTax}</h3>
         </div>
         <p>{text.indirectTaxDescription}</p>
-
+        {formState.errors?.general && (
+          <sl-alert type="warning" open class={sheet.classes.AlertContainer}>
+            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+            <strong>{text.error.generalTitle}</strong>
+            <br />
+            {text.error.generalDescription}
+          </sl-alert>
+        )}
         <div>
           <h4>{text.indirectTaxDetails}</h4>
           <p class={classes.DescriptionText}>
@@ -143,67 +163,73 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
           </p>
         </div>
       </div>
-      <div class={classes.CheckboxContainer}>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <sl-checkbox
-            exportparts="label: input-label"
-            checked={formState.checked === "hstCanada"}
-            onInput={() => callbacks.onChange("hstCanada")}
-            disabled={states.loading || formState.checked === "hstCanada"}
-            id="hstCanada"
-            name="/hstCanada"
-          >
-            {text.hstCanada}
-          </sl-checkbox>
-          {states.registeredInCanadaDetailsSlot}
-          <sl-checkbox
-            exportparts="label: input-label"
-            checked={formState.checked === "otherRegion"}
-            onInput={() => callbacks.onChange("otherRegion")}
-            disabled={states.loading || formState.checked === "otherRegion"}
-            id="otherRegion"
-            name="/otherRegion"
-          >
-            {text.otherRegion}
-          </sl-checkbox>
-          {states.registeredInDifferentCountryDetailsSlot}
-          <sl-checkbox
-            exportparts="label: input-label"
-            checked={formState.checked === "notRegistered"}
-            onInput={() => callbacks.onChange("notRegistered")}
-            disabled={states.loading || formState.checked === "notRegistered"}
-            id="notRegistered"
-            name="/notRegistered"
-          >
-            {text.notRegistered}
-          </sl-checkbox>
-          {formState.errors?.taxDetails && (
-            <p class={classes.ErrorText}>{text.error.taxDetails}</p>
-          )}
+      {states.loading ? (
+        <sl-spinner style={{ fontSize: "50px", margin: "40px" }}></sl-spinner>
+      ) : (
+        <div>
+          <div class={classes.CheckboxContainer}>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <sl-checkbox
+                exportparts="label: input-label"
+                checked={formState.checked === "hstCanada"}
+                onInput={() => callbacks.onChange("hstCanada")}
+                disabled={states.loading}
+                id="hstCanada"
+                name="/hstCanada"
+              >
+                {text.hstCanada}
+              </sl-checkbox>
+              {states.registeredInCanadaDetailsSlot}
+              <sl-checkbox
+                exportparts="label: input-label"
+                checked={formState.checked === "otherRegion"}
+                onInput={() => callbacks.onChange("otherRegion")}
+                disabled={states.loading}
+                id="otherRegion"
+                name="/otherRegion"
+              >
+                {text.otherRegion}
+              </sl-checkbox>
+              {states.registeredInDifferentCountryDetailsSlot}
+              <sl-checkbox
+                exportparts="label: input-label"
+                checked={formState.checked === "notRegistered"}
+                onInput={() => callbacks.onChange("notRegistered")}
+                disabled={states.loading}
+                id="notRegistered"
+                name="/notRegistered"
+              >
+                {text.notRegistered}
+              </sl-checkbox>
+              {formState.errors?.taxDetails && (
+                <p class={classes.ErrorText}>{text.error.taxDetails}</p>
+              )}
+            </div>
+          </div>
+          <div class={classes.BtnContainer}>
+            <sl-button
+              type="primary"
+              loading={states.loading}
+              disabled={states.submitDisabled}
+              submit
+              exportparts="base: primarybutton-base"
+            >
+              {text.submitButton}
+            </sl-button>
+            <sl-button
+              class={classes.SecondaryBtn}
+              type="text"
+              loading={states.loading}
+              onClick={() => {
+                callbacks.onBack();
+              }}
+              exportparts="base: secondarybutton-base"
+            >
+              {text.backButton}
+            </sl-button>
+          </div>
         </div>
-      </div>
-      <div class={classes.BtnContainer}>
-        <sl-button
-          type="primary"
-          loading={states.loading}
-          disabled={states.submitDisabled}
-          submit
-          exportparts="base: primarybutton-base"
-        >
-          {text.submitButton}
-        </sl-button>
-        <sl-button
-          class={classes.SecondaryBtn}
-          type="text"
-          loading={states.loading}
-          onClick={() => {
-            callbacks.onBack();
-          }}
-          exportparts="base: secondarybutton-base"
-        >
-          {text.backButton}
-        </sl-button>
-      </div>
+      )}
     </sl-form>
   );
 };

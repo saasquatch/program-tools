@@ -30,6 +30,10 @@ export interface DocusignFormViewProps {
     checkboxDescription: string;
     submitButton: string;
     backButton: string;
+    error: {
+      generalTitle: string;
+      generalDescription: string;
+    };
   };
 }
 
@@ -80,6 +84,17 @@ const style = {
       color: "var(--sl-color-gray-800) !important",
     },
   },
+  ErrorAlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-red-100)",
+      borderTop: "none",
+      padding: "0 16px",
+    },
+
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-danger-500)",
+    },
+  },
   AlertInnerContainer: {
     display: "flex",
     justifyContent: "flex-start",
@@ -127,17 +142,6 @@ const vanillaStyle = `
         border-radius: 50%;
     }
 
-    sl-alert::part(base) {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      flex-direction: column;
-      padding: 20px;
-    }
-
-    sl-alert::part(message) {
-      padding: 0px;
-    }
   `;
 
 export const DocusignFormView = (props: DocusignFormViewProps) => {
@@ -162,6 +166,14 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           <h3>{text.taxForm}</h3>
         </div>
       </div>
+      {formState.errors?.general && (
+        <sl-alert type="warning" open class={sheet.classes.ErrorAlertContainer}>
+          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+          <strong>{text.error.generalTitle}</strong>
+          <br />
+          {text.error.generalDescription}
+        </sl-alert>
+      )}
       <h5 class={classes.BoldText}>
         {intl.formatMessage(
           { id: "tax-form-label", defaultMessage: text.taxFormLabel },
@@ -174,50 +186,56 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           {text.notBasedInUS}
         </a>
       </p>
-      <sl-alert
-        exportparts="base: alert-base, icon:alert-icon"
-        class="Info"
-        type="primary"
-        open
-      >
-        <div class={classes.AlertInnerContainer}>
-          <sl-icon slot="icon" name="clock"></sl-icon>
-          {text.banner}
+
+      {states.loading ? (
+        <sl-spinner style={{ fontSize: "50px", margin: "40px" }}></sl-spinner>
+      ) : (
+        <div>
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            class="Info"
+            type="primary"
+            open
+          >
+            <div class={classes.AlertInnerContainer}>
+              <sl-icon slot="icon" name="clock"></sl-icon>
+              {text.banner}
+            </div>
+          </sl-alert>
+          <slot name="docusign-iframe"></slot>
+          <div>
+            <p class={classes.BoldText}>{text.checkboxLabel}</p>
+            <sl-checkbox checked={formState.completedTaxForm}>
+              {text.checkboxDescription}
+            </sl-checkbox>
+          </div>
+
+          <div class={classes.BtnContainer}>
+            <sl-button
+              type="primary"
+              loading={states.loading}
+              disabled={states.submitDisabled}
+              submit
+              onClick={callbacks.onSubmit}
+              exportparts="base: primarybutton-base"
+            >
+              {text.submitButton}
+            </sl-button>
+            <sl-button
+              class={classes.SecondaryBtn}
+              type="text"
+              loading={states.loading}
+              disabled={states.loading}
+              onClick={() => {
+                callbacks.onBack();
+              }}
+              exportparts="base: secondarybutton-base"
+            >
+              {text.backButton}
+            </sl-button>
+          </div>
         </div>
-      </sl-alert>
-
-      <slot name="docusign-iframe"></slot>
-      <div>
-        <p class={classes.BoldText}>{text.checkboxLabel}</p>
-        <sl-checkbox checked={formState.completedTaxForm}>
-          {text.checkboxDescription}
-        </sl-checkbox>
-      </div>
-
-      <div class={classes.BtnContainer}>
-        <sl-button
-          type="primary"
-          loading={states.loading}
-          disabled={states.submitDisabled}
-          submit
-          onClick={callbacks.onSubmit}
-          exportparts="base: primarybutton-base"
-        >
-          {text.submitButton}
-        </sl-button>
-        <sl-button
-          class={classes.SecondaryBtn}
-          type="text"
-          loading={states.loading}
-          disabled={states.loading}
-          onClick={() => {
-            callbacks.onBack();
-          }}
-          exportparts="base: secondarybutton-base"
-        >
-          {text.backButton}
-        </sl-button>
-      </div>
+      )}
     </div>
   );
 };

@@ -184,149 +184,158 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           {text.error.generalDescription}
         </sl-alert>
       )}
-      <div class={classes.InputContainer}>
-        <sl-input
-          exportparts="label: input-label"
-          value={formState.firstName}
-          label={text.firstName}
-          disabled={states.disabled}
-          {...(formState.errors?.firstName
-            ? {
-                class: classes.ErrorInput,
-                helpText: text.error.firstName,
-              }
-            : {})}
-          id="firstName"
-          name="/firstName"
-          required
-        />
-        <sl-input
-          exportparts="label: input-label"
-          value={formState.lastName}
-          label={text.lastName}
-          disabled={states.disabled}
-          {...(formState.errors?.lastName
-            ? {
-                class: classes.ErrorInput,
-                helpText: text.error.lastName,
-              }
-            : {})}
-          id="lastName"
-          name="/lastName"
-          required
-        />
-        <sl-input
-          exportparts="label: input-label"
-          value={formState.email}
-          label={text.email}
-          disabled={states.disabled}
-          {...(formState.errors?.email
-            ? {
-                class: classes.ErrorInput,
-                helpText: text.error.email,
-              }
-            : {})}
-          // {...{ helpText: formState.errors.email }}
-          id="email"
-          name="/email"
-          required
-        />
-
-        <sl-select
-          exportparts="label: input-label"
-          name="/countryCode"
-          label={text.country}
-          value={formState.countryCode}
-          disabled={states.disabled}
-          {...(formState.errors?.countryCode
-            ? {
-                class: classes.ErrorInput,
-                helpText: text.error.countryCode,
-              }
-            : {})}
-          required
-        >
-          <sl-menu-item value="US">United States</sl-menu-item>
-          <sl-menu-item value="CA">Canada</sl-menu-item>
-          <sl-menu-item value="AU">Australia</sl-menu-item>
-        </sl-select>
-        <sl-select
-          exportparts="label: input-label"
-          name="/currency"
-          label={text.currency}
-          value={formState.currency}
-          disabled={states.disabled}
-          {...(formState.errors?.currency
-            ? {
-                class: classes.ErrorInput,
-                helpText: text.error.currency,
-              }
-            : {})}
-          required
-        >
-          <sl-menu-item value="USD">USD</sl-menu-item>
-          <sl-menu-item value="CAD">CAD</sl-menu-item>
-          <sl-menu-item value="AUD">AUD</sl-menu-item>
-        </sl-select>
-
-        <div class={classes.CheckboxWrapper}>
-          <p class={classes.BoldText}>{text.participantType}</p>
-
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <sl-radio
-              exportparts="base: radio-base"
-              value="individualParticipant"
-              name="/participantType"
-              checked={formState.participantType === "individualParticipant"}
+      {states.loading ? (
+        <sl-spinner style={{ fontSize: "50px", margin: "40px" }}></sl-spinner>
+      ) : (
+        <div>
+          <div class={classes.InputContainer}>
+            <sl-input
+              exportparts="label: input-label"
+              value={formState.firstName}
+              label={text.firstName}
               disabled={states.disabled}
-            >
-              {text.individualParticipant}
-            </sl-radio>
-            <sl-radio
-              exportparts="base: radio-base"
-              value="businessEntity"
-              name="/participantType"
-              checked={formState.participantType === "businessEntity"}
+              {...(formState.errors?.firstName
+                ? {
+                    class: classes.ErrorInput,
+                    helpText: text.error.firstName,
+                  }
+                : {})}
+              id="firstName"
+              name="/firstName"
+              required
+            />
+            <sl-input
+              exportparts="label: input-label"
+              value={formState.lastName}
+              label={text.lastName}
               disabled={states.disabled}
+              {...(formState.errors?.lastName
+                ? {
+                    class: classes.ErrorInput,
+                    helpText: text.error.lastName,
+                  }
+                : {})}
+              id="lastName"
+              name="/lastName"
+              required
+            />
+            <sl-input
+              exportparts="label: input-label"
+              value={formState.email}
+              label={text.email}
+              disabled={states.disabled}
+              {...(formState.errors?.email
+                ? {
+                    class: classes.ErrorInput,
+                    helpText: text.error.email,
+                  }
+                : {})}
+              // {...{ helpText: formState.errors.email }}
+              id="email"
+              name="/email"
+              required
+            />
+
+            <sl-select
+              exportparts="label: input-label"
+              name="/countryCode"
+              label={text.country}
+              value={formState.countryCode}
+              disabled={states.disabled}
+              {...(formState.errors?.countryCode
+                ? {
+                    class: classes.ErrorInput,
+                    helpText: text.error.countryCode,
+                  }
+                : {})}
+              required
             >
-              {text.businessEntity}
-            </sl-radio>
+              <sl-menu-item value="US">United States</sl-menu-item>
+              <sl-menu-item value="CA">Canada</sl-menu-item>
+              <sl-menu-item value="AU">Australia</sl-menu-item>
+            </sl-select>
+            <sl-select
+              exportparts="label: input-label"
+              name="/currency"
+              label={text.currency}
+              value={formState.currency}
+              disabled={states.disabled}
+              {...(formState.errors?.currency
+                ? {
+                    class: classes.ErrorInput,
+                    helpText: text.error.currency,
+                  }
+                : {})}
+              required
+            >
+              <sl-menu-item value="USD">USD</sl-menu-item>
+              <sl-menu-item value="CAD">CAD</sl-menu-item>
+              <sl-menu-item value="AUD">AUD</sl-menu-item>
+            </sl-select>
+
+            <div class={classes.CheckboxWrapper}>
+              <p class={classes.BoldText}>{text.participantType}</p>
+
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <sl-radio
+                  exportparts="base: radio-base"
+                  value="individualParticipant"
+                  name="/participantType"
+                  checked={
+                    formState.participantType === "individualParticipant"
+                  }
+                  disabled={states.disabled}
+                >
+                  {text.individualParticipant}
+                </sl-radio>
+                <sl-radio
+                  exportparts="base: radio-base"
+                  value="businessEntity"
+                  name="/participantType"
+                  checked={formState.participantType === "businessEntity"}
+                  disabled={states.disabled}
+                >
+                  {text.businessEntity}
+                </sl-radio>
+              </div>
+
+              {formState.errors?.participantType && (
+                <p class={classes.ErrorText}>{text.error.participantType}</p>
+              )}
+            </div>
+            <div class={classes.CheckboxWrapper}>
+              <p class={classes.BoldText}> {text.taxAndBankingCollection}</p>
+              <sl-checkbox
+                exportparts="label: input-label"
+                checked={formState.allowBankingCollection === true}
+                onSl-change={(e) => {
+                  e.target.value = e.target.checked;
+                }}
+                disabled={states.disabled}
+                required
+                value={formState.allowBankingCollection}
+                id="allowBankingCollection"
+                name="/allowBankingCollection"
+              >
+                {text.allowBankingCollection}
+              </sl-checkbox>
+              {formState.errors?.allowBankingCollection && (
+                <p class={classes.ErrorText}>
+                  {text.error.allowBankingCollection}
+                </p>
+              )}
+            </div>
           </div>
-
-          {formState.errors?.participantType && (
-            <p class={classes.ErrorText}>{text.error.participantType}</p>
-          )}
-        </div>
-        <div class={classes.CheckboxWrapper}>
-          <p class={classes.BoldText}> {text.taxAndBankingCollection}</p>
-          <sl-checkbox
-            exportparts="label: input-label"
-            checked={formState.allowBankingCollection === true}
-            onSl-change={(e) => {
-              e.target.value = e.target.checked;
-            }}
+          <sl-button
+            type="primary"
             disabled={states.disabled}
-            required
-            value={formState.allowBankingCollection}
-            id="allowBankingCollection"
-            name="/allowBankingCollection"
+            submit
+            exportparts="base: primarybutton-base"
           >
-            {text.allowBankingCollection}
-          </sl-checkbox>
-          {formState.errors?.allowBankingCollection && (
-            <p class={classes.ErrorText}>{text.error.allowBankingCollection}</p>
-          )}
+            {text.submitButton}
+          </sl-button>
         </div>
-      </div>
-      <sl-button
-        type="primary"
-        loading={states.loading}
-        disabled={states.disabled}
-        submit
-        exportparts="base: primarybutton-base"
-      >
-        {text.submitButton}
-      </sl-button>
+      )}
     </sl-form>
   );
 };

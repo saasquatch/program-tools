@@ -3,9 +3,9 @@ import jsonpointer from "jsonpointer";
 import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
-  USER_CONTEXT_NAMESPACE,
   USER_INFO_NAMESPACE,
-  UserQuery,
+  USER_QUERY_NAMESPACE,
+  UserQueryState,
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { TaxForm } from "./sqm-user-info-form";
 
@@ -43,11 +43,12 @@ export function useTaxForm(props: TaxForm) {
   const [formState, setFormState] = useParent<FormState>(USER_INFO_NAMESPACE);
 
   // TODO: user types
-  const data = useParentValue<UserQuery>(USER_CONTEXT_NAMESPACE);
+  const { data, loading } =
+    useParentValue<UserQueryState>(USER_QUERY_NAMESPACE);
 
   useEffect(() => {
     console.log({ data });
-    const user = data?.viewer;
+    const user = data?.user;
     if (!user || step !== "/1") return;
 
     setFormState({
@@ -125,9 +126,21 @@ export function useTaxForm(props: TaxForm) {
     onRadioClick,
     text: {
       ...props,
+      error: {
+        firstName: props.firstNameError,
+        lastName: props.lastNameError,
+        email: props.emailError,
+        countryCode: props.countryError,
+        currency: props.currencyError,
+        allowBankingCollection: props.allowBankingCollectionError,
+        participantType: props.participantTypeError,
+      },
     },
     refs: {
       formRef,
+    },
+    states: {
+      loading,
     },
     formState: { ...formState },
   };
