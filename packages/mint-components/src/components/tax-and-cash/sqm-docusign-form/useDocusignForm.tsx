@@ -38,10 +38,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
   const splitPath = path.split("/");
   const defaultDocumentType = splitPath.length === 3 ? splitPath[2] : undefined;
 
-  const { data, loading } = useQuery(GET_USER_TAX_INFO, {
-    id: user.id,
-    accountId: user.accountId,
-  });
+  const { data, loading } = useQuery(GET_USER_TAX_INFO, {});
   const countryCode = data?.viewer?.countryCode;
 
   // TODO: Replace with real backend data
