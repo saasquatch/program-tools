@@ -2978,12 +2978,13 @@ export namespace Components {
         "firstName": string;
         "firstNameError": string;
         "formStep": string;
+        "generalErrorDescription": string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
          */
-        "generalError": string;
+        "generalErrorTitle": string;
         "individualParticipant": string;
         "lastName": string;
         "lastNameError": string;
@@ -6643,12 +6644,13 @@ declare namespace LocalJSX {
         "firstName"?: string;
         "firstNameError"?: string;
         "formStep"?: string;
+        "generalErrorDescription"?: string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
          */
-        "generalError"?: string;
+        "generalErrorTitle"?: string;
         "individualParticipant"?: string;
         "lastName"?: string;
         "lastNameError"?: string;

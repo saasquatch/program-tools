@@ -4,7 +4,7 @@ import { createStyleSheet } from "../../../styling/JSS";
 export interface UserInfoFormViewProps {
   states: {
     loading: boolean;
-    submitDisabled: boolean;
+    disabled: boolean;
     formState: {
       firstName?: string;
       lastName?: string;
@@ -36,7 +36,8 @@ export interface UserInfoFormViewProps {
     taxAndBankingCollection: string;
     submitButton: string;
     error: {
-      general: string;
+      generalTitle: string;
+      generalDescription: string;
       firstName: string;
       lastName: string;
       email: string;
@@ -55,6 +56,10 @@ const style = {
   FormWrapper: {},
   ErrorInput: {
     "&::part(base)": {
+      border: "1px solid var(--sl-color-danger-500)",
+    },
+
+    "sl-dropdown::part(trigger)": {
       border: "1px solid var(--sl-color-danger-500)",
     },
 
@@ -102,6 +107,17 @@ const style = {
   RoundedCheckbox: {
     "&::part(control)": {
       borderRadius: "50%",
+    },
+  },
+  AlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-red-100)",
+      borderTop: "none",
+      padding: "0 16px",
+    },
+
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-danger-500)",
     },
   },
 };
@@ -160,16 +176,24 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           <h3>{text.personalInformation}</h3>
         </div>
       </div>
+      {formState.errors.general && (
+        <sl-alert type="warning" open class={sheet.classes.AlertContainer}>
+          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+          <strong>{text.error.generalTitle}</strong>
+          <br />
+          {text.error.generalDescription}
+        </sl-alert>
+      )}
       <div class={classes.InputContainer}>
         <sl-input
           exportparts="label: input-label"
           value={formState.firstName}
           label={text.firstName}
-          disabled={states.loading}
+          disabled={states.disabled}
           {...(formState.errors?.firstName
             ? {
                 class: classes.ErrorInput,
-                helpText: formState.errors.firstName,
+                helpText: text.error.firstName,
               }
             : {})}
           id="firstName"
@@ -180,11 +204,11 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           exportparts="label: input-label"
           value={formState.lastName}
           label={text.lastName}
-          disabled={states.loading}
+          disabled={states.disabled}
           {...(formState.errors?.lastName
             ? {
                 class: classes.ErrorInput,
-                helpText: formState.errors.lastName,
+                helpText: text.error.lastName,
               }
             : {})}
           id="lastName"
@@ -195,11 +219,11 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           exportparts="label: input-label"
           value={formState.email}
           label={text.email}
-          disabled={states.loading}
+          disabled={states.disabled}
           {...(formState.errors?.email
             ? {
                 class: classes.ErrorInput,
-                helpText: formState.errors.email,
+                helpText: text.error.email,
               }
             : {})}
           // {...{ helpText: formState.errors.email }}
@@ -213,10 +237,11 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           name="/countryCode"
           label={text.country}
           value={formState.countryCode}
+          disabled={states.disabled}
           {...(formState.errors?.countryCode
             ? {
                 class: classes.ErrorInput,
-                helpText: formState.errors.countryCode,
+                helpText: text.error.countryCode,
               }
             : {})}
           required
@@ -230,10 +255,11 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           name="/currency"
           label={text.currency}
           value={formState.currency}
+          disabled={states.disabled}
           {...(formState.errors?.currency
             ? {
                 class: classes.ErrorInput,
-                helpText: formState.errors.currency,
+                helpText: text.error.currency,
               }
             : {})}
           required
@@ -252,6 +278,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               value="individualParticipant"
               name="/participantType"
               checked={formState.participantType === "individualParticipant"}
+              disabled={states.disabled}
             >
               {text.individualParticipant}
             </sl-radio>
@@ -260,13 +287,14 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               value="businessEntity"
               name="/participantType"
               checked={formState.participantType === "businessEntity"}
+              disabled={states.disabled}
             >
               {text.businessEntity}
             </sl-radio>
           </div>
 
           {formState.errors?.participantType && (
-            <p class={classes.ErrorText}>{formState.errors?.participantType}</p>
+            <p class={classes.ErrorText}>{text.error.participantType}</p>
           )}
         </div>
         <div class={classes.CheckboxWrapper}>
@@ -277,30 +305,23 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
             onSl-change={(e) => {
               e.target.value = e.target.checked;
             }}
-            disabled={states.loading}
+            disabled={states.disabled}
             required
             value={formState.allowBankingCollection}
-            // Copied from edit form, may need to keep
-            // {...(formState.errors?.allowBankingCollection &&
-            // formState.errors?.allowBankingCollection.status !== "valid"
-            //   ? { class: "errorstyles", helpText: "Cannot be empty" }
-            //   : [])}
             id="allowBankingCollection"
             name="/allowBankingCollection"
           >
             {text.allowBankingCollection}
           </sl-checkbox>
           {formState.errors?.allowBankingCollection && (
-            <p class={classes.ErrorText}>
-              {formState.errors.allowBankingCollection}
-            </p>
+            <p class={classes.ErrorText}>{text.error.allowBankingCollection}</p>
           )}
         </div>
       </div>
       <sl-button
         type="primary"
         loading={states.loading}
-        disabled={states.submitDisabled}
+        disabled={states.disabled}
         submit
         exportparts="base: primarybutton-base"
       >

@@ -56,7 +56,9 @@ export class TaxForm {
    * @uiName Required field message
    * @uiWidget textArea
    */
-  @Prop() generalError: string = userInfoText.error.general;
+  @Prop() generalErrorTitle: string = userInfoText.error.generalTitle;
+  @Prop() generalErrorDescription: string =
+    userInfoText.error.generalDescription;
 
   /**
    * The message to be displayed when a the form submission fails unexpectedly.
@@ -80,7 +82,7 @@ export class TaxForm {
       <Host>
         <UserInfoFormView
           states={{
-            submitDisabled: false,
+            disabled: false,
             //@ts-ignore
             formState: props.formState,
           }}

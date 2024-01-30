@@ -37,7 +37,7 @@ export default {
 const stepOneProps: UserInfoFormViewProps = {
   states: {
     loading: false,
-    submitDisabled: false,
+    disabled: false,
     formState: {
       firstName: "Bob",
       lastName: "Testerson",
@@ -250,7 +250,7 @@ export const StepOneDisabled = () => {
   return (
     <UserInfoFormView
       {...stepOneProps}
-      states={{ ...stepOneProps.states, submitDisabled: true }}
+      states={{ ...stepOneProps.states, disabled: true }}
     />
   );
 };
@@ -271,6 +271,23 @@ export const StepOneWithErrors = () => {
             currency: true,
             participantType: true,
             allowBankingCollection: true,
+          },
+        },
+      }}
+    />
+  );
+};
+
+export const StepOneWithGeneralError = () => {
+  return (
+    <UserInfoFormView
+      {...stepOneProps}
+      states={{
+        ...stepOneProps.states,
+        formState: {
+          ...stepOneProps.states.formState,
+          errors: {
+            general: true,
           },
         },
       }}

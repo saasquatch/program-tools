@@ -27,7 +27,9 @@ export const userInfoText: UserInfoFormViewProps["text"] = {
   individualParticipant: "I am an individual participant",
   taxAndBankingCollection: "Tax and banking collection",
   error: {
-    general: "Network request failed.",
+    generalTitle: "There was a problem submitting your information",
+    generalDescription:
+      "Please review your information and try again. If this problem continues, contact Support.",
     firstName: "Enter a first name",
     lastName: "Enter a last name",
     email: "Enter a valid email",
