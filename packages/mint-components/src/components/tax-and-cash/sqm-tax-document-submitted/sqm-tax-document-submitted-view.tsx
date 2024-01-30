@@ -6,10 +6,11 @@ import {
   PayoutDetailsCardViewProps,
 } from "../sqm-payout-details-card/sqm-payout-details-card";
 
+export type TaxDocumentType = "W9" | "W8-BEN-E" | "W8-BEN";
 export interface TaxDocumentSubmittedProps {
   states: {
     status: string;
-    documentType: "W9" | "W8-BEN-E" | "W8-BEN";
+    documentType: TaxDocumentType;
     dateSubmitted: string;
     dateExpired?: string;
     expiresSoon?: boolean;
