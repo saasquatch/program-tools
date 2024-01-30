@@ -2879,8 +2879,11 @@ export namespace Components {
         "statusTextExpired"?: string;
         "statusTextNotActive"?: string;
         "statusTextNotVerified"?: string;
-        "taxAlertHeader"?: string;
+        "taxAlertHeaderExpiredOn"?: string;
+        "taxAlertHeaderExpiringSoon"?: string;
+        "taxAlertHeaderNotActive"?: string;
         "taxAlertMessage"?: string;
+        "taxAlertMessageExpiringSoon": string;
         "taxDocumentSectionHeader": string;
         "taxDocumentSectionSubHeader": string;
     }
@@ -6546,8 +6549,11 @@ declare namespace LocalJSX {
         "statusTextExpired"?: string;
         "statusTextNotActive"?: string;
         "statusTextNotVerified"?: string;
-        "taxAlertHeader"?: string;
+        "taxAlertHeaderExpiredOn"?: string;
+        "taxAlertHeaderExpiringSoon"?: string;
+        "taxAlertHeaderNotActive"?: string;
         "taxAlertMessage"?: string;
+        "taxAlertMessageExpiringSoon"?: string;
         "taxDocumentSectionHeader"?: string;
         "taxDocumentSectionSubHeader"?: string;
     }

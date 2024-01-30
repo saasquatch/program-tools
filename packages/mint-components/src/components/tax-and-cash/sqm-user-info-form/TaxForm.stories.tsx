@@ -90,7 +90,6 @@ const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
     ...taxFormDocumentSubmittedText,
-    taxDocumentSectionSubHeader: "W9 Tax Documents",
   },
 };
 
@@ -103,8 +102,6 @@ const documentSubmittedNotVerifiedProps: TaxDocumentSubmittedProps = {
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
     ...taxFormDocumentSubmittedText,
-    badgeTextAwaitingReview: "Awaiting Review. Submitted on {dateSubmitted}.",
-    taxDocumentSectionSubHeader: "W9 Tax Documents",
   },
 };
 const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
@@ -116,12 +113,6 @@ const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
     ...taxFormDocumentSubmittedText,
-    taxAlertHeader:
-      "Your W8-BEN-E tax form has personal information that doesn't match your profile",
-    taxAlertMessage: "Please resubmit a new W8-BEN-E form.",
-    taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
-    invalidForm:
-      "Ensure your information matches your profile and resubmit a new document",
   },
 };
 
@@ -136,10 +127,6 @@ const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
     ...taxFormDocumentSubmittedText,
-    badgeTextExpiredOn: "Expired On {dateExpired}.",
-    taxAlertHeader: "Your W8-BEN-E tax form has expired.",
-    taxAlertMessage: "Please resubmit a new W8-BEN-E form.",
-    taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
   },
 };
 
@@ -154,10 +141,6 @@ const documentSubmittedExpiringSoonProps: TaxDocumentSubmittedProps = {
   callbacks: { onClick: () => console.log("Submit new Form") },
   text: {
     ...taxFormDocumentSubmittedText,
-    taxAlertHeader: "Your W8-BEN-E tax form expires on {dateExpired}",
-    taxAlertMessage:
-      "Please submit a new W8-BEN-E form to continue receiving your rewards",
-    taxDocumentSectionSubHeader: "W8-BEN-E Tax Documents",
   },
 };
 
