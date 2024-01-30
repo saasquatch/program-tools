@@ -1,17 +1,9 @@
 import { h } from "@stencil/core";
+import { indirectDetailsSlotText } from "../defaultTextCopy";
 import {
   IndirectDetailsSlotView,
   IndirectDetailsSlotViewProps,
 } from "./IndirectTaxDetailsView";
-import { indirectDetailsSlotText } from "../defaultTextCopy";
-import {
-  TaxFormSelectionSlotView,
-  TaxFormSelectionSlotViewProps,
-} from "./TaxFormSelectionView";
-import {
-  DocusignWrapperSlotView,
-  DocusignWrapperSlotViewProps,
-} from "./DocusignWrapperView";
 
 export default {
   title: "Components/Tax Form Slot Views",
@@ -30,6 +22,7 @@ const registeredInOtherRegion: IndirectDetailsSlotViewProps = {
     countries: [{ countryCode: "CA", displayName: "Canada" }],
   },
   callbacks: {
+    // TODO: fix type
     onChange: (e) => console.log("Submit"),
   },
   text: {

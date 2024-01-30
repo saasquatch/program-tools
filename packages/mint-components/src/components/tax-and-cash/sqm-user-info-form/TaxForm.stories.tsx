@@ -340,7 +340,6 @@ export const StepTwoNotRegisteredChecked = () => {
 
 // STEP THREE
 export const StepThreeWithDocusign = () => {
-  // @ts-ignore TODO: fix this
   return <DocusignFormView {...stepThreeAProps} />;
 };
 

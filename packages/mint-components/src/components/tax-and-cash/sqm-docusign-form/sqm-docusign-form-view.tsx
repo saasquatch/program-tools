@@ -200,6 +200,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           loading={states.loading}
           disabled={states.submitDisabled}
           submit
+          onClick={callbacks.onSubmit}
           exportparts="base: primarybutton-base"
         >
           {text.submitButton}
@@ -208,7 +209,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           class={classes.SecondaryBtn}
           type="text"
           loading={states.loading}
-          disabled={states.submitDisabled}
+          disabled={states.loading}
           onClick={() => {
             callbacks.onBack();
           }}

@@ -25,8 +25,6 @@ export function useContextRouter(props: SqmContextRouter) {
 
   const page = useDomContext<string>(context);
 
-  console.log({ page });
-
   // convert sqm-routes into templates
   useEffect(() => {
     const routes = host.querySelectorAll<HTMLElement & Route>(`sqm-route`);
