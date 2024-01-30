@@ -11,7 +11,14 @@ import { useDocumentTypeForm } from "./useDocumentTypeForm";
 export class DocumentTypeForm {
   @Prop() step: string = "Step";
   @Prop() stepOf: string = "of";
+  @Prop() formLabel: string = "TODO: Form";
   @Prop() taxForm: string = "Tax Form";
+  @Prop() w9Label: string = "W9";
+  @Prop() w9Description: string = "TODO: ";
+  @Prop() w8Label: string = "W8-BEN";
+  @Prop() w8Description: string = "TODO: ";
+  @Prop() w8ELabel: string = "W8-BEN-E";
+  @Prop() w8EDescription: string = "TODO: ";
   @Prop() submitButton: string = "Submit";
   @Prop() backButton: string = "Back";
   @Prop() formSubmissionError: string = "Could not submit form";

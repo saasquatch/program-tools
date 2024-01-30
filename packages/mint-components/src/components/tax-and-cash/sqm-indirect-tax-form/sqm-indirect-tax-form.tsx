@@ -4,29 +4,30 @@ import { getProps } from "../../../utils/utils";
 import { IndirectDetailsSlotView } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
 import {
   IndirectTaxFormView,
-  TaxFormStepTwoProps,
+  IndirectTaxFormViewProps,
 } from "./sqm-indirect-tax-form-view";
 import { useIndirectTaxForm } from "./useIndirectTaxForm";
-import { taxFormStepTwoText } from "../sqm-user-info-form/defaultTextCopy";
+import { indirectTaxFormText } from "../sqm-user-info-form/defaultTextCopy";
 
 @Component({
   tag: "sqm-indirect-tax-form",
   shadow: true,
 })
-export class TaxFormStepTwo {
-  @Prop() step: string = taxFormStepTwoText.step;
-  @Prop() stepOf: string = taxFormStepTwoText.stepOf;
-  @Prop() indirectTax: string = taxFormStepTwoText.indirectTax;
+export class IndirectTaxForm {
+  @Prop() step: string = indirectTaxFormText.step;
+  @Prop() stepOf: string = indirectTaxFormText.stepOf;
+  @Prop() indirectTax: string = indirectTaxFormText.indirectTax;
   @Prop() indirectTaxDescription: string =
-    taxFormStepTwoText.indirectTaxDescription;
-  @Prop() indirectTaxDetails: string = taxFormStepTwoText.indirectTaxDetails;
+    indirectTaxFormText.indirectTaxDescription;
+  @Prop() indirectTaxDetails: string = indirectTaxFormText.indirectTaxDetails;
   @Prop() indirectTaxDetailsDescription: string =
-    taxFormStepTwoText.indirectTaxDetailsDescription;
-  @Prop() hstCanada: string = taxFormStepTwoText.hstCanada;
-  @Prop() otherRegion: string = taxFormStepTwoText.otherRegion;
-  @Prop() notRegistered: string = taxFormStepTwoText.notRegistered;
-  @Prop() submitButton: string = taxFormStepTwoText.submitButton;
-  @Prop() backButton: string = taxFormStepTwoText.backButton;
+    indirectTaxFormText.indirectTaxDetailsDescription;
+  @Prop() hstCanada: string = indirectTaxFormText.hstCanada;
+  @Prop() otherRegion: string = indirectTaxFormText.otherRegion;
+  @Prop() notRegistered: string = indirectTaxFormText.notRegistered;
+  @Prop() submitButton: string = indirectTaxFormText.submitButton;
+  @Prop() backButton: string = indirectTaxFormText.backButton;
+  @Prop() taxDetailsError: string = indirectTaxFormText.error.taxDetails;
 
   constructor() {
     withHooks(this);

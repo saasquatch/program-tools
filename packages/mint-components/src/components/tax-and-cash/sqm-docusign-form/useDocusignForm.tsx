@@ -26,7 +26,8 @@ const GET_TAX_DOCUMENT = gql`
   }
 `;
 
-export function useDocusignForm(props: DocusignForm) {
+export function useDocusignForm(props: DocusignForm, el: any) {
+  console.log({ el });
   const user = useUserIdentity();
   const [path, setPath] = useParent<string>(TAX_CONTEXT_NAMESPACE);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
@@ -34,8 +35,6 @@ export function useDocusignForm(props: DocusignForm) {
 
   const splitPath = path.split("/");
   const defaultDocumentType = splitPath.length === 3 ? splitPath[2] : undefined;
-
-  console.log({ path, defaultDocumentType });
 
   const { data, loading } = useQuery(GET_USER_TAX_INFO, {
     id: user.id,
@@ -50,11 +49,11 @@ export function useDocusignForm(props: DocusignForm) {
     refetch: refetchDocument,
   } = {
     data: {
-      taxForm: "W9" as const,
+      taxForm: defaultDocumentType,
       documentUrl: "https://example.com",
     },
     loading: false,
-    refetch: (_vars: any) => console.debug("REFETCHING"),
+    refetch: (_vars: any) => console.debug("REFETCHING", _vars),
   };
 
   useEffect(() => {
@@ -69,6 +68,14 @@ export function useDocusignForm(props: DocusignForm) {
     }
   }, [countryCode]);
 
+  useEffect(() => {
+    // Load docusign iframe with given url
+    const slotted = el.querySelector("sqm-docusign-embed");
+    if (slotted) {
+      slotted.url = taxInfo.documentUrl;
+    }
+  }, [taxInfo.documentUrl]);
+
   const onSubmit = () => {
     if (!formSubmitted) {
       setErrors({ submitCheckbox: true });
@@ -82,7 +89,8 @@ export function useDocusignForm(props: DocusignForm) {
     text: {
       ...props,
       error: {
-        formSubmission: props.formSubmissionError,
+        // TODO: this prop was removed from the controller/view
+        // formSubmission: props.formSubmissionError,
       },
     },
     states: {

@@ -5,11 +5,11 @@ import {
 } from "../sqm-document-type-form/sqm-document-type-form-view";
 import {
   DocusignFormView,
-  TaxFormStepThreeAViewProps,
+  DocusignFormViewProps,
 } from "../sqm-docusign-form/sqm-docusign-form-view";
 import {
   IndirectTaxFormView,
-  TaxFormStepTwoProps,
+  IndirectTaxFormViewProps,
 } from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
 import {
   TaxDocumentSubmittedProps,
@@ -17,15 +17,16 @@ import {
 } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
 import {
   documentTypeFormText,
-  taxFormStepOneText,
-  taxFormStepTwoText,
+  userInfoText,
+  indirectTaxFormText,
+  docusignFormText,
 } from "./defaultTextCopy";
 import {
   RegisteredInCanada,
   RegisteredInOtherRegion,
 } from "./small-views/SlotViews.stories";
 import {
-  TaxFormStepOneProps,
+  UserInfoFormViewProps,
   UserInfoFormView,
 } from "./sqm-user-info-form-view";
 
@@ -33,7 +34,7 @@ export default {
   title: "Components/Tax Form",
 };
 
-const stepOneProps: TaxFormStepOneProps = {
+const stepOneProps: UserInfoFormViewProps = {
   states: {
     loading: false,
     submitDisabled: false,
@@ -53,13 +54,13 @@ const stepOneProps: TaxFormStepOneProps = {
     // TODO: fix type
     onRadioClick: (props: any) => console.log("Radio Click"),
   },
-  text: taxFormStepOneText,
+  text: userInfoText,
   refs: {
     formRef: () => {},
   },
 };
 
-const stepTwoProps: TaxFormStepTwoProps = {
+const stepTwoProps: IndirectTaxFormViewProps = {
   states: {
     loading: false,
     submitDisabled: false,
@@ -75,7 +76,7 @@ const stepTwoProps: TaxFormStepTwoProps = {
     onBack: () => console.log("Submit"),
   },
   refs: { formRef: { current: null } },
-  text: taxFormStepTwoText,
+  text: indirectTaxFormText,
 };
 
 const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
@@ -199,7 +200,7 @@ const documentSubmittedLoadingProps: TaxDocumentSubmittedProps = {
   },
 };
 
-const stepThreeAProps = {
+const stepThreeAProps: DocusignFormViewProps = {
   states: {
     loading: false,
     submitDisabled: false,
@@ -213,8 +214,7 @@ const stepThreeAProps = {
     onSubmit: (props: any) => console.log(props),
     onBack: () => console.log("Back"),
   },
-  // TODO: fix this
-  // text: taxFormStepThreeText,
+  text: docusignFormText,
 };
 
 const stepThreeBProps: DocumentTypeFormViewProps = {

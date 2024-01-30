@@ -4,7 +4,7 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
-import { taxFormStepOneText } from "./defaultTextCopy";
+import { userInfoText } from "./defaultTextCopy";
 import { UserInfoFormView } from "./sqm-user-info-form-view";
 import { useTaxForm } from "./useUserInfoForm";
 
@@ -27,48 +27,29 @@ export class TaxForm {
   @Prop() demoData?: DemoData<UserNameViewProps>;
 
   @Prop()
-  firstName: string = taxFormStepOneText.firstName;
-  @Prop() lastName: string = taxFormStepOneText.lastName;
-  @Prop() email: string = taxFormStepOneText.email;
-  @Prop() country: string = taxFormStepOneText.country;
-  @Prop() currency: string = taxFormStepOneText.currency;
-  @Prop() allowBankingCollection: string =
-    taxFormStepOneText.allowBankingCollection;
-  @Prop() step?: string = taxFormStepOneText.step;
-  @Prop() stepOf?: string = taxFormStepOneText.stepOf;
-  @Prop() personalInformation?: string = taxFormStepOneText.personalInformation;
-  @Prop() businessEntity?: string = taxFormStepOneText.businessEntity;
-  @Prop() participantType?: string = taxFormStepOneText.participantType;
-  @Prop() individualParticipant?: string =
-    taxFormStepOneText.individualParticipant;
-  @Prop() taxAndBankingCollection?: string =
-    taxFormStepOneText.taxAndBankingCollection;
-  @Prop() submitButton: string = taxFormStepOneText.submitButton;
-
-  // ZH: These props are in the wrong spot
-  // Tax Document Submitted View props
-  // @Prop() activeStatusText: string = taxFormDocumentSubmittedText.status.active;
-  // @Prop() notActiveStatusText: string =
-  //   taxFormDocumentSubmittedText.status.notActive;
-  // @Prop() notVerifiedStatusText: string =
-  //   taxFormDocumentSubmittedText.status.notVerified;
-  // @Prop() expiredStatusText: string =
-  //   taxFormDocumentSubmittedText.status.expired;
-  // @Prop() submittedOnText: string =
-  //   taxFormDocumentSubmittedText.badge.submittedOn;
-  // @Prop() awaitingReviewText: string =
-  //   taxFormDocumentSubmittedText.badge.awaitingReview;
-  // @Prop() expiredOnText: string = taxFormDocumentSubmittedText.badge.expiredOn;
-  // @Prop() taxAlertHeader?: string = taxFormDocumentSubmittedText.taxAlertHeader;
-  // @Prop() taxAlertMessage?: string =
-  //   taxFormDocumentSubmittedText.taxAlertMessage;
-  // @Prop() bankingInformationHeader: string =
-  //   taxFormDocumentSubmittedText.bankingInformationSectionHeader;
-  // @Prop() taxDocumentSectionHeader: string =
-  //   taxFormDocumentSubmittedText.taxDocumentSectionHeader;
-  // @Prop() taxDocumentSectionSubHeader?: string =
-  //   taxFormDocumentSubmittedText.taxDocumentSectionSubHeader;
-  // @Prop() error?: string = taxFormDocumentSubmitted.taxAlertHeader;
+  firstName: string = userInfoText.firstName;
+  @Prop() lastName: string = userInfoText.lastName;
+  @Prop() email: string = userInfoText.email;
+  @Prop() country: string = userInfoText.country;
+  @Prop() currency: string = userInfoText.currency;
+  @Prop() allowBankingCollection: string = userInfoText.allowBankingCollection;
+  @Prop() step: string = userInfoText.step;
+  @Prop() stepOf: string = userInfoText.stepOf;
+  @Prop() personalInformation: string = userInfoText.personalInformation;
+  @Prop() businessEntity: string = userInfoText.businessEntity;
+  @Prop() participantType: string = userInfoText.participantType;
+  @Prop() individualParticipant: string = userInfoText.individualParticipant;
+  @Prop() taxAndBankingCollection: string =
+    userInfoText.taxAndBankingCollection;
+  @Prop() submitButton: string = userInfoText.submitButton;
+  @Prop() firstNameError: string = userInfoText.error.firstName;
+  @Prop() lastNameError: string = userInfoText.error.lastName;
+  @Prop() emailError: string = userInfoText.error.email;
+  @Prop() countryError: string = userInfoText.error.countryCode;
+  @Prop() currencyError: string = userInfoText.error.currency;
+  @Prop() allowBankingCollectionError: string =
+    userInfoText.error.allowBankingCollection;
+  @Prop() participantTypeError: string = userInfoText.error.participantType;
 
   /**
    * The message to be displayed when a required field is not filled.
@@ -76,7 +57,7 @@ export class TaxForm {
    * @uiName Required field message
    * @uiWidget textArea
    */
-  @Prop() requiredFieldErrorMessage: string = "Cannot be empty";
+  @Prop() generalError: string = userInfoText.error.general;
 
   /**
    * The message to be displayed when a the form submission fails unexpectedly.

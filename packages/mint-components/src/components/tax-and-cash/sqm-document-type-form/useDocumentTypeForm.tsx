@@ -6,9 +6,27 @@ import { DocumentTypeForm } from "./sqm-document-type-form";
 export function useDocumentTypeForm(props: DocumentTypeForm) {
   const [path, setPath] = useParent(TAX_CONTEXT_NAMESPACE);
   const [errors, setErrors] = useState({});
-  const [selectedTaxForm, setSelectedTaxForm] = useState(null);
 
-  const onSubmit = (_args: any) => {};
+  const onSubmit = (e) => {
+    const controls = e.target.getFormControls();
+
+    let selectedDocumentType: string = null;
+    controls.forEach((control) => {
+      if (!control.name) return;
+
+      const value = control.value;
+      const checked = control.checked;
+
+      if (checked) selectedDocumentType = value;
+    });
+
+    if (selectedDocumentType === null) {
+      setErrors({ documentType: { status: "required" } });
+      return;
+    }
+
+    setPath(`/3/${selectedDocumentType}`);
+  };
 
   return {
     callbacks: {
@@ -17,10 +35,10 @@ export function useDocumentTypeForm(props: DocumentTypeForm) {
     },
     states: {
       loading: false,
-      submitDisabled: !selectedTaxForm,
+      submitDisabled: false,
       formState: {
         formSubmission: false,
-        selectedTaxForm: selectedTaxForm,
+        selectedTaxForm: "w9" as const,
         errors,
       },
     },

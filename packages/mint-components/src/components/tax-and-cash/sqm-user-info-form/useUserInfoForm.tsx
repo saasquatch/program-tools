@@ -86,7 +86,7 @@ export function useTaxForm(props: TaxForm) {
 
         // required validation
         if (control.required && !value) {
-          jsonpointer.set(errors, key, props.requiredFieldErrorMessage);
+          jsonpointer.set(errors, key, props.allowBankingCollectionError);
         }
 
         // custom validation
@@ -99,11 +99,7 @@ export function useTaxForm(props: TaxForm) {
 
       // participant type validation
       if (!formData.participantType) {
-        jsonpointer.set(
-          errors,
-          "/participantType",
-          props.requiredFieldErrorMessage
-        );
+        jsonpointer.set(errors, "/participantType", props.participantTypeError);
       }
 
       if (Object.keys(errors).length) {
