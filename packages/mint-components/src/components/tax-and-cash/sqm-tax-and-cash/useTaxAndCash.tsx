@@ -49,8 +49,9 @@ export type UserQuery = {
 
 export const USER_INFO_NAMESPACE = "sq:user-info-form";
 
-function getCurrentStep(user) {
-  console.log({ user });
+function getCurrentStep(user: UserQuery["viewer"]) {
+  // return "/submitted";
+  // @ts-ignore
   if (
     !user.countryCode ||
     !user.customFields?.currency ||
@@ -135,7 +136,7 @@ export function useTaxAndCash() {
       console.log({ currentStep });
       setStep(currentStep);
     }
-  }, [data]);
+  }, [data?.viewer?.email]);
 
   return {
     step,
