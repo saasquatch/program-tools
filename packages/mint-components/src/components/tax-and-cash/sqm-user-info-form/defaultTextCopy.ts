@@ -115,12 +115,15 @@ export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
   badgeTextExpiringSoon: ", expiring on {dateExpired}.",
   invalidForm:
     "Ensure your information matches your profile and resubmit a new document.",
-  taxAlertHeader:
+  taxAlertHeaderNotActive:
     "Your {documentType} tax form has personal information that doesn't match your profile.",
+  taxAlertHeaderExpiredOn: "Your {documentType} tax form has expired.",
+  taxAlertHeaderExpiringSoon: "Your {documentType} tax form expires on {dateExpired}",
   taxAlertMessage: "Please resubmit a new {documentType} form.",
+  taxAlertMessageExpiringSoon: "Please submit a new {documentType} form to continue receiving your rewards",
   bankingInformationSectionHeader: "Banking Information",
   taxDocumentSectionHeader: "Tax documents",
-  taxDocumentSectionSubHeader: "{documentType} Tax Form",
+  taxDocumentSectionSubHeader: "{documentType} Tax Documents",
   newFormButton: "Submit New Form",
   error: {
     generalTitle: "There was a problem submitting your information",
