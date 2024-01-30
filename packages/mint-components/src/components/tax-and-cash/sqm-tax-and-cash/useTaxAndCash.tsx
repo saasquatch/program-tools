@@ -142,10 +142,9 @@ export function useTaxAndCash() {
   console.log({ data });
 
   useEffect(() => {
-    setQueryData({ data, loading, refetch });
     console.log("refetched", { data });
     if (!host || !user) return;
-
+    setQueryData({ data, loading, refetch });
     if (data) {
       const user = data?.user;
       if (!user || step !== "/loading") return;

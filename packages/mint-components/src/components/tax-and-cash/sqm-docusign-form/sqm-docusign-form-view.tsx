@@ -95,10 +95,17 @@ const style = {
       color: "var(--sl-color-danger-500)",
     },
   },
-  AlertInnerContainer: {
-    display: "flex",
-    justifyContent: "flex-start",
-    gap: "8px",
+  InfoAlert: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-sky-100)",
+      borderTop: "none",
+      padding: "0 16px",
+      marginBottom: "16px",
+    },
+
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-sky-500)",
+    },
   },
   Container: {
     width: "100%",
@@ -136,6 +143,10 @@ const vanillaStyle = `
       line-height: 18px;
       color: var(--sl-color-gray-800);
        font-size: var(--sl-font-size-small);
+    }
+
+    a {
+      cursor: pointer;
     }
 
     sl-checkbox::part(control) {
@@ -181,7 +192,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
         )}
       </h5>
       <p>
-        {text.taxFormDescription}
+        {text.taxFormDescription}{" "}
         <a onClick={callbacks.onShowDocumentType} class={classes.Link}>
           {text.notBasedInUS}
         </a>
@@ -193,14 +204,14 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
         <div>
           <sl-alert
             exportparts="base: alert-base, icon:alert-icon"
-            class="Info"
             type="primary"
             open
+            class={classes.InfoAlert}
           >
-            <div class={classes.AlertInnerContainer}>
-              <sl-icon slot="icon" name="clock"></sl-icon>
-              {text.banner}
-            </div>
+            <sl-icon slot="icon" name="clock"></sl-icon>
+            <strong style={{ fontSize: "20px" }}>4:25</strong>
+            <br />
+            {text.banner}
           </sl-alert>
           <slot name="docusign-iframe"></slot>
           <div>
