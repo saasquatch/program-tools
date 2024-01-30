@@ -43,6 +43,7 @@ export const useTaxDocumentSubmitted = (props: any) => {
       status: "NOT_VERIFIED",
       dateExpired: DateTime.fromMillis(dateSubmitted).toFormat("LLL dd, yyyy"),
       expiresSoon: false,
+      disabled: false,
       loading,
     },
     callbacks: {

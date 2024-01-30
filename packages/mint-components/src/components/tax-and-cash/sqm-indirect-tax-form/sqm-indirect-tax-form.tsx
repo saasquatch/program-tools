@@ -83,9 +83,9 @@ export class IndirectTaxForm {
           states={{
             formState: { checked: props.option },
             loading: props.loading,
-            submitDisabled: props.loading || props.submitDisabled,
             registeredInCanadaDetailsSlot: hstSlot,
             registeredInDifferentCountryDetailsSlot: otherRegionSlot,
+            disabled: props.loading || props.submitDisabled,
           }}
           text={props.text}
           refs={{ formRef: props.formRef }}

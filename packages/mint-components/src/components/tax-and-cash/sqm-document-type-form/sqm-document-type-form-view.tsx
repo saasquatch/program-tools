@@ -4,7 +4,7 @@ import { createStyleSheet } from "../../../styling/JSS";
 export interface DocumentTypeFormViewProps {
   states: {
     loading: boolean;
-    submitDisabled: boolean;
+    disabled: boolean;
     formState: {
       selectedTaxForm: "w9" | "w8-ben" | "w8-ben-e" | undefined;
       errors?: any;
@@ -153,53 +153,69 @@ export const DocumentTypeFormView = (props: DocumentTypeFormViewProps) => {
           <h3>{text.taxForm}</h3>
         </div>
       </div>
-      {formState.errors?.general && (
-        <sl-alert type="warning" open class={sheet.classes.AlertContainer}>
-          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-          <strong>{text.error.generalTitle}</strong>
-          <br />
-          {text.error.generalDescription}
-        </sl-alert>
-      )}
-      <p class={classes.LabelText}>{text.formLabel}</p>
+      {states.loading ? (
+        <sl-spinner style={{ fontSize: "50px", margin: "40px" }}></sl-spinner>
+      ) : (
+        <div>
+          {formState.errors?.general && (
+            <sl-alert type="warning" open class={sheet.classes.AlertContainer}>
+              <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+              <strong>{text.error.generalTitle}</strong>
+              <br />
+              {text.error.generalDescription}
+            </sl-alert>
+          )}
+          <p class={classes.LabelText}>{text.formLabel}</p>
 
-      <div class={classes.RadioContainer}>
-        <sl-radio value="w9" name="/documentType">
-          <p class={classes.LabelText}>{text.w9Label}</p>
-          <p class={classes.DescriptionText}>{text.w9Description}</p>
-        </sl-radio>
-        <sl-radio value="w8-ben" name="/documentType">
-          <p class={classes.LabelText}>{text.w8Label}</p>
-          <p class={classes.DescriptionText}>{text.w8Description}</p>
-        </sl-radio>
-        <sl-radio value="w8-ben-e" name="/documentType">
-          <p class={classes.LabelText}>{text.w8ELabel}</p>
-          <p class={classes.DescriptionText}>{text.w8EDescription}</p>
-        </sl-radio>
-      </div>
-      <div class={classes.BtnContainer}>
-        <sl-button
-          type="primary"
-          loading={states.loading}
-          disabled={states.submitDisabled}
-          submit
-          exportparts="base: primarybutton-base"
-        >
-          {text.submitButton}
-        </sl-button>
-        <sl-button
-          class={classes.SecondaryBtn}
-          type="text"
-          loading={states.loading}
-          disabled={states.submitDisabled}
-          onClick={() => {
-            callbacks.onBack();
-          }}
-          exportparts="base: secondarybutton-base"
-        >
-          {text.backButton}
-        </sl-button>
-      </div>
+          <div class={classes.RadioContainer}>
+            <sl-radio
+              disabled={states.disabled}
+              value="w9"
+              name="/documentType"
+            >
+              <p class={classes.LabelText}>{text.w9Label}</p>
+              <p class={classes.DescriptionText}>{text.w9Description}</p>
+            </sl-radio>
+            <sl-radio
+              disabled={states.disabled}
+              value="w8-ben"
+              name="/documentType"
+            >
+              <p class={classes.LabelText}>{text.w8Label}</p>
+              <p class={classes.DescriptionText}>{text.w8Description}</p>
+            </sl-radio>
+            <sl-radio
+              disabled={states.disabled}
+              value="w8-ben-e"
+              name="/documentType"
+            >
+              <p class={classes.LabelText}>{text.w8ELabel}</p>
+              <p class={classes.DescriptionText}>{text.w8EDescription}</p>
+            </sl-radio>
+          </div>
+          <div class={classes.BtnContainer}>
+            <sl-button
+              type="primary"
+              disabled={states.disabled}
+              submit
+              exportparts="base: primarybutton-base"
+            >
+              {text.submitButton}
+            </sl-button>
+            <sl-button
+              class={classes.SecondaryBtn}
+              type="text"
+              loading={states.loading}
+              onClick={() => {
+                callbacks.onBack();
+              }}
+              exportparts="base: secondarybutton-base"
+            >
+              {text.backButton}
+            </sl-button>
+          </div>
+        </div>
+      )}
     </sl-form>
   );
 };

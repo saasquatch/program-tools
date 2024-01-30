@@ -6,7 +6,7 @@ import { TaxDocumentType } from "../sqm-tax-document-submitted/sqm-tax-document-
 export interface DocusignFormViewProps {
   states: {
     loading: boolean;
-    submitDisabled: boolean;
+    disabled: boolean;
     formState: {
       completedTaxForm: boolean;
       errors?: any;
@@ -149,9 +149,6 @@ const vanillaStyle = `
       cursor: pointer;
     }
 
-    sl-checkbox::part(control) {
-        border-radius: 50%;
-    }
 
   `;
 
@@ -216,7 +213,10 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           <slot name="docusign-iframe"></slot>
           <div>
             <p class={classes.BoldText}>{text.checkboxLabel}</p>
-            <sl-checkbox checked={formState.completedTaxForm}>
+            <sl-checkbox
+              disabled={states.disabled}
+              checked={formState.completedTaxForm}
+            >
               {text.checkboxDescription}
             </sl-checkbox>
           </div>
@@ -225,7 +225,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             <sl-button
               type="primary"
               loading={states.loading}
-              disabled={states.submitDisabled}
+              disabled={states.disabled}
               submit
               onClick={callbacks.onSubmit}
               exportparts="base: primarybutton-base"
