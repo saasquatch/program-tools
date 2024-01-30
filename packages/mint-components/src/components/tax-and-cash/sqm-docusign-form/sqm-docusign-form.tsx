@@ -21,8 +21,7 @@ export class DocusignForm {
   @Element() el;
   @State() ignored = true;
 
-  @Prop() step: string = docusignFormText.step;
-  @Prop() stepOf: string = docusignFormText.stepOf;
+  @Prop() formStep: string = docusignFormText.formStep;
   @Prop() taxForm: string = docusignFormText.taxForm;
   @Prop() taxFormLabel: string = docusignFormText.taxFormLabel;
   @Prop() taxFormDescription: string = docusignFormText.taxFormDescription;

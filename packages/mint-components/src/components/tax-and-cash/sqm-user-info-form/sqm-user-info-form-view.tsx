@@ -22,14 +22,13 @@ export interface UserInfoFormViewProps {
     onRadioClick: (value: string) => void;
   };
   text: {
+    formStep: string;
     firstName: string;
     lastName: string;
     email: string;
     country: string;
     currency: string;
     allowBankingCollection: string;
-    step: string;
-    stepOf: string;
     personalInformation: string;
     individualParticipant: string;
     businessEntity: string;
@@ -157,9 +156,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
       </style>
       <div class={classes.TextContainer}>
         <div>
-          <p>
-            {text.step} 1 {text.stepOf} 4
-          </p>
+          <p>{text.formStep}</p>
           <h3>{text.personalInformation}</h3>
         </div>
       </div>
