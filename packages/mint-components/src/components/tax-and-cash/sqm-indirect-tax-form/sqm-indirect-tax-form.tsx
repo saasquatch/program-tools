@@ -2,7 +2,10 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
 import { getProps } from "../../../utils/utils";
 import { indirectTaxFormText } from "../sqm-user-info-form/defaultTextCopy";
-import { IndirectDetailsSlotView } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
+import {
+  IndirectDetailsSlotView,
+  OtherRegionSlotView,
+} from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
 import { IndirectTaxFormView } from "./sqm-indirect-tax-form-view";
 import { useIndirectTaxForm } from "./useIndirectTaxForm";
 
@@ -43,18 +46,30 @@ export class IndirectTaxForm {
         ? "otherRegion"
         : null;
 
-    const sharedSlot = (
+    console.log({ props });
+
+    const hstSlot = (
       <IndirectDetailsSlotView
-        callbacks={{
-          onChange: () => {},
-        }}
         states={{
+          formState: { registeredIn, errors: props.errors },
+          loading: props.loading,
+          hide: props.option !== "hstCanada",
+        }}
+        data={{ countries: props.countries }}
+        text={{}}
+      ></IndirectDetailsSlotView>
+    );
+
+    const otherRegionSlot = (
+      <OtherRegionSlotView
+        states={{
+          hide: props.option !== "otherRegion",
           formState: { registeredIn, errors: props.errors },
           loading: props.loading,
         }}
         data={{ countries: props.countries }}
         text={{}}
-      ></IndirectDetailsSlotView>
+      />
     );
 
     return (
@@ -62,15 +77,15 @@ export class IndirectTaxForm {
         <IndirectTaxFormView
           callbacks={{
             onBack: props.onBack,
-            onChange: props.setOption,
+            onChange: props.onChange,
             onSubmit: props.onSubmit,
           }}
           states={{
             formState: { checked: props.option },
             loading: props.loading,
             submitDisabled: props.loading || props.submitDisabled,
-            registeredInCanadaDetailsSlot: sharedSlot,
-            registeredInDifferentCountryDetailsSlot: sharedSlot,
+            registeredInCanadaDetailsSlot: hstSlot,
+            registeredInDifferentCountryDetailsSlot: otherRegionSlot,
           }}
           text={props.text}
           refs={{ formRef: props.formRef }}

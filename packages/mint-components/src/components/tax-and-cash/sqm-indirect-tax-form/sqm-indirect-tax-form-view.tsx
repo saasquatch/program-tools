@@ -179,8 +179,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               >
                 {text.hstCanada}
               </sl-checkbox>
-              {formState.checked === "hstCanada" &&
-                states.registeredInCanadaDetailsSlot}
+              {states.registeredInCanadaDetailsSlot}
               <sl-checkbox
                 exportparts="label: input-label"
                 checked={formState.checked === "otherRegion"}
@@ -191,8 +190,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               >
                 {text.otherRegion}
               </sl-checkbox>
-              {formState.checked === "otherRegion" &&
-                states.registeredInDifferentCountryDetailsSlot}
+              {states.registeredInDifferentCountryDetailsSlot}
               <sl-checkbox
                 exportparts="label: input-label"
                 checked={formState.checked === "notRegistered"}
