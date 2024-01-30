@@ -167,6 +167,7 @@ const docusignFormProps: DocusignFormViewProps = {
   states: {
     loading: false,
     disabled: false,
+    submitDisabled: false,
     formState: {
       completedTaxForm: true,
     },

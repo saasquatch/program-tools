@@ -42,9 +42,6 @@ export function useIndirectTaxForm(props: any) {
   const userFormData = useParentValue<FormState>(USER_INFO_NAMESPACE);
   const user = useUserIdentity();
 
-  // from step 1
-  console.log({ userFormData });
-
   const [option, setOption] = useState<
     "hstCanada" | "otherRegion" | "notRegistered"
   >(null);
@@ -58,7 +55,7 @@ export function useIndirectTaxForm(props: any) {
 
   const onSubmit = async (event: any) => {
     if (!option) {
-      setErrors({ taxOption: true });
+      setErrors({ taxDetails: true });
       return;
     }
 
@@ -78,8 +75,6 @@ export function useIndirectTaxForm(props: any) {
 
       const key = control.name;
       const value = control.value;
-
-      console.log({ key, value });
       JSONPointer.set(formData, key, value);
 
       if (control.required && !value) {
@@ -96,7 +91,6 @@ export function useIndirectTaxForm(props: any) {
 
     const { currency, participantType, ...userData } = userFormData;
 
-    console.log({ formData });
     try {
       // Backend request
       await upsertUser({
@@ -118,7 +112,7 @@ export function useIndirectTaxForm(props: any) {
 
       setStep("/3/W9");
     } catch (e) {
-      setErrors({ graphqlError: true });
+      setErrors({ general: true });
     } finally {
       setLoading(false);
     }
@@ -137,11 +131,7 @@ export function useIndirectTaxForm(props: any) {
     onSubmit,
     submitDisabled: !option,
     option,
-    onChange: (value) => {
-      console.log("onChange", { value, option });
-      if (option === value) return;
-      setOption(value);
-    },
+    onChange: setOption,
     formRef,
   };
 }

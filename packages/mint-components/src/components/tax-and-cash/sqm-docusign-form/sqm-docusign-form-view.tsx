@@ -6,6 +6,7 @@ import { TaxDocumentType } from "../sqm-tax-document-submitted/sqm-tax-document-
 export interface DocusignFormViewProps {
   states: {
     loading: boolean;
+    submitDisabled: boolean;
     disabled: boolean;
     formState: {
       completedTaxForm: boolean;
@@ -189,7 +190,13 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
         )}
       </h5>
       <p>
-        {text.taxFormDescription}{" "}
+        {intl.formatMessage(
+          {
+            id: "tax-form-description",
+            defaultMessage: text.taxFormDescription,
+          },
+          { documentType }
+        )}{" "}
         <a onClick={callbacks.onShowDocumentType} class={classes.Link}>
           {text.notBasedInUS}
         </a>
@@ -216,6 +223,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             <sl-checkbox
               disabled={states.disabled}
               checked={formState.completedTaxForm}
+              onSl-change={callbacks.toggleFormSubmitted}
             >
               {text.checkboxDescription}
             </sl-checkbox>
@@ -225,7 +233,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             <sl-button
               type="primary"
               loading={states.loading}
-              disabled={states.disabled}
+              disabled={states.submitDisabled}
               submit
               onClick={callbacks.onSubmit}
               exportparts="base: primarybutton-base"

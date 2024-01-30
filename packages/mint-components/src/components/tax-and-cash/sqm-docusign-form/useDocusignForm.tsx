@@ -12,8 +12,12 @@ import { DocusignForm } from "./sqm-docusign-form";
 
 // TODO: Fill out when API is released
 const GET_TAX_DOCUMENT = gql`
-  query getTaxDocument ($vars: TaxDocumentInput) {
-  }
+  query getTaxDocument ($vars: TaxDocumentInput) {}
+`;
+
+// TODO: Check if document already exists
+const CHECK_DOCUMENT_STATUS = gql`
+  query checkDocumentStatus ($vars: CheckDocumentStatusInput) {}
 `;
 
 export function useDocusignForm(props: DocusignForm, el: any) {
@@ -25,7 +29,6 @@ export function useDocusignForm(props: DocusignForm, el: any) {
 
   const splitPath = path.split("/");
   const pathedDocumentType = splitPath.length === 3 ? splitPath[2] : undefined;
-
   const savedUserTaxType = data?.user?.customFields?.w9Type;
 
   // TODO: Replace with real backend data
@@ -83,7 +86,8 @@ export function useDocusignForm(props: DocusignForm, el: any) {
       },
     },
     states: {
-      disabled: taxInfoLoading || !formSubmitted,
+      disabled: taxInfoLoading,
+      submitDisabled: !formSubmitted,
       loading: taxInfoLoading,
       formState: {
         completedTaxForm: formSubmitted,
