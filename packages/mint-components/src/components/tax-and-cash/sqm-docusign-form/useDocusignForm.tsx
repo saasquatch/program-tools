@@ -1,30 +1,14 @@
-import { useQuery, useUserIdentity } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
-  USER_CONTEXT_NAMESPACE,
+  USER_QUERY_NAMESPACE,
   UserQuery,
+  UserQueryState,
 } from "../sqm-tax-and-cash/useTaxAndCash";
-import { DocusignForm } from "./sqm-docusign-form";
 import { TaxDocumentType } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
-
-const GET_USER_TAX_INFO = gql`
-  query getUserTaxInfo {
-    viewer {
-      ... on User {
-        id
-        accountId
-        firstName
-        lastName
-        email
-        countryCode
-        customFields
-      }
-    }
-  }
-`;
+import { DocusignForm } from "./sqm-docusign-form";
 
 // TODO: Fill out when API is released
 const GET_TAX_DOCUMENT = gql`
@@ -34,14 +18,15 @@ const GET_TAX_DOCUMENT = gql`
 
 export function useDocusignForm(props: DocusignForm, el: any) {
   const [path, setPath] = useParent<string>(TAX_CONTEXT_NAMESPACE);
-  const user = useParentValue<UserQuery>(USER_CONTEXT_NAMESPACE);
+  const { data, loading } =
+    useParentValue<UserQueryState>(USER_QUERY_NAMESPACE);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [errors, setErrors] = useState({});
 
   const splitPath = path.split("/");
   const pathedDocumentType = splitPath.length === 3 ? splitPath[2] : undefined;
 
-  const savedUserTaxType = user?.viewer?.customFields?.w9Type;
+  const savedUserTaxType = data?.user?.customFields?.w9Type;
 
   // TODO: Replace with real backend data
   const {

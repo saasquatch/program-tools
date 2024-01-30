@@ -3,12 +3,11 @@ import jsonpointer from "jsonpointer";
 import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
-  USER_CONTEXT_NAMESPACE,
   USER_INFO_NAMESPACE,
-  UserQuery,
+  USER_QUERY_NAMESPACE,
+  UserQueryState,
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { TaxForm } from "./sqm-user-info-form";
-import { userInfoText } from "./defaultTextCopy";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -44,11 +43,12 @@ export function useTaxForm(props: TaxForm) {
   const [formState, setFormState] = useParent<FormState>(USER_INFO_NAMESPACE);
 
   // TODO: user types
-  const data = useParentValue<UserQuery>(USER_CONTEXT_NAMESPACE);
+  const { data, loading } =
+    useParentValue<UserQueryState>(USER_QUERY_NAMESPACE);
 
   useEffect(() => {
     console.log({ data });
-    const user = data?.viewer;
+    const user = data?.user;
     if (!user || step !== "/1") return;
 
     setFormState({
@@ -138,6 +138,9 @@ export function useTaxForm(props: TaxForm) {
     },
     refs: {
       formRef,
+    },
+    states: {
+      loading,
     },
     formState: { ...formState },
   };

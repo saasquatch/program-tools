@@ -1,9 +1,11 @@
+import { useEffect } from "@saasquatch/universal-hooks";
 import { DateTime } from "luxon";
 import { useParentValue, useSetParent } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
-  USER_CONTEXT_NAMESPACE,
+  USER_QUERY_NAMESPACE,
   UserQuery,
+  UserQueryState,
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { TaxDocumentType } from "./sqm-tax-document-submitted-view";
 
@@ -18,13 +20,20 @@ export function getDocumentType(user): TaxDocumentType {
 export const useTaxDocumentSubmitted = (props: any) => {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
 
-  const userData = useParentValue<UserQuery>(USER_CONTEXT_NAMESPACE);
+  const { refetch, data, loading } =
+    useParentValue<UserQueryState>(USER_QUERY_NAMESPACE);
+
+  console.log("submitted", { data, loading });
 
   // TODO: Fetch document status from backend
 
   const dateSubmitted = Date.now();
 
-  const documentType = getDocumentType(userData?.viewer);
+  const documentType = getDocumentType(data?.user);
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   return {
     states: {
@@ -34,6 +43,7 @@ export const useTaxDocumentSubmitted = (props: any) => {
       status: "NOT_VERIFIED",
       dateExpired: DateTime.fromMillis(dateSubmitted).toFormat("LLL dd, yyyy"),
       expiresSoon: false,
+      loading,
     },
     callbacks: {
       // Need a way to redirect to the document type select form
