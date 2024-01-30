@@ -41,7 +41,7 @@ export const userInfoText: UserInfoFormViewProps["text"] = {
 };
 
 export const indirectTaxFormText: IndirectTaxFormViewProps["text"] = {
-  formStep: "Setp 2 of 4",
+  formStep: "Step 2 of 4",
   indirectTax: "Indirect Tax",
   indirectTaxDescription:
     "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.",
