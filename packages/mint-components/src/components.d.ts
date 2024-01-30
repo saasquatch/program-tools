@@ -287,9 +287,8 @@ export namespace Components {
     interface SqmDocumentTypeForm {
         "backButton": string;
         "formLabel": string;
+        "formStep": string;
         "formSubmissionError": string;
-        "step": string;
-        "stepOf": string;
         "submitButton": string;
         "taxForm": string;
         "w8Description": string;
@@ -312,9 +311,8 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<IndirectTaxFormViewProps>;
+        "formStep": string;
         "notBasedInUS": string;
-        "step": string;
-        "stepOf": string;
         "submitButton": string;
         "taxForm": string;
         "taxFormDescription": string;
@@ -602,6 +600,7 @@ export namespace Components {
     }
     interface SqmIndirectTaxForm {
         "backButton": string;
+        "formStep": string;
         "hstCanada": string;
         "indirectTax": string;
         "indirectTaxDescription": string;
@@ -609,8 +608,6 @@ export namespace Components {
         "indirectTaxDetailsDescription": string;
         "notRegistered": string;
         "otherRegion": string;
-        "step": string;
-        "stepOf": string;
         "submitButton": string;
         "taxDetailsError": string;
     }
@@ -2980,6 +2977,7 @@ export namespace Components {
         "emailError": string;
         "firstName": string;
         "firstNameError": string;
+        "formStep": string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
@@ -2998,8 +2996,6 @@ export namespace Components {
         "participantType": string;
         "participantTypeError": string;
         "personalInformation": string;
-        "step": string;
-        "stepOf": string;
         "submitButton": string;
         "taxAndBankingCollection": string;
     }
@@ -3981,9 +3977,8 @@ declare namespace LocalJSX {
     interface SqmDocumentTypeForm {
         "backButton"?: string;
         "formLabel"?: string;
+        "formStep"?: string;
         "formSubmissionError"?: string;
-        "step"?: string;
-        "stepOf"?: string;
         "submitButton"?: string;
         "taxForm"?: string;
         "w8Description"?: string;
@@ -4006,9 +4001,8 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<IndirectTaxFormViewProps>;
+        "formStep"?: string;
         "notBasedInUS"?: string;
-        "step"?: string;
-        "stepOf"?: string;
         "submitButton"?: string;
         "taxForm"?: string;
         "taxFormDescription"?: string;
@@ -4296,6 +4290,7 @@ declare namespace LocalJSX {
     }
     interface SqmIndirectTaxForm {
         "backButton"?: string;
+        "formStep"?: string;
         "hstCanada"?: string;
         "indirectTax"?: string;
         "indirectTaxDescription"?: string;
@@ -4303,8 +4298,6 @@ declare namespace LocalJSX {
         "indirectTaxDetailsDescription"?: string;
         "notRegistered"?: string;
         "otherRegion"?: string;
-        "step"?: string;
-        "stepOf"?: string;
         "submitButton"?: string;
         "taxDetailsError"?: string;
     }
@@ -6649,6 +6642,7 @@ declare namespace LocalJSX {
         "emailError"?: string;
         "firstName"?: string;
         "firstNameError"?: string;
+        "formStep"?: string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
@@ -6667,8 +6661,6 @@ declare namespace LocalJSX {
         "participantType"?: string;
         "participantTypeError"?: string;
         "personalInformation"?: string;
-        "step"?: string;
-        "stepOf"?: string;
         "submitButton"?: string;
         "taxAndBankingCollection"?: string;
     }

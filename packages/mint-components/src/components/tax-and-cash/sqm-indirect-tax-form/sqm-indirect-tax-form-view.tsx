@@ -18,8 +18,7 @@ export interface IndirectTaxFormViewProps {
     onBack: () => void;
   };
   text: {
-    step: string;
-    stepOf: string;
+    formStep: string;
     indirectTax: string;
     indirectTaxDescription: string;
     indirectTaxDetails: string;
@@ -132,9 +131,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
       </style>
       <div class={classes.TextContainer}>
         <div>
-          <p>
-            {text.step} 2 {text.stepOf} 4
-          </p>
+          <p>{text.formStep}</p>
           <h3>{text.indirectTax}</h3>
         </div>
         <p>{text.indirectTaxDescription}</p>

@@ -11,8 +11,7 @@ import { useIndirectTaxForm } from "./useIndirectTaxForm";
   shadow: true,
 })
 export class IndirectTaxForm {
-  @Prop() step: string = indirectTaxFormText.step;
-  @Prop() stepOf: string = indirectTaxFormText.stepOf;
+  @Prop() formStep: string = indirectTaxFormText.formStep;
   @Prop() indirectTax: string = indirectTaxFormText.indirectTax;
   @Prop() indirectTaxDescription: string =
     indirectTaxFormText.indirectTaxDescription;

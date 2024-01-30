@@ -17,8 +17,7 @@ export interface DocusignFormViewProps {
     onBack: () => void;
   };
   text: {
-    step: string;
-    stepOf: string;
+    formStep: string;
     taxForm: string;
     taxFormLabel: string;
     taxFormDescription: string;
@@ -156,9 +155,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
       </style>
       <div class={classes.TextContainer}>
         <div>
-          <p>
-            {text.step} 3 {text.stepOf} 4
-          </p>
+          <p>{text.formStep}</p>
           <h3>{text.taxForm}</h3>
         </div>
       </div>

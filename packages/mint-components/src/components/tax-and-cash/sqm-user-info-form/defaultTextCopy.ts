@@ -20,8 +20,7 @@ export const userInfoText: UserInfoFormViewProps["text"] = {
   currency: "Currency",
   allowBankingCollection: "I agree to the terms",
   submitButton: "Submit",
-  step: "Step",
-  stepOf: "of",
+  formStep: "Step 1 of 4",
   personalInformation: "Personal Information",
   participantType: "Participant type",
   businessEntity: "I represent a business entity",
@@ -40,8 +39,7 @@ export const userInfoText: UserInfoFormViewProps["text"] = {
 };
 
 export const indirectTaxFormText: IndirectTaxFormViewProps["text"] = {
-  step: "Step",
-  stepOf: "of",
+  formStep: "Setp 2 of 4",
   indirectTax: "Indirect Tax",
   indirectTaxDescription:
     "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.",
@@ -60,8 +58,7 @@ export const indirectTaxFormText: IndirectTaxFormViewProps["text"] = {
 };
 
 export const docusignFormText: DocusignFormViewProps["text"] = {
-  step: "Step",
-  stepOf: "of",
+  formStep: "Step 3 of 4",
   taxForm: "Tax form",
   taxFormLabel: "W9 Tax Form",
   taxFormDescription:
@@ -75,8 +72,7 @@ export const docusignFormText: DocusignFormViewProps["text"] = {
 };
 
 export const documentTypeFormText: DocumentTypeFormViewProps["text"] = {
-  step: "Step",
-  stepOf: "of",
+  formStep: "Step 3 of 4",
   taxForm: "Tax form",
   backButton: "Back",
   submitButton: "Continue",
@@ -90,6 +86,9 @@ export const documentTypeFormText: DocumentTypeFormViewProps["text"] = {
   w8ELabel: "W8-BEN-E",
   w8EDescription:
     "W8-BEN-E For participants residing outside of the US who represent a business entity, joining the referral program of a US-based company.",
+  error: {
+    formSubmission: "error",
+  },
 };
 
 export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
@@ -100,7 +99,8 @@ export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
   badgeTextSubmittedOn: "Submitted on",
   badgeTextAwaitingReview: "Awaiting review. Submitted on",
   badgeTextExpiredOn: "Expired on",
-  invalidForm: "Ensure your information matches your profile and resubmit a new document.",
+  invalidForm:
+    "Ensure your information matches your profile and resubmit a new document.",
   taxAlertHeader:
     "Your {documentType} tax form has personal information that doesn't match your profile.",
   taxAlertMessage: "Please resubmit a new {documentType} form.",

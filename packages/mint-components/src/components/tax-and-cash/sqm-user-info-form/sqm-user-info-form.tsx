@@ -33,8 +33,7 @@ export class TaxForm {
   @Prop() country: string = userInfoText.country;
   @Prop() currency: string = userInfoText.currency;
   @Prop() allowBankingCollection: string = userInfoText.allowBankingCollection;
-  @Prop() step: string = userInfoText.step;
-  @Prop() stepOf: string = userInfoText.stepOf;
+  @Prop() formStep: string = userInfoText.formStep;
   @Prop() personalInformation: string = userInfoText.personalInformation;
   @Prop() businessEntity: string = userInfoText.businessEntity;
   @Prop() participantType: string = userInfoText.participantType;
