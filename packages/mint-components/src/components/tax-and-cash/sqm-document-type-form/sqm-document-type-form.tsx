@@ -37,7 +37,6 @@ export class DocumentTypeForm {
       <DocumentTypeFormView
         callbacks={props.callbacks}
         states={props.states}
-        // @ts-ignore TODO: fix this
         text={props.text}
       />
     );
