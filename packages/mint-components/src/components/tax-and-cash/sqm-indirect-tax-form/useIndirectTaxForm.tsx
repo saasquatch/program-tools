@@ -61,16 +61,23 @@ export function useIndirectTaxForm(props: any) {
       return;
     }
 
-    let formData: Record<string, string> = { taxOption: option };
+    let formData: Record<string, string> = {};
     let validationErrors: Record<string, string> = {};
 
     const controls = event.target.getFormControls();
-    const optionFields = ["hstCanada", "otherRegion", "notRegistered"];
+    const optionMapping = {
+      hstCanada: ["province", "indirectTaxNumber"],
+      otherRegion: ["selectedRegion", "vatNumber"],
+      notRegistered: [],
+    };
+    const relevantFields = optionMapping[option];
     controls.forEach((control) => {
-      if (!control.name || optionFields.includes(control.name)) return;
+      if (!control.name || !control.id) return;
+      if (!relevantFields.includes(control.id)) return;
 
       const key = control.name;
       const value = control.value;
+
       console.log({ key, value });
       JSONPointer.set(formData, key, value);
 
@@ -88,6 +95,7 @@ export function useIndirectTaxForm(props: any) {
 
     const { currency, participantType, ...userData } = userFormData;
 
+    console.log({ formData });
     try {
       // Backend request
       await upsertUser({
@@ -98,6 +106,7 @@ export function useIndirectTaxForm(props: any) {
           customFields: {
             currency,
             participantType,
+            ...formData,
           },
         },
       });

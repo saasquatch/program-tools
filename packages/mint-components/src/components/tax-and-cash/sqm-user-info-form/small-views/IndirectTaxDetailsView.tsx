@@ -65,9 +65,7 @@ const vanillaStyle = `
     }
   `;
 
-export const IndirectDetailsSlotView = (
-  props: IndirectDetailsSlotViewProps
-) => {
+export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
   const {
     states,
     states: { formState },
@@ -89,10 +87,8 @@ export const IndirectDetailsSlotView = (
             required
             class={classes.Input}
             exportparts="label: input-label"
-            // value={formState.selectedRegion}
             label={text.selectedRegion}
             disabled={states.loading}
-            // Copied from edit form, may need to keep
             {...(formState.errors?.selectedRegion &&
             formState.errors?.selectedRegion.status !== "valid"
               ? { class: "errors?tyles", helpText: "Cannot be empty" }
@@ -114,10 +110,8 @@ export const IndirectDetailsSlotView = (
             required
             exportparts="label: input-label"
             class={classes.Input}
-            // value={formState.vatNumber}
             label={text.vatNumber}
             disabled={states.loading}
-            // Copied from edit form, may need to keep
             {...(formState.errors?.vatNumber &&
             formState.errors?.vatNumber.status !== "valid"
               ? { class: "errors?tyles", helpText: "Cannot be empty" }
@@ -138,7 +132,9 @@ export const IndirectDetailsSlotView = (
   );
 };
 
-export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
+export const IndirectDetailsSlotView = (
+  props: IndirectDetailsSlotViewProps
+) => {
   const {
     states,
     states: { formState },
