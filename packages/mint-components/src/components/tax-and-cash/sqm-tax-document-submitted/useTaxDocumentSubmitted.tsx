@@ -1,9 +1,15 @@
 import { DateTime } from "luxon";
-import { useParent } from "../../../utils/useParentState";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/useTaxAndCash";
+import { useParent, useParentValue } from "../../../utils/useParentState";
+import {
+  TAX_CONTEXT_NAMESPACE,
+  USER_INFO_NAMESPACE,
+  UserQuery,
+} from "../sqm-tax-and-cash/useTaxAndCash";
 
 export const useTaxDocumentSubmitted = (props: any) => {
   const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
+
+  const userData = useParentValue<UserQuery>(USER_INFO_NAMESPACE);
 
   // TODO: Fetch document status from backend
 

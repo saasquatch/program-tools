@@ -253,7 +253,17 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
           </div>
           <div class={sheet.classes.TaxDocumentsContainer}>
             <h3>{text.taxDocumentSectionHeader}</h3>
-            <h4>{text.taxDocumentSectionSubHeader}</h4>
+            <h4>
+              {intl.formatMessage(
+                {
+                  id: "section-subheader",
+                  defaultMessage: text.taxDocumentSectionSubHeader,
+                },
+                {
+                  documentType: states.documentType,
+                }
+              )}
+            </h4>
             {statusMap[states.status]}
           </div>
           <sl-button
