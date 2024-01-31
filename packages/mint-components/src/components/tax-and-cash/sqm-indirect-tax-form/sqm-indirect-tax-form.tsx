@@ -54,7 +54,10 @@ export class IndirectTaxForm {
     const hstSlot = (
       <IndirectDetailsSlotView
         states={{
-          formState: { registeredIn, errors: props.errors },
+          formState: {
+            registeredIn,
+            errors: props.errors,
+          },
           loading: props.loading,
           hide: props.option !== "hstCanada",
         }}
@@ -67,7 +70,11 @@ export class IndirectTaxForm {
       <OtherRegionSlotView
         states={{
           hide: props.option !== "otherRegion",
-          formState: { registeredIn, errors: props.errors },
+          formState: {
+            registeredIn,
+            countryCode: props.countryCode,
+            errors: props.errors,
+          },
           loading: props.loading,
         }}
         data={{ countries: props.countries }}

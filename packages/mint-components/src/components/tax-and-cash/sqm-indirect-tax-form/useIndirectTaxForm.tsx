@@ -36,7 +36,8 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   const userFormData = useParentValue<FormState>(USER_INFO_NAMESPACE);
   const user = useUserIdentity();
 
-  const { refetch } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+  const { data: userData, refetch } =
+    useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
   const { data: _countries, loading: countriesLoading } =
     useParentQueryValue<CountriesQuery>(COUNTRIES_NAMESPACE);
 
@@ -131,5 +132,6 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     option,
     onChange: setOption,
     formRef,
+    countryCode: userFormData.countryCode || userData?.user?.countryCode,
   };
 }
