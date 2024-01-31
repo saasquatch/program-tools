@@ -5,8 +5,12 @@ import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { IndirectTaxFormViewProps } from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
 import { useDocusignForm } from "./useDocusignForm";
-import { DocusignFormView } from "./sqm-docusign-form-view";
+import {
+  DocusignFormView,
+  DocusignFormViewProps,
+} from "./sqm-docusign-form-view";
 import { docusignFormText } from "../sqm-user-info-form/defaultTextCopy";
+import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
  * @uiName Tax And Cash
@@ -38,7 +42,7 @@ export class DocusignForm {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<IndirectTaxFormViewProps>;
+  @Prop() demoData?: DemoData<DocusignFormViewProps>;
 
   constructor() {
     withHooks(this);
@@ -47,8 +51,9 @@ export class DocusignForm {
   disconnectedCallback() {}
 
   render() {
-    // const props = isDemo() ? useUserNameDemo(this) : useUserName();
-    const props = useDocusignForm(getProps(this), this.el);
+    const props = isDemo()
+      ? useDocusignFormDemo(getProps(this))
+      : useDocusignForm(getProps(this), this.el);
 
     return (
       <Host>
@@ -62,6 +67,40 @@ export class DocusignForm {
   }
 }
 
-function useTaxAndCashDemo(props) {
-  return deepmerge({}, props.demoData || {}, { arrayMerge: (_, a) => a });
+function useDocusignFormDemo(
+  props: DocusignForm
+): Partial<DocusignFormViewProps> {
+  return deepmerge(
+    {
+      text: {
+        ...props,
+        error: {
+          generalTitle: props.generalErrorTitle,
+          generalDescription: props.generalErrorDescription,
+        },
+      },
+      states: {
+        disabled: false,
+        submitDisabled: false,
+        loading: false,
+        formState: {
+          completedTaxForm: true,
+          errors: {},
+        },
+        documentType: "W9",
+      },
+      data: {
+        taxForm: "W9",
+        documentUrl: "https://example.com",
+      },
+      callbacks: {
+        onShowDocumentType: () => {},
+        onSubmit: () => {},
+        toggleFormSubmitted: () => {},
+        onBack: () => {},
+      },
+    },
+    props.demoData || {},
+    { arrayMerge: (_, a) => a }
+  );
 }

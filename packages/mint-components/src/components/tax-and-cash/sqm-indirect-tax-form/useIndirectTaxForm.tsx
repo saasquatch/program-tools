@@ -13,6 +13,7 @@ import {
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { FormState } from "../sqm-user-info-form/useUserInfoForm";
 import { optional } from "../../../utilities";
+import { IndirectTaxForm } from "./sqm-indirect-tax-form";
 
 const GET_COUNTRIES = gql`
   query getCurrencies {
@@ -34,7 +35,7 @@ const UPSERT_USER = gql`
   }
 `;
 
-export function useIndirectTaxForm(props: any) {
+export function useIndirectTaxForm(props: IndirectTaxForm) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [upsertUser, upsertUserResponse] = useMutation(UPSERT_USER);
@@ -78,7 +79,7 @@ export function useIndirectTaxForm(props: any) {
       JSONPointer.set(formData, key, value);
 
       if (control.required && !value) {
-        JSONPointer.set(validationErrors, key, { status: "invalid" });
+        JSONPointer.set(validationErrors, key, true);
       }
     });
 
@@ -125,7 +126,14 @@ export function useIndirectTaxForm(props: any) {
   return {
     loading: loading || countriesLoading,
     countries,
-    text: props,
+    text: {
+      ...props,
+      error: {
+        generalTitle: props.generalErrorTitle,
+        generalDescription: props.generalErrorDescription,
+        taxDetails: props.taxDetailsError,
+      },
+    },
     errors,
     onBack,
     onSubmit,
