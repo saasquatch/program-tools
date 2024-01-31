@@ -89,7 +89,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
   } = props;
 
   const { classes } = sheet;
-
+  console.log({ formState });
   return (
     <div style={states.hide ? { display: "none" } : {}}>
       <form class={classes.Container}>

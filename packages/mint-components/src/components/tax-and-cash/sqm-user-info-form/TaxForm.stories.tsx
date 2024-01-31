@@ -24,7 +24,9 @@ import {
 } from "./defaultTextCopy";
 import {
   RegisteredInCanada,
+  RegisteredInCanadaWithErrors,
   RegisteredInOtherRegion,
+  RegisteredInOtherRegionWithErrors,
 } from "./small-views/SlotViews.stories";
 import {
   UserInfoFormViewProps,
@@ -352,6 +354,22 @@ export const StepTwoHSTChecked = () => {
   );
 };
 
+export const StepTwoHSTCheckedWithInputErrors = () => {
+  return (
+    <IndirectTaxFormView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        registeredInCanadaDetailsSlot: <RegisteredInCanadaWithErrors />,
+        formState: {
+          ...stepTwoProps.states.formState,
+          checked: "hstCanada",
+        },
+      }}
+    />
+  );
+};
+
 export const StepTwoOtherRegionChecked = () => {
   return (
     <IndirectTaxFormView
@@ -359,6 +377,24 @@ export const StepTwoOtherRegionChecked = () => {
       states={{
         ...stepTwoProps.states,
         registeredInDifferentCountryDetailsSlot: <RegisteredInOtherRegion />,
+        formState: {
+          ...stepTwoProps.states.formState,
+          checked: "otherRegion",
+        },
+      }}
+    />
+  );
+};
+
+export const StepTwoOtherRegionCheckedWithInputErrors = () => {
+  return (
+    <IndirectTaxFormView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        registeredInDifferentCountryDetailsSlot: (
+          <RegisteredInOtherRegionWithErrors />
+        ),
         formState: {
           ...stepTwoProps.states.formState,
           checked: "otherRegion",
