@@ -139,6 +139,10 @@ export function useTaxForm(props: TaxForm) {
     refs: {
       formRef,
     },
+    data: {
+      currencies: [],
+      countries: [],
+    },
     states: {
       loading,
     },
