@@ -258,7 +258,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 : {})}
               required
             >
-              {data.countries?.map((c) => (
+              {data?.countries?.map((c) => (
                 <sl-menu-item value={c.countryCode}>
                   {c.displayName}
                 </sl-menu-item>
@@ -278,7 +278,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 : {})}
               required
             >
-              {data.currencies?.map((c) => (
+              {data?.currencies?.map((c) => (
                 <sl-menu-item value={c.currencyCode}>
                   {c.displayName}
                 </sl-menu-item>
