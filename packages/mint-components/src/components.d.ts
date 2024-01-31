@@ -11,11 +11,13 @@ import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { UserNameViewProps } from "./components/tax-and-cash/sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
-import { IndirectTaxFormViewProps } from "./components/tax-and-cash/sqm-indirect-tax-form/sqm-indirect-tax-form-view";
+import { DocumentTypeFormViewProps } from "./components/tax-and-cash/sqm-document-type-form/sqm-document-type-form-view";
+import { DocusignFormViewProps } from "./components/tax-and-cash/sqm-docusign-form/sqm-docusign-form-view";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
 import { FunctionalComponent } from "@stencil/core";
+import { IndirectTaxFormViewProps } from "./components/tax-and-cash/sqm-indirect-tax-form/sqm-indirect-tax-form-view";
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
@@ -286,6 +288,7 @@ export namespace Components {
     }
     interface SqmDocumentTypeForm {
         "backButton": string;
+        "demoData": DemoData<DocumentTypeFormViewProps>;
         "formLabel": string;
         "formStep": string;
         "formSubmissionError": string;
@@ -312,7 +315,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<IndirectTaxFormViewProps>;
+        "demoData"?: DemoData<DocusignFormViewProps>;
         "formStep": string;
         "generalErrorDescription": string;
         "generalErrorTitle": string;
@@ -604,6 +607,11 @@ export namespace Components {
     }
     interface SqmIndirectTaxForm {
         "backButton": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<IndirectTaxFormViewProps>;
         "formStep": string;
         "generalErrorDescription": string;
         "generalErrorTitle": string;
@@ -3989,6 +3997,7 @@ declare namespace LocalJSX {
     }
     interface SqmDocumentTypeForm {
         "backButton"?: string;
+        "demoData"?: DemoData<DocumentTypeFormViewProps>;
         "formLabel"?: string;
         "formStep"?: string;
         "formSubmissionError"?: string;
@@ -4015,7 +4024,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<IndirectTaxFormViewProps>;
+        "demoData"?: DemoData<DocusignFormViewProps>;
         "formStep"?: string;
         "generalErrorDescription"?: string;
         "generalErrorTitle"?: string;
@@ -4307,6 +4316,11 @@ declare namespace LocalJSX {
     }
     interface SqmIndirectTaxForm {
         "backButton"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<IndirectTaxFormViewProps>;
         "formStep"?: string;
         "generalErrorDescription"?: string;
         "generalErrorTitle"?: string;

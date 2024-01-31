@@ -9,8 +9,15 @@ import {
   IndirectDetailsSlotView,
   OtherRegionSlotView,
 } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
-import { IndirectTaxFormView } from "./sqm-indirect-tax-form-view";
+import {
+  IndirectTaxFormView,
+  IndirectTaxFormViewProps,
+} from "./sqm-indirect-tax-form-view";
 import { useIndirectTaxForm } from "./useIndirectTaxForm";
+import { DemoData } from "../../../global/demo";
+import deepmerge from "deepmerge";
+import { useState } from "@saasquatch/universal-hooks";
+import { isDemo } from "@saasquatch/component-boilerplate";
 
 @Component({
   tag: "sqm-indirect-tax-form",
@@ -33,6 +40,13 @@ export class IndirectTaxForm {
   @Prop() generalErrorTitle: string = indirectTaxFormText.error.generalTitle;
   @Prop() generalErrorDescription: string =
     indirectTaxFormText.error.generalDescription;
+
+  /**
+   * @undocumented
+   * @uiType object
+   */
+  @Prop() demoData?: DemoData<IndirectTaxFormViewProps>;
+
   constructor() {
     withHooks(this);
   }
@@ -40,7 +54,9 @@ export class IndirectTaxForm {
   disconnectedCallback() {}
 
   render() {
-    const props = useIndirectTaxForm(getProps(this));
+    const props = isDemo()
+      ? useDemoIndirectTaxForm(getProps(this))
+      : useIndirectTaxForm(getProps(this));
 
     const registeredIn =
       props.option === "hstCanada"
@@ -104,4 +120,34 @@ export class IndirectTaxForm {
       </Host>
     );
   }
+}
+
+function useDemoIndirectTaxForm(
+  props: IndirectTaxForm
+): ReturnType<typeof useIndirectTaxForm> {
+  const [option, setOption] = useState(null);
+
+  return deepmerge(
+    {
+      loading: false,
+      countries: [{ countryCode: "CA", displayName: "Canada" }],
+      text: {
+        ...props,
+        error: {
+          generalTitle: props.generalErrorTitle,
+          generalDescription: props.generalErrorDescription,
+          taxDetails: props.taxDetailsError,
+        },
+      },
+      errors: {},
+      onBack: () => {},
+      onSubmit: async () => {},
+      submitDisabled: false,
+      option: option,
+      onChange: setOption,
+      formRef: { current: null },
+    },
+    props.demoData || {},
+    { arrayMerge: (_, a) => a }
+  );
 }

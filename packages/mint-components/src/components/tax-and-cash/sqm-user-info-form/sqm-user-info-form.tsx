@@ -7,6 +7,8 @@ import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { userInfoText } from "./defaultTextCopy";
 import { UserInfoFormView } from "./sqm-user-info-form-view";
 import { useUserInfoForm } from "./useUserInfoForm";
+import { useState } from "@saasquatch/universal-hooks";
+import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
  * @uiName Tax And Cash
@@ -75,8 +77,9 @@ export class TaxForm {
   disconnectedCallback() {}
 
   render() {
-    // const props = isDemo() ? useUserNameDemo(this) : useUserName();
-    const props = useUserInfoForm(getProps(this));
+    const props = isDemo()
+      ? useDemoUserInfoForm(getProps(this))
+      : useUserInfoForm(getProps(this));
 
     return (
       <Host>
@@ -100,6 +103,42 @@ export class TaxForm {
   }
 }
 
-function useTaxAndCashDemo(props: TaxForm) {
-  return deepmerge({}, props.demoData || {}, { arrayMerge: (_, a) => a });
+function useDemoUserInfoForm(props: TaxForm) {
+  const [participantType, setParticipantType] = useState(null);
+
+  return deepmerge(
+    {
+      step: "/1",
+      setStep: () => {},
+      onSubmit: () => {},
+      onRadioClick: (value: string) => {
+        setParticipantType(value);
+      },
+      text: {
+        ...props,
+        error: {
+          firstName: props.firstNameError,
+          lastName: props.lastNameError,
+          email: props.emailError,
+          countryCode: props.countryError,
+          currency: props.currencyError,
+          allowBankingCollection: props.allowBankingCollectionError,
+          participantType: props.participantTypeError,
+        },
+      },
+      refs: {
+        formRef: { current: null },
+      },
+      data: {
+        currencies: [{ currencyCode: "CAD", displayName: "CAD" }],
+        countries: [{ countryCode: "CA", displayName: "Canada" }],
+      },
+      states: {
+        loading: false,
+      },
+      formState: { participantType },
+    },
+    props.demoData || {},
+    { arrayMerge: (_, a) => a }
+  );
 }

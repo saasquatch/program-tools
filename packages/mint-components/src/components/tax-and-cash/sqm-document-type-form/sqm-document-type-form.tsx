@@ -1,9 +1,15 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
-import { DocumentTypeFormView } from "./sqm-document-type-form-view";
+import {
+  DocumentTypeFormView,
+  DocumentTypeFormViewProps,
+} from "./sqm-document-type-form-view";
 import { getProps } from "../../../utils/utils";
 import { useDocumentTypeForm } from "./useDocumentTypeForm";
 import { documentTypeFormText } from "../sqm-user-info-form/defaultTextCopy";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../../global/demo";
+import { isDemo } from "@saasquatch/component-boilerplate";
 
 @Component({
   tag: "sqm-document-type-form",
@@ -27,6 +33,8 @@ export class DocumentTypeForm {
   @Prop() generalErrorDescription: string =
     documentTypeFormText.error.generalDescription;
 
+  @Prop() demoData: DemoData<DocumentTypeFormViewProps>;
+
   constructor() {
     withHooks(this);
   }
@@ -34,8 +42,10 @@ export class DocumentTypeForm {
   disconnectedCallback() {}
 
   render() {
-    const props = useDocumentTypeForm(getProps(this));
-    console.log("3b");
+    const props = isDemo()
+      ? useDemoDocumentTypeForm(getProps(this))
+      : useDocumentTypeForm(getProps(this));
+
     return (
       <DocumentTypeFormView
         callbacks={props.callbacks}
@@ -44,4 +54,36 @@ export class DocumentTypeForm {
       />
     );
   }
+}
+
+function useDemoDocumentTypeForm(
+  props: DocumentTypeForm
+): DocumentTypeFormViewProps {
+  return deepmerge(
+    {
+      callbacks: {
+        onSubmit: () => {},
+        onBack: () => {},
+      },
+      states: {
+        loading: false,
+        disabled: false,
+        formState: {
+          formSubmission: false,
+          selectedTaxForm: "w9" as const,
+          errors: {},
+        },
+      },
+      text: {
+        ...props,
+        error: {
+          formSubmission: props.formSubmissionError,
+          generalTitle: props.generalErrorTitle,
+          generalDescription: props.generalErrorDescription,
+        },
+      },
+    },
+    props.demoData || {},
+    { arrayMerge: (_, a) => a }
+  );
 }
