@@ -8,25 +8,6 @@ Feature: Tax Form Step One
 		Given a user is on Tax Form Step One
 
 
-    @minutia
-    Scenario Outline: A user fills out Tax Form Step One with the required information
-    When they fill out the form with:
-        | First Name               | <firstName>             |
-        | Last Name                | <lastName>              |
-        | Email                    | <email>                 |
-        | Country Code             | <countryCode>           |
-        | Currency                 | <currency>              |
-        | Participant Type         | <participantType>       |
-        | Allow Banking Collection | <allowBankingCollection>|
-    And they agree to the terms which sets <allowBankingCollection> to true
-    When they press the Submit button
-    Then the form succesfully submits
-    Examples:
-        | FirstName | LastName | Email                | CountryCode | Currency | ParticipantType         | AllowBankingCollection |
-        | John      | Doe      | john.doe@email.com   | US          | USD      | individualParticipant   | true                   |
-        | Bob       | Johnson  | bob.johnson@email.com| CA          | CAD      | businessEntity          | true                   |
-        | Martin    | Renny    | bob.johnson@email.com| UK          | GBP      | individualParticipant   | true                   |
-
     # AL: Need full list of countries
     @minutia
     Scenario: A user is filling out the form and selects their country
@@ -66,8 +47,18 @@ Feature: Tax Form Step One
         | <allowBankingCollection>  | This field is required    |
 
     @minutia
+	Scenario: A general error banner appears upon form submission request failing
+	When the user completes the form with their information
+	And they press "Continue" to submit the form
+	Then a request is sent to the backend with the form data
+	But if the request fails
+	Then a general error banner appears with <generalTitle> and <generalDescription>
+    
+    @minutia
     @ui
     Scenario: The loading state is shown when the form is submitted
         Given the form is submitted
         Then the form fields are disabled
         Then a loading spinner appears in the Submit button
+
+    

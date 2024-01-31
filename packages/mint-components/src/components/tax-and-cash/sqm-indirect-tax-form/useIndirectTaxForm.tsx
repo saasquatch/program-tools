@@ -1,18 +1,22 @@
 import {
   useMutation,
-  useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
+import { optional } from "../../../utilities";
+import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
+  COUNTRIES_NAMESPACE,
+  CountriesQuery,
   TAX_CONTEXT_NAMESPACE,
   USER_INFO_NAMESPACE,
-} from "../sqm-tax-and-cash/useTaxAndCash";
+  USER_QUERY_NAMESPACE,
+  UserQuery,
+} from "../sqm-tax-and-cash/data";
 import { FormState } from "../sqm-user-info-form/useUserInfoForm";
-import { optional } from "../../../utilities";
 import { IndirectTaxForm } from "./sqm-indirect-tax-form";
 
 const GET_COUNTRIES = gql`
@@ -43,15 +47,19 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   const userFormData = useParentValue<FormState>(USER_INFO_NAMESPACE);
   const user = useUserIdentity();
 
+  const { data: userData, refetch } =
+    useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+  const { data: _countries, loading: countriesLoading } =
+    useParentQueryValue<CountriesQuery>(COUNTRIES_NAMESPACE);
+
+  // from step 1
+  console.log({ userFormData, _countries });
+
   const [option, setOption] = useState<
     "hstCanada" | "otherRegion" | "notRegistered"
   >(null);
   const [errors, setErrors] = useState({});
 
-  const { data: _countries, loading: countriesLoading } = useQuery(
-    GET_COUNTRIES,
-    {}
-  );
   const countries = _countries?.countries.data;
 
   const onSubmit = async (event: any) => {
@@ -110,7 +118,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
           },
         },
       });
-
+      await refetch();
       setStep("/3/W9");
     } catch (e) {
       setErrors({ general: true });
@@ -137,9 +145,11 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     errors,
     onBack,
     onSubmit,
-    submitDisabled: !option,
+    // submitDisabled: !option,
+    submitDisabled: false,
     option,
     onChange: setOption,
     formRef,
+    countryCode: userFormData.countryCode || userData?.user?.countryCode,
   };
 }

@@ -9,7 +9,8 @@ import {
   useParentState,
 } from "../../../utils/useParentState";
 import { UserNameViewProps } from "./sqm-tax-and-cash-view";
-import { TAX_CONTEXT_NAMESPACE, useTaxAndCash } from "./useTaxAndCash";
+import { useTaxAndCash } from "./useTaxAndCash";
+import { TAX_CONTEXT_NAMESPACE } from "./data";
 
 /**
  * @uiName Tax And Cash
@@ -81,7 +82,6 @@ function getPrevStep(step: string) {
 function useTaxAndCashDemo(props: TaxAndCash) {
   const host = useHost();
   const [step, setStep] = useParentState<string>({
-    host,
     namespace: TAX_CONTEXT_NAMESPACE,
     initialValue: "/1",
   });

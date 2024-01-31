@@ -6,7 +6,7 @@ import { getProps } from "../../../utils/utils";
 import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { userInfoText } from "./defaultTextCopy";
 import { UserInfoFormView } from "./sqm-user-info-form-view";
-import { useTaxForm } from "./useUserInfoForm";
+import { useUserInfoForm } from "./useUserInfoForm";
 import { useState } from "@saasquatch/universal-hooks";
 import { isDemo } from "@saasquatch/component-boilerplate";
 
@@ -78,12 +78,13 @@ export class TaxForm {
 
   render() {
     const props = isDemo()
-      ? useTaxAndCashDemo(getProps(this))
-      : useTaxForm(getProps(this));
+      ? useDemoUserInfoForm(getProps(this))
+      : useUserInfoForm(getProps(this));
 
     return (
       <Host>
         <UserInfoFormView
+          data={props.data}
           states={{
             disabled: false,
             //@ts-ignore
@@ -102,7 +103,7 @@ export class TaxForm {
   }
 }
 
-function useTaxAndCashDemo(props: TaxForm) {
+function useDemoUserInfoForm(props: TaxForm) {
   const [participantType, setParticipantType] = useState(null);
 
   return deepmerge(
@@ -127,6 +128,10 @@ function useTaxAndCashDemo(props: TaxForm) {
       },
       refs: {
         formRef: { current: null },
+      },
+      data: {
+        currencies: [{ currencyCode: "CAD", displayName: "CAD" }],
+        countries: [{ countryCode: "CA", displayName: "Canada" }],
       },
       states: {
         loading: false,

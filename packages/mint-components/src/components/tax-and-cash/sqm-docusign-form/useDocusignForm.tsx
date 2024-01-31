@@ -1,12 +1,12 @@
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
-import { useParent, useParentValue } from "../../../utils/useParentState";
+import { useParentQueryValue } from "../../../utils/useParentQuery";
+import { useParent } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
   UserQuery,
-  UserQueryState,
-} from "../sqm-tax-and-cash/useTaxAndCash";
+} from "../sqm-tax-and-cash/data";
 import { TaxDocumentType } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
 import { DocusignForm } from "./sqm-docusign-form";
 
@@ -23,7 +23,7 @@ const CHECK_DOCUMENT_STATUS = gql`
 export function useDocusignForm(props: DocusignForm, el: any) {
   const [path, setPath] = useParent<string>(TAX_CONTEXT_NAMESPACE);
   const { data, loading } =
-    useParentValue<UserQueryState>(USER_QUERY_NAMESPACE);
+    useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [errors, setErrors] = useState({});
 
@@ -91,6 +91,8 @@ export function useDocusignForm(props: DocusignForm, el: any) {
       loading: taxInfoLoading,
       formState: {
         completedTaxForm: formSubmitted,
+        taxFormExpired: false, // TODO: Unhardcode this
+        taxFormTime: "4:30", // TODO: Unhardcode this
         errors,
       },
       documentType: taxInfo.taxForm?.toUpperCase() as TaxDocumentType,

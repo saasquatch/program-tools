@@ -3,6 +3,7 @@ import { indirectDetailsSlotText } from "../defaultTextCopy";
 import {
   IndirectDetailsSlotView,
   IndirectDetailsSlotViewProps,
+  OtherRegionSlotView,
 } from "./IndirectTaxDetailsView";
 
 export default {
@@ -22,10 +23,7 @@ const registeredInOtherRegion: IndirectDetailsSlotViewProps = {
   data: {
     countries: [{ countryCode: "CA", displayName: "Canada" }],
   },
-  text: {
-    selectedRegion: indirectDetailsSlotText.selectedRegion,
-    vatNumber: indirectDetailsSlotText.vatNumber,
-  },
+  text: indirectDetailsSlotText,
 };
 
 const registeredInCanada: IndirectDetailsSlotViewProps = {
@@ -41,16 +39,49 @@ const registeredInCanada: IndirectDetailsSlotViewProps = {
   data: {
     countries: [{ countryCode: "CA", displayName: "Canada" }],
   },
-  text: {
-    province: indirectDetailsSlotText.province,
-    indirectTaxNumber: indirectDetailsSlotText.indirectTaxNumber,
-  },
+  text: indirectDetailsSlotText,
 };
 
 export const RegisteredInOtherRegion = () => {
-  return <IndirectDetailsSlotView {...registeredInOtherRegion} />;
+  return <OtherRegionSlotView {...registeredInOtherRegion} />;
 };
 
 export const RegisteredInCanada = () => {
   return <IndirectDetailsSlotView {...registeredInCanada} />;
+};
+
+export const RegisteredInOtherRegionWithErrors = () => {
+  return (
+    <OtherRegionSlotView
+      {...registeredInOtherRegion}
+      states={{
+        ...registeredInOtherRegion.states,
+        formState: {
+          ...registeredInOtherRegion.states.formState,
+          errors: {
+            vatNumber: true,
+            selectedRegion: true,
+          },
+        },
+      }}
+    />
+  );
+};
+
+export const RegisteredInCanadaWithErrors = () => {
+  return (
+    <IndirectDetailsSlotView
+      {...registeredInCanada}
+      states={{
+        ...registeredInCanada.states,
+        formState: {
+          ...registeredInCanada.states.formState,
+          errors: {
+            province: true,
+            indirectTaxNumber: true,
+          },
+        },
+      }}
+    />
+  );
 };

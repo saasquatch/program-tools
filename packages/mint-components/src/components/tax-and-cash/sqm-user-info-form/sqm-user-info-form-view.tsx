@@ -17,6 +17,16 @@ export interface UserInfoFormViewProps {
       error?: string;
     };
   };
+  data: {
+    countries: {
+      countryCode: string;
+      displayName: string;
+    }[];
+    currencies: {
+      currencyCode: string;
+      displayName: string;
+    }[];
+  };
   callbacks: {
     onSubmit: (props: any) => void;
     onRadioClick: (value: string) => void;
@@ -57,10 +67,7 @@ const style = {
   ErrorInput: {
     "&::part(base)": {
       border: "1px solid var(--sl-color-danger-500)",
-    },
-
-    "sl-dropdown::part(trigger)": {
-      border: "1px solid var(--sl-color-danger-500)",
+      borderRadius: "var(--sl-input-border-radius-medium)",
     },
 
     "&::part(help-text)": {
@@ -155,10 +162,11 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
     callbacks,
     text,
     refs,
+    data,
   } = props;
   const { classes } = sheet;
 
-  console.log({ formState });
+  console.log({ formState, data });
   return (
     <sl-form
       class={classes.FormWrapper}
@@ -237,6 +245,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
             />
 
             <sl-select
+              id="countryCode"
               exportparts="label: input-label"
               name="/countryCode"
               label={text.country}
@@ -250,11 +259,14 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 : {})}
               required
             >
-              <sl-menu-item value="US">United States</sl-menu-item>
-              <sl-menu-item value="CA">Canada</sl-menu-item>
-              <sl-menu-item value="AU">Australia</sl-menu-item>
+              {data?.countries?.map((c) => (
+                <sl-menu-item value={c.countryCode}>
+                  {c.displayName}
+                </sl-menu-item>
+              ))}
             </sl-select>
             <sl-select
+              id="currency"
               exportparts="label: input-label"
               name="/currency"
               label={text.currency}
@@ -268,9 +280,11 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 : {})}
               required
             >
-              <sl-menu-item value="USD">USD</sl-menu-item>
-              <sl-menu-item value="CAD">CAD</sl-menu-item>
-              <sl-menu-item value="AUD">AUD</sl-menu-item>
+              {data?.currencies?.map((c) => (
+                <sl-menu-item value={c.currencyCode}>
+                  {c.currencyCode}
+                </sl-menu-item>
+              ))}
             </sl-select>
 
             <div class={classes.CheckboxWrapper}>

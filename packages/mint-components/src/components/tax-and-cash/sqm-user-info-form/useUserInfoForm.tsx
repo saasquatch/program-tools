@@ -1,12 +1,17 @@
 import { useEffect, useRef } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
-import { useParent, useParentValue } from "../../../utils/useParentState";
+import { useParentQueryValue } from "../../../utils/useParentQuery";
+import { useParent } from "../../../utils/useParentState";
 import {
+  COUNTRIES_NAMESPACE,
+  CURRENCIES_NAMESPACE,
+  CountriesQuery,
+  CurrenciesQuery,
   TAX_CONTEXT_NAMESPACE,
   USER_INFO_NAMESPACE,
   USER_QUERY_NAMESPACE,
-  UserQueryState,
-} from "../sqm-tax-and-cash/useTaxAndCash";
+  UserQuery,
+} from "../sqm-tax-and-cash/data";
 import { TaxForm } from "./sqm-user-info-form";
 
 // returns either error message if invalid or undefined if valid
@@ -36,15 +41,18 @@ export type InitialData = {
   [key: string]: string;
 };
 
-export function useTaxForm(props: TaxForm) {
+export function useUserInfoForm(props: TaxForm) {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
   const [formState, setFormState] = useParent<FormState>(USER_INFO_NAMESPACE);
 
-  // TODO: user types
   const { data, loading } =
-    useParentValue<UserQueryState>(USER_QUERY_NAMESPACE);
+    useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+  const { data: _countries, loading: countriesLoading } =
+    useParentQueryValue<CountriesQuery>(COUNTRIES_NAMESPACE);
+  const { data: currenciesRes, loading: loadingCurrencies } =
+    useParentQueryValue<CurrenciesQuery>(CURRENCIES_NAMESPACE);
 
   useEffect(() => {
     console.log({ data });
@@ -119,6 +127,8 @@ export function useTaxForm(props: TaxForm) {
     } catch {}
   }
 
+  console.log({ _countries });
+
   return {
     step: step,
     setStep: setStep,
@@ -138,6 +148,10 @@ export function useTaxForm(props: TaxForm) {
     },
     refs: {
       formRef,
+    },
+    data: {
+      currencies: currenciesRes?.currencies?.data,
+      countries: _countries?.countries?.data,
     },
     states: {
       loading,

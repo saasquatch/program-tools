@@ -24,7 +24,9 @@ import {
 } from "./defaultTextCopy";
 import {
   RegisteredInCanada,
+  RegisteredInCanadaWithErrors,
   RegisteredInOtherRegion,
+  RegisteredInOtherRegionWithErrors,
 } from "./small-views/SlotViews.stories";
 import {
   UserInfoFormViewProps,
@@ -39,6 +41,7 @@ const stepOneProps: UserInfoFormViewProps = {
   states: {
     loading: false,
     disabled: false,
+
     formState: {
       firstName: "Bob",
       lastName: "Testerson",
@@ -48,6 +51,20 @@ const stepOneProps: UserInfoFormViewProps = {
       allowBankingCollection: true,
       participantType: "individualParticipant",
     },
+  },
+  data: {
+    countries: [
+      {
+        countryCode: "CA",
+        displayName: "Canada",
+      },
+    ],
+    currencies: [
+      {
+        currencyCode: "CAD",
+        displayName: "CAD",
+      },
+    ],
   },
   callbacks: {
     // TODO: fix type
@@ -170,6 +187,8 @@ const docusignFormProps: DocusignFormViewProps = {
     submitDisabled: false,
     formState: {
       completedTaxForm: true,
+      taxFormExpired: false,
+      taxFormTime: "4:25",
     },
   },
   callbacks: {
@@ -337,6 +356,22 @@ export const StepTwoHSTChecked = () => {
   );
 };
 
+export const StepTwoHSTCheckedWithInputErrors = () => {
+  return (
+    <IndirectTaxFormView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        registeredInCanadaDetailsSlot: <RegisteredInCanadaWithErrors />,
+        formState: {
+          ...stepTwoProps.states.formState,
+          checked: "hstCanada",
+        },
+      }}
+    />
+  );
+};
+
 export const StepTwoOtherRegionChecked = () => {
   return (
     <IndirectTaxFormView
@@ -344,6 +379,24 @@ export const StepTwoOtherRegionChecked = () => {
       states={{
         ...stepTwoProps.states,
         registeredInDifferentCountryDetailsSlot: <RegisteredInOtherRegion />,
+        formState: {
+          ...stepTwoProps.states.formState,
+          checked: "otherRegion",
+        },
+      }}
+    />
+  );
+};
+
+export const StepTwoOtherRegionCheckedWithInputErrors = () => {
+  return (
+    <IndirectTaxFormView
+      {...stepTwoProps}
+      states={{
+        ...stepTwoProps.states,
+        registeredInDifferentCountryDetailsSlot: (
+          <RegisteredInOtherRegionWithErrors />
+        ),
         formState: {
           ...stepTwoProps.states.formState,
           checked: "otherRegion",
@@ -413,6 +466,22 @@ export const StepThreeDocusignDisabled = () => {
       states={{
         ...docusignFormProps.states,
         disabled: true,
+      }}
+    />
+  );
+};
+
+export const StepThreeDocusignTimeExpired = () => {
+  // @ts-ignore TODO: fix this
+  return (
+    <DocusignFormView
+      {...docusignFormProps}
+      states={{
+        ...docusignFormProps.states,
+        formState: {
+          ...docusignFormProps.states.formState,
+          taxFormExpired: true,
+        },
       }}
     />
   );

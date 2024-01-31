@@ -1,5 +1,5 @@
 import { useParent } from "../../../utils/useParentState";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/useTaxAndCash";
+import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 import { CashForm } from "./sqm-cash-form";
 
 export function useCashForm(props: CashForm) {

@@ -8,22 +8,6 @@ Feature: Indirect Tax Form
 		Given a user is on the Indirect Tax Form
 
 	@minutia
-    Scenario Outline: A user fills out the Indirect Tax Form with the required information
-    When they succesfully fill out Tax Form Step One with:
-        | First Name               | <firstName>             |
-        | Last Name                | <lastName>              |
-        | Email                    | <email>                 |
-        | Country Code             | <countryCode>           |
-        | Currency                 | <currency>              |
-        | Participant Type         | <participantType>       |
-        | Allow Banking Collection | <allowBankingCollection>|
-	Then they must select one of the following options and provide their information in the Indirect Tax Form:
-	 	| I am registered for HST in Canada 								| <province> | <indirectTaxNumber> |
-		| I am registered for Indirect Tax in a different Country / Region  | <country>  | <vatNumber> 		   |
-		| I am not registered for Indirect Tax 								| N/A 		 | N/A				   |
-	Then they can press the Continue button and move to the next step
-
-	@minutia
 	@ui
 	Scenario: Different selects appear based on which Indirect Tax Detail radio option the user checks
 	When they check "I am registered for HST in Canada"
@@ -41,10 +25,32 @@ Feature: Indirect Tax Form
 		| Northwest Territories |
 		| Nunavut 				|
 		| Yukon 				|
-	And if they check "I am registered for Indirect Tax in a different Country / Region"
+	But if they check "I am registered for Indirect Tax in a different Country / Region"
 	Then a "Country / Region of Indirect Tax" select appears and they choose one <country>
-	And if they check "I am not registered for Indirect Tax"
+	But if they check "I am not registered for Indirect Tax"
 	Then no select appears
+
+	@minutia
+	@ui
+	Scenario Outline: A user fills out the Indirect Tax Form with invalid values
+	When they fill out the form with invalid values for the following fields:
+		| Province     					 | <province>     |
+		| Indirect Tax 					 | <indirectTax>  |
+		| Country/Region of Indirect Tax | <country>      |
+		| VAT Number   					 | <vatNumber>    |
+	Then the form displays the respective errors for each field:
+        | <province>               |          |
+        | <indirectTax>            |          |
+        | <country>                |          |
+        | <vatNumber>              |          |
+
+	@minutia
+	Scenario: A general error banner appears upon form submission request failing
+	When the user completes the form with their information
+	And they press "Continue" to submit the form
+	Then a request is sent to the backend with the form data
+	But if the request fails
+	Then a general error banner appears with <generalTitle> and <generalDescription>
 	
 
     # Scenario Outline: Different inputs are shown depending on the registered region of a user

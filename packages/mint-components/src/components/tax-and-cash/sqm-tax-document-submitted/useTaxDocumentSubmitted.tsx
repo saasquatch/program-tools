@@ -1,11 +1,11 @@
-import { useEffect } from "@saasquatch/universal-hooks";
 import { DateTime } from "luxon";
-import { useParentValue, useSetParent } from "../../../utils/useParentState";
+import { useParentQueryValue } from "../../../utils/useParentQuery";
+import { useSetParent } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
-  UserQueryState,
-} from "../sqm-tax-and-cash/useTaxAndCash";
+  UserQuery,
+} from "../sqm-tax-and-cash/data";
 import { TaxDocumentType } from "./sqm-tax-document-submitted-view";
 
 export function getDocumentType(user): TaxDocumentType {
@@ -29,8 +29,8 @@ function getExpiresSoon(submissionDate: number, expiryDate: number) {
 export const useTaxDocumentSubmitted = (props: any) => {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
 
-  const { refetch, data, loading } =
-    useParentValue<UserQueryState>(USER_QUERY_NAMESPACE);
+  const { data, loading } =
+    useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
   console.log("submitted", { data, loading });
 
@@ -55,10 +55,6 @@ export const useTaxDocumentSubmitted = (props: any) => {
   });
 
   const documentType = getDocumentType(data?.user);
-
-  useEffect(() => {
-    refetch();
-  }, []);
 
   return {
     states: {
