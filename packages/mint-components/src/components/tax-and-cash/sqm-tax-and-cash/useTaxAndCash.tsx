@@ -84,19 +84,16 @@ export function useTaxAndCash() {
   // TODO: Load tax document status info
 
   const [step, setStep] = useParentState<string>({
-    host,
     namespace: TAX_CONTEXT_NAMESPACE,
     initialValue: "/loading",
   });
 
   useParentState<FormState>({
-    host,
     namespace: USER_INFO_NAMESPACE,
     initialValue: {},
   });
 
   const { data } = useParentQuery<UserQuery>({
-    host,
     namespace: USER_QUERY_NAMESPACE,
     query: GET_USER,
     variables: {
@@ -107,14 +104,12 @@ export function useTaxAndCash() {
   });
 
   useParentQuery<CountriesQuery>({
-    host,
     namespace: COUNTRIES_NAMESPACE,
     query: GET_COUNTRIES,
     skip: !user,
   });
 
   useParentQuery<CurrenciesQuery>({
-    host,
     namespace: CURRENCIES_NAMESPACE,
     query: GET_CURRENCIES,
     skip: !user,

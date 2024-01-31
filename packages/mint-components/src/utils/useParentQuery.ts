@@ -1,4 +1,4 @@
-import { useQuery } from "@saasquatch/component-boilerplate";
+import { useHost, useQuery } from "@saasquatch/component-boilerplate";
 import { QueryData } from "@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery";
 import { useDomContextState } from "@saasquatch/dom-context-hooks";
 import { useDomContext } from "@saasquatch/stencil-hooks";
@@ -7,7 +7,6 @@ import { deepEqual } from "fast-equals";
 import { getContextValueName } from "./useParentState";
 
 type ParentQueryProps = {
-  host: HTMLElement;
   namespace: string;
   query?: string;
   variables?: { [key: string]: unknown };
@@ -15,10 +14,11 @@ type ParentQueryProps = {
 };
 
 export function useParentQuery<T>(props: ParentQueryProps): QueryData<T> {
+  const host = useHost();
   const query = useQuery(props.query, props.variables || {}, props.skip);
 
   const [value, setValue] = useDomContextState<QueryData<any>>(
-    props.host,
+    host,
     getContextValueName(props.namespace),
     query
   );

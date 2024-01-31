@@ -82,7 +82,6 @@ function getPrevStep(step: string) {
 function useTaxAndCashDemo(props: TaxAndCash) {
   const host = useHost();
   const [step, setStep] = useParentState<string>({
-    host,
     namespace: TAX_CONTEXT_NAMESPACE,
     initialValue: "/1",
   });
