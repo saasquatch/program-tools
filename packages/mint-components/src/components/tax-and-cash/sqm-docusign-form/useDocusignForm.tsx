@@ -91,6 +91,8 @@ export function useDocusignForm(props: DocusignForm, el: any) {
       loading: taxInfoLoading,
       formState: {
         completedTaxForm: formSubmitted,
+        taxFormExpired: false, // TODO: Unhardcode this
+        taxFormTime: "4:30", // TODO: Unhardcode this
         errors,
       },
       documentType: taxInfo.taxForm?.toUpperCase() as TaxDocumentType,

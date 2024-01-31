@@ -187,6 +187,8 @@ const docusignFormProps: DocusignFormViewProps = {
     submitDisabled: false,
     formState: {
       completedTaxForm: true,
+      taxFormExpired: false,
+      taxFormTime: "4:25",
     },
   },
   callbacks: {
@@ -464,6 +466,22 @@ export const StepThreeDocusignDisabled = () => {
       states={{
         ...docusignFormProps.states,
         disabled: true,
+      }}
+    />
+  );
+};
+
+export const StepThreeDocusignTimeExpired = () => {
+  // @ts-ignore TODO: fix this
+  return (
+    <DocusignFormView
+      {...docusignFormProps}
+      states={{
+        ...docusignFormProps.states,
+        formState: {
+          ...docusignFormProps.states.formState,
+          taxFormExpired: true,
+        },
       }}
     />
   );

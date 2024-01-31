@@ -10,6 +10,8 @@ export interface DocusignFormViewProps {
     disabled: boolean;
     formState: {
       completedTaxForm: boolean;
+      taxFormExpired: boolean;
+      taxFormTime: string;
       errors?: any;
     };
     documentType?: TaxDocumentType;
@@ -125,6 +127,7 @@ const style = {
       textDecoration: "underline",
     },
   },
+  Dialog: {},
 };
 
 const sheet = createStyleSheet(style);
@@ -169,6 +172,13 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
         {styleString}
         {vanillaStyle}
       </style>
+      <sl-dialog
+        class={classes.Dialog}
+        open={formState.taxFormExpired}
+        // onSl-hide={() => callbacks.setOpen(false)}
+      >
+        <sl-icon name="clock"></sl-icon>
+      </sl-dialog>
       <div class={classes.TextContainer}>
         <div>
           <p>{text.formStep}</p>
@@ -213,7 +223,9 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             class={classes.InfoAlert}
           >
             <sl-icon slot="icon" name="clock"></sl-icon>
-            <strong style={{ fontSize: "20px" }}>4:25</strong>
+            <strong style={{ fontSize: "20px" }}>
+              {formState.taxFormTime}
+            </strong>
             <br />
             {text.banner}
           </sl-alert>
