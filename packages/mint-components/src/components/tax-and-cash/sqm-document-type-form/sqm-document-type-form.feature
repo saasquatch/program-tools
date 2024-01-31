@@ -1,10 +1,10 @@
 @owner:andy
 @author:andy
 
-Feature: Docusign Form
+Feature: Document Type Form
 
-    Background: A user has submitted their information in User Info Form, Indirect Tax Form, and Document Type Form
-		Given a user is on the Docusign Form
+    Background: A user has submitted their personal information in User Info Form and filled out the Indirect Tax Form
+		Given a user is on the Document Type Form
 
     @minutia
     Scenario: A general error banner appears upon form submission request failing
@@ -13,5 +13,3 @@ Feature: Docusign Form
     Then a request is sent to the backend with the form data
     But if the request fails
     Then a general error banner appears with <generalTitle> and <generalDescription>
-
-    Scenario: Docusign iframe Fails to load

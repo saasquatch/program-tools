@@ -23,10 +23,16 @@ export interface IndirectDetailsSlotViewProps {
     }[];
   };
   text: {
-    selectedRegion?: string;
-    vatNumber?: string;
-    province?: string;
-    indirectTaxNumber?: string;
+    selectedRegion: string;
+    vatNumber: string;
+    province: string;
+    indirectTaxNumber: string;
+    error: {
+      selectedRegion: string;
+      vatNumber: string;
+      province: string;
+      indirectTaxNumber: string;
+    };
   };
 }
 
@@ -48,6 +54,16 @@ const style = {
   },
   Input: {
     maxWidth: "500px",
+  },
+  ErrorInput: {
+    "&::part(base)": {
+      border: "1px solid var(--sl-color-danger-500)",
+      borderRadius: "var(--sl-input-border-radius-medium)",
+    },
+
+    "&::part(help-text)": {
+      color: "var(--sl-color-danger-500)",
+    },
   },
 };
 
@@ -89,18 +105,12 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             exportparts="label: input-label"
             label={text.selectedRegion}
             disabled={states.loading}
-            {...(formState.errors?.selectedRegion &&
-            formState.errors?.selectedRegion.status !== "valid"
-              ? { class: "errors?tyles", helpText: "Cannot be empty" }
-              : [])}
+            {...(formState.errors?.selectedRegion && {
+              class: classes.ErrorInput,
+              helpText: text.error.selectedRegion,
+            })}
             id="selectedRegion"
             name="/selectedRegion"
-            error={
-              formState.errors?.selectedRegion &&
-              formState.errors?.selectedRegion.status !== "valid"
-                ? formState.errors?.selectedRegion.message
-                : undefined
-            }
           >
             {props.data.countries?.map((c) => (
               <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
@@ -112,18 +122,12 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             class={classes.Input}
             label={text.vatNumber}
             disabled={states.loading}
-            {...(formState.errors?.vatNumber &&
-            formState.errors?.vatNumber.status !== "valid"
-              ? { class: "errors?tyles", helpText: "Cannot be empty" }
-              : [])}
+            {...(formState.errors?.vatNumber && {
+              class: classes.ErrorInput,
+              helpText: text.error.vatNumber,
+            })}
             id="vatNumber"
             name="/vatNumber"
-            error={
-              formState.errors?.vatNumber &&
-              formState.errors?.vatNumber.status !== "valid"
-                ? formState.errors?.vatNumber.message
-                : undefined
-            }
           />
         </div>
         <hr class={classes.HR} />
@@ -161,22 +165,14 @@ export const IndirectDetailsSlotView = (
             onSl-after-hide={() => console.log("after hide")}
             exportparts="label: input-label"
             class={classes.Input}
-            // value={formState.province}
             label={text.province}
             disabled={states.loading}
-            // Copied from edit form, may need to keep
-            {...(formState.errors?.province &&
-            formState.errors?.province.status !== "valid"
-              ? { class: "errors?tyles", helpText: "Cannot be empty" }
-              : [])}
+            {...(formState.errors?.province && {
+              class: classes.ErrorInput,
+              helpText: text.error.province,
+            })}
             id="province"
             name="/province"
-            error={
-              formState.errors?.province &&
-              formState.errors?.province.status !== "valid"
-                ? formState.errors?.province.message
-                : undefined
-            }
           >
             <sl-menu-item value="ON">Ontario</sl-menu-item>
             <sl-menu-item value="QC">Quebec</sl-menu-item>
@@ -196,22 +192,14 @@ export const IndirectDetailsSlotView = (
             required
             exportparts="label: input-label"
             class={classes.Input}
-            // value={formState.indirectTaxNumber}
             label={text.indirectTaxNumber}
             disabled={states.loading}
-            // Copied from edit form, may need to keep
-            {...(formState.errors?.indirectTaxNumber &&
-            formState.errors?.indirectTaxNumber.status !== "valid"
-              ? { class: "errors?tyles", helpText: "Cannot be empty" }
-              : [])}
+            {...(formState.errors?.indirectTaxNumber && {
+              class: classes.ErrorInput,
+              helpText: text.error.indirectTaxNumber,
+            })}
             id="indirectTaxNumber"
             name="/indirectTaxNumber"
-            error={
-              formState.errors?.indirectTaxNumber &&
-              formState.errors?.indirectTaxNumber.status !== "valid"
-                ? formState.errors?.indirectTaxNumber.message
-                : undefined
-            }
           />
         </div>
         <hr class={classes.HR} />

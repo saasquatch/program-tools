@@ -10,6 +10,12 @@ export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
   vatNumber: "VAT number",
   province: "Province",
   indirectTaxNumber: "Indirect Tax",
+  error: {
+    selectedRegion: "Country is required",
+    vatNumber: "VAT number is required",
+    province: "Province is required",
+    indirectTaxNumber: "Indirect Tax is required",
+  },
 };
 
 export const userInfoText: UserInfoFormViewProps["text"] = {
@@ -19,7 +25,7 @@ export const userInfoText: UserInfoFormViewProps["text"] = {
   country: "Country",
   currency: "Currency",
   allowBankingCollection: "I agree to the terms",
-  submitButton: "Submit",
+  submitButton: "Continue",
   formStep: "Step 1 of 4",
   personalInformation: "Personal Information",
   participantType: "Participant type",

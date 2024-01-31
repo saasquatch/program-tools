@@ -22,10 +22,7 @@ const registeredInOtherRegion: IndirectDetailsSlotViewProps = {
   data: {
     countries: [{ countryCode: "CA", displayName: "Canada" }],
   },
-  text: {
-    selectedRegion: indirectDetailsSlotText.selectedRegion,
-    vatNumber: indirectDetailsSlotText.vatNumber,
-  },
+  text: indirectDetailsSlotText,
 };
 
 const registeredInCanada: IndirectDetailsSlotViewProps = {
@@ -41,10 +38,7 @@ const registeredInCanada: IndirectDetailsSlotViewProps = {
   data: {
     countries: [{ countryCode: "CA", displayName: "Canada" }],
   },
-  text: {
-    province: indirectDetailsSlotText.province,
-    indirectTaxNumber: indirectDetailsSlotText.indirectTaxNumber,
-  },
+  text: indirectDetailsSlotText,
 };
 
 export const RegisteredInOtherRegion = () => {
