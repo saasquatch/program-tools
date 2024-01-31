@@ -1,13 +1,14 @@
 import { useEffect, useRef } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
-import { useParent, useParentValue } from "../../../utils/useParentState";
+import { useParent } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
   USER_INFO_NAMESPACE,
   USER_QUERY_NAMESPACE,
-  UserQueryState,
+  UserQuery,
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { TaxForm } from "./sqm-user-info-form";
+import { useParentQueryValue } from "../../../utils/useParentQuery";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -42,9 +43,8 @@ export function useTaxForm(props: TaxForm) {
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
   const [formState, setFormState] = useParent<FormState>(USER_INFO_NAMESPACE);
 
-  // TODO: user types
   const { data, loading } =
-    useParentValue<UserQueryState>(USER_QUERY_NAMESPACE);
+    useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
   useEffect(() => {
     console.log({ data });

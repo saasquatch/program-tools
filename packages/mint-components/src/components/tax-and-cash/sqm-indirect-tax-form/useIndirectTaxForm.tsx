@@ -1,28 +1,21 @@
 import {
   useMutation,
-  useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
+import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
+  COUNTRIES_NAMESPACE,
+  CountriesQuery,
   TAX_CONTEXT_NAMESPACE,
   USER_INFO_NAMESPACE,
+  USER_QUERY_NAMESPACE,
+  UserQuery,
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { FormState } from "../sqm-user-info-form/useUserInfoForm";
-
-const GET_COUNTRIES = gql`
-  query getCurrencies {
-    countries(limit: 1000) {
-      data {
-        countryCode
-        displayName
-      }
-    }
-  }
-`;
 
 const UPSERT_USER = gql`
   mutation ($userInput: UserInput!) {
@@ -41,18 +34,18 @@ export function useIndirectTaxForm(props: any) {
   const userFormData = useParentValue<FormState>(USER_INFO_NAMESPACE);
   const user = useUserIdentity();
 
+  const { refetch } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+  const { data: _countries, loading: countriesLoading } =
+    useParentQueryValue<CountriesQuery>(COUNTRIES_NAMESPACE);
+
   // from step 1
-  console.log({ userFormData });
+  console.log({ userFormData, _countries });
 
   const [option, setOption] = useState<
     "hstCanada" | "otherRegion" | "notRegistered"
   >(null);
   const [errors, setErrors] = useState({});
 
-  const { data: _countries, loading: countriesLoading } = useQuery(
-    GET_COUNTRIES,
-    {}
-  );
   const countries = _countries?.countries.data;
 
   const onSubmit = async (event: any) => {
@@ -110,7 +103,7 @@ export function useIndirectTaxForm(props: any) {
           },
         },
       });
-
+      await refetch();
       setStep("/3/W9");
     } catch (e) {
       setErrors({ graphqlError: true });
@@ -130,7 +123,8 @@ export function useIndirectTaxForm(props: any) {
     errors,
     onBack,
     onSubmit,
-    submitDisabled: !option,
+    // submitDisabled: !option,
+    submitDisabled: false,
     option,
     onChange: (value) => {
       console.log("onChange", { value, option });
