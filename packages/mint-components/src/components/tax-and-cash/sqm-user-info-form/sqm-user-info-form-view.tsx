@@ -166,7 +166,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
   } = props;
   const { classes } = sheet;
 
-  console.log({ formState });
+  console.log({ formState, data });
   return (
     <sl-form
       class={classes.FormWrapper}
@@ -245,6 +245,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
             />
 
             <sl-select
+              id="countryCode"
               exportparts="label: input-label"
               name="/countryCode"
               label={text.country}
@@ -265,6 +266,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               ))}
             </sl-select>
             <sl-select
+              id="currency"
               exportparts="label: input-label"
               name="/currency"
               label={text.currency}
@@ -280,7 +282,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
             >
               {data?.currencies?.map((c) => (
                 <sl-menu-item value={c.currencyCode}>
-                  {c.displayName}
+                  {c.currencyCode}
                 </sl-menu-item>
               ))}
             </sl-select>

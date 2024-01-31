@@ -5,7 +5,7 @@ import {
   TAX_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
   UserQuery,
-} from "../sqm-tax-and-cash/useTaxAndCash";
+} from "../sqm-tax-and-cash/data";
 import { TaxDocumentType } from "./sqm-tax-document-submitted-view";
 
 export function getDocumentType(user): TaxDocumentType {

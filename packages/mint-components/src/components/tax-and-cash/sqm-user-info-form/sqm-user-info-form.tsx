@@ -6,7 +6,7 @@ import { getProps } from "../../../utils/utils";
 import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { userInfoText } from "./defaultTextCopy";
 import { UserInfoFormView } from "./sqm-user-info-form-view";
-import { useTaxForm } from "./useUserInfoForm";
+import { useUserInfoForm } from "./useUserInfoForm";
 
 /**
  * @uiName Tax And Cash
@@ -76,11 +76,12 @@ export class TaxForm {
 
   render() {
     // const props = isDemo() ? useUserNameDemo(this) : useUserName();
-    const props = useTaxForm(getProps(this));
+    const props = useUserInfoForm(getProps(this));
 
     return (
       <Host>
         <UserInfoFormView
+          data={props.data}
           states={{
             disabled: false,
             //@ts-ignore

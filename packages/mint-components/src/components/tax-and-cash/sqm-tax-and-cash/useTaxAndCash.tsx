@@ -4,70 +4,25 @@ import {
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect } from "@saasquatch/universal-hooks";
-import { gql } from "graphql-request";
 import { useParentQuery } from "../../../utils/useParentQuery";
 import {
   getContextValueName,
   useParentState,
 } from "../../../utils/useParentState";
 import { FormState } from "../sqm-user-info-form/useUserInfoForm";
-
-export const TAX_CONTEXT_NAMESPACE = "sq:tax-and-cash";
-
-export const USER_INFO_NAMESPACE = "sq:user-info-form";
-
-export const USER_QUERY_NAMESPACE = "sq:user-info-query";
-
-export const COUNTRIES_NAMESPACE = "sq:countries-list";
-
-export type TaxContextType = {
-  step: string;
-  setStep: (value: string) => void;
-};
-
-const GET_USER = gql`
-  query getUserTaxInfo($id: String!, $accountId: String!) {
-    user(id: $id, accountId: $accountId) {
-      firstName
-      lastName
-      email
-      countryCode
-      customFields
-    }
-  }
-`;
-
-export type UserQuery = {
-  user: {
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    countryCode?: string;
-    customFields?: {
-      [key: string]: any;
-    };
-  };
-};
-
-const GET_COUNTRIES = gql`
-  query getCurrencies {
-    countries(limit: 1000) {
-      data {
-        countryCode
-        displayName
-      }
-    }
-  }
-`;
-
-export type CountriesQuery = {
-  countries: {
-    data: {
-      countryCode: string;
-      displayName: string;
-    }[];
-  };
-};
+import {
+  COUNTRIES_NAMESPACE,
+  CURRENCIES_NAMESPACE,
+  CountriesQuery,
+  CurrenciesQuery,
+  GET_COUNTRIES,
+  GET_CURRENCIES,
+  GET_USER,
+  TAX_CONTEXT_NAMESPACE,
+  USER_INFO_NAMESPACE,
+  USER_QUERY_NAMESPACE,
+  UserQuery,
+} from "./data";
 
 function getCurrentStep(user: UserQuery["user"]) {
   // return "/submitted";
@@ -155,6 +110,13 @@ export function useTaxAndCash() {
     host,
     namespace: COUNTRIES_NAMESPACE,
     query: GET_COUNTRIES,
+    skip: !user,
+  });
+
+  useParentQuery<CurrenciesQuery>({
+    host,
+    namespace: CURRENCIES_NAMESPACE,
+    query: GET_CURRENCIES,
     skip: !user,
   });
 

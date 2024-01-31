@@ -5,6 +5,7 @@ import {
 import { useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
+import { optional } from "../../../utilities";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
@@ -14,9 +15,8 @@ import {
   USER_INFO_NAMESPACE,
   USER_QUERY_NAMESPACE,
   UserQuery,
-} from "../sqm-tax-and-cash/useTaxAndCash";
+} from "../sqm-tax-and-cash/data";
 import { FormState } from "../sqm-user-info-form/useUserInfoForm";
-import { optional } from "../../../utilities";
 
 const UPSERT_USER = gql`
   mutation ($userInput: UserInput!) {
