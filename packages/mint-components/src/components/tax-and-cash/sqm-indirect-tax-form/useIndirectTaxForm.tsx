@@ -17,6 +17,7 @@ import {
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { FormState } from "../sqm-user-info-form/useUserInfoForm";
 import { optional } from "../../../utilities";
+import { IndirectTaxForm } from "./sqm-indirect-tax-form";
 
 const UPSERT_USER = gql`
   mutation ($userInput: UserInput!) {
@@ -27,7 +28,7 @@ const UPSERT_USER = gql`
   }
 `;
 
-export function useIndirectTaxForm(props: any) {
+export function useIndirectTaxForm(props: IndirectTaxForm) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [upsertUser, upsertUserResponse] = useMutation(UPSERT_USER);

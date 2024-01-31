@@ -1,7 +1,10 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
 import { getProps } from "../../../utils/utils";
-import { indirectTaxFormText } from "../sqm-user-info-form/defaultTextCopy";
+import {
+  indirectDetailsSlotText,
+  indirectTaxFormText,
+} from "../sqm-user-info-form/defaultTextCopy";
 import {
   IndirectDetailsSlotView,
   OtherRegionSlotView,
@@ -56,7 +59,7 @@ export class IndirectTaxForm {
           hide: props.option !== "hstCanada",
         }}
         data={{ countries: props.countries }}
-        text={{}}
+        text={indirectDetailsSlotText}
       ></IndirectDetailsSlotView>
     );
 
@@ -68,7 +71,7 @@ export class IndirectTaxForm {
           loading: props.loading,
         }}
         data={{ countries: props.countries }}
-        text={{}}
+        text={indirectDetailsSlotText}
       />
     );
 
@@ -87,6 +90,7 @@ export class IndirectTaxForm {
             registeredInDifferentCountryDetailsSlot: otherRegionSlot,
             disabled: props.loading,
           }}
+          //@ts-ignore
           text={props.text}
           refs={{ formRef: props.formRef }}
         />
