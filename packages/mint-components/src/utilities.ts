@@ -30,3 +30,7 @@ export function isMobile(breakPoint: number): boolean {
 export function isValidColor(teststr: string) {
   return CSS.supports(`(color: ${teststr})`);
 }
+
+export function optional(property: string, value: any) {
+  return value ? { [property]: value } : {};
+}

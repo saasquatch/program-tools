@@ -39,6 +39,7 @@ const stepOneProps: UserInfoFormViewProps = {
   states: {
     loading: false,
     disabled: false,
+
     formState: {
       firstName: "Bob",
       lastName: "Testerson",
@@ -48,6 +49,20 @@ const stepOneProps: UserInfoFormViewProps = {
       allowBankingCollection: true,
       participantType: "individualParticipant",
     },
+  },
+  data: {
+    countries: [
+      {
+        countryCode: "CA",
+        displayName: "Canada",
+      },
+    ],
+    currencies: [
+      {
+        currencyCode: "CAD",
+        displayName: "CAD",
+      },
+    ],
   },
   callbacks: {
     // TODO: fix type
@@ -167,6 +182,7 @@ const docusignFormProps: DocusignFormViewProps = {
   states: {
     loading: false,
     disabled: false,
+    submitDisabled: false,
     formState: {
       completedTaxForm: true,
     },

@@ -16,6 +16,7 @@ import {
   UserQuery,
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { FormState } from "../sqm-user-info-form/useUserInfoForm";
+import { optional } from "../../../utilities";
 
 const UPSERT_USER = gql`
   mutation ($userInput: UserInput!) {
@@ -50,11 +51,11 @@ export function useIndirectTaxForm(props: any) {
 
   const onSubmit = async (event: any) => {
     if (!option) {
-      setErrors({ taxOption: true });
+      setErrors({ taxDetails: true });
       return;
     }
 
-    let formData: Record<string, string> = {};
+    let formData: Record<string, string> = { taxOption: option };
     let validationErrors: Record<string, string> = {};
 
     const controls = event.target.getFormControls();
@@ -70,8 +71,6 @@ export function useIndirectTaxForm(props: any) {
 
       const key = control.name;
       const value = control.value;
-
-      console.log({ key, value });
       JSONPointer.set(formData, key, value);
 
       if (control.required && !value) {
@@ -88,7 +87,6 @@ export function useIndirectTaxForm(props: any) {
 
     const { currency, participantType, ...userData } = userFormData;
 
-    console.log({ formData });
     try {
       // Backend request
       await upsertUser({
@@ -99,14 +97,18 @@ export function useIndirectTaxForm(props: any) {
           customFields: {
             currency,
             participantType,
-            ...formData,
+            ...optional("__taxOption", formData.taxOption),
+            ...optional("__taxProvince", formData.province),
+            ...optional("__taxCountry", formData.selectedRegion),
+            ...optional("__taxVatNumber", formData.vatNumber),
+            ...optional("__taxIndirectTaxNumber", formData.indirectTaxNumber),
           },
         },
       });
       await refetch();
       setStep("/3/W9");
     } catch (e) {
-      setErrors({ graphqlError: true });
+      setErrors({ general: true });
     } finally {
       setLoading(false);
     }
@@ -126,11 +128,7 @@ export function useIndirectTaxForm(props: any) {
     // submitDisabled: !option,
     submitDisabled: false,
     option,
-    onChange: (value) => {
-      console.log("onChange", { value, option });
-      if (option === value) return;
-      setOption(value);
-    },
+    onChange: setOption,
     formRef,
   };
 }
