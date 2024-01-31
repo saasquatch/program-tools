@@ -1,28 +1,23 @@
 import {
   useMutation,
-  useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
+import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
+  COUNTRIES_NAMESPACE,
+  CountriesQuery,
   TAX_CONTEXT_NAMESPACE,
   USER_INFO_NAMESPACE,
+  USER_QUERY_NAMESPACE,
+  UserQuery,
 } from "../sqm-tax-and-cash/useTaxAndCash";
 import { FormState } from "../sqm-user-info-form/useUserInfoForm";
-
-const GET_COUNTRIES = gql`
-  query getCurrencies {
-    countries(limit: 1000) {
-      data {
-        countryCode
-        displayName
-      }
-    }
-  }
-`;
+import { optional } from "../../../utilities";
+import { IndirectTaxForm } from "./sqm-indirect-tax-form";
 
 const UPSERT_USER = gql`
   mutation ($userInput: UserInput!) {
@@ -33,31 +28,31 @@ const UPSERT_USER = gql`
   }
 `;
 
-export function useIndirectTaxForm(props: any) {
+export function useIndirectTaxForm(props: IndirectTaxForm) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
+  const [upsertUser, upsertUserResponse] = useMutation(UPSERT_USER);
   const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
   const userFormData = useParentValue<FormState>(USER_INFO_NAMESPACE);
   const user = useUserIdentity();
-  const [upsertUser, upsertUserResponse] = useMutation(UPSERT_USER);
+
+  const { refetch } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+  const { data: _countries, loading: countriesLoading } =
+    useParentQueryValue<CountriesQuery>(COUNTRIES_NAMESPACE);
 
   // from step 1
-  console.log({ userFormData });
+  console.log({ userFormData, _countries });
 
   const [option, setOption] = useState<
     "hstCanada" | "otherRegion" | "notRegistered"
   >(null);
   const [errors, setErrors] = useState({});
 
-  const { data: _countries, loading: countriesLoading } = useQuery(
-    GET_COUNTRIES,
-    {}
-  );
   const countries = _countries?.countries.data;
 
   const onSubmit = async (event: any) => {
     if (!option) {
-      setErrors({ taxOption: true });
+      setErrors({ taxDetails: true });
       return;
     }
 
@@ -65,13 +60,18 @@ export function useIndirectTaxForm(props: any) {
     let validationErrors: Record<string, string> = {};
 
     const controls = event.target.getFormControls();
-    const optionFields = ["hstCanada", "otherRegion", "notRegistered"];
+    const optionMapping = {
+      hstCanada: ["province", "indirectTaxNumber"],
+      otherRegion: ["selectedRegion", "vatNumber"],
+      notRegistered: [],
+    };
+    const relevantFields = optionMapping[option];
     controls.forEach((control) => {
-      if (!control.name || optionFields.includes(control.name)) return;
+      if (!control.name || !control.id) return;
+      if (!relevantFields.includes(control.id)) return;
 
       const key = control.name;
       const value = control.value;
-      console.log({ key, value });
       JSONPointer.set(formData, key, value);
 
       if (control.required && !value) {
@@ -98,13 +98,18 @@ export function useIndirectTaxForm(props: any) {
           customFields: {
             currency,
             participantType,
+            ...optional("__taxOption", formData.taxOption),
+            ...optional("__taxProvince", formData.province),
+            ...optional("__taxCountry", formData.selectedRegion),
+            ...optional("__taxVatNumber", formData.vatNumber),
+            ...optional("__taxIndirectTaxNumber", formData.indirectTaxNumber),
           },
         },
       });
-
+      await refetch();
       setStep("/3/W9");
     } catch (e) {
-      setErrors({ graphqlError: true });
+      setErrors({ general: true });
     } finally {
       setLoading(false);
     }
@@ -121,9 +126,10 @@ export function useIndirectTaxForm(props: any) {
     errors,
     onBack,
     onSubmit,
-    submitDisabled: !option,
+    // submitDisabled: !option,
+    submitDisabled: false,
     option,
-    setOption,
+    onChange: setOption,
     formRef,
   };
 }

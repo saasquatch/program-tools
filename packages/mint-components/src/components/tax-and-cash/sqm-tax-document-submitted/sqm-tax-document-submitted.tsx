@@ -14,6 +14,7 @@ export class TaxDocumentSubmitted {
   @Prop() badgeTextSubmittedOn?: string = defaults.badgeTextSubmittedOn;
   @Prop() badgeTextAwaitingReview?: string = defaults.badgeTextAwaitingReview;
   @Prop() badgeTextExpiredOn?: string = defaults.badgeTextExpiredOn;
+  @Prop() badgeTextExpiringSoon?: string = defaults.badgeTextExpiringSoon;
   @Prop() taxAlertHeaderNotActive?: string = defaults.taxAlertHeaderNotActive;
   @Prop() taxAlertHeaderExpiredOn?: string = defaults.taxAlertHeaderExpiredOn;
   @Prop() taxAlertHeaderExpiringSoon?: string =

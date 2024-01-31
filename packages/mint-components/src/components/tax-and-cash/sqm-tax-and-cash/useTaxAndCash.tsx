@@ -1,11 +1,11 @@
 import {
   setUserIdentity,
   useHost,
-  useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
+import { useParentQuery } from "../../../utils/useParentQuery";
 import {
   getContextValueName,
   useParentState,
@@ -14,7 +14,11 @@ import { FormState } from "../sqm-user-info-form/useUserInfoForm";
 
 export const TAX_CONTEXT_NAMESPACE = "sq:tax-and-cash";
 
-export const USER_CONTEXT_NAMESPACE = "sq:tax-and-cash-user";
+export const USER_INFO_NAMESPACE = "sq:user-info-form";
+
+export const USER_QUERY_NAMESPACE = "sq:user-info-query";
+
+export const COUNTRIES_NAMESPACE = "sq:countries-list";
 
 export type TaxContextType = {
   step: string;
@@ -22,21 +26,19 @@ export type TaxContextType = {
 };
 
 const GET_USER = gql`
-  query {
-    viewer {
-      ... on User {
-        firstName
-        lastName
-        email
-        countryCode
-        customFields
-      }
+  query getUserTaxInfo($id: String!, $accountId: String!) {
+    user(id: $id, accountId: $accountId) {
+      firstName
+      lastName
+      email
+      countryCode
+      customFields
     }
   }
 `;
 
 export type UserQuery = {
-  viewer: {
+  user: {
     firstName?: string;
     lastName?: string;
     email?: string;
@@ -47,9 +49,27 @@ export type UserQuery = {
   };
 };
 
-export const USER_INFO_NAMESPACE = "sq:user-info-form";
+const GET_COUNTRIES = gql`
+  query getCurrencies {
+    countries(limit: 1000) {
+      data {
+        countryCode
+        displayName
+      }
+    }
+  }
+`;
 
-function getCurrentStep(user: UserQuery["viewer"]) {
+export type CountriesQuery = {
+  countries: {
+    data: {
+      countryCode: string;
+      displayName: string;
+    }[];
+  };
+};
+
+function getCurrentStep(user: UserQuery["user"]) {
   // return "/submitted";
   // @ts-ignore
   if (
@@ -72,30 +92,11 @@ function getCurrentStep(user: UserQuery["viewer"]) {
     return "/submitted";
   }
 
-  return "/loading";
+  return "/1";
 }
 
 export function useTaxAndCash() {
   const host = useHost();
-
-  // TODO: Load tax document status info
-
-  const [step, setStep] = useParentState<string>({
-    host,
-    namespace: TAX_CONTEXT_NAMESPACE,
-    initialValue: "/loading",
-  });
-
-  const [_userData, setUserData] = useParentState<UserQuery>({
-    host,
-    namespace: USER_CONTEXT_NAMESPACE,
-  });
-
-  useParentState<FormState>({
-    host,
-    namespace: USER_INFO_NAMESPACE,
-    initialValue: {},
-  });
 
   /**** DEMO DATA */
 
@@ -125,29 +126,56 @@ export function useTaxAndCash() {
 
   const user = useUserIdentity();
 
-  const { data, loading } = useQuery<UserQuery>(GET_USER, {
-    id: user?.id,
-    accountId: user?.accountId,
+  // TODO: Load tax document status info
+
+  const [step, setStep] = useParentState<string>({
+    host,
+    namespace: TAX_CONTEXT_NAMESPACE,
+    initialValue: "/loading",
+  });
+
+  useParentState<FormState>({
+    host,
+    namespace: USER_INFO_NAMESPACE,
+    initialValue: {},
+  });
+
+  const { data } = useParentQuery<UserQuery>({
+    host,
+    namespace: USER_QUERY_NAMESPACE,
+    query: GET_USER,
+    variables: {
+      id: user?.id,
+      accountId: user?.accountId,
+    },
+    skip: !user,
+  });
+
+  useParentQuery<CountriesQuery>({
+    host,
+    namespace: COUNTRIES_NAMESPACE,
+    query: GET_COUNTRIES,
+    skip: !user,
   });
 
   useEffect(() => {
     if (!host || !user) return;
 
     if (data) {
-      setUserData(data);
-      const user = data?.viewer;
-      if (!user) return;
+      const user = data?.user;
+      if (!user || step !== "/loading") return;
+
       const currentStep = getCurrentStep(user);
 
       console.log({ currentStep });
       setStep(currentStep);
     }
-  }, [host, user, data?.viewer?.email]);
+  }, [host, user, data?.user?.email]);
 
   return {
     step,
     setStep,
     namespace: getContextValueName(TAX_CONTEXT_NAMESPACE),
-    loading,
+    loading: step === "/loading",
   };
 }

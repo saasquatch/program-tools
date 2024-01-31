@@ -1,47 +1,35 @@
-import { useQuery, useUserIdentity } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
-import { useParent, useParentValue } from "../../../utils/useParentState";
+import { useParentQueryValue } from "../../../utils/useParentQuery";
+import { useParent } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
-  USER_CONTEXT_NAMESPACE,
+  USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/useTaxAndCash";
-import { DocusignForm } from "./sqm-docusign-form";
 import { TaxDocumentType } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
-
-const GET_USER_TAX_INFO = gql`
-  query getUserTaxInfo {
-    viewer {
-      ... on User {
-        id
-        accountId
-        firstName
-        lastName
-        email
-        countryCode
-        customFields
-      }
-    }
-  }
-`;
+import { DocusignForm } from "./sqm-docusign-form";
 
 // TODO: Fill out when API is released
 const GET_TAX_DOCUMENT = gql`
-  query getTaxDocument ($vars: TaxDocumentInput) {
-  }
+  query getTaxDocument ($vars: TaxDocumentInput) {}
+`;
+
+// TODO: Check if document already exists
+const CHECK_DOCUMENT_STATUS = gql`
+  query checkDocumentStatus ($vars: CheckDocumentStatusInput) {}
 `;
 
 export function useDocusignForm(props: DocusignForm, el: any) {
   const [path, setPath] = useParent<string>(TAX_CONTEXT_NAMESPACE);
-  const user = useParentValue<UserQuery>(USER_CONTEXT_NAMESPACE);
+  const { data, loading } =
+    useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [errors, setErrors] = useState({});
 
   const splitPath = path.split("/");
   const pathedDocumentType = splitPath.length === 3 ? splitPath[2] : undefined;
-
-  const savedUserTaxType = user?.viewer?.customFields?.w9Type;
+  const savedUserTaxType = data?.user?.customFields?.w9Type;
 
   // TODO: Replace with real backend data
   const {
@@ -98,7 +86,8 @@ export function useDocusignForm(props: DocusignForm, el: any) {
       },
     },
     states: {
-      submitDisabled: taxInfoLoading || !formSubmitted,
+      disabled: taxInfoLoading,
+      submitDisabled: !formSubmitted,
       loading: taxInfoLoading,
       formState: {
         completedTaxForm: formSubmitted,

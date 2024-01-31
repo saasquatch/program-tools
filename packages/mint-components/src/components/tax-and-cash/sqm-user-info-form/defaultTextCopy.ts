@@ -10,6 +10,12 @@ export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
   vatNumber: "VAT number",
   province: "Province",
   indirectTaxNumber: "Indirect Tax",
+  error: {
+    selectedRegion: "Country is required",
+    vatNumber: "VAT number is required",
+    province: "Province is required",
+    indirectTaxNumber: "Indirect Tax is required",
+  },
 };
 
 export const userInfoText: UserInfoFormViewProps["text"] = {
@@ -19,7 +25,7 @@ export const userInfoText: UserInfoFormViewProps["text"] = {
   country: "Country",
   currency: "Currency",
   allowBankingCollection: "I agree to the terms",
-  submitButton: "Submit",
+  submitButton: "Continue",
   formStep: "Step 1 of 4",
   personalInformation: "Personal Information",
   participantType: "Participant type",
@@ -67,7 +73,7 @@ export const docusignFormText: DocusignFormViewProps["text"] = {
   taxForm: "Tax form",
   taxFormLabel: "{documentType} Tax Form",
   taxFormDescription:
-    "Participants based in the US and partnering with US-based brands need to submit a W9 form.",
+    "Participants based in the US and partnering with US-based brands need to submit a {documentType} form.",
   notBasedInUS: "Not based in the US?",
   banner: "Complete and submit your tax form to save your information",
   checkboxLabel: "Form submission",
@@ -118,9 +124,11 @@ export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
   taxAlertHeaderNotActive:
     "Your {documentType} tax form has personal information that doesn't match your profile.",
   taxAlertHeaderExpiredOn: "Your {documentType} tax form has expired.",
-  taxAlertHeaderExpiringSoon: "Your {documentType} tax form expires on {dateExpired}",
+  taxAlertHeaderExpiringSoon:
+    "Your {documentType} tax form expires on {dateExpired}",
   taxAlertMessage: "Please resubmit a new {documentType} form.",
-  taxAlertMessageExpiringSoon: "Please submit a new {documentType} form to continue receiving your rewards",
+  taxAlertMessageExpiringSoon:
+    "Please submit a new {documentType} form to continue receiving your rewards",
   bankingInformationSectionHeader: "Banking Information",
   taxDocumentSectionHeader: "Tax documents",
   taxDocumentSectionSubHeader: "{documentType} Tax Documents",

@@ -1,9 +1,11 @@
 import { VNode, h } from "@stencil/core";
 import { createStyleSheet } from "../../../../styling/JSS";
+import { formatDisplayName } from "@formatjs/intl";
 
 export interface IndirectDetailsSlotViewProps {
   states: {
     loading: boolean;
+    hide: boolean;
     formState: {
       registeredIn: "canada" | "otherRegion";
       selectedRegion?: string;
@@ -20,14 +22,17 @@ export interface IndirectDetailsSlotViewProps {
       displayName: string;
     }[];
   };
-  callbacks: {
-    onChange: (e) => void;
-  };
   text: {
-    selectedRegion?: string;
-    vatNumber?: string;
-    province?: string;
-    indirectTaxNumber?: string;
+    selectedRegion: string;
+    vatNumber: string;
+    province: string;
+    indirectTaxNumber: string;
+    error: {
+      selectedRegion: string;
+      vatNumber: string;
+      province: string;
+      indirectTaxNumber: string;
+    };
   };
 }
 
@@ -50,6 +55,16 @@ const style = {
   Input: {
     maxWidth: "500px",
   },
+  ErrorInput: {
+    "&::part(base)": {
+      border: "1px solid var(--sl-color-danger-500)",
+      borderRadius: "var(--sl-input-border-radius-medium)",
+    },
+
+    "&::part(help-text)": {
+      color: "var(--sl-color-danger-500)",
+    },
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -66,73 +81,98 @@ const vanillaStyle = `
     }
   `;
 
-export const IndirectDetailsSlotView = (
-  props: IndirectDetailsSlotViewProps
-) => {
+export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
   const {
     states,
     states: { formState },
-    callbacks,
     text,
   } = props;
 
   const { classes } = sheet;
 
   return (
-    <form class={classes.Container}>
-      <style type="text/css">
-        {styleString}
-        {vanillaStyle}
-      </style>
-      <hr class={classes.HR} />
-      <div class={classes.InputContainer}>
-        {formState.registeredIn === "otherRegion" ? (
+    <div style={states.hide ? { display: "none" } : {}}>
+      <form class={classes.Container}>
+        <style type="text/css">
+          {styleString}
+          {vanillaStyle}
+        </style>
+        <hr class={classes.HR} />
+        <div class={classes.InputContainer}>
           <sl-select
             required
             class={classes.Input}
             exportparts="label: input-label"
-            value={formState.selectedRegion}
             label={text.selectedRegion}
             disabled={states.loading}
-            // Copied from edit form, may need to keep
-            {...(formState.errors?.selectedRegion &&
-            formState.errors?.selectedRegion.status !== "valid"
-              ? { class: "errors?tyles", helpText: "Cannot be empty" }
-              : [])}
+            {...(formState.errors?.selectedRegion && {
+              class: classes.ErrorInput,
+              helpText: text.error.selectedRegion,
+            })}
             id="selectedRegion"
             name="/selectedRegion"
-            error={
-              formState.errors?.selectedRegion &&
-              formState.errors?.selectedRegion.status !== "valid"
-                ? formState.errors?.selectedRegion.message
-                : undefined
-            }
           >
-            {props.data.countries.map((c) => (
+            {props.data.countries?.map((c) => (
               <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
             ))}
           </sl-select>
-        ) : (
-          <sl-select
+          <sl-input
             required
             exportparts="label: input-label"
             class={classes.Input}
-            value={formState.province}
+            label={text.vatNumber}
+            disabled={states.loading}
+            {...(formState.errors?.vatNumber && {
+              class: classes.ErrorInput,
+              helpText: text.error.vatNumber,
+            })}
+            id="vatNumber"
+            name="/vatNumber"
+          />
+        </div>
+        <hr class={classes.HR} />
+      </form>
+    </div>
+  );
+};
+
+export const IndirectDetailsSlotView = (
+  props: IndirectDetailsSlotViewProps
+) => {
+  const {
+    states,
+    states: { formState },
+    text,
+  } = props;
+
+  const { classes } = sheet;
+
+  return (
+    <div style={states.hide ? { display: "none" } : {}}>
+      <form class={classes.Container}>
+        <style type="text/css">
+          {styleString}
+          {vanillaStyle}
+        </style>
+        <hr class={classes.HR} />
+        <div class={classes.InputContainer}>
+          <sl-select
+            required
+            onSl-hide={() => {
+              const event = new Event("sl-after-hide");
+              dispatchEvent(event);
+            }}
+            onSl-after-hide={() => console.log("after hide")}
+            exportparts="label: input-label"
+            class={classes.Input}
             label={text.province}
             disabled={states.loading}
-            // Copied from edit form, may need to keep
-            {...(formState.errors?.province &&
-            formState.errors?.province.status !== "valid"
-              ? { class: "errors?tyles", helpText: "Cannot be empty" }
-              : [])}
+            {...(formState.errors?.province && {
+              class: classes.ErrorInput,
+              helpText: text.error.province,
+            })}
             id="province"
             name="/province"
-            error={
-              formState.errors?.province &&
-              formState.errors?.province.status !== "valid"
-                ? formState.errors?.province.message
-                : undefined
-            }
           >
             <sl-menu-item value="ON">Ontario</sl-menu-item>
             <sl-menu-item value="QC">Quebec</sl-menu-item>
@@ -148,55 +188,22 @@ export const IndirectDetailsSlotView = (
             <sl-menu-item value="YT">Yukon</sl-menu-item>
             <sl-menu-item value="NU">Nunavut</sl-menu-item>
           </sl-select>
-        )}
-        {formState.registeredIn === "otherRegion" ? (
           <sl-input
             required
             exportparts="label: input-label"
             class={classes.Input}
-            value={formState.vatNumber}
-            label={text.vatNumber}
-            disabled={states.loading}
-            // Copied from edit form, may need to keep
-            {...(formState.errors?.vatNumber &&
-            formState.errors?.vatNumber.status !== "valid"
-              ? { class: "errors?tyles", helpText: "Cannot be empty" }
-              : [])}
-            id="vatNumber"
-            name="/vatNumber"
-            error={
-              formState.errors?.vatNumber &&
-              formState.errors?.vatNumber.status !== "valid"
-                ? formState.errors?.vatNumber.message
-                : undefined
-            }
-          />
-        ) : (
-          <sl-input
-            required
-            exportparts="label: input-label"
-            class={classes.Input}
-            value={formState.indirectTaxNumber}
             label={text.indirectTaxNumber}
             disabled={states.loading}
-            // onInput={callbacks.onChange}
-            // Copied from edit form, may need to keep
-            {...(formState.errors?.indirectTaxNumber &&
-            formState.errors?.indirectTaxNumber.status !== "valid"
-              ? { class: "errors?tyles", helpText: "Cannot be empty" }
-              : [])}
+            {...(formState.errors?.indirectTaxNumber && {
+              class: classes.ErrorInput,
+              helpText: text.error.indirectTaxNumber,
+            })}
             id="indirectTaxNumber"
             name="/indirectTaxNumber"
-            error={
-              formState.errors?.indirectTaxNumber &&
-              formState.errors?.indirectTaxNumber.status !== "valid"
-                ? formState.errors?.indirectTaxNumber.message
-                : undefined
-            }
           />
-        )}
-      </div>
-      <hr class={classes.HR} />
-    </form>
+        </div>
+        <hr class={classes.HR} />
+      </form>
+    </div>
   );
 };

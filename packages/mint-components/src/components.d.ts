@@ -2877,6 +2877,7 @@ export namespace Components {
     interface SqmTaxDocumentSubmitted {
         "badgeTextAwaitingReview"?: string;
         "badgeTextExpiredOn"?: string;
+        "badgeTextExpiringSoon"?: string;
         "badgeTextSubmittedOn"?: string;
         "bankingInformationSectionHeader": string;
         "generalErrorDescription": string;
@@ -6555,6 +6556,7 @@ declare namespace LocalJSX {
     interface SqmTaxDocumentSubmitted {
         "badgeTextAwaitingReview"?: string;
         "badgeTextExpiredOn"?: string;
+        "badgeTextExpiringSoon"?: string;
         "badgeTextSubmittedOn"?: string;
         "bankingInformationSectionHeader"?: string;
         "generalErrorDescription"?: string;

@@ -35,7 +35,7 @@ export function useDocumentTypeForm(props: DocumentTypeForm) {
     },
     states: {
       loading: false,
-      submitDisabled: false,
+      disabled: false,
       formState: {
         formSubmission: false,
         selectedTaxForm: "w9" as const,
