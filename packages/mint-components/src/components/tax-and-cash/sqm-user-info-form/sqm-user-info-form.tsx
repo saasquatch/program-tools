@@ -27,48 +27,123 @@ export class TaxForm {
    * @uiType object
    */
   @Prop() demoData?: DemoData<UserNameViewProps>;
-
+  /**
+   * Label text for first name input
+   * @uiName First name label
+   */
   @Prop()
   firstName: string = userInfoText.firstName;
+  /**
+   * Label text for last name input
+   * @uiName Last name label
+   */
   @Prop() lastName: string = userInfoText.lastName;
+  /**
+   * Label text for email input
+   * @uiName Email label
+   */
   @Prop() email: string = userInfoText.email;
+  /**
+   * Label text for country input
+   * @uiName Country label
+   */
   @Prop() country: string = userInfoText.country;
+  /**
+   * Label text for currency input
+   * @uiName Currency label
+   */
   @Prop() currency: string = userInfoText.currency;
+  /**
+   * Label text for tax and banking collection checkbox
+   * @uiName Tax and banking label
+   */
   @Prop() allowBankingCollection: string = userInfoText.allowBankingCollection;
-  @Prop() formStep: string = userInfoText.formStep;
-  @Prop() personalInformation: string = userInfoText.personalInformation;
-  @Prop() businessEntity: string = userInfoText.businessEntity;
-  @Prop() participantType: string = userInfoText.participantType;
-  @Prop() individualParticipant: string = userInfoText.individualParticipant;
+  /**
+   * Heading text for the tax and banking collection checkbox
+   * @uiName Tax and banking collection checkbox heading
+   */
   @Prop() taxAndBankingCollection: string =
     userInfoText.taxAndBankingCollection;
+  /**
+   * Sub text shown at the top of the page, used to show the current step of the tax form.
+   * @uiName Tax form step text
+   */
+  @Prop() formStep: string = userInfoText.formStep;
+  /**
+   * Heading text shown above the forms inputs.
+   * @uiName Form heading text
+   */
+  @Prop() personalInformation: string = userInfoText.personalInformation;
+  /**
+   * Label text for the business entity radio button
+   * @uiName Business entity radio button label
+   */
+  @Prop() businessEntity: string = userInfoText.businessEntity;
+  /**
+   * Label text for the individual participant radio button
+   * @uiName Individual participant radio button label
+   */
+  @Prop() individualParticipant: string = userInfoText.individualParticipant;
+  /**
+   * Heading text for the participant type radio buttons
+   * @uiName Participant type radio buttons heading
+   */
+  @Prop() participantType: string = userInfoText.participantType;
+  /**
+   * Text shown inside of submit button
+   * @uiName Submit button text
+   */
   @Prop() submitButton: string = userInfoText.submitButton;
+  /**
+   * Error text shown at the bottom of the first name input
+   * @uiName First name input error text
+   */
   @Prop() firstNameError: string = userInfoText.error.firstName;
+  /**
+   * Error text shown at the bottom of the last name input
+   * @uiName Last name input error text
+   */
   @Prop() lastNameError: string = userInfoText.error.lastName;
+  /**
+   * Error text shown at the bottom of the email input
+   * @uiName Email input error text
+   */
   @Prop() emailError: string = userInfoText.error.email;
+  /**
+   * Error text shown at the bottom of the country input
+   * @uiName Country input error text
+   */
   @Prop() countryError: string = userInfoText.error.countryCode;
+  /**
+   * Error text shown at the bottom of the currency input
+   * @uiName Currency input error text
+   */
   @Prop() currencyError: string = userInfoText.error.currency;
+  /**
+   * Error text shown at the bottom of the tax and banking collection checkbox
+   * @uiName Tax and banking collection checkbox error text
+   */
   @Prop() allowBankingCollectionError: string =
     userInfoText.error.allowBankingCollection;
+  /**
+   * Error text shown at the bottom of the participant type checkbox
+   * @uiName Participant type checkbox error text
+   */
   @Prop() participantTypeError: string = userInfoText.error.participantType;
 
   /**
-   * The message to be displayed when a required field is not filled.
+   * The title for error message shown at the top of the page in an error banner
    *
-   * @uiName Required field message
-   * @uiWidget textArea
+   * @uiName General error title
    */
   @Prop() generalErrorTitle: string = userInfoText.error.generalTitle;
+  /**
+   * The error message shown at the top of the page in an error banner
+   *
+   * @uiName General error text
+   */
   @Prop() generalErrorDescription: string =
     userInfoText.error.generalDescription;
-
-  /**
-   * The message to be displayed when a the form submission fails unexpectedly.
-   *
-   * @uiName Network error message
-   * @uiWidget textArea
-   */
-  @Prop() networkErrorMessage: string = "Network request failed.";
 
   constructor() {
     withHooks(this);

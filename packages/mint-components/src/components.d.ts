@@ -11,7 +11,6 @@ import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { UserNameViewProps } from "./components/tax-and-cash/sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
-import { DocumentTypeFormViewProps } from "./components/tax-and-cash/sqm-document-type-form/sqm-document-type-form-view";
 import { DocusignFormViewProps } from "./components/tax-and-cash/sqm-docusign-form/sqm-docusign-form-view";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
@@ -287,42 +286,140 @@ export namespace Components {
         "dividerStyle": string;
     }
     interface SqmDocumentTypeForm {
+        /**
+          * Text shown inside of back button
+          * @uiName Back button text
+         */
         "backButton": string;
-        "demoData": DemoData<DocumentTypeFormViewProps>;
+        /**
+          * Sub text shown above form selection radio buttons
+          * @uiName Tax form selection heading text
+         */
         "formLabel": string;
+        /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Tax form step text
+         */
         "formStep": string;
-        "formSubmissionError": string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+         */
         "generalErrorDescription": string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+         */
         "generalErrorTitle": string;
+        /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+         */
         "submitButton": string;
+        /**
+          * Heading text shown at the top of the top of page
+          * @uiName Tax form heading text
+         */
         "taxForm": string;
+        /**
+          * Subtext for the W8 radio button
+          * @uiName W8 radio button subtext
+         */
         "w8Description": string;
+        /**
+          * Subtext for the W8E radio button
+          * @uiName W8E radio button subtext
+         */
         "w8EDescription": string;
+        /**
+          * Label text for the W8E radio button
+          * @uiName W8E radio button label
+         */
         "w8ELabel": string;
+        /**
+          * Label text for the W8 radio button
+          * @uiName W8 radio button label
+         */
         "w8Label": string;
+        /**
+          * Subtext for the W9 radio button
+          * @uiName W9 radio button subtext
+         */
         "w9Description": string;
+        /**
+          * Label text for the W9 radio button
+          * @uiName W9 radio button label
+         */
         "w9Label": string;
     }
     interface SqmDocusignEmbed {
         "url": string;
     }
     interface SqmDocusignForm {
+        /**
+          * Text shown inside of back button
+          * @uiName Back button text
+         */
         "backButton": string;
+        /**
+          * Text shown in the banner above the document
+          * @uiName Banner text
+         */
         "banner": string;
+        /**
+          * Label text for the form submission checkbox
+          * @uiName Form submission checkbox label
+         */
         "checkboxDescription": string;
+        /**
+          * Heading text for the form submission checkbox
+          * @uiName Form submission checkbox heading
+         */
         "checkboxLabel": string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<DocusignFormViewProps>;
+        /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Tax form step text
+         */
         "formStep": string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+         */
         "generalErrorDescription": string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+         */
         "generalErrorTitle": string;
+        /**
+          * Text shown in the link to the form for non US residents
+          * @uiName Not based in US link text
+         */
         "notBasedInUS": string;
+        /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+         */
         "submitButton": string;
+        /**
+          * Heading text shown at the top of the page
+          * @uiName Tax form heading text
+         */
         "taxForm": string;
+        /**
+          * Subtext shown at the top of the page next to the document type text
+          * @uiName Tax form subtext
+         */
         "taxFormDescription": string;
+        /**
+          * Text shown at the top of the page next to the document type text
+          * @uiName Tax form label text
+         */
         "taxFormLabel": string;
     }
     interface SqmDropdownField {
@@ -606,23 +703,75 @@ export namespace Components {
         "minHeight"?: string;
     }
     interface SqmIndirectTaxForm {
+        /**
+          * Text shown inside of back button
+          * @uiName Back button text
+         */
         "backButton": string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<IndirectTaxFormViewProps>;
+        /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Indirect tax form step text
+         */
         "formStep": string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+         */
         "generalErrorDescription": string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+         */
         "generalErrorTitle": string;
+        /**
+          * Label text for the HST Canada radio button
+          * @uiName HST Canada radio button label
+         */
         "hstCanada": string;
+        /**
+          * Heading text shown at the top of the page
+          * @uiName Indirect tax heading text
+         */
         "indirectTax": string;
+        /**
+          * Subtext shown at the top of the page
+          * @uiName Indirect tax sub text
+         */
         "indirectTaxDescription": string;
+        /**
+          * Heading text shown above the tax details radio buttons
+          * @uiName Indirect tax details heading
+         */
         "indirectTaxDetails": string;
+        /**
+          * Sub text shown above the tax details radio buttons
+          * @uiName Indirect tax details sub text
+         */
         "indirectTaxDetailsDescription": string;
+        /**
+          * Label text for the not registered radio button
+          * @uiName Not registered radio button label
+         */
         "notRegistered": string;
+        /**
+          * Label text for the other region radio button
+          * @uiName Other region radio button label
+         */
         "otherRegion": string;
+        /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+         */
         "submitButton": string;
+        /**
+          * Error text shown below the tax details radio buttons
+          * @uiName Indirect tax details error text
+         */
         "taxDetailsError": string;
     }
     interface SqmInputField {
@@ -2981,43 +3130,120 @@ export namespace Components {
         "textAlign": "left" | "center" | "right";
     }
     interface SqmUserInfoForm {
+        /**
+          * Label text for tax and banking collection checkbox
+          * @uiName Tax and banking label
+         */
         "allowBankingCollection": string;
+        /**
+          * Error text shown at the bottom of the tax and banking collection checkbox
+          * @uiName Tax and banking collection checkbox error text
+         */
         "allowBankingCollectionError": string;
+        /**
+          * Label text for the business entity radio button
+          * @uiName Business entity radio button label
+         */
         "businessEntity": string;
+        /**
+          * Label text for country input
+          * @uiName Country label
+         */
         "country": string;
+        /**
+          * Error text shown at the bottom of the country input
+          * @uiName Country input error text
+         */
         "countryError": string;
+        /**
+          * Label text for currency input
+          * @uiName Currency label
+         */
         "currency": string;
+        /**
+          * Error text shown at the bottom of the currency input
+          * @uiName Currency input error text
+         */
         "currencyError": string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UserNameViewProps>;
+        /**
+          * Label text for email input
+          * @uiName Email label
+         */
         "email": string;
+        /**
+          * Error text shown at the bottom of the email input
+          * @uiName Email input error text
+         */
         "emailError": string;
+        /**
+          * Label text for first name input
+          * @uiName First name label
+         */
         "firstName": string;
+        /**
+          * Error text shown at the bottom of the first name input
+          * @uiName First name input error text
+         */
         "firstNameError": string;
+        /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Tax form step text
+         */
         "formStep": string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+         */
         "generalErrorDescription": string;
         /**
-          * The message to be displayed when a required field is not filled.
-          * @uiName Required field message
-          * @uiWidget textArea
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
          */
         "generalErrorTitle": string;
+        /**
+          * Label text for the individual participant radio button
+          * @uiName Individual participant radio button label
+         */
         "individualParticipant": string;
+        /**
+          * Label text for last name input
+          * @uiName Last name label
+         */
         "lastName": string;
+        /**
+          * Error text shown at the bottom of the last name input
+          * @uiName Last name input error text
+         */
         "lastNameError": string;
         /**
-          * The message to be displayed when a the form submission fails unexpectedly.
-          * @uiName Network error message
-          * @uiWidget textArea
+          * Heading text for the participant type radio buttons
+          * @uiName Participant type radio buttons heading
          */
-        "networkErrorMessage": string;
         "participantType": string;
+        /**
+          * Error text shown at the bottom of the participant type checkbox
+          * @uiName Participant type checkbox error text
+         */
         "participantTypeError": string;
+        /**
+          * Heading text shown above the forms inputs.
+          * @uiName Form heading text
+         */
         "personalInformation": string;
+        /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+         */
         "submitButton": string;
+        /**
+          * Heading text for the tax and banking collection checkbox
+          * @uiName Tax and banking collection checkbox heading
+         */
         "taxAndBankingCollection": string;
     }
     interface SqmUserName {
@@ -3996,42 +4222,140 @@ declare namespace LocalJSX {
         "dividerStyle"?: string;
     }
     interface SqmDocumentTypeForm {
+        /**
+          * Text shown inside of back button
+          * @uiName Back button text
+         */
         "backButton"?: string;
-        "demoData"?: DemoData<DocumentTypeFormViewProps>;
+        /**
+          * Sub text shown above form selection radio buttons
+          * @uiName Tax form selection heading text
+         */
         "formLabel"?: string;
+        /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Tax form step text
+         */
         "formStep"?: string;
-        "formSubmissionError"?: string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+         */
         "generalErrorDescription"?: string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+         */
         "generalErrorTitle"?: string;
+        /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+         */
         "submitButton"?: string;
+        /**
+          * Heading text shown at the top of the top of page
+          * @uiName Tax form heading text
+         */
         "taxForm"?: string;
+        /**
+          * Subtext for the W8 radio button
+          * @uiName W8 radio button subtext
+         */
         "w8Description"?: string;
+        /**
+          * Subtext for the W8E radio button
+          * @uiName W8E radio button subtext
+         */
         "w8EDescription"?: string;
+        /**
+          * Label text for the W8E radio button
+          * @uiName W8E radio button label
+         */
         "w8ELabel"?: string;
+        /**
+          * Label text for the W8 radio button
+          * @uiName W8 radio button label
+         */
         "w8Label"?: string;
+        /**
+          * Subtext for the W9 radio button
+          * @uiName W9 radio button subtext
+         */
         "w9Description"?: string;
+        /**
+          * Label text for the W9 radio button
+          * @uiName W9 radio button label
+         */
         "w9Label"?: string;
     }
     interface SqmDocusignEmbed {
         "url"?: string;
     }
     interface SqmDocusignForm {
+        /**
+          * Text shown inside of back button
+          * @uiName Back button text
+         */
         "backButton"?: string;
+        /**
+          * Text shown in the banner above the document
+          * @uiName Banner text
+         */
         "banner"?: string;
+        /**
+          * Label text for the form submission checkbox
+          * @uiName Form submission checkbox label
+         */
         "checkboxDescription"?: string;
+        /**
+          * Heading text for the form submission checkbox
+          * @uiName Form submission checkbox heading
+         */
         "checkboxLabel"?: string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<DocusignFormViewProps>;
+        /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Tax form step text
+         */
         "formStep"?: string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+         */
         "generalErrorDescription"?: string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+         */
         "generalErrorTitle"?: string;
+        /**
+          * Text shown in the link to the form for non US residents
+          * @uiName Not based in US link text
+         */
         "notBasedInUS"?: string;
+        /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+         */
         "submitButton"?: string;
+        /**
+          * Heading text shown at the top of the page
+          * @uiName Tax form heading text
+         */
         "taxForm"?: string;
+        /**
+          * Subtext shown at the top of the page next to the document type text
+          * @uiName Tax form subtext
+         */
         "taxFormDescription"?: string;
+        /**
+          * Text shown at the top of the page next to the document type text
+          * @uiName Tax form label text
+         */
         "taxFormLabel"?: string;
     }
     interface SqmDropdownField {
@@ -4315,23 +4639,75 @@ declare namespace LocalJSX {
         "minHeight"?: string;
     }
     interface SqmIndirectTaxForm {
+        /**
+          * Text shown inside of back button
+          * @uiName Back button text
+         */
         "backButton"?: string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<IndirectTaxFormViewProps>;
+        /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Indirect tax form step text
+         */
         "formStep"?: string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+         */
         "generalErrorDescription"?: string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+         */
         "generalErrorTitle"?: string;
+        /**
+          * Label text for the HST Canada radio button
+          * @uiName HST Canada radio button label
+         */
         "hstCanada"?: string;
+        /**
+          * Heading text shown at the top of the page
+          * @uiName Indirect tax heading text
+         */
         "indirectTax"?: string;
+        /**
+          * Subtext shown at the top of the page
+          * @uiName Indirect tax sub text
+         */
         "indirectTaxDescription"?: string;
+        /**
+          * Heading text shown above the tax details radio buttons
+          * @uiName Indirect tax details heading
+         */
         "indirectTaxDetails"?: string;
+        /**
+          * Sub text shown above the tax details radio buttons
+          * @uiName Indirect tax details sub text
+         */
         "indirectTaxDetailsDescription"?: string;
+        /**
+          * Label text for the not registered radio button
+          * @uiName Not registered radio button label
+         */
         "notRegistered"?: string;
+        /**
+          * Label text for the other region radio button
+          * @uiName Other region radio button label
+         */
         "otherRegion"?: string;
+        /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+         */
         "submitButton"?: string;
+        /**
+          * Error text shown below the tax details radio buttons
+          * @uiName Indirect tax details error text
+         */
         "taxDetailsError"?: string;
     }
     interface SqmInputField {
@@ -6665,43 +7041,120 @@ declare namespace LocalJSX {
         "textAlign"?: "left" | "center" | "right";
     }
     interface SqmUserInfoForm {
+        /**
+          * Label text for tax and banking collection checkbox
+          * @uiName Tax and banking label
+         */
         "allowBankingCollection"?: string;
+        /**
+          * Error text shown at the bottom of the tax and banking collection checkbox
+          * @uiName Tax and banking collection checkbox error text
+         */
         "allowBankingCollectionError"?: string;
+        /**
+          * Label text for the business entity radio button
+          * @uiName Business entity radio button label
+         */
         "businessEntity"?: string;
+        /**
+          * Label text for country input
+          * @uiName Country label
+         */
         "country"?: string;
+        /**
+          * Error text shown at the bottom of the country input
+          * @uiName Country input error text
+         */
         "countryError"?: string;
+        /**
+          * Label text for currency input
+          * @uiName Currency label
+         */
         "currency"?: string;
+        /**
+          * Error text shown at the bottom of the currency input
+          * @uiName Currency input error text
+         */
         "currencyError"?: string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UserNameViewProps>;
+        /**
+          * Label text for email input
+          * @uiName Email label
+         */
         "email"?: string;
+        /**
+          * Error text shown at the bottom of the email input
+          * @uiName Email input error text
+         */
         "emailError"?: string;
+        /**
+          * Label text for first name input
+          * @uiName First name label
+         */
         "firstName"?: string;
+        /**
+          * Error text shown at the bottom of the first name input
+          * @uiName First name input error text
+         */
         "firstNameError"?: string;
+        /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Tax form step text
+         */
         "formStep"?: string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+         */
         "generalErrorDescription"?: string;
         /**
-          * The message to be displayed when a required field is not filled.
-          * @uiName Required field message
-          * @uiWidget textArea
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
          */
         "generalErrorTitle"?: string;
+        /**
+          * Label text for the individual participant radio button
+          * @uiName Individual participant radio button label
+         */
         "individualParticipant"?: string;
+        /**
+          * Label text for last name input
+          * @uiName Last name label
+         */
         "lastName"?: string;
+        /**
+          * Error text shown at the bottom of the last name input
+          * @uiName Last name input error text
+         */
         "lastNameError"?: string;
         /**
-          * The message to be displayed when a the form submission fails unexpectedly.
-          * @uiName Network error message
-          * @uiWidget textArea
+          * Heading text for the participant type radio buttons
+          * @uiName Participant type radio buttons heading
          */
-        "networkErrorMessage"?: string;
         "participantType"?: string;
+        /**
+          * Error text shown at the bottom of the participant type checkbox
+          * @uiName Participant type checkbox error text
+         */
         "participantTypeError"?: string;
+        /**
+          * Heading text shown above the forms inputs.
+          * @uiName Form heading text
+         */
         "personalInformation"?: string;
+        /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+         */
         "submitButton"?: string;
+        /**
+          * Heading text for the tax and banking collection checkbox
+          * @uiName Tax and banking collection checkbox heading
+         */
         "taxAndBankingCollection"?: string;
     }
     interface SqmUserName {

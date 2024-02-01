@@ -14,7 +14,7 @@ export interface DocusignFormViewProps {
       taxFormTime: string;
       errors?: any;
     };
-    documentType?: TaxDocumentType;
+    documentType: TaxDocumentType;
   };
   callbacks: {
     onShowDocumentType: () => void;

@@ -182,6 +182,7 @@ const documentSubmittedLoadingProps: TaxDocumentSubmittedProps = {
 
 const docusignFormProps: DocusignFormViewProps = {
   states: {
+    documentType: "W9",
     loading: false,
     disabled: false,
     submitDisabled: false,
