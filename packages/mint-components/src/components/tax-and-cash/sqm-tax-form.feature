@@ -1,14 +1,21 @@
-@owner:andy
-@author:andy
-
+@owner:andy @author:andy
 Feature: Tax Form Flow
 
   Background: A user submits their Tax information
+  # Cases:
+  # US Brand
+  ## US participant - Requires W9
+  ## Canadian participant - Requires W8
+  ## Other country participant - Requires W8
+  # Non US Brand
+  ## US participant - Requires W9
+  ## Canadian participant - Doesn't require a tax form
+  ## Other country participant - Doesn't requore a tax form
 
   @minutia
-  Scenario Outline: A user completes the User Info and Indirect Tax steps
-    When they are on the User Info Form step
-    Then they fill out the following form fields with their personal information:
+  Scenario Outline: Participants can register as branded partners, provide indirect tax information and submit their tax forms
+    Given they are on step 1
+    When they input the following information into the form fields
       | First Name               | <firstName>              |
       | Last Name                | <lastName>               |
       | Email                    | <email>                  |
@@ -16,44 +23,86 @@ Feature: Tax Form Flow
       | Currency                 | <currency>               |
       | Participant Type         | <participantType>        |
       | Allow Banking Collection | <allowBankingCollection> |
-    And  they agree to the terms which sets <allowBankingCollection> to true
-    Then they can press "Continue" to move on to the Indirect Tax Form
-    When they are redirected to the Indrect Tax Form step
-    Then they select <hstCanada>, <otherRegion>, or <notRegistered> and fill out one of the following information:
-      | <hstCanada>     | I am registered for HST in Canada                                | <province> | <indirectTaxNumber> |
-      | <otherRegion>   | I am registered for Indirect Tax in a different Country / Region | <country>  | <vatNumber>         |
-      | <notRegistered> | I am not registered for Indirect Tax                             | N/A        | N/A                 |
-    Then press "Continue" to be redirected to the Document Type Form
+    And press "Continue"
+    Then they proceed to step 2
+    And they see three options
+      | I am registered for HST in Canada                                |
+      | I am registered for Indirect Tax in a different Country / Region |
+      | I am not registered for Indirect Tax                             |
+    But <option> is selected by default
+    When they complete filling out their indirect tax information
+    And press "Continue"
+    Then they proceed to <stepX> depending on the <brandCountry> and participants <countryCode>
     Examples:
-      | firstName | lastName | email                 | countryCode | currency | participantType       | allowBankingCollection | hstCanada | otherRegion | notRegistered | province         | country       | indirectTaxNumber | vatNumber |
-      | John      | Doe      | john.doe@email.com    | US          | USD      | individualParticipant | true                   | true      | false       | false         | N/A              | United Stated | N/A               | 10829     |
-      | Bob       | Johnson  | bob.johnson@email.com | CA          | CAD      | businessEntity        | true                   | false     | true        | false         | British Columbia | N/A           | 412321            | N/A       |
-      | Martin    | Renny    | bob.johnson@email.com | UK          | GBP      | individualParticipant | true                   | false     | false       | false         | N/A              | N/A           | N/A               | N/A       |
+      | firstName | lastName | email                  | countryCode | brandCountry | currency | participantType       | allowBankingCollection | option                                                           | stepX |
+      | Bob       | Johnson  | bob.johnson@email.com  | CA          | US           | CAD      | businessEntity        | true                   | I am registered for HST in Canada                                | 3     |
+      | Jane      | Moe      | jane.moe@email.com     | CA          | MX           | CAD      | individualParticipant | true                   | I am registered for HST in Canada                                | 4     |
+      | Dane      | Coe      | dane.coe@email.com     | US          | CA           | USD      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region | 3     |
+      | David     | Renar    | david.renar@email.com  | US          | MX           | USD      | businessEntity        | true                   | I am registered for Indirect Tax in a different Country / Region | 3     |
+      | Jose      | Querv    | jose.querv@email.com   | UK          | US           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region | 3     |
+      | David     | Blaine   | david.blaine@email.com | UK          | MX           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region | 4     |
+      | Charle    | Buck     | charle.buck@email.com  | EG          | US           | EGP      | businessEntity        | true                   | I am not registered for Indirect Tax                             | 3     |
+      | Pam       | Herd     | pam.herd@email.com     | EG          | MX           | BMD      | businessEntity        | true                   | I am not registered for Indirect Tax                             | 4     |
+
+
 
   @minutia
-  Scenario Outline: A user completes the Document Type Form step
-    Given they completed the User Info and Indirect Tax form steps
-    When they are on the Document Type Form step
-    Then they choose the <selectedTaxForm> type they wish to fill out in the next step:
-    And press "Continue" to be redirected to the Docusign Form.
+  Scenario Outline: Different indirect tax inputs are shown depending on the country of a participant
+    When <option> is selected based on based the participant <country> from step 1
+    Then different <inputs> appear
     Examples:
-      | selectedTaxForm |
-      | W9              |
-      | W8-BEN          |
-      | W8-BEN-E        |
+      | country        | option                                                           | inputs                        |
+      | Canada         | I am registered for HST in Canada                                | Province, Indirect Tax Number |
+      | United States  | I am registered for Indirect Tax in a different Country / Region | Country, VAT Number           |
+      | United Kingdom | I am registered for Indirect Tax in a different Country / Region | Country, VAT Number           |
+      | Egypt          | I am not registered for Indirect tax                             | N/A, N/A                      |
+
 
   @minutia
-  Scenario Outline: A user completes the Docusign Form Step
-    Given they completed the User Info, Indirect Tax, and Document Type Form steps
-    When they are redirected to the Docusign Form step
-    Then a Docusign iframe appears with the specified <selectedTaxForm> from the last step
-    Then they must complete and sign the form in the Docusign iframe
-    And  they agree to the terms which sets <completedTaxForm> to true
-    Then they can press "Continue" and complete the form.
+  Scenario Outline: Participants based in the US or working with US brands have to fillout docusign forms
+    Given a brand based in <brandCountry>
+    And the user selects <country> and <participantType> in step 1
+    When they view step 3
+    Then the <autoSelectedForm> is displayed
     Examples:
-      | selectedTaxForm | completedTaxForm |
-      | W9              | true             |
-      | W8-BEN          | true             |
-      | W8-BEN-E        | true             |
+      | brandCountry | country | participantType       | autoSelectedForm |
+      | US           | US      | individualParticipant | W9               |
+      | CA           | US      | businessEntity        | W9               |
+      | US           | CA      | individualParticipant | W8-BEN           |
+      | US           | CA      | businessEntity        | W8-BEN-E         |
+      | US           | MX      | individualParticipant | W8-BEN           |
+      | US           | MX      | businessEntity        | W8-BEN-E         |
 
+  @minutia
+  Scenario Outline: Participants based in the US working with non-US brands have to fillout the W9 docusign form
+    Given a brand based in <brandCountry>
+    And the user selects <country> and <participantType> in step 1
+    When they view step 3
+    Then the <autoSelectedForm> is displayed
+    Examples:
+      | brandCountry | country | participantType       | autoSelectedForm |
+      | MX           | US      | individualParticipant | W9               |
+      | UK           | US      | businessEntity        | W9               |
+      | AUS          | US      | businessEntity        | W9               |
 
+  @minutia
+  Scenario Outline: Participants based another country working with non-US brands do not have to fillout docusign forms
+    Given a brand based in <brandCountry>
+    And the brand is not in the US
+    And the user selects a <country> not in the US and <participantType> in step 1
+    Then they skip step 3
+    Examples:
+      | brandCountry | country | participantType       |
+      | MX           | UK      | individualParticipant |
+      | AUS          | EGP     | businessEntity        |
+
+  @minutia
+  Scenario: A general error banner appears upon form submission request failing
+    When the user completes a form with their information
+    And they press "Continue" to submit the form
+    Then a request is made to save the form data
+    But the request fails
+    Then a general error banner appears with <generalTitle> and <generalDescription>
+    Examples:
+      | generalTitle                                    | generalDescription                                                                     |
+      | There was a problem submitting your information | Please rview your information and try again. If this problem continus, contact Support |

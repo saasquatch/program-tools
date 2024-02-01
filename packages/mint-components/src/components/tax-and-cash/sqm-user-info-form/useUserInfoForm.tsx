@@ -76,16 +76,6 @@ export function useUserInfoForm(props: TaxForm) {
     console.log({ data });
     const user = data?.user;
     if (!user || step !== "/1") return;
-
-    setFormState({
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      countryCode: user.countryCode,
-      currency: user.customFields?.currency,
-      participantType: user.customFields?.participantType,
-      ...formState,
-    });
   }, [data, step]);
 
   function onRadioClick(value: string) {

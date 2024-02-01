@@ -86,7 +86,6 @@ export function useDocumentTypeForm(props: DocumentTypeForm) {
     text: {
       ...props,
       error: {
-        formSubmission: props.formSubmissionError,
         generalTitle: props.generalErrorTitle,
         generalDescription: props.generalErrorDescription,
       },

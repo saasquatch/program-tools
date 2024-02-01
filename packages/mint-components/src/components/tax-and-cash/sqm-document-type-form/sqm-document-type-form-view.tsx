@@ -29,7 +29,6 @@ export interface DocumentTypeFormViewProps {
     error: {
       generalTitle: string;
       generalDescription: string;
-      formSubmission: string;
     };
   };
 }

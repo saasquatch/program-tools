@@ -95,7 +95,7 @@ export function useTaxAndCash() {
     initialValue: "/loading",
   });
 
-  useParentState<FormState>({
+  const [_formState, setFormState] = useParentState<FormState>({
     namespace: USER_INFO_NAMESPACE,
     initialValue: {},
   });
@@ -133,6 +133,16 @@ export function useTaxAndCash() {
 
       console.log({ currentStep });
       setStep(currentStep);
+
+      if (currentStep !== "/submitted")
+        setFormState({
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          countryCode: user.countryCode,
+          currency: user.customFields?.currency,
+          participantType: user.customFields?.participantType,
+        });
     }
   }, [host, user, data?.user?.email]);
 

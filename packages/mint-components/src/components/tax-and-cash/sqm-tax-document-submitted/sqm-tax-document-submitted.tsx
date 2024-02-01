@@ -7,14 +7,62 @@ import { useTaxDocumentSubmitted } from "./useTaxDocumentSubmitted";
 
 @Component({ tag: "sqm-tax-document-submitted", shadow: true })
 export class TaxDocumentSubmitted {
+  /**
+   * Status text displayed in badge when tax document is Active
+   *
+   * @uiName Status text
+   */
   @Prop() statusTextActive?: string = defaults.statusTextActive;
+
+  /**
+   * Status text displayed in badge when tax document is Not Active
+   *
+   * @uiName Status text
+   */
   @Prop() statusTextNotActive?: string = defaults.statusTextNotActive;
+
+  /**
+   * Status text displayed in badge when tax document is Not Verified
+   *
+   * @uiName Status text
+   */
   @Prop() statusTextNotVerified?: string = defaults.statusTextNotVerified;
+
+  /**
+   * Status text displayed in badge when tax document is Expired
+   *
+   * @uiName Status text
+   */
   @Prop() statusTextExpired?: string = defaults.statusTextExpired;
+
+  /**
+   * Description text which appears beside badge showing when the form was submitted
+   *
+   * @uiName Badge description text
+   */
   @Prop() badgeTextSubmittedOn?: string = defaults.badgeTextSubmittedOn;
+
+  /**
+   * Description text which appears beside badge showing the form is awaiting review
+   *
+   * @uiName Badge description text
+   */
   @Prop() badgeTextAwaitingReview?: string = defaults.badgeTextAwaitingReview;
+
+  /**
+   * Description text which appears beside badge showing the form has expired
+   *
+   * @uiName Badge description text
+   */
   @Prop() badgeTextExpiredOn?: string = defaults.badgeTextExpiredOn;
+
+  /**
+   * Description text which appears beside badge showing the form expiring soon
+   *
+   * @uiName Badge description text
+   */
   @Prop() badgeTextExpiringSoon?: string = defaults.badgeTextExpiringSoon;
+
   @Prop() taxAlertHeaderNotActive?: string = defaults.taxAlertHeaderNotActive;
   @Prop() taxAlertHeaderExpiredOn?: string = defaults.taxAlertHeaderExpiredOn;
   @Prop() taxAlertHeaderExpiringSoon?: string =
