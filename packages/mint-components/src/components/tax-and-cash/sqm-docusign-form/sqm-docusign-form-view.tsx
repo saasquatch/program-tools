@@ -127,10 +127,10 @@ const style = {
     gap: "16px",
   },
   Link: {
-    color: "#14B1F7",
+    color: "var(--sl-color-sky-500)",
     textDecoration: "none",
     "&:visited": {
-      color: "#14B1F7",
+      color: "var(--sl-color-sky-500)",
     },
     "&:hover": {
       textDecoration: "underline",

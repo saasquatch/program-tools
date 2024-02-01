@@ -201,9 +201,10 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               >
                 {text.notRegistered}
               </sl-checkbox>
-              {formState.errors?.taxDetails && (
+              {/* ZH: Commenting for now, not sure if we still need it or not */}
+              {/* {formState.errors?.taxDetails && (
                 <p class={classes.ErrorText}>{text.error.taxDetails}</p>
-              )}
+              )} */}
             </div>
           </div>
           <div class={classes.BtnContainer}>

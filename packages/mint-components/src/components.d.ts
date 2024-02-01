@@ -3057,11 +3057,36 @@ export namespace Components {
           * @uiName Badge description text
          */
         "badgeTextSubmittedOn"?: string;
+        /**
+          * Header text displayed above the banking information card
+          * @uiName Banking information header
+         */
         "bankingInformationSectionHeader": string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+         */
         "generalErrorDescription": string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+         */
         "generalErrorTitle": string;
+        /**
+          * Description text displayed next to the badge in the tax documents status
+          * @uiName Invalid form description text
+         */
         "invalidForm"?: string;
+        /**
+          * Text displayed in the submit new document button at the bottom of the page
+          * @uiName No form needed subtext
+         */
         "newFormButton": string;
+        /**
+          * Subtext displayed at the bottom of the page if there are no tax documents to show
+          * @uiName No form needed subtext
+         */
+        "noFormNeededSubtext": string;
         /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
@@ -3082,12 +3107,40 @@ export namespace Components {
           * @uiName Status text
          */
         "statusTextNotVerified"?: string;
+        /**
+          * Header displayed in alert header at the top of the page.
+          * @uiName Expired alert header
+         */
         "taxAlertHeaderExpiredOn"?: string;
+        /**
+          * Header displayed in alert header at the top of the page.
+          * @uiName Expiring soon alert header
+         */
         "taxAlertHeaderExpiringSoon"?: string;
+        /**
+          * Header displayed in alert header at the top of the page.
+          * @uiName Not active alert header
+         */
         "taxAlertHeaderNotActive"?: string;
+        /**
+          * Description text displayed in alert body at the top of the page.
+          * @uiName Tax alert message
+         */
         "taxAlertMessage"?: string;
+        /**
+          * Description text displayed in alert body at the top of the page.
+          * @uiName Expiring soon tax alert message
+         */
         "taxAlertMessageExpiringSoon": string;
+        /**
+          * Header text displayed above the tax documents status
+          * @uiName Tax document section header
+         */
         "taxDocumentSectionHeader": string;
+        /**
+          * Sub header text displayed above the tax documents status
+          * @uiName Tax documents sub header
+         */
         "taxDocumentSectionSubHeader": string;
     }
     interface SqmText {
@@ -7006,11 +7059,36 @@ declare namespace LocalJSX {
           * @uiName Badge description text
          */
         "badgeTextSubmittedOn"?: string;
+        /**
+          * Header text displayed above the banking information card
+          * @uiName Banking information header
+         */
         "bankingInformationSectionHeader"?: string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+         */
         "generalErrorDescription"?: string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+         */
         "generalErrorTitle"?: string;
+        /**
+          * Description text displayed next to the badge in the tax documents status
+          * @uiName Invalid form description text
+         */
         "invalidForm"?: string;
+        /**
+          * Text displayed in the submit new document button at the bottom of the page
+          * @uiName No form needed subtext
+         */
         "newFormButton"?: string;
+        /**
+          * Subtext displayed at the bottom of the page if there are no tax documents to show
+          * @uiName No form needed subtext
+         */
+        "noFormNeededSubtext"?: string;
         /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
@@ -7031,12 +7109,40 @@ declare namespace LocalJSX {
           * @uiName Status text
          */
         "statusTextNotVerified"?: string;
+        /**
+          * Header displayed in alert header at the top of the page.
+          * @uiName Expired alert header
+         */
         "taxAlertHeaderExpiredOn"?: string;
+        /**
+          * Header displayed in alert header at the top of the page.
+          * @uiName Expiring soon alert header
+         */
         "taxAlertHeaderExpiringSoon"?: string;
+        /**
+          * Header displayed in alert header at the top of the page.
+          * @uiName Not active alert header
+         */
         "taxAlertHeaderNotActive"?: string;
+        /**
+          * Description text displayed in alert body at the top of the page.
+          * @uiName Tax alert message
+         */
         "taxAlertMessage"?: string;
+        /**
+          * Description text displayed in alert body at the top of the page.
+          * @uiName Expiring soon tax alert message
+         */
         "taxAlertMessageExpiringSoon"?: string;
+        /**
+          * Header text displayed above the tax documents status
+          * @uiName Tax document section header
+         */
         "taxDocumentSectionHeader"?: string;
+        /**
+          * Sub header text displayed above the tax documents status
+          * @uiName Tax documents sub header
+         */
         "taxDocumentSectionSubHeader"?: string;
     }
     interface SqmText {

@@ -5,6 +5,8 @@ import {
   IndirectDetailsSlotViewProps,
   OtherRegionSlotView,
 } from "./IndirectTaxDetailsView";
+import { DocusignExpiredView } from "./DocusignExpiredView";
+import { DocusignCompletedView } from "./DocusignCompletedView";
 
 export default {
   title: "Components/Tax Form Slot Views",
@@ -17,6 +19,7 @@ const registeredInOtherRegion: IndirectDetailsSlotViewProps = {
     formState: {
       selectedRegion: "United Kindom",
       vatNumber: 12345,
+      countryCode: "UK",
     },
   },
   data: {
@@ -82,4 +85,12 @@ export const RegisteredInCanadaWithErrors = () => {
       }}
     />
   );
+};
+
+export const DocusignExpired = () => {
+  return <DocusignExpiredView />;
+};
+
+export const DocusignCompleted = () => {
+  return <DocusignCompletedView />;
 };

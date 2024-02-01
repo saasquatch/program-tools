@@ -279,26 +279,22 @@ export const StepOneWithGeneralError = () => {
 };
 
 // STEP TWO
-export const StepTwo = () => {
-  return <IndirectTaxFormView {...stepTwoProps} />;
-};
-
-export const StepTwoWithError = () => {
-  return (
-    <IndirectTaxFormView
-      {...stepTwoProps}
-      states={{
-        ...stepTwoProps.states,
-        formState: {
-          ...stepTwoProps.states.formState,
-          errors: {
-            taxDetails: true,
-          },
-        },
-      }}
-    />
-  );
-};
+// export const StepTwoWithError = () => {
+//   return (
+//     <IndirectTaxFormView
+//       {...stepTwoProps}
+//       states={{
+//         ...stepTwoProps.states,
+//         formState: {
+//           ...stepTwoProps.states.formState,
+//           errors: {
+//             taxDetails: true,
+//           },
+//         },
+//       }}
+//     />
+//   );
+// };
 
 export const StepTwoLoading = () => {
   return (
@@ -588,6 +584,18 @@ export const TaxDocumentSubmittedWithGeneralError = () => {
         errors: {
           general: true,
         },
+      }}
+    />
+  );
+};
+
+export const TaxDocumentSubmittedNoFormNeeded = () => {
+  return (
+    <TaxDocumentSubmittedView
+      {...documentSubmittedActiveProps}
+      states={{
+        ...documentSubmittedActiveProps.states,
+        noFormNeeded: true,
       }}
     />
   );
