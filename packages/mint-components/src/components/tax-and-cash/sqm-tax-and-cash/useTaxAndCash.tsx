@@ -25,11 +25,6 @@ import {
 } from "./data";
 
 function getCurrentStep(user: UserQuery["user"]) {
-  // TODO: From impact - whether a document has already been submitted
-  if (user.customFields.w9Submitted || user.customFields.__taxProvince) {
-    return "/submitted";
-  }
-
   // TODO: From partner information
   if (
     !user.countryCode ||
@@ -52,6 +47,10 @@ function getCurrentStep(user: UserQuery["user"]) {
     return "3/W8-BEN-E";
   } else if (user.customFields.participantType === "individualParticipant") {
     return "/3/W8-BEN";
+  }
+
+  if (user.customFields.__taxCountry !== "US" && user.countryCode !== "US") {
+    return "/submitted";
   }
 
   return "/1";

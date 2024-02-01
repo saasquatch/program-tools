@@ -2,6 +2,7 @@
 Feature: Tax Form Flow
 
   Background: A user submits their Tax information
+
   # Cases:
   # US Brand
   ## US participant - Requires W9
@@ -102,12 +103,12 @@ Feature: Tax Form Flow
   Scenario Outline: Participant changes Tax Form to fillout in step 3
     Given they are on step 3
     And they press the <changeTaxFormCopy> text
-    Then they will procced to the Document Type Change form
-    And they see three <taxFormTypeOption>
-    When they select a <taxFormTypeOption>
+    Then they will proceed to the Document Type Change form
+    And they see three tax form type options
+    When they select the <taxFormTypeOption> option
     And press "Continue"
     Then they will be sent back to step 3
-    And the Docusign iframe will load the <newTaxForm> to fillout
+    And the Docusign iframe will load the <newTaxForm> to fill out
 
     Examples:
       | changeTaxFormCopy                                                | taxFormTypeOption | newTaxForm |
@@ -115,23 +116,19 @@ Feature: Tax Form Flow
       | Represent a business entity or you're based in the US?           | W9                | W9         |
       | Joining this program as an individual or you're based in the US? | W8-BEN            | W8-BEN     |
 
+  # Undecided behaviour
+  # Scenario: Returning to the docusign iframe page shows the previously selected option from the document type page
+
   @minutia @ui
-  Scenario Outline: Participant finishes tax form flow and sees status of their tax form submission
+  Scenario: Participant finishes tax form flow and sees status of their tax form submission
     Given they are on step 3
     And finishes filling out the Docusign form
-    And they check <completedTaxForm>
+    And they check the "completedTaxForm" checkbox
     And they press Continue
     Then they proceed to step 4
-    When they view the Tax Document Submitted
-    Then they see a badge with <status> text and a respective <badgeVariant>
-    Then they see a message indicating "<taxStatusMessage> on <dateSubmitted>"
+    And they see the Tax Document Submitted page
 
-    Examples:
-      | status       | badgeVariant | taxStatusMessage                                                          | completedTaxForm | dateSubmitted |
-      | ACTIVE       | success      | Submitted on                                                              | true             | Jan 17, 2024  |
-      | NOT_VERIFIED | neutral      | Awaiting Review. Submitted on                                             | true             | Jan 17, 2024  |
-      | NOT_ACTIVE   | danger       | Ensure your information matches your profile and resubmit a new document. | true             | Jan 17, 2024  |
-      | EXPIRED      | danger       | Expired on                                                                | true             | Jan 17, 2024  |
+  # Scenario: Skipping the docusign page (some users don't need to sign a tax form) - Submission page spec
 
   @minutia
   Scenario: A general error banner appears upon form submission request failing

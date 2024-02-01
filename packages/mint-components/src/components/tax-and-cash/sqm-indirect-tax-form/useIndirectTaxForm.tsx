@@ -156,7 +156,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       if (defaultDocumentType) {
         setStep(`/3/${defaultDocumentType}`);
       } else {
-        if (formData.taxOption === "hstCanada") setStep("/submitted");
+        if (formData.selectedRegion !== "US") setStep("/submitted");
         else {
           setStep("/3b");
         }
