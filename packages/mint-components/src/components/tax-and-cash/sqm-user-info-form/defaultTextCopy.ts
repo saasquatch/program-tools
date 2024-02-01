@@ -75,7 +75,8 @@ export const docusignFormText: DocusignFormViewProps["text"] = {
   taxFormDescription:
     "Participants based in the US and partnering with US-based brands need to submit a {documentType} form.",
   notBasedInUS: "Not based in the US?",
-  banner: "Complete and submit your tax form to save your information",
+  banner:
+    "For your security, we automatically end your session when you have not interacted with the form after 20 minutes.",
   checkboxLabel: "Form submission",
   checkboxDescription: "I have completed and submitted my tax form",
   submitButton: "Continue",
@@ -84,6 +85,7 @@ export const docusignFormText: DocusignFormViewProps["text"] = {
     generalTitle: "There was a problem submitting your information",
     generalDescription:
       "Please review your information and try again. If this problem continues, contact Support.",
+    formSubmission: "This field is required",
   },
 };
 

@@ -81,8 +81,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
       error: {
         generalTitle: props.generalErrorTitle,
         generalDescription: props.generalErrorDescription,
-        // TODO: this prop was removed from the controller/view
-        // formSubmission: props.formSubmissionError,
+        formSubmission: props.formSubmissionError,
       },
     },
     states: {
@@ -92,7 +91,6 @@ export function useDocusignForm(props: DocusignForm, el: any) {
       formState: {
         completedTaxForm: formSubmitted,
         taxFormExpired: false, // TODO: Unhardcode this
-        taxFormTime: "4:30", // TODO: Unhardcode this
         errors,
       },
       documentType: taxInfo.taxForm?.toUpperCase() as TaxDocumentType,

@@ -387,6 +387,11 @@ export namespace Components {
          */
         "formStep": string;
         /**
+          * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
+          * @uiName Form submission error text
+         */
+        "formSubmissionError": string;
+        /**
           * The error message shown at the top of the page in an error banner
           * @uiName General error text
          */
@@ -4322,6 +4327,11 @@ declare namespace LocalJSX {
           * @uiName Tax form step text
          */
         "formStep"?: string;
+        /**
+          * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
+          * @uiName Form submission error text
+         */
+        "formSubmissionError"?: string;
         /**
           * The error message shown at the top of the page in an error banner
           * @uiName General error text

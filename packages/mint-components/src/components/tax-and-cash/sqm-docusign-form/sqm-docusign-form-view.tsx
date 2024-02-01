@@ -11,7 +11,6 @@ export interface DocusignFormViewProps {
     formState: {
       completedTaxForm: boolean;
       taxFormExpired: boolean;
-      taxFormTime: string;
       errors?: any;
     };
     documentType: TaxDocumentType;
@@ -36,6 +35,7 @@ export interface DocusignFormViewProps {
     error: {
       generalTitle: string;
       generalDescription: string;
+      formSubmission: string;
     };
   };
 }
@@ -100,10 +100,19 @@ const style = {
   },
   InfoAlert: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-sky-100)",
+      backgroundColor: "transparent",
       borderTop: "none",
-      padding: "0 16px",
+      padding: "0px",
       marginBottom: "16px",
+      border: "none",
+    },
+
+    "&::part(message)": {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      padding: "10px",
+      height: "max-content",
     },
 
     "& sl-icon::part(base)": {
@@ -127,7 +136,6 @@ const style = {
       textDecoration: "underline",
     },
   },
-  Dialog: {},
 };
 
 const sheet = createStyleSheet(style);
@@ -172,13 +180,6 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
         {styleString}
         {vanillaStyle}
       </style>
-      <sl-dialog
-        class={classes.Dialog}
-        open={formState.taxFormExpired}
-        // onSl-hide={() => callbacks.setOpen(false)}
-      >
-        <sl-icon name="clock"></sl-icon>
-      </sl-dialog>
       <div class={classes.TextContainer}>
         <div>
           <p>{text.formStep}</p>
@@ -222,11 +223,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             open
             class={classes.InfoAlert}
           >
-            <sl-icon slot="icon" name="clock"></sl-icon>
-            <strong style={{ fontSize: "20px" }}>
-              {formState.taxFormTime}
-            </strong>
-            <br />
+            <sl-icon slot="icon" name="info-circle"></sl-icon>
             {text.banner}
           </sl-alert>
           <slot name="docusign-iframe"></slot>
@@ -239,6 +236,9 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             >
               {text.checkboxDescription}
             </sl-checkbox>
+            {formState.errors?.formSubmission && (
+              <p class={classes.ErrorText}>{text.error.formSubmission}</p>
+            )}
           </div>
 
           <div class={classes.BtnContainer}>

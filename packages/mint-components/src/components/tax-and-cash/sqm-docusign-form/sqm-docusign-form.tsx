@@ -88,6 +88,12 @@ export class DocusignForm {
   @Prop() generalErrorDescription: string =
     docusignFormText.error.generalDescription;
   /**
+   * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
+   *
+   * @uiName Form submission error text
+   */
+  @Prop() formSubmissionError: string = docusignFormText.error.formSubmission;
+  /**
    * @undocumented
    * @uiType object
    */
