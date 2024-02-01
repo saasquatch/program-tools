@@ -10,9 +10,10 @@ export interface DocusignFormViewProps {
     disabled: boolean;
     formState: {
       completedTaxForm: boolean;
+      taxFormExpired: boolean;
       errors?: any;
     };
-    documentType?: TaxDocumentType;
+    documentType: TaxDocumentType;
   };
   callbacks: {
     onShowDocumentType: () => void;
@@ -34,6 +35,7 @@ export interface DocusignFormViewProps {
     error: {
       generalTitle: string;
       generalDescription: string;
+      formSubmission: string;
     };
   };
 }
@@ -98,10 +100,19 @@ const style = {
   },
   InfoAlert: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-sky-100)",
+      backgroundColor: "transparent",
       borderTop: "none",
-      padding: "0 16px",
+      padding: "0px",
       marginBottom: "16px",
+      border: "none",
+    },
+
+    "&::part(message)": {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      padding: "10px",
+      height: "max-content",
     },
 
     "& sl-icon::part(base)": {
@@ -212,9 +223,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             open
             class={classes.InfoAlert}
           >
-            <sl-icon slot="icon" name="clock"></sl-icon>
-            <strong style={{ fontSize: "20px" }}>4:25</strong>
-            <br />
+            <sl-icon slot="icon" name="info-circle"></sl-icon>
             {text.banner}
           </sl-alert>
           <slot name="docusign-iframe"></slot>
@@ -227,6 +236,9 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             >
               {text.checkboxDescription}
             </sl-checkbox>
+            {formState.errors?.formSubmission && (
+              <p class={classes.ErrorText}>{text.error.formSubmission}</p>
+            )}
           </div>
 
           <div class={classes.BtnContainer}>

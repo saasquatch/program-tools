@@ -7,6 +7,7 @@ export interface IndirectDetailsSlotViewProps {
     loading: boolean;
     hide: boolean;
     formState: {
+      countryCode?: string;
       registeredIn: "canada" | "otherRegion";
       selectedRegion?: string;
       vatNumber?: number;
@@ -111,6 +112,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             })}
             id="selectedRegion"
             name="/selectedRegion"
+            value={formState.countryCode}
           >
             {props.data.countries?.map((c) => (
               <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>

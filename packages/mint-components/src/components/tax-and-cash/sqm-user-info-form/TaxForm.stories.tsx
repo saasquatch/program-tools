@@ -182,11 +182,13 @@ const documentSubmittedLoadingProps: TaxDocumentSubmittedProps = {
 
 const docusignFormProps: DocusignFormViewProps = {
   states: {
+    documentType: "W9",
     loading: false,
     disabled: false,
     submitDisabled: false,
     formState: {
       completedTaxForm: true,
+      taxFormExpired: false,
     },
   },
   callbacks: {
@@ -422,7 +424,11 @@ export const StepTwoNotRegisteredChecked = () => {
 // STEP THREE
 export const StepThreeWithDocusign = () => {
   // @ts-ignore TODO: fix this
-  return <DocusignFormView {...docusignFormProps} />;
+  return (
+    <DocusignFormView {...docusignFormProps}>
+      <div slot="docusign-iframe">Hey</div>
+    </DocusignFormView>
+  );
 };
 
 export const StepThreeDocusignWithGeneralError = () => {
@@ -436,6 +442,25 @@ export const StepThreeDocusignWithGeneralError = () => {
           ...docusignFormProps.states.formState,
           errors: {
             general: true,
+          },
+        },
+      }}
+    />
+  );
+};
+
+export const StepThreeDocusignWithFormSubmissionError = () => {
+  // @ts-ignore TODO: fix this
+  return (
+    <DocusignFormView
+      {...docusignFormProps}
+      states={{
+        ...docusignFormProps.states,
+        formState: {
+          ...docusignFormProps.states.formState,
+          completedTaxForm: false,
+          errors: {
+            formSubmission: true,
           },
         },
       }}
@@ -464,6 +489,22 @@ export const StepThreeDocusignDisabled = () => {
       states={{
         ...docusignFormProps.states,
         disabled: true,
+      }}
+    />
+  );
+};
+
+export const StepThreeDocusignTimeExpired = () => {
+  // @ts-ignore TODO: fix this
+  return (
+    <DocusignFormView
+      {...docusignFormProps}
+      states={{
+        ...docusignFormProps.states,
+        formState: {
+          ...docusignFormProps.states.formState,
+          taxFormExpired: true,
+        },
       }}
     />
   );
