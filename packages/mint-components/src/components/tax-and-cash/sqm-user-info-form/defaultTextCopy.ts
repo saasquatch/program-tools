@@ -106,7 +106,6 @@ export const documentTypeFormText: DocumentTypeFormViewProps["text"] = {
     generalTitle: "There was a problem submitting your information",
     generalDescription:
       "Please review your information and try again. If this problem continues, contact Support.",
-    formSubmission: "error",
   },
 };
 

@@ -180,7 +180,7 @@ function useDemoIndirectTaxForm(
   props: IndirectTaxForm
 ): ReturnType<typeof useIndirectTaxForm> {
   const [option, setOption] = useState(null);
-
+  //@ts-ignore
   return deepmerge(
     {
       loading: false,
