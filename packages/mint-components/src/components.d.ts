@@ -2875,18 +2875,50 @@ export namespace Components {
         "demoData"?: DemoData<UserNameViewProps>;
     }
     interface SqmTaxDocumentSubmitted {
+        /**
+          * Description text which appears beside badge showing the form is awaiting review
+          * @uiName Badge description text
+         */
         "badgeTextAwaitingReview"?: string;
+        /**
+          * Description text which appears beside badge showing the form has expired
+          * @uiName Badge description text
+         */
         "badgeTextExpiredOn"?: string;
+        /**
+          * Description text which appears beside badge showing the form expiring soon
+          * @uiName Badge description text
+         */
         "badgeTextExpiringSoon"?: string;
+        /**
+          * Description text which appears beside badge showing when the form was submitted
+          * @uiName Badge description text
+         */
         "badgeTextSubmittedOn"?: string;
         "bankingInformationSectionHeader": string;
         "generalErrorDescription": string;
         "generalErrorTitle": string;
         "invalidForm"?: string;
         "newFormButton": string;
+        /**
+          * Status text displayed in badge when tax document is Active
+          * @uiName Status text
+         */
         "statusTextActive"?: string;
+        /**
+          * Status text displayed in badge when tax document is Expired
+          * @uiName Status text
+         */
         "statusTextExpired"?: string;
+        /**
+          * Status text displayed in badge when tax document is Not Active
+          * @uiName Status text
+         */
         "statusTextNotActive"?: string;
+        /**
+          * Status text displayed in badge when tax document is Not Verified
+          * @uiName Status text
+         */
         "statusTextNotVerified"?: string;
         "taxAlertHeaderExpiredOn"?: string;
         "taxAlertHeaderExpiringSoon"?: string;
@@ -6554,18 +6586,50 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<UserNameViewProps>;
     }
     interface SqmTaxDocumentSubmitted {
+        /**
+          * Description text which appears beside badge showing the form is awaiting review
+          * @uiName Badge description text
+         */
         "badgeTextAwaitingReview"?: string;
+        /**
+          * Description text which appears beside badge showing the form has expired
+          * @uiName Badge description text
+         */
         "badgeTextExpiredOn"?: string;
+        /**
+          * Description text which appears beside badge showing the form expiring soon
+          * @uiName Badge description text
+         */
         "badgeTextExpiringSoon"?: string;
+        /**
+          * Description text which appears beside badge showing when the form was submitted
+          * @uiName Badge description text
+         */
         "badgeTextSubmittedOn"?: string;
         "bankingInformationSectionHeader"?: string;
         "generalErrorDescription"?: string;
         "generalErrorTitle"?: string;
         "invalidForm"?: string;
         "newFormButton"?: string;
+        /**
+          * Status text displayed in badge when tax document is Active
+          * @uiName Status text
+         */
         "statusTextActive"?: string;
+        /**
+          * Status text displayed in badge when tax document is Expired
+          * @uiName Status text
+         */
         "statusTextExpired"?: string;
+        /**
+          * Status text displayed in badge when tax document is Not Active
+          * @uiName Status text
+         */
         "statusTextNotActive"?: string;
+        /**
+          * Status text displayed in badge when tax document is Not Verified
+          * @uiName Status text
+         */
         "statusTextNotVerified"?: string;
         "taxAlertHeaderExpiredOn"?: string;
         "taxAlertHeaderExpiringSoon"?: string;
