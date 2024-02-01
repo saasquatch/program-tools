@@ -25,8 +25,12 @@ import {
 } from "./data";
 
 function getCurrentStep(user: UserQuery["user"]) {
-  // return "/submitted";
-  // @ts-ignore
+  // TODO: From impact - whether a document has already been submitted
+  if (user.customFields.w9Submitted || user.customFields.__taxProvince) {
+    return "/submitted";
+  }
+
+  // TODO: From partner information
   if (
     !user.countryCode ||
     !user.customFields?.currency ||
@@ -35,16 +39,19 @@ function getCurrentStep(user: UserQuery["user"]) {
     return "/1";
   }
 
-  if (!user.customFields.w9Type) {
+  // TODO: Get indirect tax info from impact
+  if (!user.customFields.__taxDocumentType) {
     return "/2";
   }
 
-  if (!user.customFields.w9Submitted) {
-    return `/3/${user.customFields.w9Type}`;
-  }
-
-  if (user.customFields.w9Submitted) {
-    return "/submitted";
+  // Land on specific docusign document
+  // TODO: From brand info and partner info
+  if (user.customFields.__taxCountry === "US") {
+    return "/3/W9";
+  } else if (user.customFields.participantType === "businessEntity") {
+    return "3/W8-BEN-E";
+  } else if (user.customFields.participantType === "individualParticipant") {
+    return "/3/W8-BEN";
   }
 
   return "/1";

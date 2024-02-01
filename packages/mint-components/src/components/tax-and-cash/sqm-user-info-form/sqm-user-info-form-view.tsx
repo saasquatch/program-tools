@@ -343,6 +343,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           <sl-button
             type="primary"
             disabled={states.disabled}
+            loading={states.loading}
             submit
             exportparts="base: primarybutton-base"
           >

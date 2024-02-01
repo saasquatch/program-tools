@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "@saasquatch/universal-hooks";
+import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParent } from "../../../utils/useParentState";
@@ -13,6 +13,11 @@ import {
   UserQuery,
 } from "../sqm-tax-and-cash/data";
 import { TaxForm } from "./sqm-user-info-form";
+import {
+  useMutation,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
+import { gql } from "graphql-request";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -41,13 +46,26 @@ export type InitialData = {
   [key: string]: string;
 };
 
+const UPSERT_USER = gql`
+  mutation ($userInput: UserInput!) {
+    upsertUser(userInput: $userInput) {
+      firstName
+      lastName
+    }
+  }
+`;
+
 export function useUserInfoForm(props: TaxForm) {
+  const user = useUserIdentity();
+
   const formRef = useRef<HTMLFormElement>(null);
 
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
-  const [formState, setFormState] = useParent<FormState>(USER_INFO_NAMESPACE);
+  const [formState, setFormState] = useState<FormState>({});
+  const [mutationLoading, setMutationLoading] = useState(false);
 
-  const { data, loading } =
+  const [upsertUser] = useMutation(UPSERT_USER);
+  const { data, loading, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
   const { data: _countries, loading: countriesLoading } =
     useParentQueryValue<CountriesQuery>(COUNTRIES_NAMESPACE);
@@ -80,51 +98,67 @@ export function useUserInfoForm(props: TaxForm) {
     let formData: Record<string, any> = {};
     let errors: Record<string, string> = {};
 
+    formControls?.forEach((control) => {
+      if (!control.name) return;
+
+      const key = control.name;
+      const value = control.value;
+
+      if (control.name === "/participantType") {
+        control.checked && jsonpointer.set(formData, key, value);
+      } else {
+        jsonpointer.set(formData, key, value);
+      }
+
+      // required validation
+      if (control.required && !value) {
+        jsonpointer.set(errors, key, props.allowBankingCollectionError);
+      }
+
+      // custom validation
+      if (typeof control.validationError === "function") {
+        const validate = control.validationError as ValidationErrorFunction;
+        const validationError = validate({ control, key, value });
+        if (validationError) jsonpointer.set(errors, key, validationError);
+      }
+    });
+
+    // participant type validation
+    if (!formData.participantType) {
+      jsonpointer.set(errors, "/participantType", props.participantTypeError);
+    }
+
+    if (Object.keys(errors).length) {
+      setFormState({ ...formState, error: "", errors });
+      // early return for validation errors
+      return;
+    }
+
+    const { allowBankingCollection, ...userData } = formData;
+
     try {
-      formControls?.forEach((control) => {
-        if (!control.name) return;
+      setMutationLoading(true);
 
-        const key = control.name;
-        const value = control.value;
-
-        if (control.name === "/participantType") {
-          control.checked && jsonpointer.set(formData, key, value);
-        } else {
-          jsonpointer.set(formData, key, value);
-        }
-
-        // required validation
-        if (control.required && !value) {
-          jsonpointer.set(errors, key, props.allowBankingCollectionError);
-        }
-
-        // custom validation
-        if (typeof control.validationError === "function") {
-          const validate = control.validationError as ValidationErrorFunction;
-          const validationError = validate({ control, key, value });
-          if (validationError) jsonpointer.set(errors, key, validationError);
-        }
+      await upsertUser({
+        userInput: {
+          id: user.id,
+          accountId: user.accountId,
+          countryCode: userData.countryCode,
+          customFields: {
+            currency: userData.currency,
+            participantType: userData.participantType,
+          },
+        },
       });
-
-      // participant type validation
-      if (!formData.participantType) {
-        jsonpointer.set(errors, "/participantType", props.participantTypeError);
-      }
-
-      if (Object.keys(errors).length) {
-        setFormState({ ...formState, error: "", errors });
-        // early return for validation errors
-        return;
-      }
-
-      const { allowBankingCollection, ...cleanData } = formData;
-
-      setFormState(cleanData);
-
-      console.log({ cleanData });
+      await refetch();
 
       setStep("/2");
-    } catch {}
+    } catch (e) {
+      // TODO: Double check
+      setFormState((p) => ({ ...p, errors: { general: true } }));
+    } finally {
+      setMutationLoading(false);
+    }
   }
 
   console.log({ _countries });
@@ -154,7 +188,7 @@ export function useUserInfoForm(props: TaxForm) {
       countries: _countries?.countries?.data,
     },
     states: {
-      loading,
+      loading: loading || mutationLoading,
     },
     formState: { ...formState },
   };

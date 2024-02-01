@@ -196,6 +196,7 @@ export const DocumentTypeFormView = (props: DocumentTypeFormViewProps) => {
           <div class={classes.BtnContainer}>
             <sl-button
               type="primary"
+              loading={states.loading}
               disabled={states.disabled}
               submit
               exportparts="base: primarybutton-base"

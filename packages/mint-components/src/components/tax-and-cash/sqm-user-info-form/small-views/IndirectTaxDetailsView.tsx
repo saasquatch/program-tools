@@ -8,7 +8,6 @@ export interface IndirectDetailsSlotViewProps {
     hide: boolean;
     formState: {
       countryCode?: string;
-      registeredIn: "canada" | "otherRegion";
       selectedRegion?: string;
       vatNumber?: number;
       province?: string;
@@ -90,7 +89,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
   } = props;
 
   const { classes } = sheet;
-  console.log({ formState });
+  console.log("regions", { formState });
   return (
     <div style={states.hide ? { display: "none" } : {}}>
       <form class={classes.Container}>
@@ -103,6 +102,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           <sl-select
             required
             class={classes.Input}
+            value={formState.countryCode}
             exportparts="label: input-label"
             label={text.selectedRegion}
             disabled={states.loading}
@@ -112,7 +112,6 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             })}
             id="selectedRegion"
             name="/selectedRegion"
-            value={formState.countryCode}
           >
             {props.data.countries?.map((c) => (
               <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
@@ -122,6 +121,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             required
             exportparts="label: input-label"
             class={classes.Input}
+            value={formState.vatNumber}
             label={text.vatNumber}
             disabled={states.loading}
             {...(formState.errors?.vatNumber && {
@@ -149,6 +149,7 @@ export const IndirectDetailsSlotView = (
 
   const { classes } = sheet;
 
+  console.log("regions", { formState });
   return (
     <div style={states.hide ? { display: "none" } : {}}>
       <form class={classes.Container}>
@@ -160,11 +161,7 @@ export const IndirectDetailsSlotView = (
         <div class={classes.InputContainer}>
           <sl-select
             required
-            onSl-hide={() => {
-              const event = new Event("sl-after-hide");
-              dispatchEvent(event);
-            }}
-            onSl-after-hide={() => console.log("after hide")}
+            value={formState.province}
             exportparts="label: input-label"
             class={classes.Input}
             label={text.province}
@@ -196,6 +193,7 @@ export const IndirectDetailsSlotView = (
             class={classes.Input}
             label={text.indirectTaxNumber}
             disabled={states.loading}
+            value={formState.indirectTaxNumber}
             {...(formState.errors?.indirectTaxNumber && {
               class: classes.ErrorInput,
               helpText: text.error.indirectTaxNumber,

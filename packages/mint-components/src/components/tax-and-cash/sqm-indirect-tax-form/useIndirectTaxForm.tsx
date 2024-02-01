@@ -2,7 +2,7 @@ import {
   useMutation,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useRef, useState } from "@saasquatch/universal-hooks";
+import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
 import { optional } from "../../../utilities";
@@ -19,17 +19,6 @@ import {
 import { FormState } from "../sqm-user-info-form/useUserInfoForm";
 import { IndirectTaxForm } from "./sqm-indirect-tax-form";
 
-const GET_COUNTRIES = gql`
-  query getCurrencies {
-    countries(limit: 1000) {
-      data {
-        countryCode
-        displayName
-      }
-    }
-  }
-`;
-
 const UPSERT_USER = gql`
   mutation ($userInput: UserInput!) {
     upsertUser(userInput: $userInput) {
@@ -42,9 +31,9 @@ const UPSERT_USER = gql`
 export function useIndirectTaxForm(props: IndirectTaxForm) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
-  const [upsertUser, upsertUserResponse] = useMutation(UPSERT_USER);
-  const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
-  const userFormData = useParentValue<FormState>(USER_INFO_NAMESPACE);
+  const [formState, setFormState] = useState({});
+  const [upsertUser] = useMutation(UPSERT_USER);
+  const [_, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
   const user = useUserIdentity();
 
   const { data: userData, refetch } =
@@ -52,13 +41,37 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   const { data: _countries, loading: countriesLoading } =
     useParentQueryValue<CountriesQuery>(COUNTRIES_NAMESPACE);
 
-  // from step 1
-  console.log({ userFormData, _countries });
-
   const [option, setOption] = useState<
     "hstCanada" | "otherRegion" | "notRegistered"
   >(null);
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (!userData?.user) return;
+    const { countryCode, customFields } = userData.user;
+
+    console.log({ customFields });
+    if (customFields?.__taxProvince || customFields?.__taxIndirectTaxNumber) {
+      setOption("hstCanada");
+    } else if (customFields?.__taxCountry || customFields?.__taxVatNumber) {
+      setOption("otherRegion");
+    } else {
+      if (countryCode === "CA") {
+        setOption("hstCanada");
+      } else if (countryCode !== "US") {
+        setOption("otherRegion");
+      } else {
+        setOption("notRegistered");
+      }
+    }
+
+    setFormState({
+      province: userData?.user?.customFields?.__taxProvince,
+      vatNumber: userData?.user?.customFields?.__taxVatNumber,
+      countryCode,
+      indirectTaxNumber: userData?.user?.customFields?.__taxIndirectTaxNumber,
+    });
+  }, [userData]);
 
   const countries = _countries?.countries.data;
 
@@ -98,28 +111,56 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
     setLoading(true);
 
-    const { currency, participantType, ...userData } = userFormData;
-
     try {
+      // TODO: Confirm these mappings
+      let defaultDocumentType: string;
+      if (formData.taxOption === "hstCanada") {
+        defaultDocumentType = undefined;
+      } else if (
+        formData.taxOption === "otherRegion" &&
+        userData?.user?.customFields?.participantType
+      ) {
+        if (formData.selectedRegion === "US") {
+          defaultDocumentType = "W9";
+        } else if (
+          userData.user.customFields.participantType === "businessEntity"
+        ) {
+          defaultDocumentType = "W8-BEN-E";
+        } else {
+          defaultDocumentType = "W8-BEN";
+        }
+      } else {
+        defaultDocumentType = undefined;
+      }
+
+      const customFields = {
+        __taxDocumentType: defaultDocumentType || null,
+        __taxProvince: formData.province || null,
+        __taxCountry: formData.selectedRegion || null,
+        __taxVatNumber: formData.vatNumber || null,
+        __taxIndirectTaxNumber: formData.indirectTaxNumber || null,
+      };
+
+      console.log({ formData, customFields });
+
       // Backend request
       await upsertUser({
         userInput: {
           id: user.id,
           accountId: user.accountId,
-          ...userData,
-          customFields: {
-            currency,
-            participantType,
-            ...optional("__taxOption", formData.taxOption),
-            ...optional("__taxProvince", formData.province),
-            ...optional("__taxCountry", formData.selectedRegion),
-            ...optional("__taxVatNumber", formData.vatNumber),
-            ...optional("__taxIndirectTaxNumber", formData.indirectTaxNumber),
-          },
+          customFields,
         },
       });
       await refetch();
-      setStep("/3/W9");
+
+      if (defaultDocumentType) {
+        setStep(`/3/${defaultDocumentType}`);
+      } else {
+        if (formData.taxOption === "hstCanada") setStep("/submitted");
+        else {
+          setStep("/3b");
+        }
+      }
     } catch (e) {
       setErrors({ general: true });
     } finally {
@@ -150,6 +191,6 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     option,
     onChange: setOption,
     formRef,
-    countryCode: userFormData.countryCode || userData?.user?.countryCode,
+    formState,
   };
 }

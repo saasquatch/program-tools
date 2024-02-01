@@ -58,20 +58,13 @@ export class IndirectTaxForm {
       ? useDemoIndirectTaxForm(getProps(this))
       : useIndirectTaxForm(getProps(this));
 
-    const registeredIn =
-      props.option === "hstCanada"
-        ? "canada"
-        : props.option === "otherRegion"
-        ? "otherRegion"
-        : null;
-
     console.log({ props });
 
     const hstSlot = (
       <IndirectDetailsSlotView
         states={{
           formState: {
-            registeredIn,
+            ...props.formState,
             errors: props.errors,
           },
           loading: props.loading,
@@ -87,8 +80,7 @@ export class IndirectTaxForm {
         states={{
           hide: props.option !== "otherRegion",
           formState: {
-            registeredIn,
-            countryCode: props.countryCode,
+            ...props.formState,
             errors: props.errors,
           },
           loading: props.loading,
@@ -146,6 +138,12 @@ function useDemoIndirectTaxForm(
       option: option,
       onChange: setOption,
       formRef: { current: null },
+      formState: {
+        countryCode: "CA",
+        indirectTaxNumber: "1234",
+        province: "BC",
+        vatNumber: undefined,
+      },
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
