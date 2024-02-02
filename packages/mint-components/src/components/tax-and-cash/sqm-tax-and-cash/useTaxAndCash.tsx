@@ -41,15 +41,17 @@ function getCurrentStep(user: UserQuery["user"]) {
 
   // Land on specific docusign document
   // TODO: From brand info and partner info
-  if (user.customFields.__taxCountry === "US") {
+  if (user.countryCode === "US") {
     return "/3/W9";
-  } else if (user.customFields.participantType === "businessEntity") {
-    return "3/W8-BEN-E";
-  } else if (user.customFields.participantType === "individualParticipant") {
-    return "/3/W8-BEN";
+  } else if (user.customFields.__taxCountry === "US") {
+    if (user.customFields.participantType === "businessEntity") {
+      return "/3/W8-BEN-E";
+    } else if (user.customFields.participantType === "individualParticipant") {
+      return "/3/W8-BEN";
+    }
   }
 
-  if (user.customFields.__taxCountry !== "US" && user.countryCode !== "US") {
+  if (user.customFields.__taxDocumentType) {
     return "/submitted";
   }
 

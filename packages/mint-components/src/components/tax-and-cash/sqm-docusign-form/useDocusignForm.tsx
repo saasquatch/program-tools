@@ -85,9 +85,9 @@ export function useDocusignForm(props: DocusignForm, el: any) {
       },
     },
     states: {
-      disabled: taxInfoLoading,
+      disabled: taxInfoLoading || loading,
       submitDisabled: !formSubmitted,
-      loading: taxInfoLoading,
+      loading: taxInfoLoading || loading,
       formState: {
         completedTaxForm: formSubmitted,
         taxFormExpired: false, // TODO: Unhardcode this

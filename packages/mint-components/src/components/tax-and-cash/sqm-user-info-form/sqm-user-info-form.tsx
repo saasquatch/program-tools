@@ -160,11 +160,8 @@ export class TaxForm {
       <Host>
         <UserInfoFormView
           data={props.data}
-          states={{
-            disabled: false,
-            //@ts-ignore
-            formState: props.formState,
-          }}
+          // @ts-ignore
+          states={props.states}
           callbacks={{
             onSubmit: props.onSubmit,
             onRadioClick: props.onRadioClick,
@@ -209,9 +206,10 @@ function useDemoUserInfoForm(props: TaxForm) {
         countries: [{ countryCode: "CA", displayName: "Canada" }],
       },
       states: {
+        disabled: false,
+        formState: { participantType },
         loading: false,
       },
-      formState: { participantType },
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }

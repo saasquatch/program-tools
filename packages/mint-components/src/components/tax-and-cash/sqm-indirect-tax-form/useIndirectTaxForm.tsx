@@ -50,7 +50,6 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     if (!userData?.user) return;
     const { countryCode, customFields } = userData.user;
 
-    console.log({ customFields });
     if (customFields?.__taxProvince || customFields?.__taxIndirectTaxNumber) {
       setOption("hstCanada");
     } else if (customFields?.__taxCountry || customFields?.__taxVatNumber) {
@@ -58,7 +57,8 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     } else {
       if (countryCode === "CA") {
         setOption("hstCanada");
-      } else if (countryCode !== "US") {
+        // TODO: Check against list of countries from backend
+      } else if (countryCode) {
         setOption("otherRegion");
       } else {
         setOption("notRegistered");
@@ -68,7 +68,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     setFormState({
       province: userData?.user?.customFields?.__taxProvince,
       vatNumber: userData?.user?.customFields?.__taxVatNumber,
-      countryCode,
+      countryCode: userData?.user?.customFields?.__taxCountry || countryCode,
       indirectTaxNumber: userData?.user?.customFields?.__taxIndirectTaxNumber,
     });
   }, [userData]);
@@ -114,23 +114,21 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     try {
       // TODO: Confirm these mappings
       let defaultDocumentType: string;
-      if (formData.taxOption === "hstCanada") {
-        defaultDocumentType = undefined;
-      } else if (
-        formData.taxOption === "otherRegion" &&
-        userData?.user?.customFields?.participantType
-      ) {
-        if (formData.selectedRegion === "US") {
-          defaultDocumentType = "W9";
-        } else if (
-          userData.user.customFields.participantType === "businessEntity"
+      if (formData.selectedRegion === "US") {
+        if (
+          userData?.user?.customFields?.participantType === "businessEntity"
         ) {
           defaultDocumentType = "W8-BEN-E";
-        } else {
+        } else if (
+          userData?.user?.customFields?.participantType ===
+          "individualParticipant"
+        ) {
           defaultDocumentType = "W8-BEN";
         }
-      } else {
-        defaultDocumentType = undefined;
+      }
+
+      if (userData.user.countryCode === "US") {
+        defaultDocumentType = "W9";
       }
 
       const customFields = {
@@ -156,10 +154,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       if (defaultDocumentType) {
         setStep(`/3/${defaultDocumentType}`);
       } else {
-        if (formData.selectedRegion !== "US") setStep("/submitted");
-        else {
-          setStep("/3b");
-        }
+        setStep("/submitted");
       }
     } catch (e) {
       setErrors({ general: true });
