@@ -38,6 +38,7 @@ Feature: Tax Form Flow
 
   @minutia
   Scenario Outline: Different indirect tax inputs are shown depending on the country of a participant
+    Given they are on step 2
     When <option> is selected based on based the participant <country> from step 1
     Then different <inputs> appear
 
@@ -47,6 +48,18 @@ Feature: Tax Form Flow
       | US      | I am registered for Indirect Tax in a different Country / Region | Country, VAT Number           |
       | UK      | I am registered for Indirect Tax in a different Country / Region | Country, VAT Number           |
       | EG      | I am not registered for Indirect tax                             | N/A, N/A                      |
+
+  @minutia
+  Scenario Outline: Participants based in another country working with non-US brands do not have to fillout docusign forms
+    Given a brand based in <brandCountry>
+    And the brand is not in the US
+    And the user selects a <country> not in the US and <participantType> in step 1
+    Then they skip to step 4
+
+    Examples: 
+      | brandCountry | country | participantType       |
+      | MX           | UK      | individualParticipant |
+      | AUS          | EGP     | businessEntity        |
 
   @minutia
   Scenario Outline: Participants based in the US or working with US brands have to fillout docusign forms
@@ -78,18 +91,6 @@ Feature: Tax Form Flow
       | AUS          | US      | businessEntity        | W9               |
 
   @minutia
-  Scenario Outline: Participants based in another country working with non-US brands do not have to fillout docusign forms
-    Given a brand based in <brandCountry>
-    And the brand is not in the US
-    And the user selects a <country> not in the US and <participantType> in step 1
-    Then they skip to step 4
-
-    Examples: 
-      | brandCountry | country | participantType       |
-      | MX           | UK      | individualParticipant |
-      | AUS          | EGP     | businessEntity        |
-
-  @minutia
   Scenario Outline: Participant changes Tax Form to fillout in step 3
     Given they are on step 3
     And they press the <changeTaxFormCopy> text
@@ -106,7 +107,15 @@ Feature: Tax Form Flow
       | Represent a business entity or you're based in the US?           | W9                | W9         |
       | Joining this program as an individual or you're based in the US? | W8-BEN            | W8-BEN     |
 
-  @unknown @minutia @ui
+  @minutia
+  Scenario: Participant finishes tax form flow and skipped Docusign form
+    Given they are on step 2
+    And they were not required to fillout a tax form
+    And they press Continue
+    Then they proceed to step 4
+    And they see the Tax Document Submitted page with no Tax Document present
+
+  @minutia
   Scenario: Participant finishes tax form flow and sees status of their tax form submission
     Given they are on step 3
     And finishes filling out the Docusign form
@@ -128,8 +137,6 @@ Feature: Tax Form Flow
       | There was a problem submitting your information | Please review your information and try again. If this problem continues, contact Support |
   # Undecided behaviour
   # Scenario: Returning to the docusign iframe page shows the previously selected option from the document type page
-  # Undecided behaviour
-  # Scenario: Skipping the docusign page (some users don't need to sign a tax form) - Submission page spec
 
   @TODO @minutia
   Scenario Outline: A user from Another Country completes the User Info and Indirect Tax steps with different countries
