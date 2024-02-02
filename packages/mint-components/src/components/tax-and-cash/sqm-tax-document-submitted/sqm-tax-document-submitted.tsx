@@ -156,7 +156,7 @@ export class TaxDocumentSubmitted {
   disconnectedCallback() {}
 
   render() {
-    const props = isDemo
+    const props = isDemo()
       ? useDemoTaxDocumentSubmitted(getProps(this))
       : useTaxDocumentSubmitted(getProps(this));
 
