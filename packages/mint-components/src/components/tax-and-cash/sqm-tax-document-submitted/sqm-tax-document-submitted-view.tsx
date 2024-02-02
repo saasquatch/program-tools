@@ -32,7 +32,7 @@ export interface TaxDocumentSubmittedProps {
     noTaxFormRequired?: string;
     taxAlertMessageExpiringSoon?: string;
     taxAlertHeaderNotActive?: string;
-    taxAlertHeaderExpiredOn: string;
+    taxAlertHeaderExpiredOn?: string;
     taxAlertHeaderExpiringSoon?: string;
     taxAlertMessage?: string;
     bankingInformationSectionHeader: string;

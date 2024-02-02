@@ -151,8 +151,6 @@ export function useUserInfoForm(props: TaxForm) {
     }
   }
 
-  console.log({ _countries });
-
   return {
     step: step,
     setStep: setStep,

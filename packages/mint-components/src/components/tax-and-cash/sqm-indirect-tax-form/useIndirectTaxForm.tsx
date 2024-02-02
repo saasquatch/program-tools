@@ -12,12 +12,31 @@ import {
   COUNTRIES_NAMESPACE,
   CountriesQuery,
   TAX_CONTEXT_NAMESPACE,
-  USER_INFO_NAMESPACE,
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
-import { FormState } from "../sqm-user-info-form/useUserInfoForm";
 import { IndirectTaxForm } from "./sqm-indirect-tax-form";
+import { getDocumentType } from "../sqm-tax-document-submitted/useTaxDocumentSubmitted";
+
+function getOption(user: UserQuery["user"]) {
+  if (!user) return;
+  const { countryCode, customFields } = user;
+
+  if (customFields?.__taxProvince || customFields?.__taxIndirectTaxNumber) {
+    return "hstCanada";
+  } else if (customFields?.__taxCountry || customFields?.__taxVatNumber) {
+    return "otherRegion";
+  } else {
+    if (countryCode === "CA") {
+      return "hstCanada";
+      // TODO: Check against list of countries from backend
+    } else if (countryCode) {
+      return "otherRegion";
+    } else {
+      return "notRegistered";
+    }
+  }
+}
 
 const UPSERT_USER = gql`
   mutation ($userInput: UserInput!) {
@@ -47,29 +66,17 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    if (!userData?.user) return;
-    const { countryCode, customFields } = userData.user;
+    const user = userData?.user;
+    if (!user) return;
 
-    if (customFields?.__taxProvince || customFields?.__taxIndirectTaxNumber) {
-      setOption("hstCanada");
-    } else if (customFields?.__taxCountry || customFields?.__taxVatNumber) {
-      setOption("otherRegion");
-    } else {
-      if (countryCode === "CA") {
-        setOption("hstCanada");
-        // TODO: Check against list of countries from backend
-      } else if (countryCode) {
-        setOption("otherRegion");
-      } else {
-        setOption("notRegistered");
-      }
-    }
+    const _option = getOption(user);
+    setOption(_option);
 
     setFormState({
-      province: userData?.user?.customFields?.__taxProvince,
-      vatNumber: userData?.user?.customFields?.__taxVatNumber,
-      countryCode: userData?.user?.customFields?.__taxCountry || countryCode,
-      indirectTaxNumber: userData?.user?.customFields?.__taxIndirectTaxNumber,
+      province: user.customFields?.__taxProvince,
+      vatNumber: user.customFields?.__taxVatNumber,
+      countryCode: user.customFields?.__taxCountry || user.countryCode,
+      indirectTaxNumber: user.customFields?.__taxIndirectTaxNumber,
     });
   }, [userData]);
 
@@ -112,26 +119,22 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     setLoading(true);
 
     try {
-      // TODO: Confirm these mappings
       let defaultDocumentType: string;
+      if (userData?.user?.countryCode === "US") defaultDocumentType = "W9";
       if (formData.selectedRegion === "US") {
         if (
-          userData?.user?.customFields?.participantType === "businessEntity"
-        ) {
-          defaultDocumentType = "W8-BEN-E";
-        } else if (
-          userData?.user?.customFields?.participantType ===
+          userData?.user.customFields.participantType ===
           "individualParticipant"
-        ) {
+        )
           defaultDocumentType = "W8-BEN";
-        }
-      }
-
-      if (userData.user.countryCode === "US") {
-        defaultDocumentType = "W9";
+        else if (
+          userData?.user.customFields.participantType === "businessEntity"
+        )
+          defaultDocumentType = "W8-BEN-E";
       }
 
       const customFields = {
+        __taxOption: option,
         __taxDocumentType: defaultDocumentType || null,
         __taxProvince: formData.province || null,
         __taxCountry: formData.selectedRegion || null,

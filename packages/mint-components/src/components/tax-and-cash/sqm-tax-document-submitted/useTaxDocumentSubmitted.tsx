@@ -6,14 +6,21 @@ import {
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
-import { TaxDocumentType } from "./sqm-tax-document-submitted-view";
+import {
+  TaxDocumentSubmittedProps,
+  TaxDocumentType,
+} from "./sqm-tax-document-submitted-view";
+import { TaxDocumentSubmitted } from "./sqm-tax-document-submitted";
 
 export function getDocumentType(user): TaxDocumentType {
   if (!user) return;
   if (user.countryCode === "US") return "W9";
-  if (user.customFields.participantType === "individualParticipant")
-    return "W8-BEN";
-  return "W8-BEN-E";
+  if (user.customFields.__taxCountry === "US") {
+    if (user.customFields.participantType === "individualParticipant")
+      return "W8-BEN";
+    else if (user.customFields.participantType === "businessEntity")
+      return "W8-BEN-E";
+  }
 }
 
 function getExpiresSoon(submissionDate: number, expiryDate: number) {
@@ -26,7 +33,9 @@ function getExpiresSoon(submissionDate: number, expiryDate: number) {
   );
 }
 
-export const useTaxDocumentSubmitted = (props: any) => {
+export const useTaxDocumentSubmitted = (
+  props: TaxDocumentSubmitted
+): TaxDocumentSubmittedProps => {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
 
   const { data, loading } =
@@ -60,17 +69,23 @@ export const useTaxDocumentSubmitted = (props: any) => {
     states: {
       dateSubmitted,
       documentType,
-      status: "NOT_VERIFIED",
-      // AL: todo handle noFormNeeded submitted case
-      noFormNeeded: false,
+      // TODO: Hook up to API
+      status: documentType ? "NOT_VERIFIED" : undefined,
+      noFormNeeded: !documentType,
       dateExpired,
       expiresSoon,
-      disabled: false,
+      disabled: loading,
       loading,
     },
     callbacks: {
       onClick: () => setStep(`/3/${documentType}`),
     },
-    text: props,
+    text: {
+      ...props,
+      error: {
+        generalDescription: props.generalErrorDescription,
+        generalTitle: props.generalErrorTitle,
+      },
+    },
   };
 };
