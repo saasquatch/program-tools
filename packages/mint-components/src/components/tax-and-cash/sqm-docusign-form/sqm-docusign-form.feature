@@ -48,7 +48,7 @@ Feature: Docusign Form
     When they have the Docusign form open for more than 20 minutes
     Then the Docusign iframe session expires
     And the Tax Form dissapers
-    Then they will see a Docusigns expired session notification
+    Then they will see a Docusigns expired session notification inside the iframe
     And must refresh the page to start a new Docusign session
 
   @minutia

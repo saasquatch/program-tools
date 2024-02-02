@@ -71,12 +71,22 @@ const style = {
   TaxDocumentsHeaderContainer: {
     marginTop: "var(--sl-spacing-x-large)",
   },
+  StatusContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "var(--sl-spacing-x-small)",
+    "& h4": {
+      margin: "0",
+    },
+    "& p": {
+      margin: "0",
+    },
+  },
   TaxFormDetailsContainer: {
     display: "flex",
-    flexDirection: "row",
     gap: "var(--sl-spacing-small)",
     alignItems: "baseline",
-    marginTop: "-30px",
+    flexFlow: "row wrap",
   },
   BadgeContainer: {
     "&::part(base)": {
@@ -84,7 +94,8 @@ const style = {
     },
   },
   NewFormButton: {
-    marginTop: "var(--sl-spacing-x-small)",
+    marginTop: "var(--sl-spacing-medium)",
+    maxWidth: "179px",
   },
   EditBankDetailsButton: {
     marginTop: "var(--sl-spacing-x-large)",
@@ -96,8 +107,12 @@ const style = {
   SkeletonTwo: {
     width: "25%",
     height: "24px",
-    top: "-8px",
-    marginBottom: "var(--sl-spacing-xx-small)",
+    top: "var(--sl-spacing-small)",
+    marginBottom: "var(--sl-spacing-x-small)",
+  },
+  TaxSectionSkeletonContainer: {
+    display: "flex",
+    flexDirection: "column",
   },
   TaxDocSubtext: {
     margin: "0",
@@ -328,20 +343,23 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
           </div>
         </div>
         <div class={sheet.classes.TaxDocumentsContainer}>
-          <div class={sheet.classes.TaxDocumentsHeaderContainer}>
-            <h3>{text.taxDocumentSectionHeader}</h3>
+          <h3 class={sheet.classes.TaxDocumentsHeaderContainer}>
+            {text.taxDocumentSectionHeader}
+          </h3>
+          <div>
             {states.loading ? (
-              <h4>
+              <div class={sheet.classes.TaxSectionSkeletonContainer}>
                 <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-              </h4>
+                <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
+              </div>
             ) : (
-              <span>
+              <span class={sheet.classes.TaxFormDetailsContainer}>
                 {states.noFormNeeded ? (
                   <p class={sheet.classes.TaxDocSubtext}>
                     {text.noFormNeededSubtext}
                   </p>
                 ) : (
-                  <div>
+                  <div class={sheet.classes.StatusContainer}>
                     <h4>
                       {intl.formatMessage(
                         {
@@ -354,17 +372,21 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                       )}
                     </h4>
                     {statusMap[states.status]}
-                    <sl-button
-                      disabled={states.disabled || states.loading}
-                      onClick={callbacks.onClick}
-                      type="default"
-                      class={sheet.classes.NewFormButton}
-                    >
-                      {text.newFormButton}
-                    </sl-button>
                   </div>
                 )}
               </span>
+            )}
+            {states.noFormNeeded ? (
+              ""
+            ) : (
+              <sl-button
+                disabled={states.disabled || states.loading}
+                onClick={callbacks.onClick}
+                type="default"
+                class={sheet.classes.NewFormButton}
+              >
+                {text.newFormButton}
+              </sl-button>
             )}
           </div>
         </div>
