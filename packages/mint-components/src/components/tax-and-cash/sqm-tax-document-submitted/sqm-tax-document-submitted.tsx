@@ -70,22 +70,87 @@ export class TaxDocumentSubmitted {
    */
   @Prop() noTaxFormRequired?: string = defaults.noTaxFormRequired;
 
+  /**
+   * Header displayed in alert header at the top of the page.
+   *
+   * @uiName Not active alert header
+   */
   @Prop() taxAlertHeaderNotActive?: string = defaults.taxAlertHeaderNotActive;
+  /**
+   * Header displayed in alert header at the top of the page.
+   *
+   * @uiName Expired alert header
+   */
   @Prop() taxAlertHeaderExpiredOn?: string = defaults.taxAlertHeaderExpiredOn;
+  /**
+   * Header displayed in alert header at the top of the page.
+   *
+   * @uiName Expiring soon alert header
+   */
   @Prop() taxAlertHeaderExpiringSoon?: string =
     defaults.taxAlertHeaderExpiringSoon;
+  /**
+   * Description text displayed in alert body at the top of the page.
+   *
+   * @uiName Tax alert message
+   */
   @Prop() taxAlertMessage?: string = defaults.taxAlertMessage;
+  /**
+   * Description text displayed in alert body at the top of the page.
+   *
+   * @uiName Expiring soon tax alert message
+   */
   @Prop() taxAlertMessageExpiringSoon: string =
     defaults.taxAlertMessageExpiringSoon;
+  /**
+   * Description text displayed next to the badge in the tax documents status
+   *
+   * @uiName Invalid form description text
+   */
   @Prop() invalidForm?: string = defaults.invalidForm;
+  /**
+   * Header text displayed above the banking information card
+   *
+   * @uiName Banking information header
+   */
   @Prop() bankingInformationSectionHeader: string =
     defaults.bankingInformationSectionHeader;
-
+  /**
+   * Header text displayed above the tax documents status
+   *
+   * @uiName Tax document section header
+   */
   @Prop() taxDocumentSectionHeader: string = defaults.taxDocumentSectionHeader;
+  /**
+   * Sub header text displayed above the tax documents status
+   *
+   * @uiName Tax documents sub header
+   */
   @Prop() taxDocumentSectionSubHeader: string =
     defaults.taxDocumentSectionSubHeader;
+  /**
+   * Subtext displayed at the bottom of the page if there are no tax documents to show
+   *
+   * @uiName No form needed subtext
+   */
+  @Prop() noFormNeededSubtext: string = defaults.noFormNeededSubtext;
+  /**
+   * Text displayed in the submit new document button at the bottom of the page
+   *
+   * @uiName No form needed subtext
+   */
   @Prop() newFormButton: string = defaults.newFormButton;
+  /**
+   * The title for error message shown at the top of the page in an error banner
+   *
+   * @uiName General error title
+   */
   @Prop() generalErrorTitle: string = defaults.error.generalTitle;
+  /**
+   * The error message shown at the top of the page in an error banner
+   *
+   * @uiName General error text
+   */
   @Prop() generalErrorDescription: string = defaults.error.generalDescription;
   constructor() {
     withHooks(this);

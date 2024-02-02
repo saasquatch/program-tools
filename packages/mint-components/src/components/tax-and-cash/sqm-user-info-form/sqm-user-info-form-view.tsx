@@ -231,14 +231,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               exportparts="label: input-label"
               value={formState.email}
               label={text.email}
-              disabled={states.disabled}
-              {...(formState.errors?.email
-                ? {
-                    class: classes.ErrorInput,
-                    helpText: text.error.email,
-                  }
-                : {})}
-              // {...{ helpText: formState.errors.email }}
+              disabled={true}
               id="email"
               name="/email"
               required
@@ -343,6 +336,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           <sl-button
             type="primary"
             disabled={states.disabled}
+            loading={states.loading}
             submit
             exportparts="base: primarybutton-base"
           >
@@ -353,5 +347,3 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
     </sl-form>
   );
 };
-
-// export default TaxFormStepOneView;
