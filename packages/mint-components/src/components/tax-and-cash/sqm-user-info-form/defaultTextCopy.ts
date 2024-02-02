@@ -133,7 +133,7 @@ export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
     "Please submit a new {documentType} form to continue receiving your rewards",
   bankingInformationSectionHeader: "Banking Information",
   taxDocumentSectionHeader: "Tax documents",
-  taxDocumentSectionSubHeader: "{documentType} Tax Documents",
+  taxDocumentSectionSubHeader: "{documentType} Tax Form",
   newFormButton: "Submit New document",
   noFormNeededSubtext:
     "Tax documents are only required if you are based in the US. If your country of residence has changed, please contact Support.",

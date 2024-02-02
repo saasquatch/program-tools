@@ -32,6 +32,8 @@ import {
   UserInfoFormViewProps,
   UserInfoFormView,
 } from "./sqm-user-info-form-view";
+// import sqmUserInfoSpecs from "./sqm-tax-document-step-1.feature";
+// import sqmIndirectTaxFormSpecs from "../sqm-indirect-tax-form/sqm-indirect-tax-form.feature";
 
 export default {
   title: "Components/Tax Form",
@@ -169,7 +171,7 @@ const documentSubmittedExpiringSoonProps: TaxDocumentSubmittedProps = {
 const documentSubmittedTaxFormNotRequiredProps: TaxDocumentSubmittedProps = {
   states: {
     documentType: undefined,
-    noTaxDocument: true,
+    noFormNeeded: true,
     disabled: false,
     expiresSoon: true,
   },
@@ -183,7 +185,7 @@ const documentSubmittedTaxFormNotRequiredLoadingProps: TaxDocumentSubmittedProps
   {
     states: {
       documentType: undefined,
-      noTaxDocument: true,
+      noFormNeeded: true,
       disabled: false,
       expiresSoon: true,
       loading: true,
