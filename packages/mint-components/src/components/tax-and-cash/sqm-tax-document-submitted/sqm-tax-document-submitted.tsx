@@ -2,8 +2,12 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
 import { getProps } from "../../../utils/utils";
 import { taxFormDocumentSubmittedText as defaults } from "../sqm-user-info-form/defaultTextCopy";
-import { TaxDocumentSubmittedView } from "./sqm-tax-document-submitted-view";
+import {
+  TaxDocumentSubmittedProps,
+  TaxDocumentSubmittedView,
+} from "./sqm-tax-document-submitted-view";
 import { useTaxDocumentSubmitted } from "./useTaxDocumentSubmitted";
+import { isDemo } from "@saasquatch/component-boilerplate";
 
 @Component({ tag: "sqm-tax-document-submitted", shadow: true })
 export class TaxDocumentSubmitted {
@@ -152,7 +156,9 @@ export class TaxDocumentSubmitted {
   disconnectedCallback() {}
 
   render() {
-    const props = useTaxDocumentSubmitted(getProps(this));
+    const props = isDemo()
+      ? useDemoTaxDocumentSubmitted(getProps(this))
+      : useTaxDocumentSubmitted(getProps(this));
 
     return (
       <Host>
@@ -164,4 +170,31 @@ export class TaxDocumentSubmitted {
       </Host>
     );
   }
+}
+
+function useDemoTaxDocumentSubmitted(
+  props: TaxDocumentSubmitted
+): TaxDocumentSubmittedProps {
+  return {
+    states: {
+      dateSubmitted: undefined,
+      documentType: undefined,
+      status: undefined,
+      noFormNeeded: true,
+      dateExpired: undefined,
+      expiresSoon: false,
+      disabled: false,
+      loading: false,
+    },
+    callbacks: {
+      onClick: () => console.debug("check step"),
+    },
+    text: {
+      ...props,
+      error: {
+        generalDescription: props.generalErrorDescription,
+        generalTitle: props.generalErrorTitle,
+      },
+    },
+  };
 }

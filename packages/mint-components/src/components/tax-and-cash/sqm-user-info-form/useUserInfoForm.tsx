@@ -18,6 +18,7 @@ import {
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { gql } from "graphql-request";
+import { HasFirstNameLastName } from "../../views/EmailRegistration.stories";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -61,7 +62,7 @@ export function useUserInfoForm(props: TaxForm) {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
-  const [formState, setFormState] = useState<FormState>({});
+  const [formState, setFormState] = useParent<FormState>(USER_INFO_NAMESPACE);
   const [mutationLoading, setMutationLoading] = useState(false);
 
   const [upsertUser] = useMutation(UPSERT_USER);
@@ -73,7 +74,6 @@ export function useUserInfoForm(props: TaxForm) {
     useParentQueryValue<CurrenciesQuery>(CURRENCIES_NAMESPACE);
 
   useEffect(() => {
-    console.log({ data });
     const user = data?.user;
     if (!user || step !== "/1") return;
   }, [data, step]);
@@ -145,13 +145,11 @@ export function useUserInfoForm(props: TaxForm) {
       setStep("/2");
     } catch (e) {
       // TODO: Double check
-      setFormState((p) => ({ ...p, errors: { general: true } }));
+      setFormState({ ...formState, errors: { general: true } });
     } finally {
       setMutationLoading(false);
     }
   }
-
-  console.log({ _countries });
 
   return {
     step: step,
@@ -178,8 +176,9 @@ export function useUserInfoForm(props: TaxForm) {
       countries: _countries?.countries?.data,
     },
     states: {
+      disabled: loading,
       loading: loading || mutationLoading,
+      formState: { ...formState },
     },
-    formState: { ...formState },
   };
 }

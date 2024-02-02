@@ -9,6 +9,10 @@ import {
 } from "../sqm-tax-and-cash/data";
 import { TaxDocumentType } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
 import { DocusignForm } from "./sqm-docusign-form";
+import {
+  useMutation,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
 
 // TODO: Fill out when API is released
 const GET_TAX_DOCUMENT = gql`
@@ -20,12 +24,24 @@ const CHECK_DOCUMENT_STATUS = gql`
   query checkDocumentStatus ($vars: CheckDocumentStatusInput) {}
 `;
 
+const UPSERT_USER = gql`
+  mutation ($userInput: UserInput!) {
+    upsertUser(userInput: $userInput) {
+      firstName
+      lastName
+    }
+  }
+`;
+
 export function useDocusignForm(props: DocusignForm, el: any) {
+  const user = useUserIdentity();
   const [path, setPath] = useParent<string>(TAX_CONTEXT_NAMESPACE);
-  const { data, loading } =
+  const { data, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+  const [upsertUser] = useMutation(UPSERT_USER);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const splitPath = path.split("/");
   const pathedDocumentType = splitPath.length === 3 ? splitPath[2] : undefined;
@@ -67,11 +83,24 @@ export function useDocusignForm(props: DocusignForm, el: any) {
 
     // TODO: Check document is actually registered in the backend
     try {
-      const documentResult = true;
-      if (documentResult) setPath("/submitted");
-      else throw Error();
+      setLoading(true);
+      // Backend request
+      await upsertUser({
+        userInput: {
+          id: user.id,
+          accountId: user.accountId,
+          customFields: {
+            __taxDocumentSubmitted: true,
+          },
+        },
+      });
+      await refetch();
+
+      setPath("/submitted");
     } catch (e) {
       setErrors({ formSubission: { status: "document-error" } });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -85,9 +114,9 @@ export function useDocusignForm(props: DocusignForm, el: any) {
       },
     },
     states: {
-      disabled: taxInfoLoading,
+      disabled: taxInfoLoading || loading,
       submitDisabled: !formSubmitted,
-      loading: taxInfoLoading,
+      loading: taxInfoLoading || loading,
       formState: {
         completedTaxForm: formSubmitted,
         taxFormExpired: false, // TODO: Unhardcode this

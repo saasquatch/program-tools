@@ -1,4 +1,4 @@
-# sqm-sidebar-item
+# sqm-cash-form
 
 
 
@@ -11,25 +11,6 @@
 | ---------- | --------- | ----------- | ----------------------------------------------------------------- | ----------- |
 | `demoData` | --        |             | `{ loading?: boolean; loadingText?: string; username?: string; }` | `undefined` |
 
-
-## Dependencies
-
-### Depends on
-
-- [sqm-context-router](../../sqm-context-router)
-- [sqm-table-row](../../sqm-table-row)
-- [sqm-table-cell](../../sqm-table-cell)
-- [sqm-text](../../sqm-text)
-
-### Graph
-```mermaid
-graph TD;
-  sqm-tax-and-cash --> sqm-context-router
-  sqm-tax-and-cash --> sqm-table-row
-  sqm-tax-and-cash --> sqm-table-cell
-  sqm-tax-and-cash --> sqm-text
-  style sqm-tax-and-cash fill:#f9f,stroke:#333,stroke-width:4px
-```
 
 ----------------------------------------------
 

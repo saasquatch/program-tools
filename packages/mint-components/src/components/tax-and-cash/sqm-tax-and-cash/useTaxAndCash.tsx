@@ -35,25 +35,32 @@ function getCurrentStep(user: UserQuery["user"]) {
   }
 
   // TODO: Get indirect tax info from impact
-  if (!user.customFields.__taxDocumentType) {
+  // Right now, this is just set on submit in step 2 to flag it as being completed
+  if (!user.customFields.__taxOption) {
     return "/2";
   }
 
   // Land on specific docusign document
   // TODO: From brand info and partner info
-  if (user.customFields.__taxCountry === "US") {
-    return "/3/W9";
-  } else if (user.customFields.participantType === "businessEntity") {
-    return "3/W8-BEN-E";
-  } else if (user.customFields.participantType === "individualParticipant") {
-    return "/3/W8-BEN";
+  // If document hasn't been submitted but their settings require a tax doc
+  if (
+    !user.customFields?.__taxDocumentSubmitted &&
+    user.customFields?.__taxDocumentType
+  ) {
+    if (user.countryCode === "US") {
+      return "/3/W9";
+    } else if (user.customFields.__taxCountry === "US") {
+      if (user.customFields.participantType === "businessEntity") {
+        return "/3/W8-BEN-E";
+      } else if (
+        user.customFields.participantType === "individualParticipant"
+      ) {
+        return "/3/W8-BEN";
+      }
+    }
   }
 
-  if (user.customFields.__taxCountry !== "US" && user.countryCode !== "US") {
-    return "/submitted";
-  }
-
-  return "/1";
+  return "/submitted";
 }
 
 export function useTaxAndCash() {
