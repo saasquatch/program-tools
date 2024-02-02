@@ -5,17 +5,24 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property      | Attribute      | Description | Type     | Default     |
+| ------------- | -------------- | ----------- | -------- | ----------- |
+| `contextName` | `context-name` |             | `string` | `undefined` |
+
+
 ## Dependencies
 
 ### Used by
 
- - [sqm-stencilbook](../sqm-stencilbook)
+ - [sqm-tax-and-cash](../tax-and-cash/sqm-tax-and-cash)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqm-stencilbook --> sqm-router
-  style sqm-router fill:#f9f,stroke:#333,stroke-width:4px
+  sqm-tax-and-cash --> sqm-context-router
+  style sqm-context-router fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

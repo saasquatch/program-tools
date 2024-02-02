@@ -70,8 +70,10 @@ const stepOneProps: UserInfoFormViewProps = {
   },
   callbacks: {
     // TODO: fix type
+    // @ts-ignore
     onSubmit: (props: any) => console.log("Submit"),
     // TODO: fix type
+    // @ts-ignore
     onRadioClick: (props: any) => console.log("Radio Click"),
   },
   text: userInfoText,
@@ -90,8 +92,10 @@ const stepTwoProps: IndirectTaxFormViewProps = {
   },
   callbacks: {
     // TODO: fix type
+    // @ts-ignore
     onSubmit: (props: any) => console.log("Submit"),
     // TODO: fix type
+    // @ts-ignore
     onChange: (e) => console.log("Submit"),
     onBack: () => console.log("Submit"),
   },
