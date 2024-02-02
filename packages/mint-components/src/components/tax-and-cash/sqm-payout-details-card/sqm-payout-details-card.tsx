@@ -224,7 +224,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
         ) : (
           <div style={{ display: "flex", gap: "var(--sl-spacing-small)" }}>
             <span>Card ***2381</span>
-            <span>Bank Name</span>
+            <span>Toronto Dominion Bank</span>
           </div>
         )}
       </div>

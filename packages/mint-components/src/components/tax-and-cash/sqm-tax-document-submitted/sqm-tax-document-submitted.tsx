@@ -62,6 +62,7 @@ export class TaxDocumentSubmitted {
    * @uiName Badge description text
    */
   @Prop() badgeTextExpiringSoon?: string = defaults.badgeTextExpiringSoon;
+
   /**
    * Header displayed in alert header at the top of the page.
    *

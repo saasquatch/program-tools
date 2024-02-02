@@ -9,10 +9,10 @@ import {
 export type TaxDocumentType = "W9" | "W8-BEN-E" | "W8-BEN";
 export interface TaxDocumentSubmittedProps {
   states: {
-    status: string;
-    documentType: TaxDocumentType;
-    disabled: boolean;
-    dateSubmitted: string;
+    status?: string;
+    documentType: TaxDocumentType | undefined;
+    disabled?: boolean;
+    dateSubmitted?: string;
     dateExpired?: string;
     expiresSoon?: boolean;
     noFormNeeded?: boolean;
@@ -29,6 +29,7 @@ export interface TaxDocumentSubmittedProps {
     badgeTextAwaitingReview?: string;
     badgeTextExpiredOn?: string;
     badgeTextExpiringSoon?: string;
+    noTaxFormRequired?: string;
     taxAlertMessageExpiringSoon?: string;
     taxAlertHeaderNotActive?: string;
     taxAlertHeaderExpiredOn: string;
@@ -101,7 +102,7 @@ const style = {
   TaxDocSubtext: {
     margin: "0",
     color: "var(--sl-color-neutral-500)",
-    lineHeight: "24px",
+    lineHeight: "2px",
   },
 };
 
@@ -328,40 +329,42 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         </div>
         <div class={sheet.classes.TaxDocumentsContainer}>
           <div class={sheet.classes.TaxDocumentsHeaderContainer}>
-            <h3 style={{ marginBottom: "5px" }}>
-              {text.taxDocumentSectionHeader}
-            </h3>
-            {states.loading && (
+            <h3>{text.taxDocumentSectionHeader}</h3>
+            {states.loading ? (
               <h4>
                 <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
               </h4>
-            )}
-            {states.noFormNeeded ? (
-              <p class={sheet.classes.TaxDocSubtext}>
-                {text.noFormNeededSubtext}
-              </p>
             ) : (
-              <div>
-                <h4>
-                  {intl.formatMessage(
-                    {
-                      id: "section-subheader",
-                      defaultMessage: text.taxDocumentSectionSubHeader,
-                    },
-                    {
-                      documentType: states.documentType,
-                    }
-                  )}
-                </h4>
-                <sl-button
-                  disabled={states.disabled || states.loading}
-                  onClick={callbacks.onClick}
-                  type="default"
-                  class={sheet.classes.NewFormButton}
-                >
-                  {text.newFormButton}
-                </sl-button>
-              </div>
+              <span>
+                {states.noFormNeeded ? (
+                  <p class={sheet.classes.TaxDocSubtext}>
+                    {text.noFormNeededSubtext}
+                  </p>
+                ) : (
+                  <div>
+                    <h4>
+                      {intl.formatMessage(
+                        {
+                          id: "section-subheader",
+                          defaultMessage: text.taxDocumentSectionSubHeader,
+                        },
+                        {
+                          documentType: states.documentType,
+                        }
+                      )}
+                    </h4>
+                    {statusMap[states.status]}
+                    <sl-button
+                      disabled={states.disabled || states.loading}
+                      onClick={callbacks.onClick}
+                      type="default"
+                      class={sheet.classes.NewFormButton}
+                    >
+                      {text.newFormButton}
+                    </sl-button>
+                  </div>
+                )}
+              </span>
             )}
           </div>
         </div>

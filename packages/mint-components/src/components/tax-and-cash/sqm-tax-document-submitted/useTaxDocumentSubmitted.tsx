@@ -61,6 +61,8 @@ export const useTaxDocumentSubmitted = (props: any) => {
       dateSubmitted,
       documentType,
       status: "NOT_VERIFIED",
+      // AL: todo handle noFormNeeded submitted case
+      noFormNeeded: false,
       dateExpired,
       expiresSoon,
       disabled: false,

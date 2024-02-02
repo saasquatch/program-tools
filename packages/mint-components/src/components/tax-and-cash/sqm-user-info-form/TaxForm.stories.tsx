@@ -32,6 +32,8 @@ import {
   UserInfoFormViewProps,
   UserInfoFormView,
 } from "./sqm-user-info-form-view";
+// import sqmUserInfoSpecs from "./sqm-tax-document-step-1.feature";
+// import sqmIndirectTaxFormSpecs from "../sqm-indirect-tax-form/sqm-indirect-tax-form.feature";
 
 export default {
   title: "Components/Tax Form",
@@ -165,6 +167,34 @@ const documentSubmittedExpiringSoonProps: TaxDocumentSubmittedProps = {
     ...taxFormDocumentSubmittedText,
   },
 };
+
+const documentSubmittedTaxFormNotRequiredProps: TaxDocumentSubmittedProps = {
+  states: {
+    documentType: undefined,
+    noFormNeeded: true,
+    disabled: false,
+    expiresSoon: true,
+  },
+  callbacks: { onClick: () => console.log("Submit new Form") },
+  text: {
+    ...taxFormDocumentSubmittedText,
+  },
+};
+
+const documentSubmittedTaxFormNotRequiredLoadingProps: TaxDocumentSubmittedProps =
+  {
+    states: {
+      documentType: undefined,
+      noFormNeeded: true,
+      disabled: false,
+      expiresSoon: true,
+      loading: true,
+    },
+    callbacks: { onClick: () => console.log("Submit new Form") },
+    text: {
+      ...taxFormDocumentSubmittedText,
+    },
+  };
 
 const documentSubmittedLoadingProps: TaxDocumentSubmittedProps = {
   states: {
@@ -571,8 +601,22 @@ export const TaxDocumentSubmittedExpiringSoon = () => {
   return <TaxDocumentSubmittedView {...documentSubmittedExpiringSoonProps} />;
 };
 
+export const TaxDocumentNotRequired = () => {
+  return (
+    <TaxDocumentSubmittedView {...documentSubmittedTaxFormNotRequiredProps} />
+  );
+};
+
 export const TaxDocumentSubmittedLoading = () => {
   return <TaxDocumentSubmittedView {...documentSubmittedLoadingProps} />;
+};
+
+export const TaxDocumentNotRequiredLoading = () => {
+  return (
+    <TaxDocumentSubmittedView
+      {...documentSubmittedTaxFormNotRequiredLoadingProps}
+    />
+  );
 };
 
 export const TaxDocumentSubmittedWithGeneralError = () => {

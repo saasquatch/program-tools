@@ -3,16 +3,6 @@ Feature: Tax Form Flow
 
   Background: A user submits their Tax information
 
-  # Cases:
-  # US Brand
-  ## US participant - Requires W9
-  ## Canadian participant - Requires W8
-  ## Other country participant - Requires W8
-  # Non US Brand
-  ## US participant - Requires W9
-  ## Canadian participant - Doesn't require a tax form
-  ## Other country participant - Doesn't requore a tax form
-
   @minutia
   Scenario Outline: Participants can register as branded partners, provide indirect tax information and submit their tax forms
     Given they are on step 1
@@ -35,28 +25,41 @@ Feature: Tax Form Flow
     And press "Continue"
     Then they proceed to <stepX> depending on the <brandCountry> and participants <countryCode>
 
-    Examples:
+    Examples: 
       | firstName | lastName | email                  | countryCode | brandCountry | currency | participantType       | allowBankingCollection | option                                                           | stepX |
-      | Bob       | Johnson  | bob.johnson@email.com  | CA          | US           | CAD      | businessEntity        | true                   | I am registered for HST in Canada                                | 3     |
-      | Jane      | Moe      | jane.moe@email.com     | CA          | MX           | CAD      | individualParticipant | true                   | I am registered for HST in Canada                                | 4     |
-      | Dane      | Coe      | dane.coe@email.com     | US          | CA           | USD      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region | 3     |
-      | David     | Renar    | david.renar@email.com  | US          | MX           | USD      | businessEntity        | true                   | I am registered for Indirect Tax in a different Country / Region | 3     |
-      | Jose      | Querv    | jose.querv@email.com   | UK          | US           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region | 3     |
-      | David     | Blaine   | david.blaine@email.com | UK          | MX           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region | 4     |
-      | Charle    | Buck     | charle.buck@email.com  | EG          | US           | EGP      | businessEntity        | true                   | I am not registered for Indirect Tax                             | 3     |
-      | Pam       | Herd     | pam.herd@email.com     | EG          | MX           | BMD      | businessEntity        | true                   | I am not registered for Indirect Tax                             | 4     |
+      | Bob       | Johnson  | bob.johnson@email.com  | CA          | US           | CAD      | businessEntity        | true                   | I am registered for HST in Canada                                |     3 |
+      | Jane      | Moe      | jane.moe@email.com     | CA          | MX           | CAD      | individualParticipant | true                   | I am registered for HST in Canada                                |     4 |
+      | Dane      | Coe      | dane.coe@email.com     | US          | CA           | USD      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region |     3 |
+      | David     | Renar    | david.renar@email.com  | US          | MX           | USD      | businessEntity        | true                   | I am registered for Indirect Tax in a different Country / Region |     3 |
+      | Jose      | Querv    | jose.querv@email.com   | UK          | US           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region |     3 |
+      | David     | Blaine   | david.blaine@email.com | UK          | MX           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region |     4 |
+      | Charle    | Buck     | charle.buck@email.com  | EG          | US           | EGP      | businessEntity        | true                   | I am not registered for Indirect Tax                             |     3 |
+      | Pam       | Herd     | pam.herd@email.com     | EG          | MX           | BMD      | businessEntity        | true                   | I am not registered for Indirect Tax                             |     4 |
 
   @minutia
   Scenario Outline: Different indirect tax inputs are shown depending on the country of a participant
+    Given they are on step 2
     When <option> is selected based on based the participant <country> from step 1
     Then different <inputs> appear
 
-    Examples:
+    Examples: 
       | country | option                                                           | inputs                        |
       | CA      | I am registered for HST in Canada                                | Province, Indirect Tax Number |
       | US      | I am registered for Indirect Tax in a different Country / Region | Country, VAT Number           |
       | UK      | I am registered for Indirect Tax in a different Country / Region | Country, VAT Number           |
       | EG      | I am not registered for Indirect tax                             | N/A, N/A                      |
+
+  @minutia
+  Scenario Outline: Participants based in another country working with non-US brands do not have to fillout docusign forms
+    Given a brand based in <brandCountry>
+    And the brand is not in the US
+    And the user selects a <country> not in the US and <participantType> in step 1
+    Then they skip to step 4
+
+    Examples: 
+      | brandCountry | country | participantType       |
+      | MX           | UK      | individualParticipant |
+      | AUS          | EGP     | businessEntity        |
 
   @minutia
   Scenario Outline: Participants based in the US or working with US brands have to fillout docusign forms
@@ -65,7 +68,7 @@ Feature: Tax Form Flow
     When they view step 3
     Then the <autoSelectedForm> is displayed
 
-    Examples:
+    Examples: 
       | brandCountry | country | participantType       | autoSelectedForm |
       | US           | US      | individualParticipant | W9               |
       | CA           | US      | businessEntity        | W9               |
@@ -81,23 +84,11 @@ Feature: Tax Form Flow
     When they view step 3
     Then the <autoSelectedForm> is displayed
 
-    Examples:
+    Examples: 
       | brandCountry | country | participantType       | autoSelectedForm |
       | MX           | US      | individualParticipant | W9               |
       | UK           | US      | businessEntity        | W9               |
       | AUS          | US      | businessEntity        | W9               |
-
-  @minutia
-  Scenario Outline: Participants based another country working with non-US brands do not have to fillout docusign forms
-    Given a brand based in <brandCountry>
-    And the brand is not in the US
-    And the user selects a <country> not in the US and <participantType> in step 1
-    Then they skip to step 4
-
-    Examples:
-      | brandCountry | country | participantType       |
-      | MX           | UK      | individualParticipant |
-      | AUS          | EGP     | businessEntity        |
 
   @minutia
   Scenario Outline: Participant changes Tax Form to fillout in step 3
@@ -110,16 +101,21 @@ Feature: Tax Form Flow
     Then they will be sent back to step 3
     And the Docusign iframe will load the <newTaxForm> to fill out
 
-    Examples:
+    Examples: 
       | changeTaxFormCopy                                                | taxFormTypeOption | newTaxForm |
       | Not based in the US?                                             | W8-BEN-E          | W8-BEN-E   |
       | Represent a business entity or you're based in the US?           | W9                | W9         |
       | Joining this program as an individual or you're based in the US? | W8-BEN            | W8-BEN     |
 
-  # Undecided behaviour
-  # Scenario: Returning to the docusign iframe page shows the previously selected option from the document type page
+  @minutia
+  Scenario: Participant finishes tax form flow and skipped Docusign form
+    Given they are on step 2
+    And they were not required to fillout a tax form
+    And they press Continue
+    Then they proceed to step 4
+    And they see the Tax Document Submitted page with no Tax Document present
 
-  @minutia @ui
+  @minutia
   Scenario: Participant finishes tax form flow and sees status of their tax form submission
     Given they are on step 3
     And finishes filling out the Docusign form
@@ -127,8 +123,6 @@ Feature: Tax Form Flow
     And they press Continue
     Then they proceed to step 4
     And they see the Tax Document Submitted page
-
-  # Scenario: Skipping the docusign page (some users don't need to sign a tax form) - Submission page spec
 
   @minutia
   Scenario: A general error banner appears upon form submission request failing
@@ -138,9 +132,11 @@ Feature: Tax Form Flow
     But the request fails
     Then a general error banner appears with <generalTitle> and <generalDescription>
 
-    Examples:
+    Examples: 
       | generalTitle                                    | generalDescription                                                                       |
       | There was a problem submitting your information | Please review your information and try again. If this problem continues, contact Support |
+  # Undecided behaviour
+  # Scenario: Returning to the docusign iframe page shows the previously selected option from the document type page
 
   @TODO @minutia
   Scenario Outline: A user from Another Country completes the User Info and Indirect Tax steps with different countries

@@ -29,7 +29,7 @@ Feature: Tax Document Submitted View
       | W8-BEN-E     |
 
   @minutia @ui
-  Scenario Outline: The date submitted and status of a Tax Form is displayed to end users
+  Scenario Outline: The date submitted and status of a Tax Form is displayed to the user
     Given the Tax Document is currently <status>
     When they view the Tax Document Submitted
     Then they see a badge with <status> text and a respective <badgeVariant>
@@ -43,7 +43,14 @@ Feature: Tax Document Submitted View
       | EXPIRED      | danger       | Expired on                                                                | Jan 17, 2024  |
 
   @minutia @ui
-  Scenario Outline: A Danger Alert is displayed if the end users tax form is invalid
+  Scenario: Status badge and text does not appear if participant is not required to submit tax form
+    When a tax document is not required
+    Then tax document header does not include a document type
+    And the description text under the header displays "Tax documents are only required if you are based in the US. If your country of residence has changed, please contact Support"
+    And the "Submit new document" is not available
+
+  @minutia @ui
+  Scenario Outline: A Danger Alert is displayed if the users tax form is invalid
     Given the <status> is "NOT_ACTIVE" or "EXPIRED"
     Then a danger alert indicating the <documentType> with a <taxAlertHeader> and <taxAlertMessage> appears
 
@@ -53,7 +60,7 @@ Feature: Tax Document Submitted View
       | EXPIRED    | W8-BEN-E     | Your W8-BEN-E tax form has expired.                                        | Please resubmit a new W8-BEN-E form. |
 
   @minutia @ui
-  Scenario Outline: A Warning Alert is displayed if the end users tax form is expiring soon
+  Scenario Outline: A Warning Alert is displayed if the users tax form is expiring soon
     Given the <status> is ACTIVE
     And the <dateExpired> is 30 days away from the current date
     Then a warning alert indicating the <documentType> with a <taxAlertHeader>, <taxAlertMessage>, and <dateExpired> appears
