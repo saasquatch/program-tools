@@ -9,10 +9,11 @@ import {
 export type TaxDocumentType = "W9" | "W8-BEN-E" | "W8-BEN";
 export interface TaxDocumentSubmittedProps {
   states: {
-    status: string;
-    documentType: TaxDocumentType;
-    disabled: boolean;
-    dateSubmitted: string;
+    status?: string;
+    documentType: TaxDocumentType | undefined;
+    noTaxDocument?: boolean;
+    disabled?: boolean;
+    dateSubmitted?: string;
     dateExpired?: string;
     expiresSoon?: boolean;
     loading?: boolean;
@@ -28,6 +29,7 @@ export interface TaxDocumentSubmittedProps {
     badgeTextAwaitingReview?: string;
     badgeTextExpiredOn?: string;
     badgeTextExpiringSoon?: string;
+    noTaxFormRequired?: string;
     taxAlertMessageExpiringSoon?: string;
     taxAlertHeaderNotActive?: string;
     taxAlertHeaderExpiredOn: string;
@@ -79,6 +81,11 @@ const style = {
     "&::part(base)": {
       padding: "var(--sl-spacing-x-small)",
     },
+  },
+  NoTaxFormText: {
+    marginTop: "-20px",
+    marginBottom: "var(--sl-spacing-small)",
+    display: "flex",
   },
   NewFormButton: {
     marginTop: "var(--sl-spacing-x-small)",
@@ -346,18 +353,28 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                 <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
               </div>
             ) : (
-              <span>{statusMap[states.status]}</span>
+              <span>
+                {states.noTaxDocument ? (
+                  <span class={sheet.classes.NoTaxFormText}>
+                    {text.noTaxFormRequired}
+                  </span>
+                ) : (
+                  statusMap[states.status]
+                )}
+              </span>
             )}
           </div>
         </div>
-        <sl-button
-          disabled={states.disabled || states.loading}
-          onClick={callbacks.onClick}
-          type="default"
-          class={sheet.classes.NewFormButton}
-        >
-          {text.newFormButton}
-        </sl-button>
+        {!states.noTaxDocument && (
+          <sl-button
+            disabled={states.disabled || states.loading}
+            onClick={callbacks.onClick}
+            type="default"
+            class={sheet.classes.NewFormButton}
+          >
+            {text.newFormButton}
+          </sl-button>
+        )}
       </div>
     </div>
   );

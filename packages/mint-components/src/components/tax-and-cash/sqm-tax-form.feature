@@ -87,7 +87,7 @@ Feature: Tax Form Flow
       | AUS          | US      | businessEntity        | W9               |
 
   @minutia
-  Scenario Outline: Participants based another country working with non-US brands do not have to fillout docusign forms
+  Scenario Outline: Participants based in another country working with non-US brands do not have to fillout docusign forms
     Given a brand based in <brandCountry>
     And the brand is not in the US
     And the user selects a <country> not in the US and <participantType> in step 1
@@ -103,7 +103,7 @@ Feature: Tax Form Flow
     Given they are on step 3
     And they press the <changeTaxFormCopy> text
     Then they will procced to the Document Type Change form
-    And they see three <taxFormTypeOption>
+    And they see three tax form options
     When they select a <taxFormTypeOption>
     And press "Continue"
     Then they will be sent back to step 3

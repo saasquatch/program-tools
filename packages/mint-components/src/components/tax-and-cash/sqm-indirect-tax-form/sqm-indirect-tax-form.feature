@@ -37,29 +37,25 @@ Feature: Indirect Tax Form
       | Nunavut               |
       | Yukon                 |
 
-  @minutia @ui
-  Scenario: The country select displays applicable indirect tax countries from Impact
+  @minutia
+  Scenario: The country select displays applicable indirect tax countries from Impacts API
     When the "I am registered for Indirect Tax in a different Country / Region" option is selected
-    Then A Country select appears with the available <countries> provided by Impact
-
-    Examples: 
-      | countries                  |
-      | A whole bunch of countries |
+    Then A Country select appears with the available countries provided by Impacts API
 
   @minutia @ui
   Scenario Outline: Participant from another country has their country value auto selected
-    When the "I am registered for Indirect Tax in a different Country / Region" is selected
-    Then the Country <countryAutoSelectValue> selected with their <country> from step 1
+    When "I am registered for Indirect Tax in a different Country / Region" is selected
+    Then the Country <countryAutoSelectValue> is initialized with their <country> from step 1
 
     Examples: 
-      | country | <countryAutoSelectValue> |
-      | US      | United States            |
-      | AUS     | Australia                |
+      | country | countryAutoSelectValue |
+      | US      | United States          |
+      | AUS     | Australia              |
 
   @minutia
   Scenario Outline: Participant from another country can change the auto selected country
-    When the Country <countryAutoSelectValue> selected with their <country> from step 1
-    And they change the Country <countryAutoSelectValue>
+    When the Country <countryAutoSelectValue> is selected with their <country> from step 1
+    And they change the Country to <newCountrySelectValue>
     Then the Country <countryAutoSelectValue> changes to the <newCountrySelectValue>
 
     Examples: 
@@ -68,7 +64,7 @@ Feature: Indirect Tax Form
       | UK      | United Kingdom         | Egypt                 |
 
   @minutia @ui
-  Scenario Outline: Participant fills out the Indirect Tax Form with invalid values
+  Scenario: Participant fills out the Indirect Tax Form with invalid values
     When they fill out the form with invalid values for the following fields:
       | Province     | <province>    |
       | Indirect Tax | <indirectTax> |
@@ -79,15 +75,7 @@ Feature: Indirect Tax Form
       | <vatNumber>   | VAT number is required          |
 
   @minutia
-  Scenario Outline: Participant decides to go back to step 1
+  Scenario: Participant decides to go back to step 1
     When they press the Back button
     Then the they are sent back to step 1
     And they arrive at the step 1 form filled with the information initially submitted
-
-  @minutia
-  Scenario: A general error banner appears upon form submission request failing
-    When the participant completes the form with their information
-    And they press "Continue" to submit the form
-    Then a request is sent to the backend with the form data
-    But if the request fails
-    Then a general error banner appears with <generalTitle> and <generalDescription>

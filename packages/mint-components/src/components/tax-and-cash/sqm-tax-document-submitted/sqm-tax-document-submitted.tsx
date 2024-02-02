@@ -63,6 +63,13 @@ export class TaxDocumentSubmitted {
    */
   @Prop() badgeTextExpiringSoon?: string = defaults.badgeTextExpiringSoon;
 
+  /**
+   * Description text which appears in place of badge if no tax form is required
+   *
+   * @uiName Badge description text
+   */
+  @Prop() noTaxFormRequired?: string = defaults.noTaxFormRequired;
+
   @Prop() taxAlertHeaderNotActive?: string = defaults.taxAlertHeaderNotActive;
   @Prop() taxAlertHeaderExpiredOn?: string = defaults.taxAlertHeaderExpiredOn;
   @Prop() taxAlertHeaderExpiringSoon?: string =

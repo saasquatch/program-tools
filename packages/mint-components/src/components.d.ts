@@ -3063,6 +3063,11 @@ export namespace Components {
         "invalidForm"?: string;
         "newFormButton": string;
         /**
+          * Description text which appears in place of badge if no tax form is required
+          * @uiName Badge description text
+         */
+        "noTaxFormRequired"?: string;
+        /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
          */
@@ -7011,6 +7016,11 @@ declare namespace LocalJSX {
         "generalErrorTitle"?: string;
         "invalidForm"?: string;
         "newFormButton"?: string;
+        /**
+          * Description text which appears in place of badge if no tax form is required
+          * @uiName Badge description text
+         */
+        "noTaxFormRequired"?: string;
         /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
