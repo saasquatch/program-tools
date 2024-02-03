@@ -11,9 +11,9 @@ const passwordSchema = new PasswordValidator()
   .has(/([\d`~\!@#\$%\^\&\*\(\)\-_\=\+\[\{\}\]\\\|;:'",<.>\/\?€£¥₹§±].*){1,}/); // Must contain at least 1 digit or symbol
 // Taken from combining https://github.com/tarunbatra/password-validator/blob/40184970e4f65efa8aed7a64185a011a3b5d0e54/src/constants.js#L9
 
-export const validateNewPassword = (password: string) => {
+export const validateNewPassword = (password: string, validationText) => {
   const errors = passwordSchema.validate(password, { list: true });
-  const message = getErrorMessage(errors, password);
+  const message = getErrorMessage(errors, password, validationText);
   return message;
 };
 
@@ -46,13 +46,6 @@ const Invalid = () => (
     />
   </svg>
 );
-
-const validationMessages = {
-  min: "be a minimum of 8 characters",
-  uppercase: "contain at least 1 uppercase character",
-  lowercase: "contain at least 1 lowercase character",
-  has: "contain at least 1 number or symbol",
-};
 
 const baseItem = {
   display: "flex",
@@ -88,7 +81,18 @@ const style = {
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-const getErrorMessage = (errorKeys: string[], password: string): string => {
+const getErrorMessage = (
+  errorKeys: string[],
+  password: string,
+  validationText
+): string => {
+  const validationMessages = {
+    min: validationText.minError,
+    uppercase: validationText.uppercaseError,
+    lowercase: validationText.lowercaseError,
+    has: validationText.hasError,
+  };
+
   if (!errorKeys.length && password)
     return (
       <div
@@ -96,14 +100,14 @@ const getErrorMessage = (errorKeys: string[], password: string): string => {
         style={{ paddingBottom: "var(--sl-spacing-x-large)" }}
       >
         <style type="text/css">{styleString}</style>
-        <Valid /> <span>Password has met all requirements</span>
+        <Valid /> <span>{validationText.meetsRequirementsText}</span>
       </div>
     );
 
   return (
     <div class={sheet.classes.Base}>
       <style type="text/css">{styleString}</style>
-      Password must meet the following requirements:
+      {validationText.doesNotMeetRequirementsText}
       <ul class={sheet.classes.ValidationList}>
         {Object.keys(validationMessages).map((errorKey) =>
           errorKeys.includes(errorKey) ? (

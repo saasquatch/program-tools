@@ -49,6 +49,16 @@ export class PortalPasswordField {
    */
   @Prop() disableValidation: boolean = false;
 
+  @Prop() meetsRequirementsText: string = "Password has met all requirements";
+
+  @Prop() doesNotMeetRequirementsText: string =
+    "Password must meet the following requirements:";
+
+  @Prop() minError: string = "be a minimum of 8 characters";
+  @Prop() uppercaseError: string = "contain at least 1 uppercase character";
+  @Prop() lowercaseError: string = "contain at least 1 lowercase character";
+  @Prop() hasError: string = "contain at least 1 number or symbol";
+
   /**
    * @undocumented
    * @uiType object
@@ -78,14 +88,18 @@ function usePasswordFieldDemo(
   const [lastValidated, setLastValidated] = useState<string>("");
 
   if (props.demoData && lastValidated != props?.demoData?.initValue) {
-    const validation = validateNewPassword(props?.demoData?.initValue || "");
+    const validation = validateNewPassword(
+      props?.demoData?.initValue || "",
+      props
+    );
     setDynamicValidation(props?.demoData?.initValue === "" ? "" : validation);
     setLastValidated(props?.demoData?.initValue);
   }
 
   function onInput(input: Event) {
     const validation = validateNewPassword(
-      (input.target as HTMLInputElement).value
+      (input.target as HTMLInputElement).value,
+      props
     );
     setDynamicValidation(validation);
   }
