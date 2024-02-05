@@ -177,7 +177,7 @@ export class IndirectTaxForm {
       ? useDemoIndirectTaxForm(this)
       : useIndirectTaxForm(this);
 
-    console.log({ props });
+    console.log(props);
 
     const hstSlot = (
       <IndirectDetailsSlotView
