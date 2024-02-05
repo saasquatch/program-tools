@@ -101,6 +101,10 @@ const stepTwoProps: IndirectTaxFormViewProps = {
   },
   refs: { formRef: { current: null } },
   text: indirectTaxFormText,
+  slots: {
+    registeredInCanadaDetailsSlot: <div></div>,
+    registeredInDifferentCountryDetailsSlot: <div></div>,
+  },
 };
 
 const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
@@ -375,9 +379,13 @@ export const StepTwoHSTChecked = () => {
   return (
     <IndirectTaxFormView
       {...stepTwoProps}
+      {...{
+        slots: {
+          registeredInCanadaDetailsSlot: <RegisteredInCanada />,
+        },
+      }}
       states={{
         ...stepTwoProps.states,
-        registeredInCanadaDetailsSlot: <RegisteredInCanada />,
         formState: {
           ...stepTwoProps.states.formState,
           checked: "hstCanada",
@@ -391,9 +399,12 @@ export const StepTwoHSTCheckedWithInputErrors = () => {
   return (
     <IndirectTaxFormView
       {...stepTwoProps}
+      slots={{
+        registeredInCanadaDetailsSlot: <RegisteredInCanadaWithErrors />,
+        registeredInDifferentCountryDetailsSlot: <RegisteredInOtherRegion />,
+      }}
       states={{
         ...stepTwoProps.states,
-        registeredInCanadaDetailsSlot: <RegisteredInCanadaWithErrors />,
         formState: {
           ...stepTwoProps.states.formState,
           checked: "hstCanada",
@@ -409,7 +420,6 @@ export const StepTwoOtherRegionChecked = () => {
       {...stepTwoProps}
       states={{
         ...stepTwoProps.states,
-        registeredInDifferentCountryDetailsSlot: <RegisteredInOtherRegion />,
         formState: {
           ...stepTwoProps.states.formState,
           checked: "otherRegion",
@@ -423,11 +433,13 @@ export const StepTwoOtherRegionCheckedWithInputErrors = () => {
   return (
     <IndirectTaxFormView
       {...stepTwoProps}
-      states={{
-        ...stepTwoProps.states,
+      slots={{
         registeredInDifferentCountryDetailsSlot: (
           <RegisteredInOtherRegionWithErrors />
         ),
+      }}
+      states={{
+        ...stepTwoProps.states,
         formState: {
           ...stepTwoProps.states.formState,
           checked: "otherRegion",

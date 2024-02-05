@@ -9,6 +9,8 @@ export interface IndirectTaxFormViewProps {
       checked: "hstCanada" | "otherRegion" | "notRegistered" | undefined;
       errors?: any;
     };
+  };
+  slots: {
     registeredInCanadaDetailsSlot?: VNode;
     registeredInDifferentCountryDetailsSlot?: VNode;
   };
@@ -127,6 +129,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
     callbacks,
     text,
     refs,
+    slots,
   } = props;
 
   const { classes } = sheet;
@@ -179,7 +182,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               >
                 {text.hstCanada}
               </sl-checkbox>
-              {states.registeredInCanadaDetailsSlot}
+              {slots.registeredInCanadaDetailsSlot}
               <sl-checkbox
                 exportparts="label: input-label"
                 checked={formState.checked === "otherRegion"}
@@ -190,7 +193,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               >
                 {text.otherRegion}
               </sl-checkbox>
-              {states.registeredInDifferentCountryDetailsSlot}
+              {slots.registeredInDifferentCountryDetailsSlot}
               <sl-checkbox
                 exportparts="label: input-label"
                 checked={formState.checked === "notRegistered"}

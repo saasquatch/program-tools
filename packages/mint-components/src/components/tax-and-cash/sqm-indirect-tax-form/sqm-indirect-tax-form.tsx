@@ -177,55 +177,40 @@ export class IndirectTaxForm {
       ? useDemoIndirectTaxForm(this)
       : useIndirectTaxForm(this);
 
-    console.log({ props });
-
-    const hstSlot = (
+    const registeredInCanadaDetailsSlot = (
       <IndirectDetailsSlotView
         states={{
-          formState: {
-            ...props.formState,
-            errors: props.errors,
-          },
-          loading: props.loading,
-          hide: props.option !== "hstCanada",
+          formState: props.slotProps.formState,
+          hide: props.slotProps.hideHst,
+          loading: props.states.loading,
         }}
-        data={{ countries: props.countries }}
+        data={{ countries: props.data.countries }}
         text={props.text.slotText}
       ></IndirectDetailsSlotView>
     );
 
-    const otherRegionSlot = (
+    const registeredInDifferentCountryDetailsSlot = (
       <OtherRegionSlotView
         states={{
-          hide: props.option !== "otherRegion",
-          formState: {
-            ...props.formState,
-            errors: props.errors,
-          },
-          loading: props.loading,
+          hide: props.slotProps.hideOther,
+          formState: props.slotProps.formState,
+          loading: props.states.loading,
         }}
-        data={{ countries: props.countries }}
-        text={this.getTextProps().slotText}
+        data={{ countries: props.data.countries }}
+        text={props.text.slotText}
       />
     );
 
     return (
       <Host>
         <IndirectTaxFormView
-          callbacks={{
-            onBack: props.onBack,
-            onChange: props.onChange,
-            onSubmit: props.onSubmit,
+          {...props}
+          {...{
+            slots: {
+              registeredInCanadaDetailsSlot,
+              registeredInDifferentCountryDetailsSlot,
+            },
           }}
-          states={{
-            formState: { checked: props.option },
-            loading: props.loading,
-            registeredInCanadaDetailsSlot: hstSlot,
-            registeredInDifferentCountryDetailsSlot: otherRegionSlot,
-            disabled: props.loading,
-          }}
-          text={this.getTextProps()}
-          refs={{ formRef: props.formRef }}
         />
       </Host>
     );
@@ -239,21 +224,31 @@ function useDemoIndirectTaxForm(
   //@ts-ignore
   return deepmerge(
     {
-      loading: false,
-      countries: [{ countryCode: "CA", displayName: "Canada" }],
-      errors: {},
-      onBack: () => {},
-      onSubmit: async () => {},
-      submitDisabled: false,
-      option: option,
-      onChange: setOption,
+      states: {
+        option,
+        disabled: false,
+        loading: false,
+        errors: {},
+        formState: {
+          checked: option,
+        },
+      },
+      callbacks: {
+        onBack: () => {},
+        onSubmit: () => {},
+        onChange: setOption,
+      },
+      data: {
+        countries: [{ displayName: "United Kingdom", countryCode: "UK" }],
+      },
       text: props.getTextProps(),
-      formRef: { current: null },
-      formState: {
-        countryCode: "CA",
-        indirectTaxNumber: "1234",
-        province: "BC",
-        vatNumber: undefined,
+      refs: {
+        formRef: { current: null },
+      },
+      slotProps: {
+        formState: {},
+        hideHst: option !== "hstCanada",
+        hideOther: option !== "otherRegion",
       },
     },
     props.demoData || {},
