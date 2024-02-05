@@ -29,12 +29,45 @@ Feature: Tax Form Flow
       | firstName | lastName | email                  | countryCode | brandCountry | currency | participantType       | allowBankingCollection | option                                                           | stepX |
       | Bob       | Johnson  | bob.johnson@email.com  | CA          | US           | CAD      | businessEntity        | true                   | I am registered for HST in Canada                                |     3 |
       | Jane      | Moe      | jane.moe@email.com     | CA          | MX           | CAD      | individualParticipant | true                   | I am registered for HST in Canada                                |     4 |
-      | Dane      | Coe      | dane.coe@email.com     | US          | CA           | USD      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region |     3 |
-      | David     | Renar    | david.renar@email.com  | US          | MX           | USD      | businessEntity        | true                   | I am registered for Indirect Tax in a different Country / Region |     3 |
+      | Dane      | Coe      | dane.coe@email.com     | US          | CA           | USD      | individualParticipant | true                   | I am not registered for Indirect Tax                             |     4 |
+      | David     | Renar    | david.renar@email.com  | US          | MX           | USD      | businessEntity        | true                   | I am not registered for Indirect Tax                             |     4 |
       | Jose      | Querv    | jose.querv@email.com   | UK          | US           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region |     3 |
       | David     | Blaine   | david.blaine@email.com | UK          | MX           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region |     4 |
       | Charle    | Buck     | charle.buck@email.com  | EG          | US           | EGP      | businessEntity        | true                   | I am not registered for Indirect Tax                             |     3 |
-      | Pam       | Herd     | pam.herd@email.com     | EG          | MX           | BMD      | businessEntity        | true                   | I am not registered for Indirect Tax                             |     4 |
+
+  @minutia
+  Scenario: Participant is already registered as partner, provides indirect tax information, and submit their tax forms
+    Given the they are already registered as a partner
+    Then step 1 displays a banner with "An account with this email already exists with our referral program provider, impact.com" notifying that they are a partner
+    And the following fields are pre-filled:
+      | First Name       |
+      | Last Name        |
+      | Email            |
+      | Country Code     |
+      | Currency         |
+      | Participant Type |
+    And they check "Allow Banking Collection"
+    And press "Continue"
+    Then they proceed to step 2
+    And they see three options
+      | I am registered for HST in Canada                                |
+      | I am registered for Indirect Tax in a different Country / Region |
+      | I am not registered for Indirect Tax                             |
+    But <option> is selected by default
+    And the <fields> are pre-filled
+    And press "Continue"
+    Then they proceed to <stepX> depending on the <brandCountry> and participants <countryCode>
+
+    Examples: 
+      | countryCode | brandCountry | currency | participantType       | allowBankingCollection | option                                                           | fields                        | stepX |
+      | CA          | US           | CAD      | businessEntity        | true                   | I am registered for HST in Canada                                | Province, Indirect Tax Number |     3 |
+      | CA          | MX           | CAD      | individualParticipant | true                   | I am registered for HST in Canada                                | Province, Indirect Tax Number |     4 |
+      | US          | CA           | USD      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region | N/A                           |     3 |
+      | US          | MX           | USD      | businessEntity        | true                   | I am registered for Indirect Tax in a different Country / Region | N/A                           |     3 |
+      | UK          | US           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region | Country, VAT Number           |     3 |
+      | UK          | MX           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region | Country, VAT Number           |     3 |
+      | EG          | US           | EGP      | businessEntity        | true                   | I am not registered for Indirect Tax                             | Country, VAT Number           |     3 |
+      | EG          | MX           | BMD      | businessEntity        | true                   | I am not registered for Indirect Tax                             | N/A                           |     4 |
 
   @minutia
   Scenario Outline: Different indirect tax inputs are shown depending on the country of a participant
@@ -45,7 +78,7 @@ Feature: Tax Form Flow
     Examples: 
       | country | option                                                           | inputs                        |
       | CA      | I am registered for HST in Canada                                | Province, Indirect Tax Number |
-      | US      | I am registered for Indirect Tax in a different Country / Region | Country, VAT Number           |
+      | US      | I am not registered for Indirect tax                             | N/A                           |
       | UK      | I am registered for Indirect Tax in a different Country / Region | Country, VAT Number           |
       | EG      | I am not registered for Indirect tax                             | N/A, N/A                      |
 

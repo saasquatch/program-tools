@@ -43,6 +43,7 @@ const stepOneProps: UserInfoFormViewProps = {
   states: {
     loading: false,
     disabled: false,
+    isPartner: true,
 
     formState: {
       firstName: "Bob",
@@ -121,104 +122,6 @@ const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
   },
 };
 
-const documentSubmittedNotVerifiedProps: TaxDocumentSubmittedProps = {
-  states: {
-    disabled: false,
-    status: "NOT_VERIFIED",
-    documentType: "W9",
-    dateSubmitted: "Jan 18th, 2025",
-  },
-  callbacks: { onClick: () => console.log("Submit new Form") },
-  text: {
-    ...taxFormDocumentSubmittedText,
-  },
-};
-const documentSubmittedNotActiveProps: TaxDocumentSubmittedProps = {
-  states: {
-    disabled: false,
-    status: "NOT_ACTIVE",
-    documentType: "W8-BEN-E",
-    dateSubmitted: "Jan 18th, 2025",
-  },
-  callbacks: { onClick: () => console.log("Submit new Form") },
-  text: {
-    ...taxFormDocumentSubmittedText,
-  },
-};
-
-const documentSubmittedExpiredProps: TaxDocumentSubmittedProps = {
-  states: {
-    disabled: false,
-    status: "EXPIRED",
-    documentType: "W8-BEN-E",
-    dateSubmitted: "Jan 18th, 2025",
-    dateExpired: "Dec 18th, 2025",
-    expiresSoon: true,
-  },
-  callbacks: { onClick: () => console.log("Submit new Form") },
-  text: {
-    ...taxFormDocumentSubmittedText,
-  },
-};
-
-const documentSubmittedExpiringSoonProps: TaxDocumentSubmittedProps = {
-  states: {
-    disabled: false,
-    status: "ACTIVE",
-    documentType: "W8-BEN-E",
-    dateSubmitted: "Jan 18th, 2025",
-    dateExpired: "Feb 18th, 2025",
-    expiresSoon: true,
-  },
-  callbacks: { onClick: () => console.log("Submit new Form") },
-  text: {
-    ...taxFormDocumentSubmittedText,
-  },
-};
-
-const documentSubmittedTaxFormNotRequiredProps: TaxDocumentSubmittedProps = {
-  states: {
-    documentType: undefined,
-    noFormNeeded: true,
-    disabled: false,
-    expiresSoon: true,
-  },
-  callbacks: { onClick: () => console.log("Submit new Form") },
-  text: {
-    ...taxFormDocumentSubmittedText,
-  },
-};
-
-const documentSubmittedTaxFormNotRequiredLoadingProps: TaxDocumentSubmittedProps =
-  {
-    states: {
-      documentType: undefined,
-      noFormNeeded: true,
-      disabled: false,
-      expiresSoon: true,
-      loading: true,
-    },
-    callbacks: { onClick: () => console.log("Submit new Form") },
-    text: {
-      ...taxFormDocumentSubmittedText,
-    },
-  };
-
-const documentSubmittedLoadingProps: TaxDocumentSubmittedProps = {
-  states: {
-    disabled: true,
-    status: "ACTIVE",
-    documentType: "W8-BEN-E",
-    dateSubmitted: "Jan 18th, 2025",
-    noFormNeeded: false,
-    loading: true,
-  },
-  callbacks: { onClick: () => console.log("Submit new Form") },
-  text: {
-    ...taxFormDocumentSubmittedText,
-  },
-};
-
 const docusignFormProps: DocusignFormViewProps = {
   states: {
     documentType: "W9",
@@ -261,59 +164,63 @@ export const StepOne = () => {
 
 export const StepOneLoading = () => {
   return (
-    <UserInfoFormView
-      {...stepOneProps}
-      states={{ ...stepOneProps.states, loading: true }}
-    />
+    <sqm-user-info-form
+      demoData={{
+        states: { ...stepOneProps.states, loading: true },
+      }}
+    ></sqm-user-info-form>
   );
 };
 
 export const StepOneDisabled = () => {
   return (
-    <UserInfoFormView
-      {...stepOneProps}
-      states={{ ...stepOneProps.states, disabled: true }}
-    />
+    <sqm-user-info-form
+      demoData={{
+        states: { ...stepOneProps.states, disabled: true, isPartner: true },
+      }}
+    ></sqm-user-info-form>
   );
 };
 
 export const StepOneWithErrors = () => {
   return (
-    <UserInfoFormView
-      {...stepOneProps}
-      states={{
-        ...stepOneProps.states,
-        formState: {
-          ...stepOneProps.states.formState,
-          errors: {
-            firstName: true,
-            lastName: true,
-            email: true,
-            countryCode: true,
-            currency: true,
-            participantType: true,
-            allowBankingCollection: true,
+    <sqm-user-info-form
+      demoData={{
+        states: {
+          ...stepOneProps.states,
+          formState: {
+            ...stepOneProps.states.formState,
+            errors: {
+              firstName: true,
+              lastName: true,
+              email: true,
+              countryCode: true,
+              currency: true,
+              participantType: true,
+              allowBankingCollection: true,
+            },
           },
         },
       }}
-    />
+    ></sqm-user-info-form>
   );
 };
 
 export const StepOneWithGeneralError = () => {
   return (
-    <UserInfoFormView
-      {...stepOneProps}
-      states={{
-        ...stepOneProps.states,
-        formState: {
-          ...stepOneProps.states.formState,
-          errors: {
-            general: true,
+    <sqm-user-info-form
+      demoData={{
+        states: {
+          ...stepOneProps.states,
+          formState: {
+            ...stepOneProps.states.formState,
+            errors: {
+              general: true,
+            },
           },
         },
       }}
-    />
+    ></sqm-user-info-form>
   );
 };
 
@@ -337,25 +244,27 @@ export const StepOneWithGeneralError = () => {
 
 export const StepTwoLoading = () => {
   return (
-    <IndirectTaxFormView
-      {...stepTwoProps}
-      states={{
-        ...stepTwoProps.states,
-        loading: true,
+    <sqm-indirect-tax-form
+      demoData={{
+        states: {
+          ...stepTwoProps.states,
+          loading: true,
+        },
       }}
-    />
+    ></sqm-indirect-tax-form>
   );
 };
 
 export const StepTwoDisabled = () => {
   return (
-    <IndirectTaxFormView
-      {...stepTwoProps}
-      states={{
-        ...stepTwoProps.states,
-        disabled: true,
+    <sqm-indirect-tax-form
+      demoData={{
+        states: {
+          ...stepTwoProps.states,
+          disabled: true,
+        },
       }}
-    />
+    ></sqm-indirect-tax-form>
   );
 };
 export const StepTwoWithGeneralError = () => {

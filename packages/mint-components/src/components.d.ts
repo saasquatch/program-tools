@@ -3355,6 +3355,16 @@ export namespace Components {
          */
         "individualParticipant": string;
         /**
+          * Alert description text shown in alert if user is already a registered partner
+          * @uiName Participant is partner description
+         */
+        "isPartnerAlertDescription": string;
+        /**
+          * Alert header text shown in alert if user is already a registered partner
+          * @uiName Participant is partner title
+         */
+        "isPartnerAlertHeader": string;
+        /**
           * Label text for last name input
           * @uiName Last name label
          */
@@ -7406,6 +7416,16 @@ declare namespace LocalJSX {
           * @uiName Individual participant radio button label
          */
         "individualParticipant"?: string;
+        /**
+          * Alert description text shown in alert if user is already a registered partner
+          * @uiName Participant is partner description
+         */
+        "isPartnerAlertDescription"?: string;
+        /**
+          * Alert header text shown in alert if user is already a registered partner
+          * @uiName Participant is partner title
+         */
+        "isPartnerAlertHeader"?: string;
         /**
           * Label text for last name input
           * @uiName Last name label

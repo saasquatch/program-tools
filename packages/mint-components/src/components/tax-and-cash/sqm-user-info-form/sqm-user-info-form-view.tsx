@@ -5,6 +5,7 @@ export interface UserInfoFormViewProps {
   states: {
     loading: boolean;
     disabled: boolean;
+    isPartner: boolean;
     formState: {
       firstName?: string;
       lastName?: string;
@@ -45,6 +46,8 @@ export interface UserInfoFormViewProps {
     participantType: string;
     taxAndBankingCollection: string;
     submitButton: string;
+    isPartnerAlertHeader: string;
+    isPartnerAlertDescription: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -187,6 +190,14 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
       {formState.errors?.general && (
         <sl-alert type="warning" open class={sheet.classes.AlertContainer}>
           <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+          <strong>{text.error.generalTitle}</strong>
+          <br />
+          {text.error.generalDescription}
+        </sl-alert>
+      )}
+      {states.isPartner && (
+        <sl-alert type="primary" open class={sheet.classes.AlertContainer}>
+          <sl-icon slot="icon" name="info-circle"></sl-icon>
           <strong>{text.error.generalTitle}</strong>
           <br />
           {text.error.generalDescription}

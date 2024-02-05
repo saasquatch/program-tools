@@ -12,7 +12,7 @@ Feature: Document Type Form
     Then they will be sent back to step 3 with the new <taxFormType> to fillout
 
     Examples: 
-      | taxFormType | <taxFormDescription                                                                                                              |
+      | taxFormType | taxFormDescription                                                                                                               |
       | W9          | For participantsbased in the US, joining the referral program of a US-based company.                                             |
       | W8-BEN      | For individuals residing outside of the US, joining the referral program of a US-based company                                   |
       | W8-BEN-E    | For participants residing outside of the US who represent a business entity, joining the referral prorgram of a US-based company |

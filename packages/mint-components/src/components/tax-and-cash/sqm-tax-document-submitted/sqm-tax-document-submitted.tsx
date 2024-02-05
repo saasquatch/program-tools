@@ -185,8 +185,6 @@ export class TaxDocumentSubmitted {
       ? useDemoTaxDocumentSubmitted(this)
       : useTaxDocumentSubmitted(this);
 
-    console.log(props);
-
     return (
       <Host>
         <TaxDocumentSubmittedView
