@@ -8,6 +8,7 @@ import {
 } from "./sqm-tax-document-submitted-view";
 import { useTaxDocumentSubmitted } from "./useTaxDocumentSubmitted";
 import { DemoData } from "../../../global/demo";
+import deepmerge from "deepmerge";
 
 @Component({ tag: "sqm-tax-document-submitted", shadow: true })
 export class TaxDocumentSubmitted {
@@ -199,20 +200,24 @@ export class TaxDocumentSubmitted {
 function useDemoTaxDocumentSubmitted(
   props: TaxDocumentSubmitted
 ): TaxDocumentSubmittedProps {
-  return {
-    states: {
-      dateSubmitted: undefined,
-      documentType: undefined,
-      status: undefined,
-      noFormNeeded: true,
-      dateExpired: undefined,
-      expiresSoon: false,
-      disabled: false,
-      loading: false,
+  return deepmerge(
+    {
+      states: {
+        dateSubmitted: undefined,
+        documentType: undefined,
+        status: undefined,
+        noFormNeeded: true,
+        dateExpired: undefined,
+        expiresSoon: false,
+        disabled: false,
+        loading: false,
+      },
+      callbacks: {
+        onClick: () => console.debug("check step"),
+      },
+      text: props.getTextProps(),
     },
-    callbacks: {
-      onClick: () => console.debug("check step"),
-    },
-    text: props.getTextProps(),
-  };
+    props.demoData || {},
+    { arrayMerge: (_, a) => a }
+  );
 }
