@@ -204,12 +204,13 @@ export class IndirectTaxForm {
     return (
       <Host>
         <IndirectTaxFormView
-          {...props}
-          {...{
-            slots: {
-              registeredInCanadaDetailsSlot,
-              registeredInDifferentCountryDetailsSlot,
-            },
+          callbacks={props.callbacks}
+          states={props.states}
+          refs={props.refs}
+          text={props.text}
+          slots={{
+            registeredInCanadaDetailsSlot,
+            registeredInDifferentCountryDetailsSlot,
           }}
         />
       </Host>
