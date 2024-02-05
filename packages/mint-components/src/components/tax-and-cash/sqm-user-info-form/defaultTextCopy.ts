@@ -5,6 +5,9 @@ import { IndirectTaxFormViewProps } from "../sqm-indirect-tax-form/sqm-indirect-
 import { DocumentTypeFormViewProps } from "../sqm-document-type-form/sqm-document-type-form-view";
 import { DocusignFormViewProps } from "../sqm-docusign-form/sqm-docusign-form-view";
 
+// ! IMPORTANT: These objects cannot be used as default values for component props
+// !            Stencil doesn't handle the import when passing the prop default to raisins for editability.
+
 export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
   selectedRegion: "Country / Region of Indirect Tax",
   vatNumber: "VAT number",
@@ -120,7 +123,8 @@ export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
   badgeTextAwaitingReview: "Awaiting review. Submitted on {dateSubmitted}.",
   badgeTextExpiredOn: "Expired on {dateExpired}.",
   badgeTextExpiringSoon: ", expiring on {dateExpired}.",
-  noTaxFormRequired: "Tax documents are only required if you are based in the US. If your country of residence has changed, please contact Support",
+  noTaxFormRequired:
+    "Tax documents are only required if you are based in the US. If your country of residence has changed, please contact Support",
   invalidForm:
     "Ensure your information matches your profile and resubmit a new document.",
   taxAlertHeaderNotActive:

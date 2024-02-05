@@ -1,10 +1,10 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
+import { useState } from "@saasquatch/universal-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import {
-  indirectDetailsSlotText,
-  indirectTaxFormText,
-} from "../sqm-user-info-form/defaultTextCopy";
 import {
   IndirectDetailsSlotView,
   OtherRegionSlotView,
@@ -14,10 +14,6 @@ import {
   IndirectTaxFormViewProps,
 } from "./sqm-indirect-tax-form-view";
 import { useIndirectTaxForm } from "./useIndirectTaxForm";
-import { DemoData } from "../../../global/demo";
-import deepmerge from "deepmerge";
-import { useState } from "@saasquatch/universal-hooks";
-import { isDemo } from "@saasquatch/component-boilerplate";
 
 @Component({
   tag: "sqm-indirect-tax-form",
@@ -28,72 +24,116 @@ export class IndirectTaxForm {
    * Sub text shown at the top of the page, used to show the current step of the tax form.
    * @uiName Indirect tax form step text
    */
-  @Prop() formStep: string = indirectTaxFormText.formStep;
+  @Prop() formStep: string = "Step 2 of 4";
   /**
    * Heading text shown at the top of the page
    * @uiName Indirect tax heading text
    */
-  @Prop() indirectTax: string = indirectTaxFormText.indirectTax;
+  @Prop() indirectTax: string = "Indirect Tax";
   /**
    * Subtext shown at the top of the page
    * @uiName Indirect tax sub text
    */
   @Prop() indirectTaxDescription: string =
-    indirectTaxFormText.indirectTaxDescription;
+    "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.";
   /**
    * Heading text shown above the tax details radio buttons
    * @uiName Indirect tax details heading
    */
-  @Prop() indirectTaxDetails: string = indirectTaxFormText.indirectTaxDetails;
+  @Prop() indirectTaxDetails: string = "Indirect Tax Details";
   /**
    * Sub text shown above the tax details radio buttons
    * @uiName Indirect tax details sub text
    */
   @Prop() indirectTaxDetailsDescription: string =
-    indirectTaxFormText.indirectTaxDetailsDescription;
+    "Not sure if you are registered for indirect tax? Contact our Support team to find out more.";
   /**
    * Label text for the HST Canada radio button
    * @uiName HST Canada radio button label
    */
-  @Prop() hstCanada: string = indirectTaxFormText.hstCanada;
+  @Prop() hstCanada: string = "I am registered for HST in Canada";
   /**
    * Label text for the other region radio button
    * @uiName Other region radio button label
    */
-  @Prop() otherRegion: string = indirectTaxFormText.otherRegion;
+  @Prop() otherRegion: string =
+    "I am registered for Indirect Tax in a different Country / Region";
   /**
    * Label text for the not registered radio button
    * @uiName Not registered radio button label
    */
-  @Prop() notRegistered: string = indirectTaxFormText.notRegistered;
+  @Prop() notRegistered: string = "I am not registered for Indirect Tax";
+  /**
+   * Label text for the Selected Region select input
+   * @uiName Selected region select input label
+   */
+  @Prop() selectedRegion: string = "Country / Region of Indirect Tax";
+  /**
+   * Label text for the VAT Number input
+   * @uiName VAT Number input label
+   */
+  @Prop() vatNumber: string = "VAT number";
+  /**
+   * Label text for the Province select input
+   * @uiName Province select input label
+   */
+  @Prop() province: string = "Province";
+
+  /**
+   * Label text for the Indirect Tax Number input
+   * @uiName Indirect Tax Number input label
+   */
+  @Prop() indirectTaxNumber: string = "Indirect Tax";
+
   /**
    * Text shown inside of submit button
    * @uiName Submit button text
    */
-  @Prop() submitButton: string = indirectTaxFormText.submitButton;
+  @Prop() submitButton: string = "Continue";
   /**
    * Text shown inside of back button
    * @uiName Back button text
    */
-  @Prop() backButton: string = indirectTaxFormText.backButton;
+  @Prop() backButton: string = "Back";
   /**
    * Error text shown below the tax details radio buttons
    * @uiName Indirect tax details error text
    */
-  @Prop() taxDetailsError: string = indirectTaxFormText.error.taxDetails;
+  @Prop() taxDetailsError: string = "This field is required";
   /**
    * The title for error message shown at the top of the page in an error banner
    *
    * @uiName General error title
    */
-  @Prop() generalErrorTitle: string = indirectTaxFormText.error.generalTitle;
+  @Prop() generalErrorTitle: string =
+    "There was a problem submitting your information";
   /**
    * The error message shown at the top of the page in an error banner
    *
    * @uiName General error text
    */
   @Prop() generalErrorDescription: string =
-    indirectTaxFormText.error.generalDescription;
+    "Please review your information and try again. If this problem continues, contact Support.";
+  /**
+   * Error text shown below the Selected Region select input
+   * @uiName Selected Region error text
+   */
+  @Prop() selectedRegionError: string = "Country is required";
+  /**
+   * Error text shown below the VAT Number input
+   * @uiName VAT Number error text
+   */
+  @Prop() vatNumberError: string = "VAT number is required";
+  /**
+   * Error text shown below the Selected Region select input
+   * @uiName Province error text
+   */
+  @Prop() provinceError: string = "Province is required";
+  /**
+   * Error text shown below the Indirect Tax Number select input
+   * @uiName Indirect Tax Number error text
+   */
+  @Prop() indirectTaxNumberError: string = "Indirect Tax is required";
 
   /**
    * @undocumented
@@ -107,10 +147,35 @@ export class IndirectTaxForm {
 
   disconnectedCallback() {}
 
+  getTextProps() {
+    const props = getProps(this);
+
+    return {
+      ...props,
+      error: {
+        generalTitle: props.generalErrorTitle,
+        generalDescription: props.generalErrorDescription,
+        taxDetails: props.taxDetailsError,
+      },
+      slotText: {
+        selectedRegion: props.selectedRegion,
+        vatNumber: props.vatNumber,
+        province: props.province,
+        indirectTaxNumber: props.indirectTaxNumber,
+        error: {
+          selectedRegion: props.selectedRegionError,
+          vatNumber: props.vatNumberError,
+          province: props.provinceError,
+          indirectTaxNumber: props.indirectTaxNumberError,
+        },
+      },
+    };
+  }
+
   render() {
     const props = isDemo()
-      ? useDemoIndirectTaxForm(getProps(this))
-      : useIndirectTaxForm(getProps(this));
+      ? useDemoIndirectTaxForm(this)
+      : useIndirectTaxForm(this);
 
     console.log({ props });
 
@@ -125,7 +190,7 @@ export class IndirectTaxForm {
           hide: props.option !== "hstCanada",
         }}
         data={{ countries: props.countries }}
-        text={indirectDetailsSlotText}
+        text={props.text.slotText}
       ></IndirectDetailsSlotView>
     );
 
@@ -140,7 +205,7 @@ export class IndirectTaxForm {
           loading: props.loading,
         }}
         data={{ countries: props.countries }}
-        text={indirectDetailsSlotText}
+        text={this.getTextProps().slotText}
       />
     );
 
@@ -159,8 +224,7 @@ export class IndirectTaxForm {
             registeredInDifferentCountryDetailsSlot: otherRegionSlot,
             disabled: props.loading,
           }}
-          //@ts-ignore
-          text={props.text}
+          text={this.getTextProps()}
           refs={{ formRef: props.formRef }}
         />
       </Host>
@@ -177,20 +241,13 @@ function useDemoIndirectTaxForm(
     {
       loading: false,
       countries: [{ countryCode: "CA", displayName: "Canada" }],
-      text: {
-        ...props,
-        error: {
-          generalTitle: props.generalErrorTitle,
-          generalDescription: props.generalErrorDescription,
-          taxDetails: props.taxDetailsError,
-        },
-      },
       errors: {},
       onBack: () => {},
       onSubmit: async () => {},
       submitDisabled: false,
       option: option,
       onChange: setOption,
+      text: props.getTextProps(),
       formRef: { current: null },
       formState: {
         countryCode: "CA",

@@ -1,16 +1,14 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Element, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import { IndirectTaxFormViewProps } from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
-import { useDocusignForm } from "./useDocusignForm";
 import {
   DocusignFormView,
   DocusignFormViewProps,
 } from "./sqm-docusign-form-view";
-import { docusignFormText } from "../sqm-user-info-form/defaultTextCopy";
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { useDocusignForm } from "./useDocusignForm";
 
 /**
  * @uiName Tax And Cash
@@ -28,71 +26,75 @@ export class DocusignForm {
    * Sub text shown at the top of the page, used to show the current step of the tax form.
    * @uiName Tax form step text
    */
-  @Prop() formStep: string = docusignFormText.formStep;
+  @Prop() formStep: string = "Step 3 of 4";
   /**
    * Heading text shown at the top of the page
    * @uiName Tax form heading text
    */
-  @Prop() taxForm: string = docusignFormText.taxForm;
+  @Prop() taxForm: string = "Tax form";
   /**
    * Text shown at the top of the page next to the document type text
    * @uiName Tax form label text
    */
-  @Prop() taxFormLabel: string = docusignFormText.taxFormLabel;
+  @Prop() taxFormLabel: string = "{documentType} Tax Form";
   /**
    * Subtext shown at the top of the page next to the document type text
    * @uiName Tax form subtext
    */
-  @Prop() taxFormDescription: string = docusignFormText.taxFormDescription;
+  @Prop() taxFormDescription: string =
+    "Participants based in the US and partnering with US-based brands need to submit a {documentType} form.";
   /**
    * Text shown in the link to the form for non US residents
    * @uiName Not based in US link text
    */
-  @Prop() notBasedInUS: string = docusignFormText.notBasedInUS;
+  @Prop() notBasedInUS: string = "Not based in the US?";
   /**
    * Text shown in the banner above the document
    * @uiName Banner text
    */
-  @Prop() banner: string = docusignFormText.banner;
+  @Prop() banner: string =
+    "For your security, we automatically end your session when you have not interacted with the form after 20 minutes.";
   /**
    * Heading text for the form submission checkbox
    * @uiName Form submission checkbox heading
    */
-  @Prop() checkboxLabel: string = docusignFormText.checkboxLabel;
+  @Prop() checkboxLabel: string = "Form submission";
   /**
    * Label text for the form submission checkbox
    * @uiName Form submission checkbox label
    */
-  @Prop() checkboxDescription: string = docusignFormText.checkboxDescription;
+  @Prop() checkboxDescription: string =
+    "I have completed and submitted my tax form";
   /**
    * Text shown inside of submit button
    * @uiName Submit button text
    */
-  @Prop() submitButton: string = docusignFormText.submitButton;
+  @Prop() submitButton: string = "Continue";
   /**
    * Text shown inside of back button
    * @uiName Back button text
    */
-  @Prop() backButton: string = docusignFormText.backButton;
+  @Prop() backButton: string = "Back";
   /**
    * The title for error message shown at the top of the page in an error banner
    *
    * @uiName General error title
    */
-  @Prop() generalErrorTitle: string = docusignFormText.error.generalTitle;
+  @Prop() generalErrorTitle: string =
+    "There was a problem submitting your information";
   /**
    * The error message shown at the top of the page in an error banner
    *
    * @uiName General error text
    */
   @Prop() generalErrorDescription: string =
-    docusignFormText.error.generalDescription;
+    "Please review your information and try again. If this problem continues, contact Support.";
   /**
    * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
    *
    * @uiName Form submission error text
    */
-  @Prop() formSubmissionError: string = docusignFormText.error.formSubmission;
+  @Prop() formSubmissionError: string = "This field is required";
   /**
    * @undocumented
    * @uiType object
@@ -105,10 +107,23 @@ export class DocusignForm {
 
   disconnectedCallback() {}
 
+  getTextProps() {
+    const props = getProps(this);
+
+    return {
+      ...props,
+      error: {
+        generalTitle: props.generalErrorTitle,
+        generalDescription: props.generalErrorDescription,
+        formSubmission: props.formSubmissionError,
+      },
+    };
+  }
+
   render() {
     const props = isDemo()
-      ? useDocusignFormDemo(getProps(this))
-      : useDocusignForm(getProps(this), this.el);
+      ? useDocusignFormDemo(this)
+      : useDocusignForm(this, this.el);
 
     return (
       <Host>
@@ -127,13 +142,7 @@ function useDocusignFormDemo(
 ): Partial<DocusignFormViewProps> {
   return deepmerge(
     {
-      text: {
-        ...props,
-        error: {
-          generalTitle: props.generalErrorTitle,
-          generalDescription: props.generalErrorDescription,
-        },
-      },
+      text: props.getTextProps(),
       states: {
         disabled: false,
         submitDisabled: false,

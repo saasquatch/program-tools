@@ -1,13 +1,13 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
 import { getProps } from "../../../utils/utils";
-import { taxFormDocumentSubmittedText as defaults } from "../sqm-user-info-form/defaultTextCopy";
 import {
   TaxDocumentSubmittedProps,
   TaxDocumentSubmittedView,
 } from "./sqm-tax-document-submitted-view";
 import { useTaxDocumentSubmitted } from "./useTaxDocumentSubmitted";
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { DemoData } from "../../../global/demo";
 
 @Component({ tag: "sqm-tax-document-submitted", shadow: true })
 export class TaxDocumentSubmitted {
@@ -16,149 +16,173 @@ export class TaxDocumentSubmitted {
    *
    * @uiName Status text
    */
-  @Prop() statusTextActive?: string = defaults.statusTextActive;
+  @Prop() statusTextActive?: string = "Active";
 
   /**
    * Status text displayed in badge when tax document is Not Active
    *
    * @uiName Status text
    */
-  @Prop() statusTextNotActive?: string = defaults.statusTextNotActive;
+  @Prop() statusTextNotActive?: string = "Invalid Tax Form";
 
   /**
    * Status text displayed in badge when tax document is Not Verified
    *
    * @uiName Status text
    */
-  @Prop() statusTextNotVerified?: string = defaults.statusTextNotVerified;
+  @Prop() statusTextNotVerified?: string = "Not Verified";
 
   /**
    * Status text displayed in badge when tax document is Expired
    *
    * @uiName Status text
    */
-  @Prop() statusTextExpired?: string = defaults.statusTextExpired;
+  @Prop() statusTextExpired?: string = "Expired";
 
   /**
    * Description text which appears beside badge showing when the form was submitted
    *
    * @uiName Badge description text
    */
-  @Prop() badgeTextSubmittedOn?: string = defaults.badgeTextSubmittedOn;
+  @Prop() badgeTextSubmittedOn?: string = "Submitted on {dateSubmitted}";
 
   /**
    * Description text which appears beside badge showing the form is awaiting review
    *
    * @uiName Badge description text
    */
-  @Prop() badgeTextAwaitingReview?: string = defaults.badgeTextAwaitingReview;
+  @Prop() badgeTextAwaitingReview?: string =
+    "Awaiting review. Submitted on {dateSubmitted}.";
 
   /**
    * Description text which appears beside badge showing the form has expired
    *
    * @uiName Badge description text
    */
-  @Prop() badgeTextExpiredOn?: string = defaults.badgeTextExpiredOn;
+  @Prop() badgeTextExpiredOn?: string = "Expired on {dateExpired}.";
 
   /**
    * Description text which appears beside badge showing the form expiring soon
    *
    * @uiName Badge description text
    */
-  @Prop() badgeTextExpiringSoon?: string = defaults.badgeTextExpiringSoon;
+  @Prop() badgeTextExpiringSoon?: string = ", expiring on {dateExpired}.";
 
   /**
    * Header displayed in alert header at the top of the page.
    *
    * @uiName Not active alert header
    */
-  @Prop() taxAlertHeaderNotActive?: string = defaults.taxAlertHeaderNotActive;
+  @Prop() taxAlertHeaderNotActive?: string =
+    "Your {documentType} tax form has personal information that doesn't match your profile.";
   /**
    * Header displayed in alert header at the top of the page.
    *
    * @uiName Expired alert header
    */
-  @Prop() taxAlertHeaderExpiredOn?: string = defaults.taxAlertHeaderExpiredOn;
+  @Prop() taxAlertHeaderExpiredOn?: string =
+    "Your {documentType} tax form has expired.";
   /**
    * Header displayed in alert header at the top of the page.
    *
    * @uiName Expiring soon alert header
    */
   @Prop() taxAlertHeaderExpiringSoon?: string =
-    defaults.taxAlertHeaderExpiringSoon;
+    "Your {documentType} tax form expires on {dateExpired}";
   /**
    * Description text displayed in alert body at the top of the page.
    *
    * @uiName Tax alert message
    */
-  @Prop() taxAlertMessage?: string = defaults.taxAlertMessage;
+  @Prop() taxAlertMessage?: string =
+    "Please resubmit a new {documentType} form.";
   /**
    * Description text displayed in alert body at the top of the page.
    *
    * @uiName Expiring soon tax alert message
    */
   @Prop() taxAlertMessageExpiringSoon: string =
-    defaults.taxAlertMessageExpiringSoon;
+    "Please submit a new {documentType} form to continue receiving your rewards";
   /**
    * Description text displayed next to the badge in the tax documents status
    *
    * @uiName Invalid form description text
    */
-  @Prop() invalidForm?: string = defaults.invalidForm;
+  @Prop() invalidForm?: string =
+    "Ensure your information matches your profile and resubmit a new document.";
   /**
    * Header text displayed above the banking information card
    *
    * @uiName Banking information header
    */
-  @Prop() bankingInformationSectionHeader: string =
-    defaults.bankingInformationSectionHeader;
+  @Prop() bankingInformationSectionHeader: string = "Banking Information";
   /**
    * Header text displayed above the tax documents status
    *
    * @uiName Tax document section header
    */
-  @Prop() taxDocumentSectionHeader: string = defaults.taxDocumentSectionHeader;
+  @Prop() taxDocumentSectionHeader: string = "Tax documents";
   /**
    * Sub header text displayed above the tax documents status
    *
    * @uiName Tax documents sub header
    */
-  @Prop() taxDocumentSectionSubHeader: string =
-    defaults.taxDocumentSectionSubHeader;
+  @Prop() taxDocumentSectionSubHeader: string = "{documentType} Tax Form";
   /**
    * Subtext displayed at the bottom of the page if there are no tax documents to show
    *
    * @uiName No form needed subtext
    */
-  @Prop() noFormNeededSubtext: string = defaults.noFormNeededSubtext;
+  @Prop() noFormNeededSubtext: string =
+    "Tax documents are only required if you are based in the US. If your country of residence has changed, please contact Support.";
   /**
    * Text displayed in the submit new document button at the bottom of the page
    *
    * @uiName No form needed subtext
    */
-  @Prop() newFormButton: string = defaults.newFormButton;
+  @Prop() newFormButton: string = "Submit New document";
   /**
    * The title for error message shown at the top of the page in an error banner
    *
    * @uiName General error title
    */
-  @Prop() generalErrorTitle: string = defaults.error.generalTitle;
+  @Prop() generalErrorTitle: string =
+    "There was a problem submitting your information";
   /**
    * The error message shown at the top of the page in an error banner
    *
    * @uiName General error text
    */
-  @Prop() generalErrorDescription: string = defaults.error.generalDescription;
+  @Prop() generalErrorDescription: string =
+    "Please review your information and try again. If this problem continues, contact Support.";
+
+  /**
+   * @undocumented
+   * @uiType object
+   */
+  @Prop() demoData?: DemoData<TaxDocumentSubmittedProps>;
+
   constructor() {
     withHooks(this);
   }
 
   disconnectedCallback() {}
 
+  getTextProps() {
+    const props = getProps(this);
+    return {
+      ...props,
+      error: {
+        generalDescription: props.generalErrorDescription,
+        generalTitle: props.generalErrorTitle,
+      },
+    };
+  }
+
   render() {
     const props = isDemo()
-      ? useDemoTaxDocumentSubmitted(getProps(this))
-      : useTaxDocumentSubmitted(getProps(this));
+      ? useDemoTaxDocumentSubmitted(this)
+      : useTaxDocumentSubmitted(this);
 
     return (
       <Host>
@@ -189,12 +213,6 @@ function useDemoTaxDocumentSubmitted(
     callbacks: {
       onClick: () => console.debug("check step"),
     },
-    text: {
-      ...props,
-      error: {
-        generalDescription: props.generalErrorDescription,
-        generalTitle: props.generalErrorTitle,
-      },
-    },
+    text: props.getTextProps(),
   };
 }

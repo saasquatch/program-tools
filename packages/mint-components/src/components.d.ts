@@ -11,6 +11,7 @@ import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { UserNameViewProps } from "./components/tax-and-cash/sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
+import { DocumentTypeFormViewProps } from "./components/tax-and-cash/sqm-document-type-form/sqm-document-type-form-view";
 import { DocusignFormViewProps } from "./components/tax-and-cash/sqm-docusign-form/sqm-docusign-form-view";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
@@ -42,6 +43,8 @@ import { ReferralDates } from "./components/sqm-referral-table/useReferralTable"
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
+import { TaxDocumentSubmittedProps } from "./components/tax-and-cash/sqm-tax-document-submitted/sqm-tax-document-submitted-view";
+import { UserInfoFormViewProps } from "./components/tax-and-cash/sqm-user-info-form/sqm-user-info-form-view";
 import { UserNameViewProps as UserNameViewProps1 } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
     interface RaisinsPlopTarget {
@@ -291,6 +294,11 @@ export namespace Components {
           * @uiName Back button text
          */
         "backButton": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<DocumentTypeFormViewProps>;
         /**
           * Sub text shown above form selection radio buttons
           * @uiName Tax form selection heading text
@@ -759,6 +767,16 @@ export namespace Components {
          */
         "indirectTaxDetailsDescription": string;
         /**
+          * Label text for the Indirect Tax Number input
+          * @uiName Indirect Tax Number input label
+         */
+        "indirectTaxNumber": string;
+        /**
+          * Error text shown below the Indirect Tax Number select input
+          * @uiName Indirect Tax Number error text
+         */
+        "indirectTaxNumberError": string;
+        /**
           * Label text for the not registered radio button
           * @uiName Not registered radio button label
          */
@@ -769,6 +787,26 @@ export namespace Components {
          */
         "otherRegion": string;
         /**
+          * Label text for the Province select input
+          * @uiName Province select input label
+         */
+        "province": string;
+        /**
+          * Error text shown below the Selected Region select input
+          * @uiName Province error text
+         */
+        "provinceError": string;
+        /**
+          * Label text for the Selected Region select input
+          * @uiName Selected region select input label
+         */
+        "selectedRegion": string;
+        /**
+          * Error text shown below the Selected Region select input
+          * @uiName Selected Region error text
+         */
+        "selectedRegionError": string;
+        /**
           * Text shown inside of submit button
           * @uiName Submit button text
          */
@@ -778,6 +816,16 @@ export namespace Components {
           * @uiName Indirect tax details error text
          */
         "taxDetailsError": string;
+        /**
+          * Label text for the VAT Number input
+          * @uiName VAT Number input label
+         */
+        "vatNumber": string;
+        /**
+          * Error text shown below the VAT Number input
+          * @uiName VAT Number error text
+         */
+        "vatNumberError": string;
     }
     interface SqmInputField {
         /**
@@ -3063,6 +3111,11 @@ export namespace Components {
          */
         "bankingInformationSectionHeader": string;
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<TaxDocumentSubmittedProps>;
+        /**
           * The error message shown at the top of the page in an error banner
           * @uiName General error text
          */
@@ -3259,7 +3312,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<UserNameViewProps>;
+        "demoData"?: DemoData<UserInfoFormViewProps>;
         /**
           * Label text for email input
           * @uiName Email label
@@ -4318,6 +4371,11 @@ declare namespace LocalJSX {
          */
         "backButton"?: string;
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<DocumentTypeFormViewProps>;
+        /**
           * Sub text shown above form selection radio buttons
           * @uiName Tax form selection heading text
          */
@@ -4785,6 +4843,16 @@ declare namespace LocalJSX {
          */
         "indirectTaxDetailsDescription"?: string;
         /**
+          * Label text for the Indirect Tax Number input
+          * @uiName Indirect Tax Number input label
+         */
+        "indirectTaxNumber"?: string;
+        /**
+          * Error text shown below the Indirect Tax Number select input
+          * @uiName Indirect Tax Number error text
+         */
+        "indirectTaxNumberError"?: string;
+        /**
           * Label text for the not registered radio button
           * @uiName Not registered radio button label
          */
@@ -4795,6 +4863,26 @@ declare namespace LocalJSX {
          */
         "otherRegion"?: string;
         /**
+          * Label text for the Province select input
+          * @uiName Province select input label
+         */
+        "province"?: string;
+        /**
+          * Error text shown below the Selected Region select input
+          * @uiName Province error text
+         */
+        "provinceError"?: string;
+        /**
+          * Label text for the Selected Region select input
+          * @uiName Selected region select input label
+         */
+        "selectedRegion"?: string;
+        /**
+          * Error text shown below the Selected Region select input
+          * @uiName Selected Region error text
+         */
+        "selectedRegionError"?: string;
+        /**
           * Text shown inside of submit button
           * @uiName Submit button text
          */
@@ -4804,6 +4892,16 @@ declare namespace LocalJSX {
           * @uiName Indirect tax details error text
          */
         "taxDetailsError"?: string;
+        /**
+          * Label text for the VAT Number input
+          * @uiName VAT Number input label
+         */
+        "vatNumber"?: string;
+        /**
+          * Error text shown below the VAT Number input
+          * @uiName VAT Number error text
+         */
+        "vatNumberError"?: string;
     }
     interface SqmInputField {
         /**
@@ -7065,6 +7163,11 @@ declare namespace LocalJSX {
          */
         "bankingInformationSectionHeader"?: string;
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<TaxDocumentSubmittedProps>;
+        /**
           * The error message shown at the top of the page in an error banner
           * @uiName General error text
          */
@@ -7260,7 +7363,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<UserNameViewProps>;
+        "demoData"?: DemoData<UserInfoFormViewProps>;
         /**
           * Label text for email input
           * @uiName Email label

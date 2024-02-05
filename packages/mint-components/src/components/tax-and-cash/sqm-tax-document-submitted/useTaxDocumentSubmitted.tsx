@@ -80,12 +80,6 @@ export const useTaxDocumentSubmitted = (
     callbacks: {
       onClick: () => setStep(`/3/${documentType}`),
     },
-    text: {
-      ...props,
-      error: {
-        generalDescription: props.generalErrorDescription,
-        generalTitle: props.generalErrorTitle,
-      },
-    },
+    text: props.getTextProps(),
   };
 };

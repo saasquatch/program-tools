@@ -156,18 +156,7 @@ export function useUserInfoForm(props: TaxForm) {
     setStep: setStep,
     onSubmit,
     onRadioClick,
-    text: {
-      ...props,
-      error: {
-        firstName: props.firstNameError,
-        lastName: props.lastNameError,
-        email: props.emailError,
-        countryCode: props.countryError,
-        currency: props.currencyError,
-        allowBankingCollection: props.allowBankingCollectionError,
-        participantType: props.participantTypeError,
-      },
-    },
+    text: props.getTextProps(),
     refs: {
       formRef,
     },

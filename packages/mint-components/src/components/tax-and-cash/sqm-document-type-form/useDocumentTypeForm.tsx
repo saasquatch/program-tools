@@ -70,6 +70,7 @@ export function useDocumentTypeForm(props: DocumentTypeForm) {
   };
 
   return {
+    text: props.getTextProps(),
     callbacks: {
       onSubmit,
       onBack: () => setPath("/2"),
@@ -81,13 +82,6 @@ export function useDocumentTypeForm(props: DocumentTypeForm) {
         formSubmission: false,
         selectedTaxForm: "w9" as const,
         errors,
-      },
-    },
-    text: {
-      ...props,
-      error: {
-        generalTitle: props.generalErrorTitle,
-        generalDescription: props.generalErrorDescription,
       },
     },
   };

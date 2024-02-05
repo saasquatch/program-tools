@@ -173,17 +173,10 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   return {
     loading: loading || countriesLoading,
     countries,
-    text: {
-      ...props,
-      error: {
-        generalTitle: props.generalErrorTitle,
-        generalDescription: props.generalErrorDescription,
-        taxDetails: props.taxDetailsError,
-      },
-    },
     errors,
     onBack,
     onSubmit,
+    text: props.getTextProps(),
     // submitDisabled: !option,
     submitDisabled: false,
     option,

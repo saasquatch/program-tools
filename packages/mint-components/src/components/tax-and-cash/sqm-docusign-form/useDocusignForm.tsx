@@ -105,14 +105,6 @@ export function useDocusignForm(props: DocusignForm, el: any) {
   };
 
   return {
-    text: {
-      ...props,
-      error: {
-        generalTitle: props.generalErrorTitle,
-        generalDescription: props.generalErrorDescription,
-        formSubmission: props.formSubmissionError,
-      },
-    },
     states: {
       disabled: taxInfoLoading || loading,
       submitDisabled: !formSubmitted,
@@ -134,5 +126,6 @@ export function useDocusignForm(props: DocusignForm, el: any) {
       toggleFormSubmitted: () => setFormSubmitted((x) => !x),
       onBack: () => setPath("/2"),
     },
+    text: props.getTextProps(),
   };
 }
