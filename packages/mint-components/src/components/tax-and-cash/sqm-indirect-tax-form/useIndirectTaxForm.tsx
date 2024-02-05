@@ -17,6 +17,8 @@ import {
 } from "../sqm-tax-and-cash/data";
 import { IndirectTaxForm } from "./sqm-indirect-tax-form";
 import { getDocumentType } from "../sqm-tax-document-submitted/useTaxDocumentSubmitted";
+import { UserInfoFormViewProps } from "../sqm-user-info-form/sqm-user-info-form-view";
+import { IndirectTaxFormViewProps } from "./sqm-indirect-tax-form-view";
 
 function getOption(user: UserQuery["user"]) {
   if (!user) return;
@@ -171,17 +173,31 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   };
 
   return {
-    loading: loading || countriesLoading,
-    countries,
-    errors,
-    onBack,
-    onSubmit,
+    states: {
+      disabled: loading || countriesLoading,
+      loading: loading || countriesLoading,
+      option,
+      errors,
+      formState: {
+        checked: option,
+      },
+    },
+    callbacks: {
+      onBack,
+      onSubmit,
+      onChange: setOption,
+    },
+    data: {
+      countries,
+    },
     text: props.getTextProps(),
-    // submitDisabled: !option,
-    submitDisabled: false,
-    option,
-    onChange: setOption,
-    formRef,
-    formState,
+    refs: {
+      formRef,
+    },
+    slotProps: {
+      formState: { ...formState, errors },
+      hideHst: option !== "hstCanada",
+      hideOther: option !== "otherRegion",
+    },
   };
 }
