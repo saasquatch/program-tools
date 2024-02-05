@@ -126,6 +126,20 @@ export class TaxForm {
   @Prop() participantTypeError: string = "Select a participant type";
 
   /**
+   * Alert header text shown in alert if user is already a registered partner
+   * @uiName Participant is partner title
+   */
+  @Prop() isPartnerAlertHeader: string =
+    "An account with this email already exists with our referral program provider, impact.com";
+
+  /**
+   * Alert description text shown in alert if user is already a registered partner
+   * @uiName Participant is partner description
+   */
+  @Prop() isPartnerAlertDescription: string =
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
+
+  /**
    * The title for error message shown at the top of the page in an error banner
    *
    * @uiName General error title
@@ -214,6 +228,7 @@ function useDemoUserInfoForm(props: TaxForm) {
         disabled: false,
         formState: { participantType },
         loading: false,
+        isPartner: false,
       },
     },
     props.demoData || {},

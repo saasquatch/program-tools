@@ -33,7 +33,7 @@ Feature: Indirect Tax Form
   @minutia
   Scenario: The country select displays applicable indirect tax countries from Impacts API
     When the "I am registered for Indirect Tax in a different Country / Region" option is selected
-    Then A Country select appears with the available countries provided by Impacts API
+    Then A Country select appears with the available countries for indirect tax provided by Impacts API
 
   @minutia @ui
   Scenario Outline: Participant from another country has their country value auto selected

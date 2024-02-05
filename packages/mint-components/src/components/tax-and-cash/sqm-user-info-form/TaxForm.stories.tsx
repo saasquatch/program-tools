@@ -43,6 +43,7 @@ const stepOneProps: UserInfoFormViewProps = {
   states: {
     loading: false,
     disabled: false,
+    isPartner: true,
 
     formState: {
       firstName: "Bob",
@@ -171,7 +172,7 @@ export const StepOneDisabled = () => {
   return (
     <sqm-user-info-form
       demoData={{
-        states: { ...stepOneProps.states, disabled: true },
+        states: { ...stepOneProps.states, disabled: true, isPartner: true },
       }}
     ></sqm-user-info-form>
   );
@@ -247,13 +248,6 @@ export const StepTwoLoading = () => {
         },
       }}
     ></sqm-indirect-tax-form>
-    // <IndirectTaxFormView
-    //   {...stepTwoProps}
-    //   states={{
-    //     ...stepTwoProps.states,
-    //     loading: true,
-    //   }}
-    // />
   );
 };
 

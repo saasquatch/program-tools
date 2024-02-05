@@ -23,6 +23,8 @@ export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
 
 export const userInfoText: UserInfoFormViewProps["text"] = {
   firstName: "First name",
+  isPartnerAlertHeader: "dsadas",
+  isPartnerAlertDescription: "dsadas",
   lastName: "Last name",
   email: "Email",
   country: "Country",

@@ -167,6 +167,8 @@ export function useUserInfoForm(props: TaxForm) {
     states: {
       disabled: loading,
       loading: loading || mutationLoading,
+      //AL: TODO hook up if user is partner
+      isPartner: true,
       formState: { ...formState },
     },
   };
