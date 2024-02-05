@@ -587,66 +587,154 @@ export const StepThreeFormSelectorWithGeneralError = () => {
 };
 
 export const TaxDocumentSubmittedActive = () => {
-  return <TaxDocumentSubmittedView {...documentSubmittedActiveProps} />;
+  return (
+    <sqm-tax-document-submitted
+      demoData={{
+        states: {
+          disabled: false,
+          status: "ACTIVE",
+          documentType: "W9",
+          dateSubmitted: "Jan 18th, 2025",
+          dateExpired: "Dec 18th, 2025",
+          noFormNeeded: false,
+        },
+      }}
+    ></sqm-tax-document-submitted>
+  );
 };
 
 export const TaxDocumentSubmittedNotVerified = () => {
-  return <TaxDocumentSubmittedView {...documentSubmittedNotVerifiedProps} />;
+  return (
+    <sqm-tax-document-submitted
+      demoData={{
+        states: {
+          disabled: false,
+          status: "NOT_ACTIVE",
+          documentType: "W8-BEN",
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+        },
+      }}
+    ></sqm-tax-document-submitted>
+  );
 };
 
 export const TaxDocumentSubmittedNotActive = () => {
-  return <TaxDocumentSubmittedView {...documentSubmittedNotActiveProps} />;
+  return (
+    <sqm-tax-document-submitted
+      demoData={{
+        states: {
+          disabled: false,
+          status: "NOT_ACTIVE",
+          documentType: "W8-BEN-E",
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+        },
+      }}
+    ></sqm-tax-document-submitted>
+  );
 };
 
 export const TaxDocumentSubmittedExpired = () => {
-  return <TaxDocumentSubmittedView {...documentSubmittedExpiredProps} />;
+  return (
+    <sqm-tax-document-submitted
+      demoData={{
+        states: {
+          disabled: false,
+          status: "EXPIRED",
+          documentType: "W8-BEN-E",
+          dateSubmitted: "Jan 18th, 2025",
+          dateExpired: "Dec 25th, 2025",
+          noFormNeeded: false,
+        },
+      }}
+    ></sqm-tax-document-submitted>
+  );
 };
 
 export const TaxDocumentSubmittedExpiringSoon = () => {
-  return <TaxDocumentSubmittedView {...documentSubmittedExpiringSoonProps} />;
+  return (
+    <sqm-tax-document-submitted
+      demoData={{
+        states: {
+          disabled: false,
+          status: "ACTIVE",
+          documentType: "W8-BEN-E",
+          dateSubmitted: "Jan 18th, 2025",
+          dateExpired: "Feb 18th, 2025",
+          expiresSoon: true,
+          noFormNeeded: false,
+        },
+      }}
+    ></sqm-tax-document-submitted>
+  );
 };
 
-export const TaxDocumentNotRequired = () => {
+export const TaxDocumentNoFormNeeded = () => {
   return (
-    <TaxDocumentSubmittedView {...documentSubmittedTaxFormNotRequiredProps} />
+    <sqm-tax-document-submitted
+      demoData={{
+        states: {
+          disabled: false,
+          documentType: "W8-BEN-E",
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: true,
+        },
+      }}
+    ></sqm-tax-document-submitted>
   );
 };
 
 export const TaxDocumentSubmittedLoading = () => {
-  return <TaxDocumentSubmittedView {...documentSubmittedLoadingProps} />;
+  return (
+    <sqm-tax-document-submitted
+      demoData={{
+        states: {
+          disabled: false,
+          status: "ACTIVE",
+          documentType: "W9",
+          dateSubmitted: "Jan 18th, 2025",
+          dateExpired: "Dec 18th, 2025",
+          noFormNeeded: false,
+          loading: true,
+        },
+      }}
+    ></sqm-tax-document-submitted>
+  );
 };
 
-export const TaxDocumentNotRequiredLoading = () => {
+export const TaxDocumentNoFormNeededLoading = () => {
   return (
-    <TaxDocumentSubmittedView
-      {...documentSubmittedTaxFormNotRequiredLoadingProps}
-    />
+    <sqm-tax-document-submitted
+      demoData={{
+        states: {
+          disabled: false,
+          documentType: undefined,
+          noFormNeeded: true,
+          loading: true,
+        },
+      }}
+    ></sqm-tax-document-submitted>
   );
 };
 
 export const TaxDocumentSubmittedWithGeneralError = () => {
   return (
-    <TaxDocumentSubmittedView
-      {...documentSubmittedActiveProps}
-      states={{
-        ...documentSubmittedActiveProps.states,
-        errors: {
-          general: true,
+    <sqm-tax-document-submitted
+      demoData={{
+        states: {
+          disabled: false,
+          status: "ACTIVE",
+          documentType: "W9",
+          dateSubmitted: "Jan 18th, 2025",
+          dateExpired: "Dec 18th, 2025",
+          noFormNeeded: false,
+          errors: {
+            general: true,
+          },
         },
       }}
-    />
-  );
-};
-
-export const TaxDocumentSubmittedNoFormNeeded = () => {
-  return (
-    <TaxDocumentSubmittedView
-      {...documentSubmittedActiveProps}
-      states={{
-        ...documentSubmittedActiveProps.states,
-        noFormNeeded: true,
-      }}
-    />
+    ></sqm-tax-document-submitted>
   );
 };
 
