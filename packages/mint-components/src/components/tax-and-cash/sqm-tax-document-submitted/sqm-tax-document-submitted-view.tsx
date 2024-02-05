@@ -117,7 +117,7 @@ const style = {
   TaxDocSubtext: {
     margin: "0",
     color: "var(--sl-color-neutral-500)",
-    lineHeight: "2px",
+    lineHeight: "var(--sl-spacing-medium)",
   },
 };
 
