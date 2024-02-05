@@ -202,10 +202,11 @@ const documentSubmittedTaxFormNotRequiredLoadingProps: TaxDocumentSubmittedProps
 
 const documentSubmittedLoadingProps: TaxDocumentSubmittedProps = {
   states: {
-    disabled: false,
+    disabled: true,
     status: "ACTIVE",
     documentType: "W8-BEN-E",
     dateSubmitted: "Jan 18th, 2025",
+    noFormNeeded: false,
     loading: true,
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
