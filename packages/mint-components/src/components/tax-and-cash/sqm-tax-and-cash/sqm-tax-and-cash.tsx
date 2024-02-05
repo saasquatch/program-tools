@@ -24,6 +24,8 @@ import { TAX_CONTEXT_NAMESPACE } from "./data";
 export class TaxAndCash {
   @State() ignored = true;
 
+  @Prop({ attribute: "" }) step: string = "/1";
+
   /**
    * @undocumented
    * @uiType object
