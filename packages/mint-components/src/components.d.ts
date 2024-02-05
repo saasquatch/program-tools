@@ -3083,6 +3083,7 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<UserNameViewProps>;
+        "step": string;
     }
     interface SqmTaxDocumentSubmitted {
         /**
@@ -7135,6 +7136,7 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<UserNameViewProps>;
+        "step"?: string;
     }
     interface SqmTaxDocumentSubmitted {
         /**

@@ -10,6 +10,7 @@
 | Property   | Attribute | Description | Type                                                              | Default     |
 | ---------- | --------- | ----------- | ----------------------------------------------------------------- | ----------- |
 | `demoData` | --        |             | `{ loading?: boolean; loadingText?: string; username?: string; }` | `undefined` |
+| `step`     | `step`    |             | `string`                                                          | `"/1"`      |
 
 
 ## Dependencies

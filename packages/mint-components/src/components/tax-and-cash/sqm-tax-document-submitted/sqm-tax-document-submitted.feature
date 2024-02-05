@@ -1,6 +1,6 @@
 @owner:andy @author:andy
 Feature: Tax Document Submitted View
-        View that informs the user of their Tax Document submission status.
+  View that informs the user of their Tax Document submission status.
 
   Background: A user has submitted their Tax Document
     Given a user is on the Tax Document Submitted view
@@ -22,7 +22,7 @@ Feature: Tax Document Submitted View
     Given the user has submitted a W9/W8-BEN/W8-BEN-E Tax form
     Then the Tax Form header displays "<documentType> Tax Form"
 
-    Examples: 
+    Examples:
       | documentType |
       | W9           |
       | W8-BEN       |
@@ -35,7 +35,7 @@ Feature: Tax Document Submitted View
     Then they see a badge with <status> text and a respective <badgeVariant>
     Then they see a message indicating "<taxStatusMessage> on <dateSubmitted>"
 
-    Examples: 
+    Examples:
       | status       | badgeVariant | taxStatusMessage                                                          | dateSubmitted |
       | ACTIVE       | success      | Submitted on                                                              | Jan 17, 2024  |
       | NOT_VERIFIED | neutral      | Awaiting Review. Submitted on                                             | Jan 17, 2024  |
@@ -51,23 +51,29 @@ Feature: Tax Document Submitted View
 
   @minutia @ui
   Scenario Outline: A Danger Alert is displayed if the users tax form is invalid
-    Given the <status> is "NOT_ACTIVE" or "EXPIRED"
+    Given the document has status <status>
     Then a danger alert indicating the <documentType> with a <taxAlertHeader> and <taxAlertMessage> appears
 
-    Examples: 
-      | status     | documentType | taxAlertHeader                                                             | taxAlertMessage                      |
-      | NOT_ACTIVE | W9           | Your W9 tax form has personal information that doesn't match your profile. | Please resubmit a new W9 form.       |
-      | EXPIRED    | W8-BEN-E     | Your W8-BEN-E tax form has expired.                                        | Please resubmit a new W8-BEN-E form. |
+    Examples:
+      | status     | documentType | taxAlertHeader                                                                 | taxAlertMessage                      |
+      | NOT_ACTIVE | W9           | Your W9 tax form has personal information that doesn't match your profile.     | Please resubmit a new W9 form.       |
+      | NOT_ACTIVE | W8-BEN       | Your W8-BEN tax form has personal information that doesn't match your profile. | Please resubmit a new W8-BEN form.   |
+      | EXPIRED    | W8-BEN-E     | Your W8-BEN-E tax form has expired.                                            | Please resubmit a new W8-BEN-E form. |
 
   @minutia @ui
   Scenario Outline: A Warning Alert is displayed if the users tax form is expiring soon
     Given the <status> is ACTIVE
-    And the <dateExpired> is 30 days away from the current date
-    Then a warning alert indicating the <documentType> with a <taxAlertHeader>, <taxAlertMessage>, and <dateExpired> appears
+    And the document type is <documentType>
+    And the <dateExpired> of the document is within 30 days of the current date
+    Then a warning alert <may> be displayed
+    And it indicates the <documentType> with a <taxAlertHeader>, <taxAlertMessage>, and <dateExpired> appears
+    And
 
-    Examples: 
-      | status | documentType | taxAlertHeader              | dateExpired    | taxAlertMessage                |
-      | ACTIVE | W9           | Your W9 tax form expires on | Dec 30th, 2024 | Please resubmit a new W9 form. |
+    Examples:
+      | status | documentType | may    | taxAlertHeader                    | dateExpired    | taxAlertMessage                      |
+      | ACTIVE | W9           | is not | N/A                               | N/A            | N/A                                  |
+      | ACTIVE | W8-BEN       | may    | Your W8-BEN tax form expires on   | Dec 30th, 2024 | Please resubmit a new W8-BEN form.   |
+      | ACTIVE | W8-BEN-E     | may    | Your W8-BEN-E tax form expires on | Dec 30th, 2024 | Please resubmit a new W8-BEN-E form. |
 
   @unknown
   Scenario: Submit New Tax Document Form
