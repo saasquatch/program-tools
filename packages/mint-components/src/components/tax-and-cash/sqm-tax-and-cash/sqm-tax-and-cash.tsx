@@ -36,20 +36,23 @@ export class TaxAndCash {
   disconnectedCallback() {}
 
   render() {
-    const props = isDemo() ? useTaxAndCashDemo(this) : useTaxAndCash();
-
-    console.log({ props, step: props.step, isDemo: isDemo() });
+    const inDemoMode = isDemo();
+    const props = inDemoMode ? useTaxAndCashDemo(this) : useTaxAndCash();
 
     if (props.loading) return <LoadingSkeleton />;
 
     return (
       <Host>
-        <button onClick={() => props.setStep(getPrevStep(props.step))}>
-          prev
-        </button>{" "}
-        <button onClick={() => props.setStep(getNextStep(props.step))}>
-          next
-        </button>
+        {inDemoMode && (
+          <div>
+            <button onClick={() => props.setStep(getPrevStep(props.step))}>
+              Preview preview step
+            </button>{" "}
+            <button onClick={() => props.setStep(getNextStep(props.step))}>
+              Preview next step
+            </button>
+          </div>
+        )}
         <sqm-context-router contextName={props.namespace}>
           <slot />
         </sqm-context-router>

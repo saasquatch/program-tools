@@ -33,7 +33,7 @@ import {
   UserInfoFormView,
 } from "./sqm-user-info-form-view";
 import { UseDocusignFormResult } from "../sqm-docusign-form/useDocusignForm";
-import { DemoData } from "../../../global/demo";
+import { DemoData, StoryDemoData } from "../../../global/demo";
 import { UseDocumentTypeFormResult } from "../sqm-document-type-form/useDocumentTypeForm";
 import { UseTaxDocumentSubmittedResult } from "../sqm-tax-document-submitted/useTaxDocumentSubmitted";
 // import sqmUserInfoSpecs from "./sqm-tax-document-step-1.feature";
@@ -110,18 +110,19 @@ const stepTwoProps = {
   text: indirectTaxFormText,
 };
 
-const documentSubmittedActiveProps: DemoData<UseTaxDocumentSubmittedResult> = {
-  states: {
-    disabled: false,
-    status: "ACTIVE",
-    documentType: "W9",
-    dateSubmitted: "Jan 18th, 2025",
-    dateExpired: "Dec 18th, 2025",
-  },
-  callbacks: { onClick: () => console.log("Submit new Form") },
-};
+const documentSubmittedActiveProps: StoryDemoData<UseTaxDocumentSubmittedResult> =
+  {
+    states: {
+      disabled: false,
+      status: "ACTIVE",
+      documentType: "W9",
+      dateSubmitted: "Jan 18th, 2025",
+      dateExpired: "Dec 18th, 2025",
+    },
+    callbacks: { onClick: () => console.log("Submit new Form") },
+  };
 
-const docusignFormProps: DemoData<UseDocusignFormResult> = {
+const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
   states: {
     documentType: "W9",
     loading: false,
@@ -141,7 +142,7 @@ const docusignFormProps: DemoData<UseDocusignFormResult> = {
   },
 };
 
-const documentTypeFormProps: DemoData<UseDocumentTypeFormResult> = {
+const documentTypeFormProps: StoryDemoData<UseDocumentTypeFormResult> = {
   states: {
     loading: false,
     disabled: false,

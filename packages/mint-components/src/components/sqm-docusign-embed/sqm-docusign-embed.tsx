@@ -6,6 +6,9 @@ declare global {
   }
 }
 
+/**
+ * @uiName DocuSign Embedded IFrame
+ */
 @Component({
   tag: "sqm-docusign-embed",
   shadow: true,
