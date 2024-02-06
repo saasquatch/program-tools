@@ -86,6 +86,20 @@ export class IndirectTaxForm {
   @Prop() indirectTaxNumber: string = "Indirect Tax";
 
   /**
+   * Alert header text shown in alert if user is already a registered partner
+   * @uiName Participant is partner title
+   */
+  @Prop() isPartnerAlertHeader: string =
+    "An account with this email already exists with our referral program provider, impact.com";
+
+  /**
+   * Alert description text shown in alert if user is already a registered partner
+   * @uiName Participant is partner description
+   */
+  @Prop() isPartnerAlertDescription: string =
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
+
+  /**
    * Text shown inside of submit button
    * @uiName Submit button text
    */
@@ -177,6 +191,8 @@ export class IndirectTaxForm {
       ? useDemoIndirectTaxForm(this)
       : useIndirectTaxForm(this);
 
+    console.log(props);
+
     const registeredInCanadaDetailsSlot = (
       <IndirectDetailsSlotView
         states={{
@@ -223,15 +239,20 @@ function useDemoIndirectTaxForm(
 ): ReturnType<typeof useIndirectTaxForm> {
   const [option, setOption] = useState(null);
   //@ts-ignore
+  const checked = option || props.demoData.states.formState.checked;
+
+  // @ts-ignore
   return deepmerge(
     {
       states: {
         option,
         disabled: false,
         loading: false,
-        errors: {},
+        //AL: TODO hook up if user is partner
+        isPartner: false,
         formState: {
-          checked: option,
+          checked,
+          errors: props.demoData.states.formState.errors,
         },
       },
       callbacks: {
@@ -247,9 +268,11 @@ function useDemoIndirectTaxForm(
         formRef: { current: null },
       },
       slotProps: {
-        formState: {},
-        hideHst: option !== "hstCanada",
-        hideOther: option !== "otherRegion",
+        formState: {
+          errors: props.demoData.states.formState.errors,
+        },
+        hideHst: checked !== "hstCanada",
+        hideOther: checked !== "otherRegion",
       },
     },
     props.demoData || {},

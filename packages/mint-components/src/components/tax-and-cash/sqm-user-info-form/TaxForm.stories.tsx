@@ -43,7 +43,7 @@ const stepOneProps: UserInfoFormViewProps = {
   states: {
     loading: false,
     disabled: false,
-    isPartner: true,
+    isPartner: false,
 
     formState: {
       firstName: "Bob",
@@ -72,7 +72,7 @@ const stepOneProps: UserInfoFormViewProps = {
   callbacks: {
     // TODO: fix type
     // @ts-ignore
-    onSubmit: (props: any) => console.log("Submit"),
+    onSubmit: async (props: any) => console.log("Submit"),
     // TODO: fix type
     // @ts-ignore
     onRadioClick: (props: any) => console.log("Radio Click"),
@@ -83,10 +83,11 @@ const stepOneProps: UserInfoFormViewProps = {
   },
 };
 
-const stepTwoProps: IndirectTaxFormViewProps = {
+const stepTwoProps = {
   states: {
     loading: false,
     disabled: false,
+    isPartner: false,
     formState: {
       checked: undefined,
     },
@@ -94,18 +95,18 @@ const stepTwoProps: IndirectTaxFormViewProps = {
   callbacks: {
     // TODO: fix type
     // @ts-ignore
-    onSubmit: (props: any) => console.log("Submit"),
+    onSubmit: async (props: any) => console.log("Submit"),
     // TODO: fix type
     // @ts-ignore
     onChange: (e) => console.log("Submit"),
     onBack: () => console.log("Submit"),
   },
   refs: { formRef: { current: null } },
-  text: indirectTaxFormText,
   slots: {
     registeredInCanadaDetailsSlot: <div></div>,
     registeredInDifferentCountryDetailsSlot: <div></div>,
   },
+  text: indirectTaxFormText,
 };
 
 const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
@@ -173,6 +174,16 @@ export const StepOneLoading = () => {
 };
 
 export const StepOneDisabled = () => {
+  return (
+    <sqm-user-info-form
+      demoData={{
+        states: { ...stepOneProps.states, disabled: true },
+      }}
+    ></sqm-user-info-form>
+  );
+};
+
+export const StepOneIsPartner = () => {
   return (
     <sqm-user-info-form
       demoData={{
@@ -267,109 +278,135 @@ export const StepTwoDisabled = () => {
     ></sqm-indirect-tax-form>
   );
 };
+
+export const StepTwoIsPartner = () => {
+  return (
+    <sqm-indirect-tax-form
+      demoData={{
+        states: {
+          ...stepTwoProps.states,
+          isPartner: true,
+        },
+      }}
+    ></sqm-indirect-tax-form>
+  );
+};
+
 export const StepTwoWithGeneralError = () => {
   return (
-    <IndirectTaxFormView
-      {...stepTwoProps}
-      states={{
-        ...stepTwoProps.states,
-        formState: {
-          ...stepTwoProps.states.formState,
-          errors: {
-            general: true,
+    <sqm-indirect-tax-form
+      demoData={{
+        states: {
+          ...stepTwoProps.states,
+          formState: {
+            ...stepTwoProps.states.formState,
+            errors: {
+              general: true,
+            },
           },
         },
       }}
-    />
+    ></sqm-indirect-tax-form>
   );
 };
 
 export const StepTwoHSTChecked = () => {
   return (
-    <IndirectTaxFormView
-      {...stepTwoProps}
-      {...{
+    <sqm-indirect-tax-form
+      demoData={{
         slots: {
           registeredInCanadaDetailsSlot: <RegisteredInCanada />,
         },
-      }}
-      states={{
-        ...stepTwoProps.states,
-        formState: {
-          ...stepTwoProps.states.formState,
-          checked: "hstCanada",
+        states: {
+          ...stepTwoProps.states,
+          formState: {
+            ...stepTwoProps.states.formState,
+            checked: "hstCanada",
+          },
         },
       }}
-    />
+    ></sqm-indirect-tax-form>
   );
 };
 
 export const StepTwoHSTCheckedWithInputErrors = () => {
   return (
-    <IndirectTaxFormView
-      {...stepTwoProps}
-      slots={{
-        registeredInCanadaDetailsSlot: <RegisteredInCanadaWithErrors />,
-        registeredInDifferentCountryDetailsSlot: <RegisteredInOtherRegion />,
-      }}
-      states={{
-        ...stepTwoProps.states,
-        formState: {
-          ...stepTwoProps.states.formState,
-          checked: "hstCanada",
+    <sqm-indirect-tax-form
+      demoData={{
+        slots: {
+          registeredInCanadaDetailsSlot: <RegisteredInCanadaWithErrors />,
+          registeredInDifferentCountryDetailsSlot: <RegisteredInOtherRegion />,
+        },
+        states: {
+          ...stepTwoProps.states,
+          formState: {
+            ...stepTwoProps.states.formState,
+            checked: "hstCanada",
+            errors: {
+              province: true,
+              indirectTaxNumber: true,
+            },
+          },
         },
       }}
-    />
+    ></sqm-indirect-tax-form>
   );
 };
 
 export const StepTwoOtherRegionChecked = () => {
   return (
-    <IndirectTaxFormView
-      {...stepTwoProps}
-      states={{
-        ...stepTwoProps.states,
-        formState: {
-          ...stepTwoProps.states.formState,
-          checked: "otherRegion",
+    <sqm-indirect-tax-form
+      demoData={{
+        states: {
+          ...stepTwoProps.states,
+          formState: {
+            ...stepTwoProps.states.formState,
+            checked: "otherRegion",
+          },
         },
       }}
-    />
+    ></sqm-indirect-tax-form>
   );
 };
 
 export const StepTwoOtherRegionCheckedWithInputErrors = () => {
   return (
-    <IndirectTaxFormView
-      {...stepTwoProps}
-      slots={{
-        registeredInDifferentCountryDetailsSlot: (
-          <RegisteredInOtherRegionWithErrors />
-        ),
-      }}
-      states={{
-        ...stepTwoProps.states,
-        formState: {
-          ...stepTwoProps.states.formState,
-          checked: "otherRegion",
+    <sqm-indirect-tax-form
+      demoData={{
+        slots: {
+          registeredInDifferentCountryDetailsSlot: (
+            <RegisteredInOtherRegionWithErrors />
+          ),
+        },
+        states: {
+          ...stepTwoProps.states,
+          formState: {
+            ...stepTwoProps.states.formState,
+            checked: "otherRegion",
+            errors: {
+              selectedRegion: true,
+              vatNumber: true,
+            },
+          },
         },
       }}
-    />
+    ></sqm-indirect-tax-form>
   );
 };
 
 export const StepTwoNotRegisteredChecked = () => {
   return (
-    <IndirectTaxFormView
-      {...stepTwoProps}
-      states={{
-        ...stepTwoProps.states,
-        formState: {
-          ...stepTwoProps.states.formState,
-          checked: "notRegistered",
+    <sqm-indirect-tax-form
+      demoData={{
+        states: {
+          ...stepTwoProps.states,
+          formState: {
+            ...stepTwoProps.states.formState,
+            checked: "notRegistered",
+          },
         },
       }}
-    />
+    ></sqm-indirect-tax-form>
   );
 };
 
@@ -377,9 +414,18 @@ export const StepTwoNotRegisteredChecked = () => {
 export const StepThreeWithDocusign = () => {
   // @ts-ignore TODO: fix this
   return (
-    <DocusignFormView {...docusignFormProps}>
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          ...docusignFormProps.states,
+        },
+      }}
+    >
       <div slot="docusign-iframe">Hey</div>
-    </DocusignFormView>
+    </sqm-docusign-form>
+    // <DocusignFormView {...docusignFormProps}>
+    //   <div slot="docusign-iframe">Hey</div>
+    // </DocusignFormView>
   );
 };
 

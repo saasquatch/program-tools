@@ -5,6 +5,7 @@ export interface IndirectTaxFormViewProps {
   states: {
     loading: boolean;
     disabled: boolean;
+    isPartner: boolean;
     formState: {
       checked: "hstCanada" | "otherRegion" | "notRegistered" | undefined;
       errors?: any;
@@ -15,7 +16,7 @@ export interface IndirectTaxFormViewProps {
     registeredInDifferentCountryDetailsSlot?: VNode;
   };
   callbacks: {
-    onSubmit: (props: any) => void;
+    onSubmit: (props: any) => Promise<void>;
     onChange: (e) => void;
     onBack: () => void;
   };
@@ -25,6 +26,8 @@ export interface IndirectTaxFormViewProps {
     indirectTaxDescription: string;
     indirectTaxDetails: string;
     indirectTaxDetailsDescription: string;
+    isPartnerAlertHeader: string;
+    isPartnerAlertDescription: string;
     hstCanada: string;
     otherRegion: string;
     notRegistered: string;
@@ -96,6 +99,16 @@ const style = {
       color: "var(--sl-color-danger-500)",
     },
   },
+  PartnerAlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-sky-100)",
+      borderTop: "none",
+      padding: "0 16px",
+    },
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-blue-500)",
+    },
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -134,6 +147,8 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
 
   const { classes } = sheet;
 
+  console.log(states, "states");
+
   return (
     <sl-form
       class={classes.FormWrapper}
@@ -157,6 +172,18 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
             <strong>{text.error.generalTitle}</strong>
             <br />
             {text.error.generalDescription}
+          </sl-alert>
+        )}
+        {states.isPartner && (
+          <sl-alert
+            type="primary"
+            open
+            class={sheet.classes.PartnerAlertContainer}
+          >
+            <sl-icon slot="icon" name="info-circle"></sl-icon>
+            <strong>{text.isPartnerAlertHeader}</strong>
+            <br />
+            {text.isPartnerAlertDescription}
           </sl-alert>
         )}
         <div>

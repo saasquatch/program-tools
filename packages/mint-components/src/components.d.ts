@@ -777,6 +777,16 @@ export namespace Components {
          */
         "indirectTaxNumberError": string;
         /**
+          * Alert description text shown in alert if user is already a registered partner
+          * @uiName Participant is partner description
+         */
+        "isPartnerAlertDescription": string;
+        /**
+          * Alert header text shown in alert if user is already a registered partner
+          * @uiName Participant is partner title
+         */
+        "isPartnerAlertHeader": string;
+        /**
           * Label text for the not registered radio button
           * @uiName Not registered radio button label
          */
@@ -4863,6 +4873,16 @@ declare namespace LocalJSX {
           * @uiName Indirect Tax Number error text
          */
         "indirectTaxNumberError"?: string;
+        /**
+          * Alert description text shown in alert if user is already a registered partner
+          * @uiName Participant is partner description
+         */
+        "isPartnerAlertDescription"?: string;
+        /**
+          * Alert header text shown in alert if user is already a registered partner
+          * @uiName Participant is partner title
+         */
+        "isPartnerAlertHeader"?: string;
         /**
           * Label text for the not registered radio button
           * @uiName Not registered radio button label

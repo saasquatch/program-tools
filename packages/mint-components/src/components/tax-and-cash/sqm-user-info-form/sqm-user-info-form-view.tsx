@@ -130,6 +130,16 @@ const style = {
       color: "var(--sl-color-danger-500)",
     },
   },
+  PartnerAlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-sky-100)",
+      borderTop: "none",
+      padding: "0 16px",
+    },
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-blue-500)",
+    },
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -196,11 +206,15 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
         </sl-alert>
       )}
       {states.isPartner && (
-        <sl-alert type="primary" open class={sheet.classes.AlertContainer}>
+        <sl-alert
+          type="primary"
+          open
+          class={sheet.classes.PartnerAlertContainer}
+        >
           <sl-icon slot="icon" name="info-circle"></sl-icon>
-          <strong>{text.error.generalTitle}</strong>
+          <strong>{text.isPartnerAlertHeader}</strong>
           <br />
-          {text.error.generalDescription}
+          {text.isPartnerAlertDescription}
         </sl-alert>
       )}
       {states.loading ? (

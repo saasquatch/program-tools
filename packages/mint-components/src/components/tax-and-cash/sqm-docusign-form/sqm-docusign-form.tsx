@@ -122,8 +122,10 @@ export class DocusignForm {
 
   render() {
     const props = isDemo()
-      ? useDocusignFormDemo(this)
+      ? useDocusignFormDemo(getProps(this))
       : useDocusignForm(this, this.el);
+
+    console.log(props);
 
     return (
       <Host>

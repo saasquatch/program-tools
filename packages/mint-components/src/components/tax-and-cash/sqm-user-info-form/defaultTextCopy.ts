@@ -54,6 +54,8 @@ export const userInfoText: UserInfoFormViewProps["text"] = {
 export const indirectTaxFormText: IndirectTaxFormViewProps["text"] = {
   formStep: "Step 2 of 4",
   indirectTax: "Indirect Tax",
+  isPartnerAlertHeader: "dsadas",
+  isPartnerAlertDescription: "dsadas",
   indirectTaxDescription:
     "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.",
   indirectTaxDetails: "Indirect Tax Details",
