@@ -17,7 +17,7 @@ Feature: Share Button
     Examples:
       | medium        | colour       | icon               |
       | facebook      | #1877f2      | facebook logo      |
-      | twitter       | #1da1f2      | twitter logo       |
+      | twitter       | #000000      | twitter x logo     |
       | email         | #666666      | envelope           |
       | direct        | brand colour | paper plane        |
       | linkedin      | #0077b5      | linkedIn logo      |

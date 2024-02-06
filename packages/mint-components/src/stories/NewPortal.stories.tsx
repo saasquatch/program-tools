@@ -225,7 +225,7 @@ export const Dashboard = () => {
                   }}
                 >
                   <ShareButtonView {...twitterButtonProps}>
-                    Tweet about us
+                    Post about us on X
                   </ShareButtonView>
                   <ShareButtonView {...facebookButtonProps}>
                     Share on Facebook
