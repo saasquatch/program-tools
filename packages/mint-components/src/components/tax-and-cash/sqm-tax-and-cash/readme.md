@@ -10,10 +10,13 @@
 | Property   | Attribute | Description | Type                                                              | Default     |
 | ---------- | --------- | ----------- | ----------------------------------------------------------------- | ----------- |
 | `demoData` | --        |             | `{ loading?: boolean; loadingText?: string; username?: string; }` | `undefined` |
-| `step`     | `step`    |             | `string`                                                          | `"/1"`      |
 
 
 ## Dependencies
+
+### Used by
+
+ - [sqm-tax-and-cash-monolith](../../sqm-tax-and-cash-monolith)
 
 ### Depends on
 
@@ -29,6 +32,7 @@ graph TD;
   sqm-tax-and-cash --> sqm-table-row
   sqm-tax-and-cash --> sqm-table-cell
   sqm-tax-and-cash --> sqm-text
+  sqm-tax-and-cash-monolith --> sqm-tax-and-cash
   style sqm-tax-and-cash fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

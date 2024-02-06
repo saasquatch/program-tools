@@ -1,6 +1,2 @@
-type DeepPartial<T> = T extends object
-  ? {
-      [K in keyof T]?: DeepPartial<T[K]>;
-    }
-  : T;
-export type DemoData<T extends {}> = Partial<Omit<T, "text">>;
+export type DemoData<T extends {}> = Partial<Omit<T, "callbacks" | "text">>;
+export type StoryDemoData<T extends {}> = Partial<Omit<T, "text">>;
