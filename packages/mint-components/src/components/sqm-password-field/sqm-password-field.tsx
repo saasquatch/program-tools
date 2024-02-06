@@ -10,6 +10,7 @@ import {
   PortalResetPasswordView,
 } from "./sqm-password-field-view";
 import { usePasswordField } from "./usePasswordField";
+import { getProps } from "../../utils/utils";
 
 export interface PasswordFieldViewDemoProps {
   initValue: string;
@@ -73,8 +74,9 @@ export class PortalPasswordField {
 
   render() {
     const { states, callbacks } = isDemo()
-      ? usePasswordFieldDemo(this)
-      : usePasswordField(this);
+      ? usePasswordFieldDemo(getProps(this))
+      : usePasswordField(getProps(this));
+
     return <PortalResetPasswordView states={states} callbacks={callbacks} />;
   }
 }

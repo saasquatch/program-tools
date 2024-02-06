@@ -18,9 +18,11 @@ export function usePasswordField(
   const [dynamicValidation, setDynamicValidation] = useState<VNode | string>(
     ""
   );
+
   function onInput(input: Event) {
     const validation = validateNewPassword(
-      (input.target as HTMLInputElement).value
+      (input.target as HTMLInputElement).value,
+      props
     );
     setDynamicValidation(validation);
   }
