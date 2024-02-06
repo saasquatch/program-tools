@@ -11,8 +11,8 @@ import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { UserNameViewProps } from "./components/tax-and-cash/sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
-import { DocumentTypeFormViewProps } from "./components/tax-and-cash/sqm-document-type-form/sqm-document-type-form-view";
-import { DocusignFormViewProps } from "./components/tax-and-cash/sqm-docusign-form/sqm-docusign-form-view";
+import { UseDocumentTypeFormResult } from "./components/tax-and-cash/sqm-document-type-form/useDocumentTypeForm";
+import { UseDocusignFormResult } from "./components/tax-and-cash/sqm-docusign-form/useDocusignForm";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
@@ -43,8 +43,8 @@ import { ReferralDates } from "./components/sqm-referral-table/useReferralTable"
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
-import { TaxDocumentSubmittedProps } from "./components/tax-and-cash/sqm-tax-document-submitted/sqm-tax-document-submitted-view";
-import { UserInfoFormViewProps } from "./components/tax-and-cash/sqm-user-info-form/sqm-user-info-form-view";
+import { UseTaxDocumentSubmittedResult } from "./components/tax-and-cash/sqm-tax-document-submitted/useTaxDocumentSubmitted";
+import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
 import { UserNameViewProps as UserNameViewProps1 } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
     interface RaisinsPlopTarget {
@@ -298,7 +298,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<DocumentTypeFormViewProps>;
+        "demoData"?: DemoData<UseDocumentTypeFormResult>;
         /**
           * Sub text shown above form selection radio buttons
           * @uiName Tax form selection heading text
@@ -388,7 +388,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<DocusignFormViewProps>;
+        "demoData"?: DemoData<UseDocusignFormResult>;
         /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Tax form step text
@@ -3125,7 +3125,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<TaxDocumentSubmittedProps>;
+        "demoData"?: DemoData<UseTaxDocumentSubmittedResult>;
         /**
           * The error message shown at the top of the page in an error banner
           * @uiName General error text
@@ -3323,7 +3323,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<UserInfoFormViewProps>;
+        "demoData"?: DemoData<UseUserInfoFormResult>;
         /**
           * Label text for email input
           * @uiName Email label
@@ -4395,7 +4395,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<DocumentTypeFormViewProps>;
+        "demoData"?: DemoData<UseDocumentTypeFormResult>;
         /**
           * Sub text shown above form selection radio buttons
           * @uiName Tax form selection heading text
@@ -4485,7 +4485,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<DocusignFormViewProps>;
+        "demoData"?: DemoData<UseDocusignFormResult>;
         /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Tax form step text
@@ -7198,7 +7198,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<TaxDocumentSubmittedProps>;
+        "demoData"?: DemoData<UseTaxDocumentSubmittedResult>;
         /**
           * The error message shown at the top of the page in an error banner
           * @uiName General error text
@@ -7395,7 +7395,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<UserInfoFormViewProps>;
+        "demoData"?: DemoData<UseUserInfoFormResult>;
         /**
           * Label text for email input
           * @uiName Email label

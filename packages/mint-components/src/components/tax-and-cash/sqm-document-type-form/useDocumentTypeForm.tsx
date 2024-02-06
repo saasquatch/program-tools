@@ -86,3 +86,5 @@ export function useDocumentTypeForm(props: DocumentTypeForm) {
     },
   };
 }
+
+export type UseDocumentTypeFormResult = ReturnType<typeof useDocumentTypeForm>;

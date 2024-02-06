@@ -6,7 +6,10 @@ import {
   TaxDocumentSubmittedProps,
   TaxDocumentSubmittedView,
 } from "./sqm-tax-document-submitted-view";
-import { useTaxDocumentSubmitted } from "./useTaxDocumentSubmitted";
+import {
+  UseTaxDocumentSubmittedResult,
+  useTaxDocumentSubmitted,
+} from "./useTaxDocumentSubmitted";
 import { DemoData } from "../../../global/demo";
 import deepmerge from "deepmerge";
 
@@ -161,7 +164,7 @@ export class TaxDocumentSubmitted {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<TaxDocumentSubmittedProps>;
+  @Prop() demoData?: DemoData<UseTaxDocumentSubmittedResult>;
 
   constructor() {
     withHooks(this);
@@ -198,7 +201,7 @@ export class TaxDocumentSubmitted {
 }
 function useDemoTaxDocumentSubmitted(
   props: TaxDocumentSubmitted
-): TaxDocumentSubmittedProps {
+): UseTaxDocumentSubmittedResult {
   return deepmerge(
     {
       states: {

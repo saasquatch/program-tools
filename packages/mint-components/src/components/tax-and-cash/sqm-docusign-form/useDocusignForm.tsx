@@ -1,3 +1,7 @@
+import {
+  useMutation,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
@@ -9,10 +13,6 @@ import {
 } from "../sqm-tax-and-cash/data";
 import { TaxDocumentType } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
 import { DocusignForm } from "./sqm-docusign-form";
-import {
-  useMutation,
-  useUserIdentity,
-} from "@saasquatch/component-boilerplate";
 
 // TODO: Fill out when API is released
 const GET_TAX_DOCUMENT = gql`
@@ -129,3 +129,5 @@ export function useDocusignForm(props: DocusignForm, el: any) {
     text: props.getTextProps(),
   };
 }
+
+export type UseDocusignFormResult = ReturnType<typeof useDocusignForm>;

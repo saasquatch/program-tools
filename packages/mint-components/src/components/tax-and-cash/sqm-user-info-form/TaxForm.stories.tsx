@@ -32,6 +32,10 @@ import {
   UserInfoFormViewProps,
   UserInfoFormView,
 } from "./sqm-user-info-form-view";
+import { UseDocusignFormResult } from "../sqm-docusign-form/useDocusignForm";
+import { DemoData } from "../../../global/demo";
+import { UseDocumentTypeFormResult } from "../sqm-document-type-form/useDocumentTypeForm";
+import { UseTaxDocumentSubmittedResult } from "../sqm-tax-document-submitted/useTaxDocumentSubmitted";
 // import sqmUserInfoSpecs from "./sqm-tax-document-step-1.feature";
 // import sqmIndirectTaxFormSpecs from "../sqm-indirect-tax-form/sqm-indirect-tax-form.feature";
 
@@ -106,7 +110,7 @@ const stepTwoProps = {
   text: indirectTaxFormText,
 };
 
-const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
+const documentSubmittedActiveProps: DemoData<UseTaxDocumentSubmittedResult> = {
   states: {
     disabled: false,
     status: "ACTIVE",
@@ -115,18 +119,16 @@ const documentSubmittedActiveProps: TaxDocumentSubmittedProps = {
     dateExpired: "Dec 18th, 2025",
   },
   callbacks: { onClick: () => console.log("Submit new Form") },
-  text: {
-    ...taxFormDocumentSubmittedText,
-  },
 };
 
-const docusignFormProps: DocusignFormViewProps = {
+const docusignFormProps: DemoData<UseDocusignFormResult> = {
   states: {
     documentType: "W9",
     loading: false,
     disabled: false,
     submitDisabled: false,
     formState: {
+      errors: {},
       completedTaxForm: true,
       taxFormExpired: false,
     },
@@ -134,25 +136,25 @@ const docusignFormProps: DocusignFormViewProps = {
   callbacks: {
     toggleFormSubmitted: () => console.log("Toggle checkbox"),
     onShowDocumentType: () => console.log("To other form"),
-    onSubmit: (props: any) => console.log(props),
+    onSubmit: async () => console.log("submit"),
     onBack: () => console.log("Back"),
   },
-  text: docusignFormText,
 };
 
-const documentTypeFormProps: DocumentTypeFormViewProps = {
+const documentTypeFormProps: DemoData<UseDocumentTypeFormResult> = {
   states: {
     loading: false,
     disabled: false,
     formState: {
+      errors: {},
+      formSubmission: false,
       selectedTaxForm: undefined,
     },
   },
   callbacks: {
-    onSubmit: (props: any) => console.log(props),
+    onSubmit: async () => console.log("Submit"),
     onBack: () => console.log("Back"),
   },
-  text: documentTypeFormText,
 };
 
 // STEP ONE
@@ -404,15 +406,8 @@ export const StepTwoNotRegisteredChecked = () => {
 
 // STEP THREE
 export const StepThreeWithDocusign = () => {
-  // @ts-ignore TODO: fix this
   return (
-    <sqm-docusign-form
-      demoData={{
-        states: {
-          ...docusignFormProps.states,
-        },
-      }}
-    >
+    <sqm-docusign-form demoData={docusignFormProps}>
       <div slot="docusign-iframe">Hey</div>
     </sqm-docusign-form>
     // <DocusignFormView {...docusignFormProps}>
@@ -422,8 +417,8 @@ export const StepThreeWithDocusign = () => {
 };
 
 export const StepThreeDocusignWithGeneralError = () => {
-  // @ts-ignore TODO: fix this
   return (
+    // @ts-ignore TODO: fix this
     <DocusignFormView
       {...docusignFormProps}
       states={{
@@ -440,8 +435,8 @@ export const StepThreeDocusignWithGeneralError = () => {
 };
 
 export const StepThreeDocusignWithFormSubmissionError = () => {
-  // @ts-ignore TODO: fix this
   return (
+    // @ts-ignore TODO: fix this
     <DocusignFormView
       {...docusignFormProps}
       states={{
@@ -459,8 +454,8 @@ export const StepThreeDocusignWithFormSubmissionError = () => {
 };
 
 export const StepThreeDocusignLoading = () => {
-  // @ts-ignore TODO: fix this
   return (
+    // @ts-ignore TODO: fix this
     <DocusignFormView
       {...docusignFormProps}
       states={{
@@ -472,8 +467,8 @@ export const StepThreeDocusignLoading = () => {
 };
 
 export const StepThreeDocusignDisabled = () => {
-  // @ts-ignore TODO: fix this
   return (
+    // @ts-ignore TODO: fix this
     <DocusignFormView
       {...docusignFormProps}
       states={{
@@ -485,8 +480,8 @@ export const StepThreeDocusignDisabled = () => {
 };
 
 export const StepThreeDocusignTimeExpired = () => {
-  // @ts-ignore TODO: fix this
   return (
+    // @ts-ignore TODO: fix this
     <DocusignFormView
       {...docusignFormProps}
       states={{
@@ -501,11 +496,13 @@ export const StepThreeDocusignTimeExpired = () => {
 };
 
 export const StepThreeWithFormSelector = () => {
+  // @ts-ignore: TODO: Fix this
   return <DocumentTypeFormView {...documentTypeFormProps} />;
 };
 
 export const StepThreeWithFormSelectorLoading = () => {
   return (
+    // @ts-ignore: TODO: Fix this
     <DocumentTypeFormView
       {...documentTypeFormProps}
       states={{
@@ -518,6 +515,7 @@ export const StepThreeWithFormSelectorLoading = () => {
 
 export const StepThreeWithFormSelectorDisabled = () => {
   return (
+    // @ts-ignore: TODO: Fix this
     <DocumentTypeFormView
       {...documentTypeFormProps}
       states={{
@@ -530,6 +528,7 @@ export const StepThreeWithFormSelectorDisabled = () => {
 
 export const StepThreeFormSelectorWithGeneralError = () => {
   return (
+    // @ts-ignore: TODO: Fix this
     <DocumentTypeFormView
       {...documentTypeFormProps}
       states={{
@@ -699,6 +698,7 @@ export const TaxDocumentSubmittedWithGeneralError = () => {
 
 export const TaxDocumentSubmittedDisabled = () => {
   return (
+    // @ts-ignore: TODO: Fix this
     <TaxDocumentSubmittedView
       {...documentSubmittedActiveProps}
       states={{

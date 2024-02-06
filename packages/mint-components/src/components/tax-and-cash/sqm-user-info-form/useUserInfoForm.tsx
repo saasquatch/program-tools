@@ -173,3 +173,5 @@ export function useUserInfoForm(props: TaxForm) {
     },
   };
 }
+
+export type UseUserInfoFormResult = ReturnType<typeof useUserInfoForm>;

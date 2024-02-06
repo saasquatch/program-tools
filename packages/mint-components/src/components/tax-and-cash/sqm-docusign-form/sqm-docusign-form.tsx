@@ -8,7 +8,7 @@ import {
   DocusignFormView,
   DocusignFormViewProps,
 } from "./sqm-docusign-form-view";
-import { useDocusignForm } from "./useDocusignForm";
+import { useDocusignForm, UseDocusignFormResult } from "./useDocusignForm";
 
 /**
  * @uiName Tax And Cash
@@ -99,7 +99,7 @@ export class DocusignForm {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<DocusignFormViewProps>;
+  @Prop() demoData?: DemoData<UseDocusignFormResult>;
 
   constructor() {
     withHooks(this);
@@ -122,7 +122,7 @@ export class DocusignForm {
 
   render() {
     const props = isDemo()
-      ? useDocusignFormDemo(getProps(this))
+      ? useDocusignFormDemo(this)
       : useDocusignForm(this, this.el);
 
     console.log(props);
@@ -139,9 +139,7 @@ export class DocusignForm {
   }
 }
 
-function useDocusignFormDemo(
-  props: DocusignForm
-): Partial<DocusignFormViewProps> {
+function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
   return deepmerge(
     {
       text: props.getTextProps(),
@@ -161,7 +159,7 @@ function useDocusignFormDemo(
       },
       callbacks: {
         onShowDocumentType: () => {},
-        onSubmit: () => {},
+        onSubmit: async () => {},
         toggleFormSubmitted: () => {},
         onBack: () => {},
       },

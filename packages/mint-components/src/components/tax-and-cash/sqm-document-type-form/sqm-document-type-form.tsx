@@ -5,7 +5,10 @@ import {
   DocumentTypeFormView,
   DocumentTypeFormViewProps,
 } from "./sqm-document-type-form-view";
-import { useDocumentTypeForm } from "./useDocumentTypeForm";
+import {
+  UseDocumentTypeFormResult,
+  useDocumentTypeForm,
+} from "./useDocumentTypeForm";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { useParent } from "../../../utils/useParentState";
@@ -93,7 +96,7 @@ export class DocumentTypeForm {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<DocumentTypeFormViewProps>;
+  @Prop() demoData?: DemoData<UseDocumentTypeFormResult>;
 
   constructor() {
     withHooks(this);
@@ -130,7 +133,7 @@ export class DocumentTypeForm {
 
 function useDemoDocumentTypeForm(
   props: DocumentTypeForm
-): ReturnType<typeof useDocumentTypeForm> {
+): UseDocumentTypeFormResult {
   const [_, setPath] = useParent(TAX_CONTEXT_NAMESPACE);
 
   return deepmerge(

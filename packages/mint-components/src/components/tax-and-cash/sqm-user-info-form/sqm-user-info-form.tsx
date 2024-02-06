@@ -10,7 +10,7 @@ import {
   UserInfoFormView,
   UserInfoFormViewProps,
 } from "./sqm-user-info-form-view";
-import { useUserInfoForm } from "./useUserInfoForm";
+import { useUserInfoForm, UseUserInfoFormResult } from "./useUserInfoForm";
 
 /**
  * @uiName Tax And Cash
@@ -158,7 +158,7 @@ export class TaxForm {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<UserInfoFormViewProps>;
+  @Prop() demoData?: DemoData<UseUserInfoFormResult>;
 
   constructor() {
     withHooks(this);
@@ -205,7 +205,7 @@ export class TaxForm {
   }
 }
 
-function useDemoUserInfoForm(props: TaxForm) {
+function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
   const [participantType, setParticipantType] = useState(null);
 
   return deepmerge(

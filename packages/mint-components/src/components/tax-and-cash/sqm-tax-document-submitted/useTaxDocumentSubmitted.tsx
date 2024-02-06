@@ -83,3 +83,7 @@ export const useTaxDocumentSubmitted = (
     text: props.getTextProps(),
   };
 };
+
+export type UseTaxDocumentSubmittedResult = ReturnType<
+  typeof useTaxDocumentSubmitted
+>;
