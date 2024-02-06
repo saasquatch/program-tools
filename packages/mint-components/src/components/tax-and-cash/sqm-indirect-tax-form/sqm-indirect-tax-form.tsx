@@ -14,6 +14,7 @@ import {
   IndirectTaxFormViewProps,
 } from "./sqm-indirect-tax-form-view";
 import {
+  INDIRECT_TAX_COUNTRIES,
   UseIndirectTaxFormResult,
   useIndirectTaxForm,
 } from "./useIndirectTaxForm";
@@ -262,7 +263,7 @@ function useDemoIndirectTaxForm(
         onChange: setOption,
       },
       data: {
-        countries: [{ displayName: "United Kingdom", countryCode: "UK" }],
+        countries: INDIRECT_TAX_COUNTRIES,
       },
       text: props.getTextProps(),
       refs: {
