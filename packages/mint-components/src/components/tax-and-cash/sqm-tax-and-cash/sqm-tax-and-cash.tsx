@@ -37,8 +37,8 @@ export class TaxAndCash {
 
   render() {
     const inDemoMode = isDemo();
-    const props = inDemoMode ? useTaxAndCashDemo(this) : useTaxAndCash();
-    // const props = useTaxAndCash();
+    // const props = inDemoMode ? useTaxAndCashDemo(this) : useTaxAndCash();
+    const props = useTaxAndCash();
 
     if (props.loading) return <LoadingSkeleton />;
 

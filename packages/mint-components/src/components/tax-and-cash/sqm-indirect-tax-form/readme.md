@@ -40,11 +40,13 @@
 ### Used by
 
  - [sqm-stencilbook](../../sqm-stencilbook)
+ - [sqm-tax-and-cash-monolith](../../sqm-tax-and-cash-monolith)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-stencilbook --> sqm-indirect-tax-form
+  sqm-tax-and-cash-monolith --> sqm-indirect-tax-form
   style sqm-indirect-tax-form fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
