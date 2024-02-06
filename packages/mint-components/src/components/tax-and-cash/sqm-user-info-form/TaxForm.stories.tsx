@@ -407,140 +407,140 @@ export const StepTwoNotRegisteredChecked = () => {
 // STEP THREE
 export const StepThreeWithDocusign = () => {
   return (
-    <sqm-docusign-form demoData={docusignFormProps}>
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          ...docusignFormProps.states,
+        },
+      }}
+    >
       <div slot="docusign-iframe">Hey</div>
     </sqm-docusign-form>
-    // <DocusignFormView {...docusignFormProps}>
-    //   <div slot="docusign-iframe">Hey</div>
-    // </DocusignFormView>
   );
 };
 
 export const StepThreeDocusignWithGeneralError = () => {
   return (
-    // @ts-ignore TODO: fix this
-    <DocusignFormView
-      {...docusignFormProps}
-      states={{
-        ...docusignFormProps.states,
-        formState: {
-          ...docusignFormProps.states.formState,
-          errors: {
-            general: true,
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          ...docusignFormProps.states,
+          formState: {
+            ...docusignFormProps.states.formState,
+            errors: {
+              general: true,
+            },
           },
         },
       }}
-    />
+    >
+      <div slot="docusign-iframe">Hey</div>
+    </sqm-docusign-form>
   );
 };
 
 export const StepThreeDocusignWithFormSubmissionError = () => {
   return (
-    // @ts-ignore TODO: fix this
-    <DocusignFormView
-      {...docusignFormProps}
-      states={{
-        ...docusignFormProps.states,
-        formState: {
-          ...docusignFormProps.states.formState,
-          completedTaxForm: false,
-          errors: {
-            formSubmission: true,
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          ...docusignFormProps.states,
+          formState: {
+            ...docusignFormProps.states.formState,
+            completedTaxForm: false,
+            errors: {
+              formSubmission: true,
+            },
           },
         },
       }}
-    />
+    >
+      <div slot="docusign-iframe">Hey</div>
+    </sqm-docusign-form>
   );
 };
 
 export const StepThreeDocusignLoading = () => {
   return (
-    // @ts-ignore TODO: fix this
-    <DocusignFormView
-      {...docusignFormProps}
-      states={{
-        ...docusignFormProps.states,
-        loading: true,
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          ...docusignFormProps.states,
+          loading: true,
+        },
       }}
-    />
+    >
+      <div slot="docusign-iframe">Hey</div>
+    </sqm-docusign-form>
   );
 };
 
 export const StepThreeDocusignDisabled = () => {
   return (
-    // @ts-ignore TODO: fix this
-    <DocusignFormView
-      {...docusignFormProps}
-      states={{
-        ...docusignFormProps.states,
-        disabled: true,
-      }}
-    />
-  );
-};
-
-export const StepThreeDocusignTimeExpired = () => {
-  return (
-    // @ts-ignore TODO: fix this
-    <DocusignFormView
-      {...docusignFormProps}
-      states={{
-        ...docusignFormProps.states,
-        formState: {
-          ...docusignFormProps.states.formState,
-          taxFormExpired: true,
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          ...docusignFormProps.states,
+          disabled: true,
         },
       }}
-    />
+    ></sqm-docusign-form>
   );
 };
 
 export const StepThreeWithFormSelector = () => {
-  // @ts-ignore: TODO: Fix this
-  return <DocumentTypeFormView {...documentTypeFormProps} />;
+  return (
+    <sqm-document-type-form
+      demoData={{
+        states: {
+          ...documentTypeFormProps.states,
+        },
+      }}
+    ></sqm-document-type-form>
+  );
 };
 
 export const StepThreeWithFormSelectorLoading = () => {
   return (
-    // @ts-ignore: TODO: Fix this
-    <DocumentTypeFormView
-      {...documentTypeFormProps}
-      states={{
-        ...documentTypeFormProps.states,
-        loading: true,
+    <sqm-document-type-form
+      demoData={{
+        states: {
+          ...documentTypeFormProps.states,
+          loading: true,
+        },
       }}
-    />
+    ></sqm-document-type-form>
   );
 };
 
 export const StepThreeWithFormSelectorDisabled = () => {
   return (
-    // @ts-ignore: TODO: Fix this
-    <DocumentTypeFormView
-      {...documentTypeFormProps}
-      states={{
-        ...documentTypeFormProps.states,
-        disabled: true,
+    <sqm-document-type-form
+      demoData={{
+        states: {
+          ...documentTypeFormProps.states,
+          disabled: true,
+        },
       }}
-    />
+    ></sqm-document-type-form>
   );
 };
 
 export const StepThreeFormSelectorWithGeneralError = () => {
   return (
-    // @ts-ignore: TODO: Fix this
-    <DocumentTypeFormView
-      {...documentTypeFormProps}
-      states={{
-        ...documentTypeFormProps.states,
-        formState: {
-          ...documentTypeFormProps.states.formState,
-          errors: {
-            general: true,
+    <sqm-document-type-form
+      demoData={{
+        states: {
+          ...documentTypeFormProps.states,
+          formState: {
+            ...documentTypeFormProps.states.formState,
+            errors: {
+              general: true,
+            },
           },
         },
       }}
-    />
+    ></sqm-document-type-form>
   );
 };
 
@@ -698,13 +698,16 @@ export const TaxDocumentSubmittedWithGeneralError = () => {
 
 export const TaxDocumentSubmittedDisabled = () => {
   return (
-    // @ts-ignore: TODO: Fix this
-    <TaxDocumentSubmittedView
-      {...documentSubmittedActiveProps}
-      states={{
-        ...documentSubmittedActiveProps.states,
-        disabled: true,
+    <sqm-tax-document-submitted
+      demoData={{
+        states: {
+          disabled: true,
+          status: "NOT_ACTIVE",
+          documentType: "W8-BEN",
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+        },
       }}
-    />
+    ></sqm-tax-document-submitted>
   );
 };

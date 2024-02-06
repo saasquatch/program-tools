@@ -343,7 +343,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 onSl-change={(e) => {
                   e.target.value = e.target.checked;
                 }}
-                disabled={states.disabled}
+                disabled={states.isPartner ? false : states.disabled}
                 required
                 value={formState.allowBankingCollection}
                 id="allowBankingCollection"
@@ -360,7 +360,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           </div>
           <sl-button
             type="primary"
-            disabled={states.disabled}
+            disabled={states.isPartner ? false : states.disabled}
             loading={states.loading}
             submit
             exportparts="base: primarybutton-base"

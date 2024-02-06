@@ -124,8 +124,6 @@ export class DocusignForm {
       ? useDocusignFormDemo(this)
       : useDocusignForm(this, this.el);
 
-    console.log(props);
-
     return (
       <Host>
         <DocusignFormView
