@@ -14,8 +14,7 @@ import { TAX_CONTEXT_NAMESPACE } from "./data";
 
 /**
  * @uiName Tax And Cash
- * @exampleGroup Common Components
- * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
+ * @exampleGroup Tax and Cash Components
  */
 @Component({
   tag: "sqm-tax-and-cash",
@@ -23,8 +22,6 @@ import { TAX_CONTEXT_NAMESPACE } from "./data";
 })
 export class TaxAndCash {
   @State() ignored = true;
-
-  @Prop({ attribute: "" }) step: string = "/1";
 
   /**
    * @undocumented
@@ -39,8 +36,7 @@ export class TaxAndCash {
   disconnectedCallback() {}
 
   render() {
-    // const props = isDemo() ? useTaxAndCashDemo(this) : useTaxAndCash();
-    const props = useTaxAndCash();
+    const props = isDemo() ? useTaxAndCashDemo(this) : useTaxAndCash();
 
     console.log({ props, step: props.step, isDemo: isDemo() });
 

@@ -1,17 +1,14 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import {
-  TaxDocumentSubmittedProps,
-  TaxDocumentSubmittedView,
-} from "./sqm-tax-document-submitted-view";
+import { TaxDocumentSubmittedView } from "./sqm-tax-document-submitted-view";
 import {
   UseTaxDocumentSubmittedResult,
   useTaxDocumentSubmitted,
 } from "./useTaxDocumentSubmitted";
-import { DemoData } from "../../../global/demo";
-import deepmerge from "deepmerge";
 
 /**
  * @uiName Tax and Cash Status Dashboard
