@@ -71,6 +71,8 @@ export const useTaxDocumentSubmitted = (
       documentType,
       // TODO: Hook up to API
       status: documentType ? "NOT_VERIFIED" : undefined,
+      //TODO AL: wire indirectTaxNumber to hooks
+      indirectTaxNumber: 123456,
       noFormNeeded: !documentType,
       dateExpired,
       expiresSoon,

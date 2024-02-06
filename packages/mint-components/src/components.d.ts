@@ -3136,6 +3136,21 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
+          * Country/Region description text of indirect tax
+          * @uiName Indirect tax Canada description
+         */
+        "indirectTaxInfoCanada": string;
+        /**
+          * Other country description text of indirect tax
+          * @uiName Indirect tax other country description
+         */
+        "indirectTaxInfoOtherCountry": string;
+        /**
+          * Header text displayed above the indirect tax preview section
+          * @uiName Indirect Tax Information Header
+         */
+        "indirectTaxInfoSectionHeader": string;
+        /**
           * Description text displayed next to the badge in the tax documents status
           * @uiName Invalid form description text
          */
@@ -7207,6 +7222,21 @@ declare namespace LocalJSX {
           * @uiName General error title
          */
         "generalErrorTitle"?: string;
+        /**
+          * Country/Region description text of indirect tax
+          * @uiName Indirect tax Canada description
+         */
+        "indirectTaxInfoCanada"?: string;
+        /**
+          * Other country description text of indirect tax
+          * @uiName Indirect tax other country description
+         */
+        "indirectTaxInfoOtherCountry"?: string;
+        /**
+          * Header text displayed above the indirect tax preview section
+          * @uiName Indirect Tax Information Header
+         */
+        "indirectTaxInfoSectionHeader"?: string;
         /**
           * Description text displayed next to the badge in the tax documents status
           * @uiName Invalid form description text

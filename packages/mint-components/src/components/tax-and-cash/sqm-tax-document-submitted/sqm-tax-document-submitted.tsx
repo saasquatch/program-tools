@@ -121,6 +121,24 @@ export class TaxDocumentSubmitted {
    */
   @Prop() bankingInformationSectionHeader: string = "Banking Information";
   /**
+   * Header text displayed above the indirect tax preview section
+   *
+   * @uiName Indirect Tax Information Header
+   */
+  @Prop() indirectTaxInfoSectionHeader: string = "Indirect Tax";
+  /**
+   * Country/Region description text of indirect tax
+   *
+   * @uiName Indirect tax Canada description
+   */
+  @Prop() indirectTaxInfoCanada: string = "Registered in {province}, {country}";
+  /**
+   * Other country description text of indirect tax
+   *
+   * @uiName Indirect tax other country description
+   */
+  @Prop() indirectTaxInfoOtherCountry: string = "Registered in {country}";
+  /**
    * Header text displayed above the tax documents status
    *
    * @uiName Tax document section header

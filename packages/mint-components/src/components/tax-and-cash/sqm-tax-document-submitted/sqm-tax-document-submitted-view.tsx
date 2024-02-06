@@ -16,6 +16,12 @@ export interface TaxDocumentSubmittedProps {
     dateExpired?: string;
     expiresSoon?: boolean;
     noFormNeeded?: boolean;
+    // ---- AL: TODO Hooks
+    indirectTaxNumber?: number;
+    province?: string;
+    country?: string;
+    isIndirectTaxCanada?: boolean;
+    //----
     loading?: boolean;
     errors?: any;
   };
@@ -36,6 +42,9 @@ export interface TaxDocumentSubmittedProps {
     taxAlertHeaderExpiringSoon?: string;
     taxAlertMessage?: string;
     bankingInformationSectionHeader: string;
+    indirectTaxInfoSectionHeader: string;
+    indirectTaxInfoCanada?: string;
+    indirectTaxInfoOtherCountry?: string;
     taxDocumentSectionHeader: string;
     taxDocumentSectionSubHeader: string;
     newFormButton: string;
@@ -63,6 +72,20 @@ const style = {
   },
   BankingInformationContainer: {
     maxWidth: "700px",
+  },
+  IndirectTaxPreviewContainer: {
+    marginTop: "var(--sl-spacing-xx-large)",
+    borderTop: "1px solid var(--sl-color-neutral-200)",
+  },
+  IndirectTaxPreviewHeaderContainer: {
+    marginTop: "var(--sl-spacing-x-large)",
+    marginBottom: "var(--sl-spacing-x-small)",
+  },
+  IndirectTaxPreviewDetails: {
+    gap: "var(--sl-spacing-x-small)",
+    display: "flex",
+    flexDirection: "column",
+    lineHeight: "var(--sl-spacing-small)",
   },
   TaxDocumentsContainer: {
     marginTop: "var(--sl-spacing-xx-large)",
@@ -342,6 +365,40 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
             </sl-button>
           </div>
         </div>
+        {!states.noFormNeeded ? (
+          <div class={sheet.classes.IndirectTaxPreviewContainer}>
+            <h3 class={sheet.classes.IndirectTaxPreviewHeaderContainer}>
+              {text.indirectTaxInfoSectionHeader}
+            </h3>
+            <div class={sheet.classes.IndirectTaxPreviewDetails}>
+              <span>
+                {states.isIndirectTaxCanada
+                  ? intl.formatMessage(
+                      {
+                        id: `indirectTaxInfoCanada`,
+                        defaultMessage: text.indirectTaxInfoCanada,
+                      },
+                      {
+                        country: states.country,
+                        province: states.province,
+                      }
+                    )
+                  : intl.formatMessage(
+                      {
+                        id: `indirectTaxInfoOtherCountry`,
+                        defaultMessage: text.indirectTaxInfoOtherCountry,
+                      },
+                      {
+                        country: states.country,
+                      }
+                    )}
+              </span>
+              <span>{states.indirectTaxNumber}</span>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
         <div class={sheet.classes.TaxDocumentsContainer}>
           <h3 class={sheet.classes.TaxDocumentsHeaderContainer}>
             {text.taxDocumentSectionHeader}

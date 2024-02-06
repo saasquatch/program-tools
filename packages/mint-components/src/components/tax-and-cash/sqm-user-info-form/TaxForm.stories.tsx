@@ -1,33 +1,11 @@
 import { h } from "@stencil/core";
 import {
-  DocumentTypeFormView,
-  DocumentTypeFormViewProps,
-} from "../sqm-document-type-form/sqm-document-type-form-view";
-import {
-  DocusignFormView,
-  DocusignFormViewProps,
-} from "../sqm-docusign-form/sqm-docusign-form-view";
-import {
-  IndirectTaxFormView,
-  IndirectTaxFormViewProps,
-} from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
-import {
-  TaxDocumentSubmittedProps,
-  TaxDocumentSubmittedView,
-} from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
-import {
   documentTypeFormText,
   userInfoText,
   indirectTaxFormText,
   docusignFormText,
   taxFormDocumentSubmittedText,
 } from "./defaultTextCopy";
-import {
-  RegisteredInCanada,
-  RegisteredInCanadaWithErrors,
-  RegisteredInOtherRegion,
-  RegisteredInOtherRegionWithErrors,
-} from "./small-views/SlotViews.stories";
 import {
   UserInfoFormViewProps,
   UserInfoFormView,
@@ -108,17 +86,6 @@ const stepTwoProps = {
   //   registeredInDifferentCountryDetailsSlot: <div></div>,
   // },
   text: indirectTaxFormText,
-};
-
-const documentSubmittedActiveProps: DemoData<UseTaxDocumentSubmittedResult> = {
-  states: {
-    disabled: false,
-    status: "ACTIVE",
-    documentType: "W9",
-    dateSubmitted: "Jan 18th, 2025",
-    dateExpired: "Dec 18th, 2025",
-  },
-  callbacks: { onClick: () => console.log("Submit new Form") },
 };
 
 const docusignFormProps: DemoData<UseDocusignFormResult> = {
@@ -551,10 +518,12 @@ export const TaxDocumentSubmittedActive = () => {
         states: {
           disabled: false,
           status: "ACTIVE",
-          documentType: "W9",
+          documentType: "W8-BEN",
           dateSubmitted: "Jan 18th, 2025",
           dateExpired: "Dec 18th, 2025",
           noFormNeeded: false,
+          country: "United Kingdom",
+          indirectTaxNumber: 123456,
         },
       }}
     ></sqm-tax-document-submitted>
@@ -571,6 +540,8 @@ export const TaxDocumentSubmittedNotVerified = () => {
           documentType: "W8-BEN",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
+          country: "United Kingdom",
+          indirectTaxNumber: 123456,
         },
       }}
     ></sqm-tax-document-submitted>
@@ -587,6 +558,8 @@ export const TaxDocumentSubmittedNotActive = () => {
           documentType: "W8-BEN-E",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
+          indirectTaxNumber: 123456,
+          country: "Slovania",
         },
       }}
     ></sqm-tax-document-submitted>
@@ -604,6 +577,8 @@ export const TaxDocumentSubmittedExpired = () => {
           dateSubmitted: "Jan 18th, 2025",
           dateExpired: "Dec 25th, 2025",
           noFormNeeded: false,
+          indirectTaxNumber: 123456,
+          country: "United Kingdom",
         },
       }}
     ></sqm-tax-document-submitted>
@@ -622,6 +597,29 @@ export const TaxDocumentSubmittedExpiringSoon = () => {
           dateExpired: "Feb 18th, 2025",
           expiresSoon: true,
           noFormNeeded: false,
+          indirectTaxNumber: 123456,
+          country: "Slovania",
+        },
+      }}
+    ></sqm-tax-document-submitted>
+  );
+};
+
+export const TaxDocumentSubmittedIndirectTaxCanada = () => {
+  return (
+    <sqm-tax-document-submitted
+      demoData={{
+        states: {
+          status: "ACTIVE",
+          disabled: false,
+          documentType: "W8-BEN-E",
+          dateSubmitted: "Jan 18th, 2025",
+          dateExpired: "Dec 20, 2026",
+          noFormNeeded: false,
+          province: "Ontario",
+          country: "Canada",
+          isIndirectTaxCanada: true,
+          indirectTaxNumber: 123456,
         },
       }}
     ></sqm-tax-document-submitted>
@@ -634,7 +632,7 @@ export const TaxDocumentNoFormNeeded = () => {
       demoData={{
         states: {
           disabled: false,
-          documentType: "W8-BEN-E",
+          documentType: "W9",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: true,
         },
