@@ -140,6 +140,7 @@ export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
   taxAlertMessageExpiringSoon:
     "Please submit a new {documentType} form to continue receiving your rewards",
   bankingInformationSectionHeader: "Banking Information",
+  taxDocumentSectionHeader: "Tax documents",
   taxDocumentSectionSubHeader: "{documentType} Tax Form",
   indirectTaxInfoSectionHeader: "dsa",
     indirectTaxInfoCanada: "dsa",

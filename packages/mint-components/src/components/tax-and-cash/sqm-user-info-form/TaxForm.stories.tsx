@@ -647,6 +647,10 @@ export const TaxDocumentNoFormNeeded = () => {
           documentType: "W9",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: true,
+          province: "Ontario",
+          country: "Canada",
+          isIndirectTaxCanada: true,
+          indirectTaxNumber: 123456,
         },
       }}
     ></sqm-tax-document-submitted>
@@ -697,6 +701,8 @@ export const TaxDocumentSubmittedWithGeneralError = () => {
           dateSubmitted: "Jan 18th, 2025",
           dateExpired: "Dec 18th, 2025",
           noFormNeeded: false,
+          indirectTaxNumber: 123456,
+          country: "Slovania",
           errors: {
             general: true,
           },

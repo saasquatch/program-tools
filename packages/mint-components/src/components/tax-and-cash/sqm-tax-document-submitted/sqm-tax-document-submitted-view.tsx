@@ -45,6 +45,7 @@ export interface TaxDocumentSubmittedProps {
     indirectTaxInfoSectionHeader: string;
     indirectTaxInfoCanada?: string;
     indirectTaxInfoOtherCountry?: string;
+    taxDocumentSectionHeader: string;
     taxDocumentSectionSubHeader: string;
     newFormButton: string;
     invalidForm?: string;
@@ -90,6 +91,10 @@ const style = {
     marginTop: "var(--sl-spacing-xx-large)",
     borderTop: "1px solid var(--sl-color-neutral-200)",
   },
+  TaxDocumentsSectionHeaderContainer: {
+    marginTop: "var(--sl-spacing-x-large)",
+    marginBottom: "var(--sl-spacing-xx-small)",
+  },
   StatusContainer: {
     marginTop: "var(--sl-spacing-x-large)",
     display: "flex",
@@ -133,6 +138,7 @@ const style = {
   TaxSectionSkeletonContainer: {
     display: "flex",
     flexDirection: "column",
+    marginTop: "var(--sl-spacing-x-large)",
   },
   TaxDocSubtext: {
     margin: "0",
@@ -362,40 +368,46 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
             </sl-button>
           </div>
         </div>
-        {!states.noFormNeeded ? (
-          <div class={sheet.classes.IndirectTaxPreviewContainer}>
-            <h3 class={sheet.classes.IndirectTaxPreviewHeaderContainer}>
-              {text.indirectTaxInfoSectionHeader}
-            </h3>
-            <div class={sheet.classes.IndirectTaxPreviewDetails}>
-              <span>
-                {states.isIndirectTaxCanada
-                  ? intl.formatMessage(
-                      {
-                        id: `indirectTaxInfoCanada`,
-                        defaultMessage: text.indirectTaxInfoCanada,
-                      },
-                      {
-                        country: states.country,
-                        province: states.province,
-                      }
-                    )
-                  : intl.formatMessage(
-                      {
-                        id: `indirectTaxInfoOtherCountry`,
-                        defaultMessage: text.indirectTaxInfoOtherCountry,
-                      },
-                      {
-                        country: states.country,
-                      }
-                    )}
-              </span>
-              <span>{states.indirectTaxNumber}</span>
+
+        <div class={sheet.classes.IndirectTaxPreviewContainer}>
+          {states.loading ? (
+            <div class={sheet.classes.TaxSectionSkeletonContainer}>
+              <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
+              <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
             </div>
-          </div>
-        ) : (
-          ""
-        )}
+          ) : (
+            <div>
+              <h3 class={sheet.classes.IndirectTaxPreviewHeaderContainer}>
+                {text.indirectTaxInfoSectionHeader}
+              </h3>
+              <div class={sheet.classes.IndirectTaxPreviewDetails}>
+                <span>
+                  {states.isIndirectTaxCanada
+                    ? intl.formatMessage(
+                        {
+                          id: `indirectTaxInfoCanada`,
+                          defaultMessage: text.indirectTaxInfoCanada,
+                        },
+                        {
+                          country: states.country,
+                          province: states.province,
+                        }
+                      )
+                    : intl.formatMessage(
+                        {
+                          id: `indirectTaxInfoOtherCountry`,
+                          defaultMessage: text.indirectTaxInfoOtherCountry,
+                        },
+                        {
+                          country: states.country,
+                        }
+                      )}
+                </span>
+                <span>{states.indirectTaxNumber}</span>
+              </div>
+            </div>
+          )}
+        </div>
         <div class={sheet.classes.TaxDocumentsContainer}>
           <div>
             {states.loading ? (
@@ -404,28 +416,43 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                 <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
               </div>
             ) : (
-              <span class={sheet.classes.TaxFormDetailsContainer}>
+              <div>
                 {states.noFormNeeded ? (
-                  <p class={sheet.classes.TaxDocSubtext}>
-                    {text.noFormNeededSubtext}
-                  </p>
-                ) : (
-                  <div class={sheet.classes.StatusContainer}>
-                    <h4>
-                      {intl.formatMessage(
-                        {
-                          id: "section-subheader",
-                          defaultMessage: text.taxDocumentSectionSubHeader,
-                        },
-                        {
-                          documentType: states.documentType,
-                        }
-                      )}
-                    </h4>
-                    {statusMap[states.status]}
+                  <div>
+                    <h3
+                      class={sheet.classes.TaxDocumentsSectionHeaderContainer}
+                    >
+                      {text.taxDocumentSectionHeader}
+                    </h3>
+                    <p class={sheet.classes.TaxDocSubtext}>
+                      {text.noFormNeededSubtext}
+                    </p>
                   </div>
+                ) : (
+                  <span class={sheet.classes.TaxFormDetailsContainer}>
+                    {states.noFormNeeded ? (
+                      <p class={sheet.classes.TaxDocSubtext}>
+                        {text.noFormNeededSubtext}
+                      </p>
+                    ) : (
+                      <div class={sheet.classes.StatusContainer}>
+                        <h4>
+                          {intl.formatMessage(
+                            {
+                              id: "section-subheader",
+                              defaultMessage: text.taxDocumentSectionSubHeader,
+                            },
+                            {
+                              documentType: states.documentType,
+                            }
+                          )}
+                        </h4>
+                        {statusMap[states.status]}
+                      </div>
+                    )}
+                  </span>
                 )}
-              </span>
+              </div>
             )}
             {states.noFormNeeded ? (
               ""

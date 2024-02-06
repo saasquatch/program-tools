@@ -13,7 +13,7 @@ Feature: Indirect Tax Form
     Examples: 
       | country        | option                                                           | inputs                        |
       | Canada         | I am registered for HST in Canada                                | Province, Indirect Tax Number |
-      | United Kingdom | I am registered for Indirect Tax in a different Country / Region | Country, VAT Number           |
+      | United Kingdom | I am registered for Indirect Tax in a different Country / Region | Country, VAT/CT/GST Number    |
       | Egypt          | I am not registered for Indirect tax                             | N/A, N/A                      |
 
   @minutia @ui
@@ -28,12 +28,68 @@ Feature: Indirect Tax Form
       | Newfoundland         |
       | Nova Scotia          |
       | Prince Edward Island |
-# AL: Need to get list of countries
 
   @minutia
-  Scenario: The country select displays applicable indirect tax countries from Impacts API
+  Scenario Outline: The country select displays applicable indirect tax countries and changes the VAT/GST/CT number input
     When the "I am registered for Indirect Tax in a different Country / Region" option is selected
-    Then A Country select appears with the available countries for indirect tax provided by Impacts API
+    Then A Country select appears with available <country>s and corresponding <vat_acronym>:
+      | vat_acronym | country        |
+      | VAT         | UK             |
+      | GST         | Australia      |
+      | GST         | New Zealand    |
+      | VAT         | Austria        |
+      | VAT         | Belgium        |
+      | VAT         | Bulgaria       |
+      | VAT         | Croatia        |
+      | VAT         | Cyprus         |
+      | VAT         | Czech Republic |
+      | VAT         | Denmark        |
+      | VAT         | Estonia        |
+      | VAT         | Finland        |
+      | VAT         | France         |
+      | VAT         | Germany        |
+      | VAT         | Greece         |
+      | VAT         | Hungary        |
+      | VAT         | Ireland        |
+      | VAT         | Italy          |
+      | VAT         | Latvia         |
+      | VAT         | Lithuania      |
+      | VAT         | Luxembourg     |
+      | VAT         | Malta          |
+      | VAT         | Netherlands    |
+      | VAT         | Poland         |
+      | VAT         | Portugal       |
+      | VAT         | Romania        |
+      | VAT         | Slovakia       |
+      | VAT         | Slovenia       |
+      | VAT         | Spain          |
+      | VAT         | Sweden         |
+      | VAT         | Iceland        |
+      | GST         | India          |
+      | VAT         | Israel         |
+      | CT          | Japan          |
+      | VAT         | Mexico         |
+      | VAT         | Norway         |
+      | GST         | Singapore      |
+      | VAT         | South Africa   |
+      | VAT         | South Korea    |
+      | VAT         | Switzerland    |
+      | VAT         | Taiwan         |
+      | VAT         | Thailand       |
+      | VAT         | Philippines    |
+      | GST         | Malaysia       |
+      | VAT         | UAE            |
+      | VAT         | Turkey         |
+      | VAT         | Russia         |
+    And based on the <country>
+    Then the VAT/GST/CT number input changes to <typeTaxInputHeader>
+
+    Examples: 
+      | vat_acronym | country | typeTaxInputHeader |
+      | VAT         | RUSSIA  | VAT number         |
+      | GST         | India   | GST Number         |
+      | CT          | Japan   | CT Number          |
+      # AL: Confirm if this is the correct list of countries impact supports for VAT/GST/CT
 
   @minutia @ui
   Scenario Outline: Participant from another country has their country value auto selected

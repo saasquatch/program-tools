@@ -3683,6 +3683,11 @@ export namespace Components {
          */
         "taxAlertMessageExpiringSoon": string;
         /**
+          * Header text displayed above the tax documents status
+          * @uiName Tax document section header
+         */
+        "taxDocumentSectionHeader": string;
+        /**
           * Sub header text displayed above the tax documents status
           * @uiName Tax documents sub header
          */
@@ -8243,6 +8248,11 @@ declare namespace LocalJSX {
           * @uiName Expiring soon tax alert message
          */
         "taxAlertMessageExpiringSoon"?: string;
+        /**
+          * Header text displayed above the tax documents status
+          * @uiName Tax document section header
+         */
+        "taxDocumentSectionHeader"?: string;
         /**
           * Sub header text displayed above the tax documents status
           * @uiName Tax documents sub header
