@@ -45,7 +45,6 @@ export interface TaxDocumentSubmittedProps {
     indirectTaxInfoSectionHeader: string;
     indirectTaxInfoCanada?: string;
     indirectTaxInfoOtherCountry?: string;
-    taxDocumentSectionHeader: string;
     taxDocumentSectionSubHeader: string;
     newFormButton: string;
     invalidForm?: string;
@@ -91,10 +90,8 @@ const style = {
     marginTop: "var(--sl-spacing-xx-large)",
     borderTop: "1px solid var(--sl-color-neutral-200)",
   },
-  TaxDocumentsHeaderContainer: {
-    marginTop: "var(--sl-spacing-x-large)",
-  },
   StatusContainer: {
+    marginTop: "var(--sl-spacing-x-large)",
     display: "flex",
     flexDirection: "column",
     gap: "var(--sl-spacing-x-small)",
@@ -400,9 +397,6 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
           ""
         )}
         <div class={sheet.classes.TaxDocumentsContainer}>
-          <h3 class={sheet.classes.TaxDocumentsHeaderContainer}>
-            {text.taxDocumentSectionHeader}
-          </h3>
           <div>
             {states.loading ? (
               <div class={sheet.classes.TaxSectionSkeletonContainer}>

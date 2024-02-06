@@ -139,12 +139,6 @@ export class TaxDocumentSubmitted {
    */
   @Prop() indirectTaxInfoOtherCountry: string = "Registered in {country}";
   /**
-   * Header text displayed above the tax documents status
-   *
-   * @uiName Tax document section header
-   */
-  @Prop() taxDocumentSectionHeader: string = "Tax documents";
-  /**
    * Sub header text displayed above the tax documents status
    *
    * @uiName Tax documents sub header

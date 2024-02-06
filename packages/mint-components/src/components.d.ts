@@ -3472,12 +3472,12 @@ export namespace Components {
         "step4BankingInformationSectionHeader": string;
         /**
           * The error message shown at the top of the page in an error banner
-          * @uiName General error text
+          * @uiName Step 4 General error text
          */
         "step4GeneralErrorDescription": string;
         /**
           * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * @uiName Step 4 General error title
          */
         "step4GeneralErrorTitle": string;
         /**
@@ -3487,7 +3487,7 @@ export namespace Components {
         "step4InvalidForm"?: string;
         /**
           * Text displayed in the submit new document button at the bottom of the page
-          * @uiName No form needed subtext
+          * @uiName Step 4 No form needed subtext
          */
         "step4NewFormButton": string;
         /**
@@ -3682,11 +3682,6 @@ export namespace Components {
           * @uiName Expiring soon tax alert message
          */
         "taxAlertMessageExpiringSoon": string;
-        /**
-          * Header text displayed above the tax documents status
-          * @uiName Tax document section header
-         */
-        "taxDocumentSectionHeader": string;
         /**
           * Sub header text displayed above the tax documents status
           * @uiName Tax documents sub header
@@ -8038,12 +8033,12 @@ declare namespace LocalJSX {
         "step4BankingInformationSectionHeader"?: string;
         /**
           * The error message shown at the top of the page in an error banner
-          * @uiName General error text
+          * @uiName Step 4 General error text
          */
         "step4GeneralErrorDescription"?: string;
         /**
           * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * @uiName Step 4 General error title
          */
         "step4GeneralErrorTitle"?: string;
         /**
@@ -8053,7 +8048,7 @@ declare namespace LocalJSX {
         "step4InvalidForm"?: string;
         /**
           * Text displayed in the submit new document button at the bottom of the page
-          * @uiName No form needed subtext
+          * @uiName Step 4 No form needed subtext
          */
         "step4NewFormButton"?: string;
         /**
@@ -8248,11 +8243,6 @@ declare namespace LocalJSX {
           * @uiName Expiring soon tax alert message
          */
         "taxAlertMessageExpiringSoon"?: string;
-        /**
-          * Header text displayed above the tax documents status
-          * @uiName Tax document section header
-         */
-        "taxDocumentSectionHeader"?: string;
         /**
           * Sub header text displayed above the tax documents status
           * @uiName Tax documents sub header
