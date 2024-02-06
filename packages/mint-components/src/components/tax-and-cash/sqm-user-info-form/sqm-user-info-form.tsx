@@ -13,9 +13,8 @@ import {
 import { useUserInfoForm, UseUserInfoFormResult } from "./useUserInfoForm";
 
 /**
- * @uiName Tax And Cash
- * @exampleGroup Common Components
- * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
+ * @uiName User Information Form
+ * @exampleGroup Tax and Cash Components
  */
 @Component({
   tag: "sqm-user-info-form",

@@ -18,6 +18,10 @@ import {
   useIndirectTaxForm,
 } from "./useIndirectTaxForm";
 
+/**
+ * @uiName Indirect Tax Form
+ * @exampleGroup Tax and Cash Components
+ */
 @Component({
   tag: "sqm-indirect-tax-form",
   shadow: true,
@@ -193,8 +197,6 @@ export class IndirectTaxForm {
     const props = isDemo()
       ? useDemoIndirectTaxForm(this)
       : useIndirectTaxForm(this);
-
-    console.log(props);
 
     const registeredInCanadaDetailsSlot = (
       <IndirectDetailsSlotView

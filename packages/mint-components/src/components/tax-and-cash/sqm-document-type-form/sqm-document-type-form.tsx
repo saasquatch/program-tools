@@ -15,6 +15,9 @@ import { useParent } from "../../../utils/useParentState";
 import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 import { isDemo } from "@saasquatch/component-boilerplate";
 
+/**
+ * @uiName Tax Document Type Selection Form
+ */
 @Component({
   tag: "sqm-document-type-form",
   shadow: true,

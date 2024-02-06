@@ -13,6 +13,9 @@ import {
 import { DemoData } from "../../../global/demo";
 import deepmerge from "deepmerge";
 
+/**
+ * @uiName Tax and Cash Status Dashboard
+ */
 @Component({ tag: "sqm-tax-document-submitted", shadow: true })
 export class TaxDocumentSubmitted {
   /**

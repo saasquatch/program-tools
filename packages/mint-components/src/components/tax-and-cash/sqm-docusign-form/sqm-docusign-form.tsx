@@ -11,9 +11,8 @@ import {
 import { useDocusignForm, UseDocusignFormResult } from "./useDocusignForm";
 
 /**
- * @uiName Tax And Cash
- * @exampleGroup Common Components
- * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
+ * @uiName DocuSign Document Submission
+ * @exampleGroup Tax and Cash Components
  */
 @Component({
   tag: "sqm-docusign-form",
