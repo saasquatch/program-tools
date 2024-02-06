@@ -38,6 +38,7 @@ export class TaxAndCash {
   render() {
     const inDemoMode = isDemo();
     const props = inDemoMode ? useTaxAndCashDemo(this) : useTaxAndCash();
+    // const props = useTaxAndCash();
 
     if (props.loading) return <LoadingSkeleton />;
 
@@ -46,7 +47,7 @@ export class TaxAndCash {
         {inDemoMode && (
           <div>
             <button onClick={() => props.setStep(getPrevStep(props.step))}>
-              Preview preview step
+              Preview previous step
             </button>{" "}
             <button onClick={() => props.setStep(getNextStep(props.step))}>
               Preview next step
@@ -64,8 +65,8 @@ export class TaxAndCash {
 function getNextStep(step: string) {
   if (step === "/1") return "/2";
   if (step === "/2") return "/3/W9";
-  if (step.includes("/3")) return "/4";
-  if (step === "/4") return "/submitted";
+  if (step.includes("/3/")) return "/3b";
+  if (step === "/3b") return "/submitted";
   if (step === "/loading") return "/1";
   return "/loading";
 }
@@ -74,8 +75,8 @@ function getPrevStep(step: string) {
   if (step === "/1") return "/1";
   if (step === "/2") return "/1";
   if (step.includes("/3")) return "/2";
-  if (step === "/4") return "/3/W9";
-  if (step === "/submitted") return "/4";
+  if (step === "/3b") return "/3/W9";
+  if (step === "/submitted") return "/3b";
   if (step === "/loading") return "/1";
   return "/loading";
 }

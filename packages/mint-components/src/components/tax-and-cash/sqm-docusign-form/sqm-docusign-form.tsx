@@ -13,7 +13,7 @@ import { useDocusignForm, UseDocusignFormResult } from "./useDocusignForm";
 /**
  * @uiName DocuSign Document Submission
  * @exampleGroup Tax and Cash Components
- * @slots [{name:"docusign-iframe", title: "DocuSign IFrame Slot"}]
+ * @slots [{"name": "docusign-iframe", "title": "DocuSign IFrame Slot"}]
  */
 @Component({
   tag: "sqm-docusign-form",

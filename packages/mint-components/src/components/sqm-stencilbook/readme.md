@@ -78,6 +78,7 @@
 - [sqm-user-info-form](../tax-and-cash/sqm-user-info-form)
 - [sqm-indirect-tax-form](../tax-and-cash/sqm-indirect-tax-form)
 - [sqm-docusign-form](../tax-and-cash/sqm-docusign-form)
+- [sqm-document-type-form](../tax-and-cash/sqm-document-type-form)
 - [sqm-tax-document-submitted](../tax-and-cash/sqm-tax-document-submitted)
 
 ### Graph
@@ -152,6 +153,7 @@ graph TD;
   sqm-stencilbook --> sqm-user-info-form
   sqm-stencilbook --> sqm-indirect-tax-form
   sqm-stencilbook --> sqm-docusign-form
+  sqm-stencilbook --> sqm-document-type-form
   sqm-stencilbook --> sqm-tax-document-submitted
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-image
