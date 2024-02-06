@@ -8,6 +8,7 @@ import {
   PortalVerifyEmailViewProps,
 } from "./sqm-portal-verify-email-view";
 import { usePortalVerifyEmail } from "./usePortalVerifyEmail";
+import { getProps } from "../../utils/utils";
 
 /**
  * @uiName Microsite Verify Email
@@ -39,6 +40,24 @@ export class PortalVerifyEmail {
   failedPage: string = "/";
 
   /**
+   * @uiName Verify email text
+   * @uiWidget textArea
+   */
+  @Prop()
+  verifyEmailText: string = "Verify your email";
+
+  /**
+   * @uiName Email verification success text
+   * @uiWidget textArea
+   */
+  @Prop()
+  verifySuccessText: string =
+    "Your email has been verified and you are being redirected. If you are not redirected, please click Continue.";
+
+  @Prop() verifyInvalidText: string =
+    "The email verification code is invalid or has expired, please try again.";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -51,14 +70,15 @@ export class PortalVerifyEmail {
   disconnectedCallback() {}
 
   render() {
-    const { states, data, callbacks } = isDemo()
-      ? usePortalVerifyEmailDemo(this)
-      : usePortalVerifyEmail(this);
+    const { states, data, callbacks, content } = isDemo()
+      ? usePortalVerifyEmailDemo(getProps(this))
+      : usePortalVerifyEmail(getProps(this));
     return (
       <PortalVerifyEmailView
         states={states}
         data={data}
         callbacks={callbacks}
+        content={content}
       />
     );
   }
@@ -77,6 +97,11 @@ function usePortalVerifyEmailDemo(
           console.log("failed");
         },
         gotoNextPage: () => {},
+      },
+      content: {
+        verifySuccessText: props.verifySuccessText,
+        verifyEmailText: props.verifyEmailText,
+        verifyInvalidText: props.verifyInvalidText,
       },
     },
     props.demoData || {},

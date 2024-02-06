@@ -892,10 +892,34 @@ export namespace Components {
          */
         "disableValidation": boolean;
         /**
+          * @uiName Fails requirements text
+         */
+        "doesNotMeetRequirementsText": string;
+        /**
           * Label for password field
           * @uiName Password label
          */
         "fieldLabel": string;
+        /**
+          * @uiName Missing number or symbol error text
+         */
+        "hasError": string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseError": string;
+        /**
+          * @uiName Meets requirements text
+         */
+        "meetsRequirementsText": string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minError": string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseError": string;
     }
     interface SqmPopupContainer {
         /**
@@ -1063,6 +1087,11 @@ export namespace Components {
           * @uiWidget textArea
          */
         "verificationLoadingMessage": string;
+        /**
+          * @uiName Email verification resent text
+          * @uiWidget textArea
+         */
+        "verificationResentMessage": string;
         /**
           * @uiName Email verification status text
           * @uiWidget textArea
@@ -1483,6 +1512,11 @@ export namespace Components {
           * @uiName Submit button text
          */
         "submitLabel": string;
+        /**
+          * Saves the browser locale on the new user
+          * @uiName Use browser locale
+         */
+        "useBrowserLocale": boolean;
     }
     interface SqmPortalResetPassword {
         /**
@@ -1552,6 +1586,17 @@ export namespace Components {
           * @uiWidget pageSelect
          */
         "nextPage": string;
+        /**
+          * @uiName Verify email text
+          * @uiWidget textArea
+         */
+        "verifyEmailText": string;
+        "verifyInvalidText": string;
+        /**
+          * @uiName Email verification success text
+          * @uiWidget textArea
+         */
+        "verifySuccessText": string;
     }
     interface SqmProgramExplainer {
         /**
@@ -4400,10 +4445,34 @@ declare namespace LocalJSX {
          */
         "disableValidation"?: boolean;
         /**
+          * @uiName Fails requirements text
+         */
+        "doesNotMeetRequirementsText"?: string;
+        /**
           * Label for password field
           * @uiName Password label
          */
         "fieldLabel"?: string;
+        /**
+          * @uiName Missing number or symbol error text
+         */
+        "hasError"?: string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseError"?: string;
+        /**
+          * @uiName Meets requirements text
+         */
+        "meetsRequirementsText"?: string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minError"?: string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseError"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -4571,6 +4640,11 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "verificationLoadingMessage"?: string;
+        /**
+          * @uiName Email verification resent text
+          * @uiWidget textArea
+         */
+        "verificationResentMessage"?: string;
         /**
           * @uiName Email verification status text
           * @uiWidget textArea
@@ -4991,6 +5065,11 @@ declare namespace LocalJSX {
           * @uiName Submit button text
          */
         "submitLabel"?: string;
+        /**
+          * Saves the browser locale on the new user
+          * @uiName Use browser locale
+         */
+        "useBrowserLocale"?: boolean;
     }
     interface SqmPortalResetPassword {
         /**
@@ -5060,6 +5139,17 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "nextPage"?: string;
+        /**
+          * @uiName Verify email text
+          * @uiWidget textArea
+         */
+        "verifyEmailText"?: string;
+        "verifyInvalidText"?: string;
+        /**
+          * @uiName Email verification success text
+          * @uiWidget textArea
+         */
+        "verifySuccessText"?: string;
     }
     interface SqmProgramExplainer {
         /**

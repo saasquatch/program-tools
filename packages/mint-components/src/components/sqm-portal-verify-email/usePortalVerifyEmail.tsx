@@ -6,7 +6,13 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { sanitizeUrlPath } from "../../utils/utils";
 
-export function usePortalVerifyEmail({ nextPage, failedPage }) {
+export function usePortalVerifyEmail({
+  nextPage,
+  failedPage,
+  verifySuccessText,
+  verifyEmailText,
+  verifyInvalidText,
+}) {
   const userIdent = useUserIdentity();
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
   const urlParams = new URLSearchParams(navigation.location.search);
@@ -78,6 +84,11 @@ export function usePortalVerifyEmail({ nextPage, failedPage }) {
     callbacks: {
       failed,
       gotoNextPage,
+    },
+    content: {
+      verifySuccessText,
+      verifyEmailText,
+      verifyInvalidText,
     },
   };
 }

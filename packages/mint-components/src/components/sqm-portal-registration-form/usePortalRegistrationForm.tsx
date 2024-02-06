@@ -2,6 +2,7 @@ import jsonpointer from "jsonpointer";
 import { useCallback, useEffect, useRef } from "@saasquatch/universal-hooks";
 import {
   navigation,
+  useLocale,
   useQuery,
   useRegisterViaRegistrationFormMutation,
 } from "@saasquatch/component-boilerplate";
@@ -48,6 +49,8 @@ interface RegistrationFormQueryData {
 
 export function usePortalRegistrationForm(props: PortalRegistrationForm) {
   const formRef = useRef<HTMLFormElement>(null);
+
+  const locale = useLocale();
 
   const { registrationFormState, setRegistrationFormState } =
     useRegistrationFormState({});
@@ -143,6 +146,7 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     const variables = {
       key: props.formKey,
       formData: {
+        ...(props.useBrowserLocale ? { locale } : {}),
         email,
         password,
         redirectPath,

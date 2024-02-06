@@ -50,14 +50,35 @@ export class PortalPasswordField {
    */
   @Prop() disableValidation: boolean = false;
 
+  /**
+   * @uiName Meets requirements text
+   */
   @Prop() meetsRequirementsText: string = "Password has met all requirements";
 
+  /**
+   * @uiName Fails requirements text
+   */
   @Prop() doesNotMeetRequirementsText: string =
     "Password must meet the following requirements:";
 
+  /**
+   * @uiName Minimum length text
+   */
   @Prop() minError: string = "be a minimum of 8 characters";
+
+  /**
+   * @uiName Missing uppercase text
+   */
   @Prop() uppercaseError: string = "contain at least 1 uppercase character";
+
+  /**
+   * @uiName Missing lowercase text
+   */
   @Prop() lowercaseError: string = "contain at least 1 lowercase character";
+
+  /**
+   * @uiName Missing number or symbol error text
+   */
   @Prop() hasError: string = "contain at least 1 number or symbol";
 
   /**

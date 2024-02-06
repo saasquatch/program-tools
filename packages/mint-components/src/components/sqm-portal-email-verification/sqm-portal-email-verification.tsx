@@ -60,6 +60,13 @@ export class PortalEmailVerification {
   @Prop() verificationLoadingMessage: string = "Checking verification status";
 
   /**
+   * @uiName Email verification resent text
+   * @uiWidget textArea
+   */
+  @Prop() verificationResentMessage: string =
+    "Your verification email has been resent successfully";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -100,6 +107,7 @@ function usePortalEmailVerificationDemo(
         resendEmailButtonText: props.resendEmailButtonText,
         verificationLoadingMessage: props.verificationLoadingMessage,
         verificationStatusMessage: props.verificationStatusMessage,
+        verificationResentMessage: props.verificationResentMessage,
       },
     },
     props.demoData || {},
