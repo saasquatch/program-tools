@@ -35,6 +35,30 @@ Feature: Instant access referrer registration
         When the submission is successful
         Then a new user has been upserted to SaaSquatch as an instant access participant
 
+    @minutia
+    Scenario: Successful registration fires a "sq:user-registration" event only when in the SquatchJS2 environment
+        Given a user has entered a valid email
+        And they submit the form
+        When the submission is successful
+        But the environment is <environment>
+        Then a "sq:user-registration" event <mayBe> fired
+        And the event has "bubbles: true"
+        And the event has details
+        """
+        {
+          userId: [registered email],
+          accountId: [registered email]
+        }
+        """
+
+        Examples:
+          | environment    | mayBe  |
+          | SquatchJS2     | is     |
+          | SquatchAndriod | is not |
+          | SquatchAdmin   | is not |
+          | SquatchPortal  | is not |
+          | None           | is not |
+
     @ui
     Scenario: Slotted content can be included
         Given a user a viewing the follow component HTML
