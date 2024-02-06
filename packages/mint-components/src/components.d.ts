@@ -17,7 +17,7 @@ import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-drop
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
 import { FunctionalComponent } from "@stencil/core";
-import { IndirectTaxFormViewProps } from "./components/tax-and-cash/sqm-indirect-tax-form/sqm-indirect-tax-form-view";
+import { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
@@ -725,7 +725,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<IndirectTaxFormViewProps>;
+        "demoData"?: DemoData<UseIndirectTaxFormResult>;
         /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Indirect tax form step text
@@ -4822,7 +4822,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<IndirectTaxFormViewProps>;
+        "demoData"?: DemoData<UseIndirectTaxFormResult>;
         /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Indirect tax form step text

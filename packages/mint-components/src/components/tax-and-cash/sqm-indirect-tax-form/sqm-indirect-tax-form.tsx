@@ -13,7 +13,10 @@ import {
   IndirectTaxFormView,
   IndirectTaxFormViewProps,
 } from "./sqm-indirect-tax-form-view";
-import { useIndirectTaxForm } from "./useIndirectTaxForm";
+import {
+  UseIndirectTaxFormResult,
+  useIndirectTaxForm,
+} from "./useIndirectTaxForm";
 
 @Component({
   tag: "sqm-indirect-tax-form",
@@ -153,7 +156,7 @@ export class IndirectTaxForm {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<IndirectTaxFormViewProps>;
+  @Prop() demoData?: DemoData<UseIndirectTaxFormResult>;
 
   constructor() {
     withHooks(this);
@@ -197,7 +200,7 @@ export class IndirectTaxForm {
       <IndirectDetailsSlotView
         states={{
           formState: props.slotProps.formState,
-          hide: props.slotProps.hideHst,
+          hide: props.states.formState.checked !== "hstCanada",
           loading: props.states.loading,
         }}
         data={{ countries: props.data.countries }}
@@ -208,7 +211,7 @@ export class IndirectTaxForm {
     const registeredInDifferentCountryDetailsSlot = (
       <OtherRegionSlotView
         states={{
-          hide: props.slotProps.hideOther,
+          hide: props.states.formState.checked !== "otherRegion",
           formState: props.slotProps.formState,
           loading: props.states.loading,
         }}
@@ -238,26 +241,22 @@ function useDemoIndirectTaxForm(
   props: IndirectTaxForm
 ): ReturnType<typeof useIndirectTaxForm> {
   const [option, setOption] = useState(null);
-  //@ts-ignore
-  const checked = option || props.demoData.states.formState.checked;
 
-  // @ts-ignore
   return deepmerge(
     {
       states: {
-        option,
         disabled: false,
         loading: false,
         //AL: TODO hook up if user is partner
         isPartner: false,
+        errors: {},
         formState: {
-          checked,
-          errors: props.demoData.states.formState.errors,
+          checked: option,
         },
       },
       callbacks: {
         onBack: () => {},
-        onSubmit: () => {},
+        onSubmit: async () => {},
         onChange: setOption,
       },
       data: {
@@ -269,10 +268,8 @@ function useDemoIndirectTaxForm(
       },
       slotProps: {
         formState: {
-          errors: props.demoData.states.formState.errors,
+          errors: {},
         },
-        hideHst: checked !== "hstCanada",
-        hideOther: checked !== "otherRegion",
       },
     },
     props.demoData || {},

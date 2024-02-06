@@ -178,7 +178,6 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       loading: loading || countriesLoading,
       //AL: TODO hook up if user is partner
       isPartner: false,
-      option,
       errors,
       formState: {
         checked: option,
@@ -198,8 +197,8 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     },
     slotProps: {
       formState: { ...formState, errors },
-      hideHst: option !== "hstCanada",
-      hideOther: option !== "otherRegion",
     },
   };
 }
+
+export type UseIndirectTaxFormResult = ReturnType<typeof useIndirectTaxForm>;

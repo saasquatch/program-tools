@@ -91,21 +91,18 @@ const stepTwoProps = {
     formState: {
       checked: undefined,
     },
+    errors: {},
   },
   callbacks: {
-    // TODO: fix type
-    // @ts-ignore
-    onSubmit: async (props: any) => console.log("Submit"),
-    // TODO: fix type
-    // @ts-ignore
-    onChange: (e) => console.log("Submit"),
+    onSubmit: async () => console.log("Submit"),
+    onChange: () => console.log("Submit"),
     onBack: () => console.log("Submit"),
   },
   refs: { formRef: { current: null } },
-  slots: {
-    registeredInCanadaDetailsSlot: <div></div>,
-    registeredInDifferentCountryDetailsSlot: <div></div>,
-  },
+  // slots: {
+  //   registeredInCanadaDetailsSlot: <div></div>,
+  //   registeredInDifferentCountryDetailsSlot: <div></div>,
+  // },
   text: indirectTaxFormText,
 };
 
@@ -298,11 +295,11 @@ export const StepTwoWithGeneralError = () => {
       demoData={{
         states: {
           ...stepTwoProps.states,
+          errors: {
+            general: true,
+          },
           formState: {
             ...stepTwoProps.states.formState,
-            errors: {
-              general: true,
-            },
           },
         },
       }}
@@ -314,9 +311,6 @@ export const StepTwoHSTChecked = () => {
   return (
     <sqm-indirect-tax-form
       demoData={{
-        slots: {
-          registeredInCanadaDetailsSlot: <RegisteredInCanada />,
-        },
         states: {
           ...stepTwoProps.states,
           formState: {
@@ -333,15 +327,15 @@ export const StepTwoHSTCheckedWithInputErrors = () => {
   return (
     <sqm-indirect-tax-form
       demoData={{
-        slots: {
-          registeredInCanadaDetailsSlot: <RegisteredInCanadaWithErrors />,
-          registeredInDifferentCountryDetailsSlot: <RegisteredInOtherRegion />,
-        },
         states: {
           ...stepTwoProps.states,
           formState: {
             ...stepTwoProps.states.formState,
             checked: "hstCanada",
+          },
+        },
+        slotProps: {
+          formState: {
             errors: {
               province: true,
               indirectTaxNumber: true,
@@ -373,16 +367,14 @@ export const StepTwoOtherRegionCheckedWithInputErrors = () => {
   return (
     <sqm-indirect-tax-form
       demoData={{
-        slots: {
-          registeredInDifferentCountryDetailsSlot: (
-            <RegisteredInOtherRegionWithErrors />
-          ),
-        },
         states: {
           ...stepTwoProps.states,
           formState: {
-            ...stepTwoProps.states.formState,
             checked: "otherRegion",
+          },
+        },
+        slotProps: {
+          formState: {
             errors: {
               selectedRegion: true,
               vatNumber: true,
