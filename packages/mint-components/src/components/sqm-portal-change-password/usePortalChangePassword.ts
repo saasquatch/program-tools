@@ -22,11 +22,11 @@ export function usePortalChangePassword(props: PortalChangePassword) {
     });
 
     if (!user?.jwt) {
-      setError("Please log in again to change your password.");
+      setError(props.invalidSessionErrorText);
       return;
     }
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match.");
+      setError(props.nonMatchingPasswordErrorText);
       return;
     }
     setError("");
