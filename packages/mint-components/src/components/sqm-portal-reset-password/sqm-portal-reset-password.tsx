@@ -111,6 +111,28 @@ export class PortalResetPassword {
   @Prop() hasErrorText: string = "contain at least 1 number or symbol";
 
   /**
+   * @uiName Password mismatch text
+   */
+  @Prop() passwordMismatchText: string = "Passwords do not match.";
+
+  /**
+   * @uiName Reset code invalid text
+   */
+  @Prop() codeInvalidText: string =
+    "The password reset code is invalid or has expired, please try again.";
+
+  /**
+   * @uiName Reset success text
+   */
+  @Prop() resetSuccessText: string =
+    "Your password has been reset and you are being redirected. If you are not redirected, please click Continue.";
+
+  /**
+   * @uiName Network error text
+   */
+  @Prop() networkErrorMessage: string = "Network request failed.";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -154,6 +176,9 @@ function usePortalResetPasswordDemo(
           uppercaseErrorText: props.uppercaseErrorText,
           lowercaseErrorText: props.lowercaseErrorText,
           hasErrorText: props.hasErrorText,
+          passwordMismatchText: props.passwordMismatchText,
+          codeInvalidText: props.codeInvalidText,
+          resetSuccessText: props.resetSuccessText,
         },
       },
       callbacks: {
