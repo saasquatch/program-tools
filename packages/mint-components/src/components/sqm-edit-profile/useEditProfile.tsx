@@ -7,17 +7,7 @@ import { gql } from "graphql-request";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { EditProfileViewProps } from "./sqm-edit-profile-view";
 import { intl } from "../../global/global";
-
-export interface EditProfileProps {
-  editprofileheader: string;
-  editprofiletext: string;
-  firstnametext: string;
-  lastnametext: string;
-  canceltext: string;
-  updatetext: string;
-  currentregiontext: string;
-  showregion: boolean;
-}
+import { EditProfile } from "./sqm-edit-profile";
 
 const GET_USER = gql`
   query {
@@ -64,7 +54,7 @@ const defaultFormState = {
   error: "",
 };
 
-export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
+export function useEditProfile(props: EditProfile): EditProfileViewProps {
   const userIdent = useUserIdentity();
   const [showEdit, setShowEdit] = useState(false);
   const [error, setError] = useState("");
@@ -112,7 +102,7 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
 
   useEffect(() => {
     if (upsertUserResponse?.errors?.message) {
-      setFormState((state) => ({ ...state, error: "Network request failed." }));
+      setFormState((state) => ({ ...state, error: props.networkErrorMessage }));
     }
   }, [upsertUserResponse?.errors]);
 
@@ -132,6 +122,7 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
         updatetext: props.updatetext,
         currentregiontext: props.currentregiontext,
         showregion: props.showregion,
+        fieldEmptyText: props.fieldEmptyText,
       },
     },
     callbacks: {
@@ -157,7 +148,7 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
         if (errors !== {}) {
           setFormState((e) => ({
             ...e,
-            error: "Please correct the errors below to update your profile.",
+            error: props.formErrorText,
           }));
         }
         setFormState((e) => ({ ...e, errors }));

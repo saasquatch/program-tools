@@ -30,6 +30,9 @@ export interface PortalResetPasswordViewProps {
       uppercaseErrorText?: string;
       lowercaseErrorText?: string;
       hasErrorText?: string;
+      resetSuccessText?: string;
+      passwordMismatchText?: string;
+      codeInvalidText?: string;
     };
   };
   callbacks: {
@@ -93,10 +96,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
           class={sheet.classes.CodeSuccess}
           exportparts="success-icon"
         >
-          <div part="successalert-text">
-            Your password has been reset and you are being redirected. If you
-            are not redirected, please click Continue.
-          </div>
+          <div part="successalert-text">{states.content.resetSuccessText}</div>
         </sqm-form-message>
         <div>
           <sl-button
@@ -126,9 +126,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
           type="error"
           exportparts="erroralert-icon"
         >
-          <div part="erroralert-text">
-            The password reset code is invalid or has expired, please try again.
-          </div>
+          <div part="erroralert-text">{states.content.codeInvalidText}</div>
         </sqm-form-message>
         <div>
           <sl-button
