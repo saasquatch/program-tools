@@ -19,7 +19,8 @@ import {
   GET_CURRENCIES,
   GET_USER,
   TAX_CONTEXT_NAMESPACE,
-  USER_INFO_NAMESPACE,
+  TAX_FORM_CONTEXT_NAMESPACE,
+  TaxContext,
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "./data";
@@ -101,8 +102,8 @@ export function useTaxAndCash() {
     initialValue: "/loading",
   });
 
-  const [_formState, setFormState] = useParentState<FormState>({
-    namespace: USER_INFO_NAMESPACE,
+  const [context, setContext] = useParentState<TaxContext>({
+    namespace: TAX_FORM_CONTEXT_NAMESPACE,
     initialValue: {},
   });
 
@@ -136,25 +137,14 @@ export function useTaxAndCash() {
       if (!user || step !== "/loading") return;
 
       const currentStep = getCurrentStep(user);
-
-      console.log({ currentStep });
       setStep(currentStep);
-
-      if (currentStep !== "/submitted")
-        setFormState({
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          countryCode: user.countryCode,
-          currency: user.customFields?.currency,
-          participantType: user.customFields?.participantType,
-        });
     }
   }, [host, user, data?.user?.email]);
 
   return {
     step,
     setStep,
+    context,
     namespace: getContextValueName(TAX_CONTEXT_NAMESPACE),
     loading: step === "/loading",
   };

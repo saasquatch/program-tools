@@ -1,24 +1,24 @@
+import {
+  useMutation,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
 import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
+import { gql } from "graphql-request";
 import jsonpointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useParent } from "../../../utils/useParentState";
+import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
   COUNTRIES_NAMESPACE,
   CURRENCIES_NAMESPACE,
   CountriesQuery,
   CurrenciesQuery,
   TAX_CONTEXT_NAMESPACE,
-  USER_INFO_NAMESPACE,
+  TAX_FORM_CONTEXT_NAMESPACE,
+  TaxContext,
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
 import { TaxForm } from "./sqm-user-info-form";
-import {
-  useMutation,
-  useUserIdentity,
-} from "@saasquatch/component-boilerplate";
-import { gql } from "graphql-request";
-import { HasFirstNameLastName } from "../../views/EmailRegistration.stories";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -62,7 +62,9 @@ export function useUserInfoForm(props: TaxForm) {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
-  const [formState, setFormState] = useParent<FormState>(USER_INFO_NAMESPACE);
+  const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
+
+  const [formState, setFormState] = useState<FormState>({});
   const [mutationLoading, setMutationLoading] = useState(false);
 
   const [upsertUser] = useMutation(UPSERT_USER);
@@ -76,6 +78,15 @@ export function useUserInfoForm(props: TaxForm) {
   useEffect(() => {
     const user = data?.user;
     if (!user || step !== "/1") return;
+
+    setFormState({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      countryCode: user.countryCode,
+      currency: user.customFields?.currency,
+      participantType: user.customFields?.participantType,
+    });
   }, [data, step]);
 
   function onRadioClick(value: string) {
@@ -142,7 +153,8 @@ export function useUserInfoForm(props: TaxForm) {
       });
       await refetch();
 
-      setStep("/2");
+      const nextStep = context.overrideNextStep || "/2";
+      setStep(nextStep);
     } catch (e) {
       setFormState({ ...formState, errors: { general: true } });
     } finally {
@@ -164,6 +176,7 @@ export function useUserInfoForm(props: TaxForm) {
       countries: _countries?.countries?.data,
     },
     states: {
+      hideSteps: context.hideSteps,
       disabled: loading,
       loading: loading || mutationLoading,
       isPartner: data?.user?.customFields?.__taxIsPartner,
