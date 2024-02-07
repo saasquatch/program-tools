@@ -65,7 +65,7 @@ export class PortalForgotPassword {
   @Prop() networkErrorMessage: string = "Network request failed.";
 
   /**
-   * @uiName Sign in link text
+   * @uiName Success alert text
    */
   @Prop() successAlertText: string =
     "If an account with that email exists, a password reset email will be sent.";

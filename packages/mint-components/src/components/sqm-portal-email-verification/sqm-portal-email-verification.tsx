@@ -67,6 +67,11 @@ export class PortalEmailVerification {
     "Your verification email has been resent successfully";
 
   /**
+   * @uiName Network error text
+   */
+  @Prop() networkErrorMessage: string = "Network request failed.";
+
+  /**
    * @undocumented
    * @uiType object
    */
