@@ -77,6 +77,11 @@ export class PortalLogin {
   @Prop() pageLabel: string = "Sign in to your account";
 
   /**
+   * @uiName Network error message
+   */
+  @Prop() networkErrorMessage: string = "Network request failed.";
+
+  /**
    * @undocumented
    * @uiType object
    */

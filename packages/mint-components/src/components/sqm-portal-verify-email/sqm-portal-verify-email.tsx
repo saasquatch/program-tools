@@ -62,6 +62,16 @@ export class PortalVerifyEmail {
     "The email verification code is invalid or has expired, please try again.";
 
   /**
+   * @uiName Continue text
+   */
+  @Prop() continueText: string = "Continue";
+
+  /**
+   * @uiName Network error text
+   */
+  @Prop() networkErrorMessage: string = "Network request failed.";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -106,6 +116,7 @@ function usePortalVerifyEmailDemo(
         verifySuccessText: props.verifySuccessText,
         verifyEmailText: props.verifyEmailText,
         verifyInvalidText: props.verifyInvalidText,
+        continueText: props.continueText,
       },
     },
     props.demoData || {},
