@@ -3598,6 +3598,11 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseTaxDocumentSubmittedResult>;
         /**
+          * Text displayed in the edit Indirect Tax button
+          * @uiName Edit Indirect Tax button
+         */
+        "editIndirectTaxButton": string;
+        /**
           * The error message shown at the top of the page in an error banner
           * @uiName General error text
          */
@@ -8163,6 +8168,11 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxDocumentSubmittedResult>;
+        /**
+          * Text displayed in the edit Indirect Tax button
+          * @uiName Edit Indirect Tax button
+         */
+        "editIndirectTaxButton"?: string;
         /**
           * The error message shown at the top of the page in an error banner
           * @uiName General error text

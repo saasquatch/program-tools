@@ -25,7 +25,7 @@ export interface TaxDocumentSubmittedProps {
     loading?: boolean;
     errors?: any;
   };
-  callbacks: { onClick: (props: any) => void };
+  callbacks: { onClick: (props: any) => void; onEditIndirectTax: () => void };
   text: {
     statusTextActive?: string;
     statusTextNotActive?: string;
@@ -48,6 +48,7 @@ export interface TaxDocumentSubmittedProps {
     taxDocumentSectionHeader: string;
     taxDocumentSectionSubHeader: string;
     newFormButton: string;
+    editIndirectTaxButton: string;
     invalidForm?: string;
     noFormNeededSubtext: string;
     error: {
@@ -382,14 +383,14 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
               </h3>
               <div class={sheet.classes.IndirectTaxPreviewDetails}>
                 <span>
-                  {states.isIndirectTaxCanada
+                  {states.province
                     ? intl.formatMessage(
                         {
                           id: `indirectTaxInfoCanada`,
                           defaultMessage: text.indirectTaxInfoCanada,
                         },
                         {
-                          country: states.country,
+                          country: "Canada",
                           province: states.province,
                         }
                       )
@@ -405,6 +406,14 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                 </span>
                 <span>{states.indirectTaxNumber}</span>
               </div>
+              <sl-button
+                disabled={states.disabled || states.loading}
+                onClick={callbacks.onEditIndirectTax}
+                type="default"
+                class={sheet.classes.NewFormButton}
+              >
+                {text.editIndirectTaxButton}
+              </sl-button>
             </div>
           )}
         </div>
@@ -429,12 +438,8 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                     </p>
                   </div>
                 ) : (
-                  <span class={sheet.classes.TaxFormDetailsContainer}>
-                    {states.noFormNeeded ? (
-                      <p class={sheet.classes.TaxDocSubtext}>
-                        {text.noFormNeededSubtext}
-                      </p>
-                    ) : (
+                  <div>
+                    <span class={sheet.classes.TaxFormDetailsContainer}>
                       <div class={sheet.classes.StatusContainer}>
                         <h4>
                           {intl.formatMessage(
@@ -449,22 +454,18 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                         </h4>
                         {statusMap[states.status]}
                       </div>
-                    )}
-                  </span>
+                    </span>
+                    <sl-button
+                      disabled={states.disabled || states.loading}
+                      onClick={callbacks.onClick}
+                      type="default"
+                      class={sheet.classes.NewFormButton}
+                    >
+                      {text.newFormButton}
+                    </sl-button>
+                  </div>
                 )}
               </div>
-            )}
-            {states.noFormNeeded ? (
-              ""
-            ) : (
-              <sl-button
-                disabled={states.disabled || states.loading}
-                onClick={callbacks.onClick}
-                type="default"
-                class={sheet.classes.NewFormButton}
-              >
-                {text.newFormButton}
-              </sl-button>
             )}
           </div>
         </div>

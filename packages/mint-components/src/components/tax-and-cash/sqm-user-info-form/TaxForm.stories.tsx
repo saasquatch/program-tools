@@ -97,7 +97,10 @@ const documentSubmittedActiveProps: StoryDemoData<UseTaxDocumentSubmittedResult>
       dateSubmitted: "Jan 18th, 2025",
       dateExpired: "Dec 18th, 2025",
     },
-    callbacks: { onClick: () => console.log("Submit new Form") },
+    callbacks: {
+      onClick: () => console.log("Submit new Form"),
+      onEditIndirectTax: () => console.log("Edit indirect tax"),
+    },
   };
 
 const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {

@@ -17,7 +17,11 @@ export interface IndirectDetailsSlotViewProps {
     };
   };
   data: {
-    countries: {
+    provinces?: {
+      provinceCode: string;
+      displayName: string;
+    }[];
+    countries?: {
       countryCode: string;
       displayName: string;
     }[];
@@ -89,7 +93,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
   } = props;
 
   const { classes } = sheet;
-  console.log("regions", { formState });
+
   return (
     <div style={states.hide ? { display: "none" } : {}}>
       <form class={classes.Container}>
@@ -113,7 +117,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             id="selectedRegion"
             name="/selectedRegion"
           >
-            {props.data.countries?.map((c) => (
+            {props.data.countries!.map((c) => (
               <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
             ))}
           </sl-select>
@@ -144,6 +148,7 @@ export const IndirectDetailsSlotView = (
   const {
     states,
     states: { formState },
+    data,
     text,
   } = props;
 
@@ -173,19 +178,11 @@ export const IndirectDetailsSlotView = (
             id="province"
             name="/province"
           >
-            <sl-menu-item value="ON">Ontario</sl-menu-item>
-            <sl-menu-item value="QC">Quebec</sl-menu-item>
-            <sl-menu-item value="NS">Nova Scotia</sl-menu-item>
-            <sl-menu-item value="NB">New Brunswick</sl-menu-item>
-            <sl-menu-item value="MB">Manitoba</sl-menu-item>
-            <sl-menu-item value="BC">British Columbia</sl-menu-item>
-            <sl-menu-item value="PE">Prince Edward Island</sl-menu-item>
-            <sl-menu-item value="SK">Saskatchewan</sl-menu-item>
-            <sl-menu-item value="AB">Alberta</sl-menu-item>
-            <sl-menu-item value="NL">Newfoundland</sl-menu-item>
-            <sl-menu-item value="NT">Northwest Territories</sl-menu-item>
-            <sl-menu-item value="YT">Yukon</sl-menu-item>
-            <sl-menu-item value="NU">Nunavut</sl-menu-item>
+            {data.provinces.map((p) => (
+              <sl-menu-item value={p.provinceCode}>
+                {p.displayName}
+              </sl-menu-item>
+            ))}
           </sl-select>
           <sl-input
             required

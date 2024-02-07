@@ -143,9 +143,10 @@ export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
   taxDocumentSectionHeader: "Tax documents",
   taxDocumentSectionSubHeader: "{documentType} Tax Form",
   indirectTaxInfoSectionHeader: "dsa",
-    indirectTaxInfoCanada: "dsa",
-    indirectTaxInfoOtherCountry: "dsa",
+  indirectTaxInfoCanada: "dsa",
+  indirectTaxInfoOtherCountry: "dsa",
   newFormButton: "Submit New document",
+  editIndirectTaxButton: "Edit Indirect Tax",
   noFormNeededSubtext:
     "Tax documents are only required if you are based in the US. If your country of residence has changed, please contact Support.",
   error: {

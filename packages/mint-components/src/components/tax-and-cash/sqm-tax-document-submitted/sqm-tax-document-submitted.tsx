@@ -164,6 +164,12 @@ export class TaxDocumentSubmitted {
    */
   @Prop() newFormButton: string = "Submit New document";
   /**
+   * Text displayed in the edit Indirect Tax button
+   *
+   * @uiName Edit Indirect Tax button
+   */
+  @Prop() editIndirectTaxButton: string = "Edit Indirect Tax";
+  /**
    * The title for error message shown at the top of the page in an error banner
    *
    * @uiName General error title
@@ -234,6 +240,7 @@ function useDemoTaxDocumentSubmitted(
       },
       callbacks: {
         onClick: () => console.debug("check step"),
+        onEditIndirectTax: () => console.debug("indirect tax"),
       },
       text: props.getTextProps(),
     },

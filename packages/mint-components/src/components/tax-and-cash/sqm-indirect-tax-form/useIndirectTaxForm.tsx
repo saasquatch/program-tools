@@ -5,9 +5,8 @@ import {
 import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
-import { optional } from "../../../utilities";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useParent, useParentValue } from "../../../utils/useParentState";
+import { useParent } from "../../../utils/useParentState";
 import {
   COUNTRIES_NAMESPACE,
   CountriesQuery,
@@ -16,9 +15,8 @@ import {
   UserQuery,
 } from "../sqm-tax-and-cash/data";
 import { IndirectTaxForm } from "./sqm-indirect-tax-form";
-import { getDocumentType } from "../sqm-tax-document-submitted/useTaxDocumentSubmitted";
-import { UserInfoFormViewProps } from "../sqm-user-info-form/sqm-user-info-form-view";
-import { IndirectTaxFormViewProps } from "./sqm-indirect-tax-form-view";
+import { INDIRECT_TAX_COUNTRIES } from "../countries";
+import { INDIRECT_TAX_PROVINCES } from "../provinces";
 
 function getOption(user: UserQuery["user"]) {
   if (!user) return;
@@ -31,8 +29,9 @@ function getOption(user: UserQuery["user"]) {
   } else {
     if (countryCode === "CA") {
       return "hstCanada";
-      // TODO: Check against list of countries from backend
-    } else if (countryCode) {
+    } else if (
+      INDIRECT_TAX_COUNTRIES.find((c) => c.countryCode === countryCode)
+    ) {
       return "otherRegion";
     } else {
       return "notRegistered";
@@ -48,50 +47,6 @@ const UPSERT_USER = gql`
     }
   }
 `;
-
-export const INDIRECT_TAX_COUNTRIES = [
-  { countryCode: "GB", displayName: "United Kingdom" },
-  { countryCode: "AT", displayName: "Austria" },
-  { countryCode: "BE", displayName: "Belgium" },
-  { countryCode: "BG", displayName: "Bulgaria" },
-  { countryCode: "HR", displayName: "Croatia" },
-  { countryCode: "CY", displayName: "Cyprus" },
-  { countryCode: "CZ", displayName: "Czechia" },
-  { countryCode: "DK", displayName: "Denmark" },
-  { countryCode: "EE", displayName: "Estonia" },
-  { countryCode: "FI", displayName: "Finland" },
-  { countryCode: "FR", displayName: "France" },
-  { countryCode: "DE", displayName: "Germany" },
-  { countryCode: "GR", displayName: "Greece" },
-  { countryCode: "HU", displayName: "Hungary" },
-  { countryCode: "IS", displayName: "Iceland" },
-  { countryCode: "IL", displayName: "Israel" },
-  { countryCode: "IE", displayName: "Ireland" },
-  { countryCode: "IT", displayName: "Italy" },
-  { countryCode: "LV", displayName: "Latvia" },
-  { countryCode: "LT", displayName: "Lithuania" },
-  { countryCode: "LU", displayName: "Luxembourg" },
-  { countryCode: "MT", displayName: "Malta" },
-  { countryCode: "MX", displayName: "Mexico" },
-  { countryCode: "NL", displayName: "Netherlands" },
-  { countryCode: "NO", displayName: "Norway" },
-  { countryCode: "PH", displayName: "Philippines" },
-  { countryCode: "PL", displayName: "Poland" },
-  { countryCode: "PT", displayName: "Portugal" },
-  { countryCode: "RO", displayName: "Romania" },
-  { countryCode: "RU", displayName: "Russia" },
-  { countryCode: "SK", displayName: "Slovakia" },
-  { countryCode: "SI", displayName: "Slovenia" },
-  { countryCode: "ES", displayName: "Spain" },
-  { countryCode: "SE", displayName: "Sweden" },
-  { countryCode: "ZA", displayName: "South Africa" },
-  { countryCode: "KR", displayName: "South Korea" },
-  { countryCode: "CH", displayName: "Switzerland" },
-  { countryCode: "TW", displayName: "Taiwan" },
-  { countryCode: "TH", displayName: "Thailand" },
-  { countryCode: "TR", displayName: "Turkey" },
-  { countryCode: "AE", displayName: "United Arab Emirates" },
-];
 
 export function useIndirectTaxForm(props: IndirectTaxForm) {
   const formRef = useRef<HTMLFormElement>(null);
@@ -232,6 +187,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     },
     data: {
       countries: INDIRECT_TAX_COUNTRIES,
+      provinces: INDIRECT_TAX_PROVINCES,
     },
     text: props.getTextProps(),
     refs: {

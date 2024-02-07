@@ -44,16 +44,14 @@ export class TaxAndCash {
 
     return (
       <Host>
-        {inDemoMode && (
-          <div>
-            <button onClick={() => props.setStep(getPrevStep(props.step))}>
-              Preview previous step
-            </button>{" "}
-            <button onClick={() => props.setStep(getNextStep(props.step))}>
-              Preview next step
-            </button>
-          </div>
-        )}
+        <div>
+          <button onClick={() => props.setStep(getPrevStep(props.step))}>
+            Preview previous step
+          </button>{" "}
+          <button onClick={() => props.setStep(getNextStep(props.step))}>
+            Preview next step
+          </button>
+        </div>
         <sqm-context-router contextName={props.namespace}>
           <slot />
         </sqm-context-router>

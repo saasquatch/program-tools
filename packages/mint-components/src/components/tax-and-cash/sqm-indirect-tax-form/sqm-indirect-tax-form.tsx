@@ -14,10 +14,11 @@ import {
   IndirectTaxFormViewProps,
 } from "./sqm-indirect-tax-form-view";
 import {
-  INDIRECT_TAX_COUNTRIES,
   UseIndirectTaxFormResult,
   useIndirectTaxForm,
 } from "./useIndirectTaxForm";
+import { INDIRECT_TAX_COUNTRIES } from "../countries";
+import { INDIRECT_TAX_PROVINCES } from "../provinces";
 
 /**
  * @uiName Indirect Tax Form
@@ -206,7 +207,7 @@ export class IndirectTaxForm {
           hide: props.states.formState.checked !== "hstCanada",
           loading: props.states.loading,
         }}
-        data={{ countries: props.data.countries }}
+        data={{ provinces: props.data.provinces }}
         text={props.text.slotText}
       ></IndirectDetailsSlotView>
     );
@@ -264,6 +265,7 @@ function useDemoIndirectTaxForm(
       },
       data: {
         countries: INDIRECT_TAX_COUNTRIES,
+        provinces: INDIRECT_TAX_PROVINCES,
       },
       text: props.getTextProps(),
       refs: {

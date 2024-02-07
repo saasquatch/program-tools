@@ -71,8 +71,12 @@ export const useTaxDocumentSubmitted = (
       documentType,
       // TODO: Hook up to API
       status: documentType ? "NOT_VERIFIED" : undefined,
-      //TODO AL: wire indirectTaxNumber to hooks
-      indirectTaxNumber: 123456,
+      indirectTaxNumber: data.user?.customFields?.__indirectTaxNumber,
+      province: data.user?.customFields?.__taxProvince,
+      // @ts-ignore: DisplayNames does exist on Intl
+      country: new Intl.DisplayNames(["en"], { type: "region" }).of([
+        data.user?.customFields?.__taxCountry,
+      ]),
       noFormNeeded: !documentType,
       dateExpired,
       expiresSoon,
@@ -81,6 +85,7 @@ export const useTaxDocumentSubmitted = (
     },
     callbacks: {
       onClick: () => setStep(`/3/${documentType}`),
+      onEditIndirectTax: () => setStep("/2"),
     },
     text: props.getTextProps(),
   };
