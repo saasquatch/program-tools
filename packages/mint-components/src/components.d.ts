@@ -2661,6 +2661,16 @@ export namespace Components {
     | "danger"
     | "default"
     | "text";
+        /**
+          * Alert text shown if the share link is undefined
+          * @uiName Undefined link text
+         */
+        "undefinedLinkText"?: string;
+        /**
+          * Alert text shown if user's device does not support native sharing
+          * @uiName Undefined link text
+         */
+        "unsupportedPlatformText"?: string;
     }
     interface SqmShareCode {
         /**
@@ -6290,6 +6300,16 @@ declare namespace LocalJSX {
     | "danger"
     | "default"
     | "text";
+        /**
+          * Alert text shown if the share link is undefined
+          * @uiName Undefined link text
+         */
+        "undefinedLinkText"?: string;
+        /**
+          * Alert text shown if user's device does not support native sharing
+          * @uiName Undefined link text
+         */
+        "unsupportedPlatformText"?: string;
     }
     interface SqmShareCode {
         /**
