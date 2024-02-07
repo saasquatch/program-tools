@@ -173,8 +173,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     states: {
       disabled: loading || countriesLoading,
       loading: loading || countriesLoading,
-      //AL: TODO hook up if user is partner
-      isPartner: false,
+      isPartner: userData?.user?.customFields?.__taxIsPartner,
       errors,
       formState: {
         checked: option,

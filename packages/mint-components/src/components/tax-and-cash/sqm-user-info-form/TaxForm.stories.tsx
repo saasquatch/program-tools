@@ -52,12 +52,8 @@ const stepOneProps: UserInfoFormViewProps = {
     ],
   },
   callbacks: {
-    // TODO: fix type
-    // @ts-ignore
-    onSubmit: async (props: any) => console.log("Submit"),
-    // TODO: fix type
-    // @ts-ignore
-    onRadioClick: (props: any) => console.log("Radio Click"),
+    onSubmit: async () => console.log("Submit"),
+    onRadioClick: () => console.log("Radio Click"),
   },
   text: userInfoText,
   refs: {

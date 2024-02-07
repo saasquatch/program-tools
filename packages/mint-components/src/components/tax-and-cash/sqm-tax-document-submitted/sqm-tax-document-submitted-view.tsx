@@ -16,12 +16,10 @@ export interface TaxDocumentSubmittedProps {
     dateExpired?: string;
     expiresSoon?: boolean;
     noFormNeeded?: boolean;
-    // ---- AL: TODO Hooks
     indirectTaxNumber?: number;
     province?: string;
     country?: string;
     isIndirectTaxCanada?: boolean;
-    //----
     loading?: boolean;
     errors?: any;
   };

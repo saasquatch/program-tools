@@ -69,8 +69,10 @@ export const useTaxDocumentSubmitted = (
     states: {
       dateSubmitted,
       documentType,
+
       // TODO: Hook up to API
       status: documentType ? "NOT_VERIFIED" : undefined,
+
       indirectTaxNumber: data.user?.customFields?.__indirectTaxNumber,
       province: data.user?.customFields?.__taxProvince,
       // @ts-ignore: DisplayNames does exist on Intl

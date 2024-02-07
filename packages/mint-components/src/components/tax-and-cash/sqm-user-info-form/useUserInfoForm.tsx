@@ -144,7 +144,6 @@ export function useUserInfoForm(props: TaxForm) {
 
       setStep("/2");
     } catch (e) {
-      // TODO: Double check
       setFormState({ ...formState, errors: { general: true } });
     } finally {
       setMutationLoading(false);
@@ -167,9 +166,8 @@ export function useUserInfoForm(props: TaxForm) {
     states: {
       disabled: loading,
       loading: loading || mutationLoading,
-      //AL: TODO hook up if user is partner
-      isPartner: false,
-      formState: { ...formState },
+      isPartner: data?.user?.customFields?.__taxIsPartner,
+      formState,
     },
   };
 }

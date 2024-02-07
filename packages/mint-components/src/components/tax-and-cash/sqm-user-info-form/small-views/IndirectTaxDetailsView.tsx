@@ -1,6 +1,5 @@
 import { VNode, h } from "@stencil/core";
 import { createStyleSheet } from "../../../../styling/JSS";
-import { formatDisplayName } from "@formatjs/intl";
 
 export interface IndirectDetailsSlotViewProps {
   states: {

@@ -251,7 +251,6 @@ function useDemoIndirectTaxForm(
       states: {
         disabled: false,
         loading: false,
-        //AL: TODO hook up if user is partner
         isPartner: false,
         errors: {},
         formState: {

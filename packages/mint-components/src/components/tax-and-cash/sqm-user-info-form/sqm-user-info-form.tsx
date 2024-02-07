@@ -11,6 +11,8 @@ import {
   UserInfoFormViewProps,
 } from "./sqm-user-info-form-view";
 import { useUserInfoForm, UseUserInfoFormResult } from "./useUserInfoForm";
+import { useParent } from "../../../utils/useParentState";
+import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 
 /**
  * @uiName User Information Form
@@ -205,12 +207,13 @@ export class TaxForm {
 }
 
 function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
+  const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
   const [participantType, setParticipantType] = useState(null);
 
   return deepmerge(
     {
-      step: "/1",
-      setStep: () => {},
+      step,
+      setStep,
       onSubmit: () => {},
       onRadioClick: (value: string) => {
         setParticipantType(value);
