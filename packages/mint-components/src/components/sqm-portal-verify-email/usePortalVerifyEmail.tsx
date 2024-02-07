@@ -12,6 +12,7 @@ export function usePortalVerifyEmail({
   verifySuccessText,
   verifyEmailText,
   verifyInvalidText,
+  networkErrorMessage,
 }) {
   const userIdent = useUserIdentity();
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
@@ -75,7 +76,7 @@ export function usePortalVerifyEmail({
       error:
         errors?.response?.errors?.[0]?.extensions?.message ||
         errors?.response?.errors?.[0]?.message ||
-        (errors?.message && "Network request failed."),
+        (errors?.message && networkErrorMessage),
       verified,
     },
     data: {

@@ -20,6 +20,7 @@ export interface PortalVerifyEmailViewProps {
     verifySuccessText?: string;
     verifyEmailText?: string;
     verifyInvalidText?: string;
+    continueText?: string;
   };
 }
 
@@ -64,7 +65,7 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
           exportparts="base: primarybutton-base"
           type="primary"
         >
-          Continue
+          {content.continueText}
         </sl-button>
       </div>
     );
@@ -74,7 +75,7 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
     return (
       <div class={sheet.classes.Wrapper} part="sqm-base">
         <style type="text/css">{styleString}</style>
-        <TextSpanView type="h3">Verify your email</TextSpanView>
+        <TextSpanView type="h3">{content.verifyEmailText}</TextSpanView>
         <sqm-form-message type="error" exportparts="erroralert-icon">
           <div part="erroralert-text">{content.verifyInvalidText}</div>
         </sqm-form-message>
@@ -85,7 +86,7 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
           exportparts="base: primarybutton-base"
           type="primary"
         >
-          Continue
+          {content.continueText}
         </sl-button>
       </div>
     );
