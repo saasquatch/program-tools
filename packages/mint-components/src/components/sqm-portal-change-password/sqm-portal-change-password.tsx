@@ -102,7 +102,19 @@ export class PortalChangePassword {
   @Prop() lowercaseErrorText: string = "contain at least 1 lowercase character";
 
   /**
-   * @uiName Missing number or symbol error text
+   * @uiName Non matching password error text
+   */
+  @Prop() nonMatchingPasswordErrorText: string =
+    "contain at least 1 lowercase character";
+
+  /**
+   * @uiName Invalid user session error text
+   */
+  @Prop() invalidSessionErrorText: string =
+    "Please log in again to change your password.";
+
+  /**
+   * @uiName Invalid session error text
    */
   @Prop() hasErrorText: string = "contain at least 1 number or symbol";
 
