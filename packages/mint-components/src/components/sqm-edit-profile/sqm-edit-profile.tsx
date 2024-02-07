@@ -56,6 +56,22 @@ export class EditProfile {
   @Prop() showregion: boolean;
 
   /**
+   * @uiName Network error message
+   */
+  @Prop() networkErrorMessage: string = "Network request failed.";
+
+  /**
+   * @uiName Field empty text
+   */
+  @Prop() fieldEmptyText: string = "Cannot be empty";
+
+  /**
+   * @uiName Form error text
+   */
+  @Prop() formErrorText: string =
+    "Please correct the errors below to update your profile.";
+
+  /**
    * @undocumented
    * @uiType object
    */
