@@ -62,6 +62,28 @@ export class PortalProfile {
   @Prop() hideCountry: boolean = false;
 
   /**
+   * @uiName Network request text
+   */
+  @Prop() networkRequestMessage: string = "Network request failed.";
+
+  /**
+   * @uiName Field empty text
+   */
+  @Prop() fieldEmptyText: string = "Field can't be empty";
+
+  /**
+   * @uiName Form error text
+   */
+  @Prop() formErrorText: string =
+    "Please correct the errors below to update your profile.";
+
+  /**
+   * @uiName Submission success text
+   */
+  @Prop() submissionSuccessText: string =
+    "Your profile has been successfully updated.";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -104,6 +126,8 @@ function usePortalProfileDemo(props: PortalProfile): PortalProfileViewProps {
           editProfileHeader: props.editProfileHeader,
           editProfileSubHeader: props.editProfileSubHeader,
           submitChangeButtonText: props.submitChangeButtonText,
+          submissionSuccessText: props.submissionSuccessText,
+          fieldEmptyText: props.fieldEmptyText,
         },
         formState: {
           country: "Canada",

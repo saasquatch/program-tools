@@ -8,6 +8,7 @@ import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { EditProfileViewProps } from "./sqm-edit-profile-view";
 import { intl } from "../../global/global";
 import { EditProfile } from "./sqm-edit-profile";
+import { isEmpty } from "../../utilities";
 
 const GET_USER = gql`
   query {
@@ -145,7 +146,7 @@ export function useEditProfile(props: EditProfile): EditProfileViewProps {
         if (!formState.lastName) {
           errors["lastName"] = { message: "Field can't be empty" };
         }
-        if (errors !== {}) {
+        if (!isEmpty(errors)) {
           setFormState((e) => ({
             ...e,
             error: props.formErrorText,
