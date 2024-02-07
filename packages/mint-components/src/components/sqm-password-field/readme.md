@@ -13,11 +13,11 @@
 | `disableValidation`           | `disable-validation`              | Disable live password validation | `boolean`                    | `false`                                            |
 | `doesNotMeetRequirementsText` | `does-not-meet-requirements-text` |                                  | `string`                     | `"Password must meet the following requirements:"` |
 | `fieldLabel`                  | `field-label`                     | Label for password field         | `string`                     | `"Password"`                                       |
-| `hasError`                    | `has-error`                       |                                  | `string`                     | `"contain at least 1 number or symbol"`            |
-| `lowercaseError`              | `lowercase-error`                 |                                  | `string`                     | `"contain at least 1 lowercase character"`         |
+| `hasErrorText`                | `has-error-text`                  |                                  | `string`                     | `"contain at least 1 number or symbol"`            |
+| `lowercaseErrorText`          | `lowercase-error-text`            |                                  | `string`                     | `"contain at least 1 lowercase character"`         |
 | `meetsRequirementsText`       | `meets-requirements-text`         |                                  | `string`                     | `"Password has met all requirements"`              |
-| `minError`                    | `min-error`                       |                                  | `string`                     | `"be a minimum of 8 characters"`                   |
-| `uppercaseError`              | `uppercase-error`                 |                                  | `string`                     | `"contain at least 1 uppercase character"`         |
+| `minErrorText`                | `min-error-text`                  |                                  | `string`                     | `"be a minimum of 8 characters"`                   |
+| `uppercaseErrorText`          | `uppercase-error-text`            |                                  | `string`                     | `"contain at least 1 uppercase character"`         |
 
 
 ## Dependencies

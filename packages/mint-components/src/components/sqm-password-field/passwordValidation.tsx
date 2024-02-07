@@ -87,10 +87,10 @@ const getErrorMessage = (
   validationText
 ): string => {
   const validationMessages = {
-    min: validationText.minError,
-    uppercase: validationText.uppercaseError,
-    lowercase: validationText.lowercaseError,
-    has: validationText.hasError,
+    min: validationText.minErrorText,
+    uppercase: validationText.uppercaseErrorText,
+    lowercase: validationText.lowercaseErrorText,
+    has: validationText.hasErrorText,
   };
 
   if (!errorKeys.length && password)

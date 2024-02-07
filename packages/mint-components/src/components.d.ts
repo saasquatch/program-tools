@@ -903,11 +903,11 @@ export namespace Components {
         /**
           * @uiName Missing number or symbol error text
          */
-        "hasError": string;
+        "hasErrorText": string;
         /**
           * @uiName Missing lowercase text
          */
-        "lowercaseError": string;
+        "lowercaseErrorText": string;
         /**
           * @uiName Meets requirements text
          */
@@ -915,11 +915,11 @@ export namespace Components {
         /**
           * @uiName Minimum length text
          */
-        "minError": string;
+        "minErrorText": string;
         /**
           * @uiName Missing uppercase text
          */
-        "uppercaseError": string;
+        "uppercaseErrorText": string;
     }
     interface SqmPopupContainer {
         /**
@@ -976,6 +976,26 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
         /**
+          * @uiName Fails requirements text
+         */
+        "doesNotMeetRequirementsText": string;
+        /**
+          * @uiName Missing number or symbol error text
+         */
+        "hasErrorText": string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText": string;
+        /**
+          * @uiName Meets requirements text
+         */
+        "meetsRequirementsText": string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText": string;
+        /**
           * @uiName Change password modal header
          */
         "modalChangePasswordHeader": string;
@@ -999,6 +1019,10 @@ export namespace Components {
           * @uiWidget textArea
          */
         "successMessage": string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText": string;
     }
     interface SqmPortalContainer {
         /**
@@ -1348,9 +1372,17 @@ export namespace Components {
          */
         "disablePasswordValidation": boolean;
         /**
+          * @uiName Fails requirements text
+         */
+        "doesNotMeetRequirementsText": string;
+        /**
           * @uiName Email field label
          */
         "emailLabel": string;
+        /**
+          * @uiName Missing number or symbol error text
+         */
+        "hasErrorText": string;
         /**
           * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
           * @uiName Hide default fields
@@ -1372,6 +1404,18 @@ export namespace Components {
           * @uiWidget pageSelect
          */
         "loginPath": string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText": string;
+        /**
+          * @uiName Meets requirements text
+         */
+        "meetsRequirementsText": string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText": string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
@@ -1414,6 +1458,10 @@ export namespace Components {
           * @uiName Submit button text
          */
         "submitLabel": string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText": string;
     }
     interface SqmPortalRegistrationForm {
         /**
@@ -1434,6 +1482,10 @@ export namespace Components {
          */
         "disablePasswordValidation": boolean;
         /**
+          * @uiName Fails requirements text
+         */
+        "doesNotMeetRequirementsText": string;
+        /**
           * @uiName Email field label
          */
         "emailLabel": string;
@@ -1449,6 +1501,10 @@ export namespace Components {
           * @required
          */
         "formKey": string;
+        /**
+          * @uiName Missing number or symbol error text
+         */
+        "hasErrorText": string;
         /**
           * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
           * @uiName Hide default fields
@@ -1470,6 +1526,18 @@ export namespace Components {
           * @uiWidget pageSelect
          */
         "loginPath": string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText": string;
+        /**
+          * @uiName Meets requirements text
+         */
+        "meetsRequirementsText": string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText": string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
@@ -1513,6 +1581,10 @@ export namespace Components {
          */
         "submitLabel": string;
         /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText": string;
+        /**
           * Saves the browser locale on the new user
           * @uiName Use browser locale
          */
@@ -1538,11 +1610,31 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
+          * @uiName Fails requirements text
+         */
+        "doesNotMeetRequirementsText": string;
+        /**
           * Redirect participants to this page if password reset fails due to an outdated reset attempt.
           * @uiName Failed reset redirect
           * @uiWidget pageSelect
          */
         "failedPage": string;
+        /**
+          * @uiName Missing number or symbol error text
+         */
+        "hasErrorText": string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText": string;
+        /**
+          * @uiName Meets requirements text
+         */
+        "meetsRequirementsText": string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText": string;
         /**
           * Redirect participants to this page when they successfully reset their password.
           * @uiName Successful reset redirect
@@ -1567,6 +1659,10 @@ export namespace Components {
           * @uiName Reset password header text
          */
         "resetPasswordHeader": string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText": string;
     }
     interface SqmPortalVerifyEmail {
         /**
@@ -1591,6 +1687,10 @@ export namespace Components {
           * @uiWidget textArea
          */
         "verifyEmailText": string;
+        /**
+          * @uiName Email verification invalid text
+          * @uiWidget textArea
+         */
         "verifyInvalidText": string;
         /**
           * @uiName Email verification success text
@@ -4456,11 +4556,11 @@ declare namespace LocalJSX {
         /**
           * @uiName Missing number or symbol error text
          */
-        "hasError"?: string;
+        "hasErrorText"?: string;
         /**
           * @uiName Missing lowercase text
          */
-        "lowercaseError"?: string;
+        "lowercaseErrorText"?: string;
         /**
           * @uiName Meets requirements text
          */
@@ -4468,11 +4568,11 @@ declare namespace LocalJSX {
         /**
           * @uiName Minimum length text
          */
-        "minError"?: string;
+        "minErrorText"?: string;
         /**
           * @uiName Missing uppercase text
          */
-        "uppercaseError"?: string;
+        "uppercaseErrorText"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -4529,6 +4629,26 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
         /**
+          * @uiName Fails requirements text
+         */
+        "doesNotMeetRequirementsText"?: string;
+        /**
+          * @uiName Missing number or symbol error text
+         */
+        "hasErrorText"?: string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText"?: string;
+        /**
+          * @uiName Meets requirements text
+         */
+        "meetsRequirementsText"?: string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText"?: string;
+        /**
           * @uiName Change password modal header
          */
         "modalChangePasswordHeader"?: string;
@@ -4552,6 +4672,10 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "successMessage"?: string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText"?: string;
     }
     interface SqmPortalContainer {
         /**
@@ -4901,9 +5025,17 @@ declare namespace LocalJSX {
          */
         "disablePasswordValidation"?: boolean;
         /**
+          * @uiName Fails requirements text
+         */
+        "doesNotMeetRequirementsText"?: string;
+        /**
           * @uiName Email field label
          */
         "emailLabel"?: string;
+        /**
+          * @uiName Missing number or symbol error text
+         */
+        "hasErrorText"?: string;
         /**
           * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
           * @uiName Hide default fields
@@ -4925,6 +5057,18 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "loginPath"?: string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText"?: string;
+        /**
+          * @uiName Meets requirements text
+         */
+        "meetsRequirementsText"?: string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText"?: string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
@@ -4967,6 +5111,10 @@ declare namespace LocalJSX {
           * @uiName Submit button text
          */
         "submitLabel"?: string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText"?: string;
     }
     interface SqmPortalRegistrationForm {
         /**
@@ -4987,6 +5135,10 @@ declare namespace LocalJSX {
          */
         "disablePasswordValidation"?: boolean;
         /**
+          * @uiName Fails requirements text
+         */
+        "doesNotMeetRequirementsText"?: string;
+        /**
           * @uiName Email field label
          */
         "emailLabel"?: string;
@@ -5002,6 +5154,10 @@ declare namespace LocalJSX {
           * @required
          */
         "formKey"?: string;
+        /**
+          * @uiName Missing number or symbol error text
+         */
+        "hasErrorText"?: string;
         /**
           * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
           * @uiName Hide default fields
@@ -5023,6 +5179,18 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "loginPath"?: string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText"?: string;
+        /**
+          * @uiName Meets requirements text
+         */
+        "meetsRequirementsText"?: string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText"?: string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
@@ -5066,6 +5234,10 @@ declare namespace LocalJSX {
          */
         "submitLabel"?: string;
         /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText"?: string;
+        /**
           * Saves the browser locale on the new user
           * @uiName Use browser locale
          */
@@ -5091,11 +5263,31 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
+          * @uiName Fails requirements text
+         */
+        "doesNotMeetRequirementsText"?: string;
+        /**
           * Redirect participants to this page if password reset fails due to an outdated reset attempt.
           * @uiName Failed reset redirect
           * @uiWidget pageSelect
          */
         "failedPage"?: string;
+        /**
+          * @uiName Missing number or symbol error text
+         */
+        "hasErrorText"?: string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText"?: string;
+        /**
+          * @uiName Meets requirements text
+         */
+        "meetsRequirementsText"?: string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText"?: string;
         /**
           * Redirect participants to this page when they successfully reset their password.
           * @uiName Successful reset redirect
@@ -5120,6 +5312,10 @@ declare namespace LocalJSX {
           * @uiName Reset password header text
          */
         "resetPasswordHeader"?: string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText"?: string;
     }
     interface SqmPortalVerifyEmail {
         /**
@@ -5144,6 +5340,10 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "verifyEmailText"?: string;
+        /**
+          * @uiName Email verification invalid text
+          * @uiWidget textArea
+         */
         "verifyInvalidText"?: string;
         /**
           * @uiName Email verification success text

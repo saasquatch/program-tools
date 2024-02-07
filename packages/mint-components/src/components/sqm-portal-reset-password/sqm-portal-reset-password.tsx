@@ -80,6 +80,37 @@ export class PortalResetPassword {
   @Prop() passwordFieldLabel: string = "New Password";
 
   /**
+   * @uiName Meets requirements text
+   */
+  @Prop() meetsRequirementsText: string = "Password has met all requirements";
+
+  /**
+   * @uiName Fails requirements text
+   */
+  @Prop() doesNotMeetRequirementsText: string =
+    "Password must meet the following requirements:";
+
+  /**
+   * @uiName Minimum length text
+   */
+  @Prop() minErrorText: string = "be a minimum of 8 characters";
+
+  /**
+   * @uiName Missing uppercase text
+   */
+  @Prop() uppercaseErrorText: string = "contain at least 1 uppercase character";
+
+  /**
+   * @uiName Missing lowercase text
+   */
+  @Prop() lowercaseErrorText: string = "contain at least 1 lowercase character";
+
+  /**
+   * @uiName Missing number or symbol error text
+   */
+  @Prop() hasErrorText: string = "contain at least 1 number or symbol";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -117,6 +148,12 @@ function usePortalResetPasswordDemo(
           resetPasswordButtonText: props.resetPasswordButtonText,
           confirmPasswordFieldLabel: props.confirmPasswordFieldLabel,
           passwordFieldLabel: props.passwordFieldLabel,
+          meetsRequirementsText: props.meetsRequirementsText,
+          doesNotMeetRequirementsText: props.doesNotMeetRequirementsText,
+          minErrorText: props.minErrorText,
+          uppercaseErrorText: props.uppercaseErrorText,
+          lowercaseErrorText: props.lowercaseErrorText,
+          hasErrorText: props.hasErrorText,
         },
       },
       callbacks: {

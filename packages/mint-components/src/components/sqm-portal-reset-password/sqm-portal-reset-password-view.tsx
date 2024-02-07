@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import {
   AuthButtonsContainer,
   AuthColumn,
-  AuthWrapper
+  AuthWrapper,
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 import { PasswordFieldViewDemoProps } from "../sqm-password-field/sqm-password-field";
@@ -24,6 +24,12 @@ export interface PortalResetPasswordViewProps {
       resetPasswordButtonText: string;
       confirmPasswordFieldLabel: string;
       passwordFieldLabel: string;
+      meetsRequirementsText?: string;
+      doesNotMeetRequirementsText?: string;
+      minErrorText?: string;
+      uppercaseErrorText?: string;
+      lowercaseErrorText?: string;
+      hasErrorText?: string;
     };
   };
   callbacks: {
@@ -163,6 +169,14 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
           <sqm-password-field
             fieldLabel={states.content.passwordFieldLabel}
             demoData={states.passwordDemoData}
+            meetsRequirementsText={states.content.meetsRequirementsText}
+            doesNotMeetRequirementsText={
+              states.content.doesNotMeetRequirementsText
+            }
+            minErrorText={states.content.minErrorText}
+            uppercaseErrorText={states.content.uppercaseErrorText}
+            lowercaseErrorText={states.content.lowercaseErrorText}
+            hasErrorText={states.content.hasErrorText}
           ></sqm-password-field>
         )}
         {!states.reset && states.confirmPassword && (
