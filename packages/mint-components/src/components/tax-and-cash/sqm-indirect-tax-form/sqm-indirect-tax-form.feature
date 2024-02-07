@@ -30,6 +30,74 @@ Feature: Indirect Tax Form
       | Prince Edward Island |
 
   @minutia
+  Scenario: The country select displays applicable indirect tax countries
+    When the "I am registered for Indirect Tax in a different Country / Region" option is selected
+    Then A Country select appears with available <countries>
+      | countries             |
+      | UK                    |
+      | Australia             |
+      | New Zealand           |
+      | Canada                |
+      | Austria               |
+      | Belgium               |
+      | Bulgaria              |
+      | Croatia               |
+      | Cyprus                |
+      | Czech Republic        |
+      | Denmark               |
+      | Estonia               |
+      | Finland               |
+      | France                |
+      | Germany               |
+      | Greece                |
+      | Hungary               |
+      | Ireland               |
+      | Italy                 |
+      | Latvia                |
+      | Lithuania             |
+      | Luxembourg            |
+      | Malta                 |
+      | Netherlands           |
+      | Poland                |
+      | Portugal              |
+      | Romania               |
+      | Slovakia              |
+      | Slovenia              |
+      | Spain                 |
+      | Sweden                |
+      | Alberta               |
+      | British Columbia      |
+      | Manitoba              |
+      | New Brunswick         |
+      | Newfoundland          |
+      | Northwest Territories |
+      | Nova Scotia           |
+      | Nunavut               |
+      | Ontario               |
+      | Prince Edward Island  |
+      | Quebec                |
+      | Saskatchewan          |
+      | Yukon                 |
+      | Iceland               |
+      | India                 |
+      | Israel                |
+      | Japan                 |
+      | Mexico                |
+      | Norway                |
+      | Singapore             |
+      | South Africa          |
+      | South Korea           |
+      | Switzerland           |
+      | Taiwan                |
+      | Thailand              |
+      | Philippines           |
+      | Malaysia              |
+      | UAE                   |
+      | Turkey                |
+      | Russia                |
+# Undecided behaviour
+
+  @minutia
   Scenario Outline: The country select displays applicable indirect tax countries and changes the VAT/GST/CT number input
     When the "I am registered for Indirect Tax in a different Country / Region" option is selected
     Then A Country select appears with available <country>s and corresponding <vat_acronym>:
