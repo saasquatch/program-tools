@@ -54,6 +54,10 @@ export class PortalVerifyEmail {
   verifySuccessText: string =
     "Your email has been verified and you are being redirected. If you are not redirected, please click Continue.";
 
+  /**
+   * @uiName Email verification invalid text
+   * @uiWidget textArea
+   */
   @Prop() verifyInvalidText: string =
     "The email verification code is invalid or has expired, please try again.";
 
