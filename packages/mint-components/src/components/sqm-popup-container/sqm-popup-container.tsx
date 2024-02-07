@@ -33,6 +33,12 @@ export class PopupContainer {
    */
   @Prop() closeButtonText: string;
   /**
+   * Text at the bottom of the popup
+   *
+   * @uiName "Powered by" text
+   */
+  @Prop() poweredByText: string = "Powered By";
+  /**
    * Specify padding on the popup contents when in embedded mode
    *
    * @uiName Embed padding

@@ -953,6 +953,11 @@ export namespace Components {
           * @uiName Show powered by
          */
         "poweredBy": boolean;
+        /**
+          * Text at the bottom of the popup
+          * @uiName "Powered by" text
+         */
+        "poweredByText": string;
     }
     interface SqmPortalChangePassword {
         /**
@@ -4616,6 +4621,11 @@ declare namespace LocalJSX {
           * @uiName Show powered by
          */
         "poweredBy"?: boolean;
+        /**
+          * Text at the bottom of the popup
+          * @uiName "Powered by" text
+         */
+        "poweredByText"?: string;
     }
     interface SqmPortalChangePassword {
         /**
