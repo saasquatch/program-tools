@@ -6,11 +6,17 @@ import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useParent } from "../../../utils/useParentState";
+import {
+  useParent,
+  useParentValue,
+  useSetParent,
+} from "../../../utils/useParentState";
 import {
   COUNTRIES_NAMESPACE,
   CountriesQuery,
   TAX_CONTEXT_NAMESPACE,
+  TAX_FORM_CONTEXT_NAMESPACE,
+  TaxContext,
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
@@ -49,12 +55,14 @@ const UPSERT_USER = gql`
 `;
 
 export function useIndirectTaxForm(props: IndirectTaxForm) {
+  const user = useUserIdentity();
+  const setStep = useSetParent<string>(TAX_CONTEXT_NAMESPACE);
+  const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
+
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [formState, setFormState] = useState({});
   const [upsertUser] = useMutation(UPSERT_USER);
-  const [_, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
-  const user = useUserIdentity();
 
   const { data: userData, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
@@ -153,11 +161,11 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       });
       await refetch();
 
-      if (defaultDocumentType) {
-        setStep(`/3/${defaultDocumentType}`);
-      } else {
-        setStep("/submitted");
-      }
+      const nextStep = defaultDocumentType
+        ? `/3/${defaultDocumentType}`
+        : `/submitted`;
+
+      setStep(context.overrideNextStep || nextStep);
     } catch (e) {
       setErrors({ general: true });
     } finally {
@@ -171,6 +179,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
   return {
     states: {
+      hideSteps: context.hideSteps,
       disabled: loading || countriesLoading,
       loading: loading || countriesLoading,
       isPartner: userData?.user?.customFields?.__taxIsPartner,

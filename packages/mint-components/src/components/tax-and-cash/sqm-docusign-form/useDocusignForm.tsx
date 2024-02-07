@@ -5,9 +5,11 @@ import {
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useParent } from "../../../utils/useParentState";
+import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
+  TAX_FORM_CONTEXT_NAMESPACE,
+  TaxContext,
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
@@ -36,8 +38,10 @@ const UPSERT_USER = gql`
 export function useDocusignForm(props: DocusignForm, el: any) {
   const user = useUserIdentity();
   const [path, setPath] = useParent<string>(TAX_CONTEXT_NAMESPACE);
+  const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
   const { data, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+
   const [upsertUser] = useMutation(UPSERT_USER);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [errors, setErrors] = useState({});
@@ -96,7 +100,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
       });
       await refetch();
 
-      setPath("/submitted");
+      setPath(context.overrideNextStep || "/submitted");
     } catch (e) {
       setErrors({ formSubission: { status: "document-error" } });
     } finally {
@@ -106,6 +110,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
 
   return {
     states: {
+      hideSteps: context.hideSteps,
       disabled: taxInfoLoading || loading,
       submitDisabled: !formSubmitted,
       loading: taxInfoLoading || loading,

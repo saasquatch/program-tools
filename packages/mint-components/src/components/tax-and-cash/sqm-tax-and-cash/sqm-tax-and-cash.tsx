@@ -10,7 +10,7 @@ import {
 } from "../../../utils/useParentState";
 import { UserNameViewProps } from "./sqm-tax-and-cash-view";
 import { useTaxAndCash } from "./useTaxAndCash";
-import { TAX_CONTEXT_NAMESPACE } from "./data";
+import { TAX_CONTEXT_NAMESPACE, TaxContext } from "./data";
 
 /**
  * @uiName Tax And Cash

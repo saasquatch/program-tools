@@ -2,7 +2,7 @@ import { gql } from "graphql-request";
 
 export const TAX_CONTEXT_NAMESPACE = "sq:tax-and-cash";
 
-export const USER_INFO_NAMESPACE = "sq:user-info-form";
+export const TAX_FORM_CONTEXT_NAMESPACE = "sq:tax-form-context";
 
 export const USER_QUERY_NAMESPACE = "sq:user-info-query";
 
@@ -10,9 +10,9 @@ export const COUNTRIES_NAMESPACE = "sq:countries-list";
 
 export const CURRENCIES_NAMESPACE = "sq:currencies:list";
 
-export type TaxContextType = {
-  step: string;
-  setStep: (value: string) => void;
+export type TaxContext = {
+  overrideNextStep?: string;
+  hideSteps?: boolean;
 };
 
 export const GET_USER = gql`

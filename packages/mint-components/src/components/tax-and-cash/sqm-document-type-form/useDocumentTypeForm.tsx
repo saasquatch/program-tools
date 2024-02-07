@@ -1,7 +1,9 @@
 import { useState } from "@saasquatch/universal-hooks";
-import { useParent } from "../../../utils/useParentState";
+import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
+  TAX_FORM_CONTEXT_NAMESPACE,
+  TaxContext,
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
@@ -24,6 +26,7 @@ const UPSERT_USER = gql`
 
 export function useDocumentTypeForm(props: DocumentTypeForm) {
   const [path, setPath] = useParent(TAX_CONTEXT_NAMESPACE);
+  const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
   const [loading, setLoading] = useState(false);
   const [upsertUser] = useMutation(UPSERT_USER);
   const [errors, setErrors] = useState({});
@@ -76,6 +79,7 @@ export function useDocumentTypeForm(props: DocumentTypeForm) {
       onBack: () => setPath("/2"),
     },
     states: {
+      hideSteps: context.hideSteps,
       loading,
       disabled: loading,
       formState: {

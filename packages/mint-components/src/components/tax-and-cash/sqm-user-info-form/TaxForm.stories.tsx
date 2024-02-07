@@ -14,6 +14,8 @@ import { UseDocusignFormResult } from "../sqm-docusign-form/useDocusignForm";
 import { DemoData, StoryDemoData } from "../../../global/demo";
 import { UseDocumentTypeFormResult } from "../sqm-document-type-form/useDocumentTypeForm";
 import { UseTaxDocumentSubmittedResult } from "../sqm-tax-document-submitted/useTaxDocumentSubmitted";
+import { UseUserInfoFormResult } from "./useUserInfoForm";
+import { UseIndirectTaxFormResult } from "../sqm-indirect-tax-form/useIndirectTaxForm";
 // import sqmUserInfoSpecs from "./sqm-tax-document-step-1.feature";
 // import sqmIndirectTaxFormSpecs from "../sqm-indirect-tax-form/sqm-indirect-tax-form.feature";
 
@@ -21,8 +23,9 @@ export default {
   title: "Components/Tax Form",
 };
 
-const stepOneProps: UserInfoFormViewProps = {
+const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
   states: {
+    hideSteps: false,
     loading: false,
     disabled: false,
     isPartner: false,
@@ -51,18 +54,14 @@ const stepOneProps: UserInfoFormViewProps = {
       },
     ],
   },
-  callbacks: {
-    onSubmit: async () => console.log("Submit"),
-    onRadioClick: () => console.log("Radio Click"),
-  },
-  text: userInfoText,
   refs: {
-    formRef: () => {},
+    formRef: { current: null },
   },
 };
 
-const stepTwoProps = {
+const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
   states: {
+    hideSteps: false,
     loading: false,
     disabled: false,
     isPartner: false,
@@ -77,11 +76,6 @@ const stepTwoProps = {
     onBack: () => console.log("Submit"),
   },
   refs: { formRef: { current: null } },
-  // slots: {
-  //   registeredInCanadaDetailsSlot: <div></div>,
-  //   registeredInDifferentCountryDetailsSlot: <div></div>,
-  // },
-  text: indirectTaxFormText,
 };
 
 const documentSubmittedActiveProps: StoryDemoData<UseTaxDocumentSubmittedResult> =
@@ -101,6 +95,7 @@ const documentSubmittedActiveProps: StoryDemoData<UseTaxDocumentSubmittedResult>
 
 const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
   states: {
+    hideSteps: false,
     documentType: "W9",
     loading: false,
     disabled: false,
@@ -121,6 +116,7 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
 
 const documentTypeFormProps: StoryDemoData<UseDocumentTypeFormResult> = {
   states: {
+    hideSteps: false,
     loading: false,
     disabled: false,
     formState: {
@@ -137,7 +133,7 @@ const documentTypeFormProps: StoryDemoData<UseDocumentTypeFormResult> = {
 
 // STEP ONE
 export const StepOne = () => {
-  return <UserInfoFormView {...stepOneProps} />;
+  return <sqm-user-info-form demoData={stepOneProps} />;
 };
 
 export const StepOneLoading = () => {

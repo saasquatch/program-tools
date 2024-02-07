@@ -1,8 +1,10 @@
 import { DateTime } from "luxon";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useSetParent } from "../../../utils/useParentState";
+import { useParent, useSetParent } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
+  TAX_FORM_CONTEXT_NAMESPACE,
+  TaxContext,
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
@@ -11,6 +13,9 @@ import {
   TaxDocumentType,
 } from "./sqm-tax-document-submitted-view";
 import { TaxDocumentSubmitted } from "./sqm-tax-document-submitted";
+import { useEditProfile } from "../../sqm-edit-profile/useEditProfile";
+import { useEffect } from "@saasquatch/universal-hooks";
+import { INDIRECT_TAX_PROVINCES } from "../provinces";
 
 export function getDocumentType(user): TaxDocumentType {
   if (!user) return;
@@ -37,6 +42,14 @@ export const useTaxDocumentSubmitted = (
   props: TaxDocumentSubmitted
 ): TaxDocumentSubmittedProps => {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
+  const [context, setContext] = useParent<TaxContext>(
+    TAX_FORM_CONTEXT_NAMESPACE
+  );
+
+  useEffect(() => {
+    // Clear override context once on submitted
+    setContext({});
+  }, []);
 
   const { data, loading } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
@@ -65,6 +78,20 @@ export const useTaxDocumentSubmitted = (
 
   const documentType = getDocumentType(data?.user);
 
+  const onNewDocumentClick = () => {
+    setStep(`/3/${documentType}`);
+    setContext({ overrideNextStep: "/submitted", hideSteps: true });
+  };
+
+  const onEditIndirectTax = () => {
+    setStep("/2");
+    setContext({ overrideNextStep: "/submitted", hideSteps: true });
+  };
+
+  const provinceName = INDIRECT_TAX_PROVINCES.find(
+    (p) => p.provinceCode === data?.user?.customFields?.__taxProvince
+  )?.displayName;
+
   return {
     states: {
       dateSubmitted,
@@ -73,11 +100,11 @@ export const useTaxDocumentSubmitted = (
       // TODO: Hook up to API
       status: documentType ? "NOT_VERIFIED" : undefined,
 
-      indirectTaxNumber: data.user?.customFields?.__indirectTaxNumber,
-      province: data.user?.customFields?.__taxProvince,
+      indirectTaxNumber: data?.user?.customFields?.__indirectTaxNumber,
+      province: provinceName,
       // @ts-ignore: DisplayNames does exist on Intl
       country: new Intl.DisplayNames(["en"], { type: "region" }).of([
-        data.user?.customFields?.__taxCountry,
+        data?.user?.customFields?.__taxCountry,
       ]),
       noFormNeeded: !documentType,
       dateExpired,
@@ -86,8 +113,8 @@ export const useTaxDocumentSubmitted = (
       loading,
     },
     callbacks: {
-      onClick: () => setStep(`/3/${documentType}`),
-      onEditIndirectTax: () => setStep("/2"),
+      onClick: onNewDocumentClick,
+      onEditIndirectTax: onEditIndirectTax,
     },
     text: props.getTextProps(),
   };
