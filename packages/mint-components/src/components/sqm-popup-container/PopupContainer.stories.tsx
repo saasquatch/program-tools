@@ -15,6 +15,7 @@ export const Default = () => {
           padding: "var(--sl-spacing-medium)",
           poweredBy: true,
           closeButton: true,
+          poweredByText: "Powered By",
         },
       }}
       data={{}}
