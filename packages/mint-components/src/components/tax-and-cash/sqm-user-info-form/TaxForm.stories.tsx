@@ -547,7 +547,7 @@ export const TaxDocumentSubmittedNotVerified = () => {
       demoData={{
         states: {
           disabled: false,
-          status: "NOT_ACTIVE",
+          status: "NOT_VERIFIED",
           documentType: "W8-BEN",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
@@ -667,21 +667,6 @@ export const TaxDocumentSubmittedLoading = () => {
           dateSubmitted: "Jan 18th, 2025",
           dateExpired: "Dec 18th, 2025",
           noFormNeeded: false,
-          loading: true,
-        },
-      }}
-    ></sqm-tax-document-submitted>
-  );
-};
-
-export const TaxDocumentNoFormNeededLoading = () => {
-  return (
-    <sqm-tax-document-submitted
-      demoData={{
-        states: {
-          disabled: false,
-          documentType: undefined,
-          noFormNeeded: true,
           loading: true,
         },
       }}

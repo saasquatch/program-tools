@@ -119,7 +119,7 @@ export class TaxDocumentSubmitted {
    *
    * @uiName Banking information header
    */
-  @Prop() bankingInformationSectionHeader: string = "Banking Information";
+  @Prop() bankingInformationSectionHeader: string = "Payout information";
   /**
    * Header text displayed above the indirect tax preview section
    *

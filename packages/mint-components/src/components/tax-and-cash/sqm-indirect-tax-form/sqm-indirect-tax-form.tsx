@@ -44,7 +44,7 @@ export class IndirectTaxForm {
    * @uiName Indirect tax sub text
    */
   @Prop() indirectTaxDescription: string =
-    "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.";
+    "Indirect taxes (e.g. VAT, HST, GST) are transactional based taxes collected by business and retailers on behalf of governments. Any rewards you receive may be subject to indirect taxes based on your country.";
   /**
    * Heading text shown above the tax details radio buttons
    * @uiName Indirect tax details heading
@@ -55,7 +55,7 @@ export class IndirectTaxForm {
    * @uiName Indirect tax details sub text
    */
   @Prop() indirectTaxDetailsDescription: string =
-    "Not sure if you are registered for indirect tax? Contact our Support team to find out more.";
+    "If you are in the US, you are most likely not registered for Indirect Tax. Not sure if you are registered for indirect tax? Contact our Support team to find out more.";
   /**
    * Label text for the HST Canada radio button
    * @uiName HST Canada radio button label

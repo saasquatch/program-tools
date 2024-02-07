@@ -118,11 +118,11 @@ const style = {
     },
   },
   NewFormButton: {
-    marginTop: "var(--sl-spacing-medium)",
+    marginTop: "var(--sl-spacing-large)",
     maxWidth: "179px",
   },
   EditBankDetailsButton: {
-    marginTop: "var(--sl-spacing-x-large)",
+    marginTop: "var(--sl-spacing-large)",
   },
   SkeletonOne: {
     width: "15%",
@@ -404,16 +404,16 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                 </span>
                 <span>{states.indirectTaxNumber}</span>
               </div>
-              <sl-button
-                disabled={states.disabled || states.loading}
-                onClick={callbacks.onEditIndirectTax}
-                type="default"
-                class={sheet.classes.NewFormButton}
-              >
-                {text.editIndirectTaxButton}
-              </sl-button>
             </div>
           )}
+          <sl-button
+            disabled={states.disabled || states.loading}
+            onClick={callbacks.onEditIndirectTax}
+            type="default"
+            class={sheet.classes.NewFormButton}
+          >
+            {text.editIndirectTaxButton}
+          </sl-button>
         </div>
         <div class={sheet.classes.TaxDocumentsContainer}>
           <div>
@@ -453,18 +453,18 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                         {statusMap[states.status]}
                       </div>
                     </span>
-                    <sl-button
-                      disabled={states.disabled || states.loading}
-                      onClick={callbacks.onClick}
-                      type="default"
-                      class={sheet.classes.NewFormButton}
-                    >
-                      {text.newFormButton}
-                    </sl-button>
                   </div>
                 )}
               </div>
             )}
+            <sl-button
+              disabled={states.disabled || states.loading}
+              onClick={callbacks.onClick}
+              type="default"
+              class={sheet.classes.NewFormButton}
+            >
+              {text.newFormButton}
+            </sl-button>
           </div>
         </div>
       </div>
