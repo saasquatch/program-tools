@@ -80,13 +80,17 @@ export const useTaxDocumentSubmitted = (
     data?.user
   )?.toUpperCase() as TaxDocumentType;
 
+  console.log({ documentType });
+
   const onNewDocumentClick = () => {
     setContext({
       overrideNextStep: "/submitted",
       overrideBackStep: "/submitted",
       hideSteps: true,
     });
-    setStep(`/3/${documentType}`);
+
+    if (documentType) setStep(`/3/${documentType}`);
+    else setStep("/3b");
   };
 
   const onEditIndirectTax = () => {

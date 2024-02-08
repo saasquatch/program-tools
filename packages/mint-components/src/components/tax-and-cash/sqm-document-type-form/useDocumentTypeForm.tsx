@@ -76,7 +76,7 @@ export function useDocumentTypeForm(props: DocumentTypeForm) {
     text: props.getTextProps(),
     callbacks: {
       onSubmit,
-      onBack: () => setPath("/2"),
+      onBack: () => setPath(context.overrideBackStep || "/2"),
     },
     states: {
       hideSteps: context.hideSteps,
