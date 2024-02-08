@@ -6,6 +6,7 @@ export interface IndirectTaxFormViewProps {
     loading: boolean;
     disabled: boolean;
     isPartner: boolean;
+    hideSteps: boolean;
     formState: {
       checked: "hstCanada" | "otherRegion" | "notRegistered" | undefined;
       errors?: any;
@@ -162,7 +163,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
       </style>
       <div class={classes.TextContainer}>
         <div>
-          <p>{text.formStep}</p>
+          {!states.hideSteps && <p>{text.formStep}</p>}
           <h3>{text.indirectTax}</h3>
         </div>
         <p>{text.indirectTaxDescription}</p>
@@ -250,9 +251,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               class={classes.SecondaryBtn}
               type="text"
               disabled={states.disabled}
-              onClick={() => {
-                callbacks.onBack();
-              }}
+              onClick={callbacks.onBack}
               exportparts="base: secondarybutton-base"
             >
               {text.backButton}

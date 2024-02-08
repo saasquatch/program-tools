@@ -6,6 +6,7 @@ export interface UserInfoFormViewProps {
     loading: boolean;
     disabled: boolean;
     isPartner: boolean;
+    hideSteps: boolean;
     formState: {
       firstName?: string;
       lastName?: string;
@@ -193,7 +194,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
       </style>
       <div class={classes.TextContainer}>
         <div>
-          <p>{text.formStep}</p>
+          {!states.hideSteps && <p>{text.formStep}</p>}
           <h3>{text.personalInformation}</h3>
         </div>
       </div>

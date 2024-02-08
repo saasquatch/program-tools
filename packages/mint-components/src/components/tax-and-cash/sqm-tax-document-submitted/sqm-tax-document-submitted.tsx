@@ -170,6 +170,12 @@ export class TaxDocumentSubmitted {
    */
   @Prop() editIndirectTaxButton: string = "Edit Indirect Tax";
   /**
+   * Text displayed when partner is not registered for Indirect Tax
+   *
+   * @uiName Not registered for Indirect Tax
+   */
+  @Prop() notRegisteredForTax: string;
+  /**
    * The title for error message shown at the top of the page in an error banner
    *
    * @uiName General error title

@@ -19,6 +19,7 @@ export interface TaxDocumentSubmittedProps {
     indirectTaxNumber?: number;
     province?: string;
     country?: string;
+    notRegistered?: boolean;
     isIndirectTaxCanada?: boolean;
     loading?: boolean;
     errors?: any;
@@ -49,6 +50,7 @@ export interface TaxDocumentSubmittedProps {
     editIndirectTaxButton: string;
     invalidForm?: string;
     noFormNeededSubtext: string;
+    notRegisteredForTax: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -381,7 +383,9 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
               </h3>
               <div class={sheet.classes.IndirectTaxPreviewDetails}>
                 <span>
-                  {states.province
+                  {states.notRegistered
+                    ? text.notRegisteredForTax
+                    : states.province
                     ? intl.formatMessage(
                         {
                           id: `indirectTaxInfoCanada`,

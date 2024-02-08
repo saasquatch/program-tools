@@ -149,6 +149,7 @@ export const taxFormDocumentSubmittedText: TaxDocumentSubmittedProps["text"] = {
   editIndirectTaxButton: "Edit Indirect Tax",
   noFormNeededSubtext:
     "Tax documents are only required if you are based in the US. If your country of residence has changed, please contact Support.",
+  notRegisteredForTax: "Not registered for Indirect Tax",
   error: {
     generalTitle: "There was a problem submitting your information",
     generalDescription:

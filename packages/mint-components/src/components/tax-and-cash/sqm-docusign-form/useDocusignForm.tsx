@@ -108,6 +108,10 @@ export function useDocusignForm(props: DocusignForm, el: any) {
     }
   };
 
+  const onBack = () => {
+    setPath(context.overrideBackStep || "/2");
+  };
+
   return {
     states: {
       hideSteps: context.hideSteps,
@@ -129,7 +133,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
       onShowDocumentType: () => setPath("/3b"),
       onSubmit,
       toggleFormSubmitted: () => setFormSubmitted((x) => !x),
-      onBack: () => setPath("/2"),
+      onBack,
     },
     text: props.getTextProps(),
   };

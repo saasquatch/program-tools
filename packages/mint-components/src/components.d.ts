@@ -3098,473 +3098,572 @@ export namespace Components {
         /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
+          * @uiGroup Step 1 Properties
          */
-        "allowBankingCollection": string;
+        "step1_allowBankingCollection": string;
         /**
           * Error text shown at the bottom of the tax and banking collection checkbox
           * @uiName Tax and banking collection checkbox error text
+          * @uiGroup Step 1 Properties
          */
-        "allowBankingCollectionError": string;
-        /**
-          * Text shown inside of back button
-          * @uiName Back button text
-         */
-        "backButton": string;
+        "step1_allowBankingCollectionError": string;
         /**
           * Label text for the business entity radio button
           * @uiName Business entity radio button label
+          * @uiGroup Step 1 Properties
          */
-        "businessEntity": string;
+        "step1_businessEntity": string;
         /**
           * Label text for country input
           * @uiName Country label
+          * @uiGroup Step 1 Properties
          */
-        "country": string;
+        "step1_country": string;
         /**
           * Error text shown at the bottom of the country input
           * @uiName Country input error text
+          * @uiGroup Step 1 Properties
          */
-        "countryError": string;
+        "step1_countryError": string;
         /**
           * Label text for currency input
           * @uiName Currency label
+          * @uiGroup Step 1 Properties
          */
-        "currency": string;
+        "step1_currency": string;
         /**
           * Error text shown at the bottom of the currency input
           * @uiName Currency input error text
+          * @uiGroup Step 1 Properties
          */
-        "currencyError": string;
+        "step1_currencyError": string;
         /**
           * Label text for email input
           * @uiName Email label
+          * @uiGroup Step 1 Properties
          */
-        "email": string;
+        "step1_email": string;
         /**
           * Error text shown at the bottom of the email input
           * @uiName Email input error text
+          * @uiGroup Step 1 Properties
          */
-        "emailError": string;
+        "step1_emailError": string;
         /**
           * Label text for first name input
           * @uiName First name label
+          * @uiGroup Step 1 Properties
          */
-        "firstName": string;
+        "step1_firstName": string;
         /**
           * Error text shown at the bottom of the first name input
           * @uiName First name input error text
+          * @uiGroup Step 1 Properties
          */
-        "firstNameError": string;
+        "step1_firstNameError": string;
         /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Tax form step text
+          * @uiGroup Step 1 Properties
          */
-        "formStep": string;
+        "step1_formStep": string;
         /**
           * The error message shown at the top of the page in an error banner
           * @uiName General error text
+          * @uiGroup Step 1 Properties
          */
-        "generalErrorDescription": string;
+        "step1_generalErrorDescription": string;
         /**
           * The title for error message shown at the top of the page in an error banner
           * @uiName General error title
+          * @uiGroup Step 1 Properties
          */
-        "generalErrorTitle": string;
+        "step1_generalErrorTitle": string;
         /**
           * Label text for the individual participant radio button
           * @uiName Individual participant radio button label
+          * @uiGroup Step 1 Properties
          */
-        "individualParticipant": string;
+        "step1_individualParticipant": string;
         /**
           * Alert description text shown in alert if user is already a registered partner
           * @uiName Participant is partner description
+          * @uiGroup Step 1 Properties
          */
-        "isPartnerAlertDescription": string;
+        "step1_isPartnerAlertDescription": string;
         /**
           * Alert header text shown in alert if user is already a registered partner
           * @uiName Participant is partner title
+          * @uiGroup Step 1 Properties
          */
-        "isPartnerAlertHeader": string;
+        "step1_isPartnerAlertHeader": string;
         /**
           * Label text for last name input
           * @uiName Last name label
+          * @uiGroup Step 1 Properties
          */
-        "lastName": string;
+        "step1_lastName": string;
         /**
           * Error text shown at the bottom of the last name input
           * @uiName Last name input error text
+          * @uiGroup Step 1 Properties
          */
-        "lastNameError": string;
+        "step1_lastNameError": string;
         /**
           * Heading text for the participant type radio buttons
           * @uiName Participant type radio buttons heading
+          * @uiGroup Step 1 Properties
          */
-        "participantType": string;
+        "step1_participantType": string;
         /**
           * Error text shown at the bottom of the participant type checkbox
           * @uiName Participant type checkbox error text
+          * @uiGroup Step 1 Properties
          */
-        "participantTypeError": string;
+        "step1_participantTypeError": string;
         /**
           * Heading text shown above the forms inputs.
           * @uiName Form heading text
+          * @uiGroup Step 1 Properties
          */
-        "personalInformation": string;
-        /**
-          * Text shown inside of back button
-          * @uiName Back button text
-         */
-        "step2BackButton": string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Indirect tax form step text
-         */
-        "step2FormStep": string;
-        /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-         */
-        "step2GeneralErrorDescription": string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-         */
-        "step2GeneralErrorTitle": string;
-        /**
-          * Label text for the HST Canada radio button
-          * @uiName HST Canada radio button label
-         */
-        "step2HstCanada": string;
-        /**
-          * Heading text shown at the top of the page
-          * @uiName Indirect tax heading text
-         */
-        "step2IndirectTax": string;
-        /**
-          * Subtext shown at the top of the page
-          * @uiName Indirect tax sub text
-         */
-        "step2IndirectTaxDescription": string;
-        /**
-          * Heading text shown above the tax details radio buttons
-          * @uiName Indirect tax details heading
-         */
-        "step2IndirectTaxDetails": string;
-        /**
-          * Sub text shown above the tax details radio buttons
-          * @uiName Indirect tax details sub text
-         */
-        "step2IndirectTaxDetailsDescription": string;
-        /**
-          * Label text for the Indirect Tax Number input
-          * @uiName Indirect Tax Number input label
-         */
-        "step2IndirectTaxNumber": string;
-        /**
-          * Error text shown below the Indirect Tax Number select input
-          * @uiName Indirect Tax Number error text
-         */
-        "step2IndirectTaxNumberError": string;
-        /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
-         */
-        "step2IsPartnerAlertDescription": string;
-        /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
-         */
-        "step2IsPartnerAlertHeader": string;
-        /**
-          * Label text for the not registered radio button
-          * @uiName Not registered radio button label
-         */
-        "step2NotRegistered": string;
-        /**
-          * Label text for the other region radio button
-          * @uiName Other region radio button label
-         */
-        "step2OtherRegion": string;
-        /**
-          * Label text for the Province select input
-          * @uiName Province select input label
-         */
-        "step2Province": string;
-        /**
-          * Error text shown below the Selected Region select input
-          * @uiName Province error text
-         */
-        "step2ProvinceError": string;
-        /**
-          * Label text for the Selected Region select input
-          * @uiName Selected region select input label
-         */
-        "step2SelectedRegion": string;
-        /**
-          * Error text shown below the Selected Region select input
-          * @uiName Selected Region error text
-         */
-        "step2SelectedRegionError": string;
+        "step1_personalInformation": string;
         /**
           * Text shown inside of submit button
           * @uiName Submit button text
+          * @uiGroup Step 1 Properties
          */
-        "step2SubmitButton": string;
-        /**
-          * Error text shown below the tax details radio buttons
-          * @uiName Indirect tax details error text
-         */
-        "step2TaxDetailsError": string;
-        /**
-          * Label text for the VAT Number input
-          * @uiName VAT Number input label
-         */
-        "step2VatNumber": string;
-        /**
-          * Error text shown below the VAT Number input
-          * @uiName VAT Number error text
-         */
-        "step2VatNumberError": string;
-        /**
-          * Text shown in the banner above the document
-          * @uiName Banner text
-         */
-        "step3Banner": string;
-        /**
-          * Label text for the form submission checkbox
-          * @uiName Form submission checkbox label
-         */
-        "step3CheckboxDescription": string;
-        /**
-          * Heading text for the form submission checkbox
-          * @uiName Form submission checkbox heading
-         */
-        "step3CheckboxLabel": string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-         */
-        "step3FormStep": string;
-        /**
-          * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
-          * @uiName Form submission error text
-         */
-        "step3FormSubmissionError": string;
-        /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-         */
-        "step3GeneralErrorDescription": string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-         */
-        "step3GeneralErrorTitle": string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
-        "step3SubmitButton": string;
-        /**
-          * Heading text shown at the top of the page
-          * @uiName Tax form heading text
-         */
-        "step3TaxForm": string;
-        /**
-          * Subtext shown at the top of the page next to the document type text
-          * @uiName Tax form subtext
-         */
-        "step3TaxFormDescription": string;
-        /**
-          * Text shown at the top of the page next to the document type text
-          * @uiName Tax form label text
-         */
-        "step3TaxFormLabel": string;
-        /**
-          * Text shown inside of back button
-          * @uiName Back button text
-         */
-        "step3bBackButton": string;
-        /**
-          * Sub text shown above form selection radio buttons
-          * @uiName Tax form selection heading text
-         */
-        "step3bFormLabel": string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-         */
-        "step3bFormStep": string;
-        /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-         */
-        "step3bGeneralErrorDescription": string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-         */
-        "step3bGeneralErrorTitle": string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
-        "step3bSubmitButton": string;
-        /**
-          * Heading text shown at the top of the top of page
-          * @uiName Tax form heading text
-         */
-        "step3bTaxForm": string;
-        /**
-          * Subtext for the W8 radio button
-          * @uiName W8 radio button subtext
-         */
-        "step3bW8Description": string;
-        /**
-          * Subtext for the W8E radio button
-          * @uiName W8E radio button subtext
-         */
-        "step3bW8EDescription": string;
-        /**
-          * Label text for the W8E radio button
-          * @uiName W8E radio button label
-         */
-        "step3bW8ELabel": string;
-        /**
-          * Label text for the W8 radio button
-          * @uiName W8 radio button label
-         */
-        "step3bW8Label": string;
-        /**
-          * Subtext for the W9 radio button
-          * @uiName W9 radio button subtext
-         */
-        "step3bW9Description": string;
-        /**
-          * Label text for the W9 radio button
-          * @uiName W9 radio button label
-         */
-        "step3bW9Label": string;
-        /**
-          * Description text which appears beside badge showing the form is awaiting review
-          * @uiName Badge description text
-         */
-        "step4BadgeTextAwaitingReview"?: string;
-        /**
-          * Description text which appears beside badge showing the form has expired
-          * @uiName Badge description text
-         */
-        "step4BadgeTextExpiredOn"?: string;
-        /**
-          * Description text which appears beside badge showing the form expiring soon
-          * @uiName Badge description text
-         */
-        "step4BadgeTextExpiringSoon"?: string;
-        /**
-          * Description text which appears beside badge showing when the form was submitted
-          * @uiName Badge description text
-         */
-        "step4BadgeTextSubmittedOn"?: string;
-        /**
-          * Header text displayed above the banking information card
-          * @uiName Banking information header
-         */
-        "step4BankingInformationSectionHeader": string;
-        /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName Step 4 General error text
-         */
-        "step4GeneralErrorDescription": string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName Step 4 General error title
-         */
-        "step4GeneralErrorTitle": string;
-        /**
-          * Description text displayed next to the badge in the tax documents status
-          * @uiName Invalid form description text
-         */
-        "step4InvalidForm"?: string;
-        /**
-          * Text displayed in the submit new document button at the bottom of the page
-          * @uiName Step 4 No form needed subtext
-         */
-        "step4NewFormButton": string;
-        /**
-          * Subtext displayed at the bottom of the page if there are no tax documents to show
-          * @uiName No form needed subtext
-         */
-        "step4NoFormNeededSubtext": string;
-        /**
-          * Status text displayed in badge when tax document is Active
-          * @uiName Status text
-         */
-        "step4StatusTextActive"?: string;
-        /**
-          * Status text displayed in badge when tax document is Expired
-          * @uiName Status text
-         */
-        "step4StatusTextExpired"?: string;
-        /**
-          * Status text displayed in badge when tax document is Not Active
-          * @uiName Status text
-         */
-        "step4StatusTextNotActive"?: string;
-        /**
-          * Status text displayed in badge when tax document is Not Verified
-          * @uiName Status text
-         */
-        "step4StatusTextNotVerified"?: string;
-        /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Expired alert header
-         */
-        "step4TaxAlertHeaderExpiredOn"?: string;
-        /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Expiring soon alert header
-         */
-        "step4TaxAlertHeaderExpiringSoon"?: string;
-        /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Not active alert header
-         */
-        "step4TaxAlertHeaderNotActive"?: string;
-        /**
-          * Description text displayed in alert body at the top of the page.
-          * @uiName Tax alert message
-         */
-        "step4TaxAlertMessage"?: string;
-        /**
-          * Description text displayed in alert body at the top of the page.
-          * @uiName Expiring soon tax alert message
-         */
-        "step4TaxAlertMessageExpiringSoon": string;
-        /**
-          * Header text displayed above the tax documents status
-          * @uiName Tax document section header
-         */
-        "step4TaxDocumentSectionHeader": string;
-        /**
-          * Sub header text displayed above the tax documents status
-          * @uiName Tax documents sub header
-         */
-        "step4TaxDocumentSectionSubHeader": string;
-        /**
-          * Text shown in the link to the form for non US residents
-          * @uiName Not based in US link text
-         */
-        "stop3NotBasedInUS": string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
-        "submitButton": string;
+        "step1_submitButton": string;
         /**
           * Heading text for the tax and banking collection checkbox
           * @uiName Tax and banking collection checkbox heading
+          * @uiGroup Step 1 Properties
          */
-        "taxAndBankingCollection": string;
+        "step1_taxAndBankingCollection": string;
+        /**
+          * Text shown inside of back button
+          * @uiName Back button text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_backButton": string;
+        /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Indirect tax form step text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_formStep": string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_generalErrorDescription": string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+          * @uiGroup Step 2 Properties
+         */
+        "step2_generalErrorTitle": string;
+        /**
+          * Label text for the HST Canada radio button
+          * @uiName HST Canada radio button label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_hstCanada": string;
+        /**
+          * Heading text shown at the top of the page
+          * @uiName Indirect tax heading text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTax": string;
+        /**
+          * Subtext shown at the top of the page
+          * @uiName Indirect tax sub text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxDescription": string;
+        /**
+          * Heading text shown above the tax details radio buttons
+          * @uiName Indirect tax details heading
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxDetails": string;
+        /**
+          * Sub text shown above the tax details radio buttons
+          * @uiName Indirect tax details sub text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxDetailsDescription": string;
+        /**
+          * Label text for the Indirect Tax Number input
+          * @uiName Indirect Tax Number input label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxNumber": string;
+        /**
+          * Error text shown below the Indirect Tax Number select input
+          * @uiName Indirect Tax Number error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxNumberError": string;
+        /**
+          * Alert description text shown in alert if user is already a registered partner
+          * @uiName Participant is partner description
+          * @uiGroup Step 2 Properties
+         */
+        "step2_isPartnerAlertDescription": string;
+        /**
+          * Alert header text shown in alert if user is already a registered partner
+          * @uiName Participant is partner title
+          * @uiGroup Step 2 Properties
+         */
+        "step2_isPartnerAlertHeader": string;
+        /**
+          * Label text for the not registered radio button
+          * @uiName Not registered radio button label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_notRegistered": string;
+        /**
+          * Label text for the other region radio button
+          * @uiName Other region radio button label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_otherRegion": string;
+        /**
+          * Label text for the Province select input
+          * @uiName Province select input label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_province": string;
+        /**
+          * Error text shown below the Selected Region select input
+          * @uiName Province error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_provinceError": string;
+        /**
+          * Label text for the Selected Region select input
+          * @uiName Selected region select input label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_selectedRegion": string;
+        /**
+          * Error text shown below the Selected Region select input
+          * @uiName Selected Region error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_selectedRegionError": string;
+        /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_submitButton": string;
+        /**
+          * Error text shown below the tax details radio buttons
+          * @uiName Indirect tax details error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_taxDetailsError": string;
+        /**
+          * Label text for the VAT Number input
+          * @uiName VAT Number input label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_vatNumber": string;
+        /**
+          * Error text shown below the VAT Number input
+          * @uiName VAT Number error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_vatNumberError": string;
+        /**
+          * Text shown inside of back button
+          * @uiName Back button text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_backButton": string;
+        /**
+          * Text shown in the banner above the document
+          * @uiName Banner text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_banner": string;
+        /**
+          * Label text for the form submission checkbox
+          * @uiName Form submission checkbox label
+          * @uiGroup Step 3 Properties
+         */
+        "step3_checkboxDescription": string;
+        /**
+          * Heading text for the form submission checkbox
+          * @uiName Form submission checkbox heading
+          * @uiGroup Step 3 Properties
+         */
+        "step3_checkboxLabel": string;
+        /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Tax form step text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_formStep": string;
+        /**
+          * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
+          * @uiName Form submission error text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_formSubmissionError": string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_generalErrorDescription": string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+          * @uiGroup Step 3 Properties
+         */
+        "step3_generalErrorTitle": string;
+        /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_submitButton": string;
+        /**
+          * Heading text shown at the top of the page
+          * @uiName Tax form heading text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxForm": string;
+        /**
+          * Subtext shown at the top of the page next to the document type text
+          * @uiName Tax form subtext
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxFormDescription": string;
+        /**
+          * Text shown at the top of the page next to the document type text
+          * @uiName Tax form label text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxFormLabel": string;
+        /**
+          * Text shown inside of back button
+          * @uiName Back button text
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_backButton": string;
+        /**
+          * Sub text shown above form selection radio buttons
+          * @uiName Tax form selection heading text
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_formLabel": string;
+        /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Tax form step text
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_formStep": string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_generalErrorDescription": string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_generalErrorTitle": string;
+        /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_submitButton": string;
+        /**
+          * Heading text shown at the top of the top of page
+          * @uiName Tax form heading text
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_taxForm": string;
+        /**
+          * Subtext for the W8 radio button
+          * @uiName W8 radio button subtext
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_w8Description": string;
+        /**
+          * Subtext for the W8E radio button
+          * @uiName W8E radio button subtext
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_w8EDescription": string;
+        /**
+          * Label text for the W8E radio button
+          * @uiName W8E radio button label
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_w8ELabel": string;
+        /**
+          * Label text for the W8 radio button
+          * @uiName W8 radio button label
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_w8Label": string;
+        /**
+          * Subtext for the W9 radio button
+          * @uiName W9 radio button subtext
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_w9Description": string;
+        /**
+          * Label text for the W9 radio button
+          * @uiName W9 radio button label
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_w9Label": string;
+        /**
+          * Description text which appears beside badge showing the form is awaiting review
+          * @uiName Badge description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_badgeTextAwaitingReview"?: string;
+        /**
+          * Description text which appears beside badge showing the form has expired
+          * @uiName Badge description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_badgeTextExpiredOn"?: string;
+        /**
+          * Description text which appears beside badge showing the form expiring soon
+          * @uiName Badge description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_badgeTextExpiringSoon"?: string;
+        /**
+          * Description text which appears beside badge showing when the form was submitted
+          * @uiName Badge description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_badgeTextSubmittedOn"?: string;
+        /**
+          * Header text displayed above the banking information card
+          * @uiName Banking information header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankingInformationSectionHeader": string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName Step 4 General error text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_generalErrorDescription": string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName Step 4 General error title
+          * @uiGroup Step 4 Properties
+         */
+        "step4_generalErrorTitle": string;
+        /**
+          * Description text displayed next to the badge in the tax documents status
+          * @uiName Invalid form description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_invalidForm"?: string;
+        /**
+          * Text displayed in the submit new document button at the bottom of the page
+          * @uiName Step 4 No form needed subtext
+          * @uiGroup Step 4 Properties
+         */
+        "step4_newFormButton": string;
+        /**
+          * Subtext displayed at the bottom of the page if there are no tax documents to show
+          * @uiName No form needed subtext
+          * @uiGroup Step 4 Properties
+         */
+        "step4_noFormNeededSubtext": string;
+        /**
+          * Text displayed when partner is not registered for Indirect Tax
+          * @uiName Not registered for Indirect Tax
+         */
+        "step4_notRegisteredForTax": string;
+        /**
+          * Status text displayed in badge when tax document is Active
+          * @uiName Status text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_statusTextActive"?: string;
+        /**
+          * Status text displayed in badge when tax document is Expired
+          * @uiName Status text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_statusTextExpired"?: string;
+        /**
+          * Status text displayed in badge when tax document is Not Active
+          * @uiName Status text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_statusTextNotActive"?: string;
+        /**
+          * Status text displayed in badge when tax document is Not Verified
+          * @uiName Status text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_statusTextNotVerified"?: string;
+        /**
+          * Header displayed in alert header at the top of the page.
+          * @uiName Expired alert header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxAlertHeaderExpiredOn"?: string;
+        /**
+          * Header displayed in alert header at the top of the page.
+          * @uiName Expiring soon alert header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxAlertHeaderExpiringSoon"?: string;
+        /**
+          * Header displayed in alert header at the top of the page.
+          * @uiName Not active alert header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxAlertHeaderNotActive"?: string;
+        /**
+          * Description text displayed in alert body at the top of the page.
+          * @uiName Tax alert message
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxAlertMessage"?: string;
+        /**
+          * Description text displayed in alert body at the top of the page.
+          * @uiName Expiring soon tax alert message
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxAlertMessageExpiringSoon": string;
+        /**
+          * Header text displayed above the tax documents status
+          * @uiName Tax document section header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxDocumentSectionHeader": string;
+        /**
+          * Sub header text displayed above the tax documents status
+          * @uiName Tax documents sub header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxDocumentSectionSubHeader": string;
+        /**
+          * Text shown in the link to the form for non US residents
+          * @uiName Not based in US link text
+          * @uiGroup Step 3 Properties
+         */
+        "stop3NotBasedInUS": string;
     }
     interface SqmTaxDocumentSubmitted {
         /**
@@ -3642,6 +3741,11 @@ export namespace Components {
           * @uiName No form needed subtext
          */
         "noFormNeededSubtext": string;
+        /**
+          * Text displayed when partner is not registered for Indirect Tax
+          * @uiName Not registered for Indirect Tax
+         */
+        "notRegisteredForTax": string;
         /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
@@ -7669,473 +7773,572 @@ declare namespace LocalJSX {
         /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
+          * @uiGroup Step 1 Properties
          */
-        "allowBankingCollection"?: string;
+        "step1_allowBankingCollection"?: string;
         /**
           * Error text shown at the bottom of the tax and banking collection checkbox
           * @uiName Tax and banking collection checkbox error text
+          * @uiGroup Step 1 Properties
          */
-        "allowBankingCollectionError"?: string;
-        /**
-          * Text shown inside of back button
-          * @uiName Back button text
-         */
-        "backButton"?: string;
+        "step1_allowBankingCollectionError"?: string;
         /**
           * Label text for the business entity radio button
           * @uiName Business entity radio button label
+          * @uiGroup Step 1 Properties
          */
-        "businessEntity"?: string;
+        "step1_businessEntity"?: string;
         /**
           * Label text for country input
           * @uiName Country label
+          * @uiGroup Step 1 Properties
          */
-        "country"?: string;
+        "step1_country"?: string;
         /**
           * Error text shown at the bottom of the country input
           * @uiName Country input error text
+          * @uiGroup Step 1 Properties
          */
-        "countryError"?: string;
+        "step1_countryError"?: string;
         /**
           * Label text for currency input
           * @uiName Currency label
+          * @uiGroup Step 1 Properties
          */
-        "currency"?: string;
+        "step1_currency"?: string;
         /**
           * Error text shown at the bottom of the currency input
           * @uiName Currency input error text
+          * @uiGroup Step 1 Properties
          */
-        "currencyError"?: string;
+        "step1_currencyError"?: string;
         /**
           * Label text for email input
           * @uiName Email label
+          * @uiGroup Step 1 Properties
          */
-        "email"?: string;
+        "step1_email"?: string;
         /**
           * Error text shown at the bottom of the email input
           * @uiName Email input error text
+          * @uiGroup Step 1 Properties
          */
-        "emailError"?: string;
+        "step1_emailError"?: string;
         /**
           * Label text for first name input
           * @uiName First name label
+          * @uiGroup Step 1 Properties
          */
-        "firstName"?: string;
+        "step1_firstName"?: string;
         /**
           * Error text shown at the bottom of the first name input
           * @uiName First name input error text
+          * @uiGroup Step 1 Properties
          */
-        "firstNameError"?: string;
+        "step1_firstNameError"?: string;
         /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Tax form step text
+          * @uiGroup Step 1 Properties
          */
-        "formStep"?: string;
+        "step1_formStep"?: string;
         /**
           * The error message shown at the top of the page in an error banner
           * @uiName General error text
+          * @uiGroup Step 1 Properties
          */
-        "generalErrorDescription"?: string;
+        "step1_generalErrorDescription"?: string;
         /**
           * The title for error message shown at the top of the page in an error banner
           * @uiName General error title
+          * @uiGroup Step 1 Properties
          */
-        "generalErrorTitle"?: string;
+        "step1_generalErrorTitle"?: string;
         /**
           * Label text for the individual participant radio button
           * @uiName Individual participant radio button label
+          * @uiGroup Step 1 Properties
          */
-        "individualParticipant"?: string;
+        "step1_individualParticipant"?: string;
         /**
           * Alert description text shown in alert if user is already a registered partner
           * @uiName Participant is partner description
+          * @uiGroup Step 1 Properties
          */
-        "isPartnerAlertDescription"?: string;
+        "step1_isPartnerAlertDescription"?: string;
         /**
           * Alert header text shown in alert if user is already a registered partner
           * @uiName Participant is partner title
+          * @uiGroup Step 1 Properties
          */
-        "isPartnerAlertHeader"?: string;
+        "step1_isPartnerAlertHeader"?: string;
         /**
           * Label text for last name input
           * @uiName Last name label
+          * @uiGroup Step 1 Properties
          */
-        "lastName"?: string;
+        "step1_lastName"?: string;
         /**
           * Error text shown at the bottom of the last name input
           * @uiName Last name input error text
+          * @uiGroup Step 1 Properties
          */
-        "lastNameError"?: string;
+        "step1_lastNameError"?: string;
         /**
           * Heading text for the participant type radio buttons
           * @uiName Participant type radio buttons heading
+          * @uiGroup Step 1 Properties
          */
-        "participantType"?: string;
+        "step1_participantType"?: string;
         /**
           * Error text shown at the bottom of the participant type checkbox
           * @uiName Participant type checkbox error text
+          * @uiGroup Step 1 Properties
          */
-        "participantTypeError"?: string;
+        "step1_participantTypeError"?: string;
         /**
           * Heading text shown above the forms inputs.
           * @uiName Form heading text
+          * @uiGroup Step 1 Properties
          */
-        "personalInformation"?: string;
-        /**
-          * Text shown inside of back button
-          * @uiName Back button text
-         */
-        "step2BackButton"?: string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Indirect tax form step text
-         */
-        "step2FormStep"?: string;
-        /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-         */
-        "step2GeneralErrorDescription"?: string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-         */
-        "step2GeneralErrorTitle"?: string;
-        /**
-          * Label text for the HST Canada radio button
-          * @uiName HST Canada radio button label
-         */
-        "step2HstCanada"?: string;
-        /**
-          * Heading text shown at the top of the page
-          * @uiName Indirect tax heading text
-         */
-        "step2IndirectTax"?: string;
-        /**
-          * Subtext shown at the top of the page
-          * @uiName Indirect tax sub text
-         */
-        "step2IndirectTaxDescription"?: string;
-        /**
-          * Heading text shown above the tax details radio buttons
-          * @uiName Indirect tax details heading
-         */
-        "step2IndirectTaxDetails"?: string;
-        /**
-          * Sub text shown above the tax details radio buttons
-          * @uiName Indirect tax details sub text
-         */
-        "step2IndirectTaxDetailsDescription"?: string;
-        /**
-          * Label text for the Indirect Tax Number input
-          * @uiName Indirect Tax Number input label
-         */
-        "step2IndirectTaxNumber"?: string;
-        /**
-          * Error text shown below the Indirect Tax Number select input
-          * @uiName Indirect Tax Number error text
-         */
-        "step2IndirectTaxNumberError"?: string;
-        /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
-         */
-        "step2IsPartnerAlertDescription"?: string;
-        /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
-         */
-        "step2IsPartnerAlertHeader"?: string;
-        /**
-          * Label text for the not registered radio button
-          * @uiName Not registered radio button label
-         */
-        "step2NotRegistered"?: string;
-        /**
-          * Label text for the other region radio button
-          * @uiName Other region radio button label
-         */
-        "step2OtherRegion"?: string;
-        /**
-          * Label text for the Province select input
-          * @uiName Province select input label
-         */
-        "step2Province"?: string;
-        /**
-          * Error text shown below the Selected Region select input
-          * @uiName Province error text
-         */
-        "step2ProvinceError"?: string;
-        /**
-          * Label text for the Selected Region select input
-          * @uiName Selected region select input label
-         */
-        "step2SelectedRegion"?: string;
-        /**
-          * Error text shown below the Selected Region select input
-          * @uiName Selected Region error text
-         */
-        "step2SelectedRegionError"?: string;
+        "step1_personalInformation"?: string;
         /**
           * Text shown inside of submit button
           * @uiName Submit button text
+          * @uiGroup Step 1 Properties
          */
-        "step2SubmitButton"?: string;
-        /**
-          * Error text shown below the tax details radio buttons
-          * @uiName Indirect tax details error text
-         */
-        "step2TaxDetailsError"?: string;
-        /**
-          * Label text for the VAT Number input
-          * @uiName VAT Number input label
-         */
-        "step2VatNumber"?: string;
-        /**
-          * Error text shown below the VAT Number input
-          * @uiName VAT Number error text
-         */
-        "step2VatNumberError"?: string;
-        /**
-          * Text shown in the banner above the document
-          * @uiName Banner text
-         */
-        "step3Banner"?: string;
-        /**
-          * Label text for the form submission checkbox
-          * @uiName Form submission checkbox label
-         */
-        "step3CheckboxDescription"?: string;
-        /**
-          * Heading text for the form submission checkbox
-          * @uiName Form submission checkbox heading
-         */
-        "step3CheckboxLabel"?: string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-         */
-        "step3FormStep"?: string;
-        /**
-          * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
-          * @uiName Form submission error text
-         */
-        "step3FormSubmissionError"?: string;
-        /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-         */
-        "step3GeneralErrorDescription"?: string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-         */
-        "step3GeneralErrorTitle"?: string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
-        "step3SubmitButton"?: string;
-        /**
-          * Heading text shown at the top of the page
-          * @uiName Tax form heading text
-         */
-        "step3TaxForm"?: string;
-        /**
-          * Subtext shown at the top of the page next to the document type text
-          * @uiName Tax form subtext
-         */
-        "step3TaxFormDescription"?: string;
-        /**
-          * Text shown at the top of the page next to the document type text
-          * @uiName Tax form label text
-         */
-        "step3TaxFormLabel"?: string;
-        /**
-          * Text shown inside of back button
-          * @uiName Back button text
-         */
-        "step3bBackButton"?: string;
-        /**
-          * Sub text shown above form selection radio buttons
-          * @uiName Tax form selection heading text
-         */
-        "step3bFormLabel"?: string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-         */
-        "step3bFormStep"?: string;
-        /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-         */
-        "step3bGeneralErrorDescription"?: string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-         */
-        "step3bGeneralErrorTitle"?: string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
-        "step3bSubmitButton"?: string;
-        /**
-          * Heading text shown at the top of the top of page
-          * @uiName Tax form heading text
-         */
-        "step3bTaxForm"?: string;
-        /**
-          * Subtext for the W8 radio button
-          * @uiName W8 radio button subtext
-         */
-        "step3bW8Description"?: string;
-        /**
-          * Subtext for the W8E radio button
-          * @uiName W8E radio button subtext
-         */
-        "step3bW8EDescription"?: string;
-        /**
-          * Label text for the W8E radio button
-          * @uiName W8E radio button label
-         */
-        "step3bW8ELabel"?: string;
-        /**
-          * Label text for the W8 radio button
-          * @uiName W8 radio button label
-         */
-        "step3bW8Label"?: string;
-        /**
-          * Subtext for the W9 radio button
-          * @uiName W9 radio button subtext
-         */
-        "step3bW9Description"?: string;
-        /**
-          * Label text for the W9 radio button
-          * @uiName W9 radio button label
-         */
-        "step3bW9Label"?: string;
-        /**
-          * Description text which appears beside badge showing the form is awaiting review
-          * @uiName Badge description text
-         */
-        "step4BadgeTextAwaitingReview"?: string;
-        /**
-          * Description text which appears beside badge showing the form has expired
-          * @uiName Badge description text
-         */
-        "step4BadgeTextExpiredOn"?: string;
-        /**
-          * Description text which appears beside badge showing the form expiring soon
-          * @uiName Badge description text
-         */
-        "step4BadgeTextExpiringSoon"?: string;
-        /**
-          * Description text which appears beside badge showing when the form was submitted
-          * @uiName Badge description text
-         */
-        "step4BadgeTextSubmittedOn"?: string;
-        /**
-          * Header text displayed above the banking information card
-          * @uiName Banking information header
-         */
-        "step4BankingInformationSectionHeader"?: string;
-        /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName Step 4 General error text
-         */
-        "step4GeneralErrorDescription"?: string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName Step 4 General error title
-         */
-        "step4GeneralErrorTitle"?: string;
-        /**
-          * Description text displayed next to the badge in the tax documents status
-          * @uiName Invalid form description text
-         */
-        "step4InvalidForm"?: string;
-        /**
-          * Text displayed in the submit new document button at the bottom of the page
-          * @uiName Step 4 No form needed subtext
-         */
-        "step4NewFormButton"?: string;
-        /**
-          * Subtext displayed at the bottom of the page if there are no tax documents to show
-          * @uiName No form needed subtext
-         */
-        "step4NoFormNeededSubtext"?: string;
-        /**
-          * Status text displayed in badge when tax document is Active
-          * @uiName Status text
-         */
-        "step4StatusTextActive"?: string;
-        /**
-          * Status text displayed in badge when tax document is Expired
-          * @uiName Status text
-         */
-        "step4StatusTextExpired"?: string;
-        /**
-          * Status text displayed in badge when tax document is Not Active
-          * @uiName Status text
-         */
-        "step4StatusTextNotActive"?: string;
-        /**
-          * Status text displayed in badge when tax document is Not Verified
-          * @uiName Status text
-         */
-        "step4StatusTextNotVerified"?: string;
-        /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Expired alert header
-         */
-        "step4TaxAlertHeaderExpiredOn"?: string;
-        /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Expiring soon alert header
-         */
-        "step4TaxAlertHeaderExpiringSoon"?: string;
-        /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Not active alert header
-         */
-        "step4TaxAlertHeaderNotActive"?: string;
-        /**
-          * Description text displayed in alert body at the top of the page.
-          * @uiName Tax alert message
-         */
-        "step4TaxAlertMessage"?: string;
-        /**
-          * Description text displayed in alert body at the top of the page.
-          * @uiName Expiring soon tax alert message
-         */
-        "step4TaxAlertMessageExpiringSoon"?: string;
-        /**
-          * Header text displayed above the tax documents status
-          * @uiName Tax document section header
-         */
-        "step4TaxDocumentSectionHeader"?: string;
-        /**
-          * Sub header text displayed above the tax documents status
-          * @uiName Tax documents sub header
-         */
-        "step4TaxDocumentSectionSubHeader"?: string;
-        /**
-          * Text shown in the link to the form for non US residents
-          * @uiName Not based in US link text
-         */
-        "stop3NotBasedInUS"?: string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
-        "submitButton"?: string;
+        "step1_submitButton"?: string;
         /**
           * Heading text for the tax and banking collection checkbox
           * @uiName Tax and banking collection checkbox heading
+          * @uiGroup Step 1 Properties
          */
-        "taxAndBankingCollection"?: string;
+        "step1_taxAndBankingCollection"?: string;
+        /**
+          * Text shown inside of back button
+          * @uiName Back button text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_backButton"?: string;
+        /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Indirect tax form step text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_formStep"?: string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_generalErrorDescription"?: string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+          * @uiGroup Step 2 Properties
+         */
+        "step2_generalErrorTitle"?: string;
+        /**
+          * Label text for the HST Canada radio button
+          * @uiName HST Canada radio button label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_hstCanada"?: string;
+        /**
+          * Heading text shown at the top of the page
+          * @uiName Indirect tax heading text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTax"?: string;
+        /**
+          * Subtext shown at the top of the page
+          * @uiName Indirect tax sub text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxDescription"?: string;
+        /**
+          * Heading text shown above the tax details radio buttons
+          * @uiName Indirect tax details heading
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxDetails"?: string;
+        /**
+          * Sub text shown above the tax details radio buttons
+          * @uiName Indirect tax details sub text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxDetailsDescription"?: string;
+        /**
+          * Label text for the Indirect Tax Number input
+          * @uiName Indirect Tax Number input label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxNumber"?: string;
+        /**
+          * Error text shown below the Indirect Tax Number select input
+          * @uiName Indirect Tax Number error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxNumberError"?: string;
+        /**
+          * Alert description text shown in alert if user is already a registered partner
+          * @uiName Participant is partner description
+          * @uiGroup Step 2 Properties
+         */
+        "step2_isPartnerAlertDescription"?: string;
+        /**
+          * Alert header text shown in alert if user is already a registered partner
+          * @uiName Participant is partner title
+          * @uiGroup Step 2 Properties
+         */
+        "step2_isPartnerAlertHeader"?: string;
+        /**
+          * Label text for the not registered radio button
+          * @uiName Not registered radio button label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_notRegistered"?: string;
+        /**
+          * Label text for the other region radio button
+          * @uiName Other region radio button label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_otherRegion"?: string;
+        /**
+          * Label text for the Province select input
+          * @uiName Province select input label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_province"?: string;
+        /**
+          * Error text shown below the Selected Region select input
+          * @uiName Province error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_provinceError"?: string;
+        /**
+          * Label text for the Selected Region select input
+          * @uiName Selected region select input label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_selectedRegion"?: string;
+        /**
+          * Error text shown below the Selected Region select input
+          * @uiName Selected Region error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_selectedRegionError"?: string;
+        /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_submitButton"?: string;
+        /**
+          * Error text shown below the tax details radio buttons
+          * @uiName Indirect tax details error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_taxDetailsError"?: string;
+        /**
+          * Label text for the VAT Number input
+          * @uiName VAT Number input label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_vatNumber"?: string;
+        /**
+          * Error text shown below the VAT Number input
+          * @uiName VAT Number error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_vatNumberError"?: string;
+        /**
+          * Text shown inside of back button
+          * @uiName Back button text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_backButton"?: string;
+        /**
+          * Text shown in the banner above the document
+          * @uiName Banner text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_banner"?: string;
+        /**
+          * Label text for the form submission checkbox
+          * @uiName Form submission checkbox label
+          * @uiGroup Step 3 Properties
+         */
+        "step3_checkboxDescription"?: string;
+        /**
+          * Heading text for the form submission checkbox
+          * @uiName Form submission checkbox heading
+          * @uiGroup Step 3 Properties
+         */
+        "step3_checkboxLabel"?: string;
+        /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Tax form step text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_formStep"?: string;
+        /**
+          * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
+          * @uiName Form submission error text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_formSubmissionError"?: string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_generalErrorDescription"?: string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+          * @uiGroup Step 3 Properties
+         */
+        "step3_generalErrorTitle"?: string;
+        /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_submitButton"?: string;
+        /**
+          * Heading text shown at the top of the page
+          * @uiName Tax form heading text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxForm"?: string;
+        /**
+          * Subtext shown at the top of the page next to the document type text
+          * @uiName Tax form subtext
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxFormDescription"?: string;
+        /**
+          * Text shown at the top of the page next to the document type text
+          * @uiName Tax form label text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxFormLabel"?: string;
+        /**
+          * Text shown inside of back button
+          * @uiName Back button text
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_backButton"?: string;
+        /**
+          * Sub text shown above form selection radio buttons
+          * @uiName Tax form selection heading text
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_formLabel"?: string;
+        /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Tax form step text
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_formStep"?: string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_generalErrorDescription"?: string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_generalErrorTitle"?: string;
+        /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_submitButton"?: string;
+        /**
+          * Heading text shown at the top of the top of page
+          * @uiName Tax form heading text
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_taxForm"?: string;
+        /**
+          * Subtext for the W8 radio button
+          * @uiName W8 radio button subtext
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_w8Description"?: string;
+        /**
+          * Subtext for the W8E radio button
+          * @uiName W8E radio button subtext
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_w8EDescription"?: string;
+        /**
+          * Label text for the W8E radio button
+          * @uiName W8E radio button label
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_w8ELabel"?: string;
+        /**
+          * Label text for the W8 radio button
+          * @uiName W8 radio button label
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_w8Label"?: string;
+        /**
+          * Subtext for the W9 radio button
+          * @uiName W9 radio button subtext
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_w9Description"?: string;
+        /**
+          * Label text for the W9 radio button
+          * @uiName W9 radio button label
+          * @uiGroup Step 3b Properties
+         */
+        "step3b_w9Label"?: string;
+        /**
+          * Description text which appears beside badge showing the form is awaiting review
+          * @uiName Badge description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_badgeTextAwaitingReview"?: string;
+        /**
+          * Description text which appears beside badge showing the form has expired
+          * @uiName Badge description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_badgeTextExpiredOn"?: string;
+        /**
+          * Description text which appears beside badge showing the form expiring soon
+          * @uiName Badge description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_badgeTextExpiringSoon"?: string;
+        /**
+          * Description text which appears beside badge showing when the form was submitted
+          * @uiName Badge description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_badgeTextSubmittedOn"?: string;
+        /**
+          * Header text displayed above the banking information card
+          * @uiName Banking information header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankingInformationSectionHeader"?: string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName Step 4 General error text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_generalErrorDescription"?: string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName Step 4 General error title
+          * @uiGroup Step 4 Properties
+         */
+        "step4_generalErrorTitle"?: string;
+        /**
+          * Description text displayed next to the badge in the tax documents status
+          * @uiName Invalid form description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_invalidForm"?: string;
+        /**
+          * Text displayed in the submit new document button at the bottom of the page
+          * @uiName Step 4 No form needed subtext
+          * @uiGroup Step 4 Properties
+         */
+        "step4_newFormButton"?: string;
+        /**
+          * Subtext displayed at the bottom of the page if there are no tax documents to show
+          * @uiName No form needed subtext
+          * @uiGroup Step 4 Properties
+         */
+        "step4_noFormNeededSubtext"?: string;
+        /**
+          * Text displayed when partner is not registered for Indirect Tax
+          * @uiName Not registered for Indirect Tax
+         */
+        "step4_notRegisteredForTax"?: string;
+        /**
+          * Status text displayed in badge when tax document is Active
+          * @uiName Status text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_statusTextActive"?: string;
+        /**
+          * Status text displayed in badge when tax document is Expired
+          * @uiName Status text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_statusTextExpired"?: string;
+        /**
+          * Status text displayed in badge when tax document is Not Active
+          * @uiName Status text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_statusTextNotActive"?: string;
+        /**
+          * Status text displayed in badge when tax document is Not Verified
+          * @uiName Status text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_statusTextNotVerified"?: string;
+        /**
+          * Header displayed in alert header at the top of the page.
+          * @uiName Expired alert header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxAlertHeaderExpiredOn"?: string;
+        /**
+          * Header displayed in alert header at the top of the page.
+          * @uiName Expiring soon alert header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxAlertHeaderExpiringSoon"?: string;
+        /**
+          * Header displayed in alert header at the top of the page.
+          * @uiName Not active alert header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxAlertHeaderNotActive"?: string;
+        /**
+          * Description text displayed in alert body at the top of the page.
+          * @uiName Tax alert message
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxAlertMessage"?: string;
+        /**
+          * Description text displayed in alert body at the top of the page.
+          * @uiName Expiring soon tax alert message
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxAlertMessageExpiringSoon"?: string;
+        /**
+          * Header text displayed above the tax documents status
+          * @uiName Tax document section header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxDocumentSectionHeader"?: string;
+        /**
+          * Sub header text displayed above the tax documents status
+          * @uiName Tax documents sub header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxDocumentSectionSubHeader"?: string;
+        /**
+          * Text shown in the link to the form for non US residents
+          * @uiName Not based in US link text
+          * @uiGroup Step 3 Properties
+         */
+        "stop3NotBasedInUS"?: string;
     }
     interface SqmTaxDocumentSubmitted {
         /**
@@ -8213,6 +8416,11 @@ declare namespace LocalJSX {
           * @uiName No form needed subtext
          */
         "noFormNeededSubtext"?: string;
+        /**
+          * Text displayed when partner is not registered for Indirect Tax
+          * @uiName Not registered for Indirect Tax
+         */
+        "notRegisteredForTax"?: string;
         /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text

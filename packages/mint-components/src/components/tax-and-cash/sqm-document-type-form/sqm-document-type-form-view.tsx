@@ -6,7 +6,7 @@ export interface DocumentTypeFormViewProps {
     loading: boolean;
     disabled: boolean;
     formState: {
-      selectedTaxForm: "w9" | "w8-ben" | "w8-ben-e" | undefined;
+      selectedTaxForm: "W9" | "W8-BEN" | "W8-BEN-E" | undefined;
       errors?: any;
     };
   };
@@ -169,7 +169,7 @@ export const DocumentTypeFormView = (props: DocumentTypeFormViewProps) => {
           <div class={classes.RadioContainer}>
             <sl-radio
               disabled={states.disabled}
-              value="w9"
+              value="W9"
               name="/documentType"
             >
               <p class={classes.LabelText}>{text.w9Label}</p>
@@ -177,7 +177,7 @@ export const DocumentTypeFormView = (props: DocumentTypeFormViewProps) => {
             </sl-radio>
             <sl-radio
               disabled={states.disabled}
-              value="w8-ben"
+              value="W8-BEN"
               name="/documentType"
             >
               <p class={classes.LabelText}>{text.w8Label}</p>
@@ -185,7 +185,7 @@ export const DocumentTypeFormView = (props: DocumentTypeFormViewProps) => {
             </sl-radio>
             <sl-radio
               disabled={states.disabled}
-              value="w8-ben-e"
+              value="W8-BEN-E"
               name="/documentType"
             >
               <p class={classes.LabelText}>{text.w8ELabel}</p>

@@ -28,8 +28,7 @@ export class TaxForm {
    * Label text for first name input
    * @uiName First name label
    */
-  @Prop()
-  firstName: string = "First name";
+  @Prop() firstName: string = "First name";
   /**
    * Label text for last name input
    * @uiName Last name label
@@ -186,6 +185,7 @@ export class TaxForm {
   }
 
   render() {
+    console.debug("Rendering user info form");
     const props = isDemo() ? useDemoUserInfoForm(this) : useUserInfoForm(this);
 
     return (

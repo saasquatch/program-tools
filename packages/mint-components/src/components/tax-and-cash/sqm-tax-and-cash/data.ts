@@ -12,6 +12,7 @@ export const CURRENCIES_NAMESPACE = "sq:currencies:list";
 
 export type TaxContext = {
   overrideNextStep?: string;
+  overrideBackStep?: string;
   hideSteps?: boolean;
 };
 

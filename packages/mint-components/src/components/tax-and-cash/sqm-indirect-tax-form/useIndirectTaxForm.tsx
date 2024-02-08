@@ -28,6 +28,7 @@ function getOption(user: UserQuery["user"]) {
   if (!user) return;
   const { countryCode, customFields } = user;
 
+  if (customFields?.__taxOption) return customFields.__taxOption;
   if (customFields?.__taxProvince || customFields?.__taxIndirectTaxNumber) {
     return "hstCanada";
   } else if (customFields?.__taxCountry || customFields?.__taxVatNumber) {
@@ -174,7 +175,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   };
 
   const onBack = () => {
-    setStep("/1");
+    setStep(context.overrideBackStep || "/1");
   };
 
   return {

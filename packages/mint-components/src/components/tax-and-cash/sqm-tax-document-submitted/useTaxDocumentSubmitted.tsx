@@ -76,16 +76,26 @@ export const useTaxDocumentSubmitted = (
     ),
   });
 
-  const documentType = getDocumentType(data?.user);
+  const documentType = getDocumentType(
+    data?.user
+  )?.toUpperCase() as TaxDocumentType;
 
   const onNewDocumentClick = () => {
+    setContext({
+      overrideNextStep: "/submitted",
+      overrideBackStep: "/submitted",
+      hideSteps: true,
+    });
     setStep(`/3/${documentType}`);
-    setContext({ overrideNextStep: "/submitted", hideSteps: true });
   };
 
   const onEditIndirectTax = () => {
+    setContext({
+      overrideNextStep: "/submitted",
+      overrideBackStep: "/submitted",
+      hideSteps: true,
+    });
     setStep("/2");
-    setContext({ overrideNextStep: "/submitted", hideSteps: true });
   };
 
   const provinceName = INDIRECT_TAX_PROVINCES.find(
@@ -106,6 +116,7 @@ export const useTaxDocumentSubmitted = (
       country: new Intl.DisplayNames(["en"], { type: "region" }).of([
         data?.user?.customFields?.__taxCountry,
       ]),
+      notRegistered: data?.user?.customFields?.__taxOption === "notRegistered",
       noFormNeeded: !documentType,
       dateExpired,
       expiresSoon,

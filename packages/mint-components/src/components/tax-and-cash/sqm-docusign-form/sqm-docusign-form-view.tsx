@@ -8,6 +8,7 @@ export interface DocusignFormViewProps {
     loading: boolean;
     submitDisabled: boolean;
     disabled: boolean;
+    hideSteps: boolean;
     formState: {
       completedTaxForm: boolean;
       taxFormExpired: boolean;
@@ -182,7 +183,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
       </style>
       <div class={classes.TextContainer}>
         <div>
-          <p>{text.formStep}</p>
+          {!states.hideSteps && <p>{text.formStep}</p>}
           <h3>{text.taxForm}</h3>
         </div>
       </div>
@@ -257,9 +258,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
               type="text"
               loading={states.loading}
               disabled={states.loading}
-              onClick={() => {
-                callbacks.onBack();
-              }}
+              onClick={callbacks.onBack}
               exportparts="base: secondarybutton-base"
             >
               {text.backButton}
