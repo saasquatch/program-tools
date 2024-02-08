@@ -139,6 +139,20 @@ export class TaxDocumentSubmitted {
    */
   @Prop() indirectTaxInfoOtherCountry: string = "Registered in {country}";
   /**
+   * Indirect tax description text for individual participants
+   *
+   * @uiName Indirect tax individual participant description
+   */
+  @Prop() indirectTaxIndividualParticipant: string =
+    "Not registered. Only applicable to participants representing business entities in countries that enforce indirect tax.";
+  /**
+   * Indirect tax tooltip text for support
+   *
+   * @uiName Indirect tax tooltip description
+   */
+  @Prop() indirectTaxTooltipSupport: string =
+    "To make changes to your indirect tax information, please contact Support.";
+  /**
    * Header text displayed above the tax documents status
    *
    * @uiName Tax document section header
@@ -174,7 +188,7 @@ export class TaxDocumentSubmitted {
    *
    * @uiName Not registered for Indirect Tax
    */
-  @Prop() notRegisteredForTax: string;
+  @Prop() notRegisteredForTax: string = "Not Registered";
   /**
    * The title for error message shown at the top of the page in an error banner
    *

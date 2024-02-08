@@ -49,6 +49,21 @@ Feature: Tax Document Submitted View
     And the description text under the header displays "Tax documents are only required if you are based in the US. If your country of residence has changed, please contact Support"
     And the "Submit new document" is not available
 
+  @minutia
+  Scenario Outline: Indirect Tax section shows details if participant is registered for indirect tax
+    Given they are <entityType>
+    And if the participant <isRegistered> for indirect tax in their <country>
+    Then the Indirect Tax section will display <registeredDetails> and <indirectTaxNumber>
+
+    Examples: 
+      | entityType            | isRegistered | country        | details                                                                                                                 | indirectTaxNumber |
+      | businessEntity        | true         | Australia      | Registered in Australia.                                                                                                |            123456 |
+      | businessEntity        | true         | Canada         | Registered in Ontario, Canada.                                                                                          |            345213 |
+      | businessEntity        | true         | United Kingdom | Registered in United Kingdom.                                                                                           |            321413 |
+      | businessEntity        | false        | United States  | Not Registered.                                                                                                         | N/A               |
+      | individualParticipant | false        | United States  | Not registered. Only applicable to participants representing business entities in countries that enforce indirect tax.. | N/A               |
+      | individualParticipant | false        | South Korea    | Not registered. Only applicable to participants representing business entities in countries that enforce indirect tax.. | N/A               |
+
   @minutia @ui
   Scenario Outline: A Danger Alert is displayed if the users tax form is invalid
     Given the document has status <status>
@@ -79,4 +94,4 @@ Feature: Tax Document Submitted View
     Given the user is viewing the Tax Document Submission
     When they click the "Submit New Form" button
     Then the system should trigger the callback
-    Then they are redirected to the first step to submit a new form
+    Then they are redirected to the Docusign page to submit a new tax form

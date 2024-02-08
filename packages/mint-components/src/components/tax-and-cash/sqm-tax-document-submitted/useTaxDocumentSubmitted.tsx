@@ -111,6 +111,8 @@ export const useTaxDocumentSubmitted = (
       status: documentType ? "NOT_VERIFIED" : undefined,
 
       indirectTaxNumber: data?.user?.customFields?.__indirectTaxNumber,
+      //AL: TODO hook up isBusinessEntity up to hooks
+      isBusinessEntity: true,
       province: provinceName,
       // @ts-ignore: DisplayNames does exist on Intl
       country: new Intl.DisplayNames(["en"], { type: "region" }).of([

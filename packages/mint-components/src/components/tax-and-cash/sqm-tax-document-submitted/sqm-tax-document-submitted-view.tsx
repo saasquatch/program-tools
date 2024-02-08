@@ -21,6 +21,7 @@ export interface TaxDocumentSubmittedProps {
     country?: string;
     notRegistered?: boolean;
     isIndirectTaxCanada?: boolean;
+    isBusinessEntity: boolean;
     loading?: boolean;
     errors?: any;
   };
@@ -44,6 +45,8 @@ export interface TaxDocumentSubmittedProps {
     indirectTaxInfoSectionHeader: string;
     indirectTaxInfoCanada?: string;
     indirectTaxInfoOtherCountry?: string;
+    indirectTaxIndividualParticipant?: string;
+    indirectTaxTooltipSupport?: string;
     taxDocumentSectionHeader: string;
     taxDocumentSectionSubHeader: string;
     newFormButton: string;
@@ -81,6 +84,11 @@ const style = {
   IndirectTaxPreviewHeaderContainer: {
     marginTop: "var(--sl-spacing-x-large)",
     marginBottom: "var(--sl-spacing-x-small)",
+    display: "flex",
+    gap: "var(--sl-spacing-small)",
+    "&::part(base)": {
+      color: "var(--sl-color-green-500)",
+    },
   },
   IndirectTaxPreviewDetails: {
     gap: "var(--sl-spacing-x-small)",
@@ -380,44 +388,50 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
             <div>
               <h3 class={sheet.classes.IndirectTaxPreviewHeaderContainer}>
                 {text.indirectTaxInfoSectionHeader}
+                <sl-tooltip
+                  trigger="hover"
+                  placement="top"
+                  content={text.indirectTaxTooltipSupport}
+                >
+                  <sl-icon name="info-circle" style={{ top: "6px" }} />
+                </sl-tooltip>
               </h3>
-              <div class={sheet.classes.IndirectTaxPreviewDetails}>
-                <span>
-                  {states.notRegistered
-                    ? text.notRegisteredForTax
-                    : states.province
-                    ? intl.formatMessage(
-                        {
-                          id: `indirectTaxInfoCanada`,
-                          defaultMessage: text.indirectTaxInfoCanada,
-                        },
-                        {
-                          country: "Canada",
-                          province: states.province,
-                        }
-                      )
-                    : intl.formatMessage(
-                        {
-                          id: `indirectTaxInfoOtherCountry`,
-                          defaultMessage: text.indirectTaxInfoOtherCountry,
-                        },
-                        {
-                          country: states.country,
-                        }
-                      )}
-                </span>
-                <span>{states.indirectTaxNumber}</span>
-              </div>
+              {states.isBusinessEntity ? (
+                <div class={sheet.classes.IndirectTaxPreviewDetails}>
+                  <span>
+                    {states.notRegistered
+                      ? text.notRegisteredForTax
+                      : states.province
+                      ? intl.formatMessage(
+                          {
+                            id: `indirectTaxInfoCanada`,
+                            defaultMessage: text.indirectTaxInfoCanada,
+                          },
+                          {
+                            country: "Canada",
+                            province: states.province,
+                          }
+                        )
+                      : intl.formatMessage(
+                          {
+                            id: `indirectTaxInfoOtherCountry`,
+                            defaultMessage: text.indirectTaxInfoOtherCountry,
+                          },
+                          {
+                            country: states.country,
+                          }
+                        )}
+                  </span>
+                  <span>{states.indirectTaxNumber}</span>
+                </div>
+              ) : (
+                <div class={sheet.classes.IndirectTaxPreviewDetails}>
+                  {text.indirectTaxIndividualParticipant}
+                  <span></span>
+                </div>
+              )}
             </div>
           )}
-          <sl-button
-            disabled={states.disabled || states.loading}
-            onClick={callbacks.onEditIndirectTax}
-            type="default"
-            class={sheet.classes.NewFormButton}
-          >
-            {text.editIndirectTaxButton}
-          </sl-button>
         </div>
         <div class={sheet.classes.TaxDocumentsContainer}>
           <div>

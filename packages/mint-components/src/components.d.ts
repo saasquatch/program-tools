@@ -3590,6 +3590,7 @@ export namespace Components {
         /**
           * Text displayed when partner is not registered for Indirect Tax
           * @uiName Not registered for Indirect Tax
+          * @uiGroup Step 4 Properties
          */
         "step4_notRegisteredForTax": string;
         /**
@@ -3712,6 +3713,11 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
+          * Indirect tax description text for individual participants
+          * @uiName Indirect tax individual participant description
+         */
+        "indirectTaxIndividualParticipant": string;
+        /**
           * Country/Region description text of indirect tax
           * @uiName Indirect tax Canada description
          */
@@ -3726,6 +3732,11 @@ export namespace Components {
           * @uiName Indirect Tax Information Header
          */
         "indirectTaxInfoSectionHeader": string;
+        /**
+          * Indirect tax tooltip text for support
+          * @uiName Indirect tax tooltip description
+         */
+        "indirectTaxTooltipSupport": string;
         /**
           * Description text displayed next to the badge in the tax documents status
           * @uiName Invalid form description text
@@ -8265,6 +8276,7 @@ declare namespace LocalJSX {
         /**
           * Text displayed when partner is not registered for Indirect Tax
           * @uiName Not registered for Indirect Tax
+          * @uiGroup Step 4 Properties
          */
         "step4_notRegisteredForTax"?: string;
         /**
@@ -8387,6 +8399,11 @@ declare namespace LocalJSX {
          */
         "generalErrorTitle"?: string;
         /**
+          * Indirect tax description text for individual participants
+          * @uiName Indirect tax individual participant description
+         */
+        "indirectTaxIndividualParticipant"?: string;
+        /**
           * Country/Region description text of indirect tax
           * @uiName Indirect tax Canada description
          */
@@ -8401,6 +8418,11 @@ declare namespace LocalJSX {
           * @uiName Indirect Tax Information Header
          */
         "indirectTaxInfoSectionHeader"?: string;
+        /**
+          * Indirect tax tooltip text for support
+          * @uiName Indirect tax tooltip description
+         */
+        "indirectTaxTooltipSupport"?: string;
         /**
           * Description text displayed next to the badge in the tax documents status
           * @uiName Invalid form description text

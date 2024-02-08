@@ -34,7 +34,7 @@ Feature: Tax Form Flow
       | Jose      | Querv    | jose.querv@email.com   | UK          | US           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region |     3 |
       | David     | Blaine   | david.blaine@email.com | UK          | MX           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region |     4 |
       | Charle    | Buck     | charle.buck@email.com  | EG          | US           | EGP      | businessEntity        | true                   | I am not registered for Indirect Tax                             |     3 |
-
+      | Payton    | Chan     | payton.chan@email.com  | EG          | MX           | EGP      | individualParticipant | true                   | I am not registered for Indirect Tax                             |     4 |
   @minutia
   Scenario: Participant is already registered as partner, provides indirect tax information, and submit their tax forms
     Given the they are already registered as a partner
