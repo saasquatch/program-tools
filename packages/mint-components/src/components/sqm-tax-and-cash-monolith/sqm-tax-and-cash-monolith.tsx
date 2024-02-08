@@ -1,12 +1,21 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import { getProps } from "../../utils/utils";
-import { TaxForm } from "../tax-and-cash/sqm-user-info-form/sqm-user-info-form";
+import {
+  UseTaxAndCashResultType,
+  useTaxAndCash,
+} from "../tax-and-cash/sqm-tax-and-cash/useTaxAndCash";
+import { extractProps } from "./extractProps";
+import { isDemo } from "@saasquatch/component-boilerplate";
+import { TaxAndCash } from "../tax-and-cash/sqm-tax-and-cash/sqm-tax-and-cash";
 import { useParentState } from "../../utils/useParentState";
 import { TAX_CONTEXT_NAMESPACE } from "../tax-and-cash/sqm-tax-and-cash/data";
-import { useTaxAndCash } from "../tax-and-cash/sqm-tax-and-cash/useTaxAndCash";
-import { extractProps } from "./extractProps";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
 
+/**
+ * @uiName Tax and Cash
+ */
 @Component({
   tag: "sqm-tax-and-cash-monolith",
   shadow: true,
@@ -684,6 +693,12 @@ export class TaxAndCashMonolith {
   @Prop() step4_generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
 
+  /**
+   * @undocumented
+   * @uiType object
+   */
+  @Prop() demoData?: DemoData<UseTaxAndCashResultType>;
+
   constructor() {
     withHooks(this);
   }
@@ -712,6 +727,7 @@ export class TaxAndCashMonolith {
 
   render() {
     const props = useTaxAndCash();
+    // const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
 
     switch (props.step) {
       case "/1":
@@ -748,6 +764,23 @@ export class TaxAndCashMonolith {
         );
     }
 
+    // TODO: Loading view
     return <div></div>;
   }
+}
+
+function useDemoTaxAndCash(props: TaxAndCashMonolith) {
+  const [step, setStep] = useParentState<string>({
+    namespace: TAX_CONTEXT_NAMESPACE,
+    initialValue: "/1",
+  });
+
+  return deepmerge(
+    {
+      step,
+      setStep,
+    },
+    props.demoData || {},
+    { arrayMerge: (_, a) => a }
+  );
 }

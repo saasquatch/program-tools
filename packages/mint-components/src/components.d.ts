@@ -43,6 +43,7 @@ import { ReferralDates } from "./components/sqm-referral-table/useReferralTable"
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
+import { UseTaxAndCashResultType } from "./components/tax-and-cash/sqm-tax-and-cash/useTaxAndCash";
 import { UseTaxDocumentSubmittedResult } from "./components/tax-and-cash/sqm-tax-document-submitted/useTaxDocumentSubmitted";
 import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
 import { UserNameViewProps as UserNameViewProps1 } from "./components/sqm-user-name/sqm-user-name-view";
@@ -3096,6 +3097,11 @@ export namespace Components {
     }
     interface SqmTaxAndCashMonolith {
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UseTaxAndCashResultType>;
+        /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
           * @uiGroup Step 1 Properties
@@ -3590,6 +3596,7 @@ export namespace Components {
         /**
           * Text displayed when partner is not registered for Indirect Tax
           * @uiName Not registered for Indirect Tax
+          * @uiGroup Step 4 Properties
          */
         "step4_notRegisteredForTax": string;
         /**
@@ -7771,6 +7778,11 @@ declare namespace LocalJSX {
     }
     interface SqmTaxAndCashMonolith {
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UseTaxAndCashResultType>;
+        /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
           * @uiGroup Step 1 Properties
@@ -8265,6 +8277,7 @@ declare namespace LocalJSX {
         /**
           * Text displayed when partner is not registered for Indirect Tax
           * @uiName Not registered for Indirect Tax
+          * @uiGroup Step 4 Properties
          */
         "step4_notRegisteredForTax"?: string;
         /**

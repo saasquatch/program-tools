@@ -29,6 +29,8 @@ function getOption(user: UserQuery["user"]) {
   const { countryCode, customFields } = user;
 
   if (customFields?.__taxOption) return customFields.__taxOption;
+  if (customFields?.participantType === "individualParticipant")
+    return "notRegistered";
   if (customFields?.__taxProvince || customFields?.__taxIndirectTaxNumber) {
     return "hstCanada";
   } else if (customFields?.__taxCountry || customFields?.__taxVatNumber) {

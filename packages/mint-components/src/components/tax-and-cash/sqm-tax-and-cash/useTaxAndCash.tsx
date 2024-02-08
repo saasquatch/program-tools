@@ -149,3 +149,5 @@ export function useTaxAndCash() {
     loading: step === "/loading",
   };
 }
+
+export type UseTaxAndCashResultType = ReturnType<typeof useTaxAndCash>;
