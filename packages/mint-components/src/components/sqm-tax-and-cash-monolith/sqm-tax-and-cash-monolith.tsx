@@ -664,6 +664,7 @@ export class TaxAndCashMonolith {
    * Text displayed when partner is not registered for Indirect Tax
    *
    * @uiName Not registered for Indirect Tax
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_notRegisteredForTax: string = "Not registered for Indirect Tax";
   /**
