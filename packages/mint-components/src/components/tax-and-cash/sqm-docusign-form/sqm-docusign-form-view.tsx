@@ -195,24 +195,26 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           {text.error.generalDescription}
         </sl-alert>
       )}
-      <h5 class={classes.BoldText}>
-        {intl.formatMessage(
-          { id: "tax-form-label", defaultMessage: text.taxFormLabel },
-          { documentType }
-        )}
-      </h5>
-      <p>
-        {intl.formatMessage(
-          {
-            id: "tax-form-description",
-            defaultMessage: text.taxFormDescription,
-          },
-          { documentType }
-        )}{" "}
-        <a onClick={callbacks.onShowDocumentType} class={classes.Link}>
-          {text.notBasedInUS}
-        </a>
-      </p>
+      <div>
+        <h5 class={classes.BoldText}>
+          {intl.formatMessage(
+            { id: "tax-form-label", defaultMessage: text.taxFormLabel },
+            { documentType }
+          )}
+        </h5>
+        <p>
+          {intl.formatMessage(
+            {
+              id: "tax-form-description",
+              defaultMessage: text.taxFormDescription,
+            },
+            { documentType }
+          )}{" "}
+          <a onClick={callbacks.onShowDocumentType} class={classes.Link}>
+            {text.notBasedInUS}
+          </a>
+        </p>
+      </div>
 
       {states.loading ? (
         <sl-spinner style={{ fontSize: "50px", margin: "40px" }}></sl-spinner>
