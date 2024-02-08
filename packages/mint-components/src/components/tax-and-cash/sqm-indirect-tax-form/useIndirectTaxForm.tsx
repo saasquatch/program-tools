@@ -84,10 +84,16 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     const _option = getOption(user);
     setOption(_option);
 
+    const defaultCountryCode = INDIRECT_TAX_COUNTRIES.find(
+      (c) => c.countryCode === user.countryCode
+    )
+      ? user.countryCode
+      : undefined;
+
     setFormState({
       province: user.customFields?.__taxProvince,
       vatNumber: user.customFields?.__taxVatNumber,
-      countryCode: user.customFields?.__taxCountry || user.countryCode,
+      countryCode: user.customFields?.__taxCountry || defaultCountryCode,
       indirectTaxNumber: user.customFields?.__taxIndirectTaxNumber,
     });
   }, [userData]);
