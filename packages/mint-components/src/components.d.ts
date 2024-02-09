@@ -322,13 +322,25 @@ export namespace Components {
          */
         "editprofiletext": string;
         /**
+          * @uiName Field empty text
+         */
+        "fieldEmptyText": string;
+        /**
           * @uiName First name label
          */
         "firstnametext": string;
         /**
+          * @uiName Form error text
+         */
+        "formErrorText": string;
+        /**
           * @uiName Last name label
          */
         "lastnametext": string;
+        /**
+          * @uiName Network error message
+         */
+        "networkErrorMessage": string;
         /**
           * Show or hide current region
           * @uiName Show region
@@ -985,9 +997,13 @@ export namespace Components {
          */
         "doesNotMeetRequirementsText": string;
         /**
-          * @uiName Missing number or symbol error text
+          * @uiName Invalid session error text
          */
         "hasErrorText": string;
+        /**
+          * @uiName Invalid user session error text
+         */
+        "invalidSessionErrorText": string;
         /**
           * @uiName Missing lowercase text
          */
@@ -1004,6 +1020,10 @@ export namespace Components {
           * @uiName Change password modal header
          */
         "modalChangePasswordHeader": string;
+        /**
+          * @uiName Non matching password error text
+         */
+        "nonMatchingPasswordErrorText": string;
         /**
           * Found in modal
           * @uiName New password field label
@@ -1101,6 +1121,10 @@ export namespace Components {
           * @uiName Email verification header text
          */
         "emailVerificationHeader": string;
+        /**
+          * @uiName Network error text
+         */
+        "networkErrorMessage": string;
         /**
           * Redirect participants to this page from their verification email.
           * @uiName Email redirect
@@ -1220,9 +1244,13 @@ export namespace Components {
          */
         "loginPath": string;
         /**
-          * Sign in link text
+          * @uiName Sign in link text
          */
         "loginText": string;
+        /**
+          * @uiName Network error message
+         */
+        "networkErrorMessage": string;
         /**
           * Redirect participants to this page after they verify their email.
           * @uiName Email redirect
@@ -1233,6 +1261,10 @@ export namespace Components {
           * @uiName Password reset button text
          */
         "submitLabel": string;
+        /**
+          * @uiName Success alert text
+         */
+        "successAlertText": string;
     }
     interface SqmPortalFrame {
         /**
@@ -1265,6 +1297,10 @@ export namespace Components {
           * @uiWidget pageSelect
          */
         "forgotPasswordPath": string;
+        /**
+          * @uiName Network error message
+         */
+        "networkErrorMessage": string;
         /**
           * Redirect participants to this page after they successfully login.
           * @uiName Login redirect
@@ -1326,9 +1362,17 @@ export namespace Components {
          */
         "emailtext": string;
         /**
+          * @uiName Field empty text
+         */
+        "fieldEmptyText": string;
+        /**
           * @uiName First name label
          */
         "firstnametext": string;
+        /**
+          * @uiName Form error text
+         */
+        "formErrorText": string;
         /**
           * @uiName Hide country field
          */
@@ -1337,6 +1381,14 @@ export namespace Components {
           * @uiName Last name field label
          */
         "lastnametext": string;
+        /**
+          * @uiName Network request text
+         */
+        "networkRequestMessage": string;
+        /**
+          * @uiName Submission success text
+         */
+        "submissionSuccessText": string;
         /**
           * @uiName Submit changes button text
          */
@@ -1597,6 +1649,10 @@ export namespace Components {
     }
     interface SqmPortalResetPassword {
         /**
+          * @uiName Reset code invalid text
+         */
+        "codeInvalidText": string;
+        /**
           * @uiName Show confirm password field
          */
         "confirmPassword": boolean;
@@ -1641,6 +1697,10 @@ export namespace Components {
          */
         "minErrorText": string;
         /**
+          * @uiName Network error text
+         */
+        "networkErrorMessage": string;
+        /**
           * Redirect participants to this page when they successfully reset their password.
           * @uiName Successful reset redirect
           * @uiWidget pageSelect
@@ -1650,6 +1710,10 @@ export namespace Components {
           * @uiName Password field label
          */
         "passwordFieldLabel": string;
+        /**
+          * @uiName Password mismatch text
+         */
+        "passwordMismatchText": string;
         /**
           * Displayed after a successful password reset.
           * @uiName Successful password reset text
@@ -1665,11 +1729,19 @@ export namespace Components {
          */
         "resetPasswordHeader": string;
         /**
+          * @uiName Reset success text
+         */
+        "resetSuccessText": string;
+        /**
           * @uiName Missing uppercase text
          */
         "uppercaseErrorText": string;
     }
     interface SqmPortalVerifyEmail {
+        /**
+          * @uiName Continue text
+         */
+        "continueText": string;
         /**
           * @undocumented 
           * @uiType object
@@ -1681,6 +1753,10 @@ export namespace Components {
           * @uiWidget pageSelect
          */
         "failedPage": string;
+        /**
+          * @uiName Network error text
+         */
+        "networkErrorMessage": string;
         /**
           * Redirect participants to this page when they successfully verify their email.
           * @uiName Successful verification redirect
@@ -3990,13 +4066,25 @@ declare namespace LocalJSX {
          */
         "editprofiletext"?: string;
         /**
+          * @uiName Field empty text
+         */
+        "fieldEmptyText"?: string;
+        /**
           * @uiName First name label
          */
         "firstnametext"?: string;
         /**
+          * @uiName Form error text
+         */
+        "formErrorText"?: string;
+        /**
           * @uiName Last name label
          */
         "lastnametext"?: string;
+        /**
+          * @uiName Network error message
+         */
+        "networkErrorMessage"?: string;
         /**
           * Show or hide current region
           * @uiName Show region
@@ -4653,9 +4741,13 @@ declare namespace LocalJSX {
          */
         "doesNotMeetRequirementsText"?: string;
         /**
-          * @uiName Missing number or symbol error text
+          * @uiName Invalid session error text
          */
         "hasErrorText"?: string;
+        /**
+          * @uiName Invalid user session error text
+         */
+        "invalidSessionErrorText"?: string;
         /**
           * @uiName Missing lowercase text
          */
@@ -4672,6 +4764,10 @@ declare namespace LocalJSX {
           * @uiName Change password modal header
          */
         "modalChangePasswordHeader"?: string;
+        /**
+          * @uiName Non matching password error text
+         */
+        "nonMatchingPasswordErrorText"?: string;
         /**
           * Found in modal
           * @uiName New password field label
@@ -4769,6 +4865,10 @@ declare namespace LocalJSX {
           * @uiName Email verification header text
          */
         "emailVerificationHeader"?: string;
+        /**
+          * @uiName Network error text
+         */
+        "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page from their verification email.
           * @uiName Email redirect
@@ -4888,9 +4988,13 @@ declare namespace LocalJSX {
          */
         "loginPath"?: string;
         /**
-          * Sign in link text
+          * @uiName Sign in link text
          */
         "loginText"?: string;
+        /**
+          * @uiName Network error message
+         */
+        "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page after they verify their email.
           * @uiName Email redirect
@@ -4901,6 +5005,10 @@ declare namespace LocalJSX {
           * @uiName Password reset button text
          */
         "submitLabel"?: string;
+        /**
+          * @uiName Success alert text
+         */
+        "successAlertText"?: string;
     }
     interface SqmPortalFrame {
         /**
@@ -4933,6 +5041,10 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "forgotPasswordPath"?: string;
+        /**
+          * @uiName Network error message
+         */
+        "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page after they successfully login.
           * @uiName Login redirect
@@ -4994,9 +5106,17 @@ declare namespace LocalJSX {
          */
         "emailtext"?: string;
         /**
+          * @uiName Field empty text
+         */
+        "fieldEmptyText"?: string;
+        /**
           * @uiName First name label
          */
         "firstnametext"?: string;
+        /**
+          * @uiName Form error text
+         */
+        "formErrorText"?: string;
         /**
           * @uiName Hide country field
          */
@@ -5005,6 +5125,14 @@ declare namespace LocalJSX {
           * @uiName Last name field label
          */
         "lastnametext"?: string;
+        /**
+          * @uiName Network request text
+         */
+        "networkRequestMessage"?: string;
+        /**
+          * @uiName Submission success text
+         */
+        "submissionSuccessText"?: string;
         /**
           * @uiName Submit changes button text
          */
@@ -5265,6 +5393,10 @@ declare namespace LocalJSX {
     }
     interface SqmPortalResetPassword {
         /**
+          * @uiName Reset code invalid text
+         */
+        "codeInvalidText"?: string;
+        /**
           * @uiName Show confirm password field
          */
         "confirmPassword"?: boolean;
@@ -5309,6 +5441,10 @@ declare namespace LocalJSX {
          */
         "minErrorText"?: string;
         /**
+          * @uiName Network error text
+         */
+        "networkErrorMessage"?: string;
+        /**
           * Redirect participants to this page when they successfully reset their password.
           * @uiName Successful reset redirect
           * @uiWidget pageSelect
@@ -5318,6 +5454,10 @@ declare namespace LocalJSX {
           * @uiName Password field label
          */
         "passwordFieldLabel"?: string;
+        /**
+          * @uiName Password mismatch text
+         */
+        "passwordMismatchText"?: string;
         /**
           * Displayed after a successful password reset.
           * @uiName Successful password reset text
@@ -5333,11 +5473,19 @@ declare namespace LocalJSX {
          */
         "resetPasswordHeader"?: string;
         /**
+          * @uiName Reset success text
+         */
+        "resetSuccessText"?: string;
+        /**
           * @uiName Missing uppercase text
          */
         "uppercaseErrorText"?: string;
     }
     interface SqmPortalVerifyEmail {
+        /**
+          * @uiName Continue text
+         */
+        "continueText"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -5349,6 +5497,10 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "failedPage"?: string;
+        /**
+          * @uiName Network error text
+         */
+        "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page when they successfully verify their email.
           * @uiName Successful verification redirect
