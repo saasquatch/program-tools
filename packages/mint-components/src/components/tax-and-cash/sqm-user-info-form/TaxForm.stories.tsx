@@ -1,22 +1,14 @@
-// @ts-nocheck
 import { h } from "@stencil/core";
-import {
-  documentTypeFormText,
-  userInfoText,
-  indirectTaxFormText,
-  docusignFormText,
-  taxFormDocumentSubmittedText,
-} from "./defaultTextCopy";
-import {
-  UserInfoFormViewProps,
-  UserInfoFormView,
-} from "./sqm-user-info-form-view";
-import { UseDocusignFormResult } from "../sqm-docusign-form/useDocusignForm";
-import { DemoData, StoryDemoData } from "../../../global/demo";
+import { StoryDemoData } from "../../../global/demo";
+import { INDIRECT_TAX_COUNTRIES } from "../countries";
 import { UseDocumentTypeFormResult } from "../sqm-document-type-form/useDocumentTypeForm";
-import { UseTaxDocumentSubmittedResult } from "../sqm-tax-document-submitted/useTaxDocumentSubmitted";
-import { UseUserInfoFormResult } from "./useUserInfoForm";
+import { UseDocusignFormResult } from "../sqm-docusign-form/useDocusignForm";
 import { UseIndirectTaxFormResult } from "../sqm-indirect-tax-form/useIndirectTaxForm";
+import {
+  INDIRECT_TAX_PROVINCES,
+  INDIRECT_TAX_SPAIN_REGIONS,
+} from "../subregions";
+import { UseUserInfoFormResult } from "./useUserInfoForm";
 // import sqmUserInfoSpecs from "./sqm-tax-document-step-1.feature";
 // import sqmIndirectTaxFormSpecs from "../sqm-indirect-tax-form/sqm-indirect-tax-form.feature";
 
@@ -63,18 +55,31 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
 const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
   states: {
     hideSteps: false,
-    loading: false,
     disabled: false,
+    loading: false,
     isPartner: false,
+    errors: {},
     formState: {
       checked: undefined,
     },
-    errors: {},
   },
   callbacks: {
     onSubmit: async () => console.log("Submit"),
     onChange: () => console.log("Submit"),
     onBack: () => console.log("Submit"),
+    onFormChange: (field: string, e: CustomEvent) => console.log(e),
+    onQstToggle: () => {},
+    onSpainToggle: () => {},
+  },
+  data: {
+    esRegions: INDIRECT_TAX_SPAIN_REGIONS,
+    countries: INDIRECT_TAX_COUNTRIES,
+    provinces: INDIRECT_TAX_PROVINCES,
+  },
+  slotProps: {
+    formState: {
+      errors: {},
+    },
   },
   refs: { formRef: { current: null } },
 };
@@ -252,7 +257,7 @@ export const StepTwoWithGeneralError = () => {
   );
 };
 
-export const StepTwoHSTChecked = () => {
+export const StepTwoRegisteredCheckedSpain = () => {
   return (
     <sqm-indirect-tax-form
       demoData={{
@@ -260,7 +265,14 @@ export const StepTwoHSTChecked = () => {
           ...stepTwoProps.states,
           formState: {
             ...stepTwoProps.states.formState,
-            checked: "hstCanada",
+            checked: "otherRegion",
+          },
+        },
+        slotProps: {
+          formState: {
+            selectedRegion: "ES",
+            hasSubRegionTaxNumber: true,
+            errors: {},
           },
         },
       }}
@@ -282,7 +294,7 @@ export const StepTwoHSTCheckedWithInputErrors = () => {
         slotProps: {
           formState: {
             province: "BC",
-            countryCode: "CA",
+            selectedRegion: "CA",
             errors: {
               province: true,
               indirectTaxNumber: true,
@@ -323,7 +335,7 @@ export const StepTwoOtherRegionCheckedCanada = () => {
         },
         slotProps: {
           formState: {
-            countryCode: "CA",
+            selectedRegion: "CA",
             province: "British Columbia",
             errors: {},
           },
@@ -346,7 +358,7 @@ export const StepTwoOtherRegionCheckedCanadaGST = () => {
         },
         slotProps: {
           formState: {
-            countryCode: "CA",
+            selectedRegion: "CA",
             province: "Quebec",
             errors: {},
           },
@@ -369,7 +381,7 @@ export const StepTwoOtherRegionCheckedOtherCountrySubRegion = () => {
         },
         slotProps: {
           formState: {
-            countryCode: "ES",
+            selectedRegion: "ES",
             province: "",
             errors: {},
           },
@@ -407,7 +419,7 @@ export const StepTwoOtherRegionCheckedWithInputErrors = () => {
         slotProps: {
           formState: {
             province: "",
-            countryCode: "GB",
+            selectedRegion: "GB",
             errors: {
               selectedRegion: true,
               vatNumber: true,

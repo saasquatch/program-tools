@@ -15,7 +15,7 @@ import {
 import { TaxDocumentSubmitted } from "./sqm-tax-document-submitted";
 import { useEditProfile } from "../../sqm-edit-profile/useEditProfile";
 import { useEffect } from "@saasquatch/universal-hooks";
-import { INDIRECT_TAX_PROVINCES } from "../provinces";
+import { INDIRECT_TAX_PROVINCES } from "../subregions";
 
 export function getDocumentType(user): TaxDocumentType {
   if (!user) return;

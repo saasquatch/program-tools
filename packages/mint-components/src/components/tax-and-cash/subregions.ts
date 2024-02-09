@@ -13,3 +13,8 @@ export const INDIRECT_TAX_PROVINCES = [
   { provinceCode: "SK", taxType: "GST", displayName: "Saskatchewan" },
   { provinceCode: "YT", taxType: "GST", displayName: "Yukon" },
 ];
+
+export const INDIRECT_TAX_SPAIN_REGIONS = [
+  { regionCode: "SP", taxType: "VAT", displayName: "Spain Proper" },
+  { regionCode: "CI", taxType: "VAT", displayName: "Canary Islands" },
+];

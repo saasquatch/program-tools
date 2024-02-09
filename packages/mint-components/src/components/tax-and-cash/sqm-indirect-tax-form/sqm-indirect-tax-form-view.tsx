@@ -29,7 +29,6 @@ export interface IndirectTaxFormViewProps {
     indirectTaxDetailsDescription: string;
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
-    hstCanada: string;
     otherRegion: string;
     notRegistered: string;
     submitButton: string;
@@ -147,8 +146,6 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
   } = props;
 
   const { classes } = sheet;
-
-  console.log(states, "states");
 
   return (
     <sl-form

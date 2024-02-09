@@ -717,126 +717,37 @@ export namespace Components {
         "minHeight"?: string;
     }
     interface SqmIndirectTaxForm {
-        /**
-          * Text shown inside of back button
-          * @uiName Back button text
-         */
         "backButton": string;
         /**
-          * @undocumented 
-          * @uiType object
+          * @undocumented
          */
         "demoData"?: DemoData<UseIndirectTaxFormResult>;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Indirect tax form step text
-         */
         "formStep": string;
-        /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-         */
         "generalErrorDescription": string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-         */
         "generalErrorTitle": string;
-        /**
-          * Label text for the HST Canada radio button
-          * @uiName HST Canada radio button label
-         */
-        "hstCanada": string;
-        /**
-          * Heading text shown at the top of the page
-          * @uiName Indirect tax heading text
-         */
         "indirectTax": string;
-        /**
-          * Subtext shown at the top of the page
-          * @uiName Indirect tax sub text
-         */
         "indirectTaxDescription": string;
-        /**
-          * Heading text shown above the tax details radio buttons
-          * @uiName Indirect tax details heading
-         */
         "indirectTaxDetails": string;
-        /**
-          * Sub text shown above the tax details radio buttons
-          * @uiName Indirect tax details sub text
-         */
         "indirectTaxDetailsDescription": string;
-        /**
-          * Label text for the Indirect Tax Number input
-          * @uiName Indirect Tax Number input label
-         */
         "indirectTaxNumber": string;
-        /**
-          * Error text shown below the Indirect Tax Number select input
-          * @uiName Indirect Tax Number error text
-         */
         "indirectTaxNumberError": string;
-        /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
-         */
         "isPartnerAlertDescription": string;
-        /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
-         */
         "isPartnerAlertHeader": string;
-        /**
-          * Label text for the not registered radio button
-          * @uiName Not registered radio button label
-         */
+        "isRegisteredQST": string;
+        "isRegisteredSubRegionIncomeTax": string;
         "notRegistered": string;
-        /**
-          * Label text for the other region radio button
-          * @uiName Other region radio button label
-         */
         "otherRegion": string;
-        /**
-          * Label text for the Province select input
-          * @uiName Province select input label
-         */
         "province": string;
-        /**
-          * Error text shown below the Selected Region select input
-          * @uiName Province error text
-         */
         "provinceError": string;
-        /**
-          * Label text for the Selected Region select input
-          * @uiName Selected region select input label
-         */
+        "qstNumber": string;
+        "qstTaxNumberError": string;
         "selectedRegion": string;
-        /**
-          * Error text shown below the Selected Region select input
-          * @uiName Selected Region error text
-         */
         "selectedRegionError": string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
+        "subRegion": string;
+        "subRegionTaxNumberError": string;
+        "subRegionTaxNumberLabel": string;
         "submitButton": string;
-        /**
-          * Error text shown below the tax details radio buttons
-          * @uiName Indirect tax details error text
-         */
         "taxDetailsError": string;
-        /**
-          * Label text for the VAT Number input
-          * @uiName VAT Number input label
-         */
-        "vatNumber": string;
-        /**
-          * Error text shown below the VAT Number input
-          * @uiName VAT Number error text
-         */
-        "vatNumberError": string;
     }
     interface SqmInputField {
         /**
@@ -3270,12 +3181,6 @@ export namespace Components {
          */
         "step2_generalErrorTitle": string;
         /**
-          * Label text for the HST Canada radio button
-          * @uiName HST Canada radio button label
-          * @uiGroup Step 2 Properties
-         */
-        "step2_hstCanada": string;
-        /**
           * Heading text shown at the top of the page
           * @uiName Indirect tax heading text
           * @uiGroup Step 2 Properties
@@ -3324,6 +3229,18 @@ export namespace Components {
          */
         "step2_isPartnerAlertHeader": string;
         /**
+          * Label text for the QST checkbox
+          * @uiName checkbox label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_isRegisteredQST": string;
+        /**
+          * Label text for Income Tax checkbox
+          * @uiName Income Tax checkbox label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_isRegisteredSubRegionIncomeTax": string;
+        /**
           * Label text for the not registered radio button
           * @uiName Not registered radio button label
           * @uiGroup Step 2 Properties
@@ -3348,6 +3265,18 @@ export namespace Components {
          */
         "step2_provinceError": string;
         /**
+          * Label text for the QST Tax Number input
+          * @uiName QST Tax Number input label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_qstNumber": string;
+        /**
+          * Error text shown below the QST Tax number input
+          * @uiName QST Tax Number error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_qstTaxNumberError": string;
+        /**
           * Label text for the Selected Region select input
           * @uiName Selected region select input label
           * @uiGroup Step 2 Properties
@@ -3360,6 +3289,24 @@ export namespace Components {
          */
         "step2_selectedRegionError": string;
         /**
+          * Label text for Sub-region select
+          * @uiName for Sub-region select label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_subRegion": string;
+        /**
+          * Error text shown below the Sub-region Income Tax number input
+          * @uiName Sub-region Income Tax error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_subRegionTaxNumberError": string;
+        /**
+          * Label text for the Sub-region Income Tax Number input
+          * @uiName Sub-region income Tax Number input label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_subRegionTaxNumberLabel": string;
+        /**
           * Text shown inside of submit button
           * @uiName Submit button text
           * @uiGroup Step 2 Properties
@@ -3371,18 +3318,6 @@ export namespace Components {
           * @uiGroup Step 2 Properties
          */
         "step2_taxDetailsError": string;
-        /**
-          * Label text for the VAT Number input
-          * @uiName VAT Number input label
-          * @uiGroup Step 2 Properties
-         */
-        "step2_vatNumber": string;
-        /**
-          * Error text shown below the VAT Number input
-          * @uiName VAT Number error text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_vatNumberError": string;
         /**
           * Text shown inside of back button
           * @uiName Back button text
@@ -5432,126 +5367,37 @@ declare namespace LocalJSX {
         "minHeight"?: string;
     }
     interface SqmIndirectTaxForm {
-        /**
-          * Text shown inside of back button
-          * @uiName Back button text
-         */
         "backButton"?: string;
         /**
-          * @undocumented 
-          * @uiType object
+          * @undocumented
          */
         "demoData"?: DemoData<UseIndirectTaxFormResult>;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Indirect tax form step text
-         */
         "formStep"?: string;
-        /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-         */
         "generalErrorDescription"?: string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-         */
         "generalErrorTitle"?: string;
-        /**
-          * Label text for the HST Canada radio button
-          * @uiName HST Canada radio button label
-         */
-        "hstCanada"?: string;
-        /**
-          * Heading text shown at the top of the page
-          * @uiName Indirect tax heading text
-         */
         "indirectTax"?: string;
-        /**
-          * Subtext shown at the top of the page
-          * @uiName Indirect tax sub text
-         */
         "indirectTaxDescription"?: string;
-        /**
-          * Heading text shown above the tax details radio buttons
-          * @uiName Indirect tax details heading
-         */
         "indirectTaxDetails"?: string;
-        /**
-          * Sub text shown above the tax details radio buttons
-          * @uiName Indirect tax details sub text
-         */
         "indirectTaxDetailsDescription"?: string;
-        /**
-          * Label text for the Indirect Tax Number input
-          * @uiName Indirect Tax Number input label
-         */
         "indirectTaxNumber"?: string;
-        /**
-          * Error text shown below the Indirect Tax Number select input
-          * @uiName Indirect Tax Number error text
-         */
         "indirectTaxNumberError"?: string;
-        /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
-         */
         "isPartnerAlertDescription"?: string;
-        /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
-         */
         "isPartnerAlertHeader"?: string;
-        /**
-          * Label text for the not registered radio button
-          * @uiName Not registered radio button label
-         */
+        "isRegisteredQST"?: string;
+        "isRegisteredSubRegionIncomeTax"?: string;
         "notRegistered"?: string;
-        /**
-          * Label text for the other region radio button
-          * @uiName Other region radio button label
-         */
         "otherRegion"?: string;
-        /**
-          * Label text for the Province select input
-          * @uiName Province select input label
-         */
         "province"?: string;
-        /**
-          * Error text shown below the Selected Region select input
-          * @uiName Province error text
-         */
         "provinceError"?: string;
-        /**
-          * Label text for the Selected Region select input
-          * @uiName Selected region select input label
-         */
+        "qstNumber"?: string;
+        "qstTaxNumberError"?: string;
         "selectedRegion"?: string;
-        /**
-          * Error text shown below the Selected Region select input
-          * @uiName Selected Region error text
-         */
         "selectedRegionError"?: string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
+        "subRegion"?: string;
+        "subRegionTaxNumberError"?: string;
+        "subRegionTaxNumberLabel"?: string;
         "submitButton"?: string;
-        /**
-          * Error text shown below the tax details radio buttons
-          * @uiName Indirect tax details error text
-         */
         "taxDetailsError"?: string;
-        /**
-          * Label text for the VAT Number input
-          * @uiName VAT Number input label
-         */
-        "vatNumber"?: string;
-        /**
-          * Error text shown below the VAT Number input
-          * @uiName VAT Number error text
-         */
-        "vatNumberError"?: string;
     }
     interface SqmInputField {
         /**
@@ -7961,12 +7807,6 @@ declare namespace LocalJSX {
          */
         "step2_generalErrorTitle"?: string;
         /**
-          * Label text for the HST Canada radio button
-          * @uiName HST Canada radio button label
-          * @uiGroup Step 2 Properties
-         */
-        "step2_hstCanada"?: string;
-        /**
           * Heading text shown at the top of the page
           * @uiName Indirect tax heading text
           * @uiGroup Step 2 Properties
@@ -8015,6 +7855,18 @@ declare namespace LocalJSX {
          */
         "step2_isPartnerAlertHeader"?: string;
         /**
+          * Label text for the QST checkbox
+          * @uiName checkbox label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_isRegisteredQST"?: string;
+        /**
+          * Label text for Income Tax checkbox
+          * @uiName Income Tax checkbox label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_isRegisteredSubRegionIncomeTax"?: string;
+        /**
           * Label text for the not registered radio button
           * @uiName Not registered radio button label
           * @uiGroup Step 2 Properties
@@ -8039,6 +7891,18 @@ declare namespace LocalJSX {
          */
         "step2_provinceError"?: string;
         /**
+          * Label text for the QST Tax Number input
+          * @uiName QST Tax Number input label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_qstNumber"?: string;
+        /**
+          * Error text shown below the QST Tax number input
+          * @uiName QST Tax Number error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_qstTaxNumberError"?: string;
+        /**
           * Label text for the Selected Region select input
           * @uiName Selected region select input label
           * @uiGroup Step 2 Properties
@@ -8051,6 +7915,24 @@ declare namespace LocalJSX {
          */
         "step2_selectedRegionError"?: string;
         /**
+          * Label text for Sub-region select
+          * @uiName for Sub-region select label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_subRegion"?: string;
+        /**
+          * Error text shown below the Sub-region Income Tax number input
+          * @uiName Sub-region Income Tax error text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_subRegionTaxNumberError"?: string;
+        /**
+          * Label text for the Sub-region Income Tax Number input
+          * @uiName Sub-region income Tax Number input label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_subRegionTaxNumberLabel"?: string;
+        /**
           * Text shown inside of submit button
           * @uiName Submit button text
           * @uiGroup Step 2 Properties
@@ -8062,18 +7944,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 2 Properties
          */
         "step2_taxDetailsError"?: string;
-        /**
-          * Label text for the VAT Number input
-          * @uiName VAT Number input label
-          * @uiGroup Step 2 Properties
-         */
-        "step2_vatNumber"?: string;
-        /**
-          * Error text shown below the VAT Number input
-          * @uiName VAT Number error text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_vatNumberError"?: string;
         /**
           * Text shown inside of back button
           * @uiName Back button text
