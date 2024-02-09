@@ -67,9 +67,11 @@ export class PortalEmailVerification {
     "Your verification email has been resent successfully";
 
   /**
-   * @uiName Network error text
+   * @uiName Network error message
+   * Displayed when your verification email fails to send due to a network error. The participant can try refreshing the page.
    */
-  @Prop() networkErrorMessage: string = "Network request failed.";
+  @Prop() networkErrorMessage: string =
+    "An error occurred while verifying your password. Please refresh the page.";
 
   /**
    * @undocumented

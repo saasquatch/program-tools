@@ -62,9 +62,11 @@ export class PortalProfile {
   @Prop() hideCountry: boolean = false;
 
   /**
-   * @uiName Network request text
+   * @uiName Network request error message
+   * Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
    */
-  @Prop() networkRequestMessage: string = "Network request failed.";
+  @Prop() networkRequestMessage: string =
+    "An error occurred while loading this page. Please refresh the page.";
 
   /**
    * @uiName Field empty text

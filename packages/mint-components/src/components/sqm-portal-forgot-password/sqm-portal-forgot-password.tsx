@@ -61,8 +61,10 @@ export class PortalForgotPassword {
 
   /**
    * @uiName Network error message
+   * Displayed when the forgot password action fails due to a network error. The participant can try refreshing the page.
    */
-  @Prop() networkErrorMessage: string = "Network request failed.";
+  @Prop() networkErrorMessage: string =
+    "An error occurred while loading this page. Please refresh the page.";
 
   /**
    * @uiName Email verification sent text

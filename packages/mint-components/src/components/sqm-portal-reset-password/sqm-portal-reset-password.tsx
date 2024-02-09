@@ -80,12 +80,12 @@ export class PortalResetPassword {
   @Prop() passwordFieldLabel: string = "New Password";
 
   /**
-   * @uiName Meets requirements text
+   * @uiName Password requirement met
    */
   @Prop() meetsRequirementsText: string = "Password has met all requirements";
 
   /**
-   * @uiName Fails requirements text
+   * @uiName Password requirement failed
    */
   @Prop() doesNotMeetRequirementsText: string =
     "Password must meet the following requirements:";
@@ -106,17 +106,18 @@ export class PortalResetPassword {
   @Prop() lowercaseErrorText: string = "contain at least 1 lowercase character";
 
   /**
-   * @uiName Missing number or symbol error text
+   * @uiName Missing number or symbol text
    */
   @Prop() hasErrorText: string = "contain at least 1 number or symbol";
 
   /**
-   * @uiName Password mismatch text
+   * @uiName Passwords don’t match error message
+   * Please make sure your passwords match
    */
   @Prop() passwordMismatchText: string = "Passwords do not match.";
 
   /**
-   * @uiName Reset code invalid text
+   * @uiName Reset code invalid error message
    */
   @Prop() codeInvalidText: string =
     "The password reset code is invalid or has expired, please try again.";
@@ -128,9 +129,11 @@ export class PortalResetPassword {
     "Your password has been reset and you are being redirected. If you are not redirected, please click Continue.";
 
   /**
-   * @uiName Network error text
+   * @uiName Network error message
+   * Displayed when the password reset fails due to a network error. The participant can try refreshing the page.
    */
-  @Prop() networkErrorMessage: string = "Network request failed.";
+  @Prop() networkErrorMessage: string =
+    "An error occurred while resetting your password. Please refresh the page and try again.";
 
   /**
    * @undocumented
