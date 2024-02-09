@@ -93,10 +93,18 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     setFormState({
       province: user.customFields?.__taxProvince,
       vatNumber: user.customFields?.__taxVatNumber,
-      countryCode: user.customFields?.__taxCountry || defaultCountryCode,
+      selectedRegion: user.customFields?.__taxCountry || defaultCountryCode,
       indirectTaxNumber: user.customFields?.__taxIndirectTaxNumber,
     });
   }, [userData]);
+
+  const onFormChange = (field: string, e: CustomEvent) => {
+    const value = e.detail?.item?.__value;
+    if (!value) console.error("Could not detect select change");
+
+    console.log({ field, value });
+    setFormState((p) => ({ ...p, [field]: value }));
+  };
 
   const onSubmit = async (event: any) => {
     if (!option) {
@@ -108,15 +116,10 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     let validationErrors: Record<string, string> = {};
 
     const controls = event.target.getFormControls();
-    const optionMapping = {
-      hstCanada: ["province", "indirectTaxNumber"],
-      otherRegion: ["selectedRegion", "vatNumber"],
-      notRegistered: [],
-    };
-    const relevantFields = optionMapping[option];
+
     controls.forEach((control) => {
       if (!control.name || !control.id) return;
-      if (!relevantFields.includes(control.id)) return;
+      if (option === "notRegistered") return; // Don't include fields for notRegistered option
 
       const key = control.name;
       const value = control.value;
@@ -132,6 +135,10 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       return;
     }
 
+    console.log({ formData });
+    return;
+
+    // @ts-ignore
     setLoading(true);
 
     try {
@@ -200,9 +207,11 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     callbacks: {
       onBack,
       onSubmit,
+      onFormChange: onFormChange,
       onChange: setOption,
     },
     data: {
+      esRegions: [{ regionCode: "TODO: ", displayName: "TODO: " }],
       countries: INDIRECT_TAX_COUNTRIES,
       provinces: INDIRECT_TAX_PROVINCES,
     },
@@ -211,7 +220,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       formRef,
     },
     slotProps: {
-      formState: { ...formState, errors, countryCode: "", province: "" },
+      formState: { ...formState, errors },
     },
   };
 }

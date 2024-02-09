@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { h } from "@stencil/core";
 import {
   documentTypeFormText,

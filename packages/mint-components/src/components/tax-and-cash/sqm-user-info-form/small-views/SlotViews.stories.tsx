@@ -1,7 +1,7 @@
+// @ts-nocheck
 import { h } from "@stencil/core";
 import { indirectDetailsSlotText } from "../defaultTextCopy";
 import {
-  IndirectDetailsSlotView,
   IndirectDetailsSlotViewProps,
   OtherRegionSlotView,
 } from "./IndirectTaxDetailsView";
