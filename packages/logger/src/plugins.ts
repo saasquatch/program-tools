@@ -1,6 +1,11 @@
 import { IncomingMessage, ServerResponse } from "http";
 import winston from "winston";
+import { LogLevel } from "./config";
 import { LOG_TYPE_MARKER } from "./logger";
+
+export type HttpLogMiddlewareOptions = {
+  nonErrorLogLevel?: LogLevel;
+};
 
 /**
  * A simple Express.js middleware which logs the URL, method, response code,
@@ -8,11 +13,14 @@ import { LOG_TYPE_MARKER } from "./logger";
  *
  * @param {winston.Logger} logger - The logger to use
  */
-export function httpLogMiddleware(logger: winston.Logger) {
+export function httpLogMiddleware(
+  logger: winston.Logger,
+  opts?: HttpLogMiddlewareOptions,
+) {
   return (
     req: IncomingMessage,
     res: ServerResponse & { locals?: Record<string, any> },
-    next: () => void
+    next: () => void,
   ) => {
     const startTimeNs = process.hrtime.bigint();
 
@@ -30,7 +38,7 @@ export function httpLogMiddleware(logger: winston.Logger) {
           ? "warn"
           : ["/healthz", "/livez", "/readyz"].includes(req.url ?? "")
           ? "debug"
-          : "info";
+          : opts?.nonErrorLogLevel ?? "info";
 
       const message = { method, status, time, url, requestId };
 
