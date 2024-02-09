@@ -5,6 +5,7 @@ import { LOG_TYPE_MARKER } from "./logger";
 
 export type HttpLogMiddlewareOptions = {
   nonErrorLogLevel?: LogLevel;
+  logNonErrorResponses?: boolean;
 };
 
 /**
@@ -25,16 +26,20 @@ export function httpLogMiddleware(
     const startTimeNs = process.hrtime.bigint();
 
     res.on("finish", () => {
+      const status = res.statusCode;
+      if (status < 400 && opts?.logNonErrorResponses === false) {
+        return;
+      }
+
       const endTimeNs = process.hrtime.bigint();
       const time = (endTimeNs - startTimeNs) / BigInt(1000);
       const { method, url } = req;
-      const status = res.statusCode;
       const requestId = res.locals?.requestId;
 
       const level =
-        res.statusCode >= 500
+        status >= 500
           ? "error"
-          : res.statusCode >= 400
+          : status >= 400
           ? "warn"
           : ["/healthz", "/livez", "/readyz"].includes(req.url ?? "")
           ? "debug"
