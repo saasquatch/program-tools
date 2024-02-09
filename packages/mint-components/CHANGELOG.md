@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.4] - 2024-02-09
+
+### Fixed
+
+- Added string trunctation to `sqm-logout-current-user` email to avoid overflow on long emails
+
+### Updated
+
+- `sqm-logout-current-user` updated to explicitly fetch the user's email
+
 ## [1.7.3] - 2024-02-06
 
 ### Updated
