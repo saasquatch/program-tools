@@ -13,70 +13,76 @@ Feature: Indirect Tax Form
     Then different <inputs> appear
 
     Examples: 
-      | country | option                               | participantType       | inputs                                                                 |
-      | CA      | I am registered for Indirect Tax     | businessEntity        | Country, Province, Indirect Tax Number/GST Number, ?QST Number(Quebec) |
-      | ES      | I am registered for Indirect Tax     | businessEntity        | Country, Sub Region, VAT Number, ?Income Tax Number                    |
-      | UK      | I am registered for Indirect Tax     | businessEntity        | Country, VAT Number                                                    |
-      | IR      | I am registered for Indirect Tax     | businessEntity        | Country, GST Number                                                    |
-      | AU      | I am registered for Indirect Tax     | businessEntity        | Country, GST Number                                                    |
-      | JP      | I am registered for Indirect Tax     | businessEntity        | Country, CT Number                                                     |
-      | US      | I am not registered for Indirect tax | individualParticipant | N/A                                                                    |
-      | EG      | I am not registered for Indirect tax | individualParticipant | N/A                                                                    |
+      | country | option                                               | participantType       | inputs                                                                 |
+      | CA      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, Province, Indirect Tax Number/GST Number, ?QST Number(Quebec) |
+      | ES      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, Sub Region, VAT Number, ?Income Tax Number                    |
+      | UK      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, VAT Number                                                    |
+      | IR      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, GST Number                                                    |
+      | AU      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, GST Number                                                    |
+      | JP      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, CT Number                                                     |
+      | US      | I am not registered for Indirect tax                 | individualParticipant | N/A                                                                    |
+      | EG      | I am not registered for Indirect tax                 | individualParticipant | N/A                                                                    |
 
   @minutia @ui
   Scenario Outline: The country select displays applicable indirect tax countries and changes the VAT/GST/CT number input
-    When the "I am registered for Indirect Tax in a different Country / Region" option is selected
-    Then A Country select appears with available <country>s and corresponding <vat_acronym>:
-      | vat_acronym | country        |
-      | VAT         | UK             |
-      | GST         | Australia      |
-      | GST         | New Zealand    |
-      | VAT         | Austria        |
-      | VAT         | Belgium        |
-      | VAT         | Bulgaria       |
-      | VAT         | Croatia        |
-      | VAT         | Cyprus         |
-      | VAT         | Czech Republic |
-      | VAT         | Denmark        |
-      | VAT         | Estonia        |
-      | VAT         | Finland        |
-      | VAT         | France         |
-      | VAT         | Germany        |
-      | VAT         | Greece         |
-      | VAT         | Hungary        |
-      | VAT         | Ireland        |
-      | VAT         | Italy          |
-      | VAT         | Latvia         |
-      | VAT         | Lithuania      |
-      | VAT         | Luxembourg     |
-      | VAT         | Malta          |
-      | VAT         | Netherlands    |
-      | VAT         | Poland         |
-      | VAT         | Portugal       |
-      | VAT         | Romania        |
-      | VAT         | Slovakia       |
-      | VAT         | Slovenia       |
-      | VAT         | Spain          |
-      | VAT         | Sweden         |
-      | VAT         | Iceland        |
-      | GST         | India          |
-      | VAT         | Israel         |
-      | CT          | Japan          |
-      | VAT         | Mexico         |
-      | VAT         | Norway         |
-      | GST         | Singapore      |
-      | VAT         | South Africa   |
-      | VAT         | South Korea    |
-      | VAT         | Switzerland    |
-      | VAT         | Taiwan         |
-      | VAT         | Thailand       |
-      | VAT         | Philippines    |
-      | GST         | Malaysia       |
-      | VAT         | UAE            |
-      | VAT         | Turkey         |
-      | VAT         | Russia         |
-    And based on the <country>
-    Then the VAT/GST/CT number input changes to <typeTaxInputHeader>
+    When the "I am registered for Indirect Tax" option is selected
+    Then A Country select appears with available <country>s and corresponding <typeTax>:
+      | typeTax | country        |
+      | VAT     | UK             |
+      | GST     | Australia      |
+      | GST     | New Zealand    |
+      | VAT     | Austria        |
+      | VAT     | Belgium        |
+      | VAT     | Bulgaria       |
+      | VAT     | Croatia        |
+      | VAT     | Cyprus         |
+      | VAT     | Czech Republic |
+      | VAT     | Denmark        |
+      | VAT     | Estonia        |
+      | VAT     | Finland        |
+      | VAT     | France         |
+      | VAT     | Germany        |
+      | VAT     | Greece         |
+      | VAT     | Hungary        |
+      | VAT     | Ireland        |
+      | VAT     | Italy          |
+      | VAT     | Latvia         |
+      | VAT     | Lithuania      |
+      | VAT     | Luxembourg     |
+      | VAT     | Malta          |
+      | VAT     | Netherlands    |
+      | VAT     | Poland         |
+      | VAT     | Portugal       |
+      | VAT     | Romania        |
+      | VAT     | Slovakia       |
+      | VAT     | Slovenia       |
+      | VAT     | Spain          |
+      | VAT     | Sweden         |
+      | VAT     | Iceland        |
+      | GST     | India          |
+      | VAT     | Israel         |
+      | CT      | Japan          |
+      | VAT     | Mexico         |
+      | VAT     | Norway         |
+      | GST     | Singapore      |
+      | VAT     | South Africa   |
+      | VAT     | South Korea    |
+      | VAT     | Switzerland    |
+      | VAT     | Taiwan         |
+      | VAT     | Thailand       |
+      | VAT     | Philippines    |
+      | GST     | Malaysia       |
+      | VAT     | UAE            |
+      | VAT     | Turkey         |
+      | VAT     | Russia         |
+    And based on the <typeTax>
+    Then <typeTaxInputHeader> changes
+
+    Examples: 
+      | typeTax | typeTaxInputHeader |
+      | VAT     | VAT Number         |
+      | GST     | GST Number         |
+      | CT      | CT Number          |
 
   @minutia @ui
   Scenario: The province select displays applicable indirect tax provinces
@@ -117,81 +123,6 @@ Feature: Indirect Tax Form
       | Madrid     | true                  |
       | Barcelona  | false                 |
       | Valencia   | true                  |
-
-  @minutia
-  Scenario: The country select displays applicable indirect tax countries
-    When the "I am registered Indirect Tax"" option is selected
-    Then A Country select appears with available <countries>
-      | countries             |
-      | UK                    |
-      | Australia             |
-      | New Zealand           |
-      | Canada                |
-      | Austria               |
-      | Belgium               |
-      | Bulgaria              |
-      | Croatia               |
-      | Cyprus                |
-      | Czech Republic        |
-      | Denmark               |
-      | Estonia               |
-      | Finland               |
-      | France                |
-      | Germany               |
-      | Greece                |
-      | Hungary               |
-      | Ireland               |
-      | Italy                 |
-      | Latvia                |
-      | Lithuania             |
-      | Luxembourg            |
-      | Malta                 |
-      | Netherlands           |
-      | Poland                |
-      | Portugal              |
-      | Romania               |
-      | Slovakia              |
-      | Slovenia              |
-      | Spain                 |
-      | Sweden                |
-      | Alberta               |
-      | British Columbia      |
-      | Manitoba              |
-      | New Brunswick         |
-      | Newfoundland          |
-      | Northwest Territories |
-      | Nova Scotia           |
-      | Nunavut               |
-      | Ontario               |
-      | Prince Edward Island  |
-      | Quebec                |
-      | Saskatchewan          |
-      | Yukon                 |
-      | Iceland               |
-      | India                 |
-      | Israel                |
-      | Japan                 |
-      | Mexico                |
-      | Norway                |
-      | Singapore             |
-      | South Africa          |
-      | South Korea           |
-      | Switzerland           |
-      | Taiwan                |
-      | Thailand              |
-      | Philippines           |
-      | Malaysia              |
-      | UAE                   |
-      | Turkey                |
-      | Russia                |
-# Undecided behaviour
-
-    Examples: 
-      | vat_acronym | country | typeTaxInputHeader |
-      | VAT         | RUSSIA  | VAT number         |
-      | GST         | India   | GST Number         |
-      | CT          | Japan   | CT Number          |
-      # AL: Confirm if this is the correct list of countries impact supports for VAT/GST/CT
 
   @minutia @ui
   Scenario Outline: Participant from another country has their country value auto selected
