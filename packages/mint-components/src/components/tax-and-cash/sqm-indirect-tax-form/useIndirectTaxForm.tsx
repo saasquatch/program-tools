@@ -6,11 +6,12 @@ import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
+import { useParentValue, useSetParent } from "../../../utils/useParentState";
+import { INDIRECT_TAX_COUNTRIES } from "../countries";
 import {
-  useParent,
-  useParentValue,
-  useSetParent,
-} from "../../../utils/useParentState";
+  INDIRECT_TAX_PROVINCES,
+  INDIRECT_TAX_SPAIN_REGIONS,
+} from "../subregions";
 import {
   COUNTRIES_NAMESPACE,
   CountriesQuery,
@@ -21,8 +22,7 @@ import {
   UserQuery,
 } from "../sqm-tax-and-cash/data";
 import { IndirectTaxForm } from "./sqm-indirect-tax-form";
-import { INDIRECT_TAX_COUNTRIES } from "../countries";
-import { INDIRECT_TAX_PROVINCES } from "../provinces";
+import { IndirectDetailsSlotViewProps } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
 
 function getOption(user: UserQuery["user"]) {
   if (!user) return;
@@ -31,16 +31,10 @@ function getOption(user: UserQuery["user"]) {
   if (customFields?.__taxOption) return customFields.__taxOption;
   if (customFields?.participantType === "individualParticipant")
     return "notRegistered";
-  if (customFields?.__taxProvince || customFields?.__taxIndirectTaxNumber) {
-    return "hstCanada";
-  } else if (customFields?.__taxCountry || customFields?.__taxVatNumber) {
+  if (customFields?.__taxCountry) {
     return "otherRegion";
   } else {
-    if (countryCode === "CA") {
-      return "hstCanada";
-    } else if (
-      INDIRECT_TAX_COUNTRIES.find((c) => c.countryCode === countryCode)
-    ) {
+    if (INDIRECT_TAX_COUNTRIES.find((c) => c.countryCode === countryCode)) {
       return "otherRegion";
     } else {
       return "notRegistered";
@@ -64,7 +58,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
-  const [formState, setFormState] = useState({});
+  const [formState, setFormState] = useState<Record<string, any>>({});
   const [upsertUser] = useMutation(UPSERT_USER);
 
   const { data: userData, refetch } =
@@ -92,7 +86,11 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
     setFormState({
       province: user.customFields?.__taxProvince,
-      vatNumber: user.customFields?.__taxVatNumber,
+      subRegion: user.customFields?.__taxSubRegion,
+      hasQst: !!user.customFields?.__taxQstNumber,
+      qstNumber: user.customFields?.__taxQstNumber,
+      hasSubRegionTaxNumber: !!user.customFields?.__taxSubRegionTaxNumber,
+      subRegionTaxNumber: user.customFields?.__taxSubRegionTaxNumber,
       selectedRegion: user.customFields?.__taxCountry || defaultCountryCode,
       indirectTaxNumber: user.customFields?.__taxIndirectTaxNumber,
     });
@@ -101,8 +99,6 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   const onFormChange = (field: string, e: CustomEvent) => {
     const value = e.detail?.item?.__value;
     if (!value) console.error("Could not detect select change");
-
-    console.log({ field, value });
     setFormState((p) => ({ ...p, [field]: value }));
   };
 
@@ -125,18 +121,16 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       const value = control.value;
       JSONPointer.set(formData, key, value);
 
+      console.log({ control, value });
       if (control.required && !value) {
         JSONPointer.set(validationErrors, key, true);
       }
     });
 
+    setErrors(validationErrors);
     if (Object.keys(validationErrors).length) {
-      setErrors(validationErrors);
       return;
     }
-
-    console.log({ formData });
-    return;
 
     // @ts-ignore
     setLoading(true);
@@ -161,7 +155,9 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
         __taxDocumentType: defaultDocumentType || null,
         __taxProvince: formData.province || null,
         __taxCountry: formData.selectedRegion || null,
-        __taxVatNumber: formData.vatNumber || null,
+        __taxSubRegion: formData.subRegion || null,
+        __taxSubRegionTaxNumber: formData.subRegionTaxNumber || null,
+        __taxQstNumber: formData.qstNumber || null,
         __taxIndirectTaxNumber: formData.indirectTaxNumber || null,
       };
 
@@ -207,11 +203,17 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     callbacks: {
       onBack,
       onSubmit,
-      onFormChange: onFormChange,
+      onFormChange,
       onChange: setOption,
+      onQstToggle: () => setFormState((p) => ({ ...p, hasQst: !p.hasQst })),
+      onSpainToggle: () =>
+        setFormState((p) => ({
+          ...p,
+          hasSubRegionTaxNumber: !p.hasSubRegionTaxNumber,
+        })),
     },
     data: {
-      esRegions: [{ regionCode: "TODO: ", displayName: "TODO: " }],
+      esRegions: INDIRECT_TAX_SPAIN_REGIONS,
       countries: INDIRECT_TAX_COUNTRIES,
       provinces: INDIRECT_TAX_PROVINCES,
     },
@@ -220,7 +222,10 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       formRef,
     },
     slotProps: {
-      formState: { ...formState, errors },
+      formState: {
+        ...formState,
+        errors,
+      } as IndirectDetailsSlotViewProps["states"]["formState"],
     },
   };
 }

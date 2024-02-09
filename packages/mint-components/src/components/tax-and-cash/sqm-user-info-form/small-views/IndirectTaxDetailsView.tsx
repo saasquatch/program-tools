@@ -1,7 +1,9 @@
 import { VNode, h } from "@stencil/core";
 import { createStyleSheet } from "../../../../styling/JSS";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { INDIRECT_TAX_PROVINCES } from "../../provinces";
+import { INDIRECT_TAX_PROVINCES } from "../../subregions";
+import { intl } from "../../../../global/global";
+import { getFieldDef } from "graphql/execution/execute";
 
 export interface IndirectDetailsSlotViewProps {
   states: {
@@ -9,11 +11,14 @@ export interface IndirectDetailsSlotViewProps {
     hide: boolean;
     formState: {
       selectedRegion?: string;
-      vatNumber?: number;
+      subRegion?: string;
+      subRegionTaxNumber?: string;
+      qstNumber?: string;
       province?: string;
       indirectTaxNumber?: number;
-      hstNumber?: string;
-      gstNumber?: string;
+      // AL: for handling income tax Spain
+      hasQst?: boolean;
+      hasSubRegionTaxNumber?: boolean;
       errors?: any;
       error?: string;
     };
@@ -34,17 +39,23 @@ export interface IndirectDetailsSlotViewProps {
   };
   callbacks: {
     onFormChange: (field: string, e: CustomEvent) => void;
+    onQstToggle: () => void;
+    onSpainToggle: () => void;
   };
   text: {
     selectedRegion: string;
-    vatNumber: string;
     province: string;
     indirectTaxNumber: string;
+    subRegion: string;
+    qstNumber: string;
+    subRegionTaxNumberLabel: string;
+    isRegisteredQST: string;
+    isRegisteredSubRegionIncomeTax: string;
     error: {
       selectedRegion: string;
-      vatNumber: string;
       province: string;
       indirectTaxNumber: string;
+      subRegionTaxNumber: string;
     };
   };
 }
@@ -94,6 +105,7 @@ const vanillaStyle = `
     }
   `;
 
+export type TaxType = "GST" | "HST" | "VAT" | "JST";
 export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
   const {
     states,
@@ -101,38 +113,102 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
     callbacks,
     text,
   } = props;
+  const { classes } = sheet;
 
-  const SpainFields = () => {
+  const getTaxFieldLabel = (taxType: TaxType) => {
+    return intl.formatMessage(
+      {
+        id: `tax-field-label${taxType}`,
+        defaultMessage: text.indirectTaxNumber,
+      },
+      { taxType }
+    );
+  };
+
+  const IndirectTaxNumberInput = ({
+    label,
+    name,
+  }: {
+    label: string;
+    name: string;
+  }) => {
     return (
-      <sl-select
+      <sl-input
         required
         exportparts="label: input-label"
         class={classes.Input}
-        value={formState.vatNumber}
-        label={"Sub Region"}
-        // onSl-select={(e) => callbacks.onFormChange("subRegion", e)}
+        label={label}
         disabled={states.loading}
-        {...(formState.errors?.vatNumber && {
+        value={formState[name]}
+        {...(formState.errors?.[name] && {
           class: classes.ErrorInput,
-          helpText: text.error.vatNumber,
+          helpText: text.error[name],
         })}
-        id="subRegion"
-        name="/subRegion"
-      >
-        {props.data.esRegions.map((r) => (
-          <sl-menu-item value={r.regionCode}>{r.displayName}</sl-menu-item>
-        ))}
-      </sl-select>
+        id={name}
+        name={`/${name}`}
+      />
+    );
+  };
+
+  const SpainFields = () => {
+    return (
+      <div>
+        <sl-select
+          required
+          exportparts="label: input-label"
+          class={classes.Input}
+          value={formState.subRegion}
+          label={"Sub Region"}
+          // onSl-select={(e) => callbacks.onFormChange("subRegion", e)}
+          disabled={states.loading}
+          {...(formState.errors?.indirectTaxNumber && {
+            class: classes.ErrorInput,
+            helpText: text.error.indirectTaxNumber,
+          })}
+          id="subRegion"
+          name="/subRegion"
+        >
+          {props.data.esRegions.map((r) => (
+            <sl-menu-item value={r.regionCode}>{r.displayName}</sl-menu-item>
+          ))}
+        </sl-select>
+        <IndirectTaxNumberInput
+          name={"indirectTaxNumber"}
+          label={getTaxFieldLabel("VAT")}
+        />
+        <sl-checkbox
+          exportparts="label: input-label"
+          checked={formState.hasSubRegionTaxNumber}
+          onSl-change={callbacks.onSpainToggle}
+        >
+          {text.isRegisteredSubRegionIncomeTax}
+        </sl-checkbox>
+        {formState.hasSubRegionTaxNumber && (
+          <sl-input
+            required
+            exportparts="label: input-label"
+            class={classes.Input}
+            label={text.subRegionTaxNumberLabel}
+            disabled={states.loading}
+            value={formState.subRegionTaxNumber}
+            {...(formState.errors?.subRegionTaxNumberError && {
+              class: classes.ErrorInput,
+              helpText: text.error.indirectTaxNumber,
+            })}
+            id={"subRegionTaxNumber"}
+            name={"/subRegionTaxNumber"}
+          />
+        )}
+      </div>
     );
   };
 
   const CanadaFields = () => {
-    const [qst, setQst] = useState(false);
     const { classes } = sheet;
 
     const currentTaxType = INDIRECT_TAX_PROVINCES?.find(
       (p) => p.provinceCode === formState.province
-    )?.taxType;
+    )?.taxType as TaxType | undefined;
 
     return (
       <div>
@@ -156,57 +232,28 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           ))}
         </sl-select>
         {currentTaxType === "GST" && (
-          <sl-input
-            required
-            exportparts="label: input-label"
-            class={classes.Input}
-            label={"GST Number"}
-            disabled={states.loading}
-            value={formState.gstNumber}
-            {...(formState.errors?.hstNumber && {
-              class: classes.ErrorInput,
-              helpText: text.error.indirectTaxNumber,
-            })}
-            id={"indirectTaxNumber"}
-            name={"/indirectTaxNumber"}
+          <IndirectTaxNumberInput
+            label={getTaxFieldLabel("GST")}
+            name={"indirectTaxNumber"}
           />
         )}
         {currentTaxType === "HST" && (
-          <sl-input
-            required
-            exportparts="label: input-label"
-            class={classes.Input}
-            label={"HST Number"}
-            disabled={states.loading}
-            value={formState.indirectTaxNumber}
-            {...(formState.errors?.indirectTaxNumber && {
-              class: classes.ErrorInput,
-              helpText: text.error.indirectTaxNumber,
-            })}
-            id={"indirectTaxNumber"}
-            name={"/indirectTaxNumber"}
+          <IndirectTaxNumberInput
+            label={getTaxFieldLabel("HST")}
+            name={"indirectTaxNumber"}
           />
         )}
         {formState.province === "QC" && (
           <div>
-            <sl-checkbox checked={qst} onInput={() => setQst((q) => !q)}>
-              Registered for QST?
+            <sl-checkbox
+              exportparts="label: input-label"
+              onSl-change={callbacks.onQstToggle}
+              checked={formState.hasQst}
+            >
+              {text.isRegisteredQST}
             </sl-checkbox>
-            {qst && (
-              <sl-input
-                required
-                exportparts="label: input-label"
-                class={classes.Input}
-                label={"QST Number"}
-                disabled={states.loading}
-                value={formState.indirectTaxNumber}
-                {...(formState.errors?.indirectTaxNumber && {
-                  class: classes.ErrorInput,
-                  helpText: text.error.indirectTaxNumber,
-                })}
-                id="qstNumber"
-                name="/qstNumber"
-              />
+            {formState.hasQst && (
+              <IndirectTaxNumberInput label={"QST Number"} name={"qstNumber"} />
             )}
           </div>
         )}
@@ -214,11 +261,37 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
     );
   };
 
-  const { classes } = sheet;
   // console.log(props.data.countries);
   // console.log(props.data.provinces, "OTHEREGIONSPROVINe");
   // console.log(formState.countryCode);
 
+  const getActiveForm = (selectedRegion: string) => {
+    switch (selectedRegion) {
+      case "CA":
+        return <CanadaFields />;
+      case "ES":
+        return <SpainFields />;
+      default:
+        return (
+          <sl-input
+            required
+            exportparts="label: input-label"
+            class={classes.Input}
+            value={formState.indirectTaxNumber}
+            label={getTaxFieldLabel("VAT")}
+            disabled={states.loading}
+            {...(formState.errors?.indirectTaxNumber && {
+              class: classes.ErrorInput,
+              helpText: text.error.indirectTaxNumber,
+            })}
+            id="indirectTaxNumber"
+            name="/indirectTaxNumber"
+          />
+        );
+    }
+  };
+
+  const activeForm = getActiveForm(formState.selectedRegion);
   return (
     <div style={states.hide ? { display: "none" } : {}}>
       <form class={classes.Container}>
@@ -248,24 +321,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             ))}
           </sl-select>
           {/* Trying to stop shoelace from persisting form inputs */}
-          {formState.selectedRegion === "CA" && <CanadaFields />}
-          {formState.selectedRegion === "ES" && <SpainFields />}
-          {formState.selectedRegion !== "CA" && (
-            <sl-input
-              required
-              exportparts="label: input-label"
-              class={classes.Input}
-              value={formState.vatNumber}
-              label={text.vatNumber}
-              disabled={states.loading}
-              {...(formState.errors?.vatNumber && {
-                class: classes.ErrorInput,
-                helpText: text.error.vatNumber,
-              })}
-              id="indirectTaxNumber"
-              name="/indirectTaxNumber"
-            />
-          )}
+          {activeForm}
         </div>
         <hr class={classes.HR} />
       </form>
