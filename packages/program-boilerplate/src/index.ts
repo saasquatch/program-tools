@@ -79,7 +79,7 @@ export function webtask(program: Program = {}): express.Application {
 
   app.use(express.json({ limit: process.env.MAX_PAYLOAD_SIZE || "1mb" }));
   app.use(compression());
-  app.use(httpLogMiddleware(logger));
+  app.use(httpLogMiddleware(logger, { logNonErrorResponses: false }));
 
   // Enforce HTTPS. The server does not redirect http -> https
   // because OWASP advises not to
