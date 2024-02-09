@@ -26,15 +26,16 @@ Feature: Tax Form Flow
     Then they proceed to <stepX> depending on the <brandCountry> and participants <countryCode>
 
     Examples: 
-      | firstName | lastName | email                  | countryCode | brandCountry | currency | participantType       | allowBankingCollection | option                                                           | stepX |
-      | Bob       | Johnson  | bob.johnson@email.com  | CA          | US           | CAD      | businessEntity        | true                   | I am registered for HST in Canada                                |     3 |
-      | Jane      | Moe      | jane.moe@email.com     | CA          | MX           | CAD      | individualParticipant | true                   | I am registered for HST in Canada                                |     4 |
-      | Dane      | Coe      | dane.coe@email.com     | US          | CA           | USD      | individualParticipant | true                   | I am not registered for Indirect Tax                             |     4 |
-      | David     | Renar    | david.renar@email.com  | US          | MX           | USD      | businessEntity        | true                   | I am not registered for Indirect Tax                             |     4 |
-      | Jose      | Querv    | jose.querv@email.com   | UK          | US           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region |     3 |
-      | David     | Blaine   | david.blaine@email.com | UK          | MX           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region |     4 |
-      | Charle    | Buck     | charle.buck@email.com  | EG          | US           | EGP      | businessEntity        | true                   | I am not registered for Indirect Tax                             |     3 |
-      | Payton    | Chan     | payton.chan@email.com  | EG          | MX           | EGP      | individualParticipant | true                   | I am not registered for Indirect Tax                             |     4 |
+      | firstName | lastName | email                  | countryCode | brandCountry | currency | participantType       | allowBankingCollection | option                               | stepX |
+      | Bob       | Johnson  | bob.johnson@email.com  | CA          | US           | CAD      | businessEntity        | true                   | I am registered for Indirect Tax     |     3 |
+      | Jane      | Moe      | jane.moe@email.com     | CA          | MX           | CAD      | individualParticipant | true                   | I am registered for Indirect Tax     |     4 |
+      | Dane      | Coe      | dane.coe@email.com     | US          | CA           | USD      | individualParticipant | true                   | I am not registered for Indirect Tax |     4 |
+      | David     | Renar    | david.renar@email.com  | US          | MX           | USD      | businessEntity        | true                   | I am not registered for Indirect Tax |     4 |
+      | Jose      | Querv    | jose.querv@email.com   | UK          | US           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax     |     3 |
+      | David     | Blaine   | david.blaine@email.com | UK          | MX           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax     |     4 |
+      | Charle    | Buck     | charle.buck@email.com  | EG          | US           | EGP      | businessEntity        | true                   | I am not registered for Indirect Tax |     3 |
+      | Payton    | Chan     | payton.chan@email.com  | EG          | MX           | EGP      | individualParticipant | true                   | I am not registered for Indirect Tax |     4 |
+
   @minutia
   Scenario: Participant is already registered as partner, provides indirect tax information, and submit their tax forms
     Given the they are already registered as a partner
@@ -59,28 +60,33 @@ Feature: Tax Form Flow
     Then they proceed to <stepX> depending on the <brandCountry> and participants <countryCode>
 
     Examples: 
-      | countryCode | brandCountry | currency | participantType       | allowBankingCollection | option                                                           | fields                        | stepX |
-      | CA          | US           | CAD      | businessEntity        | true                   | I am registered for HST in Canada                                | Province, Indirect Tax Number |     3 |
-      | CA          | MX           | CAD      | individualParticipant | true                   | I am registered for HST in Canada                                | Province, Indirect Tax Number |     4 |
-      | US          | CA           | USD      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region | N/A                           |     3 |
-      | US          | MX           | USD      | businessEntity        | true                   | I am registered for Indirect Tax in a different Country / Region | N/A                           |     3 |
-      | UK          | US           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region | Country, VAT Number           |     3 |
-      | UK          | MX           | GBP      | individualParticipant | true                   | I am registered for Indirect Tax in a different Country / Region | Country, VAT Number           |     3 |
-      | EG          | US           | EGP      | businessEntity        | true                   | I am not registered for Indirect Tax                             | Country, VAT Number           |     3 |
-      | EG          | MX           | BMD      | businessEntity        | true                   | I am not registered for Indirect Tax                             | N/A                           |     4 |
+      | countryCode | brandCountry | currency | participantType       | allowBankingCollection | option                               | fields                                 | stepX |
+      | CA          | US           | CAD      | businessEntity        | true                   | I am registered for Indirect Tax     | Country, Province, Indirect Tax Number |     3 |
+      | CA          | MX           | CAD      | individualParticipant | true                   | I am not registered for Indirect Tax |                                        |     4 |
+      | US          | CA           | USD      | individualParticipant | true                   | I am not registered for Indirect Tax | N/A                                    |     3 |
+      | US          | MX           | USD      | businessEntity        | true                   | I am not registered for Indirect Tax | N/A                                    |     3 |
+      | UK          | US           | GBP      | individualParticipant | true                   | I am not registered for Indirect Tax | N/A                                    |     3 |
+      | UK          | US           | GBP      | businessEntity        | true                   | I am registered for Indirect Tax     | Country, VAT Number                    |     3 |
+      | ES          | US           | EGP      | businessEntity        | true                   | I am registered for Indirect Tax     | Country, Sub Region,VAT Number         |     3 |
+      | EG          | MX           | BMD      | businessEntity        | true                   | I am not registered for Indirect Tax | N/A                                    |     4 |
 
   @minutia
   Scenario Outline: Different indirect tax inputs are shown depending on the country of a participant
     Given they are on step 2
-    When <option> is selected based on based the participant <country> from step 1
+    When <option> is selected based on the participant <country> from step 1
+    And their <participantType> is "businessEntity"
     Then different <inputs> appear
 
     Examples: 
-      | country | option                                                           | inputs                        |
-      | CA      | I am registered for HST in Canada                                | Province, Indirect Tax Number |
-      | US      | I am not registered for Indirect tax                             | N/A                           |
-      | UK      | I am registered for Indirect Tax in a different Country / Region | Country, VAT Number           |
-      | EG      | I am not registered for Indirect tax                             | N/A, N/A                      |
+      | country | option                               | participantType       | inputs                                                                 |
+      | CA      | I am registered for Indirect Tax     | businessEntity        | Country, Province, Indirect Tax Number/GST Number, ?QST Number(Quebec) |
+      | ES      | I am registered for Indirect Tax     | businessEntity        | Country, Sub Region, VAT Number, ?Income Tax Number                    |
+      | UK      | I am registered for Indirect Tax     | businessEntity        | Country, VAT Number                                                    |
+      | IR      | I am registered for Indirect Tax     | businessEntity        | Country, GST Number                                                    |
+      | AU      | I am registered for Indirect Tax     | businessEntity        | Country, GST Number                                                    |
+      | JP      | I am registered for Indirect Tax     | businessEntity        | Country, CT Number                                                     |
+      | US      | I am not registered for Indirect tax | individualParticipant | N/A                                                                    |
+      | EG      | I am not registered for Indirect tax | individualParticipant | N/A                                                                    |
 
   @minutia
   Scenario Outline: Participants based in another country working with non-US brands do not have to fillout docusign forms
