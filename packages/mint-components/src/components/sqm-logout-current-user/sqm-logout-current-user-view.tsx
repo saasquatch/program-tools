@@ -12,6 +12,7 @@ export interface LogoutCurrentUserViewProps {
 const style = {
   Container: { display: "flex", color: "var(--sl-color-neutral-600)" },
   Text: {
+    maxWidth: "400px",
     display: "inline-block",
     overflow: "hidden",
     textOverflow: "ellipsis",
