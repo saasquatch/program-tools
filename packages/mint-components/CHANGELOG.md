@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.4] - 2024-02-09
+
+### Fixed
+
+- Added string trunctation to `sqm-logout-current-user` email to avoid overflow on long emails
+
+### Updated
+
+- `sqm-logout-current-user` updated to explicitly fetch the user's email
+
 ## [1.7.3] - 2024-02-06
 
 ### Updated
@@ -820,7 +830,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.7.2...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.7.4...HEAD
+[1.7.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.4
+[1.7.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.3
 [1.7.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.2
 [1.7.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.1
 [1.7.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.0

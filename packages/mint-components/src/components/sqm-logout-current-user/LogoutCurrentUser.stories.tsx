@@ -14,6 +14,8 @@ const defaultProps = {
     "Currently showing referral data for noah.clarke@saasquatch.com",
   onSwitchClick: () => console.log("clicked"),
   switchUserText: "not you?",
+  loading: false,
+  emailErrorText: "Error fetching email",
 };
 
 export const Default = () => {
