@@ -5,10 +5,7 @@ import { Component, Host, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import {
-  IndirectDetailsSlotView,
-  OtherRegionSlotView,
-} from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
+import { OtherRegionSlotView } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
 import {
   IndirectTaxFormView,
   IndirectTaxFormViewProps,
@@ -200,18 +197,6 @@ export class IndirectTaxForm {
       ? useDemoIndirectTaxForm(this)
       : useIndirectTaxForm(this);
 
-    const registeredInCanadaDetailsSlot = (
-      <IndirectDetailsSlotView
-        states={{
-          formState: props.slotProps.formState,
-          hide: props.states.formState.checked !== "hstCanada",
-          loading: props.states.loading,
-        }}
-        data={{ provinces: props.data.provinces }}
-        text={props.text.slotText}
-      ></IndirectDetailsSlotView>
-    );
-
     const registeredInDifferentCountryDetailsSlot = (
       <OtherRegionSlotView
         states={{
@@ -219,7 +204,9 @@ export class IndirectTaxForm {
           formState: props.slotProps.formState,
           loading: props.states.loading,
         }}
+        callbacks={props.callbacks}
         data={{
+          esRegions: props.data.esRegions,
           countries: props.data.countries,
           provinces: props.data.provinces,
         }}
@@ -235,7 +222,6 @@ export class IndirectTaxForm {
           refs={props.refs}
           text={props.text}
           slots={{
-            registeredInCanadaDetailsSlot,
             registeredInDifferentCountryDetailsSlot,
           }}
         />
@@ -263,6 +249,7 @@ function useDemoIndirectTaxForm(
         },
       },
       callbacks: {
+        onFormChange: (field: string, e: CustomEvent) => console.log(e),
         onBack: () => {},
         onSubmit: async () => {},
         onChange: setOption,
