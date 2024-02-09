@@ -141,10 +141,10 @@ export function useEditProfile(props: EditProfile): EditProfileViewProps {
 
         const errors = {};
         if (!formState.firstName) {
-          errors["firstName"] = { message: "Field can't be empty" };
+          errors["firstName"] = { message: props.fieldEmptyText };
         }
         if (!formState.lastName) {
-          errors["lastName"] = { message: "Field can't be empty" };
+          errors["lastName"] = { message: props.fieldEmptyText };
         }
         if (!isEmpty(errors)) {
           setFormState((e) => ({
