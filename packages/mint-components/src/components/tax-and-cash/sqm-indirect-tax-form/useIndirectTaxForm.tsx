@@ -211,7 +211,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       formRef,
     },
     slotProps: {
-      formState: { ...formState, errors },
+      formState: { ...formState, errors, countryCode: "", province: "" },
     },
   };
 }

@@ -219,7 +219,10 @@ export class IndirectTaxForm {
           formState: props.slotProps.formState,
           loading: props.states.loading,
         }}
-        data={{ countries: props.data.countries }}
+        data={{
+          countries: props.data.countries,
+          provinces: props.data.provinces,
+        }}
         text={props.text.slotText}
       />
     );
@@ -245,6 +248,8 @@ function useDemoIndirectTaxForm(
   props: IndirectTaxForm
 ): ReturnType<typeof useIndirectTaxForm> {
   const [option, setOption] = useState(null);
+
+  console.log(props, "indrecttestprops");
 
   return deepmerge(
     {

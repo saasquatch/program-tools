@@ -92,6 +92,9 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
   } = props;
 
   const { classes } = sheet;
+  console.log(props.data.countries);
+  console.log(props.data.provinces, "OTHEREGIONSPROVINe");
+  console.log(formState.countryCode);
 
   return (
     <div style={states.hide ? { display: "none" } : {}}>
@@ -120,20 +123,77 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
               <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
             ))}
           </sl-select>
-          <sl-input
-            required
-            exportparts="label: input-label"
-            class={classes.Input}
-            value={formState.vatNumber}
-            label={text.vatNumber}
-            disabled={states.loading}
-            {...(formState.errors?.vatNumber && {
-              class: classes.ErrorInput,
-              helpText: text.error.vatNumber,
-            })}
-            id="vatNumber"
-            name="/vatNumber"
-          />
+          {/*AL testing inputs for now, dicuss with hooks proper way to handle QST, sub regions, and province sub inputs */}
+          {formState.countryCode === "CA" && (
+            <sl-select
+              required
+              value={formState.province}
+              exportparts="label: input-label"
+              class={classes.Input}
+              label={text.province}
+              disabled={states.loading}
+              {...(formState.errors?.province && {
+                class: classes.ErrorInput,
+                helpText: text.error.province,
+              })}
+              id="province"
+              name="/province"
+            >
+              {props.data.provinces.map((p) => (
+                <sl-menu-item value={p.provinceCode}>
+                  {p.displayName}
+                </sl-menu-item>
+              ))}
+            </sl-select>
+          )}
+          {formState.countryCode === "ES" && (
+            <sl-input
+              required
+              exportparts="label: input-label"
+              class={classes.Input}
+              value={formState.vatNumber}
+              label={"Sub Region"}
+              disabled={states.loading}
+              {...(formState.errors?.vatNumber && {
+                class: classes.ErrorInput,
+                helpText: text.error.vatNumber,
+              })}
+              id="subRegion"
+              name="/subRegion"
+            />
+          )}
+          {formState.province === "Quebec" && (
+            <sl-input
+              required
+              exportparts="label: input-label"
+              class={classes.Input}
+              label={"GST Number"}
+              disabled={states.loading}
+              value={formState.indirectTaxNumber}
+              {...(formState.errors?.indirectTaxNumber && {
+                class: classes.ErrorInput,
+                helpText: text.error.indirectTaxNumber,
+              })}
+              id="gstNumber"
+              name="/gstNumber"
+            />
+          )}
+          {formState.countryCode !== "CA" && (
+            <sl-input
+              required
+              exportparts="label: input-label"
+              class={classes.Input}
+              value={formState.vatNumber}
+              label={text.vatNumber}
+              disabled={states.loading}
+              {...(formState.errors?.vatNumber && {
+                class: classes.ErrorInput,
+                helpText: text.error.vatNumber,
+              })}
+              id="vatNumber"
+              name="/vatNumber"
+            />
+          )}
         </div>
         <hr class={classes.HR} />
       </form>
@@ -153,7 +213,6 @@ export const IndirectDetailsSlotView = (
 
   const { classes } = sheet;
 
-  console.log("regions", { formState });
   return (
     <div style={states.hide ? { display: "none" } : {}}>
       <form class={classes.Container}>

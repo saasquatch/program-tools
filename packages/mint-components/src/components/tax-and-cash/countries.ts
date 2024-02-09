@@ -3,6 +3,7 @@ export const INDIRECT_TAX_COUNTRIES = [
   { countryCode: "AT", displayName: "Austria" },
   { countryCode: "BE", displayName: "Belgium" },
   { countryCode: "BG", displayName: "Bulgaria" },
+  { countryCode: "CA", displayName: "Canada" },
   { countryCode: "HR", displayName: "Croatia" },
   { countryCode: "CY", displayName: "Cyprus" },
   { countryCode: "CZ", displayName: "Czechia" },
