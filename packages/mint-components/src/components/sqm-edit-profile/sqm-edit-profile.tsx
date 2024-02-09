@@ -61,12 +61,12 @@ export class EditProfile {
   @Prop() networkErrorMessage: string = "Network request failed.";
 
   /**
-   * @uiName Field empty text
+   * @uiName Empty field error message
    */
   @Prop() fieldEmptyText: string = "Cannot be empty";
 
   /**
-   * @uiName Form error text
+   * @uiName Form error message
    */
   @Prop() formErrorText: string =
     "Please correct the errors below to update your profile.";

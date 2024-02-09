@@ -51,12 +51,12 @@ export class PortalPasswordField {
   @Prop() disableValidation: boolean = false;
 
   /**
-   * @uiName Meets requirements text
+   * @uiName Password requirement met
    */
   @Prop() meetsRequirementsText: string = "Password has met all requirements";
 
   /**
-   * @uiName Fails requirements text
+   * @uiName Password requirement failed
    */
   @Prop() doesNotMeetRequirementsText: string =
     "Password must meet the following requirements:";
@@ -77,7 +77,7 @@ export class PortalPasswordField {
   @Prop() lowercaseErrorText: string = "contain at least 1 lowercase character";
 
   /**
-   * @uiName Missing number or symbol error text
+   * @uiName Missing number or symbol text
    */
   @Prop() hasErrorText: string = "contain at least 1 number or symbol";
 

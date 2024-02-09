@@ -69,10 +69,10 @@ export class PortalProfile {
   /**
    * @uiName Field empty text
    */
-  @Prop() fieldEmptyText: string = "Field can't be empty";
+  @Prop() fieldEmptyText: string = "Field is required";
 
   /**
-   * @uiName Form error text
+   * @uiName Form error message
    */
   @Prop() formErrorText: string =
     "Please correct the errors below to update your profile.";

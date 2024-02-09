@@ -76,12 +76,12 @@ export class PortalChangePassword {
   @Prop() portalChangePasswordButtonText: string = "Change your password...";
 
   /**
-   * @uiName Meets requirements text
+   * @uiName Password requirement met
    */
   @Prop() meetsRequirementsText: string = "Password has met all requirements";
 
   /**
-   * @uiName Fails requirements text
+   * @uiName Password requirement failed
    */
   @Prop() doesNotMeetRequirementsText: string =
     "Password must meet the following requirements:";
@@ -102,19 +102,19 @@ export class PortalChangePassword {
   @Prop() lowercaseErrorText: string = "contain at least 1 lowercase character";
 
   /**
-   * @uiName Non matching password error text
+   * @uiName Passwords don’t match error message
    */
   @Prop() nonMatchingPasswordErrorText: string =
     "contain at least 1 lowercase character";
 
   /**
-   * @uiName Invalid user session error text
+   * @uiName Invalid user session error message
    */
   @Prop() invalidSessionErrorText: string =
     "Please log in again to change your password.";
 
   /**
-   * @uiName Invalid session error text
+   * @uiName Missing number or symbol text
    */
   @Prop() hasErrorText: string = "contain at least 1 number or symbol";
 
