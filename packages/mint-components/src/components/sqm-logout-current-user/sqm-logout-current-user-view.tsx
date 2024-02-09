@@ -10,7 +10,12 @@ export interface LogoutCurrentUserViewProps {
 }
 
 const style = {
-  Container: { color: "var(--sl-color-neutral-600)" },
+  Container: { display: "flex", color: "var(--sl-color-neutral-600)" },
+  Text: {
+    display: "inline-block",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  },
   Link: {
     textDecoration: "none",
     color: "var(--sl-color-primary-700)",
@@ -46,10 +51,13 @@ export function LogoutCurrentUserView(props: LogoutCurrentUserViewProps) {
         {styleString}
         {vanillaStyle}
       </style>
-      {loading ? "..." : filledInEmailText || emailErrorText} (
-      <a class={sheet.classes.Link} onClick={onSwitchClick} part="sqm-link">
+      <span class={sheet.classes.Text}>
+        {loading ? "..." : filledInEmailText || emailErrorText}
+      </span>{" "}
+      (
+      <span class={sheet.classes.Link} onClick={onSwitchClick} part="sqm-link">
         {switchUserText}
-      </a>
+      </span>
       )
     </span>
   );
