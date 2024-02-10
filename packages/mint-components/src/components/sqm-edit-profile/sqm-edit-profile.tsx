@@ -126,6 +126,7 @@ function useEditProfileDemo(props: EditProfile): EditProfileViewProps {
             ? props.currentregiontext
             : "Region",
           showregion: true,
+          fieldEmptyText: props.fieldEmptyText,
         },
       },
       callbacks: {
