@@ -72,6 +72,13 @@ const style = {
     gap: "16px",
     padding: "16px",
   },
+  ConditionalInputsContainer: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+    gap: "16px",
+  },
   HR: {
     border: "1px solid #E0E0E0",
     margin: "10px 0",
@@ -152,7 +159,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
 
   const SpainFields = () => {
     return (
-      <div>
+      <div class={classes.ConditionalInputsContainer}>
         <sl-select
           required
           exportparts="label: input-label"
@@ -211,7 +218,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
     )?.taxType as TaxType | undefined;
 
     return (
-      <div>
+      <div class={classes.ConditionalInputsContainer}>
         <sl-select
           required
           value={formState.province}
@@ -244,7 +251,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           />
         )}
         {formState.province === "QC" && (
-          <div>
+          <div class={classes.ConditionalInputsContainer}>
             <sl-checkbox
               exportparts="label: input-label"
               onSl-change={callbacks.onQstToggle}

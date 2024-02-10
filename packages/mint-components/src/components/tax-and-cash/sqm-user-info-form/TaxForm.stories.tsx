@@ -257,29 +257,6 @@ export const StepTwoWithGeneralError = () => {
   );
 };
 
-export const StepTwoRegisteredCheckedSpain = () => {
-  return (
-    <sqm-indirect-tax-form
-      demoData={{
-        states: {
-          ...stepTwoProps.states,
-          formState: {
-            ...stepTwoProps.states.formState,
-            checked: "otherRegion",
-          },
-        },
-        slotProps: {
-          formState: {
-            selectedRegion: "ES",
-            hasSubRegionTaxNumber: true,
-            errors: {},
-          },
-        },
-      }}
-    ></sqm-indirect-tax-form>
-  );
-};
-
 export const StepTwoHSTCheckedWithInputErrors = () => {
   return (
     <sqm-indirect-tax-form
@@ -336,7 +313,7 @@ export const StepTwoOtherRegionCheckedCanada = () => {
         slotProps: {
           formState: {
             selectedRegion: "CA",
-            province: "British Columbia",
+            province: "BC",
             errors: {},
           },
         },
@@ -359,7 +336,31 @@ export const StepTwoOtherRegionCheckedCanadaGST = () => {
         slotProps: {
           formState: {
             selectedRegion: "CA",
-            province: "Quebec",
+            province: "QC",
+            errors: {},
+          },
+        },
+      }}
+    ></sqm-indirect-tax-form>
+  );
+};
+
+export const StepTwoOtherRegionCheckedCanadaGSTAndQST = () => {
+  return (
+    <sqm-indirect-tax-form
+      demoData={{
+        states: {
+          ...stepTwoProps.states,
+          formState: {
+            ...stepTwoProps.states.formState,
+            checked: "otherRegion",
+          },
+        },
+        slotProps: {
+          formState: {
+            selectedRegion: "CA",
+            province: "QC",
+            hasQst: true,
             errors: {},
           },
         },
@@ -382,7 +383,6 @@ export const StepTwoOtherRegionCheckedOtherCountrySubRegion = () => {
         slotProps: {
           formState: {
             selectedRegion: "ES",
-            province: "",
             errors: {},
           },
         },
@@ -390,6 +390,30 @@ export const StepTwoOtherRegionCheckedOtherCountrySubRegion = () => {
     ></sqm-indirect-tax-form>
   );
 };
+
+export const StepTwoOtherRegionCheckedOtherCountrySubRegionIncomeTax = () => {
+  return (
+    <sqm-indirect-tax-form
+      demoData={{
+        states: {
+          ...stepTwoProps.states,
+          formState: {
+            ...stepTwoProps.states.formState,
+            checked: "otherRegion",
+          },
+        },
+        slotProps: {
+          formState: {
+            selectedRegion: "ES",
+            hasSubRegionTaxNumber: true,
+            errors: {},
+          },
+        },
+      }}
+    ></sqm-indirect-tax-form>
+  );
+};
+
 // export const StepTwoOtherRegionChecked = () => {
 //   return (
 //     <sqm-indirect-tax-form

@@ -62,7 +62,7 @@ export class IndirectTaxForm {
   @Prop() qstTaxNumberError: string = "QST Tax Number is required";
   @Prop() subRegion: string = "Sub-region";
   @Prop() qstNumber: string = "QST Number";
-  @Prop() subRegionTaxNumberLabel: string;
+  @Prop() subRegionTaxNumberLabel: string = "Income Tax Number";
   @Prop() isRegisteredQST: string = "I am registered for QST Tax";
   @Prop() isRegisteredSubRegionIncomeTax: string =
     "I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me.";
