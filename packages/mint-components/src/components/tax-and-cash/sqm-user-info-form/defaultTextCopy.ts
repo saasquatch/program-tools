@@ -23,6 +23,7 @@ export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
     selectedRegion: "Country is required",
     province: "Province is required",
     indirectTaxNumber: "Indirect Tax is required",
-    subRegion: "Sub-region is required"
+    subRegion: "Sub-region is required",
+    qstNumber: "QST Number is required"
   },
 };
