@@ -6,7 +6,10 @@ import { LOG_TYPE_MARKER } from "./logger";
 export type HttpLogMiddlewareOptions = {
   nonErrorLogLevel?: LogLevel;
   logNonErrorResponses?: boolean;
+  logHealthchecks?: boolean;
 };
+
+const HEALTHCHECK_ENDPOINTS = ["/healthz", "/livez", "/readyz"];
 
 /**
  * A simple Express.js middleware which logs the URL, method, response code,
@@ -31,6 +34,11 @@ export function httpLogMiddleware(
         return;
       }
 
+      const isHealthcheck = HEALTHCHECK_ENDPOINTS.includes(req.url ?? "");
+      if (isHealthcheck && opts?.logHealthchecks === false) {
+        return;
+      }
+
       const endTimeNs = process.hrtime.bigint();
       const time = (endTimeNs - startTimeNs) / BigInt(1000);
       const { method, url } = req;
@@ -41,16 +49,12 @@ export function httpLogMiddleware(
           ? "error"
           : status >= 400
           ? "warn"
-          : ["/healthz", "/livez", "/readyz"].includes(req.url ?? "")
+          : isHealthcheck
           ? "debug"
           : opts?.nonErrorLogLevel ?? "info";
 
       const message = { method, status, time, url, requestId };
-
-      logger.log(level, {
-        [LOG_TYPE_MARKER]: "HTTP",
-        message,
-      });
+      logger.log(level, { [LOG_TYPE_MARKER]: "HTTP", message });
     });
 
     next();
