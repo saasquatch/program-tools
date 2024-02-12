@@ -4,15 +4,11 @@ import { useState } from "@saasquatch/universal-hooks";
 import { Component, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
-import { getProps } from "../../../utils/utils";
-import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
-import {
-  UserInfoFormView,
-  UserInfoFormViewProps,
-} from "./sqm-user-info-form-view";
-import { useUserInfoForm, UseUserInfoFormResult } from "./useUserInfoForm";
 import { useParent } from "../../../utils/useParentState";
+import { getProps } from "../../../utils/utils";
 import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
+import { UserInfoFormView } from "./sqm-user-info-form-view";
+import { useUserInfoForm, UseUserInfoFormResult } from "./useUserInfoForm";
 
 /**
  * @uiName User Information Form

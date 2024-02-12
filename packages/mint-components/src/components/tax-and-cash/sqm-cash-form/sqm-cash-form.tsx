@@ -3,8 +3,8 @@ import { Component, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import { UserNameViewProps } from "../sqm-tax-and-cash/sqm-tax-and-cash-view";
 import { useCashForm } from "./useCashForm";
+import { UserNameViewProps } from "../../sqm-user-name/sqm-user-name-view";
 
 /**
  * @uiName Tax And Cash

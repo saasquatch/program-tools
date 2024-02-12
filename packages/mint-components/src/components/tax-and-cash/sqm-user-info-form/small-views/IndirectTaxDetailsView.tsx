@@ -1,9 +1,7 @@
-import { VNode, h } from "@stencil/core";
-import { createStyleSheet } from "../../../../styling/JSS";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { INDIRECT_TAX_PROVINCES } from "../../subregions";
+import { h } from "@stencil/core";
 import { intl } from "../../../../global/global";
-import { getFieldDef } from "graphql/execution/execute";
+import { createStyleSheet } from "../../../../styling/JSS";
+import { INDIRECT_TAX_PROVINCES } from "../../subregions";
 
 export interface IndirectDetailsSlotViewProps {
   states: {

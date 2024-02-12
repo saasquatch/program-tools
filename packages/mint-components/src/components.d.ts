@@ -8,7 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
-import { UserNameViewProps } from "./components/tax-and-cash/sqm-tax-and-cash/sqm-tax-and-cash-view";
+import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
 import { UseDocumentTypeFormResult } from "./components/tax-and-cash/sqm-document-type-form/useDocumentTypeForm";
@@ -46,7 +46,6 @@ import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view
 import { UseTaxAndCashResultType } from "./components/tax-and-cash/sqm-tax-and-cash/useTaxAndCash";
 import { UseTaxDocumentSubmittedResult } from "./components/tax-and-cash/sqm-tax-document-submitted/useTaxDocumentSubmitted";
 import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
-import { UserNameViewProps as UserNameViewProps1 } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
     interface RaisinsPlopTarget {
         "renderCell": () => Promise<any>;
@@ -3004,13 +3003,6 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<UserNameViewProps>;
-    }
-    interface SqmTaxAndCashMonolith {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
           * Label text for tax and banking collection checkbox
@@ -4539,12 +4531,6 @@ declare global {
         prototype: HTMLSqmTaxAndCashElement;
         new (): HTMLSqmTaxAndCashElement;
     };
-    interface HTMLSqmTaxAndCashMonolithElement extends Components.SqmTaxAndCashMonolith, HTMLStencilElement {
-    }
-    var HTMLSqmTaxAndCashMonolithElement: {
-        prototype: HTMLSqmTaxAndCashMonolithElement;
-        new (): HTMLSqmTaxAndCashMonolithElement;
-    };
     interface HTMLSqmTaxDocumentSubmittedElement extends Components.SqmTaxDocumentSubmitted, HTMLStencilElement {
     }
     var HTMLSqmTaxDocumentSubmittedElement: {
@@ -4688,7 +4674,6 @@ declare global {
         "sqm-tabs": HTMLSqmTabsElement;
         "sqm-task-card": HTMLSqmTaskCardElement;
         "sqm-tax-and-cash": HTMLSqmTaxAndCashElement;
-        "sqm-tax-and-cash-monolith": HTMLSqmTaxAndCashMonolithElement;
         "sqm-tax-document-submitted": HTMLSqmTaxDocumentSubmittedElement;
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
@@ -7630,13 +7615,6 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<UserNameViewProps>;
-    }
-    interface SqmTaxAndCashMonolith {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
           * Label text for tax and banking collection checkbox
@@ -8693,7 +8671,6 @@ declare namespace LocalJSX {
         "sqm-tabs": SqmTabs;
         "sqm-task-card": SqmTaskCard;
         "sqm-tax-and-cash": SqmTaxAndCash;
-        "sqm-tax-and-cash-monolith": SqmTaxAndCashMonolith;
         "sqm-tax-document-submitted": SqmTaxDocumentSubmitted;
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
@@ -8802,7 +8779,6 @@ declare module "@stencil/core" {
             "sqm-tabs": LocalJSX.SqmTabs & JSXBase.HTMLAttributes<HTMLSqmTabsElement>;
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
             "sqm-tax-and-cash": LocalJSX.SqmTaxAndCash & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashElement>;
-            "sqm-tax-and-cash-monolith": LocalJSX.SqmTaxAndCashMonolith & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashMonolithElement>;
             "sqm-tax-document-submitted": LocalJSX.SqmTaxDocumentSubmitted & JSXBase.HTMLAttributes<HTMLSqmTaxDocumentSubmittedElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;

@@ -30,13 +30,13 @@
 ### Used by
 
  - [sqm-stencilbook](../../sqm-stencilbook)
- - [sqm-tax-and-cash-monolith](../../sqm-tax-and-cash-monolith)
+ - [sqm-tax-and-cash](../../sqm-tax-and-cash)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-stencilbook --> sqm-docusign-form
-  sqm-tax-and-cash-monolith --> sqm-docusign-form
+  sqm-tax-and-cash --> sqm-docusign-form
   style sqm-docusign-form fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
