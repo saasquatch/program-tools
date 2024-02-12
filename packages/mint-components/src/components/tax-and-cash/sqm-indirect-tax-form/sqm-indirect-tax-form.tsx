@@ -61,6 +61,7 @@ export class IndirectTaxForm {
   @Prop() subRegionTaxNumberError: string = "Income Tax Number is required";
   @Prop() qstTaxNumberError: string = "QST Tax Number is required";
   @Prop() subRegion: string = "Sub-region";
+  @Prop() subRegionError: string = "Sub-region is required";
   @Prop() qstNumber: string = "QST Number";
   @Prop() subRegionTaxNumberLabel: string = "Income Tax Number";
   @Prop() isRegisteredQST: string = "I am registered for QST Tax";
@@ -102,6 +103,7 @@ export class IndirectTaxForm {
           selectedRegion: props.selectedRegionError,
           province: props.provinceError,
           indirectTaxNumber: props.indirectTaxNumberError,
+          subRegion: props.subRegionError,
         },
       },
     };

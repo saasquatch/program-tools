@@ -13,15 +13,15 @@ Feature: Indirect Tax Form
     Then different <inputs> appear
 
     Examples: 
-      | country | option                                               | participantType       | inputs                                                                 |
-      | CA      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, Province, Indirect Tax Number/GST Number, ?QST Number(Quebec) |
-      | ES      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, Sub Region, VAT Number, ?Income Tax Number                    |
-      | UK      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, VAT Number                                                    |
-      | IR      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, GST Number                                                    |
-      | AU      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, GST Number                                                    |
-      | JP      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, CT Number                                                     |
-      | US      | I am not registered for Indirect tax                 | individualParticipant | N/A                                                                    |
-      | EG      | I am not registered for Indirect tax                 | individualParticipant | N/A                                                                    |
+      | country | option                                               | participantType       | inputs                                                 |
+      | CA      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, Province, HST/GST Number, ?QST Number(Quebec) |
+      | ES      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, Sub Region, VAT Number, ?Income Tax Number    |
+      | UK      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, VAT Number                                    |
+      | IR      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, GST Number                                    |
+      | AU      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, GST Number                                    |
+      | JP      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, CT Number                                     |
+      | US      | I am not registered for Indirect tax                 | individualParticipant | N/A                                                    |
+      | EG      | I am not registered for Indirect tax                 | individualParticipant | N/A                                                    |
 
   @minutia @ui
   Scenario Outline: The country select displays applicable indirect tax countries and changes the VAT/GST/CT number input
@@ -90,16 +90,23 @@ Feature: Indirect Tax Form
     And the country is "Canada"
     Then A Province select appears with the available <provinces>
     And based on the selected <provinces>
-    Then a <typeTaxInput> will appear
+    Then a <typeTaxInputs> will appear
 
     Examples: 
-      | provinces            |
-      | Ontario              |
-      | New Brunswick        |
-      | Newfoundland         |
-      | Nova Scotia          |
-      | Prince Edward Island |
-      | Quebec               |
+      | provinces             | typeTaxInput      |
+      | Ontario               | HST Number        |
+      | New Brunswick         | HST Number        |
+      | Newfoundland          | HST Number        |
+      | Nova Scotia           | HST Number        |
+      | Saskatchewan          | HST Number        |
+      | Prince Edward Island  | HST Number        |
+      | Nunavut               | HST Number        |
+      | British Columbia      | HST Number        |
+      | Manitoba              | HST Number        |
+      | Quebec                | GST + ?QST Number |
+      | Yukon                 | GST Number        |
+      | Alberta               | GST Number        |
+      | Northwest Territories | GST Number        |
 
   @minutia
   Scenario: QST Number input appears if the province is Quebec
@@ -116,7 +123,7 @@ Feature: Indirect Tax Form
     Then a "Sub Region" select appears with available <subRegions>
     And a "I am registered for Income Tax" checkbox will appear
     And if the participant checks <isRegisteredIncomeTax>
-    Then a "Income Tax" input will appear
+    Then a "Income Tax Number" input will appear
 
     Examples: 
       | subRegions | isRegisteredIncomeTax |
@@ -148,13 +155,19 @@ Feature: Indirect Tax Form
   @minutia @ui
   Scenario: Participant fills out the Indirect Tax Form with invalid or empty values
     When they fill out the form with invalid or empty for the following fields:
-      | Province     | <province>    |
-      | Indirect Tax | <indirectTax> |
-      | VAT Number   | <vatNumber>   |
+      | Country               | <country             |
+      | Province              | <province>           |
+      | Sub-region            | <subRegion>          |
+      | Indirect Tax Number   | <indirectTaxNumber>  |
+      | QST Number            | <qstNumber>          |
+      | Sub-Region Tax Number | <subRegionTaxNumber> |
     Then the form displays the respective errors for each field:
-      | <province>    | Province is required            |
-      | <indirectTax> | Indirect tax number is required |
-      | <vatNumber>   | VAT number is required          |
+      | <country>           | Country is required                                                                                |
+      | <province>          | Province is required                                                                               |
+      | <subRegion          | Sub-region is required                                                                             |
+      | <indirectTaxNumber> | "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number}} is required" |
+      | <qstNumber>         | "QST Number is required"                                                                           |
+      | <subRegionTaxNumber | "Income tax number is required                                                                     |
 	#   AL: Add case that handles errors thrown by backend, depends on the backend if they are doing that validation
 
   @minutia

@@ -54,6 +54,7 @@ export interface IndirectDetailsSlotViewProps {
       province: string;
       indirectTaxNumber: string;
       subRegionTaxNumber: string;
+      subRegion: string;
     };
   };
 }
@@ -81,10 +82,9 @@ const style = {
     border: "1px solid #E0E0E0",
     margin: "10px 0",
   },
-  Input: {
-    maxWidth: "500px",
-  },
+  Input: { maxWidth: "500px" },
   ErrorInput: {
+    maxWidth: "500px",
     "&::part(base)": {
       border: "1px solid var(--sl-color-danger-500)",
       borderRadius: "var(--sl-input-border-radius-medium)",
@@ -110,7 +110,7 @@ const vanillaStyle = `
     }
   `;
 
-export type TaxType = "GST" | "HST" | "VAT" | "JST";
+export type TaxType = "GST" | "HST" | "VAT" | "JST" | "QST";
 export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
   const {
     states,
@@ -168,7 +168,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           disabled={states.loading}
           {...(formState.errors?.indirectTaxNumber && {
             class: classes.ErrorInput,
-            helpText: text.error.indirectTaxNumber,
+            helpText: text.error.subRegion,
           })}
           id="subRegion"
           name="/subRegion"
@@ -258,17 +258,16 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
               {text.isRegisteredQST}
             </sl-checkbox>
             {formState.hasQst && (
-              <IndirectTaxNumberInput label={"QST Number"} name={"qstNumber"} />
+              <IndirectTaxNumberInput
+                label={text.qstNumber}
+                name={"indirectTaxNumber"}
+              />
             )}
           </div>
         )}
       </div>
     );
   };
-
-  // console.log(props.data.countries);
-  // console.log(props.data.provinces, "OTHEREGIONSPROVINe");
-  // console.log(formState.countryCode);
 
   const getActiveForm = (selectedRegion: string) => {
     switch (selectedRegion) {
