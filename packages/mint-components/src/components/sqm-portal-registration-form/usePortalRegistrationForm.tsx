@@ -146,7 +146,7 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     const variables = {
       key: props.formKey,
       formData: {
-        ...(props.useBrowserLocale ? { locale } : {}),
+        locale,
         email,
         password,
         redirectPath,

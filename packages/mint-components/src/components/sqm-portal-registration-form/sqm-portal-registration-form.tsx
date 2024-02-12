@@ -40,14 +40,6 @@ export class PortalRegistrationForm {
   redirectPath: string = "/verifyEmail";
 
   /**
-   * Saves the browser locale on the new user
-   *
-   * @uiName Use browser locale
-   */
-  @Prop()
-  useBrowserLocale: boolean = false;
-
-  /**
    * @uiName Email field label
    */
   @Prop()
