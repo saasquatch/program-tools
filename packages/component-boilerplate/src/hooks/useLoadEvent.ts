@@ -1,3 +1,6 @@
+import { UserIdentity } from "@saasquatch/component-environment";
+import debug from "debug";
+import { ContextProvider } from "dom-context";
 import { gql } from "graphql-request";
 import {
   useEngagementMedium,
@@ -5,14 +8,8 @@ import {
   useUserIdentity,
 } from "./environment";
 import { useMutation } from "./graphql/useMutation";
-import debug from "debug";
-import { ContextProvider } from "dom-context";
-import { useHost } from "./useHost";
-import { useDomContext } from "@saasquatch/dom-context-hooks";
-import { useEffect } from "@saasquatch/universal-hooks";
 import useDeepEffect from "./useDeepEffect";
-import { UserIdentity } from "@saasquatch/component-environment";
-
+import { equal as deepEqual } from "@wry/equality";
 declare global {
   interface Window {
     squatchLoadEvent?: ContextProvider<EventContext>;
@@ -65,35 +62,35 @@ export function useLoadEvent() {
 
   useDeepEffect(() => {
     if (!userIdentity || !programId) return;
+
     if (
-      userIdentity !== globalProvider.context.userIdentity ||
-      programId !== globalProvider.context.programId
+      // User changed
+      !deepEqual(userIdentity, globalProvider.context.userIdentity) ||
+      // Different programId
+      programId !== globalProvider.context.programId ||
+      // Never loaded
+      !globalProvider.context.loaded
     ) {
-      globalProvider.context = { userIdentity, programId, loaded: false };
+      const variables = {
+        eventMeta: {
+          programId,
+          id: userIdentity.id,
+          accountId: userIdentity.accountId,
+          type: "USER_REFERRAL_PROGRAM_LOADED_EVENT",
+          meta: {
+            engagementMedium,
+          },
+        },
+      };
+      dispatch(variables);
+      console.log("updated context", {
+        programChanged: programId !== globalProvider.context.programId,
+        userChanged: deepEqual(
+          userIdentity,
+          globalProvider.context.userIdentity
+        ),
+      });
+      globalProvider.context = { userIdentity, programId, loaded: true };
     }
   }, [userIdentity, programId]);
-
-  if (!userIdentity) {
-    // Not logged in. No-op callback for tracking sharing.
-    return () => {};
-  }
-
-  return () => {
-    console.log({ globalProvider, value: globalProvider.context });
-    if (globalProvider.context.loaded) return;
-
-    const variables = {
-      eventMeta: {
-        programId,
-        id: userIdentity.id,
-        accountId: userIdentity.accountId,
-        type: "USER_REFERRAL_PROGRAM_LOADED_EVENT",
-        meta: {
-          engagementMedium,
-        },
-      },
-    };
-    dispatch(variables);
-    globalProvider.context = { userIdentity, programId, loaded: true };
-  };
 }
