@@ -3,11 +3,11 @@ import { useRef } from '@saasquatch/universal-hooks';
 
 export function useProgramSection() {
   const userIdent = useUserIdentity();
+  const eventSent = useRef(false);
+  const sendLoadEvent = useLoadEvent();
 
-  const analyticsEventSent = useRef(false);
-
-  if (!analyticsEventSent.current && userIdent !== undefined) {
-    analyticsEventSent.current = true;
-    useLoadEvent();
+  if (eventSent.current !== undefined && !eventSent.current && userIdent !== undefined) {
+    eventSent.current = true;
+    sendLoadEvent();
   }
 }
