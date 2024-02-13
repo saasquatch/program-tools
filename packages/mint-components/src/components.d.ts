@@ -330,12 +330,12 @@ export namespace Components {
          */
         "taxForm": string;
         /**
-          * Subtext for the W8 radio button
+          * Description for the W8 radio button
           * @uiName W8 radio button subtext
          */
         "w8Description": string;
         /**
-          * Subtext for the W8E radio button
+          * Description for the W8E radio button
           * @uiName W8E radio button subtext
          */
         "w8EDescription": string;
@@ -350,7 +350,7 @@ export namespace Components {
          */
         "w8Label": string;
         /**
-          * Subtext for the W9 radio button
+          * Description for the W9 radio button
           * @uiName W9 radio button subtext
          */
         "w9Description": string;
@@ -5575,12 +5575,12 @@ declare namespace LocalJSX {
          */
         "taxForm"?: string;
         /**
-          * Subtext for the W8 radio button
+          * Description for the W8 radio button
           * @uiName W8 radio button subtext
          */
         "w8Description"?: string;
         /**
-          * Subtext for the W8E radio button
+          * Description for the W8E radio button
           * @uiName W8E radio button subtext
          */
         "w8EDescription"?: string;
@@ -5595,7 +5595,7 @@ declare namespace LocalJSX {
          */
         "w8Label"?: string;
         /**
-          * Subtext for the W9 radio button
+          * Description for the W9 radio button
           * @uiName W9 radio button subtext
          */
         "w9Description"?: string;

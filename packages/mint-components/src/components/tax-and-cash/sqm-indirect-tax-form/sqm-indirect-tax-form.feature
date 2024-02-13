@@ -13,15 +13,15 @@ Feature: Indirect Tax Form
     Then different <inputs> appear
 
     Examples: 
-      | country | option                                               | participantType       | inputs                                                 |
-      | CA      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, Province, HST/GST Number, ?QST Number(Quebec) |
-      | ES      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, Sub Region, VAT Number, ?Income Tax Number    |
-      | UK      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, VAT Number                                    |
-      | IR      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, GST Number                                    |
-      | AU      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, GST Number                                    |
-      | JP      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, CT Number                                     |
-      | US      | I am not registered for Indirect tax                 | individualParticipant | N/A                                                    |
-      | EG      | I am not registered for Indirect tax                 | individualParticipant | N/A                                                    |
+      | country | option                                               | participantType       | inputs                                                  |
+      | CA      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, Province, ?HST/GST Number, ?QST Number(Quebec) |
+      | ES      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, Sub Region, VAT Number, ?Income Tax Number     |
+      | UK      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, VAT Number                                     |
+      | IR      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, GST Number                                     |
+      | AU      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, GST Number                                     |
+      | JP      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, CT Number                                      |
+      | US      | I am not registered for Indirect tax                 | individualParticipant | N/A                                                     |
+      | EG      | I am not registered for Indirect tax                 | individualParticipant | N/A                                                     |
 
   @minutia @ui
   Scenario Outline: The country select displays applicable indirect tax countries and changes the VAT/GST/CT number input

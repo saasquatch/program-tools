@@ -500,22 +500,6 @@ export const StepTwoOtherRegionCheckedOtherCountrySubRegionErrors = () => {
   );
 };
 
-// export const StepTwoOtherRegionChecked = () => {
-//   return (
-//     <sqm-indirect-tax-form
-//       demoData={{
-//         states: {
-//           ...stepTwoProps.states,
-//           formState: {
-//             ...stepTwoProps.states.formState,
-//             checked: "otherRegion",
-//           },
-//         },
-//       }}
-//     ></sqm-indirect-tax-form>
-//   );
-// };
-
 export const StepTwoNotRegisteredChecked = () => {
   return (
     <sqm-indirect-tax-form
