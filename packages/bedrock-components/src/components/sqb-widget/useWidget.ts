@@ -1,5 +1,5 @@
 import { useLazyQuery, useLoadEvent, useLocale, useUserIdentity } from '@saasquatch/component-boilerplate';
-import { useEffect, useRef } from '@saasquatch/universal-hooks';
+import { useEffect } from '@saasquatch/universal-hooks';
 import { gql } from 'graphql-request';
 import { SqbWidget } from './sqb-widget';
 
@@ -46,10 +46,8 @@ export function useWidget(props: SqbWidget) {
   const locale = useLocale();
   const [fetch, { data }] = useLazyQuery<GetWidget>(GET_WIDGET);
   const sendLoadEvent = useLoadEvent();
-  const analyticsEventSent = useRef(false);
 
-  if (props.trackLoads && analyticsEventSent.current !== undefined && !analyticsEventSent.current && userIdent !== undefined) {
-    analyticsEventSent.current = true;
+  if (props.trackLoads && userIdent !== undefined) {
     sendLoadEvent();
   }
 
