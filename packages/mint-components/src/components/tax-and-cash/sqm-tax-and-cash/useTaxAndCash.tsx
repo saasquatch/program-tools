@@ -9,7 +9,6 @@ import {
   getContextValueName,
   useParentState,
 } from "../../../utils/useParentState";
-import { FormState } from "../sqm-user-info-form/useUserInfoForm";
 import {
   COUNTRIES_NAMESPACE,
   CURRENCIES_NAMESPACE,
@@ -21,46 +20,33 @@ import {
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
   TaxContext,
+  USER_FORM_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
+  UserFormContext,
   UserQuery,
 } from "./data";
 
 function getCurrentStep(user: UserQuery["user"]) {
-  // TODO: From partner information
   if (
-    !user.countryCode ||
-    !user.customFields?.currency ||
-    !user.customFields.participantType
+    !user.impactPartner ||
+    user.impactPartner?.connectionStatus === "NOT_CONNECTED"
   ) {
     return "/1";
   }
 
-  // TODO: Get indirect tax info from impact
-  // Right now, this is just set on submit in step 2 to flag it as being completed
-  if (!user.customFields.__taxOption) {
-    return "/2";
+  if (user.impactPartner.currentTaxDocument) {
+    const { status, type } = user.impactPartner.currentTaxDocument;
+
+    if (status === "ACTIVE" || status === "NOT_VERIFIED") return "/submitted";
+
+    return "/3";
   }
 
-  // Land on specific docusign document
-  // TODO: From brand info and partner info
-  // If document hasn't been submitted but their settings require a tax doc
-  if (
-    !user.customFields?.__taxDocumentSubmitted &&
-    user.customFields?.__taxDocumentType
-  ) {
-    if (user.countryCode === "US") {
-      return "/3/W9";
-    } else if (user.customFields.__taxCountry === "US") {
-      if (user.customFields.participantType === "businessEntity") {
-        return "/3/W8-BEN-E";
-      } else if (
-        user.customFields.participantType === "individualParticipant"
-      ) {
-        return "/3/W8-BEN";
-      }
-    }
+  if (user.impactPartner.requiredTaxDocumentType) {
+    return `/3`;
   }
 
+  // If impact partner exists but no requiredTaxDocument, go straight to the dashboard
   return "/submitted";
 }
 
@@ -86,34 +72,33 @@ export function useTaxAndCash() {
       id,
       jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiYWNjb3VudElkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiZW1haWwiOiJ6YWNoLmhhcnJpc29uQHJlZmVycmFsc2Fhc3F1YXRjaC5jb20ifX0.vBPHefz1au0_O-Hub2q6m5S8t-D5EO9LxK_pd9rkLhQ",
     });
-    // return () => {
-    //   window.widgetIdent = undefined;
-    //   setUserIdentity(undefined);
-    // };
   }, []);
-  /*** */
 
   const user = useUserIdentity();
 
-  // TODO: Load tax document status info
-
+  // State for current step of form
   const [step, setStep] = useParentState<string>({
     namespace: TAX_CONTEXT_NAMESPACE,
     initialValue: "/loading",
   });
 
+  // State for when to hide steps, or override certain actions
   const [context, setContext] = useParentState<TaxContext>({
     namespace: TAX_FORM_CONTEXT_NAMESPACE,
-    initialValue: {},
+    initialValue: {} as TaxContext,
   });
+
+  // State to carry user form information into step 2
+  const [userFormContext, setUserFormContext] = useParentState<UserFormContext>(
+    {
+      namespace: USER_FORM_CONTEXT_NAMESPACE,
+      initialValue: {} as UserFormContext,
+    }
+  );
 
   const { data } = useParentQuery<UserQuery>({
     namespace: USER_QUERY_NAMESPACE,
     query: GET_USER,
-    variables: {
-      id: user?.id,
-      accountId: user?.accountId,
-    },
     skip: !user,
   });
 

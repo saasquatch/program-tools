@@ -2,7 +2,7 @@ import {
   useMutation,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useEffect, useMemo, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParent, useParentValue } from "../../../utils/useParentState";
@@ -10,20 +10,23 @@ import {
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
   TaxContext,
+  TaxDocumentType,
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
-import { TaxDocumentType } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
 import { DocusignForm } from "./sqm-docusign-form";
 
-// TODO: Fill out when API is released
+type CreateTaxDocumentQuery = {
+  documentUrl: string;
+};
 const GET_TAX_DOCUMENT = gql`
-  query getTaxDocument ($vars: TaxDocumentInput) {}
-`;
-
-// TODO: Check if document already exists
-const CHECK_DOCUMENT_STATUS = gql`
-  query checkDocumentStatus ($vars: CheckDocumentStatusInput) {}
+  mutation createImpactPartnerTaxDocument(
+    $vars: CreateImpactPartnerTaxDocumentInput
+  ) {
+    createImpactPartnerTaxDocument(createImpactPartnerTaxDocumentInput: $vars) {
+      documentUrl
+    }
+  }
 `;
 
 const UPSERT_USER = gql`
@@ -42,42 +45,45 @@ export function useDocusignForm(props: DocusignForm, el: any) {
   const { data, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
-  const [upsertUser] = useMutation(UPSERT_USER);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   const splitPath = path.split("/");
-  const pathedDocumentType = splitPath.length === 3 ? splitPath[2] : undefined;
-  const savedUserTaxType = data?.user?.customFields?.w9Type;
+  const pathedDocumentType =
+    splitPath.length === 3 ? (splitPath[2] as TaxDocumentType) : undefined;
 
-  // TODO: Replace with real backend data
-  const {
-    data: taxInfo,
-    loading: taxInfoLoading,
-    refetch: refetchDocument,
-  } = {
-    data: {
-      taxForm: pathedDocumentType,
-      documentUrl: "https://example.com",
-    },
-    loading: false,
-    refetch: (_vars: any) => console.debug("REFETCHING", _vars),
-  };
+  const documentType =
+    pathedDocumentType || // Prioritise path param override
+    data?.user?.impactPartner?.currentTaxDocument?.type || // Then current form (could be different than required)
+    data?.user?.impactPartner?.requiredTaxDocumentType; // Last, the required tax form
+
+  const [
+    createTaxDocument,
+    { loading: documentLoading, data: document, errors: documentErrors },
+  ] = useMutation<CreateTaxDocumentQuery>(GET_TAX_DOCUMENT);
 
   useEffect(() => {
-    if (pathedDocumentType === savedUserTaxType) return;
+    if (data.user && !data.user.impactPartner) {
+      setErrors({ general: true });
+      return;
+    }
 
-    refetchDocument({ documentType: pathedDocumentType });
-  }, [pathedDocumentType, savedUserTaxType]);
+    if (!user || !documentType) return;
+
+    createTaxDocument({
+      userId: user.id,
+      accountId: user.accountId,
+      taxDocumentType: documentType,
+    });
+  }, [data, user, documentType]);
 
   useEffect(() => {
+    if (!document) return;
     // Load docusign iframe with given url
     const slotted = el.querySelector("sqm-docusign-embed");
-    if (slotted) {
-      slotted.url = taxInfo.documentUrl;
-    }
-  }, [taxInfo.documentUrl]);
+    if (slotted) slotted.url = document.documentUrl;
+  }, [document]);
 
   const onSubmit = async () => {
     if (!formSubmitted) {
@@ -89,15 +95,15 @@ export function useDocusignForm(props: DocusignForm, el: any) {
     try {
       setLoading(true);
       // Backend request
-      await upsertUser({
-        userInput: {
-          id: user.id,
-          accountId: user.accountId,
-          customFields: {
-            __taxDocumentSubmitted: true,
-          },
-        },
-      });
+      // await upsertUser({
+      //   userInput: {
+      //     id: user.id,
+      //     accountId: user.accountId,
+      //     customFields: {
+      //       __taxDocumentSubmitted: true,
+      //     },
+      //   },
+      // });
       await refetch();
 
       setPath(context.overrideNextStep || "/submitted");
@@ -115,19 +121,19 @@ export function useDocusignForm(props: DocusignForm, el: any) {
   return {
     states: {
       hideSteps: context.hideSteps,
-      disabled: taxInfoLoading || loading,
+      disabled: documentLoading || loading,
       submitDisabled: !formSubmitted,
-      loading: taxInfoLoading || loading,
+      loading: documentLoading || loading,
       formState: {
         completedTaxForm: formSubmitted,
         taxFormExpired: false, // TODO: Unhardcode this
         errors,
       },
-      documentType: taxInfo.taxForm?.toUpperCase() as TaxDocumentType,
+      documentType,
     },
     data: {
-      taxForm: taxInfo?.taxForm,
-      documentUrl: taxInfo?.documentUrl,
+      taxForm: documentType,
+      documentUrl: document?.documentUrl,
     },
     callbacks: {
       onShowDocumentType: () => setPath("/3b"),

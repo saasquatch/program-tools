@@ -1,3 +1,4 @@
+import { useEffect } from "@saasquatch/universal-hooks";
 import { DateTime } from "luxon";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParent, useSetParent } from "../../../utils/useParentState";
@@ -8,25 +9,9 @@ import {
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
-import {
-  TaxDocumentSubmittedProps,
-  TaxDocumentType,
-} from "./sqm-tax-document-submitted-view";
-import { TaxDocumentSubmitted } from "./sqm-tax-document-submitted";
-import { useEditProfile } from "../../sqm-edit-profile/useEditProfile";
-import { useEffect } from "@saasquatch/universal-hooks";
 import { INDIRECT_TAX_PROVINCES } from "../subregions";
-
-export function getDocumentType(user): TaxDocumentType {
-  if (!user) return;
-  if (user.countryCode === "US") return "W9";
-  if (user.customFields.__taxCountry === "US") {
-    if (user.customFields.participantType === "individualParticipant")
-      return "W8-BEN";
-    else if (user.customFields.participantType === "businessEntity")
-      return "W8-BEN-E";
-  }
-}
+import { TaxDocumentSubmitted } from "./sqm-tax-document-submitted";
+import { TaxDocumentSubmittedProps } from "./sqm-tax-document-submitted-view";
 
 function getExpiresSoon(submissionDate: number, expiryDate: number) {
   if (!submissionDate || !expiryDate) return false;
@@ -58,6 +43,7 @@ export const useTaxDocumentSubmitted = (
 
   // TODO: Fetch document status from backend
 
+  const documentType = data?.user?.impactPartner?.currentTaxDocument?.type;
   const submissionDate = DateTime.now().toMillis();
   const dateSubmitted =
     DateTime.fromMillis(submissionDate).toFormat("LLL dd, yyyy");
@@ -67,21 +53,6 @@ export const useTaxDocumentSubmitted = (
 
   const expiresSoon = getExpiresSoon(expiryDate, submissionDate);
 
-  console.log({
-    dateSubmitted,
-    dateExpired,
-    expiresSoon,
-    diff: DateTime.fromMillis(submissionDate).diff(
-      DateTime.fromMillis(expiryDate)
-    ),
-  });
-
-  const documentType = getDocumentType(
-    data?.user
-  )?.toUpperCase() as TaxDocumentType;
-
-  console.log({ documentType });
-
   const onNewDocumentClick = () => {
     setContext({
       overrideNextStep: "/submitted",
@@ -89,7 +60,7 @@ export const useTaxDocumentSubmitted = (
       hideSteps: true,
     });
 
-    if (documentType) setStep(`/3/${documentType}`);
+    if (documentType) setStep(`/3`);
     else setStep("/3b");
   };
 
@@ -103,26 +74,24 @@ export const useTaxDocumentSubmitted = (
   };
 
   const provinceName = INDIRECT_TAX_PROVINCES.find(
-    (p) => p.provinceCode === data?.user?.customFields?.__taxProvince
+    (p) => p.provinceCode === data?.user?.impactPartner?.countrySubdivision
   )?.displayName;
 
   return {
     states: {
       dateSubmitted,
       documentType,
-
-      // TODO: Hook up to API
-      status: documentType ? "NOT_VERIFIED" : undefined,
+      status: data?.user?.impactPartner?.currentTaxDocument?.status,
 
       indirectTaxNumber: data?.user?.customFields?.__indirectTaxNumber,
-      //AL: TODO hook up isBusinessEntity up to hooks
+      // TODO: hook up isBusinessEntity up to hooks
       isBusinessEntity: true,
       province: provinceName,
       // @ts-ignore: DisplayNames does exist on Intl
       country: new Intl.DisplayNames(["en"], { type: "region" }).of([
         data?.user?.customFields?.__taxCountry,
       ]),
-      notRegistered: data?.user?.customFields?.__taxOption === "notRegistered",
+      notRegistered: data?.user?.impactPartner?.taxOption === "NO_TAX",
       noFormNeeded: !documentType,
       dateExpired,
       expiresSoon,

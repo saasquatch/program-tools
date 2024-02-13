@@ -5,8 +5,8 @@ import {
   PayoutDetailsCardView,
   PayoutDetailsCardViewProps,
 } from "../sqm-payout-details-card/sqm-payout-details-card";
+import { TaxDocumentType } from "../sqm-tax-and-cash/data";
 
-export type TaxDocumentType = "W9" | "W8-BEN-E" | "W8-BEN";
 export interface TaxDocumentSubmittedProps {
   states: {
     status?: string;

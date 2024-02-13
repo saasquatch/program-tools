@@ -177,7 +177,7 @@ export const DocumentTypeFormView = (props: DocumentTypeFormViewProps) => {
             </sl-radio>
             <sl-radio
               disabled={states.disabled}
-              value="W8-BEN"
+              value="W8BEN"
               name="/documentType"
             >
               <p class={classes.LabelText}>{text.w8Label}</p>
@@ -185,7 +185,7 @@ export const DocumentTypeFormView = (props: DocumentTypeFormViewProps) => {
             </sl-radio>
             <sl-radio
               disabled={states.disabled}
-              value="W8-BEN-E"
+              value="W8BENE"
               name="/documentType"
             >
               <p class={classes.LabelText}>{text.w8ELabel}</p>
