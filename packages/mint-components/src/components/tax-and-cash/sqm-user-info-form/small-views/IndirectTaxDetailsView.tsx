@@ -54,6 +54,8 @@ export interface IndirectDetailsSlotViewProps {
       province: string;
       indirectTaxNumber: string;
       subRegionTaxNumber: string;
+      subRegion: string;
+      qstNumber: string;
     };
   };
 }
@@ -81,10 +83,14 @@ const style = {
     border: "1px solid #E0E0E0",
     margin: "10px 0",
   },
-  Input: {
-    maxWidth: "500px",
+  Input: { maxWidth: "500px" },
+  Checkbox: {
+    "&::part(control)": {
+      borderRadius: "0 !important",
+    },
   },
   ErrorInput: {
+    maxWidth: "500px",
     "&::part(base)": {
       border: "1px solid var(--sl-color-danger-500)",
       borderRadius: "var(--sl-input-border-radius-medium)",
@@ -110,7 +116,7 @@ const vanillaStyle = `
     }
   `;
 
-export type TaxType = "GST" | "HST" | "VAT" | "JST";
+export type TaxType = "GST" | "HST" | "VAT" | "JST" | "QST";
 export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
   const {
     states,
@@ -130,10 +136,22 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
     );
   };
 
+  const getTaxFieldError = (taxType: TaxType) => {
+    return intl.formatMessage(
+      {
+        id: `tax-field-label${taxType}`,
+        defaultMessage: text.error.indirectTaxNumber,
+      },
+      { taxType }
+    );
+  };
+
   const IndirectTaxNumberInput = ({
     label,
+    error,
     name,
   }: {
+    error: string;
     label: string;
     name: string;
   }) => {
@@ -147,7 +165,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         value={formState[name]}
         {...(formState.errors?.[name] && {
           class: classes.ErrorInput,
-          helpText: text.error[name],
+          helpText: error,
         })}
         id={name}
         name={`/${name}`}
@@ -168,7 +186,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           disabled={states.loading}
           {...(formState.errors?.indirectTaxNumber && {
             class: classes.ErrorInput,
-            helpText: text.error.indirectTaxNumber,
+            helpText: text.error.subRegion,
           })}
           id="subRegion"
           name="/subRegion"
@@ -180,8 +198,10 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         <IndirectTaxNumberInput
           name={"indirectTaxNumber"}
           label={getTaxFieldLabel("VAT")}
+          error={getTaxFieldError("VAT")}
         />
         <sl-checkbox
+          class={classes.Checkbox}
           exportparts="label: input-label"
           checked={formState.hasSubRegionTaxNumber}
           onSl-change={callbacks.onSpainToggle}
@@ -198,7 +218,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             value={formState.subRegionTaxNumber}
             {...(formState.errors?.subRegionTaxNumberError && {
               class: classes.ErrorInput,
-              helpText: text.error.indirectTaxNumber,
+              helpText: text.error.subRegionTaxNumber,
             })}
             id={"subRegionTaxNumber"}
             name={"/subRegionTaxNumber"}
@@ -214,6 +234,8 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
     const currentTaxType = INDIRECT_TAX_PROVINCES?.find(
       (p) => p.provinceCode === formState.province
     )?.taxType as TaxType | undefined;
+
+    console.log(currentTaxType);
 
     return (
       <div class={classes.ConditionalInputsContainer}>
@@ -239,18 +261,21 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         {currentTaxType === "GST" && (
           <IndirectTaxNumberInput
             label={getTaxFieldLabel("GST")}
+            error={getTaxFieldError("GST")}
             name={"indirectTaxNumber"}
           />
         )}
         {currentTaxType === "HST" && (
           <IndirectTaxNumberInput
             label={getTaxFieldLabel("HST")}
+            error={getTaxFieldError("HST")}
             name={"indirectTaxNumber"}
           />
         )}
         {formState.province === "QC" && (
           <div class={classes.ConditionalInputsContainer}>
             <sl-checkbox
+              class={classes.Checkbox}
               exportparts="label: input-label"
               onSl-change={callbacks.onQstToggle}
               checked={formState.hasQst}
@@ -258,17 +283,17 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
               {text.isRegisteredQST}
             </sl-checkbox>
             {formState.hasQst && (
-              <IndirectTaxNumberInput label={"QST Number"} name={"qstNumber"} />
+              <IndirectTaxNumberInput
+                name={"qstNumber"}
+                label={text.qstNumber}
+                error={text.error.qstNumber}
+              />
             )}
           </div>
         )}
       </div>
     );
   };
-
-  // console.log(props.data.countries);
-  // console.log(props.data.provinces, "OTHEREGIONSPROVINe");
-  // console.log(formState.countryCode);
 
   const getActiveForm = (selectedRegion: string) => {
     switch (selectedRegion) {
@@ -277,6 +302,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
       case "ES":
         return <SpainFields />;
       default:
+        // TODO: Pass in proper tax type for countries
         return (
           <sl-input
             required
@@ -287,7 +313,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             disabled={states.loading}
             {...(formState.errors?.indirectTaxNumber && {
               class: classes.ErrorInput,
-              helpText: text.error.indirectTaxNumber,
+              helpText: getTaxFieldError("VAT"),
             })}
             id="indirectTaxNumber"
             name="/indirectTaxNumber"

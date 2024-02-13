@@ -200,19 +200,17 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
             {mainCurrency.currencyText}
           </h1>
         )}
-        {otherCurrencies !== undefined &&
-          otherCurrencies !== false &&
-          !loading && (
-            <div>
-              <p
-                class={classes.SubduedRegularText}
-                style={{ fontSize: "var(--sl-font-size-x-small)" }}
-              >
-                + {otherCurrenciesText}
-              </p>
-              {currencyList(otherCurrencies as Currency[])}
-            </div>
-          )}
+        {otherCurrencies && !loading && (
+          <div>
+            <p
+              class={classes.SubduedRegularText}
+              style={{ fontSize: "var(--sl-font-size-x-small)" }}
+            >
+              + {otherCurrenciesText}
+            </p>
+            {currencyList(otherCurrencies as Currency[])}
+          </div>
+        )}
         {hasW9Pending && status === "pending" && hasDatePending && !loading && (
           <div class={classes.W9Container}>
             <p class={classes.SubduedRegularText}>{w9PendingText}</p>

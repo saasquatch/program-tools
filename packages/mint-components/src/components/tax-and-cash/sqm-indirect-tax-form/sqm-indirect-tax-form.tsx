@@ -32,10 +32,10 @@ export class IndirectTaxForm {
   @Prop() formStep: string = "Step 2 of 4";
   @Prop() indirectTax: string = "Indirect Tax";
   @Prop() indirectTaxDescription: string =
-    "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.";
+    "Indirect taxes (e.g. VAT, HST, GST) are transactional based taxes collected by business and retailers on behalf of governments. Any rewards you receive may be subject to indirect taxes based on your country.";
   @Prop() indirectTaxDetails: string = "Indirect Tax Details";
   @Prop() indirectTaxDetailsDescription: string =
-    "Not sure if you are registered for indirect tax? Contact our Support team to find out more.";
+    "If you represent a business entity, you may be registered for indirect tax. If you are based in the US you are most likely not registered. Not sure if you’re registered? Contact our Support team to find out more.";
   @Prop() otherRegion: string =
     "I am registered for Indirect Tax in a different Country / Region";
   @Prop() notRegistered: string = "I am not registered for Indirect Tax";
@@ -59,8 +59,9 @@ export class IndirectTaxForm {
   @Prop() indirectTaxNumberError: string =
     "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number}} is required";
   @Prop() subRegionTaxNumberError: string = "Income Tax Number is required";
-  @Prop() qstTaxNumberError: string = "QST Tax Number is required";
+  @Prop() qstTaxNumberError: string = "QST Number is required";
   @Prop() subRegion: string = "Sub-region";
+  @Prop() subRegionError: string = "Sub-region is required";
   @Prop() qstNumber: string = "QST Number";
   @Prop() subRegionTaxNumberLabel: string = "Income Tax Number";
   @Prop() isRegisteredQST: string = "I am registered for QST Tax";
@@ -102,6 +103,8 @@ export class IndirectTaxForm {
           selectedRegion: props.selectedRegionError,
           province: props.provinceError,
           indirectTaxNumber: props.indirectTaxNumberError,
+          subRegion: props.subRegionError,
+          qstNumber: props.qstTaxNumberError,
         },
       },
     };

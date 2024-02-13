@@ -109,6 +109,11 @@ const style = {
       color: "var(--sl-color-blue-500)",
     },
   },
+  Checkbox: {
+    "&::part(control)": {
+      borderRadius: "50% !important",
+    },
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -128,10 +133,6 @@ const vanillaStyle = `
       line-height: 18px;
       color: var(--sl-color-gray-800);
        font-size: var(--sl-font-size-small);
-    }
-
-    sl-checkbox::part(control) {
-        border-radius: 50%;
     }
   `;
 
@@ -210,6 +211,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               </sl-checkbox>
               {slots.registeredInCanadaDetailsSlot} */}
               <sl-checkbox
+                class={classes.Checkbox}
                 exportparts="label: input-label"
                 checked={formState.checked === "otherRegion"}
                 onInput={() => callbacks.onChange("otherRegion")}
@@ -221,6 +223,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               </sl-checkbox>
               {slots.registeredInDifferentCountryDetailsSlot}
               <sl-checkbox
+                class={classes.Checkbox}
                 exportparts="label: input-label"
                 checked={formState.checked === "notRegistered"}
                 onInput={() => callbacks.onChange("notRegistered")}

@@ -44,7 +44,7 @@ export class DocumentTypeForm {
    */
   @Prop() w9Label: string = "W9";
   /**
-   * Subtext for the W9 radio button
+   * Description for the W9 radio button
    * @uiName W9 radio button subtext
    */
   @Prop() w9Description: string =
@@ -55,7 +55,7 @@ export class DocumentTypeForm {
    */
   @Prop() w8Label: string = "W8-Ben";
   /**
-   * Subtext for the W8 radio button
+   * Description for the W8 radio button
    * @uiName W8 radio button subtext
    */
   @Prop() w8Description: string =
@@ -66,7 +66,7 @@ export class DocumentTypeForm {
    */
   @Prop() w8ELabel: string = "W8-BEN-E";
   /**
-   * Subtext for the W8E radio button
+   * Description for the W8E radio button
    * @uiName W8E radio button subtext
    */
   @Prop() w8EDescription: string =
