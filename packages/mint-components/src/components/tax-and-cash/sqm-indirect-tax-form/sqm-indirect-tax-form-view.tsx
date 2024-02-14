@@ -148,6 +148,8 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
 
   const { classes } = sheet;
 
+  console.log(formState.errors);
+
   return (
     <sl-form
       class={classes.FormWrapper}
@@ -198,18 +200,6 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
         <div>
           <div class={classes.CheckboxContainer}>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              {/* {AL: commenting out for now since we're most likely removing selection for Canada specifically} */}
-              {/* <sl-checkbox
-                exportparts="label: input-label"
-                checked={formState.checked === "hstCanada"}
-                onInput={() => callbacks.onChange("hstCanada")}
-                disabled={states.disabled}
-                id="hstCanada"
-                name="/hstCanada"
-              >
-                {text.hstCanada}
-              </sl-checkbox>
-              {slots.registeredInCanadaDetailsSlot} */}
               <sl-checkbox
                 class={classes.Checkbox}
                 exportparts="label: input-label"

@@ -3,7 +3,7 @@ import { Component, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import { useCashForm } from "./useCashForm";
+import { useBankingInfoForm } from "./useBankingInfoForm";
 import { UserNameViewProps } from "../../sqm-user-name/sqm-user-name-view";
 
 /**
@@ -12,10 +12,10 @@ import { UserNameViewProps } from "../../sqm-user-name/sqm-user-name-view";
  * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
  */
 @Component({
-  tag: "sqm-cash-form",
+  tag: "sqm-banking-info-form",
   shadow: false,
 })
-export class CashForm {
+export class BankingInfoForm {
   @State() ignored = true;
 
   /**
@@ -31,7 +31,7 @@ export class CashForm {
   disconnectedCallback() {}
 
   render() {
-    const props = useCashForm(getProps(this));
+    const props = useBankingInfoForm(getProps(this));
 
     console.log({ props });
 
@@ -44,6 +44,6 @@ export class CashForm {
   }
 }
 
-function useTaxAndCashDemo(props: CashForm) {
+function useTaxAndCashDemo(props: BankingInfoForm) {
   return deepmerge({}, props.demoData || {}, { arrayMerge: (_, a) => a });
 }

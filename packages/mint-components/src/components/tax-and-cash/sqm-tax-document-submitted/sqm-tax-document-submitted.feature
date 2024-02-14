@@ -79,15 +79,16 @@ Feature: Tax Document Submitted View
   Scenario Outline: A Warning Alert is displayed if the users tax form is expiring soon
     Given the <status> is ACTIVE
     And the document type is <documentType>
+    And the document is submitted on <dateSubmitted>
     And the <dateExpired> of the document is within 30 days of the current date
     Then a warning alert <may> displayed
     And it indicates the <documentType> with a <taxAlertHeader>, <taxAlertMessage>, and <dateExpired> appears
 
     Examples: 
-      | status | documentType | may    | taxAlertHeader                    | dateExpired    | taxAlertMessage                      |
-      | ACTIVE | W9           | is not | N/A                               | N/A            | N/A                                  |
-      | ACTIVE | W8-BEN       | is     | Your W8-BEN tax form expires on   | Dec 30th, 2024 | Please resubmit a new W8-BEN form.   |
-      | ACTIVE | W8-BEN-E     | is     | Your W8-BEN-E tax form expires on | Dec 30th, 2024 | Please resubmit a new W8-BEN-E form. |
+      | status | documentType | may    | taxAlertHeader                    | dateSubmitted  | dateExpired    | taxAlertMessage                      |
+      | ACTIVE | W9           | is not | N/A                               | Dec 30th, 2021 | N/A            | N/A                                  |
+      | ACTIVE | W8-BEN       | is     | Your W8-BEN tax form expires on   | Dec 30th, 2021 | Dec 30th, 2024 | Please resubmit a new W8-BEN form.   |
+      | ACTIVE | W8-BEN-E     | is     | Your W8-BEN-E tax form expires on | Dec 30th, 2021 | Dec 30th, 2024 | Please resubmit a new W8-BEN-E form. |
 
   @unknown
   Scenario: Submit New Tax Document Form

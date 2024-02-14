@@ -1,14 +1,14 @@
 import { h } from "@stencil/core";
-import { StoryDemoData } from "../../../global/demo";
-import { INDIRECT_TAX_COUNTRIES } from "../countries";
-import { UseDocumentTypeFormResult } from "../sqm-document-type-form/useDocumentTypeForm";
-import { UseDocusignFormResult } from "../sqm-docusign-form/useDocusignForm";
-import { UseIndirectTaxFormResult } from "../sqm-indirect-tax-form/useIndirectTaxForm";
+import { StoryDemoData } from "../../global/demo";
+import { INDIRECT_TAX_COUNTRIES } from "./countries";
+import { UseDocumentTypeFormResult } from "./sqm-document-type-form/useDocumentTypeForm";
+import { UseDocusignFormResult } from "./sqm-docusign-form/useDocusignForm";
+import { UseIndirectTaxFormResult } from "./sqm-indirect-tax-form/useIndirectTaxForm";
 import {
   INDIRECT_TAX_PROVINCES,
   INDIRECT_TAX_SPAIN_REGIONS,
-} from "../subregions";
-import { UseUserInfoFormResult } from "./useUserInfoForm";
+} from "./subregions";
+import { UseUserInfoFormResult } from "./sqm-user-info-form/useUserInfoForm";
 // import sqmUserInfoSpecs from "./sqm-tax-document-step-1.feature";
 // import sqmIndirectTaxFormSpecs from "../sqm-indirect-tax-form/sqm-indirect-tax-form.feature";
 

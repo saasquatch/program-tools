@@ -162,6 +162,9 @@ function useDemoIndirectTaxForm(
         errors: {},
         formState: {
           checked: option,
+          errors: {
+            general: false,
+          },
         },
       },
       callbacks: {
