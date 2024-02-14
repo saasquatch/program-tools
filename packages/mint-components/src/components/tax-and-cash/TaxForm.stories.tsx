@@ -85,6 +85,27 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
   refs: { formRef: { current: null } },
 };
 
+const stepFourProps = {
+  states: {
+    hideSteps: false,
+    disabled: false,
+    loading: false,
+    formState: {
+      checked: "toBankAccount",
+    },
+  },
+  callbacks: {
+    onSubmit: async () => console.log("Submit"),
+    onChange: () => console.log("Submit"),
+  },
+  slotProps: {
+    formState: {
+      errors: {},
+    },
+  },
+  refs: { formRef: { current: null } },
+};
+
 const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
   states: {
     hideSteps: false,
@@ -671,6 +692,44 @@ export const StepThreeFormSelectorWithGeneralError = () => {
         },
       }}
     ></sqm-document-type-form>
+  );
+};
+
+// STEP 4
+export const StepFourDefault = () => {
+  return <sqm-banking-info-form></sqm-banking-info-form>;
+};
+
+export const StepFourDirectToBankChecked = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...stepFourProps,
+        states: {
+          ...stepFourProps.states,
+          formState: {
+            ...stepFourProps.states.formState,
+          },
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
+export const StepFourToPaypalChecked = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...stepFourProps,
+        states: {
+          ...stepFourProps.states,
+          formState: {
+            ...stepFourProps.states.formState,
+            checked: "toPaypalAccount",
+          },
+        },
+      }}
+    ></sqm-banking-info-form>
   );
 };
 
