@@ -1,4 +1,7 @@
-import { UserIdentity } from "@saasquatch/component-environment";
+import {
+  USER_CONTEXT_NAME,
+  UserIdentity,
+} from "@saasquatch/component-environment";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { equal as deepEqual } from "@wry/equality";
 import debugFn from "debug";
@@ -10,6 +13,8 @@ import {
   useUserIdentity,
 } from "./environment";
 import { useMutation } from "./graphql/useMutation";
+import { useDomContext } from "@saasquatch/dom-context-hooks";
+import { useHost } from "./useHost";
 
 const LOAD_EVENT_CONTEXT_NAME = "sq:load-event";
 export const debug = debugFn(LOAD_EVENT_CONTEXT_NAME);
@@ -53,12 +58,25 @@ export function lazilyStartLoadEventContext() {
 }
 
 export function useLoadEvent() {
+  const host = useHost();
   const engagementMedium = useEngagementMedium();
-  const userIdentity = useUserIdentity();
+
+  const userIdentity = useDomContext(host, USER_CONTEXT_NAME) as
+    | UserIdentity
+    | undefined;
+
   const programId = useProgramId();
   const [dispatch] = useMutation(FIRE_EVENT);
 
   const globalProvider = lazilyStartLoadEventContext();
+
+  debug("useLoadEvent called", {
+    engagementMedium,
+    userIdentity,
+    programId,
+    globalProvider,
+    dispatch,
+  });
 
   useEffect(() => {
     debug("use effect triggered", {
