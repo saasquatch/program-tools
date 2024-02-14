@@ -45,7 +45,7 @@
 ### Used by
 
  - [sqm-stencilbook](../../sqm-stencilbook)
- - [sqm-tax-and-cash](../../sqm-tax-and-cash)
+ - [sqm-tax-and-cash](../sqm-tax-and-cash)
 
 ### Graph
 ```mermaid

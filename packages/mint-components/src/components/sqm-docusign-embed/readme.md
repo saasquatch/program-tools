@@ -12,11 +12,18 @@
 | `url`    | `url`     |             | `string` | `undefined` |
 
 
+## Events
+
+| Event           | Description | Type                               |
+| --------------- | ----------- | ---------------------------------- |
+| `docusignEvent` |             | `CustomEvent<{ status: string; }>` |
+
+
 ## Dependencies
 
 ### Used by
 
- - [sqm-tax-and-cash](../sqm-tax-and-cash)
+ - [sqm-tax-and-cash](../tax-and-cash/sqm-tax-and-cash)
 
 ### Graph
 ```mermaid

@@ -68,7 +68,7 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
     onSubmit: async () => console.log("Submit"),
     onChange: () => console.log("Submit"),
     onBack: () => console.log("Submit"),
-    onFormChange: (field: string, e: CustomEvent) => console.log(e),
+    onFormChange: (field: string, e: CustomEvent) => console.log(field, e),
     onQstToggle: () => {},
     onSpainToggle: () => {},
   },

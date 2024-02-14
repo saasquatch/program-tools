@@ -7,8 +7,8 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
-import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
+import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
 import { UseDocumentTypeFormResult } from "./components/tax-and-cash/sqm-document-type-form/useDocumentTypeForm";
@@ -65,6 +65,13 @@ export namespace Components {
           * @uiName Banner title
          */
         "titleText": string;
+    }
+    interface SqmBankingInfoForm {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UserNameViewProps>;
     }
     interface SqmBigStat {
         /**
@@ -126,13 +133,6 @@ export namespace Components {
           * @uiName Card width
          */
         "width": number;
-    }
-    interface SqmCashForm {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<UserNameViewProps>;
     }
     interface SqmCheckboxField {
         /**
@@ -3980,6 +3980,12 @@ declare global {
         prototype: HTMLSqmAssetCardElement;
         new (): HTMLSqmAssetCardElement;
     };
+    interface HTMLSqmBankingInfoFormElement extends Components.SqmBankingInfoForm, HTMLStencilElement {
+    }
+    var HTMLSqmBankingInfoFormElement: {
+        prototype: HTMLSqmBankingInfoFormElement;
+        new (): HTMLSqmBankingInfoFormElement;
+    };
     interface HTMLSqmBigStatElement extends Components.SqmBigStat, HTMLStencilElement {
     }
     var HTMLSqmBigStatElement: {
@@ -3997,12 +4003,6 @@ declare global {
     var HTMLSqmCardFeedElement: {
         prototype: HTMLSqmCardFeedElement;
         new (): HTMLSqmCardFeedElement;
-    };
-    interface HTMLSqmCashFormElement extends Components.SqmCashForm, HTMLStencilElement {
-    }
-    var HTMLSqmCashFormElement: {
-        prototype: HTMLSqmCashFormElement;
-        new (): HTMLSqmCashFormElement;
     };
     interface HTMLSqmCheckboxFieldElement extends Components.SqmCheckboxField, HTMLStencilElement {
     }
@@ -4583,10 +4583,10 @@ declare global {
     interface HTMLElementTagNameMap {
         "raisins-plop-target": HTMLRaisinsPlopTargetElement;
         "sqm-asset-card": HTMLSqmAssetCardElement;
+        "sqm-banking-info-form": HTMLSqmBankingInfoFormElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-brand": HTMLSqmBrandElement;
         "sqm-card-feed": HTMLSqmCardFeedElement;
-        "sqm-cash-form": HTMLSqmCashFormElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
         "sqm-close-button": HTMLSqmCloseButtonElement;
         "sqm-context-router": HTMLSqmContextRouterElement;
@@ -4703,6 +4703,13 @@ declare namespace LocalJSX {
          */
         "titleText"?: string;
     }
+    interface SqmBankingInfoForm {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UserNameViewProps>;
+    }
     interface SqmBigStat {
         /**
           * Controls the alignment of the flexbox
@@ -4763,13 +4770,6 @@ declare namespace LocalJSX {
           * @uiName Card width
          */
         "width"?: number;
-    }
-    interface SqmCashForm {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<UserNameViewProps>;
     }
     interface SqmCheckboxField {
         /**
@@ -8582,10 +8582,10 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "raisins-plop-target": RaisinsPlopTarget;
         "sqm-asset-card": SqmAssetCard;
+        "sqm-banking-info-form": SqmBankingInfoForm;
         "sqm-big-stat": SqmBigStat;
         "sqm-brand": SqmBrand;
         "sqm-card-feed": SqmCardFeed;
-        "sqm-cash-form": SqmCashForm;
         "sqm-checkbox-field": SqmCheckboxField;
         "sqm-close-button": SqmCloseButton;
         "sqm-context-router": SqmContextRouter;
@@ -8690,10 +8690,10 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "raisins-plop-target": LocalJSX.RaisinsPlopTarget & JSXBase.HTMLAttributes<HTMLRaisinsPlopTargetElement>;
             "sqm-asset-card": LocalJSX.SqmAssetCard & JSXBase.HTMLAttributes<HTMLSqmAssetCardElement>;
+            "sqm-banking-info-form": LocalJSX.SqmBankingInfoForm & JSXBase.HTMLAttributes<HTMLSqmBankingInfoFormElement>;
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
-            "sqm-cash-form": LocalJSX.SqmCashForm & JSXBase.HTMLAttributes<HTMLSqmCashFormElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;
             "sqm-context-router": LocalJSX.SqmContextRouter & JSXBase.HTMLAttributes<HTMLSqmContextRouterElement>;

@@ -115,12 +115,12 @@
 
 ### Depends on
 
-- [sqm-user-info-form](../tax-and-cash/sqm-user-info-form)
-- [sqm-indirect-tax-form](../tax-and-cash/sqm-indirect-tax-form)
-- [sqm-docusign-form](../tax-and-cash/sqm-docusign-form)
-- [sqm-docusign-embed](../sqm-docusign-embed)
-- [sqm-document-type-form](../tax-and-cash/sqm-document-type-form)
-- [sqm-tax-document-submitted](../tax-and-cash/sqm-tax-document-submitted)
+- [sqm-user-info-form](../sqm-user-info-form)
+- [sqm-indirect-tax-form](../sqm-indirect-tax-form)
+- [sqm-docusign-form](../sqm-docusign-form)
+- [sqm-docusign-embed](../../sqm-docusign-embed)
+- [sqm-document-type-form](../sqm-document-type-form)
+- [sqm-tax-document-submitted](../sqm-tax-document-submitted)
 
 ### Graph
 ```mermaid
