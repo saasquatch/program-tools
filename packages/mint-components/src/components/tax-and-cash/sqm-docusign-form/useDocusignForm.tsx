@@ -40,6 +40,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
     loading: userLoading,
     refetch,
   } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+  const [docusignStatus, setDocusignStatus] = useState(undefined);
 
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [errors, setErrors] = useState({});
@@ -126,6 +127,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
         taxFormExpired: false, // TODO: Unhardcode this
         errors,
       },
+      docusignStatus,
       documentType,
     },
     data: {
@@ -135,6 +137,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
     callbacks: {
       onShowDocumentType: () => setPath("/3b"),
       onSubmit,
+      setDocusignStatus,
       toggleFormSubmitted: () => setFormSubmitted((x) => !x),
       onBack,
     },

@@ -19,6 +19,7 @@ import {
 import { useDocusignForm, UseDocusignFormResult } from "./useDocusignForm";
 import { DocusignExpiredView } from "../sqm-user-info-form/small-views/DocusignExpiredView";
 import { DocusignEmbedComponent } from "../../sqm-docusign-embed/sqm-docusign-embed";
+import { DocusignIframe } from "./docusign-iframe/DocusignIframe";
 
 /**
  * @uiName DocuSign Document Submission
@@ -76,11 +77,17 @@ export class DocusignForm {
   @Prop() checkboxDescription: string =
     "I have completed and submitted my tax form";
   /**
-   * Label text for the form submission checkbox
-   * @uiName Form submission checkbox label
+   * Text inside iframe when Docusign expires
+   * @uiName Docusign expired text
    */
   @Prop() docusignExpired: string =
     "For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue.";
+  /**
+   * Text inside iframe when Docusign form is compelted
+   * @uiName Docusign completed text
+   */
+  @Prop() docusignCompleted: string =
+    "Your document has been completed and submitted.";
   /**
    * Text shown inside of submit button
    * @uiName Submit button text
@@ -123,11 +130,6 @@ export class DocusignForm {
 
   disconnectedCallback() {}
 
-  @Listen("docusignEvent")
-  docusignEventHandler(data) {
-    console.log("DATA", data);
-  }
-
   getTextProps() {
     const props = getProps(this);
 
@@ -146,8 +148,6 @@ export class DocusignForm {
       ? useDocusignFormDemo(this)
       : useDocusignForm(this, this.el);
 
-    const docusignExpiredSlot = <DocusignExpiredView text={props.text} />;
-
     return (
       <Host>
         <DocusignFormView
@@ -155,7 +155,19 @@ export class DocusignForm {
           states={props.states}
           text={props.text}
           slots={{
-            docusignExpiredSlot,
+            // docusignExpiredSlot,
+            docusignIframeSlot: (
+              <DocusignIframe
+                states={{
+                  url: props.data.documentUrl,
+                  status: props.states.docusignStatus,
+                }}
+                callbacks={{
+                  onStatusChange: props.callbacks.setDocusignStatus,
+                }}
+                text={props.text}
+              />
+            ),
           }}
         />
       </Host>
@@ -171,6 +183,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
         disabled: false,
         submitDisabled: false,
         loading: false,
+        status: "",
         formState: {
           completedTaxForm: true,
           taxFormExpired: true,
@@ -183,6 +196,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
         documentUrl: "https://example.com",
       },
       callbacks: {
+        setDocusignStatus: (status: string) => console.log(status),
         onShowDocumentType: () => {},
         onSubmit: async () => {},
         toggleFormSubmitted: () => {},

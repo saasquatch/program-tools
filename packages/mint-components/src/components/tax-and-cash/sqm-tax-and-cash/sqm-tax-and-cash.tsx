@@ -423,6 +423,13 @@ export class TaxAndCashMonolith {
   @Prop() step3_docusignExpired: string =
     "For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue.";
   /**
+   * Text inside iframe when Docusign form is compelted
+   * @uiName Docusign completed text
+   * @uiGroup Step 3 Properties
+   */
+  @Prop() docusignCompleted: string =
+    "Your document has been completed and submitted.";
+  /**
    * Text shown inside of submit button
    * @uiName Submit button text
    * @uiGroup Step 3 Properties

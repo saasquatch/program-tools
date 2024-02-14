@@ -19,6 +19,7 @@ export interface DocusignFormViewProps {
   };
   slots: {
     docusignExpiredSlot?: VNode;
+    docusignIframeSlot: VNode;
   };
   callbacks: {
     onShowDocumentType: () => void;
@@ -234,6 +235,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             <sl-icon slot="icon" name="info-circle"></sl-icon>
             {text.banner}
           </sl-alert>
+          {slots.docusignIframeSlot}
           <div>
             <p class={classes.BoldText}>{text.checkboxLabel}</p>
             <sl-checkbox

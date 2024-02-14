@@ -87,6 +87,7 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
 
 const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
   states: {
+    docusignStatus: undefined,
     hideSteps: false,
     documentType: "W9",
     loading: false,
@@ -99,6 +100,7 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
     },
   },
   callbacks: {
+    setDocusignStatus: (status: string) => console.log(status),
     toggleFormSubmitted: () => console.log("Toggle checkbox"),
     onShowDocumentType: () => console.log("To other form"),
     onSubmit: async () => console.log("submit"),
@@ -538,6 +540,7 @@ export const StepThreeWithDocusignExpired = () => {
       demoData={{
         states: {
           ...docusignFormProps.states,
+          docusignStatus: "ttl_expired",
           formState: {
             taxFormExpired: true,
             completedTaxForm: false,
