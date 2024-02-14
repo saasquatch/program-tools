@@ -7,7 +7,6 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
-import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
@@ -46,6 +45,7 @@ import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view
 import { UseTaxAndCashResultType } from "./components/tax-and-cash/sqm-tax-and-cash/useTaxAndCash";
 import { UseTaxDocumentSubmittedResult } from "./components/tax-and-cash/sqm-tax-document-submitted/useTaxDocumentSubmitted";
 import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
+import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
     interface RaisinsPlopTarget {
         "renderCell": () => Promise<any>;
@@ -71,7 +71,14 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<UserNameViewProps>;
+        "demoData"?: DemoData<any>;
+        "directlyToBankAccount": string;
+        "formStep": string;
+        "paymentMethod": string;
+        "submitButton": string;
+        "taxAndPayouts": string;
+        "taxAndPayoutsDescription": string;
+        "toPaypalAccount": string;
     }
     interface SqmBigStat {
         /**
@@ -4730,7 +4737,14 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<UserNameViewProps>;
+        "demoData"?: DemoData<any>;
+        "directlyToBankAccount"?: string;
+        "formStep"?: string;
+        "paymentMethod"?: string;
+        "submitButton"?: string;
+        "taxAndPayouts"?: string;
+        "taxAndPayoutsDescription"?: string;
+        "toPaypalAccount"?: string;
     }
     interface SqmBigStat {
         /**

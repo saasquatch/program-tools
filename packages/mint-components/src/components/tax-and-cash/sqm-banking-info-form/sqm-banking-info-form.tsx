@@ -1,15 +1,17 @@
-import { withHooks } from "@saasquatch/stencil-hooks";
+import { useState, withHooks } from "@saasquatch/stencil-hooks";
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { Component, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { useBankingInfoForm } from "./useBankingInfoForm";
 import { UserNameViewProps } from "../../sqm-user-name/sqm-user-name-view";
+import { BankingInfoFormView } from "./sqm-banking-info-form-view";
 
 /**
- * @uiName Tax And Cash
+ * @uiName Banking Information Form
  * @exampleGroup Common Components
- * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
+ *
  */
 @Component({
   tag: "sqm-banking-info-form",
@@ -18,11 +20,20 @@ import { UserNameViewProps } from "../../sqm-user-name/sqm-user-name-view";
 export class BankingInfoForm {
   @State() ignored = true;
 
+  @Prop() formStep: string = "Step 4 of 4";
+  @Prop() taxAndPayouts: string = "Tax and Payouts";
+  @Prop() taxAndPayoutsDescription: string =
+    "Submit your tax documents and add your banking information to receive your rewards.";
+  @Prop() directlyToBankAccount: string = "Directly to my bank account";
+  @Prop() toPaypalAccount: string = "To my PayPal account";
+  @Prop() paymentMethod: string = "Payment Method";
+  @Prop() submitButton: string = "Save";
+
   /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<UserNameViewProps>;
+  @Prop() demoData?: DemoData<any>;
 
   constructor() {
     withHooks(this);
@@ -30,20 +41,64 @@ export class BankingInfoForm {
 
   disconnectedCallback() {}
 
-  render() {
-    const props = useBankingInfoForm(getProps(this));
+  getTextProps() {
+    const props = getProps(this);
 
+    return {
+      ...props,
+      error: {},
+    };
+  }
+
+  render() {
+    // const props = isDemo()
+    //   ? useDemoBankingInfoForm(this)
+    //   : useBankingInfoForm(getProps(this));
+    const props = useDemoBankingInfoForm(this);
     console.log({ props });
 
     return (
       <Host>
-        Step 3<sl-button onClick={() => props.setStep("/2")}>back</sl-button>
-        <sl-button onClick={() => props.setStep("/4")}>continue</sl-button>
+        <BankingInfoFormView
+          callbacks={props.callbacks}
+          text={props.text}
+          states={props.states}
+          refs={props.refs}
+          slots={{
+            formInputsSlot: <div>FORM INPUTS</div>,
+          }}
+        />
       </Host>
     );
   }
 }
 
-function useTaxAndCashDemo(props: BankingInfoForm) {
-  return deepmerge({}, props.demoData || {}, { arrayMerge: (_, a) => a });
+function useDemoBankingInfoForm(props: BankingInfoForm) {
+  const [option, setOption] = useState(null);
+
+  return deepmerge(
+    {
+      states: {
+        disabled: false,
+        loading: false,
+        hideSteps: false,
+        formState: {
+          checked: option,
+          errors: {
+            general: false,
+          },
+        },
+      },
+      callbacks: {
+        onSubmit: async () => {},
+        onChange: setOption,
+      },
+      text: props.getTextProps(),
+      refs: {
+        formRef: { current: null },
+      },
+    },
+    props.demoData || {},
+    { arrayMerge: (_, a) => a }
+  );
 }
