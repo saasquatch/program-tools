@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \<sqb-program-section> - Sends a program load event when rendered for the first time
 - `@saasquatch/component-boilerplate` package bump
+- `@saasquatch/dom-context-hooks` package bump
 
 ## [1.4.1] - 2023-02-06
 
