@@ -1,7 +1,7 @@
-import { VNode, h } from "@stencil/core";
-import { createStyleSheet } from "../../../styling/JSS";
+import { h } from "@stencil/core";
 import { intl } from "../../../global/global";
-import { TaxDocumentType } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
+import { createStyleSheet } from "../../../styling/JSS";
+import { TaxDocumentType } from "../sqm-tax-and-cash/data";
 
 export interface DocusignFormViewProps {
   states: {

@@ -29,8 +29,8 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
       email: "bobtesterson@example.com",
       countryCode: "US",
       currency: "CAD",
-      allowBankingCollection: true,
       participantType: "individualParticipant",
+      errors: {},
     },
   },
   data: {
@@ -663,7 +663,7 @@ export const TaxDocumentSubmittedActive = () => {
         states: {
           disabled: false,
           status: "ACTIVE",
-          documentType: "W8-BEN",
+          documentType: "W8BEN",
           dateSubmitted: "Jan 18th, 2025",
           dateExpired: "Dec 18th, 2025",
           noFormNeeded: false,
@@ -683,7 +683,7 @@ export const TaxDocumentSubmittedNotVerified = () => {
         states: {
           disabled: false,
           status: "NOT_VERIFIED",
-          documentType: "W8-BEN",
+          documentType: "W8BEN",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           country: "United Kingdom",
@@ -702,7 +702,7 @@ export const TaxDocumentSubmittedNotActive = () => {
         states: {
           disabled: false,
           status: "NOT_ACTIVE",
-          documentType: "W8-BEN-E",
+          documentType: "W8BENE",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           indirectTaxNumber: 123456,
@@ -721,7 +721,7 @@ export const TaxDocumentSubmittedExpired = () => {
         states: {
           disabled: false,
           status: "EXPIRED",
-          documentType: "W8-BEN-E",
+          documentType: "W8BENE",
           dateSubmitted: "Jan 18th, 2025",
           dateExpired: "Dec 25th, 2025",
           noFormNeeded: false,
@@ -741,7 +741,7 @@ export const TaxDocumentSubmittedExpiringSoon = () => {
         states: {
           disabled: false,
           status: "ACTIVE",
-          documentType: "W8-BEN-E",
+          documentType: "W8BENE",
           dateSubmitted: "Jan 18th, 2025",
           dateExpired: "Feb 18th, 2025",
           expiresSoon: true,
@@ -782,7 +782,7 @@ export const TaxDocumentSubmittedIndirectTaxCanada = () => {
         states: {
           status: "ACTIVE",
           disabled: false,
-          documentType: "W8-BEN-E",
+          documentType: "W8BENE",
           dateSubmitted: "Jan 18th, 2025",
           dateExpired: "Dec 20, 2026",
           noFormNeeded: false,
@@ -803,7 +803,7 @@ export const TaxDocumentSubmittedNotRegistered = () => {
       demoData={{
         states: {
           status: "ACTIVE",
-          documentType: "W8-BEN",
+          documentType: "W8BEN",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           notRegistered: true,
@@ -820,7 +820,7 @@ export const TaxDocumentSubmittedIndividualParticipant = () => {
       demoData={{
         states: {
           status: "ACTIVE",
-          documentType: "W8-BEN",
+          documentType: "W8BEN",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           notRegistered: true,
@@ -880,7 +880,7 @@ export const TaxDocumentSubmittedDisabled = () => {
         states: {
           disabled: true,
           status: "NOT_ACTIVE",
-          documentType: "W8-BEN",
+          documentType: "W8BEN",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           isBusinessEntity: true,

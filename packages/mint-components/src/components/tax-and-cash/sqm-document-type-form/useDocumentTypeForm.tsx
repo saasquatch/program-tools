@@ -53,17 +53,7 @@ export function useDocumentTypeForm(props: DocumentTypeForm) {
 
     setLoading(true);
     try {
-      await upsertUser({
-        userInput: {
-          id: user.id,
-          accountId: user.accountId,
-          customFields: {
-            __taxDocumentType: selectedDocumentType.toUpperCase(),
-          },
-        },
-      });
-      await refetch();
-
+      console.log({ selectedDocumentType });
       setPath(`/3/${selectedDocumentType}`);
     } catch (e) {
       setErrors({ general: true });

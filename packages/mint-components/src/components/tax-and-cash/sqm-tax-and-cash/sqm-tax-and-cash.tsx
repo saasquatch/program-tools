@@ -766,8 +766,9 @@ export class TaxAndCashMonolith {
             {...this.getIndirectTaxFormTextProps()}
           ></sqm-indirect-tax-form>
         );
-      case "/3/W8-BEN":
-      case "/3/W8-BEN-E":
+      case "/3":
+      case "/3/W8BEN":
+      case "/3/W8BENE":
       case "/3/W9":
         return (
           <sqm-docusign-form {...this.getDocuSignFormTextProps()}>

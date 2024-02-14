@@ -301,7 +301,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
             >
               {data?.currencies?.map((c) => (
                 <sl-menu-item value={c.currencyCode}>
-                  {c.currencyCode}
+                  {c.currencyCode} - {c.displayName}
                 </sl-menu-item>
               ))}
             </sl-select>

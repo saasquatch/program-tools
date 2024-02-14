@@ -1,7 +1,4 @@
-import {
-  useMutation,
-  useUserIdentity,
-} from "@saasquatch/component-boilerplate";
+import { useUserIdentity } from "@saasquatch/component-boilerplate";
 import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import jsonpointer from "jsonpointer";
@@ -15,7 +12,9 @@ import {
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
   TaxContext,
+  USER_FORM_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
+  UserFormContext,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
 import { TaxForm } from "./sqm-user-info-form";
@@ -60,15 +59,15 @@ export function useUserInfoForm(props: TaxForm) {
   const user = useUserIdentity();
 
   const formRef = useRef<HTMLFormElement>(null);
+  const [formErrors, setErrors] = useState({});
 
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
   const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
+  const [userFormContext, setUserFormContext] = useParent<UserFormContext>(
+    USER_FORM_CONTEXT_NAMESPACE
+  );
 
-  const [formState, setFormState] = useState<FormState>({});
-  const [mutationLoading, setMutationLoading] = useState(false);
-
-  const [upsertUser] = useMutation(UPSERT_USER);
-  const { data, loading, refetch } =
+  const { data, loading } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
   const { data: _countries, loading: countriesLoading } =
     useParentQueryValue<CountriesQuery>(COUNTRIES_NAMESPACE);
@@ -79,18 +78,31 @@ export function useUserInfoForm(props: TaxForm) {
     const user = data?.user;
     if (!user || step !== "/1") return;
 
-    setFormState({
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      countryCode: user.countryCode,
-      currency: user.customFields?.currency,
-      participantType: user.customFields?.participantType,
-    });
+    if (user.impactPartner) {
+      // Initialise with partner information
+      setUserFormContext({
+        firstName: user.impactPartner.firstName,
+        lastName: user.impactPartner.lastName,
+        email: user.impactPartner.email,
+        countryCode: user.impactPartner.country,
+        currency: user.impactPartner.currency,
+        participantType: undefined, // TODO: Fill in when able
+      });
+    } else {
+      // Initialise with user information
+      setUserFormContext({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        countryCode: user.countryCode,
+        currency: user.customFields?.currency,
+        participantType: undefined,
+      });
+    }
   }, [data, step]);
 
   function onRadioClick(value: string) {
-    setFormState({ ...formState, participantType: value });
+    setUserFormContext({ ...userFormContext, participantType: value });
   }
 
   async function onSubmit(event: any) {
@@ -130,7 +142,7 @@ export function useUserInfoForm(props: TaxForm) {
     }
 
     if (Object.keys(errors).length) {
-      setFormState({ ...formState, error: "", errors });
+      setErrors(errors);
       // early return for validation errors
       return;
     }
@@ -138,27 +150,17 @@ export function useUserInfoForm(props: TaxForm) {
     const { allowBankingCollection, ...userData } = formData;
 
     try {
-      setMutationLoading(true);
-
-      await upsertUser({
-        userInput: {
-          id: user.id,
-          accountId: user.accountId,
-          countryCode: userData.countryCode,
-          customFields: {
-            currency: userData.currency,
-            participantType: userData.participantType,
-          },
-        },
+      setUserFormContext({
+        ...userFormContext,
+        countryCode: userData.countryCode,
+        currency: userData.currency,
+        participantType: userData.participantType,
       });
-      await refetch();
 
       const nextStep = context.overrideNextStep || "/2";
       setStep(nextStep);
     } catch (e) {
-      setFormState({ ...formState, errors: { general: true } });
-    } finally {
-      setMutationLoading(false);
+      setErrors({ general: true });
     }
   }
 
@@ -177,10 +179,13 @@ export function useUserInfoForm(props: TaxForm) {
     },
     states: {
       hideSteps: context.hideSteps,
-      disabled: loading,
-      loading: loading || mutationLoading,
-      isPartner: data?.user?.customFields?.__taxIsPartner,
-      formState,
+      disabled: false,
+      loading: loading,
+      isPartner: !!data?.user?.impactPartner,
+      formState: {
+        ...userFormContext,
+        errors: formErrors,
+      },
     },
   };
 }

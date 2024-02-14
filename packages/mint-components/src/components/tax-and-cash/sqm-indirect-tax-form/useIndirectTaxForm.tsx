@@ -9,47 +9,31 @@ import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParentValue, useSetParent } from "../../../utils/useParentState";
 import { INDIRECT_TAX_COUNTRIES } from "../countries";
 import {
-  INDIRECT_TAX_PROVINCES,
-  INDIRECT_TAX_SPAIN_REGIONS,
-} from "../subregions";
-import {
   COUNTRIES_NAMESPACE,
   CountriesQuery,
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
   TaxContext,
+  USER_FORM_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
+  UserFormContext,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
-import { IndirectTaxForm } from "./sqm-indirect-tax-form";
 import { IndirectDetailsSlotViewProps } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
+import {
+  INDIRECT_TAX_PROVINCES,
+  INDIRECT_TAX_SPAIN_REGIONS,
+} from "../subregions";
+import { IndirectTaxForm } from "./sqm-indirect-tax-form";
 
-function getOption(user: UserQuery["user"]) {
-  if (!user) return;
-  const { countryCode, customFields } = user;
-
-  if (customFields?.__taxOption) return customFields.__taxOption;
-  if (customFields?.participantType === "individualParticipant")
-    return "notRegistered";
-  if (customFields?.__taxCountry) {
+function getOption(participantType: string, countryCode: string) {
+  if (participantType === "individualParticipant") return "notRegistered";
+  if (INDIRECT_TAX_COUNTRIES.find((c) => c.countryCode === countryCode)) {
     return "otherRegion";
   } else {
-    if (INDIRECT_TAX_COUNTRIES.find((c) => c.countryCode === countryCode)) {
-      return "otherRegion";
-    } else {
-      return "notRegistered";
-    }
+    return "notRegistered";
   }
 }
-
-const UPSERT_USER = gql`
-  mutation ($userInput: UserInput!) {
-    upsertUser(userInput: $userInput) {
-      firstName
-      lastName
-    }
-  }
-`;
 
 export function useIndirectTaxForm(props: IndirectTaxForm) {
   const user = useUserIdentity();
@@ -59,8 +43,8 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [formState, setFormState] = useState<Record<string, any>>({});
-  const [upsertUser] = useMutation(UPSERT_USER);
 
+  const userForm = useParentValue<UserFormContext>(USER_FORM_CONTEXT_NAMESPACE);
   const { data: userData, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
   const { data: _countries, loading: countriesLoading } =
@@ -75,13 +59,13 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     const user = userData?.user;
     if (!user) return;
 
-    const _option = getOption(user);
+    const _option = getOption(userForm.participantType, userForm.countryCode);
     setOption(_option);
 
     const defaultCountryCode = INDIRECT_TAX_COUNTRIES.find(
-      (c) => c.countryCode === user.countryCode
+      (c) => c.countryCode === userForm.countryCode
     )
-      ? user.countryCode
+      ? userForm.countryCode
       : undefined;
 
     setFormState({
@@ -94,7 +78,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       selectedRegion: user.customFields?.__taxCountry || defaultCountryCode,
       indirectTaxNumber: user.customFields?.__taxIndirectTaxNumber,
     });
-  }, [userData]);
+  }, [userData, userForm]);
 
   const onFormChange = (field: string, e: CustomEvent) => {
     const value = e.detail?.item?.__value;
@@ -132,52 +116,30 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       return;
     }
 
-    // @ts-ignore
     setLoading(true);
-
     try {
-      let defaultDocumentType: string;
-      if (userData?.user?.countryCode === "US") defaultDocumentType = "W9";
-      if (formData.selectedRegion === "US") {
-        if (
-          userData?.user.customFields.participantType ===
-          "individualParticipant"
-        )
-          defaultDocumentType = "W8-BEN";
-        else if (
-          userData?.user.customFields.participantType === "businessEntity"
-        )
-          defaultDocumentType = "W8-BEN-E";
-      }
+      const taxOption =
+        option === "notRegistered"
+          ? "NO_TAX"
+          : formData.selectedRegion === userForm?.countryCode
+          ? "SAME_COUNTRY"
+          : "DIFFERENT_COUNTRY";
 
-      const customFields = {
-        __taxOption: option,
-        __taxDocumentType: defaultDocumentType || null,
-        __taxProvince: formData.province || null,
-        __taxCountry: formData.selectedRegion || null,
-        __taxSubRegion: formData.subRegion || null,
-        __taxSubRegionTaxNumber: formData.subRegionTaxNumber || null,
-        __taxQstNumber: formData.qstNumber || null,
-        __taxIndirectTaxNumber: formData.indirectTaxNumber || null,
+      const fields = {
+        taxOption: taxOption,
+        countrySubDivision: formData.province || formData.subRegion,
+        indirectTaxId: formData.indirectTaxNumber,
+        additionalTax: formState.hasQst,
+        additionalTaxId: formData.qstNumber,
+        withholdingTaxCountry: formState.hasSubRegionTaxNumber
+          ? "SPAIN"
+          : undefined,
+        withholdingTaxNumber: formData.subRegionTaxNumber,
       };
 
-      console.log({ formData, customFields });
+      console.log({ formData, fields, userForm });
 
-      // Backend request
-      await upsertUser({
-        userInput: {
-          id: user.id,
-          accountId: user.accountId,
-          customFields,
-        },
-      });
-      await refetch();
-
-      const nextStep = defaultDocumentType
-        ? `/3/${defaultDocumentType}`
-        : `/submitted`;
-
-      setStep(context.overrideNextStep || nextStep);
+      setStep("/3");
     } catch (e) {
       setErrors({ general: true });
     } finally {
