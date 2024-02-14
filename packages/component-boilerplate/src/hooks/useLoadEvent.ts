@@ -66,10 +66,7 @@ export function useLoadEvent() {
   const engagementMedium = useEngagementMedium();
   debug("engagementMedium", { engagementMedium });
 
-  // const userIdentity = useDomContext(host, USER_CONTEXT_NAME) as
-  //   | UserIdentity
-  //   | undefined;
-  const userIdentity = getUserIdentity();
+  const userIdentity = useUserIdentity();
   debug("userIdentity", { userIdentity });
 
   const programId = useProgramId();
