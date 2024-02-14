@@ -2,6 +2,8 @@ import { withHooks } from '@saasquatch/stencil-hooks';
 import { Component, Host, h, Prop, State, Element } from '@stencil/core';
 import { ContextProvider } from 'dom-context';
 import { useEffect } from '@saasquatch/universal-hooks';
+import { isDemo } from '@saasquatch/component-boilerplate';
+import { useProgramSection } from './useProgramSection';
 
 /**
  * Matches @saasquatch/component-environment
@@ -49,6 +51,7 @@ export class SqbProgramSection {
   disconnectedCallback() {}
 
   render() {
+    if (!isDemo()) useProgramSection();
     const { programId, provider } = this;
 
     useEffect(() => {
