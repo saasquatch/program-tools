@@ -1,4 +1,5 @@
 import { UserIdentity } from "@saasquatch/component-environment";
+import { useEffect } from "@saasquatch/universal-hooks";
 import { equal as deepEqual } from "@wry/equality";
 import debugFn from "debug";
 import { ContextProvider } from "dom-context";
@@ -9,7 +10,6 @@ import {
   useUserIdentity,
 } from "./environment";
 import { useMutation } from "./graphql/useMutation";
-import useDeepEffect from "./useDeepEffect";
 
 const LOAD_EVENT_CONTEXT_NAME = "sq:load-event";
 export const debug = debugFn(LOAD_EVENT_CONTEXT_NAME);
@@ -60,7 +60,7 @@ export function useLoadEvent() {
 
   const globalProvider = lazilyStartLoadEventContext();
 
-  useDeepEffect(() => {
+  useEffect(() => {
     debug("use effect triggered", {
       context: globalProvider?.context,
       userIdentity,
@@ -103,10 +103,5 @@ export function useLoadEvent() {
 
       globalProvider.context = { userIdentity, programId };
     }
-  }, [
-    userIdentity?.id,
-    userIdentity?.accountId,
-    programId,
-    globalProvider?.context,
-  ]);
+  }, [userIdentity?.id, userIdentity?.accountId, programId]);
 }
