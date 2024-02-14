@@ -61,7 +61,22 @@ export function useLoadEvent() {
   const globalProvider = lazilyStartLoadEventContext();
 
   useDeepEffect(() => {
+    debug("use effect", {
+      context: globalProvider.context,
+      userIdentity,
+      programId,
+    });
+
     if (!userIdentity || !programId || !globalProvider.context) return;
+
+    debug("updated context", {
+      userIdentity: globalProvider.context.userIdentity,
+      programChanged: programId !== globalProvider.context.programId,
+      userChanged: !deepEqual(
+        userIdentity,
+        globalProvider.context.userIdentity
+      ),
+    });
 
     if (
       // First time loading
@@ -71,14 +86,6 @@ export function useLoadEvent() {
       // Different programId
       programId !== globalProvider.context.programId
     ) {
-      debug("updated context", {
-        programChanged: programId !== globalProvider.context.programId,
-        userChanged: !deepEqual(
-          userIdentity,
-          globalProvider.context.userIdentity
-        ),
-      });
-
       const variables = {
         eventMeta: {
           programId,
