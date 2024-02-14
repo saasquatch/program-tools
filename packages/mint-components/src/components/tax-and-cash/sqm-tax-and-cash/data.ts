@@ -95,18 +95,21 @@ export const GET_COUNTRIES = gql`
     countries(limit: 1000) {
       data {
         countryCode
+        impactCountryCode
         displayName
       }
     }
   }
 `;
 
+export type TaxCountry = {
+  impactCountryCode: string;
+  countryCode: string;
+  displayName: string;
+};
 export type CountriesQuery = {
   countries: {
-    data: {
-      countryCode: string;
-      displayName: string;
-    }[];
+    data: TaxCountry[];
   };
 };
 

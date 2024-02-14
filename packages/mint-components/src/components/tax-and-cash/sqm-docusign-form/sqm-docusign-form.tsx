@@ -1,6 +1,14 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, Element, h, Host, Prop, State } from "@stencil/core";
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+} from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
@@ -9,6 +17,7 @@ import {
   DocusignFormViewProps,
 } from "./sqm-docusign-form-view";
 import { useDocusignForm, UseDocusignFormResult } from "./useDocusignForm";
+import { DocusignEmbedComponent } from "../../sqm-docusign-embed/sqm-docusign-embed";
 
 /**
  * @uiName DocuSign Document Submission
@@ -106,6 +115,11 @@ export class DocusignForm {
   }
 
   disconnectedCallback() {}
+
+  @Listen("docusignEvent")
+  docusignEventHandler(data) {
+    console.log("DATA", data);
+  }
 
   getTextProps() {
     const props = getProps(this);

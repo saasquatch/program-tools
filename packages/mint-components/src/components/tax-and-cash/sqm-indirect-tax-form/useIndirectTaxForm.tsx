@@ -14,6 +14,7 @@ import {
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
   TaxContext,
+  TaxCountry,
   USER_FORM_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
   UserFormContext,
@@ -25,6 +26,27 @@ import {
   INDIRECT_TAX_SPAIN_REGIONS,
 } from "../subregions";
 import { IndirectTaxForm } from "./sqm-indirect-tax-form";
+
+type ConnectPartnerResult = {
+  connectImpactPartner: {
+    id: string;
+    accountId: string;
+    impactPartner: {
+      connectionStatus;
+    } | null;
+  };
+};
+const CONNECT_PARTNER = gql`
+  mutation connectImpactPartner($vars: ImpactPartnerInput!) {
+    connectImpactPartner(impactPartnerInput: $vars) {
+      id
+      accountId
+      impactPartner {
+        connectionStatus
+      }
+    }
+  }
+`;
 
 function getOption(participantType: string, countryCode: string) {
   if (participantType === "individualParticipant") return "notRegistered";
@@ -44,6 +66,10 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   const [loading, setLoading] = useState(false);
   const [formState, setFormState] = useState<Record<string, any>>({});
 
+  const [
+    connectImpactPartner,
+    { loading: connectLoading, errors: connectErrors },
+  ] = useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
   const userForm = useParentValue<UserFormContext>(USER_FORM_CONTEXT_NAMESPACE);
   const { data: userData, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
@@ -126,19 +152,34 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
           : "DIFFERENT_COUNTRY";
 
       const fields = {
-        taxOption: taxOption,
-        countrySubDivision: formData.province || formData.subRegion,
+        indirectTaxOption: taxOption,
+        indirectTaxCountry: formData.selectedRegion, // TODO: May need formatting
+        indirectTaxSubdivision: formData.province || formData.subRegion,
         indirectTaxId: formData.indirectTaxNumber,
-        additionalTax: formState.hasQst,
         additionalTaxId: formData.qstNumber,
         withholdingTaxCountry: formState.hasSubRegionTaxNumber
           ? "SPAIN"
           : undefined,
         withholdingTaxNumber: formData.subRegionTaxNumber,
+        organizationType: "OTHER", // TODO: Eventually know what to pass here
       };
 
-      console.log({ formData, fields, userForm });
+      const result = await connectImpactPartner({
+        vars: {
+          userId: user.id,
+          accountId: user.accountId,
+          firstName: userForm.firstName,
+          lastName: userForm.lastName,
+          country: userForm.countryCode, // TODO: May need formatting
+          currency: userForm.currency,
+          ...fields,
+        },
+      });
+      if (!result || (result as Error)?.message) throw new Error();
 
+      await refetch();
+
+      console.log({ result });
       setStep("/3");
     } catch (e) {
       setErrors({ general: true });
@@ -154,9 +195,9 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   return {
     states: {
       hideSteps: context.hideSteps,
-      disabled: loading || countriesLoading,
-      loading: loading || countriesLoading,
-      isPartner: userData?.user?.customFields?.__taxIsPartner,
+      disabled: loading || countriesLoading || connectLoading,
+      loading: loading || connectLoading || countriesLoading,
+      isPartner: !!userData?.user?.impactPartner,
       errors,
       formState: {
         checked: option,
@@ -175,8 +216,9 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
         })),
     },
     data: {
+      // TODO: Confirm
       esRegions: INDIRECT_TAX_SPAIN_REGIONS,
-      countries: INDIRECT_TAX_COUNTRIES,
+      countries: INDIRECT_TAX_COUNTRIES as TaxCountry[],
       provinces: INDIRECT_TAX_PROVINCES,
     },
     text: props.getTextProps(),

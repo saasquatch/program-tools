@@ -36,6 +36,7 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
   data: {
     countries: [
       {
+        impactCountryCode: "CANADA",
         countryCode: "CA",
         displayName: "Canada",
       },
