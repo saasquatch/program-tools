@@ -11,20 +11,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Fixed bugs with error text not being shown in \<sqm-edit-profile> and \<sqm-portal-profile>
+
+### Added
+
 - Added new text prop(s) to the following components which previous contained hardcoded text:
-  - `sqm-edit-profile`
-  - `sqm-password-field`
-  - `sqm-popup-container`
-  - `sqm-portal-change-password`
-  - `sqm-email-verification`
-  - `sqm-portal-forgot-password`
-  - `sqm-portal-login`
-  - `sqm-portal-profile`
-  - `sqm-portal-register`
-  - `sqm-portal-registration-form`
-  - `sqm-protal-reset-password`
-  - `sqm-portal-verify-email`
-  - `sqm-share-button`
+  - \<sqm-edit-profile>
+  - \<sqm-password-field>
+  - \<sqm-popup-container>
+  - \<sqm-portal-change-password>
+  - \<sqm-email-verification>
+  - \<sqm-portal-forgot-password>
+  - \<sqm-portal-login>
+  - \<sqm-portal-profile>
+  - \<sqm-portal-register>
+  - \<sqm-portal-registration-form>
+  - \<sqm-protal-reset-password>
+  - \<sqm-portal-verify-email>
+  - \<sqm-share-button>
 
 
 ## [1.7.4] - 2024-02-09
