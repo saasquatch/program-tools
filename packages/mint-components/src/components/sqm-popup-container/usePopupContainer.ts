@@ -2,6 +2,7 @@ import { useEngagementMedium } from "@saasquatch/component-boilerplate";
 
 type UsePopupContainerProps = {
   poweredBy: boolean;
+  poweredByText: string;
   closeButtonText: string;
   closeButton: boolean;
   embedPadding?: "none" | "small" | "medium" | "large";
@@ -48,6 +49,7 @@ export function usePopupContainer(props: UsePopupContainerProps) {
         ...props,
         padding,
         closeButtonText: props.closeButtonText ? props.closeButtonText : "X",
+        poweredByText: props.poweredByText,
       },
     },
     data: {},

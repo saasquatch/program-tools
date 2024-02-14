@@ -146,6 +146,16 @@ export class ShareButton {
    * @uiName Share text
    */
   @Prop() sharetext?: string;
+  /**
+   * Alert text shown if the share link is undefined
+   * @uiName Undefined link text
+   */
+  @Prop() undefinedLinkText?: string = "Error: message link undefined!";
+  /**
+   * Alert text shown if the user's device does not support native sharing
+   * @uiName Unsupported platform text
+   */
+  @Prop() unsupportedPlatformText?: string = "Error: not on a supported device";
 
   /**
    * @undocumented

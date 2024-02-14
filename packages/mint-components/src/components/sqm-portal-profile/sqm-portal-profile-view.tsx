@@ -33,6 +33,8 @@ export interface PortalProfileViewProps {
       editProfileHeader: string;
       editProfileSubHeader: string;
       submitChangeButtonText: string;
+      submissionSuccessText?: string;
+      fieldEmptyText?: string;
     };
   };
   callbacks: {
@@ -115,9 +117,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
             class={sheet.classes.Success}
             exportparts="success-icon"
           >
-            <div part="successalert-text">
-              Your profile has been successfully updated.
-            </div>
+            <div part="successalert-text">{text.submissionSuccessText}</div>
           </sqm-form-message>
         )}
 
@@ -139,7 +139,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
             label={text.firstnametext}
             disabled={states.loading}
             {...(errors?.firstName && errors?.firstName.status !== "valid"
-              ? { class: "ErrorStyles", helpText: "Cannot be empty" }
+              ? { class: "ErrorStyles", helpText: text.fieldEmptyText }
               : [])}
             id="firstName"
             name="firstName"
@@ -159,7 +159,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
             id="lastName"
             name="lastName"
             {...(errors?.lastName && errors?.lastName.status !== "valid"
-              ? { class: "ErrorStyles", helpText: "Cannot be empty" }
+              ? { class: "ErrorStyles", helpText: text.fieldEmptyText }
               : [])}
             error={
               errors?.lastName && errors?.lastName.status !== "valid"
