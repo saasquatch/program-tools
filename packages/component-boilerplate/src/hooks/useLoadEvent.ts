@@ -1,5 +1,5 @@
 import { UserIdentity } from "@saasquatch/component-environment";
-import debug from "debug";
+import debugFn from "debug";
 import { ContextProvider } from "dom-context";
 import { gql } from "graphql-request";
 import {
@@ -10,6 +10,10 @@ import {
 import { useMutation } from "./graphql/useMutation";
 import useDeepEffect from "./useDeepEffect";
 import { equal as deepEqual } from "@wry/equality";
+
+const LOAD_EVENT_CONTEXT_NAME = "sq:load-event";
+export const debug = debugFn(LOAD_EVENT_CONTEXT_NAME);
+
 declare global {
   interface Window {
     squatchLoadEvent?: ContextProvider<EventContext>;
@@ -19,7 +23,6 @@ declare global {
 type EventContext = {
   userIdentity?: UserIdentity;
   programId?: string;
-  loaded: boolean;
 };
 
 const FIRE_EVENT = gql`
@@ -27,8 +30,6 @@ const FIRE_EVENT = gql`
     createUserAnalyticsEvent(eventMeta: $eventMeta)
   }
 `;
-
-const LOAD_EVENT_CONTEXT_NAME = "sq:load-event";
 
 export function lazilyStartLoadEventContext() {
   let globalProvider = window.squatchLoadEvent;
@@ -41,7 +42,6 @@ export function lazilyStartLoadEventContext() {
       initialState: {
         userIdentity: undefined,
         programId: undefined,
-        loaded: false,
       },
       contextName: LOAD_EVENT_CONTEXT_NAME,
     }).start();
@@ -61,16 +61,24 @@ export function useLoadEvent() {
   const globalProvider = lazilyStartLoadEventContext();
 
   useDeepEffect(() => {
-    if (!userIdentity || !programId) return;
+    if (!userIdentity || !programId || !globalProvider.context) return;
 
     if (
+      // First time loading
+      !globalProvider.context.userIdentity ||
       // User changed
       !deepEqual(userIdentity, globalProvider.context.userIdentity) ||
       // Different programId
-      programId !== globalProvider.context.programId ||
-      // Never loaded
-      !globalProvider.context.loaded
+      programId !== globalProvider.context.programId
     ) {
+      debug("updated context", {
+        programChanged: programId !== globalProvider.context.programId,
+        userChanged: !deepEqual(
+          userIdentity,
+          globalProvider.context.userIdentity
+        ),
+      });
+
       const variables = {
         eventMeta: {
           programId,
@@ -83,14 +91,8 @@ export function useLoadEvent() {
         },
       };
       dispatch(variables);
-      console.log("updated context", {
-        programChanged: programId !== globalProvider.context.programId,
-        userChanged: deepEqual(
-          userIdentity,
-          globalProvider.context.userIdentity
-        ),
-      });
-      globalProvider.context = { userIdentity, programId, loaded: true };
+
+      globalProvider.context = { userIdentity, programId };
     }
-  }, [userIdentity, programId]);
+  }, [userIdentity, programId, globalProvider.context]);
 }
