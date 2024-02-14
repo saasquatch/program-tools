@@ -40,11 +40,7 @@ export const DocusignExpiredView = (props: DocusignExpiredViewProps) => {
           }}
           name="clock"
         ></sl-icon>
-        <p style={{ margin: "0" }}>
-          For your security and privacy, we automatically end your session after
-          20 minutes of inactivity. Please refresh and re-enter your tax
-          information to continue.
-        </p>
+        <p style={{ margin: "0" }}>{text.docusignExpired}</p>
       </div>
     </div>
   );
