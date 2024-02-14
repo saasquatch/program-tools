@@ -1,8 +1,4 @@
-import {
-  USER_CONTEXT_NAME,
-  UserIdentity,
-  getUserIdentity,
-} from "@saasquatch/component-environment";
+import { UserIdentity } from "@saasquatch/component-environment";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { equal as deepEqual } from "@wry/equality";
 import debugFn from "debug";
@@ -14,7 +10,6 @@ import {
   useUserIdentity,
 } from "./environment";
 import { useMutation } from "./graphql/useMutation";
-import { useDomContext } from "@saasquatch/dom-context-hooks";
 import { useHost } from "./useHost";
 
 const LOAD_EVENT_CONTEXT_NAME = "sq:load-event";
@@ -61,44 +56,17 @@ export function lazilyStartLoadEventContext() {
 export function useLoadEvent() {
   const host = useHost();
   const globalProvider = lazilyStartLoadEventContext();
-  debug("useLoadEvent", { host, globalProvider });
 
   const engagementMedium = useEngagementMedium();
-  debug("engagementMedium", { engagementMedium });
 
   const userIdentity = useUserIdentity();
-  debug("userIdentity", { userIdentity });
 
   const programId = useProgramId();
-  debug("programId", { programId });
 
   const [dispatch] = useMutation(FIRE_EVENT);
 
-  debug("useLoadEvent retrieved data", {
-    engagementMedium,
-    userIdentity,
-    programId,
-    globalProvider,
-    dispatch,
-  });
-
   useEffect(() => {
-    debug("use effect triggered", {
-      context: globalProvider?.context,
-      userIdentity,
-      programId,
-    });
-
     if (!userIdentity || !programId || !globalProvider?.context) return;
-
-    debug("check for data updates", {
-      userIdentity: globalProvider.context.userIdentity,
-      programChanged: programId !== globalProvider.context.programId,
-      userChanged: !deepEqual(
-        userIdentity,
-        globalProvider.context.userIdentity
-      ),
-    });
 
     if (
       // First time loading
