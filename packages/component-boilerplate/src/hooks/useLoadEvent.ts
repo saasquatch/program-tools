@@ -61,7 +61,7 @@ export function useLoadEvent() {
   const globalProvider = lazilyStartLoadEventContext();
 
   useEffect(() => {
-    debug("use effect", {
+    debug("use effect triggered", {
       context: globalProvider?.context,
       userIdentity,
       programId,
@@ -69,7 +69,7 @@ export function useLoadEvent() {
 
     if (!userIdentity || !programId || !globalProvider?.context) return;
 
-    debug("updated context", {
+    debug("check for data updates", {
       userIdentity: globalProvider.context.userIdentity,
       programChanged: programId !== globalProvider.context.programId,
       userChanged: !deepEqual(
@@ -98,6 +98,8 @@ export function useLoadEvent() {
         },
       };
       dispatch(variables);
+
+      debug("Event sent", { variables, globalProvider });
 
       globalProvider.context = { userIdentity, programId };
     }
