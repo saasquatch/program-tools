@@ -45,10 +45,9 @@ export function useWidget(props: SqbWidget) {
   const userIdent = useUserIdentity();
   const locale = useLocale();
   const [fetch, { data }] = useLazyQuery<GetWidget>(GET_WIDGET);
-  const sendLoadEvent = useLoadEvent();
 
   if (props.trackLoads && userIdent !== undefined) {
-    sendLoadEvent();
+    useLoadEvent();
   }
 
   const canLoad =
