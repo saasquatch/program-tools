@@ -1,14 +1,14 @@
-import {
-  UserIdentity,
-  getEngagementMedium,
-  getProgramId,
-  getUserIdentity,
-} from "@saasquatch/component-environment";
+import { UserIdentity } from "@saasquatch/component-environment";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { equal as deepEqual } from "@wry/equality";
 import debugFn from "debug";
 import { ContextProvider } from "dom-context";
 import { gql } from "graphql-request";
+import {
+  useEngagementMedium,
+  useProgramId,
+  useUserIdentity,
+} from "./environment";
 import { useMutation } from "./graphql/useMutation";
 
 const LOAD_EVENT_CONTEXT_NAME = "sq:load-event";
@@ -53,9 +53,9 @@ export function lazilyStartLoadEventContext() {
 }
 
 export function useLoadEvent() {
-  const engagementMedium = getEngagementMedium();
-  const userIdentity = getUserIdentity();
-  const programId = getProgramId();
+  const engagementMedium = useEngagementMedium();
+  const userIdentity = useUserIdentity();
+  const programId = useProgramId();
   const [dispatch] = useMutation(FIRE_EVENT);
 
   const globalProvider = lazilyStartLoadEventContext();
