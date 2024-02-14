@@ -1,6 +1,7 @@
 import {
   USER_CONTEXT_NAME,
   UserIdentity,
+  getUserIdentity,
 } from "@saasquatch/component-environment";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { equal as deepEqual } from "@wry/equality";
@@ -65,9 +66,10 @@ export function useLoadEvent() {
   const engagementMedium = useEngagementMedium();
   debug("engagementMedium", { engagementMedium });
 
-  const userIdentity = useDomContext(host, USER_CONTEXT_NAME) as
-    | UserIdentity
-    | undefined;
+  // const userIdentity = useDomContext(host, USER_CONTEXT_NAME) as
+  //   | UserIdentity
+  //   | undefined;
+  const userIdentity = getUserIdentity();
   debug("userIdentity", { userIdentity });
 
   const programId = useProgramId();
