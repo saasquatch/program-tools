@@ -2,6 +2,7 @@ import { h } from "@stencil/core";
 import { intl } from "../../../../global/global";
 import { createStyleSheet } from "../../../../styling/JSS";
 import { INDIRECT_TAX_PROVINCES } from "../../subregions";
+import { TaxContext, TaxCountry } from "../../sqm-tax-and-cash/data";
 
 export interface IndirectDetailsSlotViewProps {
   states: {
@@ -30,10 +31,7 @@ export interface IndirectDetailsSlotViewProps {
       provinceCode: string;
       displayName: string;
     }[];
-    countries?: {
-      countryCode: string;
-      displayName: string;
-    }[];
+    countries?: TaxCountry[];
   };
   callbacks: {
     onFormChange: (field: string, e: CustomEvent) => void;
@@ -182,7 +180,6 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           class={classes.Input}
           value={formState.subRegion}
           label={"Sub Region"}
-          // onSl-select={(e) => callbacks.onFormChange("subRegion", e)}
           disabled={states.loading}
           {...(formState.errors?.indirectTaxNumber && {
             class: classes.ErrorInput,
@@ -348,7 +345,9 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             name="/selectedRegion"
           >
             {props.data.countries!.map((c) => (
-              <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
+              <sl-menu-item value={c.impactCountryCode}>
+                {c.displayName}
+              </sl-menu-item>
             ))}
           </sl-select>
           {/* Trying to stop shoelace from persisting form inputs */}

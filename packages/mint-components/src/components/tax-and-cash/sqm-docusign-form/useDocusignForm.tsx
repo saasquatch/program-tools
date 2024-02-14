@@ -17,23 +17,16 @@ import {
 import { DocusignForm } from "./sqm-docusign-form";
 
 type CreateTaxDocumentQuery = {
-  documentUrl: string;
+  createImpactPartnerTaxDocument: {
+    documentUrl: string;
+  };
 };
 const GET_TAX_DOCUMENT = gql`
   mutation createImpactPartnerTaxDocument(
-    $vars: CreateImpactPartnerTaxDocumentInput
+    $vars: CreateImpactPartnerTaxDocumentInput!
   ) {
     createImpactPartnerTaxDocument(createImpactPartnerTaxDocumentInput: $vars) {
       documentUrl
-    }
-  }
-`;
-
-const UPSERT_USER = gql`
-  mutation ($userInput: UserInput!) {
-    upsertUser(userInput: $userInput) {
-      firstName
-      lastName
     }
   }
 `;
@@ -42,8 +35,11 @@ export function useDocusignForm(props: DocusignForm, el: any) {
   const user = useUserIdentity();
   const [path, setPath] = useParent<string>(TAX_CONTEXT_NAMESPACE);
   const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
-  const { data, refetch } =
-    useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+  const {
+    data,
+    loading: userLoading,
+    refetch,
+  } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [errors, setErrors] = useState({});
@@ -64,25 +60,36 @@ export function useDocusignForm(props: DocusignForm, el: any) {
   ] = useMutation<CreateTaxDocumentQuery>(GET_TAX_DOCUMENT);
 
   useEffect(() => {
-    if (data.user && !data.user.impactPartner) {
-      setErrors({ general: true });
-      return;
-    }
-
+    if (document) return;
     if (!user || !documentType) return;
 
-    createTaxDocument({
-      userId: user.id,
-      accountId: user.accountId,
-      taxDocumentType: documentType,
-    });
-  }, [data, user, documentType]);
+    const fetchDocument = async () => {
+      try {
+        const result = await createTaxDocument({
+          vars: {
+            userId: user.id,
+            accountId: user.accountId,
+            taxDocumentType: documentType,
+          },
+        });
+
+        if (!result || (result as Error).message) throw new Error();
+      } catch (e) {
+        setErrors({ general: true });
+      }
+    };
+
+    fetchDocument();
+  }, [user, documentType, document]);
 
   useEffect(() => {
-    if (!document) return;
+    console.log({ document });
+    if (!document?.createImpactPartnerTaxDocument) return;
     // Load docusign iframe with given url
     const slotted = el.querySelector("sqm-docusign-embed");
-    if (slotted) slotted.url = document.documentUrl;
+    if (slotted) {
+      slotted.url = document.createImpactPartnerTaxDocument?.documentUrl;
+    }
   }, [document]);
 
   const onSubmit = async () => {
@@ -94,17 +101,17 @@ export function useDocusignForm(props: DocusignForm, el: any) {
     // TODO: Check document is actually registered in the backend
     try {
       setLoading(true);
-      // Backend request
-      // await upsertUser({
-      //   userInput: {
-      //     id: user.id,
-      //     accountId: user.accountId,
-      //     customFields: {
-      //       __taxDocumentSubmitted: true,
-      //     },
-      //   },
-      // });
-      await refetch();
+
+      const result = await refetch();
+      if ((result as Error).message) throw new Error();
+
+      const status = (result as UserQuery).user?.impactPartner
+        ?.currentTaxDocument?.status;
+
+      // TODO : Confirm behaviour
+      if (status === "NOT_VERIFIED" || status === "ACTIVE") {
+        console.log("Document has been registered as submitted");
+      }
 
       setPath(context.overrideNextStep || "/submitted");
     } catch (e) {
@@ -121,9 +128,9 @@ export function useDocusignForm(props: DocusignForm, el: any) {
   return {
     states: {
       hideSteps: context.hideSteps,
-      disabled: documentLoading || loading,
+      disabled: userLoading || documentLoading || loading,
       submitDisabled: !formSubmitted,
-      loading: documentLoading || loading,
+      loading: userLoading || documentLoading || loading,
       formState: {
         completedTaxForm: formSubmitted,
         taxFormExpired: false, // TODO: Unhardcode this
@@ -133,7 +140,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
     },
     data: {
       taxForm: documentType,
-      documentUrl: document?.documentUrl,
+      documentUrl: document?.createImpactPartnerTaxDocument?.documentUrl,
     },
     callbacks: {
       onShowDocumentType: () => setPath("/3b"),

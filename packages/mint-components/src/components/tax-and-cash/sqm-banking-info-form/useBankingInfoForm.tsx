@@ -1,8 +1,8 @@
 import { useParent } from "../../../utils/useParentState";
 import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
-import { CashForm } from "./sqm-cash-form";
+import { BankingInfoForm } from "./sqm-banking-info-form";
 
-export function useCashForm(props: CashForm) {
+export function useBankingInfoForm(props: BankingInfoForm) {
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
 
   return {
