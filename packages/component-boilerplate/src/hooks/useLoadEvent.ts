@@ -62,12 +62,12 @@ export function useLoadEvent() {
 
   useEffect(() => {
     debug("use effect", {
-      context: globalProvider.context,
+      context: globalProvider?.context,
       userIdentity,
       programId,
     });
 
-    if (!userIdentity || !programId || !globalProvider.context) return;
+    if (!userIdentity || !programId || !globalProvider?.context) return;
 
     debug("updated context", {
       userIdentity: globalProvider.context.userIdentity,
@@ -102,9 +102,9 @@ export function useLoadEvent() {
       globalProvider.context = { userIdentity, programId };
     }
   }, [
-    userIdentity.id,
-    userIdentity.accountId,
+    userIdentity?.id,
+    userIdentity?.accountId,
     programId,
-    globalProvider.context,
+    globalProvider?.context,
   ]);
 }
