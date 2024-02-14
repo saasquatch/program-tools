@@ -1,7 +1,7 @@
 import {
   getAppDomain,
+  getEnvironment,
   getTenantAlias,
-  getUserIdentity,
   setUserIdentity,
 } from "@saasquatch/component-environment";
 import gql from "graphql-tag";
@@ -118,6 +118,7 @@ export function useAuthenticateManagedIdentityWithInstantAccess(): [
   BaseQueryData<AuthenticateManagedIdentityWithInstantAccessResult>
 ] {
   const programId = useProgramId();
+  const env = getEnvironment();
 
   const [request, { loading, data, errors }] =
     useMutation<AuthenticateManagedIdentityWithInstantAccessResult>(
@@ -147,6 +148,19 @@ export function useAuthenticateManagedIdentityWithInstantAccess(): [
           id: email,
           accountId: email,
         });
+
+        // If in squatch-js, fire a sq:user-registered event
+        if (env === "SquatchJS2") {
+          const event = new CustomEvent("sq:user-registration", {
+            bubbles: true,
+            detail: {
+              userId: email,
+              accountId: email,
+            },
+          });
+
+          document.dispatchEvent(event);
+        }
       } else {
         throw {
           name: "fraud_error",
