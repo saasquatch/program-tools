@@ -1,7 +1,8 @@
-import { h } from "@stencil/core";
+import { VNode, h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { TaxDocumentType } from "../sqm-tax-and-cash/data";
+import { useState } from "@saasquatch/universal-hooks";
 
 export interface DocusignFormViewProps {
   states: {
@@ -15,6 +16,9 @@ export interface DocusignFormViewProps {
       errors?: any;
     };
     documentType: TaxDocumentType;
+  };
+  slots: {
+    docusignExpiredSlot?: VNode;
   };
   callbacks: {
     onShowDocumentType: () => void;
@@ -171,6 +175,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
     states: { formState, documentType },
     callbacks,
     text,
+    slots,
   } = props;
 
   const { classes } = sheet;
@@ -229,12 +234,6 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             <sl-icon slot="icon" name="info-circle"></sl-icon>
             {text.banner}
           </sl-alert>
-          <iframe
-            src={"https://example.com"}
-            width="100%"
-            height="900px"
-          ></iframe>
-          {/* <slot name="docusign-iframe"></slot> */}
           <div>
             <p class={classes.BoldText}>{text.checkboxLabel}</p>
             <sl-checkbox
@@ -250,7 +249,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           </div>
 
           <div class={classes.BtnContainer}>
-            <sl-button
+            {/* <sl-button
               type="primary"
               loading={states.loading}
               disabled={states.submitDisabled}
@@ -259,7 +258,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
               exportparts="base: primarybutton-base"
             >
               {text.submitButton}
-            </sl-button>
+            </sl-button> */}
             <sl-button
               class={classes.SecondaryBtn}
               type="text"

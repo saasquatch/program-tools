@@ -527,8 +527,25 @@ export const StepThreeWithDocusign = () => {
         },
       }}
     >
-      <div slot="docusign-iframe">Hey</div>
+      <div slot="docusign-iframe">hey</div>
     </sqm-docusign-form>
+  );
+};
+
+export const StepThreeWithDocusignExpired = () => {
+  return (
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          ...docusignFormProps.states,
+          formState: {
+            taxFormExpired: true,
+            completedTaxForm: false,
+            errors: {},
+          },
+        },
+      }}
+    ></sqm-docusign-form>
   );
 };
 

@@ -17,6 +17,7 @@ import {
   DocusignFormViewProps,
 } from "./sqm-docusign-form-view";
 import { useDocusignForm, UseDocusignFormResult } from "./useDocusignForm";
+import { DocusignExpiredView } from "../sqm-user-info-form/small-views/DocusignExpiredView";
 import { DocusignEmbedComponent } from "../../sqm-docusign-embed/sqm-docusign-embed";
 
 /**
@@ -74,6 +75,12 @@ export class DocusignForm {
    */
   @Prop() checkboxDescription: string =
     "I have completed and submitted my tax form";
+  /**
+   * Label text for the form submission checkbox
+   * @uiName Form submission checkbox label
+   */
+  @Prop() docusignExpired: string =
+    "For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue.";
   /**
    * Text shown inside of submit button
    * @uiName Submit button text
@@ -139,12 +146,17 @@ export class DocusignForm {
       ? useDocusignFormDemo(this)
       : useDocusignForm(this, this.el);
 
+    const docusignExpiredSlot = <DocusignExpiredView text={props.text} />;
+
     return (
       <Host>
         <DocusignFormView
           callbacks={props.callbacks}
           states={props.states}
           text={props.text}
+          slots={{
+            docusignExpiredSlot,
+          }}
         />
       </Host>
     );
@@ -161,6 +173,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
         loading: false,
         formState: {
           completedTaxForm: true,
+          taxFormExpired: true,
           errors: {},
         },
         documentType: "W9",
