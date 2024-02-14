@@ -1,7 +1,7 @@
 {
   "name": "@saasquatch/bedrock-components",
   "title": "Bedrock Components",
-  "version": "1.4.2-13",
+  "version": "1.4.2-15",
   "description": "Component library that adds advanced logic to your widgets and pages. Built and maintained by Saasquatch.",
   "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1652219900/squatch-assets/For_Bedrock.svg",
   "main": "dist/index.cjs.js",
@@ -36,7 +36,8 @@
   },
   "dependencies": {
     "@raisins/stencil-docs-target": "^1.0.0",
-    "@saasquatch/component-boilerplate": "^1.6.2-12",
+    "@saasquatch/component-boilerplate": "^1.6.2-15",
+    "@saasquatch/component-environment": "^1.0.5-0",
     "@saasquatch/stencil-hooks": "^2.0.2",
     "@saasquatch/stencilbook": "^1.0.0",
     "@saasquatch/universal-hooks": "^1.0.0",
