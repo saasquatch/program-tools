@@ -3,7 +3,6 @@ Feature: Indirect Tax Form
 
   Background: A user has submitted their personal information in Tax Form Step One
     Given a user is on the Indirect Tax Form
-#   Break into 3 specs
 
   @minutia
   Scenario Outline: Different indirect tax inputs are shown depending on the country of a participant
@@ -141,7 +140,7 @@ Feature: Indirect Tax Form
       | US      | United States          |
       | AUS     | Australia              |
 
-  @minutia
+  @unknown @minutia
   Scenario Outline: Participant from another country can change the auto selected country
     When the Country <countryAutoSelectValue> is selected with their <country> from step 1
     And they change the Country to <newCountrySelectValue>
@@ -151,6 +150,14 @@ Feature: Indirect Tax Form
       | country | countryAutoSelectValue | newCountrySelectValue |
       | US      | United States          | Australia             |
       | UK      | United Kingdom         | Egypt                 |
+  # AL: Rough spec of what happen when the participant actually submits
+
+  @TODO @minutia
+  Scenario: Participant is registered for indirect tax fills out and submits form
+    Given they are registered for indirect tax
+    And they fill out the form
+    And press "Continue"
+    Then their indirect tax details are saved
 
   @minutia @ui
   Scenario: Participant fills out the Indirect Tax Form with invalid or empty values

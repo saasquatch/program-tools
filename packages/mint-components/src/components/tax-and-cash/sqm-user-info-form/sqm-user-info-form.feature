@@ -6,9 +6,10 @@ Feature: Tax Form Step One
 
   @minutia
   Scenario: The Participant is a partner and cannot change their email
-    When the user is filling out the form
-    Then they see the email input has already been filled with their email
-    And the field is disabled
+    When they are on the form
+    And they are already a partner
+    Then the email field is pre-filled with their email
+    And the email field is disabled
 
   @minutia
   Scenario: A user is filling out the form and selects their country
