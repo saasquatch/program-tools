@@ -58,19 +58,20 @@ export function lazilyStartLoadEventContext() {
 }
 
 export function useLoadEvent() {
+  debug("useLoadEvent");
   const host = useHost();
-  const engagementMedium = useEngagementMedium();
 
+  const engagementMedium = useEngagementMedium();
   const userIdentity = useDomContext(host, USER_CONTEXT_NAME) as
     | UserIdentity
     | undefined;
-
   const programId = useProgramId();
+
   const [dispatch] = useMutation(FIRE_EVENT);
 
   const globalProvider = lazilyStartLoadEventContext();
 
-  debug("useLoadEvent called", {
+  debug("useLoadEvent retrieved data", {
     engagementMedium,
     userIdentity,
     programId,
