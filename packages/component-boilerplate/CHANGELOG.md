@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.2] - 2024-02-13
+
+### Added
+
+- useLoadEvent hook
+  - Returns a function to send a `USER_REFERRAL_PROGRAM_LOADED_EVENT` analytics event
+
+## [1.6.1] - 2023-02-06
+
+### Added
+
+- Fires `sq:user-registration` event in `useAuthenticateManagedIdentityWithInstantAccess` hook upon successful registration when in `SquatchJS2` environment
+
 ## [1.6.0] - 2023-01-08
 
 ### Added
@@ -14,16 +27,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.5.3] - 2023-05-18
 
 ### Changed
+
 - `@saasquatch/component-environment` package bump
 
 ## [1.5.2] - 2023-05-16
 
 ### Added
+
 - useAuthenticateManagedIdentityWithInstantAccess hook for registration via an Instant Access registration form
 
 ## [1.5.1] - 2023-04-20
 
 ### Changed
+
 - Updated license copyright to be in line with SaaSquatch open-source policy.
 
 ## [1.5.0] - 2022-07-21
@@ -150,7 +166,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - useShareEvent
       useForm
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fcomponent-boilerplate@1.5.1...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fcomponent-boilerplate@1.6.2...HEAD
+[1.6.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.2
+[1.6.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.1
+[1.6.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.0
+[1.5.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.5.3
+[1.5.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.5.2
 [1.5.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.5.1
 [1.5.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.5.0
 [1.4.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.4.0

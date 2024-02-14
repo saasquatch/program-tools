@@ -89,7 +89,7 @@ export const error: winston.LeveledLogMethod = (...args): winston.Logger => {
  */
 export function initializeLogger(
   nameOrConfig?: Partial<LoggerConfig> | string,
-  config?: Partial<LoggerConfig>
+  config?: Partial<LoggerConfig>,
 ): winston.Logger {
   const name =
     typeof nameOrConfig === "string" ? nameOrConfig : DEFAULT_LOGGER_NAME;
