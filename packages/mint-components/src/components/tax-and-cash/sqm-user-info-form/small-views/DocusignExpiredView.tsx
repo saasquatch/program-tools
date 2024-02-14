@@ -1,6 +1,12 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../../styling/JSS";
 
+export interface DocusignExpiredViewProps {
+  text: {
+    docusignExpired: string;
+  };
+}
+
 const style = {
   Container: {
     width: "100%",
@@ -9,17 +15,18 @@ const style = {
     alignItems: "center",
     padding: "20px",
     gap: "10px",
-    maxWidth: "500px",
     margin: "auto",
     textAlign: "center",
+    border: "1px solid var(--sl-color-gray-200)",
   },
 };
 
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export const DocusignExpiredView = () => {
+export const DocusignExpiredView = (props: DocusignExpiredViewProps) => {
   const { classes } = sheet;
+  const { text } = props;
   return (
     <div>
       <style type="text/css">{styleString}</style>

@@ -390,6 +390,11 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseDocusignFormResult>;
         /**
+          * Label text for the form submission checkbox
+          * @uiName Form submission checkbox label
+         */
+        "docusignExpired": string;
+        /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Tax form step text
          */
@@ -5634,6 +5639,11 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<UseDocusignFormResult>;
+        /**
+          * Label text for the form submission checkbox
+          * @uiName Form submission checkbox label
+         */
+        "docusignExpired"?: string;
         /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Tax form step text
