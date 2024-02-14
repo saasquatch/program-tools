@@ -82,16 +82,6 @@ export function useDocusignForm(props: DocusignForm, el: any) {
     fetchDocument();
   }, [user, documentType, document]);
 
-  useEffect(() => {
-    console.log({ document });
-    if (!document?.createImpactPartnerTaxDocument) return;
-    // Load docusign iframe with given url
-    const slotted = el.querySelector("sqm-docusign-embed");
-    if (slotted) {
-      slotted.url = document.createImpactPartnerTaxDocument?.documentUrl;
-    }
-  }, [document]);
-
   const onSubmit = async () => {
     if (!formSubmitted) {
       setErrors({ submitCheckbox: true });

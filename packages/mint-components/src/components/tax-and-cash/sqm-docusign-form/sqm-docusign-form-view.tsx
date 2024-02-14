@@ -229,7 +229,12 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             <sl-icon slot="icon" name="info-circle"></sl-icon>
             {text.banner}
           </sl-alert>
-          <slot name="docusign-iframe"></slot>
+          <iframe
+            src={"https://example.com"}
+            width="100%"
+            height="900px"
+          ></iframe>
+          {/* <slot name="docusign-iframe"></slot> */}
           <div>
             <p class={classes.BoldText}>{text.checkboxLabel}</p>
             <sl-checkbox

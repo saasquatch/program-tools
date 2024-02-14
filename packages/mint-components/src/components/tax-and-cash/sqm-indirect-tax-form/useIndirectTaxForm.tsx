@@ -94,16 +94,20 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       ? userForm.countryCode
       : undefined;
 
-    setFormState({
-      province: user.customFields?.__taxProvince,
-      subRegion: user.customFields?.__taxSubRegion,
-      hasQst: !!user.customFields?.__taxQstNumber,
-      qstNumber: user.customFields?.__taxQstNumber,
-      hasSubRegionTaxNumber: !!user.customFields?.__taxSubRegionTaxNumber,
-      subRegionTaxNumber: user.customFields?.__taxSubRegionTaxNumber,
-      selectedRegion: user.customFields?.__taxCountry || defaultCountryCode,
-      indirectTaxNumber: user.customFields?.__taxIndirectTaxNumber,
-    });
+    if (user.impactPartner) {
+      setFormState({
+        province: user.impactPartner?.indirectTaxSubdivision,
+        subRegion: user.impactPartner?.indirectTaxSubdivision,
+        hasQst: !!user.impactPartner?.additionalTaxId,
+        qstNumber: user.impactPartner?.additionalTaxId,
+        hasSubRegionTaxNumber: !!user.impactPartner?.withholdingTaxNumber,
+        subRegionTaxNumber: user.impactPartner?.withholdingTaxNumber,
+        selectedRegion: user.impactPartner?.indirectTaxCountry,
+        indirectTaxNumber: user.impactPartner?.indirectTaxNumber,
+      });
+    } else {
+      setFormState({ selectedRegion: user?.countryCode });
+    }
   }, [userData, userForm]);
 
   const onFormChange = (field: string, e: CustomEvent) => {
@@ -131,7 +135,6 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       const value = control.value;
       JSONPointer.set(formData, key, value);
 
-      console.log({ control, value });
       if (control.required && !value) {
         JSONPointer.set(validationErrors, key, true);
       }
@@ -155,7 +158,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
         indirectTaxOption: taxOption,
         indirectTaxCountry: formData.selectedRegion, // TODO: May need formatting
         indirectTaxSubdivision: formData.province || formData.subRegion,
-        indirectTaxId: formData.indirectTaxNumber,
+        indirectTaxNumber: formData.indirectTaxNumber,
         additionalTaxId: formData.qstNumber,
         withholdingTaxCountry: formState.hasSubRegionTaxNumber
           ? "SPAIN"

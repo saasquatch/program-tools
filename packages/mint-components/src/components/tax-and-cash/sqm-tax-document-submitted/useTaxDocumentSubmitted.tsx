@@ -74,7 +74,7 @@ export const useTaxDocumentSubmitted = (
   };
 
   const provinceName = INDIRECT_TAX_PROVINCES.find(
-    (p) => p.provinceCode === data?.user?.impactPartner?.countrySubdivision
+    (p) => p.provinceCode === data?.user?.impactPartner?.indirectTaxSubdivision
   )?.displayName;
 
   return {
@@ -91,7 +91,7 @@ export const useTaxDocumentSubmitted = (
       country: new Intl.DisplayNames(["en"], { type: "region" }).of([
         data?.user?.customFields?.__taxCountry,
       ]),
-      notRegistered: data?.user?.impactPartner?.taxOption === "NO_TAX",
+      notRegistered: data?.user?.impactPartner?.indirectTaxOption === "NO_TAX",
       noFormNeeded: !documentType,
       dateExpired,
       expiresSoon,

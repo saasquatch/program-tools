@@ -84,8 +84,14 @@ export type UserQuery = {
       };
 
       // TODO: Remove this comment when these fields exist
-      taxOption: "SAME_COUNTRY" | "NO_TAX" | "DIFFERENT_COUNTRY";
-      countrySubdivision: string;
+      indirectTaxOption: "SAME_COUNTRY" | "NO_TAX" | "DIFFERENT_COUNTRY";
+      indirectTaxSubdivision: string;
+      indirectTaxCountry: string;
+      indirectTaxId: string;
+      additionalTaxId: string;
+      withholdingTaxCountry: string;
+      withholdingTaxNumber: string;
+      organizationType: string;
     };
   };
 };
