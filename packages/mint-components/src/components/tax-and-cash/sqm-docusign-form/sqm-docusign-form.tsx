@@ -167,7 +167,6 @@ export class DocusignForm {
           states={props.states}
           text={props.text}
           slots={{
-            // docusignExpiredSlot,
             docusignIframeSlot: (
               <DocusignIframe
                 states={{

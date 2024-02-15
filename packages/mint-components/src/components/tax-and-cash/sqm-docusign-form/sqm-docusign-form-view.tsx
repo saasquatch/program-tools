@@ -238,7 +238,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
         </sl-alert>
         {slots.docusignIframeSlot}
 
-        {states.hideBackButton && (
+        {!states.hideBackButton && (
           <div class={classes.BtnContainer}>
             <sl-button
               class={classes.SecondaryBtn}

@@ -4,7 +4,7 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { BankingInfoFormView } from "./sqm-banking-info-form-view";
-import { getIndex, useBankingInfoForm } from "./useBankingInfoForm";
+import { useBankingInfoForm } from "./useBankingInfoForm";
 import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
