@@ -175,5 +175,12 @@ export const DocusignIframe = ({
   if (DOCUSIGN_EXPIRED_STATES.includes(states.status))
     return <DocusignExpiredView text={text} />;
 
-  return <iframe src={states.url} width="100%" height="600px"></iframe>;
+  return (
+    <iframe
+      frameBorder="0"
+      src={states.url}
+      width="100%"
+      height="600px"
+    ></iframe>
+  );
 };

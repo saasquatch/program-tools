@@ -122,23 +122,6 @@ const style = {
     alignItems: "baseline",
     flexFlow: "row wrap",
   },
-  BadgeContainer: {
-    "&::part(base)": {
-      padding: "var(--sl-spacing-x-small)",
-    },
-  },
-  SuccessBadgeContainer: {
-    "&::part(base)": {
-      backgroundColor: "#57AC59",
-      padding: "var(--sl-spacing-x-small)",
-    },
-  },
-  CriticalBadgeContainer: {
-    "&::part(base)": {
-      backgroundColor: "#E63717",
-      padding: "var(--sl-spacing-x-small)",
-    },
-  },
   NewFormButton: {
     marginTop: "var(--sl-spacing-large)",
     maxWidth: "179px",
@@ -197,7 +180,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
   const statusMap = {
     NOT_VERIFIED: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
-        <sl-badge type="warning" pill class={sheet.classes.BadgeContainer}>
+        <sl-badge type="warning" pill>
           {text.statusTextNotVerified}
         </sl-badge>
         <p>
@@ -215,11 +198,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
     ),
     ACTIVE: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
-        <sl-badge
-          type="success"
-          pill
-          class={sheet.classes.SuccessBadgeContainer}
-        >
+        <sl-badge type="success" pill>
           {text.statusTextActive}
         </sl-badge>
         <p>
@@ -246,11 +225,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
     ),
     NOT_ACTIVE: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
-        <sl-badge
-          type="danger"
-          pill
-          class={sheet.classes.CriticalBadgeContainer}
-        >
+        <sl-badge type="danger" pill>
           {text.statusTextNotActive}
         </sl-badge>
         <p>{text.invalidForm}</p>
@@ -258,11 +233,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
     ),
     EXPIRED: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
-        <sl-badge
-          type="danger"
-          pill
-          class={sheet.classes.CriticalBadgeContainer}
-        >
+        <sl-badge type="danger" pill>
           {text.statusTextExpired}
         </sl-badge>
         <p>
