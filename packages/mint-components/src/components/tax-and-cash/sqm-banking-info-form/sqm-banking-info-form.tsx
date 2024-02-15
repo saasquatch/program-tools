@@ -1,3 +1,4 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
@@ -5,7 +6,6 @@ import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { BankingInfoFormView } from "./sqm-banking-info-form-view";
 import { useBankingInfoForm } from "./useBankingInfoForm";
-import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
  * @uiName Banking Information Form
@@ -131,16 +131,21 @@ export class BankingInfoForm {
         input: <sl-input name="/bankName" id="bankName" type="text"></sl-input>,
       },
       7: {
-        label: props.text.classificationEntityLabel,
+        label: "",
         input: (
-          <sl-select
-            name="/beneficiaryClassification"
-            id="beneficiaryClassification"
-          >
-            <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
-            <sl-menu-item value="INDIVIDUAL">INDIVIDUAL</sl-menu-item>
-            <sl-menu-item value="FOREIGN">FOREIGN</sl-menu-item>
-          </sl-select>
+          <div>
+            <label>{props.text.classificationEntityLabel}</label>
+            <sl-select
+              name="/beneficiaryClassification"
+              id="beneficiaryClassification"
+            >
+              <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
+              <sl-menu-item value="INDIVIDUAL">INDIVIDUAL</sl-menu-item>
+              <sl-menu-item value="FOREIGN">FOREIGN</sl-menu-item>
+            </sl-select>
+            <label>taxPayerId</label>
+            <sl-input name="/taxPayerId" id="taxPayerId"></sl-input>
+          </div>
         ),
       },
       8: {
@@ -242,6 +247,27 @@ export class BankingInfoForm {
           value={props.demo.bitset}
           onInput={(e) => props.demo.setBitset(Number(e.target.value))}
         />
+        <sl-select
+          name="/currency"
+          value={props.demo.currency}
+          onSl-select={(e) => props.demo.setCurrency(e.detail?.item?.value)}
+        >
+          <sl-menu-item value="USD">USD</sl-menu-item>
+          <sl-menu-item value="GBP">GBP</sl-menu-item>
+          <sl-menu-item value="AUD">AUD</sl-menu-item>
+          <sl-menu-item value="CAD">CAD</sl-menu-item>
+          <sl-menu-item value="NZD">NZD</sl-menu-item>
+          <sl-menu-item value="HKD">HKD</sl-menu-item>
+          <sl-menu-item value="SGD">SGD</sl-menu-item>
+          <sl-menu-item value="SEK">SEK</sl-menu-item>
+          <sl-menu-item value="DKK">DKK</sl-menu-item>
+          <sl-menu-item value="NOK">NOK</sl-menu-item>
+          <sl-menu-item value="ILS">ILS</sl-menu-item>
+          <sl-menu-item value="MXN">MXN</sl-menu-item>
+          <sl-menu-item value="RUB">RUB</sl-menu-item>
+          <sl-menu-item value="PHP">PHP</sl-menu-item>
+          <sl-menu-item value="JPY">JPY</sl-menu-item>
+        </sl-select>
         <BankingInfoFormView
           callbacks={props.callbacks}
           text={props.text}

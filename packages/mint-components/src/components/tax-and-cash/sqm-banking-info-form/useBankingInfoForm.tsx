@@ -23,7 +23,10 @@ export const paypalFeeMap = {
 export function useBankingInfoForm(props: BankingInfoForm) {
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
 
+  /** mock data */
   const [bitset, setBitset] = useState(42);
+  const [currency, setCurrency] = useState("CAD");
+  /** */
 
   const formRef = useRef<HTMLFormElement>(null);
   const [option, setOption] = useState(null);
@@ -105,6 +108,8 @@ export function useBankingInfoForm(props: BankingInfoForm) {
     demo: {
       bitset,
       setBitset,
+      currency,
+      setCurrency,
     },
   };
 }
