@@ -27,6 +27,20 @@ export class BankingInfoForm {
   @Prop() toPaypalAccount: string = "To my PayPal account";
   @Prop() paymentMethod: string = "Payment Method";
   @Prop() submitButton: string = "Save";
+  @Prop() beneficiaryAccountNameLabel: string = "Beneficiary Account Name";
+  @Prop() bankAccountTypeLabel: string = "Bank Account Type";
+  @Prop() bankAccountNumberLabel: string = "Bank Account Number";
+  @Prop() ibanLabel: string = "Iban";
+  @Prop() swiftCodeLabel: string = "Swift Code";
+  @Prop() routingCodeLabel: string = "Routing Code";
+  @Prop() bankNameLabel: string = "Bank Name";
+  @Prop() classificationEntityLabel: string = "Classification Entity";
+  @Prop() classificationCPFLabel: string = "Classification CPF";
+  @Prop() patronymicNameLabel: string = "Patronymic Name";
+  @Prop() voCodeLabel: string = "Vo Code";
+  @Prop() agencyCodeLabel: string = "Agency Code";
+  @Prop() branchCodeLabel: string = "Branch Code";
+  @Prop() classificationLabel: string = "Classification";
 
   /**
    * @undocumented
@@ -56,11 +70,11 @@ export class BankingInfoForm {
 
     // const props = useBankingInfoForm(getProps(this));
 
-    console.log({ props });
+    console.log("PROPS ARE", { props }, props.text.beneficiaryAccountNameLabel);
 
     const formMap = {
       0: {
-        label: "BENEFICIARY_ACCOUNT_NAME",
+        label: props.text.beneficiaryAccountNameLabel,
         input: (
           <sl-input
             name="/beneficiaryAccountName"
@@ -70,7 +84,7 @@ export class BankingInfoForm {
         ),
       },
       1: {
-        label: "BANK_ACCOUNT_TYPE",
+        label: props.text.bankAccountTypeLabel,
         input: (
           <sl-input
             name="/bankAccountType"
@@ -80,7 +94,7 @@ export class BankingInfoForm {
         ),
       },
       2: {
-        label: "BANK_ACCOUNT_NUMBER",
+        label: props.text.bankAccountNumberLabel,
         input: (
           <sl-input
             name="/bankAccountNumber"
@@ -90,7 +104,7 @@ export class BankingInfoForm {
         ),
       },
       3: {
-        label: "IBAN",
+        label: props.text.ibanLabel,
         input: (
           <sl-input
             name="/beneficiaryAccountName"
@@ -101,23 +115,23 @@ export class BankingInfoForm {
       },
 
       4: {
-        label: "SWIFT_CODE",
+        label: props.text.swiftCodeLabel,
         input: (
           <sl-input name="/swiftCode" id="swiftCode" type="text"></sl-input>
         ),
       },
       5: {
-        label: "ROUTING_CODE",
+        label: props.text.routingCodeLabel,
         input: (
           <sl-input name="/routingCode" id="routingCode" type="text"></sl-input>
         ),
       },
       6: {
-        label: "BANK_NAME",
+        label: props.text.bankNameLabel,
         input: <sl-input name="/bankName" id="bankName" type="text"></sl-input>,
       },
       7: {
-        label: "CLASSIFICATION_ENTITY",
+        label: props.text.classificationEntityLabel,
         input: (
           <sl-select
             name="/beneficiaryClassification"
@@ -130,7 +144,7 @@ export class BankingInfoForm {
         ),
       },
       8: {
-        label: "CLASSIFICATION_CPF",
+        label: props.text.classificationCPFLabel,
         input: (
           <sl-select
             name="/beneficiaryClassification"
@@ -142,7 +156,7 @@ export class BankingInfoForm {
         ),
       },
       9: {
-        label: "PATRONYMICNAME",
+        label: props.text.patronymicNameLabel,
         input: (
           <sl-input
             name="/patronymicName"
@@ -152,11 +166,11 @@ export class BankingInfoForm {
         ),
       },
       10: {
-        label: "VOCODE",
+        label: props.text.voCodeLabel,
         input: <sl-input name="/voCode" id="voCode" type="text"></sl-input>,
       },
       11: {
-        label: "AGENCYCODE",
+        label: props.text.agencyCodeLabel,
         input: (
           <sl-input name="/agencyCode" id="agencyCode" type="text"></sl-input>
         ),
@@ -189,13 +203,13 @@ export class BankingInfoForm {
         ),
       },
       13: {
-        label: "BRANCHCODE",
+        label: props.text.branchCodelabel,
         input: (
           <sl-input name="/branchCode" id="branchCode" type="text"></sl-input>
         ),
       },
       14: {
-        label: "CLASSIFICATION",
+        label: props.text.classificationLabel,
         input: (
           <sl-select
             name="/beneficiaryClassification"
