@@ -90,13 +90,20 @@ export class BankingInfoForm {
       7: {
         label: "CLASSIFICATION_ENTITY",
         input: (
-          <sl-input name="/beneficiaryClassification" type="text"></sl-input>
+          <sl-select name="/beneficiaryClassification">
+            <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
+            <sl-menu-item value="INDIVIDUAL">INDIVIDUAL</sl-menu-item>
+            <sl-menu-item value="FOREIGN">FOREIGN</sl-menu-item>
+          </sl-select>
         ),
       },
       8: {
         label: "CLASSIFICATION_CPF",
         input: (
-          <sl-input name="/beneficiaryClassification" type="text"></sl-input>
+          <sl-select name="/beneficiaryClassification">
+            <sl-menu-item value="CPF">CPF</sl-menu-item>
+            <sl-menu-item value="CNPJ">CNPJ</sl-menu-item>
+          </sl-select>
         ),
       },
       9: {
@@ -112,8 +119,19 @@ export class BankingInfoForm {
         input: <sl-input name="/agencyCode" type="text"></sl-input>,
       },
       12: {
-        label: "BANKADDRESS",
-        input: <sl-input name="/bankAddress" type="text"></sl-input>,
+        label: "",
+        input: (
+          <div>
+            <label htmlFor="/bankAddress">bankAddres</label>
+            <sl-input name="/bankAddress" type="text"></sl-input>
+            <label htmlFor="/bankCity">bankCity</label>
+            <sl-input name="/bankCity" type="text"></sl-input>
+            <label htmlFor="/bankProvinceState">bankProvinceState</label>
+            <sl-input name="/bankProvinceState" type="text"></sl-input>
+            <label htmlFor="/bankPostalCode">bankPostalCode</label>
+            <sl-input name="/bankPostalCode" type="text"></sl-input>
+          </div>
+        ),
       },
       13: {
         label: "BRANCHCODE",
@@ -122,7 +140,11 @@ export class BankingInfoForm {
       14: {
         label: "CLASSIFICATION",
         input: (
-          <sl-input name="/beneficiaryClassification" type="text"></sl-input>
+          <sl-select name="/beneficiaryClassification">
+            <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
+            <sl-menu-item value="INDIVIDUAL">INDIVIDUAL</sl-menu-item>
+            <sl-menu-item value="FOREIGN">FOREIGN</sl-menu-item>
+          </sl-select>
         ),
       },
     };
