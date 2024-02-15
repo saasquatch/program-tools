@@ -61,37 +61,68 @@ export class BankingInfoForm {
     const formMap = {
       0: {
         label: "BENEFICIARY_ACCOUNT_NAME",
-        input: <sl-input name="/beneficiaryAccountName" type="text"></sl-input>,
+        input: (
+          <sl-input
+            name="/beneficiaryAccountName"
+            id="beneficiaryAccountName"
+            type="text"
+          ></sl-input>
+        ),
       },
       1: {
         label: "BANK_ACCOUNT_TYPE",
-        input: <sl-input name="/bankAccountType" type="text"></sl-input>,
+        input: (
+          <sl-input
+            name="/bankAccountType"
+            id="bankAccountType"
+            type="text"
+          ></sl-input>
+        ),
       },
       2: {
         label: "BANK_ACCOUNT_NUMBER",
-        input: <sl-input name="/bankAccountNumber" type="text"></sl-input>,
+        input: (
+          <sl-input
+            name="/bankAccountNumber"
+            id="bankAccountNumber"
+            type="text"
+          ></sl-input>
+        ),
       },
       3: {
         label: "IBAN",
-        input: <sl-input name="/beneficiaryAccountName" type="text"></sl-input>,
+        input: (
+          <sl-input
+            name="/beneficiaryAccountName"
+            id="beneficiaryAccountName"
+            type="text"
+          ></sl-input>
+        ),
       },
 
       4: {
         label: "SWIFT_CODE",
-        input: <sl-input name="/swiftCode" type="text"></sl-input>,
+        input: (
+          <sl-input name="/swiftCode" id="swiftCode" type="text"></sl-input>
+        ),
       },
       5: {
         label: "ROUTING_CODE",
-        input: <sl-input name="/routingCode" type="text"></sl-input>,
+        input: (
+          <sl-input name="/routingCode" id="routingCode" type="text"></sl-input>
+        ),
       },
       6: {
         label: "BANK_NAME",
-        input: <sl-input name="/bankName" type="text"></sl-input>,
+        input: <sl-input name="/bankName" id="bankName" type="text"></sl-input>,
       },
       7: {
         label: "CLASSIFICATION_ENTITY",
         input: (
-          <sl-select name="/beneficiaryClassification">
+          <sl-select
+            name="/beneficiaryClassification"
+            id="beneficiaryClassification"
+          >
             <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
             <sl-menu-item value="INDIVIDUAL">INDIVIDUAL</sl-menu-item>
             <sl-menu-item value="FOREIGN">FOREIGN</sl-menu-item>
@@ -101,7 +132,10 @@ export class BankingInfoForm {
       8: {
         label: "CLASSIFICATION_CPF",
         input: (
-          <sl-select name="/beneficiaryClassification">
+          <sl-select
+            name="/beneficiaryClassification"
+            id="beneficiaryClassification"
+          >
             <sl-menu-item value="CPF">CPF</sl-menu-item>
             <sl-menu-item value="CNPJ">CNPJ</sl-menu-item>
           </sl-select>
@@ -109,39 +143,64 @@ export class BankingInfoForm {
       },
       9: {
         label: "PATRONYMICNAME",
-        input: <sl-input name="/patronymicName" type="text"></sl-input>,
+        input: (
+          <sl-input
+            name="/patronymicName"
+            id="patronymicName"
+            type="text"
+          ></sl-input>
+        ),
       },
       10: {
         label: "VOCODE",
-        input: <sl-input name="/voCode" type="text"></sl-input>,
+        input: <sl-input name="/voCode" id="voCode" type="text"></sl-input>,
       },
       11: {
         label: "AGENCYCODE",
-        input: <sl-input name="/agencyCode" type="text"></sl-input>,
+        input: (
+          <sl-input name="/agencyCode" id="agencyCode" type="text"></sl-input>
+        ),
       },
       12: {
         label: "",
         input: (
           <div>
             <label htmlFor="/bankAddress">bankAddres</label>
-            <sl-input name="/bankAddress" type="text"></sl-input>
+            <sl-input
+              name="/bankAddress"
+              id="bankAddress"
+              type="text"
+            ></sl-input>
             <label htmlFor="/bankCity">bankCity</label>
-            <sl-input name="/bankCity" type="text"></sl-input>
+            <sl-input name="/bankCity" id="bankCity" type="text"></sl-input>
             <label htmlFor="/bankProvinceState">bankProvinceState</label>
-            <sl-input name="/bankProvinceState" type="text"></sl-input>
+            <sl-input
+              name="/bankProvinceState"
+              id="bankProvinceState"
+              type="text"
+            ></sl-input>
             <label htmlFor="/bankPostalCode">bankPostalCode</label>
-            <sl-input name="/bankPostalCode" type="text"></sl-input>
+            <sl-input
+              name="/bankPostalCode"
+              id="bankPostalCode"
+              type="text"
+            ></sl-input>
           </div>
         ),
       },
       13: {
         label: "BRANCHCODE",
-        input: <sl-input name="/branchCode" type="text"></sl-input>,
+        input: (
+          <sl-input name="/branchCode" id="branchCode" type="text"></sl-input>
+        ),
       },
       14: {
         label: "CLASSIFICATION",
         input: (
-          <sl-select name="/beneficiaryClassification">
+          <sl-select
+            name="/beneficiaryClassification"
+            id="beneficiaryClassification"
+          >
             <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
             <sl-menu-item value="INDIVIDUAL">INDIVIDUAL</sl-menu-item>
             <sl-menu-item value="FOREIGN">FOREIGN</sl-menu-item>
