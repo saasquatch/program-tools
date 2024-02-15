@@ -1,12 +1,10 @@
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
-import { isDemo } from "@saasquatch/component-boilerplate";
-import { Component, h, Host, Prop, State } from "@stencil/core";
+import { Component, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import { useBankingInfoForm } from "./useBankingInfoForm";
-import { UserNameViewProps } from "../../sqm-user-name/sqm-user-name-view";
 import { BankingInfoFormView } from "./sqm-banking-info-form-view";
+import { getIndex, useBankingInfoForm } from "./useBankingInfoForm";
 
 /**
  * @uiName Banking Information Form
@@ -54,18 +52,105 @@ export class BankingInfoForm {
     // const props = isDemo()
     //   ? useDemoBankingInfoForm(this)
     //   : useBankingInfoForm(getProps(this));
-    const props = useDemoBankingInfoForm(this);
+
+    const props = useBankingInfoForm(getProps(this));
+
     console.log({ props });
+
+    const formMap = {
+      0: {
+        label: "BENEFICIARY_ACCOUNT_NAME",
+        input: <sl-input type="text"></sl-input>,
+      },
+      1: {
+        label: "BANK_ACCOUNT_TYPE",
+        input: <sl-input type="text"></sl-input>,
+      },
+      2: {
+        label: "BANK_ACCOUNT_NUMBER",
+        input: <sl-input type="text"></sl-input>,
+      },
+      3: {
+        label: "IBAN",
+        input: <sl-input type="text"></sl-input>,
+      },
+
+      4: {
+        label: "SWIFT_CODE",
+        input: <sl-input type="text"></sl-input>,
+      },
+      5: {
+        label: "ROUTING_CODE",
+        input: <sl-input type="text"></sl-input>,
+      },
+      6: {
+        label: "BANK_NAME",
+        input: <sl-input type="text"></sl-input>,
+      },
+      7: {
+        label: "CLASSIFICATION_ENTITY",
+        input: <sl-input type="text"></sl-input>,
+      },
+      8: {
+        label: "CLASSIFICATION_CPF",
+        input: <sl-input type="text"></sl-input>,
+      },
+      9: {
+        label: "PATRONYMICNAME",
+        input: <sl-input type="text"></sl-input>,
+      },
+      10: {
+        label: "VOCODE",
+        input: <sl-input type="text"></sl-input>,
+      },
+      11: {
+        label: "AGENCYCODE",
+        input: <sl-input type="text"></sl-input>,
+      },
+      12: {
+        label: "BANKADDRESS",
+        input: <sl-input type="text"></sl-input>,
+      },
+      13: {
+        label: "BRANCHCODE",
+        input: <sl-input type="text"></sl-input>,
+      },
+      14: {
+        label: "CLASSIFICATION",
+        input: <sl-input type="text"></sl-input>,
+      },
+    };
+
+    const binary = props.demo.bitset
+      .toString(2)
+      .padStart(Object.keys(formMap).length, "0");
+
+    const inputFields = [...binary].reduce((agg, num, idx) => {
+      const number = Number(num);
+      if (!number) return agg;
+      return [...agg, formMap[getIndex(binary, idx)]];
+    }, []);
 
     return (
       <Host>
+        <sl-input
+          value={props.demo.bitset}
+          onInput={(e) => props.demo.setBitset(Number(e.target.value))}
+        />
         <BankingInfoFormView
           callbacks={props.callbacks}
           text={props.text}
           states={props.states}
           refs={props.refs}
           slots={{
-            formInputsSlot: <div>FORM INPUTS</div>,
+            formInputsSlot: inputFields?.map(({ input, label }) => {
+              return (
+                <label>
+                  {label}
+                  {input}
+                </label>
+              );
+            }),
           }}
         />
       </Host>

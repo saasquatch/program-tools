@@ -12,7 +12,7 @@ export interface BankingInfoFormViewProps {
     };
   };
   slots: {
-    formInputsSlot?: VNode;
+    formInputsSlot?: any;
   };
   callbacks: {
     onSubmit: (props: any) => Promise<void>;
