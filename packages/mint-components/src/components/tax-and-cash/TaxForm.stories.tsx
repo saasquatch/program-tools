@@ -573,6 +573,24 @@ export const StepThreeWithDocusignExpired = () => {
   );
 };
 
+export const StepThreeWithDocusignCompleted = () => {
+  return (
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          ...docusignFormProps.states,
+          docusignStatus: "signing_complete",
+          formState: {
+            taxFormExpired: false,
+            completedTaxForm: true,
+            errors: {},
+          },
+        },
+      }}
+    ></sqm-docusign-form>
+  );
+};
+
 export const StepThreeDocusignWithGeneralError = () => {
   return (
     <sqm-docusign-form

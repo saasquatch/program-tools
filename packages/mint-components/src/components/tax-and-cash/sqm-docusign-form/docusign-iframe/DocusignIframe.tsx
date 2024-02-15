@@ -38,6 +38,7 @@ const style = {
     margin: "auto",
     textAlign: "center",
     border: "1px solid var(--sl-color-gray-200)",
+    justifyContent: "center",
   },
 };
 
@@ -67,28 +68,28 @@ export const DocusignExpiredView = (props: {
   );
 };
 
-export const DocusignCompletedView = (props: {
-  text: DocusignIframeProps["text"];
-}) => {
-  const { classes } = sheet;
-  const { text } = props;
-  return (
-    <div>
-      <style type="text/css">{styleString}</style>
-      <div class={classes.DocusignStatusContainer}>
-        <sl-icon
-          style={{
-            width: "50px",
-            height: "50px",
-            color: "var(--sl-color-success-600)",
-          }}
-          name="check2-circle"
-        ></sl-icon>
-        <p style={{ margin: "0" }}>{text.docusignCompleted}</p>
-      </div>
-    </div>
-  );
-};
+// export const DocusignCompletedView = (props: {
+//   text: DocusignIframeProps["text"];
+// }) => {
+//   const { classes } = sheet;
+//   const { text } = props;
+//   return (
+//     <div>
+//       <style type="text/css">{styleString}</style>
+//       <div class={classes.DocusignStatusContainer}>
+//         <sl-icon
+//           style={{
+//             width: "50px",
+//             height: "50px",
+//             color: "var(--sl-color-success-600)",
+//           }}
+//           name="check2-circle"
+//         ></sl-icon>
+//         <p style={{ margin: "0" }}>{text.docusignCompleted}</p>
+//       </div>
+//     </div>
+//   );
+// };
 
 export const DocusignIframe = ({
   states,
@@ -113,8 +114,9 @@ export const DocusignIframe = ({
   if (states.status === "ttl_expired")
     return <DocusignExpiredView text={text} />;
 
-  if (states.status === "signing_complete")
-    return <DocusignCompletedView text={text} />;
+  // AL: Skip to next step immediatley after states.status === "signing_complete", don't have to show Completed View
+  // if (states.status === "signing_complete")
+  //   return <DocusignCompletedView text={text} />;
 
   return <iframe src={states.url} width="100%" height="600px"></iframe>;
 };

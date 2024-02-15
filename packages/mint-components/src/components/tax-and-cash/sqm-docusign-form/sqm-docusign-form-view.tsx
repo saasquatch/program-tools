@@ -236,6 +236,8 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             {text.banner}
           </sl-alert>
           {slots.docusignIframeSlot}
+          <br />
+          <br />
           <div>
             <p class={classes.BoldText}>{text.checkboxLabel}</p>
             <sl-checkbox

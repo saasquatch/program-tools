@@ -44,18 +44,20 @@ Feature: Docusign Form
     Then the loader dissapers and the participant can see the Tax Form
 
   @minutia
-  Scenario: Participant sees success notification in iframe after completing Docusign form
-    When they fillout the Docusign form
-    And submit the form inside the iframe
-    Then they will see a Docusigns success notification inside the iframe
+  Scenario: Participant completes Docusign form
+    When they fillout and complete the Docusign form inside the iframe
+    And submit the form
+    Then they are redirected to step 4
 
   @minutia
   Scenario: Participant's Docusign session expires
-    When they have the Docusign form open for more than 20 minutes
+    When they have the Docusign form open in the iframe
+    And they do not interact with the iframe for more than 20 minutes
     Then the Docusign iframe session expires
     And the Tax Form dissapers
-    Then they will see a Docusigns expired session notification inside the iframe
-    And must refresh the page to start a new Docusign session
+    Then they see a Docusign expired session notification inside the iframe
+    And a refresh page button appears inside the iframe
+    And they must press the button to restart the Docusign process
 
   @minutia
   Scenario: Participant decides to go back to step 2
