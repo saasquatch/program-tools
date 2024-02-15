@@ -122,9 +122,8 @@ export function useTaxAndCash() {
       const user = data?.user;
       if (!user || step !== "/loading") return;
 
-      // const currentStep = getCurrentStep(user);
-      // setStep(currentStep);
-      setStep("/4");
+      const currentStep = getCurrentStep(user);
+      setStep(currentStep);
     }
   }, [host, user, data?.user?.email]);
 
