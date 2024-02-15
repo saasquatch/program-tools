@@ -4,7 +4,7 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { BankingInfoFormView } from "./sqm-banking-info-form-view";
-import { getIndex, useBankingInfoForm } from "./useBankingInfoForm";
+import { useBankingInfoForm } from "./useBankingInfoForm";
 
 /**
  * @uiName Banking Information Form
@@ -182,6 +182,18 @@ export class BankingInfoForm {
                 </label>
               );
             }),
+            countryInputSlot: (
+              <label htmlFor="/country">
+                <sl-select name="/country">
+                  <sl-menu-item value="CA">Canada</sl-menu-item>
+                  <sl-menu-item value="US">United States</sl-menu-item>
+                  <sl-menu-item value="ES">Spain</sl-menu-item>
+                  <sl-menu-item value="IE">Ireland</sl-menu-item>
+                  <sl-menu-item value="GB">United Kingdom</sl-menu-item>
+                  <sl-menu-item value="JP">Japan</sl-menu-item>
+                </sl-select>
+              </label>
+            ),
           }}
         />
       </Host>
