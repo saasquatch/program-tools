@@ -146,11 +146,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
     slots,
   } = props;
 
-  console.log(states, "indirect states");
-
   const { classes } = sheet;
-
-  console.log(formState.errors);
 
   return (
     <sl-form

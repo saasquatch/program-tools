@@ -114,9 +114,5 @@ export const DocusignIframe = ({
   if (states.status === "ttl_expired")
     return <DocusignExpiredView text={text} />;
 
-  // AL: Skip to next step immediatley after states.status === "signing_complete", don't have to show Completed View
-  // if (states.status === "signing_complete")
-  //   return <DocusignCompletedView text={text} />;
-
   return <iframe src={states.url} width="100%" height="600px"></iframe>;
 };
