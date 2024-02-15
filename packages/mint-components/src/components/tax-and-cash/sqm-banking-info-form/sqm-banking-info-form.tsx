@@ -60,64 +60,70 @@ export class BankingInfoForm {
     const formMap = {
       0: {
         label: "BENEFICIARY_ACCOUNT_NAME",
-        input: <sl-input type="text"></sl-input>,
+        input: <sl-input name="/beneficiaryAccountName" type="text"></sl-input>,
       },
       1: {
         label: "BANK_ACCOUNT_TYPE",
-        input: <sl-input type="text"></sl-input>,
+        input: <sl-input name="/bankAccountType" type="text"></sl-input>,
       },
       2: {
         label: "BANK_ACCOUNT_NUMBER",
-        input: <sl-input type="text"></sl-input>,
+        input: <sl-input name="/bankAccountNumber" type="text"></sl-input>,
       },
       3: {
         label: "IBAN",
-        input: <sl-input type="text"></sl-input>,
+        input: <sl-input name="/beneficiaryAccountName" type="text"></sl-input>,
       },
 
       4: {
         label: "SWIFT_CODE",
-        input: <sl-input type="text"></sl-input>,
+        input: <sl-input name="/swiftCode" type="text"></sl-input>,
       },
       5: {
         label: "ROUTING_CODE",
-        input: <sl-input type="text"></sl-input>,
+        input: <sl-input name="/routingCode" type="text"></sl-input>,
       },
       6: {
         label: "BANK_NAME",
-        input: <sl-input type="text"></sl-input>,
+        input: <sl-input name="/bankName" type="text"></sl-input>,
       },
       7: {
         label: "CLASSIFICATION_ENTITY",
-        input: <sl-input type="text"></sl-input>,
+        input: (
+          <sl-input name="/beneficiaryClassification" type="text"></sl-input>
+        ),
       },
       8: {
         label: "CLASSIFICATION_CPF",
-        input: <sl-input type="text"></sl-input>,
+        input: (
+          <sl-input name="/beneficiaryClassification" type="text"></sl-input>
+        ),
       },
       9: {
         label: "PATRONYMICNAME",
-        input: <sl-input type="text"></sl-input>,
+        input: <sl-input name="/patronymicName" type="text"></sl-input>,
       },
       10: {
         label: "VOCODE",
-        input: <sl-input type="text"></sl-input>,
+        input: <sl-input name="/voCode" type="text"></sl-input>,
       },
       11: {
         label: "AGENCYCODE",
-        input: <sl-input type="text"></sl-input>,
+        input: <sl-input name="/agencyCode" type="text"></sl-input>,
       },
       12: {
         label: "BANKADDRESS",
-        input: <sl-input type="text"></sl-input>,
+        input: <sl-input name="/bankAddress" type="text"></sl-input>,
       },
       13: {
         label: "BRANCHCODE",
-        input: <sl-input type="text"></sl-input>,
+        input: <sl-input name="/branchCode" type="text"></sl-input>,
       },
       14: {
         label: "CLASSIFICATION",
-        input: <sl-input type="text"></sl-input>,
+        input: (
+          <sl-input name="/beneficiaryClassification" type="text"></sl-input>
+        ),
       },
     };
 
@@ -128,7 +134,11 @@ export class BankingInfoForm {
     const inputFields = [...binary].reduce((agg, num, idx) => {
       const number = Number(num);
       if (!number) return agg;
-      return [...agg, formMap[getIndex(binary, idx)]];
+      const inputFound = formMap[getIndex(binary, idx)];
+
+      console.log({ inputFound, binary });
+      if (!inputFound) return agg;
+      return [...agg, inputFound];
     }, []);
 
     return (
