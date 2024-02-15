@@ -36,10 +36,10 @@ Feature: Docusign Form
     And they press "Continue" or refresh the page
     Then they will be directed to the Document Submitted page
 
-  @minutia
+  @minutia @ui
   Scenario: Docusign iframe is loading
     When the Docusign iframe is loading the Tax Form
-    Then the iframe displays a Docusign APIs loader
+    Then the iframe displays a spinnder inside the igrame
     When the Docusign iframe loads in the Tax Form
     Then the loader dissapers and the participant can see the Tax Form
 
@@ -49,7 +49,7 @@ Feature: Docusign Form
     And submit the form
     Then they are redirected to step 4
 
-  @minutia
+  @minutia @ui
   Scenario: Participant's Docusign session expires
     When they have the Docusign form open in the iframe
     And they do not interact with the iframe for more than 20 minutes
@@ -59,13 +59,15 @@ Feature: Docusign Form
     And a refresh page button appears inside the iframe
     And they must press the button to restart the Docusign process
 
+  @minutia @ui
+  Scenario: Docusign iframe throws an error
+    When the Docusign iframe throws an error
+    Then an error icon and message show in the iframe
+    And a "Refresh Page" button appears
+    And the participant presses the refresh button
+
   @minutia
   Scenario: Participant decides to go back to step 2
     When they press the Back button
     Then the they are sent back to step 2
     And they arrive at the step 2 form with original information initially submitted
-
-  @minutia
-  Scenario: Docusign iframe Fails to load
-    When the Docusign iframe does not load the form successfully
-    Then inside the iframe will display a failed to load error

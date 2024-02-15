@@ -402,6 +402,11 @@ export namespace Components {
          */
         "docusignCompleted": string;
         /**
+          * Text inside iframe when Docusign form throws error
+          * @uiName Docusign error text
+         */
+        "docusignError": string;
+        /**
           * Text inside iframe when Docusign expires
           * @uiName Docusign expired text
          */
@@ -431,6 +436,11 @@ export namespace Components {
           * @uiName Not based in US link text
          */
         "notBasedInUS": string;
+        /**
+          * Text shown inside of refresh button
+          * @uiName Refresh button text
+         */
+        "refreshButton": string;
         /**
           * Text shown inside of submit button
           * @uiName Submit button text
@@ -3023,12 +3033,6 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
-          * Text inside iframe when Docusign form is compelted
-          * @uiName Docusign completed text
-          * @uiGroup Step 3 Properties
-         */
-        "docusignCompleted": string;
-        /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
           * @uiGroup Step 1 Properties
@@ -3359,6 +3363,18 @@ export namespace Components {
          */
         "step3_checkboxLabel": string;
         /**
+          * Text inside iframe when Docusign form is completed
+          * @uiName Docusign completed text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_docusignCompleted": string;
+        /**
+          * Text inside iframe when Docusign form throws error
+          * @uiName Docusign error text *
+          * @uiGroup Step 3 Properties
+         */
+        "step3_docusignError": string;
+        /**
           * Text shown inside iframe when Docusign form expires
           * @uiName Expired Docusign form text
           * @uiGroup Step 3 Properties
@@ -3388,6 +3404,12 @@ export namespace Components {
           * @uiGroup Step 3 Properties
          */
         "step3_generalErrorTitle": string;
+        /**
+          * Text shown inside of refresh button
+          * @uiName Refresh button text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_refreshButton": string;
         /**
           * Text shown inside of submit button
           * @uiName Submit button text
@@ -5677,6 +5699,11 @@ declare namespace LocalJSX {
          */
         "docusignCompleted"?: string;
         /**
+          * Text inside iframe when Docusign form throws error
+          * @uiName Docusign error text
+         */
+        "docusignError"?: string;
+        /**
           * Text inside iframe when Docusign expires
           * @uiName Docusign expired text
          */
@@ -5706,6 +5733,11 @@ declare namespace LocalJSX {
           * @uiName Not based in US link text
          */
         "notBasedInUS"?: string;
+        /**
+          * Text shown inside of refresh button
+          * @uiName Refresh button text
+         */
+        "refreshButton"?: string;
         /**
           * Text shown inside of submit button
           * @uiName Submit button text
@@ -8274,12 +8306,6 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
-          * Text inside iframe when Docusign form is compelted
-          * @uiName Docusign completed text
-          * @uiGroup Step 3 Properties
-         */
-        "docusignCompleted"?: string;
-        /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
           * @uiGroup Step 1 Properties
@@ -8610,6 +8636,18 @@ declare namespace LocalJSX {
          */
         "step3_checkboxLabel"?: string;
         /**
+          * Text inside iframe when Docusign form is completed
+          * @uiName Docusign completed text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_docusignCompleted"?: string;
+        /**
+          * Text inside iframe when Docusign form throws error
+          * @uiName Docusign error text *
+          * @uiGroup Step 3 Properties
+         */
+        "step3_docusignError"?: string;
+        /**
           * Text shown inside iframe when Docusign form expires
           * @uiName Expired Docusign form text
           * @uiGroup Step 3 Properties
@@ -8639,6 +8677,12 @@ declare namespace LocalJSX {
           * @uiGroup Step 3 Properties
          */
         "step3_generalErrorTitle"?: string;
+        /**
+          * Text shown inside of refresh button
+          * @uiName Refresh button text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_refreshButton"?: string;
         /**
           * Text shown inside of submit button
           * @uiName Submit button text

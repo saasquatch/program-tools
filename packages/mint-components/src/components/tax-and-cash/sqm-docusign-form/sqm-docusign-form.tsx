@@ -89,6 +89,17 @@ export class DocusignForm {
   @Prop() docusignCompleted: string =
     "Your document has been completed and submitted.";
   /**
+   * Text inside iframe when Docusign form throws error
+   * @uiName Docusign error text
+   */
+  @Prop() docusignError: string =
+    "There was a problem displaying this form. Please refresh the page. If this problem continues, contact Support.";
+  /**
+   * Text shown inside of refresh button
+   * @uiName Refresh button text
+   */
+  @Prop() refreshButton: string = "Refresh Page";
+  /**
    * Text shown inside of submit button
    * @uiName Submit button text
    */
@@ -161,6 +172,7 @@ export class DocusignForm {
                 states={{
                   url: props.data.documentUrl,
                   status: props.states.docusignStatus,
+                  loading: props.states.loading,
                 }}
                 callbacks={{
                   onStatusChange: props.callbacks.setDocusignStatus,

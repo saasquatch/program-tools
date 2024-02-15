@@ -16,6 +16,7 @@ export interface DocusignIframeProps {
   states: {
     url: string;
     status: DocusignStatus;
+    loading: boolean;
   };
   callbacks: {
     onStatusChange: (status: DocusignStatus) => void;
@@ -23,6 +24,8 @@ export interface DocusignIframeProps {
   text: {
     docusignExpired: string;
     docusignCompleted: string;
+    docusignError: string;
+    refreshButton: string;
   };
 }
 
@@ -39,6 +42,9 @@ const style = {
     textAlign: "center",
     border: "1px solid var(--sl-color-gray-200)",
     justifyContent: "center",
+  },
+  MessageContainer: {
+    maxWidth: "400px",
   },
 };
 
@@ -62,7 +68,52 @@ export const DocusignExpiredView = (props: {
           }}
           name="clock"
         ></sl-icon>
-        <p style={{ margin: "0" }}>{text.docusignExpired}</p>
+        <div class={classes.MessageContainer}>
+          <p style={{ margin: "0" }}>{text.docusignExpired}</p>
+        </div>
+        <sl-button type="primary" onClick={() => window.location.reload()}>
+          {text.refreshButton}
+        </sl-button>
+      </div>
+    </div>
+  );
+};
+
+export const DocusignErrorView = (props: {
+  text: DocusignIframeProps["text"];
+}) => {
+  const { classes } = sheet;
+  const { text } = props;
+  return (
+    <div>
+      <style type="text/css">{styleString}</style>
+      <div class={classes.DocusignStatusContainer}>
+        <sl-icon
+          style={{
+            width: "50px",
+            height: "50px",
+            color: "var(--sl-color-red-600)",
+          }}
+          name="exclamation-octagon"
+        ></sl-icon>
+        <div class={classes.MessageContainer}>
+          <p style={{ margin: "0" }}>{text.docusignError}</p>
+        </div>
+        <sl-button type="primary" onClick={() => window.location.reload()}>
+          {text.refreshButton}
+        </sl-button>
+      </div>
+    </div>
+  );
+};
+
+export const DocusignLoadingView = () => {
+  const { classes } = sheet;
+  return (
+    <div>
+      <style type="text/css">{styleString}</style>
+      <div class={classes.DocusignStatusContainer}>
+        <sl-spinner style={{ fontSize: "50px", margin: "40px" }}></sl-spinner>
       </div>
     </div>
   );
@@ -96,6 +147,8 @@ export const DocusignIframe = ({
   callbacks,
   text,
 }: DocusignIframeProps) => {
+  if (states.loading) return <DocusignLoadingView />;
+
   const callback = useCallback((e) => {
     // TODO: CHANGE THIS WHEN ACTUAL URL IS AVAILABLE
     if (e.origin !== "https://staging.referralsaasquatch.com") return;
@@ -110,6 +163,8 @@ export const DocusignIframe = ({
       window.removeEventListener("message", callback);
     };
   }, []);
+
+  if (states.status === "exception") return <DocusignErrorView text={text} />;
 
   if (states.status === "ttl_expired")
     return <DocusignExpiredView text={text} />;
