@@ -112,8 +112,19 @@ export class BankingInfoForm {
         input: <sl-input name="/agencyCode" type="text"></sl-input>,
       },
       12: {
-        label: "BANKADDRESS",
-        input: <sl-input name="/bankAddress" type="text"></sl-input>,
+        label: "",
+        input: (
+          <div>
+            <label htmlFor="/bankAddress">bankAddres</label>
+            <sl-input name="/bankAddress" type="text"></sl-input>
+            <label htmlFor="/bankCity">bankCity</label>
+            <sl-input name="/bankCity" type="text"></sl-input>
+            <label htmlFor="/bankProvinceState">bankProvinceState</label>
+            <sl-input name="/bankProvinceState" type="text"></sl-input>
+            <label htmlFor="/bankPostalCode">bankPostalCode</label>
+            <sl-input name="/bankPostalCode" type="text"></sl-input>
+          </div>
+        ),
       },
       13: {
         label: "BRANCHCODE",
