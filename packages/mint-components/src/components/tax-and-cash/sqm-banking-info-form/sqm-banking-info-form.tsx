@@ -184,6 +184,7 @@ export class BankingInfoForm {
             }),
             countryInputSlot: (
               <label htmlFor="/country">
+                Bank Location Country
                 <sl-select name="/country">
                   <sl-menu-item value="CA">Canada</sl-menu-item>
                   <sl-menu-item value="US">United States</sl-menu-item>
@@ -192,6 +193,11 @@ export class BankingInfoForm {
                   <sl-menu-item value="GB">United Kingdom</sl-menu-item>
                   <sl-menu-item value="JP">Japan</sl-menu-item>
                 </sl-select>
+              </label>
+            ),
+            paymentMethodSlot: (
+              <label>
+                Payment Method <span>EFT Withdrawal</span>
               </label>
             ),
           }}

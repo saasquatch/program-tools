@@ -14,6 +14,7 @@ export interface BankingInfoFormViewProps {
   slots: {
     formInputsSlot?: any;
     countryInputSlot?: any;
+    paymentMethodSlot?: any;
   };
   callbacks: {
     onSubmit: (props: any) => Promise<void>;
@@ -200,6 +201,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 {text.directlyToBankAccount}
               </sl-checkbox>
               {slots.countryInputSlot}
+              {slots.paymentMethodSlot}
               {formState.checked === "toBankAccount" && slots.formInputsSlot}
               <sl-checkbox
                 class={classes.Checkbox}
