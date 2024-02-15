@@ -20,7 +20,7 @@ export class BankingInfoForm {
   @State() ignored = true;
 
   @Prop() formStep: string = "Step 4 of 4";
-  @Prop() taxAndPayouts: string = "Tax and Payouts";
+  @Prop() taxAndPayouts: string = "Payouts";
   @Prop() taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
   @Prop() directlyToBankAccount: string = "Directly to my bank account";
@@ -36,6 +36,10 @@ export class BankingInfoForm {
   @Prop() routingCodeLabel: string = "Routing Code";
   @Prop() bankNameLabel: string = "Bank Name";
   @Prop() classificationEntityLabel: string = "Classification Entity";
+  @Prop() businessSelectItemLabel: string = "Business";
+  @Prop() individualSelectItemLabel: string = "Individual";
+  @Prop() foreignSelectItemLabel: string = "Foreign";
+
   @Prop() classificationCPFLabel: string = "Classification CPF";
   @Prop() patronymicNameLabel: string = "Patronymic Name";
   @Prop() voCodeLabel: string = "Vo Code";
@@ -136,21 +140,22 @@ export class BankingInfoForm {
         input: <sl-input name="/bankName" id="bankName" type="text"></sl-input>,
       },
       7: {
-        label: "",
+        label: props.text.classificationLabel,
         input: (
-          <div>
-            <label>{props.text.classificationEntityLabel}</label>
-            <sl-select
-              name="/beneficiaryClassification"
-              id="beneficiaryClassification"
-            >
-              <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
-              <sl-menu-item value="INDIVIDUAL">INDIVIDUAL</sl-menu-item>
-              <sl-menu-item value="FOREIGN">FOREIGN</sl-menu-item>
-            </sl-select>
-            <label>taxPayerId</label>
-            <sl-input name="/taxPayerId" id="taxPayerId"></sl-input>
-          </div>
+          <sl-select
+            name="/beneficiaryClassification"
+            id="beneficiaryClassification"
+          >
+            <sl-menu-item value="BUSINESS">
+              {props.text.businessSelectItemLabel}
+            </sl-menu-item>
+            <sl-menu-item value="INDIVIDUAL">
+              {props.text.individualSelectItemLabel}
+            </sl-menu-item>
+            <sl-menu-item value="FOREIGN">
+              {props.text.foreignSelectItemLabel}
+            </sl-menu-item>
+          </sl-select>
         ),
       },
       8: {
