@@ -127,6 +127,18 @@ const style = {
       padding: "var(--sl-spacing-x-small)",
     },
   },
+  SuccessBadgeContainer: {
+    "&::part(base)": {
+      backgroundColor: "#57AC59",
+      padding: "var(--sl-spacing-x-small)",
+    },
+  },
+  CriticalBadgeContainer: {
+    "&::part(base)": {
+      backgroundColor: "#E63717",
+      padding: "var(--sl-spacing-x-small)",
+    },
+  },
   NewFormButton: {
     marginTop: "var(--sl-spacing-large)",
     maxWidth: "179px",
@@ -203,7 +215,11 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
     ),
     ACTIVE: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
-        <sl-badge type="success" pill class={sheet.classes.BadgeContainer}>
+        <sl-badge
+          type="success"
+          pill
+          class={sheet.classes.SuccessBadgeContainer}
+        >
           {text.statusTextActive}
         </sl-badge>
         <p>
@@ -230,7 +246,11 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
     ),
     NOT_ACTIVE: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
-        <sl-badge type="danger" pill class={sheet.classes.BadgeContainer}>
+        <sl-badge
+          type="danger"
+          pill
+          class={sheet.classes.CriticalBadgeContainer}
+        >
           {text.statusTextNotActive}
         </sl-badge>
         <p>{text.invalidForm}</p>
@@ -238,7 +258,11 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
     ),
     EXPIRED: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
-        <sl-badge type="danger" pill class={sheet.classes.BadgeContainer}>
+        <sl-badge
+          type="danger"
+          pill
+          class={sheet.classes.CriticalBadgeContainer}
+        >
           {text.statusTextExpired}
         </sl-badge>
         <p>

@@ -551,9 +551,7 @@ export const StepThreeWithDocusign = () => {
           ...docusignFormProps.states,
         },
       }}
-    >
-      <div slot="docusign-iframe">hey</div>
-    </sqm-docusign-form>
+    ></sqm-docusign-form>
   );
 };
 
