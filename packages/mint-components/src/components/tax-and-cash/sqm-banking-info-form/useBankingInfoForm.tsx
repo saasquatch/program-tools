@@ -97,9 +97,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
       hideSteps: false,
       formState: {
         checked: "toBankAccount" as "toBankAccount" | "toPaypalAccount",
-        errors: {
-          general: false,
-        },
+        errors,
       },
     },
     refs: {
