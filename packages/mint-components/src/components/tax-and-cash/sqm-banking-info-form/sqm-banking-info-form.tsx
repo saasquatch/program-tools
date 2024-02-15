@@ -90,13 +90,20 @@ export class BankingInfoForm {
       7: {
         label: "CLASSIFICATION_ENTITY",
         input: (
-          <sl-input name="/beneficiaryClassification" type="text"></sl-input>
+          <sl-select name="/beneficiaryClassification">
+            <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
+            <sl-menu-item value="INDIVIDUAL">INDIVIDUAL</sl-menu-item>
+            <sl-menu-item value="FOREIGN">FOREIGN</sl-menu-item>
+          </sl-select>
         ),
       },
       8: {
         label: "CLASSIFICATION_CPF",
         input: (
-          <sl-input name="/beneficiaryClassification" type="text"></sl-input>
+          <sl-select name="/beneficiaryClassification">
+            <sl-menu-item value="CPF">CPF</sl-menu-item>
+            <sl-menu-item value="CNPJ">CNPJ</sl-menu-item>
+          </sl-select>
         ),
       },
       9: {
@@ -133,7 +140,11 @@ export class BankingInfoForm {
       14: {
         label: "CLASSIFICATION",
         input: (
-          <sl-input name="/beneficiaryClassification" type="text"></sl-input>
+          <sl-select name="/beneficiaryClassification">
+            <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
+            <sl-menu-item value="INDIVIDUAL">INDIVIDUAL</sl-menu-item>
+            <sl-menu-item value="FOREIGN">FOREIGN</sl-menu-item>
+          </sl-select>
         ),
       },
     };
