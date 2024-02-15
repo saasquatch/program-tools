@@ -1,7 +1,10 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../../styling/JSS";
 import { useCallback, useEffect } from "@saasquatch/universal-hooks";
-import { DOCUSIGN_EXPIRED_STATES } from "../useDocusignForm";
+import {
+  DOCUSIGN_EXPIRED_STATES,
+  DOCUSIGN_ERROR_STATES,
+} from "../useDocusignForm";
 
 export type DocusignStatus =
   | "ttl_expired"
@@ -164,6 +167,10 @@ export const DocusignIframe = ({
       window.removeEventListener("message", callback);
     };
   }, []);
+
+  if (DOCUSIGN_ERROR_STATES.includes(states.status)) {
+    return <DocusignErrorView text={text} />;
+  }
 
   if (DOCUSIGN_EXPIRED_STATES.includes(states.status))
     return <DocusignExpiredView text={text} />;
