@@ -32,6 +32,15 @@ const GET_TAX_DOCUMENT = gql`
   }
 `;
 
+export const DOCUSIGN_ERROR_STATES = [
+  "exception",
+  "decline",
+  "cancel",
+  "fax_pending",
+];
+export const DOCUSIGN_EXPIRED_STATES = ["ttl_expired", "session_timeout"];
+export const DOCUSIGN_SUCCESS_STATES = ["signing_complete", "viewing_complete"];
+
 export function useDocusignForm(props: DocusignForm, el: any) {
   const user = useUserIdentity();
   const [path, setPath] = useParent<string>(TAX_CONTEXT_NAMESPACE);
@@ -86,8 +95,17 @@ export function useDocusignForm(props: DocusignForm, el: any) {
   }, [user, documentType, document]);
 
   useEffect(() => {
-    if (docusignStatus === "signing_complete") {
+    // Handled in view
+    if (DOCUSIGN_ERROR_STATES.includes(docusignStatus)) return;
+
+    if (DOCUSIGN_SUCCESS_STATES.includes(docusignStatus)) {
       setPath("/submitted");
+    }
+
+    if (DOCUSIGN_ERROR_STATES.includes(docusignStatus)) {
+      setErrors({
+        docusign: true,
+      });
     }
   }, [docusignStatus]);
 
