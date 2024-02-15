@@ -67,6 +67,15 @@ export namespace Components {
         "titleText": string;
     }
     interface SqmBankingInfoForm {
+        "agencyCodeLabel": string;
+        "bankAccountNumberLabel": string;
+        "bankAccountTypeLabel": string;
+        "bankNameLabel": string;
+        "beneficiaryAccountNameLabel": string;
+        "branchCodeLabel": string;
+        "classificationCPFLabel": string;
+        "classificationEntityLabel": string;
+        "classificationLabel": string;
         /**
           * @undocumented 
           * @uiType object
@@ -74,11 +83,16 @@ export namespace Components {
         "demoData"?: DemoData<any>;
         "directlyToBankAccount": string;
         "formStep": string;
+        "ibanLabel": string;
+        "patronymicNameLabel": string;
         "paymentMethod": string;
+        "routingCodeLabel": string;
         "submitButton": string;
+        "swiftCodeLabel": string;
         "taxAndPayouts": string;
         "taxAndPayoutsDescription": string;
         "toPaypalAccount": string;
+        "voCodeLabel": string;
     }
     interface SqmBigStat {
         /**
@@ -4755,6 +4769,15 @@ declare namespace LocalJSX {
         "titleText"?: string;
     }
     interface SqmBankingInfoForm {
+        "agencyCodeLabel"?: string;
+        "bankAccountNumberLabel"?: string;
+        "bankAccountTypeLabel"?: string;
+        "bankNameLabel"?: string;
+        "beneficiaryAccountNameLabel"?: string;
+        "branchCodeLabel"?: string;
+        "classificationCPFLabel"?: string;
+        "classificationEntityLabel"?: string;
+        "classificationLabel"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -4762,11 +4785,16 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<any>;
         "directlyToBankAccount"?: string;
         "formStep"?: string;
+        "ibanLabel"?: string;
+        "patronymicNameLabel"?: string;
         "paymentMethod"?: string;
+        "routingCodeLabel"?: string;
         "submitButton"?: string;
+        "swiftCodeLabel"?: string;
         "taxAndPayouts"?: string;
         "taxAndPayoutsDescription"?: string;
         "toPaypalAccount"?: string;
+        "voCodeLabel"?: string;
     }
     interface SqmBigStat {
         /**
