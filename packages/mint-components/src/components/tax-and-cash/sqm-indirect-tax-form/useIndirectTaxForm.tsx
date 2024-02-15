@@ -15,6 +15,7 @@ import {
   TAX_FORM_CONTEXT_NAMESPACE,
   TaxContext,
   TaxCountry,
+  TaxDocumentType,
   USER_FORM_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
   UserFormContext,
@@ -32,7 +33,8 @@ type ConnectPartnerResult = {
     id: string;
     accountId: string;
     impactPartner: {
-      connectionStatus;
+      connectionStatus: "NOT_CONNECTED" | "CONNECTED";
+      requiredTaxDocumentType: TaxDocumentType | null;
     } | null;
   };
 };
@@ -42,6 +44,7 @@ const CONNECT_PARTNER = gql`
       id
       accountId
       impactPartner {
+        requiredTaxDocumentType
         connectionStatus
       }
     }
@@ -158,11 +161,12 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
         indirectTaxOption: taxOption,
         indirectTaxCountry: formData.selectedRegion, // TODO: May need formatting
         indirectTaxSubdivision: formData.province || formData.subRegion,
-        indirectTaxNumber: formData.indirectTaxNumber,
+        indirectTaxId: formData.indirectTaxNumber,
         additionalTaxId: formData.qstNumber,
-        withholdingTaxCountry: formState.hasSubRegionTaxNumber
-          ? "SPAIN"
-          : undefined,
+        withholdingTaxCountry:
+          option !== "notRegistered" && formState.hasSubRegionTaxNumber
+            ? "SPAIN"
+            : undefined,
         withholdingTaxNumber: formData.subRegionTaxNumber,
         organizationType: "OTHER", // TODO: Eventually know what to pass here
       };
@@ -182,8 +186,14 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
       await refetch();
 
-      console.log({ result });
-      setStep("/3");
+      if (
+        (result as ConnectPartnerResult).connectImpactPartner?.impactPartner
+          ?.requiredTaxDocumentType
+      ) {
+        setStep("/3");
+      } else {
+        setStep("/submitted");
+      }
     } catch (e) {
       setErrors({ general: true });
     } finally {
