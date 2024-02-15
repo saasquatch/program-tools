@@ -15,6 +15,7 @@ export interface DocusignFormViewProps {
       errors?: any;
     };
     documentType: TaxDocumentType;
+    hideBackButton: boolean;
   };
   slots: {
     docusignExpiredSlot?: VNode;
@@ -236,41 +237,21 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           {text.banner}
         </sl-alert>
         {slots.docusignIframeSlot}
-        {/* <div>
-          <p class={classes.BoldText}>{text.checkboxLabel}</p>
-          <sl-checkbox
-            disabled={states.disabled}
-            checked={formState.completedTaxForm}
-            onSl-change={callbacks.toggleFormSubmitted}
-          >
-            {text.checkboxDescription}
-          </sl-checkbox>
-          {formState.errors?.formSubmission && (
-            <p class={classes.ErrorText}>{text.error.formSubmission}</p>
-          )}
-        </div> */}
 
-        <div class={classes.BtnContainer}>
-          {/* <sl-button
-              type="primary"
+        {!states.hideBackButton && (
+          <div class={classes.BtnContainer}>
+            <sl-button
+              class={classes.SecondaryBtn}
+              type="text"
               loading={states.loading}
-              disabled={states.submitDisabled}
-              submit
-              onClick={callbacks.onSubmit}
-              exportparts="base: primarybutton-base"
+              disabled={states.loading}
+              onClick={callbacks.onBack}
+              exportparts="base: secondarybutton-base"
             >
-              {text.submitButton}
-            </sl-button> */}
-          <sl-button
-            class={classes.SecondaryBtn}
-            type="text"
-            disabled={states.loading || states.disabled}
-            onClick={callbacks.onBack}
-            exportparts="base: secondarybutton-base"
-          >
-            {text.backButton}
-          </sl-button>
-        </div>
+              {text.backButton}
+            </sl-button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -31,19 +31,13 @@ export function useBankingInfoForm(props: BankingInfoForm) {
   const [errors, setErrors] = useState({});
 
   const onSubmit = async (event: any) => {
-    if (!option) {
-      setErrors({ taxDetails: true });
-      return;
-    }
-
-    let formData: Record<string, string> = { taxOption: option };
+    let formData: Record<string, string> = {};
     let validationErrors: Record<string, string> = {};
 
     const controls = event.target.getFormControls();
 
     controls.forEach((control) => {
       if (!control.name || !control.id) return;
-      if (option === "notRegistered") return; // Don't include fields for notRegistered option
 
       const key = control.name;
       const value = control.value;
@@ -91,7 +85,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
     text: { ...props, error: {} },
 
     callbacks: {
-      onSubmit: async () => {},
+      onSubmit,
       onChange: setOption,
     },
     states: {

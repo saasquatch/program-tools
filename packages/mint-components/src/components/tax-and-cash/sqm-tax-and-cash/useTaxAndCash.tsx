@@ -34,6 +34,12 @@ function getCurrentStep(user: UserQuery["user"]) {
     return "/1";
   }
 
+  // Prioritise sending them to dashboard if no required document
+  if (!user.impactPartner.requiredTaxDocumentType) {
+    return "/submitted";
+  }
+
+  // If they do have a required document, look at current document
   if (user.impactPartner.currentTaxDocument) {
     const { status, type } = user.impactPartner.currentTaxDocument;
 
@@ -42,12 +48,8 @@ function getCurrentStep(user: UserQuery["user"]) {
     return "/3";
   }
 
-  if (user.impactPartner.requiredTaxDocumentType) {
-    return `/3`;
-  }
-
-  // If impact partner exists but no requiredTaxDocument, go straight to the dashboard
-  return "/submitted";
+  // Catchall
+  return "/error";
 }
 
 export function useTaxAndCash() {

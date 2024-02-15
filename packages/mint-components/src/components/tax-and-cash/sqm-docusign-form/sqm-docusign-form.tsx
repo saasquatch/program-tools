@@ -158,9 +158,7 @@ export class DocusignForm {
   }
 
   render() {
-    const props = isDemo()
-      ? useDocusignFormDemo(this)
-      : useDocusignForm(this, this.el);
+    const props = isDemo() ? useDocusignFormDemo(this) : useDocusignForm(this);
 
     return (
       <Host>
@@ -169,7 +167,6 @@ export class DocusignForm {
           states={props.states}
           text={props.text}
           slots={{
-            // docusignExpiredSlot,
             docusignIframeSlot: (
               <DocusignIframe
                 states={{
@@ -205,6 +202,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
           errors: {},
         },
         documentType: "W9",
+        hideBackButton: false,
       },
       data: {
         taxForm: "W9",

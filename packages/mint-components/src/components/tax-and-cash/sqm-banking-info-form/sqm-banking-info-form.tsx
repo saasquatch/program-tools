@@ -27,6 +27,20 @@ export class BankingInfoForm {
   @Prop() toPaypalAccount: string = "To my PayPal account";
   @Prop() paymentMethod: string = "Payment Method";
   @Prop() submitButton: string = "Save";
+  @Prop() beneficiaryAccountNameLabel: string = "Beneficiary Account Name";
+  @Prop() bankAccountTypeLabel: string = "Bank Account Type";
+  @Prop() bankAccountNumberLabel: string = "Bank Account Number";
+  @Prop() ibanLabel: string = "Iban";
+  @Prop() swiftCodeLabel: string = "Swift Code";
+  @Prop() routingCodeLabel: string = "Routing Code";
+  @Prop() bankNameLabel: string = "Bank Name";
+  @Prop() classificationEntityLabel: string = "Classification Entity";
+  @Prop() classificationCPFLabel: string = "Classification CPF";
+  @Prop() patronymicNameLabel: string = "Patronymic Name";
+  @Prop() voCodeLabel: string = "Vo Code";
+  @Prop() agencyCodeLabel: string = "Agency Code";
+  @Prop() branchCodeLabel: string = "Branch Code";
+  @Prop() classificationLabel: string = "Classification";
 
   /**
    * @undocumented
@@ -56,42 +70,73 @@ export class BankingInfoForm {
 
     // const props = useBankingInfoForm(getProps(this));
 
-    console.log({ props });
+    console.log("PROPS ARE", { props }, props.text.beneficiaryAccountNameLabel);
 
     const formMap = {
       0: {
-        label: "BENEFICIARY_ACCOUNT_NAME",
-        input: <sl-input name="/beneficiaryAccountName" type="text"></sl-input>,
+        label: props.text.beneficiaryAccountNameLabel,
+        input: (
+          <sl-input
+            name="/beneficiaryAccountName"
+            id="beneficiaryAccountName"
+            type="text"
+          ></sl-input>
+        ),
       },
       1: {
-        label: "BANK_ACCOUNT_TYPE",
-        input: <sl-input name="/bankAccountType" type="text"></sl-input>,
+        label: props.text.bankAccountTypeLabel,
+        input: (
+          <sl-input
+            name="/bankAccountType"
+            id="bankAccountType"
+            type="text"
+          ></sl-input>
+        ),
       },
       2: {
-        label: "BANK_ACCOUNT_NUMBER",
-        input: <sl-input name="/bankAccountNumber" type="text"></sl-input>,
+        label: props.text.bankAccountNumberLabel,
+        input: (
+          <sl-input
+            name="/bankAccountNumber"
+            id="bankAccountNumber"
+            type="text"
+          ></sl-input>
+        ),
       },
       3: {
-        label: "IBAN",
-        input: <sl-input name="/beneficiaryAccountName" type="text"></sl-input>,
+        label: props.text.ibanLabel,
+        input: (
+          <sl-input
+            name="/beneficiaryAccountName"
+            id="beneficiaryAccountName"
+            type="text"
+          ></sl-input>
+        ),
       },
 
       4: {
-        label: "SWIFT_CODE",
-        input: <sl-input name="/swiftCode" type="text"></sl-input>,
+        label: props.text.swiftCodeLabel,
+        input: (
+          <sl-input name="/swiftCode" id="swiftCode" type="text"></sl-input>
+        ),
       },
       5: {
-        label: "ROUTING_CODE",
-        input: <sl-input name="/routingCode" type="text"></sl-input>,
+        label: props.text.routingCodeLabel,
+        input: (
+          <sl-input name="/routingCode" id="routingCode" type="text"></sl-input>
+        ),
       },
       6: {
-        label: "BANK_NAME",
-        input: <sl-input name="/bankName" type="text"></sl-input>,
+        label: props.text.bankNameLabel,
+        input: <sl-input name="/bankName" id="bankName" type="text"></sl-input>,
       },
       7: {
-        label: "CLASSIFICATION_ENTITY",
+        label: props.text.classificationEntityLabel,
         input: (
-          <sl-select name="/beneficiaryClassification">
+          <sl-select
+            name="/beneficiaryClassification"
+            id="beneficiaryClassification"
+          >
             <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
             <sl-menu-item value="INDIVIDUAL">INDIVIDUAL</sl-menu-item>
             <sl-menu-item value="FOREIGN">FOREIGN</sl-menu-item>
@@ -99,49 +144,77 @@ export class BankingInfoForm {
         ),
       },
       8: {
-        label: "CLASSIFICATION_CPF",
+        label: props.text.classificationCPFLabel,
         input: (
-          <sl-select name="/beneficiaryClassification">
+          <sl-select
+            name="/beneficiaryClassification"
+            id="beneficiaryClassification"
+          >
             <sl-menu-item value="CPF">CPF</sl-menu-item>
             <sl-menu-item value="CNPJ">CNPJ</sl-menu-item>
           </sl-select>
         ),
       },
       9: {
-        label: "PATRONYMICNAME",
-        input: <sl-input name="/patronymicName" type="text"></sl-input>,
+        label: props.text.patronymicNameLabel,
+        input: (
+          <sl-input
+            name="/patronymicName"
+            id="patronymicName"
+            type="text"
+          ></sl-input>
+        ),
       },
       10: {
-        label: "VOCODE",
-        input: <sl-input name="/voCode" type="text"></sl-input>,
+        label: props.text.voCodeLabel,
+        input: <sl-input name="/voCode" id="voCode" type="text"></sl-input>,
       },
       11: {
-        label: "AGENCYCODE",
-        input: <sl-input name="/agencyCode" type="text"></sl-input>,
+        label: props.text.agencyCodeLabel,
+        input: (
+          <sl-input name="/agencyCode" id="agencyCode" type="text"></sl-input>
+        ),
       },
       12: {
         label: "",
         input: (
           <div>
-            <label htmlFor="/bankAddress">bankAddres</label>
-            <sl-input name="/bankAddress" type="text"></sl-input>
+            <label htmlFor="/bankAddress">bankAddress</label>
+            <sl-input
+              name="/bankAddress"
+              id="bankAddress"
+              type="text"
+            ></sl-input>
             <label htmlFor="/bankCity">bankCity</label>
-            <sl-input name="/bankCity" type="text"></sl-input>
+            <sl-input name="/bankCity" id="bankCity" type="text"></sl-input>
             <label htmlFor="/bankProvinceState">bankProvinceState</label>
-            <sl-input name="/bankProvinceState" type="text"></sl-input>
+            <sl-input
+              name="/bankProvinceState"
+              id="bankProvinceState"
+              type="text"
+            ></sl-input>
             <label htmlFor="/bankPostalCode">bankPostalCode</label>
-            <sl-input name="/bankPostalCode" type="text"></sl-input>
+            <sl-input
+              name="/bankPostalCode"
+              id="bankPostalCode"
+              type="text"
+            ></sl-input>
           </div>
         ),
       },
       13: {
-        label: "BRANCHCODE",
-        input: <sl-input name="/branchCode" type="text"></sl-input>,
+        label: props.text.branchCodeLabel,
+        input: (
+          <sl-input name="/branchCode" id="branchCode" type="text"></sl-input>
+        ),
       },
       14: {
-        label: "CLASSIFICATION",
+        label: props.text.classificationLabel,
         input: (
-          <sl-select name="/beneficiaryClassification">
+          <sl-select
+            name="/beneficiaryClassification"
+            id="beneficiaryClassification"
+          >
             <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
             <sl-menu-item value="INDIVIDUAL">INDIVIDUAL</sl-menu-item>
             <sl-menu-item value="FOREIGN">FOREIGN</sl-menu-item>
@@ -184,8 +257,9 @@ export class BankingInfoForm {
               );
             }),
             countryInputSlot: (
-              <label htmlFor="/country">
-                <sl-select name="/country">
+              <label htmlFor="/bankCountry">
+                Bank Location Country
+                <sl-select name="/bankCountry" id="bankCountry">
                   <sl-menu-item value="CA">Canada</sl-menu-item>
                   <sl-menu-item value="US">United States</sl-menu-item>
                   <sl-menu-item value="ES">Spain</sl-menu-item>
@@ -193,6 +267,11 @@ export class BankingInfoForm {
                   <sl-menu-item value="GB">United Kingdom</sl-menu-item>
                   <sl-menu-item value="JP">Japan</sl-menu-item>
                 </sl-select>
+              </label>
+            ),
+            paymentMethodSlot: (
+              <label>
+                Payment Method <span>EFT Withdrawal</span>
               </label>
             ),
           }}

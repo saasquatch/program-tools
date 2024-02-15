@@ -120,6 +120,7 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
       completedTaxForm: true,
       taxFormExpired: false,
     },
+    hideBackButton: false,
   },
   callbacks: {
     setDocusignStatus: (status: DocusignStatus) => console.log(status),
