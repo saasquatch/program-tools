@@ -147,9 +147,7 @@ export class DocusignForm {
   }
 
   render() {
-    const props = isDemo()
-      ? useDocusignFormDemo(this)
-      : useDocusignForm(this, this.el);
+    const props = isDemo() ? useDocusignFormDemo(this) : useDocusignForm(this);
 
     return (
       <Host>
@@ -193,6 +191,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
           errors: {},
         },
         documentType: "W9",
+        hideBackButton: false,
       },
       data: {
         taxForm: "W9",

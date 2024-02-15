@@ -41,7 +41,7 @@ export const DOCUSIGN_ERROR_STATES = [
 export const DOCUSIGN_EXPIRED_STATES = ["ttl_expired", "session_timeout"];
 export const DOCUSIGN_SUCCESS_STATES = ["signing_complete", "viewing_complete"];
 
-export function useDocusignForm(props: DocusignForm, el: any) {
+export function useDocusignForm(props: DocusignForm) {
   const user = useUserIdentity();
   const [path, setPath] = useParent<string>(TAX_CONTEXT_NAMESPACE);
   const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
@@ -139,7 +139,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
   };
 
   const onBack = () => {
-    setPath(context.overrideBackStep || "/2");
+    setPath(context.overrideBackStep);
   };
 
   return {
@@ -155,6 +155,7 @@ export function useDocusignForm(props: DocusignForm, el: any) {
       },
       docusignStatus,
       documentType,
+      hideBackButton: !context.overrideBackStep,
     },
     data: {
       taxForm: documentType,

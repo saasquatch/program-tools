@@ -16,6 +16,7 @@ export interface DocusignFormViewProps {
       errors?: any;
     };
     documentType: TaxDocumentType;
+    hideBackButton: boolean;
   };
   slots: {
     docusignExpiredSlot?: VNode;
@@ -252,28 +253,20 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             )}
           </div>
 
-          <div class={classes.BtnContainer}>
-            {/* <sl-button
-              type="primary"
-              loading={states.loading}
-              disabled={states.submitDisabled}
-              submit
-              onClick={callbacks.onSubmit}
-              exportparts="base: primarybutton-base"
-            >
-              {text.submitButton}
-            </sl-button> */}
-            <sl-button
-              class={classes.SecondaryBtn}
-              type="text"
-              loading={states.loading}
-              disabled={states.loading}
-              onClick={callbacks.onBack}
-              exportparts="base: secondarybutton-base"
-            >
-              {text.backButton}
-            </sl-button>
-          </div>
+          {states.hideBackButton && (
+            <div class={classes.BtnContainer}>
+              <sl-button
+                class={classes.SecondaryBtn}
+                type="text"
+                loading={states.loading}
+                disabled={states.loading}
+                onClick={callbacks.onBack}
+                exportparts="base: secondarybutton-base"
+              >
+                {text.backButton}
+              </sl-button>
+            </div>
+          )}
         </div>
       )}
     </div>

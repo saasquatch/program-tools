@@ -7,6 +7,7 @@ import { getProps } from "../../../utils/utils";
 import { TAX_CONTEXT_NAMESPACE } from "./data";
 import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
 import { extractProps } from "./extractProps";
+import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
  * @uiName Tax and Cash
@@ -785,9 +786,9 @@ export class TaxAndCashMonolith {
       case "/3/W8BENE":
       case "/3/W9":
         return (
-          <sqm-docusign-form {...this.getDocuSignFormTextProps()}>
-            {/* <sqm-docusign-embed slot="docusign-iframe"></sqm-docusign-embed> */}
-          </sqm-docusign-form>
+          <sqm-docusign-form
+            {...this.getDocuSignFormTextProps()}
+          ></sqm-docusign-form>
         );
       case "/3b":
         return (
