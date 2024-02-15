@@ -9,6 +9,7 @@ import {
   INDIRECT_TAX_SPAIN_REGIONS,
 } from "./subregions";
 import { UseUserInfoFormResult } from "./sqm-user-info-form/useUserInfoForm";
+import { DocusignStatus } from "./sqm-docusign-form/docusign-iframe/DocusignIframe";
 // import sqmUserInfoSpecs from "./sqm-tax-document-step-1.feature";
 // import sqmIndirectTaxFormSpecs from "../sqm-indirect-tax-form/sqm-indirect-tax-form.feature";
 
@@ -59,7 +60,6 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
     disabled: false,
     loading: false,
     isPartner: false,
-    errors: {},
     formState: {
       checked: undefined,
       errors: {},
@@ -122,7 +122,7 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
     },
   },
   callbacks: {
-    setDocusignStatus: (status: string) => console.log(status),
+    setDocusignStatus: (status: DocusignStatus) => console.log(status),
     toggleFormSubmitted: () => console.log("Toggle checkbox"),
     onShowDocumentType: () => console.log("To other form"),
     onSubmit: async () => console.log("submit"),

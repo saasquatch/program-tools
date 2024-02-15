@@ -15,6 +15,7 @@ import {
   UserQuery,
 } from "../sqm-tax-and-cash/data";
 import { DocusignForm } from "./sqm-docusign-form";
+import { DocusignStatus } from "./docusign-iframe/DocusignIframe";
 
 type CreateTaxDocumentQuery = {
   createImpactPartnerTaxDocument: {
@@ -40,7 +41,8 @@ export function useDocusignForm(props: DocusignForm, el: any) {
     loading: userLoading,
     refetch,
   } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
-  const [docusignStatus, setDocusignStatus] = useState(undefined);
+  const [docusignStatus, setDocusignStatus] =
+    useState<DocusignStatus>(undefined);
 
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [errors, setErrors] = useState({});
@@ -82,6 +84,12 @@ export function useDocusignForm(props: DocusignForm, el: any) {
 
     fetchDocument();
   }, [user, documentType, document]);
+
+  useEffect(() => {
+    if (docusignStatus === "signing_complete") {
+      setPath("/submitted");
+    }
+  }, [docusignStatus]);
 
   const onSubmit = async () => {
     if (!formSubmitted) {
