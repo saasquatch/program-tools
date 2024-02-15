@@ -243,9 +243,9 @@ export class BankingInfoForm {
               );
             }),
             countryInputSlot: (
-              <label htmlFor="/country">
+              <label htmlFor="/bankCountry">
                 Bank Location Country
-                <sl-select name="/country">
+                <sl-select name="/bankCountry" id="bankCountry">
                   <sl-menu-item value="CA">Canada</sl-menu-item>
                   <sl-menu-item value="US">United States</sl-menu-item>
                   <sl-menu-item value="ES">Spain</sl-menu-item>
