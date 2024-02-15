@@ -62,6 +62,7 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
     errors: {},
     formState: {
       checked: undefined,
+      errors: {},
     },
   },
   callbacks: {
@@ -269,11 +270,11 @@ export const StepTwoWithGeneralError = () => {
       demoData={{
         states: {
           ...stepTwoProps.states,
-          errors: {
-            general: true,
-          },
           formState: {
             ...stepTwoProps.states.formState,
+            errors: {
+              general: true,
+            },
           },
         },
       }}
@@ -426,6 +427,7 @@ export const StepTwoOtherRegionCheckedWithInputErrors = () => {
           ...stepTwoProps.states,
           formState: {
             checked: "otherRegion",
+            errors: {},
           },
         },
         slotProps: {

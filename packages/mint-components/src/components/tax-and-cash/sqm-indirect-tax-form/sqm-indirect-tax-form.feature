@@ -175,7 +175,6 @@ Feature: Indirect Tax Form
       | <indirectTaxNumber> | "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number}} is required" |
       | <qstNumber>         | "QST Number is required"                                                                           |
       | <subRegionTaxNumber | "Income tax number is required                                                                     |
-	#   AL: Add case that handles errors thrown by backend, depends on the backend if they are doing that validation
 
   @minutia
   Scenario: Participant is not registered for indirect tax

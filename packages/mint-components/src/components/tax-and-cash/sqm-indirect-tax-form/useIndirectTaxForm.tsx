@@ -204,6 +204,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       errors,
       formState: {
         checked: option,
+        errors: {},
       },
     },
     callbacks: {

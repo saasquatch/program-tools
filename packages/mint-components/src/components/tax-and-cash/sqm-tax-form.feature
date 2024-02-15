@@ -177,7 +177,7 @@ Feature: Tax Form Flow
   # Undecided behaviour
   # Scenario: Returning to the docusign iframe page shows the previously selected option from the document type page
 
-  @TODO @minutia
+  @unknown @minutia
   Scenario Outline: A user from Another Country completes the User Info and Indirect Tax steps with different countries
     Given they are on the User Info Form step
     And they fill out the following form fields with their personal information:
