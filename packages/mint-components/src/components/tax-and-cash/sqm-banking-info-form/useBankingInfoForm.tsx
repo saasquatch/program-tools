@@ -1,27 +1,35 @@
 import { useRef, useState } from "@saasquatch/universal-hooks";
 import { useParent } from "../../../utils/useParentState";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
+import {
+  TAX_CONTEXT_NAMESPACE,
+  USER_QUERY_NAMESPACE,
+  UserQuery,
+} from "../sqm-tax-and-cash/data";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import JSONPointer from "jsonpointer";
+import { useParentQueryValue } from "../../../utils/useParentQuery";
 
 export const paypalFeeMap = {
-  USD: 20,
-  GBP: 30,
-  EUR: 35,
-  AUD: 60,
-  CAD: 50,
-  NZD: 60,
-  HKD: 320,
-  DKK: 250,
-  ILS: 160,
-  MXN: 600,
-  RUB: 1200,
-  PHP: 2000,
-  JPY: 2000,
+  USD: "USD20.00",
+  GBP: "GBP30.00",
+  EUR: "EUR35.00",
+  AUD: "AUD60.00",
+  CAD: "CAD50.00",
+  NZD: "NZD60.00",
+  HKD: "HKD320.00",
+  DKK: "DKK250.00",
+  ILS: "ILS160.00",
+  MXN: "MXN600.00",
+  RUB: "RUB1200.00",
+  PHP: "PHP2000.00",
+  JPY: "JPY2000.00",
 };
 
 export function useBankingInfoForm(props: BankingInfoForm) {
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
+
+  const { data: userData, refetch } =
+    useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
   /** mock data */
   const [bitset, setBitset] = useState(42);
@@ -81,6 +89,8 @@ export function useBankingInfoForm(props: BankingInfoForm) {
     }
   };
 
+  const feeCap = paypalFeeMap[currency] || "";
+
   return {
     step: step,
     setStep: setStep,
@@ -92,6 +102,8 @@ export function useBankingInfoForm(props: BankingInfoForm) {
       onChange: setOption,
     },
     states: {
+      isPartner: !!userData?.user?.impactPartner,
+      feeCap,
       disabled: false,
       loading: false,
       hideSteps: false,
