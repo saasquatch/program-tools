@@ -4,7 +4,8 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { BankingInfoFormView } from "./sqm-banking-info-form-view";
-import { useBankingInfoForm } from "./useBankingInfoForm";
+import { getIndex, useBankingInfoForm } from "./useBankingInfoForm";
+import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
  * @uiName Banking Information Form
@@ -49,11 +50,11 @@ export class BankingInfoForm {
   }
 
   render() {
-    // const props = isDemo()
-    //   ? useDemoBankingInfoForm(this)
-    //   : useBankingInfoForm(getProps(this));
+    const props = isDemo()
+      ? useDemoBankingInfoForm(this)
+      : useBankingInfoForm(getProps(this));
 
-    const props = useBankingInfoForm(getProps(this));
+    // const props = useBankingInfoForm(getProps(this));
 
     console.log({ props });
 
@@ -216,6 +217,9 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
             general: false,
           },
         },
+      },
+      demo: {
+        bitset: 39,
       },
       callbacks: {
         onSubmit: async () => {},
