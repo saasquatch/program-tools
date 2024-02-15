@@ -109,11 +109,6 @@ const style = {
       color: "var(--sl-color-blue-500)",
     },
   },
-  Checkbox: {
-    "&::part(control)": {
-      borderRadius: "50% !important",
-    },
-  },
 };
 
 const sheet = createStyleSheet(style);
@@ -198,29 +193,29 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
         <div>
           <div class={classes.CheckboxContainer}>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <sl-checkbox
-                class={classes.Checkbox}
-                exportparts="label: input-label"
+              <sl-radio
+                exportparts="base: radio-base"
+                name="/checked"
+                value="otherRegion"
+                id="otherRegion"
                 checked={formState.checked === "otherRegion"}
                 onInput={() => callbacks.onChange("otherRegion")}
                 disabled={states.disabled}
-                id="otherRegion"
-                name="/otherRegion"
               >
                 {text.otherRegion}
-              </sl-checkbox>
+              </sl-radio>
               {slots.registeredInDifferentCountryDetailsSlot}
-              <sl-checkbox
-                class={classes.Checkbox}
-                exportparts="label: input-label"
+              <sl-radio
+                exportparts="base: radio-base"
+                name="/checked"
+                value="notRegistered"
+                id="notRegistered"
                 checked={formState.checked === "notRegistered"}
                 onInput={() => callbacks.onChange("notRegistered")}
                 disabled={states.disabled}
-                id="notRegistered"
-                name="/notRegistered"
               >
                 {text.notRegistered}
-              </sl-checkbox>
+              </sl-radio>
             </div>
           </div>
           <div class={classes.BtnContainer}>

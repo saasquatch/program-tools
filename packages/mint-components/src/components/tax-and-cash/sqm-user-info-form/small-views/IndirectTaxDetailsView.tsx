@@ -232,8 +232,6 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
       (p) => p.provinceCode === formState.province
     )?.taxType as TaxType | undefined;
 
-    console.log(currentTaxType);
-
     return (
       <div class={classes.ConditionalInputsContainer}>
         <sl-select
@@ -320,6 +318,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
   };
 
   const activeForm = getActiveForm(formState.selectedRegion);
+
   return (
     <div style={states.hide ? { display: "none" } : {}}>
       <form class={classes.Container}>
