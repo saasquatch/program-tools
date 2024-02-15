@@ -19,7 +19,10 @@ import {
 import { useDocusignForm, UseDocusignFormResult } from "./useDocusignForm";
 import { DocusignExpiredView } from "../sqm-user-info-form/small-views/DocusignExpiredView";
 import { DocusignEmbedComponent } from "../../sqm-docusign-embed/sqm-docusign-embed";
-import { DocusignIframe } from "./docusign-iframe/DocusignIframe";
+import {
+  DocusignIframe,
+  DocusignStatus,
+} from "./docusign-iframe/DocusignIframe";
 
 /**
  * @uiName DocuSign Document Submission
@@ -195,7 +198,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
         disabled: false,
         submitDisabled: false,
         loading: false,
-        status: "",
+        status: undefined as DocusignStatus,
         formState: {
           completedTaxForm: true,
           taxFormExpired: true,
@@ -208,7 +211,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
         documentUrl: "https://example.com",
       },
       callbacks: {
-        setDocusignStatus: (status: string) => console.log(status),
+        setDocusignStatus: (status: DocusignStatus) => console.log(status),
         onShowDocumentType: () => {},
         onSubmit: async () => {},
         toggleFormSubmitted: () => {},

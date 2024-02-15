@@ -808,6 +808,8 @@ export class TaxAndCashMonolith {
             {...this.getDocumentTypeFormTextProps()}
           ></sqm-document-type-form>
         );
+      case "/4":
+        return <sqm-banking-info-form></sqm-banking-info-form>;
       case "/submitted":
         return (
           <sqm-tax-document-submitted

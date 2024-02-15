@@ -201,10 +201,9 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       disabled: loading || countriesLoading || connectLoading,
       loading: loading || connectLoading || countriesLoading,
       isPartner: !!userData?.user?.impactPartner,
-      errors,
       formState: {
         checked: option,
-        errors: {},
+        errors,
       },
     },
     callbacks: {
