@@ -179,7 +179,7 @@ export class BankingInfoForm {
         label: "",
         input: (
           <div>
-            <label htmlFor="/bankAddress">bankAddres</label>
+            <label htmlFor="/bankAddress">bankAddress</label>
             <sl-input
               name="/bankAddress"
               id="bankAddress"
@@ -203,7 +203,7 @@ export class BankingInfoForm {
         ),
       },
       13: {
-        label: props.text.branchCodelabel,
+        label: props.text.branchCodeLabel,
         input: (
           <sl-input name="/branchCode" id="branchCode" type="text"></sl-input>
         ),
