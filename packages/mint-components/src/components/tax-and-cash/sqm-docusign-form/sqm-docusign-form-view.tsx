@@ -2,7 +2,6 @@ import { VNode, h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { TaxDocumentType } from "../sqm-tax-and-cash/data";
-import { useState } from "@saasquatch/universal-hooks";
 
 export interface DocusignFormViewProps {
   states: {
@@ -92,6 +91,10 @@ const style = {
   SecondaryBtn: {
     "&::part(base)": {
       color: "var(--sl-color-gray-800) !important",
+    },
+    "&::part(label)": {
+      padding: "0px",
+      margin: "0px",
     },
   },
   ErrorAlertContainer: {
@@ -223,52 +226,33 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
         </p>
       </div>
 
-      {states.loading ? (
-        <sl-spinner style={{ fontSize: "50px", margin: "40px" }}></sl-spinner>
-      ) : (
-        <div>
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="primary"
-            open
-            class={classes.InfoAlert}
-          >
-            <sl-icon slot="icon" name="info-circle"></sl-icon>
-            {text.banner}
-          </sl-alert>
-          {slots.docusignIframeSlot}
-          <br />
-          <br />
-          <div>
-            <p class={classes.BoldText}>{text.checkboxLabel}</p>
-            <sl-checkbox
-              disabled={states.disabled}
-              checked={formState.completedTaxForm}
-              onSl-change={callbacks.toggleFormSubmitted}
-            >
-              {text.checkboxDescription}
-            </sl-checkbox>
-            {formState.errors?.formSubmission && (
-              <p class={classes.ErrorText}>{text.error.formSubmission}</p>
-            )}
-          </div>
+      <div>
+        <sl-alert
+          exportparts="base: alert-base, icon:alert-icon"
+          type="primary"
+          open
+          class={classes.InfoAlert}
+        >
+          <sl-icon slot="icon" name="info-circle"></sl-icon>
+          {text.banner}
+        </sl-alert>
+        {slots.docusignIframeSlot}
 
-          {states.hideBackButton && (
-            <div class={classes.BtnContainer}>
-              <sl-button
-                class={classes.SecondaryBtn}
-                type="text"
-                loading={states.loading}
-                disabled={states.loading}
-                onClick={callbacks.onBack}
-                exportparts="base: secondarybutton-base"
-              >
-                {text.backButton}
-              </sl-button>
-            </div>
-          )}
-        </div>
-      )}
+        {states.hideBackButton && (
+          <div class={classes.BtnContainer}>
+            <sl-button
+              class={classes.SecondaryBtn}
+              type="text"
+              loading={states.loading}
+              disabled={states.loading}
+              onClick={callbacks.onBack}
+              exportparts="base: secondarybutton-base"
+            >
+              {text.backButton}
+            </sl-button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

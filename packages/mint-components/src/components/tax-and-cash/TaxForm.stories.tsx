@@ -552,9 +552,7 @@ export const StepThreeWithDocusign = () => {
           ...docusignFormProps.states,
         },
       }}
-    >
-      <div slot="docusign-iframe">hey</div>
-    </sqm-docusign-form>
+    ></sqm-docusign-form>
   );
 };
 
@@ -594,6 +592,26 @@ export const StepThreeWithDocusignCompleted = () => {
   );
 };
 
+export const StepThreeDocusignWithError = () => {
+  return (
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          ...docusignFormProps.states,
+          docusignStatus: "exception",
+          formState: {
+            ...docusignFormProps.states.formState,
+            completedTaxForm: false,
+            errors: {
+              formSubmission: true,
+            },
+          },
+        },
+      }}
+    ></sqm-docusign-form>
+  );
+};
+
 export const StepThreeDocusignWithGeneralError = () => {
   return (
     <sqm-docusign-form
@@ -608,30 +626,7 @@ export const StepThreeDocusignWithGeneralError = () => {
           },
         },
       }}
-    >
-      <div slot="docusign-iframe">Hey</div>
-    </sqm-docusign-form>
-  );
-};
-
-export const StepThreeDocusignWithFormSubmissionError = () => {
-  return (
-    <sqm-docusign-form
-      demoData={{
-        states: {
-          ...docusignFormProps.states,
-          formState: {
-            ...docusignFormProps.states.formState,
-            completedTaxForm: false,
-            errors: {
-              formSubmission: true,
-            },
-          },
-        },
-      }}
-    >
-      <div slot="docusign-iframe">Hey</div>
-    </sqm-docusign-form>
+    ></sqm-docusign-form>
   );
 };
 
@@ -644,9 +639,7 @@ export const StepThreeDocusignLoading = () => {
           loading: true,
         },
       }}
-    >
-      <div slot="docusign-iframe">Hey</div>
-    </sqm-docusign-form>
+    ></sqm-docusign-form>
   );
 };
 

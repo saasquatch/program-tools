@@ -4,9 +4,21 @@ import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import JSONPointer from "jsonpointer";
 
-export function getIndex(binary, idx) {
-  return binary.length - idx - 1;
-}
+export const paypalFeeMap = {
+  USD: 20,
+  GBP: 30,
+  EUR: 35,
+  AUD: 60,
+  CAD: 50,
+  NZD: 60,
+  HKD: 320,
+  DKK: 250,
+  ILS: 160,
+  MXN: 600,
+  RUB: 1200,
+  PHP: 2000,
+  JPY: 2000,
+};
 
 export function useBankingInfoForm(props: BankingInfoForm) {
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
