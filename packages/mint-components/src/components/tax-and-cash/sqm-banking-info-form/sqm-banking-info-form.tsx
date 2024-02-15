@@ -135,11 +135,8 @@ export class BankingInfoForm {
 
     const inputFields = [...binaryToParse].reduce((agg, num, idx) => {
       const number = Number(num);
-      if (!number) return agg;
       const inputFound = formMap[idx];
-
-      console.log({ inputFound, binary });
-      if (!inputFound) return agg;
+      if (!number || !inputFound) return agg;
       return [...agg, inputFound];
     }, []);
 
