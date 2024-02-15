@@ -73,6 +73,7 @@ export namespace Components {
         "bankNameLabel": string;
         "beneficiaryAccountNameLabel": string;
         "branchCodeLabel": string;
+        "businessSelectItemLabel": string;
         "classificationCPFLabel": string;
         "classificationEntityLabel": string;
         "classificationLabel": string;
@@ -82,8 +83,10 @@ export namespace Components {
          */
         "demoData"?: DemoData<any>;
         "directlyToBankAccount": string;
+        "foreignSelectItemLabel": string;
         "formStep": string;
         "ibanLabel": string;
+        "individualSelectItemLabel": string;
         "patronymicNameLabel": string;
         "paymentMethod": string;
         "routingCodeLabel": string;
@@ -4775,6 +4778,7 @@ declare namespace LocalJSX {
         "bankNameLabel"?: string;
         "beneficiaryAccountNameLabel"?: string;
         "branchCodeLabel"?: string;
+        "businessSelectItemLabel"?: string;
         "classificationCPFLabel"?: string;
         "classificationEntityLabel"?: string;
         "classificationLabel"?: string;
@@ -4784,8 +4788,10 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<any>;
         "directlyToBankAccount"?: string;
+        "foreignSelectItemLabel"?: string;
         "formStep"?: string;
         "ibanLabel"?: string;
+        "individualSelectItemLabel"?: string;
         "patronymicNameLabel"?: string;
         "paymentMethod"?: string;
         "routingCodeLabel"?: string;

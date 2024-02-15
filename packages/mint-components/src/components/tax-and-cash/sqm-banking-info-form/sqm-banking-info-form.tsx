@@ -1,3 +1,4 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
@@ -5,7 +6,6 @@ import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { BankingInfoFormView } from "./sqm-banking-info-form-view";
 import { useBankingInfoForm } from "./useBankingInfoForm";
-import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
  * @uiName Banking Information Form
@@ -20,11 +20,12 @@ export class BankingInfoForm {
   @State() ignored = true;
 
   @Prop() formStep: string = "Step 4 of 4";
-  @Prop() taxAndPayouts: string = "Tax and Payouts";
+  @Prop() taxAndPayouts: string = "Payouts";
   @Prop() taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
   @Prop() directlyToBankAccount: string = "Directly to my bank account";
-  @Prop() toPaypalAccount: string = "To my PayPal account";
+  @Prop() toPaypalAccount: string =
+    "PayPal (2% processing fee capped to {feeCap})";
   @Prop() paymentMethod: string = "Payment Method";
   @Prop() submitButton: string = "Save";
   @Prop() beneficiaryAccountNameLabel: string = "Beneficiary Account Name";
@@ -35,6 +36,10 @@ export class BankingInfoForm {
   @Prop() routingCodeLabel: string = "Routing Code";
   @Prop() bankNameLabel: string = "Bank Name";
   @Prop() classificationEntityLabel: string = "Classification Entity";
+  @Prop() businessSelectItemLabel: string = "Business";
+  @Prop() individualSelectItemLabel: string = "Individual";
+  @Prop() foreignSelectItemLabel: string = "Foreign";
+
   @Prop() classificationCPFLabel: string = "Classification CPF";
   @Prop() patronymicNameLabel: string = "Patronymic Name";
   @Prop() voCodeLabel: string = "Vo Code";
@@ -71,6 +76,10 @@ export class BankingInfoForm {
     // const props = useBankingInfoForm(getProps(this));
 
     console.log("PROPS ARE", { props }, props.text.beneficiaryAccountNameLabel);
+
+    const routingCodeLabels = {
+      AU: "BSB Number",
+    };
 
     const formMap = {
       0: {
@@ -131,15 +140,21 @@ export class BankingInfoForm {
         input: <sl-input name="/bankName" id="bankName" type="text"></sl-input>,
       },
       7: {
-        label: props.text.classificationEntityLabel,
+        label: props.text.classificationLabel,
         input: (
           <sl-select
             name="/beneficiaryClassification"
             id="beneficiaryClassification"
           >
-            <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
-            <sl-menu-item value="INDIVIDUAL">INDIVIDUAL</sl-menu-item>
-            <sl-menu-item value="FOREIGN">FOREIGN</sl-menu-item>
+            <sl-menu-item value="BUSINESS">
+              {props.text.businessSelectItemLabel}
+            </sl-menu-item>
+            <sl-menu-item value="INDIVIDUAL">
+              {props.text.individualSelectItemLabel}
+            </sl-menu-item>
+            <sl-menu-item value="FOREIGN">
+              {props.text.foreignSelectItemLabel}
+            </sl-menu-item>
           </sl-select>
         ),
       },
@@ -238,10 +253,33 @@ export class BankingInfoForm {
 
     return (
       <Host>
+        {/* demo */}
         <sl-input
           value={props.demo.bitset}
           onInput={(e) => props.demo.setBitset(Number(e.target.value))}
         />
+        <sl-select
+          name="/currency"
+          value={props.demo.currency}
+          onSl-select={(e) => props.demo.setCurrency(e.detail?.item?.value)}
+        >
+          <sl-menu-item value="USD">USD</sl-menu-item>
+          <sl-menu-item value="GBP">GBP</sl-menu-item>
+          <sl-menu-item value="AUD">AUD</sl-menu-item>
+          <sl-menu-item value="CAD">CAD</sl-menu-item>
+          <sl-menu-item value="NZD">NZD</sl-menu-item>
+          <sl-menu-item value="HKD">HKD</sl-menu-item>
+          <sl-menu-item value="SGD">SGD</sl-menu-item>
+          <sl-menu-item value="SEK">SEK</sl-menu-item>
+          <sl-menu-item value="DKK">DKK</sl-menu-item>
+          <sl-menu-item value="NOK">NOK</sl-menu-item>
+          <sl-menu-item value="ILS">ILS</sl-menu-item>
+          <sl-menu-item value="MXN">MXN</sl-menu-item>
+          <sl-menu-item value="RUB">RUB</sl-menu-item>
+          <sl-menu-item value="PHP">PHP</sl-menu-item>
+          <sl-menu-item value="JPY">JPY</sl-menu-item>
+        </sl-select>
+        {/*  */}
         <BankingInfoFormView
           callbacks={props.callbacks}
           text={props.text}
