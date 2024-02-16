@@ -93,18 +93,8 @@ export function useBankingInfoForm(props: BankingInfoForm) {
     try {
       console.log({ formData });
 
-      // const result = await connectImpactPartner({
-      //   vars: {
-      //     userId: user.id,
-      //     accountId: user.accountId,
-      //     firstName: userForm.firstName,
-      //     lastName: userForm.lastName,
-      //     country: userForm.countryCode, // TODO: May need formatting
-      //     currency: userForm.currency,
-      //     ...fields,
-      //   },
-      // });
-      // if (!result || (result as Error)?.message) throw new Error();
+      // TODO: wire up mutation
+      // await upsertBankDetails({bankDetails:formData})
 
       // setStep("/3");
     } catch (e) {
