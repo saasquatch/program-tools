@@ -125,7 +125,8 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
   callbacks: {
     setDocusignStatus: (status: DocusignStatus) => console.log(status),
     toggleFormSubmitted: () => console.log("Toggle checkbox"),
-    onShowDocumentType: () => console.log("To other form"),
+    // AL: Marked for removal
+    // onShowDocumentType: () => console.log("To other form"),
     onSubmit: async () => console.log("submit"),
     onBack: () => console.log("Back"),
   },

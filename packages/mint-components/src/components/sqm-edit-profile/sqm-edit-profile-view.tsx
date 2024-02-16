@@ -111,14 +111,6 @@ const EditProfileView = (props: EditProfileViewProps) => {
           )}
           <div class="ButtonWrapper">
             <sl-button
-              onClick={() => {
-                callbacks.setShowEdit(false);
-              }}
-              exportparts="base: defaultbutton-base"
-            >
-              {text.canceltext}
-            </sl-button>
-            <sl-button
               type="primary"
               loading={states.loading}
               disabled={states.submitDisabled}
@@ -129,6 +121,14 @@ const EditProfileView = (props: EditProfileViewProps) => {
               exportparts="base: primarybutton-base"
             >
               {text.updatetext}
+            </sl-button>
+            <sl-button
+              onClick={() => {
+                callbacks.setShowEdit(false);
+              }}
+              exportparts="base: defaultbutton-base"
+            >
+              {text.canceltext}
             </sl-button>
           </div>
         </form>

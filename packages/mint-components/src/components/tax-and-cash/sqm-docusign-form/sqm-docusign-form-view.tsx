@@ -22,7 +22,7 @@ export interface DocusignFormViewProps {
     docusignIframeSlot: VNode;
   };
   callbacks: {
-    onShowDocumentType: () => void;
+    // onShowDocumentType: () => void;
     toggleFormSubmitted: () => void;
     onSubmit: (props: any) => void;
     onBack: () => void;
