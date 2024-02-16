@@ -41,7 +41,7 @@ function getCurrentStep(user: UserQuery["user"]) {
 
   // If they do have a required document, look at current document
   if (user.impactPartner.currentTaxDocument) {
-    const { status, type } = user.impactPartner.currentTaxDocument;
+    const { status } = user.impactPartner.currentTaxDocument;
 
     if (status === "ACTIVE" || status === "NOT_VERIFIED") return "/submitted";
 

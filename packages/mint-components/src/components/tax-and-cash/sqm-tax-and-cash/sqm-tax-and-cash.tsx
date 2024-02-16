@@ -803,12 +803,6 @@ export class TaxAndCashMonolith {
             {...this.getDocuSignFormTextProps()}
           ></sqm-docusign-form>
         );
-      case "/3b":
-        return (
-          <sqm-document-type-form
-            {...this.getDocumentTypeFormTextProps()}
-          ></sqm-document-type-form>
-        );
       case "/4":
         return <sqm-banking-info-form></sqm-banking-info-form>;
       case "/submitted":
