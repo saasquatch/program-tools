@@ -1,11 +1,12 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { BankingInfoFormView } from "./sqm-banking-info-form-view";
-import { useBankingInfoForm } from "./useBankingInfoForm";
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { getFormInputs, useBankingInfoForm } from "./useBankingInfoForm";
+import { mockPaymentOptions } from "./mockData";
 
 /**
  * @uiName Banking Information Form
@@ -20,13 +21,40 @@ export class BankingInfoForm {
   @State() ignored = true;
 
   @Prop() formStep: string = "Step 4 of 4";
-  @Prop() taxAndPayouts: string = "Tax and Payouts";
+  @Prop() taxAndPayouts: string = "Payouts";
   @Prop() taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
   @Prop() directlyToBankAccount: string = "Directly to my bank account";
-  @Prop() toPaypalAccount: string = "To my PayPal account";
+  @Prop() toPaypalAccount: string =
+    "PayPal (2% processing fee capped to {feeCap})";
   @Prop() paymentMethod: string = "Payment Method";
+  @Prop() payPalInputLabel: string = "PayPal Email";
   @Prop() submitButton: string = "Save";
+  @Prop() beneficiaryAccountNameLabel: string = "Beneficiary Account Name";
+  @Prop() bankAccountTypeLabel: string = "Bank Account Type";
+  @Prop() bankAccountNumberLabel: string = "Bank Account Number";
+  @Prop() ibanLabel: string = "Iban";
+  @Prop() swiftCodeLabel: string = "Swift Code";
+  @Prop() routingCodeLabel: string = "Routing Code";
+  @Prop() bankNameLabel: string = "Bank Name";
+  @Prop() classificationEntityLabel: string = "Classification Entity";
+  @Prop() businessSelectItemLabel: string = "Business";
+  @Prop() individualSelectItemLabel: string = "Individual";
+  @Prop() foreignSelectItemLabel: string = "Foreign";
+  @Prop() isPartnerAlertHeader: string =
+    "An account with this email already exists with our referral program provider, impact.com";
+  @Prop() isPartnerAlertDescription: string =
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
+  @Prop() classificationCPFLabel: string = "Classification CPF";
+  @Prop() patronymicNameLabel: string = "Patronymic Name";
+  @Prop() voCodeLabel: string = "Vo Code";
+  @Prop() agencyCodeLabel: string = "Agency Code";
+  @Prop() branchCodeLabel: string = "Branch Code";
+  @Prop() classificationLabel: string = "Classification";
+  // @Prop() generalErrorTitle: string =
+  //   "There was a problem submitting your information";
+  // @Prop() generalErrorDescription: string =
+  //   "Please review your information and try again. If this problem continues, contact Support.";
 
   /**
    * @undocumented
@@ -54,94 +82,202 @@ export class BankingInfoForm {
       ? useDemoBankingInfoForm(this)
       : useBankingInfoForm(getProps(this));
 
-    // const props = useBankingInfoForm(getProps(this));
-
-    console.log({ props });
+    const routingCodeLabels = {
+      AU: "BSB Number",
+      CA: "Routing Number",
+      CZ: "Bank Code",
+      HK: "Clearing Code",
+      SG: "Clearing Code",
+      US: "ABA Routing Number",
+      NZ: "BSB Number",
+      ZA: "Bank/Branch Number",
+      IN: "IFSC",
+      CNY: "CNAPS",
+    };
 
     const formMap = {
       0: {
-        label: "BENEFICIARY_ACCOUNT_NAME",
-        input: <sl-input name="/beneficiaryAccountName" type="text"></sl-input>,
+        input: (
+          <sl-input
+            label={props.text.beneficiaryAccountNameLabel}
+            name="/beneficiaryAccountName"
+            id="beneficiaryAccountName"
+            type="text"
+          ></sl-input>
+        ),
       },
       1: {
-        label: "BANK_ACCOUNT_TYPE",
-        input: <sl-input name="/bankAccountType" type="text"></sl-input>,
+        input: (
+          <sl-input
+            label={props.text.bankAccountTypeLabel}
+            name="/bankAccountType"
+            id="bankAccountType"
+            type="text"
+          ></sl-input>
+        ),
       },
       2: {
-        label: "BANK_ACCOUNT_NUMBER",
-        input: <sl-input name="/bankAccountNumber" type="text"></sl-input>,
+        input: (
+          <sl-input
+            label={props.text.bankAccountNumberLabel}
+            name="/bankAccountNumber"
+            id="bankAccountNumber"
+            type="text"
+          ></sl-input>
+        ),
       },
       3: {
-        label: "IBAN",
-        input: <sl-input name="/beneficiaryAccountName" type="text"></sl-input>,
+        input: (
+          <sl-input
+            label={props.text.ibanLabel}
+            name="/iban"
+            id="iban"
+            type="text"
+          ></sl-input>
+        ),
       },
 
       4: {
-        label: "SWIFT_CODE",
-        input: <sl-input name="/swiftCode" type="text"></sl-input>,
+        input: (
+          <sl-input
+            label={props.text.swiftCodeLabel}
+            name="/swiftCode"
+            id="swiftCode"
+            type="text"
+          ></sl-input>
+        ),
       },
       5: {
-        label: "ROUTING_CODE",
-        input: <sl-input name="/routingCode" type="text"></sl-input>,
+        input: (
+          <sl-input
+            label={
+              routingCodeLabels[props.states.bankCountry] ||
+              props.text.routingCodeLabel
+            }
+            name="/routingCode"
+            id="routingCode"
+            type="text"
+          ></sl-input>
+        ),
       },
       6: {
-        label: "BANK_NAME",
-        input: <sl-input name="/bankName" type="text"></sl-input>,
+        input: (
+          <sl-input
+            label={props.text.bankNameLabel}
+            name="/bankName"
+            id="bankName"
+            type="text"
+          ></sl-input>
+        ),
       },
       7: {
-        label: "CLASSIFICATION_ENTITY",
         input: (
-          <sl-select name="/beneficiaryClassification">
-            <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
-            <sl-menu-item value="INDIVIDUAL">INDIVIDUAL</sl-menu-item>
-            <sl-menu-item value="FOREIGN">FOREIGN</sl-menu-item>
+          <sl-select
+            label={props.text.classificationLabel}
+            name="/beneficiaryClassification"
+            id="beneficiaryClassification"
+          >
+            <sl-menu-item value="BUSINESS">
+              {props.text.businessSelectItemLabel}
+            </sl-menu-item>
+            <sl-menu-item value="INDIVIDUAL">
+              {props.text.individualSelectItemLabel}
+            </sl-menu-item>
+            <sl-menu-item value="FOREIGN">
+              {props.text.foreignSelectItemLabel}
+            </sl-menu-item>
           </sl-select>
         ),
       },
       8: {
-        label: "CLASSIFICATION_CPF",
         input: (
-          <sl-select name="/beneficiaryClassification">
+          <sl-select
+            label={props.text.classificationCPFLabel}
+            name="/beneficiaryClassification"
+            id="beneficiaryClassification"
+          >
             <sl-menu-item value="CPF">CPF</sl-menu-item>
             <sl-menu-item value="CNPJ">CNPJ</sl-menu-item>
           </sl-select>
         ),
       },
       9: {
-        label: "PATRONYMICNAME",
-        input: <sl-input name="/patronymicName" type="text"></sl-input>,
+        input: (
+          <sl-input
+            label={props.text.patronymicNameLabel}
+            name="/patronymicName"
+            id="patronymicName"
+            type="text"
+          ></sl-input>
+        ),
       },
       10: {
-        label: "VOCODE",
-        input: <sl-input name="/voCode" type="text"></sl-input>,
+        input: (
+          <sl-input
+            label={props.text.voCodeLabel}
+            name="/voCode"
+            id="voCode"
+            type="text"
+          ></sl-input>
+        ),
       },
       11: {
-        label: "AGENCYCODE",
-        input: <sl-input name="/agencyCode" type="text"></sl-input>,
+        input: (
+          <sl-input
+            label={props.text.agencyCodeLabel}
+            name="/agencyCode"
+            id="agencyCode"
+            type="text"
+          ></sl-input>
+        ),
       },
       12: {
-        label: "",
         input: (
           <div>
-            <label htmlFor="/bankAddress">bankAddres</label>
-            <sl-input name="/bankAddress" type="text"></sl-input>
-            <label htmlFor="/bankCity">bankCity</label>
-            <sl-input name="/bankCity" type="text"></sl-input>
-            <label htmlFor="/bankProvinceState">bankProvinceState</label>
-            <sl-input name="/bankProvinceState" type="text"></sl-input>
-            <label htmlFor="/bankPostalCode">bankPostalCode</label>
-            <sl-input name="/bankPostalCode" type="text"></sl-input>
+            <sl-input
+              label={"bankAddress"}
+              name="/bankAddress"
+              id="bankAddress"
+              type="text"
+            ></sl-input>
+            <sl-input
+              label={"bankCity"}
+              name="/bankCity"
+              id="bankCity"
+              type="text"
+            ></sl-input>
+            <sl-input
+              label={"bankProvinceState"}
+              name="/bankProvinceState"
+              id="bankProvinceState"
+              type="text"
+            ></sl-input>
+            <sl-input
+              label={"bankPostalCode"}
+              name="/bankPostalCode"
+              id="bankPostalCode"
+              type="text"
+            ></sl-input>
           </div>
         ),
       },
       13: {
-        label: "BRANCHCODE",
-        input: <sl-input name="/branchCode" type="text"></sl-input>,
+        input: (
+          <sl-input
+            label={props.text.branchCodeLabel}
+            name="/branchCode"
+            id="branchCode"
+            type="text"
+          ></sl-input>
+        ),
       },
       14: {
-        label: "CLASSIFICATION",
         input: (
-          <sl-select name="/beneficiaryClassification">
+          <sl-select
+            label={props.text.classificationLabel}
+            name="/beneficiaryClassification"
+            id="beneficiaryClassification"
+          >
             <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
             <sl-menu-item value="INDIVIDUAL">INDIVIDUAL</sl-menu-item>
             <sl-menu-item value="FOREIGN">FOREIGN</sl-menu-item>
@@ -150,50 +286,76 @@ export class BankingInfoForm {
       },
     };
 
-    const binary = props.demo.bitset
-      .toString(2)
-      .padStart(Object.keys(formMap).length, "0");
-
-    const binaryToParse = binary.split("").reverse().join("");
-
-    const inputFields = [...binaryToParse].reduce((agg, num, idx) => {
-      const number = Number(num);
-      const inputFound = formMap[idx];
-      if (!number || !inputFound) return agg;
-      return [...agg, inputFound];
-    }, []);
+    const inputFields = getFormInputs({ props, formMap });
 
     return (
       <Host>
+        {/* demo */}
         <sl-input
           value={props.demo.bitset}
           onInput={(e) => props.demo.setBitset(Number(e.target.value))}
         />
+        <sl-select
+          name="/currency"
+          value={props.demo.currency}
+          onSl-select={(e) => {
+            props.demo.setCurrency(e.detail?.item?.value);
+            props.callbacks.setBankCountry("");
+          }}
+        >
+          <sl-menu-item value="USD">USD</sl-menu-item>
+          <sl-menu-item value="GBP">GBP</sl-menu-item>
+          <sl-menu-item value="AUD">AUD</sl-menu-item>
+          <sl-menu-item value="CAD">CAD</sl-menu-item>
+          <sl-menu-item value="EUR">EUR</sl-menu-item>
+          <sl-menu-item value="JPY">JPY</sl-menu-item>
+        </sl-select>
+        {/*  */}
         <BankingInfoFormView
           callbacks={props.callbacks}
           text={props.text}
           states={props.states}
           refs={props.refs}
           slots={{
-            formInputsSlot: inputFields?.map(({ input, label }) => {
-              return (
-                <label>
-                  {label}
-                  {input}
-                </label>
-              );
+            formInputsSlot: inputFields?.map(({ input }) => {
+              return input;
             }),
             countryInputSlot: (
-              <label htmlFor="/country">
-                <sl-select name="/country">
-                  <sl-menu-item value="CA">Canada</sl-menu-item>
-                  <sl-menu-item value="US">United States</sl-menu-item>
-                  <sl-menu-item value="ES">Spain</sl-menu-item>
-                  <sl-menu-item value="IE">Ireland</sl-menu-item>
-                  <sl-menu-item value="GB">United Kingdom</sl-menu-item>
-                  <sl-menu-item value="JP">Japan</sl-menu-item>
+              <label htmlFor="/bankCountry">
+                Bank Location Country
+                <sl-select
+                  name="/bankCountry"
+                  id="bankCountry"
+                  value={props.states.bankCountry}
+                  onSl-select={(e) =>
+                    props.callbacks.setBankCountry(e.detail?.item?.value)
+                  }
+                >
+                  {/* TODO: mock data should come from the backend when available */}
+                  {mockPaymentOptions[
+                    props.demo.currency || props.states.currency
+                  ]?.map((paymentOption) => {
+                    // @ts-ignore
+                    const countryDisplayName = new Intl.DisplayNames(
+                      [props.states.intlLocale],
+                      { type: "region" }
+                    ).of(paymentOption.country);
+
+                    return (
+                      <sl-menu-item value={paymentOption?.country}>
+                        {countryDisplayName}
+                      </sl-menu-item>
+                    );
+                  })}
                 </sl-select>
               </label>
+            ),
+            paymentMethodSlot: (
+              <div>
+                <label>
+                  Payment Method <span>EFT Withdrawal</span>
+                </label>
+              </div>
             ),
           }}
         />
@@ -208,6 +370,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
   return deepmerge(
     {
       states: {
+        isPartner: false,
         disabled: false,
         loading: false,
         hideSteps: false,
@@ -217,6 +380,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
             general: false,
           },
         },
+        intlLocale: "en",
       },
       demo: {
         bitset: 39,

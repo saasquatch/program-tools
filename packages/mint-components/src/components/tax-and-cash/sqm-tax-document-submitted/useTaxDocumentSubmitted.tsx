@@ -12,6 +12,7 @@ import {
 import { INDIRECT_TAX_PROVINCES } from "../subregions";
 import { TaxDocumentSubmitted } from "./sqm-tax-document-submitted";
 import { TaxDocumentSubmittedProps } from "./sqm-tax-document-submitted-view";
+import { useLocale } from "@saasquatch/component-boilerplate";
 
 function getExpiresSoon(submissionDate: number, expiryDate: number) {
   if (!submissionDate || !expiryDate) return false;
@@ -30,6 +31,8 @@ export const useTaxDocumentSubmitted = (
   const [context, setContext] = useParent<TaxContext>(
     TAX_FORM_CONTEXT_NAMESPACE
   );
+
+  const locale = useLocale();
 
   useEffect(() => {
     // Clear override context once on submitted
@@ -88,9 +91,10 @@ export const useTaxDocumentSubmitted = (
       isBusinessEntity: true,
       province: provinceName,
       // @ts-ignore: DisplayNames does exist on Intl
-      country: new Intl.DisplayNames(["en"], { type: "region" }).of([
-        data?.user?.customFields?.__taxCountry,
-      ]),
+      country: new Intl.DisplayNames([locale.replaceAll("_", "-")], {
+        type: "language",
+        // @ts-ignore: DisplayNames does exist on Intl
+      }).of([data?.user?.customFields?.__taxCountry]),
       notRegistered: data?.user?.impactPartner?.indirectTaxOption === "NO_TAX",
       noFormNeeded: !documentType,
       dateExpired,

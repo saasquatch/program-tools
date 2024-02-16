@@ -1,4 +1,4 @@
-import { VNode, h } from "@stencil/core";
+import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 
 export interface BankingInfoFormViewProps {
@@ -6,6 +6,9 @@ export interface BankingInfoFormViewProps {
     loading: boolean;
     disabled: boolean;
     hideSteps: boolean;
+    hideBanking?: boolean;
+    hidePayPal?: boolean;
+    isPartner: boolean;
     formState: {
       checked: "toBankAccount" | "toPaypalAccount" | undefined;
       errors?: any;
@@ -14,8 +17,12 @@ export interface BankingInfoFormViewProps {
   slots: {
     formInputsSlot?: any;
     countryInputSlot?: any;
+    paymentMethodSlot?: any;
   };
   callbacks: {
+    setChecked: (
+      checked: "toBankAccount" | "toPaypalAccount" | undefined
+    ) => void;
     onSubmit: (props: any) => Promise<void>;
     onChange: (e) => void;
   };
@@ -27,7 +34,9 @@ export interface BankingInfoFormViewProps {
     toPaypalAccount: string;
     paymentMethod: string;
     submitButton: string;
-
+    payPalInputLabel: string;
+    isPartnerAlertHeader: string;
+    isPartnerAlertDescription: string;
     error: {};
   };
   refs: {
@@ -105,6 +114,24 @@ const style = {
       borderRadius: "50% !important",
     },
   },
+  InputContainer: {
+    padding: "16px",
+    margin: "16px 0px 16px 0px",
+    borderTop: "1px solid var(--sl-color-gray-300)",
+    borderBottom: "1px solid var(--sl-color-gray-300)",
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    gap: "16px",
+
+    "& sl-input::part(base)": {
+      maxWidth: "320px",
+    },
+
+    "& sl-select::part(base)": {
+      maxWidth: "300px",
+    },
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -139,7 +166,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
 
   const { classes } = sheet;
 
-  console.log(formState.errors);
+  console.log(text.payPalInputLabel);
 
   return (
     <sl-form
@@ -166,7 +193,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             {text.error.generalDescription}
           </sl-alert>
         )} */}
-        {/* {states.isPartner && (
+        {states.isPartner && (
           <sl-alert
             type="primary"
             open
@@ -177,7 +204,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             <br />
             {text.isPartnerAlertDescription}
           </sl-alert>
-        )} */}
+        )}
         <div>
           <h4>{text.paymentMethod}</h4>
         </div>
@@ -192,27 +219,41 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 class={classes.Checkbox}
                 exportparts="label: input-label"
                 checked={formState.checked === "toBankAccount"}
-                onInput={() => callbacks.onChange("toBankAccount")}
+                onInput={() => callbacks.setChecked("toBankAccount")}
                 disabled={states.disabled}
                 id="toBankAccount"
                 name="/toBankAccount"
               >
                 {text.directlyToBankAccount}
               </sl-checkbox>
-              {slots.countryInputSlot}
-              {formState.checked === "toBankAccount" && slots.formInputsSlot}
+              {formState.checked === "toBankAccount" && (
+                <div class={classes.InputContainer}>
+                  {slots.countryInputSlot}
+                  {slots.paymentMethodSlot}
+                  {slots.formInputsSlot}
+                </div>
+              )}
               <sl-checkbox
                 class={classes.Checkbox}
                 exportparts="label: input-label"
                 checked={formState.checked === "toPaypalAccount"}
-                onInput={() => callbacks.onChange("toPaypalAccount")}
+                onInput={() => callbacks.setChecked("toPaypalAccount")}
                 disabled={states.disabled}
                 id="toPaypalAccount"
                 name="/toPaypalAccount"
               >
                 {text.toPaypalAccount}
               </sl-checkbox>
-              {formState.checked === "toPaypalAccount" && slots.formInputsSlot}
+              {formState.checked === "toPaypalAccount" && (
+                <div class={classes.InputContainer}>
+                  <sl-input
+                    label={text.payPalInputLabel}
+                    name="/payPalEmail"
+                    id="payPalEmail"
+                    type="text"
+                  ></sl-input>
+                </div>
+              )}
             </div>
           </div>
           <div class={classes.BtnContainer}>

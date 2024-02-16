@@ -39,6 +39,12 @@ export interface PortalRegistrationFormViewProps {
     invalidEmailErrorMessage?: string;
     formDisabledErrorMessage?: string;
     requiredFieldErrorMessage?: string;
+    meetsRequirementsText?: string;
+    doesNotMeetRequirementsText?: string;
+    minErrorText?: string;
+    uppercaseErrorText?: string;
+    lowercaseErrorText?: string;
+    hasErrorText?: string;
   };
   refs: {
     formRef: any;
@@ -151,6 +157,12 @@ export function PortalRegistrationFormView(
           <sqm-password-field
             fieldLabel={content.passwordLabel}
             disable-validation={!states.enablePasswordValidation}
+            meetsRequirementsText={content.meetsRequirementsText}
+            doesNotMeetRequirementsText={content.doesNotMeetRequirementsText}
+            minErrorText={content.minErrorText}
+            uppercaseErrorText={content.uppercaseErrorText}
+            lowercaseErrorText={content.lowercaseErrorText}
+            hasErrorText={content.hasErrorText}
           ></sqm-password-field>
         )}
         {content.passwordField}

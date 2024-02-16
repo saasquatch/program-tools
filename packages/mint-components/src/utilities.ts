@@ -34,3 +34,9 @@ export function isValidColor(teststr: string) {
 export function optional(property: string, value: any) {
   return value ? { [property]: value } : {};
 }
+
+export function isEmpty(value: { [key: string]: string }) {
+  return (
+    !value || (Object.keys(value).length === 0 && value.constructor === Object)
+  );
+}

@@ -10,6 +10,7 @@ import {
   PortalResetPasswordView,
 } from "./sqm-password-field-view";
 import { usePasswordField } from "./usePasswordField";
+import { getProps } from "../../utils/utils";
 
 export interface PasswordFieldViewDemoProps {
   initValue: string;
@@ -50,6 +51,37 @@ export class PortalPasswordField {
   @Prop() disableValidation: boolean = false;
 
   /**
+   * @uiName Password requirement met
+   */
+  @Prop() meetsRequirementsText: string = "Password has met all requirements";
+
+  /**
+   * @uiName Password requirement failed
+   */
+  @Prop() doesNotMeetRequirementsText: string =
+    "Password must meet the following requirements:";
+
+  /**
+   * @uiName Minimum length text
+   */
+  @Prop() minErrorText: string = "be a minimum of 8 characters";
+
+  /**
+   * @uiName Missing uppercase text
+   */
+  @Prop() uppercaseErrorText: string = "contain at least 1 uppercase character";
+
+  /**
+   * @uiName Missing lowercase text
+   */
+  @Prop() lowercaseErrorText: string = "contain at least 1 lowercase character";
+
+  /**
+   * @uiName Missing number or symbol text
+   */
+  @Prop() hasErrorText: string = "contain at least 1 number or symbol";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -63,8 +95,9 @@ export class PortalPasswordField {
 
   render() {
     const { states, callbacks } = isDemo()
-      ? usePasswordFieldDemo(this)
-      : usePasswordField(this);
+      ? usePasswordFieldDemo(getProps(this))
+      : usePasswordField(getProps(this));
+
     return <PortalResetPasswordView states={states} callbacks={callbacks} />;
   }
 }
@@ -78,14 +111,18 @@ function usePasswordFieldDemo(
   const [lastValidated, setLastValidated] = useState<string>("");
 
   if (props.demoData && lastValidated != props?.demoData?.initValue) {
-    const validation = validateNewPassword(props?.demoData?.initValue || "");
+    const validation = validateNewPassword(
+      props?.demoData?.initValue || "",
+      props
+    );
     setDynamicValidation(props?.demoData?.initValue === "" ? "" : validation);
     setLastValidated(props?.demoData?.initValue);
   }
 
   function onInput(input: Event) {
     const validation = validateNewPassword(
-      (input.target as HTMLInputElement).value
+      (input.target as HTMLInputElement).value,
+      props
     );
     setDynamicValidation(validation);
   }

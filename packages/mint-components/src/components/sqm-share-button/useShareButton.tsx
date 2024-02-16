@@ -17,6 +17,8 @@ interface ShareButtonProps extends ShareButtonViewProps {
   programId?: string;
   sharetitle?: string;
   sharetext?: string;
+  errorText?: string;
+  unsupportedPlatformText?: string;
 }
 
 const MessageLinkQuery = gql`
@@ -40,13 +42,15 @@ const MessageLinkQuery = gql`
 
 function NativeShare(
   props: { sharetitle: string; sharetext: string },
-  directLink: string
+  directLink: string,
+  undefinedErrorText: string,
+  unsupportedPlatformText: string
 ) {
   const title = props.sharetitle || "Share title";
   const text = props.sharetext || "Share text";
 
   if (directLink === "undefined") {
-    return alert("error: message link undefined!");
+    return alert(undefinedErrorText);
   }
 
   if (window.navigator.share) {
@@ -58,16 +62,16 @@ function NativeShare(
       })
       .catch((error) => console.error("Error on web share", error));
   } else {
-    alert("Not on a supported device");
+    alert(unsupportedPlatformText);
   }
 }
 
-function FacebookShare(directLink: string, res: any) {
+function FacebookShare(directLink: string, res: any, errorText: string) {
   if (
     res.data?.viewer?.messageLink === "undefined" ||
     directLink === "undefined"
   ) {
-    return alert("error: message link undefined!");
+    return alert(errorText);
   }
 
   if (typeof SquatchAndroid.shareOnFacebook !== "undefined") {
@@ -76,14 +80,14 @@ function FacebookShare(directLink: string, res: any) {
       res.data.viewer.messageLink
     );
   } else {
-    return GenericShare(res);
+    return GenericShare(res, errorText);
   }
 }
 
-function GenericShare(res: any) {
+function GenericShare(res: any, errorText: string) {
   return res.data?.viewer?.messageLink
     ? window.open(res.data.viewer.messageLink)
-    : alert("error: message link undefined!");
+    : alert(errorText);
 }
 
 export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
@@ -114,11 +118,11 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
       medium.toLocaleUpperCase() === "FACEBOOK" &&
       environment.type === "SquatchAndroid"
     ) {
-      FacebookShare(directLink, res);
+      FacebookShare(directLink, res, props.errorText);
     } else if (medium.toLocaleUpperCase() === "DIRECT") {
-      NativeShare({ sharetitle, sharetext }, directLink);
+      NativeShare({ sharetitle, sharetext }, directLink, props.errorText, props.unsupportedPlatformText);
     } else {
-      GenericShare(res);
+      GenericShare(res, props.errorText);
     }
   }
 
