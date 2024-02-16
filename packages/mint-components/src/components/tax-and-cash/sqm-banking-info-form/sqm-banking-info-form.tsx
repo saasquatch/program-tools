@@ -248,7 +248,7 @@ export class BankingInfoForm {
       },
     };
 
-    const binary = props.demo.bitset
+    const binary = (props.demo.bitset || props.states.bitset)
       .toString(2)
       .padStart(Object.keys(formMap).length, "0");
 
@@ -271,7 +271,10 @@ export class BankingInfoForm {
         <sl-select
           name="/currency"
           value={props.demo.currency}
-          onSl-select={(e) => props.demo.setCurrency(e.detail?.item?.value)}
+          onSl-select={(e) => {
+            props.demo.setCurrency(e.detail?.item?.value);
+            props.callbacks.setBankCountry("");
+          }}
         >
           <sl-menu-item value="USD">USD</sl-menu-item>
           <sl-menu-item value="GBP">GBP</sl-menu-item>
@@ -298,7 +301,14 @@ export class BankingInfoForm {
             countryInputSlot: (
               <label htmlFor="/bankCountry">
                 Bank Location Country
-                <sl-select name="/bankCountry" id="bankCountry">
+                <sl-select
+                  name="/bankCountry"
+                  id="bankCountry"
+                  value={props.states.bankCountry}
+                  onSl-select={(e) =>
+                    props.callbacks.setBankCountry(e.detail?.item?.value)
+                  }
+                >
                   {mockPaymentOptions[props.demo.currency]?.map(
                     (paymentOption) => {
                       // @ts-ignore

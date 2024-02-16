@@ -9,6 +9,7 @@ import { BankingInfoForm } from "./sqm-banking-info-form";
 import JSONPointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useLocale } from "@saasquatch/component-boilerplate";
+import { mockPaymentOptions } from "./mockData";
 
 export const paypalFeeMap = {
   USD: "USD20.00",
@@ -37,6 +38,8 @@ export function useBankingInfoForm(props: BankingInfoForm) {
   const [bitset, setBitset] = useState(0);
   const [currency, setCurrency] = useState("CAD");
   /** */
+
+  const [bankCountry, setBankCountry] = useState("");
 
   const formRef = useRef<HTMLFormElement>(null);
   const [option, setOption] = useState(null);
@@ -93,6 +96,13 @@ export function useBankingInfoForm(props: BankingInfoForm) {
 
   const feeCap = paypalFeeMap[currency] || "";
 
+  const currentPaymentOption = mockPaymentOptions[currency]?.find(
+    (paymentOption) => {
+      if (paymentOption.country === bankCountry) return true;
+      return false;
+    }
+  );
+
   return {
     step: step,
     setStep: setStep,
@@ -102,6 +112,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
     callbacks: {
       onSubmit,
       onChange: setOption,
+      setBankCountry,
     },
     states: {
       locale,
@@ -114,6 +125,8 @@ export function useBankingInfoForm(props: BankingInfoForm) {
         checked: "toBankAccount" as "toBankAccount" | "toPaypalAccount",
         errors,
       },
+      bitset: currentPaymentOption?.withdrawalId || 0,
+      bankCountry,
     },
     refs: {
       formRef,
