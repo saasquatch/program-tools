@@ -5,7 +5,7 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { BankingInfoFormView } from "./sqm-banking-info-form-view";
-import { useBankingInfoForm } from "./useBankingInfoForm";
+import { getFormInputs, useBankingInfoForm } from "./useBankingInfoForm";
 import { mockPaymentOptions } from "./mockData";
 
 /**
@@ -250,18 +250,7 @@ export class BankingInfoForm {
       },
     };
 
-    const binary = (props.demo.bitset || props.states.bitset)
-      .toString(2)
-      .padStart(Object.keys(formMap).length, "0");
-
-    const binaryToParse = binary.split("").reverse().join("");
-
-    const inputFields = [...binaryToParse].reduce((agg, num, idx) => {
-      const number = Number(num);
-      const inputFound = formMap[idx];
-      if (!number || !inputFound) return agg;
-      return [...agg, inputFound];
-    }, []);
+    const inputFields = getFormInputs({ props, formMap });
 
     return (
       <Host>

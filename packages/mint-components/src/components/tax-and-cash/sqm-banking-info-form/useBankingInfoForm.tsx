@@ -27,6 +27,23 @@ export const paypalFeeMap = {
   JPY: "JPY2000.00",
 };
 
+export function getFormInputs({ props, formMap }) {
+  const binary = (props.demo.bitset || props.states.bitset)
+    .toString(2)
+    .padStart(Object.keys(formMap).length, "0");
+
+  const binaryToParse = binary.split("").reverse().join("");
+
+  const inputFields = [...binaryToParse].reduce((agg, num, idx) => {
+    const number = Number(num);
+    const inputFound = formMap[idx];
+    if (!number || !inputFound) return agg;
+    return [...agg, inputFound];
+  }, []);
+
+  return inputFields;
+}
+
 export function useBankingInfoForm(props: BankingInfoForm) {
   const locale = useLocale();
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
