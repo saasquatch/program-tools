@@ -20,36 +20,169 @@ import { mockPaymentOptions } from "./mockData";
 export class BankingInfoForm {
   @State() ignored = true;
 
-  @Prop() formStep: string = "Step 4 of 4";
-  @Prop() taxAndPayouts: string = "Payouts";
+  /**
+   * Subtext shown at the top of the page, used to show the current step of the tax form.
+   * @uiName Form step text
+   */
+  @Prop() formStep: string = "Step 3 of 4";
+
+  /**
+   * Heading text shown at the top of the page
+   * @uiName Tax and Payouts heading text
+   */
+  @Prop() taxAndPayouts: string = "Tax and Payouts";
+
+  /**
+   * Text shown at the top of the page next to the tax and payouts label text
+   * @uiName Tax and Payouts label text
+   */
   @Prop() taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
+
+  /**
+   * Text for the option to receive payments directly to a bank account
+   * @uiName Directly to bank account option text
+   */
   @Prop() directlyToBankAccount: string = "Directly to my bank account";
+
+  /**
+   * Text for the option to receive payments to a PayPal account with processing fee details
+   * @uiName PayPal option text with processing fee placeholder
+   */
   @Prop() toPaypalAccount: string =
     "PayPal (2% processing fee capped to {feeCap})";
+
+  /**
+   * Heading text for the payment method section
+   * @uiName Payment method heading text
+   */
   @Prop() paymentMethod: string = "Payment Method";
+
+  /**
+   * Label text for the PayPal email input field
+   * @uiName PayPal email input label
+   */
   @Prop() payPalInputLabel: string = "PayPal Email";
+
+  /**
+   * Text for the save button in the form
+   * @uiName Save button text
+   */
   @Prop() submitButton: string = "Save";
+
+  /**
+   * Label text for the beneficiary account name input field
+   * @uiName Beneficiary account name input label
+   */
   @Prop() beneficiaryAccountNameLabel: string = "Beneficiary Account Name";
+
+  /**
+   * Label text for the bank account type input field
+   * @uiName Bank account type input label
+   */
   @Prop() bankAccountTypeLabel: string = "Bank Account Type";
+
+  /**
+   * Label text for the bank account number input field
+   * @uiName Bank account number input label
+   */
   @Prop() bankAccountNumberLabel: string = "Bank Account Number";
-  @Prop() ibanLabel: string = "Iban";
-  @Prop() swiftCodeLabel: string = "Swift Code";
+  /**
+   * Label text for the IBAN input field
+   * @uiName IBAN input label
+   */
+  @Prop() ibanLabel: string = "IBAN";
+
+  /**
+   * Label text for the SWIFT code input field
+   * @uiName SWIFT code input label
+   */
+  @Prop() swiftCodeLabel: string = "SWIFT Code";
+
+  /**
+   * Label text for the routing code input field
+   * @uiName Routing code input label
+   */
   @Prop() routingCodeLabel: string = "Routing Code";
+
+  /**
+   * Label text for the bank name input field
+   * @uiName Bank name input label
+   */
   @Prop() bankNameLabel: string = "Bank Name";
+
+  /**
+   * Label text for the classification entity input field
+   * @uiName Classification entity input label
+   */
   @Prop() classificationEntityLabel: string = "Classification Entity";
+
+  /**
+   * Label text for the business select item
+   * @uiName Business select item label
+   */
   @Prop() businessSelectItemLabel: string = "Business";
+
+  /**
+   * Label text for the individual select item
+   * @uiName Individual select item label
+   */
   @Prop() individualSelectItemLabel: string = "Individual";
+
+  /**
+   * Label text for the foreign select item
+   * @uiName Foreign select item label
+   */
   @Prop() foreignSelectItemLabel: string = "Foreign";
+
+  /**
+   * Header text for the alert when the user is identified as a partner
+   * @uiName Partner identification alert header
+   */
   @Prop() isPartnerAlertHeader: string =
     "An account with this email already exists with our referral program provider, impact.com";
+
+  /**
+   * Description text for the alert when the user is identified as a partner
+   * @uiName Partner identification alert description
+   */
   @Prop() isPartnerAlertDescription: string =
     "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
+
+  /**
+   * Label text for the classification CPF input field
+   * @uiName Classification CPF input label
+   */
   @Prop() classificationCPFLabel: string = "Classification CPF";
+
+  /**
+   * Label text for the patronymic name input field
+   * @uiName Patronymic name input label
+   */
   @Prop() patronymicNameLabel: string = "Patronymic Name";
-  @Prop() voCodeLabel: string = "Vo Code";
+
+  /**
+   * Label text for the VO code input field
+   * @uiName VO code input label
+   */
+  @Prop() voCodeLabel: string = "VO Code";
+
+  /**
+   * Label text for the agency code input field
+   * @uiName Agency code input label
+   */
   @Prop() agencyCodeLabel: string = "Agency Code";
+
+  /**
+   * Label text for the branch code input field
+   * @uiName Branch code input label
+   */
   @Prop() branchCodeLabel: string = "Branch Code";
+
+  /**
+   * Label text for the classification input field
+   * @uiName Classification input label
+   */
   @Prop() classificationLabel: string = "Classification";
   // @Prop() generalErrorTitle: string =
   //   "There was a problem submitting your information";
@@ -291,7 +424,7 @@ export class BankingInfoForm {
     return (
       <Host>
         {/* demo */}
-        <sl-input
+        {/* <sl-input
           value={props.demo.bitset}
           onInput={(e) => props.demo.setBitset(Number(e.target.value))}
         />
@@ -309,7 +442,7 @@ export class BankingInfoForm {
           <sl-menu-item value="CAD">CAD</sl-menu-item>
           <sl-menu-item value="EUR">EUR</sl-menu-item>
           <sl-menu-item value="JPY">JPY</sl-menu-item>
-        </sl-select>
+        </sl-select> */}
         {/*  */}
         <BankingInfoFormView
           callbacks={props.callbacks}

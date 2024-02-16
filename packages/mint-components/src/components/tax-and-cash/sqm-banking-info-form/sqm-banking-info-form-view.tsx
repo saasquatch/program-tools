@@ -291,18 +291,16 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               </sl-checkbox>
               {formState.checked === "toBankAccount" && (
                 <div class={classes.InputContainer}>
-                  {states.loading ? (
-                    getLoadingSkeleton(
-                      "toBankAccount",
-                      slots.formInputsSlot.length + 2
-                    )
-                  ) : (
-                    <div>
-                      {slots.countryInputSlot}
-                      {slots.paymentMethodSlot}
-                      {slots.formInputsSlot}
-                    </div>
-                  )}
+                  {states.loading
+                    ? getLoadingSkeleton(
+                        "toBankAccount",
+                        slots.formInputsSlot.length + 2
+                      )
+                    : [
+                        slots.countryInputSlot,
+                        slots.paymentMethodSlot,
+                        slots.formInputsSlot,
+                      ]}
                 </div>
               )}
               <sl-checkbox
