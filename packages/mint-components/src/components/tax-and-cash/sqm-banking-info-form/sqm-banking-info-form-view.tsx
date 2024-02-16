@@ -1,5 +1,6 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
+import { intl } from "../../../global/global";
 
 export interface BankingInfoFormViewProps {
   states: {
@@ -8,6 +9,7 @@ export interface BankingInfoFormViewProps {
     hideSteps: boolean;
     hideBanking?: boolean;
     hidePayPal?: boolean;
+    feeCap?: string;
     isPartner: boolean;
     formState: {
       checked: "toBankAccount" | "toPaypalAccount" | undefined;
@@ -129,8 +131,26 @@ const style = {
     },
 
     "& sl-select::part(base)": {
-      maxWidth: "300px",
+      maxWidth: "320px",
     },
+  },
+  CheckboxSkeleton: {
+    width: "16px",
+    height: "16px",
+    borderRadius: "50%",
+    background: "var(--sl-color-gray-200)",
+  },
+  SmallSkeleton: {
+    width: "100px",
+    height: "16px",
+    borderRadius: "50px",
+    background: "var(--sl-color-gray-200)",
+  },
+  LargeSkeleton: {
+    width: "320px",
+    height: "40px",
+    borderRadius: "50px",
+    background: "var(--sl-color-gray-200)",
   },
 };
 
@@ -166,8 +186,51 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
 
   const { classes } = sheet;
 
-  console.log(text.payPalInputLabel);
+  const getLoadingSkeleton = (
+    checkedValue: "toBankAccount" | "toPaypalAccount" | undefined,
+    inputNumber?: number
+  ) => {
+    const skeletons = [];
 
+    const flexBoxStyle = {
+      display: "flex",
+      gap: "8px",
+    };
+
+    if (checkedValue === undefined)
+      return (
+        <div style={{ ...flexBoxStyle, flexDirection: "column", gap: "16px" }}>
+          <div class={classes.SmallSkeleton} />
+          <div style={{ ...flexBoxStyle, flexDirection: "row" }}>
+            <div class={classes.CheckboxSkeleton} />
+            <div class={classes.SmallSkeleton} />
+          </div>
+          <div style={{ ...flexBoxStyle, flexDirection: "row" }}>
+            <div class={classes.CheckboxSkeleton} />
+            <div class={classes.SmallSkeleton} />
+          </div>
+        </div>
+      );
+
+    if (checkedValue === "toPaypalAccount")
+      return (
+        <div style={{ ...flexBoxStyle, flexDirection: "column" }}>
+          <div class={classes.SmallSkeleton} />
+          <div class={classes.LargeSkeleton} />
+        </div>
+      );
+
+    Array.from({ length: inputNumber }).forEach((input, index) => {
+      skeletons.push(
+        <div style={{ ...flexBoxStyle, flexDirection: "column" }} key={index}>
+          <div class={classes.SmallSkeleton} />
+          <div class={classes.LargeSkeleton} />
+        </div>
+      );
+    });
+
+    return skeletons;
+  };
   return (
     <sl-form
       class={classes.FormWrapper}
@@ -209,11 +272,11 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           <h4>{text.paymentMethod}</h4>
         </div>
       </div>
-      {states.loading ? (
-        <sl-spinner style={{ fontSize: "50px", margin: "40px" }}></sl-spinner>
-      ) : (
-        <div>
-          <div class={classes.CheckboxContainer}>
+      <div>
+        <div class={classes.CheckboxContainer}>
+          {states.loading && formState.checked === undefined ? (
+            getLoadingSkeleton(undefined)
+          ) : (
             <div style={{ display: "flex", flexDirection: "column" }}>
               <sl-checkbox
                 class={classes.Checkbox}
@@ -228,9 +291,18 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               </sl-checkbox>
               {formState.checked === "toBankAccount" && (
                 <div class={classes.InputContainer}>
-                  {slots.countryInputSlot}
-                  {slots.paymentMethodSlot}
-                  {slots.formInputsSlot}
+                  {states.loading ? (
+                    getLoadingSkeleton(
+                      "toBankAccount",
+                      slots.formInputsSlot.length + 2
+                    )
+                  ) : (
+                    <div>
+                      {slots.countryInputSlot}
+                      {slots.paymentMethodSlot}
+                      {slots.formInputsSlot}
+                    </div>
+                  )}
                 </div>
               )}
               <sl-checkbox
@@ -242,32 +314,42 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 id="toPaypalAccount"
                 name="/toPaypalAccount"
               >
-                {text.toPaypalAccount}
+                {intl.formatMessage(
+                  {
+                    id: "paypal-input-label",
+                    defaultMessage: text.toPaypalAccount,
+                  },
+                  { feeCap: states.feeCap }
+                )}
               </sl-checkbox>
               {formState.checked === "toPaypalAccount" && (
                 <div class={classes.InputContainer}>
-                  <sl-input
-                    label={text.payPalInputLabel}
-                    name="/payPalEmail"
-                    id="payPalEmail"
-                    type="text"
-                  ></sl-input>
+                  {states.loading ? (
+                    getLoadingSkeleton("toPaypalAccount")
+                  ) : (
+                    <sl-input
+                      label={text.payPalInputLabel}
+                      name="/payPalEmail"
+                      id="payPalEmail"
+                      type="text"
+                    ></sl-input>
+                  )}
                 </div>
               )}
             </div>
-          </div>
-          <div class={classes.BtnContainer}>
-            <sl-button
-              type="primary"
-              disabled={states.disabled}
-              submit
-              exportparts="base: primarybutton-base"
-            >
-              {text.submitButton}
-            </sl-button>
-          </div>
+          )}
         </div>
-      )}
+        <div class={classes.BtnContainer}>
+          <sl-button
+            type="primary"
+            disabled={states.disabled}
+            submit
+            exportparts="base: primarybutton-base"
+          >
+            {text.submitButton}
+          </sl-button>
+        </div>
+      </div>
     </sl-form>
   );
 };
