@@ -36,6 +36,12 @@ export interface PortalRegisterViewProps {
     confirmPasswordLabel: string;
     requiredFieldErrorMessage: string;
     invalidEmailErrorMessage: string;
+    meetsRequirementsText?: string;
+    doesNotMeetRequirementsText?: string;
+    minErrorText?: string;
+    uppercaseErrorText?: string;
+    lowercaseErrorText?: string;
+    hasErrorText?: string;
   };
   refs: {
     formRef: any;
@@ -133,6 +139,12 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
           <sqm-password-field
             fieldLabel={content.passwordLabel}
             disable-validation={states.disablePasswordValidation}
+            meetsRequirementsText={content.meetsRequirementsText}
+            doesNotMeetRequirementsText={content.doesNotMeetRequirementsText}
+            minErrorText={content.minErrorText}
+            uppercaseErrorText={content.uppercaseErrorText}
+            lowercaseErrorText={content.lowercaseErrorText}
+            hasErrorText={content.hasErrorText}
           ></sqm-password-field>
         )}
         {content.passwordField}

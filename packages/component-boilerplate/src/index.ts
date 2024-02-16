@@ -54,4 +54,5 @@ export {
 //      Common higher-level functionality
 //
 export { useShareEvent } from "./hooks/useShareEvent";
+export { useLoadEvent } from "./hooks/useLoadEvent";
 export { useForm } from "./hooks/useForm";

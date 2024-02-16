@@ -22,11 +22,11 @@ export function usePortalChangePassword(props: PortalChangePassword) {
     });
 
     if (!user?.jwt) {
-      setError("Please log in again to change your password.");
+      setError(props.invalidSessionErrorText);
       return;
     }
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match.");
+      setError(props.nonMatchingPasswordErrorText);
       return;
     }
     setError("");
@@ -62,6 +62,12 @@ export function usePortalChangePassword(props: PortalChangePassword) {
         successMessage: props.successMessage,
         portalChangePasswordHeader: props.portalChangePasswordHeader,
         portalChangePasswordButtonText: props.portalChangePasswordButtonText,
+        meetsRequirementsText: props.meetsRequirementsText,
+        doesNotMeetRequirementsText: props.doesNotMeetRequirementsText,
+        minErrorText: props.minErrorText,
+        uppercaseErrorText: props.uppercaseErrorText,
+        lowercaseErrorText: props.lowercaseErrorText,
+        hasErrorText: props.hasErrorText,
       },
     },
     data: {},

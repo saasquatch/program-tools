@@ -5,8 +5,9 @@ import {
   useAuthenticateWithEmailAndPasswordMutation,
 } from "@saasquatch/component-boilerplate";
 import { sanitizeUrlPath } from "../../utils/utils";
+import { PortalLogin } from "./sqm-portal-login";
 
-export function usePortalLogin(props) {
+export function usePortalLogin(props: PortalLogin) {
   const [request, { loading, errors, data }] =
     useAuthenticateWithEmailAndPasswordMutation();
   const [error, setError] = useState("");
@@ -25,7 +26,7 @@ export function usePortalLogin(props) {
     const result = await request(variables);
     if (result instanceof Error) {
       if (result?.message || result?.["response"]?.["error"])
-        setError("Network request failed.");
+        setError(props.networkErrorMessage);
       return;
     }
     if (result.authenticateManagedIdentityWithEmailAndPassword?.token) {

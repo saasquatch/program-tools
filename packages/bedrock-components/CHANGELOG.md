@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.2] - 2024-02-14
+
+### Updated
+
+- \<sqb-program-section> - Sends a program load event when rendered for the first time
+- `@saasquatch/component-boilerplate` package bump
+- `@saasquatch/dom-context-hooks` package bump
+
+## [1.4.1] - 2023-02-06
+
+### Updated
+
+- `@saasquatch/component-boilerplate` package bump
+
 ## [1.4.0] - 2023-01-08
 
 ### Changed
@@ -134,7 +148,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqb-conditional-section>
   - \<sqb-program-section>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.3.10...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.4.2...HEAD
+[1.4.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.4.2
+[1.4.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.4.1
+[1.4.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.4.0
 [1.3.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.10
 [1.3.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.9
 [1.3.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.8
