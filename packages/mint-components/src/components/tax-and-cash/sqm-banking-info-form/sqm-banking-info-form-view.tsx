@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 import { intl } from "../../../global/global";
 
@@ -12,19 +12,17 @@ export interface BankingInfoFormViewProps {
     feeCap?: string;
     isPartner: boolean;
     formState: {
-      checked: "toBankAccount" | "toPaypalAccount" | undefined;
+      checked?: "toBankAccount" | "toPaypalAccount";
       errors?: any;
     };
   };
   slots: {
-    formInputsSlot?: any;
-    countryInputSlot?: any;
-    paymentMethodSlot?: any;
+    formInputsSlot?: VNode[];
+    countryInputSlot?: VNode;
+    paymentMethodSlot?: VNode;
   };
   callbacks: {
-    setChecked: (
-      checked: "toBankAccount" | "toPaypalAccount" | undefined
-    ) => void;
+    setChecked: (checked: "toBankAccount" | "toPaypalAccount") => void;
     onSubmit: (props: any) => Promise<void>;
     onChange: (e) => void;
   };
@@ -35,11 +33,15 @@ export interface BankingInfoFormViewProps {
     directlyToBankAccount: string;
     toPaypalAccount: string;
     paymentMethod: string;
+    paymentMethodSubtext: string;
     submitButton: string;
     payPalInputLabel: string;
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
-    error: {};
+    error: {
+      generalTitle;
+      generalDescription;
+    };
   };
   refs: {
     formRef: any;
@@ -197,7 +199,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
       gap: "8px",
     };
 
-    if (checkedValue === undefined)
+    if (checkedValue === undefined) {
       return (
         <div style={{ ...flexBoxStyle, flexDirection: "column", gap: "16px" }}>
           <div class={classes.SmallSkeleton} />
@@ -211,14 +213,16 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           </div>
         </div>
       );
+    }
 
-    if (checkedValue === "toPaypalAccount")
+    if (checkedValue === "toPaypalAccount") {
       return (
         <div style={{ ...flexBoxStyle, flexDirection: "column" }}>
           <div class={classes.SmallSkeleton} />
           <div class={classes.LargeSkeleton} />
         </div>
       );
+    }
 
     Array.from({ length: inputNumber }).forEach((input, index) => {
       skeletons.push(
@@ -245,17 +249,17 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
       <div class={classes.TextContainer}>
         <div>
           {!states.hideSteps && <p>{text.formStep}</p>}
-          <h3>{text.taxAndPayouts}</h3>
-          <p>{text.taxAndPayoutsDescription}</p>
+          <h3 style={{ fontSize: "24px" }}>{text.taxAndPayouts}</h3>
+          <p class={classes.DescriptionText}>{text.taxAndPayoutsDescription}</p>
         </div>
-        {/* {formState.errors?.general && (
+        {formState.errors?.general && (
           <sl-alert type="warning" open class={sheet.classes.AlertContainer}>
             <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
             <strong>{text.error.generalTitle}</strong>
             <br />
             {text.error.generalDescription}
           </sl-alert>
-        )} */}
+        )}
         {states.isPartner && (
           <sl-alert
             type="primary"
@@ -268,8 +272,10 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             {text.isPartnerAlertDescription}
           </sl-alert>
         )}
+
         <div>
           <h4>{text.paymentMethod}</h4>
+          <p class={classes.DescriptionText}>{text.paymentMethodSubtext}</p>
         </div>
       </div>
       <div>
@@ -290,7 +296,10 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 {text.directlyToBankAccount}
               </sl-checkbox>
               {formState.checked === "toBankAccount" && (
-                <div class={classes.InputContainer}>
+                <div
+                  class={classes.InputContainer}
+                  style={states.hideBanking ? { display: "none" } : {}}
+                >
                   {states.loading
                     ? getLoadingSkeleton(
                         "toBankAccount",
@@ -321,7 +330,10 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 )}
               </sl-checkbox>
               {formState.checked === "toPaypalAccount" && (
-                <div class={classes.InputContainer}>
+                <div
+                  class={classes.InputContainer}
+                  style={states.hidePayPal ? { display: "none" } : {}}
+                >
                   {states.loading ? (
                     getLoadingSkeleton("toPaypalAccount")
                   ) : (

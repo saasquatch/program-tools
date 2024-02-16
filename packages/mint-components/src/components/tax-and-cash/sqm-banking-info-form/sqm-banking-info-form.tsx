@@ -59,6 +59,13 @@ export class BankingInfoForm {
   @Prop() paymentMethod: string = "Payment Method";
 
   /**
+   * Subtext for the payment method section
+   * @uiName Payment method subtext
+   */
+  @Prop() paymentMethodSubtext: string =
+    "Payouts will be sent on the first day of each month from our referral program provider, impact.com.";
+
+  /**
    * Label text for the PayPal email input field
    * @uiName PayPal email input label
    */
@@ -184,10 +191,19 @@ export class BankingInfoForm {
    * @uiName Classification input label
    */
   @Prop() classificationLabel: string = "Classification";
-  // @Prop() generalErrorTitle: string =
-  //   "There was a problem submitting your information";
-  // @Prop() generalErrorDescription: string =
-  //   "Please review your information and try again. If this problem continues, contact Support.";
+  /**
+   * Title text for a general form submission error
+   * @uiName General form submission error title
+   */
+  @Prop() generalErrorTitle: string =
+    "There was a problem submitting your information";
+
+  /**
+   * Description text for a general form submission error
+   * @uiName General form submission error description
+   */
+  @Prop() generalErrorDescription: string =
+    "Please review your information and try again. If this problem continues, contact Support.";
 
   /**
    * @undocumented
@@ -206,7 +222,10 @@ export class BankingInfoForm {
 
     return {
       ...props,
-      error: {},
+      error: {
+        generalTitle: props.generalErrorTitle,
+        generalDescription: props.generalErrorDescription,
+      },
     };
   }
 

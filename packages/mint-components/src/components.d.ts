@@ -138,6 +138,16 @@ export namespace Components {
          */
         "formStep": string;
         /**
+          * Description text for a general form submission error
+          * @uiName General form submission error description
+         */
+        "generalErrorDescription": string;
+        /**
+          * Title text for a general form submission error
+          * @uiName General form submission error title
+         */
+        "generalErrorTitle": string;
+        /**
           * Label text for the IBAN input field
           * @uiName IBAN input label
          */
@@ -172,6 +182,11 @@ export namespace Components {
           * @uiName Payment method heading text
          */
         "paymentMethod": string;
+        /**
+          * Subtext for the payment method section
+          * @uiName Payment method subtext
+         */
+        "paymentMethodSubtext": string;
         /**
           * Label text for the routing code input field
           * @uiName Routing code input label
@@ -5302,6 +5317,16 @@ declare namespace LocalJSX {
          */
         "formStep"?: string;
         /**
+          * Description text for a general form submission error
+          * @uiName General form submission error description
+         */
+        "generalErrorDescription"?: string;
+        /**
+          * Title text for a general form submission error
+          * @uiName General form submission error title
+         */
+        "generalErrorTitle"?: string;
+        /**
           * Label text for the IBAN input field
           * @uiName IBAN input label
          */
@@ -5336,6 +5361,11 @@ declare namespace LocalJSX {
           * @uiName Payment method heading text
          */
         "paymentMethod"?: string;
+        /**
+          * Subtext for the payment method section
+          * @uiName Payment method subtext
+         */
+        "paymentMethodSubtext"?: string;
         /**
           * Label text for the routing code input field
           * @uiName Routing code input label
