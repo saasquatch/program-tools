@@ -1,5 +1,6 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 
 export interface UserInfoFormViewProps {
   states: {
@@ -180,7 +181,40 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
   } = props;
   const { classes } = sheet;
 
-  console.log({ formState, data });
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredCountries, setFilteredCountries] = useState(
+    data?.countries || []
+  );
+
+  const [searchCurrency, setSearchCurrency] = useState("");
+  const [filteredCurrencies, setFilteredCurrencies] = useState(
+    data?.currencies || []
+  );
+
+  useEffect(() => {
+    if (searchTerm.trim() === "") {
+      setFilteredCountries(data?.countries || []);
+    } else {
+      setFilteredCountries(
+        data?.countries.filter((c) =>
+          c.displayName.toLowerCase().includes(searchTerm.toLowerCase())
+        ) || []
+      );
+    }
+  }, [searchTerm, data?.countries]);
+
+  useEffect(() => {
+    if (searchCurrency.trim() === "") {
+      setFilteredCurrencies(data?.currencies || []);
+    } else {
+      setFilteredCurrencies(
+        data?.currencies.filter((c) =>
+          c.currencyCode.toLowerCase().includes(searchCurrency.toLowerCase())
+        ) || []
+      );
+    }
+  }, [searchCurrency, data?.currencies]);
+
   return (
     <sl-form
       class={classes.FormWrapper}
@@ -278,7 +312,23 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 : {})}
               required
             >
-              {data?.countries?.map((c) => (
+              <sl-input
+                placeholder="Search for country.."
+                onInput={(e) => {
+                  setSearchTerm(e.target.value);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === " ") {
+                    e.stopPropagation();
+                  }
+                }}
+              ></sl-input>
+              {/* {data?.countries?.map((c) => (
+                <sl-menu-item value={c.countryCode}>
+                  {c.displayName}
+                </sl-menu-item>
+              ))} */}
+              {filteredCountries.map((c) => (
                 <sl-menu-item value={c.countryCode}>
                   {c.displayName}
                 </sl-menu-item>
@@ -289,6 +339,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               exportparts="label: input-label"
               name="/currency"
               label={text.currency}
+              menu
               value={formState.currency}
               disabled={states.disabled}
               {...(formState.errors?.currency
@@ -299,7 +350,21 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 : {})}
               required
             >
-              {data?.currencies?.map((c) => (
+              <sl-input
+                placeholder="Search for currency.."
+                onInput={(e) => setSearchCurrency(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === " ") {
+                    e.stopPropagation();
+                  }
+                }}
+              />
+              {/* {data?.currencies?.map((c) => (
+                <sl-menu-item value={c.currencyCode}>
+                  {c.currencyCode} - {c.displayName}
+                </sl-menu-item>
+              ))} */}
+              {filteredCurrencies.map((c) => (
                 <sl-menu-item value={c.currencyCode}>
                   {c.currencyCode} - {c.displayName}
                 </sl-menu-item>

@@ -40,11 +40,34 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
         countryCode: "CA",
         displayName: "Canada",
       },
+      {
+        impactCountryCode: "SPAIN",
+        countryCode: "ES",
+        displayName: "Spain",
+      },
+      {
+        impactCountryCode: "UNITEDKINGDOM",
+        countryCode: "UK",
+        displayName: "United Kingdom",
+      },
+      {
+        impactCountryCode: "UNITEDSTATES",
+        countryCode: "US",
+        displayName: "United States",
+      },
     ],
     currencies: [
       {
         currencyCode: "CAD",
         displayName: "CAD",
+      },
+      {
+        currencyCode: "GBP",
+        displayName: "GBP",
+      },
+      {
+        currencyCode: "USD",
+        displayName: "USD",
       },
     ],
   },
