@@ -33,6 +33,7 @@ export interface BankingInfoFormViewProps {
     toPaypalAccount: string;
     paymentMethod: string;
     submitButton: string;
+    paypalEmail?: string;
 
     error: {};
   };
@@ -222,9 +223,14 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 {text.toPaypalAccount}
               </sl-checkbox>
               <div style={states.hidePayPal ? { display: "none" } : {}}>
-                {formState.checked === "toPaypalAccount" &&
-                  // replace this slot with just an sl-input for paypalEmail
-                  slots.formInputsSlot}
+                {formState.checked === "toPaypalAccount" && (
+                  <sl-input
+                    name="/paypalEmail"
+                    id="paypalEmail"
+                    type="text"
+                    label={text.paypalEmail}
+                  />
+                )}
               </div>
             </div>
           </div>
