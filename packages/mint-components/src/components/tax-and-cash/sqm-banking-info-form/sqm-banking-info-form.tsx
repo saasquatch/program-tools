@@ -313,7 +313,7 @@ export class BankingInfoForm {
                     (paymentOption) => {
                       // @ts-ignore
                       const countryDisplayName = new Intl.DisplayNames(
-                        [props.states.locale?.replaceAll("_", "-") || "en"],
+                        [props.states.intlLocale],
                         { type: "region" }
                       ).of(paymentOption.country);
 
@@ -355,6 +355,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
             general: false,
           },
         },
+        intlLocale: "en",
       },
       demo: {
         bitset: 39,

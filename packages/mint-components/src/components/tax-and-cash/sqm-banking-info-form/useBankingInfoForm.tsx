@@ -116,6 +116,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
     },
     states: {
       locale,
+      intlLocale: locale?.replace("_", "-") || "en",
       isPartner: !!userData?.user?.impactPartner,
       feeCap,
       disabled: false,
