@@ -210,8 +210,6 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
       },
       callbacks: {
         setDocusignStatus: (status: DocusignStatus) => console.log(status),
-        // AL: Marked for removal
-        // onShowDocumentType: () => {},
         onSubmit: async () => {},
         toggleFormSubmitted: () => {},
         onBack: () => {},

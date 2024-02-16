@@ -25,6 +25,7 @@ export interface EditProfileViewProps {
       canceltext: string;
       updatetext: string;
       currentregiontext: string;
+      fieldEmptyText?: string;
       showregion?: boolean;
     };
   };
@@ -71,7 +72,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
               label={text.firstnametext}
               disabled={states.loading}
               {...(errors.firstName && errors.firstName.status !== "valid"
-                ? { class: "ErrorStyles", helpText: "Cannot be empty" }
+                ? { class: "ErrorStyles", helpText: text.fieldEmptyText }
                 : [])}
               id="firstName"
               name="firstName"
@@ -90,7 +91,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
               id="lastName"
               name="lastName"
               {...(errors.lastName && errors.lastName.status !== "valid"
-                ? { class: "ErrorStyles", helpText: "Cannot be empty" }
+                ? { class: "ErrorStyles", helpText: text.fieldEmptyText }
                 : [])}
               error={
                 errors.lastName && errors.lastName.status !== "valid"

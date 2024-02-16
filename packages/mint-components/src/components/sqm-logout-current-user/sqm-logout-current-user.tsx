@@ -34,6 +34,11 @@ export class LogoutCurrentUser {
   @Prop() switchUserText: string = "not you?";
   /**
    * @required
+   * @uiName Error text
+   */
+  @Prop() emailErrorText: string = "Error fetching email";
+  /**
+   * @required
    * @uiName Switch user button link
    */
   @Prop() demoData?: DemoData<CopyTextViewProps>;
@@ -51,6 +56,7 @@ export class LogoutCurrentUser {
     const content = {
       userIdentificationText: this.userIdentificationText,
       switchUserText: this.switchUserText,
+      emailErrorText: this.emailErrorText,
     };
 
     return <LogoutCurrentUserView {...props} {...content} />;
@@ -65,6 +71,8 @@ function useDemoLogoutCurrentUser(
       onSwitchClick: () => setUserIdentity(undefined),
       filledInEmailText: "john@example.com",
       switchUserText: props.switchUserText,
+      emailErrorText: props.emailErrorText,
+      loading: false,
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }

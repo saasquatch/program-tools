@@ -56,6 +56,22 @@ export class EditProfile {
   @Prop() showregion: boolean;
 
   /**
+   * @uiName Network error message
+   */
+  @Prop() networkErrorMessage: string = "Network request failed.";
+
+  /**
+   * @uiName Empty field error message
+   */
+  @Prop() fieldEmptyText: string = "Cannot be empty";
+
+  /**
+   * @uiName Form error message
+   */
+  @Prop() formErrorText: string =
+    "Please correct the errors below to update your profile.";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -110,6 +126,7 @@ function useEditProfileDemo(props: EditProfile): EditProfileViewProps {
             ? props.currentregiontext
             : "Region",
           showregion: true,
+          fieldEmptyText: props.fieldEmptyText,
         },
       },
       callbacks: {

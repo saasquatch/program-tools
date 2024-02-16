@@ -7,7 +7,6 @@ import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParentValue, useSetParent } from "../../../utils/useParentState";
-import { INDIRECT_TAX_COUNTRIES } from "../countries";
 import {
   COUNTRIES_NAMESPACE,
   CountriesQuery,
@@ -51,9 +50,15 @@ const CONNECT_PARTNER = gql`
   }
 `;
 
-function getOption(participantType: string, countryCode: string) {
+function getOption(
+  countries: TaxCountry[] | undefined,
+  participantType: string,
+  countryCode: string
+) {
+  if (!countries) return;
+
   if (participantType === "individualParticipant") return "notRegistered";
-  if (INDIRECT_TAX_COUNTRIES.find((c) => c.countryCode === countryCode)) {
+  if (countries.find((c) => c.impactCountryCode === countryCode)) {
     return "otherRegion";
   } else {
     return "notRegistered";
@@ -85,17 +90,17 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
+    const _option = getOption(
+      _countries?.impactPartnerCountries?.data,
+      userForm.participantType,
+      userForm.countryCode
+    );
+    setOption(_option);
+  }, [userForm, _countries]);
+
+  useEffect(() => {
     const user = userData?.user;
     if (!user) return;
-
-    const _option = getOption(userForm.participantType, userForm.countryCode);
-    setOption(_option);
-
-    const defaultCountryCode = INDIRECT_TAX_COUNTRIES.find(
-      (c) => c.countryCode === userForm.countryCode
-    )
-      ? userForm.countryCode
-      : undefined;
 
     if (user.impactPartner) {
       setFormState({
@@ -109,7 +114,9 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
         indirectTaxNumber: user.impactPartner?.indirectTaxNumber,
       });
     } else {
-      setFormState({ selectedRegion: user?.countryCode });
+      setFormState({
+        selectedRegion: user?.countryCode || userForm?.countryCode,
+      });
     }
   }, [userData, userForm]);
 
@@ -231,7 +238,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     data: {
       // TODO: Confirm
       esRegions: INDIRECT_TAX_SPAIN_REGIONS,
-      countries: INDIRECT_TAX_COUNTRIES as TaxCountry[],
+      countries: _countries?.impactPartnerCountries?.data,
       provinces: INDIRECT_TAX_PROVINCES,
     },
     text: props.getTextProps(),

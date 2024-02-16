@@ -247,7 +247,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_indirectTaxNumber: string =
-    "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number}}";
+    "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number} SST {SST Number} GENERAL {Indirect Tax Number}}";
   /**
    * Label text for the QST Tax Number input
    * @uiName QST Tax Number input label
@@ -347,7 +347,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_indirectTaxNumberError: string =
-    "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number}} is required";
+    "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number} SST {SST Number} GENERAL {Indirect Tax Number}} is required";
 
   /**
    * Error text shown below the Sub-region Income Tax number input
@@ -802,12 +802,6 @@ export class TaxAndCashMonolith {
           <sqm-docusign-form
             {...this.getDocuSignFormTextProps()}
           ></sqm-docusign-form>
-        );
-      case "/3b":
-        return (
-          <sqm-document-type-form
-            {...this.getDocumentTypeFormTextProps()}
-          ></sqm-document-type-form>
         );
       case "/4":
         return <sqm-banking-info-form></sqm-banking-info-form>;

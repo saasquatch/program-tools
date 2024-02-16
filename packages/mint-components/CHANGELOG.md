@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.5] - 2024-02-14
+
+### Fixed
+
+- Fixed bugs with error text not being shown in \<sqm-edit-profile> and \<sqm-portal-profile>
+
+### Added
+
+- Added new text prop(s) to the following components which previous contained hardcoded text:
+  - \<sqm-edit-profile>
+  - \<sqm-password-field>
+  - \<sqm-popup-container>
+  - \<sqm-portal-change-password>
+  - \<sqm-email-verification>
+  - \<sqm-portal-forgot-password>
+  - \<sqm-portal-login>
+  - \<sqm-portal-profile>
+  - \<sqm-portal-register>
+  - \<sqm-portal-registration-form>
+  - \<sqm-protal-reset-password>
+  - \<sqm-portal-verify-email>
+  - \<sqm-share-button>
+
+
+## [1.7.4] - 2024-02-09
+
+### Fixed
+
+- Added string trunctation to `sqm-logout-current-user` email to avoid overflow on long emails
+
+### Updated
+
+- `sqm-logout-current-user` updated to explicitly fetch the user's email
+
+## [1.7.3] - 2024-02-06
+
+### Updated
+
+- `@saasquatch/component-boilerplate` package bump
+
 ## [1.7.2] - 2023-01-12
 
 ### Fixed
@@ -814,7 +854,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.7.2...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.7.5...HEAD
+[1.7.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.5
+[1.7.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.4
+[1.7.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.3
 [1.7.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.2
 [1.7.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.1
 [1.7.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.0

@@ -162,8 +162,6 @@ export function useDocusignForm(props: DocusignForm) {
       documentUrl: document?.createImpactPartnerTaxDocument?.documentUrl,
     },
     callbacks: {
-      // AL: Marked for removal
-      // onShowDocumentType: () => setPath("/3b"),
       onSubmit,
       setDocusignStatus,
       toggleFormSubmitted: () => setFormSubmitted((x) => !x),

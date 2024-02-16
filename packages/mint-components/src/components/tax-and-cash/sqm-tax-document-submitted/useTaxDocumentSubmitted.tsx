@@ -63,8 +63,7 @@ export const useTaxDocumentSubmitted = (
       hideSteps: true,
     });
 
-    if (documentType) setStep(`/3`);
-    else setStep("/3b");
+    setStep(`/3`);
   };
 
   const onEditIndirectTax = () => {

@@ -1,7 +1,8 @@
 import { h, Host } from "@stencil/core";
 import { usePopupContainer } from "./usePopupContainer";
 
-type PopupContainerViewProps = ReturnType<typeof usePopupContainer>;
+export type PopupContainerViewProps = ReturnType<typeof usePopupContainer>;
+
 const PopupContainerView = (props: PopupContainerViewProps) => {
   const { states, callbacks } = props;
   const { styles } = states;
@@ -26,7 +27,7 @@ const PopupContainerView = (props: PopupContainerViewProps) => {
             href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget"
             target="_blank"
           >
-            Powered By
+            {styles.poweredByText}
           </a>
         ) : (
           ""

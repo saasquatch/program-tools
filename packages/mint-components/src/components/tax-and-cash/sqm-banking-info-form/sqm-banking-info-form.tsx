@@ -28,6 +28,7 @@ export class BankingInfoForm {
   @Prop() toPaypalAccount: string =
     "PayPal (2% processing fee capped to {feeCap})";
   @Prop() paymentMethod: string = "Payment Method";
+  @Prop() payPalInputLabel: string = "PayPal Email";
   @Prop() submitButton: string = "Save";
   @Prop() beneficiaryAccountNameLabel: string = "Beneficiary Account Name";
   @Prop() bankAccountTypeLabel: string = "Bank Account Type";
@@ -40,13 +41,20 @@ export class BankingInfoForm {
   @Prop() businessSelectItemLabel: string = "Business";
   @Prop() individualSelectItemLabel: string = "Individual";
   @Prop() foreignSelectItemLabel: string = "Foreign";
-
+  @Prop() isPartnerAlertHeader: string =
+    "An account with this email already exists with our referral program provider, impact.com";
+  @Prop() isPartnerAlertDescription: string =
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
   @Prop() classificationCPFLabel: string = "Classification CPF";
   @Prop() patronymicNameLabel: string = "Patronymic Name";
   @Prop() voCodeLabel: string = "Vo Code";
   @Prop() agencyCodeLabel: string = "Agency Code";
   @Prop() branchCodeLabel: string = "Branch Code";
   @Prop() classificationLabel: string = "Classification";
+  // @Prop() generalErrorTitle: string =
+  //   "There was a problem submitting your information";
+  // @Prop() generalErrorDescription: string =
+  //   "Please review your information and try again. If this problem continues, contact Support.";
 
   /**
    * @undocumented
@@ -74,10 +82,6 @@ export class BankingInfoForm {
       ? useDemoBankingInfoForm(this)
       : useBankingInfoForm(getProps(this));
 
-    // const props = useBankingInfoForm(getProps(this));
-
-    console.log("PROPS ARE", { props }, props.text.beneficiaryAccountNameLabel);
-
     const routingCodeLabels = {
       AU: "BSB Number",
       CA: "Routing Number",
@@ -93,9 +97,9 @@ export class BankingInfoForm {
 
     const formMap = {
       0: {
-        label: props.text.beneficiaryAccountNameLabel,
         input: (
           <sl-input
+            label={props.text.beneficiaryAccountNameLabel}
             name="/beneficiaryAccountName"
             id="beneficiaryAccountName"
             type="text"
@@ -103,9 +107,9 @@ export class BankingInfoForm {
         ),
       },
       1: {
-        label: props.text.bankAccountTypeLabel,
         input: (
           <sl-input
+            label={props.text.bankAccountTypeLabel}
             name="/bankAccountType"
             id="bankAccountType"
             type="text"
@@ -113,9 +117,9 @@ export class BankingInfoForm {
         ),
       },
       2: {
-        label: props.text.bankAccountNumberLabel,
         input: (
           <sl-input
+            label={props.text.bankAccountNumberLabel}
             name="/bankAccountNumber"
             id="bankAccountNumber"
             type="text"
@@ -123,38 +127,53 @@ export class BankingInfoForm {
         ),
       },
       3: {
-        label: props.text.ibanLabel,
         input: (
           <sl-input
-            name="/beneficiaryAccountName"
-            id="beneficiaryAccountName"
+            label={props.text.ibanLabel}
+            name="/iban"
+            id="iban"
             type="text"
           ></sl-input>
         ),
       },
 
       4: {
-        label: props.text.swiftCodeLabel,
         input: (
-          <sl-input name="/swiftCode" id="swiftCode" type="text"></sl-input>
+          <sl-input
+            label={props.text.swiftCodeLabel}
+            name="/swiftCode"
+            id="swiftCode"
+            type="text"
+          ></sl-input>
         ),
       },
       5: {
-        label:
-          routingCodeLabels[props.states.bankCountry] ||
-          props.text.routingCodeLabel,
         input: (
-          <sl-input name="/routingCode" id="routingCode" type="text"></sl-input>
+          <sl-input
+            label={
+              routingCodeLabels[props.states.bankCountry] ||
+              props.text.routingCodeLabel
+            }
+            name="/routingCode"
+            id="routingCode"
+            type="text"
+          ></sl-input>
         ),
       },
       6: {
-        label: props.text.bankNameLabel,
-        input: <sl-input name="/bankName" id="bankName" type="text"></sl-input>,
+        input: (
+          <sl-input
+            label={props.text.bankNameLabel}
+            name="/bankName"
+            id="bankName"
+            type="text"
+          ></sl-input>
+        ),
       },
       7: {
-        label: props.text.classificationLabel,
         input: (
           <sl-select
+            label={props.text.classificationLabel}
             name="/beneficiaryClassification"
             id="beneficiaryClassification"
           >
@@ -171,9 +190,9 @@ export class BankingInfoForm {
         ),
       },
       8: {
-        label: props.text.classificationCPFLabel,
         input: (
           <sl-select
+            label={props.text.classificationCPFLabel}
             name="/beneficiaryClassification"
             id="beneficiaryClassification"
           >
@@ -183,9 +202,9 @@ export class BankingInfoForm {
         ),
       },
       9: {
-        label: props.text.patronymicNameLabel,
         input: (
           <sl-input
+            label={props.text.patronymicNameLabel}
             name="/patronymicName"
             id="patronymicName"
             type="text"
@@ -193,35 +212,48 @@ export class BankingInfoForm {
         ),
       },
       10: {
-        label: props.text.voCodeLabel,
-        input: <sl-input name="/voCode" id="voCode" type="text"></sl-input>,
+        input: (
+          <sl-input
+            label={props.text.voCodeLabel}
+            name="/voCode"
+            id="voCode"
+            type="text"
+          ></sl-input>
+        ),
       },
       11: {
-        label: props.text.agencyCodeLabel,
         input: (
-          <sl-input name="/agencyCode" id="agencyCode" type="text"></sl-input>
+          <sl-input
+            label={props.text.agencyCodeLabel}
+            name="/agencyCode"
+            id="agencyCode"
+            type="text"
+          ></sl-input>
         ),
       },
       12: {
-        label: "",
         input: (
           <div>
-            <label htmlFor="/bankAddress">bankAddress</label>
             <sl-input
+              label={"bankAddress"}
               name="/bankAddress"
               id="bankAddress"
               type="text"
             ></sl-input>
-            <label htmlFor="/bankCity">bankCity</label>
-            <sl-input name="/bankCity" id="bankCity" type="text"></sl-input>
-            <label htmlFor="/bankProvinceState">bankProvinceState</label>
             <sl-input
+              label={"bankCity"}
+              name="/bankCity"
+              id="bankCity"
+              type="text"
+            ></sl-input>
+            <sl-input
+              label={"bankProvinceState"}
               name="/bankProvinceState"
               id="bankProvinceState"
               type="text"
             ></sl-input>
-            <label htmlFor="/bankPostalCode">bankPostalCode</label>
             <sl-input
+              label={"bankPostalCode"}
               name="/bankPostalCode"
               id="bankPostalCode"
               type="text"
@@ -230,15 +262,19 @@ export class BankingInfoForm {
         ),
       },
       13: {
-        label: props.text.branchCodeLabel,
         input: (
-          <sl-input name="/branchCode" id="branchCode" type="text"></sl-input>
+          <sl-input
+            label={props.text.branchCodeLabel}
+            name="/branchCode"
+            id="branchCode"
+            type="text"
+          ></sl-input>
         ),
       },
       14: {
-        label: props.text.classificationLabel,
         input: (
           <sl-select
+            label={props.text.classificationLabel}
             name="/beneficiaryClassification"
             id="beneficiaryClassification"
           >
@@ -281,13 +317,8 @@ export class BankingInfoForm {
           states={props.states}
           refs={props.refs}
           slots={{
-            formInputsSlot: inputFields?.map(({ input, label }) => {
-              return (
-                <label>
-                  {label}
-                  {input}
-                </label>
-              );
+            formInputsSlot: inputFields?.map(({ input }) => {
+              return input;
             }),
             countryInputSlot: (
               <label htmlFor="/bankCountry">
@@ -300,29 +331,31 @@ export class BankingInfoForm {
                     props.callbacks.setBankCountry(e.detail?.item?.value)
                   }
                 >
-                  {mockPaymentOptions[props.demo.currency]?.map(
-                    (paymentOption) => {
-                      // @ts-ignore
-                      const countryDisplayName = new Intl.DisplayNames(
-                        [props.states.intlLocale],
-                        { type: "region" }
-                      ).of(paymentOption.country);
+                  {/* TODO: mock data should come from the backend when available */}
+                  {mockPaymentOptions[
+                    props.demo.currency || props.states.currency
+                  ]?.map((paymentOption) => {
+                    // @ts-ignore
+                    const countryDisplayName = new Intl.DisplayNames(
+                      [props.states.intlLocale],
+                      { type: "region" }
+                    ).of(paymentOption.country);
 
-                      console.log({ paymentOption, countryDisplayName });
-                      return (
-                        <sl-menu-item value={paymentOption?.country}>
-                          {countryDisplayName}
-                        </sl-menu-item>
-                      );
-                    }
-                  )}
+                    return (
+                      <sl-menu-item value={paymentOption?.country}>
+                        {countryDisplayName}
+                      </sl-menu-item>
+                    );
+                  })}
                 </sl-select>
               </label>
             ),
             paymentMethodSlot: (
-              <label>
-                Payment Method <span>EFT Withdrawal</span>
-              </label>
+              <div>
+                <label>
+                  Payment Method <span>EFT Withdrawal</span>
+                </label>
+              </div>
             ),
           }}
         />
@@ -337,6 +370,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
   return deepmerge(
     {
       states: {
+        isPartner: false,
         disabled: false,
         loading: false,
         hideSteps: false,

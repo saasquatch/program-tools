@@ -1,6 +1,5 @@
 import { h } from "@stencil/core";
 import { StoryDemoData } from "../../global/demo";
-import { INDIRECT_TAX_COUNTRIES } from "./countries";
 import { UseDocumentTypeFormResult } from "./sqm-document-type-form/useDocumentTypeForm";
 import { UseDocusignFormResult } from "./sqm-docusign-form/useDocusignForm";
 import { UseIndirectTaxFormResult } from "./sqm-indirect-tax-form/useIndirectTaxForm";
@@ -75,7 +74,13 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
   },
   data: {
     esRegions: INDIRECT_TAX_SPAIN_REGIONS,
-    countries: INDIRECT_TAX_COUNTRIES,
+    countries: [
+      {
+        displayName: "United States",
+        countryCode: "US",
+        impactCountryCode: "US",
+      },
+    ],
     provinces: INDIRECT_TAX_PROVINCES,
   },
   slotProps: {
@@ -125,8 +130,6 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
   callbacks: {
     setDocusignStatus: (status: DocusignStatus) => console.log(status),
     toggleFormSubmitted: () => console.log("Toggle checkbox"),
-    // AL: Marked for removal
-    // onShowDocumentType: () => console.log("To other form"),
     onSubmit: async () => console.log("submit"),
     onBack: () => console.log("Back"),
   },

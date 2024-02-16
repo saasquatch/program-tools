@@ -22,7 +22,6 @@ export interface DocusignFormViewProps {
     docusignIframeSlot: VNode;
   };
   callbacks: {
-    // onShowDocumentType: () => void;
     toggleFormSubmitted: () => void;
     onSubmit: (props: any) => void;
     onBack: () => void;
@@ -219,10 +218,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
               defaultMessage: text.taxFormDescription,
             },
             { documentType }
-          )}{" "}
-          {/* <a onClick={callbacks.onShowDocumentType} class={classes.Link}>
-            {text.notBasedInUS}
-          </a> */}
+          )}
         </p>
       </div>
 

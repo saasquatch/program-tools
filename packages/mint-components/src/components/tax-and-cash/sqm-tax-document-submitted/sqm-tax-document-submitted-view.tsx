@@ -466,18 +466,18 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                         {statusMap[states.status]}
                       </div>
                     </span>
+                    <sl-button
+                      disabled={states.disabled || states.loading}
+                      onClick={callbacks.onClick}
+                      type="default"
+                      class={sheet.classes.NewFormButton}
+                    >
+                      {text.newFormButton}
+                    </sl-button>
                   </div>
                 )}
               </div>
             )}
-            <sl-button
-              disabled={states.disabled || states.loading}
-              onClick={callbacks.onClick}
-              type="default"
-              class={sheet.classes.NewFormButton}
-            >
-              {text.newFormButton}
-            </sl-button>
           </div>
         </div>
       </div>

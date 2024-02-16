@@ -21,7 +21,8 @@ export class MetricsManager {
   private metricsPrefix: string;
   private meter: Meter;
 
-  constructor(integrationName: string) {
+  constructor(rawIntegrationName: string) {
+    const integrationName = rawIntegrationName.replace(/-/g, "_");
     if ((integrationName ?? "").length === 0) {
       throw new Error(
         "Cannot initialize metrics manager without an integration name"

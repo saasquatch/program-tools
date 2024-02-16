@@ -37,10 +37,8 @@ const userContextListenerForLocale = new ContextListener<
     if (next) {
       debug("User context changed, refetching locale");
       const locale = await fetchLocale();
-      if (localeProvider.context !== locale) {
-        debug(`New value fetched from GraphQL [${locale}]`);
-        newLocale = locale || defaultLocale;
-      }
+      debug(`New value fetched from GraphQL [${locale}]`);
+      newLocale = locale || defaultLocale;
     } else {
       newLocale = defaultLocale;
     }
