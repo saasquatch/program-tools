@@ -140,7 +140,9 @@ export class BankingInfoForm {
         ),
       },
       5: {
-        label: props.text.routingCodeLabel,
+        label:
+          routingCodeLabels[props.states.bankCountry] ||
+          props.text.routingCodeLabel,
         input: (
           <sl-input name="/routingCode" id="routingCode" type="text"></sl-input>
         ),
