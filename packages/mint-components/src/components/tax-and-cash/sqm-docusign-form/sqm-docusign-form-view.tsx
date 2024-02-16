@@ -220,9 +220,9 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             },
             { documentType }
           )}{" "}
-          <a onClick={callbacks.onShowDocumentType} class={classes.Link}>
+          {/* <a onClick={callbacks.onShowDocumentType} class={classes.Link}>
             {text.notBasedInUS}
-          </a>
+          </a> */}
         </p>
       </div>
 
