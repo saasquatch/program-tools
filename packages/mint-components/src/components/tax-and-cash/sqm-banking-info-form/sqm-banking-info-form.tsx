@@ -351,11 +351,11 @@ export class BankingInfoForm {
               </label>
             ),
             paymentMethodSlot: (
-              <div>
-                <label>
-                  Payment Method <span>EFT Withdrawal</span>
-                </label>
-              </div>
+              <sl-input
+                label={props.text.paymentMethod}
+                placeholder="EFT Withdrawal"
+                disabled
+              ></sl-input>
             ),
           }}
         />
@@ -365,7 +365,7 @@ export class BankingInfoForm {
 }
 
 function useDemoBankingInfoForm(props: BankingInfoForm) {
-  const [option, setOption] = useState(null);
+  const [option, setOption] = useState(undefined);
 
   return deepmerge(
     {
@@ -374,6 +374,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
         disabled: false,
         loading: false,
         hideSteps: false,
+        feeCap: "USD20.00",
         formState: {
           checked: option,
           errors: {

@@ -31,11 +31,38 @@ export const BankingInfoFormDefault = () => {
   return <sqm-banking-info-form></sqm-banking-info-form>;
 };
 
+export const BankingInfoFormDefaultLoading = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        states: { loading: true },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
 export const BankingInfoFormCountryUSCurrencyUSD = () => {
   return (
     <sqm-banking-info-form
       demoData={{
         ...bankingFormProps,
+        demo: {
+          bitset: 39,
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
+export const BankingInfoFormCountryUSCurrencyUSDLoading = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...bankingFormProps,
+        states: {
+          ...bankingFormProps.states,
+          loading: true,
+        },
         demo: {
           bitset: 39,
         },
@@ -120,6 +147,24 @@ export const BankingInfoFormPaypalChecked = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
+          formState: {
+            ...bankingFormProps.states.formState,
+            checked: "toPaypalAccount",
+          },
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
+export const BankingInfoFormPaypalCheckedLoading = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...bankingFormProps,
+        states: {
+          ...bankingFormProps.states,
+          loading: true,
           formState: {
             ...bankingFormProps.states.formState,
             checked: "toPaypalAccount",
