@@ -300,29 +300,31 @@ export class BankingInfoForm {
                     props.callbacks.setBankCountry(e.detail?.item?.value)
                   }
                 >
-                  {mockPaymentOptions[props.demo.currency]?.map(
-                    (paymentOption) => {
-                      // @ts-ignore
-                      const countryDisplayName = new Intl.DisplayNames(
-                        [props.states.intlLocale],
-                        { type: "region" }
-                      ).of(paymentOption.country);
+                  {/* TODO: mock data should come from the backend when available */}
+                  {mockPaymentOptions[
+                    props.demo.currency || props.states.currency
+                  ]?.map((paymentOption) => {
+                    // @ts-ignore
+                    const countryDisplayName = new Intl.DisplayNames(
+                      [props.states.intlLocale],
+                      { type: "region" }
+                    ).of(paymentOption.country);
 
-                      console.log({ paymentOption, countryDisplayName });
-                      return (
-                        <sl-menu-item value={paymentOption?.country}>
-                          {countryDisplayName}
-                        </sl-menu-item>
-                      );
-                    }
-                  )}
+                    return (
+                      <sl-menu-item value={paymentOption?.country}>
+                        {countryDisplayName}
+                      </sl-menu-item>
+                    );
+                  })}
                 </sl-select>
               </label>
             ),
             paymentMethodSlot: (
-              <label>
-                Payment Method <span>EFT Withdrawal</span>
-              </label>
+              <div>
+                <label>
+                  Payment Method <span>EFT Withdrawal</span>
+                </label>
+              </div>
             ),
           }}
         />

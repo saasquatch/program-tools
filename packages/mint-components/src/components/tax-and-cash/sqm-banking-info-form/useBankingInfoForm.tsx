@@ -1,15 +1,15 @@
+import { useLocale } from "@saasquatch/component-boilerplate";
 import { useRef, useState } from "@saasquatch/universal-hooks";
+import JSONPointer from "jsonpointer";
+import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParent } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
-import { BankingInfoForm } from "./sqm-banking-info-form";
-import JSONPointer from "jsonpointer";
-import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useLocale } from "@saasquatch/component-boilerplate";
 import { mockPaymentOptions } from "./mockData";
+import { BankingInfoForm } from "./sqm-banking-info-form";
 
 export const paypalFeeMap = {
   USD: "USD20.00",
@@ -62,6 +62,9 @@ export function useBankingInfoForm(props: BankingInfoForm) {
   const [option, setOption] = useState(null);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const [checked, setChecked] = useState<
+    "toBankAccount" | "toPaypalAccount" | undefined
+  >(undefined);
 
   const onSubmit = async (event: any) => {
     let formData: Record<string, string> = {};
@@ -130,6 +133,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
       onSubmit,
       onChange: setOption,
       setBankCountry,
+      setChecked,
     },
     states: {
       locale,
@@ -139,12 +143,15 @@ export function useBankingInfoForm(props: BankingInfoForm) {
       disabled: false,
       loading: false,
       hideSteps: false,
+      hideBanking: checked !== "toBankAccount",
+      hidePayPal: checked !== "toPaypalAccount",
       formState: {
-        checked: "toBankAccount" as "toBankAccount" | "toPaypalAccount",
+        checked,
         errors,
       },
       bitset: currentPaymentOption?.withdrawalId || 0,
       bankCountry,
+      currency: userData?.user?.impactPartner?.currency,
     },
     refs: {
       formRef,

@@ -1,4 +1,4 @@
-import { VNode, h } from "@stencil/core";
+import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 
 export interface BankingInfoFormViewProps {
@@ -6,6 +6,8 @@ export interface BankingInfoFormViewProps {
     loading: boolean;
     disabled: boolean;
     hideSteps: boolean;
+    hideBanking?: boolean;
+    hidePayPal?: boolean;
     formState: {
       checked: "toBankAccount" | "toPaypalAccount" | undefined;
       errors?: any;
@@ -17,6 +19,9 @@ export interface BankingInfoFormViewProps {
     paymentMethodSlot?: any;
   };
   callbacks: {
+    setChecked: (
+      checked: "toBankAccount" | "toPaypalAccount" | undefined
+    ) => void;
     onSubmit: (props: any) => Promise<void>;
     onChange: (e) => void;
   };
@@ -193,28 +198,34 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 class={classes.Checkbox}
                 exportparts="label: input-label"
                 checked={formState.checked === "toBankAccount"}
-                onInput={() => callbacks.onChange("toBankAccount")}
+                onInput={() => callbacks.setChecked("toBankAccount")}
                 disabled={states.disabled}
                 id="toBankAccount"
                 name="/toBankAccount"
               >
                 {text.directlyToBankAccount}
               </sl-checkbox>
-              {slots.countryInputSlot}
-              {slots.paymentMethodSlot}
-              {formState.checked === "toBankAccount" && slots.formInputsSlot}
+              <div style={states.hideBanking ? { display: "none" } : {}}>
+                {slots.countryInputSlot}
+                {slots.paymentMethodSlot}
+                {formState.checked === "toBankAccount" && slots.formInputsSlot}
+              </div>
               <sl-checkbox
                 class={classes.Checkbox}
                 exportparts="label: input-label"
                 checked={formState.checked === "toPaypalAccount"}
-                onInput={() => callbacks.onChange("toPaypalAccount")}
+                onInput={() => callbacks.setChecked("toPaypalAccount")}
                 disabled={states.disabled}
                 id="toPaypalAccount"
                 name="/toPaypalAccount"
               >
                 {text.toPaypalAccount}
               </sl-checkbox>
-              {formState.checked === "toPaypalAccount" && slots.formInputsSlot}
+              <div style={states.hidePayPal ? { display: "none" } : {}}>
+                {formState.checked === "toPaypalAccount" &&
+                  // replace this slot with just an sl-input for paypalEmail
+                  slots.formInputsSlot}
+              </div>
             </div>
           </div>
           <div class={classes.BtnContainer}>
