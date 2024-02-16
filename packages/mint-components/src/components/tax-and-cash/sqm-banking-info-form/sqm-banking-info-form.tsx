@@ -28,6 +28,7 @@ export class BankingInfoForm {
   @Prop() toPaypalAccount: string =
     "PayPal (2% processing fee capped to {feeCap})";
   @Prop() paymentMethod: string = "Payment Method";
+  @Prop() payPalInputLabel: string = "PayPal Email";
   @Prop() submitButton: string = "Save";
   @Prop() beneficiaryAccountNameLabel: string = "Beneficiary Account Name";
   @Prop() bankAccountTypeLabel: string = "Bank Account Type";
@@ -40,13 +41,20 @@ export class BankingInfoForm {
   @Prop() businessSelectItemLabel: string = "Business";
   @Prop() individualSelectItemLabel: string = "Individual";
   @Prop() foreignSelectItemLabel: string = "Foreign";
-
+  @Prop() isPartnerAlertHeader: string =
+    "An account with this email already exists with our referral program provider, impact.com";
+  @Prop() isPartnerAlertDescription: string =
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
   @Prop() classificationCPFLabel: string = "Classification CPF";
   @Prop() patronymicNameLabel: string = "Patronymic Name";
   @Prop() voCodeLabel: string = "Vo Code";
   @Prop() agencyCodeLabel: string = "Agency Code";
   @Prop() branchCodeLabel: string = "Branch Code";
   @Prop() classificationLabel: string = "Classification";
+  // @Prop() generalErrorTitle: string =
+  //   "There was a problem submitting your information";
+  // @Prop() generalErrorDescription: string =
+  //   "Please review your information and try again. If this problem continues, contact Support.";
 
   /**
    * @undocumented
@@ -73,8 +81,6 @@ export class BankingInfoForm {
     const props = isDemo()
       ? useDemoBankingInfoForm(this)
       : useBankingInfoForm(getProps(this));
-
-    console.log("PROPS ARE", { props }, props.text.beneficiaryAccountNameLabel);
 
     const routingCodeLabels = {
       AU: "BSB Number",
@@ -364,6 +370,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
   return deepmerge(
     {
       states: {
+        isPartner: false,
         disabled: false,
         loading: false,
         hideSteps: false,

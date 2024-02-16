@@ -96,6 +96,23 @@ export const BankingInfoFormCountrySpainCurrencyUSD = () => {
   );
 };
 
+export const BankingInfoFormIsPartner = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...bankingFormProps,
+        states: {
+          ...bankingFormProps.states,
+          isPartner: true,
+        },
+        demo: {
+          bitset: 25,
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
 export const BankingInfoFormPaypalChecked = () => {
   return (
     <sqm-banking-info-form

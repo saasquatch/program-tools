@@ -87,7 +87,10 @@ export namespace Components {
         "formStep": string;
         "ibanLabel": string;
         "individualSelectItemLabel": string;
+        "isPartnerAlertDescription": string;
+        "isPartnerAlertHeader": string;
         "patronymicNameLabel": string;
+        "payPalInputLabel": string;
         "paymentMethod": string;
         "routingCodeLabel": string;
         "submitButton": string;
@@ -4792,7 +4795,10 @@ declare namespace LocalJSX {
         "formStep"?: string;
         "ibanLabel"?: string;
         "individualSelectItemLabel"?: string;
+        "isPartnerAlertDescription"?: string;
+        "isPartnerAlertHeader"?: string;
         "patronymicNameLabel"?: string;
+        "payPalInputLabel"?: string;
         "paymentMethod"?: string;
         "routingCodeLabel"?: string;
         "submitButton"?: string;
