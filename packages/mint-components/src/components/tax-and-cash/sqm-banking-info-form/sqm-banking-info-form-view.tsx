@@ -13,7 +13,9 @@ export interface BankingInfoFormViewProps {
     isPartner: boolean;
     formState: {
       checked?: "toBankAccount" | "toPaypalAccount";
-      errors?: any;
+      errors?: {
+        general?: boolean;
+      };
     };
   };
   slots: {

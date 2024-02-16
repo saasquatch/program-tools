@@ -6,8 +6,10 @@ export interface DocumentTypeFormViewProps {
     loading: boolean;
     disabled: boolean;
     formState: {
-      selectedTaxForm: "W9" | "W8-BEN" | "W8-BEN-E" | undefined;
-      errors?: any;
+      selectedTaxForm?: "W9" | "W8-BEN" | "W8-BEN-E";
+      errors?: {
+        general?: boolean;
+      };
     };
   };
   callbacks: {
@@ -137,8 +139,6 @@ export const DocumentTypeFormView = (props: DocumentTypeFormViewProps) => {
   } = props;
 
   const { classes } = sheet;
-
-  console.log({ formState });
 
   return (
     <sl-form class={classes.FormWrapper} onSl-submit={callbacks.onSubmit}>

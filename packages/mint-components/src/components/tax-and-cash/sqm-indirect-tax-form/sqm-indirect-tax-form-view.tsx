@@ -8,8 +8,10 @@ export interface IndirectTaxFormViewProps {
     isPartner: boolean;
     hideSteps: boolean;
     formState: {
-      checked: "hstCanada" | "otherRegion" | "notRegistered" | undefined;
-      errors?: any;
+      checked?: "hstCanada" | "otherRegion" | "notRegistered";
+      errors?: {
+        general?: boolean;
+      };
     };
   };
   slots: {

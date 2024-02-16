@@ -12,7 +12,9 @@ export interface DocusignFormViewProps {
     formState: {
       completedTaxForm: boolean;
       taxFormExpired: boolean;
-      errors?: any;
+      errors?: {
+        general?: boolean;
+      };
     };
     documentType: TaxDocumentType;
     hideBackButton: boolean;

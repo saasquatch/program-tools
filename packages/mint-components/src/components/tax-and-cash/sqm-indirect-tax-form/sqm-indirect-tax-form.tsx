@@ -6,10 +6,7 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { OtherRegionSlotView } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
-import {
-  IndirectTaxFormView,
-  IndirectTaxFormViewProps,
-} from "./sqm-indirect-tax-form-view";
+import { IndirectTaxFormView } from "./sqm-indirect-tax-form-view";
 import {
   UseIndirectTaxFormResult,
   useIndirectTaxForm,

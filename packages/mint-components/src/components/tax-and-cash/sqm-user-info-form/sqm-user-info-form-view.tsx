@@ -16,7 +16,15 @@ export interface UserInfoFormViewProps {
       currency?: string;
       allowBankingCollection?: boolean;
       participantType: "individualParticipant" | "businessEntity" | undefined;
-      errors?: any;
+      errors?: {
+        general?: boolean;
+        firstName?: boolean;
+        lastName?: boolean;
+        countryCode?: boolean;
+        currency?: boolean;
+        participantType?: boolean;
+        allowBankingCollection?: boolean;
+      };
       error?: string;
     };
   };

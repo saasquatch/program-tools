@@ -23,7 +23,9 @@ export interface TaxDocumentSubmittedProps {
     isIndirectTaxCanada?: boolean;
     isBusinessEntity: boolean;
     loading?: boolean;
-    errors?: any;
+    errors?: {
+      general?: boolean;
+    };
   };
   callbacks: { onClick: (props: any) => void; onEditIndirectTax: () => void };
   text: {
