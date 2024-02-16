@@ -57,12 +57,7 @@ export function useDocusignForm(props: DocusignForm) {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const splitPath = path.split("/");
-  const pathedDocumentType =
-    splitPath.length === 3 ? (splitPath[2] as TaxDocumentType) : undefined;
-
   const documentType =
-    pathedDocumentType || // Prioritise path param override
     data?.user?.impactPartner?.currentTaxDocument?.type || // Then current form (could be different than required)
     data?.user?.impactPartner?.requiredTaxDocumentType; // Last, the required tax form
 
