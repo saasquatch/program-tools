@@ -118,6 +118,7 @@ export class IndirectTaxForm {
       <OtherRegionSlotView
         states={{
           hide: props.states.formState.checked !== "otherRegion",
+          disabled: props.states.disabled || props.states.isPartner,
           formState: props.slotProps.formState,
           loading: props.states.loading,
         }}

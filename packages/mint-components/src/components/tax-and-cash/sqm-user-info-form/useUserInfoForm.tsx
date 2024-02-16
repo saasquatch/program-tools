@@ -46,15 +46,6 @@ export type InitialData = {
   [key: string]: string;
 };
 
-const UPSERT_USER = gql`
-  mutation ($userInput: UserInput!) {
-    upsertUser(userInput: $userInput) {
-      firstName
-      lastName
-    }
-  }
-`;
-
 export function useUserInfoForm(props: TaxForm) {
   const user = useUserIdentity();
 

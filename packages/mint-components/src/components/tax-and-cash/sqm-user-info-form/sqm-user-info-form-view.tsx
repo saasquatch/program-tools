@@ -261,7 +261,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               exportparts="label: input-label"
               value={formState.firstName}
               label={text.firstName}
-              disabled={states.disabled}
+              disabled={states.disabled || states.isPartner}
               {...(formState.errors?.firstName
                 ? {
                     class: classes.ErrorInput,
@@ -276,7 +276,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               exportparts="label: input-label"
               value={formState.lastName}
               label={text.lastName}
-              disabled={states.disabled}
+              disabled={states.disabled || states.isPartner}
               {...(formState.errors?.lastName
                 ? {
                     class: classes.ErrorInput,
@@ -303,7 +303,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               name="/countryCode"
               label={text.country}
               value={formState.countryCode}
-              disabled={states.disabled}
+              disabled={states.disabled || states.isPartner}
               {...(formState.errors?.countryCode
                 ? {
                     class: classes.ErrorInput,
@@ -323,11 +323,6 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   }
                 }}
               ></sl-input>
-              {/* {data?.countries?.map((c) => (
-                <sl-menu-item value={c.countryCode}>
-                  {c.displayName}
-                </sl-menu-item>
-              ))} */}
               {filteredCountries.map((c) => (
                 <sl-menu-item value={c.countryCode}>
                   {c.displayName}
@@ -341,7 +336,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               label={text.currency}
               menu
               value={formState.currency}
-              disabled={states.disabled}
+              disabled={states.disabled || states.isPartner}
               {...(formState.errors?.currency
                 ? {
                     class: classes.ErrorInput,
@@ -382,7 +377,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   checked={
                     formState.participantType === "individualParticipant"
                   }
-                  disabled={states.disabled}
+                  disabled={states.disabled || states.isPartner}
                 >
                   {text.individualParticipant}
                 </sl-radio>
@@ -391,7 +386,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   value="businessEntity"
                   name="/participantType"
                   checked={formState.participantType === "businessEntity"}
-                  disabled={states.disabled}
+                  disabled={states.disabled || states.isPartner}
                 >
                   {text.businessEntity}
                 </sl-radio>

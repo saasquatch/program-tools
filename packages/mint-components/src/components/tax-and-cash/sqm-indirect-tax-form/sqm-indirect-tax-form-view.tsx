@@ -200,7 +200,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 id="otherRegion"
                 checked={formState.checked === "otherRegion"}
                 onInput={() => callbacks.onChange("otherRegion")}
-                disabled={states.disabled}
+                disabled={states.disabled || states.isPartner}
               >
                 {text.otherRegion}
               </sl-radio>
@@ -212,7 +212,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 id="notRegistered"
                 checked={formState.checked === "notRegistered"}
                 onInput={() => callbacks.onChange("notRegistered")}
-                disabled={states.disabled}
+                disabled={states.disabled || states.isPartner}
               >
                 {text.notRegistered}
               </sl-radio>
