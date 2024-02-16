@@ -3,6 +3,7 @@ import { intl } from "../../../../global/global";
 import { createStyleSheet } from "../../../../styling/JSS";
 import { INDIRECT_TAX_PROVINCES } from "../../subregions";
 import { TaxContext, TaxCountry } from "../../sqm-tax-and-cash/data";
+import { vatLabels } from "../../countries";
 
 export interface IndirectDetailsSlotViewProps {
   states: {
@@ -114,7 +115,16 @@ const vanillaStyle = `
     }
   `;
 
-export type TaxType = "GST" | "HST" | "VAT" | "JST" | "QST";
+export type TaxType =
+  | "GST"
+  | "HST"
+  | "VAT"
+  | "JST"
+  | "QST"
+  | "CT"
+  | "SST"
+  | "GENERAL";
+
 export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
   const {
     states,
@@ -232,8 +242,6 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
       (p) => p.provinceCode === formState.province
     )?.taxType as TaxType | undefined;
 
-    console.log(currentTaxType);
-
     return (
       <div class={classes.ConditionalInputsContainer}>
         <sl-select
@@ -294,9 +302,9 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
 
   const getActiveForm = (selectedRegion: string) => {
     switch (selectedRegion) {
-      case "CA":
+      case "CANADA":
         return <CanadaFields />;
-      case "ES":
+      case "SPAIN":
         return <SpainFields />;
       default:
         // TODO: Pass in proper tax type for countries
@@ -306,11 +314,13 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             exportparts="label: input-label"
             class={classes.Input}
             value={formState.indirectTaxNumber}
-            label={getTaxFieldLabel("VAT")}
+            label={getTaxFieldLabel(vatLabels[selectedRegion] || "GENERAL")}
             disabled={states.loading}
             {...(formState.errors?.indirectTaxNumber && {
               class: classes.ErrorInput,
-              helpText: getTaxFieldError("VAT"),
+              helpText: getTaxFieldError(
+                vatLabels[selectedRegion] || "GENERAL"
+              ),
             })}
             id="indirectTaxNumber"
             name="/indirectTaxNumber"
@@ -320,6 +330,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
   };
 
   const activeForm = getActiveForm(formState.selectedRegion);
+
   return (
     <div style={states.hide ? { display: "none" } : {}}>
       <form class={classes.Container}>

@@ -14,7 +14,6 @@ import {
   UseIndirectTaxFormResult,
   useIndirectTaxForm,
 } from "./useIndirectTaxForm";
-import { INDIRECT_TAX_COUNTRIES } from "../countries";
 import {
   INDIRECT_TAX_PROVINCES,
   INDIRECT_TAX_SPAIN_REGIONS,
@@ -42,7 +41,7 @@ export class IndirectTaxForm {
   @Prop() selectedRegion: string = "Country / Region of Indirect Tax";
   @Prop() province: string = "Province";
   @Prop() indirectTaxNumber: string =
-    "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number}}";
+    "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number} SST {SST Number} GENERAL {Indirect Tax Number}}";
   @Prop() isPartnerAlertHeader: string =
     "An account with this email already exists with our referral program provider, impact.com";
   @Prop() isPartnerAlertDescription: string =
@@ -57,7 +56,7 @@ export class IndirectTaxForm {
   @Prop() selectedRegionError: string = "Country is required";
   @Prop() provinceError: string = "Province is required";
   @Prop() indirectTaxNumberError: string =
-    "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number}} is required";
+    "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number} SST {SST Number} GENERAL {Indirect Tax Number}} is required";
   @Prop() subRegionTaxNumberError: string = "Income Tax Number is required";
   @Prop() qstTaxNumberError: string = "QST Number is required";
   @Prop() subRegion: string = "Sub-region";
@@ -178,7 +177,13 @@ function useDemoIndirectTaxForm(
       },
       data: {
         esRegions: INDIRECT_TAX_SPAIN_REGIONS,
-        countries: INDIRECT_TAX_COUNTRIES,
+        countries: [
+          {
+            displayName: "United States",
+            countryCode: "US",
+            impactCountryCode: "US",
+          },
+        ],
         provinces: INDIRECT_TAX_PROVINCES,
       },
       text: props.getTextProps(),

@@ -175,7 +175,7 @@ export function useUserInfoForm(props: TaxForm) {
     },
     data: {
       currencies: currenciesRes?.currencies?.data,
-      countries: _countries?.countries?.data,
+      countries: _countries?.impactPartnerCountries?.data,
     },
     states: {
       hideSteps: context.hideSteps,

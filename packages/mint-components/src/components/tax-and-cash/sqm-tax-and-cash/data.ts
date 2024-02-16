@@ -98,7 +98,7 @@ export type UserQuery = {
 
 export const GET_COUNTRIES = gql`
   query getCurrencies {
-    countries(limit: 1000) {
+    impactPartnerCountries(limit: 1000) {
       data {
         countryCode
         impactCountryCode
@@ -114,7 +114,7 @@ export type TaxCountry = {
   displayName: string;
 };
 export type CountriesQuery = {
-  countries: {
+  impactPartnerCountries: {
     data: TaxCountry[];
   };
 };
