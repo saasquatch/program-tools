@@ -8,6 +8,7 @@ import {
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import JSONPointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
+import { useLocale } from "@saasquatch/component-boilerplate";
 
 export const paypalFeeMap = {
   USD: "USD20.00",
@@ -26,13 +27,14 @@ export const paypalFeeMap = {
 };
 
 export function useBankingInfoForm(props: BankingInfoForm) {
+  const locale = useLocale();
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
 
   const { data: userData, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
   /** mock data */
-  const [bitset, setBitset] = useState(42);
+  const [bitset, setBitset] = useState(0);
   const [currency, setCurrency] = useState("CAD");
   /** */
 
@@ -102,6 +104,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
       onChange: setOption,
     },
     states: {
+      locale,
       isPartner: !!userData?.user?.impactPartner,
       feeCap,
       disabled: false,

@@ -6,6 +6,7 @@ import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { BankingInfoFormView } from "./sqm-banking-info-form-view";
 import { useBankingInfoForm } from "./useBankingInfoForm";
+import { mockPaymentOptions } from "./mockData";
 
 /**
  * @uiName Banking Information Form
@@ -79,6 +80,15 @@ export class BankingInfoForm {
 
     const routingCodeLabels = {
       AU: "BSB Number",
+      CA: "Routing Number",
+      CZ: "Bank Code",
+      HK: "Clearing Code",
+      SG: "Clearing Code",
+      US: "ABA Routing Number",
+      NZ: "BSB Number",
+      ZA: "Bank/Branch Number",
+      IN: "IFSC",
+      CNY: "CNAPS",
     };
 
     const formMap = {
@@ -267,16 +277,7 @@ export class BankingInfoForm {
           <sl-menu-item value="GBP">GBP</sl-menu-item>
           <sl-menu-item value="AUD">AUD</sl-menu-item>
           <sl-menu-item value="CAD">CAD</sl-menu-item>
-          <sl-menu-item value="NZD">NZD</sl-menu-item>
-          <sl-menu-item value="HKD">HKD</sl-menu-item>
-          <sl-menu-item value="SGD">SGD</sl-menu-item>
-          <sl-menu-item value="SEK">SEK</sl-menu-item>
-          <sl-menu-item value="DKK">DKK</sl-menu-item>
-          <sl-menu-item value="NOK">NOK</sl-menu-item>
-          <sl-menu-item value="ILS">ILS</sl-menu-item>
-          <sl-menu-item value="MXN">MXN</sl-menu-item>
-          <sl-menu-item value="RUB">RUB</sl-menu-item>
-          <sl-menu-item value="PHP">PHP</sl-menu-item>
+          <sl-menu-item value="EUR">EUR</sl-menu-item>
           <sl-menu-item value="JPY">JPY</sl-menu-item>
         </sl-select>
         {/*  */}
@@ -298,12 +299,22 @@ export class BankingInfoForm {
               <label htmlFor="/bankCountry">
                 Bank Location Country
                 <sl-select name="/bankCountry" id="bankCountry">
-                  <sl-menu-item value="CA">Canada</sl-menu-item>
-                  <sl-menu-item value="US">United States</sl-menu-item>
-                  <sl-menu-item value="ES">Spain</sl-menu-item>
-                  <sl-menu-item value="IE">Ireland</sl-menu-item>
-                  <sl-menu-item value="GB">United Kingdom</sl-menu-item>
-                  <sl-menu-item value="JP">Japan</sl-menu-item>
+                  {mockPaymentOptions[props.demo.currency]?.map(
+                    (paymentOption) => {
+                      // @ts-ignore
+                      const countryDisplayName = new Intl.DisplayNames(
+                        [props.states.locale?.replaceAll("_", "-") || "en"],
+                        { type: "region" }
+                      ).of(paymentOption.country);
+
+                      console.log({ paymentOption, countryDisplayName });
+                      return (
+                        <sl-menu-item value={paymentOption?.country}>
+                          {countryDisplayName}
+                        </sl-menu-item>
+                      );
+                    }
+                  )}
                 </sl-select>
               </label>
             ),

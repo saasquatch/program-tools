@@ -91,9 +91,10 @@ export const useTaxDocumentSubmitted = (
       isBusinessEntity: true,
       province: provinceName,
       // @ts-ignore: DisplayNames does exist on Intl
-      country: new Intl.DisplayNames([locale], { type: "region" }).of([
-        data?.user?.customFields?.__taxCountry,
-      ]),
+      country: new Intl.DisplayNames([locale.replaceAll("_", "-")], {
+        type: "language",
+        // @ts-ignore: DisplayNames does exist on Intl
+      }).of([data?.user?.customFields?.__taxCountry]),
       notRegistered: data?.user?.impactPartner?.indirectTaxOption === "NO_TAX",
       noFormNeeded: !documentType,
       dateExpired,
