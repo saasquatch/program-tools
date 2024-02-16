@@ -130,8 +130,8 @@ export class BankingInfoForm {
         input: (
           <sl-input
             label={props.text.ibanLabel}
-            name="/beneficiaryAccountName"
-            id="beneficiaryAccountName"
+            name="/iban"
+            id="iban"
             type="text"
           ></sl-input>
         ),

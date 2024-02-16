@@ -96,7 +96,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
       // TODO: wire up mutation
       // await upsertBankDetails({bankDetails:formData})
 
-      // setStep("/3");
+      // setStep("/submitted");
     } catch (e) {
       setErrors({ general: true });
     } finally {
