@@ -8,6 +8,8 @@ import {
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import JSONPointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
+import { useLocale } from "@saasquatch/component-boilerplate";
+import { mockPaymentOptions } from "./mockData";
 
 export const paypalFeeMap = {
   USD: "USD20.00",
@@ -25,16 +27,36 @@ export const paypalFeeMap = {
   JPY: "JPY2000.00",
 };
 
+export function getFormInputs({ props, formMap }) {
+  const binary = (props.demo.bitset || props.states.bitset)
+    .toString(2)
+    .padStart(Object.keys(formMap).length, "0");
+
+  const binaryToParse = binary.split("").reverse().join("");
+
+  const inputFields = [...binaryToParse].reduce((agg, num, idx) => {
+    const number = Number(num);
+    const inputFound = formMap[idx];
+    if (!number || !inputFound) return agg;
+    return [...agg, inputFound];
+  }, []);
+
+  return inputFields;
+}
+
 export function useBankingInfoForm(props: BankingInfoForm) {
+  const locale = useLocale();
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
 
   const { data: userData, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
   /** mock data */
-  const [bitset, setBitset] = useState(42);
+  const [bitset, setBitset] = useState(0);
   const [currency, setCurrency] = useState("CAD");
   /** */
+
+  const [bankCountry, setBankCountry] = useState("");
 
   const formRef = useRef<HTMLFormElement>(null);
   const [option, setOption] = useState(null);
@@ -91,6 +113,13 @@ export function useBankingInfoForm(props: BankingInfoForm) {
 
   const feeCap = paypalFeeMap[currency] || "";
 
+  const currentPaymentOption = mockPaymentOptions[currency]?.find(
+    (paymentOption) => {
+      if (paymentOption.country === bankCountry) return true;
+      return false;
+    }
+  );
+
   return {
     step: step,
     setStep: setStep,
@@ -100,8 +129,11 @@ export function useBankingInfoForm(props: BankingInfoForm) {
     callbacks: {
       onSubmit,
       onChange: setOption,
+      setBankCountry,
     },
     states: {
+      locale,
+      intlLocale: locale?.replace("_", "-") || "en",
       isPartner: !!userData?.user?.impactPartner,
       feeCap,
       disabled: false,
@@ -111,6 +143,8 @@ export function useBankingInfoForm(props: BankingInfoForm) {
         checked: "toBankAccount" as "toBankAccount" | "toPaypalAccount",
         errors,
       },
+      bitset: currentPaymentOption?.withdrawalId || 0,
+      bankCountry,
     },
     refs: {
       formRef,

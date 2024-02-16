@@ -5,7 +5,8 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { BankingInfoFormView } from "./sqm-banking-info-form-view";
-import { useBankingInfoForm } from "./useBankingInfoForm";
+import { getFormInputs, useBankingInfoForm } from "./useBankingInfoForm";
+import { mockPaymentOptions } from "./mockData";
 
 /**
  * @uiName Banking Information Form
@@ -79,6 +80,15 @@ export class BankingInfoForm {
 
     const routingCodeLabels = {
       AU: "BSB Number",
+      CA: "Routing Number",
+      CZ: "Bank Code",
+      HK: "Clearing Code",
+      SG: "Clearing Code",
+      US: "ABA Routing Number",
+      NZ: "BSB Number",
+      ZA: "Bank/Branch Number",
+      IN: "IFSC",
+      CNY: "CNAPS",
     };
 
     const formMap = {
@@ -130,7 +140,9 @@ export class BankingInfoForm {
         ),
       },
       5: {
-        label: props.text.routingCodeLabel,
+        label:
+          routingCodeLabels[props.states.bankCountry] ||
+          props.text.routingCodeLabel,
         input: (
           <sl-input name="/routingCode" id="routingCode" type="text"></sl-input>
         ),
@@ -238,18 +250,7 @@ export class BankingInfoForm {
       },
     };
 
-    const binary = props.demo.bitset
-      .toString(2)
-      .padStart(Object.keys(formMap).length, "0");
-
-    const binaryToParse = binary.split("").reverse().join("");
-
-    const inputFields = [...binaryToParse].reduce((agg, num, idx) => {
-      const number = Number(num);
-      const inputFound = formMap[idx];
-      if (!number || !inputFound) return agg;
-      return [...agg, inputFound];
-    }, []);
+    const inputFields = getFormInputs({ props, formMap });
 
     return (
       <Host>
@@ -261,22 +262,16 @@ export class BankingInfoForm {
         <sl-select
           name="/currency"
           value={props.demo.currency}
-          onSl-select={(e) => props.demo.setCurrency(e.detail?.item?.value)}
+          onSl-select={(e) => {
+            props.demo.setCurrency(e.detail?.item?.value);
+            props.callbacks.setBankCountry("");
+          }}
         >
           <sl-menu-item value="USD">USD</sl-menu-item>
           <sl-menu-item value="GBP">GBP</sl-menu-item>
           <sl-menu-item value="AUD">AUD</sl-menu-item>
           <sl-menu-item value="CAD">CAD</sl-menu-item>
-          <sl-menu-item value="NZD">NZD</sl-menu-item>
-          <sl-menu-item value="HKD">HKD</sl-menu-item>
-          <sl-menu-item value="SGD">SGD</sl-menu-item>
-          <sl-menu-item value="SEK">SEK</sl-menu-item>
-          <sl-menu-item value="DKK">DKK</sl-menu-item>
-          <sl-menu-item value="NOK">NOK</sl-menu-item>
-          <sl-menu-item value="ILS">ILS</sl-menu-item>
-          <sl-menu-item value="MXN">MXN</sl-menu-item>
-          <sl-menu-item value="RUB">RUB</sl-menu-item>
-          <sl-menu-item value="PHP">PHP</sl-menu-item>
+          <sl-menu-item value="EUR">EUR</sl-menu-item>
           <sl-menu-item value="JPY">JPY</sl-menu-item>
         </sl-select>
         {/*  */}
@@ -297,13 +292,30 @@ export class BankingInfoForm {
             countryInputSlot: (
               <label htmlFor="/bankCountry">
                 Bank Location Country
-                <sl-select name="/bankCountry" id="bankCountry">
-                  <sl-menu-item value="CA">Canada</sl-menu-item>
-                  <sl-menu-item value="US">United States</sl-menu-item>
-                  <sl-menu-item value="ES">Spain</sl-menu-item>
-                  <sl-menu-item value="IE">Ireland</sl-menu-item>
-                  <sl-menu-item value="GB">United Kingdom</sl-menu-item>
-                  <sl-menu-item value="JP">Japan</sl-menu-item>
+                <sl-select
+                  name="/bankCountry"
+                  id="bankCountry"
+                  value={props.states.bankCountry}
+                  onSl-select={(e) =>
+                    props.callbacks.setBankCountry(e.detail?.item?.value)
+                  }
+                >
+                  {mockPaymentOptions[props.demo.currency]?.map(
+                    (paymentOption) => {
+                      // @ts-ignore
+                      const countryDisplayName = new Intl.DisplayNames(
+                        [props.states.intlLocale],
+                        { type: "region" }
+                      ).of(paymentOption.country);
+
+                      console.log({ paymentOption, countryDisplayName });
+                      return (
+                        <sl-menu-item value={paymentOption?.country}>
+                          {countryDisplayName}
+                        </sl-menu-item>
+                      );
+                    }
+                  )}
                 </sl-select>
               </label>
             ),
@@ -334,6 +346,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
             general: false,
           },
         },
+        intlLocale: "en",
       },
       demo: {
         bitset: 39,
