@@ -67,37 +67,160 @@ export namespace Components {
         "titleText": string;
     }
     interface SqmBankingInfoForm {
+        /**
+          * Label text for the agency code input field
+          * @uiName Agency code input label
+         */
         "agencyCodeLabel": string;
+        /**
+          * Label text for the bank account number input field
+          * @uiName Bank account number input label
+         */
         "bankAccountNumberLabel": string;
+        /**
+          * Label text for the bank account type input field
+          * @uiName Bank account type input label
+         */
         "bankAccountTypeLabel": string;
+        /**
+          * Label text for the bank name input field
+          * @uiName Bank name input label
+         */
         "bankNameLabel": string;
+        /**
+          * Label text for the beneficiary account name input field
+          * @uiName Beneficiary account name input label
+         */
         "beneficiaryAccountNameLabel": string;
+        /**
+          * Label text for the branch code input field
+          * @uiName Branch code input label
+         */
         "branchCodeLabel": string;
+        /**
+          * Label text for the business select item
+          * @uiName Business select item label
+         */
         "businessSelectItemLabel": string;
+        /**
+          * Label text for the classification CPF input field
+          * @uiName Classification CPF input label
+         */
         "classificationCPFLabel": string;
+        /**
+          * Label text for the classification entity input field
+          * @uiName Classification entity input label
+         */
         "classificationEntityLabel": string;
+        /**
+          * Label text for the classification input field
+          * @uiName Classification input label
+         */
         "classificationLabel": string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<any>;
+        /**
+          * Text for the option to receive payments directly to a bank account
+          * @uiName Directly to bank account option text
+         */
         "directlyToBankAccount": string;
+        /**
+          * Label text for the foreign select item
+          * @uiName Foreign select item label
+         */
         "foreignSelectItemLabel": string;
+        /**
+          * Subtext shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Form step text
+         */
         "formStep": string;
+        /**
+          * Description text for a general form submission error
+          * @uiName General form submission error description
+         */
+        "generalErrorDescription": string;
+        /**
+          * Title text for a general form submission error
+          * @uiName General form submission error title
+         */
+        "generalErrorTitle": string;
+        /**
+          * Label text for the IBAN input field
+          * @uiName IBAN input label
+         */
         "ibanLabel": string;
+        /**
+          * Label text for the individual select item
+          * @uiName Individual select item label
+         */
         "individualSelectItemLabel": string;
+        /**
+          * Description text for the alert when the user is identified as a partner
+          * @uiName Partner identification alert description
+         */
         "isPartnerAlertDescription": string;
+        /**
+          * Header text for the alert when the user is identified as a partner
+          * @uiName Partner identification alert header
+         */
         "isPartnerAlertHeader": string;
+        /**
+          * Label text for the patronymic name input field
+          * @uiName Patronymic name input label
+         */
         "patronymicNameLabel": string;
+        /**
+          * Label text for the PayPal email input field
+          * @uiName PayPal email input label
+         */
         "payPalInputLabel": string;
+        /**
+          * Heading text for the payment method section
+          * @uiName Payment method heading text
+         */
         "paymentMethod": string;
+        /**
+          * Subtext for the payment method section
+          * @uiName Payment method subtext
+         */
+        "paymentMethodSubtext": string;
+        /**
+          * Label text for the routing code input field
+          * @uiName Routing code input label
+         */
         "routingCodeLabel": string;
+        /**
+          * Text for the save button in the form
+          * @uiName Save button text
+         */
         "submitButton": string;
+        /**
+          * Label text for the SWIFT code input field
+          * @uiName SWIFT code input label
+         */
         "swiftCodeLabel": string;
+        /**
+          * Heading text shown at the top of the page
+          * @uiName Tax and Payouts heading text
+         */
         "taxAndPayouts": string;
+        /**
+          * Text shown at the top of the page next to the tax and payouts label text
+          * @uiName Tax and Payouts label text
+         */
         "taxAndPayoutsDescription": string;
+        /**
+          * Text for the option to receive payments to a PayPal account with processing fee details
+          * @uiName PayPal option text with processing fee placeholder
+         */
         "toPaypalAccount": string;
+        /**
+          * Label text for the VO code input field
+          * @uiName VO code input label
+         */
         "voCodeLabel": string;
     }
     interface SqmBigStat {
@@ -790,37 +913,149 @@ export namespace Components {
         "minHeight"?: string;
     }
     interface SqmIndirectTaxForm {
+        /**
+          * Text for the back button in the form
+          * @uiName Back button text
+         */
         "backButton": string;
         /**
           * @undocumented
          */
         "demoData"?: DemoData<UseIndirectTaxFormResult>;
+        /**
+          * Subtext shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Form step text
+         */
         "formStep": string;
+        /**
+          * Description text for a general form submission error
+          * @uiName General form submission error description
+         */
         "generalErrorDescription": string;
+        /**
+          * Title text for a general form submission error
+          * @uiName General form submission error title
+         */
         "generalErrorTitle": string;
+        /**
+          * Heading text shown at the top of the page
+          * @uiName Indirect tax heading text
+         */
         "indirectTax": string;
+        /**
+          * Text shown at the top of the page below to the indirect tax header
+          * @uiName Indirect tax label text
+         */
         "indirectTaxDescription": string;
+        /**
+          * Heading text for the indirect tax details section
+          * @uiName Indirect tax details heading text
+         */
         "indirectTaxDetails": string;
+        /**
+          * Text shown below the indirect tax details heading text
+          * @uiName Indirect tax details subtext
+         */
         "indirectTaxDetailsDescription": string;
+        /**
+          * Label text for the indirect tax number input with a dynamic placeholder based on tax type
+          * @uiName Indirect tax number input label
+         */
         "indirectTaxNumber": string;
+        /**
+          * Error message for the indirect tax number input field with a dynamic placeholder based on tax type
+          * @uiName Indirect tax number error message
+         */
         "indirectTaxNumberError": string;
+        /**
+          * Description text for the alert when the user is identified as a partner
+          * @uiName Partner identification alert description
+         */
         "isPartnerAlertDescription": string;
+        /**
+          * Header text for the alert when the user is identified as a partner
+          * @uiName Partner identification alert header
+         */
         "isPartnerAlertHeader": string;
+        /**
+          * Text for the option indicating registration for QST tax
+          * @uiName Registered for QST tax option text
+         */
         "isRegisteredQST": string;
+        /**
+          * Text for the option indicating registration for sub-region income tax
+          * @uiName Registered for sub-region income tax option text
+         */
         "isRegisteredSubRegionIncomeTax": string;
+        /**
+          * Text for the option indicating not being registered for indirect tax
+          * @uiName Not registered for indirect tax option text
+         */
         "notRegistered": string;
+        /**
+          * Text for the option indicating registration for indirect tax in a different region
+          * @uiName Registered for indirect tax in a different region option text
+         */
         "otherRegion": string;
+        /**
+          * Label text for the province input
+          * @uiName Province input label
+         */
         "province": string;
+        /**
+          * Error message for the province input field
+          * @uiName Province error message
+         */
         "provinceError": string;
+        /**
+          * Label text for the QST number input field
+          * @uiName QST number input label
+         */
         "qstNumber": string;
+        /**
+          * Error message for the QST tax number input field
+          * @uiName QST tax number error message
+         */
         "qstTaxNumberError": string;
+        /**
+          * Label text for the country/region select input
+          * @uiName Selected country/region label
+         */
         "selectedRegion": string;
+        /**
+          * Error message for the selected region input field
+          * @uiName Selected region error message
+         */
         "selectedRegionError": string;
+        /**
+          * Label text for the sub-region input field
+          * @uiName Sub-region input label
+         */
         "subRegion": string;
+        /**
+          * Error message for the sub-region input field
+          * @uiName Sub-region error message
+         */
         "subRegionError": string;
+        /**
+          * Error message for the sub-region tax number input field
+          * @uiName Sub-region tax number error message
+         */
         "subRegionTaxNumberError": string;
+        /**
+          * Label text for the sub-region tax number input field
+          * @uiName Sub-region tax number input label
+         */
         "subRegionTaxNumberLabel": string;
+        /**
+          * Text for the continue button in the form
+          * @uiName Continue button text
+         */
         "submitButton": string;
+        /**
+          * Error message for the tax details input field
+          * @uiName Tax details error message
+         */
         "taxDetailsError": string;
     }
     interface SqmInputField {
@@ -5044,37 +5279,160 @@ declare namespace LocalJSX {
         "titleText"?: string;
     }
     interface SqmBankingInfoForm {
+        /**
+          * Label text for the agency code input field
+          * @uiName Agency code input label
+         */
         "agencyCodeLabel"?: string;
+        /**
+          * Label text for the bank account number input field
+          * @uiName Bank account number input label
+         */
         "bankAccountNumberLabel"?: string;
+        /**
+          * Label text for the bank account type input field
+          * @uiName Bank account type input label
+         */
         "bankAccountTypeLabel"?: string;
+        /**
+          * Label text for the bank name input field
+          * @uiName Bank name input label
+         */
         "bankNameLabel"?: string;
+        /**
+          * Label text for the beneficiary account name input field
+          * @uiName Beneficiary account name input label
+         */
         "beneficiaryAccountNameLabel"?: string;
+        /**
+          * Label text for the branch code input field
+          * @uiName Branch code input label
+         */
         "branchCodeLabel"?: string;
+        /**
+          * Label text for the business select item
+          * @uiName Business select item label
+         */
         "businessSelectItemLabel"?: string;
+        /**
+          * Label text for the classification CPF input field
+          * @uiName Classification CPF input label
+         */
         "classificationCPFLabel"?: string;
+        /**
+          * Label text for the classification entity input field
+          * @uiName Classification entity input label
+         */
         "classificationEntityLabel"?: string;
+        /**
+          * Label text for the classification input field
+          * @uiName Classification input label
+         */
         "classificationLabel"?: string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<any>;
+        /**
+          * Text for the option to receive payments directly to a bank account
+          * @uiName Directly to bank account option text
+         */
         "directlyToBankAccount"?: string;
+        /**
+          * Label text for the foreign select item
+          * @uiName Foreign select item label
+         */
         "foreignSelectItemLabel"?: string;
+        /**
+          * Subtext shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Form step text
+         */
         "formStep"?: string;
+        /**
+          * Description text for a general form submission error
+          * @uiName General form submission error description
+         */
+        "generalErrorDescription"?: string;
+        /**
+          * Title text for a general form submission error
+          * @uiName General form submission error title
+         */
+        "generalErrorTitle"?: string;
+        /**
+          * Label text for the IBAN input field
+          * @uiName IBAN input label
+         */
         "ibanLabel"?: string;
+        /**
+          * Label text for the individual select item
+          * @uiName Individual select item label
+         */
         "individualSelectItemLabel"?: string;
+        /**
+          * Description text for the alert when the user is identified as a partner
+          * @uiName Partner identification alert description
+         */
         "isPartnerAlertDescription"?: string;
+        /**
+          * Header text for the alert when the user is identified as a partner
+          * @uiName Partner identification alert header
+         */
         "isPartnerAlertHeader"?: string;
+        /**
+          * Label text for the patronymic name input field
+          * @uiName Patronymic name input label
+         */
         "patronymicNameLabel"?: string;
+        /**
+          * Label text for the PayPal email input field
+          * @uiName PayPal email input label
+         */
         "payPalInputLabel"?: string;
+        /**
+          * Heading text for the payment method section
+          * @uiName Payment method heading text
+         */
         "paymentMethod"?: string;
+        /**
+          * Subtext for the payment method section
+          * @uiName Payment method subtext
+         */
+        "paymentMethodSubtext"?: string;
+        /**
+          * Label text for the routing code input field
+          * @uiName Routing code input label
+         */
         "routingCodeLabel"?: string;
+        /**
+          * Text for the save button in the form
+          * @uiName Save button text
+         */
         "submitButton"?: string;
+        /**
+          * Label text for the SWIFT code input field
+          * @uiName SWIFT code input label
+         */
         "swiftCodeLabel"?: string;
+        /**
+          * Heading text shown at the top of the page
+          * @uiName Tax and Payouts heading text
+         */
         "taxAndPayouts"?: string;
+        /**
+          * Text shown at the top of the page next to the tax and payouts label text
+          * @uiName Tax and Payouts label text
+         */
         "taxAndPayoutsDescription"?: string;
+        /**
+          * Text for the option to receive payments to a PayPal account with processing fee details
+          * @uiName PayPal option text with processing fee placeholder
+         */
         "toPaypalAccount"?: string;
+        /**
+          * Label text for the VO code input field
+          * @uiName VO code input label
+         */
         "voCodeLabel"?: string;
     }
     interface SqmBigStat {
@@ -5768,37 +6126,149 @@ declare namespace LocalJSX {
         "minHeight"?: string;
     }
     interface SqmIndirectTaxForm {
+        /**
+          * Text for the back button in the form
+          * @uiName Back button text
+         */
         "backButton"?: string;
         /**
           * @undocumented
          */
         "demoData"?: DemoData<UseIndirectTaxFormResult>;
+        /**
+          * Subtext shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Form step text
+         */
         "formStep"?: string;
+        /**
+          * Description text for a general form submission error
+          * @uiName General form submission error description
+         */
         "generalErrorDescription"?: string;
+        /**
+          * Title text for a general form submission error
+          * @uiName General form submission error title
+         */
         "generalErrorTitle"?: string;
+        /**
+          * Heading text shown at the top of the page
+          * @uiName Indirect tax heading text
+         */
         "indirectTax"?: string;
+        /**
+          * Text shown at the top of the page below to the indirect tax header
+          * @uiName Indirect tax label text
+         */
         "indirectTaxDescription"?: string;
+        /**
+          * Heading text for the indirect tax details section
+          * @uiName Indirect tax details heading text
+         */
         "indirectTaxDetails"?: string;
+        /**
+          * Text shown below the indirect tax details heading text
+          * @uiName Indirect tax details subtext
+         */
         "indirectTaxDetailsDescription"?: string;
+        /**
+          * Label text for the indirect tax number input with a dynamic placeholder based on tax type
+          * @uiName Indirect tax number input label
+         */
         "indirectTaxNumber"?: string;
+        /**
+          * Error message for the indirect tax number input field with a dynamic placeholder based on tax type
+          * @uiName Indirect tax number error message
+         */
         "indirectTaxNumberError"?: string;
+        /**
+          * Description text for the alert when the user is identified as a partner
+          * @uiName Partner identification alert description
+         */
         "isPartnerAlertDescription"?: string;
+        /**
+          * Header text for the alert when the user is identified as a partner
+          * @uiName Partner identification alert header
+         */
         "isPartnerAlertHeader"?: string;
+        /**
+          * Text for the option indicating registration for QST tax
+          * @uiName Registered for QST tax option text
+         */
         "isRegisteredQST"?: string;
+        /**
+          * Text for the option indicating registration for sub-region income tax
+          * @uiName Registered for sub-region income tax option text
+         */
         "isRegisteredSubRegionIncomeTax"?: string;
+        /**
+          * Text for the option indicating not being registered for indirect tax
+          * @uiName Not registered for indirect tax option text
+         */
         "notRegistered"?: string;
+        /**
+          * Text for the option indicating registration for indirect tax in a different region
+          * @uiName Registered for indirect tax in a different region option text
+         */
         "otherRegion"?: string;
+        /**
+          * Label text for the province input
+          * @uiName Province input label
+         */
         "province"?: string;
+        /**
+          * Error message for the province input field
+          * @uiName Province error message
+         */
         "provinceError"?: string;
+        /**
+          * Label text for the QST number input field
+          * @uiName QST number input label
+         */
         "qstNumber"?: string;
+        /**
+          * Error message for the QST tax number input field
+          * @uiName QST tax number error message
+         */
         "qstTaxNumberError"?: string;
+        /**
+          * Label text for the country/region select input
+          * @uiName Selected country/region label
+         */
         "selectedRegion"?: string;
+        /**
+          * Error message for the selected region input field
+          * @uiName Selected region error message
+         */
         "selectedRegionError"?: string;
+        /**
+          * Label text for the sub-region input field
+          * @uiName Sub-region input label
+         */
         "subRegion"?: string;
+        /**
+          * Error message for the sub-region input field
+          * @uiName Sub-region error message
+         */
         "subRegionError"?: string;
+        /**
+          * Error message for the sub-region tax number input field
+          * @uiName Sub-region tax number error message
+         */
         "subRegionTaxNumberError"?: string;
+        /**
+          * Label text for the sub-region tax number input field
+          * @uiName Sub-region tax number input label
+         */
         "subRegionTaxNumberLabel"?: string;
+        /**
+          * Text for the continue button in the form
+          * @uiName Continue button text
+         */
         "submitButton"?: string;
+        /**
+          * Error message for the tax details input field
+          * @uiName Tax details error message
+         */
         "taxDetailsError"?: string;
     }
     interface SqmInputField {

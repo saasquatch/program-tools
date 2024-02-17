@@ -7,6 +7,7 @@ import { vatLabels } from "../../countries";
 
 export interface IndirectDetailsSlotViewProps {
   states: {
+    disabled: boolean;
     loading: boolean;
     hide: boolean;
     formState: {
@@ -16,7 +17,6 @@ export interface IndirectDetailsSlotViewProps {
       qstNumber?: string;
       province?: string;
       indirectTaxNumber?: number;
-      // AL: for handling income tax Spain
       hasQst?: boolean;
       hasSubRegionTaxNumber?: boolean;
       errors?: any;
@@ -169,7 +169,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         exportparts="label: input-label"
         class={classes.Input}
         label={label}
-        disabled={states.loading}
+        disabled={states.loading || states.disabled}
         value={formState[name]}
         {...(formState.errors?.[name] && {
           class: classes.ErrorInput,
@@ -190,7 +190,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           class={classes.Input}
           value={formState.subRegion}
           label={"Sub Region"}
-          disabled={states.loading}
+          disabled={states.loading || states.disabled}
           {...(formState.errors?.indirectTaxNumber && {
             class: classes.ErrorInput,
             helpText: text.error.subRegion,
@@ -212,6 +212,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           exportparts="label: input-label"
           checked={formState.hasSubRegionTaxNumber}
           onSl-change={callbacks.onSpainToggle}
+          disabled={states.disabled}
         >
           {text.isRegisteredSubRegionIncomeTax}
         </sl-checkbox>
@@ -221,7 +222,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             exportparts="label: input-label"
             class={classes.Input}
             label={text.subRegionTaxNumberLabel}
-            disabled={states.loading}
+            disabled={states.loading || states.disabled}
             value={formState.subRegionTaxNumber}
             {...(formState.errors?.subRegionTaxNumberError && {
               class: classes.ErrorInput,
@@ -250,7 +251,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           exportparts="label: input-label"
           class={classes.Input}
           label={text.province}
-          disabled={states.loading}
+          disabled={states.loading || states.disabled}
           onSl-select={(e) => callbacks.onFormChange("province", e)}
           {...(formState.errors?.province && {
             class: classes.ErrorInput,
@@ -315,7 +316,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             class={classes.Input}
             value={formState.indirectTaxNumber}
             label={getTaxFieldLabel(vatLabels[selectedRegion] || "GENERAL")}
-            disabled={states.loading}
+            disabled={states.loading || states.disabled}
             {...(formState.errors?.indirectTaxNumber && {
               class: classes.ErrorInput,
               helpText: getTaxFieldError(
@@ -346,7 +347,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             value={formState.selectedRegion}
             exportparts="label: input-label"
             label={text.selectedRegion}
-            disabled={states.loading}
+            disabled={states.loading || states.disabled}
             onSl-select={(e) => callbacks.onFormChange("selectedRegion", e)}
             {...(formState.errors?.selectedRegion && {
               class: classes.ErrorInput,

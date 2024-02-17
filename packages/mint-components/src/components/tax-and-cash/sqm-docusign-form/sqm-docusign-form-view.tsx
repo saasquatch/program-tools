@@ -13,7 +13,10 @@ export interface DocusignFormViewProps {
       completedTaxForm: boolean;
       taxFormExpired: boolean;
       participantType: "individualParticipant" | "businessEntity" | undefined;
-      errors?: any;
+      errors?: {
+        participantType?: boolean;
+        general?: boolean;
+      };
     };
     documentType: TaxDocumentType;
     hideBackButton: boolean;
@@ -248,39 +251,39 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
       )}
       {/* @ts-ignore */}
       {(states.documentType === "W9" || (states.documentType !== "W9" && formState.participantType)) && (
+        <div>
           <div>
-            <div>
-              <h5 class={classes.BoldText}>
-                {intl.formatMessage(
-                  { id: "tax-form-label", defaultMessage: text.taxFormLabel },
-                  { documentType }
-                )}
-              </h5>
-              <p>
-                {intl.formatMessage(
-                  {
-                    id: "tax-form-description",
-                    defaultMessage: text.taxFormDescription,
-                  },
-                  { documentType }
-                )}
-              </p>
-            </div>
-
-            <div>
-              <sl-alert
-                exportparts="base: alert-base, icon:alert-icon"
-                type="primary"
-                open
-                class={classes.InfoAlert}
-              >
-                <sl-icon slot="icon" name="info-circle"></sl-icon>
-                {text.banner}
-              </sl-alert>
-              {slots.docusignIframeSlot}
-            </div>
+            <h5 class={classes.BoldText}>
+              {intl.formatMessage(
+                { id: "tax-form-label", defaultMessage: text.taxFormLabel },
+                { documentType }
+              )}
+            </h5>
+            <p>
+              {intl.formatMessage(
+                {
+                  id: "tax-form-description",
+                  defaultMessage: text.taxFormDescription,
+                },
+                { documentType }
+              )}
+            </p>
           </div>
-        )}
+
+          <div>
+            <sl-alert
+              exportparts="base: alert-base, icon:alert-icon"
+              type="primary"
+              open
+              class={classes.InfoAlert}
+            >
+              <sl-icon slot="icon" name="info-circle"></sl-icon>
+              {text.banner}
+            </sl-alert>
+            {slots.docusignIframeSlot}
+          </div>
+        </div>
+      )}
       {!states.hideBackButton && (
         <div class={classes.BtnContainer}>
           <sl-button
