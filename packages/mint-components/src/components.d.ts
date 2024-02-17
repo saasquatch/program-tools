@@ -402,6 +402,11 @@ export namespace Components {
          */
         "banner": string;
         /**
+          * Label text for the business entity radio button
+          * @uiName Business entity radio button label
+         */
+        "businessEntity": string;
+        /**
           * Label text for the form submission checkbox
           * @uiName Form submission checkbox label
          */
@@ -452,10 +457,20 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
+          * Label text for the individual participant radio button
+          * @uiName Individual participant radio button label
+         */
+        "individualParticipant": string;
+        /**
           * Text shown in the link to the form for non US residents
           * @uiName Not based in US link text
          */
         "notBasedInUS": string;
+        /**
+          * Heading text for the participant type radio buttons
+          * @uiName Participant type radio buttons heading
+         */
+        "participantType": string;
         /**
           * Text shown inside of refresh button
           * @uiName Refresh button text
@@ -3607,6 +3622,12 @@ export namespace Components {
          */
         "step3_banner": string;
         /**
+          * Label text for the business entity radio button
+          * @uiName Business entity radio button label
+          * @uiGroup Step 3 Properties
+         */
+        "step3_businessEntity": string;
+        /**
           * Label text for the form submission checkbox
           * @uiName Form submission checkbox label
           * @uiGroup Step 3 Properties
@@ -3660,6 +3681,18 @@ export namespace Components {
           * @uiGroup Step 3 Properties
          */
         "step3_generalErrorTitle": string;
+        /**
+          * Label text for the individual participant radio button
+          * @uiName Individual participant radio button label
+          * @uiGroup Step 3 Properties
+         */
+        "step3_individualParticipant": string;
+        /**
+          * Heading text for the participant type radio buttons
+          * @uiName Participant type radio buttons heading
+          * @uiGroup Step 3 Properties
+         */
+        "step3_participantType": string;
         /**
           * Text shown inside of refresh button
           * @uiName Refresh button text
@@ -5347,6 +5380,11 @@ declare namespace LocalJSX {
          */
         "banner"?: string;
         /**
+          * Label text for the business entity radio button
+          * @uiName Business entity radio button label
+         */
+        "businessEntity"?: string;
+        /**
           * Label text for the form submission checkbox
           * @uiName Form submission checkbox label
          */
@@ -5397,10 +5435,20 @@ declare namespace LocalJSX {
          */
         "generalErrorTitle"?: string;
         /**
+          * Label text for the individual participant radio button
+          * @uiName Individual participant radio button label
+         */
+        "individualParticipant"?: string;
+        /**
           * Text shown in the link to the form for non US residents
           * @uiName Not based in US link text
          */
         "notBasedInUS"?: string;
+        /**
+          * Heading text for the participant type radio buttons
+          * @uiName Participant type radio buttons heading
+         */
+        "participantType"?: string;
         /**
           * Text shown inside of refresh button
           * @uiName Refresh button text
@@ -8528,6 +8576,12 @@ declare namespace LocalJSX {
          */
         "step3_banner"?: string;
         /**
+          * Label text for the business entity radio button
+          * @uiName Business entity radio button label
+          * @uiGroup Step 3 Properties
+         */
+        "step3_businessEntity"?: string;
+        /**
           * Label text for the form submission checkbox
           * @uiName Form submission checkbox label
           * @uiGroup Step 3 Properties
@@ -8581,6 +8635,18 @@ declare namespace LocalJSX {
           * @uiGroup Step 3 Properties
          */
         "step3_generalErrorTitle"?: string;
+        /**
+          * Label text for the individual participant radio button
+          * @uiName Individual participant radio button label
+          * @uiGroup Step 3 Properties
+         */
+        "step3_individualParticipant"?: string;
+        /**
+          * Heading text for the participant type radio buttons
+          * @uiName Participant type radio buttons heading
+          * @uiGroup Step 3 Properties
+         */
+        "step3_participantType"?: string;
         /**
           * Text shown inside of refresh button
           * @uiName Refresh button text

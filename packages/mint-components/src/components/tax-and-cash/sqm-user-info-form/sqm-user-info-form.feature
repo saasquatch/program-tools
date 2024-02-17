@@ -118,15 +118,13 @@ Feature: Tax Form Step One
       | Last Name                  | <lastName>               |
       | Country Code               | <countryCode>            |
       | Currency                   | <currency>               |
-      | Participant Type           | <participantType>        |
       | Tax and Banking Collection | <allowBankingCollection> |
     Then the form displays the respective errors for each field:
-      | <firstName>              | Enter a first name        |
-      | <lastName>               | Enter a last name         |
-      | <countryCode>            | Select a country          |
-      | <currency>               | Select a currency         |
-      | <participantType>        | Select a participant type |
-      | <allowBankingCollection> | This field is required    |
+      | <firstName>              | Enter a first name     |
+      | <lastName>               | Enter a last name      |
+      | <countryCode>            | Select a country       |
+      | <currency>               | Select a currency      |
+      | <allowBankingCollection> | This field is required |
 
   @minutia @ui
   Scenario: The loading state is shown when the form is submitted

@@ -92,6 +92,21 @@ export class DocusignForm {
   @Prop() docusignCompleted: string =
     "Your document has been completed and submitted.";
   /**
+   * Heading text for the participant type radio buttons
+   * @uiName Participant type radio buttons heading
+   */
+  @Prop() participantType: string = "Participant type";
+  /**
+   * Label text for the business entity radio button
+   * @uiName Business entity radio button label
+   */
+  @Prop() businessEntity: string = "I represent a business entity";
+  /**
+   * Label text for the individual participant radio button
+   * @uiName Individual participant radio button label
+   */
+  @Prop() individualParticipant: string = "I am an individual participant";
+  /**
    * Text inside iframe when Docusign form throws error
    * @uiName Docusign error text
    */
@@ -153,6 +168,7 @@ export class DocusignForm {
         generalTitle: props.generalErrorTitle,
         generalDescription: props.generalErrorDescription,
         formSubmission: props.formSubmissionError,
+        participantType: props.participantType,
       },
     };
   }

@@ -18,6 +18,9 @@ Feature: Docusign Form
     Then the URL is not set on the Docusign iframe
     And the iframe fails to load
 
+  @TODO @minutia
+  Scenario: Participant chooses individualParticipant or Businessentity to generate correct form if not based in the uS
+
   @minutia @ui
   Scenario Outline: Text copies change based on tax form participant fills out
     When they are required to fill out <typeTaxForm>

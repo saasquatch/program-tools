@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 import { StoryDemoData } from "../../global/demo";
 import { UseDocumentTypeFormResult } from "./sqm-document-type-form/useDocumentTypeForm";
-import { UseDocusignFormResult } from "./sqm-docusign-form/useDocusignForm";
+import { ParticipantType, UseDocusignFormResult } from "./sqm-docusign-form/useDocusignForm";
 import { UseIndirectTaxFormResult } from "./sqm-indirect-tax-form/useIndirectTaxForm";
 import {
   INDIRECT_TAX_PROVINCES,
@@ -144,6 +144,7 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
     disabled: false,
     submitDisabled: false,
     formState: {
+      participantType: "individualParticipant" as ParticipantType,
       errors: {},
       completedTaxForm: true,
       taxFormExpired: false,
@@ -591,6 +592,7 @@ export const StepThreeWithDocusignExpired = () => {
           ...docusignFormProps.states,
           docusignStatus: "ttl_expired",
           formState: {
+            participantType: "individualParticipant" as ParticipantType,
             taxFormExpired: true,
             completedTaxForm: false,
             errors: {},
@@ -609,6 +611,7 @@ export const StepThreeWithDocusignCompleted = () => {
           ...docusignFormProps.states,
           docusignStatus: "signing_complete",
           formState: {
+            participantType:  "individualParticipant" as ParticipantType,
             taxFormExpired: false,
             completedTaxForm: true,
             errors: {},

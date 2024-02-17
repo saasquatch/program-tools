@@ -98,7 +98,9 @@ const style = {
     gap: "24px",
     paddingBottom: "36px",
   },
-
+  SearchInput: {
+    padding: "var(--sl-spacing-x-small)",
+  },
   BtnContainer: {
     paddingTop: "36px",
     display: "flex",
@@ -313,6 +315,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               required
             >
               <sl-input
+                class={classes.SearchInput}
                 placeholder="Search for country.."
                 onInput={(e) => {
                   setSearchTerm(e.target.value);
@@ -351,6 +354,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               required
             >
               <sl-input
+                class={classes.SearchInput}
                 placeholder="Search for currency.."
                 onInput={(e) => setSearchCurrency(e.target.value)}
                 onKeyDown={(e) => {
@@ -371,7 +375,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               ))}
             </sl-select>
 
-            <div class={classes.CheckboxWrapper}>
+            {/* <div class={classes.CheckboxWrapper}>
               <p class={classes.BoldText}>{text.participantType}</p>
 
               <div style={{ display: "flex", flexDirection: "column" }}>
@@ -400,7 +404,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               {formState.errors?.participantType && (
                 <p class={classes.ErrorText}>{text.error.participantType}</p>
               )}
-            </div>
+            </div> */}
             <div class={classes.CheckboxWrapper}>
               <p class={classes.BoldText}> {text.taxAndBankingCollection}</p>
               <sl-checkbox
