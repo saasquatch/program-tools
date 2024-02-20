@@ -229,6 +229,9 @@ export class BankingInfoForm {
     };
   }
 
+  // This will come from form state eventually
+  errors = {};
+
   render() {
     const props = isDemo()
       ? useDemoBankingInfoForm(this)
@@ -424,6 +427,7 @@ export class BankingInfoForm {
         ),
       },
       14: {
+        error: false,
         input: (
           <sl-select
             label={props.text.classificationLabel}
