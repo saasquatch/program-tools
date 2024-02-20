@@ -233,8 +233,14 @@ export class BankingInfoForm {
     };
   }
 
-  // This will come from form state eventually
-  errors = {};
+  // need to make this translatable
+  getValidationErrorMessage(inputLabel: string) {
+    return `${inputLabel} is required`;
+  }
+
+  errors = {
+    beneficiaryAccountName: true,
+  };
 
   render() {
     const props = isDemo()
@@ -265,6 +271,12 @@ export class BankingInfoForm {
             name="/beneficiaryAccountName"
             id="beneficiaryAccountName"
             type="text"
+            {...(this.errors?.beneficiaryAccountName && {
+              class: "error-input",
+              helpText: this.getValidationErrorMessage(
+                this.beneficiaryAccountNameLabel
+              ),
+            })}
           ></sl-input>
         ),
       },
@@ -449,7 +461,6 @@ export class BankingInfoForm {
         ),
       },
       14: {
-        error: false,
         input: (
           <sl-select
             required

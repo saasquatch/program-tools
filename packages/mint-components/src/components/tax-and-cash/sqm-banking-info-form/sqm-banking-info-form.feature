@@ -18,7 +18,9 @@ Feature: Banking Information Form
         And there will be banner to explain that the account is linked to their referral profile in impact.com
 
     Scenario: Bank account form fields are dynamically shown
+    Scenario: Bank country dropdown list is dynamic depending on a partners country code
     Scenario: PayPal option is dynamically shown
+
     Scenario: Error state is shown if the participant tries to submit the form before all the fields have been filled
         Given the participant has selected a payment method
         And they have not filled out all of the required fields 
