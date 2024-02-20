@@ -126,6 +126,12 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     setFormState((p) => ({ ...p, [field]: value }));
   };
 
+  const getImpactCountryCode = (countryCode: string) => {
+    return _countries?.impactPartnerCountries?.data?.find(
+      (c) => c.countryCode === countryCode
+    )?.impactCountryCode;
+  };
+
   const onSubmit = async (event: any) => {
     if (!option) {
       setErrors({ taxDetails: true });
@@ -160,7 +166,8 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       const taxOption =
         option === "notRegistered"
           ? "NO_TAX"
-          : formData.selectedRegion === userForm?.countryCode
+          : formData.selectedRegion ===
+            getImpactCountryCode(userForm?.countryCode)
           ? "SAME_COUNTRY"
           : "DIFFERENT_COUNTRY";
 
@@ -171,7 +178,9 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
         indirectTaxId: formData.indirectTaxNumber,
         additionalTaxId: formData.qstNumber,
         withholdingTaxCountry:
-          option !== "notRegistered" && formState.hasSubRegionTaxNumber
+          option !== "notRegistered" &&
+          formState.selectedRegion === "SPAIN" &&
+          formState.hasSubRegionTaxNumber
             ? "SPAIN"
             : undefined,
         withholdingTaxNumber: formData.subRegionTaxNumber,
@@ -217,7 +226,8 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       hideSteps: context.hideSteps,
       disabled: loading || countriesLoading || connectLoading,
       loading: loading || connectLoading || countriesLoading,
-      isPartner: !!userData?.user?.impactPartner,
+      isPartner: false,
+      // isPartner: !!userData?.user?.impactPartner,
       formState: {
         checked: option,
         errors,
