@@ -30,13 +30,11 @@
 ### Used by
 
  - [sqm-stencilbook](../../sqm-stencilbook)
- - [sqm-tax-and-cash](../sqm-tax-and-cash)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-stencilbook --> sqm-document-type-form
-  sqm-tax-and-cash --> sqm-document-type-form
   style sqm-document-type-form fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
