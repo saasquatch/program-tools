@@ -673,7 +673,7 @@ export class BankingInfoForm {
 function useDemoBankingInfoForm(props: BankingInfoForm) {
   const defaultChecked = props.demoData?.states?.formState?.checked;
   const defaultCurrency = props.demoData?.demo?.currency;
-  const defaultCountry = props.demoData.states?.bankCountry;
+  const defaultCountry = props.demoData?.states?.bankCountry;
 
   const [checked, setChecked] = useState<
     "toBankAccount" | "toPaypalAccount" | undefined
