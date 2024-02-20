@@ -84,7 +84,8 @@ export const useTaxDocumentSubmitted = (
       dateSubmitted,
       documentType,
       status: data?.user?.impactPartner?.currentTaxDocument?.status,
-
+      // AL TODO: indirectTaxType
+      indirectTaxType: data?.user.customFields?.__indirectTaxType,
       indirectTaxNumber: data?.user?.customFields?.__indirectTaxNumber,
       isBusinessEntity:
         data?.user?.impactPartner?.requiredTaxDocumentType === "W8BENE",

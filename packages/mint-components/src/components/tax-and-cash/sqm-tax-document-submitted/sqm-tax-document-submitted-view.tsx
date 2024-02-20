@@ -15,6 +15,8 @@ export interface TaxDocumentSubmittedProps {
     dateSubmitted?: string;
     expiresSoon?: boolean;
     noFormNeeded?: boolean;
+    // AL: TODO add indirectTaxType props
+    indirectTaxType?: string;
     indirectTaxNumber?: number;
     province?: string;
     country?: string;
@@ -46,6 +48,7 @@ export interface TaxDocumentSubmittedProps {
     indirectTaxInfoOtherCountry?: string;
     indirectTaxIndividualParticipant?: string;
     indirectTaxTooltipSupport?: string;
+    indirectTaxDetails?: string;
     taxDocumentSectionHeader: string;
     taxDocumentSectionSubHeader: string;
     newFormButton: string;
@@ -337,7 +340,18 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                           }
                         )}
                   </span>
-                  <span>{states.indirectTaxNumber}</span>
+                  <span>
+                    {intl.formatMessage(
+                      {
+                        id: `indirectTaxDetails`,
+                        defaultMessage: text.indirectTaxDetails,
+                      },
+                      {
+                        indirectTaxType: states.indirectTaxType,
+                        indirectTaxNumber: states.indirectTaxNumber,
+                      }
+                    )}
+                  </span>
                 </div>
               ) : (
                 <div class={sheet.classes.IndirectTaxPreviewDetails}>

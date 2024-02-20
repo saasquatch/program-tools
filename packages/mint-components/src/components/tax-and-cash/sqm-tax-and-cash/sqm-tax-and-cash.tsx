@@ -710,6 +710,47 @@ export class TaxAndCashMonolith {
   @Prop() step4_noFormNeededSubtext: string =
     "Tax documents are only required if you are based in the US. If your country of residence has changed, please contact Support.";
   /**
+   * Header text displayed above the indirect tax preview section
+   *
+   * @uiName Indirect Tax Information Header
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_indirectTaxInfoSectionHeader: string = "Indirect Tax";
+  /**
+   * Country/Region description text of indirect tax
+   *
+   * @uiName Indirect tax Canada description
+   */
+  @Prop() step4_indirectTaxInfoCanada: string =
+    "Registered in {province}, {country}";
+  /**
+   * Other country description text of indirect tax
+   *
+   * @uiName Indirect tax other country description
+   */
+  @Prop() step4_indirectTaxInfoOtherCountry: string = "Registered in {country}";
+  /**
+   * Indirect tax description text for individual participants
+   *
+   * @uiName Indirect tax individual participant description
+   */
+  @Prop() step4_indirectTaxIndividualParticipant: string =
+    "Not registered. Only applicable to participants representing business entities in countries that enforce indirect tax.";
+  /**
+   * Indirect tax tooltip text for support
+   *
+   * @uiName Indirect tax tooltip description
+   */
+  @Prop() step4_indirectTaxTooltipSupport: string =
+    "To make changes to your indirect tax information, please contact Support.";
+  /**
+   * Indirect tax number/type details
+   *
+   * @uiName  Indirect tax details
+   */
+  @Prop() step4_indirectTaxDetails: string =
+    "{indirectTaxType} number: {indirectTaxNumber}";
+  /**
    * Text displayed in the submit new document button at the bottom of the page
    *
    * @uiName Step 4 No form needed subtext

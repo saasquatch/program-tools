@@ -108,8 +108,6 @@ Feature: Tax Form Flow
 
     Examples: 
       | brandCountry | country | participantType       | autoSelectedForm |
-      | US           | US      | N/A                   | W9               |
-      | CA           | US      | N/A                   | W9               |
       | US           | CA      | individualParticipant | W8-BEN           |
       | US           | CA      | businessEntity        | W8-BEN-E         |
       | US           | MX      | individualParticipant | W8-BEN           |

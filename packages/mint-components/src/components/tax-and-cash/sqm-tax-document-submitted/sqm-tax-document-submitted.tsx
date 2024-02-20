@@ -131,6 +131,13 @@ export class TaxDocumentSubmitted {
   @Prop() indirectTaxTooltipSupport: string =
     "To make changes to your indirect tax information, please contact Support.";
   /**
+   * Indirect tax number/type details
+   *
+   * @uiName Indirect tax details
+   */
+  @Prop() indirectTaxDetails: string =
+    "{indirectTaxType} number: {indirectTaxNumber}";
+  /**
    * Header text displayed above the tax documents status
    *
    * @uiName Tax document section header

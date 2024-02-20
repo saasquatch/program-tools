@@ -4073,6 +4073,37 @@ export namespace Components {
          */
         "step4_generalErrorTitle": string;
         /**
+          * Indirect tax number/type details
+          * @uiName Indirect tax details
+         */
+        "step4_indirectTaxDetails": string;
+        /**
+          * Indirect tax description text for individual participants
+          * @uiName Indirect tax individual participant description
+         */
+        "step4_indirectTaxIndividualParticipant": string;
+        /**
+          * Country/Region description text of indirect tax
+          * @uiName Indirect tax Canada description
+         */
+        "step4_indirectTaxInfoCanada": string;
+        /**
+          * Other country description text of indirect tax
+          * @uiName Indirect tax other country description
+         */
+        "step4_indirectTaxInfoOtherCountry": string;
+        /**
+          * Header text displayed above the indirect tax preview section
+          * @uiName Indirect Tax Information Header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_indirectTaxInfoSectionHeader": string;
+        /**
+          * Indirect tax tooltip text for support
+          * @uiName Indirect tax tooltip description
+         */
+        "step4_indirectTaxTooltipSupport": string;
+        /**
           * Description text displayed next to the badge in the tax documents status
           * @uiName Invalid form description text
           * @uiGroup Step 4 Properties
@@ -4198,6 +4229,11 @@ export namespace Components {
           * @uiName General error title
          */
         "generalErrorTitle": string;
+        /**
+          * Indirect tax number/type details
+          * @uiName Indirect tax details
+         */
+        "indirectTaxDetails": string;
         /**
           * Indirect tax description text for individual participants
           * @uiName Indirect tax individual participant description
@@ -9229,6 +9265,37 @@ declare namespace LocalJSX {
          */
         "step4_generalErrorTitle"?: string;
         /**
+          * Indirect tax number/type details
+          * @uiName Indirect tax details
+         */
+        "step4_indirectTaxDetails"?: string;
+        /**
+          * Indirect tax description text for individual participants
+          * @uiName Indirect tax individual participant description
+         */
+        "step4_indirectTaxIndividualParticipant"?: string;
+        /**
+          * Country/Region description text of indirect tax
+          * @uiName Indirect tax Canada description
+         */
+        "step4_indirectTaxInfoCanada"?: string;
+        /**
+          * Other country description text of indirect tax
+          * @uiName Indirect tax other country description
+         */
+        "step4_indirectTaxInfoOtherCountry"?: string;
+        /**
+          * Header text displayed above the indirect tax preview section
+          * @uiName Indirect Tax Information Header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_indirectTaxInfoSectionHeader"?: string;
+        /**
+          * Indirect tax tooltip text for support
+          * @uiName Indirect tax tooltip description
+         */
+        "step4_indirectTaxTooltipSupport"?: string;
+        /**
           * Description text displayed next to the badge in the tax documents status
           * @uiName Invalid form description text
           * @uiGroup Step 4 Properties
@@ -9354,6 +9421,11 @@ declare namespace LocalJSX {
           * @uiName General error title
          */
         "generalErrorTitle"?: string;
+        /**
+          * Indirect tax number/type details
+          * @uiName Indirect tax details
+         */
+        "indirectTaxDetails"?: string;
         /**
           * Indirect tax description text for individual participants
           * @uiName Indirect tax individual participant description
