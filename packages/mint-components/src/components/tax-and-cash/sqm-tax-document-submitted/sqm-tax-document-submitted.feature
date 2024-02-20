@@ -52,16 +52,16 @@ Feature: Tax Document Submitted View
   Scenario Outline: Indirect Tax section shows details if participant is registered for indirect tax
     Given they are <entityType>
     And if the participant <isRegistered> for indirect tax in their <country>
-    Then the Indirect Tax section will display <registeredDetails> and <indirectTaxNumber>
+    Then the Indirect Tax section will display <registeredDetails>, <indirectTaxType>, and <indirectTaxNumber>
 
     Examples: 
-      | entityType            | isRegistered | country        | details                                                                                                                 | indirectTaxNumber |
-      | businessEntity        | true         | Australia      | Registered in Australia.                                                                                                |            123456 |
-      | businessEntity        | true         | Canada         | Registered in Ontario, Canada.                                                                                          |            345213 |
-      | businessEntity        | true         | United Kingdom | Registered in United Kingdom.                                                                                           |            321413 |
-      | businessEntity        | false        | United States  | Not Registered.                                                                                                         | N/A               |
-      | individualParticipant | false        | United States  | Not registered. Only applicable to participants representing business entities in countries that enforce indirect tax.. | N/A               |
-      | individualParticipant | false        | South Korea    | Not registered. Only applicable to participants representing business entities in countries that enforce indirect tax.. | N/A               |
+      | entityType            | isRegistered | country        | details                                                                                                                 | indirectTaxType | indirectTaxNumber |
+      | businessEntity        | true         | Australia      | Registered in Australia.                                                                                                | GST             |            123456 |
+      | businessEntity        | true         | Canada         | Registered in Ontario, Canada.                                                                                          | GST             |            345213 |
+      | businessEntity        | true         | United Kingdom | Registered in United Kingdom.                                                                                           | VAT             |            321413 |
+      | businessEntity        | false        | United States  | Not Registered.                                                                                                         |                 | N/A               |
+      | individualParticipant | false        | United States  | Not registered. Only applicable to participants representing business entities in countries that enforce indirect tax.. |                 | N/A               |
+      | individualParticipant | false        | South Korea    | Not registered. Only applicable to participants representing business entities in countries that enforce indirect tax.. |                 | N/A               |
 
   @minutia @ui
   Scenario Outline: A Danger Alert is displayed if the users tax form is invalid

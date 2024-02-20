@@ -26,7 +26,6 @@ export interface BankingInfoFormViewProps {
   callbacks: {
     setChecked: (checked: "toBankAccount" | "toPaypalAccount") => void;
     onSubmit: (props: any) => Promise<void>;
-    onChange: (e) => void;
   };
   text: {
     formStep: string;

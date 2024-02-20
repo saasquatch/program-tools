@@ -229,6 +229,9 @@ export class BankingInfoForm {
     };
   }
 
+  // This will come from form state eventually
+  errors = {};
+
   render() {
     const props = isDemo()
       ? useDemoBankingInfoForm(this)
@@ -424,6 +427,7 @@ export class BankingInfoForm {
         ),
       },
       14: {
+        error: false,
         input: (
           <sl-select
             label={props.text.classificationLabel}
@@ -438,7 +442,10 @@ export class BankingInfoForm {
       },
     };
 
-    const inputFields = getFormInputs({ props, formMap });
+    const inputFields = getFormInputs({
+      bitset: props.demo.bitset || props.states.bitset,
+      formMap,
+    });
 
     return (
       <Host>
@@ -540,7 +547,6 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
       },
       callbacks: {
         onSubmit: async () => {},
-        onChange: setOption,
       },
       text: props.getTextProps(),
       refs: {
