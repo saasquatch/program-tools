@@ -54,6 +54,25 @@ export const BankingInfoFormCountryUSCurrencyUSD = () => {
   );
 };
 
+export const BankingInfoFormGeneralError = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...bankingFormProps,
+        states: {
+          ...bankingFormProps.states,
+          formState: {
+            ...bankingFormProps.states.formState,
+            errors: {
+              general: true,
+            },
+          },
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
 export const BankingInfoFormCountryUSCurrencyUSDLoading = () => {
   return (
     <sqm-banking-info-form

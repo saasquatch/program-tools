@@ -12,7 +12,11 @@ export interface DocusignFormViewProps {
     formState: {
       completedTaxForm: boolean;
       taxFormExpired: boolean;
-      errors?: any;
+      participantType: "individualParticipant" | "businessEntity" | undefined;
+      errors?: {
+        participantType?: boolean;
+        general?: boolean;
+      };
     };
     documentType: TaxDocumentType;
     hideBackButton: boolean;
@@ -37,10 +41,14 @@ export interface DocusignFormViewProps {
     checkboxDescription: string;
     submitButton: string;
     backButton: string;
+    businessEntity: string;
+    individualParticipant: string;
+    participantType: string;
     error: {
       generalTitle: string;
       generalDescription: string;
       formSubmission: string;
+      participantType: string;
     };
   };
 }
@@ -145,6 +153,11 @@ const style = {
       textDecoration: "underline",
     },
   },
+  CheckboxWrapper: {
+    display: "flex",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -204,51 +217,87 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           {text.error.generalDescription}
         </sl-alert>
       )}
-      <div>
-        <h5 class={classes.BoldText}>
-          {intl.formatMessage(
-            { id: "tax-form-label", defaultMessage: text.taxFormLabel },
-            { documentType }
-          )}
-        </h5>
-        <p>
-          {intl.formatMessage(
-            {
-              id: "tax-form-description",
-              defaultMessage: text.taxFormDescription,
-            },
-            { documentType }
-          )}
-        </p>
-      </div>
+      {/* 
+      // @ts-ignore */}
+      {states.documentType !== "W9" && (
+        <div class={classes.CheckboxWrapper}>
+          <p class={classes.BoldText}>{text.participantType}</p>
 
-      <div>
-        <sl-alert
-          exportparts="base: alert-base, icon:alert-icon"
-          type="primary"
-          open
-          class={classes.InfoAlert}
-        >
-          <sl-icon slot="icon" name="info-circle"></sl-icon>
-          {text.banner}
-        </sl-alert>
-        {slots.docusignIframeSlot}
-
-        {!states.hideBackButton && (
-          <div class={classes.BtnContainer}>
-            <sl-button
-              class={classes.SecondaryBtn}
-              type="text"
-              loading={states.loading}
-              disabled={states.loading}
-              onClick={callbacks.onBack}
-              exportparts="base: secondarybutton-base"
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <sl-radio
+              exportparts="base: radio-base"
+              value="individualParticipant"
+              name="/participantType"
+              checked={formState.participantType === "individualParticipant"}
+              disabled={states.disabled}
             >
-              {text.backButton}
-            </sl-button>
+              {text.individualParticipant}
+            </sl-radio>
+            <sl-radio
+              exportparts="base: radio-base"
+              value="businessEntity"
+              name="/participantType"
+              checked={formState.participantType === "businessEntity"}
+              disabled={states.disabled}
+            >
+              {text.businessEntity}
+            </sl-radio>
           </div>
-        )}
-      </div>
+
+          {formState.errors?.participantType && (
+            <p class={classes.ErrorText}>{text.error.participantType}</p>
+          )}
+        </div>
+      )}
+      {/* @ts-ignore */}
+      {(states.documentType === "W9" || (states.documentType !== "W9" && formState.participantType)) && (
+        <div>
+          <div>
+            <h5 class={classes.BoldText}>
+              {intl.formatMessage(
+                { id: "tax-form-label", defaultMessage: text.taxFormLabel },
+                { documentType }
+              )}
+            </h5>
+            <p>
+              {intl.formatMessage(
+                {
+                  id: "tax-form-description",
+                  defaultMessage: text.taxFormDescription,
+                },
+                { documentType }
+              )}
+            </p>
+          </div>
+
+          <div>
+            <sl-alert
+              exportparts="base: alert-base, icon:alert-icon"
+              type="primary"
+              open
+              class={classes.InfoAlert}
+            >
+              <sl-icon slot="icon" name="info-circle"></sl-icon>
+              {text.banner}
+            </sl-alert>
+            {slots.docusignIframeSlot}
+          </div>
+        </div>
+      )}
+      {!states.hideBackButton && (
+        <div class={classes.BtnContainer}>
+          <sl-button
+            class={classes.SecondaryBtn}
+            type="text"
+            loading={states.loading}
+            disabled={states.loading}
+            onClick={callbacks.onBack}
+            exportparts="base: secondarybutton-base"
+          >
+            {text.backButton}
+          </sl-button>
+        </div>
+      )}
     </div>
   );
 };

@@ -111,6 +111,20 @@ Feature: Tax Form Step One
     And arrive back on step 1
     Then the "Country" and "Currency" fields will be disabled
 
+  @minutia
+  Scenario: Country select is searchable
+    When they press the Country select
+    Then there is a searchbar
+    And as they type
+    Then the available countries get filtered out based on their search
+
+  @minutia
+  Scenario: Currency select is searchable
+    When they press the Currency select
+    Then there is a searchbar
+    And as they type a currency abbreviation
+    Then the available currencies get filtered out based on their search
+
   @minutia @ui
   Scenario Outline: A user fills out Tax Form Step One with invalid values
     When they fill out the form with invalid values for the following fields:
@@ -118,15 +132,13 @@ Feature: Tax Form Step One
       | Last Name                  | <lastName>               |
       | Country Code               | <countryCode>            |
       | Currency                   | <currency>               |
-      | Participant Type           | <participantType>        |
       | Tax and Banking Collection | <allowBankingCollection> |
     Then the form displays the respective errors for each field:
-      | <firstName>              | Enter a first name        |
-      | <lastName>               | Enter a last name         |
-      | <countryCode>            | Select a country          |
-      | <currency>               | Select a currency         |
-      | <participantType>        | Select a participant type |
-      | <allowBankingCollection> | This field is required    |
+      | <firstName>              | Enter a first name     |
+      | <lastName>               | Enter a last name      |
+      | <countryCode>            | Select a country       |
+      | <currency>               | Select a currency      |
+      | <allowBankingCollection> | This field is required |
 
   @minutia @ui
   Scenario: The loading state is shown when the form is submitted

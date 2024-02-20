@@ -22,6 +22,8 @@ type CreateTaxDocumentQuery = {
     documentUrl: string;
   };
 };
+
+export type ParticipantType = "individualParticipant" | "businessEntity" | undefined;
 const GET_TAX_DOCUMENT = gql`
   mutation createImpactPartnerTaxDocument(
     $vars: CreateImpactPartnerTaxDocumentInput!
@@ -144,6 +146,8 @@ export function useDocusignForm(props: DocusignForm) {
       submitDisabled: !formSubmitted,
       loading: userLoading || documentLoading || loading,
       formState: {
+        //AL: hooks todo
+        participantType: "individualParticipant" as ParticipantType,
         completedTaxForm: formSubmitted,
         taxFormExpired: false, // TODO: Unhardcode this
         errors,

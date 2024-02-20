@@ -384,6 +384,25 @@ export class TaxAndCashMonolith {
    */
   @Prop() step3_taxFormLabel: string = "{documentType} Tax Form";
   /**
+   * Heading text for the participant type radio buttons
+   * @uiName Participant type radio buttons heading
+   * @uiGroup Step 3 Properties
+   */
+  @Prop() step3_participantType: string = "Participant type";
+  /**
+   * Label text for the business entity radio button
+   * @uiName Business entity radio button label
+   * @uiGroup Step 3 Properties
+   */
+  @Prop() step3_businessEntity: string = "I represent a business entity";
+  /**
+   * Label text for the individual participant radio button
+   * @uiName Individual participant radio button label
+   * @uiGroup Step 3 Properties
+   */
+  @Prop() step3_individualParticipant: string =
+    "I am an individual participant";
+  /**
    * Subtext shown at the top of the page next to the document type text
    * @uiName Tax form subtext
    * @uiGroup Step 3 Properties
