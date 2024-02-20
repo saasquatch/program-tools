@@ -1,7 +1,10 @@
 import { h } from "@stencil/core";
 import { StoryDemoData } from "../../global/demo";
 import { UseDocumentTypeFormResult } from "./sqm-document-type-form/useDocumentTypeForm";
-import { ParticipantType, UseDocusignFormResult } from "./sqm-docusign-form/useDocusignForm";
+import {
+  ParticipantType,
+  UseDocusignFormResult,
+} from "./sqm-docusign-form/useDocusignForm";
 import { UseIndirectTaxFormResult } from "./sqm-indirect-tax-form/useIndirectTaxForm";
 import {
   INDIRECT_TAX_PROVINCES,
@@ -139,10 +142,11 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
   states: {
     docusignStatus: undefined,
     hideSteps: false,
-    documentType: "W9",
+    documentType: "W9" as const,
     loading: false,
     disabled: false,
     submitDisabled: false,
+    participantTypeDisabled: false,
     formState: {
       participantType: "individualParticipant" as ParticipantType,
       errors: {},
@@ -152,6 +156,7 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
     hideBackButton: false,
   },
   callbacks: {
+    setParticipantType: (p) => console.log({ p }),
     setDocusignStatus: (status: DocusignStatus) => console.log(status),
     toggleFormSubmitted: () => console.log("Toggle checkbox"),
     onSubmit: async () => console.log("submit"),
@@ -611,7 +616,7 @@ export const StepThreeWithDocusignCompleted = () => {
           ...docusignFormProps.states,
           docusignStatus: "signing_complete",
           formState: {
-            participantType:  "individualParticipant" as ParticipantType,
+            participantType: "individualParticipant" as ParticipantType,
             taxFormExpired: false,
             completedTaxForm: true,
             errors: {},

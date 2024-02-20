@@ -212,6 +212,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
         submitDisabled: false,
         loading: false,
         status: undefined as DocusignStatus,
+        participantTypeDisabled: false,
         formState: {
           completedTaxForm: true,
           taxFormExpired: true,
@@ -225,6 +226,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
         documentUrl: "https://example.com",
       },
       callbacks: {
+        setParticipantType: (p) => console.log({ p }),
         setDocusignStatus: (status: DocusignStatus) => console.log(status),
         onSubmit: async () => {},
         toggleFormSubmitted: () => {},
