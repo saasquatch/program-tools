@@ -27,6 +27,12 @@ export const paypalFeeMap = {
   JPY: "JPY2000.00",
 };
 
+export const paymentMethodMap = {
+  3: "ACH",
+  5: "WIRE",
+  7: "PAYPAL",
+};
+
 export type BankingInfoFormData = {
   bankCountry?: string;
   paypalEmail?: string;
@@ -140,6 +146,17 @@ export function useBankingInfoForm(props: BankingInfoForm) {
     }
   );
 
+  const paymentMethodFeeMap = {
+    ACH: "EFT Withdrawal (free)",
+    WIRE: `FX Wire (Processing Fee ${currency}${
+      currentPaymentOption?.defaultFxFee || 0
+    })`,
+  };
+  const paymentMethodFeeLabel =
+    paymentMethodFeeMap[currentPaymentOption?.withdrawalSetting];
+
+  console.log({ userData });
+
   return {
     step: step,
     setStep: setStep,
@@ -156,6 +173,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
       intlLocale: locale?.replace("_", "-") || "en",
       isPartner: !!userData?.user?.impactPartner,
       feeCap,
+      paymentMethodFeeLabel,
       disabled: loading,
       loading,
       hideSteps: false,
@@ -173,6 +191,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
       formRef,
     },
     demo: {
+      showInputs: true,
       bitset,
       setBitset,
       currency,
