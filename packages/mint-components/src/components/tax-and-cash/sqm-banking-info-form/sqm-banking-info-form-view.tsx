@@ -179,7 +179,7 @@ const vanillaStyle = `
     /* this class is dynamically applied in controller */
     .error-input::part(base) {
       border: 1px solid var(--sl-color-danger-500);
-      borderRadius: var(--sl-input-border-radius-medium);
+      border-radius: var(--sl-input-border-radius-medium);
     }
 
     .error-input::part(help-text) {

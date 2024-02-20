@@ -14,7 +14,7 @@ const bankingFormProps = {
     },
   },
   demo: {
-    bitset: 39,
+    currency: "USD",
   },
   callbacks: {
     onSubmit: async () => console.log("Submit"),
@@ -49,6 +49,44 @@ export const BankingInfoFormDefaultLoading = () => {
     <sqm-banking-info-form
       demoData={{
         states: { loading: true },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
+export const BankingInfoFormDefaultWithValidationErrors = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        states: {
+          ...bankingFormProps.states,
+          demo: {
+            bitset: 39,
+          },
+          bankCountry: null,
+          formState: {
+            ...bankingFormProps.states.formState,
+            errors: {
+              beneficiaryAccountName: true,
+              bankAccountType: true,
+              bankAccountNumber: true,
+              iban: true,
+              swiftCode: true,
+              routingCode: true,
+              bankName: true,
+              beneficiaryClassification: true,
+              patronymicName: true,
+              voCode: true,
+              agencyCode: true,
+              bankAddress: true,
+              bankCity: true,
+              bankCountry: true,
+              bankProvinceState: true,
+              bankPostalCode: true,
+              branchCode: true,
+            },
+          },
+        },
       }}
     ></sqm-banking-info-form>
   );
