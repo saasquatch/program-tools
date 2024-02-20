@@ -18,8 +18,17 @@ Feature: Docusign Form
     Then the URL is not set on the Docusign iframe
     And the iframe fails to load
 
-  @TODO @minutia
-  Scenario: Participant chooses individualParticipant or Businessentity to generate correct form if not based in the uS
+  @minutia
+  Scenario Outline: Participant not based in the US working with US brand selects participantType
+    When the page loads
+    Then <participantType> radio buttons appear
+    When they select a <participantType>
+    Then an <autoSelectedTaxForm> appears in the Docusign iframe
+
+    Examples: 
+      | participantType       | autoSelectedTaxForm |
+      | individualParticipant | W8-BEN              |
+      | businessEntity        | W8-BEN-E            |
 
   @minutia @ui
   Scenario Outline: Text copies change based on tax form participant fills out

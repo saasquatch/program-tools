@@ -125,7 +125,7 @@ export function useTaxAndCash() {
       if (!user || step !== "/loading") return;
 
       const currentStep = getCurrentStep(user);
-      setStep("/3");
+      setStep(currentStep);
     }
   }, [host, user, data?.user?.email]);
 
