@@ -40,7 +40,6 @@ Feature: Tax Document Submitted View
       | ACTIVE       | success      | Submitted on                                                              | Jan 17, 2024  |
       | NOT_VERIFIED | neutral      | Awaiting Review. Submitted on                                             | Jan 17, 2024  |
       | NOT_ACTIVE   | danger       | Ensure your information matches your profile and resubmit a new document. | Jan 17, 2024  |
-      | EXPIRED      | danger       | Expired on                                                                | Jan 17, 2024  |
 
   @minutia @ui
   Scenario: Status badge and text does not appear if participant is not required to submit tax form
@@ -70,25 +69,23 @@ Feature: Tax Document Submitted View
     Then a danger alert indicating the <documentType> with a <taxAlertHeader> and <taxAlertMessage> appears
 
     Examples: 
-      | status     | documentType | taxAlertHeader                                                                 | taxAlertMessage                      |
-      | NOT_ACTIVE | W9           | Your W9 tax form has personal information that doesn't match your profile.     | Please resubmit a new W9 form.       |
-      | NOT_ACTIVE | W8-BEN       | Your W8-BEN tax form has personal information that doesn't match your profile. | Please resubmit a new W8-BEN form.   |
-      | EXPIRED    | W8-BEN-E     | Your W8-BEN-E tax form has expired.                                            | Please resubmit a new W8-BEN-E form. |
-
-  @minutia @ui
-  Scenario Outline: A Warning Alert is displayed if the users tax form is expiring soon
-    Given the <status> is ACTIVE
-    And the document type is <documentType>
-    And the document is submitted on <dateSubmitted>
-    And the <dateExpired> of the document is within 30 days of the current date
-    Then a warning alert <may> displayed
-    And it indicates the <documentType> with a <taxAlertHeader>, <taxAlertMessage>, and <dateExpired> appears
-
-    Examples: 
-      | status | documentType | may    | taxAlertHeader                    | dateSubmitted  | dateExpired    | taxAlertMessage                      |
-      | ACTIVE | W9           | is not | N/A                               | Dec 30th, 2021 | N/A            | N/A                                  |
-      | ACTIVE | W8-BEN       | is     | Your W8-BEN tax form expires on   | Dec 30th, 2021 | Dec 30th, 2024 | Please resubmit a new W8-BEN form.   |
-      | ACTIVE | W8-BEN-E     | is     | Your W8-BEN-E tax form expires on | Dec 30th, 2021 | Dec 30th, 2024 | Please resubmit a new W8-BEN-E form. |
+      | status     | documentType | taxAlertHeader                                                             | taxAlertMessage                                                                                                                |
+      | NOT_ACTIVE | W9           | Your W9 tax form has personal information that doesn't match your profile. | Please resubmit a new W9 form.                                                                                                 |
+      | NOT_ACTIVE | W8-BEN       | W8-BEN tax form is invalid.                                                | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W8-BEN form.   |
+      | NOT_ACTIVE | W8-BEN-E     | W8-BEN-E tax form is invalid.                                              | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W8-BEN-E form. |
+  # @minutia @ui
+  # Scenario Outline: A Warning Alert is displayed if the users tax form is expiring soon
+  #   Given the <status> is ACTIVE
+  #   And the document type is <documentType>
+  #   And the document is submitted on <dateSubmitted>
+  #   And the <dateExpired> of the document is within 30 days of the current date
+  #   Then a warning alert <may> displayed
+  #   And it indicates the <documentType> with a <taxAlertHeader>, <taxAlertMessage>, and <dateExpired> appears
+  #   Examples: 
+  #     | status | documentType | may    | taxAlertHeader                    | dateSubmitted  | dateExpired    | taxAlertMessage                      |
+  #     | ACTIVE | W9           | is not | N/A                               | Dec 30th, 2021 | N/A            | N/A                                  |
+  #     | ACTIVE | W8-BEN       | is     | Your W8-BEN tax form expires on   | Dec 30th, 2021 | Dec 30th, 2024 | Please resubmit a new W8-BEN form.   |
+  #     | ACTIVE | W8-BEN-E     | is     | Your W8-BEN-E tax form expires on | Dec 30th, 2021 | Dec 30th, 2024 | Please resubmit a new W8-BEN-E form. |
 
   @unknown
   Scenario: Submit New Tax Document Form

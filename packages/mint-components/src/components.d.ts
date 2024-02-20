@@ -4043,23 +4043,17 @@ export namespace Components {
          */
         "step4_badgeTextAwaitingReview"?: string;
         /**
-          * Description text which appears beside badge showing the form has expired
-          * @uiName Badge description text
-          * @uiGroup Step 4 Properties
-         */
-        "step4_badgeTextExpiredOn"?: string;
-        /**
-          * Description text which appears beside badge showing the form expiring soon
-          * @uiName Badge description text
-          * @uiGroup Step 4 Properties
-         */
-        "step4_badgeTextExpiringSoon"?: string;
-        /**
           * Description text which appears beside badge showing when the form was submitted
           * @uiName Badge description text
           * @uiGroup Step 4 Properties
          */
         "step4_badgeTextSubmittedOn"?: string;
+        /**
+          * Description text for W8 which appears beside badge showing when the form was submitted
+          * @uiName Badge description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_badgeTextSubmittedOnW8"?: string;
         /**
           * Header text displayed above the banking information card
           * @uiName Banking information header
@@ -4109,12 +4103,6 @@ export namespace Components {
          */
         "step4_statusTextActive"?: string;
         /**
-          * Status text displayed in badge when tax document is Expired
-          * @uiName Status text
-          * @uiGroup Step 4 Properties
-         */
-        "step4_statusTextExpired"?: string;
-        /**
           * Status text displayed in badge when tax document is Not Active
           * @uiName Status text
           * @uiGroup Step 4 Properties
@@ -4127,35 +4115,29 @@ export namespace Components {
          */
         "step4_statusTextNotVerified"?: string;
         /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Expired alert header
+          * Header displayed in not active W9 alert header at the top of the page.
+          * @uiName Not active W8 alert header
           * @uiGroup Step 4 Properties
          */
-        "step4_taxAlertHeaderExpiredOn"?: string;
+        "step4_taxAlertHeaderNotActiveW8"?: string;
         /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Expiring soon alert header
+          * Header displayed in not active W9 alert header at the top of the page.
+          * @uiName Not active W9 alert header
           * @uiGroup Step 4 Properties
          */
-        "step4_taxAlertHeaderExpiringSoon"?: string;
+        "step4_taxAlertHeaderNotActiveW9"?: string;
         /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Not active alert header
+          * Description text displayed in W8 alert body at the top of the page.
+          * @uiName Tax W8 alert message
           * @uiGroup Step 4 Properties
          */
-        "step4_taxAlertHeaderNotActive"?: string;
+        "step4_taxAlertNotActiveMessageW8"?: string;
         /**
-          * Description text displayed in alert body at the top of the page.
-          * @uiName Tax alert message
+          * Description text displayed in W9 alert body at the top of the page.
+          * @uiName Tax W9 alert message
           * @uiGroup Step 4 Properties
          */
-        "step4_taxAlertMessage"?: string;
-        /**
-          * Description text displayed in alert body at the top of the page.
-          * @uiName Expiring soon tax alert message
-          * @uiGroup Step 4 Properties
-         */
-        "step4_taxAlertMessageExpiringSoon": string;
+        "step4_taxAlertNotActiveMessageW9"?: string;
         /**
           * Header text displayed above the tax documents status
           * @uiName Tax document section header
@@ -4182,20 +4164,15 @@ export namespace Components {
          */
         "badgeTextAwaitingReview"?: string;
         /**
-          * Description text which appears beside badge showing the form has expired
-          * @uiName Badge description text
-         */
-        "badgeTextExpiredOn"?: string;
-        /**
-          * Description text which appears beside badge showing the form expiring soon
-          * @uiName Badge description text
-         */
-        "badgeTextExpiringSoon"?: string;
-        /**
           * Description text which appears beside badge showing when the form was submitted
           * @uiName Badge description text
          */
         "badgeTextSubmittedOn"?: string;
+        /**
+          * Description text for W8 which appears beside badge showing when the form was submitted
+          * @uiName Badge description text
+         */
+        "badgeTextSubmittedOnW8"?: string;
         /**
           * Header text displayed above the banking information card
           * @uiName Banking information header
@@ -4272,11 +4249,6 @@ export namespace Components {
          */
         "statusTextActive"?: string;
         /**
-          * Status text displayed in badge when tax document is Expired
-          * @uiName Status text
-         */
-        "statusTextExpired"?: string;
-        /**
           * Status text displayed in badge when tax document is Not Active
           * @uiName Status text
          */
@@ -4287,30 +4259,25 @@ export namespace Components {
          */
         "statusTextNotVerified"?: string;
         /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Expired alert header
+          * Header displayed in not active W9 alert header at the top of the page.
+          * @uiName Not active W8 alert header
          */
-        "taxAlertHeaderExpiredOn"?: string;
+        "taxAlertHeaderNotActiveW8"?: string;
         /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Expiring soon alert header
+          * Header displayed in not active W9 alert header at the top of the page.
+          * @uiName Not active W9 alert header
          */
-        "taxAlertHeaderExpiringSoon"?: string;
+        "taxAlertHeaderNotActiveW9"?: string;
         /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Not active alert header
+          * Description text displayed in W8 alert body at the top of the page.
+          * @uiName Tax W8 alert message
          */
-        "taxAlertHeaderNotActive"?: string;
+        "taxAlertNotActiveMessageW8"?: string;
         /**
-          * Description text displayed in alert body at the top of the page.
-          * @uiName Tax alert message
+          * Description text displayed in W9 alert body at the top of the page.
+          * @uiName Tax W9 alert message
          */
-        "taxAlertMessage"?: string;
-        /**
-          * Description text displayed in alert body at the top of the page.
-          * @uiName Expiring soon tax alert message
-         */
-        "taxAlertMessageExpiringSoon": string;
+        "taxAlertNotActiveMessageW9"?: string;
         /**
           * Header text displayed above the tax documents status
           * @uiName Tax document section header
@@ -9232,23 +9199,17 @@ declare namespace LocalJSX {
          */
         "step4_badgeTextAwaitingReview"?: string;
         /**
-          * Description text which appears beside badge showing the form has expired
-          * @uiName Badge description text
-          * @uiGroup Step 4 Properties
-         */
-        "step4_badgeTextExpiredOn"?: string;
-        /**
-          * Description text which appears beside badge showing the form expiring soon
-          * @uiName Badge description text
-          * @uiGroup Step 4 Properties
-         */
-        "step4_badgeTextExpiringSoon"?: string;
-        /**
           * Description text which appears beside badge showing when the form was submitted
           * @uiName Badge description text
           * @uiGroup Step 4 Properties
          */
         "step4_badgeTextSubmittedOn"?: string;
+        /**
+          * Description text for W8 which appears beside badge showing when the form was submitted
+          * @uiName Badge description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_badgeTextSubmittedOnW8"?: string;
         /**
           * Header text displayed above the banking information card
           * @uiName Banking information header
@@ -9298,12 +9259,6 @@ declare namespace LocalJSX {
          */
         "step4_statusTextActive"?: string;
         /**
-          * Status text displayed in badge when tax document is Expired
-          * @uiName Status text
-          * @uiGroup Step 4 Properties
-         */
-        "step4_statusTextExpired"?: string;
-        /**
           * Status text displayed in badge when tax document is Not Active
           * @uiName Status text
           * @uiGroup Step 4 Properties
@@ -9316,35 +9271,29 @@ declare namespace LocalJSX {
          */
         "step4_statusTextNotVerified"?: string;
         /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Expired alert header
+          * Header displayed in not active W9 alert header at the top of the page.
+          * @uiName Not active W8 alert header
           * @uiGroup Step 4 Properties
          */
-        "step4_taxAlertHeaderExpiredOn"?: string;
+        "step4_taxAlertHeaderNotActiveW8"?: string;
         /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Expiring soon alert header
+          * Header displayed in not active W9 alert header at the top of the page.
+          * @uiName Not active W9 alert header
           * @uiGroup Step 4 Properties
          */
-        "step4_taxAlertHeaderExpiringSoon"?: string;
+        "step4_taxAlertHeaderNotActiveW9"?: string;
         /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Not active alert header
+          * Description text displayed in W8 alert body at the top of the page.
+          * @uiName Tax W8 alert message
           * @uiGroup Step 4 Properties
          */
-        "step4_taxAlertHeaderNotActive"?: string;
+        "step4_taxAlertNotActiveMessageW8"?: string;
         /**
-          * Description text displayed in alert body at the top of the page.
-          * @uiName Tax alert message
+          * Description text displayed in W9 alert body at the top of the page.
+          * @uiName Tax W9 alert message
           * @uiGroup Step 4 Properties
          */
-        "step4_taxAlertMessage"?: string;
-        /**
-          * Description text displayed in alert body at the top of the page.
-          * @uiName Expiring soon tax alert message
-          * @uiGroup Step 4 Properties
-         */
-        "step4_taxAlertMessageExpiringSoon"?: string;
+        "step4_taxAlertNotActiveMessageW9"?: string;
         /**
           * Header text displayed above the tax documents status
           * @uiName Tax document section header
@@ -9371,20 +9320,15 @@ declare namespace LocalJSX {
          */
         "badgeTextAwaitingReview"?: string;
         /**
-          * Description text which appears beside badge showing the form has expired
-          * @uiName Badge description text
-         */
-        "badgeTextExpiredOn"?: string;
-        /**
-          * Description text which appears beside badge showing the form expiring soon
-          * @uiName Badge description text
-         */
-        "badgeTextExpiringSoon"?: string;
-        /**
           * Description text which appears beside badge showing when the form was submitted
           * @uiName Badge description text
          */
         "badgeTextSubmittedOn"?: string;
+        /**
+          * Description text for W8 which appears beside badge showing when the form was submitted
+          * @uiName Badge description text
+         */
+        "badgeTextSubmittedOnW8"?: string;
         /**
           * Header text displayed above the banking information card
           * @uiName Banking information header
@@ -9461,11 +9405,6 @@ declare namespace LocalJSX {
          */
         "statusTextActive"?: string;
         /**
-          * Status text displayed in badge when tax document is Expired
-          * @uiName Status text
-         */
-        "statusTextExpired"?: string;
-        /**
           * Status text displayed in badge when tax document is Not Active
           * @uiName Status text
          */
@@ -9476,30 +9415,25 @@ declare namespace LocalJSX {
          */
         "statusTextNotVerified"?: string;
         /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Expired alert header
+          * Header displayed in not active W9 alert header at the top of the page.
+          * @uiName Not active W8 alert header
          */
-        "taxAlertHeaderExpiredOn"?: string;
+        "taxAlertHeaderNotActiveW8"?: string;
         /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Expiring soon alert header
+          * Header displayed in not active W9 alert header at the top of the page.
+          * @uiName Not active W9 alert header
          */
-        "taxAlertHeaderExpiringSoon"?: string;
+        "taxAlertHeaderNotActiveW9"?: string;
         /**
-          * Header displayed in alert header at the top of the page.
-          * @uiName Not active alert header
+          * Description text displayed in W8 alert body at the top of the page.
+          * @uiName Tax W8 alert message
          */
-        "taxAlertHeaderNotActive"?: string;
+        "taxAlertNotActiveMessageW8"?: string;
         /**
-          * Description text displayed in alert body at the top of the page.
-          * @uiName Tax alert message
+          * Description text displayed in W9 alert body at the top of the page.
+          * @uiName Tax W9 alert message
          */
-        "taxAlertMessage"?: string;
-        /**
-          * Description text displayed in alert body at the top of the page.
-          * @uiName Expiring soon tax alert message
-         */
-        "taxAlertMessageExpiringSoon"?: string;
+        "taxAlertNotActiveMessageW9"?: string;
         /**
           * Header text displayed above the tax documents status
           * @uiName Tax document section header

@@ -37,19 +37,18 @@ export class TaxDocumentSubmitted {
   @Prop() statusTextNotVerified?: string = "Not Verified";
 
   /**
-   * Status text displayed in badge when tax document is Expired
-   *
-   * @uiName Status text
-   */
-  @Prop() statusTextExpired?: string = "Expired";
-
-  /**
    * Description text which appears beside badge showing when the form was submitted
    *
    * @uiName Badge description text
    */
-  @Prop() badgeTextSubmittedOn?: string = "Submitted on {dateSubmitted}";
-
+  @Prop() badgeTextSubmittedOn?: string = "Submitted on {dateSubmitted}.";
+  /**
+   * Description text for W8 which appears beside badge showing when the form was submitted
+   *
+   * @uiName Badge description text
+   */
+  @Prop() badgeTextSubmittedOnW8?: string =
+    "Submitted on {dateSubmitted}. Valid for three years after submission.";
   /**
    * Description text which appears beside badge showing the form is awaiting review
    *
@@ -59,54 +58,33 @@ export class TaxDocumentSubmitted {
     "Awaiting review. Submitted on {dateSubmitted}.";
 
   /**
-   * Description text which appears beside badge showing the form has expired
+   * Header displayed in not active W9 alert header at the top of the page.
    *
-   * @uiName Badge description text
+   * @uiName Not active W9 alert header
    */
-  @Prop() badgeTextExpiredOn?: string = "Expired on {dateExpired}.";
-
+  @Prop() taxAlertHeaderNotActiveW9?: string =
+    "Your W9 tax form has personal information that doesn’t match your profile";
   /**
-   * Description text which appears beside badge showing the form expiring soon
+   * Header displayed in not active W9 alert header at the top of the page.
    *
-   * @uiName Badge description text
+   * @uiName Not active W8 alert header
    */
-  @Prop() badgeTextExpiringSoon?: string = ", expiring on {dateExpired}.";
-
+  @Prop() taxAlertHeaderNotActiveW8?: string =
+    "{documentType} tax form is invalid";
   /**
-   * Header displayed in alert header at the top of the page.
+   * Description text displayed in W9 alert body at the top of the page.
    *
-   * @uiName Not active alert header
+   * @uiName Tax W9 alert message
    */
-  @Prop() taxAlertHeaderNotActive?: string =
-    "Your {documentType} tax form has personal information that doesn't match your profile.";
-  /**
-   * Header displayed in alert header at the top of the page.
-   *
-   * @uiName Expired alert header
-   */
-  @Prop() taxAlertHeaderExpiredOn?: string =
-    "Your {documentType} tax form has expired.";
-  /**
-   * Header displayed in alert header at the top of the page.
-   *
-   * @uiName Expiring soon alert header
-   */
-  @Prop() taxAlertHeaderExpiringSoon?: string =
-    "Your {documentType} tax form expires on {dateExpired}";
-  /**
-   * Description text displayed in alert body at the top of the page.
-   *
-   * @uiName Tax alert message
-   */
-  @Prop() taxAlertMessage?: string =
+  @Prop() taxAlertNotActiveMessageW9?: string =
     "Please resubmit a new {documentType} form.";
   /**
-   * Description text displayed in alert body at the top of the page.
+   * Description text displayed in W8 alert body at the top of the page.
    *
-   * @uiName Expiring soon tax alert message
+   * @uiName Tax W8 alert message
    */
-  @Prop() taxAlertMessageExpiringSoon: string =
-    "Please submit a new {documentType} form to continue receiving your rewards";
+  @Prop() taxAlertNotActiveMessageW8?: string =
+    "Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W8-BEN form.";
   /**
    * Description text displayed next to the badge in the tax documents status
    *
@@ -253,7 +231,6 @@ function useDemoTaxDocumentSubmitted(
         documentType: undefined,
         status: undefined,
         noFormNeeded: true,
-        dateExpired: undefined,
         expiresSoon: false,
         disabled: false,
         loading: false,

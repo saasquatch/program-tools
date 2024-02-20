@@ -265,7 +265,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             <h5 class={classes.BoldText}>
               {intl.formatMessage(
                 { id: "tax-form-label", defaultMessage: text.taxFormLabel },
-                { documentType }
+                { documentType: states.documentType }
               )}
             </h5>
             <p>
@@ -274,7 +274,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
                   id: "tax-form-description",
                   defaultMessage: text.taxFormDescription,
                 },
-                { documentType }
+                { documentType: states.documentType }
               )}
             </p>
           </div>
