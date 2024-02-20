@@ -57,9 +57,9 @@ export function useTaxAndCash() {
 
   /**** DEMO DATA */
 
-  const id = "c579752b274c9664192d438373f970302889b439b9f75eb2655c31d843a36379";
+  const id = "640b0771601fa92fc6532e8a018885d5fa106f8ebb9235a46b5d88d3352254fa";
   const accountId =
-    "c579752b274c9664192d438373f970302889b439b9f75eb2655c31d843a36379";
+    "640b0771601fa92fc6532e8a018885d5fa106f8ebb9235a46b5d88d3352254fa";
   const programId = "22514";
 
   //@ts-ignore
@@ -73,7 +73,7 @@ export function useTaxAndCash() {
     setUserIdentity({
       accountId,
       id,
-      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiYzU3OTc1MmIyNzRjOTY2NDE5MmQ0MzgzNzNmOTcwMzAyODg5YjQzOWI5Zjc1ZWIyNjU1YzMxZDg0M2EzNjM3OSIsImFjY291bnRJZCI6ImM1Nzk3NTJiMjc0Yzk2NjQxOTJkNDM4MzczZjk3MDMwMjg4OWI0MzliOWY3NWViMjY1NWMzMWQ4NDNhMzYzNzkifX0.FtwyCjdKDNAXhE8KSfsEGfq_yjhWaKMdxlGNHSwFFE0",
+      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNjQwYjA3NzE2MDFmYTkyZmM2NTMyZThhMDE4ODg1ZDVmYTEwNmY4ZWJiOTIzNWE0NmI1ZDg4ZDMzNTIyNTRmYSIsImFjY291bnRJZCI6IjY0MGIwNzcxNjAxZmE5MmZjNjUzMmU4YTAxODg4NWQ1ZmExMDZmOGViYjkyMzVhNDZiNWQ4OGQzMzUyMjU0ZmEifX0.K-BIpxqDGIQc1Rch3U_Lv7wn_Gsgt8Hr1zcYjd4F-Os",
     });
   }, []);
 
@@ -124,7 +124,7 @@ export function useTaxAndCash() {
       const user = data?.user;
       if (!user || step !== "/loading") return;
 
-      setStep("/3");
+      setStep("/1");
       // const currentStep = getCurrentStep(user);
       // setStep(currentStep);
     }
