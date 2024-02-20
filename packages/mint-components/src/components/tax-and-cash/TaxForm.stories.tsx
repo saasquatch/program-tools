@@ -142,10 +142,11 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
   states: {
     docusignStatus: undefined,
     hideSteps: false,
-    documentType: "W9",
+    documentType: "W9" as const,
     loading: false,
     disabled: false,
     submitDisabled: false,
+    participantTypeDisabled: false,
     formState: {
       participantType: "individualParticipant" as ParticipantType,
       errors: {},
@@ -155,6 +156,7 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
     hideBackButton: false,
   },
   callbacks: {
+    setParticipantType: (p) => console.log({ p }),
     setDocusignStatus: (status: DocusignStatus) => console.log(status),
     toggleFormSubmitted: () => console.log("Toggle checkbox"),
     onSubmit: async () => console.log("submit"),

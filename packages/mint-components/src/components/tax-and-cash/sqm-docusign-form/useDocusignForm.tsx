@@ -2,7 +2,7 @@ import {
   useMutation,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useMemo, useState } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParent, useParentValue } from "../../../utils/useParentState";
@@ -10,12 +10,11 @@ import {
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
   TaxContext,
-  TaxDocumentType,
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
-import { DocusignForm } from "./sqm-docusign-form";
 import { DocusignStatus } from "./docusign-iframe/DocusignIframe";
+import { DocusignForm } from "./sqm-docusign-form";
 
 type CreateTaxDocumentQuery = {
   createImpactPartnerTaxDocument: {
@@ -23,7 +22,10 @@ type CreateTaxDocumentQuery = {
   };
 };
 
-export type ParticipantType = "individualParticipant" | "businessEntity" | undefined;
+export type ParticipantType =
+  | "individualParticipant"
+  | "businessEntity"
+  | undefined;
 const GET_TAX_DOCUMENT = gql`
   mutation createImpactPartnerTaxDocument(
     $vars: CreateImpactPartnerTaxDocumentInput!
@@ -55,11 +57,13 @@ export function useDocusignForm(props: DocusignForm) {
   const [docusignStatus, setDocusignStatus] =
     useState<DocusignStatus>(undefined);
 
+  const [participantType, setParticipantType] =
+    useState<ParticipantType>(undefined);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const documentType =
+  const existingDocumentType =
     data?.user?.impactPartner?.currentTaxDocument?.type || // Then current form (could be different than required)
     data?.user?.impactPartner?.requiredTaxDocumentType; // Last, the required tax form
 
@@ -68,9 +72,24 @@ export function useDocusignForm(props: DocusignForm) {
     { loading: documentLoading, data: document, errors: documentErrors },
   ] = useMutation<CreateTaxDocumentQuery>(GET_TAX_DOCUMENT);
 
+  const actualDocumentType =
+    existingDocumentType || getDocumentType(participantType);
+
   useEffect(() => {
-    if (document) return;
-    if (!user || !documentType) return;
+    if (!data?.user?.impactPartner?.currentTaxDocument?.type) return;
+
+    const type = data.user.impactPartner.currentTaxDocument.type;
+    console.log({ type });
+    if (type === "W8BEN") {
+      setParticipantType("individualParticipant");
+    } else if (type === "W8BENE") {
+      setParticipantType("businessEntity");
+    }
+  }, [data?.user?.impactPartner]);
+
+  useEffect(() => {
+    if (!user) return;
+    if (!actualDocumentType) return;
 
     const fetchDocument = async () => {
       try {
@@ -78,7 +97,7 @@ export function useDocusignForm(props: DocusignForm) {
           vars: {
             userId: user.id,
             accountId: user.accountId,
-            taxDocumentType: documentType,
+            taxDocumentType: actualDocumentType,
           },
         });
 
@@ -89,7 +108,7 @@ export function useDocusignForm(props: DocusignForm) {
     };
 
     fetchDocument();
-  }, [user, documentType, document]);
+  }, [user, actualDocumentType]);
 
   useEffect(() => {
     // Handled in view
@@ -139,30 +158,34 @@ export function useDocusignForm(props: DocusignForm) {
     setPath(context.overrideBackStep);
   };
 
+  const allLoading = userLoading || documentLoading || loading;
+
   return {
     states: {
       hideSteps: context.hideSteps,
-      disabled: userLoading || documentLoading || loading,
+      disabled: allLoading,
+      participantTypeDisabled: allLoading || !!existingDocumentType,
       submitDisabled: !formSubmitted,
-      loading: userLoading || documentLoading || loading,
+      loading: allLoading,
       formState: {
         //AL: hooks todo
-        participantType: "individualParticipant" as ParticipantType,
+        participantType,
         completedTaxForm: formSubmitted,
         taxFormExpired: false, // TODO: Unhardcode this
         errors,
       },
       docusignStatus,
-      documentType,
+      documentType: actualDocumentType,
       hideBackButton: !context.overrideBackStep,
     },
     data: {
-      taxForm: documentType,
+      taxForm: actualDocumentType,
       documentUrl: document?.createImpactPartnerTaxDocument?.documentUrl,
     },
     callbacks: {
       onSubmit,
       setDocusignStatus,
+      setParticipantType,
       toggleFormSubmitted: () => setFormSubmitted((x) => !x),
       onBack,
     },
@@ -171,3 +194,9 @@ export function useDocusignForm(props: DocusignForm) {
 }
 
 export type UseDocusignFormResult = ReturnType<typeof useDocusignForm>;
+
+function getDocumentType(p: ParticipantType) {
+  if (p === "businessEntity") return "W8BENE";
+  if (p === "individualParticipant") return "W8BEN";
+  else return undefined;
+}

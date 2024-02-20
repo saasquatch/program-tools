@@ -2,6 +2,7 @@ import { VNode, h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { TaxDocumentType } from "../sqm-tax-and-cash/data";
+import { ParticipantType } from "./useDocusignForm";
 
 export interface DocusignFormViewProps {
   states: {
@@ -9,6 +10,7 @@ export interface DocusignFormViewProps {
     submitDisabled: boolean;
     disabled: boolean;
     hideSteps: boolean;
+    participantTypeDisabled: boolean;
     formState: {
       completedTaxForm: boolean;
       taxFormExpired: boolean;
@@ -26,6 +28,7 @@ export interface DocusignFormViewProps {
     docusignIframeSlot: VNode;
   };
   callbacks: {
+    setParticipantType: (p: ParticipantType) => void;
     toggleFormSubmitted: () => void;
     onSubmit: (props: any) => void;
     onBack: () => void;
@@ -232,7 +235,10 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
               value="individualParticipant"
               name="/participantType"
               checked={formState.participantType === "individualParticipant"}
-              disabled={states.disabled}
+              disabled={states.disabled || states.participantTypeDisabled}
+              onClick={() => {
+                callbacks.setParticipantType("individualParticipant");
+              }}
             >
               {text.individualParticipant}
             </sl-radio>
@@ -241,7 +247,10 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
               value="businessEntity"
               name="/participantType"
               checked={formState.participantType === "businessEntity"}
-              disabled={states.disabled}
+              disabled={states.disabled || states.participantTypeDisabled}
+              onClick={() => {
+                callbacks.setParticipantType("businessEntity");
+              }}
             >
               {text.businessEntity}
             </sl-radio>
@@ -252,8 +261,8 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           )}
         </div>
       )}
-      {/* @ts-ignore */}
-      {(states.documentType === "W9" || (states.documentType !== "W9" && formState.participantType)) && (
+
+      {(states.documentType === "W9" || formState.participantType) && (
         <div>
           <div>
             <h5 class={classes.BoldText}>
