@@ -1,5 +1,6 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
+import { useEffect } from "@saasquatch/universal-hooks";
 import { Component, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
@@ -670,12 +671,16 @@ export class BankingInfoForm {
 }
 
 function useDemoBankingInfoForm(props: BankingInfoForm) {
+  const defaultChecked = props.demoData?.states?.formState?.checked;
+  const defaultCurrency = props.demoData?.demo?.currency;
+  const defaultCountry = props.demoData.states?.bankCountry;
+
   const [checked, setChecked] = useState<
     "toBankAccount" | "toPaypalAccount" | undefined
-  >(undefined);
+  >(defaultChecked);
 
-  const [currency, setCurrency] = useState(props.demoData.demo.currency);
-  const [bankCountry, setBankCountry] = useState("");
+  const [currency, setCurrency] = useState(defaultCurrency);
+  const [bankCountry, setBankCountry] = useState(defaultCountry);
 
   const currentPaymentOption = mockPaymentOptions[currency]?.find(
     (paymentOption) => {
@@ -686,7 +691,20 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
 
   const bitset =
     currentPaymentOption?.withdrawalId || props.demoData?.demo?.bitset || 0;
-  console.log({ bitset, currency, currentPaymentOption, props });
+
+  console.log("demo hook", {
+    demoData: props.demoData,
+    currentPaymentOption,
+    currency,
+    bankCountry,
+    bitset,
+  });
+
+  useEffect(() => {
+    if (defaultChecked !== checked) setChecked(defaultChecked);
+    if (defaultCurrency !== currency) setCurrency(defaultCurrency);
+    if (defaultCountry !== bankCountry) setBankCountry(defaultCountry);
+  }, [defaultChecked, defaultCurrency, defaultCountry]);
 
   const feeCap = paypalFeeMap[currency] || "";
 

@@ -12,7 +12,7 @@ const bankingFormProps = {
     formState: {
       checked: "toBankAccount",
     },
-    bitset: 39,
+    bankCountry: "US",
   },
   demo: {
     currency: "USD",
@@ -62,6 +62,7 @@ export const BankingInfoFormDefaultWithValidationErrors = () => {
         states: {
           ...bankingFormProps.states,
           demo: {
+            ...bankingFormProps.demo,
             // bitset: 39,
             currency: "USD",
           },
@@ -99,7 +100,9 @@ export const BankingInfoFormCountryUSCurrencyUSD = () => {
     <sqm-banking-info-form
       demoData={{
         ...bankingFormProps,
+        states: { ...bankingFormProps.states, bankCountry: "US" },
         demo: {
+          ...bankingFormProps.demo,
           currency: "USD",
           // bitset: 39,
         },
@@ -134,9 +137,11 @@ export const BankingInfoFormCountryUSCurrencyUSDLoading = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
+          bankCountry: "US",
           loading: true,
         },
         demo: {
+          ...bankingFormProps.demo,
           // bitset: 39,
           currency: "USD",
         },
@@ -150,7 +155,9 @@ export const BankingInfoFormCountryUSCurrencyGBP = () => {
     <sqm-banking-info-form
       demoData={{
         ...bankingFormProps,
+        states: { ...bankingFormProps.states, bankCountry: "US" },
         demo: {
+          ...bankingFormProps.demo,
           // bitset: 33,
           currency: "GBP",
         },
@@ -164,7 +171,9 @@ export const BankingInfoFormCountryCanadaCurrencyCAD = () => {
     <sqm-banking-info-form
       demoData={{
         ...bankingFormProps,
+        states: { ...bankingFormProps.states, bankCountry: "CA" },
         demo: {
+          ...bankingFormProps.demo,
           // bitset: 37,
           currency: "CAD",
         },
@@ -178,7 +187,9 @@ export const BankingInfoFormCountryCanadaCurrencyUSD = () => {
     <sqm-banking-info-form
       demoData={{
         ...bankingFormProps,
+        states: { ...bankingFormProps.states, bankCountry: "CA" },
         demo: {
+          ...bankingFormProps.demo,
           // bitset: 21,
           currency: "USD",
         },
@@ -192,7 +203,9 @@ export const BankingInfoFormCountrySpainCurrencyUSD = () => {
     <sqm-banking-info-form
       demoData={{
         ...bankingFormProps,
+        states: { ...bankingFormProps.states, bankCountry: "ES" },
         demo: {
+          ...bankingFormProps.demo,
           // bitset: 25,
           currency: "USD",
         },
@@ -211,6 +224,7 @@ export const BankingInfoFormIsPartner = () => {
           isPartner: true,
         },
         demo: {
+          ...bankingFormProps.demo,
           // bitset: 25,
           currency: "USD",
         },
