@@ -27,6 +27,32 @@ export const paypalFeeMap = {
   JPY: "JPY2000.00",
 };
 
+export type BankingInfoFormData = {
+  bankCountry?: string;
+  paypalEmail?: string;
+  beneficiaryAccountName?: string;
+  bankAccountType?: string;
+  bankAccountNumber?: string;
+  iban?: string;
+  swiftCode?: string;
+  routingCode?: string;
+  bankName?: string;
+  beneficiaryClassification?:
+    | "BUSINESS"
+    | "INDIVIDUAL"
+    | "FOREIGN"
+    | "CPF"
+    | "CNPJ";
+  patronymicName?: string;
+  voCode?: string;
+  agencyCode?: string;
+  bankAddress?: string;
+  bankCity?: string;
+  bankProvinceState?: string;
+  bankPostalCode?: string;
+  branchCode?: string;
+};
+
 export function getFormInputs({ props, formMap }) {
   const binary = (props.demo.bitset || props.states.bitset)
     .toString(2)
@@ -67,7 +93,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
   >(undefined);
 
   const onSubmit = async (event: any) => {
-    let formData: Record<string, string> = {};
+    let formData: BankingInfoFormData = {};
     let validationErrors: Record<string, string> = {};
 
     const controls = event.target.getFormControls();
