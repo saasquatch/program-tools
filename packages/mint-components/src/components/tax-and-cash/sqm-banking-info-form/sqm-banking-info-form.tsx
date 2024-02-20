@@ -241,6 +241,8 @@ export class BankingInfoForm {
       ? useDemoBankingInfoForm(this)
       : useBankingInfoForm(getProps(this));
 
+    console.log({ props });
+
     const routingCodeLabels = {
       AU: "BSB Number",
       CA: "Routing Number",
@@ -258,6 +260,7 @@ export class BankingInfoForm {
       0: {
         input: (
           <sl-input
+            required
             label={props.text.beneficiaryAccountNameLabel}
             name="/beneficiaryAccountName"
             id="beneficiaryAccountName"
@@ -268,6 +271,7 @@ export class BankingInfoForm {
       1: {
         input: (
           <sl-input
+            required
             label={props.text.bankAccountTypeLabel}
             name="/bankAccountType"
             id="bankAccountType"
@@ -278,6 +282,7 @@ export class BankingInfoForm {
       2: {
         input: (
           <sl-input
+            required
             label={props.text.bankAccountNumberLabel}
             name="/bankAccountNumber"
             id="bankAccountNumber"
@@ -288,6 +293,7 @@ export class BankingInfoForm {
       3: {
         input: (
           <sl-input
+            required
             label={props.text.ibanLabel}
             name="/iban"
             id="iban"
@@ -299,6 +305,7 @@ export class BankingInfoForm {
       4: {
         input: (
           <sl-input
+            required
             label={props.text.swiftCodeLabel}
             name="/swiftCode"
             id="swiftCode"
@@ -309,6 +316,7 @@ export class BankingInfoForm {
       5: {
         input: (
           <sl-input
+            required
             label={
               routingCodeLabels[props.states.bankCountry] ||
               props.text.routingCodeLabel
@@ -322,6 +330,7 @@ export class BankingInfoForm {
       6: {
         input: (
           <sl-input
+            required
             label={props.text.bankNameLabel}
             name="/bankName"
             id="bankName"
@@ -332,6 +341,7 @@ export class BankingInfoForm {
       7: {
         input: (
           <sl-select
+            required
             label={props.text.classificationLabel}
             name="/beneficiaryClassification"
             id="beneficiaryClassification"
@@ -351,6 +361,7 @@ export class BankingInfoForm {
       8: {
         input: (
           <sl-select
+            required
             label={props.text.classificationCPFLabel}
             name="/beneficiaryClassification"
             id="beneficiaryClassification"
@@ -363,6 +374,7 @@ export class BankingInfoForm {
       9: {
         input: (
           <sl-input
+            required
             label={props.text.patronymicNameLabel}
             name="/patronymicName"
             id="patronymicName"
@@ -383,6 +395,7 @@ export class BankingInfoForm {
       11: {
         input: (
           <sl-input
+            required
             label={props.text.agencyCodeLabel}
             name="/agencyCode"
             id="agencyCode"
@@ -394,24 +407,28 @@ export class BankingInfoForm {
         input: (
           <div>
             <sl-input
+              required
               label={"bankAddress"}
               name="/bankAddress"
               id="bankAddress"
               type="text"
             ></sl-input>
             <sl-input
+              required
               label={"bankCity"}
               name="/bankCity"
               id="bankCity"
               type="text"
             ></sl-input>
             <sl-input
+              required
               label={"bankProvinceState"}
               name="/bankProvinceState"
               id="bankProvinceState"
               type="text"
             ></sl-input>
             <sl-input
+              required
               label={"bankPostalCode"}
               name="/bankPostalCode"
               id="bankPostalCode"
@@ -423,6 +440,7 @@ export class BankingInfoForm {
       13: {
         input: (
           <sl-input
+            required
             label={props.text.branchCodeLabel}
             name="/branchCode"
             id="branchCode"
@@ -434,6 +452,7 @@ export class BankingInfoForm {
         error: false,
         input: (
           <sl-select
+            required
             label={props.text.classificationLabel}
             name="/beneficiaryClassification"
             id="beneficiaryClassification"
@@ -489,6 +508,7 @@ export class BankingInfoForm {
               <label htmlFor="/bankCountry">
                 Bank Location Country
                 <sl-select
+                  required
                   name="/bankCountry"
                   id="bankCountry"
                   value={props.states.bankCountry}

@@ -27,6 +27,12 @@ export const paypalFeeMap = {
   JPY: "JPY2000.00",
 };
 
+export const paymentMethodMap = {
+  3: "ACH",
+  5: "WIRE",
+  7: "PAYPAL",
+};
+
 export type BankingInfoFormData = {
   bankCountry?: string;
   paypalEmail?: string;
