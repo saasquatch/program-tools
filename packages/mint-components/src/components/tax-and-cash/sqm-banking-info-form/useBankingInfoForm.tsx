@@ -53,13 +53,15 @@ export type BankingInfoFormData = {
   branchCode?: string;
 };
 
-export function getFormInputs({ props, formMap }) {
-  const binary = (props.demo.bitset || props.states.bitset)
-    .toString(2)
-    .padStart(Object.keys(formMap).length, "0");
+export function getFormInputs({ bitset, formMap }) {
+  // Convert bitset to binary representation
+  const binary = bitset.toString(2).padStart(Object.keys(formMap).length, "0");
 
+  // Reverse to match order of docs
+  // https://docs.google.com/document/d/1db8BnXK4NXN8LcX1U0-GBcnq57X3_XKmFBZijLOIYt4
   const binaryToParse = binary.split("").reverse().join("");
 
+  // return input for each 1 found in binary
   const inputFields = [...binaryToParse].reduce((agg, num, idx) => {
     const number = Number(num);
     const inputFound = formMap[idx];
@@ -85,7 +87,6 @@ export function useBankingInfoForm(props: BankingInfoForm) {
   const [bankCountry, setBankCountry] = useState("");
 
   const formRef = useRef<HTMLFormElement>(null);
-  const [option, setOption] = useState(null);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [checked, setChecked] = useState<
@@ -147,7 +148,6 @@ export function useBankingInfoForm(props: BankingInfoForm) {
 
     callbacks: {
       onSubmit,
-      onChange: setOption,
       setBankCountry,
       setChecked,
     },
@@ -156,8 +156,8 @@ export function useBankingInfoForm(props: BankingInfoForm) {
       intlLocale: locale?.replace("_", "-") || "en",
       isPartner: !!userData?.user?.impactPartner,
       feeCap,
-      disabled: false,
-      loading: false,
+      disabled: loading,
+      loading,
       hideSteps: false,
       hideBanking: checked !== "toBankAccount",
       hidePayPal: checked !== "toPaypalAccount",
