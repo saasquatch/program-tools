@@ -438,7 +438,10 @@ export class BankingInfoForm {
       },
     };
 
-    const inputFields = getFormInputs({ props, formMap });
+    const inputFields = getFormInputs({
+      bitset: props.demo.bitset || props.states.bitset,
+      formMap,
+    });
 
     return (
       <Host>
@@ -540,7 +543,6 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
       },
       callbacks: {
         onSubmit: async () => {},
-        onChange: setOption,
       },
       text: props.getTextProps(),
       refs: {
