@@ -39,6 +39,8 @@ export interface UserInfoFormViewProps {
     }[];
   };
   callbacks: {
+    setCurrencySearch: (c: any) => void;
+    setCountrySearch: (c: any) => void;
     onSubmit: (props: any) => void;
     onRadioClick: (value: string) => void;
   };
@@ -191,40 +193,6 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
   } = props;
   const { classes } = sheet;
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredCountries, setFilteredCountries] = useState(
-    data?.countries || []
-  );
-
-  const [searchCurrency, setSearchCurrency] = useState("");
-  const [filteredCurrencies, setFilteredCurrencies] = useState(
-    data?.currencies || []
-  );
-
-  useEffect(() => {
-    if (searchTerm.trim() === "") {
-      setFilteredCountries(data?.countries || []);
-    } else {
-      setFilteredCountries(
-        data?.countries.filter((c) =>
-          c.displayName.toLowerCase().includes(searchTerm.toLowerCase())
-        ) || []
-      );
-    }
-  }, [searchTerm, data?.countries]);
-
-  useEffect(() => {
-    if (searchCurrency.trim() === "") {
-      setFilteredCurrencies(data?.currencies || []);
-    } else {
-      setFilteredCurrencies(
-        data?.currencies.filter((c) =>
-          c.currencyCode.toLowerCase().includes(searchCurrency.toLowerCase())
-        ) || []
-      );
-    }
-  }, [searchCurrency, data?.currencies]);
-
   return (
     <sl-form
       class={classes.FormWrapper}
@@ -326,7 +294,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 class={classes.SearchInput}
                 placeholder="Search for country.."
                 onInput={(e) => {
-                  setSearchTerm(e.target.value);
+                  callbacks.setCountrySearch(e.target.value);
                 }}
                 onKeyDown={(e) => {
                   if (e.key === " ") {
@@ -334,7 +302,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   }
                 }}
               ></sl-input>
-              {filteredCountries.map((c) => (
+              {data?.countries?.map((c) => (
                 <sl-menu-item value={c.countryCode}>
                   {c.displayName}
                 </sl-menu-item>
@@ -359,55 +327,20 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               <sl-input
                 class={classes.SearchInput}
                 placeholder="Search for currency.."
-                onInput={(e) => setSearchCurrency(e.target.value)}
+                onInput={(e) => callbacks.setCurrencySearch(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === " ") {
                     e.stopPropagation();
                   }
                 }}
               />
-              {/* {data?.currencies?.map((c) => (
-                <sl-menu-item value={c.currencyCode}>
-                  {c.currencyCode} - {c.displayName}
-                </sl-menu-item>
-              ))} */}
-              {filteredCurrencies.map((c) => (
+              {data?.currencies?.map((c) => (
                 <sl-menu-item value={c.currencyCode}>
                   {c.currencyCode} - {c.displayName}
                 </sl-menu-item>
               ))}
             </sl-select>
 
-            {/* <div class={classes.CheckboxWrapper}>
-              <p class={classes.BoldText}>{text.participantType}</p>
-
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <sl-radio
-                  exportparts="base: radio-base"
-                  value="individualParticipant"
-                  name="/participantType"
-                  checked={
-                    formState.participantType === "individualParticipant"
-                  }
-                  disabled={states.disabled || states.isPartner}
-                >
-                  {text.individualParticipant}
-                </sl-radio>
-                <sl-radio
-                  exportparts="base: radio-base"
-                  value="businessEntity"
-                  name="/participantType"
-                  checked={formState.participantType === "businessEntity"}
-                  disabled={states.disabled || states.isPartner}
-                >
-                  {text.businessEntity}
-                </sl-radio>
-              </div>
-
-              {formState.errors?.participantType && (
-                <p class={classes.ErrorText}>{text.error.participantType}</p>
-              )}
-            </div> */}
             <div class={classes.CheckboxWrapper}>
               <p class={classes.BoldText}> {text.taxAndBankingCollection}</p>
               <sl-checkbox
