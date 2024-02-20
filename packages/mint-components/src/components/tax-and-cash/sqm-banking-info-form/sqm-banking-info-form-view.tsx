@@ -26,7 +26,6 @@ export interface BankingInfoFormViewProps {
   callbacks: {
     setChecked: (checked: "toBankAccount" | "toPaypalAccount") => void;
     onSubmit: (props: any) => Promise<void>;
-    onChange: (e) => void;
   };
   text: {
     formStep: string;
@@ -226,6 +225,8 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
       );
     }
 
+    // TODO: Fix type
+    // @ts-ignore
     Array.from({ length: inputNumber }).forEach((input, index) => {
       skeletons.push(
         <div style={{ ...flexBoxStyle, flexDirection: "column" }} key={index}>
