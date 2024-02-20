@@ -4,9 +4,13 @@ import { Component, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import { BankingInfoFormView } from "./sqm-banking-info-form-view";
-import { getFormInputs, useBankingInfoForm } from "./useBankingInfoForm";
 import { mockPaymentOptions } from "./mockData";
+import { BankingInfoFormView } from "./sqm-banking-info-form-view";
+import {
+  getFormInputs,
+  paypalFeeMap,
+  useBankingInfoForm,
+} from "./useBankingInfoForm";
 
 /**
  * @uiName Banking Information Form
@@ -453,22 +457,24 @@ export class BankingInfoForm {
         {/* <sl-input
           value={props.demo.bitset}
           onInput={(e) => props.demo.setBitset(Number(e.target.value))}
-        />
-        <sl-select
-          name="/currency"
-          value={props.demo.currency}
-          onSl-select={(e) => {
-            props.demo.setCurrency(e.detail?.item?.value);
-            props.callbacks.setBankCountry("");
-          }}
-        >
-          <sl-menu-item value="USD">USD</sl-menu-item>
-          <sl-menu-item value="GBP">GBP</sl-menu-item>
-          <sl-menu-item value="AUD">AUD</sl-menu-item>
-          <sl-menu-item value="CAD">CAD</sl-menu-item>
-          <sl-menu-item value="EUR">EUR</sl-menu-item>
-          <sl-menu-item value="JPY">JPY</sl-menu-item>
-        </sl-select> */}
+        /> */}
+        {props.demo.showInputs && (
+          <sl-select
+            name="/currency"
+            value={props.demo.currency}
+            onSl-select={(e) => {
+              props.demo.setCurrency(e.detail?.item?.value);
+              props.callbacks.setBankCountry("");
+            }}
+          >
+            <sl-menu-item value="USD">USD</sl-menu-item>
+            <sl-menu-item value="GBP">GBP</sl-menu-item>
+            <sl-menu-item value="AUD">AUD</sl-menu-item>
+            <sl-menu-item value="CAD">CAD</sl-menu-item>
+            <sl-menu-item value="EUR">EUR</sl-menu-item>
+            <sl-menu-item value="JPY">JPY</sl-menu-item>
+          </sl-select>
+        )}
         {/*  */}
         <BankingInfoFormView
           callbacks={props.callbacks}
@@ -524,7 +530,25 @@ export class BankingInfoForm {
 }
 
 function useDemoBankingInfoForm(props: BankingInfoForm) {
-  const [option, setOption] = useState(undefined);
+  const [checked, setChecked] = useState<
+    "toBankAccount" | "toPaypalAccount" | undefined
+  >(undefined);
+
+  const [currency, setCurrency] = useState("CAD");
+  const [bankCountry, setBankCountry] = useState("");
+
+  const currentPaymentOption = mockPaymentOptions[currency]?.find(
+    (paymentOption) => {
+      if (paymentOption.country === bankCountry) return true;
+      return false;
+    }
+  );
+
+  const bitset =
+    currentPaymentOption?.withdrawalId || props.demoData?.demo?.bitset || 0;
+  console.log({ bitset, currency, currentPaymentOption, props });
+
+  const feeCap = paypalFeeMap[currency] || "";
 
   return deepmerge(
     {
@@ -533,20 +557,26 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
         disabled: false,
         loading: false,
         hideSteps: false,
-        feeCap: "USD20.00",
+        feeCap,
         formState: {
-          checked: option,
+          checked,
           errors: {
             general: false,
           },
         },
         intlLocale: "en",
+        bitset,
+        bankCountry,
       },
       demo: {
-        bitset: 39,
+        showInputs: props.demoData?.showInputs,
+        currency,
+        setCurrency,
       },
       callbacks: {
         onSubmit: async () => {},
+        setBankCountry,
+        setChecked,
       },
       text: props.getTextProps(),
       refs: {

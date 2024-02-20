@@ -27,6 +27,19 @@ const bankingFormProps = {
   },
   refs: { formRef: { current: null } },
 };
+
+export const BankingInfoFormTesting = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        demo: {
+          showInputs: true,
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
 export const BankingInfoFormDefault = () => {
   return <sqm-banking-info-form></sqm-banking-info-form>;
 };
