@@ -125,22 +125,6 @@ Feature: Tax Form Flow
       | MX           | US      | W9               |
       | UK           | US      | W9               |
       | AUS          | US      | W9               |
-  #AL: Commenting out for now, not applicable anymore
-  # @minutia
-  # Scenario Outline: Participant changes Tax Form to fillout in step 3
-  #   Given they are on step 3
-  #   And they press the <changeTaxFormCopy> text
-  #   Then they will proceed to the Document Type Change form
-  #   And they see three tax form type options
-  #   When they select the <taxFormTypeOption> option
-  #   And press "Continue"
-  #   Then they will be sent back to step 3
-  #   And the Docusign iframe will load the <newTaxForm> to fill out
-  #   Examples: 
-  #     | changeTaxFormCopy                                                | taxFormTypeOption | newTaxForm |
-  #     | Not based in the US?                                             | W8-BEN-E          | W8-BEN-E   |
-  #     | Represent a business entity or you're based in the US?           | W9                | W9         |
-  #     | Joining this program as an individual or you're based in the US? | W8-BEN            | W8-BEN     |
 
   @minutia
   Scenario: Participant finishes tax form flow and skipped Docusign form
