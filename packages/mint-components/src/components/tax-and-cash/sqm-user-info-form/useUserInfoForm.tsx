@@ -60,10 +60,13 @@ export function useUserInfoForm(props: TaxForm) {
 
   const { data, loading } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
-  const { data: _countries, loading: countriesLoading } =
+  const { data: countriesRes, loading: countriesLoading } =
     useParentQueryValue<CountriesQuery>(COUNTRIES_NAMESPACE);
   const { data: currenciesRes, loading: loadingCurrencies } =
     useParentQueryValue<CurrenciesQuery>(CURRENCIES_NAMESPACE);
+
+  const countries = countriesRes?.impactPartnerCountries?.data;
+  const currencies = currenciesRes?.currencies?.data;
 
   useEffect(() => {
     const user = data?.user;
@@ -91,6 +94,38 @@ export function useUserInfoForm(props: TaxForm) {
       });
     }
   }, [data, step]);
+
+  const [countrySearch, setCountrySearch] = useState("");
+  const [filteredCountries, setFilteredCountries] = useState(countries || []);
+
+  const [currencySearch, setCurrencySearch] = useState("");
+  const [filteredCurrencies, setFilteredCurrencies] = useState(
+    currencies || []
+  );
+
+  useEffect(() => {
+    if (countrySearch.trim() === "") {
+      setFilteredCountries(countries || []);
+    } else {
+      setFilteredCountries(
+        countries.filter((c) =>
+          c.displayName.toLowerCase().includes(countrySearch.toLowerCase())
+        ) || []
+      );
+    }
+  }, [countrySearch, countries]);
+
+  useEffect(() => {
+    if (currencySearch.trim() === "") {
+      setFilteredCurrencies(currencies || []);
+    } else {
+      setFilteredCurrencies(
+        currencies.filter((c) =>
+          c.currencyCode.toLowerCase().includes(currencySearch.toLowerCase())
+        ) || []
+      );
+    }
+  }, [currencySearch, currencies]);
 
   function onRadioClick(value: string) {
     setUserFormContext({ ...userFormContext, participantType: value });
@@ -161,12 +196,16 @@ export function useUserInfoForm(props: TaxForm) {
     onSubmit,
     onRadioClick,
     text: props.getTextProps(),
+    callbacks: {
+      setCurrencySearch,
+      setCountrySearch,
+    },
     refs: {
       formRef,
     },
     data: {
-      currencies: currenciesRes?.currencies?.data,
-      countries: _countries?.impactPartnerCountries?.data,
+      currencies: filteredCurrencies,
+      countries: filteredCountries,
     },
     states: {
       hideSteps: context.hideSteps,

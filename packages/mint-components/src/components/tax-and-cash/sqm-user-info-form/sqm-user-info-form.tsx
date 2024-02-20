@@ -191,6 +191,7 @@ export class TaxForm {
           // @ts-ignore
           states={props.states}
           callbacks={{
+            ...props.callbacks,
             onSubmit: props.onSubmit,
             onRadioClick: props.onRadioClick,
           }}
@@ -221,6 +222,10 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
       data: {
         currencies: [{ currencyCode: "CAD", displayName: "CAD" }],
         countries: [{ countryCode: "CA", displayName: "Canada" }],
+      },
+      callbacks: {
+        setCurrencySearch: (c) => console.log(c),
+        setCountrySearch: (c) => console.log(c),
       },
       states: {
         disabled: false,

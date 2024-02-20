@@ -86,8 +86,8 @@ export const useTaxDocumentSubmitted = (
       status: data?.user?.impactPartner?.currentTaxDocument?.status,
 
       indirectTaxNumber: data?.user?.customFields?.__indirectTaxNumber,
-      // TODO: hook up isBusinessEntity up to hooks
-      isBusinessEntity: true,
+      isBusinessEntity:
+        data?.user?.impactPartner?.requiredTaxDocumentType === "W8BENE",
       province: provinceName,
       // @ts-ignore: DisplayNames does exist on Intl
       country: new Intl.DisplayNames([locale.replaceAll("_", "-")], {
