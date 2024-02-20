@@ -150,7 +150,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
     ACH: "EFT Withdrawal (free)",
     WIRE: `FX Wire (Processing Fee ${currency}${
       currentPaymentOption?.defaultFxFee || 0
-    }`,
+    })`,
   };
   const paymentMethodFeeLabel =
     paymentMethodFeeMap[currentPaymentOption?.withdrawalSetting];
@@ -191,6 +191,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
       formRef,
     },
     demo: {
+      showInputs: true,
       bitset,
       setBitset,
       currency,

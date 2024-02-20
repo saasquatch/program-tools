@@ -585,7 +585,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
     ACH: "EFT Withdrawal (free)",
     WIRE: `FX Wire (Processing Fee ${currency}${
       currentPaymentOption?.defaultFxFee || 0
-    }`,
+    })`,
   };
 
   const paymentMethodFeeLabel =
