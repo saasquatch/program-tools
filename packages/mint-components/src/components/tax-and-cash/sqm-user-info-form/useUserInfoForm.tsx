@@ -162,11 +162,6 @@ export function useUserInfoForm(props: TaxForm) {
       }
     });
 
-    // participant type validation
-    if (!formData.participantType) {
-      jsonpointer.set(errors, "/participantType", props.participantTypeError);
-    }
-
     if (Object.keys(errors).length) {
       setErrors(errors);
       // early return for validation errors
@@ -175,19 +170,15 @@ export function useUserInfoForm(props: TaxForm) {
 
     const { allowBankingCollection, ...userData } = formData;
 
-    try {
-      setUserFormContext({
-        ...userFormContext,
-        countryCode: userData.countryCode,
-        currency: userData.currency,
-        participantType: userData.participantType,
-      });
+    setUserFormContext({
+      ...userFormContext,
+      countryCode: userData.countryCode,
+      currency: userData.currency,
+      participantType: userData.participantType,
+    });
 
-      const nextStep = context.overrideNextStep || "/2";
-      setStep(nextStep);
-    } catch (e) {
-      setErrors({ general: true });
-    }
+    const nextStep = context.overrideNextStep || "/2";
+    setStep(nextStep);
   }
 
   return {
