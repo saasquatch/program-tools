@@ -175,6 +175,17 @@ const vanillaStyle = `
       color: var(--sl-color-gray-800);
       font-size: var(--sl-font-size-small);
     }
+
+    /* this class is dynamically applied in controller */
+    .error-input::part(base) {
+      border: 1px solid var(--sl-color-danger-500);
+      border-radius: var(--sl-input-border-radius-medium);
+    }
+
+    .error-input::part(help-text) {
+      color: var(--sl-color-danger-500) !important;
+    }
+    
   `;
 
 export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {

@@ -83,6 +83,11 @@ export namespace Components {
          */
         "bankAccountTypeLabel": string;
         /**
+          * Label text for the bank country location input field
+          * @uiName Bank country location input label
+         */
+        "bankLocationLabel": string;
+        /**
           * Label text for the bank name input field
           * @uiName Bank name input label
          */
@@ -5297,6 +5302,11 @@ declare namespace LocalJSX {
           * @uiName Bank account type input label
          */
         "bankAccountTypeLabel"?: string;
+        /**
+          * Label text for the bank country location input field
+          * @uiName Bank country location input label
+         */
+        "bankLocationLabel"?: string;
         /**
           * Label text for the bank name input field
           * @uiName Bank name input label

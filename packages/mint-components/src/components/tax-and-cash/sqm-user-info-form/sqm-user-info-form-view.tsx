@@ -293,13 +293,12 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               <sl-input
                 class={classes.SearchInput}
                 placeholder="Search for country.."
-                onInput={(e) => {
-                  callbacks.setCountrySearch(e.target.value);
-                }}
                 onKeyDown={(e) => {
-                  if (e.key === " ") {
-                    e.stopPropagation();
-                  }
+                  // Stop shoelace intercepting key presses
+                  e.stopPropagation();
+                }}
+                onSl-input={(e) => {
+                  callbacks.setCountrySearch(e.target.value);
                 }}
               ></sl-input>
               {data?.countries?.map((c) => (
@@ -327,11 +326,12 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               <sl-input
                 class={classes.SearchInput}
                 placeholder="Search for currency.."
-                onInput={(e) => callbacks.setCurrencySearch(e.target.value)}
                 onKeyDown={(e) => {
-                  if (e.key === " ") {
-                    e.stopPropagation();
-                  }
+                  // Stop shoelace intercepting key presses
+                  e.stopPropagation();
+                }}
+                onSl-input={(e) => {
+                  callbacks.setCurrencySearch(e.target.value);
                 }}
               />
               {data?.currencies?.map((c) => (
