@@ -146,6 +146,17 @@ export function useBankingInfoForm(props: BankingInfoForm) {
     }
   );
 
+  const paymentMethodFeeMap = {
+    ACH: "EFT Withdrawal (free)",
+    WIRE: `FX Wire (Processing Fee ${currency}${
+      currentPaymentOption?.defaultFxFee || 0
+    }`,
+  };
+  const paymentMethodFeeLabel =
+    paymentMethodFeeMap[currentPaymentOption?.withdrawalSetting];
+
+  console.log({ userData });
+
   return {
     step: step,
     setStep: setStep,
@@ -162,6 +173,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
       intlLocale: locale?.replace("_", "-") || "en",
       isPartner: !!userData?.user?.impactPartner,
       feeCap,
+      paymentMethodFeeLabel,
       disabled: loading,
       loading,
       hideSteps: false,

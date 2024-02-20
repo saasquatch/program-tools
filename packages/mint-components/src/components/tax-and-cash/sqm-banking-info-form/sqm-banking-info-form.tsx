@@ -549,7 +549,7 @@ export class BankingInfoForm {
             paymentMethodSlot: (
               <sl-input
                 label={props.text.paymentMethod}
-                placeholder="EFT Withdrawal"
+                placeholder={props.states.paymentMethodFeeLabel}
                 disabled
               ></sl-input>
             ),
@@ -581,6 +581,16 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
 
   const feeCap = paypalFeeMap[currency] || "";
 
+  const paymentMethodFeeMap = {
+    ACH: "EFT Withdrawal (free)",
+    WIRE: `FX Wire (Processing Fee ${currency}${
+      currentPaymentOption?.defaultFxFee || 0
+    }`,
+  };
+
+  const paymentMethodFeeLabel =
+    paymentMethodFeeMap[currentPaymentOption?.withdrawalSetting];
+
   return deepmerge(
     {
       states: {
@@ -589,6 +599,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
         loading: false,
         hideSteps: false,
         feeCap,
+        paymentMethodFeeLabel,
         formState: {
           checked,
           errors: {
