@@ -200,9 +200,6 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
 
   const { classes } = sheet;
 
-  states.documentType = "W8BENE";
-  states.formState.participantType = "businessEntity";
-
   return (
     <div class={classes.Container}>
       <style type="text/css">
