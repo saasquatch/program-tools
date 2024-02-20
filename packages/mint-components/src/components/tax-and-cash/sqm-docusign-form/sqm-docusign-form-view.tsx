@@ -197,6 +197,9 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
 
   const { classes } = sheet;
 
+  states.documentType = "W8BENE";
+  states.formState.participantType = "businessEntity";
+
   return (
     <div class={classes.Container}>
       <style type="text/css">
@@ -256,7 +259,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             <h5 class={classes.BoldText}>
               {intl.formatMessage(
                 { id: "tax-form-label", defaultMessage: text.taxFormLabel },
-                { documentType }
+                { documentType: states.documentType }
               )}
             </h5>
             <p>
@@ -265,7 +268,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
                   id: "tax-form-description",
                   defaultMessage: text.taxFormDescription,
                 },
-                { documentType }
+                { documentType: states.documentType }
               )}
             </p>
           </div>

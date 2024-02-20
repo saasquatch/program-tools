@@ -13,7 +13,6 @@ export interface TaxDocumentSubmittedProps {
     documentType: TaxDocumentType | undefined;
     disabled?: boolean;
     dateSubmitted?: string;
-    dateExpired?: string;
     expiresSoon?: boolean;
     noFormNeeded?: boolean;
     indirectTaxNumber?: number;
@@ -32,17 +31,15 @@ export interface TaxDocumentSubmittedProps {
     statusTextActive?: string;
     statusTextNotActive?: string;
     statusTextNotVerified?: string;
-    statusTextExpired?: string;
     badgeTextSubmittedOn?: string;
+    badgeTextSubmittedOnW8?: string;
     badgeTextAwaitingReview?: string;
-    badgeTextExpiredOn?: string;
-    badgeTextExpiringSoon?: string;
     noTaxFormRequired?: string;
-    taxAlertMessageExpiringSoon?: string;
     taxAlertHeaderNotActive?: string;
-    taxAlertHeaderExpiredOn?: string;
-    taxAlertHeaderExpiringSoon?: string;
-    taxAlertMessage?: string;
+    taxAlertHeaderNotActiveW9?: string;
+    taxAlertHeaderNotActiveW8?: string;
+    taxAlertNotActiveMessageW9?: string;
+    taxAlertNotActiveMessageW8?: string;
     bankingInformationSectionHeader: string;
     indirectTaxInfoSectionHeader: string;
     indirectTaxInfoCanada?: string;
@@ -207,19 +204,13 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
           {intl.formatMessage(
             {
               id: `badgeTextSubmittedOn`,
-              defaultMessage: text.badgeTextSubmittedOn,
+              defaultMessage:
+                states.documentType === "W9"
+                  ? text.badgeTextSubmittedOn
+                  : text.badgeTextSubmittedOnW8,
             },
             {
               dateSubmitted: states.dateSubmitted,
-            }
-          )}
-          {intl.formatMessage(
-            {
-              id: `badgeTextExpiringSoon`,
-              defaultMessage: text.badgeTextExpiringSoon,
-            },
-            {
-              dateExpired: states.dateExpired,
             }
           )}
         </p>
@@ -233,24 +224,6 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         <p>{text.invalidForm}</p>
       </div>
     ),
-    EXPIRED: (
-      <div class={sheet.classes.TaxFormDetailsContainer}>
-        <sl-badge type="danger" pill>
-          {text.statusTextExpired}
-        </sl-badge>
-        <p>
-          {intl.formatMessage(
-            {
-              id: `badgeTextExpiredOn`,
-              defaultMessage: text.badgeTextExpiredOn,
-            },
-            {
-              dateExpired: states.dateExpired,
-            }
-          )}
-        </p>
-      </div>
-    ),
   };
 
   const alertMap = {
@@ -261,7 +234,10 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
           {intl.formatMessage(
             {
               id: `taxAlertHeaderNotActive`,
-              defaultMessage: text.taxAlertHeaderNotActive,
+              defaultMessage:
+                states.documentType === "W9"
+                  ? text.taxAlertHeaderNotActiveW9
+                  : text.taxAlertHeaderNotActiveW8,
             },
             {
               documentType: states.documentType,
@@ -272,64 +248,10 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         {intl.formatMessage(
           {
             id: `taxAlertMessage`,
-            defaultMessage: text.taxAlertMessage,
-          },
-          {
-            documentType: states.documentType,
-          }
-        )}
-      </sl-alert>
-    ),
-    EXPIRING_SOON: (
-      <sl-alert
-        type="warning"
-        open
-        class={sheet.classes.ExpiringSoonAlertContainer}
-      >
-        <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-        <strong>
-          {intl.formatMessage(
-            {
-              id: `taxAlertHeaderExpiringSoon`,
-              defaultMessage: text.taxAlertHeaderExpiringSoon,
-            },
-            {
-              documentType: states.documentType,
-              dateExpired: states.dateExpired,
-            }
-          )}
-        </strong>
-        <br />
-        {intl.formatMessage(
-          {
-            id: `taxAlertMessageExpiringSoon`,
-            defaultMessage: text.taxAlertMessageExpiringSoon,
-          },
-          {
-            documentType: states.documentType,
-          }
-        )}
-      </sl-alert>
-    ),
-    EXPIRED: (
-      <sl-alert type="danger" open class={sheet.classes.WarningAlertContainer}>
-        <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-        <strong>
-          {intl.formatMessage(
-            {
-              id: `taxAlertHeaderExpiredOn`,
-              defaultMessage: text.taxAlertHeaderExpiredOn,
-            },
-            {
-              documentType: states.documentType,
-            }
-          )}
-        </strong>
-        <br />
-        {intl.formatMessage(
-          {
-            id: `taxAlertMessage`,
-            defaultMessage: text.taxAlertMessage,
+            defaultMessage:
+              states.documentType === "W9"
+                ? text.taxAlertNotActiveMessageW9
+                : text.taxAlertNotActiveMessageW8,
           },
           {
             documentType: states.documentType,
@@ -355,11 +277,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
             {text.error.generalDescription}
           </sl-alert>
         )}
-        {(states.status === "NOT_ACTIVE" || states.status === "EXPIRED") &&
-          alertMap[states.status]}
-        {states.status === "ACTIVE" &&
-          states.expiresSoon &&
-          alertMap.EXPIRING_SOON}
+        {states.status === "NOT_ACTIVE" && alertMap[states.status]}
         <div>
           <h3>{text.bankingInformationSectionHeader}</h3>
           <div class={sheet.classes.BankingInformationContainer}>

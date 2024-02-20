@@ -96,7 +96,6 @@ export const useTaxDocumentSubmitted = (
       }).of([data?.user?.customFields?.__taxCountry]),
       notRegistered: data?.user?.impactPartner?.indirectTaxOption === "NO_TAX",
       noFormNeeded: !documentType,
-      dateExpired,
       expiresSoon,
       disabled: loading,
       loading,

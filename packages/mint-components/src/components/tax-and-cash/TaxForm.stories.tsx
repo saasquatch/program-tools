@@ -1,7 +1,10 @@
 import { h } from "@stencil/core";
 import { StoryDemoData } from "../../global/demo";
 import { UseDocumentTypeFormResult } from "./sqm-document-type-form/useDocumentTypeForm";
-import { ParticipantType, UseDocusignFormResult } from "./sqm-docusign-form/useDocusignForm";
+import {
+  ParticipantType,
+  UseDocusignFormResult,
+} from "./sqm-docusign-form/useDocusignForm";
 import { UseIndirectTaxFormResult } from "./sqm-indirect-tax-form/useIndirectTaxForm";
 import {
   INDIRECT_TAX_PROVINCES,
@@ -611,7 +614,7 @@ export const StepThreeWithDocusignCompleted = () => {
           ...docusignFormProps.states,
           docusignStatus: "signing_complete",
           formState: {
-            participantType:  "individualParticipant" as ParticipantType,
+            participantType: "individualParticipant" as ParticipantType,
             taxFormExpired: false,
             completedTaxForm: true,
             errors: {},
@@ -780,7 +783,26 @@ export const StepFourToPaypalChecked = () => {
   );
 };
 
-export const TaxDocumentSubmittedActive = () => {
+export const TaxDocumentSubmittedActiveW9 = () => {
+  return (
+    <sqm-tax-document-submitted
+      demoData={{
+        states: {
+          disabled: false,
+          status: "ACTIVE",
+          documentType: "W9",
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          country: "United Kingdom",
+          indirectTaxNumber: 123456,
+          isBusinessEntity: true,
+        },
+      }}
+    ></sqm-tax-document-submitted>
+  );
+};
+
+export const TaxDocumentSubmittedActiveW8BEN = () => {
   return (
     <sqm-tax-document-submitted
       demoData={{
@@ -789,7 +811,6 @@ export const TaxDocumentSubmittedActive = () => {
           status: "ACTIVE",
           documentType: "W8BEN",
           dateSubmitted: "Jan 18th, 2025",
-          dateExpired: "Dec 18th, 2025",
           noFormNeeded: false,
           country: "United Kingdom",
           indirectTaxNumber: 123456,
@@ -819,14 +840,14 @@ export const TaxDocumentSubmittedNotVerified = () => {
   );
 };
 
-export const TaxDocumentSubmittedNotActive = () => {
+export const TaxDocumentSubmittedNotActiveW9 = () => {
   return (
     <sqm-tax-document-submitted
       demoData={{
         states: {
           disabled: false,
           status: "NOT_ACTIVE",
-          documentType: "W8BENE",
+          documentType: "W9",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           indirectTaxNumber: 123456,
@@ -838,16 +859,15 @@ export const TaxDocumentSubmittedNotActive = () => {
   );
 };
 
-export const TaxDocumentSubmittedExpired = () => {
+export const TaxDocumentSubmittedNotActiveW8BEN = () => {
   return (
     <sqm-tax-document-submitted
       demoData={{
         states: {
           disabled: false,
-          status: "EXPIRED",
-          documentType: "W8BENE",
+          status: "NOT_ACTIVE",
+          documentType: "W8BEN",
           dateSubmitted: "Jan 18th, 2025",
-          dateExpired: "Dec 25th, 2025",
           noFormNeeded: false,
           indirectTaxNumber: 123456,
           country: "United Kingdom",
@@ -858,20 +878,18 @@ export const TaxDocumentSubmittedExpired = () => {
   );
 };
 
-export const TaxDocumentSubmittedExpiringSoon = () => {
+export const TaxDocumentSubmittedNotActiveW8BENE = () => {
   return (
     <sqm-tax-document-submitted
       demoData={{
         states: {
           disabled: false,
-          status: "ACTIVE",
+          status: "NOT_ACTIVE",
           documentType: "W8BENE",
           dateSubmitted: "Jan 18th, 2025",
-          dateExpired: "Feb 18th, 2025",
-          expiresSoon: true,
           noFormNeeded: false,
           indirectTaxNumber: 123456,
-          country: "Slovania",
+          country: "United Kingdom",
           isBusinessEntity: true,
         },
       }}
@@ -908,7 +926,6 @@ export const TaxDocumentSubmittedIndirectTaxCanada = () => {
           disabled: false,
           documentType: "W8BENE",
           dateSubmitted: "Jan 18th, 2025",
-          dateExpired: "Dec 20, 2026",
           noFormNeeded: false,
           province: "Ontario",
           country: "Canada",
@@ -964,7 +981,6 @@ export const TaxDocumentSubmittedLoading = () => {
           status: "ACTIVE",
           documentType: "W9",
           dateSubmitted: "Jan 18th, 2025",
-          dateExpired: "Dec 18th, 2025",
           noFormNeeded: false,
           loading: true,
           isBusinessEntity: true,
@@ -983,7 +999,6 @@ export const TaxDocumentSubmittedWithGeneralError = () => {
           status: "ACTIVE",
           documentType: "W9",
           dateSubmitted: "Jan 18th, 2025",
-          dateExpired: "Dec 18th, 2025",
           noFormNeeded: false,
           indirectTaxNumber: 123456,
           country: "Slovania",
