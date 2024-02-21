@@ -97,6 +97,12 @@ export function webtask(program: Program = {}): express.Application {
   });
 
   const healthCheck = (_req: Request, res: Response) => {
+    const terminating = app.locals["terminating"];
+    if (typeof terminating === "boolean" && terminating) {
+      logger.info("App is in TERMINATING state, sending health check failure");
+      return res.status(500).json({ status: "TERMINATING" });
+    }
+
     return res.status(200).json({ status: "OK" });
   };
 
@@ -110,4 +116,41 @@ export function webtask(program: Program = {}): express.Application {
   });
 
   return app;
+}
+
+export type RunWebtaskConfig = {
+  webtask: express.Application;
+  webtaskName: string;
+  port: number;
+  terminationTimeoutMs?: number;
+};
+
+export function runWebtask(config: RunWebtaskConfig): void {
+  const logger = ssqtLogger("program-boilerplate");
+
+  const server = config.webtask.listen(config.port, () =>
+    logger.notice(`${config.webtaskName} running on port ${config.port}`)
+  );
+
+  const gracefulShutdown = (signal: string) => () => {
+    const isTerminating = config.webtask.locals["terminating"];
+
+    if (typeof isTerminating === "boolean" && isTerminating) {
+      logger.warn(
+        "Server is already in TERMINATING state, not starting shutdown procedure again"
+      );
+      return;
+    }
+
+    config.webtask.locals["terminating"] = true;
+
+    logger.notice(`Received ${signal} signal, starting shutdown procedure`);
+
+    setTimeout(() => {
+      server.close(() => logger.notice("Server closed"));
+    }, config.terminationTimeoutMs ?? 21 * 1000);
+  };
+
+  process.on("SIGTERM", gracefulShutdown("SIGTERM"));
+  process.on("SIGINT", gracefulShutdown("SIGINT"));
 }
