@@ -31,6 +31,8 @@ import {
   getTriggerSchema,
   getUserCustomFieldsFromJsonata,
   getRewardUnitsFromJsonata,
+  loadStandardWebtaskConfig,
+  WebtaskConfig,
 } from "./utils";
 import { httpLogMiddleware } from "@saasquatch/logger";
 
@@ -61,6 +63,7 @@ export {
   safeJsonata,
   getLogger,
   setLogLevel,
+  loadStandardWebtaskConfig,
 };
 
 /**
@@ -118,18 +121,13 @@ export function webtask(program: Program = {}): express.Application {
   return app;
 }
 
-export type RunWebtaskConfig = {
-  webtask: express.Application;
-  webtaskName: string;
-  port: number;
-  keepAliveTimeoutSeconds?: number;
-  terminationDelaySeconds?: number;
-};
-
-export function runWebtask(config: RunWebtaskConfig): void {
+export function runWebtask(
+  webtask: express.Application,
+  config: WebtaskConfig
+): void {
   const logger = ssqtLogger("program-boilerplate");
 
-  const server = config.webtask.listen(config.port, () =>
+  const server = webtask.listen(config.port, () =>
     logger.notice(`${config.webtaskName} running on port ${config.port}`)
   );
 
@@ -141,7 +139,7 @@ export function runWebtask(config: RunWebtaskConfig): void {
   }
 
   const gracefulShutdown = (signal: string) => () => {
-    const isTerminating = config.webtask.locals["terminating"];
+    const isTerminating = webtask.locals["terminating"];
 
     if (typeof isTerminating === "boolean" && isTerminating) {
       logger.warn(
@@ -150,7 +148,7 @@ export function runWebtask(config: RunWebtaskConfig): void {
       return;
     }
 
-    config.webtask.locals["terminating"] = true;
+    webtask.locals["terminating"] = true;
 
     logger.notice(`Received ${signal} signal, starting shutdown procedure`);
 
