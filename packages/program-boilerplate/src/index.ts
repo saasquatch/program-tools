@@ -123,7 +123,7 @@ export type RunWebtaskConfig = {
   webtaskName: string;
   port: number;
   keepAliveTimeoutSeconds?: number;
-  terminationTimeoutSeconds?: number;
+  terminationDelaySeconds?: number;
 };
 
 export function runWebtask(config: RunWebtaskConfig): void {
@@ -156,7 +156,7 @@ export function runWebtask(config: RunWebtaskConfig): void {
 
     setTimeout(() => {
       server.close(() => logger.notice("Server closed"));
-    }, (config.terminationTimeoutSeconds ?? 21) * 1000);
+    }, (config.terminationDelaySeconds ?? 1) * 1000);
   };
 
   process.on("SIGTERM", gracefulShutdown("SIGTERM"));
