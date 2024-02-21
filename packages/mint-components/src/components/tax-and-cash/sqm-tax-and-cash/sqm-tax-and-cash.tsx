@@ -756,7 +756,7 @@ export class TaxAndCashMonolith {
    * @uiName Step 4 No form needed subtext
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_newFormButton: string = "Submit New document";
+  @Prop() step4_newFormButton: string = "Submit New Form";
   /**
    * Text displayed when partner is not registered for Indirect Tax
    *

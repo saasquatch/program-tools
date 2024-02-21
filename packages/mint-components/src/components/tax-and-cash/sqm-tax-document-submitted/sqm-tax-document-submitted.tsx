@@ -122,7 +122,7 @@ export class TaxDocumentSubmitted {
    * @uiName Indirect tax individual participant description
    */
   @Prop() indirectTaxIndividualParticipant: string =
-    "Not registered. Only applicable to participants representing business entities in countries that enforce indirect tax.";
+    "Not registered. Participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information.";
   /**
    * Indirect tax tooltip text for support
    *
@@ -161,7 +161,7 @@ export class TaxDocumentSubmitted {
    *
    * @uiName No form needed subtext
    */
-  @Prop() newFormButton: string = "Submit New document";
+  @Prop() newFormButton: string = "Submit New Form";
   /**
    * Text displayed in the edit Indirect Tax button
    *

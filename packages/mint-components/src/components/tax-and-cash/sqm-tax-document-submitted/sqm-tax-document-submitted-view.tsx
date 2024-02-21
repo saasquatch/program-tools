@@ -96,7 +96,10 @@ const style = {
     gap: "var(--sl-spacing-x-small)",
     display: "flex",
     flexDirection: "column",
-    lineHeight: "var(--sl-spacing-small)",
+    lineHeight: "var(--sl-spacing-medium)",
+  },
+  NotRegisteredIndirectTaxText: {
+    color: "var(--sl-color-gray-500)",
   },
   TaxDocumentsContainer: {
     marginTop: "var(--sl-spacing-xx-large)",
@@ -190,7 +193,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         <sl-badge type="warning" pill>
           {text.statusTextNotVerified}
         </sl-badge>
-        <p>
+        <p style={{ color: "var(--sl-color-gray-500)" }}>
           {intl.formatMessage(
             {
               id: `badgeTextAwaitingReview`,
@@ -208,7 +211,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         <sl-badge type="success" pill>
           {text.statusTextActive}
         </sl-badge>
-        <p>
+        <p style={{ color: "var(--sl-color-gray-500)" }}>
           {intl.formatMessage(
             {
               id: `badgeTextSubmittedOn`,
@@ -229,7 +232,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         <sl-badge type="danger" pill>
           {text.statusTextNotActive}
         </sl-badge>
-        <p>{text.invalidForm}</p>
+        <p style={{ color: "var(--sl-color-gray-500)" }}>{text.invalidForm}</p>
       </div>
     ),
   };
@@ -361,7 +364,9 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                 </div>
               ) : (
                 <div class={sheet.classes.IndirectTaxPreviewDetails}>
-                  {text.indirectTaxIndividualParticipant}
+                  <span class={sheet.classes.NotRegisteredIndirectTaxText}>
+                    {text.indirectTaxIndividualParticipant}
+                  </span>
                   <span></span>
                 </div>
               )}
