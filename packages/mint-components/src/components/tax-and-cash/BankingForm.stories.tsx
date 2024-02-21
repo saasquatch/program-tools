@@ -87,6 +87,8 @@ export const BankingInfoFormDefaultWithValidationErrors = () => {
               bankProvinceState: true,
               bankPostalCode: true,
               branchCode: true,
+              balanceThreshold: true,
+              fixedDay: true,
             },
           },
         },
@@ -291,6 +293,33 @@ export const BankingInfoFormWithBalanceThresholdPaymentSchedule = () => {
   );
 };
 
+export const BankingInfoFormWithBalanceThresholdPaymentScheduleWithError =
+  () => {
+    return (
+      <sqm-banking-info-form
+        demoData={{
+          ...bankingFormProps,
+          states: {
+            ...bankingFormProps.states,
+            bankCountry: "US",
+            formState: {
+              errors: {
+                balanceThreshold: true,
+              },
+              ...bankingFormProps.states.formState,
+              paymentScheduleChecked: "balanceThreshold",
+            },
+          },
+          demo: {
+            ...bankingFormProps.demo,
+            currency: "USD",
+            // bitset: 39,
+          },
+        }}
+      ></sqm-banking-info-form>
+    );
+  };
+
 export const BankingInfoFormWithFixedDayPaymentSchedule = () => {
   return (
     <sqm-banking-info-form
@@ -300,6 +329,32 @@ export const BankingInfoFormWithFixedDayPaymentSchedule = () => {
           ...bankingFormProps.states,
           bankCountry: "US",
           formState: {
+            ...bankingFormProps.states.formState,
+            paymentScheduleChecked: "fixedDay",
+          },
+        },
+        demo: {
+          ...bankingFormProps.demo,
+          currency: "USD",
+          // bitset: 39,
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
+export const BankingInfoFormWithFixedDayPaymentScheduleWithError = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...bankingFormProps,
+        states: {
+          ...bankingFormProps.states,
+          bankCountry: "US",
+          formState: {
+            errors: {
+              fixedDay: true,
+            },
             ...bankingFormProps.states.formState,
             paymentScheduleChecked: "fixedDay",
           },

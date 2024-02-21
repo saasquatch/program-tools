@@ -25,6 +25,8 @@ export interface BankingInfoFormViewProps {
     formInputsSlot?: VNode[];
     countryInputSlot?: VNode;
     paymentMethodSlot?: VNode;
+    paymentThresholdSelectSlot?: VNode;
+    paymentFixedDaySelectSlot?: VNode;
   };
   callbacks: {
     setPaymentMethodChecked: (
@@ -45,6 +47,12 @@ export interface BankingInfoFormViewProps {
     paymentMethodSubtext: string;
     submitButton: string;
     payPalInputLabel: string;
+    paymentSchedule: string;
+    paymentScheduleBalanceThreshold: string;
+    paymentScheduleFixedDay: string;
+    paymentDaySelectLabel: string;
+    paymentDayFirstOfMonthLabelText: string;
+    paymentDayFifteenthOfMonthLabelText: string;
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
     error: {
@@ -373,11 +381,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 </div>
               )}
               <div style={{ paddingTop: "24px", paddingBottom: "12px" }}>
-                <h4>Payment Schedule</h4>
-                <p class={classes.DescriptionText}>
-                  Payouts will be sent on the first day of each month from our
-                  referral program provider, impact.com.
-                </p>
+                <h4>{text.paymentSchedule}</h4>
               </div>
               <sl-checkbox
                 class={classes.Checkbox}
@@ -392,26 +396,16 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 id="balanceThreshold"
                 name="/balanceThreshold"
               >
-                Pay me when my balance reaches a threshold
+                {text.paymentScheduleBalanceThreshold}
               </sl-checkbox>
               {formState.paymentScheduleChecked === "balanceThreshold" && (
                 <div
                   class={classes.InputContainer}
                   style={states.hideBalanceThreshold ? { display: "none" } : {}}
                 >
-                  {states.loading ? (
-                    getLoadingSkeleton("toPaypalAccount")
-                  ) : (
-                    <sl-select
-                      label={"Payment Threshold"}
-                      name="/balanceThreshold"
-                      id="balanceThreshold"
-                      type="text"
-                    >
-                      <sl-menu-item value="1st">10 USD</sl-menu-item>
-                      <sl-menu-item value="15th">20 USD</sl-menu-item>
-                    </sl-select>
-                  )}
+                  {states.loading
+                    ? getLoadingSkeleton("toPaypalAccount")
+                    : slots.paymentThresholdSelectSlot}
                 </div>
               )}
 
@@ -424,28 +418,16 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 id="fixedDay"
                 name="/fixedDay"
               >
-                Pay me on a fixed day of the month
+                {text.paymentScheduleFixedDay}
               </sl-checkbox>
               {formState.paymentScheduleChecked === "fixedDay" && (
                 <div
                   class={classes.InputContainer}
                   style={states.hideFixedDay ? { display: "none" } : {}}
                 >
-                  {states.loading ? (
-                    getLoadingSkeleton("toPaypalAccount")
-                  ) : (
-                    <sl-select
-                      label={"Payment Day"}
-                      name="/fixedDay"
-                      id="fixedDay"
-                      type="text"
-                    >
-                      <sl-menu-item value="1st">1st of the month</sl-menu-item>
-                      <sl-menu-item value="15th">
-                        15th of the month
-                      </sl-menu-item>
-                    </sl-select>
-                  )}
+                  {states.loading
+                    ? getLoadingSkeleton("toPaypalAccount")
+                    : slots.paymentFixedDaySelectSlot}
                 </div>
               )}
             </div>

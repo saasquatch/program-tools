@@ -188,6 +188,21 @@ export namespace Components {
          */
         "payPalInputLabel": string;
         /**
+          * Label text for the payment day select option for the fifteenth of the month
+          * @uiName Fifteenth of month label text
+         */
+        "paymentDayFifteenthOfMonthLabelText": string;
+        /**
+          * Label text for the payment day select option for the first of the month
+          * @uiName First of month label text
+         */
+        "paymentDayFirstOfMonthLabelText": string;
+        /**
+          * Label text for the payment day select
+          * @uiName Payment day select label
+         */
+        "paymentDaySelectLabel": string;
+        /**
           * Heading text for the payment method section
           * @uiName Payment method heading text
          */
@@ -197,6 +212,26 @@ export namespace Components {
           * @uiName Payment method subtext
          */
         "paymentMethodSubtext": string;
+        /**
+          * Heading text for the payment schedule section
+          * @uiName Payment schedule heading text
+         */
+        "paymentSchedule": string;
+        /**
+          * Text for the option to receive payments at a specific balance threshold
+          * @uiName Payment schedule balance threshold text
+         */
+        "paymentScheduleBalanceThreshold": string;
+        /**
+          * Text for the option to receive payments on a specific day of the month
+          * @uiName Payment schedule fixed day text
+         */
+        "paymentScheduleFixedDay": string;
+        /**
+          * Label text for the payment day select
+          * @uiName Payment day select label
+         */
+        "paymentThresholdSelectLabel": string;
         /**
           * Label text for the routing code input field
           * @uiName Routing code input label
@@ -5418,6 +5453,21 @@ declare namespace LocalJSX {
          */
         "payPalInputLabel"?: string;
         /**
+          * Label text for the payment day select option for the fifteenth of the month
+          * @uiName Fifteenth of month label text
+         */
+        "paymentDayFifteenthOfMonthLabelText"?: string;
+        /**
+          * Label text for the payment day select option for the first of the month
+          * @uiName First of month label text
+         */
+        "paymentDayFirstOfMonthLabelText"?: string;
+        /**
+          * Label text for the payment day select
+          * @uiName Payment day select label
+         */
+        "paymentDaySelectLabel"?: string;
+        /**
           * Heading text for the payment method section
           * @uiName Payment method heading text
          */
@@ -5427,6 +5477,26 @@ declare namespace LocalJSX {
           * @uiName Payment method subtext
          */
         "paymentMethodSubtext"?: string;
+        /**
+          * Heading text for the payment schedule section
+          * @uiName Payment schedule heading text
+         */
+        "paymentSchedule"?: string;
+        /**
+          * Text for the option to receive payments at a specific balance threshold
+          * @uiName Payment schedule balance threshold text
+         */
+        "paymentScheduleBalanceThreshold"?: string;
+        /**
+          * Text for the option to receive payments on a specific day of the month
+          * @uiName Payment schedule fixed day text
+         */
+        "paymentScheduleFixedDay"?: string;
+        /**
+          * Label text for the payment day select
+          * @uiName Payment day select label
+         */
+        "paymentThresholdSelectLabel"?: string;
         /**
           * Label text for the routing code input field
           * @uiName Routing code input label
