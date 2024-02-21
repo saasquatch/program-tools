@@ -375,7 +375,7 @@ export const StepTwoOtherRegionCheckedCanadaGST = () => {
         slotProps: {
           formState: {
             selectedRegion: "CA",
-            province: "QC",
+            province: "QUEBEC",
             errors: {},
           },
         },
@@ -398,7 +398,7 @@ export const StepTwoOtherRegionCheckedCanadaGSTAndQST = () => {
         slotProps: {
           formState: {
             selectedRegion: "CA",
-            province: "QC",
+            province: "QUEBEC",
             hasQst: true,
             errors: {},
           },
@@ -519,7 +519,7 @@ export const StepTwoOtherRegionCheckedCanadaGSTAndQSTError = () => {
         slotProps: {
           formState: {
             selectedRegion: "CA",
-            province: "QC",
+            province: "QUEBEC",
             hasQst: true,
             errors: {
               province: true,
