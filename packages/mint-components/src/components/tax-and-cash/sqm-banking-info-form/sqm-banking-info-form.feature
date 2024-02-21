@@ -18,14 +18,35 @@ Feature: Banking Information Form
         And the form fields with be pre filled with the participants data
         And there will be banner to explain that the account is linked to their referral profile in impact.com
 
-    Scenario: Bank account form fields are dynamically shown
+    Scenario Outline: Bank account form fields are dynamically shown
         Given the bank account payment method is selected
+        And the selected currency is <currency>
+        And the selected bank country is one of <bankCountry>
+        Then <fields> are displayed
+        Examples:
+            | currency | bankCountry                           | fields                                                                                               |
+            | USD      | United States                         | Beneficiary Account Name, Bank Account Type, Bank Account Number, ABA Routing Number                 |
+            | USD      | Canada                                | Beneficiary Account Name, Bank Account Number, SWIFT Code                                            |
+            | USD      | Spain, Ireland, United Kingdom, Japan | Beneficiary Account Name, IBAN, SWIFT Code                                                           |
+            | GBP      | United States                         | Beneficiary Account Name, ABA Routing Number                                                         |
+            | GBP      | Canada                                | Beneficiary Account Name, Bank Account Number, SWIFT Code                                            |
+            | GBP      | Spain, Ireland, United Kingdom, Japan | Beneficiary Account Name, IBAN, SWIFT Code                                                           |
+            | AUD      | United States                         | Beneficiary Account Name, ABA Routing Number                                                         |
+            | AUD      | Canada                                | Beneficiary Account Name, Bank Account Number, SWIFT Code                                            |
+            | AUD      | Spain, Ireland, United Kingdom, Japan | Beneficiary Account Name, IBAN, SWIFT Code                                                           |
+            | CAD      | Canada                                | Beneficiary Account Name, Bank Account Number, Routing Number                                        |
+            | EUR      | United States                         | Beneficiary Account Name, ABA Routing Number                                                         |
+            | EUR      | Canada                                | Beneficiary Account Name, Bank Account Number, SWIFT Code                                            |
+            | EUR      | Spain, Ireland, United Kingdom, Japan | Beneficiary Account Name, IBAN, SWIFT Code                                                           |
+            | JPY      | Japan                                 | Beneficiary Account Name, Bank Account Type, Bank Account Number, SWIFT Code, Bank Name, Branch Code |
+
 
     # According to mock data currently available
-    Scenario: Bank country dropdown list is dynamic depending on the partner's currency
+    Scenario Outline: Bank country dropdown list is dynamic depending on the partner's currency
         Given the bank account payment method is selected
         And the selected currency is <currency>
         Then the bank country options are <countries>
+        Examples:
             | currency | countries                                                    |
             | USD      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
             | GBP      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
