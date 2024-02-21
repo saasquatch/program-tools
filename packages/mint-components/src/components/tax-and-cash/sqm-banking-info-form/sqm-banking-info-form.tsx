@@ -285,19 +285,21 @@ export class BankingInfoForm {
       },
       1: {
         input: (
-          <sl-input
+          <sl-select
             required
             label={props.text.bankAccountTypeLabel}
             name="/bankAccountType"
             id="bankAccountType"
-            type="text"
             {...(errors?.bankAccountType && {
               class: "error-input",
               helpText: this.getValidationErrorMessage(
                 props.text.bankAccountTypeLabel
               ),
             })}
-          ></sl-input>
+          >
+            <sl-menu-item value="CHECKING">Checking</sl-menu-item>
+            <sl-menu-item value="SAVINGS">Savings</sl-menu-item>
+          </sl-select>
         ),
       },
       2: {
