@@ -151,6 +151,11 @@ const style = {
     color: "var(--sl-color-neutral-500)",
     lineHeight: "var(--sl-spacing-medium)",
   },
+  TooltipContainer: {
+    display: "flex",
+    textAlign: "center",
+    width: "250px",
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -310,6 +315,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                   trigger="hover"
                   placement="top"
                   content={text.indirectTaxTooltipSupport}
+                  class={sheet.classes.TooltipContainer}
                 >
                   <sl-icon name="info-circle" style={{ top: "6px" }} />
                 </sl-tooltip>
