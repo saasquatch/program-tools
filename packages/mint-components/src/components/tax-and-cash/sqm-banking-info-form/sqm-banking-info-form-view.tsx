@@ -9,10 +9,13 @@ export interface BankingInfoFormViewProps {
     hideSteps: boolean;
     hideBanking?: boolean;
     hidePayPal?: boolean;
+    hideBalanceThreshold?: boolean;
+    hideFixedDay?: boolean;
     feeCap?: string;
     isPartner: boolean;
     formState: {
-      checked?: "toBankAccount" | "toPaypalAccount";
+      paymentMethodchecked?: "toBankAccount" | "toPaypalAccount";
+      paymentScheduleChecked?: "balanceThreshold" | "fixedDay";
       errors?: {
         general?: boolean;
       };
@@ -22,10 +25,14 @@ export interface BankingInfoFormViewProps {
     formInputsSlot?: VNode[];
     countryInputSlot?: VNode;
     paymentMethodSlot?: VNode;
-    autoPaySlot?: VNode;
   };
   callbacks: {
-    setChecked: (checked: "toBankAccount" | "toPaypalAccount") => void;
+    setPaymentMethodChecked: (
+      paymentMethodchecked: "toBankAccount" | "toPaypalAccount"
+    ) => void;
+    setPaymentScheduleChecked: (
+      paymentMethodchecked: "balanceThreshold" | "fixedDay"
+    ) => void;
     onSubmit: (props: any) => Promise<void>;
   };
   text: {
@@ -295,22 +302,24 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
       </div>
       <div>
         <div class={classes.CheckboxContainer}>
-          {states.loading && formState.checked === undefined ? (
+          {states.loading && formState.paymentMethodchecked === undefined ? (
             getLoadingSkeleton(undefined)
           ) : (
             <div style={{ display: "flex", flexDirection: "column" }}>
               <sl-checkbox
                 class={classes.Checkbox}
                 exportparts="label: input-label"
-                checked={formState.checked === "toBankAccount"}
-                onInput={() => callbacks.setChecked("toBankAccount")}
+                checked={formState.paymentMethodchecked === "toBankAccount"}
+                onInput={() =>
+                  callbacks.setPaymentMethodChecked("toBankAccount")
+                }
                 disabled={states.disabled}
                 id="toBankAccount"
                 name="/toBankAccount"
               >
                 {text.directlyToBankAccount}
               </sl-checkbox>
-              {formState.checked === "toBankAccount" && (
+              {formState.paymentMethodchecked === "toBankAccount" && (
                 <div
                   class={classes.InputContainer}
                   style={states.hideBanking ? { display: "none" } : {}}
@@ -324,15 +333,16 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                         slots.countryInputSlot,
                         slots.paymentMethodSlot,
                         slots.formInputsSlot,
-                        slots.autoPaySlot,
                       ]}
                 </div>
               )}
               <sl-checkbox
                 class={classes.Checkbox}
                 exportparts="label: input-label"
-                checked={formState.checked === "toPaypalAccount"}
-                onInput={() => callbacks.setChecked("toPaypalAccount")}
+                checked={formState.paymentMethodchecked === "toPaypalAccount"}
+                onInput={() =>
+                  callbacks.setPaymentMethodChecked("toPaypalAccount")
+                }
                 disabled={states.disabled}
                 id="toPaypalAccount"
                 name="/toPaypalAccount"
@@ -345,7 +355,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                   { feeCap: states.feeCap }
                 )}
               </sl-checkbox>
-              {formState.checked === "toPaypalAccount" && (
+              {formState.paymentMethodchecked === "toPaypalAccount" && (
                 <div
                   class={classes.InputContainer}
                   style={states.hidePayPal ? { display: "none" } : {}}
@@ -359,6 +369,82 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                       id="payPalEmail"
                       type="text"
                     ></sl-input>
+                  )}
+                </div>
+              )}
+              <div style={{ paddingTop: "24px", paddingBottom: "12px" }}>
+                <h4>Payment Schedule</h4>
+                <p class={classes.DescriptionText}>
+                  Payouts will be sent on the first day of each month from our
+                  referral program provider, impact.com.
+                </p>
+              </div>
+              <sl-checkbox
+                class={classes.Checkbox}
+                exportparts="label: input-label"
+                checked={
+                  formState.paymentScheduleChecked === "balanceThreshold"
+                }
+                onInput={() =>
+                  callbacks.setPaymentScheduleChecked("balanceThreshold")
+                }
+                disabled={states.disabled}
+                id="balanceThreshold"
+                name="/balanceThreshold"
+              >
+                Pay me when my balance reaches a threshold
+              </sl-checkbox>
+              {formState.paymentScheduleChecked === "balanceThreshold" && (
+                <div
+                  class={classes.InputContainer}
+                  style={states.hideBalanceThreshold ? { display: "none" } : {}}
+                >
+                  {states.loading ? (
+                    getLoadingSkeleton("toPaypalAccount")
+                  ) : (
+                    <sl-select
+                      label={"Payment Threshold"}
+                      name="/balanceThreshold"
+                      id="balanceThreshold"
+                      type="text"
+                    >
+                      <sl-menu-item value="1st">10 USD</sl-menu-item>
+                      <sl-menu-item value="15th">20 USD</sl-menu-item>
+                    </sl-select>
+                  )}
+                </div>
+              )}
+
+              <sl-checkbox
+                class={classes.Checkbox}
+                exportparts="label: input-label"
+                checked={formState.paymentScheduleChecked === "fixedDay"}
+                onInput={() => callbacks.setPaymentScheduleChecked("fixedDay")}
+                disabled={states.disabled}
+                id="fixedDay"
+                name="/fixedDay"
+              >
+                Pay me on a fixed day of the month
+              </sl-checkbox>
+              {formState.paymentScheduleChecked === "fixedDay" && (
+                <div
+                  class={classes.InputContainer}
+                  style={states.hideFixedDay ? { display: "none" } : {}}
+                >
+                  {states.loading ? (
+                    getLoadingSkeleton("toPaypalAccount")
+                  ) : (
+                    <sl-select
+                      label={"Payment Day"}
+                      name="/fixedDay"
+                      id="fixedDay"
+                      type="text"
+                    >
+                      <sl-menu-item value="1st">1st of the month</sl-menu-item>
+                      <sl-menu-item value="15th">
+                        15th of the month
+                      </sl-menu-item>
+                    </sl-select>
                   )}
                 </div>
               )}

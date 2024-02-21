@@ -681,21 +681,6 @@ export class BankingInfoForm {
                 disabled
               ></sl-input>
             ),
-            autoPaySlot: (
-              <div>
-                <sl-input
-                  label={"Autopay Balance"}
-                  help-text="Pay me when my balance reaches threshold"
-                ></sl-input>
-                <sl-select
-                  label={"Autopay Date"}
-                  help-text="Pay me on a fixed day of the month"
-                >
-                  <sl-menu-item value="1st">1st of the month</sl-menu-item>
-                  <sl-menu-item value="15th">15th of the month</sl-menu-item>
-                </sl-select>
-              </div>
-            ),
           }}
         />
       </Host>
