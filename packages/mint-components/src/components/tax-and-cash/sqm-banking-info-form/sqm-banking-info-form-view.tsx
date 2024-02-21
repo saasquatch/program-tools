@@ -22,6 +22,7 @@ export interface BankingInfoFormViewProps {
     formInputsSlot?: VNode[];
     countryInputSlot?: VNode;
     paymentMethodSlot?: VNode;
+    autoPaySlot?: VNode;
   };
   callbacks: {
     setChecked: (checked: "toBankAccount" | "toPaypalAccount") => void;
@@ -317,12 +318,13 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                   {states.loading
                     ? getLoadingSkeleton(
                         "toBankAccount",
-                        slots.formInputsSlot.length + 2
+                        slots.formInputsSlot.length + 3
                       )
                     : [
                         slots.countryInputSlot,
                         slots.paymentMethodSlot,
                         slots.formInputsSlot,
+                        slots.autoPaySlot,
                       ]}
                 </div>
               )}
