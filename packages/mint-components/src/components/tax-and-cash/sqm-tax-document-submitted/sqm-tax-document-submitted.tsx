@@ -155,7 +155,7 @@ export class TaxDocumentSubmitted {
    * @uiName No form needed subtext
    */
   @Prop() noFormNeededSubtext: string =
-    "Tax documents are only required if you are based in the US. If your country of residence has changed, please contact Support.";
+    "Tax documents are only required if you are based in the US or joining the referral program of a US based brand.";
   /**
    * Text displayed in the submit new document button at the bottom of the page
    *
