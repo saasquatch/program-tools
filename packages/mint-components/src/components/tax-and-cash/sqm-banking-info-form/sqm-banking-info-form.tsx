@@ -99,6 +99,18 @@ export class BankingInfoForm {
   @Prop() bankAccountTypeLabel: string = "Bank Account Type";
 
   /**
+   * Label text for the checking account type select item
+   * @uiName Checking select item label
+   */
+  @Prop() checkingSelectItemLabel: string = "Checking";
+
+  /**
+   * Label text for the savings account type select item
+   * @uiName Savings select item label
+   */
+  @Prop() savingsSelectItemLabel: string = "Savings";
+
+  /**
    * Label text for the bank account number input field
    * @uiName Bank account number input label
    */
@@ -297,8 +309,12 @@ export class BankingInfoForm {
               ),
             })}
           >
-            <sl-menu-item value="CHECKING">Checking</sl-menu-item>
-            <sl-menu-item value="SAVINGS">Savings</sl-menu-item>
+            <sl-menu-item value="CHECKING">
+              {props.text.checkingSelectItemLabel}
+            </sl-menu-item>
+            <sl-menu-item value="SAVINGS">
+              {props.text.savingsSelectItemLabel}
+            </sl-menu-item>
           </sl-select>
         ),
       },

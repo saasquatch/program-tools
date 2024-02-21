@@ -108,6 +108,11 @@ export namespace Components {
          */
         "businessSelectItemLabel": string;
         /**
+          * Label text for the checking account type select item
+          * @uiName Checking select item label
+         */
+        "checkingSelectItemLabel": string;
+        /**
           * Label text for the classification CPF input field
           * @uiName Classification CPF input label
          */
@@ -197,6 +202,11 @@ export namespace Components {
           * @uiName Routing code input label
          */
         "routingCodeLabel": string;
+        /**
+          * Label text for the savings account type select item
+          * @uiName Savings select item label
+         */
+        "savingsSelectItemLabel": string;
         /**
           * Text for the save button in the form
           * @uiName Save button text
@@ -5328,6 +5338,11 @@ declare namespace LocalJSX {
          */
         "businessSelectItemLabel"?: string;
         /**
+          * Label text for the checking account type select item
+          * @uiName Checking select item label
+         */
+        "checkingSelectItemLabel"?: string;
+        /**
           * Label text for the classification CPF input field
           * @uiName Classification CPF input label
          */
@@ -5417,6 +5432,11 @@ declare namespace LocalJSX {
           * @uiName Routing code input label
          */
         "routingCodeLabel"?: string;
+        /**
+          * Label text for the savings account type select item
+          * @uiName Savings select item label
+         */
+        "savingsSelectItemLabel"?: string;
         /**
           * Text for the save button in the form
           * @uiName Save button text
