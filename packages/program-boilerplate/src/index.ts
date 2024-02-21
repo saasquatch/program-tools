@@ -122,6 +122,7 @@ export type RunWebtaskConfig = {
   webtask: express.Application;
   webtaskName: string;
   port: number;
+  longKeepAliveTimeout?: boolean;
   terminationTimeoutMs?: number;
 };
 
@@ -131,6 +132,13 @@ export function runWebtask(config: RunWebtaskConfig): void {
   const server = config.webtask.listen(config.port, () =>
     logger.notice(`${config.webtaskName} running on port ${config.port}`)
   );
+
+  if (config.longKeepAliveTimeout) {
+    // https://cloud.google.com/load-balancing/docs/https/https-logging-monitoring#failure-messages
+    // (see the section on backend_connection_closed_before_data_sent_to_client)
+    server.keepAliveTimeout = 601 * 1000;
+    server.headersTimeout = 602 * 1000;
+  }
 
   const gracefulShutdown = (signal: string) => () => {
     const isTerminating = config.webtask.locals["terminating"];
