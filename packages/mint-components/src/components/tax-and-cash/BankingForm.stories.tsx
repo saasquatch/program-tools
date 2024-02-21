@@ -59,14 +59,14 @@ export const BankingInfoFormDefaultWithValidationErrors = () => {
   return (
     <sqm-banking-info-form
       demoData={{
+        demo: {
+          ...bankingFormProps.demo,
+          // bitset: 39,
+        },
         states: {
           ...bankingFormProps.states,
-          demo: {
-            ...bankingFormProps.demo,
-            // bitset: 39,
-            currency: "USD",
-          },
-          bankCountry: null,
+
+          // bankCountry: null,
           formState: {
             ...bankingFormProps.states.formState,
             errors: {
