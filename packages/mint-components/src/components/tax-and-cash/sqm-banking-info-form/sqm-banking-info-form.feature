@@ -55,6 +55,24 @@ Feature: Banking Information Form
             | EUR      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
             | JPY      | Japan                                                        |
 
+    Scenario Outline: Payment Method text is dynamic depending on the currency and country selected
+        Given the bank account payment method is selected
+        And the selected currency is <currency>
+        And the selected bank country is one of <bankCountry>
+        Then <paymentMethodText> is shown
+        And the withdrawal fee is shown
+        Examples:
+            | currency | bankCountry                                                  | paymentMethodText |
+            | USD      | United States                                                | EFT Withdrawal    |
+            | USD      | Canada, Spain, Ireland, United Kingdom, Japan                | FX Wire           |
+            | GBP      | United Kingdom                                               | EFT Withdrawal    |
+            | GBP      | United States, Canada, Spain, Ireland, Japan                 | FX Wire           |
+            | AUD      | United States, Canada, Spain, Ireland, United Kingdom, Japan | FX Wire           |
+            | CAD      | Canada                                                       | EFT Withdrawal    |
+            | EUR      | Spain, Ireland,  United Kingdom                              | EFT Withdrawal    |
+            | EUR      | United States, Canada, Japan                                 | FX Wire           |
+            | JPY      | Japan                                                        | EFT Withdrawal    |
+
 
     # Not sure what the actual specs for when it's shown are yet
     Scenario Outline: PayPal option is dynamically shown
