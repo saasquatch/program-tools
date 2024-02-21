@@ -589,6 +589,41 @@ export const StepThreeWithDocusign = () => {
   );
 };
 
+export const StepThreeWithDocusignW8BEN = () => {
+  return (
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          ...docusignFormProps.states,
+          documentType: "W8BEN",
+        },
+      }}
+    ></sqm-docusign-form>
+  );
+};
+
+export const StepThreeWithDocusignW8BENE = () => {
+  return (
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          ...docusignFormProps.states,
+          documentType: "W8BENE",
+          formState: {
+            completedTaxForm: false,
+            taxFormExpired: false,
+            participantType: "businessEntity",
+            errors: {
+              participantType: "",
+              general: false,
+            },
+          },
+        },
+      }}
+    ></sqm-docusign-form>
+  );
+};
+
 export const StepThreeWithDocusignExpired = () => {
   return (
     <sqm-docusign-form

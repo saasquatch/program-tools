@@ -630,6 +630,16 @@ export namespace Components {
          */
         "taxFormDescription": string;
         /**
+          * Subtext shown at the top of the page next to the document type text for business entities
+          * @uiName Tax form subtext
+         */
+        "taxFormDescriptionBusinessEntity": string;
+        /**
+          * Subtext shown at the top of the page next to the document type text for individual participants
+          * @uiName Tax form subtext
+         */
+        "taxFormDescriptionIndividualParticipant": string;
+        /**
           * Text shown at the top of the page next to the document type text
           * @uiName Tax form label text
          */
@@ -3968,6 +3978,18 @@ export namespace Components {
          */
         "step3_taxFormDescription": string;
         /**
+          * Subtext shown at the top of the page next to the document type text for business entities
+          * @uiName Tax form subtext
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxFormDescriptionBusinessEntity": string;
+        /**
+          * Subtext shown at the top of the page next to the document type text for individual participants
+          * @uiName Tax form subtext
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxFormDescriptionIndividualParticipant": string;
+        /**
           * Text shown at the top of the page next to the document type text
           * @uiName Tax form label text
           * @uiGroup Step 3 Properties
@@ -5860,6 +5882,16 @@ declare namespace LocalJSX {
           * @uiName Tax form subtext
          */
         "taxFormDescription"?: string;
+        /**
+          * Subtext shown at the top of the page next to the document type text for business entities
+          * @uiName Tax form subtext
+         */
+        "taxFormDescriptionBusinessEntity"?: string;
+        /**
+          * Subtext shown at the top of the page next to the document type text for individual participants
+          * @uiName Tax form subtext
+         */
+        "taxFormDescriptionIndividualParticipant"?: string;
         /**
           * Text shown at the top of the page next to the document type text
           * @uiName Tax form label text
@@ -9174,6 +9206,18 @@ declare namespace LocalJSX {
           * @uiGroup Step 3 Properties
          */
         "step3_taxFormDescription"?: string;
+        /**
+          * Subtext shown at the top of the page next to the document type text for business entities
+          * @uiName Tax form subtext
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxFormDescriptionBusinessEntity"?: string;
+        /**
+          * Subtext shown at the top of the page next to the document type text for individual participants
+          * @uiName Tax form subtext
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxFormDescriptionIndividualParticipant"?: string;
         /**
           * Text shown at the top of the page next to the document type text
           * @uiName Tax form label text

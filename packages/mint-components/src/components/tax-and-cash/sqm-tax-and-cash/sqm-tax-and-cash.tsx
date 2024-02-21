@@ -410,6 +410,20 @@ export class TaxAndCashMonolith {
   @Prop() step3_taxFormDescription: string =
     "Participants based in the US and partnering with US-based brands need to submit a {documentType} form.";
   /**
+   * Subtext shown at the top of the page next to the document type text for individual participants
+   * @uiName Tax form subtext
+   *  @uiGroup Step 3 Properties
+   */
+  @Prop() step3_taxFormDescriptionIndividualParticipant: string =
+    "Participants residing outside of the US, joining the referral program of a US-based company, need to submit a {documentType} form.";
+  /**
+   * Subtext shown at the top of the page next to the document type text for business entities
+   * @uiName Tax form subtext
+   *  @uiGroup Step 3 Properties
+   */
+  @Prop() step3_taxFormDescriptionBusinessEntity: string =
+    "Participants residing outside of the US who represent a business entity need to submit a {documentType} form.";
+  /**
    * Text shown in the link to the form for non US residents
    * @uiName Not based in US link text
    * @uiGroup Step 3 Properties
