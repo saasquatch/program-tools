@@ -122,8 +122,8 @@ export type RunWebtaskConfig = {
   webtask: express.Application;
   webtaskName: string;
   port: number;
-  longKeepAliveTimeout?: boolean;
-  terminationTimeoutMs?: number;
+  keepAliveTimeoutSeconds?: number;
+  terminationTimeoutSeconds?: number;
 };
 
 export function runWebtask(config: RunWebtaskConfig): void {
@@ -133,11 +133,11 @@ export function runWebtask(config: RunWebtaskConfig): void {
     logger.notice(`${config.webtaskName} running on port ${config.port}`)
   );
 
-  if (config.longKeepAliveTimeout) {
+  if (config.keepAliveTimeoutSeconds !== undefined) {
     // https://cloud.google.com/load-balancing/docs/https/https-logging-monitoring#failure-messages
     // (see the section on backend_connection_closed_before_data_sent_to_client)
-    server.keepAliveTimeout = 601 * 1000;
-    server.headersTimeout = 602 * 1000;
+    server.keepAliveTimeout = config.keepAliveTimeoutSeconds * 1000;
+    server.headersTimeout = (config.keepAliveTimeoutSeconds + 1) * 1000;
   }
 
   const gracefulShutdown = (signal: string) => () => {
@@ -156,7 +156,7 @@ export function runWebtask(config: RunWebtaskConfig): void {
 
     setTimeout(() => {
       server.close(() => logger.notice("Server closed"));
-    }, config.terminationTimeoutMs ?? 21 * 1000);
+    }, (config.terminationTimeoutSeconds ?? 21) * 1000);
   };
 
   process.on("SIGTERM", gracefulShutdown("SIGTERM"));
