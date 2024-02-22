@@ -56,20 +56,56 @@ export class BankingInfoForm {
    */
   @Prop() toPaypalAccount: string =
     "PayPal (2% processing fee capped to {feeCap})";
+  /**
+   * Text for the option to receive payments at a specific balance threshold
+   * @uiName Payment schedule balance threshold text
+   */
+  @Prop() paymentScheduleBalanceThreshold: string =
+    "Pay me when my balance reaches a threshold";
+  /**
+   * Text for the option to receive payments on a specific day of the month
+   * @uiName Payment schedule fixed day text
+   */
+  @Prop() paymentScheduleFixedDay: string =
+    "Pay me on a fixed day of the month";
 
+  /**
+   * Label text for the payment day select
+   * @uiName Payment day select label
+   */
+  @Prop() paymentDaySelectLabel: string = "Payment Day";
+
+  /**
+   * Label text for the payment day select
+   * @uiName Payment day select label
+   */
+  @Prop() paymentThresholdSelectLabel: string = "Payment Threshold";
+  /**
+   * Label text for the payment day select option for the first of the month
+   * @uiName First of month label text
+   */
+  @Prop() paymentDayFirstOfMonthLabelText: string = "1st of the month";
+  /**
+   * Label text for the payment day select option for the fifteenth of the month
+   * @uiName Fifteenth of month label text
+   */
+  @Prop() paymentDayFifteenthOfMonthLabelText: string = "15th of the month";
   /**
    * Heading text for the payment method section
    * @uiName Payment method heading text
    */
   @Prop() paymentMethod: string = "Payment Method";
-
+  /**
+   * Heading text for the payment schedule section
+   * @uiName Payment schedule heading text
+   */
+  @Prop() paymentSchedule: string = "Payment Schedule";
   /**
    * Subtext for the payment method section
    * @uiName Payment method subtext
    */
   @Prop() paymentMethodSubtext: string =
     "Payouts will be sent on the first day of each month from our referral program provider, impact.com.";
-
   /**
    * Label text for the PayPal email input field
    * @uiName PayPal email input label
@@ -681,20 +717,42 @@ export class BankingInfoForm {
                 disabled
               ></sl-input>
             ),
-            autoPaySlot: (
-              <div>
-                <sl-input
-                  label={"Autopay Balance"}
-                  help-text="Pay me when my balance reaches threshold"
-                ></sl-input>
-                <sl-select
-                  label={"Autopay Date"}
-                  help-text="Pay me on a fixed day of the month"
-                >
-                  <sl-menu-item value="1st">1st of the month</sl-menu-item>
-                  <sl-menu-item value="15th">15th of the month</sl-menu-item>
-                </sl-select>
-              </div>
+            paymentThresholdSelectSlot: (
+              <sl-select
+                label={props.text.paymentThresholdSelectLabel}
+                name="/balanceThreshold"
+                id="balanceThreshold"
+                {...(errors?.balanceThreshold && {
+                  class: "error-input",
+                  helpText: this.getValidationErrorMessage(
+                    props.text.paymentThresholdSelectLabel
+                  ),
+                })}
+              >
+                {/* TODO: Unhardcode this list */}
+                <sl-menu-item value="1st">10 USD</sl-menu-item>
+                <sl-menu-item value="15th">20 USD</sl-menu-item>
+              </sl-select>
+            ),
+            paymentFixedDaySelectSlot: (
+              <sl-select
+                label={props.text.paymentDaySelectLabel}
+                name="/fixedDay"
+                id="fixedDay"
+                {...(errors?.fixedDay && {
+                  class: "error-input",
+                  helpText: this.getValidationErrorMessage(
+                    props.text.paymentDaySelectLabel
+                  ),
+                })}
+              >
+                <sl-menu-item value="1st">
+                  {props.text.paymentDayFirstOfMonthLabelText}
+                </sl-menu-item>
+                <sl-menu-item value="15th">
+                  {props.text.paymentDayFifteenthOfMonthLabelText}
+                </sl-menu-item>
+              </sl-select>
             ),
           }}
         />
@@ -780,6 +838,8 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
             bankProvinceState: false,
             bankPostalCode: false,
             branchCode: false,
+            balanceThreshold: false,
+            fixedDay: false,
           },
         },
         intlLocale: "en",
