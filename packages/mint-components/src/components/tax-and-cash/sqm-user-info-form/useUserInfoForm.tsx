@@ -87,7 +87,7 @@ export function useUserInfoForm(props: TaxForm) {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-        countryCode: undefined, // User's countryCode is different than Impact's codes
+        countryCode: user.countryCode, // User's countryCode is different than Impact's codes
         currency: user.customFields?.currency,
       });
     }

@@ -40,15 +40,14 @@ type ConnectPartnerResult = {
   };
 };
 const CONNECT_PARTNER = gql`
-  mutation connectImpactConnection($vars: ImpactPartnerInput!) {
-    connectImpactConnection(impactPartnerInput: $vars) {
+  mutation createImpactConnection($vars: ImpactConnectionInput!) {
+    createImpactConnection(impactConnectionInput: $vars) {
       id
       accountId
       impactConnection {
         connectionStatus
         publisher {
           requiredTaxDocumentType
-          connectionStatus
         }
       }
     }
@@ -56,10 +55,9 @@ const CONNECT_PARTNER = gql`
 `;
 
 function getOption(countries: TaxCountry[] | undefined, countryCode: string) {
-  console.log({ countries, countryCode });
   if (!countries) return;
 
-  if (countries.find((c) => c.impactCountryCode === countryCode)) {
+  if (countries.find((c) => c.countryCode === countryCode)) {
     return "otherRegion";
   } else {
     return "notRegistered";
@@ -128,12 +126,6 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     setFormState((p) => ({ ...p, [field]: value }));
   };
 
-  const getImpactCountryCode = (countryCode: string) => {
-    return _countries?.impactPartnerCountries?.data?.find(
-      (c) => c.countryCode === countryCode
-    )?.impactCountryCode;
-  };
-
   const onSubmit = async (event: any) => {
     if (!option) {
       setErrors({ taxDetails: true });
@@ -168,8 +160,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       const taxOption =
         option === "notRegistered"
           ? "NO_TAX"
-          : formData.selectedRegion ===
-            getImpactCountryCode(userForm?.countryCode)
+          : formData.selectedRegion === userForm?.countryCode
           ? "SAME_COUNTRY"
           : "DIFFERENT_COUNTRY";
 
@@ -227,8 +218,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       hideSteps: context.hideSteps,
       disabled: loading || countriesLoading || connectLoading,
       loading: loading || connectLoading || countriesLoading,
-      isPartner: false,
-      // isPartner: !!userData?.user?.impactPartner,
+      isPartner: !!userData?.user?.impactConnection,
       formState: {
         checked: option,
         errors,

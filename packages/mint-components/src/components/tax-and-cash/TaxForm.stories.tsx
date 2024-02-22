@@ -38,22 +38,18 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
   data: {
     countries: [
       {
-        impactCountryCode: "CANADA",
         countryCode: "CA",
         displayName: "Canada",
       },
       {
-        impactCountryCode: "SPAIN",
         countryCode: "ES",
         displayName: "Spain",
       },
       {
-        impactCountryCode: "UNITEDKINGDOM",
         countryCode: "UK",
         displayName: "United Kingdom",
       },
       {
-        impactCountryCode: "UNITEDSTATES",
         countryCode: "US",
         displayName: "United States",
       },
@@ -103,7 +99,6 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
       {
         displayName: "United States",
         countryCode: "US",
-        impactCountryCode: "US",
       },
     ],
     provinces: INDIRECT_TAX_PROVINCES,
