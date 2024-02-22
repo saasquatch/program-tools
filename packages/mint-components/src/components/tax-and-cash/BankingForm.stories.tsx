@@ -10,7 +10,7 @@ const bankingFormProps = {
     disabled: false,
     loading: false,
     formState: {
-      paymentMethodchecked: "toBankAccount",
+      paymentMethodChecked: "toBankAccount",
     },
     bankCountry: "US",
   },
@@ -244,7 +244,7 @@ export const BankingInfoFormPaypalChecked = () => {
           ...bankingFormProps.states,
           formState: {
             ...bankingFormProps.states.formState,
-            paymentMethodchecked: "toPaypalAccount",
+            paymentMethodChecked: "toPaypalAccount",
           },
         },
       }}
@@ -262,7 +262,7 @@ export const BankingInfoFormPaypalCheckedLoading = () => {
           loading: true,
           formState: {
             ...bankingFormProps.states.formState,
-            paymentMethodchecked: "toPaypalAccount",
+            paymentMethodChecked: "toPaypalAccount",
           },
         },
       }}

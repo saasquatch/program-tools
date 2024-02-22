@@ -14,7 +14,7 @@ export interface BankingInfoFormViewProps {
     feeCap?: string;
     isPartner: boolean;
     formState: {
-      paymentMethodchecked?: "toBankAccount" | "toPaypalAccount";
+      paymentMethodChecked?: "toBankAccount" | "toPaypalAccount";
       paymentScheduleChecked?: "balanceThreshold" | "fixedDay";
       errors?: {
         general?: boolean;
@@ -30,10 +30,10 @@ export interface BankingInfoFormViewProps {
   };
   callbacks: {
     setPaymentMethodChecked: (
-      paymentMethodchecked: "toBankAccount" | "toPaypalAccount"
+      paymentMethodChecked: "toBankAccount" | "toPaypalAccount"
     ) => void;
     setPaymentScheduleChecked: (
-      paymentMethodchecked: "balanceThreshold" | "fixedDay"
+      paymentMethodChecked: "balanceThreshold" | "fixedDay"
     ) => void;
     onSubmit: (props: any) => Promise<void>;
   };
@@ -310,14 +310,14 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
       </div>
       <div>
         <div class={classes.CheckboxContainer}>
-          {states.loading && formState.paymentMethodchecked === undefined ? (
+          {states.loading && formState.paymentMethodChecked === undefined ? (
             getLoadingSkeleton(undefined)
           ) : (
             <div style={{ display: "flex", flexDirection: "column" }}>
               <sl-checkbox
                 class={classes.Checkbox}
                 exportparts="label: input-label"
-                checked={formState.paymentMethodchecked === "toBankAccount"}
+                checked={formState.paymentMethodChecked === "toBankAccount"}
                 onInput={() =>
                   callbacks.setPaymentMethodChecked("toBankAccount")
                 }
@@ -327,7 +327,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               >
                 {text.directlyToBankAccount}
               </sl-checkbox>
-              {formState.paymentMethodchecked === "toBankAccount" && (
+              {formState.paymentMethodChecked === "toBankAccount" && (
                 <div
                   class={classes.InputContainer}
                   style={states.hideBanking ? { display: "none" } : {}}
@@ -347,7 +347,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               <sl-checkbox
                 class={classes.Checkbox}
                 exportparts="label: input-label"
-                checked={formState.paymentMethodchecked === "toPaypalAccount"}
+                checked={formState.paymentMethodChecked === "toPaypalAccount"}
                 onInput={() =>
                   callbacks.setPaymentMethodChecked("toPaypalAccount")
                 }
@@ -363,7 +363,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                   { feeCap: states.feeCap }
                 )}
               </sl-checkbox>
-              {formState.paymentMethodchecked === "toPaypalAccount" && (
+              {formState.paymentMethodChecked === "toPaypalAccount" && (
                 <div
                   class={classes.InputContainer}
                   style={states.hidePayPal ? { display: "none" } : {}}
