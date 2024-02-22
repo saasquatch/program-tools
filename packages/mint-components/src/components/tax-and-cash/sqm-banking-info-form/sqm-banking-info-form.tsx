@@ -637,23 +637,19 @@ export class BankingInfoForm {
     };
 
     const inputFields = getFormInputs({
-      bitset: props.demo.bitset || props.states.bitset,
+      bitset: props.states.bitset,
       formMap,
     });
 
     return (
       <Host>
         {/* demo */}
-        {/* <sl-input
-          value={props.demo.bitset}
-          onInput={(e) => props.demo.setBitset(Number(e.target.value))}
-        /> */}
-        {props.demo.showInputs && (
+        {props.states.showInputs && (
           <sl-select
             name="/currency"
-            value={props.demo.currency}
+            value={props.states.currency}
             onSl-select={(e) => {
-              props.demo.setCurrency(e.detail?.item?.value);
+              props.states.setCurrency(e.detail?.item?.value);
               props.callbacks.setBankCountry("");
             }}
           >
@@ -693,21 +689,21 @@ export class BankingInfoForm {
                 })}
               >
                 {/* TODO: mock data should come from the backend when available */}
-                {mockPaymentOptions[
-                  props.demo.currency || props.states.currency
-                ]?.map((paymentOption) => {
-                  // @ts-ignore
-                  const countryDisplayName = new Intl.DisplayNames(
-                    [props.states.intlLocale],
-                    { type: "region" }
-                  ).of(paymentOption.country);
+                {mockPaymentOptions[props.states.currency]?.map(
+                  (paymentOption) => {
+                    // @ts-ignore
+                    const countryDisplayName = new Intl.DisplayNames(
+                      [props.states.intlLocale],
+                      { type: "region" }
+                    ).of(paymentOption.country);
 
-                  return (
-                    <sl-menu-item value={paymentOption?.country}>
-                      {countryDisplayName}
-                    </sl-menu-item>
-                  );
-                })}
+                    return (
+                      <sl-menu-item value={paymentOption?.country}>
+                        {countryDisplayName}
+                      </sl-menu-item>
+                    );
+                  }
+                )}
               </sl-select>
             ),
             paymentMethodSlot: (
@@ -762,13 +758,19 @@ export class BankingInfoForm {
 }
 
 function useDemoBankingInfoForm(props: BankingInfoForm) {
-  const defaultChecked = props.demoData?.states?.formState?.checked;
-  const defaultCurrency = props.demoData?.demo?.currency;
+  const defaultPaymentMethodChecked =
+    props.demoData?.states?.formState?.paymentMethodChecked;
+  const defaultPaymentScheduleChecked =
+    props.demoData?.states?.formState?.paymentScheduleChecked;
+  const defaultCurrency = props.demoData?.states?.currency;
   const defaultCountry = props.demoData?.states?.bankCountry;
 
-  const [checked, setChecked] = useState<
+  const [paymentMethodChecked, setPaymentMethodChecked] = useState<
     "toBankAccount" | "toPaypalAccount" | undefined
-  >(defaultChecked);
+  >(undefined);
+  const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
+    "balanceThreshold" | "fixedDay" | undefined
+  >(undefined);
 
   const [currency, setCurrency] = useState(defaultCurrency);
   const [bankCountry, setBankCountry] = useState(defaultCountry);
@@ -781,7 +783,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
   );
 
   const bitset =
-    currentPaymentOption?.withdrawalId || props.demoData?.demo?.bitset || 0;
+    currentPaymentOption?.withdrawalId || props.demoData?.states?.bitset || 0;
 
   console.log("demo hook", {
     demoData: props.demoData,
@@ -792,10 +794,13 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
   });
 
   useEffect(() => {
-    if (defaultChecked !== checked) setChecked(defaultChecked);
+    if (defaultPaymentMethodChecked !== paymentMethodChecked)
+      setPaymentMethodChecked(defaultPaymentMethodChecked);
+    if (defaultPaymentScheduleChecked !== paymentScheduleChecked)
+      setPaymentScheduleChecked(defaultPaymentScheduleChecked);
     if (defaultCurrency !== currency) setCurrency(defaultCurrency);
     if (defaultCountry !== bankCountry) setBankCountry(defaultCountry);
-  }, [defaultChecked, defaultCurrency, defaultCountry]);
+  }, [defaultPaymentMethodChecked, defaultCurrency, defaultCountry]);
 
   const feeCap = paypalFeeMap[currency] || "";
 
@@ -807,7 +812,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
   };
 
   const paymentMethodFeeLabel =
-    paymentMethodFeeMap[currentPaymentOption?.withdrawalSetting];
+    paymentMethodFeeMap[currentPaymentOption?.paymentMethod];
 
   return deepmerge(
     {
@@ -819,7 +824,8 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
         feeCap,
         paymentMethodFeeLabel,
         formState: {
-          checked,
+          paymentMethodChecked,
+          paymentScheduleChecked,
           errors: {
             general: false,
             beneficiaryAccountName: false,
@@ -845,8 +851,6 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
         intlLocale: "en",
         bitset,
         bankCountry,
-      },
-      demo: {
         showInputs: props.demoData?.showInputs,
         currency,
         setCurrency,
@@ -854,7 +858,8 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
       callbacks: {
         onSubmit: async () => {},
         setBankCountry,
-        setChecked,
+        setPaymentMethodChecked,
+        setPaymentScheduleChecked,
       },
       text: props.getTextProps(),
       refs: {

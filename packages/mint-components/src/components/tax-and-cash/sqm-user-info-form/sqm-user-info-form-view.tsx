@@ -6,6 +6,7 @@ export interface UserInfoFormViewProps {
     loading: boolean;
     disabled: boolean;
     isPartner: boolean;
+    isUser: boolean;
     hideSteps: boolean;
     formState: {
       firstName?: string;
@@ -235,7 +236,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               exportparts="label: input-label"
               value={formState.firstName}
               label={text.firstName}
-              disabled={states.disabled || states.isPartner}
+              disabled={states.disabled || states.isUser || states.isPartner}
               {...(formState.errors?.firstName
                 ? {
                     class: classes.ErrorInput,
@@ -250,7 +251,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               exportparts="label: input-label"
               value={formState.lastName}
               label={text.lastName}
-              disabled={states.disabled || states.isPartner}
+              disabled={states.disabled || states.isUser || states.isPartner}
               {...(formState.errors?.lastName
                 ? {
                     class: classes.ErrorInput,

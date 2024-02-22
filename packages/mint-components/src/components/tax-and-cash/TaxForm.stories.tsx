@@ -25,7 +25,7 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
     loading: false,
     disabled: false,
     isPartner: false,
-
+    isUser: false,
     formState: {
       firstName: "Bob",
       lastName: "Testerson",
@@ -195,6 +195,16 @@ export const StepOneDisabled = () => {
     <sqm-user-info-form
       demoData={{
         states: { ...stepOneProps.states, disabled: true },
+      }}
+    ></sqm-user-info-form>
+  );
+};
+
+export const StepOneIsUser = () => {
+  return (
+    <sqm-user-info-form
+      demoData={{
+        states: { ...stepOneProps.states, isUser: true },
       }}
     ></sqm-user-info-form>
   );
@@ -717,62 +727,6 @@ export const StepThreeDocusignDisabled = () => {
         },
       }}
     ></sqm-docusign-form>
-  );
-};
-
-export const StepThreeWithFormSelector = () => {
-  return (
-    <sqm-document-type-form
-      demoData={{
-        states: {
-          ...documentTypeFormProps.states,
-        },
-      }}
-    ></sqm-document-type-form>
-  );
-};
-
-export const StepThreeWithFormSelectorLoading = () => {
-  return (
-    <sqm-document-type-form
-      demoData={{
-        states: {
-          ...documentTypeFormProps.states,
-          loading: true,
-        },
-      }}
-    ></sqm-document-type-form>
-  );
-};
-
-export const StepThreeWithFormSelectorDisabled = () => {
-  return (
-    <sqm-document-type-form
-      demoData={{
-        states: {
-          ...documentTypeFormProps.states,
-          disabled: true,
-        },
-      }}
-    ></sqm-document-type-form>
-  );
-};
-
-export const StepThreeFormSelectorWithGeneralError = () => {
-  return (
-    <sqm-document-type-form
-      demoData={{
-        states: {
-          ...documentTypeFormProps.states,
-          formState: {
-            ...documentTypeFormProps.states.formState,
-            errors: {
-              general: true,
-            },
-          },
-        },
-      }}
-    ></sqm-document-type-form>
   );
 };
 
