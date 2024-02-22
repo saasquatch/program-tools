@@ -357,9 +357,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             name="/selectedRegion"
           >
             {props.data.countries!.map((c) => (
-              <sl-menu-item value={c.impactCountryCode}>
-                {c.displayName}
-              </sl-menu-item>
+              <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
             ))}
           </sl-select>
           {/* Trying to stop shoelace from persisting form inputs */}

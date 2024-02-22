@@ -43,8 +43,6 @@ export const useTaxDocumentSubmitted = (
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
   const publisher = data?.user?.impactConnection?.publisher;
 
-  console.log("submitted", { data, loading });
-
   // TODO: Fetch document status from backend
 
   const documentType = publisher?.currentTaxDocument?.type;
@@ -90,11 +88,13 @@ export const useTaxDocumentSubmitted = (
       indirectTaxNumber: data?.user?.customFields?.__indirectTaxNumber,
       isBusinessEntity: publisher?.requiredTaxDocumentType === "W8BENE",
       province: provinceName,
-      // @ts-ignore: DisplayNames does exist on Intl
-      country: new Intl.DisplayNames([locale.replaceAll("_", "-")], {
-        type: "language",
-        // @ts-ignore: Bad DisplayNames type (has to be array)
-      }).of([publisher?.indirectTaxCountry]),
+      country: publisher?.indirectTaxCountry
+        ? // @ts-ignore: DisplayNames does exist on Intl
+          new Intl.DisplayNames([locale.replaceAll("_", "-")], {
+            type: "language",
+            // @ts-ignore: Bad DisplayNames type (has to be array)
+          }).of([publisher.indirectTaxCountry])
+        : undefined,
       notRegistered: publisher?.indirectTaxOption === "NO_TAX",
       noFormNeeded: !documentType,
       expiresSoon,
