@@ -153,8 +153,8 @@ export function useBankingInfoForm(
   );
 
   const paymentMethodFeeMap = {
-    ACH: "EFT Withdrawal (free)",
-    WIRE: `FX Wire (Processing Fee ${currency}${
+    3: "EFT Withdrawal (free)",
+    5: `FX Wire (Processing Fee ${currency}${
       currentPaymentOption?.defaultFxFee || 0
     })`,
   };
@@ -162,6 +162,29 @@ export function useBankingInfoForm(
     paymentMethodFeeMap[currentPaymentOption?.paymentMethod];
 
   console.log({ userData });
+
+  const intlLocale = locale?.replace("_", "-") || "en";
+
+  const paymentOptions = mockPaymentOptions[currency];
+  paymentOptions;
+
+  const availableCountries = new Set(
+    paymentOptions.map((option) => option.country)
+  );
+
+  const countries = Array.from(availableCountries)?.map((country) => {
+    // @ts-ignore DisplayNames not in Intl type
+    const name = new Intl.DisplayNames([intlLocale], {
+      type: "region",
+    }).of(country);
+
+    return {
+      code: country,
+      name,
+    };
+  });
+
+  console.log({ countries });
 
   return {
     text: {
@@ -180,7 +203,7 @@ export function useBankingInfoForm(
     },
     states: {
       locale,
-      intlLocale: locale?.replace("_", "-") || "en",
+      intlLocale,
       isPartner: !!userData?.user?.impactConnection,
       feeCap,
       paymentMethodFeeLabel,
@@ -198,6 +221,7 @@ export function useBankingInfoForm(
       bankCountry,
       currency: userData?.user?.impactConnection?.publisher?.currency,
       showInputs: true,
+      countries,
     },
     refs: {
       formRef,
