@@ -9,23 +9,29 @@ export default {
 };
 
 const defaultProps: PayoutDetailsCardViewProps = {
-  loading: false,
-  empty: false,
-  otherCurrencies: false,
-  payoutType: "bank",
-  mainCurrency: { currencyText: "USD", amountText: "100.00" },
-  status: "upcoming",
-  pendingStatusBadgeText: "Pending",
-  upcomingStatusBadgeText: "Upcoming",
-  nextPayoutStatusBadgeText: "Next payout",
-  pendingDetailedStatusText: "Check rewards table for available date",
-  upcomingDetailedStatusText: "November 1, 2022",
-  nextPayoutDetailedStatusText: "November 1, 2022",
-  otherCurrenciesText: "other currencies",
-  w9PendingText: "Awaiting W-9 tax form",
-  w9Pending: undefined,
-  hasDatePending: true,
-  hasW9Pending: false,
+  states: {
+    loading: false,
+    empty: false,
+    otherCurrencies: false,
+    payoutType: "bank",
+    mainCurrency: { currencyText: "USD", amountText: "100.00" },
+    status: "upcoming",
+
+    w9Pending: undefined,
+    hasDatePending: true,
+    hasW9Pending: false,
+  },
+
+  text: {
+    pendingStatusBadgeText: "Pending",
+    upcomingStatusBadgeText: "Upcoming",
+    nextPayoutStatusBadgeText: "Next payout",
+    pendingDetailedStatusText: "Check rewards table for available date",
+    upcomingDetailedStatusText: "November 1, 2022",
+    nextPayoutDetailedStatusText: "November 1, 2022",
+    otherCurrenciesText: "other currencies",
+    w9PendingText: "Awaiting W-9 tax form",
+  },
 };
 
 const currencyList = [
@@ -36,7 +42,7 @@ const currencyList = [
 ];
 
 export const Upcoming = () => {
-  return <PayoutDetailsCardView {...defaultProps} />;
+  return <sqm-payout-details-card></sqm-payout-details-card>;
 };
 
 export const Loading = () => {
