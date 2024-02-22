@@ -4,6 +4,8 @@ import { intl } from "../../../global/global";
 
 export interface BankingInfoFormViewProps {
   states: {
+    locale?: string;
+    intlLocale?: string;
     loading: boolean;
     disabled: boolean;
     hideSteps: boolean;
@@ -13,6 +15,7 @@ export interface BankingInfoFormViewProps {
     hideFixedDay?: boolean;
     feeCap?: string;
     isPartner: boolean;
+    paymentMethodFeeLabel?: string;
     formState: {
       paymentMethodChecked?: "toBankAccount" | "toPaypalAccount";
       paymentScheduleChecked?: "balanceThreshold" | "fixedDay";
@@ -20,8 +23,12 @@ export interface BankingInfoFormViewProps {
         general?: boolean;
       };
     };
+    bitset?: string;
+    bankCountry?: string;
+    currency?: string;
+    showInputs?: boolean;
   };
-  slots: {
+  slots?: {
     formInputsSlot?: VNode[];
     countryInputSlot?: VNode;
     paymentMethodSlot?: VNode;
@@ -36,6 +43,9 @@ export interface BankingInfoFormViewProps {
       paymentMethodChecked: "balanceThreshold" | "fixedDay"
     ) => void;
     onSubmit: (props: any) => Promise<void>;
+    setBankCountry?: (country: string) => void;
+    setCurrency?: (currency: string) => void;
+    setBitset?: (bitset: number) => void;
   };
   text: {
     formStep: string;

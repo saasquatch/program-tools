@@ -637,7 +637,7 @@ export class BankingInfoForm {
     };
 
     const inputFields = getFormInputs({
-      bitset: props.demo.bitset || props.states.bitset,
+      bitset: props.states.bitset,
       formMap,
     });
 
@@ -648,12 +648,12 @@ export class BankingInfoForm {
           value={props.demo.bitset}
           onInput={(e) => props.demo.setBitset(Number(e.target.value))}
         /> */}
-        {props.demo.showInputs && (
+        {props.states.showInputs && (
           <sl-select
             name="/currency"
-            value={props.demo.currency}
+            value={props.states.currency}
             onSl-select={(e) => {
-              props.demo.setCurrency(e.detail?.item?.value);
+              props.states.setCurrency(e.detail?.item?.value);
               props.callbacks.setBankCountry("");
             }}
           >
@@ -693,21 +693,21 @@ export class BankingInfoForm {
                 })}
               >
                 {/* TODO: mock data should come from the backend when available */}
-                {mockPaymentOptions[
-                  props.demo.currency || props.states.currency
-                ]?.map((paymentOption) => {
-                  // @ts-ignore
-                  const countryDisplayName = new Intl.DisplayNames(
-                    [props.states.intlLocale],
-                    { type: "region" }
-                  ).of(paymentOption.country);
+                {mockPaymentOptions[props.states.currency]?.map(
+                  (paymentOption) => {
+                    // @ts-ignore
+                    const countryDisplayName = new Intl.DisplayNames(
+                      [props.states.intlLocale],
+                      { type: "region" }
+                    ).of(paymentOption.country);
 
-                  return (
-                    <sl-menu-item value={paymentOption?.country}>
-                      {countryDisplayName}
-                    </sl-menu-item>
-                  );
-                })}
+                    return (
+                      <sl-menu-item value={paymentOption?.country}>
+                        {countryDisplayName}
+                      </sl-menu-item>
+                    );
+                  }
+                )}
               </sl-select>
             ),
             paymentMethodSlot: (
