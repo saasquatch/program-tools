@@ -32,7 +32,6 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
       email: "bobtesterson@example.com",
       countryCode: "US",
       currency: "CAD",
-      participantType: "individualParticipant",
       errors: {},
     },
   },

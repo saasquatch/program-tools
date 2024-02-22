@@ -50,14 +50,9 @@ const CONNECT_PARTNER = gql`
   }
 `;
 
-function getOption(
-  countries: TaxCountry[] | undefined,
-  participantType: string,
-  countryCode: string
-) {
+function getOption(countries: TaxCountry[] | undefined, countryCode: string) {
   if (!countries) return;
 
-  if (participantType === "individualParticipant") return "notRegistered";
   if (countries.find((c) => c.impactCountryCode === countryCode)) {
     return "otherRegion";
   } else {
@@ -92,7 +87,6 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   useEffect(() => {
     const _option = getOption(
       _countries?.impactPartnerCountries?.data,
-      userForm.participantType,
       userForm.countryCode
     );
     setOption(_option);

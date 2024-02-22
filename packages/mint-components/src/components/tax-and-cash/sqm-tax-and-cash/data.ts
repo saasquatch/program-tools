@@ -20,7 +20,6 @@ export type UserFormContext = {
   email: string;
   countryCode: string;
   currency: string;
-  participantType: string | undefined;
 };
 
 export type TaxContext = {

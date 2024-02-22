@@ -193,7 +193,6 @@ export class TaxForm {
           callbacks={{
             ...props.callbacks,
             onSubmit: props.onSubmit,
-            onRadioClick: props.onRadioClick,
           }}
           text={props.text}
           refs={props.refs}

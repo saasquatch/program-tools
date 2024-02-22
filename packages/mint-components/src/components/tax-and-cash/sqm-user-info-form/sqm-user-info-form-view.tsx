@@ -1,6 +1,5 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
 
 export interface UserInfoFormViewProps {
   states: {
@@ -15,14 +14,12 @@ export interface UserInfoFormViewProps {
       countryCode?: string;
       currency?: string;
       allowBankingCollection?: boolean;
-      participantType: "individualParticipant" | "businessEntity" | undefined;
       errors?: {
         general?: boolean;
         firstName?: boolean;
         lastName?: boolean;
         countryCode?: boolean;
         currency?: boolean;
-        participantType?: boolean;
         allowBankingCollection?: boolean;
       };
       error?: string;
@@ -42,7 +39,6 @@ export interface UserInfoFormViewProps {
     setCurrencySearch: (c: any) => void;
     setCountrySearch: (c: any) => void;
     onSubmit: (props: any) => void;
-    onRadioClick: (value: string) => void;
   };
   text: {
     formStep: string;

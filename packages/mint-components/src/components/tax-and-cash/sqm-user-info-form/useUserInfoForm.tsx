@@ -80,7 +80,6 @@ export function useUserInfoForm(props: TaxForm) {
         email: user.impactPartner.email,
         countryCode: user.impactPartner.country,
         currency: user.impactPartner.currency,
-        participantType: undefined, // TODO: Fill in when able
       });
     } else {
       // Initialise with user information
@@ -90,7 +89,6 @@ export function useUserInfoForm(props: TaxForm) {
         email: user.email,
         countryCode: user.countryCode,
         currency: user.customFields?.currency,
-        participantType: undefined,
       });
     }
   }, [data, step]);
@@ -127,10 +125,6 @@ export function useUserInfoForm(props: TaxForm) {
     }
   }, [currencySearch, currencies]);
 
-  function onRadioClick(value: string) {
-    setUserFormContext({ ...userFormContext, participantType: value });
-  }
-
   async function onSubmit(event: any) {
     let formControls = event.target.getFormControls();
 
@@ -142,12 +136,6 @@ export function useUserInfoForm(props: TaxForm) {
 
       const key = control.name;
       const value = control.value;
-
-      if (control.name === "/participantType") {
-        control.checked && jsonpointer.set(formData, key, value);
-      } else {
-        jsonpointer.set(formData, key, value);
-      }
 
       // required validation
       if (control.required && !value) {
@@ -174,7 +162,6 @@ export function useUserInfoForm(props: TaxForm) {
       ...userFormContext,
       countryCode: userData.countryCode,
       currency: userData.currency,
-      participantType: userData.participantType,
     });
 
     const nextStep = context.overrideNextStep || "/2";
@@ -185,7 +172,6 @@ export function useUserInfoForm(props: TaxForm) {
     step: step,
     setStep: setStep,
     onSubmit,
-    onRadioClick,
     text: props.getTextProps(),
     callbacks: {
       setCurrencySearch,
