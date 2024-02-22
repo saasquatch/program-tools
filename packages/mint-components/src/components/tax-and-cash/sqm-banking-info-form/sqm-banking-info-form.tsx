@@ -762,13 +762,19 @@ export class BankingInfoForm {
 }
 
 function useDemoBankingInfoForm(props: BankingInfoForm) {
-  const defaultChecked = props.demoData?.states?.formState?.checked;
-  const defaultCurrency = props.demoData?.demo?.currency;
+  const defaultPaymentMethodChecked =
+    props.demoData?.states?.formState?.paymentMethodChecked;
+  const defaultPaymentScheduleChecked =
+    props.demoData?.states?.formState?.paymentScheduleChecked;
+  const defaultCurrency = props.demoData?.states?.currency;
   const defaultCountry = props.demoData?.states?.bankCountry;
 
-  const [checked, setChecked] = useState<
+  const [paymentMethodChecked, setPaymentMethodChecked] = useState<
     "toBankAccount" | "toPaypalAccount" | undefined
-  >(defaultChecked);
+  >(undefined);
+  const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
+    "balanceThreshold" | "fixedDay" | undefined
+  >(undefined);
 
   const [currency, setCurrency] = useState(defaultCurrency);
   const [bankCountry, setBankCountry] = useState(defaultCountry);
@@ -781,7 +787,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
   );
 
   const bitset =
-    currentPaymentOption?.withdrawalId || props.demoData?.demo?.bitset || 0;
+    currentPaymentOption?.withdrawalId || props.demoData?.states?.bitset || 0;
 
   console.log("demo hook", {
     demoData: props.demoData,
@@ -792,10 +798,13 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
   });
 
   useEffect(() => {
-    if (defaultChecked !== checked) setChecked(defaultChecked);
+    if (defaultPaymentMethodChecked !== paymentMethodChecked)
+      setPaymentMethodChecked(defaultPaymentMethodChecked);
+    if (defaultPaymentScheduleChecked !== paymentScheduleChecked)
+      setPaymentScheduleChecked(defaultPaymentScheduleChecked);
     if (defaultCurrency !== currency) setCurrency(defaultCurrency);
     if (defaultCountry !== bankCountry) setBankCountry(defaultCountry);
-  }, [defaultChecked, defaultCurrency, defaultCountry]);
+  }, [defaultPaymentMethodChecked, defaultCurrency, defaultCountry]);
 
   const feeCap = paypalFeeMap[currency] || "";
 
@@ -819,7 +828,8 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
         feeCap,
         paymentMethodFeeLabel,
         formState: {
-          checked,
+          paymentMethodChecked,
+          paymentScheduleChecked,
           errors: {
             general: false,
             beneficiaryAccountName: false,
@@ -845,8 +855,6 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
         intlLocale: "en",
         bitset,
         bankCountry,
-      },
-      demo: {
         showInputs: props.demoData?.showInputs,
         currency,
         setCurrency,
@@ -854,7 +862,8 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
       callbacks: {
         onSubmit: async () => {},
         setBankCountry,
-        setChecked,
+        setPaymentMethodChecked,
+        setPaymentScheduleChecked,
       },
       text: props.getTextProps(),
       refs: {
