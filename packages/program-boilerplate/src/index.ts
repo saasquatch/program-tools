@@ -103,7 +103,7 @@ export function webtask(program: Program = {}): express.Application {
     const terminating = app.locals["terminating"];
     if (typeof terminating === "boolean" && terminating) {
       logger.info("App is in TERMINATING state, sending health check failure");
-      return res.status(500).json({ status: "TERMINATING" });
+      return res.status(503).json({ status: "TERMINATING" });
     }
 
     return res.status(200).json({ status: "OK" });
