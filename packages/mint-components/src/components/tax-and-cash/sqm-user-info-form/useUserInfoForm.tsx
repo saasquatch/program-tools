@@ -87,7 +87,7 @@ export function useUserInfoForm(props: TaxForm) {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-        countryCode: user.countryCode,
+        countryCode: undefined, // User's countryCode is different than Impact's codes
         currency: user.customFields?.currency,
       });
     }
@@ -133,6 +133,7 @@ export function useUserInfoForm(props: TaxForm) {
 
     formControls?.forEach((control) => {
       if (!control.name) return;
+      console.log({ control });
 
       const key = control.name;
       const value = control.value;
@@ -148,6 +149,8 @@ export function useUserInfoForm(props: TaxForm) {
         const validationError = validate({ control, key, value });
         if (validationError) jsonpointer.set(errors, key, validationError);
       }
+
+      jsonpointer.set(formData, key, value);
     });
 
     if (Object.keys(errors).length) {
@@ -157,6 +160,8 @@ export function useUserInfoForm(props: TaxForm) {
     }
 
     const { allowBankingCollection, ...userData } = formData;
+
+    console.log({ userData });
 
     setUserFormContext({
       ...userFormContext,

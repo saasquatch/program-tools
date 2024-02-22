@@ -17,7 +17,7 @@ import { DocusignStatus } from "./docusign-iframe/DocusignIframe";
 import { DocusignForm } from "./sqm-docusign-form";
 
 type CreateTaxDocumentQuery = {
-  createImpactPartnerTaxDocument: {
+  createImpactPublisherTaxDocument: {
     documentUrl: string;
   };
 };
@@ -27,10 +27,12 @@ export type ParticipantType =
   | "businessEntity"
   | undefined;
 const GET_TAX_DOCUMENT = gql`
-  mutation createImpactPartnerTaxDocument(
-    $vars: CreateImpactPartnerTaxDocumentInput!
+  mutation createImpactPublisherTaxDocument(
+    $vars: CreateImpactPublisherTaxDocumentInput!
   ) {
-    createImpactPartnerTaxDocument(createImpactPartnerTaxDocumentInput: $vars) {
+    createImpactPublisherTaxDocument(
+      createImpactPartnerTaxDocumentInput: $vars
+    ) {
       documentUrl
     }
   }
@@ -69,13 +71,13 @@ export function useDocusignForm(props: DocusignForm) {
     publisher?.currentTaxDocument?.type || // Then current form (could be different than required)
     publisher?.requiredTaxDocumentType; // Last, the required tax form
 
+  const actualDocumentType =
+    existingDocumentType || getDocumentType(participantType);
+
   const [
     createTaxDocument,
     { loading: documentLoading, data: document, errors: documentErrors },
   ] = useMutation<CreateTaxDocumentQuery>(GET_TAX_DOCUMENT);
-
-  const actualDocumentType =
-    existingDocumentType || getDocumentType(participantType);
 
   useEffect(() => {
     if (!publisher?.currentTaxDocument?.type) return;
@@ -89,8 +91,7 @@ export function useDocusignForm(props: DocusignForm) {
   }, [publisher]);
 
   useEffect(() => {
-    if (!user) return;
-    if (!actualDocumentType) return;
+    if (!user || !publisher) return;
 
     const fetchDocument = async () => {
       try {
@@ -98,7 +99,9 @@ export function useDocusignForm(props: DocusignForm) {
           vars: {
             userId: user.id,
             accountId: user.accountId,
-            taxDocumentType: actualDocumentType,
+            ...(participantType
+              ? { isBusinessEntity: participantType === "businessEntity" }
+              : {}),
           },
         });
 
@@ -109,7 +112,7 @@ export function useDocusignForm(props: DocusignForm) {
     };
 
     fetchDocument();
-  }, [user, actualDocumentType]);
+  }, [user, publisher, participantType]);
 
   useEffect(() => {
     // Handled in view
@@ -181,7 +184,7 @@ export function useDocusignForm(props: DocusignForm) {
     },
     data: {
       taxForm: actualDocumentType,
-      documentUrl: document?.createImpactPartnerTaxDocument?.documentUrl,
+      documentUrl: document?.createImpactPublisherTaxDocument?.documentUrl,
     },
     callbacks: {
       onSubmit,

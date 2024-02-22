@@ -28,6 +28,7 @@ export interface UserInfoFormViewProps {
   };
   data: {
     countries: {
+      impactCountryCode: string;
       countryCode: string;
       displayName: string;
     }[];
@@ -299,7 +300,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 }}
               ></sl-input>
               {data?.countries?.map((c) => (
-                <sl-menu-item value={c.countryCode}>
+                <sl-menu-item value={c.impactCountryCode}>
                   {c.displayName}
                 </sl-menu-item>
               ))}

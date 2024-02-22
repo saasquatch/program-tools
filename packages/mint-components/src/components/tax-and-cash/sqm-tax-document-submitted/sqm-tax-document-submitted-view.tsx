@@ -4,7 +4,7 @@ import { intl } from "../../../global/global";
 import {
   PayoutDetailsCardView,
   PayoutDetailsCardViewProps,
-} from "../sqm-payout-details-card/sqm-payout-details-card";
+} from "../sqm-payout-details-card/sqm-payout-details-card-view";
 import { TaxDocumentType } from "../sqm-tax-and-cash/data";
 
 export interface TaxDocumentSubmittedProps {
@@ -172,6 +172,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
     loading: states.loading,
     empty: false,
     otherCurrencies: false,
+    payoutType: "bank",
     mainCurrency: { currencyText: "USD", amountText: "100.00" },
     status: "upcoming",
     pendingStatusBadgeText: "Pending",

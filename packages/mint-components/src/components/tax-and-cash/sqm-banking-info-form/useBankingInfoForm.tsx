@@ -10,6 +10,7 @@ import {
 } from "../sqm-tax-and-cash/data";
 import { mockPaymentOptions } from "./mockData";
 import { BankingInfoForm } from "./sqm-banking-info-form";
+import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
 
 export const paypalFeeMap = {
   USD: "USD20.00",
@@ -78,7 +79,9 @@ export function getFormInputs({ bitset, formMap }) {
   return inputFields;
 }
 
-export function useBankingInfoForm(props: BankingInfoForm) {
+export function useBankingInfoForm(
+  props: BankingInfoForm
+): BankingInfoFormViewProps {
   const locale = useLocale();
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
 
@@ -86,7 +89,6 @@ export function useBankingInfoForm(props: BankingInfoForm) {
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
   /** mock data */
-  const [bitset, setBitset] = useState(0);
   const [currency, setCurrency] = useState("CAD");
   /** */
 
@@ -95,8 +97,12 @@ export function useBankingInfoForm(props: BankingInfoForm) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const [checked, setChecked] = useState<
+
+  const [paymentMethodChecked, setPaymentMethodChecked] = useState<
     "toBankAccount" | "toPaypalAccount" | undefined
+  >(undefined);
+  const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
+    "balanceThreshold" | "fixedDay" | undefined
   >(undefined);
 
   const onSubmit = async (event: any) => {
@@ -158,13 +164,19 @@ export function useBankingInfoForm(props: BankingInfoForm) {
   console.log({ userData });
 
   return {
-    step: step,
-    setStep: setStep,
-    text: { ...props, error: {} },
+    text: {
+      ...props,
+      error: {
+        generalTitle: props.generalErrorTitle,
+        generalDescription: props.generalErrorDescription,
+      },
+    },
     callbacks: {
       onSubmit,
       setBankCountry,
-      setChecked,
+      setPaymentMethodChecked,
+      setPaymentScheduleChecked,
+      setCurrency,
     },
     states: {
       locale,
@@ -175,25 +187,20 @@ export function useBankingInfoForm(props: BankingInfoForm) {
       disabled: loading,
       loading,
       hideSteps: false,
-      hideBanking: checked !== "toBankAccount",
-      hidePayPal: checked !== "toPaypalAccount",
+      hideBanking: paymentMethodChecked !== "toBankAccount",
+      hidePayPal: paymentMethodChecked !== "toPaypalAccount",
       formState: {
-        checked,
+        paymentMethodChecked,
+        paymentScheduleChecked,
         errors,
       },
       bitset: currentPaymentOption?.withdrawalId || 0,
       bankCountry,
       currency: userData?.user?.impactConnection?.publisher?.currency,
+      showInputs: true,
     },
     refs: {
       formRef,
-    },
-    demo: {
-      showInputs: true,
-      bitset,
-      setBitset,
-      currency,
-      setCurrency,
     },
   };
 }
