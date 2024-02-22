@@ -56,6 +56,7 @@ const CONNECT_PARTNER = gql`
 `;
 
 function getOption(countries: TaxCountry[] | undefined, countryCode: string) {
+  console.log({ countries, countryCode });
   if (!countries) return;
 
   if (countries.find((c) => c.impactCountryCode === countryCode)) {
