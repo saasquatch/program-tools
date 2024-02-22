@@ -300,20 +300,6 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           </div>
         </div>
       )}
-      {!states.hideBackButton && (
-        <div class={classes.BtnContainer}>
-          <sl-button
-            class={classes.SecondaryBtn}
-            type="text"
-            loading={states.loading}
-            disabled={states.loading}
-            onClick={callbacks.onBack}
-            exportparts="base: secondarybutton-base"
-          >
-            {text.backButton}
-          </sl-button>
-        </div>
-      )}
     </div>
   );
 };

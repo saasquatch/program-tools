@@ -189,6 +189,8 @@ export function useUserInfoForm(props: TaxForm) {
       disabled: false,
       loading: loading,
       isPartner: !!data?.user?.impactConnection?.publisher,
+      //AL TODO add isUser
+      isUser: false,
       formState: {
         ...userFormContext,
         errors: formErrors,

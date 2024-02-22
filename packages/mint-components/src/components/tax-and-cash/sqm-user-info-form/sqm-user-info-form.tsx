@@ -231,6 +231,7 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
         formState: { participantType },
         loading: false,
         isPartner: false,
+        isUser: false,
       },
     },
     props.demoData || {},

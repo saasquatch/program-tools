@@ -12,6 +12,13 @@ Feature: Tax Form Step One
     And the fields are disabled
 
   @minutia
+  Scenario: The Participant is a user but not a parter and form fields are disabled
+    When they are on the form
+    And they are already a user but not a partner
+    Then the firstName, lastName, cannot be changed
+    And the fields are disabled
+
+  @minutia
   Scenario: A user is filling out the form and selects their country
     When they open the country dropdown
     Then the available countries are provided:
