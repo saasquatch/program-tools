@@ -23,7 +23,7 @@ export interface BankingInfoFormViewProps {
         general?: boolean;
       };
     };
-    bitset?: string;
+    bitset?: number;
     bankCountry?: string;
     currency?: string;
     showInputs?: boolean;

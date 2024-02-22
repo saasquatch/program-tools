@@ -159,7 +159,7 @@ export function useBankingInfoForm(
     })`,
   };
   const paymentMethodFeeLabel =
-    paymentMethodFeeMap[currentPaymentOption?.withdrawalSetting];
+    paymentMethodFeeMap[currentPaymentOption?.paymentMethod];
 
   console.log({ userData });
 

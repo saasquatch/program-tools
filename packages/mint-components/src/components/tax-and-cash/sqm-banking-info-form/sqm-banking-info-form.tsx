@@ -812,7 +812,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
   };
 
   const paymentMethodFeeLabel =
-    paymentMethodFeeMap[currentPaymentOption?.withdrawalSetting];
+    paymentMethodFeeMap[currentPaymentOption?.paymentMethod];
 
   return deepmerge(
     {
