@@ -846,6 +846,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
         showInputs: props.demoData?.showInputs,
         currency,
         setCurrency,
+        hasPayPal: true,
       },
       callbacks: {
         onSubmit: async () => {},

@@ -28,11 +28,9 @@ export const paypalFeeMap = {
   JPY: "JPY2000.00",
 };
 
-export const paymentMethodMap = {
-  3: "ACH",
-  5: "WIRE",
-  7: "PAYPAL",
-};
+const ACH_PAYMENT_METHOD = 3;
+const WIRE_PAYMENT_METHOD = 5;
+const PAYPAL_PAYMENT_METHOD = 7;
 
 export type BankingInfoFormData = {
   bankCountry?: string;
@@ -98,7 +96,7 @@ export function useBankingInfoForm(
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
-  const [paymentMethodChecked, setPaymentMethodChecked] = useState<
+  const [_paymentMethodChecked, setPaymentMethodChecked] = useState<
     "toBankAccount" | "toPaypalAccount" | undefined
   >(undefined);
   const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
@@ -184,7 +182,13 @@ export function useBankingInfoForm(
     };
   });
 
-  console.log({ countries });
+  const hasPayPal = !!paymentOptions.find(
+    (option) => option.paymentMethod === PAYPAL_PAYMENT_METHOD
+  );
+
+  const paymentMethodChecked = !hasPayPal
+    ? "toBankAccount"
+    : _paymentMethodChecked;
 
   return {
     text: {
@@ -222,6 +226,7 @@ export function useBankingInfoForm(
       currency: userData?.user?.impactConnection?.publisher?.currency,
       showInputs: true,
       countries,
+      hasPayPal,
     },
     refs: {
       formRef,
