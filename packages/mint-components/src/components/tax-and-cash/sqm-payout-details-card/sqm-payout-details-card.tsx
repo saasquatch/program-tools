@@ -60,7 +60,7 @@ function useDemoPayoutDetailsCard(props: PayoutDetailsCard) {
         hasW9Pending: false,
         hasDatePending: true,
       },
-      text: this.getTextProps(),
+      text: props.getTextProps(),
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
