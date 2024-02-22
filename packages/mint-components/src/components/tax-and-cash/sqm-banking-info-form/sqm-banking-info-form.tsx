@@ -659,6 +659,7 @@ export class BankingInfoForm {
             <sl-menu-item value="CAD">CAD</sl-menu-item>
             <sl-menu-item value="EUR">EUR</sl-menu-item>
             <sl-menu-item value="JPY">JPY</sl-menu-item>
+            <sl-menu-item value="KRW">KRW</sl-menu-item>
           </sl-select>
         )}
         <BankingInfoFormView

@@ -118,6 +118,12 @@ export const mockPaymentOptions: {
       paymentMethod: 5,
       withdrawalId: 21,
     },
+    {
+      country: "NE",
+      currency: "EUR",
+      paymentMethod: 7,
+      withdrawalId: 25,
+    },
   ],
   GBP: [
     {
@@ -232,6 +238,14 @@ export const mockPaymentOptions: {
       currency: "JPY",
       paymentMethod: 7,
       withdrawalId: 8279,
+    },
+  ],
+  KRW: [
+    {
+      country: "KR",
+      currency: "KRW",
+      paymentMethod: 5,
+      withdrawalId: 149,
     },
   ],
 };
