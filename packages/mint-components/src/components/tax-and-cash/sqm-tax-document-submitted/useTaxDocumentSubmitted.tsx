@@ -93,7 +93,8 @@ export const useTaxDocumentSubmitted = (
       // @ts-ignore: DisplayNames does exist on Intl
       country: new Intl.DisplayNames([locale.replaceAll("_", "-")], {
         type: "language",
-      }).of(publisher?.indirectTaxCountry),
+        // @ts-ignore: Bad DisplayNames type (has to be array)
+      }).of([publisher?.indirectTaxCountry]),
       notRegistered: publisher?.indirectTaxOption === "NO_TAX",
       noFormNeeded: !documentType,
       expiresSoon,
