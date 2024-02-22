@@ -97,7 +97,7 @@ export function useBankingInfoForm(
   const [errors, setErrors] = useState({});
 
   const [_paymentMethodChecked, setPaymentMethodChecked] = useState<
-    "toBankAccount" | "toPaypalAccount" | undefined
+    "toBankAccount" | "toPayPalAccount" | undefined
   >(undefined);
   const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
     "balanceThreshold" | "fixedDay" | undefined
@@ -215,7 +215,7 @@ export function useBankingInfoForm(
       loading,
       hideSteps: false,
       hideBanking: paymentMethodChecked !== "toBankAccount",
-      hidePayPal: paymentMethodChecked !== "toPaypalAccount",
+      hidePayPal: paymentMethodChecked !== "toPayPalAccount",
       formState: {
         paymentMethodChecked,
         paymentScheduleChecked,

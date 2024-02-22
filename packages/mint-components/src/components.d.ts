@@ -266,7 +266,7 @@ export namespace Components {
           * Text for the option to receive payments to a PayPal account with processing fee details
           * @uiName PayPal option text with processing fee placeholder
          */
-        "toPaypalAccount": string;
+        "toPayPalAccount": string;
         /**
           * Label text for the VO code input field
           * @uiName VO code input label
@@ -5556,7 +5556,7 @@ declare namespace LocalJSX {
           * Text for the option to receive payments to a PayPal account with processing fee details
           * @uiName PayPal option text with processing fee placeholder
          */
-        "toPaypalAccount"?: string;
+        "toPayPalAccount"?: string;
         /**
           * Label text for the VO code input field
           * @uiName VO code input label

@@ -54,7 +54,7 @@ export class BankingInfoForm {
    * Text for the option to receive payments to a PayPal account with processing fee details
    * @uiName PayPal option text with processing fee placeholder
    */
-  @Prop() toPaypalAccount: string =
+  @Prop() toPayPalAccount: string =
     "PayPal (2% processing fee capped to {feeCap})";
   /**
    * Text for the option to receive payments at a specific balance threshold
@@ -667,9 +667,7 @@ export class BankingInfoForm {
           states={props.states}
           refs={props.refs}
           slots={{
-            formInputsSlot: inputFields?.map(({ input }) => {
-              return input;
-            }),
+            formInputsSlot: inputFields?.map(({ input }) => input),
             countryInputSlot: (
               <sl-select
                 label={props.text.bankLocationLabel}
@@ -759,7 +757,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
   const defaultCountry = props.demoData?.states?.bankCountry;
 
   const [paymentMethodChecked, setPaymentMethodChecked] = useState<
-    "toBankAccount" | "toPaypalAccount" | undefined
+    "toBankAccount" | "toPayPalAccount" | undefined
   >(undefined);
   const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
     "balanceThreshold" | "fixedDay" | undefined
