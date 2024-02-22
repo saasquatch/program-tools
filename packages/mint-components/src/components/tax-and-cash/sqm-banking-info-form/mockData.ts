@@ -207,16 +207,16 @@ export const mockPaymentOptions: {
       withdrawalId: 21,
     },
     {
-      country: "US",
-      currency: "USD",
-      paymentMethod: 7,
-      withdrawalId: 39,
-    },
-    {
       country: "AU",
       currency: "USD",
       paymentMethod: 5,
       withdrawalId: 21,
+    },
+    {
+      country: "US",
+      currency: "USD",
+      paymentMethod: 7,
+      withdrawalId: 39,
     },
   ],
   JPY: [

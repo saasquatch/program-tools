@@ -649,7 +649,7 @@ export class BankingInfoForm {
             name="/currency"
             value={props.states.currency}
             onSl-select={(e) => {
-              props.states.setCurrency(e.detail?.item?.value);
+              props.callbacks.setCurrency(e.detail?.item?.value);
               props.callbacks.setBankCountry("");
             }}
           >
@@ -689,21 +689,13 @@ export class BankingInfoForm {
                 })}
               >
                 {/* TODO: mock data should come from the backend when available */}
-                {mockPaymentOptions[props.states.currency]?.map(
-                  (paymentOption) => {
-                    // @ts-ignore
-                    const countryDisplayName = new Intl.DisplayNames(
-                      [props.states.intlLocale],
-                      { type: "region" }
-                    ).of(paymentOption.country);
-
-                    return (
-                      <sl-menu-item value={paymentOption?.country}>
-                        {countryDisplayName}
-                      </sl-menu-item>
-                    );
-                  }
-                )}
+                {props.states.countries?.map((country) => {
+                  return (
+                    <sl-menu-item value={country.code}>
+                      {country.name}
+                    </sl-menu-item>
+                  );
+                })}
               </sl-select>
             ),
             paymentMethodSlot: (

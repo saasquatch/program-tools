@@ -27,6 +27,7 @@ export interface BankingInfoFormViewProps {
     bankCountry?: string;
     currency?: string;
     showInputs?: boolean;
+    countries?: { code: string; name: string }[];
   };
   slots?: {
     formInputsSlot?: VNode[];
