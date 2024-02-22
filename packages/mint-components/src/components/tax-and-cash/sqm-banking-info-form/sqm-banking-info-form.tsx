@@ -707,6 +707,7 @@ export class BankingInfoForm {
             ),
             paymentThresholdSelectSlot: (
               <sl-select
+                required
                 label={props.text.paymentThresholdSelectLabel}
                 name="/balanceThreshold"
                 id="balanceThreshold"
@@ -724,6 +725,7 @@ export class BankingInfoForm {
             ),
             paymentFixedDaySelectSlot: (
               <sl-select
+                required
                 label={props.text.paymentDaySelectLabel}
                 name="/fixedDay"
                 id="fixedDay"
@@ -840,7 +842,6 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
             fixedDay: false,
           },
         },
-        intlLocale: "en",
         bitset,
         bankCountry,
         showInputs: props.demoData?.showInputs,

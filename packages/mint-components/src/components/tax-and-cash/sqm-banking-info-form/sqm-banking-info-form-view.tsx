@@ -5,9 +5,9 @@ import { intl } from "../../../global/global";
 export interface BankingInfoFormViewProps {
   states: {
     locale?: string;
-    intlLocale?: string;
     loading: boolean;
     disabled: boolean;
+    saveDisabled: boolean;
     hideSteps: boolean;
     hasPayPal: boolean;
     hideBanking?: boolean;
@@ -16,6 +16,7 @@ export interface BankingInfoFormViewProps {
     hideFixedDay?: boolean;
     feeCap?: string;
     isPartner: boolean;
+
     paymentMethodFeeLabel?: string;
     formState: {
       paymentMethodChecked?: "toBankAccount" | "toPaypalAccount";
@@ -28,6 +29,7 @@ export interface BankingInfoFormViewProps {
     bankCountry?: string;
     currency?: string;
     countries?: { code: string; name: string }[];
+
     showInputs?: boolean;
   };
   slots?: {
@@ -451,7 +453,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
         <div class={classes.BtnContainer}>
           <sl-button
             type="primary"
-            disabled={states.disabled}
+            disabled={states.disabled || states.saveDisabled}
             submit
             exportparts="base: primarybutton-base"
           >

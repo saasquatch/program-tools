@@ -206,8 +206,8 @@ export function useBankingInfoForm(
       setCurrency,
     },
     states: {
+      saveDisabled: !paymentMethodChecked || !paymentScheduleChecked,
       locale,
-      intlLocale,
       isPartner: !!userData?.user?.impactConnection,
       feeCap,
       paymentMethodFeeLabel,
