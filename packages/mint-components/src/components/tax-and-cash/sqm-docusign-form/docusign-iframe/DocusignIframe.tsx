@@ -96,7 +96,7 @@ export const DocusignErrorView = (props: {
           style={{
             width: "50px",
             height: "50px",
-            color: "var(--sl-color-red-600)",
+            color: "var(--sl-color-gray-500)",
           }}
           name="exclamation-octagon"
         ></sl-icon>
