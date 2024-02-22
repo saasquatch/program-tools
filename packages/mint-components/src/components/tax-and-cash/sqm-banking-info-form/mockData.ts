@@ -248,4 +248,12 @@ export const mockPaymentOptions: {
       withdrawalId: 149,
     },
   ],
+  MYR: [
+    {
+      country: "MY",
+      currency: "MYR",
+      paymentMethod: 5,
+      withdrawalId: 16405,
+    },
+  ],
 };

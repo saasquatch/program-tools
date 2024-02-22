@@ -263,6 +263,11 @@ export namespace Components {
          */
         "taxAndPayoutsDescription": string;
         /**
+          * Label text for the Taxpayer ID input field
+          * @uiName Taxpayer ID input label
+         */
+        "taxPayerIdLabel": string;
+        /**
           * Text for the option to receive payments to a PayPal account with processing fee details
           * @uiName PayPal option text with processing fee placeholder
          */
@@ -5552,6 +5557,11 @@ declare namespace LocalJSX {
           * @uiName Tax and Payouts label text
          */
         "taxAndPayoutsDescription"?: string;
+        /**
+          * Label text for the Taxpayer ID input field
+          * @uiName Taxpayer ID input label
+         */
+        "taxPayerIdLabel"?: string;
         /**
           * Text for the option to receive payments to a PayPal account with processing fee details
           * @uiName PayPal option text with processing fee placeholder

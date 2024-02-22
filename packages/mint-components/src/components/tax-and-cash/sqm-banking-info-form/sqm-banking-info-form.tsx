@@ -248,6 +248,13 @@ export class BankingInfoForm {
    * @uiName Classification input label
    */
   @Prop() classificationLabel: string = "Classification";
+
+  /**
+   * Label text for the Taxpayer ID input field
+   * @uiName Taxpayer ID input label
+   */
+  @Prop() taxPayerIdLabel: string = "Taxpayer ID";
+
   /**
    * Title text for a general form submission error
    * @uiName General form submission error title
@@ -444,28 +451,43 @@ export class BankingInfoForm {
       },
       7: {
         input: (
-          <sl-select
-            required
-            label={props.text.classificationLabel}
-            name="/beneficiaryClassification"
-            id="beneficiaryClassification"
-            {...(errors?.beneficiaryClassification && {
-              class: "error-input",
-              helpText: this.getValidationErrorMessage(
-                props.text.classificationLabel
-              ),
-            })}
-          >
-            <sl-menu-item value="BUSINESS">
-              {props.text.businessSelectItemLabel}
-            </sl-menu-item>
-            <sl-menu-item value="INDIVIDUAL">
-              {props.text.individualSelectItemLabel}
-            </sl-menu-item>
-            <sl-menu-item value="FOREIGN">
-              {props.text.foreignSelectItemLabel}
-            </sl-menu-item>
-          </sl-select>
+          <div>
+            <sl-select
+              required
+              label={props.text.classificationLabel}
+              name="/beneficiaryClassification"
+              id="beneficiaryClassification"
+              {...(errors?.beneficiaryClassification && {
+                class: "error-input",
+                helpText: this.getValidationErrorMessage(
+                  props.text.classificationLabel
+                ),
+              })}
+            >
+              <sl-menu-item value="BUSINESS">
+                {props.text.businessSelectItemLabel}
+              </sl-menu-item>
+              <sl-menu-item value="INDIVIDUAL">
+                {props.text.individualSelectItemLabel}
+              </sl-menu-item>
+              <sl-menu-item value="FOREIGN">
+                {props.text.foreignSelectItemLabel}
+              </sl-menu-item>
+            </sl-select>
+            <sl-input
+              required
+              label={props.text.taxPayerIdLabel}
+              type="text"
+              name="/taxPayerId"
+              id="taxPayerId"
+              {...(errors?.taxPayerId && {
+                class: "error-input",
+                helpText: this.getValidationErrorMessage(
+                  props.text.taxPayerIdLabel
+                ),
+              })}
+            ></sl-input>
+          </div>
         ),
       },
       8: {
@@ -660,6 +682,7 @@ export class BankingInfoForm {
             <sl-menu-item value="EUR">EUR</sl-menu-item>
             <sl-menu-item value="JPY">JPY</sl-menu-item>
             <sl-menu-item value="KRW">KRW</sl-menu-item>
+            <sl-menu-item value="MYR">MYR</sl-menu-item>
           </sl-select>
         )}
         <BankingInfoFormView
