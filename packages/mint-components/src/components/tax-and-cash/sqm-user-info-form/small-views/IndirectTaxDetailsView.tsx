@@ -303,9 +303,9 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
 
   const getActiveForm = (selectedRegion: string) => {
     switch (selectedRegion) {
-      case "CANADA":
+      case "CA":
         return <CanadaFields />;
-      case "SPAIN":
+      case "ES":
         return <SpainFields />;
       default:
         // TODO: Pass in proper tax type for countries

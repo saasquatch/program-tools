@@ -72,6 +72,9 @@ export function useUserInfoForm(props: TaxForm) {
     const user = data?.user;
     if (!user || step !== "/1") return;
 
+    // TODO: Add user fields, then publisher fields, then form fields
+    // Then set the fields to userFormContext
+
     if (user.impactConnection?.publisher && user.impactConnection?.user) {
       // Initialise with partner information
       setUserFormContext({
