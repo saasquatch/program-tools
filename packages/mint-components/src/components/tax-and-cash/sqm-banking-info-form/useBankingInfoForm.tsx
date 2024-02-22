@@ -169,7 +169,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
     states: {
       locale,
       intlLocale: locale?.replace("_", "-") || "en",
-      isPartner: !!userData?.user?.impactPartner,
+      isPartner: !!userData?.user?.impactConnection,
       feeCap,
       paymentMethodFeeLabel,
       disabled: loading,
@@ -183,7 +183,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
       },
       bitset: currentPaymentOption?.withdrawalId || 0,
       bankCountry,
-      currency: userData?.user?.impactPartner?.currency,
+      currency: userData?.user?.impactConnection?.publisher?.currency,
     },
     refs: {
       formRef,

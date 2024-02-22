@@ -54,6 +54,7 @@ export function useDocusignForm(props: DocusignForm) {
     loading: userLoading,
     refetch,
   } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+  const publisher = data?.user?.impactConnection?.publisher;
 
   const [docusignStatus, setDocusignStatus] =
     useState<DocusignStatus>(undefined);
@@ -65,8 +66,8 @@ export function useDocusignForm(props: DocusignForm) {
   const [loading, setLoading] = useState(false);
 
   const existingDocumentType =
-    data?.user?.impactPartner?.currentTaxDocument?.type || // Then current form (could be different than required)
-    data?.user?.impactPartner?.requiredTaxDocumentType; // Last, the required tax form
+    publisher?.currentTaxDocument?.type || // Then current form (could be different than required)
+    publisher?.requiredTaxDocumentType; // Last, the required tax form
 
   const [
     createTaxDocument,
@@ -77,16 +78,15 @@ export function useDocusignForm(props: DocusignForm) {
     existingDocumentType || getDocumentType(participantType);
 
   useEffect(() => {
-    if (!data?.user?.impactPartner?.currentTaxDocument?.type) return;
+    if (!publisher?.currentTaxDocument?.type) return;
 
-    const type = data.user.impactPartner.currentTaxDocument.type;
-    console.log({ type });
+    const type = publisher.currentTaxDocument.type;
     if (type === "W8BEN") {
       setParticipantType("individualParticipant");
     } else if (type === "W8BENE") {
       setParticipantType("businessEntity");
     }
-  }, [data?.user?.impactPartner]);
+  }, [publisher]);
 
   useEffect(() => {
     if (!user) return;
@@ -139,7 +139,7 @@ export function useDocusignForm(props: DocusignForm) {
       const result = await refetch();
       if ((result as Error).message) throw new Error();
 
-      const status = (result as UserQuery).user?.impactPartner
+      const status = (result as UserQuery).user?.impactConnection?.publisher
         ?.currentTaxDocument?.status;
 
       // TODO : Confirm behaviour

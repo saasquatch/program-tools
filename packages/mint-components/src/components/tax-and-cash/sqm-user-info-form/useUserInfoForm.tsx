@@ -72,21 +72,21 @@ export function useUserInfoForm(props: TaxForm) {
     const user = data?.user;
     if (!user || step !== "/1") return;
 
-    if (user.impactPartner) {
+    if (user.impactConnection?.publisher && user.impactConnection?.user) {
       // Initialise with partner information
       setUserFormContext({
-        firstName: user.impactPartner.firstName,
-        lastName: user.impactPartner.lastName,
-        email: user.impactPartner.email,
-        countryCode: user.impactPartner.country,
-        currency: user.impactPartner.currency,
+        email: user.email,
+        firstName: user.impactConnection.user.firstName,
+        lastName: user.impactConnection.user.lastName,
+        countryCode: user.impactConnection.publisher.countryCode,
+        currency: user.impactConnection.publisher.currency,
       });
     } else {
       // Initialise with user information
       setUserFormContext({
+        email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-        email: user.email,
         countryCode: user.countryCode,
         currency: user.customFields?.currency,
       });
@@ -188,7 +188,7 @@ export function useUserInfoForm(props: TaxForm) {
       hideSteps: context.hideSteps,
       disabled: false,
       loading: loading,
-      isPartner: !!data?.user?.impactPartner,
+      isPartner: !!data?.user?.impactConnection?.publisher,
       formState: {
         ...userFormContext,
         errors: formErrors,

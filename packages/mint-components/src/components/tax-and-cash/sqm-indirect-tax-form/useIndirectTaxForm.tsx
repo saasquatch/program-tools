@@ -96,16 +96,18 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     const user = userData?.user;
     if (!user) return;
 
-    if (user.impactPartner) {
+    if (user.impactConnection?.publisher) {
       setFormState({
-        province: user.impactPartner?.indirectTaxSubdivision,
-        subRegion: user.impactPartner?.indirectTaxSubdivision,
-        hasQst: !!user.impactPartner?.additionalTaxId,
-        qstNumber: user.impactPartner?.additionalTaxId,
-        hasSubRegionTaxNumber: !!user.impactPartner?.withholdingTaxNumber,
-        subRegionTaxNumber: user.impactPartner?.withholdingTaxNumber,
-        selectedRegion: user.impactPartner?.indirectTaxCountry,
-        indirectTaxNumber: user.impactPartner?.indirectTaxNumber,
+        province: user.impactConnection.publisher.indirectTaxSubdivision,
+        subRegion: user.impactConnection.publisher.indirectTaxSubdivision,
+        hasQst: !!user.impactConnection.publisher.additionalTaxId,
+        qstNumber: user.impactConnection.publisher.additionalTaxId,
+        hasSubRegionTaxNumber:
+          !!user.impactConnection.publisher.withholdingTaxNumber,
+        subRegionTaxNumber:
+          user.impactConnection.publisher.withholdingTaxNumber,
+        selectedRegion: user.impactConnection.publisher.indirectTaxCountry,
+        indirectTaxNumber: user.impactConnection.publisher.indirectTaxId,
       });
     } else {
       setFormState({

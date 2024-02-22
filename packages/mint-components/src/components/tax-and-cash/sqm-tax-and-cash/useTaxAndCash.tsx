@@ -28,20 +28,21 @@ import {
 
 function getCurrentStep(user: UserQuery["user"]) {
   if (
-    !user.impactPartner ||
-    user.impactPartner?.connectionStatus === "NOT_CONNECTED"
+    !user.impactConnection ||
+    user.impactConnection?.connectionStatus === "NOT_CONNECTED" ||
+    !user.impactConnection?.publisher
   ) {
     return "/1";
   }
 
   // Prioritise sending them to dashboard if no required document
-  if (!user.impactPartner.requiredTaxDocumentType) {
+  if (!user.impactConnection.publisher.requiredTaxDocumentType) {
     return "/submitted";
   }
 
   // If they do have a required document, look at current document
-  if (user.impactPartner.currentTaxDocument) {
-    const { status } = user.impactPartner.currentTaxDocument;
+  if (user.impactConnection.publisher.currentTaxDocument) {
+    const { status } = user.impactConnection.publisher.currentTaxDocument;
 
     if (status === "ACTIVE" || status === "NOT_VERIFIED") return "/submitted";
 

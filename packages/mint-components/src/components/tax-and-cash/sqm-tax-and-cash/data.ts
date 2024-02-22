@@ -37,28 +37,49 @@ export const GET_USER = gql`
         email
         countryCode
         customFields
-        impactPartner {
+        impactConnection {
           connectionStatus
-          firstName
-          lastName
-          email
-          country
-          currency
-          indirectTaxNumber
-          requiredTaxDocumentType
-          currentTaxDocument {
-            status
-            type
+          user {
+            firstName
+            lastName
+          }
+          publisher {
+            countryCode
+            currency
+            requiredTaxDocumentType
+            currentTaxDocument {
+              status
+              type
+              dateCreated
+            }
           }
         }
       }
-      # ... on Tenant {
-      #   impactBrandCountryCode
-      # }
     }
   }
 `;
 
+type TaxDocumentStatus = "NEW" | "NOT_VERIFIED" | "ACTIVE" | "INACTIVE";
+type ImpactPublisher = {
+  countryCode: string;
+  currency: string;
+  indirectTaxId: string | null;
+  requiredTaxDocumentType: TaxDocumentType | null;
+  currentTaxDocument: null | {
+    status: TaxDocumentStatus;
+    type: TaxDocumentType;
+    dateCreated: number;
+  };
+
+  // TODO: Remove this comment when these fields exist
+  indirectTaxOption: "SAME_COUNTRY" | "NO_TAX" | "DIFFERENT_COUNTRY";
+  indirectTaxSubdivision: string;
+  indirectTaxCountry: string;
+  additionalTaxId: string;
+  withholdingTaxCountry: string;
+  withholdingTaxNumber: string;
+  organizationType: string;
+};
 export type UserQuery = {
   user: {
     firstName?: string;
@@ -68,29 +89,13 @@ export type UserQuery = {
     customFields?: {
       [key: string]: any;
     };
-    impactPartner: null | {
+    impactConnection: null | {
       connectionStatus: "CONNECTED" | "NOT_CONNECTED";
-      firstName: string;
-      lastName: string;
-      email: string;
-      country: string;
-      currency: string;
-      indirectTaxNumber: number;
-      requiredTaxDocumentType: TaxDocumentType;
-      currentTaxDocument: {
-        status: "NEW" | "NOT_VERIFIED" | "ACTIVE" | "INACTIVE";
-        type: TaxDocumentType;
+      user: {
+        firstName: string;
+        lastName: string;
       };
-
-      // TODO: Remove this comment when these fields exist
-      indirectTaxOption: "SAME_COUNTRY" | "NO_TAX" | "DIFFERENT_COUNTRY";
-      indirectTaxSubdivision: string;
-      indirectTaxCountry: string;
-      indirectTaxId: string;
-      additionalTaxId: string;
-      withholdingTaxCountry: string;
-      withholdingTaxNumber: string;
-      organizationType: string;
+      publisher: null | ImpactPublisher;
     };
   };
 };

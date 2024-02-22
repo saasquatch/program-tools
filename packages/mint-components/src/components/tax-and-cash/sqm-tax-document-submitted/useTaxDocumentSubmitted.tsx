@@ -41,12 +41,13 @@ export const useTaxDocumentSubmitted = (
 
   const { data, loading } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+  const publisher = data?.user?.impactConnection?.publisher;
 
   console.log("submitted", { data, loading });
 
   // TODO: Fetch document status from backend
 
-  const documentType = data?.user?.impactPartner?.currentTaxDocument?.type;
+  const documentType = publisher?.currentTaxDocument?.type;
   const submissionDate = DateTime.now().toMillis();
   const dateSubmitted =
     DateTime.fromMillis(submissionDate).toFormat("LLL dd, yyyy");
@@ -76,26 +77,24 @@ export const useTaxDocumentSubmitted = (
   };
 
   const provinceName = INDIRECT_TAX_PROVINCES.find(
-    (p) => p.provinceCode === data?.user?.impactPartner?.indirectTaxSubdivision
+    (p) => p.provinceCode === publisher?.indirectTaxSubdivision
   )?.displayName;
 
   return {
     states: {
       dateSubmitted,
       documentType,
-      status: data?.user?.impactPartner?.currentTaxDocument?.status,
+      status: publisher?.currentTaxDocument?.status,
       // AL TODO: indirectTaxType
       indirectTaxType: data?.user.customFields?.__indirectTaxType,
       indirectTaxNumber: data?.user?.customFields?.__indirectTaxNumber,
-      isBusinessEntity:
-        data?.user?.impactPartner?.requiredTaxDocumentType === "W8BENE",
+      isBusinessEntity: publisher?.requiredTaxDocumentType === "W8BENE",
       province: provinceName,
       // @ts-ignore: DisplayNames does exist on Intl
       country: new Intl.DisplayNames([locale.replaceAll("_", "-")], {
         type: "language",
-        // @ts-ignore: DisplayNames does exist on Intl
-      }).of([data?.user?.customFields?.__taxCountry]),
-      notRegistered: data?.user?.impactPartner?.indirectTaxOption === "NO_TAX",
+      }).of(publisher?.indirectTaxCountry),
+      notRegistered: publisher?.indirectTaxOption === "NO_TAX",
       noFormNeeded: !documentType,
       expiresSoon,
       disabled: loading,
