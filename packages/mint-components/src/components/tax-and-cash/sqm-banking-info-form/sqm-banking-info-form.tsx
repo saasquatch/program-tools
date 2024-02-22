@@ -644,10 +644,6 @@ export class BankingInfoForm {
     return (
       <Host>
         {/* demo */}
-        {/* <sl-input
-          value={props.demo.bitset}
-          onInput={(e) => props.demo.setBitset(Number(e.target.value))}
-        /> */}
         {props.states.showInputs && (
           <sl-select
             name="/currency"

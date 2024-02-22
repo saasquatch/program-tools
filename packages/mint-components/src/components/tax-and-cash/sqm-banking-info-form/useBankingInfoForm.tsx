@@ -89,7 +89,6 @@ export function useBankingInfoForm(
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
   /** mock data */
-  const [bitset, setBitset] = useState(0);
   const [currency, setCurrency] = useState("CAD");
   /** */
 
@@ -177,7 +176,6 @@ export function useBankingInfoForm(
       setBankCountry,
       setPaymentMethodChecked,
       setPaymentScheduleChecked,
-      setBitset,
       setCurrency,
     },
     states: {

@@ -45,7 +45,6 @@ export interface BankingInfoFormViewProps {
     onSubmit: (props: any) => Promise<void>;
     setBankCountry?: (country: string) => void;
     setCurrency?: (currency: string) => void;
-    setBitset?: (bitset: number) => void;
   };
   text: {
     formStep: string;
