@@ -117,13 +117,6 @@ export class TaxDocumentSubmitted {
    */
   @Prop() indirectTaxInfoOtherCountry: string = "Registered in {country}";
   /**
-   * Indirect tax description text for individual participants
-   *
-   * @uiName Indirect tax individual participant description
-   */
-  @Prop() indirectTaxIndividualParticipant: string =
-    "Not registered. Participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information.";
-  /**
    * Indirect tax tooltip text for support
    *
    * @uiName Indirect tax tooltip description
@@ -173,7 +166,8 @@ export class TaxDocumentSubmitted {
    *
    * @uiName Not registered for Indirect Tax
    */
-  @Prop() notRegisteredForTax: string = "Not Registered";
+  @Prop() notRegisteredForTax: string =
+    "Not registered. Participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information.";
   /**
    * The title for error message shown at the top of the page in an error banner
    *

@@ -4115,11 +4115,6 @@ export namespace Components {
          */
         "step4_indirectTaxDetails": string;
         /**
-          * Indirect tax description text for individual participants
-          * @uiName Indirect tax individual participant description
-         */
-        "step4_indirectTaxIndividualParticipant": string;
-        /**
           * Country/Region description text of indirect tax
           * @uiName Indirect tax Canada description
          */
@@ -4271,11 +4266,6 @@ export namespace Components {
           * @uiName Indirect tax details
          */
         "indirectTaxDetails": string;
-        /**
-          * Indirect tax description text for individual participants
-          * @uiName Indirect tax individual participant description
-         */
-        "indirectTaxIndividualParticipant": string;
         /**
           * Country/Region description text of indirect tax
           * @uiName Indirect tax Canada description
@@ -9344,11 +9334,6 @@ declare namespace LocalJSX {
          */
         "step4_indirectTaxDetails"?: string;
         /**
-          * Indirect tax description text for individual participants
-          * @uiName Indirect tax individual participant description
-         */
-        "step4_indirectTaxIndividualParticipant"?: string;
-        /**
           * Country/Region description text of indirect tax
           * @uiName Indirect tax Canada description
          */
@@ -9500,11 +9485,6 @@ declare namespace LocalJSX {
           * @uiName Indirect tax details
          */
         "indirectTaxDetails"?: string;
-        /**
-          * Indirect tax description text for individual participants
-          * @uiName Indirect tax individual participant description
-         */
-        "indirectTaxIndividualParticipant"?: string;
         /**
           * Country/Region description text of indirect tax
           * @uiName Indirect tax Canada description

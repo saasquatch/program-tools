@@ -323,32 +323,36 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                   <sl-icon name="info-circle" style={{ top: "6px" }} />
                 </sl-tooltip>
               </h3>
-              {states.isBusinessEntity ? (
-                <div class={sheet.classes.IndirectTaxPreviewDetails}>
-                  <span>
-                    {states.notRegistered
-                      ? text.notRegisteredForTax
-                      : states.province
-                      ? intl.formatMessage(
-                          {
-                            id: `indirectTaxInfoCanada`,
-                            defaultMessage: text.indirectTaxInfoCanada,
-                          },
-                          {
-                            country: "Canada",
-                            province: states.province,
-                          }
-                        )
-                      : intl.formatMessage(
-                          {
-                            id: `indirectTaxInfoOtherCountry`,
-                            defaultMessage: text.indirectTaxInfoOtherCountry,
-                          },
-                          {
-                            country: states.country,
-                          }
-                        )}
-                  </span>
+              <div class={sheet.classes.IndirectTaxPreviewDetails}>
+                <span>
+                  {states.notRegistered ? (
+                    <span class={sheet.classes.NotRegisteredIndirectTaxText}>
+                      {text.notRegisteredForTax}
+                    </span>
+                  ) : states.province ? (
+                    intl.formatMessage(
+                      {
+                        id: `indirectTaxInfoCanada`,
+                        defaultMessage: text.indirectTaxInfoCanada,
+                      },
+                      {
+                        country: "Canada",
+                        province: states.province,
+                      }
+                    )
+                  ) : (
+                    intl.formatMessage(
+                      {
+                        id: `indirectTaxInfoOtherCountry`,
+                        defaultMessage: text.indirectTaxInfoOtherCountry,
+                      },
+                      {
+                        country: states.country,
+                      }
+                    )
+                  )}
+                </span>
+                {!states.notRegistered && (
                   <span>
                     {intl.formatMessage(
                       {
@@ -361,15 +365,8 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                       }
                     )}
                   </span>
-                </div>
-              ) : (
-                <div class={sheet.classes.IndirectTaxPreviewDetails}>
-                  <span class={sheet.classes.NotRegisteredIndirectTaxText}>
-                    {text.indirectTaxIndividualParticipant}
-                  </span>
-                  <span></span>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           )}
         </div>

@@ -4,95 +4,17 @@ Feature: Indirect Tax Form
   Background: A user has submitted their personal information in Tax Form Step One
     Given a user is on the Indirect Tax Form
 
-  @minutia
-  Scenario Outline: Different indirect tax inputs are shown depending on the country of a participant
-    Given they are on step 2
-    When <option> is selected based on the participant <country> from step 1
-    And their <participantType> is "businessEntity"
-    Then different <inputs> appear
-
-    Examples: 
-      | country | option                                               | participantType       | inputs                                                  |
-      | CA      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, Province, ?HST/GST Number, ?QST Number(Quebec) |
-      | ES      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, Sub Region, VAT Number, ?Income Tax Number     |
-      | UK      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, VAT Number                                     |
-      | IR      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, GST Number                                     |
-      | AU      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, GST Number                                     |
-      | JP      | I am registered for Indirect Tax in a Country/Region | businessEntity        | Country, CT Number                                      |
-      | US      | I am not registered for Indirect tax                 | individualParticipant | N/A                                                     |
-      | EG      | I am not registered for Indirect tax                 | individualParticipant | N/A                                                     |
-
   @minutia @ui
-  Scenario Outline: The country select displays applicable indirect tax countries and changes the VAT/GST/CT number input
-    When the "I am registered for Indirect Tax" option is selected
-    Then A Country select appears with available <country>s and corresponding <typeTax>:
-      | typeTax | country        |
-      | VAT     | UK             |
-      | GST     | Australia      |
-      | GST     | New Zealand    |
-      | VAT     | Austria        |
-      | VAT     | Belgium        |
-      | VAT     | Bulgaria       |
-      | VAT     | Croatia        |
-      | VAT     | Cyprus         |
-      | VAT     | Czech Republic |
-      | VAT     | Denmark        |
-      | VAT     | Estonia        |
-      | VAT     | Finland        |
-      | VAT     | France         |
-      | VAT     | Germany        |
-      | VAT     | Greece         |
-      | VAT     | Hungary        |
-      | VAT     | Ireland        |
-      | VAT     | Italy          |
-      | VAT     | Latvia         |
-      | VAT     | Lithuania      |
-      | VAT     | Luxembourg     |
-      | VAT     | Malta          |
-      | VAT     | Netherlands    |
-      | VAT     | Poland         |
-      | VAT     | Portugal       |
-      | VAT     | Romania        |
-      | VAT     | Slovakia       |
-      | VAT     | Slovenia       |
-      | VAT     | Spain          |
-      | VAT     | Sweden         |
-      | VAT     | Iceland        |
-      | GST     | India          |
-      | VAT     | Israel         |
-      | CT      | Japan          |
-      | VAT     | Mexico         |
-      | VAT     | Norway         |
-      | GST     | Singapore      |
-      | VAT     | South Africa   |
-      | VAT     | South Korea    |
-      | VAT     | Switzerland    |
-      | VAT     | Taiwan         |
-      | VAT     | Thailand       |
-      | VAT     | Philippines    |
-      | GST     | Malaysia       |
-      | VAT     | UAE            |
-      | VAT     | Turkey         |
-      | VAT     | Russia         |
-    And based on the <typeTax>
-    Then <typeTaxInputHeader> changes
+  Scenario Outline: Participant selects Canada in step 1
+    Given they select "Canada" as their country in step 1
+    Then the "I am registered Indirect Tax" option is selected in step 2
+    And the Country select is auto-selected with "Canada" from step 1
+    And a Province select appears with the available <provinces>
+    And based on the selected <province>
+    Then <typeTaxInputs> will appear
 
     Examples: 
-      | typeTax | typeTaxInputHeader |
-      | VAT     | VAT Number         |
-      | GST     | GST Number         |
-      | CT      | CT Number          |
-
-  @minutia @ui
-  Scenario: The province select displays applicable indirect tax provinces
-    When the "I am registered Indirect Tax" option is selected
-    And the country is "Canada"
-    Then A Province select appears with the available <provinces>
-    And based on the selected <provinces>
-    Then a <typeTaxInputs> will appear
-
-    Examples: 
-      | provinces             | typeTaxInput      |
+      | province              | typeTaxInput      |
       | Ontario               | HST Number        |
       | New Brunswick         | HST Number        |
       | Newfoundland          | HST Number        |
@@ -107,19 +29,82 @@ Feature: Indirect Tax Form
       | Alberta               | GST Number        |
       | Northwest Territories | GST Number        |
 
-  @minutia
+  @minutia @ui
   Scenario: QST Number input appears if the province is Quebec
-    When the "I am registered Indirect Tax" option is selected with the country as "Canada"
+    Given the participant selects "Canada" as their country in step 1
+    And they Quebec select as their province
     Then a "GST Number" input will appear
-    And a checkbox with "I am registred for QST Tax" will appear
+    And a checkbox with "I am registered for QST Tax" will appear
     And if the participant checks the box
     Then a "QST Number" input will appear
 
+  @minutia @ui
+  Scenario Outline: Participant selects other country that has tax handling in step 1
+    Given they select one of the following <countries> with <typeTax> in step 1:
+      | countries      | typeTax |
+      | UK             | VAT     |
+      | Australia      | GST     |
+      | New Zealand    | GST     |
+      | Austria        | VAT     |
+      | Belgium        | VAT     |
+      | Bulgaria       | VAT     |
+      | Croatia        | VAT     |
+      | Cyprus         | VAT     |
+      | Czech Republic | VAT     |
+      | Denmark        | VAT     |
+      | Estonia        | VAT     |
+      | Finland        | VAT     |
+      | France         | VAT     |
+      | Germany        | VAT     |
+      | Greece         | VAT     |
+      | Hungary        | VAT     |
+      | Ireland        | VAT     |
+      | Italy          | VAT     |
+      | Latvia         | VAT     |
+      | Lithuania      | VAT     |
+      | Luxembourg     | VAT     |
+      | Malta          | VAT     |
+      | Netherlands    | VAT     |
+      | Poland         | VAT     |
+      | Portugal       | VAT     |
+      | Romania        | VAT     |
+      | Slovakia       | VAT     |
+      | Slovenia       | VAT     |
+      | Spain          | VAT     |
+      | Sweden         | VAT     |
+      | Iceland        | VAT     |
+      | India          | GST     |
+      | Israel         | VAT     |
+      | Japan          | CT      |
+      | Mexico         | VAT     |
+      | Norway         | VAT     |
+      | Singapore      | GST     |
+      | South Africa   | VAT     |
+      | South Korea    | VAT     |
+      | Switzerland    | VAT     |
+      | Taiwan         | VAT     |
+      | Thailand       | VAT     |
+      | Philippines    | VAT     |
+      | Malaysia       | GST     |
+      | UAE            | VAT     |
+      | Turkey         | VAT     |
+      | Russia         | VAT     |
+    Then the "I am registered Indirect Tax" option is selected in step 2
+    And the Country select is auto-selected with their <country> from step 1
+    And based on the <typeTax>
+    Then <typeTaxInputHeader> changes
+
+    Examples: 
+      | country        | typeTax | typeTaxInputHeader |
+      | United Kingdom | VAT     | VAT Number         |
+      | Australia      | GST     | GST Number         |
+      | Japan          | CT      | CT Number          |
+
   @minutia
-  Scenario: Sub Region and Income Tax Number appear if country is Spain
-    When the "I am registered Indirect Tax" option is selected
-    And the country is "Spain"
-    Then a "Sub Region" select appears with available <subRegions>
+  Scenario: Participant selects Spain as their country
+    Given the participant selects Spain as their country in step 1
+    Then a VAT Number input appears
+    And a "Sub Region" select appears with available <subRegions>
     And a "I am registered for Income Tax" checkbox will appear
     And if the participant checks <isRegisteredIncomeTax>
     Then a "Income Tax Number" input will appear
@@ -130,15 +115,11 @@ Feature: Indirect Tax Form
       | Barcelona  | false                 |
       | Valencia   | true                  |
 
-  @minutia @ui
-  Scenario Outline: Participant from another country has their country value auto selected
-    When "I am registered for Indirect Tax in a different Country / Region" is selected
-    Then the Country <countryAutoSelectValue> is initialized with their <country> from step 1
-
-    Examples: 
-      | country | countryAutoSelectValue |
-      | US      | United States          |
-      | AUS     | Australia              |
+  @minutia
+  Scenario: Participant selects other country that is ineligible for indirect tax
+    Given they select a country ineligible for indirect tax in step 1
+    Then "I am not regisitered for Indirect Tax" is auto-selected
+    And no inputs will appear
 
   @unknown @minutia
   Scenario Outline: Participant from another country can change the auto selected country
@@ -175,12 +156,6 @@ Feature: Indirect Tax Form
       | <indirectTaxNumber> | "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number}} is required" |
       | <qstNumber>         | "QST Number is required"                                                                           |
       | <subRegionTaxNumber | "Income tax number is required                                                                     |
-
-  @minutia
-  Scenario: Participant is not registered for indirect tax
-    When they select "I am not regisitred for Indirect Tax"
-    Then no inputs will appear
-    And they can press "Continue"
 
   @minutia
   Scenario: Participant decides to go back to step 1

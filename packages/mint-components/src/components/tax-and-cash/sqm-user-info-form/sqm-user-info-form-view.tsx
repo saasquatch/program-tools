@@ -193,8 +193,6 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
   } = props;
   const { classes } = sheet;
 
-  console.log(data);
-
   return (
     <sl-form
       class={classes.FormWrapper}

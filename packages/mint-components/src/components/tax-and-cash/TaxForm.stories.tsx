@@ -993,23 +993,6 @@ export const TaxDocumentSubmittedNotRegistered = () => {
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           notRegistered: true,
-          isBusinessEntity: true,
-        },
-      }}
-    ></sqm-tax-document-submitted>
-  );
-};
-
-export const TaxDocumentSubmittedIndividualParticipant = () => {
-  return (
-    <sqm-tax-document-submitted
-      demoData={{
-        states: {
-          status: "ACTIVE",
-          documentType: "W8BEN",
-          dateSubmitted: "Jan 18th, 2025",
-          noFormNeeded: false,
-          notRegistered: true,
           isBusinessEntity: false,
         },
       }}

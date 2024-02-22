@@ -394,7 +394,7 @@ export class TaxAndCashMonolith {
    * @uiName Business entity radio button label
    * @uiGroup Step 3 Properties
    */
-  @Prop() step3_businessEntity: string = "I represent a business entity";
+  @Prop() step3_businessEntity: string = "I represent a company";
   /**
    * Label text for the individual participant radio button
    * @uiName Individual participant radio button label
@@ -744,13 +744,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_indirectTaxInfoOtherCountry: string = "Registered in {country}";
   /**
-   * Indirect tax description text for individual participants
-   *
-   * @uiName Indirect tax individual participant description
-   */
-  @Prop() step4_indirectTaxIndividualParticipant: string =
-    "Not registered. Only applicable to participants representing business entities in countries that enforce indirect tax.";
-  /**
    * Indirect tax tooltip text for support
    *
    * @uiName Indirect tax tooltip description
@@ -777,7 +770,8 @@ export class TaxAndCashMonolith {
    * @uiName Not registered for Indirect Tax
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_notRegisteredForTax: string = "Not registered for Indirect Tax";
+  @Prop() step4_notRegisteredForTax: string =
+    "Not registered. Participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information.";
   /**
    * The title for error message shown at the top of the page in an error banner
    *

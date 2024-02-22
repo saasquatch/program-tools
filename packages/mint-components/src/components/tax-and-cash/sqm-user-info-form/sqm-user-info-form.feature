@@ -5,11 +5,11 @@ Feature: Tax Form Step One
     Given a user is on Tax Form Step One
 
   @minutia
-  Scenario: The Participant is a partner and cannot change their email
+  Scenario: The Participant is a partner and form fields are disabled
     When they are on the form
     And they are already a partner
-    Then the email field is pre-filled with their email
-    And the email field is disabled
+    Then the firstName, lastName, email, country, and currency fields cannot be changed
+    And the fields are disabled
 
   @minutia
   Scenario: A user is filling out the form and selects their country
@@ -103,13 +103,22 @@ Feature: Tax Form Step One
       | TRY        |
       | RUB        |
 
-  @minutia @ui
-  Scenario: User comes back to step 1 form after filling out and submitting
+  @minutia
+  Scenario: Non-partner participant comes back to step 1 form after filling out and submitting
+    Given they are not a partner
     When they have finished filling out the form
     And press "Continue"
     But on step 2 they press the "Back" button
     And arrive back on step 1
-    Then the "Country" and "Currency" fields will be disabled
+    Then the step 1 fields can be edited
+
+  @minutia
+  Scenario: Participant that is a partner comes back to step 1 form after submitting
+    Given they are a partner
+    When they press "Continue"
+    But on step 2 they press the "Back" button
+    And arrive back on step 1
+    Then the step 1 fields are disabled
 
   @minutia
   Scenario: Country select is searchable

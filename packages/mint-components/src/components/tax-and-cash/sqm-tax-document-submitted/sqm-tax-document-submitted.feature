@@ -50,18 +50,20 @@ Feature: Tax Document Submitted View
 
   @minutia
   Scenario Outline: Indirect Tax section shows details if participant is registered for indirect tax
-    Given they are <entityType>
-    And if the participant <isRegistered> for indirect tax in their <country>
+    When the participant <isRegistered> for indirect tax in their <country>
     Then the Indirect Tax section will display <registeredDetails>, <indirectTaxType>, and <indirectTaxNumber>
 
     Examples: 
-      | entityType            | isRegistered | country          | details                                                                                                                                                       | indirectTaxType | indirectTaxNumber |
-      | businessEntity        | true         | Australia        | Registered in Australia.                                                                                                                                      | GST             |            123456 |
-      | businessEntity        | true         | Canada           | Registered in Ontario, Canada.                                                                                                                                | GST             |            345213 |
-      | businessEntity        | true         | United Kingdom   | Registered in United Kingdom.                                                                                                                                 | VAT             |            321413 |
-      | businessEntity        | false        | United States    | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                 | N/A               |
-      | individualParticipant | false        | United States    | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                 | N/A               |
-      | individualParticipant | false        | Papua New Guinea | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                 | N/A               |
+      | isRegistered | country          | registeredDetails                                                                                                                                             | indirectTaxType        | indirectTaxNumber |
+      | true         | Australia        | Registered in Australia.                                                                                                                                      | GST                    |            123456 |
+      | true         | Canada           | Registered in Ontario, Canada.                                                                                                                                | GST                    |            345213 |
+      | true         | Canada           | Registered in British Columbia, Canada.                                                                                                                       | HST                    |            345213 |
+      | true         | Canada           | Registered in Quebec, Canada.                                                                                                                                 | GST, QST               |     345213, 12312 |
+      | true         | United Kingdom   | Registered in United Kingdom.                                                                                                                                 | VAT                    |            321413 |
+      | true         | Spain            | Registered in Spain, Madred.                                                                                                                                  | VAT, Income Tax Number |     345213, 12345 |
+      | false        | United States    | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
+      | false        | United States    | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
+      | false        | Papua New Guinea | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
 
   @minutia @ui
   Scenario Outline: A Danger Alert is displayed if the users tax form is invalid
