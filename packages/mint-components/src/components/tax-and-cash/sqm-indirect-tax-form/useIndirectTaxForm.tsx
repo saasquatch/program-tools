@@ -218,7 +218,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       hideSteps: context.hideSteps,
       disabled: loading || countriesLoading || connectLoading,
       loading: loading || connectLoading || countriesLoading,
-      isPartner: !!userData?.user?.impactConnection,
+      isPartner: !!userData?.user?.impactConnection?.publisher,
       formState: {
         checked: option,
         errors,
