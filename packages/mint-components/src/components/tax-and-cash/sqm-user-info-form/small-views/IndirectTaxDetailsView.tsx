@@ -278,7 +278,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             name={"indirectTaxNumber"}
           />
         )}
-        {formState.province === "QC" && (
+        {formState.province === "QUEBEC" && (
           <div class={classes.ConditionalInputsContainer}>
             <sl-checkbox
               class={classes.Checkbox}

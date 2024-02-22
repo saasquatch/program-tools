@@ -117,13 +117,6 @@ export class TaxDocumentSubmitted {
    */
   @Prop() indirectTaxInfoOtherCountry: string = "Registered in {country}";
   /**
-   * Indirect tax description text for individual participants
-   *
-   * @uiName Indirect tax individual participant description
-   */
-  @Prop() indirectTaxIndividualParticipant: string =
-    "Not registered. Only applicable to participants representing business entities in countries that enforce indirect tax.";
-  /**
    * Indirect tax tooltip text for support
    *
    * @uiName Indirect tax tooltip description
@@ -155,13 +148,13 @@ export class TaxDocumentSubmitted {
    * @uiName No form needed subtext
    */
   @Prop() noFormNeededSubtext: string =
-    "Tax documents are only required if you are based in the US. If your country of residence has changed, please contact Support.";
+    "Tax documents are only required if you are based in the US or joining the referral program of a US based brand.";
   /**
    * Text displayed in the submit new document button at the bottom of the page
    *
    * @uiName No form needed subtext
    */
-  @Prop() newFormButton: string = "Submit New document";
+  @Prop() newFormButton: string = "Submit New Form";
   /**
    * Text displayed in the edit Indirect Tax button
    *
@@ -173,7 +166,8 @@ export class TaxDocumentSubmitted {
    *
    * @uiName Not registered for Indirect Tax
    */
-  @Prop() notRegisteredForTax: string = "Not Registered";
+  @Prop() notRegisteredForTax: string =
+    "Not registered. Participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information.";
   /**
    * The title for error message shown at the top of the page in an error banner
    *

@@ -374,7 +374,7 @@ export const StepTwoOtherRegionCheckedCanadaGST = () => {
         slotProps: {
           formState: {
             selectedRegion: "CA",
-            province: "QC",
+            province: "QUEBEC",
             errors: {},
           },
         },
@@ -397,7 +397,7 @@ export const StepTwoOtherRegionCheckedCanadaGSTAndQST = () => {
         slotProps: {
           formState: {
             selectedRegion: "CA",
-            province: "QC",
+            province: "QUEBEC",
             hasQst: true,
             errors: {},
           },
@@ -518,7 +518,7 @@ export const StepTwoOtherRegionCheckedCanadaGSTAndQSTError = () => {
         slotProps: {
           formState: {
             selectedRegion: "CA",
-            province: "QC",
+            province: "QUEBEC",
             hasQst: true,
             errors: {
               province: true,
@@ -582,6 +582,41 @@ export const StepThreeWithDocusign = () => {
       demoData={{
         states: {
           ...docusignFormProps.states,
+        },
+      }}
+    ></sqm-docusign-form>
+  );
+};
+
+export const StepThreeWithDocusignW8BEN = () => {
+  return (
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          ...docusignFormProps.states,
+          documentType: "W8BEN",
+        },
+      }}
+    ></sqm-docusign-form>
+  );
+};
+
+export const StepThreeWithDocusignW8BENE = () => {
+  return (
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          ...docusignFormProps.states,
+          documentType: "W8BENE",
+          formState: {
+            completedTaxForm: false,
+            taxFormExpired: false,
+            participantType: "businessEntity",
+            errors: {
+              participantType: "",
+              general: false,
+            },
+          },
         },
       }}
     ></sqm-docusign-form>
@@ -948,23 +983,6 @@ export const TaxDocumentSubmittedIndirectTaxCanada = () => {
 };
 
 export const TaxDocumentSubmittedNotRegistered = () => {
-  return (
-    <sqm-tax-document-submitted
-      demoData={{
-        states: {
-          status: "ACTIVE",
-          documentType: "W8BEN",
-          dateSubmitted: "Jan 18th, 2025",
-          noFormNeeded: false,
-          notRegistered: true,
-          isBusinessEntity: true,
-        },
-      }}
-    ></sqm-tax-document-submitted>
-  );
-};
-
-export const TaxDocumentSubmittedIndividualParticipant = () => {
   return (
     <sqm-tax-document-submitted
       demoData={{

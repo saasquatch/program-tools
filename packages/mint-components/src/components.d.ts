@@ -108,6 +108,11 @@ export namespace Components {
          */
         "businessSelectItemLabel": string;
         /**
+          * Label text for the checking account type select item
+          * @uiName Checking select item label
+         */
+        "checkingSelectItemLabel": string;
+        /**
           * Label text for the classification CPF input field
           * @uiName Classification CPF input label
          */
@@ -183,6 +188,21 @@ export namespace Components {
          */
         "payPalInputLabel": string;
         /**
+          * Label text for the payment day select option for the fifteenth of the month
+          * @uiName Fifteenth of month label text
+         */
+        "paymentDayFifteenthOfMonthLabelText": string;
+        /**
+          * Label text for the payment day select option for the first of the month
+          * @uiName First of month label text
+         */
+        "paymentDayFirstOfMonthLabelText": string;
+        /**
+          * Label text for the payment day select
+          * @uiName Payment day select label
+         */
+        "paymentDaySelectLabel": string;
+        /**
           * Heading text for the payment method section
           * @uiName Payment method heading text
          */
@@ -193,10 +213,35 @@ export namespace Components {
          */
         "paymentMethodSubtext": string;
         /**
+          * Heading text for the payment schedule section
+          * @uiName Payment schedule heading text
+         */
+        "paymentSchedule": string;
+        /**
+          * Text for the option to receive payments at a specific balance threshold
+          * @uiName Payment schedule balance threshold text
+         */
+        "paymentScheduleBalanceThreshold": string;
+        /**
+          * Text for the option to receive payments on a specific day of the month
+          * @uiName Payment schedule fixed day text
+         */
+        "paymentScheduleFixedDay": string;
+        /**
+          * Label text for the payment day select
+          * @uiName Payment day select label
+         */
+        "paymentThresholdSelectLabel": string;
+        /**
           * Label text for the routing code input field
           * @uiName Routing code input label
          */
         "routingCodeLabel": string;
+        /**
+          * Label text for the savings account type select item
+          * @uiName Savings select item label
+         */
+        "savingsSelectItemLabel": string;
         /**
           * Text for the save button in the form
           * @uiName Save button text
@@ -619,6 +664,16 @@ export namespace Components {
           * @uiName Tax form subtext
          */
         "taxFormDescription": string;
+        /**
+          * Subtext shown at the top of the page next to the document type text for business entities
+          * @uiName Tax form subtext
+         */
+        "taxFormDescriptionBusinessEntity": string;
+        /**
+          * Subtext shown at the top of the page next to the document type text for individual participants
+          * @uiName Tax form subtext
+         */
+        "taxFormDescriptionIndividualParticipant": string;
         /**
           * Text shown at the top of the page next to the document type text
           * @uiName Tax form label text
@@ -3958,6 +4013,18 @@ export namespace Components {
          */
         "step3_taxFormDescription": string;
         /**
+          * Subtext shown at the top of the page next to the document type text for business entities
+          * @uiName Tax form subtext
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxFormDescriptionBusinessEntity": string;
+        /**
+          * Subtext shown at the top of the page next to the document type text for individual participants
+          * @uiName Tax form subtext
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxFormDescriptionIndividualParticipant": string;
+        /**
           * Text shown at the top of the page next to the document type text
           * @uiName Tax form label text
           * @uiGroup Step 3 Properties
@@ -4082,11 +4149,6 @@ export namespace Components {
           * @uiName Indirect tax details
          */
         "step4_indirectTaxDetails": string;
-        /**
-          * Indirect tax description text for individual participants
-          * @uiName Indirect tax individual participant description
-         */
-        "step4_indirectTaxIndividualParticipant": string;
         /**
           * Country/Region description text of indirect tax
           * @uiName Indirect tax Canada description
@@ -4239,11 +4301,6 @@ export namespace Components {
           * @uiName Indirect tax details
          */
         "indirectTaxDetails": string;
-        /**
-          * Indirect tax description text for individual participants
-          * @uiName Indirect tax individual participant description
-         */
-        "indirectTaxIndividualParticipant": string;
         /**
           * Country/Region description text of indirect tax
           * @uiName Indirect tax Canada description
@@ -5328,6 +5385,11 @@ declare namespace LocalJSX {
          */
         "businessSelectItemLabel"?: string;
         /**
+          * Label text for the checking account type select item
+          * @uiName Checking select item label
+         */
+        "checkingSelectItemLabel"?: string;
+        /**
           * Label text for the classification CPF input field
           * @uiName Classification CPF input label
          */
@@ -5403,6 +5465,21 @@ declare namespace LocalJSX {
          */
         "payPalInputLabel"?: string;
         /**
+          * Label text for the payment day select option for the fifteenth of the month
+          * @uiName Fifteenth of month label text
+         */
+        "paymentDayFifteenthOfMonthLabelText"?: string;
+        /**
+          * Label text for the payment day select option for the first of the month
+          * @uiName First of month label text
+         */
+        "paymentDayFirstOfMonthLabelText"?: string;
+        /**
+          * Label text for the payment day select
+          * @uiName Payment day select label
+         */
+        "paymentDaySelectLabel"?: string;
+        /**
           * Heading text for the payment method section
           * @uiName Payment method heading text
          */
@@ -5413,10 +5490,35 @@ declare namespace LocalJSX {
          */
         "paymentMethodSubtext"?: string;
         /**
+          * Heading text for the payment schedule section
+          * @uiName Payment schedule heading text
+         */
+        "paymentSchedule"?: string;
+        /**
+          * Text for the option to receive payments at a specific balance threshold
+          * @uiName Payment schedule balance threshold text
+         */
+        "paymentScheduleBalanceThreshold"?: string;
+        /**
+          * Text for the option to receive payments on a specific day of the month
+          * @uiName Payment schedule fixed day text
+         */
+        "paymentScheduleFixedDay"?: string;
+        /**
+          * Label text for the payment day select
+          * @uiName Payment day select label
+         */
+        "paymentThresholdSelectLabel"?: string;
+        /**
           * Label text for the routing code input field
           * @uiName Routing code input label
          */
         "routingCodeLabel"?: string;
+        /**
+          * Label text for the savings account type select item
+          * @uiName Savings select item label
+         */
+        "savingsSelectItemLabel"?: string;
         /**
           * Text for the save button in the form
           * @uiName Save button text
@@ -5840,6 +5942,16 @@ declare namespace LocalJSX {
           * @uiName Tax form subtext
          */
         "taxFormDescription"?: string;
+        /**
+          * Subtext shown at the top of the page next to the document type text for business entities
+          * @uiName Tax form subtext
+         */
+        "taxFormDescriptionBusinessEntity"?: string;
+        /**
+          * Subtext shown at the top of the page next to the document type text for individual participants
+          * @uiName Tax form subtext
+         */
+        "taxFormDescriptionIndividualParticipant"?: string;
         /**
           * Text shown at the top of the page next to the document type text
           * @uiName Tax form label text
@@ -9155,6 +9267,18 @@ declare namespace LocalJSX {
          */
         "step3_taxFormDescription"?: string;
         /**
+          * Subtext shown at the top of the page next to the document type text for business entities
+          * @uiName Tax form subtext
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxFormDescriptionBusinessEntity"?: string;
+        /**
+          * Subtext shown at the top of the page next to the document type text for individual participants
+          * @uiName Tax form subtext
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxFormDescriptionIndividualParticipant"?: string;
+        /**
           * Text shown at the top of the page next to the document type text
           * @uiName Tax form label text
           * @uiGroup Step 3 Properties
@@ -9279,11 +9403,6 @@ declare namespace LocalJSX {
           * @uiName Indirect tax details
          */
         "step4_indirectTaxDetails"?: string;
-        /**
-          * Indirect tax description text for individual participants
-          * @uiName Indirect tax individual participant description
-         */
-        "step4_indirectTaxIndividualParticipant"?: string;
         /**
           * Country/Region description text of indirect tax
           * @uiName Indirect tax Canada description
@@ -9436,11 +9555,6 @@ declare namespace LocalJSX {
           * @uiName Indirect tax details
          */
         "indirectTaxDetails"?: string;
-        /**
-          * Indirect tax description text for individual participants
-          * @uiName Indirect tax individual participant description
-         */
-        "indirectTaxIndividualParticipant"?: string;
         /**
           * Country/Region description text of indirect tax
           * @uiName Indirect tax Canada description

@@ -96,7 +96,10 @@ const style = {
     gap: "var(--sl-spacing-x-small)",
     display: "flex",
     flexDirection: "column",
-    lineHeight: "var(--sl-spacing-small)",
+    lineHeight: "var(--sl-spacing-medium)",
+  },
+  NotRegisteredIndirectTaxText: {
+    color: "var(--sl-color-gray-500)",
   },
   TaxDocumentsContainer: {
     marginTop: "var(--sl-spacing-xx-large)",
@@ -151,6 +154,11 @@ const style = {
     color: "var(--sl-color-neutral-500)",
     lineHeight: "var(--sl-spacing-medium)",
   },
+  TooltipContainer: {
+    display: "flex",
+    textAlign: "center",
+    width: "250px",
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -185,7 +193,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         <sl-badge type="warning" pill>
           {text.statusTextNotVerified}
         </sl-badge>
-        <p>
+        <p style={{ color: "var(--sl-color-gray-500)" }}>
           {intl.formatMessage(
             {
               id: `badgeTextAwaitingReview`,
@@ -203,7 +211,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         <sl-badge type="success" pill>
           {text.statusTextActive}
         </sl-badge>
-        <p>
+        <p style={{ color: "var(--sl-color-gray-500)" }}>
           {intl.formatMessage(
             {
               id: `badgeTextSubmittedOn`,
@@ -224,7 +232,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         <sl-badge type="danger" pill>
           {text.statusTextNotActive}
         </sl-badge>
-        <p>{text.invalidForm}</p>
+        <p style={{ color: "var(--sl-color-gray-500)" }}>{text.invalidForm}</p>
       </div>
     ),
   };
@@ -310,36 +318,41 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                   trigger="hover"
                   placement="top"
                   content={text.indirectTaxTooltipSupport}
+                  class={sheet.classes.TooltipContainer}
                 >
                   <sl-icon name="info-circle" style={{ top: "6px" }} />
                 </sl-tooltip>
               </h3>
-              {states.isBusinessEntity ? (
-                <div class={sheet.classes.IndirectTaxPreviewDetails}>
-                  <span>
-                    {states.notRegistered
-                      ? text.notRegisteredForTax
-                      : states.province
-                      ? intl.formatMessage(
-                          {
-                            id: `indirectTaxInfoCanada`,
-                            defaultMessage: text.indirectTaxInfoCanada,
-                          },
-                          {
-                            country: "Canada",
-                            province: states.province,
-                          }
-                        )
-                      : intl.formatMessage(
-                          {
-                            id: `indirectTaxInfoOtherCountry`,
-                            defaultMessage: text.indirectTaxInfoOtherCountry,
-                          },
-                          {
-                            country: states.country,
-                          }
-                        )}
-                  </span>
+              <div class={sheet.classes.IndirectTaxPreviewDetails}>
+                <span>
+                  {states.notRegistered ? (
+                    <span class={sheet.classes.NotRegisteredIndirectTaxText}>
+                      {text.notRegisteredForTax}
+                    </span>
+                  ) : states.province ? (
+                    intl.formatMessage(
+                      {
+                        id: `indirectTaxInfoCanada`,
+                        defaultMessage: text.indirectTaxInfoCanada,
+                      },
+                      {
+                        country: "Canada",
+                        province: states.province,
+                      }
+                    )
+                  ) : (
+                    intl.formatMessage(
+                      {
+                        id: `indirectTaxInfoOtherCountry`,
+                        defaultMessage: text.indirectTaxInfoOtherCountry,
+                      },
+                      {
+                        country: states.country,
+                      }
+                    )
+                  )}
+                </span>
+                {!states.notRegistered && (
                   <span>
                     {intl.formatMessage(
                       {
@@ -352,13 +365,8 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                       }
                     )}
                   </span>
-                </div>
-              ) : (
-                <div class={sheet.classes.IndirectTaxPreviewDetails}>
-                  {text.indirectTaxIndividualParticipant}
-                  <span></span>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           )}
         </div>

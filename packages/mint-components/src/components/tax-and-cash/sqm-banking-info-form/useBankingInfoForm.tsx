@@ -160,9 +160,7 @@ export function useBankingInfoForm(props: BankingInfoForm) {
   return {
     step: step,
     setStep: setStep,
-
     text: { ...props, error: {} },
-
     callbacks: {
       onSubmit,
       setBankCountry,

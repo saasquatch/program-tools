@@ -394,7 +394,7 @@ export class TaxAndCashMonolith {
    * @uiName Business entity radio button label
    * @uiGroup Step 3 Properties
    */
-  @Prop() step3_businessEntity: string = "I represent a business entity";
+  @Prop() step3_businessEntity: string = "I represent a company";
   /**
    * Label text for the individual participant radio button
    * @uiName Individual participant radio button label
@@ -409,6 +409,20 @@ export class TaxAndCashMonolith {
    */
   @Prop() step3_taxFormDescription: string =
     "Participants based in the US and partnering with US-based brands need to submit a {documentType} form.";
+  /**
+   * Subtext shown at the top of the page next to the document type text for individual participants
+   * @uiName Tax form subtext
+   *  @uiGroup Step 3 Properties
+   */
+  @Prop() step3_taxFormDescriptionIndividualParticipant: string =
+    "Participants residing outside of the US, joining the referral program of a US-based company, need to submit a {documentType} form.";
+  /**
+   * Subtext shown at the top of the page next to the document type text for business entities
+   * @uiName Tax form subtext
+   *  @uiGroup Step 3 Properties
+   */
+  @Prop() step3_taxFormDescriptionBusinessEntity: string =
+    "Participants residing outside of the US who represent a business entity need to submit a {documentType} form.";
   /**
    * Text shown in the link to the form for non US residents
    * @uiName Not based in US link text
@@ -730,13 +744,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_indirectTaxInfoOtherCountry: string = "Registered in {country}";
   /**
-   * Indirect tax description text for individual participants
-   *
-   * @uiName Indirect tax individual participant description
-   */
-  @Prop() step4_indirectTaxIndividualParticipant: string =
-    "Not registered. Only applicable to participants representing business entities in countries that enforce indirect tax.";
-  /**
    * Indirect tax tooltip text for support
    *
    * @uiName Indirect tax tooltip description
@@ -756,14 +763,15 @@ export class TaxAndCashMonolith {
    * @uiName Step 4 No form needed subtext
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_newFormButton: string = "Submit New document";
+  @Prop() step4_newFormButton: string = "Submit New Form";
   /**
    * Text displayed when partner is not registered for Indirect Tax
    *
    * @uiName Not registered for Indirect Tax
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_notRegisteredForTax: string = "Not registered for Indirect Tax";
+  @Prop() step4_notRegisteredForTax: string =
+    "Not registered. Participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information.";
   /**
    * The title for error message shown at the top of the page in an error banner
    *

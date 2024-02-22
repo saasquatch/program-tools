@@ -10,7 +10,7 @@ const bankingFormProps = {
     disabled: false,
     loading: false,
     formState: {
-      checked: "toBankAccount",
+      paymentMethodchecked: "toBankAccount",
     },
     bankCountry: "US",
   },
@@ -59,14 +59,14 @@ export const BankingInfoFormDefaultWithValidationErrors = () => {
   return (
     <sqm-banking-info-form
       demoData={{
+        demo: {
+          ...bankingFormProps.demo,
+          // bitset: 39,
+        },
         states: {
           ...bankingFormProps.states,
-          demo: {
-            ...bankingFormProps.demo,
-            // bitset: 39,
-            currency: "USD",
-          },
-          bankCountry: null,
+
+          // bankCountry: null,
           formState: {
             ...bankingFormProps.states.formState,
             errors: {
@@ -87,6 +87,8 @@ export const BankingInfoFormDefaultWithValidationErrors = () => {
               bankProvinceState: true,
               bankPostalCode: true,
               branchCode: true,
+              balanceThreshold: true,
+              fixedDay: true,
             },
           },
         },
@@ -242,7 +244,7 @@ export const BankingInfoFormPaypalChecked = () => {
           ...bankingFormProps.states,
           formState: {
             ...bankingFormProps.states.formState,
-            checked: "toPaypalAccount",
+            paymentMethodchecked: "toPaypalAccount",
           },
         },
       }}
@@ -260,8 +262,107 @@ export const BankingInfoFormPaypalCheckedLoading = () => {
           loading: true,
           formState: {
             ...bankingFormProps.states.formState,
-            checked: "toPaypalAccount",
+            paymentMethodchecked: "toPaypalAccount",
           },
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
+export const BankingInfoFormWithBalanceThresholdPaymentSchedule = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...bankingFormProps,
+        states: {
+          ...bankingFormProps.states,
+          bankCountry: "US",
+          formState: {
+            ...bankingFormProps.states.formState,
+            paymentScheduleChecked: "balanceThreshold",
+          },
+        },
+        demo: {
+          ...bankingFormProps.demo,
+          currency: "USD",
+          // bitset: 39,
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
+export const BankingInfoFormWithBalanceThresholdPaymentScheduleWithError =
+  () => {
+    return (
+      <sqm-banking-info-form
+        demoData={{
+          ...bankingFormProps,
+          states: {
+            ...bankingFormProps.states,
+            bankCountry: "US",
+            formState: {
+              errors: {
+                balanceThreshold: true,
+              },
+              ...bankingFormProps.states.formState,
+              paymentScheduleChecked: "balanceThreshold",
+            },
+          },
+          demo: {
+            ...bankingFormProps.demo,
+            currency: "USD",
+            // bitset: 39,
+          },
+        }}
+      ></sqm-banking-info-form>
+    );
+  };
+
+export const BankingInfoFormWithFixedDayPaymentSchedule = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...bankingFormProps,
+        states: {
+          ...bankingFormProps.states,
+          bankCountry: "US",
+          formState: {
+            ...bankingFormProps.states.formState,
+            paymentScheduleChecked: "fixedDay",
+          },
+        },
+        demo: {
+          ...bankingFormProps.demo,
+          currency: "USD",
+          // bitset: 39,
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
+export const BankingInfoFormWithFixedDayPaymentScheduleWithError = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...bankingFormProps,
+        states: {
+          ...bankingFormProps.states,
+          bankCountry: "US",
+          formState: {
+            errors: {
+              fixedDay: true,
+            },
+            ...bankingFormProps.states.formState,
+            paymentScheduleChecked: "fixedDay",
+          },
+        },
+        demo: {
+          ...bankingFormProps.demo,
+          currency: "USD",
+          // bitset: 39,
         },
       }}
     ></sqm-banking-info-form>

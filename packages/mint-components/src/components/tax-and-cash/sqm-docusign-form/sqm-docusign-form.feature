@@ -20,10 +20,13 @@ Feature: Docusign Form
 
   @minutia
   Scenario Outline: Participant not based in the US working with US brand selects participantType
+    Given they are not in the US and the brand is in the US
     When the page loads
     Then <participantType> radio buttons appear
-    When they select a <participantType>
-    Then an <autoSelectedTaxForm> appears in the Docusign iframe
+    And the Docusign iframe is hidden
+    When they select <participantType>
+    Then the Docusign iframe appears
+    And an <autoSelectedTaxForm> appears in the Docusign iframe
 
     Examples: 
       | participantType       | autoSelectedTaxForm |
@@ -33,20 +36,22 @@ Feature: Docusign Form
   @minutia @ui
   Scenario Outline: Text copies change based on tax form participant fills out
     When they are required to fill out <typeTaxForm>
-    Then the <taxFormSubHeader> displays with <typeTaxForm>
-    And the <taxFormDescriptionCopy> / <changeTaxFormCopy> changes depending on the <typeTaxForm>
+    And are <participantType>
+    Then the <taxFormSubHeader>/<taxFormDescriptionCopy> displays with <typeTaxForm>
 
     Examples: 
-      | typeTaxForm | taxFormSubHeader  | taxFormDescriptionCopy                                                                                                   | changeTaxFormCopy                                                |
-      | W9          | W9 Tax Form       | Participants based in the US and partnering with US-based brands need to submit a W9 form.                               | Not based in the US?                                             |
-      | W8-BEN      | W8-BEN Tax Form   | Individuals residing outside of the US, joining the referral program of a US-based cmpany, need to submit a W8-BEN form. | Represent a business entity or you're based in the US?           |
-      | W8-BEN-E    | W8-BEN-E Tax Form | Participants residing outside of the US who represent a business enttiy need to submit a W8-BEN-E form.                  | Joining this program as an individual or you're based in the US? |
+      | typeTaxForm | participantType       | taxFormSubHeader  | taxFormDescriptionCopy                                                                                                     |
+      | W9          | N/A                   | W9 Tax Form       | Participants based in the US and partnering with US-based brands need to submit a W9 form.                                 |
+      | W8-BEN      | individualParticipant | W8-BEN Tax Form   | Participants residing outside of the US, joining the referral program of a US-based company, need to submit a W8-BEN form. |
+      | W8-BEN-E    | businessEntity        | W8-BEN-E Tax Form | Participants residing outside of the US who represent a business enttiy need to submit a W8-BEN-E form.                    |
 
   @minutia
-  Scenario: Participant successfully submits Docusign document and is directed to summary page
+  Scenario: Participant successfully completes Docusign document and is directed to document summary page
     When they successfully fillout and submit the Docusign document within the iframe
-    And they press "Continue" or refresh the page
-    Then they will be directed to the Document Submitted page
+    Then the Docusign iframe session completes with one of the following success statuses:
+      | signing_complete |
+      | viewing_complete |
+    And they are redirected to step 4
 
   @minutia @ui
   Scenario: Docusign iframe is loading
@@ -55,25 +60,18 @@ Feature: Docusign Form
     When the Docusign iframe loads in the Tax Form
     Then the loader dissapers and the participant can see the Tax Form
 
-  @minutia
-  Scenario: Participant completes Docusign form
-    When they fillout and complete the Docusign form inside the iframe
-    Then the Docusign iframe session completes with one of the following success statuses:
-      | signing_complete |
-      | viewing_complete |
-    Then they are redirected to step 4
-
   @minutia @ui
   Scenario: Participant's Docusign session expires
     When they have the Docusign form open in the iframe
     And they do not interact with the iframe for more than 20 minutes
-    Then the Docusign iframe session expires with one of the following expirey statuses:
+    Then the Docusign iframe session expires with one of the following expiry statuses:
       | session_timeout |
       | ttl_expired     |
-    And the Tax Form dissapers
-    Then they see a Docusign expired session notification inside the iframe
-    And a refresh page button appears inside the iframe
-    And they must press the button to restart the Docusign process
+    And the Docusign form is hidden
+    Then they see a expired session notification
+    And a refresh page button appears inside the notification
+    When the participant presses the refresh button
+    Then the Docusign form is re-loaded
 
   @minutia @ui
   Scenario: Docusign iframe throws an error
@@ -82,12 +80,12 @@ Feature: Docusign Form
       | decline     |
       | cancel      |
       | fax_pending |
-    Then an error icon and message show in the iframe
-    And a "Refresh Page" button appears
-    And the participant must press the refresh button to continue
+    Then the particpant sees an error notification
+    And a "Refresh Page" button appears inside the notification
+    When the participant presses the refresh button
+    Then the Docusign form is re-loaded
 
   @minutia
-  Scenario: Participant decides to go back to step 2
-    When they press the Back button
-    Then the they are sent back to step 2
-    And they arrive at the step 2 form with original information initially submitted
+  Scenario: Participant cannot go back to previous steps
+    When they view the Docusign form
+    Then no back button will be present

@@ -38,6 +38,8 @@ export interface DocusignFormViewProps {
     taxForm: string;
     taxFormLabel: string;
     taxFormDescription: string;
+    taxFormDescriptionIndividualParticipant: string;
+    taxFormDescriptionBusinessEntity?: string;
     notBasedInUS: string;
     banner: string;
     checkboxLabel: string;
@@ -272,7 +274,12 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
               {intl.formatMessage(
                 {
                   id: "tax-form-description",
-                  defaultMessage: text.taxFormDescription,
+                  defaultMessage:
+                    states.documentType === "W9"
+                      ? text.taxFormDescription
+                      : formState.participantType === "individualParticipant"
+                      ? text.taxFormDescriptionIndividualParticipant
+                      : text.taxFormDescriptionBusinessEntity,
                 },
                 { documentType: states.documentType }
               )}
