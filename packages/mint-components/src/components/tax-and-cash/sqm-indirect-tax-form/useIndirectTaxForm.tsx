@@ -28,23 +28,28 @@ import {
 import { IndirectTaxForm } from "./sqm-indirect-tax-form";
 
 type ConnectPartnerResult = {
-  connectImpactPartner: {
+  connectImpactConnection: {
     id: string;
     accountId: string;
-    impactPartner: {
+    impactConnection: {
       connectionStatus: "NOT_CONNECTED" | "CONNECTED";
-      requiredTaxDocumentType: TaxDocumentType | null;
+      publisher: {
+        requiredTaxDocumentType: TaxDocumentType | null;
+      };
     } | null;
   };
 };
 const CONNECT_PARTNER = gql`
-  mutation connectImpactPartner($vars: ImpactPartnerInput!) {
-    connectImpactPartner(impactPartnerInput: $vars) {
+  mutation connectImpactConnection($vars: ImpactPartnerInput!) {
+    connectImpactConnection(impactPartnerInput: $vars) {
       id
       accountId
-      impactPartner {
-        requiredTaxDocumentType
+      impactConnection {
         connectionStatus
+        publisher {
+          requiredTaxDocumentType
+          connectionStatus
+        }
       }
     }
   }
@@ -180,7 +185,6 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
             ? "SPAIN"
             : undefined,
         withholdingTaxNumber: formData.subRegionTaxNumber,
-        organizationType: "OTHER", // TODO: Eventually know what to pass here
       };
 
       const result = await connectImpactPartner({
@@ -199,8 +203,8 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       await refetch();
 
       if (
-        (result as ConnectPartnerResult).connectImpactPartner?.impactPartner
-          ?.requiredTaxDocumentType
+        (result as ConnectPartnerResult).connectImpactConnection
+          ?.impactConnection?.publisher?.requiredTaxDocumentType
       ) {
         setStep("/3");
       } else {
