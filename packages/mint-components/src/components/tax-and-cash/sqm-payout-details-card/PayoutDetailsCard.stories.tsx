@@ -1,31 +1,7 @@
 import { h } from "@stencil/core";
-import {
-  PayoutDetailsCardView,
-  PayoutDetailsCardViewProps,
-} from "./sqm-payout-details-card-view";
 
 export default {
   title: "Components/Payout Details Card",
-};
-
-const defaultProps: PayoutDetailsCardViewProps = {
-  loading: false,
-  empty: false,
-  otherCurrencies: false,
-  payoutType: "bank",
-  mainCurrency: { currencyText: "USD", amountText: "100.00" },
-  status: "upcoming",
-  pendingStatusBadgeText: "Pending",
-  upcomingStatusBadgeText: "Upcoming",
-  nextPayoutStatusBadgeText: "Next payout",
-  pendingDetailedStatusText: "Check rewards table for available date",
-  upcomingDetailedStatusText: "November 1, 2022",
-  nextPayoutDetailedStatusText: "November 1, 2022",
-  otherCurrenciesText: "other currencies",
-  w9PendingText: "Awaiting W-9 tax form",
-  w9Pending: undefined,
-  hasDatePending: true,
-  hasW9Pending: false,
 };
 
 const currencyList = [
@@ -36,101 +12,124 @@ const currencyList = [
 ];
 
 export const Upcoming = () => {
-  return <PayoutDetailsCardView {...defaultProps} />;
+  return <sqm-payout-details-card></sqm-payout-details-card>;
 };
 
 export const Loading = () => {
-  return <PayoutDetailsCardView {...{ ...defaultProps, loading: true }} />;
+  return (
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          loading: true,
+        },
+      }}
+    ></sqm-payout-details-card>
+  );
 };
 
 export const Empty = () => {
-  return <PayoutDetailsCardView {...{ ...defaultProps, empty: true }} />;
+  return (
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          empty: true,
+        },
+      }}
+    ></sqm-payout-details-card>
+  );
 };
 
 export const NextPayout = () => {
   return (
-    <PayoutDetailsCardView
-      {...{
-        ...defaultProps,
-        status: "next payout",
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          status: "next payout",
+        },
       }}
-    />
+    ></sqm-payout-details-card>
   );
 };
 
 export const Pending = () => {
   return (
-    <PayoutDetailsCardView
-      {...{
-        ...defaultProps,
-        status: "pending",
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          status: "pending",
+        },
       }}
-    />
+    ></sqm-payout-details-card>
   );
 };
 
 export const OtherCurrencies = () => {
   return (
-    <PayoutDetailsCardView
-      {...{
-        ...defaultProps,
-        otherCurrencies: currencyList,
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          otherCurrencies: currencyList,
+        },
       }}
-    />
+    ></sqm-payout-details-card>
   );
 };
 
 export const W9OnlyPending = () => {
   return (
-    <PayoutDetailsCardView
-      {...{
-        ...defaultProps,
-        status: "pending",
-        hasDatePending: false,
-        hasW9Pending: true,
-        w9Pending: [{ amountText: "15.92", currencyText: "USD" }],
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          status: "pending",
+          hasDatePending: false,
+          hasW9Pending: true,
+          w9Pending: [{ amountText: "15.92", currencyText: "USD" }],
+        },
       }}
-    />
+    ></sqm-payout-details-card>
   );
 };
 
 export const DateOnlyPending = () => {
   return (
-    <PayoutDetailsCardView
-      {...{
-        ...defaultProps,
-        status: "pending",
-        hasDatePending: true,
-        hasW9Pending: false,
-        otherCurrencies: currencyList,
-        w9Pending: undefined,
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          status: "pending",
+          hasDatePending: true,
+          hasW9Pending: false,
+          otherCurrencies: currencyList,
+          w9Pending: undefined,
+        },
       }}
-    />
+    ></sqm-payout-details-card>
   );
 };
 
 export const CombinedPending = () => {
   return (
-    <PayoutDetailsCardView
-      {...{
-        ...defaultProps,
-        status: "pending",
-        hasDatePending: true,
-        hasW9Pending: true,
-        w9Pending: [{ amountText: "15.92", currencyText: "USD" }],
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          status: "pending",
+          hasDatePending: true,
+          hasW9Pending: true,
+          w9Pending: [{ amountText: "15.92", currencyText: "USD" }],
+        },
       }}
-    />
+    ></sqm-payout-details-card>
   );
 };
 
 export const PaypalPayout = () => {
   return (
-    <PayoutDetailsCardView
-      {...{
-        ...defaultProps,
-        status: "next payout",
-        payoutType: "paypal",
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          status: "next payout",
+          payoutType: "paypal",
+        },
       }}
-    />
+    ></sqm-payout-details-card>
   );
 };

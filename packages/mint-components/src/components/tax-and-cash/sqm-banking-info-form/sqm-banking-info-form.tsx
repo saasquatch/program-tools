@@ -661,7 +661,6 @@ export class BankingInfoForm {
             <sl-menu-item value="JPY">JPY</sl-menu-item>
           </sl-select>
         )}
-        {/*  */}
         <BankingInfoFormView
           callbacks={props.callbacks}
           text={props.text}

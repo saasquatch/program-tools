@@ -8,24 +8,29 @@ export type currencyAmount = {
 };
 
 export interface PayoutDetailsCardViewProps {
-  loading?: boolean;
-  mainCurrency: currencyAmount;
-  status: "pending" | "upcoming" | "next payout";
-  payoutType: "bank" | "paypal";
-  pendingStatusBadgeText: string;
-  upcomingStatusBadgeText: string;
-  nextPayoutStatusBadgeText: string;
-  pendingDetailedStatusText: string;
-  upcomingDetailedStatusText: string;
-  nextPayoutDetailedStatusText: string;
-  otherCurrencies: currencyAmount[] | boolean;
-  w9Pending?: currencyAmount[];
-  w9PendingText: string;
-  otherCurrenciesText: string;
-  empty?: boolean;
-  hasW9Pending?: boolean;
-  hasDatePending?: boolean;
-  additionalW9Text?: string;
+  states: {
+    loading?: boolean;
+    mainCurrency: currencyAmount;
+    status: "pending" | "upcoming" | "next payout";
+    payoutType: "bank" | "paypal";
+    otherCurrencies: currencyAmount[] | boolean;
+    w9Pending?: currencyAmount[];
+    empty?: boolean;
+    hasW9Pending?: boolean;
+    hasDatePending?: boolean;
+  };
+
+  text: {
+    pendingStatusBadgeText: string;
+    upcomingStatusBadgeText: string;
+    nextPayoutStatusBadgeText: string;
+    pendingDetailedStatusText: string;
+    upcomingDetailedStatusText: string;
+    nextPayoutDetailedStatusText: string;
+    w9PendingText: string;
+    additionalW9Text?: string;
+    otherCurrenciesText: string;
+  };
 }
 
 const statusMap = {
@@ -133,43 +138,25 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
     );
   };
 
-  const {
-    loading,
-    mainCurrency,
-    status,
-    payoutType,
-    otherCurrencies,
-    otherCurrenciesText,
-    pendingStatusBadgeText,
-    upcomingStatusBadgeText,
-    nextPayoutStatusBadgeText,
-    pendingDetailedStatusText,
-    upcomingDetailedStatusText,
-    nextPayoutDetailedStatusText,
-    w9Pending,
-    w9PendingText,
-    empty,
-    hasDatePending,
-    hasW9Pending,
-  } = props;
+  const { states, text } = props;
 
   const badgeText = {
-    pending: pendingStatusBadgeText,
-    upcoming: upcomingStatusBadgeText,
-    "next payout": nextPayoutStatusBadgeText,
+    pending: text.pendingStatusBadgeText,
+    upcoming: text.upcomingStatusBadgeText,
+    "next payout": text.nextPayoutStatusBadgeText,
   };
 
   const statusText = {
-    pending: pendingDetailedStatusText,
-    upcoming: upcomingDetailedStatusText,
-    "next payout": nextPayoutDetailedStatusText,
+    pending: text.pendingDetailedStatusText,
+    upcoming: text.upcomingDetailedStatusText,
+    "next payout": text.nextPayoutDetailedStatusText,
   };
 
   return (
     <div>
       <style type="text/css">{styleString}</style>
       <div class={classes.Container}>
-        {loading ? (
+        {states.loading ? (
           <div class={classes.StatusContainer}>
             <sl-skeleton class={classes.SkeletonOne}></sl-skeleton>{" "}
             <sl-skeleton class={classes.SkeletonTwo}></sl-skeleton>
@@ -178,51 +165,54 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
           <div class={classes.StatusContainer}>
             <p class={classes.SubduedRegularText}>
               {/* Should be seperated to a helper function */}
-              {empty && status === "pending"
+              {states.empty && states.status === "pending"
                 ? ""
-                : status !== "pending"
-                ? statusText[status]
-                : hasDatePending
+                : states.status !== "pending"
+                ? statusText[states.status]
+                : states.hasDatePending
                 ? statusText["pending"]
-                : w9PendingText}
+                : text.w9PendingText}
             </p>
-            <sl-badge pill type={statusMap[status]}>
-              {badgeText[status]}
+            <sl-badge pill type={statusMap[states.status]}>
+              {badgeText[states.status]}
             </sl-badge>
           </div>
         )}
-        {loading ? (
+        {states.loading ? (
           <sl-skeleton class={classes.SkeletonThree}></sl-skeleton>
-        ) : empty ? (
+        ) : states.empty ? (
           <h1 class={classes.MainCurrency}>No rewards</h1>
         ) : (
           <h1 class={classes.MainCurrency}>
-            {hasDatePending || status !== "pending"
-              ? mainCurrency?.amountText
-              : w9Pending?.[0]?.amountText}{" "}
-            {mainCurrency.currencyText}
+            {states.hasDatePending || states.status !== "pending"
+              ? states.mainCurrency?.amountText
+              : states.w9Pending?.[0]?.amountText}{" "}
+            {states.mainCurrency.currencyText}
           </h1>
         )}
-        {otherCurrencies && !loading && (
+        {states.otherCurrencies && !states.loading && (
           <div>
             <p
               class={classes.SubduedRegularText}
               style={{ fontSize: "var(--sl-font-size-x-small)" }}
             >
-              + {otherCurrenciesText}
+              + {text.otherCurrenciesText}
             </p>
-            {currencyList(otherCurrencies as Currency[])}
+            {currencyList(states.otherCurrencies as Currency[])}
           </div>
         )}
-        {hasW9Pending && status === "pending" && hasDatePending && !loading && (
-          <div class={classes.W9Container}>
-            <p class={classes.SubduedRegularText}>{w9PendingText}</p>
-            {currencyList(w9Pending!)}
-          </div>
-        )}
-        {loading ? (
+        {states.hasW9Pending &&
+          states.status === "pending" &&
+          states.hasDatePending &&
+          !states.loading && (
+            <div class={classes.W9Container}>
+              <p class={classes.SubduedRegularText}>{text.w9PendingText}</p>
+              {currencyList(states.w9Pending!)}
+            </div>
+          )}
+        {states.loading ? (
           <sl-skeleton class={classes.SkeletonOne}></sl-skeleton>
-        ) : payoutType === "paypal" ? (
+        ) : states.payoutType === "paypal" ? (
           <div style={{ display: "flex", gap: "var(--sl-spacing-small)" }}>
             <span>email@example.com</span>
             <PayPalIcon />

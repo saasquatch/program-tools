@@ -1493,6 +1493,10 @@ export namespace Components {
         "uppercaseErrorText": string;
     }
     interface SqmPayoutDetailsCard {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<any>;
     }
     interface SqmPopupContainer {
         /**
@@ -6780,6 +6784,10 @@ declare namespace LocalJSX {
         "uppercaseErrorText"?: string;
     }
     interface SqmPayoutDetailsCard {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<any>;
     }
     interface SqmPopupContainer {
         /**

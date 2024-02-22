@@ -1,3 +1,4 @@
+import { h } from "@stencil/core";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { DateTime } from "luxon";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
@@ -13,6 +14,7 @@ import { INDIRECT_TAX_PROVINCES } from "../subregions";
 import { TaxDocumentSubmitted } from "./sqm-tax-document-submitted";
 import { TaxDocumentSubmittedProps } from "./sqm-tax-document-submitted-view";
 import { useLocale } from "@saasquatch/component-boilerplate";
+import { Upcoming } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
 
 function getExpiresSoon(submissionDate: number, expiryDate: number) {
   if (!submissionDate || !expiryDate) return false;
@@ -100,6 +102,10 @@ export const useTaxDocumentSubmitted = (
       expiresSoon,
       disabled: loading,
       loading,
+    },
+    slots: {
+      // TODO: Replace this story once we have hooks for payment details card
+      payoutDetailsCardSlot: <Upcoming />,
     },
     callbacks: {
       onClick: onNewDocumentClick,
