@@ -65,11 +65,28 @@ Feature: Tax Document Submitted View
       | false        | United States    | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
       | false        | Papua New Guinea | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
 
-  @TODO
-  Scenario: Spain shows income tax number potentially
+  @minutia
+  Scenario Outline: Participant is registered for indirect tax in Canada, Quebec
+    When the participant is registered for indirect tax in Canada, Quebec
+    And they <doHaveQSTNumber> from step 2
+    Then the indirect tax section displays <indirectTaxNumbers>
 
-  @TODO
-  Scenario: quebec shows qst number potentially
+    Examples: 
+      | doHaveQSTNumber | indirectTaxNumbers     |
+      | true            | GST Number, QST Number |
+      | false           | GST Number, N/A        |
+
+  @minutia
+  Scenario Outline: Participant is registered for indirect tax in Spain
+    When the participant is registered for indirect tax in Spain
+    Then the <registeredDetails> display with <subRegion>
+    And they <doHaveIncomeTaxNumber> from step 2
+    Then the indirect tax section displays <indirectTaxNumbers>
+
+    Examples: 
+      | registeredDetails    | subRegion | doHaveIncomeTaxNumber | indirectTaxNumbers            |
+      | Registered in Spain, | Madred    | true                  | VAT Number, Income Tax Number |
+      | Registered in Spain, | Valencia  | false                 | VAT Number, N/A               |
 
   @minutia @ui
   Scenario Outline: A Danger Alert is displayed if the users tax form is invalid

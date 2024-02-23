@@ -54,6 +54,7 @@ export interface TaxDocumentSubmittedProps {
     bankingInformationSectionHeader: string;
     indirectTaxInfoSectionHeader: string;
     indirectTaxInfoCanada?: string;
+    indirectTaxInfoSpain?: string;
     indirectTaxInfoOtherCountry?: string;
     indirectTaxIndividualParticipant?: string;
     indirectTaxTooltipSupport?: string;
@@ -61,6 +62,7 @@ export interface TaxDocumentSubmittedProps {
     taxDocumentSectionHeader?: string;
     taxDocumentSectionSubHeader?: string;
     newFormButton?: string;
+    editPaymentInformationButton?: string;
     editIndirectTaxButton: string;
     invalidForm?: string;
     noFormNeededSubtext?: string;
@@ -268,7 +270,41 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
     ),
   };
 
-  console.log(states);
+  const getIndirectTaxRegisteredIn = () => {
+    if (states.province) {
+      return intl.formatMessage(
+        {
+          id: `indirectTaxInfoCanada`,
+          defaultMessage: text.indirectTaxInfoCanada,
+        },
+        {
+          country: "Canada",
+          province: states.province,
+        }
+      );
+    } else if (states.subRegion) {
+      return intl.formatMessage(
+        {
+          id: `indirectTaxInfoSpain`,
+          defaultMessage: text.indirectTaxInfoSpain,
+        },
+        {
+          country: states.country,
+          subRegion: states.subRegion,
+        }
+      );
+    } else {
+      return intl.formatMessage(
+        {
+          id: `indirectTaxInfoOtherCountry`,
+          defaultMessage: text.indirectTaxInfoOtherCountry,
+        },
+        {
+          country: states.country,
+        }
+      );
+    }
+  };
 
   return (
     <div>
@@ -296,7 +332,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
               type="default"
               class={sheet.classes.EditBankDetailsButton}
             >
-              Edit Bank Details
+              {text.editPaymentInformationButton}
             </sl-button>
           </div>
         </div>
@@ -326,27 +362,8 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                     <span class={sheet.classes.NotRegisteredIndirectTaxText}>
                       {text.notRegisteredForTax}
                     </span>
-                  ) : states.province ? (
-                    intl.formatMessage(
-                      {
-                        id: `indirectTaxInfoCanada`,
-                        defaultMessage: text.indirectTaxInfoCanada,
-                      },
-                      {
-                        country: "Canada",
-                        province: states.province,
-                      }
-                    )
                   ) : (
-                    intl.formatMessage(
-                      {
-                        id: `indirectTaxInfoOtherCountry`,
-                        defaultMessage: text.indirectTaxInfoOtherCountry,
-                      },
-                      {
-                        country: states.country,
-                      }
-                    )
+                    getIndirectTaxRegisteredIn()
                   )}
                 </span>
                 {!states.notRegistered && (
@@ -374,8 +391,6 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                             qstNumber: states.qstNumber,
                           }
                         )}
-                    </span>
-                    <span>
                       {states.subRegionTaxNumber &&
                         intl.formatMessage(
                           {

@@ -106,7 +106,7 @@ export class TaxDocumentSubmitted {
    */
   @Prop() indirectTaxInfoSectionHeader: string = "Indirect Tax";
   /**
-   * Country/Region description text of indirect tax
+   * Country/Province description text of indirect tax
    *
    * @uiName Indirect tax Canada description
    */
@@ -117,6 +117,12 @@ export class TaxDocumentSubmitted {
    * @uiName Indirect tax other country description
    */
   @Prop() indirectTaxInfoOtherCountry: string = "Registered in {country}";
+  /**
+   * Spain/Region description text of indirect tax
+   *
+   * @uiName Indirect tax Spain description
+   */
+  @Prop() indirectTaxInfoSpain: string = "Registered in {country}, {subRegion}";
   /**
    * Indirect tax tooltip text for support
    *
@@ -163,6 +169,12 @@ export class TaxDocumentSubmitted {
    */
   @Prop() editIndirectTaxButton: string = "Edit Indirect Tax";
   /**
+   * Text displayed in the edit Payment Information button
+   *
+   * @uiName Edit Payment Information button
+   */
+  @Prop() editPaymentInformationButton: string = "Edit Payout Information";
+  /**
    * Text displayed when partner is not registered for Indirect Tax
    *
    * @uiName Not registered for Indirect Tax
@@ -192,7 +204,8 @@ export class TaxDocumentSubmitted {
    * Label text for the sub-region tax number
    * @uiName Sub-region tax number
    */
-  @Prop() subRegionTaxNumber: string = "Income Tax Number: {incomeTaxNumber}";
+  @Prop() subRegionTaxNumber: string =
+    "Income Tax Number: {subRegionTaxNumber}";
 
   /**
    * @undocumented

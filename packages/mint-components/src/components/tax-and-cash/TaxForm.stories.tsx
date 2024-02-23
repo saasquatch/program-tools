@@ -965,6 +965,7 @@ export const TaxDocumentSubmittedIndirectTaxSpain = () => {
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           country: "Spain",
+          subRegion: "Madred",
           indirectTaxType: "VAT",
           indirectTaxNumber: 123456,
           subRegionTaxNumber: 44212,
