@@ -731,9 +731,10 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_indirectTaxInfoSectionHeader: string = "Indirect Tax";
   /**
-   * Country/Region description text of indirect tax
+   * Country/Province description text of indirect tax
    *
    * @uiName Indirect tax Canada description
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_indirectTaxInfoCanada: string =
     "Registered in {province}, {country}";
@@ -741,12 +742,22 @@ export class TaxAndCashMonolith {
    * Other country description text of indirect tax
    *
    * @uiName Indirect tax other country description
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_indirectTaxInfoOtherCountry: string = "Registered in {country}";
+  /**
+   * Spain/Region description text of indirect tax
+   *
+   * @uiName Indirect tax Spain description
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_indirectTaxInfoSpain: string =
+    "Registered in {country}, {subRegion}";
   /**
    * Indirect tax tooltip text for support
    *
    * @uiName Indirect tax tooltip description
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_indirectTaxTooltipSupport: string =
     "To make changes to your indirect tax information, please contact Support.";
@@ -754,6 +765,7 @@ export class TaxAndCashMonolith {
    * Indirect tax number/type details
    *
    * @uiName  Indirect tax details
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_indirectTaxDetails: string =
     "{indirectTaxType} number: {indirectTaxNumber}";
@@ -764,6 +776,14 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_newFormButton: string = "Submit New Form";
+  /**
+   * Text displayed in the edit Payment Information button
+   *
+   * @uiName Edit Payment Information button
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_editPaymentInformationButton: string =
+    "Edit Payout Information";
   /**
    * Text displayed when partner is not registered for Indirect Tax
    *
@@ -788,6 +808,19 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
+  /**
+   * Label text for the QST number
+   * @uiName QST number input
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_qstNumber: string = "QST Number: {qstNumber}";
+  /**
+   * Label text for the sub-region tax number
+   * @uiName Sub-region tax number
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_subRegionTaxNumber: string =
+    "Income Tax Number: {incomeTaxNumber}";
 
   /**
    * @undocumented

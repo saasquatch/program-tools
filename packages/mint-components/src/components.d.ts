@@ -4144,6 +4144,12 @@ export namespace Components {
          */
         "step4_bankingInformationSectionHeader": string;
         /**
+          * Text displayed in the edit Payment Information button
+          * @uiName Edit Payment Information button
+          * @uiGroup Step 4 Properties
+         */
+        "step4_editPaymentInformationButton": string;
+        /**
           * The error message shown at the top of the page in an error banner
           * @uiName Step 4 General error text
           * @uiGroup Step 4 Properties
@@ -4158,16 +4164,19 @@ export namespace Components {
         /**
           * Indirect tax number/type details
           * @uiName Indirect tax details
+          * @uiGroup Step 4 Properties
          */
         "step4_indirectTaxDetails": string;
         /**
-          * Country/Region description text of indirect tax
+          * Country/Province description text of indirect tax
           * @uiName Indirect tax Canada description
+          * @uiGroup Step 4 Properties
          */
         "step4_indirectTaxInfoCanada": string;
         /**
           * Other country description text of indirect tax
           * @uiName Indirect tax other country description
+          * @uiGroup Step 4 Properties
          */
         "step4_indirectTaxInfoOtherCountry": string;
         /**
@@ -4177,8 +4186,15 @@ export namespace Components {
          */
         "step4_indirectTaxInfoSectionHeader": string;
         /**
+          * Spain/Region description text of indirect tax
+          * @uiName Indirect tax Spain description
+          * @uiGroup Step 4 Properties
+         */
+        "step4_indirectTaxInfoSpain": string;
+        /**
           * Indirect tax tooltip text for support
           * @uiName Indirect tax tooltip description
+          * @uiGroup Step 4 Properties
          */
         "step4_indirectTaxTooltipSupport": string;
         /**
@@ -4206,6 +4222,12 @@ export namespace Components {
          */
         "step4_notRegisteredForTax": string;
         /**
+          * Label text for the QST number
+          * @uiName QST number input
+          * @uiGroup Step 4 Properties
+         */
+        "step4_qstNumber": string;
+        /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
           * @uiGroup Step 4 Properties
@@ -4223,6 +4245,12 @@ export namespace Components {
           * @uiGroup Step 4 Properties
          */
         "step4_statusTextNotVerified"?: string;
+        /**
+          * Label text for the sub-region tax number
+          * @uiName Sub-region tax number
+          * @uiGroup Step 4 Properties
+         */
+        "step4_subRegionTaxNumber": string;
         /**
           * Header displayed in not active W9 alert header at the top of the page.
           * @uiName Not active W8 alert header
@@ -4298,6 +4326,11 @@ export namespace Components {
          */
         "editIndirectTaxButton": string;
         /**
+          * Text displayed in the edit Payment Information button
+          * @uiName Edit Payment Information button
+         */
+        "editPaymentInformationButton": string;
+        /**
           * The error message shown at the top of the page in an error banner
           * @uiName General error text
          */
@@ -4313,7 +4346,7 @@ export namespace Components {
          */
         "indirectTaxDetails": string;
         /**
-          * Country/Region description text of indirect tax
+          * Country/Province description text of indirect tax
           * @uiName Indirect tax Canada description
          */
         "indirectTaxInfoCanada": string;
@@ -4327,6 +4360,11 @@ export namespace Components {
           * @uiName Indirect Tax Information Header
          */
         "indirectTaxInfoSectionHeader": string;
+        /**
+          * Spain/Region description text of indirect tax
+          * @uiName Indirect tax Spain description
+         */
+        "indirectTaxInfoSpain": string;
         /**
           * Indirect tax tooltip text for support
           * @uiName Indirect tax tooltip description
@@ -4353,6 +4391,11 @@ export namespace Components {
          */
         "notRegisteredForTax": string;
         /**
+          * Label text for the QST number
+          * @uiName QST number input
+         */
+        "qstNumber": string;
+        /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
          */
@@ -4367,6 +4410,11 @@ export namespace Components {
           * @uiName Status text
          */
         "statusTextNotVerified"?: string;
+        /**
+          * Label text for the sub-region tax number
+          * @uiName Sub-region tax number
+         */
+        "subRegionTaxNumber": string;
         /**
           * Header displayed in not active W9 alert header at the top of the page.
           * @uiName Not active W8 alert header
@@ -9416,6 +9464,12 @@ declare namespace LocalJSX {
          */
         "step4_bankingInformationSectionHeader"?: string;
         /**
+          * Text displayed in the edit Payment Information button
+          * @uiName Edit Payment Information button
+          * @uiGroup Step 4 Properties
+         */
+        "step4_editPaymentInformationButton"?: string;
+        /**
           * The error message shown at the top of the page in an error banner
           * @uiName Step 4 General error text
           * @uiGroup Step 4 Properties
@@ -9430,16 +9484,19 @@ declare namespace LocalJSX {
         /**
           * Indirect tax number/type details
           * @uiName Indirect tax details
+          * @uiGroup Step 4 Properties
          */
         "step4_indirectTaxDetails"?: string;
         /**
-          * Country/Region description text of indirect tax
+          * Country/Province description text of indirect tax
           * @uiName Indirect tax Canada description
+          * @uiGroup Step 4 Properties
          */
         "step4_indirectTaxInfoCanada"?: string;
         /**
           * Other country description text of indirect tax
           * @uiName Indirect tax other country description
+          * @uiGroup Step 4 Properties
          */
         "step4_indirectTaxInfoOtherCountry"?: string;
         /**
@@ -9449,8 +9506,15 @@ declare namespace LocalJSX {
          */
         "step4_indirectTaxInfoSectionHeader"?: string;
         /**
+          * Spain/Region description text of indirect tax
+          * @uiName Indirect tax Spain description
+          * @uiGroup Step 4 Properties
+         */
+        "step4_indirectTaxInfoSpain"?: string;
+        /**
           * Indirect tax tooltip text for support
           * @uiName Indirect tax tooltip description
+          * @uiGroup Step 4 Properties
          */
         "step4_indirectTaxTooltipSupport"?: string;
         /**
@@ -9478,6 +9542,12 @@ declare namespace LocalJSX {
          */
         "step4_notRegisteredForTax"?: string;
         /**
+          * Label text for the QST number
+          * @uiName QST number input
+          * @uiGroup Step 4 Properties
+         */
+        "step4_qstNumber"?: string;
+        /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
           * @uiGroup Step 4 Properties
@@ -9495,6 +9565,12 @@ declare namespace LocalJSX {
           * @uiGroup Step 4 Properties
          */
         "step4_statusTextNotVerified"?: string;
+        /**
+          * Label text for the sub-region tax number
+          * @uiName Sub-region tax number
+          * @uiGroup Step 4 Properties
+         */
+        "step4_subRegionTaxNumber"?: string;
         /**
           * Header displayed in not active W9 alert header at the top of the page.
           * @uiName Not active W8 alert header
@@ -9570,6 +9646,11 @@ declare namespace LocalJSX {
          */
         "editIndirectTaxButton"?: string;
         /**
+          * Text displayed in the edit Payment Information button
+          * @uiName Edit Payment Information button
+         */
+        "editPaymentInformationButton"?: string;
+        /**
           * The error message shown at the top of the page in an error banner
           * @uiName General error text
          */
@@ -9585,7 +9666,7 @@ declare namespace LocalJSX {
          */
         "indirectTaxDetails"?: string;
         /**
-          * Country/Region description text of indirect tax
+          * Country/Province description text of indirect tax
           * @uiName Indirect tax Canada description
          */
         "indirectTaxInfoCanada"?: string;
@@ -9599,6 +9680,11 @@ declare namespace LocalJSX {
           * @uiName Indirect Tax Information Header
          */
         "indirectTaxInfoSectionHeader"?: string;
+        /**
+          * Spain/Region description text of indirect tax
+          * @uiName Indirect tax Spain description
+         */
+        "indirectTaxInfoSpain"?: string;
         /**
           * Indirect tax tooltip text for support
           * @uiName Indirect tax tooltip description
@@ -9625,6 +9711,11 @@ declare namespace LocalJSX {
          */
         "notRegisteredForTax"?: string;
         /**
+          * Label text for the QST number
+          * @uiName QST number input
+         */
+        "qstNumber"?: string;
+        /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
          */
@@ -9639,6 +9730,11 @@ declare namespace LocalJSX {
           * @uiName Status text
          */
         "statusTextNotVerified"?: string;
+        /**
+          * Label text for the sub-region tax number
+          * @uiName Sub-region tax number
+         */
+        "subRegionTaxNumber"?: string;
         /**
           * Header displayed in not active W9 alert header at the top of the page.
           * @uiName Not active W8 alert header

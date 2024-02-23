@@ -117,7 +117,8 @@ Feature: Tax Form Step One
     And press "Continue"
     But on step 2 they press the "Back" button
     And arrive back on step 1
-    Then the step 1 fields can be edited
+    Then the data they inputted persists
+    And the step 1 fields can be edited
 
   @minutia
   Scenario: Participant that is a partner comes back to step 1 form after submitting

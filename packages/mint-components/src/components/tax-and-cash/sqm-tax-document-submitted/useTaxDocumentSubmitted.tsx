@@ -85,7 +85,12 @@ export const useTaxDocumentSubmitted = (
       dateSubmitted,
       documentType,
       status: publisher?.currentTaxDocument?.status,
-      // AL TODO: indirectTaxType
+      //AL TODO ADD SUB-REGION
+      subRegion: "",
+      // AL TODO: subRegionTaxNumber
+      subRegionTaxNumber: 0,
+      // AL TODO: qstNumber
+      qstNumber: 0,
       indirectTaxType: data?.user.customFields?.__indirectTaxType,
       indirectTaxNumber: data?.user?.customFields?.__indirectTaxNumber,
       isBusinessEntity: publisher?.requiredTaxDocumentType === "W8BENE",
