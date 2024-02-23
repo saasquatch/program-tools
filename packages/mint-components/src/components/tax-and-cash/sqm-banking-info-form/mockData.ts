@@ -1,8 +1,7 @@
 // 3 = ACH
 // 5 = WIRE
 // 7 = PAYPAL
-
-export const mockPaymentOptions: {
+type PaymentOptions = {
   [key: string]: {
     country: string;
     currency: string;
@@ -10,7 +9,9 @@ export const mockPaymentOptions: {
     withdrawalId: number;
     defaultFxFee?: number;
   }[];
-} = {
+};
+
+export const mockPaymentOptions: PaymentOptions = {
   CAD: [
     {
       country: "CA",
@@ -255,7 +256,6 @@ export const mockPaymentOptions: {
       currency: "JPY",
       paymentMethod: 5,
       withdrawalId: 8279,
-      defaultFxFee: 0,
     },
     {
       country: "JP",
