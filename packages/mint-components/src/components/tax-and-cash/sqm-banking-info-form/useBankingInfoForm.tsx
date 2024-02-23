@@ -208,45 +208,43 @@ export function getFormMap({
       ),
     },
     7: {
-      input: (
-        <div>
-          <sl-select
-            required
-            label={props.text.classificationLabel}
-            name="/beneficiaryClassification"
-            id="beneficiaryClassification"
-            {...(errors?.beneficiaryClassification && {
-              class: "error-input",
-              helpText: this.getValidationErrorMessage(
-                props.text.classificationLabel
-              ),
-            })}
-          >
-            <sl-menu-item value="BUSINESS">
-              {props.text.businessSelectItemLabel}
-            </sl-menu-item>
-            <sl-menu-item value="INDIVIDUAL">
-              {props.text.individualSelectItemLabel}
-            </sl-menu-item>
-            <sl-menu-item value="FOREIGN">
-              {props.text.foreignSelectItemLabel}
-            </sl-menu-item>
-          </sl-select>
-          <sl-input
-            required
-            label={props.text.taxPayerIdLabel}
-            type="text"
-            name="/taxPayerId"
-            id="taxPayerId"
-            {...(errors?.taxPayerId && {
-              class: "error-input",
-              helpText: this.getValidationErrorMessage(
-                props.text.taxPayerIdLabel
-              ),
-            })}
-          ></sl-input>
-        </div>
-      ),
+      input: [
+        <sl-select
+          required
+          label={props.text.classificationLabel}
+          name="/beneficiaryClassification"
+          id="beneficiaryClassification"
+          {...(errors?.beneficiaryClassification && {
+            class: "error-input",
+            helpText: this.getValidationErrorMessage(
+              props.text.classificationLabel
+            ),
+          })}
+        >
+          <sl-menu-item value="BUSINESS">
+            {props.text.businessSelectItemLabel}
+          </sl-menu-item>
+          <sl-menu-item value="INDIVIDUAL">
+            {props.text.individualSelectItemLabel}
+          </sl-menu-item>
+          <sl-menu-item value="FOREIGN">
+            {props.text.foreignSelectItemLabel}
+          </sl-menu-item>
+        </sl-select>,
+        <sl-input
+          required
+          label={props.text.taxPayerIdLabel}
+          type="text"
+          name="/taxPayerId"
+          id="taxPayerId"
+          {...(errors?.taxPayerId && {
+            class: "error-input",
+            helpText: this.getValidationErrorMessage(
+              props.text.taxPayerIdLabel
+            ),
+          })}
+        ></sl-input>,
+      ],
     },
     8: {
       input: (
@@ -316,66 +314,58 @@ export function getFormMap({
       ),
     },
     12: {
-      input: (
-        <div>
-          <sl-input
-            required
-            //todo: add prop for label
-            label={"bankAddress"}
-            name="/bankAddress"
-            id="bankAddress"
-            type="text"
-            {...(errors?.bankAddress && {
-              class: "error-input",
-              helpText: this.getValidationErrorMessage(
-                props.text.bankAddressLabel
-              ),
-            })}
-          ></sl-input>
-          <sl-input
-            required
-            //todo: add prop for label
-            label={"bankCity"}
-            name="/bankCity"
-            id="bankCity"
-            type="text"
-            {...(errors?.bankCity && {
-              class: "error-input",
-              helpText: this.getValidationErrorMessage(
-                props.text.bankCityLabel
-              ),
-            })}
-          ></sl-input>
-          <sl-input
-            required
-            //todo: add prop for label
-            label={"bankProvinceState"}
-            name="/bankProvinceState"
-            id="bankProvinceState"
-            type="text"
-            {...(errors?.bankProvinceState && {
-              class: "error-input",
-              helpText: this.getValidationErrorMessage(
-                props.text.bankProvinceStateLabel
-              ),
-            })}
-          ></sl-input>
-          <sl-input
-            required
-            //todo: add prop for label
-            label={"bankPostalCode"}
-            name="/bankPostalCode"
-            id="bankPostalCode"
-            type="text"
-            {...(errors?.bankPostalCode && {
-              class: "error-input",
-              helpText: this.getValidationErrorMessage(
-                props.text.bankPostalCodeLabel
-              ),
-            })}
-          ></sl-input>
-        </div>
-      ),
+      input: [
+        <sl-input
+          required
+          label={props.text.bankAddressLabel}
+          name="/bankAddress"
+          id="bankAddress"
+          type="text"
+          {...(errors?.bankAddress && {
+            class: "error-input",
+            helpText: this.getValidationErrorMessage(
+              props.text.bankAddressLabel
+            ),
+          })}
+        ></sl-input>,
+        <sl-input
+          required
+          label={props.text.bankCityLabel}
+          name="/bankCity"
+          id="bankCity"
+          type="text"
+          {...(errors?.bankCity && {
+            class: "error-input",
+            helpText: this.getValidationErrorMessage(props.text.bankCityLabel),
+          })}
+        ></sl-input>,
+        <sl-input
+          required
+          label={props.text.bankProvinceStateLabel}
+          name="/bankProvinceState"
+          id="bankProvinceState"
+          type="text"
+          {...(errors?.bankProvinceState && {
+            class: "error-input",
+            helpText: this.getValidationErrorMessage(
+              props.text.bankProvinceStateLabel
+            ),
+          })}
+        ></sl-input>,
+        <sl-input
+          required
+          label={props.text.bankPostalCodeLabel}
+          name="/bankPostalCode"
+          id="bankPostalCode"
+          type="text"
+          {...(errors?.bankPostalCode && {
+            class: "error-input",
+            helpText: this.getValidationErrorMessage(
+              props.text.bankPostalCodeLabel
+            ),
+          })}
+        ></sl-input>,
+      ],
     },
     13: {
       input: (

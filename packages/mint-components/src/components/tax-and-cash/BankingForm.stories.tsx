@@ -142,6 +142,26 @@ export const BankingInfoFormCountryUSCurrencyUSDLoading = () => {
   );
 };
 
+export const BankingInfoFormCountryMXCurrencyMXN = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...bankingFormProps,
+        states: {
+          ...bankingFormProps.states,
+          bankCountry: "MX",
+          formState: {
+            ...bankingFormProps.states.formState,
+            paymentScheduleChecked: "fixedDay",
+            paymentMethodChecked: "toBankAccount",
+          },
+          currency: "MXN",
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
 export const BankingInfoFormCountryUSCurrencyGBP = () => {
   return (
     <sqm-banking-info-form

@@ -257,6 +257,26 @@ export class BankingInfoForm {
   @Prop() taxPayerIdLabel: string = "Taxpayer ID";
 
   /**
+   * Label text for the Bank Address input
+   * @uiName Bank Address input item label
+   */
+  @Prop() bankAddressLabel: string = "Bank Address";
+  /**
+   * Label text for the Bank City input
+   * @uiName Bank City Label input label
+   */
+  @Prop() bankCityLabel: string = "Bank City";
+  /**
+   * Label text for the Bank Province State input
+   * @uiName Bank Province State input label
+   */
+  @Prop() bankProvinceStateLabel: string = "Bank Province State";
+  /**
+   * Label text for the Bank Postal Code
+   * @uiName  Bank Postal Code input label
+   */
+  @Prop() bankPostalCodeLabel: string = "Bank Postal Code";
+  /**
    * Title text for a general form submission error
    * @uiName General form submission error title
    */
