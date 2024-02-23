@@ -3,6 +3,40 @@ import { ProgramTriggerBody, TriggerType } from "./types/rpc";
 import getJsonataPaths from "@saasquatch/jsonata-paths-extractor";
 import jsonata from "jsonata";
 
+export type WebtaskConfig = {
+  port: number;
+  webtaskName: string;
+  keepAliveTimeoutSeconds: number;
+  terminationDelaySeconds: number;
+};
+
+export function loadStandardWebtaskConfig(): WebtaskConfig {
+  const optionalInt = (key: string, defaultVal: number): number => {
+    const env = process.env[key];
+    if (!env) {
+      return defaultVal;
+    }
+
+    const parsedEnv = parseInt(env, 10);
+    if (Number.isNaN(parsedEnv)) {
+      throw new Error(`Environment variable "${key}" is not an integer`);
+    }
+    return parsedEnv;
+  };
+
+  const port = optionalInt("PORT", 3000);
+  const keepAliveTimeoutSeconds = optionalInt("HTTP_KEEP_ALIVE_SECONDS", 60);
+  const terminationDelaySeconds = optionalInt("TERMINATION_DELAY_SECONDS", 0);
+  const webtaskName = process.env["PROGRAM_NAME"] || "Unknown Program";
+
+  return {
+    port,
+    webtaskName,
+    keepAliveTimeoutSeconds,
+    terminationDelaySeconds,
+  };
+}
+
 /**
  * Append a reward schedule to the template and return the new template
  *
