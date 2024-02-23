@@ -182,6 +182,16 @@ export class TaxDocumentSubmitted {
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
+  /**
+   * Label text for the QST number
+   * @uiName QST number input
+   */
+  @Prop() qstNumber: string = "QST Number: {qstNumber}";
+  /**
+   * Label text for the sub-region tax number
+   * @uiName Sub-region tax number
+   */
+  @Prop() subRegionTaxNumber: string = "Income Tax Number: {incomeTaxNumber}";
 
   /**
    * @undocumented

@@ -17,6 +17,12 @@ export interface TaxDocumentSubmittedProps {
     noFormNeeded?: boolean;
     // AL: TODO add indirectTaxType props
     indirectTaxType?: string;
+    //AL: TOD add qst number (quebec)
+    qstNumber?: number;
+    //AL: TODO add income tax number (spain)
+    subRegionTaxNumber?: number;
+    //AL TODO add sub-region (spain)
+    subRegion?: string;
     indirectTaxNumber?: number;
     province?: string;
     country?: string;
@@ -49,13 +55,15 @@ export interface TaxDocumentSubmittedProps {
     indirectTaxIndividualParticipant?: string;
     indirectTaxTooltipSupport?: string;
     indirectTaxDetails?: string;
-    taxDocumentSectionHeader: string;
-    taxDocumentSectionSubHeader: string;
-    newFormButton: string;
+    taxDocumentSectionHeader?: string;
+    taxDocumentSectionSubHeader?: string;
+    newFormButton?: string;
     editIndirectTaxButton: string;
     invalidForm?: string;
-    noFormNeededSubtext: string;
-    notRegisteredForTax: string;
+    noFormNeededSubtext?: string;
+    notRegisteredForTax?: string;
+    qstNumber?: string;
+    subRegionTaxNumber: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -158,6 +166,11 @@ const style = {
     display: "flex",
     textAlign: "center",
     width: "250px",
+  },
+  TaxNumberContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "6px",
   },
 };
 
@@ -273,6 +286,8 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
     ),
   };
 
+  console.log(states);
+
   return (
     <div>
       <div>
@@ -354,18 +369,44 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                   )}
                 </span>
                 {!states.notRegistered && (
-                  <span>
-                    {intl.formatMessage(
-                      {
-                        id: `indirectTaxDetails`,
-                        defaultMessage: text.indirectTaxDetails,
-                      },
-                      {
-                        indirectTaxType: states.indirectTaxType,
-                        indirectTaxNumber: states.indirectTaxNumber,
-                      }
-                    )}
-                  </span>
+                  <div class={sheet.classes.TaxNumberContainer}>
+                    <span>
+                      {intl.formatMessage(
+                        {
+                          id: `indirectTaxDetails`,
+                          defaultMessage: text.indirectTaxDetails,
+                        },
+                        {
+                          indirectTaxType: states.indirectTaxType,
+                          indirectTaxNumber: states.indirectTaxNumber,
+                        }
+                      )}
+                    </span>
+                    <span>
+                      {states.qstNumber &&
+                        intl.formatMessage(
+                          {
+                            id: `qstNumber`,
+                            defaultMessage: text.qstNumber,
+                          },
+                          {
+                            qstNumber: states.qstNumber,
+                          }
+                        )}
+                    </span>
+                    <span>
+                      {states.subRegionTaxNumber &&
+                        intl.formatMessage(
+                          {
+                            id: `subRegionTaxNumber`,
+                            defaultMessage: text.subRegionTaxNumber,
+                          },
+                          {
+                            subRegionTaxNumber: states.subRegionTaxNumber,
+                          }
+                        )}
+                    </span>
+                  </div>
                 )}
               </div>
             </div>

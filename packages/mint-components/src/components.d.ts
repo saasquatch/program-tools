@@ -4197,6 +4197,12 @@ export namespace Components {
          */
         "step4_notRegisteredForTax": string;
         /**
+          * Label text for the QST number
+          * @uiName QST number input
+          * @uiGroup Step 4 Properties
+         */
+        "step4_qstNumber": string;
+        /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
           * @uiGroup Step 4 Properties
@@ -4214,6 +4220,12 @@ export namespace Components {
           * @uiGroup Step 4 Properties
          */
         "step4_statusTextNotVerified"?: string;
+        /**
+          * Label text for the sub-region tax number
+          * @uiName Sub-region tax number
+          * @uiGroup Step 4 Properties
+         */
+        "step4_subRegionTaxNumber": string;
         /**
           * Header displayed in not active W9 alert header at the top of the page.
           * @uiName Not active W8 alert header
@@ -4344,6 +4356,11 @@ export namespace Components {
          */
         "notRegisteredForTax": string;
         /**
+          * Label text for the QST number
+          * @uiName QST number input
+         */
+        "qstNumber": string;
+        /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
          */
@@ -4358,6 +4375,11 @@ export namespace Components {
           * @uiName Status text
          */
         "statusTextNotVerified"?: string;
+        /**
+          * Label text for the sub-region tax number
+          * @uiName Sub-region tax number
+         */
+        "subRegionTaxNumber": string;
         /**
           * Header displayed in not active W9 alert header at the top of the page.
           * @uiName Not active W8 alert header
@@ -9460,6 +9482,12 @@ declare namespace LocalJSX {
          */
         "step4_notRegisteredForTax"?: string;
         /**
+          * Label text for the QST number
+          * @uiName QST number input
+          * @uiGroup Step 4 Properties
+         */
+        "step4_qstNumber"?: string;
+        /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
           * @uiGroup Step 4 Properties
@@ -9477,6 +9505,12 @@ declare namespace LocalJSX {
           * @uiGroup Step 4 Properties
          */
         "step4_statusTextNotVerified"?: string;
+        /**
+          * Label text for the sub-region tax number
+          * @uiName Sub-region tax number
+          * @uiGroup Step 4 Properties
+         */
+        "step4_subRegionTaxNumber"?: string;
         /**
           * Header displayed in not active W9 alert header at the top of the page.
           * @uiName Not active W8 alert header
@@ -9607,6 +9641,11 @@ declare namespace LocalJSX {
          */
         "notRegisteredForTax"?: string;
         /**
+          * Label text for the QST number
+          * @uiName QST number input
+         */
+        "qstNumber"?: string;
+        /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
          */
@@ -9621,6 +9660,11 @@ declare namespace LocalJSX {
           * @uiName Status text
          */
         "statusTextNotVerified"?: string;
+        /**
+          * Label text for the sub-region tax number
+          * @uiName Sub-region tax number
+         */
+        "subRegionTaxNumber"?: string;
         /**
           * Header displayed in not active W9 alert header at the top of the page.
           * @uiName Not active W8 alert header

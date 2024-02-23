@@ -65,6 +65,12 @@ Feature: Tax Document Submitted View
       | false        | United States    | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
       | false        | Papua New Guinea | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
 
+  @TODO
+  Scenario: Spain shows income tax number potentially
+
+  @TODO
+  Scenario: quebec shows qst number potentially
+
   @minutia @ui
   Scenario Outline: A Danger Alert is displayed if the users tax form is invalid
     Given the document has status <status>

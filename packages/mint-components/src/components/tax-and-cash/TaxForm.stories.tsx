@@ -931,6 +931,50 @@ export const TaxDocumentSubmittedIndirectTaxCanada = () => {
   );
 };
 
+export const TaxDocumentSubmittedIndirectTaxCanadaQuebec = () => {
+  return (
+    <sqm-tax-document-submitted
+      demoData={{
+        states: {
+          status: "ACTIVE",
+          disabled: false,
+          documentType: "W8BENE",
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          province: "Quebec",
+          country: "Canada",
+          isIndirectTaxCanada: true,
+          indirectTaxType: "GST",
+          indirectTaxNumber: 123456,
+          qstNumber: 44212,
+          isBusinessEntity: true,
+        },
+      }}
+    ></sqm-tax-document-submitted>
+  );
+};
+
+export const TaxDocumentSubmittedIndirectTaxSpain = () => {
+  return (
+    <sqm-tax-document-submitted
+      demoData={{
+        states: {
+          status: "ACTIVE",
+          disabled: false,
+          documentType: "W8BENE",
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          country: "Spain",
+          indirectTaxType: "VAT",
+          indirectTaxNumber: 123456,
+          subRegionTaxNumber: 44212,
+          isBusinessEntity: true,
+        },
+      }}
+    ></sqm-tax-document-submitted>
+  );
+};
+
 export const TaxDocumentSubmittedNotRegistered = () => {
   return (
     <sqm-tax-document-submitted

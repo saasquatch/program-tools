@@ -788,6 +788,19 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
+  /**
+   * Label text for the QST number
+   * @uiName QST number input
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_qstNumber: string = "QST Number: {qstNumber}";
+  /**
+   * Label text for the sub-region tax number
+   * @uiName Sub-region tax number
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_subRegionTaxNumber: string =
+    "Income Tax Number: {incomeTaxNumber}";
 
   /**
    * @undocumented
