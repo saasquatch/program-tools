@@ -2,7 +2,7 @@ import { useLocale } from "@saasquatch/component-boilerplate";
 import { useRef, useState } from "@saasquatch/universal-hooks";
 import JSONPointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useParent } from "../../../utils/useParentState";
+import { useParent, useSetParent } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
@@ -12,6 +12,7 @@ import { mockPaymentOptions } from "./mockData";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
 
+// Hardcoded in Impact backend
 export const paypalFeeMap = {
   USD: "USD20.00",
   GBP: "GBP30.00",
@@ -81,7 +82,7 @@ export function useBankingInfoForm(
   props: BankingInfoForm
 ): BankingInfoFormViewProps {
   const locale = useLocale();
-  const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
+  const setStep = useSetParent<string>(TAX_CONTEXT_NAMESPACE);
 
   const { data: userData, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
@@ -90,12 +91,11 @@ export function useBankingInfoForm(
   const [currency, setCurrency] = useState("CAD");
   /** */
 
-  const [bankCountry, setBankCountry] = useState("");
-
   const formRef = useRef<HTMLFormElement>(null);
+
+  const [bankCountry, setBankCountry] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
-
   const [_paymentMethodChecked, setPaymentMethodChecked] = useState<
     "toBankAccount" | "toPayPalAccount" | undefined
   >(undefined);
@@ -166,10 +166,12 @@ export function useBankingInfoForm(
   const paymentOptions = mockPaymentOptions[currency];
   paymentOptions;
 
+  // filter out any duplicate countries
   const availableCountries = new Set(
     paymentOptions.map((option) => option.country)
   );
 
+  // build list of country codes and names
   const countries = Array.from(availableCountries)?.map((country) => {
     // @ts-ignore DisplayNames not in Intl type
     const name = new Intl.DisplayNames([intlLocale], {
@@ -213,7 +215,6 @@ export function useBankingInfoForm(
       paymentMethodFeeLabel,
       disabled: loading,
       loading,
-      hideSteps: false,
       hideBanking: paymentMethodChecked !== "toBankAccount",
       hidePayPal: paymentMethodChecked !== "toPayPalAccount",
       formState: {
@@ -224,9 +225,10 @@ export function useBankingInfoForm(
       bitset: currentPaymentOption?.withdrawalId || 0,
       bankCountry,
       currency: userData?.user?.impactConnection?.publisher?.currency,
-      showInputs: true,
       countries,
       hasPayPal,
+      showInputs: true,
+      hideSteps: false,
     },
     refs: {
       formRef,

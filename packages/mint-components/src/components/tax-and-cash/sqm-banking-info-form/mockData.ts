@@ -63,6 +63,12 @@ export const mockPaymentOptions: {
       withdrawalId: 21,
     },
     {
+      country: "AR",
+      currency: "AUD",
+      paymentMethod: 5,
+      withdrawalId: 21,
+    },
+    {
       country: "AU",
       currency: "AUD",
       paymentMethod: 3,
@@ -119,6 +125,12 @@ export const mockPaymentOptions: {
       withdrawalId: 21,
     },
     {
+      country: "AR",
+      currency: "EUR",
+      paymentMethod: 5,
+      withdrawalId: 21,
+    },
+    {
       country: "NE",
       currency: "EUR",
       paymentMethod: 7,
@@ -169,6 +181,12 @@ export const mockPaymentOptions: {
       withdrawalId: 21,
     },
     {
+      country: "AR",
+      currency: "GBP",
+      paymentMethod: 5,
+      withdrawalId: 21,
+    },
+    {
       country: "GB",
       currency: "GBP",
       paymentMethod: 7,
@@ -214,6 +232,12 @@ export const mockPaymentOptions: {
     },
     {
       country: "AU",
+      currency: "USD",
+      paymentMethod: 5,
+      withdrawalId: 21,
+    },
+    {
+      country: "AR",
       currency: "USD",
       paymentMethod: 5,
       withdrawalId: 21,
@@ -282,6 +306,14 @@ export const mockPaymentOptions: {
       currency: "RUB",
       paymentMethod: 7,
       withdrawalId: 1717,
+    },
+  ],
+  ARS: [
+    {
+      country: "AR",
+      currency: "ARS",
+      paymentMethod: 5,
+      withdrawalId: 149,
     },
   ],
 };
