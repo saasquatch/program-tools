@@ -54,7 +54,7 @@ export class BankingInfoForm {
    * Text for the option to receive payments to a PayPal account with processing fee details
    * @uiName PayPal option text with processing fee placeholder
    */
-  @Prop() toPaypalAccount: string =
+  @Prop() toPayPalAccount: string =
     "PayPal (2% processing fee capped to {feeCap})";
   /**
    * Text for the option to receive payments at a specific balance threshold
@@ -248,6 +248,13 @@ export class BankingInfoForm {
    * @uiName Classification input label
    */
   @Prop() classificationLabel: string = "Classification";
+
+  /**
+   * Label text for the Taxpayer ID input field
+   * @uiName Taxpayer ID input label
+   */
+  @Prop() taxPayerIdLabel: string = "Taxpayer ID";
+
   /**
    * Title text for a general form submission error
    * @uiName General form submission error title
@@ -444,28 +451,43 @@ export class BankingInfoForm {
       },
       7: {
         input: (
-          <sl-select
-            required
-            label={props.text.classificationLabel}
-            name="/beneficiaryClassification"
-            id="beneficiaryClassification"
-            {...(errors?.beneficiaryClassification && {
-              class: "error-input",
-              helpText: this.getValidationErrorMessage(
-                props.text.classificationLabel
-              ),
-            })}
-          >
-            <sl-menu-item value="BUSINESS">
-              {props.text.businessSelectItemLabel}
-            </sl-menu-item>
-            <sl-menu-item value="INDIVIDUAL">
-              {props.text.individualSelectItemLabel}
-            </sl-menu-item>
-            <sl-menu-item value="FOREIGN">
-              {props.text.foreignSelectItemLabel}
-            </sl-menu-item>
-          </sl-select>
+          <div>
+            <sl-select
+              required
+              label={props.text.classificationLabel}
+              name="/beneficiaryClassification"
+              id="beneficiaryClassification"
+              {...(errors?.beneficiaryClassification && {
+                class: "error-input",
+                helpText: this.getValidationErrorMessage(
+                  props.text.classificationLabel
+                ),
+              })}
+            >
+              <sl-menu-item value="BUSINESS">
+                {props.text.businessSelectItemLabel}
+              </sl-menu-item>
+              <sl-menu-item value="INDIVIDUAL">
+                {props.text.individualSelectItemLabel}
+              </sl-menu-item>
+              <sl-menu-item value="FOREIGN">
+                {props.text.foreignSelectItemLabel}
+              </sl-menu-item>
+            </sl-select>
+            <sl-input
+              required
+              label={props.text.taxPayerIdLabel}
+              type="text"
+              name="/taxPayerId"
+              id="taxPayerId"
+              {...(errors?.taxPayerId && {
+                class: "error-input",
+                helpText: this.getValidationErrorMessage(
+                  props.text.taxPayerIdLabel
+                ),
+              })}
+            ></sl-input>
+          </div>
         ),
       },
       8: {
@@ -659,18 +681,19 @@ export class BankingInfoForm {
             <sl-menu-item value="CAD">CAD</sl-menu-item>
             <sl-menu-item value="EUR">EUR</sl-menu-item>
             <sl-menu-item value="JPY">JPY</sl-menu-item>
+            <sl-menu-item value="KRW">KRW</sl-menu-item>
+            <sl-menu-item value="MYR">MYR</sl-menu-item>
+            <sl-menu-item value="MXN">MXN</sl-menu-item>
+            <sl-menu-item value="RUB">RUB</sl-menu-item>
           </sl-select>
         )}
-        {/*  */}
         <BankingInfoFormView
           callbacks={props.callbacks}
           text={props.text}
           states={props.states}
           refs={props.refs}
           slots={{
-            formInputsSlot: inputFields?.map(({ input }) => {
-              return input;
-            }),
+            formInputsSlot: inputFields?.map(({ input }) => input),
             countryInputSlot: (
               <sl-select
                 label={props.text.bankLocationLabel}
@@ -707,6 +730,7 @@ export class BankingInfoForm {
             ),
             paymentThresholdSelectSlot: (
               <sl-select
+                required
                 label={props.text.paymentThresholdSelectLabel}
                 name="/balanceThreshold"
                 id="balanceThreshold"
@@ -724,6 +748,7 @@ export class BankingInfoForm {
             ),
             paymentFixedDaySelectSlot: (
               <sl-select
+                required
                 label={props.text.paymentDaySelectLabel}
                 name="/fixedDay"
                 id="fixedDay"
@@ -758,7 +783,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
   const defaultCountry = props.demoData?.states?.bankCountry;
 
   const [paymentMethodChecked, setPaymentMethodChecked] = useState<
-    "toBankAccount" | "toPaypalAccount" | undefined
+    "toBankAccount" | "toPayPalAccount" | undefined
   >(undefined);
   const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
     "balanceThreshold" | "fixedDay" | undefined
@@ -840,12 +865,12 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
             fixedDay: false,
           },
         },
-        intlLocale: "en",
         bitset,
         bankCountry,
         showInputs: props.demoData?.showInputs,
         currency,
         setCurrency,
+        hasPayPal: true,
       },
       callbacks: {
         onSubmit: async () => {},

@@ -9,6 +9,7 @@ import {
   UseTaxDocumentSubmittedResult,
   useTaxDocumentSubmitted,
 } from "./useTaxDocumentSubmitted";
+import { Upcoming } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
 
 /**
  * @uiName Tax and Cash Status Dashboard
@@ -227,6 +228,7 @@ export class TaxDocumentSubmitted {
           callbacks={props.callbacks}
           states={props.states}
           text={props.text}
+          slots={props.slots}
         />
       </Host>
     );
@@ -249,6 +251,9 @@ function useDemoTaxDocumentSubmitted(
       callbacks: {
         onClick: () => console.debug("check step"),
         onEditIndirectTax: () => console.debug("indirect tax"),
+      },
+      slots: {
+        paymentDetailsCardSlot: <Upcoming />,
       },
       text: props.getTextProps(),
     },

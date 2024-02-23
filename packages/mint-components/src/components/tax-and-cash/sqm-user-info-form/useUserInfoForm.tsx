@@ -18,6 +18,7 @@ import {
   UserQuery,
 } from "../sqm-tax-and-cash/data";
 import { TaxForm } from "./sqm-user-info-form";
+import { objectIsFull } from "../utils";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -72,8 +73,8 @@ export function useUserInfoForm(props: TaxForm) {
     const user = data?.user;
     if (!user || step !== "/1") return;
 
-    // TODO: Add user fields, then publisher fields, then form fields
-    // Then set the fields to userFormContext
+    // If form already filled out, skip initialising it
+    if (objectIsFull(userFormContext)) return;
 
     if (user.impactConnection?.publisher && user.impactConnection?.user) {
       // Initialise with partner information
@@ -90,11 +91,11 @@ export function useUserInfoForm(props: TaxForm) {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-        countryCode: user.countryCode, // User's countryCode is different than Impact's codes
+        countryCode: user.countryCode,
         currency: user.customFields?.currency,
       });
     }
-  }, [data, step]);
+  }, [data, step, userFormContext]);
 
   const [countrySearch, setCountrySearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries || []);

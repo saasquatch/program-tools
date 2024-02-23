@@ -294,6 +294,26 @@ export const BankingInfoFormWithBalanceThresholdPaymentScheduleWithError =
     );
   };
 
+export const BankingInfoFormWithBalanceThresholdPaymentScheduleLoading = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...bankingFormProps,
+        states: {
+          ...bankingFormProps.states,
+          loading: true,
+          bankCountry: "US",
+          formState: {
+            ...bankingFormProps.states.formState,
+            paymentScheduleChecked: "balanceThreshold",
+          },
+          currency: "USD",
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
 export const BankingInfoFormWithFixedDayPaymentSchedule = () => {
   return (
     <sqm-banking-info-form
@@ -325,6 +345,26 @@ export const BankingInfoFormWithFixedDayPaymentScheduleWithError = () => {
             errors: {
               fixedDay: true,
             },
+            ...bankingFormProps.states.formState,
+            paymentScheduleChecked: "fixedDay",
+          },
+          currency: "USD",
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
+export const BankingInfoFormWithFixedDayPaymentScheduleLoading = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...bankingFormProps,
+        states: {
+          ...bankingFormProps.states,
+          loading: true,
+          bankCountry: "US",
+          formState: {
             ...bankingFormProps.states.formState,
             paymentScheduleChecked: "fixedDay",
           },

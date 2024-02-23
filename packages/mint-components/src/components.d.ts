@@ -263,10 +263,15 @@ export namespace Components {
          */
         "taxAndPayoutsDescription": string;
         /**
+          * Label text for the Taxpayer ID input field
+          * @uiName Taxpayer ID input label
+         */
+        "taxPayerIdLabel": string;
+        /**
           * Text for the option to receive payments to a PayPal account with processing fee details
           * @uiName PayPal option text with processing fee placeholder
          */
-        "toPaypalAccount": string;
+        "toPayPalAccount": string;
         /**
           * Label text for the VO code input field
           * @uiName VO code input label
@@ -1493,6 +1498,10 @@ export namespace Components {
         "uppercaseErrorText": string;
     }
     interface SqmPayoutDetailsCard {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<any>;
     }
     interface SqmPopupContainer {
         /**
@@ -5571,10 +5580,15 @@ declare namespace LocalJSX {
          */
         "taxAndPayoutsDescription"?: string;
         /**
+          * Label text for the Taxpayer ID input field
+          * @uiName Taxpayer ID input label
+         */
+        "taxPayerIdLabel"?: string;
+        /**
           * Text for the option to receive payments to a PayPal account with processing fee details
           * @uiName PayPal option text with processing fee placeholder
          */
-        "toPaypalAccount"?: string;
+        "toPayPalAccount"?: string;
         /**
           * Label text for the VO code input field
           * @uiName VO code input label
@@ -6802,6 +6816,10 @@ declare namespace LocalJSX {
         "uppercaseErrorText"?: string;
     }
     interface SqmPayoutDetailsCard {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<any>;
     }
     interface SqmPopupContainer {
         /**

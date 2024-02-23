@@ -118,6 +118,12 @@ export const mockPaymentOptions: {
       paymentMethod: 5,
       withdrawalId: 21,
     },
+    {
+      country: "NE",
+      currency: "EUR",
+      paymentMethod: 7,
+      withdrawalId: 25,
+    },
   ],
   GBP: [
     {
@@ -232,6 +238,50 @@ export const mockPaymentOptions: {
       currency: "JPY",
       paymentMethod: 7,
       withdrawalId: 8279,
+    },
+  ],
+  KRW: [
+    {
+      country: "KR",
+      currency: "KRW",
+      paymentMethod: 5,
+      withdrawalId: 149,
+    },
+  ],
+  MYR: [
+    {
+      country: "MY",
+      currency: "MYR",
+      paymentMethod: 5,
+      withdrawalId: 16405,
+    },
+  ],
+  MXN: [
+    {
+      country: "MX",
+      currency: "MXN",
+      paymentMethod: 5,
+      withdrawalId: 4181,
+    },
+    {
+      country: "MX",
+      currency: "MXN",
+      paymentMethod: 7,
+      withdrawalId: 4181,
+    },
+  ],
+  RUB: [
+    {
+      country: "RU",
+      currency: "RUB",
+      paymentMethod: 5,
+      withdrawalId: 1685,
+    },
+    {
+      country: "RU",
+      currency: "RUB",
+      paymentMethod: 7,
+      withdrawalId: 1717,
     },
   ],
 };

@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 import { intl } from "../../../global/global";
 import {
@@ -33,6 +33,9 @@ export interface TaxDocumentSubmittedProps {
     errors?: {
       general?: boolean;
     };
+  };
+  slots: {
+    payoutDetailsCardSlot: VNode;
   };
   callbacks: { onClick: (props: any) => void; onEditIndirectTax: () => void };
   text: {
@@ -178,28 +181,7 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
-  const { states, text, callbacks } = props;
-
-  // AL: Not sure what states will be yet, placeholder for now
-  const testDetailsCardProps: PayoutDetailsCardViewProps = {
-    loading: states.loading,
-    empty: false,
-    otherCurrencies: false,
-    payoutType: "bank",
-    mainCurrency: { currencyText: "USD", amountText: "100.00" },
-    status: "upcoming",
-    pendingStatusBadgeText: "Pending",
-    upcomingStatusBadgeText: "Upcoming",
-    nextPayoutStatusBadgeText: "Next payout",
-    pendingDetailedStatusText: "Check rewards table for available date",
-    upcomingDetailedStatusText: "November 1, 2022",
-    nextPayoutDetailedStatusText: "November 1, 2022",
-    otherCurrenciesText: "other currencies",
-    w9PendingText: "Awaiting W-9 tax form",
-    w9Pending: undefined,
-    hasDatePending: true,
-    hasW9Pending: false,
-  };
+  const { states, text, callbacks, slots } = props;
 
   const statusMap = {
     NOT_VERIFIED: (
@@ -308,8 +290,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         <div>
           <h3>{text.bankingInformationSectionHeader}</h3>
           <div class={sheet.classes.BankingInformationContainer}>
-            {/* AL: Placeholder for banking information. TBD with design with what belongs here */}
-            <PayoutDetailsCardView {...testDetailsCardProps} />
+            {slots.payoutDetailsCardSlot}
             <sl-button
               disabled={states.disabled || states.loading}
               type="default"

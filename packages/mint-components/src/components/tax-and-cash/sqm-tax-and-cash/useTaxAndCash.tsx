@@ -116,7 +116,13 @@ export function useTaxAndCash() {
   const [userFormContext, setUserFormContext] = useParentState<UserFormContext>(
     {
       namespace: USER_FORM_CONTEXT_NAMESPACE,
-      initialValue: {} as UserFormContext,
+      initialValue: {
+        firstName: undefined,
+        lastName: undefined,
+        email: undefined,
+        countryCode: undefined,
+        currency: undefined,
+      } as UserFormContext,
     }
   );
 
