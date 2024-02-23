@@ -97,8 +97,20 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
     esRegions: INDIRECT_TAX_SPAIN_REGIONS,
     countries: [
       {
-        displayName: "United States",
+        countryCode: "CA",
+        displayName: "Canada",
+      },
+      {
+        countryCode: "ES",
+        displayName: "Spain",
+      },
+      {
+        countryCode: "UK",
+        displayName: "United Kingdom",
+      },
+      {
         countryCode: "US",
+        displayName: "United States",
       },
     ],
     provinces: INDIRECT_TAX_PROVINCES,
@@ -334,6 +346,7 @@ export const StepTwoOtherRegionChecked = () => {
         slotProps: {
           formState: {
             selectedRegion: "UK",
+            indirectTaxNumber: 123456,
             errors: {},
           },
         },
@@ -356,7 +369,8 @@ export const StepTwoOtherRegionCheckedCanada = () => {
         slotProps: {
           formState: {
             selectedRegion: "CA",
-            province: "BC",
+            province: "BRITISHCOLUMBIA",
+            indirectTaxNumber: 123456,
             errors: {},
           },
         },
@@ -380,6 +394,7 @@ export const StepTwoOtherRegionCheckedCanadaGST = () => {
           formState: {
             selectedRegion: "CA",
             province: "QUEBEC",
+            indirectTaxNumber: 123456,
             errors: {},
           },
         },
@@ -403,6 +418,7 @@ export const StepTwoOtherRegionCheckedCanadaGSTAndQST = () => {
           formState: {
             selectedRegion: "CA",
             province: "QUEBEC",
+            qstNumber: "654321",
             hasQst: true,
             errors: {},
           },
@@ -426,6 +442,7 @@ export const StepTwoOtherRegionCheckedOtherCountrySubRegion = () => {
         slotProps: {
           formState: {
             selectedRegion: "ES",
+            subRegion: "CANARYISLANDS",
             errors: {},
           },
         },
@@ -448,7 +465,9 @@ export const StepTwoOtherRegionCheckedOtherCountrySubRegionIncomeTax = () => {
         slotProps: {
           formState: {
             selectedRegion: "ES",
+            subRegion: "CANARYISLANDS",
             hasSubRegionTaxNumber: true,
+            subRegionTaxNumber: "654321",
             errors: {},
           },
         },
@@ -483,7 +502,7 @@ export const StepTwoOtherRegionCheckedWithInputErrors = () => {
   );
 };
 
-export const StepTwoOtherRegionCheckedCanadaWithError = () => {
+export const StepTwoOtherRegionCheckedCanadaWithProvinceError = () => {
   return (
     <sqm-indirect-tax-form
       demoData={{

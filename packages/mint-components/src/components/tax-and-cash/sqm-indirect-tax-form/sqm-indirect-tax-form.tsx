@@ -316,9 +316,20 @@ function useDemoIndirectTaxForm(
         esRegions: INDIRECT_TAX_SPAIN_REGIONS,
         countries: [
           {
-            displayName: "United States",
+            countryCode: "CA",
+            displayName: "Canada",
+          },
+          {
+            countryCode: "ES",
+            displayName: "Spain",
+          },
+          {
+            countryCode: "UK",
+            displayName: "United Kingdom",
+          },
+          {
             countryCode: "US",
-            impactCountryCode: "US",
+            displayName: "United States",
           },
         ],
         provinces: INDIRECT_TAX_PROVINCES,
