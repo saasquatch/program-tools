@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 import { intl } from "../../../global/global";
 import {
@@ -17,6 +17,12 @@ export interface TaxDocumentSubmittedProps {
     noFormNeeded?: boolean;
     // AL: TODO add indirectTaxType props
     indirectTaxType?: string;
+    //AL: TOD add qst number (quebec)
+    qstNumber?: number;
+    //AL: TODO add income tax number (spain)
+    subRegionTaxNumber?: number;
+    //AL TODO add sub-region (spain)
+    subRegion?: string;
     indirectTaxNumber?: number;
     province?: string;
     country?: string;
@@ -27,6 +33,9 @@ export interface TaxDocumentSubmittedProps {
     errors?: {
       general?: boolean;
     };
+  };
+  slots: {
+    payoutDetailsCardSlot: VNode;
   };
   callbacks: { onClick: (props: any) => void; onEditIndirectTax: () => void };
   text: {
@@ -45,17 +54,21 @@ export interface TaxDocumentSubmittedProps {
     bankingInformationSectionHeader: string;
     indirectTaxInfoSectionHeader: string;
     indirectTaxInfoCanada?: string;
+    indirectTaxInfoSpain?: string;
     indirectTaxInfoOtherCountry?: string;
     indirectTaxIndividualParticipant?: string;
     indirectTaxTooltipSupport?: string;
     indirectTaxDetails?: string;
-    taxDocumentSectionHeader: string;
-    taxDocumentSectionSubHeader: string;
-    newFormButton: string;
+    taxDocumentSectionHeader?: string;
+    taxDocumentSectionSubHeader?: string;
+    newFormButton?: string;
+    editPaymentInformationButton?: string;
     editIndirectTaxButton: string;
     invalidForm?: string;
-    noFormNeededSubtext: string;
-    notRegisteredForTax: string;
+    noFormNeededSubtext?: string;
+    notRegisteredForTax?: string;
+    qstNumber?: string;
+    subRegionTaxNumber: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -159,34 +172,18 @@ const style = {
     textAlign: "center",
     width: "250px",
   },
+  TaxNumberContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "6px",
+  },
 };
 
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
-  const { states, text, callbacks } = props;
-
-  // AL: Not sure what states will be yet, placeholder for now
-  const testDetailsCardProps: PayoutDetailsCardViewProps = {
-    loading: states.loading,
-    empty: false,
-    otherCurrencies: false,
-    payoutType: "bank",
-    mainCurrency: { currencyText: "USD", amountText: "100.00" },
-    status: "upcoming",
-    pendingStatusBadgeText: "Pending",
-    upcomingStatusBadgeText: "Upcoming",
-    nextPayoutStatusBadgeText: "Next payout",
-    pendingDetailedStatusText: "Check rewards table for available date",
-    upcomingDetailedStatusText: "November 1, 2022",
-    nextPayoutDetailedStatusText: "November 1, 2022",
-    otherCurrenciesText: "other currencies",
-    w9PendingText: "Awaiting W-9 tax form",
-    w9Pending: undefined,
-    hasDatePending: true,
-    hasW9Pending: false,
-  };
+  const { states, text, callbacks, slots } = props;
 
   const statusMap = {
     NOT_VERIFIED: (
@@ -273,6 +270,42 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
     ),
   };
 
+  const getIndirectTaxRegisteredIn = () => {
+    if (states.province) {
+      return intl.formatMessage(
+        {
+          id: `indirectTaxInfoCanada`,
+          defaultMessage: text.indirectTaxInfoCanada,
+        },
+        {
+          country: "Canada",
+          province: states.province,
+        }
+      );
+    } else if (states.subRegion) {
+      return intl.formatMessage(
+        {
+          id: `indirectTaxInfoSpain`,
+          defaultMessage: text.indirectTaxInfoSpain,
+        },
+        {
+          country: states.country,
+          subRegion: states.subRegion,
+        }
+      );
+    } else {
+      return intl.formatMessage(
+        {
+          id: `indirectTaxInfoOtherCountry`,
+          defaultMessage: text.indirectTaxInfoOtherCountry,
+        },
+        {
+          country: states.country,
+        }
+      );
+    }
+  };
+
   return (
     <div>
       <div>
@@ -293,14 +326,13 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         <div>
           <h3>{text.bankingInformationSectionHeader}</h3>
           <div class={sheet.classes.BankingInformationContainer}>
-            {/* AL: Placeholder for banking information. TBD with design with what belongs here */}
-            <PayoutDetailsCardView {...testDetailsCardProps} />
+            {slots.payoutDetailsCardSlot}
             <sl-button
               disabled={states.disabled || states.loading}
               type="default"
               class={sheet.classes.EditBankDetailsButton}
             >
-              Edit Bank Details
+              {text.editPaymentInformationButton}
             </sl-button>
           </div>
         </div>
@@ -330,42 +362,47 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                     <span class={sheet.classes.NotRegisteredIndirectTaxText}>
                       {text.notRegisteredForTax}
                     </span>
-                  ) : states.province ? (
-                    intl.formatMessage(
-                      {
-                        id: `indirectTaxInfoCanada`,
-                        defaultMessage: text.indirectTaxInfoCanada,
-                      },
-                      {
-                        country: "Canada",
-                        province: states.province,
-                      }
-                    )
                   ) : (
-                    intl.formatMessage(
-                      {
-                        id: `indirectTaxInfoOtherCountry`,
-                        defaultMessage: text.indirectTaxInfoOtherCountry,
-                      },
-                      {
-                        country: states.country,
-                      }
-                    )
+                    getIndirectTaxRegisteredIn()
                   )}
                 </span>
                 {!states.notRegistered && (
-                  <span>
-                    {intl.formatMessage(
-                      {
-                        id: `indirectTaxDetails`,
-                        defaultMessage: text.indirectTaxDetails,
-                      },
-                      {
-                        indirectTaxType: states.indirectTaxType,
-                        indirectTaxNumber: states.indirectTaxNumber,
-                      }
-                    )}
-                  </span>
+                  <div class={sheet.classes.TaxNumberContainer}>
+                    <span>
+                      {intl.formatMessage(
+                        {
+                          id: `indirectTaxDetails`,
+                          defaultMessage: text.indirectTaxDetails,
+                        },
+                        {
+                          indirectTaxType: states.indirectTaxType,
+                          indirectTaxNumber: states.indirectTaxNumber,
+                        }
+                      )}
+                    </span>
+                    <span>
+                      {states.qstNumber &&
+                        intl.formatMessage(
+                          {
+                            id: `qstNumber`,
+                            defaultMessage: text.qstNumber,
+                          },
+                          {
+                            qstNumber: states.qstNumber,
+                          }
+                        )}
+                      {states.subRegionTaxNumber &&
+                        intl.formatMessage(
+                          {
+                            id: `subRegionTaxNumber`,
+                            defaultMessage: text.subRegionTaxNumber,
+                          },
+                          {
+                            subRegionTaxNumber: states.subRegionTaxNumber,
+                          }
+                        )}
+                    </span>
+                  </div>
                 )}
               </div>
             </div>

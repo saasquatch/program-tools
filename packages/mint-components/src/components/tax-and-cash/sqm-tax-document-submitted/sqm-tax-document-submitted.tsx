@@ -9,6 +9,7 @@ import {
   UseTaxDocumentSubmittedResult,
   useTaxDocumentSubmitted,
 } from "./useTaxDocumentSubmitted";
+import { Upcoming } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
 
 /**
  * @uiName Tax and Cash Status Dashboard
@@ -105,7 +106,7 @@ export class TaxDocumentSubmitted {
    */
   @Prop() indirectTaxInfoSectionHeader: string = "Indirect Tax";
   /**
-   * Country/Region description text of indirect tax
+   * Country/Province description text of indirect tax
    *
    * @uiName Indirect tax Canada description
    */
@@ -116,6 +117,12 @@ export class TaxDocumentSubmitted {
    * @uiName Indirect tax other country description
    */
   @Prop() indirectTaxInfoOtherCountry: string = "Registered in {country}";
+  /**
+   * Spain/Region description text of indirect tax
+   *
+   * @uiName Indirect tax Spain description
+   */
+  @Prop() indirectTaxInfoSpain: string = "Registered in {country}, {subRegion}";
   /**
    * Indirect tax tooltip text for support
    *
@@ -162,6 +169,12 @@ export class TaxDocumentSubmitted {
    */
   @Prop() editIndirectTaxButton: string = "Edit Indirect Tax";
   /**
+   * Text displayed in the edit Payment Information button
+   *
+   * @uiName Edit Payment Information button
+   */
+  @Prop() editPaymentInformationButton: string = "Edit Payout Information";
+  /**
    * Text displayed when partner is not registered for Indirect Tax
    *
    * @uiName Not registered for Indirect Tax
@@ -182,6 +195,17 @@ export class TaxDocumentSubmitted {
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
+  /**
+   * Label text for the QST number
+   * @uiName QST number input
+   */
+  @Prop() qstNumber: string = "QST Number: {qstNumber}";
+  /**
+   * Label text for the sub-region tax number
+   * @uiName Sub-region tax number
+   */
+  @Prop() subRegionTaxNumber: string =
+    "Income Tax Number: {subRegionTaxNumber}";
 
   /**
    * @undocumented
@@ -217,6 +241,7 @@ export class TaxDocumentSubmitted {
           callbacks={props.callbacks}
           states={props.states}
           text={props.text}
+          slots={props.slots}
         />
       </Host>
     );
@@ -239,6 +264,9 @@ function useDemoTaxDocumentSubmitted(
       callbacks: {
         onClick: () => console.debug("check step"),
         onEditIndirectTax: () => console.debug("indirect tax"),
+      },
+      slots: {
+        paymentDetailsCardSlot: <Upcoming />,
       },
       text: props.getTextProps(),
     },

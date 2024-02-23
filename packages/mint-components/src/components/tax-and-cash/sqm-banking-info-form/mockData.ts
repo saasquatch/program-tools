@@ -63,6 +63,12 @@ export const mockPaymentOptions: {
       withdrawalId: 21,
     },
     {
+      country: "AR",
+      currency: "AUD",
+      paymentMethod: 5,
+      withdrawalId: 21,
+    },
+    {
       country: "AU",
       currency: "AUD",
       paymentMethod: 3,
@@ -118,6 +124,18 @@ export const mockPaymentOptions: {
       paymentMethod: 5,
       withdrawalId: 21,
     },
+    {
+      country: "AR",
+      currency: "EUR",
+      paymentMethod: 5,
+      withdrawalId: 21,
+    },
+    {
+      country: "NE",
+      currency: "EUR",
+      paymentMethod: 7,
+      withdrawalId: 25,
+    },
   ],
   GBP: [
     {
@@ -158,6 +176,12 @@ export const mockPaymentOptions: {
     },
     {
       country: "AU",
+      currency: "GBP",
+      paymentMethod: 5,
+      withdrawalId: 21,
+    },
+    {
+      country: "AR",
       currency: "GBP",
       paymentMethod: 5,
       withdrawalId: 21,
@@ -213,6 +237,12 @@ export const mockPaymentOptions: {
       withdrawalId: 21,
     },
     {
+      country: "AR",
+      currency: "USD",
+      paymentMethod: 5,
+      withdrawalId: 21,
+    },
+    {
       country: "US",
       currency: "USD",
       paymentMethod: 7,
@@ -232,6 +262,58 @@ export const mockPaymentOptions: {
       currency: "JPY",
       paymentMethod: 7,
       withdrawalId: 8279,
+    },
+  ],
+  KRW: [
+    {
+      country: "KR",
+      currency: "KRW",
+      paymentMethod: 5,
+      withdrawalId: 149,
+    },
+  ],
+  MYR: [
+    {
+      country: "MY",
+      currency: "MYR",
+      paymentMethod: 5,
+      withdrawalId: 16405,
+    },
+  ],
+  MXN: [
+    {
+      country: "MX",
+      currency: "MXN",
+      paymentMethod: 5,
+      withdrawalId: 4181,
+    },
+    {
+      country: "MX",
+      currency: "MXN",
+      paymentMethod: 7,
+      withdrawalId: 4181,
+    },
+  ],
+  RUB: [
+    {
+      country: "RU",
+      currency: "RUB",
+      paymentMethod: 5,
+      withdrawalId: 1685,
+    },
+    {
+      country: "RU",
+      currency: "RUB",
+      paymentMethod: 7,
+      withdrawalId: 1717,
+    },
+  ],
+  ARS: [
+    {
+      country: "AR",
+      currency: "ARS",
+      paymentMethod: 5,
+      withdrawalId: 149,
     },
   ],
 };

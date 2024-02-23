@@ -5,9 +5,9 @@ import { intl } from "../../../global/global";
 export interface BankingInfoFormViewProps {
   states: {
     locale?: string;
-    intlLocale?: string;
     loading: boolean;
     disabled: boolean;
+    saveDisabled: boolean;
     hideSteps: boolean;
     hasPayPal: boolean;
     hideBanking?: boolean;
@@ -16,18 +16,21 @@ export interface BankingInfoFormViewProps {
     hideFixedDay?: boolean;
     feeCap?: string;
     isPartner: boolean;
+
     paymentMethodFeeLabel?: string;
     formState: {
-      paymentMethodChecked?: "toBankAccount" | "toPaypalAccount";
+      paymentMethodChecked?: "toBankAccount" | "toPayPalAccount";
       paymentScheduleChecked?: "balanceThreshold" | "fixedDay";
       errors?: {
         general?: boolean;
+        payPalEmail?: boolean;
       };
     };
     bitset?: number;
     bankCountry?: string;
     currency?: string;
     countries?: { code: string; name: string }[];
+
     showInputs?: boolean;
   };
   slots?: {
@@ -39,7 +42,7 @@ export interface BankingInfoFormViewProps {
   };
   callbacks: {
     setPaymentMethodChecked: (
-      paymentMethodChecked: "toBankAccount" | "toPaypalAccount"
+      paymentMethodChecked: "toBankAccount" | "toPayPalAccount"
     ) => void;
     setPaymentScheduleChecked: (
       paymentMethodChecked: "balanceThreshold" | "fixedDay"
@@ -53,7 +56,7 @@ export interface BankingInfoFormViewProps {
     taxAndPayouts: string;
     taxAndPayoutsDescription: string;
     directlyToBankAccount: string;
-    toPaypalAccount: string;
+    toPayPalAccount: string;
     paymentMethod: string;
     paymentMethodSubtext: string;
     submitButton: string;
@@ -225,10 +228,12 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
     slots,
   } = props;
 
+  console.log({ formState });
+
   const { classes } = sheet;
 
   const getLoadingSkeleton = (
-    checkedValue: "toBankAccount" | "toPaypalAccount" | undefined,
+    checkedValue: "toBankAccount" | "toPayPalAccount" | undefined,
     inputNumber?: number
   ) => {
     const skeletons = [];
@@ -254,7 +259,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
       );
     }
 
-    if (checkedValue === "toPaypalAccount") {
+    if (checkedValue === "toPayPalAccount") {
       return (
         <div style={{ ...flexBoxStyle, flexDirection: "column" }}>
           <div class={classes.SmallSkeleton} />
@@ -361,36 +366,42 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 <sl-checkbox
                   class={classes.Checkbox}
                   exportparts="label: input-label"
-                  checked={formState.paymentMethodChecked === "toPaypalAccount"}
+                  checked={formState.paymentMethodChecked === "toPayPalAccount"}
                   onInput={() =>
-                    callbacks.setPaymentMethodChecked("toPaypalAccount")
+                    callbacks.setPaymentMethodChecked("toPayPalAccount")
                   }
                   disabled={states.disabled}
-                  id="toPaypalAccount"
-                  name="/toPaypalAccount"
+                  id="toPayPalAccount"
+                  name="/toPayPalAccount"
                 >
                   {intl.formatMessage(
                     {
                       id: "paypal-input-label",
-                      defaultMessage: text.toPaypalAccount,
+                      defaultMessage: text.toPayPalAccount,
                     },
                     { feeCap: states.feeCap }
                   )}
                 </sl-checkbox>
               )}
-              {formState.paymentMethodChecked === "toPaypalAccount" && (
+              {formState.paymentMethodChecked === "toPayPalAccount" && (
                 <div
                   class={classes.InputContainer}
                   style={states.hidePayPal ? { display: "none" } : {}}
                 >
                   {states.loading ? (
-                    getLoadingSkeleton("toPaypalAccount")
+                    getLoadingSkeleton("toPayPalAccount")
                   ) : (
                     <sl-input
+                      required
                       label={text.payPalInputLabel}
                       name="/payPalEmail"
                       id="payPalEmail"
                       type="text"
+                      {...(formState?.errors?.payPalEmail && {
+                        class: "error-input",
+                        // TODO: not translatable
+                        helpText: `${props.text.payPalInputLabel} is required`,
+                      })}
                     ></sl-input>
                   )}
                 </div>
@@ -419,7 +430,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                   style={states.hideBalanceThreshold ? { display: "none" } : {}}
                 >
                   {states.loading
-                    ? getLoadingSkeleton("toPaypalAccount")
+                    ? getLoadingSkeleton("toPayPalAccount")
                     : slots.paymentThresholdSelectSlot}
                 </div>
               )}
@@ -441,7 +452,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                   style={states.hideFixedDay ? { display: "none" } : {}}
                 >
                   {states.loading
-                    ? getLoadingSkeleton("toPaypalAccount")
+                    ? getLoadingSkeleton("toPayPalAccount")
                     : slots.paymentFixedDaySelectSlot}
                 </div>
               )}
@@ -451,7 +462,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
         <div class={classes.BtnContainer}>
           <sl-button
             type="primary"
-            disabled={states.disabled}
+            disabled={states.disabled || states.saveDisabled}
             submit
             exportparts="base: primarybutton-base"
           >
