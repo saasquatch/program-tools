@@ -142,6 +142,26 @@ export const BankingInfoFormCountryUSCurrencyUSDLoading = () => {
   );
 };
 
+export const BankingInfoFormCountryARCurrencyARS = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...bankingFormProps,
+        states: {
+          ...bankingFormProps.states,
+          bankCountry: "AR",
+          formState: {
+            ...bankingFormProps.states.formState,
+            paymentScheduleChecked: "fixedDay",
+            paymentMethodChecked: "toBankAccount",
+          },
+          currency: "ARS",
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
 export const BankingInfoFormCountryMXCurrencyMXN = () => {
   return (
     <sqm-banking-info-form
