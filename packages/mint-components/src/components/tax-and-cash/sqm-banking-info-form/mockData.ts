@@ -256,4 +256,32 @@ export const mockPaymentOptions: {
       withdrawalId: 16405,
     },
   ],
+  MXN: [
+    {
+      country: "MX",
+      currency: "MXN",
+      paymentMethod: 5,
+      withdrawalId: 4181,
+    },
+    {
+      country: "MX",
+      currency: "MXN",
+      paymentMethod: 7,
+      withdrawalId: 4181,
+    },
+  ],
+  RUB: [
+    {
+      country: "RU",
+      currency: "RUB",
+      paymentMethod: 5,
+      withdrawalId: 1685,
+    },
+    {
+      country: "RU",
+      currency: "RUB",
+      paymentMethod: 7,
+      withdrawalId: 1717,
+    },
+  ],
 };
