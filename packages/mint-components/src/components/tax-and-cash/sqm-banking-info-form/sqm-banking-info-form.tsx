@@ -685,6 +685,7 @@ export class BankingInfoForm {
             <sl-menu-item value="MYR">MYR</sl-menu-item>
             <sl-menu-item value="MXN">MXN</sl-menu-item>
             <sl-menu-item value="RUB">RUB</sl-menu-item>
+            <sl-menu-item value="ARS">ARS</sl-menu-item>
           </sl-select>
         )}
         <BankingInfoFormView
