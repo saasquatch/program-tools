@@ -25,19 +25,6 @@
 | `w9Label`                 | `w-9-label`                 | Label text for the W9 radio button                                                    | `string`                                                                                                                                                 | `"W9"`                                                                                                                                        |
 
 
-## Dependencies
-
-### Used by
-
- - [sqm-stencilbook](../../sqm-stencilbook)
-
-### Graph
-```mermaid
-graph TD;
-  sqm-stencilbook --> sqm-document-type-form
-  style sqm-document-type-form fill:#f9f,stroke:#333,stroke-width:4px
-```
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

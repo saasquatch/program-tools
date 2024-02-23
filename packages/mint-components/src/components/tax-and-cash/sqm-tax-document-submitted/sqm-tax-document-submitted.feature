@@ -18,8 +18,8 @@ Feature: Tax Document Submitted View
     Then they see a skeleton loaders until the end users Tax Document/Banking information data is available
 
   @minutia @ui
-  Scenario Outline: The Tax Form header is displayed to the end users
-    Given the user has submitted a W9/W8-BEN/W8-BEN-E Tax form
+  Scenario Outline: The Tax Form header is displayed to the participant
+    Given they submitted a W9/W8-BEN/W8-BEN-E Tax form
     Then the Tax Form header displays "<documentType> Tax Form"
 
     Examples: 

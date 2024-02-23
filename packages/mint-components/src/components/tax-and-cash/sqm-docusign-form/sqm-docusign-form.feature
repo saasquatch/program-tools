@@ -31,7 +31,7 @@ Feature: Docusign Form
     Examples: 
       | participantType       | autoSelectedTaxForm |
       | individualParticipant | W8-BEN              |
-      | businessEntity        | W8-BEN-E            |
+      | company               | W8-BEN-E            |
 
   @minutia @ui
   Scenario Outline: Text copies change based on tax form participant fills out
@@ -56,9 +56,10 @@ Feature: Docusign Form
   @minutia @ui
   Scenario: Docusign iframe is loading
     When the Docusign iframe is loading the Tax Form
-    Then the iframe displays a spinnder inside the igrame
+    Then the iframe is hidden
+    And a loading spinner appears
     When the Docusign iframe loads in the Tax Form
-    Then the loader dissapers and the participant can see the Tax Form
+    Then the loading spinner disappears and the participant can see the Tax Form
 
   @minutia @ui
   Scenario: Participant's Docusign session expires

@@ -109,9 +109,9 @@ Feature: Tax Form Flow
     Examples: 
       | brandCountry | country | participantType       | autoSelectedForm |
       | US           | CA      | individualParticipant | W8-BEN           |
-      | US           | CA      | businessEntity        | W8-BEN-E         |
+      | US           | CA      | company               | W8-BEN-E         |
       | US           | MX      | individualParticipant | W8-BEN           |
-      | US           | MX      | businessEntity        | W8-BEN-E         |
+      | US           | MX      | company               | W8-BEN-E         |
 
   @minutia
   Scenario Outline: Participants based in the US working with non-US brands have to fillout the W9 docusign form

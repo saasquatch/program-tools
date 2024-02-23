@@ -4,6 +4,22 @@ Feature: Indirect Tax Form
   Background: A user has submitted their personal information in Tax Form Step One
     Given a user is on the Indirect Tax Form
 
+  @minutia
+  Scenario Outline: Different indirect tax inputs are shown depending on the country of a participant
+    When <option> is selected based on the participant <country> from step 1
+    Then different <inputs> appear
+
+    Examples: 
+      | country | option                                               | inputs                                                 |
+      | CA      | I am registered for Indirect Tax in a Country/Region | Country, Province, HST/GST Number, ?QST Number(Quebec) |
+      | ES      | I am registered for Indirect Tax in a Country/Region | Country, Sub Region, VAT Number, ?Income Tax Number    |
+      | UK      | I am registered for Indirect Tax in a Country/Region | Country, VAT Number                                    |
+      | IR      | I am registered for Indirect Tax in a Country/Region | Country, GST Number                                    |
+      | AU      | I am registered for Indirect Tax in a Country/Region | Country, GST Number                                    |
+      | JP      | I am registered for Indirect Tax in a Country/Region | Country, CT Number                                     |
+      | US      | I am not registered for Indirect tax                 | N/A                                                    |
+      | EG      | I am not registered for Indirect tax                 | N/A                                                    |
+
   @minutia @ui
   Scenario Outline: Participant selects Canada in step 1
     Given they select "Canada" as their country in step 1
@@ -11,7 +27,7 @@ Feature: Indirect Tax Form
     And the Country select is auto-selected with "Canada" from step 1
     And a Province select appears with the available <provinces>
     And based on the selected <province>
-    Then <typeTaxInputs> will appear
+    Then <typeTaxInput> will appear
 
     Examples: 
       | province              | typeTaxInput      |
@@ -103,11 +119,9 @@ Feature: Indirect Tax Form
   @minutia
   Scenario: Participant selects Spain as their country
     Given the participant selects Spain as their country in step 1
-    Then a VAT Number input appears
-    And a "Sub Region" select appears with available <subRegions>
-    And a "I am registered for Income Tax" checkbox will appear
-    And if the participant checks <isRegisteredIncomeTax>
-    Then a "Income Tax Number" input will appear
+    Then a VAT Number input, <subRegion> select, and <isRegisteredForIncomeTax> checkbox appear
+    And if the participant <isRegisteredForIncomeTax
+    Then an Income Tax input appears
 
     Examples: 
       | subRegions | isRegisteredIncomeTax |
@@ -118,22 +132,10 @@ Feature: Indirect Tax Form
   @minutia
   Scenario: Participant selects other country that is ineligible for indirect tax
     Given they select a country ineligible for indirect tax in step 1
-    Then "I am not regisitered for Indirect Tax" is auto-selected
-    And no inputs will appear
+    Then "I am not registered for Indirect Tax" is auto-selected
+    And no inputs appear
 
-  @unknown @minutia
-  Scenario Outline: Participant from another country can change the auto selected country
-    When the Country <countryAutoSelectValue> is selected with their <country> from step 1
-    And they change the Country to <newCountrySelectValue>
-    Then the Country <countryAutoSelectValue> changes to the <newCountrySelectValue>
-
-    Examples: 
-      | country | countryAutoSelectValue | newCountrySelectValue |
-      | US      | United States          | Australia             |
-      | UK      | United Kingdom         | Egypt                 |
-  # AL: Rough spec of what happen when the participant actually submits
-
-  @TODO @minutia
+  @minutia
   Scenario: Participant is registered for indirect tax fills out and submits form
     Given they are registered for indirect tax
     And they fill out the form
@@ -150,15 +152,29 @@ Feature: Indirect Tax Form
       | QST Number            | <qstNumber>          |
       | Sub-Region Tax Number | <subRegionTaxNumber> |
     Then the form displays the respective errors for each field:
-      | <country>           | Country is required                                                                                |
-      | <province>          | Province is required                                                                               |
-      | <subRegion          | Sub-region is required                                                                             |
-      | <indirectTaxNumber> | "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number}} is required" |
-      | <qstNumber>         | "QST Number is required"                                                                           |
-      | <subRegionTaxNumber | "Income tax number is required                                                                     |
+      | <country>           | Country is required                 |
+      | <province>          | Province is required                |
+      | <subRegion          | Sub-region is required              |
+      | <indirectTaxNumber> | "VAT/HST/GST/CT Number is required" |
+      | <qstNumber>         | "QST Number is required"            |
+      | <subRegionTaxNumber | "Income Tax Number is required      |
 
   @minutia
-  Scenario: Participant decides to go back to step 1
+  Scenario: Participant goes back to step 1
     When they press the Back button
     Then the they are sent back to step 1
-    And they arrive at the step 1 form filled with the information initially submitted
+    And they arrive at the step 1 form with their details persisted
+    When they press "Continue" on step 1
+    Then they arrive on step 2
+    And the information they filled on step 2 is persisted
+
+  @unknown @minutia
+  Scenario Outline: Participant from another country can change the auto selected country
+    When the Country <countryAutoSelectValue> is selected with their <country> from step 1
+    And they change the Country to <newCountrySelectValue>
+    Then the Country <countryAutoSelectValue> changes to the <newCountrySelectValue>
+
+    Examples: 
+      | country | countryAutoSelectValue | newCountrySelectValue |
+      | US      | United States          | Australia             |
+      | UK      | United Kingdom         | Egypt                 |

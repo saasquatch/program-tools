@@ -111,6 +111,20 @@ Feature: Tax Form Step One
       | RUB        |
 
   @minutia
+  Scenario: Country select is searchable
+    When they press the Country select
+    Then there is a searchbar
+    And as they type
+    Then the available countries get filtered out based on their search
+
+  @minutia
+  Scenario: Currency select is searchable
+    When they press the Currency select
+    Then there is a searchbar
+    And as they type a currency abbreviation
+    Then the available currencies get filtered out based on their search
+
+  @minutia
   Scenario: Non-partner participant comes back to step 1 form after filling out and submitting
     Given they are not a partner
     When they have finished filling out the form
@@ -128,20 +142,6 @@ Feature: Tax Form Step One
     And arrive back on step 1
     Then the step 1 fields are disabled
 
-  @minutia
-  Scenario: Country select is searchable
-    When they press the Country select
-    Then there is a searchbar
-    And as they type
-    Then the available countries get filtered out based on their search
-
-  @minutia
-  Scenario: Currency select is searchable
-    When they press the Currency select
-    Then there is a searchbar
-    And as they type a currency abbreviation
-    Then the available currencies get filtered out based on their search
-
   @minutia @ui
   Scenario Outline: A user fills out Tax Form Step One with invalid values
     When they fill out the form with invalid values for the following fields:
@@ -158,7 +158,7 @@ Feature: Tax Form Step One
       | <allowBankingCollection> | This field is required |
 
   @minutia @ui
-  Scenario: The loading state is shown when the form is submitted
-    Given the form is submitted
-    Then the form fields are disabled
-    Then a loading spinner appears in the Submit button
+  Scenario: User Info Form is loading
+    When the form is loading
+    Then the form is not visible
+    And a loading spinner appears
