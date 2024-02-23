@@ -60,7 +60,26 @@ export type BankingInfoFormData = {
   branchCode?: string;
 };
 
-export function getFormMap({ props, routingCodeLabels }) {
+type RoutingCodeLabels = {
+  AU: string;
+  CA: string;
+  CZ: string;
+  HK: string;
+  SG: string;
+  US: string;
+  NZ: string;
+  ZA: string;
+  IN: string;
+  CNY: string;
+};
+
+export function getFormMap({
+  props,
+  routingCodeLabels,
+}: {
+  props: BankingInfoFormViewProps | Omit<any, "text" | "callbacks">;
+  routingCodeLabels: RoutingCodeLabels;
+}) {
   const { errors } = props.states.formState;
 
   return {
