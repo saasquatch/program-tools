@@ -1,4 +1,9 @@
-import { useLocale } from "@saasquatch/component-boilerplate";
+import {
+  useLocale,
+  useMutation,
+  useQuery,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
 import { useRef, useState } from "@saasquatch/universal-hooks";
 import JSONPointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
@@ -12,6 +17,7 @@ import { mockPaymentOptions } from "./mockData";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
 import { h } from "@stencil/core";
+import { gql } from "graphql-request";
 
 // Hardcoded in Impact backend
 export const paypalFeeMap = {
@@ -421,6 +427,37 @@ export function getFormInputs({ bitset, formMap }) {
   return inputFields;
 }
 
+const SAVE_WITHDRAWAL_SETTINGS = gql`
+  mutation setImpactPublisherWithdrawalSettings(
+    $setImpactPublisherWithdrawalSettingsInput: SetImpactPublisherWithdrawalSettingsInput!
+  ) {
+    setImpactPublisherWithdrawalSettings(
+      setImpactPublisherWithdrawalSettingsInput: $setImpactPublisherWithdrawalSettingsInput
+    ) {
+      id
+    }
+  }
+`;
+
+const GET_WITHDRAWAL_SETTINGS = gql`
+  query getUserTaxInfo {
+    user: viewer {
+      ... on User {
+        id
+        impactConnection {
+          publisher {
+            countryCode
+            currency
+            withdrawalSettings {
+
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export function useBankingInfoForm(
   props: BankingInfoForm
 ): BankingInfoFormViewProps {
@@ -429,6 +466,12 @@ export function useBankingInfoForm(
 
   const { data: userData, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+
+  const { data } = useQuery(GET_WITHDRAWAL_SETTINGS, {});
+
+  const [saveWithdrawalSettings] = useMutation(SAVE_WITHDRAWAL_SETTINGS);
+
+  const user = useUserIdentity();
 
   /** mock data */
   const [currency, setCurrency] = useState("CAD");
@@ -473,8 +516,17 @@ export function useBankingInfoForm(
     try {
       console.log({ formData });
 
+      // @ts-ignore
+      const { fixedDay, ...rest } = formData;
+
       // TODO: wire up mutation
-      // await upsertBankDetails({bankDetails:formData})
+      await saveWithdrawalSettings({
+        setImpactPublisherWithdrawalSettingsInput: {
+          userId: user.id,
+          accountId: user.accountId,
+          ...rest,
+        },
+      });
 
       // setStep("/submitted");
     } catch (e) {
@@ -565,6 +617,7 @@ export function useBankingInfoForm(
         paymentScheduleChecked,
         errors,
       },
+      currentPaymentOption,
       bitset: currentPaymentOption?.withdrawalId || 0,
       bankCountry,
       currency: userData?.user?.impactConnection?.publisher?.currency,

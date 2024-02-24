@@ -30,7 +30,7 @@ export interface BankingInfoFormViewProps {
     bankCountry?: string;
     currency?: string;
     countries?: { code: string; name: string }[];
-
+    currentPaymentOption?: any;
     showInputs?: boolean;
   };
   slots?: {

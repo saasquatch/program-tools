@@ -410,9 +410,16 @@ export class BankingInfoForm {
             ),
             paymentMethodSlot: (
               <sl-input
+                name="/paymentMethod"
+                id="paymentMethod"
                 label={props.text.paymentMethod}
                 placeholder={props.states.paymentMethodFeeLabel}
                 disabled
+                value={
+                  props.states.currentPaymentOption?.paymentMethod
+                    ? "BANK_TRANSFER"
+                    : ""
+                }
               ></sl-input>
             ),
             paymentThresholdSelectSlot: (
