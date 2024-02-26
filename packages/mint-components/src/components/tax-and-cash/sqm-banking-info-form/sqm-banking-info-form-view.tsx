@@ -115,6 +115,10 @@ const style = {
     color: "var(--sl-color-danger-500)",
     marginTop: "10px",
   },
+  PageDescriptionText: {
+    color: "var(--sl-color-neutral-500)",
+    fontSize: "var(--sl-font-size-medium)",
+  },
   DescriptionText: {
     color: "var(--sl-color-neutral-500)",
   },
@@ -198,6 +202,11 @@ const vanillaStyle = `
        margin: 0;
        padding: 0;
        box-sizing: border-box;
+    }
+
+    & sl-select::part(label) {
+      font-size: var(--sl-font-size-small);
+      font-weight: 600
     }
 
     p {
@@ -296,7 +305,9 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
         <div>
           {!states.hideSteps && <p>{text.formStep}</p>}
           <h3 style={{ fontSize: "24px" }}>{text.taxAndPayouts}</h3>
-          <p class={classes.DescriptionText}>{text.taxAndPayoutsDescription}</p>
+          <p class={classes.PageDescriptionText}>
+            {text.taxAndPayoutsDescription}
+          </p>
         </div>
         {formState.errors?.general && (
           <sl-alert type="warning" open class={sheet.classes.AlertContainer}>
