@@ -20,7 +20,7 @@ export interface BankingInfoFormViewProps {
     paymentMethodFeeLabel?: string;
     formState: {
       paymentMethodChecked?: "toBankAccount" | "toPayPalAccount";
-      paymentScheduleChecked?: "balanceThreshold" | "fixedDay";
+      paymentScheduleChecked?: "paymentThreshold" | "paymentDay";
       errors?: {
         general?: boolean;
         payPalEmail?: boolean;
@@ -45,7 +45,7 @@ export interface BankingInfoFormViewProps {
       paymentMethodChecked: "toBankAccount" | "toPayPalAccount"
     ) => void;
     setPaymentScheduleChecked: (
-      paymentMethodChecked: "balanceThreshold" | "fixedDay"
+      paymentMethodChecked: "paymentThreshold" | "paymentDay"
     ) => void;
     onSubmit: (props: any) => Promise<void>;
     setBankCountry?: (country: string) => void;
@@ -413,18 +413,18 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 class={classes.Checkbox}
                 exportparts="label: input-label"
                 checked={
-                  formState.paymentScheduleChecked === "balanceThreshold"
+                  formState.paymentScheduleChecked === "paymentThreshold"
                 }
                 onInput={() =>
-                  callbacks.setPaymentScheduleChecked("balanceThreshold")
+                  callbacks.setPaymentScheduleChecked("paymentThreshold")
                 }
                 disabled={states.disabled}
-                id="balanceThreshold"
-                name="/balanceThreshold"
+                id="paymentSchedule"
+                name="/paymentSchedule"
               >
                 {text.paymentScheduleBalanceThreshold}
               </sl-checkbox>
-              {formState.paymentScheduleChecked === "balanceThreshold" && (
+              {formState.paymentScheduleChecked === "paymentThreshold" && (
                 <div
                   class={classes.InputContainer}
                   style={states.hideBalanceThreshold ? { display: "none" } : {}}
@@ -438,15 +438,17 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               <sl-checkbox
                 class={classes.Checkbox}
                 exportparts="label: input-label"
-                checked={formState.paymentScheduleChecked === "fixedDay"}
-                onInput={() => callbacks.setPaymentScheduleChecked("fixedDay")}
+                checked={formState.paymentScheduleChecked === "paymentDay"}
+                onInput={() =>
+                  callbacks.setPaymentScheduleChecked("paymentDay")
+                }
                 disabled={states.disabled}
-                id="fixedDay"
-                name="/fixedDay"
+                id="paymentSchedule"
+                name="/paymentSchedule"
               >
                 {text.paymentScheduleFixedDay}
               </sl-checkbox>
-              {formState.paymentScheduleChecked === "fixedDay" && (
+              {formState.paymentScheduleChecked === "paymentDay" && (
                 <div
                   class={classes.InputContainer}
                   style={states.hideFixedDay ? { display: "none" } : {}}

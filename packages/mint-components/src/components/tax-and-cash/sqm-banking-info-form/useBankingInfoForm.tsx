@@ -486,7 +486,7 @@ export function useBankingInfoForm(
     "toBankAccount" | "toPayPalAccount" | undefined
   >(undefined);
   const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
-    "balanceThreshold" | "fixedDay" | undefined
+    "paymentThreshold" | "paymentDay" | undefined
   >(undefined);
 
   const onSubmit = async (event: any) => {
@@ -516,15 +516,15 @@ export function useBankingInfoForm(
     try {
       console.log({ formData });
 
-      // @ts-ignore
-      const { fixedDay, ...rest } = formData;
+      // @ts-ignore figure out what the values for paymentDay are
+      // const { paymentDay, ...rest } = formData;
 
       // TODO: wire up mutation
       await saveWithdrawalSettings({
         setImpactPublisherWithdrawalSettingsInput: {
           userId: user.id,
           accountId: user.accountId,
-          ...rest,
+          ...formData,
         },
       });
 

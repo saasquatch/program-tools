@@ -426,9 +426,9 @@ export class BankingInfoForm {
               <sl-select
                 required
                 label={props.text.paymentThresholdSelectLabel}
-                name="/balanceThreshold"
-                id="balanceThreshold"
-                {...(errors?.balanceThreshold && {
+                name="/paymentThreshold"
+                id="paymentThreshold"
+                {...(errors?.paymentThreshold && {
                   class: "error-input",
                   helpText: this.getValidationErrorMessage(
                     props.text.paymentThresholdSelectLabel
@@ -444,9 +444,9 @@ export class BankingInfoForm {
               <sl-select
                 required
                 label={props.text.paymentDaySelectLabel}
-                name="/fixedDay"
-                id="fixedDay"
-                {...(errors?.fixedDay && {
+                name="/paymentDay"
+                id="paymentDay"
+                {...(errors?.paymentDay && {
                   class: "error-input",
                   helpText: this.getValidationErrorMessage(
                     props.text.paymentDaySelectLabel
@@ -480,7 +480,7 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
     "toBankAccount" | "toPayPalAccount" | undefined
   >(undefined);
   const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
-    "balanceThreshold" | "fixedDay" | undefined
+    "paymentThreshold" | "paymentDay" | undefined
   >(undefined);
 
   const [currency, setCurrency] = useState(defaultCurrency);
@@ -555,8 +555,8 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
             bankProvinceState: false,
             bankPostalCode: false,
             branchCode: false,
-            balanceThreshold: false,
-            fixedDay: false,
+            paymentThreshold: false,
+            paymentDay: false,
           },
         },
         bitset,
