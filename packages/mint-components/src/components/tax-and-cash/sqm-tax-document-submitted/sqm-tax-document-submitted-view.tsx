@@ -132,13 +132,14 @@ const style = {
     },
     "& p": {
       margin: "0",
+      paddingTop: "2px",
+      color: "var(--sl-color-gray-500)",
     },
   },
   TaxFormDetailsContainer: {
     display: "flex",
     gap: "var(--sl-spacing-small)",
-    alignItems: "baseline",
-    flexFlow: "row wrap",
+    alignItems: "center",
   },
   NewFormButton: {
     marginTop: "var(--sl-spacing-large)",
@@ -191,7 +192,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         <sl-badge type="warning" pill>
           {text.statusTextNotVerified}
         </sl-badge>
-        <p style={{ color: "var(--sl-color-gray-500)" }}>
+        <p>
           {intl.formatMessage(
             {
               id: `badgeTextAwaitingReview`,
@@ -209,7 +210,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         <sl-badge type="success" pill>
           {text.statusTextActive}
         </sl-badge>
-        <p style={{ color: "var(--sl-color-gray-500)" }}>
+        <p>
           {intl.formatMessage(
             {
               id: `badgeTextSubmittedOn`,
@@ -230,7 +231,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
         <sl-badge type="danger" pill>
           {text.statusTextNotActive}
         </sl-badge>
-        <p style={{ color: "var(--sl-color-gray-500)" }}>{text.invalidForm}</p>
+        <p>{text.invalidForm}</p>
       </div>
     ),
   };
