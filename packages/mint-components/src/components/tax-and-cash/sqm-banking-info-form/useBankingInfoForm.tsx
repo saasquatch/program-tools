@@ -474,7 +474,7 @@ export function useBankingInfoForm(
   const user = useUserIdentity();
 
   /** mock data */
-  const [currency, setCurrency] = useState("CAD");
+  const [_currency, setCurrency] = useState("");
   /** */
 
   const formRef = useRef<HTMLFormElement>(null);
@@ -535,6 +535,9 @@ export function useBankingInfoForm(
       setLoading(false);
     }
   };
+
+  const currency =
+    _currency || userData?.user?.impactConnection?.publisher?.currency;
 
   const feeCap = paypalFeeMap[currency] || "";
 
@@ -620,10 +623,10 @@ export function useBankingInfoForm(
       currentPaymentOption,
       bitset: currentPaymentOption?.withdrawalId || 0,
       bankCountry,
-      currency: userData?.user?.impactConnection?.publisher?.currency,
+      currency,
       countries,
       hasPayPal,
-      showInputs: true,
+      showInputs: false,
       hideSteps: false,
     },
     refs: {

@@ -419,8 +419,9 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                   callbacks.setPaymentScheduleChecked("paymentThreshold")
                 }
                 disabled={states.disabled}
-                id="paymentSchedule"
-                name="/paymentSchedule"
+                id="paymentSchedulingType"
+                name="/paymentSchedulingType"
+                value={"BALANCE_THRESHOLD"}
               >
                 {text.paymentScheduleBalanceThreshold}
               </sl-checkbox>
@@ -443,8 +444,9 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                   callbacks.setPaymentScheduleChecked("paymentDay")
                 }
                 disabled={states.disabled}
-                id="paymentSchedule"
-                name="/paymentSchedule"
+                id="paymentSchedulingType"
+                name="/paymentSchedulingType"
+                value={"FIXED_DAY"}
               >
                 {text.paymentScheduleFixedDay}
               </sl-checkbox>

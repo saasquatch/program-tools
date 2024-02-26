@@ -132,7 +132,7 @@ export const mockPaymentOptions: PaymentOptions = {
       withdrawalId: 21,
     },
     {
-      country: "NE",
+      country: "NL",
       currency: "EUR",
       paymentMethod: 7,
       withdrawalId: 25,
