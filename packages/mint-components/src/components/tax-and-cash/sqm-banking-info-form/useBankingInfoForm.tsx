@@ -5,6 +5,8 @@ import {
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useRef, useState } from "@saasquatch/universal-hooks";
+import { h } from "@stencil/core";
+import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useSetParent } from "../../../utils/useParentState";
@@ -16,8 +18,6 @@ import {
 import { mockPaymentOptions } from "./mockData";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
-import { h } from "@stencil/core";
-import { gql } from "graphql-request";
 
 // Hardcoded in Impact backend
 export const paypalFeeMap = {
@@ -458,6 +458,14 @@ const GET_WITHDRAWAL_SETTINGS = gql`
   }
 `;
 
+function getPaymentMethod(paymentOption) {
+  if (paymentOption.paymentMethod === 3 || paymentOption.paymentMethod === 5)
+    return "BANK_TRANSFER";
+
+  if (paymentOption.paymentMethod === 7) return "PAYPAL";
+  return "";
+}
+
 export function useBankingInfoForm(
   props: BankingInfoForm
 ): BankingInfoFormViewProps {
@@ -524,6 +532,7 @@ export function useBankingInfoForm(
         setImpactPublisherWithdrawalSettingsInput: {
           userId: user.id,
           accountId: user.accountId,
+          paymentMethod: getPaymentMethod(currentPaymentOption),
           ...formData,
         },
       });

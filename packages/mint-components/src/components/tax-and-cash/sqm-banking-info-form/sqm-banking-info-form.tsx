@@ -410,16 +410,9 @@ export class BankingInfoForm {
             ),
             paymentMethodSlot: (
               <sl-input
-                name="/paymentMethod"
-                id="paymentMethod"
                 label={props.text.paymentMethod}
                 placeholder={props.states.paymentMethodFeeLabel}
                 disabled
-                value={
-                  props.states.currentPaymentOption?.paymentMethod
-                    ? "BANK_TRANSFER"
-                    : ""
-                }
               ></sl-input>
             ),
             paymentThresholdSelectSlot: (
@@ -453,10 +446,10 @@ export class BankingInfoForm {
                   ),
                 })}
               >
-                <sl-menu-item value="1st">
+                <sl-menu-item value={1}>
                   {props.text.paymentDayFirstOfMonthLabelText}
                 </sl-menu-item>
-                <sl-menu-item value="15th">
+                <sl-menu-item value={15}>
                   {props.text.paymentDayFifteenthOfMonthLabelText}
                 </sl-menu-item>
               </sl-select>
