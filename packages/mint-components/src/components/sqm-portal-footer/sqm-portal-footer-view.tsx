@@ -60,8 +60,11 @@ export function PortalFooterView(props: PortalFooterViewProps) {
 
     PoweredByLink: {
       color: "var(--sl-color-gray-400)",
-      "font-size": "var(--sl-font-size-xx-small)",
-      "&:hover": {
+      "font-size": "var(--sl-font-size-small)",
+      display: "flex",
+      alignItems: "center",
+      gap: "4px",
+      "&:hover, &:hover *": {
         color: "var(--sl-color-gray-900)",
       },
     },
@@ -111,7 +114,7 @@ export function PortalFooterView(props: PortalFooterViewProps) {
           target="_blank"
           href={props.poweredByLink}
         >
-          <PoweredByImg />
+          Powered with <PoweredByImg color={"currentColor"} />
         </a>
       )}
     </div>
