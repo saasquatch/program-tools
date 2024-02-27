@@ -16,14 +16,20 @@ Feature: Referral Table Reward Column
         And the status of each reward is displayed as a pill in the cell
         And rewards of <status> have a <pillColour> pill with the text <statusText>
         Examples:
-            | status         | pillColour | statusText     |
-            | Available      | green      | Available      |
-            | Pending        | orange     | Pending        |
-            | Cancelled      | red        | Cancelled      |
-            | Expired        | red        | Expired        |
-            | Redeemed       | blue       | Redeemed       |
-            | Pending Review | orange     | Pending Review |
-            | Denied         | red        | Denied         |
+            | status                   | pillColour | statusText               |
+            | Available                | green      | Available                |
+            | Pending                  | orange     | Pending                  |
+            | Pending Tax Review       | orange     | Pending Tax Review       |
+            | Pending New Tax Form     | orange     | Pending New Tax Form     |
+            | Pending Tax Submission   | orange     | Pending Tax Submission   |
+            | Pending Partner Creation | orange     | Pending Partner Creation |
+            | Cancelled                | red        | Cancelled                |
+            | Payout Failed            | red        | Payout Failed            |
+            | Expired                  | red        | Expired                  |
+            | Redeemed                 | blue       | Redeemed                 |
+            | Payout Sent              | blue       | Payout Sent              |
+            | Pending Review           | orange     | Pending Review           |
+            | Denied                   | red        | Denied                   |
 
     @motivating
     Scenario: The pending period of a referral reward is shown if it exists

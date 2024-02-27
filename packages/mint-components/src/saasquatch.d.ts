@@ -48,11 +48,14 @@ interface Reward {
   value: number;
   unit: string;
   name: string;
-  dateGiven: number;
+  dateGiven?: number;
   meta?: { message?: string };
   dateScheduledFor: number;
   dateExpires: number;
   dateCancelled: number;
+  datePayoutExpected?: number;
+  datePayoutStarted?: number;
+  datePayoutRetried?: number;
   dateRedeemed: number;
   fuelTankCode: string;
   fuelTankType: string;
