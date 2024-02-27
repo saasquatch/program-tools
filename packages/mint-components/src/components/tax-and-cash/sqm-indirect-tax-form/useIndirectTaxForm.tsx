@@ -28,7 +28,7 @@ import {
 import { IndirectTaxForm } from "./sqm-indirect-tax-form";
 
 type ConnectPartnerResult = {
-  connectImpactConnection: {
+  createImpactConnection: {
     id: string;
     accountId: string;
     impactConnection: {
@@ -194,8 +194,9 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
       await refetch();
 
+      console.log({ result });
       if (
-        (result as ConnectPartnerResult).connectImpactConnection
+        (result as ConnectPartnerResult).createImpactConnection
           ?.impactConnection?.publisher?.requiredTaxDocumentType
       ) {
         setStep("/3");
