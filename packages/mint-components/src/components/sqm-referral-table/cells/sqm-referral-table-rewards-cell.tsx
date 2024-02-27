@@ -97,6 +97,12 @@ export class ReferralTableRewardsCell {
         "AVAILABLE",
         "PENDING_REVIEW",
         "DENIED",
+        "PAYOUT_SENT",
+        "PAYOUT_FAILED",
+        "PENDING_TAX_REVIEW",
+        "PENDING_NEW_TAX_FORM",
+        "PENDING_TAX_SUBMISSION",
+        "PENDING_PARTNER_CREATION",
       ];
 
       if (reward.referral?.fraudData?.moderationStatus !== "APPROVED") {
@@ -116,13 +122,19 @@ export class ReferralTableRewardsCell {
     const getSLBadgeType = (state: string): string => {
       switch (state) {
         case "REDEEMED":
+        case "PAYOUT_SENT":
           return "primary";
         case "DENIED":
         case "EXPIRED":
         case "CANCELLED":
+        case "PAYOUT_FAILED":
           return "danger";
         case "PENDING":
         case "PENDING_REVIEW":
+        case "PENDING_TAX_REVIEW":
+        case "PENDING_NEW_TAX_FORM":
+        case "PENDING_TAX_SUBMISSION":
+        case "PENDING_PARTNER_CREATION":
           return "warning";
         case "AVAILABLE":
           return "success";
@@ -156,6 +168,8 @@ export class ReferralTableRewardsCell {
           status: state,
         }
       );
+
+      console.log(statusText);
 
       return (
         <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>
@@ -220,6 +234,11 @@ export class ReferralTableRewardsCell {
             </div>
           </div>
           <div>
+            {state === "PAYOUT_SENT" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
             {state === "PENDING_REVIEW" && reward.referral?.dateModerated && (
               <div>
                 <TextSpanView type="p">
@@ -230,6 +249,26 @@ export class ReferralTableRewardsCell {
                       .toLocaleString(DateTime.DATE_MED)}
                   </span>
                 </TextSpanView>
+              </div>
+            )}
+            {state === "PENDING_TAX_REVIEW" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
+            {state === "PENDING_NEW_TAX_FORM" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
+            {state === "PENDING_TAX_SUBMISSION" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
+            {state === "PENDING_PARTNER_CREATION" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
               </div>
             )}
             {state === "DENIED" && reward.referral?.dateModerated && (
@@ -275,6 +314,18 @@ export class ReferralTableRewardsCell {
                   {statusText}{" "}
                   <span class={sheet.classes.BoldText} part="sqm-cell-value">
                     {DateTime.fromMillis(reward.dateCancelled)
+                      .setLocale(luxonLocale(this.locale))
+                      .toLocaleString(DateTime.DATE_MED)}
+                  </span>
+                </TextSpanView>
+              </div>
+            )}
+            {state === "PAYOUT_FAILED" && reward.dateCancelled && (
+              <div>
+                <TextSpanView type="p">
+                  {statusText}{" "}
+                  <span class={sheet.classes.BoldText} part="sqm-cell-value">
+                    {DateTime.fromMillis(reward.datePayoutRetried)
                       .setLocale(luxonLocale(this.locale))
                       .toLocaleString(DateTime.DATE_MED)}
                   </span>

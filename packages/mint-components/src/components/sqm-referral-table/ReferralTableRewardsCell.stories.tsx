@@ -50,6 +50,45 @@ const baseReward: Reward = {
   },
 };
 
+const baseCashReward: Reward = {
+  id: "1234",
+  type: "CREDIT",
+  value: 50,
+  unit: "USD",
+  name: "test",
+  dateScheduledFor: getDays(),
+  dateExpires: getMonths(),
+  dateCancelled: 134400,
+  dateRedeemed: 0,
+  fuelTankCode: null,
+  fuelTankType: null,
+  currency: "USD",
+  prettyValue: "$50.00",
+  statuses: ["AVAILABLE"],
+  globalRewardKey: "Key",
+  rewardRedemptionTransactions: null,
+};
+
+const cashPayoutSentReward: Reward = {
+  id: "1234",
+  type: "CREDIT",
+  value: 50,
+  unit: "USD",
+  name: "test",
+  dateScheduledFor: getDays(),
+  dateExpires: getMonths(),
+  datePayoutExpected: getDays(),
+  dateCancelled: 134400,
+  dateRedeemed: 0,
+  fuelTankCode: null,
+  fuelTankType: null,
+  currency: "USD",
+  prettyValue: "$50.00",
+  statuses: ["AVAILABLE"],
+  globalRewardKey: "Key",
+  rewardRedemptionTransactions: null,
+};
+
 const nullExpiresIn = {
   dateExpires: null,
 };
@@ -83,6 +122,9 @@ const integrationReward = {
 const pendingReward = {
   statuses: ["AVAILABLE", "PENDING"],
 };
+const payoutSentReward = {
+  statuses: ["PAYOUT_SENT"],
+};
 const cancelledReward = {
   statuses: ["PENDING", "CANCELLED"],
   dateCancelled: 1626850800000,
@@ -94,8 +136,23 @@ const expiredReward = {
 const deniedReward = {
   statuses: ["DENIED"],
 };
+const payoutFailedReward = {
+  statuses: ["PAYOUT_FAILED"],
+};
 const pendingReviewReward = {
   statuses: ["PENDING_REVIEW"],
+};
+const pendingTaxReviewReward = {
+  statuses: ["PENDING_TAX_REVIEW"],
+};
+const pendingNewTaxFormReward = {
+  statuses: ["PENDING_NEW_TAX_FORM"],
+};
+const pendingTaxSubmissionReward = {
+  statuses: ["PENDING_TAX_SUBMISSION"],
+};
+const pendingPartnerCreationReward = {
+  statuses: ["PENDING_PARTNER_CREATION"],
 };
 const redeemedReward = {
   statuses: ["AVAILABLE", "EXPIRED", "REDEEMED"],
@@ -176,9 +233,9 @@ function getYears() {
 }
 
 const statusText =
-  "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
+  "{status, select, AVAILABLE {Available} PAYOUT_SENT {Payout Sent} CANCELLED {Cancelled} PAYOUT_FAILED {Payout Failed} PENDING {Pending} PENDING_REVIEW {Pending} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
 const statusLongText =
-  "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} DENIED {Denied on} EXPIRED {Reward expired on} REDEEMED {Redeemed}  other {Not available} }";
+  "{status, select, AVAILABLE {Reward expiring on} PAYOUT_SENT {Payout process started on datePayoutStarted. Expected payout on datePayoutExpected.} CANCELLED {Reward cancelled on} PAYOUT_FAILED {This payout will be retried on} PENDING {Available on} PENDING_REVIEW {Pending since} PENDING_TAX_REVIEW {Awaiting tax form review.} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax form to receive your rewards.} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards.} DENIED {Denied on} EXPIRED {Reward expired on} REDEEMED {Redeemed}  other {Not available} }";
 
 export const PendingNoUnpend = () => {
   return (
@@ -430,6 +487,21 @@ export const Redeemed = () => {
   );
 };
 
+export const PayoutSent = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...cashPayoutSentReward, ...payoutSentReward }]}
+      statusText={statusText}
+      statusLongText={statusLongText}
+      fuelTankText="Your code is"
+      rewardReceivedText="Reward received on"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
 export const Cancelled = () => {
   return (
     <sqm-referral-table-rewards-cell
@@ -475,6 +547,28 @@ export const Denied = () => {
   );
 };
 
+export const PayoutFailed = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[
+        {
+          ...cashPayoutSentReward,
+          ...payoutFailedReward,
+          datePayoutRetried: getDays(),
+          dateGiven: null,
+        },
+      ]}
+      statusText={statusText}
+      statusLongText={statusLongText}
+      fuelTankText="Your code is"
+      rewardReceivedText="Reward received on"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
 export const PendingReview = () => {
   return (
     <sqm-referral-table-rewards-cell
@@ -483,6 +577,66 @@ export const PendingReview = () => {
       statusLongText={statusLongText}
       fuelTankText="Your code is"
       rewardReceivedText="Reward received on"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const PendingTaxReview = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseCashReward, ...pendingTaxReviewReward }]}
+      statusText={statusText}
+      statusLongText={statusLongText}
+      fuelTankText="Your code is"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+export const PendingNewTaxForm = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseCashReward, ...pendingNewTaxFormReward }]}
+      statusText={statusText}
+      statusLongText={statusLongText}
+      fuelTankText="Your code is"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const PendingTaxSubmission = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseCashReward, ...pendingTaxSubmissionReward }]}
+      statusText={statusText}
+      statusLongText={statusLongText}
+      fuelTankText="Your code is"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const PendingPartnerCreation = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[
+        {
+          ...baseCashReward,
+          ...pendingPartnerCreationReward,
+        },
+      ]}
+      statusText={statusText}
+      statusLongText={statusLongText}
+      fuelTankText="Your code is"
       expiringText="Expiring in"
       pendingForText="{status} for {date}"
       deniedHelpText="Contact support if you think this is a mistake."
