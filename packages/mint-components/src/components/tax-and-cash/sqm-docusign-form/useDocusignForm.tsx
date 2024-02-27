@@ -15,6 +15,8 @@ import {
 } from "../sqm-tax-and-cash/data";
 import { DocusignStatus } from "./docusign-iframe/DocusignIframe";
 import { DocusignForm } from "./sqm-docusign-form";
+import { taxTypeToName } from "../utils";
+import { autoColorScaleCss } from "../../sqm-stencilbook/AutoColor";
 
 type CreateTaxDocumentQuery = {
   createImpactPublisherTaxDocument: {
@@ -135,7 +137,6 @@ export function useDocusignForm(props: DocusignForm) {
       return;
     }
 
-    // TODO: Check document is actually registered in the backend
     try {
       setLoading(true);
 
@@ -180,6 +181,7 @@ export function useDocusignForm(props: DocusignForm) {
       },
       docusignStatus,
       documentType: actualDocumentType,
+      documentTypeString: taxTypeToName(actualDocumentType),
       hideBackButton: !context.overrideBackStep,
     },
     data: {

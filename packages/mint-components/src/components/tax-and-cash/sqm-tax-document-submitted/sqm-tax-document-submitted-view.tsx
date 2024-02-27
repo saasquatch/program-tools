@@ -11,6 +11,7 @@ export interface TaxDocumentSubmittedProps {
   states: {
     status?: string;
     documentType: TaxDocumentType | undefined;
+    documentTypeString: string;
     disabled?: boolean;
     dateSubmitted?: string;
     expiresSoon?: boolean;
@@ -250,7 +251,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                   : text.taxAlertHeaderNotActiveW8,
             },
             {
-              documentType: states.documentType,
+              documentType: states.documentTypeString,
             }
           )}
         </strong>
@@ -264,7 +265,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                 : text.taxAlertNotActiveMessageW8,
           },
           {
-            documentType: states.documentType,
+            documentType: states.documentTypeString,
           }
         )}
       </sl-alert>
@@ -440,7 +441,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                               defaultMessage: text.taxDocumentSectionSubHeader,
                             },
                             {
-                              documentType: states.documentType,
+                              documentType: states.documentTypeString,
                             }
                           )}
                         </h4>

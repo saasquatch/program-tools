@@ -21,6 +21,7 @@ export interface DocusignFormViewProps {
       };
     };
     documentType: TaxDocumentType;
+    documentTypeString: string;
     hideBackButton: boolean;
   };
   slots: {
@@ -194,7 +195,7 @@ const vanillaStyle = `
 export const DocusignFormView = (props: DocusignFormViewProps) => {
   const {
     states,
-    states: { formState, documentType },
+    states: { formState, documentTypeString },
     callbacks,
     text,
     slots,
@@ -267,7 +268,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             <h5 class={classes.BoldText}>
               {intl.formatMessage(
                 { id: "tax-form-label", defaultMessage: text.taxFormLabel },
-                { documentType: states.documentType }
+                { documentType: documentTypeString }
               )}
             </h5>
             <p>
@@ -281,7 +282,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
                       ? text.taxFormDescriptionIndividualParticipant
                       : text.taxFormDescriptionBusinessEntity,
                 },
-                { documentType: states.documentType }
+                { documentType: documentTypeString }
               )}
             </p>
           </div>

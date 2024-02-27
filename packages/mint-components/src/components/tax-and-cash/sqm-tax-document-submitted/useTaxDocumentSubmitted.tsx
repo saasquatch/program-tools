@@ -15,6 +15,7 @@ import { TaxDocumentSubmitted } from "./sqm-tax-document-submitted";
 import { TaxDocumentSubmittedProps } from "./sqm-tax-document-submitted-view";
 import { useLocale } from "@saasquatch/component-boilerplate";
 import { Upcoming } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
+import { taxTypeToName } from "../utils";
 
 function getExpiresSoon(submissionDate: number, expiryDate: number) {
   if (!submissionDate || !expiryDate) return false;
@@ -43,10 +44,8 @@ export const useTaxDocumentSubmitted = (
 
   const { data, loading } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+
   const publisher = data?.user?.impactConnection?.publisher;
-
-  // TODO: Fetch document status from backend
-
   const documentType = publisher?.currentTaxDocument?.type;
   const submissionDate = DateTime.now().toMillis();
   const dateSubmitted =
@@ -84,6 +83,7 @@ export const useTaxDocumentSubmitted = (
     states: {
       dateSubmitted,
       documentType,
+      documentTypeString: taxTypeToName(documentType),
       status: publisher?.currentTaxDocument?.status,
       //AL TODO ADD SUB-REGION
       subRegion: "",

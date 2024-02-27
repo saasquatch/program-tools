@@ -254,6 +254,7 @@ function useDemoTaxDocumentSubmitted(
       states: {
         dateSubmitted: undefined,
         documentType: undefined,
+        documentTypeString: "",
         status: undefined,
         noFormNeeded: true,
         expiresSoon: false,

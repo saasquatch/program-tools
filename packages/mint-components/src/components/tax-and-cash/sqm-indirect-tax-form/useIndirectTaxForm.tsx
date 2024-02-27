@@ -166,13 +166,13 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
       const fields = {
         indirectTaxOption: taxOption,
-        indirectTaxCountry: formData.selectedRegion, // TODO: May need formatting
+        indirectTaxCountry: formData.selectedRegion,
         indirectTaxSubdivision: formData.province || formData.subRegion,
         indirectTaxId: formData.indirectTaxNumber,
         additionalTaxId: formData.qstNumber,
         withholdingTaxCountry:
           option !== "notRegistered" &&
-          formState.selectedRegion === "SPAIN" &&
+          formState.selectedRegion === "ES" &&
           formState.hasSubRegionTaxNumber
             ? "SPAIN"
             : undefined,
@@ -185,7 +185,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
           accountId: user.accountId,
           firstName: userForm.firstName,
           lastName: userForm.lastName,
-          countryCode: userForm.countryCode, // TODO: May need formatting
+          countryCode: userForm.countryCode,
           currency: userForm.currency,
           ...fields,
         },
@@ -237,7 +237,6 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
         })),
     },
     data: {
-      // TODO: Confirm
       esRegions: INDIRECT_TAX_SPAIN_REGIONS,
       countries: _countries?.impactPayoutCountries?.data,
       provinces: INDIRECT_TAX_PROVINCES,

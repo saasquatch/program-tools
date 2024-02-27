@@ -308,7 +308,6 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
       case "ES":
         return <SpainFields />;
       default:
-        // TODO: Pass in proper tax type for countries
         return (
           <sl-input
             required
