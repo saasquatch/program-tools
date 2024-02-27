@@ -516,8 +516,9 @@ export function useBankingInfoForm(
         },
       });
 
-      // setStep("/submitted");
+      setStep("/submitted");
     } catch (e) {
+      console.error(e);
       setErrors({ general: true });
     } finally {
       setLoading(false);
@@ -561,7 +562,6 @@ export function useBankingInfoForm(
 
   // build list of country codes and names
   const countries = Array.from(availableCountries)?.map((country) => {
-    console.log({ country });
     // @ts-ignore DisplayNames not in Intl type
     const name = new Intl.DisplayNames([intlLocale], {
       type: "region",

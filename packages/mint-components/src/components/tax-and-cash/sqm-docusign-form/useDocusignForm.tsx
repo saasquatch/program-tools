@@ -121,7 +121,7 @@ export function useDocusignForm(props: DocusignForm) {
     if (DOCUSIGN_ERROR_STATES.includes(docusignStatus)) return;
 
     if (DOCUSIGN_SUCCESS_STATES.includes(docusignStatus)) {
-      setPath("/submitted");
+      setPath("/4");
     }
 
     if (DOCUSIGN_ERROR_STATES.includes(docusignStatus)) {
@@ -151,7 +151,7 @@ export function useDocusignForm(props: DocusignForm) {
         console.log("Document has been registered as submitted");
       }
 
-      setPath(context.overrideNextStep || "/submitted");
+      setPath(context.overrideNextStep || "/4");
     } catch (e) {
       setErrors({ formSubission: { status: "document-error" } });
     } finally {

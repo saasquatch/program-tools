@@ -58,6 +58,28 @@ export const GET_USER = gql`
               type
               dateCreated
             }
+            withdrawalSettings {
+              paypalEmailAddress
+              bankCountry
+              beneficiaryAccountName
+              beneficiaryClassification
+              beneficiaryAlternativeName
+              beneficiaryTaxPayerId
+              bankAccountType
+              bankAccountNumber
+              swiftCode
+              routingCode
+              voCode
+              agencyCode
+              bankAddress
+              bankPostalCode
+              bankCity
+              bankState
+              branchCode
+              paymentSchedulingType
+              paymentThreshold
+              paymentDay
+            }
           }
         }
       }
@@ -75,6 +97,33 @@ type ImpactPublisher = {
     status: TaxDocumentStatus;
     type: TaxDocumentType;
     dateCreated: number;
+  };
+  withdrawalSettings: {
+    paypalEmailAddress: string | null;
+    bankCountry: string | null;
+    beneficiaryAccountName: string | null;
+    beneficiaryClassification:
+      | "BUSINESS"
+      | "INDIVIDUAL"
+      | "CPF"
+      | "CNPJ"
+      | null;
+    beneficiaryAlternativeName: string | null;
+    beneficiaryTaxPayerId: string | null;
+    bankAccountType: "CHECKING" | "SAVINGS" | "NOT_SET";
+    bankAccountNumber: string | null;
+    swiftCode: string | null;
+    routingCode: string | null;
+    voCode: string | null;
+    agencyCode: string | null;
+    bankAddress: string | null;
+    bankPostalCode: string | null;
+    bankCity: string | null;
+    bankState: string | null;
+    branchCode: string | null;
+    paymentSchedulingType: "BALANCE_THRESHOLD" | "FIXED_DAY";
+    paymentThreshold: string | null;
+    paymentDay: string | null;
   };
 
   // TODO: Remove this comment when these fields exist

@@ -34,6 +34,8 @@ import {
 } from "./data";
 
 function getCurrentStep(user: UserQuery["user"]) {
+  // TODO: include banking form step as a case
+
   if (
     !user.impactConnection ||
     user.impactConnection?.connectionStatus === "NOT_CONNECTED" ||
@@ -42,26 +44,30 @@ function getCurrentStep(user: UserQuery["user"]) {
     return "/1";
   }
 
-  // Prioritise sending them to dashboard if no required document
-  if (!user.impactConnection.publisher.requiredTaxDocumentType) {
+  const { requiredTaxDocumentType, currentTaxDocument, withdrawalSettings } =
+    user.impactConnection.publisher;
+
+  if (
+    !requiredTaxDocumentType ||
+    currentTaxDocument?.status === "NOT_VERIFIED" ||
+    currentTaxDocument?.status === "ACTIVE"
+  ) {
     return "/submitted";
   }
 
   // If they do have a required document, look at current document
-  if (user.impactConnection.publisher.currentTaxDocument) {
-    const { status } = user.impactConnection.publisher?.currentTaxDocument;
-
-    if (status === "ACTIVE" || status === "NOT_VERIFIED") return "/submitted";
-
+  if (
+    requiredTaxDocumentType &&
+    (!currentTaxDocument ||
+      currentTaxDocument?.status === "INACTIVE" ||
+      currentTaxDocument?.status === "NEW")
+  ) {
     return "/3";
   }
 
-  if (user.impactConnection.publisher.requiredTaxDocumentType) {
-    return "/3";
-  }
+  if (!withdrawalSettings) return "/4";
 
-  // Catchall
-  return "/error";
+  return "/submitted";
 }
 
 export function useTaxAndCash() {
@@ -70,9 +76,9 @@ export function useTaxAndCash() {
   function setupDemo() {
     // coleton
     const id =
-      "8e8613f156efabb26aa499d52a3e4ce5b7c627b4033a0f6523f476f3863665bc";
+      "d90b4866e9f8cb43356472fe793cea5428255ef2d87273469a074419334abdb0";
     const accountId =
-      "8e8613f156efabb26aa499d52a3e4ce5b7c627b4033a0f6523f476f3863665bc";
+      "d90b4866e9f8cb43356472fe793cea5428255ef2d87273469a074419334abdb0";
 
     // andy
     // const id =
@@ -99,7 +105,7 @@ export function useTaxAndCash() {
       setUserIdentity({
         accountId,
         id,
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiOGU4NjEzZjE1NmVmYWJiMjZhYTQ5OWQ1MmEzZTRjZTViN2M2MjdiNDAzM2EwZjY1MjNmNDc2ZjM4NjM2NjViYyIsImFjY291bnRJZCI6IjhlODYxM2YxNTZlZmFiYjI2YWE0OTlkNTJhM2U0Y2U1YjdjNjI3YjQwMzNhMGY2NTIzZjQ3NmYzODYzNjY1YmMifX0.pmLeLxR80-BxbQqGcvVqyxM491AfbhsvJ6aeXP7ZY40",
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiZDkwYjQ4NjZlOWY4Y2I0MzM1NjQ3MmZlNzkzY2VhNTQyODI1NWVmMmQ4NzI3MzQ2OWEwNzQ0MTkzMzRhYmRiMCIsImFjY291bnRJZCI6ImQ5MGI0ODY2ZTlmOGNiNDMzNTY0NzJmZTc5M2NlYTU0MjgyNTVlZjJkODcyNzM0NjlhMDc0NDE5MzM0YWJkYjAifX0.xa1sXn7misRjRCiJBPGEekZmqzfHXOb5esO9WZjWZUw",
       });
     }, []);
 
@@ -122,7 +128,7 @@ export function useTaxAndCash() {
     // }, []);
   }
 
-  // setupDemo();
+  setupDemo();
 
   /** END DEMO DATA */
 

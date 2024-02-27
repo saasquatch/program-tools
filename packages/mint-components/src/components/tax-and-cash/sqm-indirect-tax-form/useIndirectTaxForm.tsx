@@ -199,9 +199,11 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
         (result as ConnectPartnerResult).createImpactConnection
           ?.impactConnection?.publisher?.requiredTaxDocumentType
       ) {
+        // Go to docusign form
         setStep("/3");
       } else {
-        setStep("/submitted");
+        // Go to banking information form
+        setStep("/4");
       }
     } catch (e) {
       setErrors({ general: true });
