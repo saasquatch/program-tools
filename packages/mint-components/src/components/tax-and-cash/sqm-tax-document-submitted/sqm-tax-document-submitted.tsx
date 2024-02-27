@@ -234,14 +234,13 @@ export class TaxDocumentSubmitted {
     const props = isDemo()
       ? useDemoTaxDocumentSubmitted(this)
       : useTaxDocumentSubmitted(this);
-
     return (
       <Host>
         <TaxDocumentSubmittedView
           callbacks={props.callbacks}
           states={props.states}
           text={props.text}
-          slots={props.slots}
+          slots={{ payoutDetailsCardSlot: <Upcoming /> }}
         />
       </Host>
     );
