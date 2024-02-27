@@ -481,13 +481,15 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
 
   const currentPaymentOption = mockPaymentOptions[currency]?.find(
     (paymentOption) => {
-      if (paymentOption.country === bankCountry) return true;
+      if (paymentOption.countryCode === bankCountry) return true;
       return false;
     }
   );
 
   const bitset =
-    currentPaymentOption?.withdrawalId || props.demoData?.states?.bitset || 0;
+    currentPaymentOption?.withdrawalSettingId ||
+    props.demoData?.states?.bitset ||
+    0;
 
   console.log("demo hook", {
     demoData: props.demoData,
@@ -512,11 +514,11 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
     ACH: "EFT Withdrawal (free)",
     WIRE: `FX Wire (Processing Fee ${currency}${
       currentPaymentOption?.defaultFxFee || 0
-    })`,
+    }.00)`,
   };
 
   const paymentMethodFeeLabel =
-    paymentMethodFeeMap[currentPaymentOption?.paymentMethod];
+    paymentMethodFeeMap[currentPaymentOption?.defaultFinancePaymentMethodId];
 
   return deepmerge(
     {

@@ -225,6 +225,7 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
       callbacks: {
         setCurrencySearch: (c) => console.log(c),
         setCountrySearch: (c) => console.log(c),
+        onFormChange: () => {},
       },
       states: {
         disabled: false,

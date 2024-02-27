@@ -356,7 +356,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             id="selectedRegion"
             name="/selectedRegion"
           >
-            {props.data.countries!.map((c) => (
+            {props.data.countries?.map((c) => (
               <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
             ))}
           </sl-select>

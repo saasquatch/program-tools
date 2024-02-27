@@ -1,14 +1,13 @@
 import { useUserIdentity } from "@saasquatch/component-boilerplate";
 import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
-import { gql } from "graphql-request";
 import jsonpointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
-  COUNTRIES_NAMESPACE,
+  COUNTRIES_QUERY_NAMESPACE,
   CURRENCIES_NAMESPACE,
   CountriesQuery,
-  CurrenciesQuery,
+  Currencies,
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
   TaxContext,
@@ -17,8 +16,8 @@ import {
   UserFormContext,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
-import { TaxForm } from "./sqm-user-info-form";
 import { objectIsFull } from "../utils";
+import { TaxForm } from "./sqm-user-info-form";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -54,7 +53,9 @@ export function useUserInfoForm(props: TaxForm) {
   const [formErrors, setErrors] = useState({});
 
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
-  const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
+  const [context, setContext] = useParent<TaxContext>(
+    TAX_FORM_CONTEXT_NAMESPACE
+  );
   const [userFormContext, setUserFormContext] = useParent<UserFormContext>(
     USER_FORM_CONTEXT_NAMESPACE
   );
@@ -62,12 +63,11 @@ export function useUserInfoForm(props: TaxForm) {
   const { data, loading } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
   const { data: countriesRes, loading: countriesLoading } =
-    useParentQueryValue<CountriesQuery>(COUNTRIES_NAMESPACE);
-  const { data: currenciesRes, loading: loadingCurrencies } =
-    useParentQueryValue<CurrenciesQuery>(CURRENCIES_NAMESPACE);
+    useParentQueryValue<CountriesQuery>(COUNTRIES_QUERY_NAMESPACE);
 
-  const countries = countriesRes?.impactPartnerCountries?.data;
-  const currencies = currenciesRes?.currencies?.data;
+  const countries = countriesRes?.impactPayoutCountries?.data;
+
+  const currencies = useParentValue<Currencies>(CURRENCIES_NAMESPACE);
 
   useEffect(() => {
     const user = data?.user;
@@ -85,13 +85,13 @@ export function useUserInfoForm(props: TaxForm) {
         countryCode: user.impactConnection.publisher.countryCode,
         currency: user.impactConnection.publisher.currency,
       });
-    } else {
+    } else if (!userFormContext?.email) {
       // Initialise with user information
       setUserFormContext({
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-        countryCode: user.countryCode,
+        countryCode: user.countryCode || "US",
         currency: user.customFields?.currency,
       });
     }
@@ -105,7 +105,17 @@ export function useUserInfoForm(props: TaxForm) {
     currencies || []
   );
 
+  const onFormChange = (field: string, e: CustomEvent) => {
+    const value = e.detail?.item?.__value;
+    if (!value) console.error("Could not detect select change");
+    setUserFormContext({
+      ...userFormContext,
+      [field]: value,
+    });
+  };
+
   useEffect(() => {
+    if (!countries?.length) return;
     if (countrySearch.trim() === "") {
       setFilteredCountries(countries || []);
     } else {
@@ -118,6 +128,7 @@ export function useUserInfoForm(props: TaxForm) {
   }, [countrySearch, countries]);
 
   useEffect(() => {
+    if (!currencies?.length) return;
     if (currencySearch.trim() === "") {
       setFilteredCurrencies(currencies || []);
     } else {
@@ -185,6 +196,7 @@ export function useUserInfoForm(props: TaxForm) {
     callbacks: {
       setCurrencySearch,
       setCountrySearch,
+      onFormChange,
     },
     refs: {
       formRef,

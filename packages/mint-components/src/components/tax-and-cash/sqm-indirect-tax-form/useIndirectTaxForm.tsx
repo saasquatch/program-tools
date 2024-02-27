@@ -8,7 +8,7 @@ import JSONPointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParentValue, useSetParent } from "../../../utils/useParentState";
 import {
-  COUNTRIES_NAMESPACE,
+  COUNTRIES_QUERY_NAMESPACE,
   CountriesQuery,
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
@@ -81,7 +81,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   const { data: userData, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
   const { data: _countries, loading: countriesLoading } =
-    useParentQueryValue<CountriesQuery>(COUNTRIES_NAMESPACE);
+    useParentQueryValue<CountriesQuery>(COUNTRIES_QUERY_NAMESPACE);
 
   const [option, setOption] = useState<
     "hstCanada" | "otherRegion" | "notRegistered"
@@ -90,7 +90,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
   useEffect(() => {
     const _option = getOption(
-      _countries?.impactPartnerCountries?.data,
+      _countries?.impactPayoutCountries?.data,
       userForm.countryCode
     );
     setOption(_option);
@@ -239,7 +239,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     data: {
       // TODO: Confirm
       esRegions: INDIRECT_TAX_SPAIN_REGIONS,
-      countries: _countries?.impactPartnerCountries?.data,
+      countries: _countries?.impactPayoutCountries?.data,
       provinces: INDIRECT_TAX_PROVINCES,
     },
     text: props.getTextProps(),

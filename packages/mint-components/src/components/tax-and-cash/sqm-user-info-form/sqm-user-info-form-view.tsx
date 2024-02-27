@@ -40,6 +40,7 @@ export interface UserInfoFormViewProps {
     setCurrencySearch: (c: any) => void;
     setCountrySearch: (c: any) => void;
     onSubmit: (props: any) => void;
+    onFormChange: (field: string, e: CustomEvent) => void;
   };
   text: {
     formStep: string;
@@ -286,6 +287,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   }
                 : {})}
               required
+              onSl-select={(e) => callbacks.onFormChange("countryCode", e)}
             >
               <sl-input
                 class={classes.SearchInput}

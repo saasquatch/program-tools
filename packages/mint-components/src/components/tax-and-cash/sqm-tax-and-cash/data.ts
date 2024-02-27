@@ -8,9 +8,15 @@ export const USER_QUERY_NAMESPACE = "sq:user-info-query";
 
 export const USER_FORM_CONTEXT_NAMESPACE = "sq:user-form-context";
 
-export const COUNTRIES_NAMESPACE = "sq:countries-list";
+export const FINANCE_NETWORK_SETTINGS_NAMESPACE = "sq:finance-network-settings";
+
+export const COUNTRIES_NAMESPACE = "sq:countries:list";
+
+export const COUNTRIES_QUERY_NAMESPACE = "sq:countries:query";
 
 export const CURRENCIES_NAMESPACE = "sq:currencies:list";
+
+export const CURRENCIES_QUERY_NAMESPACE = "sq:currencies:query";
 
 export type TaxDocumentType = "W9" | "W8BEN" | "W8BENE";
 
@@ -102,7 +108,7 @@ export type UserQuery = {
 
 export const GET_COUNTRIES = gql`
   query getCountries {
-    impactPartnerCountries(limit: 1000) {
+    impactPayoutCountries(limit: 1000) {
       data {
         countryCode
         displayName
@@ -116,7 +122,7 @@ export type TaxCountry = {
   displayName: string;
 };
 export type CountriesQuery = {
-  impactPartnerCountries: {
+  impactPayoutCountries: {
     data: TaxCountry[];
   };
 };
@@ -132,11 +138,47 @@ export const GET_CURRENCIES = gql`
   }
 `;
 
+export type Currencies = {
+  displayName: string;
+  currencyCode: string;
+}[];
+
 export type CurrenciesQuery = {
-  currencies: {
+  currencies: { data: Currencies };
+};
+
+export type FinanceNetworkSettingsQuery = {
+  impactFinanceNetworkSettings: {
     data: {
-      displayName: string;
-      currencyCode: string;
+      countryCode: string;
+      currency: string;
+      defaultFinancePaymentMethodId: number;
+      thresholdOptions: string;
+      withdrawalSettingId: number;
+      internationalEftFee: number;
+      foreignFxFee: number;
+      defaultFxFee: number;
     }[];
+    totalCount: number;
   };
 };
+
+export const GET_FINANCE_NETWORK_SETTINGS = gql`
+  query impactFinanceNetworkSettings(
+    $filter: ImpactFinanceNetworkSettingsFilterInput
+  ) {
+    impactFinanceNetworkSettings(filter: $filter, limit: 1000) {
+      data {
+        countryCode
+        currency
+        defaultFinancePaymentMethodId
+        thresholdOptions
+        withdrawalSettingId
+        internationalEftFee
+        foreignFxFee
+        defaultFxFee
+      }
+      totalCount
+    }
+  }
+`;

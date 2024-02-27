@@ -1,7 +1,6 @@
 import {
   useLocale,
   useMutation,
-  useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useRef, useState } from "@saasquatch/universal-hooks";
@@ -11,11 +10,12 @@ import JSONPointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useSetParent } from "../../../utils/useParentState";
 import {
+  FINANCE_NETWORK_SETTINGS_NAMESPACE,
+  FinanceNetworkSettingsQuery,
   TAX_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
-import { mockPaymentOptions } from "./mockData";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
 
@@ -439,25 +439,6 @@ const SAVE_WITHDRAWAL_SETTINGS = gql`
   }
 `;
 
-const GET_WITHDRAWAL_SETTINGS = gql`
-  query getUserTaxInfo {
-    user: viewer {
-      ... on User {
-        id
-        impactConnection {
-          publisher {
-            countryCode
-            currency
-            withdrawalSettings {
-
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 function getPaymentMethod(paymentOption) {
   if (paymentOption.paymentMethod === 3 || paymentOption.paymentMethod === 5)
     return "BANK_TRANSFER";
@@ -474,8 +455,6 @@ export function useBankingInfoForm(
 
   const { data: userData, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
-
-  const { data } = useQuery(GET_WITHDRAWAL_SETTINGS, {});
 
   const [saveWithdrawalSettings] = useMutation(SAVE_WITHDRAWAL_SETTINGS);
 
@@ -550,36 +529,39 @@ export function useBankingInfoForm(
 
   const feeCap = paypalFeeMap[currency] || "";
 
-  const currentPaymentOption = mockPaymentOptions[currency]?.find(
-    (paymentOption) => {
-      if (paymentOption.country === bankCountry) return true;
-      return false;
-    }
+  // const paymentOptions = mockPaymentOptions[currency];
+  // paymentOptions;
+  const paymentOptionsRes = useParentQueryValue<FinanceNetworkSettingsQuery>(
+    FINANCE_NETWORK_SETTINGS_NAMESPACE
   );
+
+  const paymentOptions =
+    paymentOptionsRes?.data?.impactFinanceNetworkSettings?.data;
+
+  const currentPaymentOption = paymentOptions?.find((paymentOption) => {
+    if (paymentOption.countryCode === bankCountry) return true;
+    return false;
+  });
 
   const paymentMethodFeeMap = {
     [ACH_PAYMENT_METHOD]: "EFT Withdrawal (free)",
     [WIRE_PAYMENT_METHOD]: `FX Wire (Processing Fee ${currency}${
       currentPaymentOption?.defaultFxFee || 0
-    })`,
+    }.00)`,
   };
   const paymentMethodFeeLabel =
-    paymentMethodFeeMap[currentPaymentOption?.paymentMethod];
-
-  console.log({ userData });
+    paymentMethodFeeMap[currentPaymentOption?.defaultFinancePaymentMethodId];
 
   const intlLocale = locale?.replace("_", "-") || "en";
 
-  const paymentOptions = mockPaymentOptions[currency];
-  paymentOptions;
-
-  // filter out any duplicate countries
+  // filter out any duplicate countries and null countryCode
   const availableCountries = new Set(
-    paymentOptions.map((option) => option.country)
+    paymentOptions?.map((option) => option.countryCode).filter((value) => value)
   );
 
   // build list of country codes and names
   const countries = Array.from(availableCountries)?.map((country) => {
+    console.log({ country });
     // @ts-ignore DisplayNames not in Intl type
     const name = new Intl.DisplayNames([intlLocale], {
       type: "region",
@@ -591,8 +573,10 @@ export function useBankingInfoForm(
     };
   });
 
-  const hasPayPal = !!paymentOptions.find(
-    (option) => option.paymentMethod === PAYPAL_PAYMENT_METHOD
+  console.log({ currentPaymentOption, paymentOptions, availableCountries });
+
+  const hasPayPal = !!paymentOptions?.find(
+    (option) => option.defaultFinancePaymentMethodId === PAYPAL_PAYMENT_METHOD
   );
 
   const paymentMethodChecked = !hasPayPal
@@ -630,7 +614,7 @@ export function useBankingInfoForm(
         errors,
       },
       currentPaymentOption,
-      bitset: currentPaymentOption?.withdrawalId || 0,
+      bitset: currentPaymentOption?.withdrawalSettingId || 0,
       bankCountry,
       currency,
       countries,
