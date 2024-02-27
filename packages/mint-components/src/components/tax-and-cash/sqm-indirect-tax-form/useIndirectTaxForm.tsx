@@ -185,7 +185,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
           accountId: user.accountId,
           firstName: userForm.firstName,
           lastName: userForm.lastName,
-          country: userForm.countryCode, // TODO: May need formatting
+          countryCode: userForm.countryCode, // TODO: May need formatting
           currency: userForm.currency,
           ...fields,
         },

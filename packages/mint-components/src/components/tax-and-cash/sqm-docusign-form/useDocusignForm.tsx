@@ -31,7 +31,7 @@ const GET_TAX_DOCUMENT = gql`
     $vars: CreateImpactPublisherTaxDocumentInput!
   ) {
     createImpactPublisherTaxDocument(
-      createImpactPartnerTaxDocumentInput: $vars
+      createImpactPublisherTaxDocumentInput: $vars
     ) {
       documentUrl
     }

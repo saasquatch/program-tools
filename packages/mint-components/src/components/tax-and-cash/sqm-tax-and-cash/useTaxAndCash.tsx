@@ -49,10 +49,14 @@ function getCurrentStep(user: UserQuery["user"]) {
 
   // If they do have a required document, look at current document
   if (user.impactConnection.publisher.currentTaxDocument) {
-    const { status } = user.impactConnection.publisher.currentTaxDocument;
+    const { status } = user.impactConnection.publisher?.currentTaxDocument;
 
     if (status === "ACTIVE" || status === "NOT_VERIFIED") return "/submitted";
 
+    return "/3";
+  }
+
+  if (user.impactConnection.publisher.requiredTaxDocumentType) {
     return "/3";
   }
 
@@ -62,34 +66,19 @@ function getCurrentStep(user: UserQuery["user"]) {
 
 export function useTaxAndCash() {
   const host = useHost();
-  /**** DEMO DATA */
-
-  // const id = "35cc9b5e816bb014554f71bd231f6edb238a6b447cb6169c75aef36a5332f64f";
-  // const accountId =
-  //   "35cc9b5e816bb014554f71bd231f6edb238a6b447cb6169c75aef36a5332f64f";
-  // const programId = "22514";
-
-  // //@ts-ignore
-  // window.widgetIdent = {
-  //   tenantAlias: "aprh0cfq6y8tk",
-  //   appDomain: "https://staging.referralsaasquatch.com",
-  //   programId,
-  // };
-
-  // useEffect(() => {
-  //   setUserIdentity({
-  //     accountId,
-  //     id,
-  //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiMzVjYzliNWU4MTZiYjAxNDU1NGY3MWJkMjMxZjZlZGIyMzhhNmI0NDdjYjYxNjljNzVhZWYzNmE1MzMyZjY0ZiIsImFjY291bnRJZCI6IjM1Y2M5YjVlODE2YmIwMTQ1NTRmNzFiZDIzMWY2ZWRiMjM4YTZiNDQ3Y2I2MTY5Yzc1YWVmMzZhNTMzMmY2NGYifX0.wEtr7mDQ-3yedKPxMRuWhmAg4x5kGvspHG1m1DYN3-Y",
-  //   });
-  // }, []);
 
   function setupDemo() {
-    // andy
+    // coleton
     const id =
-      "64fdeb7347c94ab69bb5ff4c788ca78c0ba127cdc374a8300157250b1643767b";
+      "7f74c2bf33eb45f5c2bec89bd53d2667813c0c7aa76b5a22625014b983cca39d";
     const accountId =
-      "64fdeb7347c94ab69bb5ff4c788ca78c0ba127cdc374a8300157250b1643767b";
+      "7f74c2bf33eb45f5c2bec89bd53d2667813c0c7aa76b5a22625014b983cca39d";
+
+    // andy
+    // const id =
+    //   "64fdeb7347c94ab69bb5ff4c788ca78c0ba127cdc374a8300157250b1643767b";
+    // const accountId =
+    //   "64fdeb7347c94ab69bb5ff4c788ca78c0ba127cdc374a8300157250b1643767b";
 
     // sam
     // const id =
@@ -105,14 +94,23 @@ export function useTaxAndCash() {
       programId,
     };
 
-    // andy
+    // coleton
     useEffect(() => {
       setUserIdentity({
         accountId,
         id,
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNjRmZGViNzM0N2M5NGFiNjliYjVmZjRjNzg4Y2E3OGMwYmExMjdjZGMzNzRhODMwMDE1NzI1MGIxNjQzNzY3YiIsImFjY291bnRJZCI6IjY0ZmRlYjczNDdjOTRhYjY5YmI1ZmY0Yzc4OGNhNzhjMGJhMTI3Y2RjMzc0YTgzMDAxNTcyNTBiMTY0Mzc2N2IifX0.rSeFVjrPvRlO_m4skwgnvJNbWfnIM7f_q2tfqo4R0pU",
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiN2Y3NGMyYmYzM2ViNDVmNWMyYmVjODliZDUzZDI2Njc4MTNjMGM3YWE3NmI1YTIyNjI1MDE0Yjk4M2NjYTM5ZCIsImFjY291bnRJZCI6IjdmNzRjMmJmMzNlYjQ1ZjVjMmJlYzg5YmQ1M2QyNjY3ODEzYzBjN2FhNzZiNWEyMjYyNTAxNGI5ODNjY2EzOWQifX0.73GdmKmcxL20Pkyzt9nRthAQCGhHjopT_OMQpsnRPhs",
       });
     }, []);
+
+    // andy
+    // useEffect(() => {
+    //   setUserIdentity({
+    //     accountId,
+    //     id,
+    //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNjRmZGViNzM0N2M5NGFiNjliYjVmZjRjNzg4Y2E3OGMwYmExMjdjZGMzNzRhODMwMDE1NzI1MGIxNjQzNzY3YiIsImFjY291bnRJZCI6IjY0ZmRlYjczNDdjOTRhYjY5YmI1ZmY0Yzc4OGNhNzhjMGJhMTI3Y2RjMzc0YTgzMDAxNTcyNTBiMTY0Mzc2N2IifX0.rSeFVjrPvRlO_m4skwgnvJNbWfnIM7f_q2tfqo4R0pU",
+    //   });
+    // }, []);
 
     // sam
     // useEffect(() => {
@@ -124,7 +122,7 @@ export function useTaxAndCash() {
     // }, []);
   }
 
-  // setupDemo();
+  setupDemo();
 
   /** END DEMO DATA */
 
