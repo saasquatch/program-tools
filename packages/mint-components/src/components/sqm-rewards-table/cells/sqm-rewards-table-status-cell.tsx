@@ -59,6 +59,8 @@ export class RewardTableStatusCell {
     const fraudStatus = reward.referral?.fraudData?.moderationStatus;
     const hasExpired = reward.statuses?.includes("EXPIRED");
     const isPending = reward.statuses?.includes("PENDING");
+    const integrationOrFueltankReward =
+      reward.type === "INTEGRATION" || reward.type === "FUELTANK";
 
     if (fraudStatus === "DENIED") return "DENIED";
     if (fraudStatus === "PENDING") return "PENDING_REVIEW";
@@ -87,24 +89,15 @@ export class RewardTableStatusCell {
       return "AVAILABLE";
     }
 
-    if (
-      (reward.type === "INTEGRATION" || reward.type === "FUELTANK") &&
-      isPending
-    ) {
+    if (integrationOrFueltankReward && isPending) {
       return "PENDING";
     }
 
-    if (
-      (reward.type === "INTEGRATION" || reward.type === "FUELTANK") &&
-      reward.statuses?.includes("CANCELLED")
-    ) {
+    if (integrationOrFueltankReward && reward.statuses?.includes("CANCELLED")) {
       return "CANCELLED";
     }
 
-    if (
-      (reward.type === "INTEGRATION" || reward.type === "FUELTANK") &&
-      reward.statuses?.includes("AVAILABLE")
-    ) {
+    if (integrationOrFueltankReward && reward.statuses?.includes("AVAILABLE")) {
       return "AVAILABLE";
     }
 
@@ -187,9 +180,6 @@ export class RewardTableStatusCell {
         : null;
 
     const payoutStatusText = this.getPayoutStatusText(rewardStatus);
-
-    console.log(payoutStatusText);
-    console.log(pendingReasons);
 
     return (
       <div style={{ display: "contents" }}>
