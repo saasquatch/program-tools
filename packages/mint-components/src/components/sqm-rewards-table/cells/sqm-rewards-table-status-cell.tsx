@@ -55,41 +55,57 @@ export class RewardTableStatusCell {
   @Prop() payoutSent: string =
     "Payout process started on {date}. Expected payout on {date}.";
 
-  rewardStatus(reward: Reward) {
-    if (reward.referral?.fraudData?.moderationStatus === "DENIED")
-      return "DENIED";
-    if (reward.referral?.fraudData?.moderationStatus === "PENDING")
-      return "PENDING_REVIEW";
-    if (reward.dateCancelled) return "CANCELLED";
-    if (reward.statuses && reward.statuses.includes("EXPIRED"))
-      return "EXPIRED";
-    if (reward.statuses && reward.statuses.includes("PENDING"))
-      return "PENDING";
-    if (reward.statuses.includes("PENDING_TAX_REVIEW"))
-      return "PENDING_TAX_REVIEW";
-    if (reward.statuses.includes("PENDING_NEW_TAX_FORM"))
-      return "PENDING_NEW_TAX_FORM";
-    if (reward.statuses.includes("PENDING_TAX_SUBMISSION"))
-      return "PENDING_TAX_SUBMISSION";
-    if (reward.statuses.includes("PENDING_PARTNER_CREATION"))
-      return "PENDING_PARTNER_CREATION";
-    if (reward.statuses.includes("PAYOUT_SENT")) return "PAYOUT_SENT";
-    if (reward.statuses.includes("PAYOUT_FAILED")) return "PAYOUT_FAILED";
-    if (reward.type === "CREDIT") {
-      if (reward.statuses.includes("REDEEMED")) return "REDEEMED";
+  rewardStatus(reward: Reward): string {
+    const fraudStatus = reward.referral?.fraudData?.moderationStatus;
+    const hasExpired = reward.statuses?.includes("EXPIRED");
+    const isPending = reward.statuses?.includes("PENDING");
 
+    if (fraudStatus === "DENIED") return "DENIED";
+    if (fraudStatus === "PENDING") return "PENDING_REVIEW";
+    if (reward.dateCancelled) return "CANCELLED";
+    if (hasExpired) return "EXPIRED";
+    if (isPending) return "PENDING";
+    if (reward.statuses?.includes("PENDING_TAX_REVIEW"))
+      return "PENDING_TAX_REVIEW";
+    if (reward.statuses?.includes("PENDING_NEW_TAX_FORM"))
+      return "PENDING_NEW_TAX_FORM";
+    if (reward.statuses?.includes("PENDING_TAX_SUBMISSION"))
+      return "PENDING_TAX_SUBMISSION";
+    if (reward.statuses?.includes("PENDING_PARTNER_CREATION"))
+      return "PENDING_PARTNER_CREATION";
+    if (reward.statuses?.includes("PAYOUT_SENT")) return "PAYOUT_SENT";
+    if (reward.statuses?.includes("PAYOUT_FAILED")) return "PAYOUT_FAILED";
+
+    if (reward.type === "CREDIT") {
+      return reward.statuses?.includes("REDEEMED") ? "REDEEMED" : "AVAILABLE";
+    }
+
+    if (
+      reward.type === "PCT_DISCOUNT" &&
+      reward.statuses?.includes("AVAILABLE")
+    ) {
       return "AVAILABLE";
     }
-    if (reward.type === "PCT_DISCOUNT") {
-      if (reward.statuses.includes("AVAILABLE")) return "AVAILABLE";
+
+    if (
+      (reward.type === "INTEGRATION" || reward.type === "FUELTANK") &&
+      isPending
+    ) {
+      return "PENDING";
     }
 
-    if (reward.type === "INTEGRATION" || reward.type === "FUELTANK") {
-      if (reward.statuses && reward.statuses.includes("PENDING"))
-        return "PENDING";
-      if (reward.statuses && reward.statuses.includes("CANCELLED"))
-        return "CANCELLED";
-      if (reward.statuses.includes("AVAILABLE")) return "AVAILABLE";
+    if (
+      (reward.type === "INTEGRATION" || reward.type === "FUELTANK") &&
+      reward.statuses?.includes("CANCELLED")
+    ) {
+      return "CANCELLED";
+    }
+
+    if (
+      (reward.type === "INTEGRATION" || reward.type === "FUELTANK") &&
+      reward.statuses?.includes("AVAILABLE")
+    ) {
+      return "AVAILABLE";
     }
 
     return "";
