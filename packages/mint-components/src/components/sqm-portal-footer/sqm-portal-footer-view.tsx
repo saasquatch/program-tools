@@ -114,7 +114,7 @@ export function PortalFooterView(props: PortalFooterViewProps) {
           target="_blank"
           href={props.poweredByLink}
         >
-          Powered with <PoweredByImg color={"currentColor"} />
+          Powered by <PoweredByImg color={"currentColor"} />
         </a>
       )}
     </div>
