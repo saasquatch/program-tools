@@ -11,6 +11,7 @@ import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useSetParent } from "../../../utils/useParentState";
 import {
   FINANCE_NETWORK_SETTINGS_NAMESPACE,
+  FinanceNetworkSetting,
   FinanceNetworkSettingsQuery,
   TAX_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
@@ -42,7 +43,7 @@ const PAYPAL_PAYMENT_METHOD = 7;
 
 export type BankingInfoFormData = {
   bankCountry?: string;
-  paypalEmail?: string;
+  paypalEmailAddress?: string;
   beneficiaryAccountName?: string;
   bankAccountType?: string;
   bankAccountNumber?: string;
@@ -82,9 +83,11 @@ type RoutingCodeLabels = {
 export function getFormMap({
   props,
   routingCodeLabels,
+  getValidationErrorMessage,
 }: {
   props: BankingInfoFormViewProps | Omit<any, "text" | "callbacks">;
   routingCodeLabels: RoutingCodeLabels;
+  getValidationErrorMessage: (text: string) => string;
 }) {
   const { errors } = props.states.formState;
 
@@ -96,10 +99,11 @@ export function getFormMap({
           label={props.text.beneficiaryAccountNameLabel}
           name="/beneficiaryAccountName"
           id="beneficiaryAccountName"
+          key="beneficiaryAccountName"
           type="text"
           {...(errors?.beneficiaryAccountName && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(
+            helpText: getValidationErrorMessage(
               props.text.beneficiaryAccountNameLabel
             ),
           })}
@@ -113,9 +117,10 @@ export function getFormMap({
           label={props.text.bankAccountTypeLabel}
           name="/bankAccountType"
           id="bankAccountType"
+          key="bankAccountType"
           {...(errors?.bankAccountType && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(
+            helpText: getValidationErrorMessage(
               props.text.bankAccountTypeLabel
             ),
           })}
@@ -136,10 +141,11 @@ export function getFormMap({
           label={props.text.bankAccountNumberLabel}
           name="/bankAccountNumber"
           id="bankAccountNumber"
+          key="bankAccountNumber"
           type="text"
           {...(errors?.bankAccountNumber && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(
+            helpText: getValidationErrorMessage(
               props.text.bankAccountNumberLabel
             ),
           })}
@@ -147,16 +153,18 @@ export function getFormMap({
       ),
     },
     3: {
+      // TODO: Figure out which field this maps to in the mutation
       input: (
         <sl-input
           required
           label={props.text.ibanLabel}
           name="/iban"
           id="iban"
+          key="iban"
           type="text"
           {...(errors?.iban && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(props.text.ibanLabel),
+            helpText: getValidationErrorMessage(props.text.ibanLabel),
           })}
         ></sl-input>
       ),
@@ -169,10 +177,11 @@ export function getFormMap({
           label={props.text.swiftCodeLabel}
           name="/swiftCode"
           id="swiftCode"
+          key="swiftCode"
           type="text"
           {...(errors?.swiftCode && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(props.text.swiftCodeLabel),
+            helpText: getValidationErrorMessage(props.text.swiftCodeLabel),
           })}
         ></sl-input>
       ),
@@ -187,10 +196,11 @@ export function getFormMap({
           }
           name="/routingCode"
           id="routingCode"
+          key="routingCode"
           type="text"
           {...(errors?.routingCode && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(
+            helpText: getValidationErrorMessage(
               routingCodeLabels[props.states.bankCountry] ||
                 props.text.routingCodeLabel
             ),
@@ -205,10 +215,11 @@ export function getFormMap({
           label={props.text.bankNameLabel}
           name="/bankName"
           id="bankName"
+          key="bankName"
           type="text"
           {...(errors?.bankName && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(props.text.bankNameLabel),
+            helpText: getValidationErrorMessage(props.text.bankNameLabel),
           })}
         ></sl-input>
       ),
@@ -220,11 +231,10 @@ export function getFormMap({
           label={props.text.classificationLabel}
           name="/beneficiaryClassification"
           id="beneficiaryClassification"
+          key="beneficiaryClassification"
           {...(errors?.beneficiaryClassification && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(
-              props.text.classificationLabel
-            ),
+            helpText: getValidationErrorMessage(props.text.classificationLabel),
           })}
         >
           <sl-menu-item value="BUSINESS">
@@ -243,11 +253,10 @@ export function getFormMap({
           type="text"
           name="/taxPayerId"
           id="taxPayerId"
+          key="taxPayerId"
           {...(errors?.taxPayerId && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(
-              props.text.taxPayerIdLabel
-            ),
+            helpText: getValidationErrorMessage(props.text.taxPayerIdLabel),
           })}
         ></sl-input>,
       ],
@@ -259,9 +268,10 @@ export function getFormMap({
           label={props.text.classificationCPFLabel}
           name="/beneficiaryClassification"
           id="beneficiaryClassification"
+          key="beneficiaryClassification"
           {...(errors?.beneficiaryClassification && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(
+            helpText: getValidationErrorMessage(
               props.text.classificationCPFLabel
             ),
           })}
@@ -274,6 +284,7 @@ export function getFormMap({
     9: {
       input: (
         <sl-input
+          key="patronymicName"
           required
           label={props.text.patronymicNameLabel}
           name="/patronymicName"
@@ -281,9 +292,7 @@ export function getFormMap({
           type="text"
           {...(errors?.patronymicName && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(
-              props.text.patronymicNameLabel
-            ),
+            helpText: getValidationErrorMessage(props.text.patronymicNameLabel),
           })}
         ></sl-input>
       ),
@@ -291,13 +300,14 @@ export function getFormMap({
     10: {
       input: (
         <sl-input
+          key="voCode"
           label={props.text.voCodeLabel}
           name="/voCode"
           id="voCode"
           type="text"
           {...(errors?.voCode && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(props.text.voCodeLabel),
+            helpText: getValidationErrorMessage(props.text.voCodeLabel),
           })}
         ></sl-input>
       ),
@@ -309,12 +319,11 @@ export function getFormMap({
           label={props.text.agencyCodeLabel}
           name="/agencyCode"
           id="agencyCode"
+          key="agencyCode"
           type="text"
           {...(errors?.agencyCode && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(
-              props.text.agencyCodeLabel
-            ),
+            helpText: getValidationErrorMessage(props.text.agencyCodeLabel),
           })}
         ></sl-input>
       ),
@@ -326,12 +335,11 @@ export function getFormMap({
           label={props.text.bankAddressLabel}
           name="/bankAddress"
           id="bankAddress"
+          key="bankAddress"
           type="text"
           {...(errors?.bankAddress && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(
-              props.text.bankAddressLabel
-            ),
+            helpText: getValidationErrorMessage(props.text.bankAddressLabel),
           })}
         ></sl-input>,
         <sl-input
@@ -339,10 +347,11 @@ export function getFormMap({
           label={props.text.bankCityLabel}
           name="/bankCity"
           id="bankCity"
+          key="bankCity"
           type="text"
           {...(errors?.bankCity && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(props.text.bankCityLabel),
+            helpText: getValidationErrorMessage(props.text.bankCityLabel),
           })}
         ></sl-input>,
         <sl-input
@@ -350,10 +359,11 @@ export function getFormMap({
           label={props.text.bankProvinceStateLabel}
           name="/bankProvinceState"
           id="bankProvinceState"
+          key="bankProvinceState"
           type="text"
           {...(errors?.bankProvinceState && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(
+            helpText: getValidationErrorMessage(
               props.text.bankProvinceStateLabel
             ),
           })}
@@ -363,12 +373,11 @@ export function getFormMap({
           label={props.text.bankPostalCodeLabel}
           name="/bankPostalCode"
           id="bankPostalCode"
+          key="bankPostalCode"
           type="text"
           {...(errors?.bankPostalCode && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(
-              props.text.bankPostalCodeLabel
-            ),
+            helpText: getValidationErrorMessage(props.text.bankPostalCodeLabel),
           })}
         ></sl-input>,
       ],
@@ -380,12 +389,11 @@ export function getFormMap({
           label={props.text.branchCodeLabel}
           name="/branchCode"
           id="branchCode"
+          key="branchCode"
           type="text"
           {...(errors?.branchCode && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(
-              props.text.branchCodeLabel
-            ),
+            helpText: getValidationErrorMessage(props.text.branchCodeLabel),
           })}
         ></sl-input>
       ),
@@ -397,11 +405,10 @@ export function getFormMap({
           label={props.text.classificationLabel}
           name="/beneficiaryClassification"
           id="beneficiaryClassification"
+          key="beneficiaryClassification"
           {...(errors?.beneficiaryClassification && {
             class: "error-input",
-            helpText: this.getValidationErrorMessage(
-              props.text.classificationLabel
-            ),
+            helpText: getValidationErrorMessage(props.text.classificationLabel),
           })}
         >
           <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
@@ -439,11 +446,14 @@ const SAVE_WITHDRAWAL_SETTINGS = gql`
   }
 `;
 
-function getPaymentMethod(paymentOption) {
-  if (paymentOption.paymentMethod === 3 || paymentOption.paymentMethod === 5)
+function getPaymentMethod(paymentOption: FinanceNetworkSetting | undefined) {
+  if (
+    paymentOption.defaultFinancePaymentMethodId === 3 ||
+    paymentOption.defaultFinancePaymentMethodId === 5
+  )
     return "BANK_TRANSFER";
 
-  if (paymentOption.paymentMethod === 7) return "PAYPAL";
+  if (paymentOption.defaultFinancePaymentMethodId === 7) return "PAYPAL";
   return "";
 }
 
@@ -500,9 +510,8 @@ export function useBankingInfoForm(
     }
 
     setLoading(true);
+    console.log({ formData });
     try {
-      console.log({ formData });
-
       // @ts-ignore figure out what the values for paymentDay are
       // const { paymentDay, ...rest } = formData;
 
@@ -511,12 +520,14 @@ export function useBankingInfoForm(
         setImpactPublisherWithdrawalSettingsInput: {
           userId: user.id,
           accountId: user.accountId,
-          paymentMethod: getPaymentMethod(currentPaymentOption),
+          paymentMethod: formData?.paypalEmailAddress
+            ? "PAYPAL"
+            : getPaymentMethod(currentPaymentOption),
           ...formData,
         },
       });
 
-      setStep("/submitted");
+      // setStep("/submitted");
     } catch (e) {
       console.error(e);
       setErrors({ general: true });

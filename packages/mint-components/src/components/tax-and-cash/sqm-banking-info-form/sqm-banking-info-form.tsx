@@ -342,7 +342,11 @@ export class BankingInfoForm {
       CNY: "CNAPS",
     };
 
-    const formMap = getFormMap({ props, routingCodeLabels });
+    const formMap = getFormMap({
+      props,
+      routingCodeLabels,
+      getValidationErrorMessage: this.getValidationErrorMessage,
+    });
 
     const inputFields = getFormInputs({
       bitset: props.states.bitset,
@@ -410,6 +414,7 @@ export class BankingInfoForm {
             ),
             paymentMethodSlot: (
               <sl-input
+                key="paymentMethod"
                 label={props.text.paymentMethod}
                 placeholder={props.states.paymentMethodFeeLabel}
                 disabled

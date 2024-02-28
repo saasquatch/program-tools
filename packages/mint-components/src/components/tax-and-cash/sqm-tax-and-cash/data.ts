@@ -196,18 +196,20 @@ export type CurrenciesQuery = {
   currencies: { data: Currencies };
 };
 
+export type FinanceNetworkSetting = {
+  countryCode: string;
+  currency: string;
+  defaultFinancePaymentMethodId: number;
+  thresholdOptions: string;
+  withdrawalSettingId: number;
+  internationalEftFee: number;
+  foreignFxFee: number;
+  defaultFxFee: number;
+};
+
 export type FinanceNetworkSettingsQuery = {
   impactFinanceNetworkSettings: {
-    data: {
-      countryCode: string;
-      currency: string;
-      defaultFinancePaymentMethodId: number;
-      thresholdOptions: string;
-      withdrawalSettingId: number;
-      internationalEftFee: number;
-      foreignFxFee: number;
-      defaultFxFee: number;
-    }[];
+    data: FinanceNetworkSetting[];
     totalCount: number;
   };
 };
