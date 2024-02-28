@@ -1374,33 +1374,33 @@ declare namespace LocalJSX {
         "textcolor"?: string;
     }
     interface SqhGlobalContainer {
-        /**
-          * @uiName Background Color
-          * @uiWidget color
-          * @default #ffffff
-         */
-        "background"?: string;
-        /**
-          * A font from the Google Fonts library used inside the container.
-          * @uiName Font Family
-          * @default Roboto
-         */
-        "fontfamily"?: string;
-        /**
-          * The background colour of the component while in the loading state.
-          * @uiName Loading Color
-          * @uiWidget color
-         */
-        "loadingcolor"?: string;
-        /**
-          * @uiName Container Max Width
-         */
-        "maxwidth"?: string;
-        /**
-          * Show the Powered by SaaSquatch link. This can only be disabled on Pro plans.
-          * @uiName Show Powered By
-         */
-        "poweredby"?: boolean;
+      /**
+       * @uiName Background Color
+       * @uiWidget color
+       * @default #ffffff
+       */
+      background?: string;
+      /**
+       * A font from the Google Fonts library used inside the container.
+       * @uiName Font Family
+       * @default Roboto
+       */
+      fontfamily?: string;
+      /**
+       * The background colour of the component while in the loading state.
+       * @uiName Loading Color
+       * @uiWidget color
+       */
+      loadingcolor?: string;
+      /**
+       * @uiName Container Max Width
+       */
+      maxwidth?: string;
+      /**
+       * Show the Powered by Impact link. This can only be disabled on Pro plans.
+       * @uiName Show Powered By
+       */
+      poweredby?: boolean;
     }
     interface SqhImageComponent {
         /**
