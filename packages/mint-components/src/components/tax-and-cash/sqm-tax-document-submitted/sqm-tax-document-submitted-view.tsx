@@ -14,6 +14,7 @@ export interface TaxDocumentSubmittedProps {
     documentTypeString: string;
     disabled?: boolean;
     dateSubmitted?: string;
+    dateExpired?: string;
     expiresSoon?: boolean;
     noFormNeeded?: boolean;
     // AL: TODO add indirectTaxType props
@@ -38,7 +39,7 @@ export interface TaxDocumentSubmittedProps {
   slots: {
     payoutDetailsCardSlot: VNode;
   };
-  callbacks: { onClick: (props: any) => void; onEditIndirectTax: () => void };
+  callbacks: { onClick: (props: any) => void; onEditPayoutInfo: () => void };
   text: {
     statusTextActive?: string;
     statusTextNotActive?: string;
@@ -333,6 +334,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
               disabled={states.disabled || states.loading}
               type="default"
               class={sheet.classes.EditBankDetailsButton}
+              onClick={callbacks.onEditPayoutInfo}
             >
               {text.editPaymentInformationButton}
             </sl-button>

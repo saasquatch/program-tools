@@ -47,7 +47,7 @@ export const useTaxDocumentSubmitted = (
 
   const publisher = data?.user?.impactConnection?.publisher;
   const documentType = publisher?.currentTaxDocument?.type;
-  const submissionDate = DateTime.now().toMillis();
+  const submissionDate = publisher?.currentTaxDocument?.dateCreated;
   const dateSubmitted =
     DateTime.fromMillis(submissionDate).toFormat("LLL dd, yyyy");
 
@@ -66,13 +66,14 @@ export const useTaxDocumentSubmitted = (
     setStep(`/3`);
   };
 
-  const onEditIndirectTax = () => {
+  const onEditPayoutInfo = () => {
     setContext({
       overrideNextStep: "/submitted",
       overrideBackStep: "/submitted",
       hideSteps: true,
     });
-    setStep("/2");
+
+    setStep("/4");
   };
 
   const provinceName = INDIRECT_TAX_PROVINCES.find(
@@ -82,6 +83,7 @@ export const useTaxDocumentSubmitted = (
   return {
     states: {
       dateSubmitted,
+      dateExpired,
       documentType,
       documentTypeString: taxTypeToName(documentType),
       status: publisher?.currentTaxDocument?.status,
@@ -114,7 +116,7 @@ export const useTaxDocumentSubmitted = (
     },
     callbacks: {
       onClick: onNewDocumentClick,
-      onEditIndirectTax: onEditIndirectTax,
+      onEditPayoutInfo,
     },
     text: props.getTextProps(),
   };

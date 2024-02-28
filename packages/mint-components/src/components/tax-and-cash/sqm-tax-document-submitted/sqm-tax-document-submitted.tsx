@@ -263,7 +263,7 @@ function useDemoTaxDocumentSubmitted(
       },
       callbacks: {
         onClick: () => console.debug("check step"),
-        onEditIndirectTax: () => console.debug("indirect tax"),
+        onEditPayoutInfo: () => console.debug("payout info"),
       },
       slots: {
         paymentDetailsCardSlot: <Upcoming />,

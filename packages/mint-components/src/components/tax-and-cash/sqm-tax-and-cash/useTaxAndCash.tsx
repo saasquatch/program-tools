@@ -38,8 +38,7 @@ function getCurrentStep(user: UserQuery["user"]) {
 
   if (
     !user.impactConnection ||
-    user.impactConnection?.connectionStatus === "NOT_CONNECTED" ||
-    !user.impactConnection?.publisher
+    user.impactConnection?.connectionStatus === "NOT_CONNECTED"
   ) {
     return "/1";
   }
@@ -251,9 +250,9 @@ export function useTaxAndCash() {
       const user = data?.user;
       if (!user || step !== "/loading") return;
 
-      // setStep("/4");
-      const currentStep = getCurrentStep(user);
-      setStep(currentStep);
+      setStep("/2");
+      // const currentStep = getCurrentStep(user);
+      // setStep(currentStep);
     }
   }, [host, user, data?.user?.email]);
 
