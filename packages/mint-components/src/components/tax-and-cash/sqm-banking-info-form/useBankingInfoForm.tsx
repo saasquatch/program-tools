@@ -3,7 +3,7 @@ import {
   useMutation,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useRef, useState } from "@saasquatch/universal-hooks";
+import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
@@ -161,7 +161,7 @@ export function getFormMap({
           id="iban"
           key="iban"
           type="text"
-          {...(errors?.iban && {
+          {...(errors?.bankAccountNumber && {
             class: "error-input",
             helpText: getValidationErrorMessage(props.text.ibanLabel),
           })}
@@ -476,6 +476,8 @@ export function useBankingInfoForm(
   const formRef = useRef<HTMLFormElement>(null);
 
   const [bankCountry, setBankCountry] = useState("");
+  const [currentPaymentOption, setCurrentPaymentOption] =
+    useState<null | FinanceNetworkSetting>(null);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [_paymentMethodChecked, setPaymentMethodChecked] = useState<
@@ -511,6 +513,7 @@ export function useBankingInfoForm(
     setLoading(true);
     console.log({ formData });
     try {
+      if (!currentPaymentOption) throw new Error("No currentPaymentOption");
       // @ts-ignore figure out what the values for paymentDay are
       // const { paymentDay, ...rest } = formData;
 
@@ -540,8 +543,6 @@ export function useBankingInfoForm(
 
   const feeCap = paypalFeeMap[currency] || "";
 
-  // const paymentOptions = mockPaymentOptions[currency];
-  // paymentOptions;
   const paymentOptionsRes = useParentQueryValue<FinanceNetworkSettingsQuery>(
     FINANCE_NETWORK_SETTINGS_NAMESPACE
   );
@@ -549,10 +550,29 @@ export function useBankingInfoForm(
   const paymentOptions =
     paymentOptionsRes?.data?.impactFinanceNetworkSettings?.data;
 
-  const currentPaymentOption = paymentOptions?.find((paymentOption) => {
-    if (paymentOption.countryCode === bankCountry) return true;
-    return false;
-  });
+  useEffect(() => {
+    if (!userData) return;
+    if (!paymentOptions) return;
+
+    const publisherCountry =
+      userData?.user?.impactConnection?.publisher?.countryCode;
+    const currentPaymentOption = paymentOptions?.find(
+      (paymentOption) => paymentOption.countryCode === publisherCountry
+    );
+
+    setCurrentPaymentOption(currentPaymentOption);
+    setBankCountry(publisherCountry);
+  }, [paymentOptions, userData, setCurrentPaymentOption, setBankCountry]);
+
+  const updateBankCountry = (bankCountry: string) => {
+    const currentPaymentOption = paymentOptions?.find((paymentOption) => {
+      if (paymentOption.countryCode === bankCountry) return true;
+      return false;
+    });
+
+    setBankCountry(bankCountry);
+    setCurrentPaymentOption(currentPaymentOption);
+  };
 
   const paymentMethodFeeMap = {
     [ACH_PAYMENT_METHOD]: "EFT Withdrawal (free)",
@@ -597,7 +617,7 @@ export function useBankingInfoForm(
     text: props.getTextProps(),
     callbacks: {
       onSubmit,
-      setBankCountry,
+      setBankCountry: updateBankCountry,
       setPaymentMethodChecked,
       setPaymentScheduleChecked,
       setCurrency,
