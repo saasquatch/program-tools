@@ -38,6 +38,7 @@ export interface IndirectDetailsSlotViewProps {
     onFormChange: (field: string, e: CustomEvent) => void;
     onQstToggle: () => void;
     onSpainToggle: () => void;
+    setCountrySearch: (c: any) => void;
   };
   text: {
     selectedRegion: string;
@@ -87,6 +88,9 @@ const style = {
     "&::part(control)": {
       borderRadius: "0 !important",
     },
+  },
+  SearchInput: {
+    padding: "var(--sl-spacing-x-small)",
   },
   ErrorInput: {
     maxWidth: "500px",
@@ -355,6 +359,17 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             id="selectedRegion"
             name="/selectedRegion"
           >
+            <sl-input
+              class={classes.SearchInput}
+              placeholder="Search for country.."
+              onKeyDown={(e) => {
+                // Stop shoelace intercepting key presses
+                e.stopPropagation();
+              }}
+              onSl-input={(e) => {
+                callbacks.setCountrySearch(e.target.value);
+              }}
+            ></sl-input>
             {props.data.countries?.map((c) => (
               <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
             ))}

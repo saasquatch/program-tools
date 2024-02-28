@@ -311,6 +311,7 @@ function useDemoIndirectTaxForm(
         onQstToggle: () => {},
         onSpainToggle: () => {},
         onChange: setOption,
+        setCountrySearch: (c) => console.log(c),
       },
       data: {
         esRegions: INDIRECT_TAX_SPAIN_REGIONS,
