@@ -40,10 +40,20 @@ export class RewardTableStatusCell {
   @Prop() expiryText: string = "Expires";
   @Prop() locale: string = "en";
   @Prop() pendingUsTax: string = "W-9 required";
+  @Prop() pendingTaxReview: string = "Awaiting tax form review.";
+  @Prop() pendingNewTaxForm: string =
+    "Invalid tax form. Submit a new form to receive your rewards.";
+  @Prop() pendingTaxSubmission: string =
+    "Submit your tax documents to receive your rewards.";
+  @Prop() pendingPartnerCreation: string =
+    "Complete your tax and cash payout setup to receive your rewards.";
   @Prop() pendingScheduled: string = "Until";
   @Prop() pendingUnhandled: string = "Fulfillment error";
   @Prop() pendingReviewText: string = "Awaiting review";
   @Prop() deniedText: string = "Detected self-referral";
+  @Prop() payoutFailed: string = "This payout will be retried on {date}";
+  @Prop() payoutSent: string =
+    "Payout process started on {date}. Expected payout on {date}.";
 
   rewardStatus(reward: Reward) {
     if (reward.referral?.fraudData?.moderationStatus === "DENIED")
@@ -55,8 +65,19 @@ export class RewardTableStatusCell {
       return "EXPIRED";
     if (reward.statuses && reward.statuses.includes("PENDING"))
       return "PENDING";
+    if (reward.statuses.includes("PENDING_TAX_REVIEW"))
+      return "PENDING_TAX_REVIEW";
+    if (reward.statuses.includes("PENDING_NEW_TAX_FORM"))
+      return "PENDING_NEW_TAX_FORM";
+    if (reward.statuses.includes("PENDING_TAX_SUBMISSION"))
+      return "PENDING_TAX_SUBMISSION";
+    if (reward.statuses.includes("PENDING_PARTNER_CREATION"))
+      return "PENDING_PARTNER_CREATION";
+    if (reward.statuses.includes("PAYOUT_SENT")) return "PAYOUT_SENT";
+    if (reward.statuses.includes("PAYOUT_FAILED")) return "PAYOUT_FAILED";
     if (reward.type === "CREDIT") {
       if (reward.statuses.includes("REDEEMED")) return "REDEEMED";
+
       return "AVAILABLE";
     }
     if (reward.type === "PCT_DISCOUNT") {
@@ -74,6 +95,42 @@ export class RewardTableStatusCell {
     return "";
   }
 
+  getbadgeType(rewardStatus: string) {
+    switch (rewardStatus) {
+      case "AVAILABLE":
+        return "success";
+      case "REDEEMED":
+      case "PAYOUT_SENT":
+        return "primary";
+      case "PENDING":
+      case "PENDING_REVIEW":
+      case "PENDING_TAX_REVIEW":
+      case "PENDING_NEW_TAX_FORM":
+      case "PENDING_TAX_SUBMISSION":
+      case "PENDING_PARTNER_CREATION":
+        return "warning";
+      default:
+        return "danger";
+    }
+  }
+
+  getPayoutStatusText(rewardStatus: string) {
+    switch (rewardStatus) {
+      case "PAYOUT_SENT":
+        return this.payoutSent;
+      case "PAYOUT_FAILED":
+        return this.payoutFailed;
+      case "PENDING_TAX_REVIEW":
+        return this.pendingTaxReview;
+      case "PENDING_NEW_TAX_FORM":
+        return this.pendingNewTaxForm;
+      case "PENDING_TAX_SUBMISSION":
+        return this.pendingTaxSubmission;
+      case "PENDING_PARTNER_CREATION":
+        return this.pendingPartnerCreation;
+    }
+  }
+
   render() {
     intl.locale = this.locale;
 
@@ -85,14 +142,7 @@ export class RewardTableStatusCell {
       }
     );
 
-    const badgeType =
-      rewardStatus === "AVAILABLE"
-        ? "success"
-        : rewardStatus === "REDEEMED"
-        ? "primary"
-        : rewardStatus === "PENDING" || rewardStatus === "PENDING_REVIEW"
-        ? "warning"
-        : "danger";
+    const badgeType = this.getbadgeType(rewardStatus);
 
     const dateShown =
       this.reward.dateCancelled ||
@@ -119,6 +169,12 @@ export class RewardTableStatusCell {
         : rewardStatus === "DENIED"
         ? this.deniedText
         : null;
+
+    const payoutStatusText = this.getPayoutStatusText(rewardStatus);
+
+    console.log(payoutStatusText);
+    console.log(pendingReasons);
+
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
@@ -134,7 +190,7 @@ export class RewardTableStatusCell {
           {statusText}
         </sl-badge>
         <p class={sheet.classes.Date}>
-          {pendingReasons || fraudStatusText || date}
+          {pendingReasons || fraudStatusText || payoutStatusText || date}
         </p>
       </div>
     );
@@ -151,6 +207,10 @@ export class RewardTableStatusCell {
               .toLocaleString(DateTime.DATE_MED),
         UNHANDLED_ERROR: prop.pendingUnhandled,
         SUSPECTED_FRAUD: prop.pendingReview,
+        PENDING_TAX_REVIEW: prop.pendingTaxReview,
+        PENDING_NEW_TAX_FORM: prop.pendingNewTaxForm,
+        PENDING_TAX_SUBMISSION: prop.pendingTaxSubmission,
+        PENDING_PARTNER_CREATION: prop.pendingPartnerCreation,
       };
       return [prop.reward.pendingReasons]
         .map((s: string): string => pendingCodeMap[s] ?? s)

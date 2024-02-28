@@ -397,8 +397,23 @@ export const StatusCellExpired = () => {
 const pending = {
   statuses: ["PENDING"],
 };
-const pendingReview = {
-  statuses: ["PENDING_REVIEW"],
+const pendingTaxReview = {
+  statuses: ["PENDING_TAX_REVIEW"],
+};
+const pendingNewTaxForm = {
+  statuses: ["PENDING_NEW_TAX_FORM"],
+};
+const pendingTaxSubmission = {
+  statuses: ["PENDING_TAX_SUBMISSION"],
+};
+const pendingPartnerCreation = {
+  statuses: ["PENDING_PARTNER_CREATION"],
+};
+const payoutSent = {
+  statuses: ["PAYOUT_SENT"],
+};
+const payoutFailed = {
+  statuses: ["PAYOUT_FAILED"],
 };
 const us_tax = {
   pendingReasons: ["US_TAX"],
@@ -416,6 +431,60 @@ export const StatusCellPending = () => {
     <sqm-rewards-table-status-cell
       statusText="Pending"
       reward={{ ...rewardsData, ...pending }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPendingTaxReview = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Pending"
+      reward={{ ...rewardsData, ...pendingTaxReview }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPendingNewTaxForm = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Pending"
+      reward={{ ...rewardsData, ...pendingNewTaxForm }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPendingTaxSubmission = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Pending"
+      reward={{ ...rewardsData, ...pendingTaxSubmission }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPendingPartnerCreation = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Pending"
+      reward={{ ...rewardsData, ...pendingPartnerCreation }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPayoutSent = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Payout Sent"
+      reward={{ ...rewardsData, ...payoutSent }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPayoutFailed = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Payout Failed"
+      reward={{ ...rewardsData, ...payoutFailed }}
     ></sqm-rewards-table-status-cell>
   );
 };
