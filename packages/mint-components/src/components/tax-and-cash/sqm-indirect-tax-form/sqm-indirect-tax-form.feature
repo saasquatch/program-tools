@@ -9,7 +9,7 @@ Feature: Indirect Tax Form
     When <option> is selected based on the participant <country> from step 1
     Then different <inputs> appear
 
-    Examples:
+    Examples: 
       | country | option                                               | inputs                                                 |
       | CA      | I am registered for Indirect Tax in a Country/Region | Country, Province, HST/GST Number, ?QST Number(Quebec) |
       | ES      | I am registered for Indirect Tax in a Country/Region | Country, Sub Region, VAT Number, ?Income Tax Number    |
@@ -29,7 +29,7 @@ Feature: Indirect Tax Form
     And based on the selected <province>
     Then <typeTaxInput> will appear
 
-    Examples:
+    Examples: 
       | province              | typeTaxInput      |
       | Ontario               | HST Number        |
       | New Brunswick         | HST Number        |
@@ -110,7 +110,7 @@ Feature: Indirect Tax Form
     And based on the <typeTax>
     Then <typeTaxInputHeader> changes
 
-    Examples:
+    Examples: 
       | country        | typeTax | typeTaxInputHeader |
       | United Kingdom | VAT     | VAT Number         |
       | Australia      | GST     | GST Number         |
@@ -123,7 +123,7 @@ Feature: Indirect Tax Form
     And if the participant <isRegisteredForIncomeTax
     Then an Income Tax input appears
 
-    Examples:
+    Examples: 
       | subRegions | isRegisteredIncomeTax |
       | Madrid     | true                  |
       | Barcelona  | false                 |
@@ -134,6 +134,13 @@ Feature: Indirect Tax Form
     Given they select a country ineligible for indirect tax in step 1
     Then "I am not registered for Indirect Tax" is auto-selected
     And no inputs appear
+
+  @minutia @ui
+  Scenario: Country/Region of Indirect Tax select is searchable
+    When the participante presses the Country/Region of Indirect Tax select
+    Then there is a searchbar
+    And as they type in the searchbar
+    Then the available countries get filtered out based on their search
 
   @minutia
   Scenario: Participant is registered for indirect tax fills out and submits form
@@ -174,11 +181,10 @@ Feature: Indirect Tax Form
     And they change the Country to <newCountrySelectValue>
     Then the Country <countryAutoSelectValue> changes to the <newCountrySelectValue>
 
-    Examples:
+    Examples: 
       | country | countryAutoSelectValue | newCountrySelectValue |
       | US      | United States          | Australia             |
       | UK      | United Kingdom         | Egypt                 |
-
 
   @minutia
   Scenario: Indirect tax fields are disabled if the user has existing publisher information

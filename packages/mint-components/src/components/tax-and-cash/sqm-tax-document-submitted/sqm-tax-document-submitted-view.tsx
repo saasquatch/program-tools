@@ -175,6 +175,11 @@ const style = {
     textAlign: "center",
     width: "250px",
   },
+  ToolTip: {
+    top: "6px",
+    width: "16px",
+    height: "16px",
+  },
   TaxNumberContainer: {
     display: "flex",
     flexDirection: "column",
@@ -357,7 +362,7 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
                   content={text.indirectTaxTooltipSupport}
                   class={sheet.classes.TooltipContainer}
                 >
-                  <sl-icon name="info-circle" style={{ top: "6px" }} />
+                  <sl-icon name="info-circle" class={sheet.classes.ToolTip} />
                 </sl-tooltip>
               </h3>
               <div class={sheet.classes.IndirectTaxPreviewDetails}>
