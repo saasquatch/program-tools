@@ -100,22 +100,22 @@ export function useTaxAndCash() {
     };
 
     // coleton
-    useEffect(() => {
-      setUserIdentity({
-        accountId,
-        id,
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiZDkwYjQ4NjZlOWY4Y2I0MzM1NjQ3MmZlNzkzY2VhNTQyODI1NWVmMmQ4NzI3MzQ2OWEwNzQ0MTkzMzRhYmRiMCIsImFjY291bnRJZCI6ImQ5MGI0ODY2ZTlmOGNiNDMzNTY0NzJmZTc5M2NlYTU0MjgyNTVlZjJkODcyNzM0NjlhMDc0NDE5MzM0YWJkYjAifX0.xa1sXn7misRjRCiJBPGEekZmqzfHXOb5esO9WZjWZUw",
-      });
-    }, []);
-
-    // andy
     // useEffect(() => {
     //   setUserIdentity({
     //     accountId,
     //     id,
-    //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNjRmZGViNzM0N2M5NGFiNjliYjVmZjRjNzg4Y2E3OGMwYmExMjdjZGMzNzRhODMwMDE1NzI1MGIxNjQzNzY3YiIsImFjY291bnRJZCI6IjY0ZmRlYjczNDdjOTRhYjY5YmI1ZmY0Yzc4OGNhNzhjMGJhMTI3Y2RjMzc0YTgzMDAxNTcyNTBiMTY0Mzc2N2IifX0.rSeFVjrPvRlO_m4skwgnvJNbWfnIM7f_q2tfqo4R0pU",
+    //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiZDkwYjQ4NjZlOWY4Y2I0MzM1NjQ3MmZlNzkzY2VhNTQyODI1NWVmMmQ4NzI3MzQ2OWEwNzQ0MTkzMzRhYmRiMCIsImFjY291bnRJZCI6ImQ5MGI0ODY2ZTlmOGNiNDMzNTY0NzJmZTc5M2NlYTU0MjgyNTVlZjJkODcyNzM0NjlhMDc0NDE5MzM0YWJkYjAifX0.xa1sXn7misRjRCiJBPGEekZmqzfHXOb5esO9WZjWZUw",
     //   });
     // }, []);
+
+    // andy
+    useEffect(() => {
+      setUserIdentity({
+        accountId,
+        id,
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNjRmZGViNzM0N2M5NGFiNjliYjVmZjRjNzg4Y2E3OGMwYmExMjdjZGMzNzRhODMwMDE1NzI1MGIxNjQzNzY3YiIsImFjY291bnRJZCI6IjY0ZmRlYjczNDdjOTRhYjY5YmI1ZmY0Yzc4OGNhNzhjMGJhMTI3Y2RjMzc0YTgzMDAxNTcyNTBiMTY0Mzc2N2IifX0.rSeFVjrPvRlO_m4skwgnvJNbWfnIM7f_q2tfqo4R0pU",
+      });
+    }, []);
 
     // sam
     // useEffect(() => {

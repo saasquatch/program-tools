@@ -92,6 +92,7 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
     onFormChange: (field: string, e: CustomEvent) => console.log(field, e),
     onQstToggle: () => {},
     onSpainToggle: () => {},
+    setCountrySearch: (c) => console.log(c),
   },
   data: {
     esRegions: INDIRECT_TAX_SPAIN_REGIONS,

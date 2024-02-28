@@ -96,6 +96,23 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     setOption(_option);
   }, [userForm, _countries]);
 
+  const [countrySearch, setCountrySearch] = useState("");
+  const [filteredCountries, setFilteredCountries] = useState(
+    _countries?.impactPayoutCountries?.data || []
+  );
+
+  useEffect(() => {
+    if (countrySearch.trim() === "") {
+      setFilteredCountries(_countries?.impactPayoutCountries?.data || []);
+    } else {
+      setFilteredCountries(
+        _countries?.impactPayoutCountries?.data.filter((c) =>
+          c.displayName.toLowerCase().includes(countrySearch.toLowerCase())
+        ) || []
+      );
+    }
+  }, [countrySearch, _countries?.impactPayoutCountries?.data]);
+
   useEffect(() => {
     const user = userData?.user;
     if (!user) return;
@@ -232,6 +249,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       onSubmit,
       onFormChange,
       onChange: setOption,
+      setCountrySearch,
       onQstToggle: () => setFormState((p) => ({ ...p, hasQst: !p.hasQst })),
       onSpainToggle: () =>
         setFormState((p) => ({
@@ -241,7 +259,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     },
     data: {
       esRegions: INDIRECT_TAX_SPAIN_REGIONS,
-      countries: _countries?.impactPayoutCountries?.data,
+      countries: filteredCountries,
       provinces: INDIRECT_TAX_PROVINCES,
     },
     text: props.getTextProps(),
