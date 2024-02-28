@@ -153,12 +153,11 @@ export function getFormMap({
       ),
     },
     3: {
-      // TODO: Figure out which field this maps to in the mutation
       input: (
         <sl-input
           required
           label={props.text.ibanLabel}
-          name="/iban"
+          name="/bankAccountNumber"
           id="iban"
           key="iban"
           type="text"
@@ -595,13 +594,7 @@ export function useBankingInfoForm(
     : _paymentMethodChecked;
 
   return {
-    text: {
-      ...props,
-      error: {
-        generalTitle: props.generalErrorTitle,
-        generalDescription: props.generalErrorDescription,
-      },
-    },
+    text: props.getTextProps(),
     callbacks: {
       onSubmit,
       setBankCountry,
@@ -628,6 +621,7 @@ export function useBankingInfoForm(
       bitset: currentPaymentOption?.withdrawalSettingId || 0,
       bankCountry,
       currency,
+      thresholds: currentPaymentOption?.thresholdOptions?.split(",") || [],
       countries,
       hasPayPal,
       showInputs: false,

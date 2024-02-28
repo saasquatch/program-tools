@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
+import { BankingInfoFormViewProps } from "./components/tax-and-cash/sqm-banking-info-form/sqm-banking-info-form-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
@@ -151,7 +152,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<any>;
+        "demoData"?: DemoData<BankingInfoFormViewProps>;
         /**
           * Text for the option to receive payments directly to a bank account
           * @uiName Directly to bank account option text
@@ -5520,7 +5521,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<any>;
+        "demoData"?: DemoData<BankingInfoFormViewProps>;
         /**
           * Text for the option to receive payments directly to a bank account
           * @uiName Directly to bank account option text
