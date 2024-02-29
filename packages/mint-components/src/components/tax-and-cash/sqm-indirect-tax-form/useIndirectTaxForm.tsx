@@ -211,7 +211,6 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
       await refetch();
 
-      console.log({ result });
       if (
         (result as ConnectPartnerResult).createImpactConnection
           ?.impactConnection?.publisher?.requiredTaxDocumentType

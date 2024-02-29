@@ -48,8 +48,10 @@ export const useTaxDocumentSubmitted = (
   const publisher = data?.user?.impactConnection?.publisher;
   const documentType = publisher?.currentTaxDocument?.type;
   const submissionDate = publisher?.currentTaxDocument?.dateCreated;
-  const dateSubmitted =
-    DateTime.fromMillis(submissionDate).toFormat("LLL dd, yyyy");
+
+  const dateSubmitted = submissionDate
+    ? DateTime.fromMillis(submissionDate).toFormat("LLL dd, yyyy")
+    : undefined;
 
   const expiryDate = DateTime.now().plus({ days: 30 }).toMillis();
   const dateExpired = DateTime.fromMillis(expiryDate).toFormat("LLL dd, yyyy");

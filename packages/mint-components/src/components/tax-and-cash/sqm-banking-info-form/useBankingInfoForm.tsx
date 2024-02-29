@@ -518,7 +518,7 @@ export function useBankingInfoForm(
       // const { paymentDay, ...rest } = formData;
 
       // TODO: wire up mutation
-      await saveWithdrawalSettings({
+      const response = await saveWithdrawalSettings({
         setImpactPublisherWithdrawalSettingsInput: {
           userId: user.id,
           accountId: user.accountId,
@@ -528,8 +528,10 @@ export function useBankingInfoForm(
           ...formData,
         },
       });
+      if (!response || (response as Error)?.message) throw new Error();
+      await refetch();
 
-      // setStep("/submitted");
+      setStep("/submitted");
     } catch (e) {
       console.error(e);
       setErrors({ general: true });
@@ -564,6 +566,8 @@ export function useBankingInfoForm(
     setBankCountry(publisherCountry);
   }, [paymentOptions, userData, setCurrentPaymentOption, setBankCountry]);
 
+  // TODO: currentPaymentOption should be updated when the paypal option is selected
+  // ?
   const updateBankCountry = (bankCountry: string) => {
     const currentPaymentOption = paymentOptions?.find((paymentOption) => {
       if (paymentOption.countryCode === bankCountry) return true;

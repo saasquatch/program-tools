@@ -74,16 +74,16 @@ export function useTaxAndCash() {
 
   function setupDemo() {
     // coleton
-    // const id =
-    //   "d90b4866e9f8cb43356472fe793cea5428255ef2d87273469a074419334abdb0";
-    // const accountId =
-    //   "d90b4866e9f8cb43356472fe793cea5428255ef2d87273469a074419334abdb0";
-
-    // andy
     const id =
-      "64fdeb7347c94ab69bb5ff4c788ca78c0ba127cdc374a8300157250b1643767b";
+      "9029ca937235230319e7cf9c20051bf0cc94ac8c1e6c91cf56ffc7daae4a0f03";
     const accountId =
-      "64fdeb7347c94ab69bb5ff4c788ca78c0ba127cdc374a8300157250b1643767b";
+      "9029ca937235230319e7cf9c20051bf0cc94ac8c1e6c91cf56ffc7daae4a0f03";
+
+    // // andy
+    // const id =
+    //   "64fdeb7347c94ab69bb5ff4c788ca78c0ba127cdc374a8300157250b1643767b";
+    // const accountId =
+    //   "64fdeb7347c94ab69bb5ff4c788ca78c0ba127cdc374a8300157250b1643767b";
 
     // sam
     // const id =
@@ -100,22 +100,22 @@ export function useTaxAndCash() {
     };
 
     // coleton
-    // useEffect(() => {
-    //   setUserIdentity({
-    //     accountId,
-    //     id,
-    //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiZDkwYjQ4NjZlOWY4Y2I0MzM1NjQ3MmZlNzkzY2VhNTQyODI1NWVmMmQ4NzI3MzQ2OWEwNzQ0MTkzMzRhYmRiMCIsImFjY291bnRJZCI6ImQ5MGI0ODY2ZTlmOGNiNDMzNTY0NzJmZTc5M2NlYTU0MjgyNTVlZjJkODcyNzM0NjlhMDc0NDE5MzM0YWJkYjAifX0.xa1sXn7misRjRCiJBPGEekZmqzfHXOb5esO9WZjWZUw",
-    //   });
-    // }, []);
-
-    // andy
     useEffect(() => {
       setUserIdentity({
         accountId,
         id,
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNjRmZGViNzM0N2M5NGFiNjliYjVmZjRjNzg4Y2E3OGMwYmExMjdjZGMzNzRhODMwMDE1NzI1MGIxNjQzNzY3YiIsImFjY291bnRJZCI6IjY0ZmRlYjczNDdjOTRhYjY5YmI1ZmY0Yzc4OGNhNzhjMGJhMTI3Y2RjMzc0YTgzMDAxNTcyNTBiMTY0Mzc2N2IifX0.rSeFVjrPvRlO_m4skwgnvJNbWfnIM7f_q2tfqo4R0pU",
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiOTAyOWNhOTM3MjM1MjMwMzE5ZTdjZjljMjAwNTFiZjBjYzk0YWM4YzFlNmM5MWNmNTZmZmM3ZGFhZTRhMGYwMyIsImFjY291bnRJZCI6IjkwMjljYTkzNzIzNTIzMDMxOWU3Y2Y5YzIwMDUxYmYwY2M5NGFjOGMxZTZjOTFjZjU2ZmZjN2RhYWU0YTBmMDMifX0.OOF36Knix_GNRvnbDQt-J_MCMj-0Es0jf4JAVDG8V5U",
       });
     }, []);
+
+    // andy
+    // useEffect(() => {
+    //   setUserIdentity({
+    //     accountId,
+    //     id,
+    //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNjRmZGViNzM0N2M5NGFiNjliYjVmZjRjNzg4Y2E3OGMwYmExMjdjZGMzNzRhODMwMDE1NzI1MGIxNjQzNzY3YiIsImFjY291bnRJZCI6IjY0ZmRlYjczNDdjOTRhYjY5YmI1ZmY0Yzc4OGNhNzhjMGJhMTI3Y2RjMzc0YTgzMDAxNTcyNTBiMTY0Mzc2N2IifX0.rSeFVjrPvRlO_m4skwgnvJNbWfnIM7f_q2tfqo4R0pU",
+    //   });
+    // }, []);
 
     // sam
     // useEffect(() => {
@@ -156,21 +156,21 @@ export function useTaxAndCash() {
         countryCode: undefined,
         currency: undefined,
       } as UserFormContext,
-    },
+    }
   );
 
   const [_currenciesContext, setCurrenciesContext] = useParentState<Currencies>(
     {
       namespace: CURRENCIES_NAMESPACE,
       initialValue: [],
-    },
+    }
   );
 
   const [_countriesContext, setCountriesContext] = useParentState<TaxCountry[]>(
     {
       namespace: COUNTRIES_NAMESPACE,
       initialValue: [],
-    },
+    }
   );
 
   const { data } = useParentQuery<UserQuery>({
@@ -216,7 +216,7 @@ export function useTaxAndCash() {
       financeNetworkData?.impactFinanceNetworkSettings?.data?.reduce(
         (agg, settings) => {
           const currency = currenciesData?.currencies?.data?.find(
-            (currency) => currency.currencyCode === settings.currency,
+            (currency) => currency.currencyCode === settings.currency
           );
           // Currency not in supported list
           if (!currency) return agg;
@@ -234,7 +234,7 @@ export function useTaxAndCash() {
 
           return [...agg, currency];
         },
-        [],
+        []
       );
     return allValidCurrencies;
   }, [financeNetworkData, countryCode]);
