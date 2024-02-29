@@ -33,6 +33,7 @@ export interface IndirectTaxFormViewProps {
     isPartnerAlertDescription: string;
     otherRegion: string;
     notRegistered: string;
+    cannotChangeInfoAlert: string;
     submitButton: string;
     backButton: string;
     error: {
@@ -110,6 +111,31 @@ const style = {
     "& sl-icon::part(base)": {
       color: "var(--sl-color-blue-500)",
     },
+  },
+  InfoAlert: {
+    marginTop: "var(--sl-spacing-large)",
+    "&::part(base)": {
+      backgroundColor: "transparent",
+      borderTop: "none",
+      padding: "0px",
+      border: "none",
+    },
+
+    "&::part(message)": {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      padding: "10px",
+      height: "max-content",
+    },
+
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-yellow-500)",
+    },
+  },
+  InfoWarningIcon: {
+    height: "24px",
+    width: "24px",
   },
 };
 
@@ -198,6 +224,17 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               <sl-radio
                 exportparts="base: radio-base"
                 name="/checked"
+                value="notRegistered"
+                id="notRegistered"
+                checked={formState.checked === "notRegistered"}
+                onInput={() => callbacks.onChange("notRegistered")}
+                disabled={states.disabled || states.isPartner}
+              >
+                {text.notRegistered}
+              </sl-radio>
+              <sl-radio
+                exportparts="base: radio-base"
+                name="/checked"
                 value="otherRegion"
                 id="otherRegion"
                 checked={formState.checked === "otherRegion"}
@@ -207,19 +244,21 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 {text.otherRegion}
               </sl-radio>
               {slots.registeredInDifferentCountryDetailsSlot}
-              <sl-radio
-                exportparts="base: radio-base"
-                name="/checked"
-                value="notRegistered"
-                id="notRegistered"
-                checked={formState.checked === "notRegistered"}
-                onInput={() => callbacks.onChange("notRegistered")}
-                disabled={states.disabled || states.isPartner}
-              >
-                {text.notRegistered}
-              </sl-radio>
             </div>
           </div>
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            type="primary"
+            open
+            class={classes.InfoAlert}
+          >
+            <sl-icon
+              class={classes.InfoWarningIcon}
+              slot="icon"
+              name="exclamation-triangle"
+            ></sl-icon>
+            {text.cannotChangeInfoAlert}
+          </sl-alert>
           <div class={classes.BtnContainer}>
             <sl-button
               type="primary"

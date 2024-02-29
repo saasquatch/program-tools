@@ -164,6 +164,10 @@ const style = {
     justifyContent: "flex-start",
     flexDirection: "column",
   },
+  InfoIcon: {
+    height: "24px",
+    width: "24px",
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -286,7 +290,6 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
               )}
             </p>
           </div>
-
           <div>
             <sl-alert
               exportparts="base: alert-base, icon:alert-icon"
@@ -294,7 +297,11 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
               open
               class={classes.InfoAlert}
             >
-              <sl-icon slot="icon" name="info-circle"></sl-icon>
+              <sl-icon
+                class={classes.InfoIcon}
+                slot="icon"
+                name="info-circle"
+              ></sl-icon>
               {text.banner}
             </sl-alert>
             {slots.docusignIframeSlot}

@@ -206,6 +206,12 @@ export class TaxDocumentSubmitted {
    */
   @Prop() subRegionTaxNumber: string =
     "Income Tax Number: {subRegionTaxNumber}";
+  /**
+   * Sub text describing how payouts are provided from impact.com
+   * @uiName Payout from impact text
+   */
+  @Prop() payoutFromImpact: string =
+    "Payouts will be sent from our referral program provider, impact.com";
 
   /**
    * @undocumented

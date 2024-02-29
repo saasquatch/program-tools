@@ -204,6 +204,13 @@ export class IndirectTaxForm {
     "I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me.";
 
   /**
+   * Alert text indicating participant cannot change info after it has been submitted
+   * @uiName Cannot change info Alert text
+   */
+  @Prop() cannotChangeInfoAlert: string =
+    "Changes to your personal information and indirect tax can only be made through our Support team after you complete this step. Ensure these are correct before continuing.";
+
+  /**
    * @undocumented
    */
   @Prop() demoData?: DemoData<UseIndirectTaxFormResult>;

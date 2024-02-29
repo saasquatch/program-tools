@@ -1011,6 +1011,11 @@ export namespace Components {
          */
         "backButton": string;
         /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+         */
+        "cannotChangeInfoAlert": string;
+        /**
           * @undocumented
          */
         "demoData"?: DemoData<UseIndirectTaxFormResult>;
@@ -3793,6 +3798,12 @@ export namespace Components {
          */
         "step2_backButton": string;
         /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_cannotChangeInfoAlert": string;
+        /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Indirect tax form step text
           * @uiGroup Step 2 Properties
@@ -4423,6 +4434,11 @@ export namespace Components {
           * @uiName Not registered for Indirect Tax
          */
         "notRegisteredForTax": string;
+        /**
+          * Sub text describing how payouts are provided from impact.com
+          * @uiName Payout from impact text
+         */
+        "payoutFromImpact": string;
         /**
           * Label text for the QST number
           * @uiName QST number input
@@ -6386,6 +6402,11 @@ declare namespace LocalJSX {
           * @uiName Back button text
          */
         "backButton"?: string;
+        /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+         */
+        "cannotChangeInfoAlert"?: string;
         /**
           * @undocumented
          */
@@ -9145,6 +9166,12 @@ declare namespace LocalJSX {
          */
         "step2_backButton"?: string;
         /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_cannotChangeInfoAlert"?: string;
+        /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Indirect tax form step text
           * @uiGroup Step 2 Properties
@@ -9775,6 +9802,11 @@ declare namespace LocalJSX {
           * @uiName Not registered for Indirect Tax
          */
         "notRegisteredForTax"?: string;
+        /**
+          * Sub text describing how payouts are provided from impact.com
+          * @uiName Payout from impact text
+         */
+        "payoutFromImpact"?: string;
         /**
           * Label text for the QST number
           * @uiName QST number input

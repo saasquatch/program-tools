@@ -329,6 +329,15 @@ export class TaxAndCashMonolith {
    */
   @Prop() step2_generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
+
+  /**
+   * Alert text indicating participant cannot change info after it has been submitted
+   * @uiName Cannot change info Alert text
+   * @uiGroup Step 2 Properties
+   */
+  @Prop() step2_cannotChangeInfoAlert: string =
+    "Changes to your personal information and indirect tax can only be made through our Support team after you complete this step. Ensure these are correct before continuing.";
+
   /**
    * Error text shown below the Selected Region select input
    * @uiName Selected Region error text
