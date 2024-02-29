@@ -556,17 +556,26 @@ export function useBankingInfoForm(
           ...formData,
         } as SetImpactPublisherWithdrawalSettingsInput,
       });
-      if (!response || (response as Error)?.message) throw new Error();
-      if (
+      if (!response || (response as Error)?.message) {
+        console.log({ response });
+        throw new Error();
+      } else if (
         !(response as SetImpactPublisherWithdrawalSettingsResult)
           .setImpactPublisherWithdrawalSettings?.success
       ) {
-        // TODO What to do with validation errors
+        console.log({ response });
+
         console.error(
           "Validation failed: ",
           (response as SetImpactPublisherWithdrawalSettingsResult)
             .setImpactPublisherWithdrawalSettings?.validationErrors
         );
+
+        const validationErrors = (
+          response as SetImpactPublisherWithdrawalSettingsResult
+        ).setImpactPublisherWithdrawalSettings?.validationErrors;
+
+        setErrors(validationErrors);
         throw new Error();
       }
 
