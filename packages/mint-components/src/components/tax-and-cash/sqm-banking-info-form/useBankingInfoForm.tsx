@@ -508,7 +508,7 @@ export function useBankingInfoForm(
     useState<null | FinanceNetworkSetting>(null);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const [_paymentMethodChecked, setPaymentMethodChecked] = useState<
+  const [_paymentMethodChecked, _setPaymentMethodChecked] = useState<
     "toBankAccount" | "toPayPalAccount" | undefined
   >(undefined);
   const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
@@ -544,7 +544,6 @@ export function useBankingInfoForm(
       // @ts-ignore figure out what the values for paymentDay are
       // const { paymentDay, ...rest } = formData;
 
-      // TODO: wire up mutation
       const response = await saveWithdrawalSettings({
         setImpactPublisherWithdrawalSettingsInput: {
           user: {
@@ -608,8 +607,6 @@ export function useBankingInfoForm(
     setBankCountry(publisherCountry);
   }, [paymentOptions, userData, setCurrentPaymentOption, setBankCountry]);
 
-  // TODO currentPaymentOption should be updated when the paypal option is selected
-  // TODO there should be an option in the array with defaultFinancePaymentMethodId = 7 (paypal)
   const updateBankCountry = (bankCountry: string) => {
     const currentPaymentOption = paymentOptions?.find((paymentOption) => {
       if (paymentOption.countryCode === bankCountry) return true;
@@ -658,6 +655,20 @@ export function useBankingInfoForm(
   const paymentMethodChecked = !hasPayPal
     ? "toBankAccount"
     : _paymentMethodChecked;
+
+  function setPaymentMethodChecked(
+    paymentMethod: "toBankAccount" | "toPayPalAccount"
+  ) {
+    _setPaymentMethodChecked(paymentMethod);
+
+    if (paymentMethod === "toPayPalAccount") {
+      const currentPaymentOption = paymentOptions?.find((paymentOption) => {
+        if (paymentOption.withdrawalSettingId === 7) return true;
+        return false;
+      });
+      setCurrentPaymentOption(currentPaymentOption);
+    }
+  }
 
   return {
     text: props.getTextProps(),
