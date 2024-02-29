@@ -4424,6 +4424,11 @@ export namespace Components {
          */
         "notRegisteredForTax": string;
         /**
+          * Sub text describing how payouts are provided from impact.com
+          * @uiName Payout from impact text
+         */
+        "payoutFromImpact": string;
+        /**
           * Label text for the QST number
           * @uiName QST number input
          */
@@ -9775,6 +9780,11 @@ declare namespace LocalJSX {
           * @uiName Not registered for Indirect Tax
          */
         "notRegisteredForTax"?: string;
+        /**
+          * Sub text describing how payouts are provided from impact.com
+          * @uiName Payout from impact text
+         */
+        "payoutFromImpact"?: string;
         /**
           * Label text for the QST number
           * @uiName QST number input

@@ -57,6 +57,7 @@ export interface TaxDocumentSubmittedProps {
     indirectTaxInfoSectionHeader: string;
     indirectTaxInfoCanada?: string;
     indirectTaxInfoSpain?: string;
+    payoutFromImpact: string;
     indirectTaxInfoOtherCountry?: string;
     indirectTaxIndividualParticipant?: string;
     indirectTaxTooltipSupport?: string;
@@ -184,6 +185,11 @@ const style = {
     display: "flex",
     flexDirection: "column",
     gap: "6px",
+  },
+  DescriptionText: {
+    color: "var(--sl-color-gray-500)",
+    fontSize: "12px",
+    marginBottom: "none",
   },
 };
 
@@ -335,6 +341,8 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
           <h3>{text.bankingInformationSectionHeader}</h3>
           <div class={sheet.classes.BankingInformationContainer}>
             {slots.payoutDetailsCardSlot}
+            <p class={sheet.classes.DescriptionText}>{text.payoutFromImpact}</p>
+            {/* ZH: Most likely need this button in the next iteration of form */}
             {/* <sl-button
               disabled={states.disabled || states.loading}
               type="default"
