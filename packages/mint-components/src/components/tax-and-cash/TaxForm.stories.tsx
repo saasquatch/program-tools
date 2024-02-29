@@ -13,6 +13,7 @@ import {
 import { UseUserInfoFormResult } from "./sqm-user-info-form/useUserInfoForm";
 import { DocusignStatus } from "./sqm-docusign-form/docusign-iframe/DocusignIframe";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form/sqm-banking-info-form-view";
+import LoadingView from "./sqm-tax-and-cash/LoadingView";
 // import sqmUserInfoSpecs from "./sqm-tax-document-step-1.feature";
 // import sqmIndirectTaxFormSpecs from "../sqm-indirect-tax-form/sqm-indirect-tax-form.feature";
 
@@ -188,6 +189,10 @@ const documentTypeFormProps: StoryDemoData<UseDocumentTypeFormResult> = {
     onSubmit: async () => console.log("Submit"),
     onBack: () => console.log("Back"),
   },
+};
+
+export const GeneralLoadingView = () => {
+  return <LoadingView />;
 };
 
 // STEP ONE
