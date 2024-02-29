@@ -73,6 +73,7 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
   },
   refs: {
     formRef: { current: null },
+    currencyRef: { current: null },
   },
 };
 

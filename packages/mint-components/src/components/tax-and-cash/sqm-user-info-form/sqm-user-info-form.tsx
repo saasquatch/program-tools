@@ -217,6 +217,7 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
       text: props.getTextProps(),
       refs: {
         formRef: { current: null },
+        currencyRef: { current: null },
       },
       data: {
         currencies: [{ currencyCode: "CAD", displayName: "CAD" }],
