@@ -49,6 +49,7 @@ export type InitialData = {
 export function useUserInfoForm(props: TaxForm) {
   const user = useUserIdentity();
 
+  const currencyRef = useRef<HTMLSelectElement>(undefined);
   const formRef = useRef<HTMLFormElement>(null);
   const [formErrors, setErrors] = useState({});
 
@@ -108,10 +109,12 @@ export function useUserInfoForm(props: TaxForm) {
   const onFormChange = (field: string, e: CustomEvent) => {
     const value = e.detail?.item?.__value;
     if (!value) console.error("Could not detect select change");
+
     setUserFormContext({
       ...userFormContext,
       [field]: value,
     });
+    if (field === "countryCode") currencyRef.current.value = "";
   };
 
   useEffect(() => {
@@ -200,6 +203,7 @@ export function useUserInfoForm(props: TaxForm) {
     },
     refs: {
       formRef,
+      currencyRef,
     },
     data: {
       currencies: filteredCurrencies,

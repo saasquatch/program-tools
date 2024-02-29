@@ -168,6 +168,10 @@ export function useTaxAndCash() {
     skip: !user,
   });
 
+  const countryCode =
+    data?.user?.impactConnection?.publisher?.countryCode ||
+    userFormContext.countryCode;
+
   useParentQuery<CountriesQuery>({
     namespace: COUNTRIES_QUERY_NAMESPACE,
     query: GET_COUNTRIES,
@@ -180,12 +184,7 @@ export function useTaxAndCash() {
       query: GET_FINANCE_NETWORK_SETTINGS,
       skip: !user,
       variables: {
-        filter: {
-          countryCode_eq: userFormContext.countryCode,
-          ...(data?.user?.impactConnection?.publisher?.currency
-            ? { currency_eq: data?.user?.impactConnection?.publisher?.currency }
-            : {}),
-        },
+        filter: getFinanceNetworkFilter(),
       },
     });
 
@@ -194,10 +193,6 @@ export function useTaxAndCash() {
     query: GET_CURRENCIES,
     skip: !user,
   });
-
-  const countryCode =
-    data?.user?.impactConnection?.publisher?.countryCode ||
-    userFormContext.countryCode;
 
   const supportedCurrencies = useMemo(() => {
     // Filter out any currencies not supported by finance network settings
@@ -241,8 +236,20 @@ export function useTaxAndCash() {
 
       const currentStep = getCurrentStep(user);
       setStep(currentStep);
+      // setStep("/4");
     }
   }, [host, user, data?.user?.email]);
+
+  function getFinanceNetworkFilter() {
+    if (step === "/4")
+      return { currency_eq: data?.user?.impactConnection?.publisher?.currency };
+
+    if (countryCode)
+      return {
+        countryCode_eq: countryCode,
+      };
+    return {};
+  }
 
   return {
     step,

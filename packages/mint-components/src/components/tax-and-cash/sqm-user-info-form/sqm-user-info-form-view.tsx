@@ -1,5 +1,6 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
+import { useRef } from "@saasquatch/universal-hooks";
 
 export interface UserInfoFormViewProps {
   states: {
@@ -72,6 +73,7 @@ export interface UserInfoFormViewProps {
   };
   refs: {
     formRef: any;
+    currencyRef: any;
   };
 }
 
@@ -321,6 +323,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   }
                 : {})}
               required
+              ref={(el: HTMLFormElement) => (refs.currencyRef.current = el)}
             >
               <sl-input
                 class={classes.SearchInput}
