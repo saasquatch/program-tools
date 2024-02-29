@@ -44,7 +44,7 @@ import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/s
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
 import { UseTaxAndCashResultType } from "./components/tax-and-cash/sqm-tax-and-cash/useTaxAndCash";
-import { UseTaxDocumentSubmittedResult } from "./components/tax-and-cash/sqm-tax-document-submitted/useTaxDocumentSubmitted";
+import { UseTaxAndCashDashboardResult } from "./components/tax-and-cash/sqm-tax-and-cash-dashboard/useTaxAndCashDashboard";
 import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
@@ -4495,7 +4495,7 @@ export namespace Components {
          */
         "stop3NotBasedInUS": string;
     }
-    interface SqmTaxDocumentSubmitted {
+    interface SqmTaxAndCashDashboard {
         /**
           * Description text which appears beside badge showing the form is awaiting review
           * @uiName Badge description text
@@ -4520,7 +4520,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<UseTaxDocumentSubmittedResult>;
+        "demoData"?: DemoData<UseTaxAndCashDashboardResult>;
         /**
           * Text displayed in the edit Indirect Tax button
           * @uiName Edit Indirect Tax button
@@ -5443,11 +5443,11 @@ declare global {
         prototype: HTMLSqmTaxAndCashElement;
         new (): HTMLSqmTaxAndCashElement;
     };
-    interface HTMLSqmTaxDocumentSubmittedElement extends Components.SqmTaxDocumentSubmitted, HTMLStencilElement {
+    interface HTMLSqmTaxAndCashDashboardElement extends Components.SqmTaxAndCashDashboard, HTMLStencilElement {
     }
-    var HTMLSqmTaxDocumentSubmittedElement: {
-        prototype: HTMLSqmTaxDocumentSubmittedElement;
-        new (): HTMLSqmTaxDocumentSubmittedElement;
+    var HTMLSqmTaxAndCashDashboardElement: {
+        prototype: HTMLSqmTaxAndCashDashboardElement;
+        new (): HTMLSqmTaxAndCashDashboardElement;
     };
     interface HTMLSqmTextElement extends Components.SqmText, HTMLStencilElement {
     }
@@ -5587,7 +5587,7 @@ declare global {
         "sqm-tabs": HTMLSqmTabsElement;
         "sqm-task-card": HTMLSqmTaskCardElement;
         "sqm-tax-and-cash": HTMLSqmTaxAndCashElement;
-        "sqm-tax-document-submitted": HTMLSqmTaxDocumentSubmittedElement;
+        "sqm-tax-and-cash-dashboard": HTMLSqmTaxAndCashDashboardElement;
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
         "sqm-timeline": HTMLSqmTimelineElement;
@@ -10020,7 +10020,7 @@ declare namespace LocalJSX {
          */
         "stop3NotBasedInUS"?: string;
     }
-    interface SqmTaxDocumentSubmitted {
+    interface SqmTaxAndCashDashboard {
         /**
           * Description text which appears beside badge showing the form is awaiting review
           * @uiName Badge description text
@@ -10045,7 +10045,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<UseTaxDocumentSubmittedResult>;
+        "demoData"?: DemoData<UseTaxAndCashDashboardResult>;
         /**
           * Text displayed in the edit Indirect Tax button
           * @uiName Edit Indirect Tax button
@@ -10491,7 +10491,7 @@ declare namespace LocalJSX {
         "sqm-tabs": SqmTabs;
         "sqm-task-card": SqmTaskCard;
         "sqm-tax-and-cash": SqmTaxAndCash;
-        "sqm-tax-document-submitted": SqmTaxDocumentSubmitted;
+        "sqm-tax-and-cash-dashboard": SqmTaxAndCashDashboard;
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
         "sqm-timeline": SqmTimeline;
@@ -10600,7 +10600,7 @@ declare module "@stencil/core" {
             "sqm-tabs": LocalJSX.SqmTabs & JSXBase.HTMLAttributes<HTMLSqmTabsElement>;
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
             "sqm-tax-and-cash": LocalJSX.SqmTaxAndCash & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashElement>;
-            "sqm-tax-document-submitted": LocalJSX.SqmTaxDocumentSubmitted & JSXBase.HTMLAttributes<HTMLSqmTaxDocumentSubmittedElement>;
+            "sqm-tax-and-cash-dashboard": LocalJSX.SqmTaxAndCashDashboard & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashDashboardElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
             "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;

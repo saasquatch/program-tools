@@ -7,7 +7,7 @@ import {
 } from "../sqm-payout-details-card/sqm-payout-details-card-view";
 import { TaxDocumentType } from "../sqm-tax-and-cash/data";
 
-export interface TaxDocumentSubmittedProps {
+export interface TaxAndCashDashboardProps {
   states: {
     status?: string;
     documentType: TaxDocumentType | undefined;
@@ -196,7 +196,7 @@ const style = {
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
+export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
   const { states, text, callbacks, slots } = props;
 
   const statusMap = {
