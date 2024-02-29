@@ -42,29 +42,33 @@ const WIRE_PAYMENT_METHOD = 5;
 const PAYPAL_PAYMENT_METHOD = 7;
 
 export type BankingInfoFormData = {
-  bankCountry?: string;
   paypalEmailAddress?: string;
   beneficiaryAccountName?: string;
-  bankAccountType?: string;
-  bankAccountNumber?: string;
-  iban?: string;
-  swiftCode?: string;
-  routingCode?: string;
-  bankName?: string;
+  bankCountry?: string;
   beneficiaryClassification?:
     | "BUSINESS"
     | "INDIVIDUAL"
     | "FOREIGN"
     | "CPF"
     | "CNPJ";
-  patronymicName?: string;
+  beneficiaryAlternativeName?: string;
+  beneficiaryTaxPayerId?: string;
+  bankAccountType?: "CHECKING" | "SAVINGS" | "NOT_SET";
+  bankAccountNumber?: string;
+  swiftCode?: string;
+  routingCode?: string;
   voCode?: string;
   agencyCode?: string;
   bankAddress?: string;
-  bankCity?: string;
-  bankProvinceState?: string;
   bankPostalCode?: string;
+  bankCity?: string;
+  bankState?: string;
   branchCode?: string;
+
+  // TODO These fields aren't settable in the mutation
+  bankName?: string;
+  patronymicName?: string;
+  bankProvinceState?: string;
 };
 
 type RoutingCodeLabels = {
@@ -433,6 +437,22 @@ export function getFormInputs({ bitset, formMap }) {
   return inputFields;
 }
 
+type SetImpactPublisherWithdrawalSettingsResult = {
+  setImpactPublisherWithdrawalSettings: {
+    success: boolean;
+    validationErrors: { field: string; message: string }[];
+  };
+};
+type SetImpactPublisherWithdrawalSettingsInput = {
+  user: {
+    id: string;
+    accountId: string;
+  };
+  paymentMethod: "PAYPAL" | "BANKING_TRANSFER";
+  paymentSchedulingType?: "BALANCE_THRESHOLD" | "FIXED_DAY";
+  paymentThreshold?: string;
+  paymentDay?: string;
+} & BankingInfoFormData;
 const SAVE_WITHDRAWAL_SETTINGS = gql`
   mutation setImpactPublisherWithdrawalSettings(
     $setImpactPublisherWithdrawalSettingsInput: SetImpactPublisherWithdrawalSettingsInput!
@@ -440,7 +460,11 @@ const SAVE_WITHDRAWAL_SETTINGS = gql`
     setImpactPublisherWithdrawalSettings(
       setImpactPublisherWithdrawalSettingsInput: $setImpactPublisherWithdrawalSettingsInput
     ) {
-      id
+      success
+      validationErrors {
+        field
+        message
+      }
     }
   }
 `;
@@ -465,7 +489,10 @@ export function useBankingInfoForm(
   const { data: userData, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
-  const [saveWithdrawalSettings] = useMutation(SAVE_WITHDRAWAL_SETTINGS);
+  const [saveWithdrawalSettings] =
+    useMutation<SetImpactPublisherWithdrawalSettingsResult>(
+      SAVE_WITHDRAWAL_SETTINGS
+    );
 
   const user = useUserIdentity();
 
@@ -520,15 +547,30 @@ export function useBankingInfoForm(
       // TODO: wire up mutation
       const response = await saveWithdrawalSettings({
         setImpactPublisherWithdrawalSettingsInput: {
-          userId: user.id,
-          accountId: user.accountId,
+          user: {
+            id: user.id,
+            accountId: user.accountId,
+          },
           paymentMethod: formData?.paypalEmailAddress
             ? "PAYPAL"
             : getPaymentMethod(currentPaymentOption),
           ...formData,
-        },
+        } as SetImpactPublisherWithdrawalSettingsInput,
       });
       if (!response || (response as Error)?.message) throw new Error();
+      if (
+        !(response as SetImpactPublisherWithdrawalSettingsResult)
+          .setImpactPublisherWithdrawalSettings?.success
+      ) {
+        // TODO What to do with validation errors
+        console.error(
+          "Validation failed: ",
+          (response as SetImpactPublisherWithdrawalSettingsResult)
+            .setImpactPublisherWithdrawalSettings?.validationErrors
+        );
+        throw new Error();
+      }
+
       await refetch();
 
       setStep("/submitted");
@@ -566,8 +608,8 @@ export function useBankingInfoForm(
     setBankCountry(publisherCountry);
   }, [paymentOptions, userData, setCurrentPaymentOption, setBankCountry]);
 
-  // TODO: currentPaymentOption should be updated when the paypal option is selected
-  // ?
+  // TODO currentPaymentOption should be updated when the paypal option is selected
+  // TODO there should be an option in the array with defaultFinancePaymentMethodId = 7 (paypal)
   const updateBankCountry = (bankCountry: string) => {
     const currentPaymentOption = paymentOptions?.find((paymentOption) => {
       if (paymentOption.countryCode === bankCountry) return true;

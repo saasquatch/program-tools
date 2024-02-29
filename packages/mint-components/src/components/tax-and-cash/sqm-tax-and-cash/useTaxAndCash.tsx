@@ -36,23 +36,12 @@ import {
 function getCurrentStep(user: UserQuery["user"]) {
   // TODO: include banking form step as a case
 
-  if (
-    !user.impactConnection ||
-    user.impactConnection?.connectionStatus === "NOT_CONNECTED"
-  ) {
+  if (!user.impactConnection?.publisher || !user.impactConnection?.connected) {
     return "/1";
   }
 
   const { requiredTaxDocumentType, currentTaxDocument, withdrawalSettings } =
     user.impactConnection.publisher;
-
-  if (
-    !requiredTaxDocumentType ||
-    currentTaxDocument?.status === "NOT_VERIFIED" ||
-    currentTaxDocument?.status === "ACTIVE"
-  ) {
-    return "/submitted";
-  }
 
   // If they do have a required document, look at current document
   if (
@@ -75,9 +64,9 @@ export function useTaxAndCash() {
   function setupDemo() {
     // coleton
     const id =
-      "9029ca937235230319e7cf9c20051bf0cc94ac8c1e6c91cf56ffc7daae4a0f03";
+      "01e869a67428264712034a69222c709820c308c21ef4fb338bac0af445ab3a64";
     const accountId =
-      "9029ca937235230319e7cf9c20051bf0cc94ac8c1e6c91cf56ffc7daae4a0f03";
+      "01e869a67428264712034a69222c709820c308c21ef4fb338bac0af445ab3a64";
 
     // // andy
     // const id =
@@ -104,7 +93,7 @@ export function useTaxAndCash() {
       setUserIdentity({
         accountId,
         id,
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiOTAyOWNhOTM3MjM1MjMwMzE5ZTdjZjljMjAwNTFiZjBjYzk0YWM4YzFlNmM5MWNmNTZmZmM3ZGFhZTRhMGYwMyIsImFjY291bnRJZCI6IjkwMjljYTkzNzIzNTIzMDMxOWU3Y2Y5YzIwMDUxYmYwY2M5NGFjOGMxZTZjOTFjZjU2ZmZjN2RhYWU0YTBmMDMifX0.OOF36Knix_GNRvnbDQt-J_MCMj-0Es0jf4JAVDG8V5U",
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiMDFlODY5YTY3NDI4MjY0NzEyMDM0YTY5MjIyYzcwOTgyMGMzMDhjMjFlZjRmYjMzOGJhYzBhZjQ0NWFiM2E2NCIsImFjY291bnRJZCI6IjAxZTg2OWE2NzQyODI2NDcxMjAzNGE2OTIyMmM3MDk4MjBjMzA4YzIxZWY0ZmIzMzhiYWMwYWY0NDVhYjNhNjQifX0.kvXteiTOW1vfXtT30NbyCkacbBPtFZqEf990SFkHiA4",
       });
     }, []);
 
@@ -250,9 +239,8 @@ export function useTaxAndCash() {
       const user = data?.user;
       if (!user || step !== "/loading") return;
 
-      setStep("/4");
-      // const currentStep = getCurrentStep(user);
-      // setStep(currentStep);
+      const currentStep = getCurrentStep(user);
+      setStep(currentStep);
     }
   }, [host, user, data?.user?.email]);
 

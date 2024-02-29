@@ -44,7 +44,7 @@ export const GET_USER = gql`
         countryCode
         customFields
         impactConnection {
-          connectionStatus
+          connected
           user {
             firstName
             lastName
@@ -59,23 +59,10 @@ export const GET_USER = gql`
               dateCreated
             }
             withdrawalSettings {
+              paymentMethod
               paypalEmailAddress
               bankCountry
-              beneficiaryAccountName
-              beneficiaryClassification
-              beneficiaryAlternativeName
-              beneficiaryTaxPayerId
-              bankAccountType
               bankAccountNumber
-              swiftCode
-              routingCode
-              voCode
-              agencyCode
-              bankAddress
-              bankPostalCode
-              bankCity
-              bankState
-              branchCode
               paymentSchedulingType
               paymentThreshold
               paymentDay
@@ -99,28 +86,10 @@ type ImpactPublisher = {
     dateCreated: number;
   };
   withdrawalSettings: {
+    paymentMethod: "PAYPAL" | "BANK_TRANSFER";
     paypalEmailAddress: string | null;
     bankCountry: string | null;
-    beneficiaryAccountName: string | null;
-    beneficiaryClassification:
-      | "BUSINESS"
-      | "INDIVIDUAL"
-      | "CPF"
-      | "CNPJ"
-      | null;
-    beneficiaryAlternativeName: string | null;
-    beneficiaryTaxPayerId: string | null;
-    bankAccountType: "CHECKING" | "SAVINGS" | "NOT_SET";
     bankAccountNumber: string | null;
-    swiftCode: string | null;
-    routingCode: string | null;
-    voCode: string | null;
-    agencyCode: string | null;
-    bankAddress: string | null;
-    bankPostalCode: string | null;
-    bankCity: string | null;
-    bankState: string | null;
-    branchCode: string | null;
     paymentSchedulingType: "BALANCE_THRESHOLD" | "FIXED_DAY";
     paymentThreshold: string | null;
     paymentDay: string | null;
@@ -145,11 +114,11 @@ export type UserQuery = {
       [key: string]: any;
     };
     impactConnection: null | {
-      connectionStatus: "CONNECTED" | "NOT_CONNECTED";
+      connected: boolean;
       user: {
         firstName: string;
         lastName: string;
-      };
+      } | null;
       publisher: null | ImpactPublisher;
     };
   };

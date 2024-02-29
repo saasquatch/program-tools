@@ -32,20 +32,36 @@ type ConnectPartnerResult = {
     id: string;
     accountId: string;
     impactConnection: {
-      connectionStatus: "NOT_CONNECTED" | "CONNECTED";
+      connected: boolean;
       publisher: {
         requiredTaxDocumentType: TaxDocumentType | null;
       };
     } | null;
   };
 };
+type ImpactConnectionInput = {
+  user: {
+    id: string;
+    accountId: string;
+  };
+  firstName: string;
+  lastName: string;
+  countryCode: string;
+  currency: string;
+  indirectTaxCountry?: string;
+  indirectTaxRegion?: string;
+  indirectTaxId?: string;
+  additionalTaxId?: string;
+  withholdingTaxId?: string;
+};
+
 const CONNECT_PARTNER = gql`
   mutation createImpactConnection($vars: ImpactConnectionInput!) {
     createImpactConnection(impactConnectionInput: $vars) {
       id
       accountId
       impactConnection {
-        connectionStatus
+        connected
         publisher {
           requiredTaxDocumentType
         }
@@ -174,38 +190,22 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
     setLoading(true);
     try {
-      const taxOption =
-        option === "notRegistered"
-          ? "NO_TAX"
-          : formData.selectedRegion === userForm?.countryCode
-          ? "SAME_COUNTRY"
-          : "DIFFERENT_COUNTRY";
-
-      const fields = {
-        indirectTaxOption: taxOption,
-        indirectTaxCountry: formData.selectedRegion,
-        indirectTaxSubdivision: formData.province || formData.subRegion,
-        indirectTaxId: formData.indirectTaxNumber,
-        additionalTaxId: formData.qstNumber,
-        withholdingTaxCountry:
-          option !== "notRegistered" &&
-          formState.selectedRegion === "ES" &&
-          formState.hasSubRegionTaxNumber
-            ? "SPAIN"
-            : undefined,
-        withholdingTaxNumber: formData.subRegionTaxNumber,
-      };
-
       const result = await connectImpactPartner({
         vars: {
-          userId: user.id,
-          accountId: user.accountId,
+          user: {
+            id: user.id,
+            accountId: user.accountId,
+          },
           firstName: userForm.firstName,
           lastName: userForm.lastName,
           countryCode: userForm.countryCode,
           currency: userForm.currency,
-          ...fields,
-        },
+          indirectTaxCountry: formData.selectedRegion,
+          indirectTaxRegion: formData.province || formData.subRegion,
+          indirectTaxId: formData.indirectTaxNumber,
+          additionalTaxId: formData.qstNumber,
+          withholdingTaxNumber: formData.subRegionTaxNumber,
+        } as ImpactConnectionInput,
       });
       if (!result || (result as Error)?.message) throw new Error();
 

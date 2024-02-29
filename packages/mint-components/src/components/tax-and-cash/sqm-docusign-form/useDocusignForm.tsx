@@ -13,14 +13,20 @@ import {
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
+import { taxTypeToName } from "../utils";
 import { DocusignStatus } from "./docusign-iframe/DocusignIframe";
 import { DocusignForm } from "./sqm-docusign-form";
-import { taxTypeToName } from "../utils";
-import { autoColorScaleCss } from "../../sqm-stencilbook/AutoColor";
 
 type CreateTaxDocumentQuery = {
   createImpactPublisherTaxDocument: {
     documentUrl: string;
+  };
+};
+type CreateImpactPublisherTaxDocumentInput = {
+  isBusinessEntity?: boolean;
+  user: {
+    id: string;
+    accountId: string;
   };
 };
 
@@ -99,12 +105,14 @@ export function useDocusignForm(props: DocusignForm) {
       try {
         const result = await createTaxDocument({
           vars: {
-            userId: user.id,
-            accountId: user.accountId,
+            user: {
+              id: user.id,
+              accountId: user.accountId,
+            },
             ...(participantType
               ? { isBusinessEntity: participantType === "businessEntity" }
               : {}),
-          },
+          } as CreateImpactPublisherTaxDocumentInput,
         });
 
         if (!result || (result as Error).message) throw new Error();
