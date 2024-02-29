@@ -796,9 +796,9 @@ export const StepFourToPaypalChecked = () => {
   );
 };
 
-export const TaxDocumentSubmittedActiveW9 = () => {
+export const TaxAndCashDashboardActiveW9Form = () => {
   return (
-    <sqm-tax-document-submitted
+    <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
           disabled: false,
@@ -813,13 +813,13 @@ export const TaxDocumentSubmittedActiveW9 = () => {
           isBusinessEntity: true,
         },
       }}
-    ></sqm-tax-document-submitted>
+    ></sqm-tax-and-cash-dashboard>
   );
 };
 
-export const TaxDocumentSubmittedActiveW8BEN = () => {
+export const TaxAndCashDashboardActiveW8BENForm = () => {
   return (
-    <sqm-tax-document-submitted
+    <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
           disabled: false,
@@ -834,19 +834,19 @@ export const TaxDocumentSubmittedActiveW8BEN = () => {
           isBusinessEntity: true,
         },
       }}
-    ></sqm-tax-document-submitted>
+    ></sqm-tax-and-cash-dashboard>
   );
 };
 
-export const TaxDocumentSubmittedNotVerified = () => {
+export const TaxAndCashDashboardActiveW8BENEForm = () => {
   return (
-    <sqm-tax-document-submitted
+    <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
           disabled: false,
-          status: "NOT_VERIFIED",
-          documentType: "W8BEN",
-          documentTypeString: "W8-BEN",
+          status: "ACTIVE",
+          documentType: "W8BENE",
+          documentTypeString: "W8-BEN-E",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           country: "United Kingdom",
@@ -855,13 +855,13 @@ export const TaxDocumentSubmittedNotVerified = () => {
           isBusinessEntity: true,
         },
       }}
-    ></sqm-tax-document-submitted>
+    ></sqm-tax-and-cash-dashboard>
   );
 };
 
-export const TaxDocumentSubmittedNotActiveW9 = () => {
+export const TaxAndCashDashboardNotActiveW9Form = () => {
   return (
-    <sqm-tax-document-submitted
+    <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
           disabled: false,
@@ -876,34 +876,75 @@ export const TaxDocumentSubmittedNotActiveW9 = () => {
           isBusinessEntity: true,
         },
       }}
-    ></sqm-tax-document-submitted>
+    ></sqm-tax-and-cash-dashboard>
   );
 };
-
-export const TaxDocumentSubmittedNotActiveW8BEN = () => {
+export const TaxAndCashDashboardNotVerifiedW9Form = () => {
   return (
-    <sqm-tax-document-submitted
+    <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
           disabled: false,
-          status: "NOT_ACTIVE",
+          status: "NOT_VERIFIED",
+          documentType: "W9",
+          documentTypeString: "W9",
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          country: "United States",
+          indirectTaxType: "VAT",
+          indirectTaxNumber: 123456,
+          isBusinessEntity: true,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardNotVerifiedW8BENForm = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        states: {
+          disabled: false,
+          status: "NOT_VERIFIED",
           documentType: "W8BEN",
           documentTypeString: "W8-BEN",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
-          indirectTaxNumber: 123456,
-          indirectTaxType: "VAT",
           country: "United Kingdom",
+          indirectTaxType: "VAT",
+          indirectTaxNumber: 123456,
           isBusinessEntity: true,
         },
       }}
-    ></sqm-tax-document-submitted>
+    ></sqm-tax-and-cash-dashboard>
   );
 };
 
-export const TaxDocumentSubmittedNotActiveW8BENE = () => {
+export const TaxAndCashDashboardNotVerifiedW8BENEForm = () => {
   return (
-    <sqm-tax-document-submitted
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        states: {
+          disabled: false,
+          status: "NOT_VERIFIED",
+          documentType: "W8BENE",
+          documentTypeString: "W8-BEN-E",
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          country: "United Kingdom",
+          indirectTaxType: "VAT",
+          indirectTaxNumber: 123456,
+          isBusinessEntity: true,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardNotActiveW8BENEForm = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
           disabled: false,
@@ -918,13 +959,13 @@ export const TaxDocumentSubmittedNotActiveW8BENE = () => {
           isBusinessEntity: true,
         },
       }}
-    ></sqm-tax-document-submitted>
+    ></sqm-tax-and-cash-dashboard>
   );
 };
 
-export const TaxDocumentNoFormNeeded = () => {
+export const TaxAndCashDashboardNoFormNeeded = () => {
   return (
-    <sqm-tax-document-submitted
+    <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
           disabled: false,
@@ -940,13 +981,13 @@ export const TaxDocumentNoFormNeeded = () => {
           isBusinessEntity: true,
         },
       }}
-    ></sqm-tax-document-submitted>
+    ></sqm-tax-and-cash-dashboard>
   );
 };
 
-export const TaxDocumentSubmittedIndirectTaxCanada = () => {
+export const TaxAndCashDashboardIndirectTaxCanada = () => {
   return (
-    <sqm-tax-document-submitted
+    <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
           status: "ACTIVE",
@@ -963,13 +1004,13 @@ export const TaxDocumentSubmittedIndirectTaxCanada = () => {
           isBusinessEntity: true,
         },
       }}
-    ></sqm-tax-document-submitted>
+    ></sqm-tax-and-cash-dashboard>
   );
 };
 
-export const TaxDocumentSubmittedIndirectTaxCanadaQuebec = () => {
+export const TaxAndCashDashboardIndirectTaxCanadaQuebec = () => {
   return (
-    <sqm-tax-document-submitted
+    <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
           status: "ACTIVE",
@@ -987,13 +1028,13 @@ export const TaxDocumentSubmittedIndirectTaxCanadaQuebec = () => {
           isBusinessEntity: true,
         },
       }}
-    ></sqm-tax-document-submitted>
+    ></sqm-tax-and-cash-dashboard>
   );
 };
 
-export const TaxDocumentSubmittedIndirectTaxSpain = () => {
+export const TaxAndCashDashboardIndirectTaxSpain = () => {
   return (
-    <sqm-tax-document-submitted
+    <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
           status: "ACTIVE",
@@ -1010,13 +1051,13 @@ export const TaxDocumentSubmittedIndirectTaxSpain = () => {
           isBusinessEntity: true,
         },
       }}
-    ></sqm-tax-document-submitted>
+    ></sqm-tax-and-cash-dashboard>
   );
 };
 
-export const TaxDocumentSubmittedNotRegistered = () => {
+export const TaxAndCashDashboardIndirectTaxNotRegistered = () => {
   return (
-    <sqm-tax-document-submitted
+    <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
           status: "ACTIVE",
@@ -1028,13 +1069,13 @@ export const TaxDocumentSubmittedNotRegistered = () => {
           isBusinessEntity: false,
         },
       }}
-    ></sqm-tax-document-submitted>
+    ></sqm-tax-and-cash-dashboard>
   );
 };
 
-export const TaxDocumentSubmittedLoading = () => {
+export const TaxAndCashDashboardLoading = () => {
   return (
-    <sqm-tax-document-submitted
+    <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
           disabled: false,
@@ -1047,13 +1088,13 @@ export const TaxDocumentSubmittedLoading = () => {
           isBusinessEntity: true,
         },
       }}
-    ></sqm-tax-document-submitted>
+    ></sqm-tax-and-cash-dashboard>
   );
 };
 
-export const TaxDocumentSubmittedWithGeneralError = () => {
+export const TaxAndCashDashboardWithGeneralError = () => {
   return (
-    <sqm-tax-document-submitted
+    <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
           disabled: false,
@@ -1070,13 +1111,13 @@ export const TaxDocumentSubmittedWithGeneralError = () => {
           },
         },
       }}
-    ></sqm-tax-document-submitted>
+    ></sqm-tax-and-cash-dashboard>
   );
 };
 
-export const TaxDocumentSubmittedDisabled = () => {
+export const TaxAndCashDashboardDisabled = () => {
   return (
-    <sqm-tax-document-submitted
+    <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
           disabled: true,
@@ -1090,6 +1131,6 @@ export const TaxDocumentSubmittedDisabled = () => {
           country: "Slovania",
         },
       }}
-    ></sqm-tax-document-submitted>
+    ></sqm-tax-and-cash-dashboard>
   );
 };

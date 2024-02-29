@@ -1,6 +1,6 @@
 import { IndirectDetailsSlotViewProps } from "./small-views/IndirectTaxDetailsView";
 import { UserInfoFormViewProps } from "./sqm-user-info-form-view";
-import { TaxDocumentSubmittedProps } from "../sqm-tax-document-submitted/sqm-tax-document-submitted-view";
+import { TaxAndCashDashboardProps } from "../sqm-tax-and-cash-dashboard/sqm-tax-and-cash-dashboard-view";
 import { IndirectTaxFormViewProps } from "../sqm-indirect-tax-form/sqm-indirect-tax-form-view";
 import { DocumentTypeFormViewProps } from "../sqm-document-type-form/sqm-document-type-form-view";
 import { DocusignFormViewProps } from "../sqm-docusign-form/sqm-docusign-form-view";

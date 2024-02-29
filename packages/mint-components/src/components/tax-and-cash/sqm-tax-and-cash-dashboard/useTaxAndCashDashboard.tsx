@@ -11,8 +11,8 @@ import {
   UserQuery,
 } from "../sqm-tax-and-cash/data";
 import { INDIRECT_TAX_PROVINCES } from "../subregions";
-import { TaxDocumentSubmitted } from "./sqm-tax-document-submitted";
-import { TaxDocumentSubmittedProps } from "./sqm-tax-document-submitted-view";
+import { TaxAndCashDashboard } from "./sqm-tax-and-cash-dashboard";
+import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard-view";
 import { useLocale } from "@saasquatch/component-boilerplate";
 import { Upcoming } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
 import { taxTypeToName } from "../utils";
@@ -27,9 +27,9 @@ function getExpiresSoon(submissionDate: number, expiryDate: number) {
   );
 }
 
-export const useTaxDocumentSubmitted = (
-  props: TaxDocumentSubmitted
-): TaxDocumentSubmittedProps => {
+export const useTaxAndCashDashboard = (
+  props: TaxAndCashDashboard
+): TaxAndCashDashboardProps => {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
   const [context, setContext] = useParent<TaxContext>(
     TAX_FORM_CONTEXT_NAMESPACE
@@ -124,6 +124,6 @@ export const useTaxDocumentSubmitted = (
   };
 };
 
-export type UseTaxDocumentSubmittedResult = ReturnType<
-  typeof useTaxDocumentSubmitted
+export type UseTaxAndCashDashboardResult = ReturnType<
+  typeof useTaxAndCashDashboard
 >;
