@@ -90,7 +90,7 @@ Feature: Tax Form Flow
     Given a brand based in <brandCountry>
     And the brand is not in the US
     And the user selects a <country> not in the US
-    Then they skip to step 4
+    Then they skip to step 4 Payout Details
 
     Examples: 
       | brandCountry | country |
@@ -132,16 +132,19 @@ Feature: Tax Form Flow
     And they were not required to fillout a tax form
     And they press Continue
     Then they proceed to step 4
-    And they see the Tax Document Submitted page with no Tax Document present
+    And complete their payout details
+    And they press Continue
+    Then they see the Dashboard page with no Tax Document present
 
   @minutia
   Scenario: Participant finishes tax form flow and sees status of their tax form submission
     Given they are on step 3
     And finishes filling out the Docusign form
-    And they check the "completedTaxForm" checkbox
     And they press Continue
     Then they proceed to step 4
-    And they see the Tax Document Submitted page
+    And complete their payout details
+    And they press Continnue
+    Then hey see the Dashboard page
 
   @minutia
   Scenario: A general error banner appears upon form submission request failing

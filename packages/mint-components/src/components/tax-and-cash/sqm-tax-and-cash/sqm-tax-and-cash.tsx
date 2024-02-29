@@ -523,313 +523,502 @@ export class TaxAndCashMonolith {
   @Prop() step3_formSubmissionError: string = "This field is required";
 
   /**
-   * * DOCUMENT TYPE STEP
+   * STEP 4 PAYOUT INFORMATION FORM
    */
+  /**
+   * Subtext shown at the top of the page, used to show the current step of the tax form.
+   * @uiName Form step text
+   */
+  @Prop() step4_formStep: string = "Step 4 of 4";
 
   /**
-   * Sub text shown at the top of the page, used to show the current step of the tax form.
-   * @uiName Tax form step text
-   * @uiGroup Step 3b Properties
+   * Heading text shown at the top of the page
+   * @uiName Tax and Payouts heading text
    */
-  @Prop() step3b_formStep: string = "Step 3 of 4";
+  @Prop() step4_taxAndPayouts: string = "Tax and Payouts";
+
   /**
-   * Sub text shown above form selection radio buttons
-   * @uiName Tax form selection heading text
-   * @uiGroup Step 3b Properties
+   * Text shown at the top of the page next to the tax and payouts label text
+   * @uiName Tax and Payouts label text
    */
-  @Prop() step3b_formLabel: string = "Select a tax form";
+  @Prop() step4_taxAndPayoutsDescription: string =
+    "Submit your tax documents and add your banking information to receive your rewards.";
+
   /**
-   * Heading text shown at the top of the top of page
-   * @uiName Tax form heading text
-   * @uiGroup Step 3b Properties
+   * Text for the option to receive payments directly to a bank account
+   * @uiName Directly to bank account option text
    */
-  @Prop() step3b_taxForm: string = "Tax form";
+  @Prop() step4_directlyToBankAccount: string = "Directly to my bank account";
+
   /**
-   * Label text for the W9 radio button
-   * @uiName W9 radio button label
-   * @uiGroup Step 3b Properties
+   * Text for the option to receive payments to a PayPal account with processing fee details
+   * @uiName PayPal option text with processing fee placeholder
    */
-  @Prop() step3b_w9Label: string = "W9";
+  @Prop() step4_toPayPalAccount: string =
+    "PayPal (2% processing fee capped to {feeCap})";
   /**
-   * Subtext for the W9 radio button
-   * @uiName W9 radio button subtext
-   * @uiGroup Step 3b Properties
+   * Text for the option to receive payments at a specific balance threshold
+   * @uiName Payment schedule balance threshold text
    */
-  @Prop() step3b_w9Description: string =
-    "W9 For participants based in the US, joining the referral program of a US-based company.";
+  @Prop() step4_paymentScheduleBalanceThreshold: string =
+    "Pay me when my balance reaches a threshold";
   /**
-   * Label text for the W8 radio button
-   * @uiName W8 radio button label
-   * @uiGroup Step 3b Properties
+   * Text for the option to receive payments on a specific day of the month
+   * @uiName Payment schedule fixed day text
    */
-  @Prop() step3b_w8Label: string = "W8-Ben";
+  @Prop() step4_paymentScheduleFixedDay: string =
+    "Pay me on a fixed day of the month";
+
   /**
-   * Subtext for the W8 radio button
-   * @uiName W8 radio button subtext
-   * @uiGroup Step 3b Properties
+   * Label text for the payment day select
+   * @uiName Payment day select label
    */
-  @Prop() step3b_w8Description: string =
-    "W8-BEN For individuals residing outside of the US, joining the referral program of a US-based company.";
+  @Prop() step4_paymentDaySelectLabel: string = "Payment Day";
+
   /**
-   * Label text for the W8E radio button
-   * @uiName W8E radio button label
-   * @uiGroup Step 3b Properties
+   * Label text for the payment day select
+   * @uiName Payment day select label
    */
-  @Prop() step3b_w8ELabel: string = "W8-BEN-E";
+  @Prop() step4_paymentThresholdSelectLabel: string = "Payment Threshold";
   /**
-   * Subtext for the W8E radio button
-   * @uiName W8E radio button subtext
-   * @uiGroup Step 3b Properties
+   * Label text for the payment day select option for the first of the month
+   * @uiName First of month label text
    */
-  @Prop() step3b_w8EDescription: string =
-    "W8-BEN-E For participants residing outside of the US who represent a business entity, joining the referral program of a US-based company.";
+  @Prop() step4_paymentDayFirstOfMonthLabelText: string = "1st of the month";
   /**
-   * Text shown inside of submit button
-   * @uiName Submit button text
-   * @uiGroup Step 3b Properties
+   * Label text for the payment day select option for the fifteenth of the month
+   * @uiName Fifteenth of month label text
    */
-  @Prop() step3b_submitButton: string = "Continue";
+  @Prop() step4_paymentDayFifteenthOfMonthLabelText: string =
+    "15th of the month";
   /**
-   * Text shown inside of back button
-   * @uiName Back button text
-   * @uiGroup Step 3b Properties
+   * Heading text for the payment method section
+   * @uiName Payment method heading text
    */
-  @Prop() step3b_backButton: string = "Back";
+  @Prop() step4_paymentMethod: string = "Payment Method";
   /**
-   * The title for error message shown at the top of the page in an error banner
-   *
-   * @uiName General error title
-   * @uiGroup Step 3b Properties
+   * Heading text for the payment schedule section
+   * @uiName Payment schedule heading text
    */
-  @Prop() step3b_generalErrorTitle: string =
+  @Prop() step4_paymentSchedule: string = "Payment Schedule";
+  /**
+   * Subtext for the payment method section
+   * @uiName Payment method subtext
+   */
+  @Prop() step4_paymentMethodSubtext: string =
+    "Payouts will be sent on the first day of each month from our referral program provider, impact.com.";
+  /**
+   * Label text for the PayPal email input field
+   * @uiName PayPal email input label
+   */
+  @Prop() step4_payPalInputLabel: string = "PayPal Email";
+
+  /**
+   * Text for the save button in the form
+   * @uiName Save button text
+   */
+  @Prop() step4_submitButton: string = "Save";
+  /**
+   * Label text for the bank country location input field
+   * @uiName Bank country location input label
+   */
+  @Prop() step4_bankLocationLabel: string = "Bank Country Location";
+  /**
+   * Label text for the beneficiary account name input field
+   * @uiName Beneficiary account name input label
+   */
+  @Prop() step4_beneficiaryAccountNameLabel: string =
+    "Beneficiary Account Name";
+
+  /**
+   * Label text for the bank account type input field
+   * @uiName Bank account type input label
+   */
+  @Prop() step4_bankAccountTypeLabel: string = "Bank Account Type";
+
+  /**
+   * Label text for the checking account type select item
+   * @uiName Checking select item label
+   */
+  @Prop() step4_checkingSelectItemLabel: string = "Checking";
+
+  /**
+   * Label text for the savings account type select item
+   * @uiName Savings select item label
+   */
+  @Prop() step4_savingsSelectItemLabel: string = "Savings";
+
+  /**
+   * Label text for the bank account number input field
+   * @uiName Bank account number input label
+   */
+  @Prop() step4_bankAccountNumberLabel: string = "Bank Account Number";
+  /**
+   * Label text for the IBAN input field
+   * @uiName IBAN input label
+   */
+  @Prop() step4_ibanLabel: string = "IBAN";
+
+  /**
+   * Label text for the SWIFT code input field
+   * @uiName SWIFT code input label
+   */
+  @Prop() step4_swiftCodeLabel: string = "SWIFT Code";
+
+  /**
+   * Label text for the routing code input field
+   * @uiName Routing code input label
+   */
+  @Prop() step4_routingCodeLabel: string = "Routing Code";
+
+  /**
+   * Label text for the bank name input field
+   * @uiName Bank name input label
+   */
+  @Prop() step4_bankNameLabel: string = "Bank Name";
+
+  /**
+   * Label text for the classification entity input field
+   * @uiName Classification entity input label
+   */
+  @Prop() step4_classificationEntityLabel: string = "Classification Entity";
+
+  /**
+   * Label text for the business select item
+   * @uiName Business select item label
+   */
+  @Prop() step4_businessSelectItemLabel: string = "Business";
+
+  /**
+   * Label text for the individual select item
+   * @uiName Individual select item label
+   */
+  @Prop() step4_individualSelectItemLabel: string = "Individual";
+
+  /**
+   * Label text for the foreign select item
+   * @uiName Foreign select item label
+   */
+  @Prop() step4_foreignSelectItemLabel: string = "Foreign";
+
+  /**
+   * Header text for the alert when the user is identified as a partner
+   * @uiName Partner identification alert header
+   */
+  @Prop() step4_isPartnerAlertHeader: string =
+    "An account with this email already exists with our referral program provider, impact.com";
+
+  /**
+   * Description text for the alert when the user is identified as a partner
+   * @uiName Partner identification alert description
+   */
+  @Prop() step4_isPartnerAlertDescription: string =
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
+
+  /**
+   * Label text for the classification CPF input field
+   * @uiName Classification CPF input label
+   */
+  @Prop() step4_classificationCPFLabel: string = "Classification CPF";
+
+  /**
+   * Label text for the patronymic name input field
+   * @uiName Patronymic name input label
+   */
+  @Prop() step4_patronymicNameLabel: string = "Patronymic Name";
+
+  /**
+   * Label text for the VO code input field
+   * @uiName VO code input label
+   */
+  @Prop() step4_voCodeLabel: string = "VO Code";
+
+  /**
+   * Label text for the agency code input field
+   * @uiName Agency code input label
+   */
+  @Prop() step4_agencyCodeLabel: string = "Agency Code";
+
+  /**
+   * Label text for the branch code input field
+   * @uiName Branch code input label
+   */
+  @Prop() step4_branchCodeLabel: string = "Branch Code";
+
+  /**
+   * Label text for the classification input field
+   * @uiName Classification input label
+   */
+  @Prop() step4_classificationLabel: string = "Classification";
+
+  /**
+   * Label text for the Taxpayer ID input field
+   * @uiName Taxpayer ID input label
+   */
+  @Prop() step4_taxPayerIdLabel: string = "Taxpayer ID";
+
+  /**
+   * Label text for the Bank Address input
+   * @uiName Bank Address input item label
+   */
+  @Prop() step4_bankAddressLabel: string = "Bank Address";
+  /**
+   * Label text for the Bank City input
+   * @uiName Bank City Label input label
+   */
+  @Prop() step4_bankCityLabel: string = "Bank City";
+  /**
+   * Label text for the Bank Province State input
+   * @uiName Bank Province State input label
+   */
+  @Prop() step4_bankProvinceStateLabel: string = "Bank Province State";
+  /**
+   * Label text for the Bank Postal Code
+   * @uiName  Bank Postal Code input label
+   */
+  @Prop() step4_bankPostalCodeLabel: string = "Bank Postal Code";
+  /**
+   * Alert text indicating participant cannot change info after it has been submitted
+   * @uiName Cannot change info Alert text
+   */
+  @Prop() step4_cannotChangeInfoAlert: string =
+    "Your payout information cannot be changed after saving. Ensure your payout method and schedule are correct before submitting.";
+  /**
+   * Title text for a general form submission error
+   * @uiName General form submission error title
+   */
+  @Prop() step4_generalErrorTitle: string =
     "There was a problem submitting your information";
+
   /**
-   * The error message shown at the top of the page in an error banner
-   *
-   * @uiName General error text
-   * @uiGroup Step 3b Properties
+   * Description text for a general form submission error
+   * @uiName General form submission error description
    */
-  @Prop() step3b_generalErrorDescription: string =
+  @Prop() step4_generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
 
   /**
-   * * SUBMITTED VIEW STEP
+   * * DASHBOARD DOCUMENT SUBMITTED VIEW STEP
    */
   /**
    * Status text displayed in badge when tax document is Active
    *
    * @uiName Status text
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_statusTextActive?: string = "Active";
+  @Prop() dashboard_statusTextActive?: string = "Active";
 
   /**
    * Status text displayed in badge when tax document is Not Active
    *
    * @uiName Status text
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_statusTextNotActive?: string = "Invalid Tax Form";
+  @Prop() dashboard_statusTextNotActive?: string = "Invalid Tax Form";
 
   /**
    * Status text displayed in badge when tax document is Not Verified
    *
    * @uiName Status text
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_statusTextNotVerified?: string = "Not Verified";
+  @Prop() dashboard_statusTextNotVerified?: string = "Not Verified";
 
   /**
    * Description text which appears beside badge showing when the form was submitted
    *
    * @uiName Badge description text
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_badgeTextSubmittedOn?: string = "Submitted on {dateSubmitted}";
+  @Prop() dashboard_badgeTextSubmittedOn?: string =
+    "Submitted on {dateSubmitted}";
   /**
    * Description text for W8 which appears beside badge showing when the form was submitted
    *
    * @uiName Badge description text
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_badgeTextSubmittedOnW8?: string =
+  @Prop() dashboard_badgeTextSubmittedOnW8?: string =
     "Submitted on {dateSubmitted}. Valid for three years after submission.";
 
   /**
    * Description text which appears beside badge showing the form is awaiting review
    *
    * @uiName Badge description text
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_badgeTextAwaitingReview?: string =
+  @Prop() dashboard_badgeTextAwaitingReview?: string =
     "Awaiting review. Submitted on {dateSubmitted}.";
 
   /**
    * Header displayed in not active W9 alert header at the top of the page.
    *
    * @uiName Not active W9 alert header
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_taxAlertHeaderNotActiveW9?: string =
+  @Prop() dashboard_taxAlertHeaderNotActiveW9?: string =
     "Your W9 tax form has personal information that doesn’t match your profile";
   /**
    * Header displayed in not active W9 alert header at the top of the page.
    *
    * @uiName Not active W8 alert header
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_taxAlertHeaderNotActiveW8?: string =
+  @Prop() dashboard_taxAlertHeaderNotActiveW8?: string =
     "{documentType} tax form is invalid";
   /**
    * Description text displayed in W9 alert body at the top of the page.
    *
    * @uiName Tax W9 alert message
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_taxAlertNotActiveMessageW9?: string =
+  @Prop() dashboard_taxAlertNotActiveMessageW9?: string =
     "Please resubmit a new {documentType} form.";
   /**
    * Description text displayed in W8 alert body at the top of the page.
    *
    * @uiName Tax W8 alert message
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_taxAlertNotActiveMessageW8?: string =
+  @Prop() dashboard_taxAlertNotActiveMessageW8?: string =
     "Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W8-BEN form.";
   /**
    * Description text displayed next to the badge in the tax documents status
    *
    * @uiName Invalid form description text
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_invalidForm?: string =
+  @Prop() dashboard_invalidForm?: string =
     "Ensure your information matches your profile and resubmit a new document.";
   /**
    * Header text displayed above the banking information card
    *
    * @uiName Banking information header
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_bankingInformationSectionHeader: string = "Banking Information";
+  @Prop() dashboard_bankingInformationSectionHeader: string =
+    "Banking Information";
   /**
    * Header text displayed above the tax documents status
    *
    * @uiName Tax document section header
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_taxDocumentSectionHeader: string = "Tax documents";
+  @Prop() dashboard_taxDocumentSectionHeader: string = "Tax documents";
   /**
    * Sub header text displayed above the tax documents status
    *
    * @uiName Tax documents sub header
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_taxDocumentSectionSubHeader: string = "{documentType} Tax Form";
+  @Prop() dashboard_taxDocumentSectionSubHeader: string =
+    "{documentType} Tax Form";
   /**
    * Subtext displayed at the bottom of the page if there are no tax documents to show
    *
    * @uiName No form needed subtext
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_noFormNeededSubtext: string =
+  @Prop() dashboard_noFormNeededSubtext: string =
     "Tax documents are only required if you are based in the US. If your country of residence has changed, please contact Support.";
   /**
    * Header text displayed above the indirect tax preview section
    *
    * @uiName Indirect Tax Information Header
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_indirectTaxInfoSectionHeader: string = "Indirect Tax";
+  @Prop() dashboard_indirectTaxInfoSectionHeader: string = "Indirect Tax";
   /**
    * Country/Province description text of indirect tax
    *
    * @uiName Indirect tax Canada description
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_indirectTaxInfoCanada: string =
+  @Prop() dashboard_indirectTaxInfoCanada: string =
     "Registered in {province}, {country}";
   /**
    * Other country description text of indirect tax
    *
    * @uiName Indirect tax other country description
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_indirectTaxInfoOtherCountry: string = "Registered in {country}";
+  @Prop() dashboard_indirectTaxInfoOtherCountry: string =
+    "Registered in {country}";
   /**
    * Spain/Region description text of indirect tax
    *
    * @uiName Indirect tax Spain description
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_indirectTaxInfoSpain: string =
+  @Prop() dashboard_indirectTaxInfoSpain: string =
     "Registered in {country}, {subRegion}";
   /**
    * Indirect tax tooltip text for support
    *
    * @uiName Indirect tax tooltip description
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_indirectTaxTooltipSupport: string =
+  @Prop() dashboard_indirectTaxTooltipSupport: string =
     "To make changes to your indirect tax information, please contact Support.";
   /**
    * Indirect tax number/type details
    *
    * @uiName  Indirect tax details
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_indirectTaxDetails: string =
+  @Prop() dashboard_indirectTaxDetails: string =
     "{indirectTaxType} number: {indirectTaxNumber}";
   /**
    * Text displayed in the submit new document button at the bottom of the page
    *
-   * @uiName Step 4 No form needed subtext
-   * @uiGroup Step 4 Properties
+   * @uiName No form needed subtext
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_newFormButton: string = "Submit New Form";
+  @Prop() dashboard_newFormButton: string = "Submit New Form";
   /**
    * Text displayed in the edit Payment Information button
    *
    * @uiName Edit Payment Information button
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_editPaymentInformationButton: string =
+  @Prop() dashboard_editPaymentInformationButton: string =
     "Edit Payout Information";
   /**
    * Text displayed when partner is not registered for Indirect Tax
    *
    * @uiName Not registered for Indirect Tax
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_notRegisteredForTax: string =
+  @Prop() dashboard_notRegisteredForTax: string =
     "Not registered. Participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information.";
   /**
    * The title for error message shown at the top of the page in an error banner
    *
-   * @uiName Step 4 General error title
-   * @uiGroup Step 4 Properties
+   * @uiName General error title
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_generalErrorTitle: string =
+  @Prop() dashboard_generalErrorTitle: string =
     "There was a problem submitting your information";
   /**
    * The error message shown at the top of the page in an error banner
    *
-   * @uiName Step 4 General error text
-   * @uiGroup Step 4 Properties
+   * @uiName General error text
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_generalErrorDescription: string =
+  @Prop() dashboard_generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
   /**
    * Label text for the QST number
    * @uiName QST number input
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_qstNumber: string = "QST Number: {qstNumber}";
+  @Prop() dashboard_qstNumber: string = "QST Number: {qstNumber}";
   /**
    * Label text for the sub-region tax number
    * @uiName Sub-region tax number
-   * @uiGroup Step 4 Properties
+   * @uiGroup Dashboard Properties
    */
-  @Prop() step4_subRegionTaxNumber: string =
+  @Prop() dashboard_subRegionTaxNumber: string =
     "Income Tax Number: {incomeTaxNumber}";
 
   /**
@@ -861,7 +1050,7 @@ export class TaxAndCashMonolith {
   }
   getSubmittedPageTextProps() {
     const props = getProps(this);
-    return extractProps(props, "step4_");
+    return extractProps(props, "dashboard_");
   }
 
   render() {
