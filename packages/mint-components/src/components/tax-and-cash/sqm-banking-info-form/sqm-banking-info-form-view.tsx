@@ -379,7 +379,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           ) : (
             <div style={{ display: "flex", flexDirection: "column" }}>
               {states.hasPayPal && (
-                <sl-checkbox
+                <sl-radio
                   class={classes.Checkbox}
                   exportparts="label: input-label"
                   checked={formState.paymentMethodChecked === "toBankAccount"}
@@ -391,7 +391,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                   name="/toBankAccount"
                 >
                   {text.directlyToBankAccount}
-                </sl-checkbox>
+                </sl-radio>
               )}
               {formState.paymentMethodChecked === "toBankAccount" && (
                 <div
@@ -411,7 +411,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 </div>
               )}
               {states.hasPayPal && (
-                <sl-checkbox
+                <sl-radio
                   class={classes.Checkbox}
                   exportparts="label: input-label"
                   checked={formState.paymentMethodChecked === "toPayPalAccount"}
@@ -429,7 +429,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                     },
                     { feeCap: states.feeCap }
                   )}
-                </sl-checkbox>
+                </sl-radio>
               )}
               {formState.paymentMethodChecked === "toPayPalAccount" && (
                 <div
@@ -458,7 +458,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               <div style={{ paddingTop: "24px", paddingBottom: "12px" }}>
                 <h4>{text.paymentSchedule}</h4>
               </div>
-              <sl-checkbox
+              <sl-radio
                 class={classes.Checkbox}
                 exportparts="label: input-label"
                 checked={
@@ -473,7 +473,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 value={"BALANCE_THRESHOLD"}
               >
                 {text.paymentScheduleBalanceThreshold}
-              </sl-checkbox>
+              </sl-radio>
               {formState.paymentScheduleChecked === "paymentThreshold" && (
                 <div
                   class={classes.InputContainer}
@@ -485,7 +485,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 </div>
               )}
 
-              <sl-checkbox
+              <sl-radio
                 class={classes.Checkbox}
                 exportparts="label: input-label"
                 checked={formState.paymentScheduleChecked === "paymentDay"}
@@ -498,7 +498,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 value={"FIXED_DAY"}
               >
                 {text.paymentScheduleFixedDay}
-              </sl-checkbox>
+              </sl-radio>
               {formState.paymentScheduleChecked === "paymentDay" && (
                 <div
                   class={classes.InputContainer}
