@@ -335,14 +335,14 @@ export const TaxDocumentSubmittedView = (props: TaxDocumentSubmittedProps) => {
           <h3>{text.bankingInformationSectionHeader}</h3>
           <div class={sheet.classes.BankingInformationContainer}>
             {slots.payoutDetailsCardSlot}
-            <sl-button
+            {/* <sl-button
               disabled={states.disabled || states.loading}
               type="default"
               class={sheet.classes.EditBankDetailsButton}
               onClick={callbacks.onEditPayoutInfo}
             >
               {text.editPaymentInformationButton}
-            </sl-button>
+            </sl-button> */}
           </div>
         </div>
 

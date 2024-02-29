@@ -12,6 +12,7 @@ import {
 } from "./subregions";
 import { UseUserInfoFormResult } from "./sqm-user-info-form/useUserInfoForm";
 import { DocusignStatus } from "./sqm-docusign-form/docusign-iframe/DocusignIframe";
+import { BankingInfoFormViewProps } from "./sqm-banking-info-form/sqm-banking-info-form-view";
 // import sqmUserInfoSpecs from "./sqm-tax-document-step-1.feature";
 // import sqmIndirectTaxFormSpecs from "../sqm-indirect-tax-form/sqm-indirect-tax-form.feature";
 
@@ -124,23 +125,23 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
   refs: { formRef: { current: null } },
 };
 
-const stepFourProps = {
+const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
   states: {
     hideSteps: false,
     disabled: false,
     loading: false,
+    hasPayPal: false,
+    isPartner: false,
+    saveDisabled: false,
+    thresholds: [],
     formState: {
-      checked: "toBankAccount",
+      paymentMethodChecked: "toBankAccount",
     },
   },
   callbacks: {
     onSubmit: async () => console.log("Submit"),
-    onChange: () => console.log("Submit"),
-  },
-  slotProps: {
-    formState: {
-      errors: {},
-    },
+    setPaymentMethodChecked: () => {},
+    setPaymentScheduleChecked: () => {},
   },
   refs: { formRef: { current: null } },
 };
@@ -781,7 +782,7 @@ export const StepFourToPaypalChecked = () => {
           ...stepFourProps.states,
           formState: {
             ...stepFourProps.states.formState,
-            checked: "toPaypalAccount",
+            paymentMethodChecked: "toPayPalAccount",
           },
         },
       }}

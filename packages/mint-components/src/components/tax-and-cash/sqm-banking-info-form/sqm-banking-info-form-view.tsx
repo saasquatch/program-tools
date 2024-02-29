@@ -23,12 +23,13 @@ export interface BankingInfoFormViewProps {
       paymentScheduleChecked?: "paymentThreshold" | "paymentDay";
       errors?: {
         general?: boolean;
-        payPalEmail?: boolean;
+        [field: string]: boolean;
       };
     };
     bitset?: number;
     bankCountry?: string;
     currency?: string;
+    thresholds: string[];
     countries?: { code: string; name: string }[];
     currentPaymentOption?: any;
     showInputs?: boolean;
@@ -60,18 +61,20 @@ export interface BankingInfoFormViewProps {
     paymentMethod: string;
     paymentMethodSubtext: string;
     submitButton: string;
+    bankLocationLabel: string;
     payPalInputLabel: string;
     paymentSchedule: string;
     paymentScheduleBalanceThreshold: string;
     paymentScheduleFixedDay: string;
     paymentDaySelectLabel: string;
+    paymentThresholdSelectLabel: string;
     paymentDayFirstOfMonthLabelText: string;
     paymentDayFifteenthOfMonthLabelText: string;
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
     error: {
-      generalTitle;
-      generalDescription;
+      generalTitle: string;
+      generalDescription: string;
     };
   };
   refs: {
@@ -405,10 +408,11 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                     <sl-input
                       required
                       label={text.payPalInputLabel}
-                      name="/payPalEmail"
-                      id="payPalEmail"
+                      key="paypalEmailAddress"
+                      name="/paypalEmailAddress"
+                      id="paypalEmailAddress"
                       type="text"
-                      {...(formState?.errors?.payPalEmail && {
+                      {...(formState?.errors?.paypalEmailAddress && {
                         class: "error-input",
                         // TODO: not translatable
                         helpText: `${props.text.payPalInputLabel} is required`,

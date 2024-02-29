@@ -6,7 +6,10 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { mockPaymentOptions } from "./mockData";
-import { BankingInfoFormView } from "./sqm-banking-info-form-view";
+import {
+  BankingInfoFormView,
+  BankingInfoFormViewProps,
+} from "./sqm-banking-info-form-view";
 import {
   getFormInputs,
   getFormMap,
@@ -30,7 +33,7 @@ export class BankingInfoForm {
    * Subtext shown at the top of the page, used to show the current step of the tax form.
    * @uiName Form step text
    */
-  @Prop() formStep: string = "Step 4 of 5";
+  @Prop() formStep: string = "Step 4 of 4";
 
   /**
    * Heading text shown at the top of the page
@@ -294,7 +297,7 @@ export class BankingInfoForm {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<any>;
+  @Prop() demoData?: DemoData<BankingInfoFormViewProps>;
 
   constructor() {
     withHooks(this);
@@ -322,11 +325,9 @@ export class BankingInfoForm {
   render() {
     const props = isDemo()
       ? useDemoBankingInfoForm(this)
-      : useBankingInfoForm(getProps(this));
+      : useBankingInfoForm(this);
 
     const { errors } = props.states.formState;
-
-    console.log({ props });
 
     // TODO: may need to make these translatable
     const routingCodeLabels = {
@@ -342,7 +343,11 @@ export class BankingInfoForm {
       CNY: "CNAPS",
     };
 
-    const formMap = getFormMap({ props, routingCodeLabels });
+    const formMap = getFormMap({
+      props,
+      routingCodeLabels,
+      getValidationErrorMessage: this.getValidationErrorMessage,
+    });
 
     const inputFields = getFormInputs({
       bitset: props.states.bitset,
@@ -410,6 +415,7 @@ export class BankingInfoForm {
             ),
             paymentMethodSlot: (
               <sl-input
+                key="paymentMethod"
                 label={props.text.paymentMethod}
                 placeholder={props.states.paymentMethodFeeLabel}
                 disabled
@@ -428,9 +434,11 @@ export class BankingInfoForm {
                   ),
                 })}
               >
-                {/* TODO: Unhardcode this list */}
-                <sl-menu-item value="1st">10 USD</sl-menu-item>
-                <sl-menu-item value="15th">20 USD</sl-menu-item>
+                {props.states.thresholds.map((t) => (
+                  <sl-menu-item
+                    value={t}
+                  >{`${props.states.currency}${t}`}</sl-menu-item>
+                ))}
               </sl-select>
             ),
             paymentFixedDaySelectSlot: (
@@ -461,7 +469,9 @@ export class BankingInfoForm {
   }
 }
 
-function useDemoBankingInfoForm(props: BankingInfoForm) {
+function useDemoBankingInfoForm(
+  props: BankingInfoForm
+): BankingInfoFormViewProps {
   const defaultPaymentMethodChecked =
     props.demoData?.states?.formState?.paymentMethodChecked;
   const defaultPaymentScheduleChecked =
@@ -556,7 +566,6 @@ function useDemoBankingInfoForm(props: BankingInfoForm) {
         },
         bitset,
         bankCountry,
-        showInputs: props.demoData?.showInputs,
         currency,
         setCurrency,
         hasPayPal: true,
