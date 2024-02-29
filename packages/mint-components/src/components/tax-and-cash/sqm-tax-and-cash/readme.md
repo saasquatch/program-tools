@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property                                        | Attribute                                            | Description                                                                                                | Type                                                                                                                 | Default                                                                                                                                                                     |
@@ -122,6 +123,7 @@
 | `step4_taxDocumentSectionSubHeader`             | `step-4_tax-document-section-sub-header`             | Sub header text displayed above the tax documents status                                                   | `string`                                                                                                             | `"{documentType} Tax Form"`                                                                                                                                                 |
 | `stop3NotBasedInUS`                             | `stop-3-not-based-in-u-s`                            | Text shown in the link to the form for non US residents                                                    | `string`                                                                                                             | `"Not based in the US?"`                                                                                                                                                    |
 
+
 ## Dependencies
 
 ### Depends on
@@ -133,7 +135,6 @@
 - [sqm-tax-document-submitted](../sqm-tax-document-submitted)
 
 ### Graph
-
 ```mermaid
 graph TD;
   sqm-tax-and-cash --> sqm-user-info-form
@@ -145,6 +146,6 @@ graph TD;
   style sqm-tax-and-cash fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*
