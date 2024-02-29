@@ -250,7 +250,7 @@ export function useTaxAndCash() {
       const user = data?.user;
       if (!user || step !== "/loading") return;
 
-      setStep("/2");
+      setStep("/3");
       // const currentStep = getCurrentStep(user);
       // setStep(currentStep);
     }

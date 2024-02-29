@@ -114,14 +114,14 @@ Feature: Tax Form Step One
   Scenario: Country select is searchable
     When they press the Country select
     Then there is a searchbar
-    And as they type
+    And as they type in the searchbar
     Then the available countries get filtered out based on their search
 
   @minutia
   Scenario: Currency select is searchable
     When they press the Currency select
     Then there is a searchbar
-    And as they type a currency abbreviation
+    And as they type a currency abbreviation in the searchbar
     Then the available currencies get filtered out based on their search
 
   @minutia

@@ -501,6 +501,12 @@ export namespace Components {
     }
     interface SqmDividedLayout {
         /**
+          * Overrides max-width of content area
+          * @uiName Content Area Width
+          * @uiType string
+         */
+        "contentAreaWidth": string | null;
+        /**
           * @uiName Direction
           * @uiType string
           * @uiEnum ["row", "column"]
@@ -5869,6 +5875,12 @@ declare namespace LocalJSX {
         "tooltiptext"?: string;
     }
     interface SqmDividedLayout {
+        /**
+          * Overrides max-width of content area
+          * @uiName Content Area Width
+          * @uiType string
+         */
+        "contentAreaWidth"?: string | null;
         /**
           * @uiName Direction
           * @uiType string
