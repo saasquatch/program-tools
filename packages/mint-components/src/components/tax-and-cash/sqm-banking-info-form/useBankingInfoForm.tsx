@@ -453,6 +453,7 @@ type SetImpactPublisherWithdrawalSettingsInput = {
   paymentThreshold?: string;
   paymentDay?: string;
 } & BankingInfoFormData;
+
 const SAVE_WITHDRAWAL_SETTINGS = gql`
   mutation setImpactPublisherWithdrawalSettings(
     $setImpactPublisherWithdrawalSettingsInput: SetImpactPublisherWithdrawalSettingsInput!
@@ -538,7 +539,6 @@ export function useBankingInfoForm(
     }
 
     setLoading(true);
-    console.log({ formData });
     try {
       if (!currentPaymentOption) throw new Error("No currentPaymentOption");
       // @ts-ignore figure out what the values for paymentDay are
@@ -671,7 +671,8 @@ export function useBankingInfoForm(
     states: {
       saveDisabled: !paymentMethodChecked || !paymentScheduleChecked,
       locale,
-      isPartner: !!userData?.user?.impactConnection,
+      isPartner:
+        !!userData?.user?.impactConnection?.publisher?.withdrawalSettings,
       feeCap,
       paymentMethodFeeLabel,
       disabled: loading,
