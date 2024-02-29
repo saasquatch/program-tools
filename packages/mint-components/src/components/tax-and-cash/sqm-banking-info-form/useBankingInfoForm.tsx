@@ -667,10 +667,13 @@ export function useBankingInfoForm(
         return false;
       });
       setCurrentPaymentOption(currentPaymentOption);
+    } else if (paymentMethod === "toBankAccount") {
+      const currentPaymentOption = paymentOptions?.find(
+        (paymentOption) => paymentOption.countryCode === bankCountry
+      );
+      setCurrentPaymentOption(currentPaymentOption);
     }
   }
-
-  console.log({ currentPaymentOption });
 
   return {
     text: props.getTextProps(),
@@ -689,9 +692,11 @@ export function useBankingInfoForm(
       feeCap,
       paymentMethodFeeLabel,
       disabled: loading,
-      loading,
-      hideBanking: paymentMethodChecked !== "toBankAccount",
-      hidePayPal: paymentMethodChecked !== "toPayPalAccount",
+      loading: loading || !paymentOptions,
+      hideBanking:
+        paymentMethodChecked !== "toBankAccount" || !paymentMethodChecked,
+      hidePayPal:
+        paymentMethodChecked !== "toPayPalAccount" || !paymentMethodChecked,
       formState: {
         paymentMethodChecked,
         paymentScheduleChecked,
