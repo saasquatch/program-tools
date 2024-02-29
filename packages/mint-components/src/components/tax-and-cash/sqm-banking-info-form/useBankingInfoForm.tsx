@@ -663,12 +663,14 @@ export function useBankingInfoForm(
 
     if (paymentMethod === "toPayPalAccount") {
       const currentPaymentOption = paymentOptions?.find((paymentOption) => {
-        if (paymentOption.withdrawalSettingId === 7) return true;
+        if (paymentOption.defaultFinancePaymentMethodId === 7) return true;
         return false;
       });
       setCurrentPaymentOption(currentPaymentOption);
     }
   }
+
+  console.log({ currentPaymentOption });
 
   return {
     text: props.getTextProps(),
