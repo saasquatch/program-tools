@@ -129,6 +129,11 @@ export namespace Components {
          */
         "businessSelectItemLabel": string;
         /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+         */
+        "cannotChangeInfoAlert": string;
+        /**
           * Label text for the checking account type select item
           * @uiName Checking select item label
          */
@@ -5519,6 +5524,11 @@ declare namespace LocalJSX {
           * @uiName Business select item label
          */
         "businessSelectItemLabel"?: string;
+        /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+         */
+        "cannotChangeInfoAlert"?: string;
         /**
           * Label text for the checking account type select item
           * @uiName Checking select item label

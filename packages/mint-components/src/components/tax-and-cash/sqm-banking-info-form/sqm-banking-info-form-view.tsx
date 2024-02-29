@@ -72,6 +72,7 @@ export interface BankingInfoFormViewProps {
     paymentDayFifteenthOfMonthLabelText: string;
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
+    cannotChangeInfoAlert: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -192,6 +193,29 @@ const style = {
     borderRadius: "50px",
     background: "var(--sl-color-gray-200)",
   },
+  InfoAlert: {
+    "&::part(base)": {
+      backgroundColor: "transparent",
+      borderTop: "none",
+      border: "none",
+    },
+
+    "&::part(message)": {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      padding: "10px",
+      height: "max-content",
+    },
+
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-yellow-500)",
+    },
+  },
+  InfoWarningIcon: {
+    height: "26px",
+    width: "26px",
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -239,8 +263,6 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
     refs,
     slots,
   } = props;
-
-  console.log({ formState });
 
   const { classes } = sheet;
 
@@ -332,7 +354,19 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             {text.isPartnerAlertDescription}
           </sl-alert>
         )}
-
+        <sl-alert
+          exportparts="base: alert-base, icon:alert-icon"
+          type="primary"
+          open
+          class={classes.InfoAlert}
+        >
+          <sl-icon
+            class={classes.InfoWarningIcon}
+            slot="icon"
+            name="exclamation-triangle"
+          ></sl-icon>
+          {text.cannotChangeInfoAlert}
+        </sl-alert>
         <div>
           <h4>{text.paymentMethod}</h4>
           <p class={classes.DescriptionText}>{text.paymentMethodSubtext}</p>

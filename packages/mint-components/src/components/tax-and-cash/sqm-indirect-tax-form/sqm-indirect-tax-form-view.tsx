@@ -134,8 +134,8 @@ const style = {
     },
   },
   InfoWarningIcon: {
-    height: "24px",
-    width: "24px",
+    height: "26px",
+    width: "26px",
   },
 };
 

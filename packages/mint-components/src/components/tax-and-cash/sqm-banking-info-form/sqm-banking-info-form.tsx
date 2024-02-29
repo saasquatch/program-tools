@@ -280,6 +280,12 @@ export class BankingInfoForm {
    */
   @Prop() bankPostalCodeLabel: string = "Bank Postal Code";
   /**
+   * Alert text indicating participant cannot change info after it has been submitted
+   * @uiName Cannot change info Alert text
+   */
+  @Prop() cannotChangeInfoAlert: string =
+    "Your payout information cannot be changed after saving. Ensure your payout method and schedule are correct before submitting.";
+  /**
    * Title text for a general form submission error
    * @uiName General form submission error title
    */
