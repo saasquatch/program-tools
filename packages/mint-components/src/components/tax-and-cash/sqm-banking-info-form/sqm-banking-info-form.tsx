@@ -33,7 +33,7 @@ export class BankingInfoForm {
    * Subtext shown at the top of the page, used to show the current step of the tax form.
    * @uiName Form step text
    */
-  @Prop() formStep: string = "Step 4 of 5";
+  @Prop() formStep: string = "Step 4 of 4";
 
   /**
    * Heading text shown at the top of the page

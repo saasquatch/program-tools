@@ -1,9 +1,6 @@
 # sqm-cash-form
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -28,7 +25,7 @@
 | `demoData`                            | --                                          |                                                                                         | `{ [x: string]: any; [x: number]: any; }` | `undefined`                                                                                                                                                                 |
 | `directlyToBankAccount`               | `directly-to-bank-account`                  | Text for the option to receive payments directly to a bank account                      | `string`                                  | `"Directly to my bank account"`                                                                                                                                             |
 | `foreignSelectItemLabel`              | `foreign-select-item-label`                 | Label text for the foreign select item                                                  | `string`                                  | `"Foreign"`                                                                                                                                                                 |
-| `formStep`                            | `form-step`                                 | Subtext shown at the top of the page, used to show the current step of the tax form.    | `string`                                  | `"Step 4 of 5"`                                                                                                                                                             |
+| `formStep`                            | `form-step`                                 | Subtext shown at the top of the page, used to show the current step of the tax form.    | `string`                                  | `"Step 4 of 4"`                                                                                                                                                             |
 | `generalErrorDescription`             | `general-error-description`                 | Description text for a general form submission error                                    | `string`                                  | `"Please review your information and try again. If this problem continues, contact Support."`                                                                               |
 | `generalErrorTitle`                   | `general-error-title`                       | Title text for a general form submission error                                          | `string`                                  | `"There was a problem submitting your information"`                                                                                                                         |
 | `ibanLabel`                           | `iban-label`                                | Label text for the IBAN input field                                                     | `string`                                  | `"IBAN"`                                                                                                                                                                    |
@@ -56,15 +53,15 @@
 | `toPayPalAccount`                     | `to-pay-pal-account`                        | Text for the option to receive payments to a PayPal account with processing fee details | `string`                                  | `"PayPal (2% processing fee capped to {feeCap})"`                                                                                                                           |
 | `voCodeLabel`                         | `vo-code-label`                             | Label text for the VO code input field                                                  | `string`                                  | `"VO Code"`                                                                                                                                                                 |
 
-
 ## Dependencies
 
 ### Used by
 
- - [sqm-stencilbook](../../sqm-stencilbook)
- - [sqm-tax-and-cash](../sqm-tax-and-cash)
+- [sqm-stencilbook](../../sqm-stencilbook)
+- [sqm-tax-and-cash](../sqm-tax-and-cash)
 
 ### Graph
+
 ```mermaid
 graph TD;
   sqm-stencilbook --> sqm-banking-info-form
@@ -72,6 +69,6 @@ graph TD;
   style sqm-banking-info-form fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

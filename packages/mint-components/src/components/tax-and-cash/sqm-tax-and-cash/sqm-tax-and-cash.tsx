@@ -72,7 +72,7 @@ export class TaxAndCashMonolith {
    * @uiName Tax form step text
    * @uiGroup Step 1 Properties
    */
-  @Prop() step1_formStep: string = "Step 1 of 5";
+  @Prop() step1_formStep: string = "Step 1 of 4";
   /**
    * Heading text shown above the forms inputs.
    * @uiName Form heading text
@@ -188,7 +188,7 @@ export class TaxAndCashMonolith {
    * @uiName Indirect tax form step text
    * @uiGroup Step 2 Properties
    */
-  @Prop() step2_formStep: string = "Step 2 of 5";
+  @Prop() step2_formStep: string = "Step 2 of 4";
   /**
    * Heading text shown at the top of the page
    * @uiName Indirect tax heading text
@@ -370,7 +370,7 @@ export class TaxAndCashMonolith {
    * @uiName Tax form step text
    * @uiGroup Step 3 Properties
    */
-  @Prop() step3_formStep: string = "Step 3 of 5";
+  @Prop() step3_formStep: string = "Step 3 of 4";
   /**
    * Heading text shown at the top of the page
    * @uiName Tax form heading text
@@ -521,7 +521,7 @@ export class TaxAndCashMonolith {
    * @uiName Tax form step text
    * @uiGroup Step 3b Properties
    */
-  @Prop() step3b_formStep: string = "Step 3 of 5";
+  @Prop() step3b_formStep: string = "Step 3 of 4";
   /**
    * Sub text shown above form selection radio buttons
    * @uiName Tax form selection heading text
