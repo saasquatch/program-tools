@@ -8,6 +8,7 @@ import { TAX_CONTEXT_NAMESPACE } from "./data";
 import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
 import { extractProps } from "./extractProps";
 import { isDemo } from "@saasquatch/component-boilerplate";
+import LoadingView from "./LoadingView";
 
 /**
  * @uiName Tax and Cash
@@ -897,7 +898,7 @@ export class TaxAndCashMonolith {
     }
 
     // TODO: Loading view
-    return <div></div>;
+    return <LoadingView />;
   }
 }
 
