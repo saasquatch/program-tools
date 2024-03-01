@@ -14,6 +14,8 @@ import { useChildElements } from "../../tables/useChildElements";
 import { generateUserError } from "../sqm-referral-table/useReferralTable";
 import { GenericTableViewProps } from "../../tables/GenericTableView";
 import debugFn from "debug";
+import mockRewardData from "./mockRewardData";
+import mockTaxData from "./mockTaxData";
 const debug = debugFn("sq:useRewardsTable");
 
 export const CSS_NAMESPACE = "sqm-rewards-table";
@@ -234,6 +236,9 @@ export function useRewardsTable(
 
   const data = rewardsData?.data;
   const taxConnection = impactTaxData?.viewer?.impactConnection;
+
+  // const { data } = mockRewardData(1, "PENDING");
+  // const taxConnection = mockTaxData();
 
   async function getComponentData(components: Element[]) {
     // filter out loading and empty states from columns array

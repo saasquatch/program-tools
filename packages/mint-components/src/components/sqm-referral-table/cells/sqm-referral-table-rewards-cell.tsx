@@ -118,9 +118,6 @@ export class ReferralTableRewardsCell {
           return "DENIED";
       }
 
-      if (reward?.pendingReasons?.includes("PAYOUT_CONFIGURATION_MISSING")) {
-        return "PENDING_PARTNER_CREATION";
-      }
       if (reward?.pendingReasons?.includes("US_TAX")) {
         if (!taxConnection?.taxHandlingEnabled) return "PENDING";
         if (!taxConnection?.connected) return "PENDING_PARTNER_CREATION";
@@ -134,6 +131,9 @@ export class ReferralTableRewardsCell {
         }
         if (!taxConnection?.publisher?.withdrawalSettings)
           return "PENDING_PARTNER_CREATION";
+      }
+      if (reward?.pendingReasons?.includes("PAYOUT_CONFIGURATION_MISSING")) {
+        return "PENDING_PARTNER_CREATION";
       }
 
       if (reward.statuses.length === 1) return reward.statuses[0];
@@ -192,8 +192,6 @@ export class ReferralTableRewardsCell {
           status: state,
         }
       );
-
-      console.log(statusText);
 
       return (
         <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>

@@ -95,20 +95,24 @@ export class RewardTableStatusCell {
     return "";
   }
 
-  getTaxPendingReason(taxConnection: ImpactConnection) {
-    if (!taxConnection.taxHandlingEnabled) return this.pendingUsTax;
-    if (!taxConnection.connected) return this.pendingPartnerCreation;
-    if (taxConnection.publisher?.requiredTaxDocumentType) {
-      if (!taxConnection.publisher.currentTaxDocument) {
-        this.pendingTaxSubmission;
-      }
+  getTaxPendingReasons(reward: Reward, taxConnection: ImpactConnection) {
+    if (reward?.pendingReasons?.includes("US_TAX")) {
+      if (!taxConnection?.taxHandlingEnabled) return this.pendingUsTax;
+      if (!taxConnection?.connected) return this.pendingPartnerCreation;
+      if (taxConnection?.publisher?.requiredTaxDocumentType) {
+        if (!taxConnection?.publisher?.currentTaxDocument)
+          return this.pendingTaxSubmission;
 
-      const status = taxConnection.publisher.currentTaxDocument.status;
-      if (status === "INACTIVE") return this.pendingNewTaxForm;
-      if (status === "NOT_VERIFIED") return this.pendingTaxReview;
+        const status = taxConnection.publisher.currentTaxDocument.status;
+        if (status === "INACTIVE") return this.pendingNewTaxForm;
+        if (status === "NOT_VERIFIED") return this.pendingTaxReview;
+      }
+      if (!taxConnection?.publisher?.withdrawalSettings)
+        return this.pendingPartnerCreation;
     }
-    if (!taxConnection?.publisher?.withdrawalSettings)
+    if (reward?.pendingReasons?.includes("PAYOUT_CONFIGURATION_MISSING")) {
       return this.pendingPartnerCreation;
+    }
 
     // TODO: Payout enums
 
@@ -179,7 +183,10 @@ export class RewardTableStatusCell {
         .toLocaleString(DateTime.DATE_MED)}`;
 
     const pendingReasons =
-      rewardStatus === "PENDING" ? getRewardPendingReasons(this) : null;
+      rewardStatus === "PENDING"
+        ? this.getTaxPendingReasons(this.reward, this.taxConnection) ||
+          getRewardPendingReasons(this)
+        : null;
 
     const fraudStatusText =
       rewardStatus === "PENDING_REVIEW"
@@ -219,12 +226,19 @@ export class RewardTableStatusCell {
               .toLocaleString(DateTime.DATE_MED),
         UNHANDLED_ERROR: prop.pendingUnhandled,
         SUSPECTED_FRAUD: prop.pendingReview,
-        PAYOUT_CONFIGURATION_MISSING: prop.pendingPartnerCreation,
-        US_TAX: prop.getPendingTaxReason(prop.taxConnection),
       };
-      return [prop.reward.pendingReasons]
-        .map((s: string): string => pendingCodeMap[s] ?? s)
-        .join(", ");
+
+      const taxReason = this.getTaxPendingReasons(
+        prop.reward,
+        prop.taxConnection
+      );
+
+      return [
+        ...(taxReason ? [taxReason] : []),
+        ...prop.reward.pendingReasons.map((s: string): string => {
+          return pendingCodeMap[s] ?? s;
+        }),
+      ].join(", ");
     }
   }
 }

@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 
-export default (count = 4) => {
-  const data = [...Array(count)].map(() => getMockData());
+export default (count = 4, status = undefined) => {
+  const data = [...Array(count)].map(() => getMockData(status)) as Reward[];
   return { data };
 };
 
@@ -67,7 +67,7 @@ export const getPaypalMeta = () => {
   };
 };
 
-const getMockData = () => {
+const getMockData = (status?: string): Reward => {
   let isAvailableZero = false;
   let randomRedeemed = 0;
   let pendingReason;
@@ -79,7 +79,7 @@ const getMockData = () => {
 
   //  set random data
   const randomUnitNumber = Math.floor(Math.random() * 3);
-  const randomStatus = statuses[Math.floor(Math.random() * 5)];
+  const randomStatus = status || statuses[Math.floor(Math.random() * 5)];
   const unit = units[randomUnitNumber];
   const prettyValue = prettyValues[randomUnitNumber];
   const randomValue = Math.floor(Math.random() * 100) + 2;
@@ -99,6 +99,7 @@ const getMockData = () => {
     randomRedeemed = Math.floor(Math.random() * randomValue);
     dateExpires = today.minus({ days: 1 }).toMillis();
   } else if (randomStatus === "PENDING") {
+    // pendingReason = ["US_TAX", "PAYOUT_CONFIGURATION_MISSING"];
     const reason = pendingReasons[Math.floor(Math.random() * 3)];
     pendingReason = [reason];
     if (reason === "SCHEDULED") {
@@ -141,6 +142,7 @@ const getMockData = () => {
     program: {
       name: "My Program",
     },
+    // @ts-ignore
     meta: {
       ...getPaypalMeta(),
     },
@@ -162,10 +164,13 @@ const getMockData = () => {
             prettyRedeemedCredit: "50 Tokens",
             unit: "TOKEN",
             dateRedeemed: 1643612046258,
+            exchangedRewards: [],
+            redeemedRewards: [],
           }
         : null,
     referral: null,
     rewardRedemptionTransactions: {
+      // @ts-ignore
       data: [],
     },
   };
