@@ -1171,7 +1171,7 @@ export namespace Components {
          */
         "faqText"?: string;
         /**
-          * @uiName Hide powered with SaaSquatch by Impact.com
+          * @uiName Hide powered by Impact.com
          */
         "hidePoweredBy": boolean;
         /**
@@ -4915,7 +4915,7 @@ declare namespace LocalJSX {
          */
         "faqText"?: string;
         /**
-          * @uiName Hide powered with SaaSquatch by Impact.com
+          * @uiName Hide powered by Impact.com
          */
         "hidePoweredBy"?: boolean;
         /**

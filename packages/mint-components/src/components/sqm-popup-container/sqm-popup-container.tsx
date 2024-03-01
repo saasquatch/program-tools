@@ -15,7 +15,7 @@ import { getProps } from "../../utils/utils";
 })
 export class PopupContainer {
   /**
-   * Show Powered by Impact link
+   * Show Powered by Impact.com link
    *
    * @uiName Show powered by
    */
