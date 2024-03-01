@@ -1,6 +1,6 @@
 import { h, VNode } from "@stencil/core";
-import { createStyleSheet } from "../../../styling/JSS";
 import { intl } from "../../../global/global";
+import { createStyleSheet } from "../../../styling/JSS";
 
 export interface BankingInfoFormViewProps {
   states: {
@@ -20,7 +20,7 @@ export interface BankingInfoFormViewProps {
     paymentMethodFeeLabel?: string;
     formState: {
       paymentMethodChecked?: "toBankAccount" | "toPayPalAccount";
-      paymentScheduleChecked?: "paymentThreshold" | "paymentDay";
+      paymentScheduleChecked?: "BALANCE_THRESHOLD" | "FIXED_DAY";
       errors?: {
         general?: boolean;
         inputErrors?: {
@@ -50,11 +50,15 @@ export interface BankingInfoFormViewProps {
       paymentMethodChecked: "toBankAccount" | "toPayPalAccount"
     ) => void;
     setPaymentScheduleChecked: (
-      paymentMethodChecked: "paymentThreshold" | "paymentDay"
+      paymentMethodChecked: "BALANCE_THRESHOLD" | "FIXED_DAY"
     ) => void;
     onSubmit: (props: any) => Promise<void>;
     setBankCountry?: (country: string) => void;
     setCurrency?: (currency: string) => void;
+    getValidationErrorMessage: (props: {
+      type: "required" | "invalid";
+      label: string;
+    }) => string;
   };
   text: {
     formStep: string;
@@ -454,7 +458,11 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                         ?.paypalEmailAddress && {
                         class: "error-input",
                         // TODO: not translatable
-                        helpText: `${props.text.payPalInputLabel} is required`,
+                        helpText: props.callbacks.getValidationErrorMessage({
+                          type: formState?.errors?.inputErrors
+                            ?.paypalEmailAddress?.type,
+                          label: props.text.payPalInputLabel,
+                        }),
                       })}
                     ></sl-input>
                   )}
@@ -467,10 +475,10 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 class={classes.Checkbox}
                 exportparts="label: input-label"
                 checked={
-                  formState.paymentScheduleChecked === "paymentThreshold"
+                  formState.paymentScheduleChecked === "BALANCE_THRESHOLD"
                 }
                 onInput={() =>
-                  callbacks.setPaymentScheduleChecked("paymentThreshold")
+                  callbacks.setPaymentScheduleChecked("BALANCE_THRESHOLD")
                 }
                 disabled={states.disabled}
                 id="paymentSchedulingType"
@@ -479,7 +487,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               >
                 {text.paymentScheduleBalanceThreshold}
               </sl-radio>
-              {formState.paymentScheduleChecked === "paymentThreshold" && (
+              {formState.paymentScheduleChecked === "BALANCE_THRESHOLD" && (
                 <div
                   class={classes.InputContainer}
                   style={states.hideBalanceThreshold ? { display: "none" } : {}}
@@ -493,10 +501,8 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               <sl-radio
                 class={classes.Checkbox}
                 exportparts="label: input-label"
-                checked={formState.paymentScheduleChecked === "paymentDay"}
-                onInput={() =>
-                  callbacks.setPaymentScheduleChecked("paymentDay")
-                }
+                checked={formState.paymentScheduleChecked === "FIXED_DAY"}
+                onInput={() => callbacks.setPaymentScheduleChecked("FIXED_DAY")}
                 disabled={states.disabled}
                 id="paymentSchedulingType"
                 name="/paymentSchedulingType"
@@ -504,7 +510,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               >
                 {text.paymentScheduleFixedDay}
               </sl-radio>
-              {formState.paymentScheduleChecked === "paymentDay" && (
+              {formState.paymentScheduleChecked === "FIXED_DAY" && (
                 <div
                   class={classes.InputContainer}
                   style={states.hideFixedDay ? { display: "none" } : {}}

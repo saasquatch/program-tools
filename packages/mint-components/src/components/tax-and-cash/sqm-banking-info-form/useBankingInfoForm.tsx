@@ -561,7 +561,7 @@ export function useBankingInfoForm(
     "toBankAccount" | "toPayPalAccount" | undefined
   >(undefined);
   const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
-    "paymentThreshold" | "paymentDay" | undefined
+    "BALANCE_THRESHOLD" | "FIXED_DAY" | undefined
   >(undefined);
 
   const onSubmit = async (event: any) => {
@@ -581,7 +581,7 @@ export function useBankingInfoForm(
         JSONPointer.set(validationErrors, key, { type: "required" });
       }
     });
-
+    console.log({ formData });
     setErrors({ inputErrors: validationErrors });
     if (Object.keys(validationErrors).length) {
       return;
@@ -599,10 +599,9 @@ export function useBankingInfoForm(
             id: user.id,
             accountId: user.accountId,
           },
-          paymentMethod: formData?.paypalEmailAddress
-            ? "PAYPAL"
-            : getPaymentMethod(currentPaymentOption),
           ...formData,
+          paymentMethod: getPaymentMethod(currentPaymentOption),
+          paymentSchedulingType: paymentScheduleChecked,
         } as SetImpactPublisherWithdrawalSettingsInput,
       });
       if (!response || (response as Error)?.message) {
@@ -755,6 +754,7 @@ export function useBankingInfoForm(
       setPaymentMethodChecked,
       setPaymentScheduleChecked,
       setCurrency,
+      getValidationErrorMessage: props.getValidationErrorMessage,
     },
     states: {
       saveDisabled: !paymentMethodChecked || !paymentScheduleChecked,

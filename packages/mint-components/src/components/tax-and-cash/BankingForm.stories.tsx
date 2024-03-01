@@ -26,6 +26,7 @@ const bankingFormProps: StoryDemoData<BankingInfoFormViewProps> = {
     onSubmit: async () => console.log("Submit"),
     setPaymentMethodChecked: () => {},
     setPaymentScheduleChecked: () => {},
+    getValidationErrorMessage: () => "",
   },
   refs: { formRef: { current: null } },
 };
@@ -144,7 +145,7 @@ export const BankingInfoFormCountryARCurrencyARS = () => {
           bankCountry: "AR",
           formState: {
             ...bankingFormProps.states.formState,
-            paymentScheduleChecked: "paymentDay",
+            paymentScheduleChecked: "FIXED_DAY",
             paymentMethodChecked: "toBankAccount",
           },
           currency: "ARS",
@@ -164,7 +165,7 @@ export const BankingInfoFormCountryMXCurrencyMXN = () => {
           bankCountry: "MX",
           formState: {
             ...bankingFormProps.states.formState,
-            paymentScheduleChecked: "paymentDay",
+            paymentScheduleChecked: "FIXED_DAY",
             paymentMethodChecked: "toBankAccount",
           },
           currency: "MXN",
@@ -294,7 +295,7 @@ export const BankingInfoFormWithBalanceThresholdPaymentSchedule = () => {
           bankCountry: "US",
           formState: {
             ...bankingFormProps.states.formState,
-            paymentScheduleChecked: "paymentThreshold",
+            paymentScheduleChecked: "BALANCE_THRESHOLD",
           },
           currency: "USD",
         },
@@ -319,7 +320,7 @@ export const BankingInfoFormWithBalanceThresholdPaymentScheduleWithError =
                 },
               },
               ...bankingFormProps.states.formState,
-              paymentScheduleChecked: "paymentThreshold",
+              paymentScheduleChecked: "BALANCE_THRESHOLD",
             },
             currency: "USD",
           },
@@ -339,7 +340,7 @@ export const BankingInfoFormWithBalanceThresholdPaymentScheduleLoading = () => {
           bankCountry: "US",
           formState: {
             ...bankingFormProps.states.formState,
-            paymentScheduleChecked: "paymentThreshold",
+            paymentScheduleChecked: "BALANCE_THRESHOLD",
           },
           currency: "USD",
         },
@@ -358,7 +359,7 @@ export const BankingInfoFormWithFixedDayPaymentSchedule = () => {
           bankCountry: "US",
           formState: {
             ...bankingFormProps.states.formState,
-            paymentScheduleChecked: "paymentDay",
+            paymentScheduleChecked: "FIXED_DAY",
           },
           currency: "USD",
         },
@@ -380,7 +381,7 @@ export const BankingInfoFormWithFixedDayPaymentScheduleWithError = () => {
               inputErrors: { fixedDay: { type: "required" } },
             },
             ...bankingFormProps.states.formState,
-            paymentScheduleChecked: "paymentDay",
+            paymentScheduleChecked: "FIXED_DAY",
           },
           currency: "USD",
         },
@@ -400,7 +401,7 @@ export const BankingInfoFormWithFixedDayPaymentScheduleLoading = () => {
           bankCountry: "US",
           formState: {
             ...bankingFormProps.states.formState,
-            paymentScheduleChecked: "paymentDay",
+            paymentScheduleChecked: "FIXED_DAY",
           },
           currency: "USD",
         },

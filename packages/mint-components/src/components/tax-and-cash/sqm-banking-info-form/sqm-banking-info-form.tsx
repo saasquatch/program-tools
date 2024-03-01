@@ -504,7 +504,7 @@ function useDemoBankingInfoForm(
     "toBankAccount" | "toPayPalAccount" | undefined
   >(undefined);
   const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
-    "paymentThreshold" | "paymentDay" | undefined
+    "BALANCE_THRESHOLD" | "FIXED_DAY" | undefined
   >(undefined);
 
   const [currency, setCurrency] = useState(defaultCurrency);
@@ -597,6 +597,7 @@ function useDemoBankingInfoForm(
         setBankCountry,
         setPaymentMethodChecked,
         setPaymentScheduleChecked,
+        getValidationErrorMessage: props.getValidationErrorMessage,
       },
       text: props.getTextProps(),
       refs: {
