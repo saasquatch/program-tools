@@ -37,6 +37,7 @@ const styleString = sheet.toString();
 export class RewardTableStatusCell {
   @Prop() statusText: string;
   @Prop() reward: Reward;
+  @Prop() taxConnection: ImpactConnection;
   @Prop() expiryText: string = "Expires";
   @Prop() locale: string = "en";
   @Prop() pendingUsTax: string = "W-9 required";
@@ -67,16 +68,6 @@ export class RewardTableStatusCell {
     if (reward.dateCancelled) return "CANCELLED";
     if (hasExpired) return "EXPIRED";
     if (isPending) return "PENDING";
-    if (reward.statuses?.includes("PENDING_TAX_REVIEW"))
-      return "PENDING_TAX_REVIEW";
-    if (reward.statuses?.includes("PENDING_NEW_TAX_FORM"))
-      return "PENDING_NEW_TAX_FORM";
-    if (reward.statuses?.includes("PENDING_TAX_SUBMISSION"))
-      return "PENDING_TAX_SUBMISSION";
-    if (reward.statuses?.includes("PENDING_PARTNER_CREATION"))
-      return "PENDING_PARTNER_CREATION";
-    if (reward.statuses?.includes("PAYOUT_SENT")) return "PAYOUT_SENT";
-    if (reward.statuses?.includes("PAYOUT_FAILED")) return "PAYOUT_FAILED";
 
     if (reward.type === "CREDIT") {
       return reward.statuses?.includes("REDEEMED") ? "REDEEMED" : "AVAILABLE";
@@ -104,7 +95,31 @@ export class RewardTableStatusCell {
     return "";
   }
 
-  getbadgeType(rewardStatus: string) {
+  getTaxPendingReasons(reward: Reward, taxConnection: ImpactConnection) {
+    if (reward?.pendingReasons?.includes("US_TAX")) {
+      if (!taxConnection?.taxHandlingEnabled) return this.pendingUsTax;
+      if (!taxConnection?.connected) return this.pendingPartnerCreation;
+      if (taxConnection?.publisher?.requiredTaxDocumentType) {
+        if (!taxConnection?.publisher?.currentTaxDocument)
+          return this.pendingTaxSubmission;
+
+        const status = taxConnection.publisher.currentTaxDocument.status;
+        if (status === "INACTIVE") return this.pendingNewTaxForm;
+        if (status === "NOT_VERIFIED") return this.pendingTaxReview;
+      }
+      if (!taxConnection?.publisher?.withdrawalSettings)
+        return this.pendingPartnerCreation;
+    }
+    if (reward?.pendingReasons?.includes("PAYOUT_CONFIGURATION_MISSING")) {
+      return this.pendingPartnerCreation;
+    }
+
+    // TODO: Payout enums
+
+    return "";
+  }
+
+  getBadgeType(rewardStatus: string) {
     switch (rewardStatus) {
       case "AVAILABLE":
         return "success";
@@ -113,18 +128,16 @@ export class RewardTableStatusCell {
         return "primary";
       case "PENDING":
       case "PENDING_REVIEW":
-      case "PENDING_TAX_REVIEW":
-      case "PENDING_NEW_TAX_FORM":
-      case "PENDING_TAX_SUBMISSION":
-      case "PENDING_PARTNER_CREATION":
         return "warning";
       default:
         return "danger";
     }
   }
 
-  getPayoutStatusText(rewardStatus: string) {
-    switch (rewardStatus) {
+  getPayoutStatusText(taxStatus: string) {
+    switch (taxStatus) {
+      case "US_TAX":
+        return this.pendingUsTax;
       case "PAYOUT_SENT":
         return this.payoutSent;
       case "PAYOUT_FAILED":
@@ -151,7 +164,7 @@ export class RewardTableStatusCell {
       }
     );
 
-    const badgeType = this.getbadgeType(rewardStatus);
+    const badgeType = this.getBadgeType(rewardStatus);
 
     const dateShown =
       this.reward.dateCancelled ||
@@ -170,7 +183,10 @@ export class RewardTableStatusCell {
         .toLocaleString(DateTime.DATE_MED)}`;
 
     const pendingReasons =
-      rewardStatus === "PENDING" ? getRewardPendingReasons(this) : null;
+      rewardStatus === "PENDING"
+        ? this.getTaxPendingReasons(this.reward, this.taxConnection) ||
+          getRewardPendingReasons(this)
+        : null;
 
     const fraudStatusText =
       rewardStatus === "PENDING_REVIEW"
@@ -178,8 +194,6 @@ export class RewardTableStatusCell {
         : rewardStatus === "DENIED"
         ? this.deniedText
         : null;
-
-    const payoutStatusText = this.getPayoutStatusText(rewardStatus);
 
     return (
       <div style={{ display: "contents" }}>
@@ -196,14 +210,13 @@ export class RewardTableStatusCell {
           {statusText}
         </sl-badge>
         <p class={sheet.classes.Date}>
-          {pendingReasons || fraudStatusText || payoutStatusText || date}
+          {fraudStatusText || pendingReasons || date}
         </p>
       </div>
     );
 
     function getRewardPendingReasons(prop) {
       const pendingCodeMap: { [code: string]: string } = {
-        US_TAX: prop.pendingUsTax,
         SCHEDULED:
           prop.reward.dateScheduledFor &&
           prop.pendingScheduled +
@@ -213,14 +226,19 @@ export class RewardTableStatusCell {
               .toLocaleString(DateTime.DATE_MED),
         UNHANDLED_ERROR: prop.pendingUnhandled,
         SUSPECTED_FRAUD: prop.pendingReview,
-        PENDING_TAX_REVIEW: prop.pendingTaxReview,
-        PENDING_NEW_TAX_FORM: prop.pendingNewTaxForm,
-        PENDING_TAX_SUBMISSION: prop.pendingTaxSubmission,
-        PENDING_PARTNER_CREATION: prop.pendingPartnerCreation,
       };
-      return [prop.reward.pendingReasons]
-        .map((s: string): string => pendingCodeMap[s] ?? s)
-        .join(", ");
+
+      const taxReason = this.getTaxPendingReasons(
+        prop.reward,
+        prop.taxConnection
+      );
+
+      return [
+        ...(taxReason ? [taxReason] : []),
+        ...prop.reward.pendingReasons.map((s: string): string => {
+          return pendingCodeMap[s] ?? s;
+        }),
+      ].join(", ");
     }
   }
 }

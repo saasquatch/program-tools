@@ -58,15 +58,15 @@ Feature: Tax Form Flow
     Then they proceed to <stepX> depending on the <brandCountry> and participants <countryCode>
 
     Examples: 
-      | countryCode | brandCountry | currency | allowBankingCollection | option                               | fields                                                 | stepX |
-      | CA          | US           | CAD      | true                   | I am registered for Indirect Tax     | Country, Province, HST/GST Number, ?QST Number(Quebec) |     3 |
-      | CA          | MX           | CAD      | true                   | I am not registered for Indirect Tax | Country, Province, HST/GST Number                      |     4 |
-      | US          | CA           | USD      | true                   | I am not registered for Indirect Tax | N/A                                                    |     3 |
-      | US          | MX           | USD      | true                   | I am not registered for Indirect Tax | N/A                                                    |     3 |
-      | UK          | US           | GBP      | true                   | I am not registered for Indirect Tax | N/A                                                    |     3 |
-      | UK          | US           | GBP      | true                   | I am registered for Indirect Tax     | Country, VAT Number                                    |     3 |
-      | ES          | US           | EGP      | true                   | I am registered for Indirect Tax     | Country, Sub Region,VAT Number                         |     3 |
-      | EG          | MX           | BMD      | true                   | I am not registered for Indirect Tax | N/A                                                    |     4 |
+      | countryCode | brandCountry | currency | allowBankingCollection | option                          | fields                                                 | stepX |
+      | CA          | US           | CAD      | true                   | Registered for indirect tax     | Country, Province, HST/GST Number, ?QST Number(Quebec) |     3 |
+      | CA          | MX           | CAD      | true                   | Not registered for indirect tax | Country, Province, HST/GST Number                      |     4 |
+      | US          | CA           | USD      | true                   | Not registered for indirect tax | N/A                                                    |     3 |
+      | US          | MX           | USD      | true                   | Not registered for indirect tax | N/A                                                    |     3 |
+      | UK          | US           | GBP      | true                   | Not registered for indirect tax | N/A                                                    |     3 |
+      | UK          | US           | GBP      | true                   | Registered for indirect tax     | Country, VAT Number                                    |     3 |
+      | ES          | US           | EGP      | true                   | Registered for indirect tax     | Country, Sub Region,VAT Number                         |     3 |
+      | EG          | MX           | BMD      | true                   | Not registered for indirect tax | N/A                                                    |     4 |
 
   @minutia
   Scenario Outline: Different indirect tax inputs are shown depending on the country of a participant
@@ -75,15 +75,15 @@ Feature: Tax Form Flow
     Then different <inputs> appear
 
     Examples: 
-      | country | option                                               | inputs                                                 |
-      | CA      | I am registered for Indirect Tax in a Country/Region | Country, Province, HST/GST Number, ?QST Number(Quebec) |
-      | ES      | I am registered for Indirect Tax in a Country/Region | Country, Sub Region, VAT Number, ?Income Tax Number    |
-      | UK      | I am registered for Indirect Tax in a Country/Region | Country, VAT Number                                    |
-      | IR      | I am registered for Indirect Tax in a Country/Region | Country, GST Number                                    |
-      | AU      | I am registered for Indirect Tax in a Country/Region | Country, GST Number                                    |
-      | JP      | I am registered for Indirect Tax in a Country/Region | Country, CT Number                                     |
-      | US      | I am not registered for Indirect tax                 | N/A                                                    |
-      | EG      | I am not registered for Indirect tax                 | N/A                                                    |
+      | country | option                          | inputs                                                 |
+      | CA      | Registered for indirect tax     | Country, Province, HST/GST Number, ?QST Number(Quebec) |
+      | ES      | Registered for indirect tax     | Country, Sub Region, VAT Number, ?Income Tax Number    |
+      | UK      | Registered for indirect tax     | Country, VAT Number                                    |
+      | IR      | Registered for indirect tax     | Country, GST Number                                    |
+      | AU      | Registered for indirect tax     | Country, GST Number                                    |
+      | JP      | Registered for indirect tax     | Country, CT Number                                     |
+      | US      | Not registered for indirect tax | N/A                                                    |
+      | EG      | Not registered for indirect tax | N/A                                                    |
 
   @minutia
   Scenario Outline: Participants based in another country working with non-US brands do not have to fillout docusign forms

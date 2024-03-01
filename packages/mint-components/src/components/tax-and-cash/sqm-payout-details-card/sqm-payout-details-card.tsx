@@ -65,7 +65,7 @@ function useDemoPayoutDetailsCard(props: PayoutDetailsCard) {
         otherCurrencies: false,
         hasW9Pending: false,
         hasDatePending: true,
-        cardNumberPreview: "Card ***2381",
+        cardNumberPreview: "Account ••2381",
       },
       text: props.getTextProps(),
     },

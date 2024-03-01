@@ -10,15 +10,15 @@ Feature: Indirect Tax Form
     Then different <inputs> appear
 
     Examples: 
-      | country | option                                               | inputs                                                 |
-      | CA      | I am registered for Indirect Tax in a Country/Region | Country, Province, HST/GST Number, ?QST Number(Quebec) |
-      | ES      | I am registered for Indirect Tax in a Country/Region | Country, Sub Region, VAT Number, ?Income Tax Number    |
-      | UK      | I am registered for Indirect Tax in a Country/Region | Country, VAT Number                                    |
-      | IR      | I am registered for Indirect Tax in a Country/Region | Country, GST Number                                    |
-      | AU      | I am registered for Indirect Tax in a Country/Region | Country, GST Number                                    |
-      | JP      | I am registered for Indirect Tax in a Country/Region | Country, CT Number                                     |
-      | US      | I am not registered for Indirect tax                 | N/A                                                    |
-      | EG      | I am not registered for Indirect tax                 | N/A                                                    |
+      | country | option                          | inputs                                                 |
+      | CA      | Registered for indirect tax     | Country, Province, HST/GST Number, ?QST Number(Quebec) |
+      | ES      | Registered for indirect tax     | Country, Sub Region, VAT Number, ?Income Tax Number    |
+      | UK      | Registered for indirect tax     | Country, VAT Number                                    |
+      | IR      | Registered for indirect tax     | Country, GST Number                                    |
+      | AU      | Registered for indirect tax     | Country, GST Number                                    |
+      | JP      | Registered for indirect tax     | Country, CT Number                                     |
+      | US      | Not registered for indirect tax | N/A                                                    |
+      | EG      | Not registered for indirect tax | N/A                                                    |
 
   @minutia @ui
   Scenario Outline: Participant selects Canada in step 1

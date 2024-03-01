@@ -224,11 +224,25 @@ export class TaxAndCashMonolith {
   @Prop() step2_otherRegion: string =
     "I am registered for Indirect Tax in a different Country / Region";
   /**
+   * Subtext for the option indicating registration for indirect tax in a different region
+   * @uiName Registered for indirect tax in a different region option sub-text
+   * @uiGroup Step 2 Properties
+   */
+  @Prop() otherRegionSubtext: string =
+    "f you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more.";
+  /**
    * Label text for the not registered radio button
    * @uiName Not registered radio button label
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_notRegistered: string = "I am not registered for Indirect Tax";
+  /**
+   * Subtext for the option indicating not being registered for indirect tax
+   * @uiName Not registered for indirect tax option sub-text
+   * @uiGroup Step 2 Properties
+   */
+  @Prop() notRegisteredSubtext: string =
+    "If you’re joining this referral program as an individual or you’re based in the US, then you’re not registered.";
   /**
    * Label text for the Selected Region select input
    * @uiName Selected region select input label

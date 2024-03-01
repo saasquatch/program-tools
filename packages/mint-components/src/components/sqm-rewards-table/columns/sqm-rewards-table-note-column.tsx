@@ -25,12 +25,12 @@ export class RewardTableCustomerNoteColumn implements RewardTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Reward, locale: string) {
+  async renderCell(data: Reward, options: { locale: string }) {
     const reward = data;
     return (
       <sqm-rewards-table-customer-note-cell
         note={reward?.meta?.message}
-        locale={locale}
+        locale={options.locale}
       ></sqm-rewards-table-customer-note-cell>
     );
   }

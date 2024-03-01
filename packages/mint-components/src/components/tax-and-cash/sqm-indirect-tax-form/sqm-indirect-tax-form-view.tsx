@@ -32,7 +32,9 @@ export interface IndirectTaxFormViewProps {
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
     otherRegion: string;
+    otherRegionSubtext: string;
     notRegistered: string;
+    notRegisteredSubtext: string;
     cannotChangeInfoAlert: string;
     submitButton: string;
     backButton: string;
@@ -53,10 +55,24 @@ const style = {
     justifyContent: "flex-start",
     flexDirection: "column",
   },
-  CheckboxContainer: {
+  RadioContainer: {
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "flex-start",
+    flexDirection: "column",
+    gap: "var(--sl-spacing-medium)",
+
+    "& sl-radio::part(base)": {
+      alignItems: "start",
+    },
+  },
+  InnerRadioContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "var(--sl-spacing-medium)",
+  },
+  RadioContent: {
+    display: "flex",
     flexDirection: "column",
     gap: "var(--sl-spacing-xx-small)",
   },
@@ -186,8 +202,10 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
         <div>
           {!states.hideSteps && <p>{text.formStep}</p>}
           <h3>{text.indirectTax}</h3>
+          <p class={classes.DescriptionText}>
+            {text.indirectTaxDetailsDescription}
+          </p>
         </div>
-        <p>{text.indirectTaxDescription}</p>
         {formState.errors?.general && (
           <sl-alert type="warning" open class={sheet.classes.AlertContainer}>
             <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
@@ -210,17 +228,14 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
         )}
         <div>
           <h4>{text.indirectTaxDetails}</h4>
-          <p class={classes.DescriptionText}>
-            {text.indirectTaxDetailsDescription}
-          </p>
         </div>
       </div>
       {states.loading ? (
         <sl-spinner style={{ fontSize: "50px", margin: "40px" }}></sl-spinner>
       ) : (
         <div>
-          <div class={classes.CheckboxContainer}>
-            <div style={{ display: "flex", flexDirection: "column" }}>
+          <div class={classes.RadioContainer}>
+            <div class={classes.InnerRadioContainer}>
               <sl-radio
                 exportparts="base: radio-base"
                 name="/checked"
@@ -230,7 +245,12 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 onInput={() => callbacks.onChange("notRegistered")}
                 disabled={states.disabled || states.isPartner}
               >
-                {text.notRegistered}
+                <div class={classes.RadioContent}>
+                  {text.notRegistered}
+                  <p class={classes.DescriptionText}>
+                    {text.notRegisteredSubtext}
+                  </p>
+                </div>
               </sl-radio>
               <sl-radio
                 exportparts="base: radio-base"
@@ -241,7 +261,12 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 onInput={() => callbacks.onChange("otherRegion")}
                 disabled={states.disabled || states.isPartner}
               >
-                {text.otherRegion}
+                <div class={classes.RadioContent}>
+                  {text.otherRegion}
+                  <p class={classes.DescriptionText}>
+                    {text.otherRegionSubtext}
+                  </p>
+                </div>
               </sl-radio>
               {slots.registeredInDifferentCountryDetailsSlot}
             </div>

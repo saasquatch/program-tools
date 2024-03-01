@@ -11,6 +11,7 @@ import { luxonLocale } from "../../../utils/utils";
 })
 export class ReferralTableRewardsCell {
   @Prop() rewards: Reward[];
+  @Prop() taxConnection: ImpactConnection;
   @Prop() hideDetails: boolean;
   @Prop() statusText: string;
   @Prop() statusLongText: string;
@@ -88,7 +89,10 @@ export class ReferralTableRewardsCell {
     const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
 
-    const getState = (reward: Reward): string => {
+    const getState = (
+      reward: Reward,
+      taxConnection: ImpactConnection
+    ): string => {
       const possibleStates = [
         "REDEEMED",
         "CANCELLED",
@@ -105,11 +109,31 @@ export class ReferralTableRewardsCell {
         "PENDING_PARTNER_CREATION",
       ];
 
+      // TODO: Add payout states
+
       if (reward.referral?.fraudData?.moderationStatus !== "APPROVED") {
         if (reward.referral?.fraudData?.moderationStatus === "PENDING")
           return "PENDING_REVIEW";
         if (reward.referral?.fraudData?.moderationStatus === "DENIED")
           return "DENIED";
+      }
+
+      if (reward?.pendingReasons?.includes("US_TAX")) {
+        if (!taxConnection?.taxHandlingEnabled) return "PENDING";
+        if (!taxConnection?.connected) return "PENDING_PARTNER_CREATION";
+        if (taxConnection?.publisher?.requiredTaxDocumentType) {
+          if (!taxConnection?.publisher?.currentTaxDocument)
+            return "PENDING_TAX_SUBMISSION";
+
+          const status = taxConnection.publisher.currentTaxDocument.status;
+          if (status === "INACTIVE") return "PENDING_NEW_TAX_FORM";
+          if (status === "NOT_VERIFIED") return "PENDING_TAX_REVIEW";
+        }
+        if (!taxConnection?.publisher?.withdrawalSettings)
+          return "PENDING_PARTNER_CREATION";
+      }
+      if (reward?.pendingReasons?.includes("PAYOUT_CONFIGURATION_MISSING")) {
+        return "PENDING_PARTNER_CREATION";
       }
 
       if (reward.statuses.length === 1) return reward.statuses[0];
@@ -151,7 +175,7 @@ export class ReferralTableRewardsCell {
     };
 
     return this.rewards?.map((reward) => {
-      const state = getState(reward);
+      const state = getState(reward, this.taxConnection);
       const slBadgeType = getSLBadgeType(state);
       const badgeText = intl.formatMessage(
         { id: "statusShortMessage", defaultMessage: this.statusText },
@@ -168,8 +192,6 @@ export class ReferralTableRewardsCell {
           status: state,
         }
       );
-
-      console.log(statusText);
 
       return (
         <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>
@@ -236,7 +258,27 @@ export class ReferralTableRewardsCell {
           <div>
             {state === "PAYOUT_SENT" && (
               <div>
-                <TextSpanView type="p">{statusText}</TextSpanView>
+                <TextSpanView type="p">
+                  {statusText}{" "}
+                  <span class={sheet.classes.BoldText} part="sqm-cell-value">
+                    {/* TODO: Date payout will be sent */}
+                    {DateTime.fromMillis(0)
+                      .setLocale(luxonLocale(this.locale))
+                      .toLocaleString(DateTime.DATE_MED)}
+                  </span>
+                </TextSpanView>
+              </div>
+            )}
+            {state === "PAYOUT_FAILED" && (
+              <div>
+                <TextSpanView type="p">
+                  {statusText} {/* TODO: Date payout will be retried */}
+                  <span class={sheet.classes.BoldText} part="sqm-cell-value">
+                    {DateTime.fromMillis(0)
+                      .setLocale(luxonLocale(this.locale))
+                      .toLocaleString(DateTime.DATE_MED)}
+                  </span>
+                </TextSpanView>
               </div>
             )}
             {state === "PENDING_REVIEW" && reward.referral?.dateModerated && (

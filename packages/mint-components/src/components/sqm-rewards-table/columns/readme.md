@@ -21,7 +21,7 @@
 
 ## Methods
 
-### `renderCell(data: Reward, locale: string) => Promise<any>`
+### `renderCell(data: Reward, options: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>`
 
 
 
