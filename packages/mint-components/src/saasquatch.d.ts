@@ -40,6 +40,27 @@ interface Referrer {
   rewards: Reward[];
 }
 
+interface ImpactConnection {
+  connected: boolean;
+  taxHandlingEnabled: boolean;
+  publisher: null | {
+    requiredTaxDocumentType: null | "W9" | "W8BEN" | "W8BENE";
+    currentTaxDocument: null | {
+      status: "NOT_VERIFIED" | "ACTIVE" | "INACTIVE";
+      type: "W9" | "W8BEN" | "W8BENE";
+      dateCreated: number;
+    };
+    withdrawalSettings: null | {
+      paymentMethod: "PAYPAL" | "BANK_TRANSFER";
+    };
+    payoutsAccount: null | {
+      hold: boolean;
+      holdReasons: string[];
+      balance: string;
+    };
+  };
+}
+
 type FraudStatus = "PENDING" | "DENIED" | "APPROVED";
 
 interface Reward {

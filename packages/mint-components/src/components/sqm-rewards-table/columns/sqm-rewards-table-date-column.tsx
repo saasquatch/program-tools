@@ -37,11 +37,11 @@ export class RewardTableDateColumn implements RewardTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Reward, locale: string) {
+  async renderCell(data: Reward, options: { locale: string }) {
     return (
       <sqm-rewards-table-date-cell
         date={data[this.dateShown]}
-        locale={locale}
+        locale={options.locale}
       ></sqm-rewards-table-date-cell>
     );
   }

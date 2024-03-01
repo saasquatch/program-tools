@@ -74,18 +74,22 @@ export class RewardTableStatusColumn implements RewardTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Reward, locale: string) {
+  async renderCell(
+    data: Reward,
+    options: { locale: string; taxConnection: ImpactConnection }
+  ) {
     return (
       <sqm-rewards-table-status-cell
         statusText={this.statusText}
         reward={data}
+        taxConnection={options.taxConnection}
         expiryText={this.expiryText}
         pendingScheduled={this.pendingScheduled}
         pendingUsTax={this.pendingUsTax}
         pendingUnhandled={this.pendingUnhandled}
         pendingReviewText={this.pendingReviewText}
         deniedText={this.deniedText}
-        locale={locale}
+        locale={options.locale}
       ></sqm-rewards-table-status-cell>
     );
   }

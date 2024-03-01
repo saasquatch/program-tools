@@ -34,8 +34,6 @@ import {
 } from "./data";
 
 function getCurrentStep(user: UserQuery["user"]) {
-  // TODO: include banking form step as a case
-
   if (!user.impactConnection?.publisher || !user.impactConnection?.connected) {
     return "/1";
   }

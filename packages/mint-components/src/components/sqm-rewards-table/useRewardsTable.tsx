@@ -2,6 +2,7 @@ import {
   useLocale,
   usePaginatedQuery,
   useProgramId,
+  useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useReducer } from "@saasquatch/universal-hooks";
@@ -110,6 +111,7 @@ const GET_REWARDS = gql`
                 manualModerationStatus
               }
             }
+
             rewardRedemptionTransactions {
               data {
                 exchangedRewards {
@@ -121,6 +123,42 @@ const GET_REWARDS = gql`
                   }
                 }
               }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+type GetImpactTax = {
+  viewer: {
+    id: string;
+    impactConnection: ImpactConnection;
+  };
+};
+const GET_IMPACT_TAX = gql`
+  query getImpactTax {
+    viewer {
+      ... on User {
+        id
+        impactConnection {
+          connected
+          taxHandlingEnabled
+          publisher {
+            requiredTaxDocumentType
+            currentTaxDocument {
+              status
+              type
+              dateCreated
+            }
+            withdrawalSettings {
+              paymentMethod
+            }
+            payoutsAccount {
+              hold
+              holdReasons
+              balance
             }
           }
         }
@@ -167,6 +205,12 @@ export function useRewardsTable(
     }
   );
 
+  const { data: impactTaxData, loading: taxLoading } = useQuery<GetImpactTax>(
+    GET_IMPACT_TAX,
+    {},
+    !user?.jwt
+  );
+
   const {
     envelope: rewardsData,
     states,
@@ -189,6 +233,7 @@ export function useRewardsTable(
   const components = useChildElements<Element>();
 
   const data = rewardsData?.data;
+  const taxConnection = impactTaxData?.viewer?.impactConnection;
 
   async function getComponentData(components: Element[]) {
     // filter out loading and empty states from columns array
@@ -203,7 +248,7 @@ export function useRewardsTable(
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r: Reward) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, locale, h))
+        tryMethod(c, () => c.renderCell(r, { locale, taxConnection }, h))
       );
       const cells = (await Promise.all(cellPromise)) as VNode[];
       return cells;
@@ -228,7 +273,7 @@ export function useRewardsTable(
 
   const show =
     // 1 - Loading if loading
-    states.loading || content.loading
+    states.loading || content.loading || taxLoading
       ? "loading"
       : // 2 - Empty if empty
       isEmpty
