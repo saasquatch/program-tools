@@ -45,6 +45,7 @@ export function usePayoutDetailsCard(
       return DateTime.now()
         .plus({ month: 1 })
         .startOf("month")
+        .plus({ day: 15 })
         .toFormat("LLL dd, yyyy");
     }
   }
