@@ -15,6 +15,8 @@ import { isDemo } from "@saasquatch/component-boilerplate";
   shadow: true,
 })
 export class PayoutDetailsCard {
+  @Prop() nextPayoutBalanceText: "Next payout occurs when balance is";
+
   /**
    * @undocumented
    */

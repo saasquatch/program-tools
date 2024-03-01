@@ -1539,6 +1539,7 @@ export namespace Components {
           * @undocumented
          */
         "demoData"?: DemoData<any>;
+        "nextPayoutBalanceText": "Next payout occurs when balance is";
     }
     interface SqmPopupContainer {
         /**
@@ -7088,6 +7089,7 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "demoData"?: DemoData<any>;
+        "nextPayoutBalanceText"?: "Next payout occurs when balance is";
     }
     interface SqmPopupContainer {
         /**

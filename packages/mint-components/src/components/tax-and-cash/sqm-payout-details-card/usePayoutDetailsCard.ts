@@ -15,7 +15,7 @@ export function usePayoutDetailsCard(
 
   const publisher = data?.user?.impactConnection?.publisher;
 
-  function getPaymentDay(paymentDay) {
+  function getPayoutDetailedStatusText(paymentDay) {
     const currentDay = DateTime.now().day;
     if (paymentDay === "1") {
       return currentDay === 1
@@ -34,10 +34,14 @@ export function usePayoutDetailsCard(
             .startOf("month")
             .plus({ day: 15 })
             .toFormat("LLL dd, yyyy");
+    } else {
+      return `${props.nextPayoutBalanceText} ${publisher?.withdrawalSettings?.paymentThreshold}`;
     }
   }
 
-  const paymentDay = getPaymentDay(publisher?.withdrawalSettings?.paymentDay);
+  const paymentDay = getPayoutDetailedStatusText(
+    publisher?.withdrawalSettings?.paymentDay
+  );
   //   publisher?.withdrawalSettings?.paymentDay;
 
   console.log({ paymentDay });
