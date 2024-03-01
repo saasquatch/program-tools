@@ -25,6 +25,9 @@ import express from "express";
 
 const app = express();
 const logger = initializeLogger();
+
+app.get("/healthz", healthCheck(app, logger));
+
 const server = installShutdownManager(
   app,
   logger,
