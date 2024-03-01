@@ -39,14 +39,17 @@ export class RewardsTableColumn implements RewardTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Reward, locale: string) {
+  async renderCell(
+    data: Reward,
+    options: { locale: string; taxConnection: ImpactConnection }
+  ) {
     return (
       <sqm-rewards-table-reward-cell
         reward={data}
         redeemedText={this.redeemedText}
         availableText={this.availableText}
         copyText={this.copyText}
-        locale={locale}
+        locale={options.locale}
         exportparts="sqm-rewards-cell-value, sqm-rewards-cell-progress-bar, sqm-rewards-cell-subtext"
       ></sqm-rewards-table-reward-cell>
     );

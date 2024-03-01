@@ -217,6 +217,42 @@ const GET_REFERRAL_DATA = gql`
   }
 `;
 
+type GetImpactTax = {
+  viewer: {
+    id: string;
+    impactConnection: ImpactConnection;
+  };
+};
+const GET_IMPACT_TAX = gql`
+  query getImpactTax {
+    viewer {
+      ... on User {
+        id
+        impactConnection {
+          connected
+          taxHandlingEnabled
+          publisher {
+            requiredTaxDocumentType
+            currentTaxDocument {
+              status
+              type
+              dateCreated
+            }
+            withdrawalSettings {
+              paymentMethod
+            }
+            payoutsAccount {
+              hold
+              holdReasons
+              balance
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export type ReferralDates =
   | "dateConverted"
   | "dateReferralStarted"
@@ -284,6 +320,14 @@ export function useReferralTable(
   const showReferrerRow =
     props.showReferrer && !!referrerData?.dateReferralStarted;
 
+  const { data: taxResponse, loading: taxLoading } = useQuery(
+    GET_IMPACT_TAX,
+    {},
+    !user?.jwt
+  );
+
+  const taxConnection = taxResponse?.viewer?.impactConnection;
+
   const {
     envelope: referralData,
     states,
@@ -346,7 +390,7 @@ export function useReferralTable(
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, locale, h))
+        tryMethod(c, () => c.renderCell(r, { locale, taxConnection }, h))
       );
       const cells = (await Promise.all(cellPromise)) as VNode[][];
       return cells;
@@ -374,7 +418,7 @@ export function useReferralTable(
 
   const show =
     // 1 - Loading if loading
-    states.loading || content.loading
+    states.loading || content.loading || taxLoading
       ? "loading"
       : // 2 - Empty if empty
       isEmpty

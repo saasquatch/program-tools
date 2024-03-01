@@ -198,7 +198,7 @@ function useRewardsTableDemo(
     //@ts-ignore
     const cellsPromise = componentData?.map(async (r: Reward) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, undefined))
+        tryMethod(c, () => c.renderCell(r, undefined, {}))
       );
       const cells = (await Promise.all(cellPromise)) as VNode[];
       return cells;

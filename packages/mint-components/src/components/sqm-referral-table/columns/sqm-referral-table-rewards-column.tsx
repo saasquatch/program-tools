@@ -26,7 +26,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    * @uiWidget textArea
    */
   @Prop() statusText: string =
-    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
+    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_SENT {Payout Sent} PAYOUT_FAILED {Payout Failed} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
 
   /**
    * Additional status text shown in the details drop down.
@@ -35,7 +35,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
    * @uiWidget textArea
    */
   @Prop() statusLongText: string =
-    "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }";
+    "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_SENT {Payout process started on} PAYOUT_FAILED {This payout will be retried on} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }";
 
   /**
    * Shown in the dropdown details when a reward has an associated fuel tank code.
@@ -85,11 +85,15 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Referral, locale: string) {
+  async renderCell(
+    data: Referral,
+    options: { locale: string; taxConnection: ImpactConnection }
+  ) {
     // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
     return (
       <sqm-referral-table-rewards-cell
         rewards={data.rewards}
+        taxConnection={options.taxConnection}
         statusText={this.statusText}
         statusLongText={this.statusLongText}
         fuelTankText={this.fuelTankText}
@@ -98,7 +102,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
         pendingForText={this.pendingForText}
         hideDetails={this.hideDetails}
         deniedHelpText={this.deniedHelpText}
-        locale={locale}
+        locale={options.locale}
         exportparts="sqm-cell-value"
       ></sqm-referral-table-rewards-cell>
     );

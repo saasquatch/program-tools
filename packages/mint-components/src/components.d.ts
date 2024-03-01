@@ -2601,7 +2601,7 @@ export namespace Components {
           * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended", "Date Referral Paid", "Date User Modified"]
          */
         "dateShown": ReferralDates;
-        "renderCell": (data: Referral, locale: string) => Promise<any>;
+        "renderCell": (data: Referral, options: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
@@ -2616,6 +2616,7 @@ export namespace Components {
         "rewards": Reward[];
         "statusLongText": string;
         "statusText": string;
+        "taxConnection": ImpactConnection;
     }
     interface SqmReferralTableRewardsColumn {
         /**
@@ -2647,7 +2648,7 @@ export namespace Components {
           * @uiName Reward pending text
          */
         "pendingForText": string;
-        "renderCell": (data: Referral, locale: string) => Promise<any>;
+        "renderCell": (data: Referral, options: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
         /**
@@ -3016,7 +3017,7 @@ export namespace Components {
           * @uiName Column title
          */
         "columnTitle": string;
-        "renderCell": (data: Reward, locale: string) => Promise<any>;
+        "renderCell": (data: Reward, options: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableDateCell {
@@ -3035,7 +3036,7 @@ export namespace Components {
           * @uiEnumNames ["Date Given", "Date Expires", "Date Cancelled", "Date Redeemed", "Date Scheduled For"]
          */
         "dateShown": string;
-        "renderCell": (data: Reward, locale: string) => Promise<any>;
+        "renderCell": (data: Reward, options: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableRewardCell {
@@ -3062,7 +3063,7 @@ export namespace Components {
           * @uiName Redeemed amount text
          */
         "redeemedText": string;
-        "renderCell": (data: Reward, locale: string) => Promise<any>;
+        "renderCell": (data: Reward, options: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableSourceCell {
@@ -3095,7 +3096,7 @@ export namespace Components {
           * @uiWidget textArea
          */
         "referralText": string;
-        "renderCell": (data: Reward, locale: any) => Promise<any>;
+        "renderCell": (data: Reward, options: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward exchange label
@@ -3124,6 +3125,7 @@ export namespace Components {
         "pendingUsTax": string;
         "reward": Reward;
         "statusText": string;
+        "taxConnection": ImpactConnection;
     }
     interface SqmRewardsTableStatusColumn {
         /**
@@ -3160,7 +3162,7 @@ export namespace Components {
           * @uiName W9 pending text
          */
         "pendingUsTax": string;
-        "renderCell": (data: Reward, locale: string) => Promise<any>;
+        "renderCell": (data: Reward, options: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward status text
@@ -8183,6 +8185,7 @@ declare namespace LocalJSX {
         "rewards"?: Reward[];
         "statusLongText"?: string;
         "statusText"?: string;
+        "taxConnection"?: ImpactConnection;
     }
     interface SqmReferralTableRewardsColumn {
         /**
@@ -8674,6 +8677,7 @@ declare namespace LocalJSX {
         "pendingUsTax"?: string;
         "reward"?: Reward;
         "statusText"?: string;
+        "taxConnection"?: ImpactConnection;
     }
     interface SqmRewardsTableStatusColumn {
         /**
