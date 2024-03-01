@@ -89,7 +89,7 @@ export class GlobalContainer {
             href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget"
             target="_blank"
           >
-            Powered By Impact
+            Powered By Impact.com
           </a>
         ) : (
           ""

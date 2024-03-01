@@ -322,7 +322,7 @@ export namespace Components {
          */
         "editprofiletext": string;
         /**
-          * @uiName Field empty text
+          * @uiName Empty field error message
          */
         "fieldEmptyText": string;
         /**
@@ -330,7 +330,7 @@ export namespace Components {
          */
         "firstnametext": string;
         /**
-          * @uiName Form error text
+          * @uiName Form error message
          */
         "formErrorText": string;
         /**
@@ -909,7 +909,7 @@ export namespace Components {
          */
         "disableValidation": boolean;
         /**
-          * @uiName Fails requirements text
+          * @uiName Password requirement failed
          */
         "doesNotMeetRequirementsText": string;
         /**
@@ -918,7 +918,7 @@ export namespace Components {
          */
         "fieldLabel": string;
         /**
-          * @uiName Missing number or symbol error text
+          * @uiName Missing number or symbol text
          */
         "hasErrorText": string;
         /**
@@ -926,7 +926,7 @@ export namespace Components {
          */
         "lowercaseErrorText": string;
         /**
-          * @uiName Meets requirements text
+          * @uiName Password requirement met
          */
         "meetsRequirementsText": string;
         /**
@@ -998,15 +998,15 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
         /**
-          * @uiName Fails requirements text
+          * @uiName Password requirement failed
          */
         "doesNotMeetRequirementsText": string;
         /**
-          * @uiName Invalid session error text
+          * @uiName Missing number or symbol text
          */
         "hasErrorText": string;
         /**
-          * @uiName Invalid user session error text
+          * @uiName Invalid user session error message
          */
         "invalidSessionErrorText": string;
         /**
@@ -1014,7 +1014,7 @@ export namespace Components {
          */
         "lowercaseErrorText": string;
         /**
-          * @uiName Meets requirements text
+          * @uiName Password requirement met
          */
         "meetsRequirementsText": string;
         /**
@@ -1026,7 +1026,7 @@ export namespace Components {
          */
         "modalChangePasswordHeader": string;
         /**
-          * @uiName Non matching password error text
+          * @uiName Passwords don’t match error message
          */
         "nonMatchingPasswordErrorText": string;
         /**
@@ -1127,7 +1127,7 @@ export namespace Components {
          */
         "emailVerificationHeader": string;
         /**
-          * @uiName Network error text
+          * @uiName Network error message Displayed when your verification email fails to send due to a network error. The participant can try refreshing the page.
          */
         "networkErrorMessage": string;
         /**
@@ -1253,7 +1253,7 @@ export namespace Components {
          */
         "loginText": string;
         /**
-          * @uiName Network error message
+          * @uiName Network error message Displayed when the forgot password action fails due to a network error. The participant can try refreshing the page.
          */
         "networkErrorMessage": string;
         /**
@@ -1267,7 +1267,7 @@ export namespace Components {
          */
         "submitLabel": string;
         /**
-          * @uiName Success alert text
+          * @uiName Email verification sent text
          */
         "successAlertText": string;
     }
@@ -1303,7 +1303,7 @@ export namespace Components {
          */
         "forgotPasswordPath": string;
         /**
-          * @uiName Network error message
+          * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
          */
         "networkErrorMessage": string;
         /**
@@ -1375,7 +1375,7 @@ export namespace Components {
          */
         "firstnametext": string;
         /**
-          * @uiName Form error text
+          * @uiName Form error message
          */
         "formErrorText": string;
         /**
@@ -1387,7 +1387,7 @@ export namespace Components {
          */
         "lastnametext": string;
         /**
-          * @uiName Network request text
+          * @uiName Network request error message Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
          */
         "networkRequestMessage": string;
         /**
@@ -1434,7 +1434,7 @@ export namespace Components {
          */
         "disablePasswordValidation": boolean;
         /**
-          * @uiName Fails requirements text
+          * @uiName Password requirement failed
          */
         "doesNotMeetRequirementsText": string;
         /**
@@ -1442,7 +1442,7 @@ export namespace Components {
          */
         "emailLabel": string;
         /**
-          * @uiName Missing number or symbol error text
+          * @uiName Missing number or symbol text
          */
         "hasErrorText": string;
         /**
@@ -1471,7 +1471,7 @@ export namespace Components {
          */
         "lowercaseErrorText": string;
         /**
-          * @uiName Meets requirements text
+          * @uiName Password requirement met
          */
         "meetsRequirementsText": string;
         /**
@@ -1544,7 +1544,7 @@ export namespace Components {
          */
         "disablePasswordValidation": boolean;
         /**
-          * @uiName Fails requirements text
+          * @uiName Password requirement failed
          */
         "doesNotMeetRequirementsText": string;
         /**
@@ -1564,7 +1564,7 @@ export namespace Components {
          */
         "formKey": string;
         /**
-          * @uiName Missing number or symbol error text
+          * @uiName Missing number or symbol text
          */
         "hasErrorText": string;
         /**
@@ -1593,7 +1593,7 @@ export namespace Components {
          */
         "lowercaseErrorText": string;
         /**
-          * @uiName Meets requirements text
+          * @uiName Password requirement met
          */
         "meetsRequirementsText": string;
         /**
@@ -1646,15 +1646,10 @@ export namespace Components {
           * @uiName Missing uppercase text
          */
         "uppercaseErrorText": string;
-        /**
-          * Saves the browser locale on the new user
-          * @uiName Use browser locale
-         */
-        "useBrowserLocale": boolean;
     }
     interface SqmPortalResetPassword {
         /**
-          * @uiName Reset code invalid text
+          * @uiName Reset code invalid error message
          */
         "codeInvalidText": string;
         /**
@@ -1676,7 +1671,7 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
-          * @uiName Fails requirements text
+          * @uiName Password requirement failed
          */
         "doesNotMeetRequirementsText": string;
         /**
@@ -1686,7 +1681,7 @@ export namespace Components {
          */
         "failedPage": string;
         /**
-          * @uiName Missing number or symbol error text
+          * @uiName Missing number or symbol text
          */
         "hasErrorText": string;
         /**
@@ -1694,7 +1689,7 @@ export namespace Components {
          */
         "lowercaseErrorText": string;
         /**
-          * @uiName Meets requirements text
+          * @uiName Password requirement met
          */
         "meetsRequirementsText": string;
         /**
@@ -1702,7 +1697,7 @@ export namespace Components {
          */
         "minErrorText": string;
         /**
-          * @uiName Network error text
+          * @uiName Network error message Displayed when the password reset fails due to a network error. The participant can try refreshing the page.
          */
         "networkErrorMessage": string;
         /**
@@ -1716,7 +1711,7 @@ export namespace Components {
          */
         "passwordFieldLabel": string;
         /**
-          * @uiName Password mismatch text
+          * @uiName Passwords don’t match error message Please make sure your passwords match
          */
         "passwordMismatchText": string;
         /**
@@ -1759,7 +1754,7 @@ export namespace Components {
          */
         "failedPage": string;
         /**
-          * @uiName Network error text
+          * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
          */
         "networkErrorMessage": string;
         /**
@@ -2753,8 +2748,8 @@ export namespace Components {
          */
         "undefinedLinkText"?: string;
         /**
-          * Alert text shown if user's device does not support native sharing
-          * @uiName Undefined link text
+          * Alert text shown if the user's device does not support native sharing
+          * @uiName Unsupported platform text
          */
         "unsupportedPlatformText"?: string;
     }
@@ -4071,7 +4066,7 @@ declare namespace LocalJSX {
          */
         "editprofiletext"?: string;
         /**
-          * @uiName Field empty text
+          * @uiName Empty field error message
          */
         "fieldEmptyText"?: string;
         /**
@@ -4079,7 +4074,7 @@ declare namespace LocalJSX {
          */
         "firstnametext"?: string;
         /**
-          * @uiName Form error text
+          * @uiName Form error message
          */
         "formErrorText"?: string;
         /**
@@ -4658,7 +4653,7 @@ declare namespace LocalJSX {
          */
         "disableValidation"?: boolean;
         /**
-          * @uiName Fails requirements text
+          * @uiName Password requirement failed
          */
         "doesNotMeetRequirementsText"?: string;
         /**
@@ -4667,7 +4662,7 @@ declare namespace LocalJSX {
          */
         "fieldLabel"?: string;
         /**
-          * @uiName Missing number or symbol error text
+          * @uiName Missing number or symbol text
          */
         "hasErrorText"?: string;
         /**
@@ -4675,7 +4670,7 @@ declare namespace LocalJSX {
          */
         "lowercaseErrorText"?: string;
         /**
-          * @uiName Meets requirements text
+          * @uiName Password requirement met
          */
         "meetsRequirementsText"?: string;
         /**
@@ -4747,15 +4742,15 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
         /**
-          * @uiName Fails requirements text
+          * @uiName Password requirement failed
          */
         "doesNotMeetRequirementsText"?: string;
         /**
-          * @uiName Invalid session error text
+          * @uiName Missing number or symbol text
          */
         "hasErrorText"?: string;
         /**
-          * @uiName Invalid user session error text
+          * @uiName Invalid user session error message
          */
         "invalidSessionErrorText"?: string;
         /**
@@ -4763,7 +4758,7 @@ declare namespace LocalJSX {
          */
         "lowercaseErrorText"?: string;
         /**
-          * @uiName Meets requirements text
+          * @uiName Password requirement met
          */
         "meetsRequirementsText"?: string;
         /**
@@ -4775,7 +4770,7 @@ declare namespace LocalJSX {
          */
         "modalChangePasswordHeader"?: string;
         /**
-          * @uiName Non matching password error text
+          * @uiName Passwords don’t match error message
          */
         "nonMatchingPasswordErrorText"?: string;
         /**
@@ -4876,7 +4871,7 @@ declare namespace LocalJSX {
          */
         "emailVerificationHeader"?: string;
         /**
-          * @uiName Network error text
+          * @uiName Network error message Displayed when your verification email fails to send due to a network error. The participant can try refreshing the page.
          */
         "networkErrorMessage"?: string;
         /**
@@ -5002,7 +4997,7 @@ declare namespace LocalJSX {
          */
         "loginText"?: string;
         /**
-          * @uiName Network error message
+          * @uiName Network error message Displayed when the forgot password action fails due to a network error. The participant can try refreshing the page.
          */
         "networkErrorMessage"?: string;
         /**
@@ -5016,7 +5011,7 @@ declare namespace LocalJSX {
          */
         "submitLabel"?: string;
         /**
-          * @uiName Success alert text
+          * @uiName Email verification sent text
          */
         "successAlertText"?: string;
     }
@@ -5052,7 +5047,7 @@ declare namespace LocalJSX {
          */
         "forgotPasswordPath"?: string;
         /**
-          * @uiName Network error message
+          * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
          */
         "networkErrorMessage"?: string;
         /**
@@ -5124,7 +5119,7 @@ declare namespace LocalJSX {
          */
         "firstnametext"?: string;
         /**
-          * @uiName Form error text
+          * @uiName Form error message
          */
         "formErrorText"?: string;
         /**
@@ -5136,7 +5131,7 @@ declare namespace LocalJSX {
          */
         "lastnametext"?: string;
         /**
-          * @uiName Network request text
+          * @uiName Network request error message Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
          */
         "networkRequestMessage"?: string;
         /**
@@ -5183,7 +5178,7 @@ declare namespace LocalJSX {
          */
         "disablePasswordValidation"?: boolean;
         /**
-          * @uiName Fails requirements text
+          * @uiName Password requirement failed
          */
         "doesNotMeetRequirementsText"?: string;
         /**
@@ -5191,7 +5186,7 @@ declare namespace LocalJSX {
          */
         "emailLabel"?: string;
         /**
-          * @uiName Missing number or symbol error text
+          * @uiName Missing number or symbol text
          */
         "hasErrorText"?: string;
         /**
@@ -5220,7 +5215,7 @@ declare namespace LocalJSX {
          */
         "lowercaseErrorText"?: string;
         /**
-          * @uiName Meets requirements text
+          * @uiName Password requirement met
          */
         "meetsRequirementsText"?: string;
         /**
@@ -5293,7 +5288,7 @@ declare namespace LocalJSX {
          */
         "disablePasswordValidation"?: boolean;
         /**
-          * @uiName Fails requirements text
+          * @uiName Password requirement failed
          */
         "doesNotMeetRequirementsText"?: string;
         /**
@@ -5313,7 +5308,7 @@ declare namespace LocalJSX {
          */
         "formKey"?: string;
         /**
-          * @uiName Missing number or symbol error text
+          * @uiName Missing number or symbol text
          */
         "hasErrorText"?: string;
         /**
@@ -5342,7 +5337,7 @@ declare namespace LocalJSX {
          */
         "lowercaseErrorText"?: string;
         /**
-          * @uiName Meets requirements text
+          * @uiName Password requirement met
          */
         "meetsRequirementsText"?: string;
         /**
@@ -5395,15 +5390,10 @@ declare namespace LocalJSX {
           * @uiName Missing uppercase text
          */
         "uppercaseErrorText"?: string;
-        /**
-          * Saves the browser locale on the new user
-          * @uiName Use browser locale
-         */
-        "useBrowserLocale"?: boolean;
     }
     interface SqmPortalResetPassword {
         /**
-          * @uiName Reset code invalid text
+          * @uiName Reset code invalid error message
          */
         "codeInvalidText"?: string;
         /**
@@ -5425,7 +5415,7 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
-          * @uiName Fails requirements text
+          * @uiName Password requirement failed
          */
         "doesNotMeetRequirementsText"?: string;
         /**
@@ -5435,7 +5425,7 @@ declare namespace LocalJSX {
          */
         "failedPage"?: string;
         /**
-          * @uiName Missing number or symbol error text
+          * @uiName Missing number or symbol text
          */
         "hasErrorText"?: string;
         /**
@@ -5443,7 +5433,7 @@ declare namespace LocalJSX {
          */
         "lowercaseErrorText"?: string;
         /**
-          * @uiName Meets requirements text
+          * @uiName Password requirement met
          */
         "meetsRequirementsText"?: string;
         /**
@@ -5451,7 +5441,7 @@ declare namespace LocalJSX {
          */
         "minErrorText"?: string;
         /**
-          * @uiName Network error text
+          * @uiName Network error message Displayed when the password reset fails due to a network error. The participant can try refreshing the page.
          */
         "networkErrorMessage"?: string;
         /**
@@ -5465,7 +5455,7 @@ declare namespace LocalJSX {
          */
         "passwordFieldLabel"?: string;
         /**
-          * @uiName Password mismatch text
+          * @uiName Passwords don’t match error message Please make sure your passwords match
          */
         "passwordMismatchText"?: string;
         /**
@@ -5508,7 +5498,7 @@ declare namespace LocalJSX {
          */
         "failedPage"?: string;
         /**
-          * @uiName Network error text
+          * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
          */
         "networkErrorMessage"?: string;
         /**
@@ -6478,8 +6468,8 @@ declare namespace LocalJSX {
          */
         "undefinedLinkText"?: string;
         /**
-          * Alert text shown if user's device does not support native sharing
-          * @uiName Undefined link text
+          * Alert text shown if the user's device does not support native sharing
+          * @uiName Unsupported platform text
          */
         "unsupportedPlatformText"?: string;
     }
