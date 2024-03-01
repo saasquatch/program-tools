@@ -1,20 +1,20 @@
 @owner:andy @author:andy
-Feature: Tax Document Submitted View
-  View that informs the user of their Tax Document submission status.
+Feature: Tax And Cash Dashboard
+  View that informs the user of their Indirect Tax, Payout Details, and Tax Document submission status.
 
-  Background: A user has submitted their Tax Document
-    Given a user is on the Tax Document Submitted view
+  Background: A user has submitted their Payout Details
+    Given a user is on the Tax And Cash Dashboard view
 
   @motivating
-  Scenario: View Tax Document Submitted
+  Scenario: View Tax And Cash Dashboard
     Given the user has submitted a tax document
     When they view Document Submitted
     Then they see the status of their Tax Document and Banking Information
 
   @motivating
-  Scenario: View Tax Document Submitted is loading
+  Scenario: View Tax And Cash Dashboard is loading
     Given the user has submitted a tax document
-    When they view Document Submitted
+    When they view the Tax And Cash Dashboard
     Then they see a skeleton loaders until the end users Tax Document/Banking information data is available
 
   @minutia @ui

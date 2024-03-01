@@ -67,6 +67,10 @@ export const GET_USER = gql`
               paymentThreshold
               paymentDay
             }
+            payoutsAccount {
+              hold
+              balance
+            }
           }
         }
       }
@@ -94,7 +98,10 @@ type ImpactPublisher = {
     paymentThreshold: string | null;
     paymentDay: string | null;
   };
-
+  payoutsAccount: {
+    hold: boolean;
+    balance: string;
+  };
   // TODO: Remove this comment when these fields exist
   indirectTaxOption: "SAME_COUNTRY" | "NO_TAX" | "DIFFERENT_COUNTRY";
   indirectTaxSubdivision: string;

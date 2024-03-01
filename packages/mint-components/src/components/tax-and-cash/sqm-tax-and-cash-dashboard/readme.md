@@ -56,10 +56,10 @@
 ### Graph
 ```mermaid
 graph TD;
-  sqm-tax-document-submitted --> sqm-payout-details-card
-  sqm-stencilbook --> sqm-tax-document-submitted
-  sqm-tax-and-cash --> sqm-tax-document-submitted
-  style sqm-tax-document-submitted fill:#f9f,stroke:#333,stroke-width:4px
+  sqm-tax-and-cash-dashboard --> sqm-payout-details-card
+  sqm-stencilbook --> sqm-tax-and-cash-dashboard
+  sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
+  style sqm-tax-and-cash-dashboard fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

@@ -4,18 +4,18 @@ import { Component, Host, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import { TaxDocumentSubmittedView } from "./sqm-tax-document-submitted-view";
+import { TaxAndCashDashboardView } from "./sqm-tax-and-cash-dashboard-view";
 import {
-  UseTaxDocumentSubmittedResult,
-  useTaxDocumentSubmitted,
-} from "./useTaxDocumentSubmitted";
+  UseTaxAndCashDashboardResult,
+  useTaxAndCashDashboard,
+} from "./useTaxAndCashDashboard";
 import { Upcoming } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
 
 /**
  * @uiName Tax and Cash Status Dashboard
  */
-@Component({ tag: "sqm-tax-document-submitted", shadow: true })
-export class TaxDocumentSubmitted {
+@Component({ tag: "sqm-tax-and-cash-dashboard", shadow: true })
+export class TaxAndCashDashboard {
   /**
    * Status text displayed in badge when tax document is Active
    *
@@ -217,7 +217,7 @@ export class TaxDocumentSubmitted {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<UseTaxDocumentSubmittedResult>;
+  @Prop() demoData?: DemoData<UseTaxAndCashDashboardResult>;
 
   constructor() {
     withHooks(this);
@@ -238,11 +238,12 @@ export class TaxDocumentSubmitted {
 
   render() {
     const props = isDemo()
-      ? useDemoTaxDocumentSubmitted(this)
-      : useTaxDocumentSubmitted(this);
+      ? useDemoTaxAndCashDashboard(this)
+      : useTaxAndCashDashboard(this);
+
     return (
       <Host>
-        <TaxDocumentSubmittedView
+        <TaxAndCashDashboardView
           callbacks={props.callbacks}
           states={props.states}
           text={props.text}
@@ -252,9 +253,9 @@ export class TaxDocumentSubmitted {
     );
   }
 }
-function useDemoTaxDocumentSubmitted(
-  props: TaxDocumentSubmitted
-): UseTaxDocumentSubmittedResult {
+function useDemoTaxAndCashDashboard(
+  props: TaxAndCashDashboard
+): UseTaxAndCashDashboardResult {
   return deepmerge(
     {
       states: {

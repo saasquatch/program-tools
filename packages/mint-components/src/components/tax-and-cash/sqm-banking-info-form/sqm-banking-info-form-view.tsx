@@ -6,6 +6,7 @@ export interface BankingInfoFormViewProps {
   states: {
     locale?: string;
     loading: boolean;
+    saveLoading?: boolean;
     disabled: boolean;
     saveDisabled: boolean;
     hideSteps: boolean;
@@ -16,7 +17,6 @@ export interface BankingInfoFormViewProps {
     hideFixedDay?: boolean;
     feeCap?: string;
     isPartner: boolean;
-
     paymentMethodFeeLabel?: string;
     formState: {
       paymentMethodChecked?: "toBankAccount" | "toPayPalAccount";
@@ -72,6 +72,7 @@ export interface BankingInfoFormViewProps {
     paymentDayFifteenthOfMonthLabelText: string;
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
+    cannotChangeInfoAlert: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -192,6 +193,29 @@ const style = {
     borderRadius: "50px",
     background: "var(--sl-color-gray-200)",
   },
+  InfoAlert: {
+    "&::part(base)": {
+      backgroundColor: "transparent",
+      borderTop: "none",
+      border: "none",
+    },
+
+    "&::part(message)": {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      padding: "10px",
+      height: "max-content",
+    },
+
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-yellow-500)",
+    },
+  },
+  InfoWarningIcon: {
+    height: "26px",
+    width: "26px",
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -239,8 +263,6 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
     refs,
     slots,
   } = props;
-
-  console.log({ formState });
 
   const { classes } = sheet;
 
@@ -332,7 +354,19 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             {text.isPartnerAlertDescription}
           </sl-alert>
         )}
-
+        <sl-alert
+          exportparts="base: alert-base, icon:alert-icon"
+          type="primary"
+          open
+          class={classes.InfoAlert}
+        >
+          <sl-icon
+            class={classes.InfoWarningIcon}
+            slot="icon"
+            name="exclamation-triangle"
+          ></sl-icon>
+          {text.cannotChangeInfoAlert}
+        </sl-alert>
         <div>
           <h4>{text.paymentMethod}</h4>
           <p class={classes.DescriptionText}>{text.paymentMethodSubtext}</p>
@@ -345,7 +379,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           ) : (
             <div style={{ display: "flex", flexDirection: "column" }}>
               {states.hasPayPal && (
-                <sl-checkbox
+                <sl-radio
                   class={classes.Checkbox}
                   exportparts="label: input-label"
                   checked={formState.paymentMethodChecked === "toBankAccount"}
@@ -357,7 +391,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                   name="/toBankAccount"
                 >
                   {text.directlyToBankAccount}
-                </sl-checkbox>
+                </sl-radio>
               )}
               {formState.paymentMethodChecked === "toBankAccount" && (
                 <div
@@ -377,7 +411,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 </div>
               )}
               {states.hasPayPal && (
-                <sl-checkbox
+                <sl-radio
                   class={classes.Checkbox}
                   exportparts="label: input-label"
                   checked={formState.paymentMethodChecked === "toPayPalAccount"}
@@ -395,7 +429,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                     },
                     { feeCap: states.feeCap }
                   )}
-                </sl-checkbox>
+                </sl-radio>
               )}
               {formState.paymentMethodChecked === "toPayPalAccount" && (
                 <div
@@ -424,7 +458,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               <div style={{ paddingTop: "24px", paddingBottom: "12px" }}>
                 <h4>{text.paymentSchedule}</h4>
               </div>
-              <sl-checkbox
+              <sl-radio
                 class={classes.Checkbox}
                 exportparts="label: input-label"
                 checked={
@@ -439,7 +473,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 value={"BALANCE_THRESHOLD"}
               >
                 {text.paymentScheduleBalanceThreshold}
-              </sl-checkbox>
+              </sl-radio>
               {formState.paymentScheduleChecked === "paymentThreshold" && (
                 <div
                   class={classes.InputContainer}
@@ -451,7 +485,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 </div>
               )}
 
-              <sl-checkbox
+              <sl-radio
                 class={classes.Checkbox}
                 exportparts="label: input-label"
                 checked={formState.paymentScheduleChecked === "paymentDay"}
@@ -464,7 +498,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 value={"FIXED_DAY"}
               >
                 {text.paymentScheduleFixedDay}
-              </sl-checkbox>
+              </sl-radio>
               {formState.paymentScheduleChecked === "paymentDay" && (
                 <div
                   class={classes.InputContainer}
@@ -482,6 +516,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           <sl-button
             type="primary"
             disabled={states.disabled || states.saveDisabled}
+            loading={states.saveLoading}
             submit
             exportparts="base: primarybutton-base"
           >

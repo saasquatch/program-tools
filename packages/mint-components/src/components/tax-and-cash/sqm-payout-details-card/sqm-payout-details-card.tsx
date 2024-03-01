@@ -3,6 +3,8 @@ import { Component, Host, Prop, h } from "@stencil/core";
 import { PayoutDetailsCardView } from "./sqm-payout-details-card-view";
 import { DemoData } from "../../../global/demo";
 import deepmerge from "deepmerge";
+import { usePayoutDetailsCard } from "./usePayoutDetailsCard";
+import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
  * @uiName Payout Details Card
@@ -13,6 +15,8 @@ import deepmerge from "deepmerge";
   shadow: true,
 })
 export class PayoutDetailsCard {
+  @Prop() nextPayoutBalanceText: "Next payout occurs when balance is";
+
   /**
    * @undocumented
    */
@@ -38,7 +42,9 @@ export class PayoutDetailsCard {
   }
 
   render() {
-    const props = useDemoPayoutDetailsCard(this);
+    const props = isDemo()
+      ? useDemoPayoutDetailsCard(this)
+      : usePayoutDetailsCard(this);
     return (
       <Host>
         <PayoutDetailsCardView text={props.text} states={props.states} />
@@ -55,10 +61,11 @@ function useDemoPayoutDetailsCard(props: PayoutDetailsCard) {
         empty: false,
         mainCurrency: { currencyText: "USD", amountText: "100.00" },
         status: "upcoming",
-        payoutType: "bank",
+        payoutType: "BANK_TRANSFER",
         otherCurrencies: false,
         hasW9Pending: false,
         hasDatePending: true,
+        cardNumberPreview: "Card ***2381",
       },
       text: props.getTextProps(),
     },

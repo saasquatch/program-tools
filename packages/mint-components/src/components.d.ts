@@ -44,7 +44,7 @@ import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/s
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
 import { UseTaxAndCashResultType } from "./components/tax-and-cash/sqm-tax-and-cash/useTaxAndCash";
-import { UseTaxDocumentSubmittedResult } from "./components/tax-and-cash/sqm-tax-document-submitted/useTaxDocumentSubmitted";
+import { UseTaxAndCashDashboardResult } from "./components/tax-and-cash/sqm-tax-and-cash-dashboard/useTaxAndCashDashboard";
 import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
@@ -128,6 +128,11 @@ export namespace Components {
           * @uiName Business select item label
          */
         "businessSelectItemLabel": string;
+        /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+         */
+        "cannotChangeInfoAlert": string;
         /**
           * Label text for the checking account type select item
           * @uiName Checking select item label
@@ -1534,6 +1539,7 @@ export namespace Components {
           * @undocumented
          */
         "demoData"?: DemoData<any>;
+        "nextPayoutBalanceText": "Next payout occurs when balance is";
     }
     interface SqmPopupContainer {
         /**
@@ -3645,6 +3651,174 @@ export namespace Components {
     }
     interface SqmTaxAndCash {
         /**
+          * Description text which appears beside badge showing the form is awaiting review
+          * @uiName Badge description text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_badgeTextAwaitingReview"?: string;
+        /**
+          * Description text which appears beside badge showing when the form was submitted
+          * @uiName Badge description text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_badgeTextSubmittedOn"?: string;
+        /**
+          * Description text for W8 which appears beside badge showing when the form was submitted
+          * @uiName Badge description text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_badgeTextSubmittedOnW8"?: string;
+        /**
+          * Header text displayed above the banking information card
+          * @uiName Banking information header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_bankingInformationSectionHeader": string;
+        /**
+          * Text displayed in the edit Payment Information button
+          * @uiName Edit Payment Information button
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_editPaymentInformationButton": string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_generalErrorDescription": string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_generalErrorTitle": string;
+        /**
+          * Indirect tax number/type details
+          * @uiName Indirect tax details
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxDetails": string;
+        /**
+          * Country/Province description text of indirect tax
+          * @uiName Indirect tax Canada description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoCanada": string;
+        /**
+          * Other country description text of indirect tax
+          * @uiName Indirect tax other country description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoOtherCountry": string;
+        /**
+          * Header text displayed above the indirect tax preview section
+          * @uiName Indirect Tax Information Header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoSectionHeader": string;
+        /**
+          * Spain/Region description text of indirect tax
+          * @uiName Indirect tax Spain description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoSpain": string;
+        /**
+          * Indirect tax tooltip text for support
+          * @uiName Indirect tax tooltip description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxTooltipSupport": string;
+        /**
+          * Description text displayed next to the badge in the tax documents status
+          * @uiName Invalid form description text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invalidForm"?: string;
+        /**
+          * Text displayed in the submit new document button at the bottom of the page
+          * @uiName No form needed subtext
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_newFormButton": string;
+        /**
+          * Subtext displayed at the bottom of the page if there are no tax documents to show
+          * @uiName No form needed subtext
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_noFormNeededSubtext": string;
+        /**
+          * Text displayed when partner is not registered for Indirect Tax
+          * @uiName Not registered for Indirect Tax
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_notRegisteredForTax": string;
+        /**
+          * Label text for the QST number
+          * @uiName QST number input
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_qstNumber": string;
+        /**
+          * Status text displayed in badge when tax document is Active
+          * @uiName Status text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusTextActive"?: string;
+        /**
+          * Status text displayed in badge when tax document is Not Active
+          * @uiName Status text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusTextNotActive"?: string;
+        /**
+          * Status text displayed in badge when tax document is Not Verified
+          * @uiName Status text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusTextNotVerified"?: string;
+        /**
+          * Label text for the sub-region tax number
+          * @uiName Sub-region tax number
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_subRegionTaxNumber": string;
+        /**
+          * Header displayed in not active W9 alert header at the top of the page.
+          * @uiName Not active W8 alert header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxAlertHeaderNotActiveW8"?: string;
+        /**
+          * Header displayed in not active W9 alert header at the top of the page.
+          * @uiName Not active W9 alert header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxAlertHeaderNotActiveW9"?: string;
+        /**
+          * Description text displayed in W8 alert body at the top of the page.
+          * @uiName Tax W8 alert message
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxAlertNotActiveMessageW8"?: string;
+        /**
+          * Description text displayed in W9 alert body at the top of the page.
+          * @uiName Tax W9 alert message
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxAlertNotActiveMessageW9"?: string;
+        /**
+          * Header text displayed above the tax documents status
+          * @uiName Tax document section header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxDocumentSectionHeader": string;
+        /**
+          * Sub header text displayed above the tax documents status
+          * @uiName Tax documents sub header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxDocumentSectionSubHeader": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -4088,251 +4262,235 @@ export namespace Components {
          */
         "step3_taxFormLabel": string;
         /**
-          * Text shown inside of back button
-          * @uiName Back button text
-          * @uiGroup Step 3b Properties
+          * Label text for the agency code input field
+          * @uiName Agency code input label
          */
-        "step3b_backButton": string;
+        "step4_agencyCodeLabel": string;
         /**
-          * Sub text shown above form selection radio buttons
-          * @uiName Tax form selection heading text
-          * @uiGroup Step 3b Properties
+          * Label text for the bank account number input field
+          * @uiName Bank account number input label
          */
-        "step3b_formLabel": string;
+        "step4_bankAccountNumberLabel": string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-          * @uiGroup Step 3b Properties
+          * Label text for the bank account type input field
+          * @uiName Bank account type input label
          */
-        "step3b_formStep": string;
+        "step4_bankAccountTypeLabel": string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-          * @uiGroup Step 3b Properties
+          * Label text for the Bank Address input
+          * @uiName Bank Address input item label
          */
-        "step3b_generalErrorDescription": string;
+        "step4_bankAddressLabel": string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-          * @uiGroup Step 3b Properties
+          * Label text for the Bank City input
+          * @uiName Bank City Label input label
          */
-        "step3b_generalErrorTitle": string;
+        "step4_bankCityLabel": string;
         /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-          * @uiGroup Step 3b Properties
+          * Label text for the bank country location input field
+          * @uiName Bank country location input label
          */
-        "step3b_submitButton": string;
+        "step4_bankLocationLabel": string;
         /**
-          * Heading text shown at the top of the top of page
-          * @uiName Tax form heading text
-          * @uiGroup Step 3b Properties
+          * Label text for the bank name input field
+          * @uiName Bank name input label
          */
-        "step3b_taxForm": string;
+        "step4_bankNameLabel": string;
         /**
-          * Subtext for the W8 radio button
-          * @uiName W8 radio button subtext
-          * @uiGroup Step 3b Properties
+          * Label text for the Bank Postal Code
+          * @uiName Bank Postal Code input label
          */
-        "step3b_w8Description": string;
+        "step4_bankPostalCodeLabel": string;
         /**
-          * Subtext for the W8E radio button
-          * @uiName W8E radio button subtext
-          * @uiGroup Step 3b Properties
+          * Label text for the Bank Province State input
+          * @uiName Bank Province State input label
          */
-        "step3b_w8EDescription": string;
+        "step4_bankProvinceStateLabel": string;
         /**
-          * Label text for the W8E radio button
-          * @uiName W8E radio button label
-          * @uiGroup Step 3b Properties
+          * Label text for the beneficiary account name input field
+          * @uiName Beneficiary account name input label
          */
-        "step3b_w8ELabel": string;
+        "step4_beneficiaryAccountNameLabel": string;
         /**
-          * Label text for the W8 radio button
-          * @uiName W8 radio button label
-          * @uiGroup Step 3b Properties
+          * Label text for the branch code input field
+          * @uiName Branch code input label
          */
-        "step3b_w8Label": string;
+        "step4_branchCodeLabel": string;
         /**
-          * Subtext for the W9 radio button
-          * @uiName W9 radio button subtext
-          * @uiGroup Step 3b Properties
+          * Label text for the business select item
+          * @uiName Business select item label
          */
-        "step3b_w9Description": string;
+        "step4_businessSelectItemLabel": string;
         /**
-          * Label text for the W9 radio button
-          * @uiName W9 radio button label
-          * @uiGroup Step 3b Properties
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
          */
-        "step3b_w9Label": string;
+        "step4_cannotChangeInfoAlert": string;
         /**
-          * Description text which appears beside badge showing the form is awaiting review
-          * @uiName Badge description text
-          * @uiGroup Step 4 Properties
+          * Label text for the checking account type select item
+          * @uiName Checking select item label
          */
-        "step4_badgeTextAwaitingReview"?: string;
+        "step4_checkingSelectItemLabel": string;
         /**
-          * Description text which appears beside badge showing when the form was submitted
-          * @uiName Badge description text
-          * @uiGroup Step 4 Properties
+          * Label text for the classification CPF input field
+          * @uiName Classification CPF input label
          */
-        "step4_badgeTextSubmittedOn"?: string;
+        "step4_classificationCPFLabel": string;
         /**
-          * Description text for W8 which appears beside badge showing when the form was submitted
-          * @uiName Badge description text
-          * @uiGroup Step 4 Properties
+          * Label text for the classification entity input field
+          * @uiName Classification entity input label
          */
-        "step4_badgeTextSubmittedOnW8"?: string;
+        "step4_classificationEntityLabel": string;
         /**
-          * Header text displayed above the banking information card
-          * @uiName Banking information header
-          * @uiGroup Step 4 Properties
+          * Label text for the classification input field
+          * @uiName Classification input label
          */
-        "step4_bankingInformationSectionHeader": string;
+        "step4_classificationLabel": string;
         /**
-          * Text displayed in the edit Payment Information button
-          * @uiName Edit Payment Information button
-          * @uiGroup Step 4 Properties
+          * Text for the option to receive payments directly to a bank account
+          * @uiName Directly to bank account option text
          */
-        "step4_editPaymentInformationButton": string;
+        "step4_directlyToBankAccount": string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName Step 4 General error text
-          * @uiGroup Step 4 Properties
+          * Label text for the foreign select item
+          * @uiName Foreign select item label
+         */
+        "step4_foreignSelectItemLabel": string;
+        /**
+          * Subtext shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Form step text
+         */
+        "step4_formStep": string;
+        /**
+          * Description text for a general form submission error
+          * @uiName General form submission error description
          */
         "step4_generalErrorDescription": string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName Step 4 General error title
-          * @uiGroup Step 4 Properties
+          * Title text for a general form submission error
+          * @uiName General form submission error title
          */
         "step4_generalErrorTitle": string;
         /**
-          * Indirect tax number/type details
-          * @uiName Indirect tax details
-          * @uiGroup Step 4 Properties
+          * Label text for the IBAN input field
+          * @uiName IBAN input label
          */
-        "step4_indirectTaxDetails": string;
+        "step4_ibanLabel": string;
         /**
-          * Country/Province description text of indirect tax
-          * @uiName Indirect tax Canada description
-          * @uiGroup Step 4 Properties
+          * Label text for the individual select item
+          * @uiName Individual select item label
          */
-        "step4_indirectTaxInfoCanada": string;
+        "step4_individualSelectItemLabel": string;
         /**
-          * Other country description text of indirect tax
-          * @uiName Indirect tax other country description
-          * @uiGroup Step 4 Properties
+          * Description text for the alert when the user is identified as a partner
+          * @uiName Partner identification alert description
          */
-        "step4_indirectTaxInfoOtherCountry": string;
+        "step4_isPartnerAlertDescription": string;
         /**
-          * Header text displayed above the indirect tax preview section
-          * @uiName Indirect Tax Information Header
-          * @uiGroup Step 4 Properties
+          * Header text for the alert when the user is identified as a partner
+          * @uiName Partner identification alert header
          */
-        "step4_indirectTaxInfoSectionHeader": string;
+        "step4_isPartnerAlertHeader": string;
         /**
-          * Spain/Region description text of indirect tax
-          * @uiName Indirect tax Spain description
-          * @uiGroup Step 4 Properties
+          * Label text for the patronymic name input field
+          * @uiName Patronymic name input label
          */
-        "step4_indirectTaxInfoSpain": string;
+        "step4_patronymicNameLabel": string;
         /**
-          * Indirect tax tooltip text for support
-          * @uiName Indirect tax tooltip description
-          * @uiGroup Step 4 Properties
+          * Label text for the PayPal email input field
+          * @uiName PayPal email input label
          */
-        "step4_indirectTaxTooltipSupport": string;
+        "step4_payPalInputLabel": string;
         /**
-          * Description text displayed next to the badge in the tax documents status
-          * @uiName Invalid form description text
-          * @uiGroup Step 4 Properties
+          * Label text for the payment day select option for the fifteenth of the month
+          * @uiName Fifteenth of month label text
          */
-        "step4_invalidForm"?: string;
+        "step4_paymentDayFifteenthOfMonthLabelText": string;
         /**
-          * Text displayed in the submit new document button at the bottom of the page
-          * @uiName Step 4 No form needed subtext
-          * @uiGroup Step 4 Properties
+          * Label text for the payment day select option for the first of the month
+          * @uiName First of month label text
          */
-        "step4_newFormButton": string;
+        "step4_paymentDayFirstOfMonthLabelText": string;
         /**
-          * Subtext displayed at the bottom of the page if there are no tax documents to show
-          * @uiName No form needed subtext
-          * @uiGroup Step 4 Properties
+          * Label text for the payment day select
+          * @uiName Payment day select label
          */
-        "step4_noFormNeededSubtext": string;
+        "step4_paymentDaySelectLabel": string;
         /**
-          * Text displayed when partner is not registered for Indirect Tax
-          * @uiName Not registered for Indirect Tax
-          * @uiGroup Step 4 Properties
+          * Heading text for the payment method section
+          * @uiName Payment method heading text
          */
-        "step4_notRegisteredForTax": string;
+        "step4_paymentMethod": string;
         /**
-          * Label text for the QST number
-          * @uiName QST number input
-          * @uiGroup Step 4 Properties
+          * Subtext for the payment method section
+          * @uiName Payment method subtext
          */
-        "step4_qstNumber": string;
+        "step4_paymentMethodSubtext": string;
         /**
-          * Status text displayed in badge when tax document is Active
-          * @uiName Status text
-          * @uiGroup Step 4 Properties
+          * Heading text for the payment schedule section
+          * @uiName Payment schedule heading text
          */
-        "step4_statusTextActive"?: string;
+        "step4_paymentSchedule": string;
         /**
-          * Status text displayed in badge when tax document is Not Active
-          * @uiName Status text
-          * @uiGroup Step 4 Properties
+          * Text for the option to receive payments at a specific balance threshold
+          * @uiName Payment schedule balance threshold text
          */
-        "step4_statusTextNotActive"?: string;
+        "step4_paymentScheduleBalanceThreshold": string;
         /**
-          * Status text displayed in badge when tax document is Not Verified
-          * @uiName Status text
-          * @uiGroup Step 4 Properties
+          * Text for the option to receive payments on a specific day of the month
+          * @uiName Payment schedule fixed day text
          */
-        "step4_statusTextNotVerified"?: string;
+        "step4_paymentScheduleFixedDay": string;
         /**
-          * Label text for the sub-region tax number
-          * @uiName Sub-region tax number
-          * @uiGroup Step 4 Properties
+          * Label text for the payment day select
+          * @uiName Payment day select label
          */
-        "step4_subRegionTaxNumber": string;
+        "step4_paymentThresholdSelectLabel": string;
         /**
-          * Header displayed in not active W9 alert header at the top of the page.
-          * @uiName Not active W8 alert header
-          * @uiGroup Step 4 Properties
+          * Label text for the routing code input field
+          * @uiName Routing code input label
          */
-        "step4_taxAlertHeaderNotActiveW8"?: string;
+        "step4_routingCodeLabel": string;
         /**
-          * Header displayed in not active W9 alert header at the top of the page.
-          * @uiName Not active W9 alert header
-          * @uiGroup Step 4 Properties
+          * Label text for the savings account type select item
+          * @uiName Savings select item label
          */
-        "step4_taxAlertHeaderNotActiveW9"?: string;
+        "step4_savingsSelectItemLabel": string;
         /**
-          * Description text displayed in W8 alert body at the top of the page.
-          * @uiName Tax W8 alert message
-          * @uiGroup Step 4 Properties
+          * Text for the save button in the form
+          * @uiName Save button text
          */
-        "step4_taxAlertNotActiveMessageW8"?: string;
+        "step4_submitButton": string;
         /**
-          * Description text displayed in W9 alert body at the top of the page.
-          * @uiName Tax W9 alert message
-          * @uiGroup Step 4 Properties
+          * Label text for the SWIFT code input field
+          * @uiName SWIFT code input label
          */
-        "step4_taxAlertNotActiveMessageW9"?: string;
+        "step4_swiftCodeLabel": string;
         /**
-          * Header text displayed above the tax documents status
-          * @uiName Tax document section header
-          * @uiGroup Step 4 Properties
+          * Heading text shown at the top of the page
+          * @uiName Tax and Payouts heading text
          */
-        "step4_taxDocumentSectionHeader": string;
+        "step4_taxAndPayouts": string;
         /**
-          * Sub header text displayed above the tax documents status
-          * @uiName Tax documents sub header
-          * @uiGroup Step 4 Properties
+          * Text shown at the top of the page next to the tax and payouts label text
+          * @uiName Tax and Payouts label text
          */
-        "step4_taxDocumentSectionSubHeader": string;
+        "step4_taxAndPayoutsDescription": string;
+        /**
+          * Label text for the Taxpayer ID input field
+          * @uiName Taxpayer ID input label
+         */
+        "step4_taxPayerIdLabel": string;
+        /**
+          * Text for the option to receive payments to a PayPal account with processing fee details
+          * @uiName PayPal option text with processing fee placeholder
+         */
+        "step4_toPayPalAccount": string;
+        /**
+          * Label text for the VO code input field
+          * @uiName VO code input label
+         */
+        "step4_voCodeLabel": string;
         /**
           * Text shown in the link to the form for non US residents
           * @uiName Not based in US link text
@@ -4340,7 +4498,7 @@ export namespace Components {
          */
         "stop3NotBasedInUS": string;
     }
-    interface SqmTaxDocumentSubmitted {
+    interface SqmTaxAndCashDashboard {
         /**
           * Description text which appears beside badge showing the form is awaiting review
           * @uiName Badge description text
@@ -4365,7 +4523,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<UseTaxDocumentSubmittedResult>;
+        "demoData"?: DemoData<UseTaxAndCashDashboardResult>;
         /**
           * Text displayed in the edit Indirect Tax button
           * @uiName Edit Indirect Tax button
@@ -5288,11 +5446,11 @@ declare global {
         prototype: HTMLSqmTaxAndCashElement;
         new (): HTMLSqmTaxAndCashElement;
     };
-    interface HTMLSqmTaxDocumentSubmittedElement extends Components.SqmTaxDocumentSubmitted, HTMLStencilElement {
+    interface HTMLSqmTaxAndCashDashboardElement extends Components.SqmTaxAndCashDashboard, HTMLStencilElement {
     }
-    var HTMLSqmTaxDocumentSubmittedElement: {
-        prototype: HTMLSqmTaxDocumentSubmittedElement;
-        new (): HTMLSqmTaxDocumentSubmittedElement;
+    var HTMLSqmTaxAndCashDashboardElement: {
+        prototype: HTMLSqmTaxAndCashDashboardElement;
+        new (): HTMLSqmTaxAndCashDashboardElement;
     };
     interface HTMLSqmTextElement extends Components.SqmText, HTMLStencilElement {
     }
@@ -5432,7 +5590,7 @@ declare global {
         "sqm-tabs": HTMLSqmTabsElement;
         "sqm-task-card": HTMLSqmTaskCardElement;
         "sqm-tax-and-cash": HTMLSqmTaxAndCashElement;
-        "sqm-tax-document-submitted": HTMLSqmTaxDocumentSubmittedElement;
+        "sqm-tax-and-cash-dashboard": HTMLSqmTaxAndCashDashboardElement;
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
         "sqm-timeline": HTMLSqmTimelineElement;
@@ -5521,6 +5679,11 @@ declare namespace LocalJSX {
           * @uiName Business select item label
          */
         "businessSelectItemLabel"?: string;
+        /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+         */
+        "cannotChangeInfoAlert"?: string;
         /**
           * Label text for the checking account type select item
           * @uiName Checking select item label
@@ -6928,6 +7091,7 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "demoData"?: DemoData<any>;
+        "nextPayoutBalanceText"?: "Next payout occurs when balance is";
     }
     interface SqmPopupContainer {
         /**
@@ -9015,6 +9179,174 @@ declare namespace LocalJSX {
     }
     interface SqmTaxAndCash {
         /**
+          * Description text which appears beside badge showing the form is awaiting review
+          * @uiName Badge description text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_badgeTextAwaitingReview"?: string;
+        /**
+          * Description text which appears beside badge showing when the form was submitted
+          * @uiName Badge description text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_badgeTextSubmittedOn"?: string;
+        /**
+          * Description text for W8 which appears beside badge showing when the form was submitted
+          * @uiName Badge description text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_badgeTextSubmittedOnW8"?: string;
+        /**
+          * Header text displayed above the banking information card
+          * @uiName Banking information header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_bankingInformationSectionHeader"?: string;
+        /**
+          * Text displayed in the edit Payment Information button
+          * @uiName Edit Payment Information button
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_editPaymentInformationButton"?: string;
+        /**
+          * The error message shown at the top of the page in an error banner
+          * @uiName General error text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_generalErrorDescription"?: string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_generalErrorTitle"?: string;
+        /**
+          * Indirect tax number/type details
+          * @uiName Indirect tax details
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxDetails"?: string;
+        /**
+          * Country/Province description text of indirect tax
+          * @uiName Indirect tax Canada description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoCanada"?: string;
+        /**
+          * Other country description text of indirect tax
+          * @uiName Indirect tax other country description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoOtherCountry"?: string;
+        /**
+          * Header text displayed above the indirect tax preview section
+          * @uiName Indirect Tax Information Header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoSectionHeader"?: string;
+        /**
+          * Spain/Region description text of indirect tax
+          * @uiName Indirect tax Spain description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoSpain"?: string;
+        /**
+          * Indirect tax tooltip text for support
+          * @uiName Indirect tax tooltip description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxTooltipSupport"?: string;
+        /**
+          * Description text displayed next to the badge in the tax documents status
+          * @uiName Invalid form description text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invalidForm"?: string;
+        /**
+          * Text displayed in the submit new document button at the bottom of the page
+          * @uiName No form needed subtext
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_newFormButton"?: string;
+        /**
+          * Subtext displayed at the bottom of the page if there are no tax documents to show
+          * @uiName No form needed subtext
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_noFormNeededSubtext"?: string;
+        /**
+          * Text displayed when partner is not registered for Indirect Tax
+          * @uiName Not registered for Indirect Tax
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_notRegisteredForTax"?: string;
+        /**
+          * Label text for the QST number
+          * @uiName QST number input
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_qstNumber"?: string;
+        /**
+          * Status text displayed in badge when tax document is Active
+          * @uiName Status text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusTextActive"?: string;
+        /**
+          * Status text displayed in badge when tax document is Not Active
+          * @uiName Status text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusTextNotActive"?: string;
+        /**
+          * Status text displayed in badge when tax document is Not Verified
+          * @uiName Status text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusTextNotVerified"?: string;
+        /**
+          * Label text for the sub-region tax number
+          * @uiName Sub-region tax number
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_subRegionTaxNumber"?: string;
+        /**
+          * Header displayed in not active W9 alert header at the top of the page.
+          * @uiName Not active W8 alert header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxAlertHeaderNotActiveW8"?: string;
+        /**
+          * Header displayed in not active W9 alert header at the top of the page.
+          * @uiName Not active W9 alert header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxAlertHeaderNotActiveW9"?: string;
+        /**
+          * Description text displayed in W8 alert body at the top of the page.
+          * @uiName Tax W8 alert message
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxAlertNotActiveMessageW8"?: string;
+        /**
+          * Description text displayed in W9 alert body at the top of the page.
+          * @uiName Tax W9 alert message
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxAlertNotActiveMessageW9"?: string;
+        /**
+          * Header text displayed above the tax documents status
+          * @uiName Tax document section header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxDocumentSectionHeader"?: string;
+        /**
+          * Sub header text displayed above the tax documents status
+          * @uiName Tax documents sub header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxDocumentSectionSubHeader"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -9458,251 +9790,235 @@ declare namespace LocalJSX {
          */
         "step3_taxFormLabel"?: string;
         /**
-          * Text shown inside of back button
-          * @uiName Back button text
-          * @uiGroup Step 3b Properties
+          * Label text for the agency code input field
+          * @uiName Agency code input label
          */
-        "step3b_backButton"?: string;
+        "step4_agencyCodeLabel"?: string;
         /**
-          * Sub text shown above form selection radio buttons
-          * @uiName Tax form selection heading text
-          * @uiGroup Step 3b Properties
+          * Label text for the bank account number input field
+          * @uiName Bank account number input label
          */
-        "step3b_formLabel"?: string;
+        "step4_bankAccountNumberLabel"?: string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-          * @uiGroup Step 3b Properties
+          * Label text for the bank account type input field
+          * @uiName Bank account type input label
          */
-        "step3b_formStep"?: string;
+        "step4_bankAccountTypeLabel"?: string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-          * @uiGroup Step 3b Properties
+          * Label text for the Bank Address input
+          * @uiName Bank Address input item label
          */
-        "step3b_generalErrorDescription"?: string;
+        "step4_bankAddressLabel"?: string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-          * @uiGroup Step 3b Properties
+          * Label text for the Bank City input
+          * @uiName Bank City Label input label
          */
-        "step3b_generalErrorTitle"?: string;
+        "step4_bankCityLabel"?: string;
         /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-          * @uiGroup Step 3b Properties
+          * Label text for the bank country location input field
+          * @uiName Bank country location input label
          */
-        "step3b_submitButton"?: string;
+        "step4_bankLocationLabel"?: string;
         /**
-          * Heading text shown at the top of the top of page
-          * @uiName Tax form heading text
-          * @uiGroup Step 3b Properties
+          * Label text for the bank name input field
+          * @uiName Bank name input label
          */
-        "step3b_taxForm"?: string;
+        "step4_bankNameLabel"?: string;
         /**
-          * Subtext for the W8 radio button
-          * @uiName W8 radio button subtext
-          * @uiGroup Step 3b Properties
+          * Label text for the Bank Postal Code
+          * @uiName Bank Postal Code input label
          */
-        "step3b_w8Description"?: string;
+        "step4_bankPostalCodeLabel"?: string;
         /**
-          * Subtext for the W8E radio button
-          * @uiName W8E radio button subtext
-          * @uiGroup Step 3b Properties
+          * Label text for the Bank Province State input
+          * @uiName Bank Province State input label
          */
-        "step3b_w8EDescription"?: string;
+        "step4_bankProvinceStateLabel"?: string;
         /**
-          * Label text for the W8E radio button
-          * @uiName W8E radio button label
-          * @uiGroup Step 3b Properties
+          * Label text for the beneficiary account name input field
+          * @uiName Beneficiary account name input label
          */
-        "step3b_w8ELabel"?: string;
+        "step4_beneficiaryAccountNameLabel"?: string;
         /**
-          * Label text for the W8 radio button
-          * @uiName W8 radio button label
-          * @uiGroup Step 3b Properties
+          * Label text for the branch code input field
+          * @uiName Branch code input label
          */
-        "step3b_w8Label"?: string;
+        "step4_branchCodeLabel"?: string;
         /**
-          * Subtext for the W9 radio button
-          * @uiName W9 radio button subtext
-          * @uiGroup Step 3b Properties
+          * Label text for the business select item
+          * @uiName Business select item label
          */
-        "step3b_w9Description"?: string;
+        "step4_businessSelectItemLabel"?: string;
         /**
-          * Label text for the W9 radio button
-          * @uiName W9 radio button label
-          * @uiGroup Step 3b Properties
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
          */
-        "step3b_w9Label"?: string;
+        "step4_cannotChangeInfoAlert"?: string;
         /**
-          * Description text which appears beside badge showing the form is awaiting review
-          * @uiName Badge description text
-          * @uiGroup Step 4 Properties
+          * Label text for the checking account type select item
+          * @uiName Checking select item label
          */
-        "step4_badgeTextAwaitingReview"?: string;
+        "step4_checkingSelectItemLabel"?: string;
         /**
-          * Description text which appears beside badge showing when the form was submitted
-          * @uiName Badge description text
-          * @uiGroup Step 4 Properties
+          * Label text for the classification CPF input field
+          * @uiName Classification CPF input label
          */
-        "step4_badgeTextSubmittedOn"?: string;
+        "step4_classificationCPFLabel"?: string;
         /**
-          * Description text for W8 which appears beside badge showing when the form was submitted
-          * @uiName Badge description text
-          * @uiGroup Step 4 Properties
+          * Label text for the classification entity input field
+          * @uiName Classification entity input label
          */
-        "step4_badgeTextSubmittedOnW8"?: string;
+        "step4_classificationEntityLabel"?: string;
         /**
-          * Header text displayed above the banking information card
-          * @uiName Banking information header
-          * @uiGroup Step 4 Properties
+          * Label text for the classification input field
+          * @uiName Classification input label
          */
-        "step4_bankingInformationSectionHeader"?: string;
+        "step4_classificationLabel"?: string;
         /**
-          * Text displayed in the edit Payment Information button
-          * @uiName Edit Payment Information button
-          * @uiGroup Step 4 Properties
+          * Text for the option to receive payments directly to a bank account
+          * @uiName Directly to bank account option text
          */
-        "step4_editPaymentInformationButton"?: string;
+        "step4_directlyToBankAccount"?: string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName Step 4 General error text
-          * @uiGroup Step 4 Properties
+          * Label text for the foreign select item
+          * @uiName Foreign select item label
+         */
+        "step4_foreignSelectItemLabel"?: string;
+        /**
+          * Subtext shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Form step text
+         */
+        "step4_formStep"?: string;
+        /**
+          * Description text for a general form submission error
+          * @uiName General form submission error description
          */
         "step4_generalErrorDescription"?: string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName Step 4 General error title
-          * @uiGroup Step 4 Properties
+          * Title text for a general form submission error
+          * @uiName General form submission error title
          */
         "step4_generalErrorTitle"?: string;
         /**
-          * Indirect tax number/type details
-          * @uiName Indirect tax details
-          * @uiGroup Step 4 Properties
+          * Label text for the IBAN input field
+          * @uiName IBAN input label
          */
-        "step4_indirectTaxDetails"?: string;
+        "step4_ibanLabel"?: string;
         /**
-          * Country/Province description text of indirect tax
-          * @uiName Indirect tax Canada description
-          * @uiGroup Step 4 Properties
+          * Label text for the individual select item
+          * @uiName Individual select item label
          */
-        "step4_indirectTaxInfoCanada"?: string;
+        "step4_individualSelectItemLabel"?: string;
         /**
-          * Other country description text of indirect tax
-          * @uiName Indirect tax other country description
-          * @uiGroup Step 4 Properties
+          * Description text for the alert when the user is identified as a partner
+          * @uiName Partner identification alert description
          */
-        "step4_indirectTaxInfoOtherCountry"?: string;
+        "step4_isPartnerAlertDescription"?: string;
         /**
-          * Header text displayed above the indirect tax preview section
-          * @uiName Indirect Tax Information Header
-          * @uiGroup Step 4 Properties
+          * Header text for the alert when the user is identified as a partner
+          * @uiName Partner identification alert header
          */
-        "step4_indirectTaxInfoSectionHeader"?: string;
+        "step4_isPartnerAlertHeader"?: string;
         /**
-          * Spain/Region description text of indirect tax
-          * @uiName Indirect tax Spain description
-          * @uiGroup Step 4 Properties
+          * Label text for the patronymic name input field
+          * @uiName Patronymic name input label
          */
-        "step4_indirectTaxInfoSpain"?: string;
+        "step4_patronymicNameLabel"?: string;
         /**
-          * Indirect tax tooltip text for support
-          * @uiName Indirect tax tooltip description
-          * @uiGroup Step 4 Properties
+          * Label text for the PayPal email input field
+          * @uiName PayPal email input label
          */
-        "step4_indirectTaxTooltipSupport"?: string;
+        "step4_payPalInputLabel"?: string;
         /**
-          * Description text displayed next to the badge in the tax documents status
-          * @uiName Invalid form description text
-          * @uiGroup Step 4 Properties
+          * Label text for the payment day select option for the fifteenth of the month
+          * @uiName Fifteenth of month label text
          */
-        "step4_invalidForm"?: string;
+        "step4_paymentDayFifteenthOfMonthLabelText"?: string;
         /**
-          * Text displayed in the submit new document button at the bottom of the page
-          * @uiName Step 4 No form needed subtext
-          * @uiGroup Step 4 Properties
+          * Label text for the payment day select option for the first of the month
+          * @uiName First of month label text
          */
-        "step4_newFormButton"?: string;
+        "step4_paymentDayFirstOfMonthLabelText"?: string;
         /**
-          * Subtext displayed at the bottom of the page if there are no tax documents to show
-          * @uiName No form needed subtext
-          * @uiGroup Step 4 Properties
+          * Label text for the payment day select
+          * @uiName Payment day select label
          */
-        "step4_noFormNeededSubtext"?: string;
+        "step4_paymentDaySelectLabel"?: string;
         /**
-          * Text displayed when partner is not registered for Indirect Tax
-          * @uiName Not registered for Indirect Tax
-          * @uiGroup Step 4 Properties
+          * Heading text for the payment method section
+          * @uiName Payment method heading text
          */
-        "step4_notRegisteredForTax"?: string;
+        "step4_paymentMethod"?: string;
         /**
-          * Label text for the QST number
-          * @uiName QST number input
-          * @uiGroup Step 4 Properties
+          * Subtext for the payment method section
+          * @uiName Payment method subtext
          */
-        "step4_qstNumber"?: string;
+        "step4_paymentMethodSubtext"?: string;
         /**
-          * Status text displayed in badge when tax document is Active
-          * @uiName Status text
-          * @uiGroup Step 4 Properties
+          * Heading text for the payment schedule section
+          * @uiName Payment schedule heading text
          */
-        "step4_statusTextActive"?: string;
+        "step4_paymentSchedule"?: string;
         /**
-          * Status text displayed in badge when tax document is Not Active
-          * @uiName Status text
-          * @uiGroup Step 4 Properties
+          * Text for the option to receive payments at a specific balance threshold
+          * @uiName Payment schedule balance threshold text
          */
-        "step4_statusTextNotActive"?: string;
+        "step4_paymentScheduleBalanceThreshold"?: string;
         /**
-          * Status text displayed in badge when tax document is Not Verified
-          * @uiName Status text
-          * @uiGroup Step 4 Properties
+          * Text for the option to receive payments on a specific day of the month
+          * @uiName Payment schedule fixed day text
          */
-        "step4_statusTextNotVerified"?: string;
+        "step4_paymentScheduleFixedDay"?: string;
         /**
-          * Label text for the sub-region tax number
-          * @uiName Sub-region tax number
-          * @uiGroup Step 4 Properties
+          * Label text for the payment day select
+          * @uiName Payment day select label
          */
-        "step4_subRegionTaxNumber"?: string;
+        "step4_paymentThresholdSelectLabel"?: string;
         /**
-          * Header displayed in not active W9 alert header at the top of the page.
-          * @uiName Not active W8 alert header
-          * @uiGroup Step 4 Properties
+          * Label text for the routing code input field
+          * @uiName Routing code input label
          */
-        "step4_taxAlertHeaderNotActiveW8"?: string;
+        "step4_routingCodeLabel"?: string;
         /**
-          * Header displayed in not active W9 alert header at the top of the page.
-          * @uiName Not active W9 alert header
-          * @uiGroup Step 4 Properties
+          * Label text for the savings account type select item
+          * @uiName Savings select item label
          */
-        "step4_taxAlertHeaderNotActiveW9"?: string;
+        "step4_savingsSelectItemLabel"?: string;
         /**
-          * Description text displayed in W8 alert body at the top of the page.
-          * @uiName Tax W8 alert message
-          * @uiGroup Step 4 Properties
+          * Text for the save button in the form
+          * @uiName Save button text
          */
-        "step4_taxAlertNotActiveMessageW8"?: string;
+        "step4_submitButton"?: string;
         /**
-          * Description text displayed in W9 alert body at the top of the page.
-          * @uiName Tax W9 alert message
-          * @uiGroup Step 4 Properties
+          * Label text for the SWIFT code input field
+          * @uiName SWIFT code input label
          */
-        "step4_taxAlertNotActiveMessageW9"?: string;
+        "step4_swiftCodeLabel"?: string;
         /**
-          * Header text displayed above the tax documents status
-          * @uiName Tax document section header
-          * @uiGroup Step 4 Properties
+          * Heading text shown at the top of the page
+          * @uiName Tax and Payouts heading text
          */
-        "step4_taxDocumentSectionHeader"?: string;
+        "step4_taxAndPayouts"?: string;
         /**
-          * Sub header text displayed above the tax documents status
-          * @uiName Tax documents sub header
-          * @uiGroup Step 4 Properties
+          * Text shown at the top of the page next to the tax and payouts label text
+          * @uiName Tax and Payouts label text
          */
-        "step4_taxDocumentSectionSubHeader"?: string;
+        "step4_taxAndPayoutsDescription"?: string;
+        /**
+          * Label text for the Taxpayer ID input field
+          * @uiName Taxpayer ID input label
+         */
+        "step4_taxPayerIdLabel"?: string;
+        /**
+          * Text for the option to receive payments to a PayPal account with processing fee details
+          * @uiName PayPal option text with processing fee placeholder
+         */
+        "step4_toPayPalAccount"?: string;
+        /**
+          * Label text for the VO code input field
+          * @uiName VO code input label
+         */
+        "step4_voCodeLabel"?: string;
         /**
           * Text shown in the link to the form for non US residents
           * @uiName Not based in US link text
@@ -9710,7 +10026,7 @@ declare namespace LocalJSX {
          */
         "stop3NotBasedInUS"?: string;
     }
-    interface SqmTaxDocumentSubmitted {
+    interface SqmTaxAndCashDashboard {
         /**
           * Description text which appears beside badge showing the form is awaiting review
           * @uiName Badge description text
@@ -9735,7 +10051,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<UseTaxDocumentSubmittedResult>;
+        "demoData"?: DemoData<UseTaxAndCashDashboardResult>;
         /**
           * Text displayed in the edit Indirect Tax button
           * @uiName Edit Indirect Tax button
@@ -10181,7 +10497,7 @@ declare namespace LocalJSX {
         "sqm-tabs": SqmTabs;
         "sqm-task-card": SqmTaskCard;
         "sqm-tax-and-cash": SqmTaxAndCash;
-        "sqm-tax-document-submitted": SqmTaxDocumentSubmitted;
+        "sqm-tax-and-cash-dashboard": SqmTaxAndCashDashboard;
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
         "sqm-timeline": SqmTimeline;
@@ -10290,7 +10606,7 @@ declare module "@stencil/core" {
             "sqm-tabs": LocalJSX.SqmTabs & JSXBase.HTMLAttributes<HTMLSqmTabsElement>;
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
             "sqm-tax-and-cash": LocalJSX.SqmTaxAndCash & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashElement>;
-            "sqm-tax-document-submitted": LocalJSX.SqmTaxDocumentSubmitted & JSXBase.HTMLAttributes<HTMLSqmTaxDocumentSubmittedElement>;
+            "sqm-tax-and-cash-dashboard": LocalJSX.SqmTaxAndCashDashboard & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashDashboardElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
             "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;

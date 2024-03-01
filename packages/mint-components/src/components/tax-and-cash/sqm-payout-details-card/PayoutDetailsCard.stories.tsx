@@ -127,7 +127,7 @@ export const PaypalPayout = () => {
       demoData={{
         states: {
           status: "next payout",
-          payoutType: "paypal",
+          payoutType: "PAYPAL",
         },
       }}
     ></sqm-payout-details-card>
