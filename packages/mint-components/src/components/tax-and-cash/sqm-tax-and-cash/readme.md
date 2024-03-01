@@ -166,6 +166,7 @@
 - [sqm-indirect-tax-form](../sqm-indirect-tax-form)
 - [sqm-docusign-form](../sqm-docusign-form)
 - [sqm-banking-info-form](../sqm-banking-info-form)
+- [sqm-tax-and-cash-dashboard](../sqm-tax-and-cash-dashboard)
 
 ### Graph
 ```mermaid
@@ -174,6 +175,8 @@ graph TD;
   sqm-tax-and-cash --> sqm-indirect-tax-form
   sqm-tax-and-cash --> sqm-docusign-form
   sqm-tax-and-cash --> sqm-banking-info-form
+  sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
+  sqm-tax-and-cash-dashboard --> sqm-payout-details-card
   style sqm-tax-and-cash fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

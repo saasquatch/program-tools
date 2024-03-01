@@ -79,6 +79,7 @@
 - [sqm-indirect-tax-form](../tax-and-cash/sqm-indirect-tax-form)
 - [sqm-docusign-form](../tax-and-cash/sqm-docusign-form)
 - [sqm-banking-info-form](../tax-and-cash/sqm-banking-info-form)
+- [sqm-tax-and-cash-dashboard](../tax-and-cash/sqm-tax-and-cash-dashboard)
 - [sqm-payout-details-card](../tax-and-cash/sqm-payout-details-card)
 
 ### Graph
@@ -154,6 +155,7 @@ graph TD;
   sqm-stencilbook --> sqm-indirect-tax-form
   sqm-stencilbook --> sqm-docusign-form
   sqm-stencilbook --> sqm-banking-info-form
+  sqm-stencilbook --> sqm-tax-and-cash-dashboard
   sqm-stencilbook --> sqm-payout-details-card
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-image
@@ -182,6 +184,7 @@ graph TD;
   sqm-referral-table-date-column --> sqm-referral-table-date-cell
   sqm-referral-table-rewards-column --> sqm-referral-table-rewards-cell
   sqm-coupon-code --> sqm-form-message
+  sqm-tax-and-cash-dashboard --> sqm-payout-details-card
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

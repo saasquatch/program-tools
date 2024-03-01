@@ -44,6 +44,11 @@
 
 ## Dependencies
 
+### Used by
+
+ - [sqm-stencilbook](../../sqm-stencilbook)
+ - [sqm-tax-and-cash](../sqm-tax-and-cash)
+
 ### Depends on
 
 - [sqm-payout-details-card](../sqm-payout-details-card)
@@ -52,6 +57,8 @@
 ```mermaid
 graph TD;
   sqm-tax-and-cash-dashboard --> sqm-payout-details-card
+  sqm-stencilbook --> sqm-tax-and-cash-dashboard
+  sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
   style sqm-tax-and-cash-dashboard fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
