@@ -114,16 +114,26 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
 
   const { states, text } = props;
 
+  const renderLoadingSkeleton = () => {
+    return (
+      <div class={classes.Container}>
+        <div class={classes.StatusContainer}>
+          <sl-skeleton class={classes.SkeletonOne}></sl-skeleton>
+          <sl-skeleton class={classes.SkeletonTwo}></sl-skeleton>
+        </div>
+        <sl-skeleton class={classes.SkeletonThree}></sl-skeleton>
+        <sl-skeleton class={classes.SkeletonOne}></sl-skeleton>
+      </div>
+    );
+  };
+
   return (
     <div>
       <style type="text/css">{styleString}</style>
-      <div class={classes.Container}>
-        {states.loading ? (
-          <div class={classes.StatusContainer}>
-            <sl-skeleton class={classes.SkeletonOne}></sl-skeleton>{" "}
-            <sl-skeleton class={classes.SkeletonTwo}></sl-skeleton>
-          </div>
-        ) : (
+      {states.loading ? (
+        renderLoadingSkeleton()
+      ) : (
+        <div class={classes.Container}>
           <div class={classes.StatusContainer}>
             <p class={classes.SubduedRegularText}>
               {text.nextPayoutDetailedStatusText}
@@ -132,28 +142,24 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
               {text.nextPayoutStatusBadgeText}
             </sl-badge>
           </div>
-        )}
-        {states.loading ? (
-          <sl-skeleton class={classes.SkeletonThree}></sl-skeleton>
-        ) : (
+
           <h1 class={classes.MainCurrency}>
             {states.mainCurrency?.amountText}
             {states.mainCurrency.currencyText}
           </h1>
-        )}
-        {states.loading ? (
-          <sl-skeleton class={classes.SkeletonOne}></sl-skeleton>
-        ) : states.payoutType === "PAYPAL" ? (
-          <div style={{ display: "flex", gap: "var(--sl-spacing-small)" }}>
-            <span>{states.paypalEmailAddress}</span>
-            <PayPalIcon />
-          </div>
-        ) : (
-          <div style={{ display: "flex", gap: "var(--sl-spacing-small)" }}>
-            <span>{states.cardNumberPreview}</span>
-          </div>
-        )}
-      </div>
+
+          {states.payoutType === "PAYPAL" ? (
+            <div style={{ display: "flex", gap: "var(--sl-spacing-small)" }}>
+              <span>{states.paypalEmailAddress}</span>
+              <PayPalIcon />
+            </div>
+          ) : (
+            <div style={{ display: "flex", gap: "var(--sl-spacing-small)" }}>
+              <span>{states.cardNumberPreview}</span>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

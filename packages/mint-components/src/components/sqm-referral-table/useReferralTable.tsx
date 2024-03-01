@@ -13,6 +13,8 @@ import { ReferralTable } from "./sqm-referral-table";
 import { GenericTableViewProps } from "../../tables/GenericTableView";
 import { useChildElements } from "../../tables/useChildElements";
 import debugFn from "debug";
+import mockTaxData from "../sqm-rewards-table/mockTaxData";
+import mockReferralData from "./mockReferralData";
 const debug = debugFn("sq:useReferralTable");
 
 export const CSS_NAMESPACE = "sqm-referral-table";
@@ -320,13 +322,15 @@ export function useReferralTable(
   const showReferrerRow =
     props.showReferrer && !!referrerData?.dateReferralStarted;
 
-  const { data: taxResponse, loading: taxLoading } = useQuery(
+  const { data: taxResponse, loading: taxLoading } = useQuery<GetImpactTax>(
     GET_IMPACT_TAX,
     {},
     !user?.jwt
   );
 
   const taxConnection = taxResponse?.viewer?.impactConnection;
+  // const taxConnection = mockTaxData();
+  // const { data } = mockReferralData();
 
   const {
     envelope: referralData,
