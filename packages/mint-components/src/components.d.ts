@@ -1095,10 +1095,20 @@ export namespace Components {
          */
         "notRegistered": string;
         /**
+          * Subtext for the option indicating not being registered for indirect tax
+          * @uiName Not registered for indirect tax option sub-text
+         */
+        "notRegisteredSubtext": string;
+        /**
           * Text for the option indicating registration for indirect tax in a different region
           * @uiName Registered for indirect tax in a different region option text
          */
         "otherRegion": string;
+        /**
+          * Subtext for the option indicating registration for indirect tax in a different region
+          * @uiName Registered for indirect tax in a different region option sub-text
+         */
+        "otherRegionSubtext": string;
         /**
           * Label text for the province input
           * @uiName Province input label
@@ -3823,6 +3833,18 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
+        /**
+          * Subtext for the option indicating not being registered for indirect tax
+          * @uiName Not registered for indirect tax option sub-text
+          * @uiGroup Step 2 Properties
+         */
+        "notRegisteredSubtext": string;
+        /**
+          * Subtext for the option indicating registration for indirect tax in a different region
+          * @uiName Registered for indirect tax in a different region option sub-text
+          * @uiGroup Step 2 Properties
+         */
+        "otherRegionSubtext": string;
         /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
@@ -6647,10 +6669,20 @@ declare namespace LocalJSX {
          */
         "notRegistered"?: string;
         /**
+          * Subtext for the option indicating not being registered for indirect tax
+          * @uiName Not registered for indirect tax option sub-text
+         */
+        "notRegisteredSubtext"?: string;
+        /**
           * Text for the option indicating registration for indirect tax in a different region
           * @uiName Registered for indirect tax in a different region option text
          */
         "otherRegion"?: string;
+        /**
+          * Subtext for the option indicating registration for indirect tax in a different region
+          * @uiName Registered for indirect tax in a different region option sub-text
+         */
+        "otherRegionSubtext"?: string;
         /**
           * Label text for the province input
           * @uiName Province input label
@@ -9351,6 +9383,18 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
+        /**
+          * Subtext for the option indicating not being registered for indirect tax
+          * @uiName Not registered for indirect tax option sub-text
+          * @uiGroup Step 2 Properties
+         */
+        "notRegisteredSubtext"?: string;
+        /**
+          * Subtext for the option indicating registration for indirect tax in a different region
+          * @uiName Registered for indirect tax in a different region option sub-text
+          * @uiGroup Step 2 Properties
+         */
+        "otherRegionSubtext"?: string;
         /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
