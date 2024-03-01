@@ -15,20 +15,25 @@ export function usePayoutDetailsCard(
 
   const publisher = data?.user?.impactConnection?.publisher;
 
-  console.log({ publisher });
-
   function getPaymentDay(paymentDay) {
+    const currentDay = DateTime.now().day;
     if (paymentDay === "1") {
-      return DateTime.now()
-        .plus({ month: 1 })
-        .startOf("month")
-        .toFormat("LLL dd, yyyy");
+      return currentDay === 1
+        ? DateTime.now().toFormat("LLL dd, yyyy")
+        : DateTime.now()
+            .plus({ month: 1 })
+            .startOf("month")
+            .toFormat("LLL dd, yyyy");
     } else if (paymentDay === "15") {
-      return DateTime.now()
-        .plus({ month: 1 })
-        .startOf("month")
-        .plus({ day: 15 })
-        .toFormat("LLL dd, yyyy");
+      return currentDay <= 15
+        ? DateTime.now()
+            .plus({ day: 15 - currentDay })
+            .toFormat("LLL dd, yyyy")
+        : DateTime.now()
+            .plus({ month: 1 })
+            .startOf("month")
+            .plus({ day: 15 })
+            .toFormat("LLL dd, yyyy");
     }
   }
 
