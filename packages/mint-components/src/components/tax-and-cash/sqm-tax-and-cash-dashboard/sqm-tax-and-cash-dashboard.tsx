@@ -240,6 +240,7 @@ export class TaxAndCashDashboard {
     const props = isDemo()
       ? useDemoTaxAndCashDashboard(this)
       : useTaxAndCashDashboard(this);
+
     return (
       <Host>
         <TaxAndCashDashboardView

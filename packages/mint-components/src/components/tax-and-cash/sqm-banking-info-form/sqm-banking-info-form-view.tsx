@@ -6,6 +6,7 @@ export interface BankingInfoFormViewProps {
   states: {
     locale?: string;
     loading: boolean;
+    saveLoading?: boolean;
     disabled: boolean;
     saveDisabled: boolean;
     hideSteps: boolean;
@@ -16,7 +17,6 @@ export interface BankingInfoFormViewProps {
     hideFixedDay?: boolean;
     feeCap?: string;
     isPartner: boolean;
-
     paymentMethodFeeLabel?: string;
     formState: {
       paymentMethodChecked?: "toBankAccount" | "toPayPalAccount";
@@ -516,6 +516,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           <sl-button
             type="primary"
             disabled={states.disabled || states.saveDisabled}
+            loading={states.saveLoading}
             submit
             exportparts="base: primarybutton-base"
           >

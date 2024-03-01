@@ -542,6 +542,7 @@ function useDemoBankingInfoForm(
         isPartner: false,
         disabled: false,
         loading: false,
+        saveLoading: false,
         hideSteps: false,
         feeCap,
         paymentMethodFeeLabel,

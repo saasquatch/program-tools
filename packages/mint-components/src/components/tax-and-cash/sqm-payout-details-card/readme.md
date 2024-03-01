@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute | Description | Type                                      | Default     |
-| ---------- | --------- | ----------- | ----------------------------------------- | ----------- |
-| `demoData` | --        |             | `{ [x: string]: any; [x: number]: any; }` | `undefined` |
+| Property                | Attribute                  | Description | Type                                      | Default     |
+| ----------------------- | -------------------------- | ----------- | ----------------------------------------- | ----------- |
+| `demoData`              | --                         |             | `{ [x: string]: any; [x: number]: any; }` | `undefined` |
+| `nextPayoutBalanceText` | `next-payout-balance-text` |             | `"Next payout occurs when balance is"`    | `undefined` |
 
 
 ## Dependencies

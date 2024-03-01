@@ -575,8 +575,18 @@ export function useBankingInfoForm(
           response as SetImpactPublisherWithdrawalSettingsResult
         ).setImpactPublisherWithdrawalSettings?.validationErrors;
 
-        setErrors(validationErrors);
-        throw new Error();
+        const mappedValidationErrors = validationErrors?.reduce(
+          (agg, error) => {
+            return {
+              ...agg,
+              [error.field]: error.message,
+            };
+          },
+          {}
+        );
+
+        setErrors({ ...mappedValidationErrors, general: true });
+        return;
       }
 
       await refetch();
@@ -684,6 +694,8 @@ export function useBankingInfoForm(
     }
   }
 
+  console.log({ errors });
+
   return {
     text: props.getTextProps(),
     callbacks: {
@@ -701,7 +713,9 @@ export function useBankingInfoForm(
       feeCap,
       paymentMethodFeeLabel,
       disabled: loading,
-      loading: loading || !paymentOptions,
+      // TODO: possibly add loading here, it causes all fields to be cleared on save if all field are filled out though
+      loading: !paymentOptions,
+      saveLoading: loading,
       hideBanking:
         paymentMethodChecked !== "toBankAccount" || !paymentMethodChecked,
       hidePayPal:
