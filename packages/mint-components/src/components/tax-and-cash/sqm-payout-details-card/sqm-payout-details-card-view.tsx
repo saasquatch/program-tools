@@ -13,12 +13,12 @@ export interface PayoutDetailsCardViewProps {
     mainCurrency: currencyAmount;
     status: "pending" | "upcoming" | "next payout";
     payoutType: "PAYPAL" | "BANK_TRANSFER";
-    otherCurrencies: currencyAmount[] | boolean;
-    w9Pending?: currencyAmount[];
     empty?: boolean;
     hasW9Pending?: boolean;
     hasDatePending?: boolean;
     paypalEmailAddress?: string;
+    cardNumberPreview?: string;
+    bankName?: string;
   };
 
   text: {
@@ -33,12 +33,6 @@ export interface PayoutDetailsCardViewProps {
     otherCurrenciesText: string;
   };
 }
-
-const statusMap = {
-  pending: "warning",
-  upcoming: "success",
-  "next payout": "success",
-};
 
 const style = {
   Container: {
@@ -113,46 +107,12 @@ const style = {
   },
 };
 
-type Currency = {
-  amountText: string;
-  currencyText: string;
-};
-
 export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
   const { classes } = sheet;
 
-  const currencyList = (currencies: Currency[]) => {
-    return (
-      <div class={classes.CurrenciesContainer}>
-        {currencies?.map((currency) => {
-          return (
-            <div class={classes.CurrencyContainer}>
-              <p class={classes.SubCurrencyText}>
-                {currency?.amountText}
-                {currency?.currencyText}
-              </p>
-            </div>
-          );
-        })}
-      </div>
-    );
-  };
-
   const { states, text } = props;
-
-  const badgeText = {
-    pending: text.pendingStatusBadgeText,
-    upcoming: text.upcomingStatusBadgeText,
-    "next payout": text.nextPayoutStatusBadgeText,
-  };
-
-  const statusText = {
-    pending: text.pendingDetailedStatusText,
-    upcoming: text.upcomingDetailedStatusText,
-    "next payout": text.nextPayoutDetailedStatusText,
-  };
 
   return (
     <div>
@@ -166,52 +126,21 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
         ) : (
           <div class={classes.StatusContainer}>
             <p class={classes.SubduedRegularText}>
-              {/* Should be seperated to a helper function */}
-              {states.empty && states.status === "pending"
-                ? ""
-                : states.status !== "pending"
-                ? statusText[states.status]
-                : states.hasDatePending
-                ? statusText["pending"]
-                : text.w9PendingText}
+              {text.nextPayoutDetailedStatusText}
             </p>
-            <sl-badge pill type={statusMap[states.status]}>
-              {badgeText[states.status]}
+            <sl-badge pill type={"success"}>
+              {text.nextPayoutStatusBadgeText}
             </sl-badge>
           </div>
         )}
         {states.loading ? (
           <sl-skeleton class={classes.SkeletonThree}></sl-skeleton>
-        ) : states.empty ? (
-          <h1 class={classes.MainCurrency}>No rewards</h1>
         ) : (
           <h1 class={classes.MainCurrency}>
-            {states.hasDatePending || states.status !== "pending"
-              ? states.mainCurrency?.amountText
-              : states.w9Pending?.[0]?.amountText}{" "}
+            {states.mainCurrency?.amountText}
             {states.mainCurrency.currencyText}
           </h1>
         )}
-        {states.otherCurrencies && !states.loading && (
-          <div>
-            <p
-              class={classes.SubduedRegularText}
-              style={{ fontSize: "var(--sl-font-size-x-small)" }}
-            >
-              + {text.otherCurrenciesText}
-            </p>
-            {currencyList(states.otherCurrencies as Currency[])}
-          </div>
-        )}
-        {states.hasW9Pending &&
-          states.status === "pending" &&
-          states.hasDatePending &&
-          !states.loading && (
-            <div class={classes.W9Container}>
-              <p class={classes.SubduedRegularText}>{text.w9PendingText}</p>
-              {currencyList(states.w9Pending!)}
-            </div>
-          )}
         {states.loading ? (
           <sl-skeleton class={classes.SkeletonOne}></sl-skeleton>
         ) : states.payoutType === "PAYPAL" ? (
@@ -221,8 +150,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
           </div>
         ) : (
           <div style={{ display: "flex", gap: "var(--sl-spacing-small)" }}>
-            <span>Card ***2381</span>
-            <span>Toronto Dominion Bank</span>
+            <span>{states.cardNumberPreview}</span>
           </div>
         )}
       </div>

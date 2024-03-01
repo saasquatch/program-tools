@@ -13,16 +13,6 @@ import { useLocale } from "@saasquatch/component-boilerplate";
 import { PayoutDetailsCard } from "./sqm-payout-details-card";
 import { PayoutDetailsCardViewProps } from "./sqm-payout-details-card-view";
 
-function getExpiresSoon(submissionDate: number, expiryDate: number) {
-  if (!submissionDate || !expiryDate) return false;
-  return (
-    DateTime.fromMillis(expiryDate).diff(
-      DateTime.fromMillis(submissionDate),
-      "days"
-    )?.days <= 30
-  );
-}
-
 export function usePayoutDetailsCard(
   props: PayoutDetailsCard
 ): PayoutDetailsCardViewProps {
@@ -42,19 +32,8 @@ export function usePayoutDetailsCard(
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
   const publisher = data?.user?.impactConnection?.publisher;
-  const documentType = publisher?.currentTaxDocument?.type;
-  const submissionDate = publisher?.currentTaxDocument?.dateCreated;
 
   console.log({ publisher });
-
-  const dateSubmitted = submissionDate
-    ? DateTime.fromMillis(submissionDate).toFormat("LLL dd, yyyy")
-    : undefined;
-
-  const expiryDate = DateTime.now().plus({ days: 30 }).toMillis();
-  const dateExpired = DateTime.fromMillis(expiryDate).toFormat("LLL dd, yyyy");
-
-  const expiresSoon = getExpiresSoon(expiryDate, submissionDate);
 
   function getPaymentDay(paymentDay) {
     if (paymentDay === "1") {
@@ -75,28 +54,18 @@ export function usePayoutDetailsCard(
 
   console.log({ paymentDay });
 
-  function getStatus(publisher): "next payout" | "pending" | "upcoming" {
-    return "next payout";
-  }
-
-  const status = getStatus(publisher);
-
   return {
     states: {
       loading: false,
-
       mainCurrency: {
         currencyText: publisher?.currency,
-        amountText: publisher?.withdrawalSettings?.paymentThreshold,
+        amountText: publisher?.payoutsAccount?.balance,
       },
-      status,
+      status: "next payout",
       payoutType: publisher?.withdrawalSettings?.paymentMethod,
-      otherCurrencies: [],
-      w9Pending: [],
       empty: false,
-      hasW9Pending: false,
-      hasDatePending: false,
       paypalEmailAddress: publisher?.withdrawalSettings?.paypalEmailAddress,
+      cardNumberPreview: publisher?.withdrawalSettings?.bankAccountNumber,
     },
     text: {
       ...props.getTextProps(),
