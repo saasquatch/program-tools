@@ -3691,18 +3691,6 @@ export namespace Components {
          */
         "dashboard_editPaymentInformationButton": string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-          * @uiGroup Dashboard Properties
-         */
-        "dashboard_generalErrorDescription": string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-          * @uiGroup Dashboard Properties
-         */
-        "dashboard_generalErrorTitle": string;
-        /**
           * Indirect tax number/type details
           * @uiName Indirect tax details
           * @uiGroup Dashboard Properties
@@ -3834,6 +3822,17 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
+          * Description text for a general form submission error
+          * @uiName General form submission error description
+         */
+        "generalErrorDescription": string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+          * @uiGroup General Form Properties
+         */
+        "generalErrorTitle": string;
+        /**
           * Subtext for the option indicating not being registered for indirect tax
           * @uiName Not registered for indirect tax option sub-text
           * @uiGroup Step 2 Properties
@@ -3918,18 +3917,6 @@ export namespace Components {
          */
         "step1_formStep": string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_generalErrorDescription": string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-          * @uiGroup Step 1 Properties
-         */
-        "step1_generalErrorTitle": string;
-        /**
           * Label text for the individual participant radio button
           * @uiName Individual participant radio button label
           * @uiGroup Step 1 Properties
@@ -4007,18 +3994,6 @@ export namespace Components {
           * @uiGroup Step 2 Properties
          */
         "step2_formStep": string;
-        /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_generalErrorDescription": string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-          * @uiGroup Step 2 Properties
-         */
-        "step2_generalErrorTitle": string;
         /**
           * Heading text shown at the top of the page
           * @uiName Indirect tax heading text
@@ -4218,18 +4193,6 @@ export namespace Components {
          */
         "step3_formSubmissionError": string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_generalErrorDescription": string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-          * @uiGroup Step 3 Properties
-         */
-        "step3_generalErrorTitle": string;
-        /**
           * Label text for the individual participant radio button
           * @uiName Individual participant radio button label
           * @uiGroup Step 3 Properties
@@ -4383,16 +4346,6 @@ export namespace Components {
           * @uiName Form step text
          */
         "step4_formStep": string;
-        /**
-          * Description text for a general form submission error
-          * @uiName General form submission error description
-         */
-        "step4_generalErrorDescription": string;
-        /**
-          * Title text for a general form submission error
-          * @uiName General form submission error title
-         */
-        "step4_generalErrorTitle": string;
         /**
           * Label text for the IBAN input field
           * @uiName IBAN input label
@@ -9241,18 +9194,6 @@ declare namespace LocalJSX {
          */
         "dashboard_editPaymentInformationButton"?: string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-          * @uiGroup Dashboard Properties
-         */
-        "dashboard_generalErrorDescription"?: string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-          * @uiGroup Dashboard Properties
-         */
-        "dashboard_generalErrorTitle"?: string;
-        /**
           * Indirect tax number/type details
           * @uiName Indirect tax details
           * @uiGroup Dashboard Properties
@@ -9384,6 +9325,17 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
+          * Description text for a general form submission error
+          * @uiName General form submission error description
+         */
+        "generalErrorDescription"?: string;
+        /**
+          * The title for error message shown at the top of the page in an error banner
+          * @uiName General error title
+          * @uiGroup General Form Properties
+         */
+        "generalErrorTitle"?: string;
+        /**
           * Subtext for the option indicating not being registered for indirect tax
           * @uiName Not registered for indirect tax option sub-text
           * @uiGroup Step 2 Properties
@@ -9468,18 +9420,6 @@ declare namespace LocalJSX {
          */
         "step1_formStep"?: string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_generalErrorDescription"?: string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-          * @uiGroup Step 1 Properties
-         */
-        "step1_generalErrorTitle"?: string;
-        /**
           * Label text for the individual participant radio button
           * @uiName Individual participant radio button label
           * @uiGroup Step 1 Properties
@@ -9557,18 +9497,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 2 Properties
          */
         "step2_formStep"?: string;
-        /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_generalErrorDescription"?: string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-          * @uiGroup Step 2 Properties
-         */
-        "step2_generalErrorTitle"?: string;
         /**
           * Heading text shown at the top of the page
           * @uiName Indirect tax heading text
@@ -9768,18 +9696,6 @@ declare namespace LocalJSX {
          */
         "step3_formSubmissionError"?: string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_generalErrorDescription"?: string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-          * @uiGroup Step 3 Properties
-         */
-        "step3_generalErrorTitle"?: string;
-        /**
           * Label text for the individual participant radio button
           * @uiName Individual participant radio button label
           * @uiGroup Step 3 Properties
@@ -9933,16 +9849,6 @@ declare namespace LocalJSX {
           * @uiName Form step text
          */
         "step4_formStep"?: string;
-        /**
-          * Description text for a general form submission error
-          * @uiName General form submission error description
-         */
-        "step4_generalErrorDescription"?: string;
-        /**
-          * Title text for a general form submission error
-          * @uiName General form submission error title
-         */
-        "step4_generalErrorTitle"?: string;
         /**
           * Label text for the IBAN input field
           * @uiName IBAN input label

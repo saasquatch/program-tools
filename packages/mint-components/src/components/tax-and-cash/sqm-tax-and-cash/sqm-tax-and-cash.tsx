@@ -147,7 +147,6 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_participantTypeError: string = "Select a participant type";
-
   /**
    * Alert header text shown in alert if user is already a registered partner
    * @uiName Participant is partner title
@@ -155,7 +154,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step1_isPartnerAlertHeader: string =
     "An account with this email already exists with our referral program provider, impact.com";
-
   /**
    * Alert description text shown in alert if user is already a registered partner
    * @uiName Participant is partner description
@@ -163,24 +161,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step1_isPartnerAlertDescription: string =
     "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
-
-  /**
-   * The title for error message shown at the top of the page in an error banner
-   *
-   * @uiName General error title
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_generalErrorTitle: string =
-    "There was a problem submitting your information";
-  /**
-   * The error message shown at the top of the page in an error banner
-   *
-   * @uiName General error text
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact Support.";
-
   /**
    * * STEP 2 PROPS:
    */
@@ -328,23 +308,6 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_taxDetailsError: string = "This field is required";
-  /**
-   * The title for error message shown at the top of the page in an error banner
-   *
-   * @uiName General error title
-   * @uiGroup Step 2 Properties
-   */
-  @Prop() step2_generalErrorTitle: string =
-    "There was a problem submitting your information";
-  /**
-   * The error message shown at the top of the page in an error banner
-   *
-   * @uiName General error text
-   * @uiGroup Step 2 Properties
-   */
-  @Prop() step2_generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact Support.";
-
   /**
    * Alert text indicating participant cannot change info after it has been submitted
    * @uiName Cannot change info Alert text
@@ -513,29 +476,12 @@ export class TaxAndCashMonolith {
    */
   @Prop() step3_backButton: string = "Back";
   /**
-   * The title for error message shown at the top of the page in an error banner
-   *
-   * @uiName General error title
-   * @uiGroup Step 3 Properties
-   */
-  @Prop() step3_generalErrorTitle: string =
-    "There was a problem submitting your information";
-  /**
-   * The error message shown at the top of the page in an error banner
-   *
-   * @uiName General error text
-   * @uiGroup Step 3 Properties
-   */
-  @Prop() step3_generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact Support.";
-  /**
    * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
    *
    * @uiName Form submission error text
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_formSubmissionError: string = "This field is required";
-
   /**
    * STEP 4 PAYOUT INFORMATION FORM
    */
@@ -544,26 +490,22 @@ export class TaxAndCashMonolith {
    * @uiName Form step text
    */
   @Prop() step4_formStep: string = "Step 4 of 4";
-
   /**
    * Heading text shown at the top of the page
    * @uiName Tax and Payouts heading text
    */
   @Prop() step4_taxAndPayouts: string = "Tax and Payouts";
-
   /**
    * Text shown at the top of the page next to the tax and payouts label text
    * @uiName Tax and Payouts label text
    */
   @Prop() step4_taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
-
   /**
    * Text for the option to receive payments directly to a bank account
    * @uiName Directly to bank account option text
    */
   @Prop() step4_directlyToBankAccount: string = "Directly to my bank account";
-
   /**
    * Text for the option to receive payments to a PayPal account with processing fee details
    * @uiName PayPal option text with processing fee placeholder
@@ -582,7 +524,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_paymentScheduleFixedDay: string =
     "Pay me on a fixed day of the month";
-
   /**
    * Label text for the payment day select
    * @uiName Payment day select label
@@ -798,20 +739,6 @@ export class TaxAndCashMonolith {
   @Prop() step4_cannotChangeInfoAlert: string =
     "Your payout information cannot be changed after saving. Ensure your payout method and schedule are correct before submitting.";
   /**
-   * Title text for a general form submission error
-   * @uiName General form submission error title
-   */
-  @Prop() step4_generalErrorTitle: string =
-    "There was a problem submitting your information";
-
-  /**
-   * Description text for a general form submission error
-   * @uiName General form submission error description
-   */
-  @Prop() step4_generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact Support.";
-
-  /**
    * * DASHBOARD DOCUMENT SUBMITTED VIEW STEP
    */
   /**
@@ -1006,22 +933,6 @@ export class TaxAndCashMonolith {
   @Prop() dashboard_notRegisteredForTax: string =
     "Not registered. Participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information.";
   /**
-   * The title for error message shown at the top of the page in an error banner
-   *
-   * @uiName General error title
-   * @uiGroup Dashboard Properties
-   */
-  @Prop() dashboard_generalErrorTitle: string =
-    "There was a problem submitting your information";
-  /**
-   * The error message shown at the top of the page in an error banner
-   *
-   * @uiName General error text
-   * @uiGroup Dashboard Properties
-   */
-  @Prop() dashboard_generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact Support.";
-  /**
    * Label text for the QST number
    * @uiName QST number input
    * @uiGroup Dashboard Properties
@@ -1036,6 +947,22 @@ export class TaxAndCashMonolith {
     "Income Tax Number: {incomeTaxNumber}";
 
   /**
+   * The title for error message shown at the top of the page in an error banner
+   *
+   * @uiName General error title
+   * @uiGroup General Form Properties
+   */
+  @Prop() generalErrorTitle: string =
+    "There was a problem submitting your information";
+
+  /**
+   * Description text for a general form submission error
+   * @uiName General form submission error description
+   */
+  @Prop() generalErrorDescription: string =
+    "Please review your information and try again. If this problem continues, contact Support.";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -1046,25 +973,13 @@ export class TaxAndCashMonolith {
   }
   disconnectedCallback() {}
 
-  getUserInfoFormTextProps() {
+  getGeneralStepTextProps(prefix: string) {
     const props = getProps(this);
-    return extractProps(props, "step1_");
-  }
-  getIndirectTaxFormTextProps() {
-    const props = getProps(this);
-    return extractProps(props, "step2_");
-  }
-  getDocuSignFormTextProps() {
-    const props = getProps(this);
-    return extractProps(props, "step3_");
-  }
-  getDocumentTypeFormTextProps() {
-    const props = getProps(this);
-    return extractProps(props, "step3b_");
-  }
-  getSubmittedPageTextProps() {
-    const props = getProps(this);
-    return extractProps(props, "dashboard_");
+    return {
+      ...extractProps(props, prefix),
+      generalErrorTitle: props.generalErrorTitle,
+      generalErrorDescription: props.generalErrorDescription,
+    };
   }
 
   render() {
@@ -1075,27 +990,31 @@ export class TaxAndCashMonolith {
       case "/1":
         return (
           <sqm-user-info-form
-            {...this.getUserInfoFormTextProps()}
+            {...this.getGeneralStepTextProps("step1_")}
           ></sqm-user-info-form>
         );
       case "/2":
         return (
           <sqm-indirect-tax-form
-            {...this.getIndirectTaxFormTextProps()}
+            {...this.getGeneralStepTextProps("step2_")}
           ></sqm-indirect-tax-form>
         );
       case "/3":
         return (
           <sqm-docusign-form
-            {...this.getDocuSignFormTextProps()}
+            {...this.getGeneralStepTextProps("step3_")}
           ></sqm-docusign-form>
         );
       case "/4":
-        return <sqm-banking-info-form></sqm-banking-info-form>;
+        return (
+          <sqm-banking-info-form
+            {...this.getGeneralStepTextProps("step4_")}
+          ></sqm-banking-info-form>
+        );
       case "/submitted":
         return (
           <sqm-tax-and-cash-dashboard
-            {...this.getSubmittedPageTextProps()}
+            {...this.getGeneralStepTextProps("dashboard_")}
           ></sqm-tax-and-cash-dashboard>
         );
     }
