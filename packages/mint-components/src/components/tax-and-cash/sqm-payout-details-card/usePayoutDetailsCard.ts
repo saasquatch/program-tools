@@ -1,32 +1,14 @@
-import { useEffect } from "@saasquatch/universal-hooks";
+import { useLocale } from "@saasquatch/component-boilerplate";
 import { DateTime } from "luxon";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useParent, useSetParent } from "../../../utils/useParentState";
-import {
-  TAX_CONTEXT_NAMESPACE,
-  TAX_FORM_CONTEXT_NAMESPACE,
-  TaxContext,
-  USER_QUERY_NAMESPACE,
-  UserQuery,
-} from "../sqm-tax-and-cash/data";
-import { useLocale } from "@saasquatch/component-boilerplate";
+import { USER_QUERY_NAMESPACE, UserQuery } from "../sqm-tax-and-cash/data";
 import { PayoutDetailsCard } from "./sqm-payout-details-card";
 import { PayoutDetailsCardViewProps } from "./sqm-payout-details-card-view";
 
 export function usePayoutDetailsCard(
   props: PayoutDetailsCard
 ): PayoutDetailsCardViewProps {
-  const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
-  const [context, setContext] = useParent<TaxContext>(
-    TAX_FORM_CONTEXT_NAMESPACE
-  );
-
   const locale = useLocale();
-
-  useEffect(() => {
-    // Clear override context once on submitted
-    setContext({});
-  }, []);
 
   const { data, loading } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
