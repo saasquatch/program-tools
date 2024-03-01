@@ -49,6 +49,8 @@ export const useTaxAndCashDashboard = (
   const documentType = publisher?.currentTaxDocument?.type;
   const submissionDate = publisher?.currentTaxDocument?.dateCreated;
 
+  console.log({ publisher });
+
   const dateSubmitted = submissionDate
     ? DateTime.fromMillis(submissionDate).toFormat("LLL dd, yyyy")
     : undefined;

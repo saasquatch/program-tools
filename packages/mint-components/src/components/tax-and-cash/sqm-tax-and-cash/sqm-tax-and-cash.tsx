@@ -1080,9 +1080,9 @@ export class TaxAndCashMonolith {
         return <sqm-banking-info-form></sqm-banking-info-form>;
       case "/submitted":
         return (
-          <sqm-tax-document-submitted
+          <sqm-tax-and-cash-dashboard
             {...this.getSubmittedPageTextProps()}
-          ></sqm-tax-document-submitted>
+          ></sqm-tax-and-cash-dashboard>
         );
     }
 

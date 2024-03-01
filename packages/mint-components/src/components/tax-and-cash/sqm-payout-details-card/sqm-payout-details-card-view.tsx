@@ -12,12 +12,13 @@ export interface PayoutDetailsCardViewProps {
     loading?: boolean;
     mainCurrency: currencyAmount;
     status: "pending" | "upcoming" | "next payout";
-    payoutType: "bank" | "paypal";
+    payoutType: "PAYPAL" | "BANK_TRANSFER";
     otherCurrencies: currencyAmount[] | boolean;
     w9Pending?: currencyAmount[];
     empty?: boolean;
     hasW9Pending?: boolean;
     hasDatePending?: boolean;
+    paypalEmailAddress?: string;
   };
 
   text: {
@@ -213,9 +214,9 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
           )}
         {states.loading ? (
           <sl-skeleton class={classes.SkeletonOne}></sl-skeleton>
-        ) : states.payoutType === "paypal" ? (
+        ) : states.payoutType === "PAYPAL" ? (
           <div style={{ display: "flex", gap: "var(--sl-spacing-small)" }}>
-            <span>email@example.com</span>
+            <span>{states.paypalEmailAddress}</span>
             <PayPalIcon />
           </div>
         ) : (
