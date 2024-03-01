@@ -32,7 +32,9 @@ export interface IndirectTaxFormViewProps {
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
     otherRegion: string;
+    otherRegionSubtext: string;
     notRegistered: string;
+    notRegisteredSubtext: string;
     cannotChangeInfoAlert: string;
     submitButton: string;
     backButton: string;
@@ -67,7 +69,7 @@ const style = {
   InnerRadioContainer: {
     display: "flex",
     flexDirection: "column",
-    gap: "var(--sl-spacing-x-small)",
+    gap: "var(--sl-spacing-medium)",
   },
   RadioContent: {
     display: "flex",
@@ -246,8 +248,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 <div class={classes.RadioContent}>
                   {text.notRegistered}
                   <p class={classes.DescriptionText}>
-                    If you’re joining this referral program as an individual or
-                    you’re based in the US, then you’re not registered.
+                    {text.notRegisteredSubtext}
                   </p>
                 </div>
               </sl-radio>
@@ -263,9 +264,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 <div class={classes.RadioContent}>
                   {text.otherRegion}
                   <p class={classes.DescriptionText}>
-                    If you represent a business based outside of the US may be
-                    registered. Not sure? Contact our Support team to find out
-                    more.
+                    {text.otherRegionSubtext}
                   </p>
                 </div>
               </sl-radio>

@@ -55,20 +55,33 @@ export class IndirectTaxForm {
    * @uiName Indirect tax details subtext
    */
   @Prop() indirectTaxDetailsDescription: string =
-    "If you represent a business entity, you may be registered for indirect tax. If you are based in the US you are most likely not registered. Not sure if you’re registered? Contact our Support team to find out more.";
+    "Businesses based in countries that enforce indirect taxes (e.g. VAT, HST, GST) must add their indirect tax details to stay tax compliant.";
 
   /**
    * Text for the option indicating registration for indirect tax in a different region
    * @uiName Registered for indirect tax in a different region option text
    */
-  @Prop() otherRegion: string =
-    "I am registered for Indirect Tax in a different Country / Region";
+  @Prop() otherRegion: string = "Registered for indirect tax";
+
+  /**
+   * Subtext for the option indicating registration for indirect tax in a different region
+   * @uiName Registered for indirect tax in a different region option sub-text
+   */
+  @Prop() otherRegionSubtext: string =
+    "f you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more.";
 
   /**
    * Text for the option indicating not being registered for indirect tax
    * @uiName Not registered for indirect tax option text
    */
-  @Prop() notRegistered: string = "I am not registered for Indirect Tax";
+  @Prop() notRegistered: string = "Not registered for indirect tax";
+
+  /**
+   * Subtext for the option indicating not being registered for indirect tax
+   * @uiName Not registered for indirect tax option sub-text
+   */
+  @Prop() notRegisteredSubtext: string =
+    "If you’re joining this referral program as an individual or you’re based in the US, then you’re not registered.";
 
   /**
    * Label text for the country/region select input
