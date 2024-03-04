@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { formatGenericError } from "./error";
 import { Logger } from "winston";
+import { formatGenericError } from "./error";
 import { nanoid } from "./nanoid";
 
 export function asyncHandlerWrapper<T>(
