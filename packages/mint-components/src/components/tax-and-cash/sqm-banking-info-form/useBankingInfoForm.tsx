@@ -91,7 +91,10 @@ export function getFormMap({
 }: {
   props: BankingInfoFormViewProps | Omit<any, "text" | "callbacks">;
   routingCodeLabels: RoutingCodeLabels;
-  getValidationErrorMessage: (text: string) => string;
+  getValidationErrorMessage: (props: {
+    type: "required" | "invalid";
+    label: string;
+  }) => string;
 }) {
   const { errors } = props.states.formState;
 
@@ -105,11 +108,12 @@ export function getFormMap({
           id="beneficiaryAccountName"
           key="beneficiaryAccountName"
           type="text"
-          {...(errors?.beneficiaryAccountName && {
+          {...(errors?.inputErrors?.beneficiaryAccountName && {
             class: "error-input",
-            helpText: getValidationErrorMessage(
-              props.text.beneficiaryAccountNameLabel
-            ),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.beneficiaryAccountName?.type,
+              label: props.text.beneficiaryAccountNameLabel,
+            }),
           })}
         ></sl-input>
       ),
@@ -122,11 +126,12 @@ export function getFormMap({
           name="/bankAccountType"
           id="bankAccountType"
           key="bankAccountType"
-          {...(errors?.bankAccountType && {
+          {...(errors?.inputErrors?.bankAccountType && {
             class: "error-input",
-            helpText: getValidationErrorMessage(
-              props.text.bankAccountTypeLabel
-            ),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.bankAccountType?.type,
+              label: props.text.bankAccountTypeLabel,
+            }),
           })}
         >
           <sl-menu-item value="CHECKING">
@@ -147,11 +152,12 @@ export function getFormMap({
           id="bankAccountNumber"
           key="bankAccountNumber"
           type="text"
-          {...(errors?.bankAccountNumber && {
+          {...(errors?.inputErrors?.bankAccountNumber && {
             class: "error-input",
-            helpText: getValidationErrorMessage(
-              props.text.bankAccountNumberLabel
-            ),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.bankAccountNumber?.type,
+              label: props.text.bankAccountNumberLabel,
+            }),
           })}
         ></sl-input>
       ),
@@ -165,9 +171,12 @@ export function getFormMap({
           id="iban"
           key="iban"
           type="text"
-          {...(errors?.bankAccountNumber && {
+          {...(errors?.inputErrors?.bankAccountNumber && {
             class: "error-input",
-            helpText: getValidationErrorMessage(props.text.ibanLabel),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.bankAccountNumber?.type,
+              label: props.text.ibanLabel,
+            }),
           })}
         ></sl-input>
       ),
@@ -182,9 +191,12 @@ export function getFormMap({
           id="swiftCode"
           key="swiftCode"
           type="text"
-          {...(errors?.swiftCode && {
+          {...(errors?.inputErrors?.swiftCode && {
             class: "error-input",
-            helpText: getValidationErrorMessage(props.text.swiftCodeLabel),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.swiftCode?.type,
+              label: props.text.swiftCodeLabel,
+            }),
           })}
         ></sl-input>
       ),
@@ -201,12 +213,14 @@ export function getFormMap({
           id="routingCode"
           key="routingCode"
           type="text"
-          {...(errors?.routingCode && {
+          {...(errors?.inputErrors?.routingCode && {
             class: "error-input",
-            helpText: getValidationErrorMessage(
-              routingCodeLabels[props.states.bankCountry] ||
-                props.text.routingCodeLabel
-            ),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.routingCode?.type,
+              label:
+                routingCodeLabels[props.states.bankCountry] ||
+                props.text.routingCodeLabel,
+            }),
           })}
         ></sl-input>
       ),
@@ -220,9 +234,12 @@ export function getFormMap({
           id="bankName"
           key="bankName"
           type="text"
-          {...(errors?.bankName && {
+          {...(errors?.inputErrors?.bankName && {
             class: "error-input",
-            helpText: getValidationErrorMessage(props.text.bankNameLabel),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.bankName?.type,
+              label: props.text.bankNameLabel,
+            }),
           })}
         ></sl-input>
       ),
@@ -235,9 +252,12 @@ export function getFormMap({
           name="/beneficiaryClassification"
           id="beneficiaryClassification"
           key="beneficiaryClassification"
-          {...(errors?.beneficiaryClassification && {
+          {...(errors?.inputErrors?.beneficiaryClassification && {
             class: "error-input",
-            helpText: getValidationErrorMessage(props.text.classificationLabel),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.beneficiaryClassification?.type,
+              label: props.text.classificationLabel,
+            }),
           })}
         >
           <sl-menu-item value="BUSINESS">
@@ -257,9 +277,12 @@ export function getFormMap({
           name="/taxPayerId"
           id="taxPayerId"
           key="taxPayerId"
-          {...(errors?.taxPayerId && {
+          {...(errors?.inputErrors?.taxPayerId && {
             class: "error-input",
-            helpText: getValidationErrorMessage(props.text.taxPayerIdLabel),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.taxPayerId?.type,
+              label: props.text.taxPayerIdLabel,
+            }),
           })}
         ></sl-input>,
       ],
@@ -272,11 +295,12 @@ export function getFormMap({
           name="/beneficiaryClassification"
           id="beneficiaryClassification"
           key="beneficiaryClassification"
-          {...(errors?.beneficiaryClassification && {
+          {...(errors?.inputErrors?.beneficiaryClassification && {
             class: "error-input",
-            helpText: getValidationErrorMessage(
-              props.text.classificationCPFLabel
-            ),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.beneficiaryClassification?.type,
+              label: props.text.classificationCPFLabel,
+            }),
           })}
         >
           <sl-menu-item value="CPF">CPF</sl-menu-item>
@@ -293,9 +317,12 @@ export function getFormMap({
           name="/patronymicName"
           id="patronymicName"
           type="text"
-          {...(errors?.patronymicName && {
+          {...(errors?.inputErrors?.patronymicName && {
             class: "error-input",
-            helpText: getValidationErrorMessage(props.text.patronymicNameLabel),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.patronymicName?.type,
+              label: props.text.patronymicNameLabel,
+            }),
           })}
         ></sl-input>
       ),
@@ -308,9 +335,12 @@ export function getFormMap({
           name="/voCode"
           id="voCode"
           type="text"
-          {...(errors?.voCode && {
+          {...(errors?.inputErrors?.voCode && {
             class: "error-input",
-            helpText: getValidationErrorMessage(props.text.voCodeLabel),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.voCode?.type,
+              label: props.text.voCodeLabel,
+            }),
           })}
         ></sl-input>
       ),
@@ -324,9 +354,12 @@ export function getFormMap({
           id="agencyCode"
           key="agencyCode"
           type="text"
-          {...(errors?.agencyCode && {
+          {...(errors?.inputErrors?.agencyCode && {
             class: "error-input",
-            helpText: getValidationErrorMessage(props.text.agencyCodeLabel),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.agencyCode?.type,
+              label: props.text.agencyCodeLabel,
+            }),
           })}
         ></sl-input>
       ),
@@ -340,9 +373,12 @@ export function getFormMap({
           id="bankAddress"
           key="bankAddress"
           type="text"
-          {...(errors?.bankAddress && {
+          {...(errors?.inputErrors?.bankAddress && {
             class: "error-input",
-            helpText: getValidationErrorMessage(props.text.bankAddressLabel),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.bankAddress?.type,
+              label: props.text.bankAddressLabel,
+            }),
           })}
         ></sl-input>,
         <sl-input
@@ -352,9 +388,12 @@ export function getFormMap({
           id="bankCity"
           key="bankCity"
           type="text"
-          {...(errors?.bankCity && {
+          {...(errors?.inputErrors?.bankCity && {
             class: "error-input",
-            helpText: getValidationErrorMessage(props.text.bankCityLabel),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.bankCity?.type,
+              label: props.text.bankCityLabel,
+            }),
           })}
         ></sl-input>,
         <sl-input
@@ -364,11 +403,12 @@ export function getFormMap({
           id="bankProvinceState"
           key="bankProvinceState"
           type="text"
-          {...(errors?.bankProvinceState && {
+          {...(errors?.inputErrors?.bankProvinceState && {
             class: "error-input",
-            helpText: getValidationErrorMessage(
-              props.text.bankProvinceStateLabel
-            ),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.bankProvinceState?.type,
+              label: props.text.bankProvinceStateLabel,
+            }),
           })}
         ></sl-input>,
         <sl-input
@@ -378,9 +418,12 @@ export function getFormMap({
           id="bankPostalCode"
           key="bankPostalCode"
           type="text"
-          {...(errors?.bankPostalCode && {
+          {...(errors?.inputErrors?.bankPostalCode && {
             class: "error-input",
-            helpText: getValidationErrorMessage(props.text.bankPostalCodeLabel),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.bankPostalCode?.type,
+              label: props.text.bankPostalCodeLabel,
+            }),
           })}
         ></sl-input>,
       ],
@@ -394,9 +437,12 @@ export function getFormMap({
           id="branchCode"
           key="branchCode"
           type="text"
-          {...(errors?.branchCode && {
+          {...(errors?.inputErrors?.branchCode && {
             class: "error-input",
-            helpText: getValidationErrorMessage(props.text.branchCodeLabel),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.branchCode?.type,
+              label: props.text.branchCodeLabel,
+            }),
           })}
         ></sl-input>
       ),
@@ -409,9 +455,12 @@ export function getFormMap({
           name="/beneficiaryClassification"
           id="beneficiaryClassification"
           key="beneficiaryClassification"
-          {...(errors?.beneficiaryClassification && {
+          {...(errors?.inputErrors?.beneficiaryClassification && {
             class: "error-input",
-            helpText: getValidationErrorMessage(props.text.classificationLabel),
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.beneficiaryClassification?.type,
+              label: props.text.classificationLabel,
+            }),
           })}
         >
           <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
@@ -512,7 +561,7 @@ export function useBankingInfoForm(
     "toBankAccount" | "toPayPalAccount" | undefined
   >(undefined);
   const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
-    "paymentThreshold" | "paymentDay" | undefined
+    "BALANCE_THRESHOLD" | "FIXED_DAY" | undefined
   >(undefined);
 
   const onSubmit = async (event: any) => {
@@ -529,11 +578,11 @@ export function useBankingInfoForm(
       JSONPointer.set(formData, key, value);
 
       if (control.required && !value) {
-        JSONPointer.set(validationErrors, key, true);
+        JSONPointer.set(validationErrors, key, { type: "required" });
       }
     });
-
-    setErrors(validationErrors);
+    console.log({ formData });
+    setErrors({ inputErrors: validationErrors });
     if (Object.keys(validationErrors).length) {
       return;
     }
@@ -550,10 +599,9 @@ export function useBankingInfoForm(
             id: user.id,
             accountId: user.accountId,
           },
-          paymentMethod: formData?.paypalEmailAddress
-            ? "PAYPAL"
-            : getPaymentMethod(currentPaymentOption),
           ...formData,
+          paymentMethod: getPaymentMethod(currentPaymentOption),
+          paymentSchedulingType: paymentScheduleChecked,
         } as SetImpactPublisherWithdrawalSettingsInput,
       });
       if (!response || (response as Error)?.message) {
@@ -579,13 +627,19 @@ export function useBankingInfoForm(
           (agg, error) => {
             return {
               ...agg,
-              [error.field]: error.message,
+
+              [error.field]: {
+                type: "invalid",
+              },
             };
           },
           {}
         );
 
-        setErrors({ ...mappedValidationErrors, general: true });
+        setErrors({
+          inputErrors: { ...mappedValidationErrors },
+          general: true,
+        });
         return;
       }
 
@@ -665,8 +719,6 @@ export function useBankingInfoForm(
     };
   });
 
-  console.log({ currentPaymentOption, paymentOptions, availableCountries });
-
   const hasPayPal = !!paymentOptions?.find(
     (option) => option.defaultFinancePaymentMethodId === PAYPAL_PAYMENT_METHOD
   );
@@ -694,8 +746,6 @@ export function useBankingInfoForm(
     }
   }
 
-  console.log({ errors });
-
   return {
     text: props.getTextProps(),
     callbacks: {
@@ -704,6 +754,7 @@ export function useBankingInfoForm(
       setPaymentMethodChecked,
       setPaymentScheduleChecked,
       setCurrency,
+      getValidationErrorMessage: props.getValidationErrorMessage,
     },
     states: {
       saveDisabled: !paymentMethodChecked || !paymentScheduleChecked,

@@ -1,6 +1,7 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 import { PayPalIcon } from "../SVGs";
+import { intl } from "../../../global/global";
 
 export type currencyAmount = {
   amountText: string;
@@ -11,23 +12,21 @@ export interface PayoutDetailsCardViewProps {
   states: {
     loading?: boolean;
     mainCurrency: currencyAmount;
-    status: "pending" | "upcoming" | "next payout";
+    status: "thresholdPayout" | "payoutToday" | "nextPayout";
     payoutType: "PAYPAL" | "BANK_TRANSFER";
-    empty?: boolean;
+    error?: boolean;
     hasW9Pending?: boolean;
     hasDatePending?: boolean;
+    nextPayoutDate?: string;
     paypalEmailAddress?: string;
     cardNumberPreview?: string;
     bankName?: string;
+    thresholdBalance?: string;
   };
 
   text: {
-    pendingStatusBadgeText: string;
-    upcomingStatusBadgeText: string;
-    nextPayoutStatusBadgeText: string;
-    pendingDetailedStatusText: string;
-    upcomingDetailedStatusText: string;
-    nextPayoutDetailedStatusText: string;
+    thresholdPayoutText: string;
+    statusBadgeText: string;
     w9PendingText: string;
     additionalW9Text?: string;
     otherCurrenciesText: string;
@@ -35,7 +34,7 @@ export interface PayoutDetailsCardViewProps {
 }
 
 const style = {
-  Container: {
+  CardContainer: {
     display: "grid",
     gridTemplateColumns: "1fr",
     gridGap: "var(--sl-spacing-large)",
@@ -66,6 +65,18 @@ const style = {
     color: "var(--sl-color-gray-500)",
     margin: 0,
     width: "auto",
+  },
+
+  PaypalEmail: {
+    borderRight: "1px solid var(--sl-color-gray-200)",
+    paddingRight: "var(--sl-spacing-small)",
+  },
+  AccountDetailsContainer: {
+    color: "var(--sl-color-gray-500)",
+    display: "flex",
+    gap: "var(--sl-spacing-small)",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
   CurrenciesContainer: {
     display: "grid",
@@ -105,6 +116,28 @@ const style = {
     width: "50%",
     height: "34px",
   },
+  Alert: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-red-100)",
+      borderTop: "none",
+      padding: "0 16px",
+    },
+
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-danger-500)",
+    },
+  },
+  AlertContent: {
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+  },
+  Container: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "var(--sl-spacing-xx-large)",
+  },
 };
 
 export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
@@ -116,7 +149,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
 
   const renderLoadingSkeleton = () => {
     return (
-      <div class={classes.Container}>
+      <div class={classes.CardContainer}>
         <div class={classes.StatusContainer}>
           <sl-skeleton class={classes.SkeletonOne}></sl-skeleton>
           <sl-skeleton class={classes.SkeletonTwo}></sl-skeleton>
@@ -127,34 +160,76 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
     );
   };
 
+  const renderStatusBadge = (status: string, statusBadgeText: string) => {
+    const badgeType = status === "nextPayout" ? "success" : "primary";
+    const statusText = intl.formatMessage(
+      {
+        id: "badgeText",
+        defaultMessage: statusBadgeText,
+      },
+      {
+        badgeText: status,
+      }
+    );
+
+    return (
+      <sl-badge pill type={badgeType}>
+        {statusText}
+      </sl-badge>
+    );
+  };
+
+  const thresholdText = intl.formatMessage(
+    {
+      id: "thresholdText",
+      defaultMessage: text.thresholdPayoutText,
+    },
+    {
+      thresholdBalance: states.thresholdBalance,
+    }
+  );
+
   return (
-    <div>
+    <div class={classes.Container}>
       <style type="text/css">{styleString}</style>
+      {states.error && (
+        <sl-alert class={classes.Alert} type="danger" open>
+          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+          <div class={classes.AlertContent}>
+            <b>There was an error with your payout infomation</b>
+            Please ensure your payout information is correct. If this problem
+            continues, contact Support.
+          </div>
+        </sl-alert>
+      )}
       {states.loading ? (
         renderLoadingSkeleton()
       ) : (
-        <div class={classes.Container}>
+        <div class={classes.CardContainer}>
           <div class={classes.StatusContainer}>
             <p class={classes.SubduedRegularText}>
-              {text.nextPayoutDetailedStatusText}
+              {states.status === "thresholdPayout"
+                ? thresholdText
+                : states.nextPayoutDate}
             </p>
-            <sl-badge pill type={"success"}>
-              {text.nextPayoutStatusBadgeText}
-            </sl-badge>
+            {states.status === "thresholdPayout"
+              ? null
+              : renderStatusBadge(states.status, text.statusBadgeText)}
           </div>
 
           <h1 class={classes.MainCurrency}>
-            {states.mainCurrency?.amountText}
-            {states.mainCurrency.currencyText}
+            {states.mainCurrency?.amountText} {states.mainCurrency.currencyText}
           </h1>
 
           {states.payoutType === "PAYPAL" ? (
-            <div style={{ display: "flex", gap: "var(--sl-spacing-small)" }}>
-              <span>{states.paypalEmailAddress}</span>
+            <div class={classes.AccountDetailsContainer}>
+              <span class={classes.PaypalEmail}>
+                {states.paypalEmailAddress}
+              </span>
               <PayPalIcon />
             </div>
           ) : (
-            <div style={{ display: "flex", gap: "var(--sl-spacing-small)" }}>
+            <div class={classes.AccountDetailsContainer}>
               <span>{states.cardNumberPreview}</span>
             </div>
           )}

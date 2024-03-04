@@ -202,7 +202,9 @@ export class ReferralTableRewardsCell {
                 {reward.prettyValue}
               </span>
             </TextSpanView>
-            {/* If state is pending and reward has expiry date, display the relative time inside badge. Otherwise only display the badge text */}
+            {/* If state is pending and reward has expiry date, 
+            display the relative time inside badge. 
+            Otherwise only display the badge text */}
             {/* Pending for W9 Tax reasons cases here */}
             <div class={sheet.classes.BadgeContainer}>
               {state === "PENDING" && reward.dateScheduledFor ? (
@@ -293,6 +295,7 @@ export class ReferralTableRewardsCell {
                 </TextSpanView>
               </div>
             )}
+            {/* TODO: Combine these cases */}
             {state === "PENDING_TAX_REVIEW" && (
               <div>
                 <TextSpanView type="p">{statusText}</TextSpanView>

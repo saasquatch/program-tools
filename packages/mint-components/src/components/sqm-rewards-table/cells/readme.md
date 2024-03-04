@@ -22,7 +22,6 @@
 | `pendingTaxSubmission`   | `pending-tax-submission`   |             | `string`           | `"Submit your tax documents to receive your rewards."`               |
 | `pendingUnhandled`       | `pending-unhandled`        |             | `string`           | `"Fulfillment error"`                                                |
 | `pendingUsTax`           | `pending-us-tax`           |             | `string`           | `"W-9 required"`                                                     |
-| `publisherConnection`    | `publisher-connection`     |             | `any`              | `undefined`                                                          |
 | `reward`                 | --                         |             | `Reward`           | `undefined`                                                          |
 | `statusText`             | `status-text`              |             | `string`           | `undefined`                                                          |
 | `taxConnection`          | --                         |             | `ImpactConnection` | `undefined`                                                          |

@@ -324,8 +324,20 @@ export class BankingInfoForm {
   }
 
   // need to make this translatable
-  getValidationErrorMessage(inputLabel: string) {
-    return `${inputLabel} is required`;
+  getValidationErrorMessage({
+    type,
+    label,
+  }: {
+    type: "required" | "invalid";
+    label: string;
+  }) {
+    if (type === "required") {
+      return `${label} is required`;
+    }
+    if (type === "invalid") {
+      return `${label} is invalid`;
+    }
+    return "";
   }
 
   render() {
@@ -402,11 +414,12 @@ export class BankingInfoForm {
                 onSl-select={(e) =>
                   props.callbacks.setBankCountry(e.detail?.item?.value)
                 }
-                {...(errors?.bankCountry && {
+                {...(errors?.inputErrors?.bankCountry && {
                   class: "error-input",
-                  helpText: this.getValidationErrorMessage(
-                    props.text.bankLocationLabel
-                  ),
+                  helpText: this.getValidationErrorMessage({
+                    type: errors?.inputErrors?.bankCountry?.type,
+                    label: props.text.bankLocationLabel,
+                  }),
                 })}
               >
                 {/* TODO: mock data should come from the backend when available */}
@@ -433,11 +446,12 @@ export class BankingInfoForm {
                 label={props.text.paymentThresholdSelectLabel}
                 name="/paymentThreshold"
                 id="paymentThreshold"
-                {...(errors?.paymentThreshold && {
+                {...(errors?.inputErrors?.paymentThreshold && {
                   class: "error-input",
-                  helpText: this.getValidationErrorMessage(
-                    props.text.paymentThresholdSelectLabel
-                  ),
+                  helpText: this.getValidationErrorMessage({
+                    type: errors?.inputErrors?.paymentThreshold?.type,
+                    label: props.text.paymentThresholdSelectLabel,
+                  }),
                 })}
               >
                 {props.states.thresholds.map((t) => (
@@ -453,11 +467,12 @@ export class BankingInfoForm {
                 label={props.text.paymentDaySelectLabel}
                 name="/paymentDay"
                 id="paymentDay"
-                {...(errors?.paymentDay && {
+                {...(errors?.inputErrors?.paymentDay && {
                   class: "error-input",
-                  helpText: this.getValidationErrorMessage(
-                    props.text.paymentDaySelectLabel
-                  ),
+                  helpText: this.getValidationErrorMessage({
+                    type: errors?.inputErrors?.paymentDay?.type,
+                    label: props.text.paymentDaySelectLabel,
+                  }),
                 })}
               >
                 <sl-menu-item value={1}>
@@ -489,7 +504,7 @@ function useDemoBankingInfoForm(
     "toBankAccount" | "toPayPalAccount" | undefined
   >(undefined);
   const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
-    "paymentThreshold" | "paymentDay" | undefined
+    "BALANCE_THRESHOLD" | "FIXED_DAY" | undefined
   >(undefined);
 
   const [currency, setCurrency] = useState(defaultCurrency);
@@ -582,6 +597,7 @@ function useDemoBankingInfoForm(
         setBankCountry,
         setPaymentMethodChecked,
         setPaymentScheduleChecked,
+        getValidationErrorMessage: props.getValidationErrorMessage,
       },
       text: props.getTextProps(),
       refs: {
