@@ -237,9 +237,6 @@ export function useRewardsTable(
   const data = rewardsData?.data;
   const taxConnection = impactTaxData?.viewer?.impactConnection;
 
-  // const { data } = mockRewardData(1, "PENDING");
-  // const taxConnection = mockTaxData();
-
   async function getComponentData(components: Element[]) {
     // filter out loading and empty states from columns array
     const columnComponents = components.filter(
