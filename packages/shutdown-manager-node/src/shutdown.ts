@@ -1,13 +1,12 @@
 import { Application } from "express";
 import { Server, createServer } from "http";
 import { Logger } from "winston";
+import { formatGenericError } from "./error";
 
 const handleHookError = (hook: string, logger: Logger) => (err: unknown) => {
   logger.error({
     message: `Error ocurred inside shutdown-manager ${hook} hook`,
-    e: err,
-    eStr: `${err}`,
-    eJson: JSON.stringify(err),
+    ...formatGenericError(err),
   });
 };
 
@@ -72,6 +71,7 @@ export function installShutdownManager(
   server.headersTimeout = (config.keepAliveTimeoutSeconds + 1) * 1000;
 
   const gracefulShutdown = (signal: string) => () => {
+    // eslint-disable-next-line -- @typescript-eslint/no-unsafe-assignment
     const isTerminating = app.locals[TERMINATION_APP_LOCAL_KEY];
 
     if (typeof isTerminating === "boolean" && isTerminating) {
@@ -107,7 +107,9 @@ export function installShutdownManager(
           config
             .beforeShutdown()
             .catch(handleHookError("beforeShutdown", logger))
-            .finally(() => closeServer());
+            .finally(() => {
+              closeServer();
+            });
         } else {
           closeServer();
         }
@@ -122,7 +124,9 @@ export function installShutdownManager(
       config
         .onSignalReceived(signal)
         .catch(handleHookError("onSignalReceived", logger))
-        .finally(() => shutdown());
+        .finally(() => {
+          shutdown();
+        });
     } else {
       shutdown();
     }

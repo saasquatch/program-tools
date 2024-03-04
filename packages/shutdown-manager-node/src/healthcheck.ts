@@ -13,6 +13,7 @@ export function healthCheck(
   logger: Logger,
 ): (req: Request, res: Response) => void {
   return (_req, res) => {
+    // eslint-disable-next-line -- @typescript-eslint/no-unsafe-assignment
     const terminating = app.locals[TERMINATION_APP_LOCAL_KEY];
     if (typeof terminating === "boolean" && terminating) {
       logger.info("App is in TERMINATING state, sending health check failure");
