@@ -141,3 +141,15 @@ app.get(
   }),
 );
 ```
+
+## nanoid re-export
+
+The library exports a `nanoid` function, which is just vanilla `nanoid` with a custom
+alphabet of characters that are a bit easier to read. Its default ID length is 32.
+
+```typescript
+import { nanoid } from "@saasquatch/express-boilerplate";
+
+console.log(nanoid());
+console.log(nanoid(12));
+```
