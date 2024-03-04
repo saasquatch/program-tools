@@ -5,6 +5,7 @@ import { DemoData } from "../../../global/demo";
 import deepmerge from "deepmerge";
 import { usePayoutDetailsCard } from "./usePayoutDetailsCard";
 import { isDemo } from "@saasquatch/component-boilerplate";
+import { getProps } from "../../../utils/utils";
 
 /**
  * @uiName Payout Details Card
@@ -15,7 +16,15 @@ import { isDemo } from "@saasquatch/component-boilerplate";
   shadow: true,
 })
 export class PayoutDetailsCard {
-  @Prop() nextPayoutBalanceText: "Next payout occurs when balance is";
+  @Prop()
+  statusBadgeText: "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
+  @Prop() thresholdPayoutText: "Next payout occurs when balance is";
+  @Prop() otherCurrenciesText: "other currencies";
+  @Prop() w9PendingText: "Awaiting W-9 tax form";
+  @Prop() accountText: "Account";
+  @Prop() errorTitleText: "There was an error with your payout infomation";
+  @Prop()
+  errorDescriptionText: "Please ensure your payout information is correct. If this problem continues, contact Support.";
 
   /**
    * @undocumented
@@ -28,15 +37,19 @@ export class PayoutDetailsCard {
   disconnectedCallback() {}
 
   getTextProps() {
+    const props = getProps(this);
+    console.log(props);
     return {
-      //TODO: Add props for this text once designs are more fleshed out
-      // pendingDetailedStatusText: "Check rewards table for available date",
-      // upcomingDetailedStatusText: "November 1, 2022",
       statusBadgeText:
         "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }",
-      thresholdPayoutText: "Payout occurs when balance is {thresholdBalance}",
+      thresholdPayoutText:
+        "Next payout occurs when balance is {thresholdBalance}",
       otherCurrenciesText: "other currencies",
       w9PendingText: "Awaiting W-9 tax form",
+      accountText: "Account",
+      errorTitleText: "There was an error with your payout infomation",
+      errorDescriptionText:
+        "Please ensure your payout information is correct. If this problem continues, contact Support.",
     };
   }
 
@@ -58,6 +71,7 @@ function useDemoPayoutDetailsCard(props: PayoutDetailsCard) {
       states: {
         loading: false,
         error: false,
+        thresholdBalance: "$50",
         mainCurrency: { currencyText: "USD", amountText: "100.00" },
         status: "nextPayout",
         payoutType: "BANK_TRANSFER",
@@ -66,7 +80,7 @@ function useDemoPayoutDetailsCard(props: PayoutDetailsCard) {
         otherCurrencies: false,
         hasW9Pending: false,
         hasDatePending: true,
-        cardNumberPreview: "Account ••2381",
+        cardNumberPreview: "2381",
       },
       text: props.getTextProps(),
     },

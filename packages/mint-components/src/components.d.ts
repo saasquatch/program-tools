@@ -1545,11 +1545,17 @@ export namespace Components {
         "uppercaseErrorText": string;
     }
     interface SqmPayoutDetailsCard {
+        "accountText": "Account";
         /**
           * @undocumented
          */
         "demoData"?: DemoData<any>;
-        "nextPayoutBalanceText": "Next payout occurs when balance is";
+        "errorDescriptionText": "Please ensure your payout information is correct. If this problem continues, contact Support.";
+        "errorTitleText": "There was an error with your payout infomation";
+        "otherCurrenciesText": "other currencies";
+        "statusBadgeText": "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
+        "thresholdPayoutText": "Next payout occurs when balance is";
+        "w9PendingText": "Awaiting W-9 tax form";
     }
     interface SqmPopupContainer {
         /**
@@ -7102,11 +7108,17 @@ declare namespace LocalJSX {
         "uppercaseErrorText"?: string;
     }
     interface SqmPayoutDetailsCard {
+        "accountText"?: "Account";
         /**
           * @undocumented
          */
         "demoData"?: DemoData<any>;
-        "nextPayoutBalanceText"?: "Next payout occurs when balance is";
+        "errorDescriptionText"?: "Please ensure your payout information is correct. If this problem continues, contact Support.";
+        "errorTitleText"?: "There was an error with your payout infomation";
+        "otherCurrenciesText"?: "other currencies";
+        "statusBadgeText"?: "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
+        "thresholdPayoutText"?: "Next payout occurs when balance is";
+        "w9PendingText"?: "Awaiting W-9 tax form";
     }
     interface SqmPopupContainer {
         /**

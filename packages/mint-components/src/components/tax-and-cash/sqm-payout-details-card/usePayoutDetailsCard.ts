@@ -34,9 +34,10 @@ export function usePayoutDetailsCard(
             .startOf("month")
             .plus({ day: 15 })
             .toFormat("LLL dd, yyyy");
-    } else {
-      return `${props.nextPayoutBalanceText} ${publisher?.withdrawalSettings?.paymentThreshold}`;
     }
+    // else {
+    //   return `${props.nextPayoutBalanceText} ${publisher?.withdrawalSettings?.paymentThreshold}`;
+    // }
   }
 
   const paymentDay = getPayoutDetailedStatusText(
@@ -49,6 +50,7 @@ export function usePayoutDetailsCard(
   return {
     states: {
       loading: false,
+      thresholdBalance: publisher?.withdrawalSettings?.paymentThreshold,
       mainCurrency: {
         currencyText: publisher?.currency,
         amountText: publisher?.payoutsAccount?.balance,
