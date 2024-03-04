@@ -9,7 +9,7 @@ import {
   UseTaxAndCashDashboardResult,
   useTaxAndCashDashboard,
 } from "./useTaxAndCashDashboard";
-import { Upcoming } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
+import { NextPayout } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
 
 /**
  * @uiName Tax and Cash Status Dashboard
@@ -247,7 +247,7 @@ export class TaxAndCashDashboard {
           callbacks={props.callbacks}
           states={props.states}
           text={props.text}
-          slots={{ payoutDetailsCardSlot: <Upcoming /> }}
+          slots={{ payoutDetailsCardSlot: <NextPayout /> }}
         />
       </Host>
     );
@@ -273,7 +273,7 @@ function useDemoTaxAndCashDashboard(
         onEditPayoutInfo: () => console.debug("payout info"),
       },
       slots: {
-        paymentDetailsCardSlot: <Upcoming />,
+        paymentDetailsCardSlot: <NextPayout />,
       },
       text: props.getTextProps(),
     },

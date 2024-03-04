@@ -14,7 +14,7 @@ import { INDIRECT_TAX_PROVINCES } from "../subregions";
 import { TaxAndCashDashboard } from "./sqm-tax-and-cash-dashboard";
 import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard-view";
 import { useLocale } from "@saasquatch/component-boilerplate";
-import { Upcoming } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
+import { NextPayout } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
 import { taxTypeToName } from "../utils";
 
 function getExpiresSoon(submissionDate: number, expiryDate: number) {
@@ -116,7 +116,7 @@ export const useTaxAndCashDashboard = (
     },
     slots: {
       // TODO: Replace this story once we have hooks for payment details card
-      payoutDetailsCardSlot: <Upcoming />,
+      payoutDetailsCardSlot: <NextPayout />,
     },
     callbacks: {
       onClick: onNewDocumentClick,

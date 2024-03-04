@@ -53,15 +53,15 @@ export function usePayoutDetailsCard(
         currencyText: publisher?.currency,
         amountText: publisher?.payoutsAccount?.balance,
       },
-      status: "next payout",
+      status: "nextPayout",
       payoutType: publisher?.withdrawalSettings?.paymentMethod,
-      empty: false,
+      error: false,
       paypalEmailAddress: publisher?.withdrawalSettings?.paypalEmailAddress,
       cardNumberPreview: publisher?.withdrawalSettings?.bankAccountNumber,
+      nextPayoutDate: paymentDay,
     },
     text: {
       ...props.getTextProps(),
-      nextPayoutDetailedStatusText: paymentDay,
     },
   };
 }

@@ -30,12 +30,11 @@ export class PayoutDetailsCard {
   getTextProps() {
     return {
       //TODO: Add props for this text once designs are more fleshed out
-      pendingStatusBadgeText: "Pending",
-      upcomingStatusBadgeText: "Upcoming",
-      nextPayoutStatusBadgeText: "Next payout",
-      pendingDetailedStatusText: "Check rewards table for available date",
-      upcomingDetailedStatusText: "November 1, 2022",
-      nextPayoutDetailedStatusText: "November 1, 2022",
+      // pendingDetailedStatusText: "Check rewards table for available date",
+      // upcomingDetailedStatusText: "November 1, 2022",
+      statusBadgeText:
+        "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }",
+      thresholdPayoutText: "Payout occurs when balance is {thresholdBalance}",
       otherCurrenciesText: "other currencies",
       w9PendingText: "Awaiting W-9 tax form",
     };
@@ -58,10 +57,12 @@ function useDemoPayoutDetailsCard(props: PayoutDetailsCard) {
     {
       states: {
         loading: false,
-        empty: false,
+        error: false,
         mainCurrency: { currencyText: "USD", amountText: "100.00" },
-        status: "upcoming",
+        status: "nextPayout",
         payoutType: "BANK_TRANSFER",
+        nextPayoutDate: "March 14, 2024",
+        paypalEmailAddress: "joesmith@example.com",
         otherCurrencies: false,
         hasW9Pending: false,
         hasDatePending: true,
