@@ -98,7 +98,7 @@ export const useTaxAndCashDashboard = (
       // AL TODO: qstNumber
       qstNumber: 0,
       indirectTaxType: data?.user.customFields?.__indirectTaxType,
-      indirectTaxNumber: data?.user?.customFields?.__indirectTaxNumber,
+      indirectTaxNumber: publisher?.indirectTaxId,
       isBusinessEntity: publisher?.requiredTaxDocumentType === "W8BENE",
       province: provinceName,
       country: publisher?.indirectTaxCountry
