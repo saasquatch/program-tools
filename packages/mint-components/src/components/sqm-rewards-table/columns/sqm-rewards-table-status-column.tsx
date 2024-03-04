@@ -24,7 +24,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
    * @uiWidget textArea
    */
   @Prop() statusText: string =
-    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }";
+    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_SENT {Payout Sent} PAYOUT_FAILED {Payout Failed} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }";
 
   /**
    * Text shown before the date of an expiring reward.
@@ -67,6 +67,52 @@ export class RewardTableStatusColumn implements RewardTableColumn {
    * @uiName Denied text
    */
   @Prop() deniedText: string = "Detected self-referral";
+
+  /**
+   * Displayed when pending due to tax document review.
+   *
+   * @uiName Pending tax review text
+   */
+  @Prop() pendingTaxReview: string = "Awaiting tax form review.";
+
+  /**
+   * Displayed when pending due to requiring a new tax document
+   *
+   * @uiName Pending new tax form text
+   */
+  @Prop() pendingNewTaxForm: string =
+    "Invalid tax form. Submit a new form to receive your rewards.";
+
+  /**
+   * Displayed when pending due to lack of tax document submission.
+   *
+   * @uiName Pending tax submission text
+   */
+  @Prop() pendingTaxSubmission: string =
+    "Submit your tax documents to receive your rewards.";
+
+  /**
+   * Displayed when pending due to need to connect to an Impact partner
+   *
+   * @uiName Pending partner creation text
+   */
+  @Prop() pendingPartnerCreation: string =
+    "Complete your tax and cash payout setup to receive your rewards.";
+
+  /**
+   * Displayed when reward payout has failed (based on Impact cash payout configuration).
+   *
+   * @uiName Payout failed text
+   */
+  @Prop() payoutFailed: string = "This payout will be retried on {date}.";
+
+  /**
+   * Displayed when reward payout is sent (based on Impact cash payout configuration).
+   *
+   * @uiName Payout sent text
+   */
+  @Prop() payoutSent: string =
+    "Payout process started on {date}. Expected payout on {date}.";
 
   constructor() {
     withHooks(this);

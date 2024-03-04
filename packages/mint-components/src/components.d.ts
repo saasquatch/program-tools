@@ -1515,11 +1515,17 @@ export namespace Components {
         "uppercaseErrorText": string;
     }
     interface SqmPayoutDetailsCard {
+        "accountText": "Account";
         /**
           * @undocumented
          */
         "demoData"?: DemoData<any>;
-        "nextPayoutBalanceText": "Next payout occurs when balance is";
+        "errorDescriptionText": "Please ensure your payout information is correct. If this problem continues, contact Support.";
+        "errorTitleText": "There was an error with your payout infomation";
+        "otherCurrenciesText": "other currencies";
+        "statusBadgeText": "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
+        "thresholdPayoutText": "Next payout occurs when balance is";
+        "w9PendingText": "Awaiting W-9 tax form";
     }
     interface SqmPopupContainer {
         /**
@@ -3113,6 +3119,26 @@ export namespace Components {
          */
         "expiryText": string;
         /**
+          * Displayed when reward payout has failed (based on Impact cash payout configuration).
+          * @uiName Payout failed text
+         */
+        "payoutFailed": string;
+        /**
+          * Displayed when reward payout is sent (based on Impact cash payout configuration).
+          * @uiName Payout sent text
+         */
+        "payoutSent": string;
+        /**
+          * Displayed when pending due to requiring a new tax document
+          * @uiName Pending new tax form text
+         */
+        "pendingNewTaxForm": string;
+        /**
+          * Displayed when pending due to need to connect to an Impact partner
+          * @uiName Pending partner creation text
+         */
+        "pendingPartnerCreation": string;
+        /**
           * Displayed when flagged for fraud.
           * @uiName Pending review text
          */
@@ -3122,6 +3148,16 @@ export namespace Components {
           * @uiName Pending date prefix
          */
         "pendingScheduled": string;
+        /**
+          * Displayed when pending due to tax document review.
+          * @uiName Pending tax review text
+         */
+        "pendingTaxReview": string;
+        /**
+          * Displayed when pending due to lack of tax document submission.
+          * @uiName Pending tax submission text
+         */
+        "pendingTaxSubmission": string;
         /**
           * Displayed when fulfillment error occured when creating a reward.
           * @uiName Unhandled error text
@@ -6877,11 +6913,17 @@ declare namespace LocalJSX {
         "uppercaseErrorText"?: string;
     }
     interface SqmPayoutDetailsCard {
+        "accountText"?: "Account";
         /**
           * @undocumented
          */
         "demoData"?: DemoData<any>;
-        "nextPayoutBalanceText"?: "Next payout occurs when balance is";
+        "errorDescriptionText"?: "Please ensure your payout information is correct. If this problem continues, contact Support.";
+        "errorTitleText"?: "There was an error with your payout infomation";
+        "otherCurrenciesText"?: "other currencies";
+        "statusBadgeText"?: "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
+        "thresholdPayoutText"?: "Next payout occurs when balance is";
+        "w9PendingText"?: "Awaiting W-9 tax form";
     }
     interface SqmPopupContainer {
         /**
@@ -8453,6 +8495,26 @@ declare namespace LocalJSX {
          */
         "expiryText"?: string;
         /**
+          * Displayed when reward payout has failed (based on Impact cash payout configuration).
+          * @uiName Payout failed text
+         */
+        "payoutFailed"?: string;
+        /**
+          * Displayed when reward payout is sent (based on Impact cash payout configuration).
+          * @uiName Payout sent text
+         */
+        "payoutSent"?: string;
+        /**
+          * Displayed when pending due to requiring a new tax document
+          * @uiName Pending new tax form text
+         */
+        "pendingNewTaxForm"?: string;
+        /**
+          * Displayed when pending due to need to connect to an Impact partner
+          * @uiName Pending partner creation text
+         */
+        "pendingPartnerCreation"?: string;
+        /**
           * Displayed when flagged for fraud.
           * @uiName Pending review text
          */
@@ -8462,6 +8524,16 @@ declare namespace LocalJSX {
           * @uiName Pending date prefix
          */
         "pendingScheduled"?: string;
+        /**
+          * Displayed when pending due to tax document review.
+          * @uiName Pending tax review text
+         */
+        "pendingTaxReview"?: string;
+        /**
+          * Displayed when pending due to lack of tax document submission.
+          * @uiName Pending tax submission text
+         */
+        "pendingTaxSubmission"?: string;
         /**
           * Displayed when fulfillment error occured when creating a reward.
           * @uiName Unhandled error text

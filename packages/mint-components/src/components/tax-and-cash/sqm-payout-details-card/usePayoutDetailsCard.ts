@@ -1,5 +1,6 @@
 import { useLocale } from "@saasquatch/component-boilerplate";
 import { DateTime } from "luxon";
+import { intl } from "../../../global/global";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { USER_QUERY_NAMESPACE, UserQuery } from "../sqm-tax-and-cash/data";
 import { PayoutDetailsCard } from "./sqm-payout-details-card";
@@ -35,33 +36,42 @@ export function usePayoutDetailsCard(
             .plus({ day: 15 })
             .toFormat("LLL dd, yyyy");
     } else {
-      return `${props.nextPayoutBalanceText} ${publisher?.withdrawalSettings?.paymentThreshold}`;
+      intl.formatMessage(
+        {
+          id: `nextPayoutBalance`,
+          defaultMessage: props.thresholdPayoutText,
+        },
+        {
+          thresholdBalance: publisher?.withdrawalSettings?.paymentThreshold,
+        }
+      );
     }
   }
 
+  // TODO: need to which timezone payouts are processed in
   const paymentDay = getPayoutDetailedStatusText(
     publisher?.withdrawalSettings?.paymentDay
   );
-  //   publisher?.withdrawalSettings?.paymentDay;
 
-  console.log({ paymentDay });
+  const isPayoutToday = DateTime.now().toFormat("LLL dd, yyyy") === paymentDay;
 
   return {
     states: {
       loading: false,
+      thresholdBalance: publisher?.withdrawalSettings?.paymentThreshold,
       mainCurrency: {
         currencyText: publisher?.currency,
         amountText: publisher?.payoutsAccount?.balance,
       },
-      status: "next payout",
+      status: isPayoutToday ? "payoutToday" : "nextPayout",
       payoutType: publisher?.withdrawalSettings?.paymentMethod,
-      empty: false,
+      error: publisher?.payoutsAccount?.hold,
       paypalEmailAddress: publisher?.withdrawalSettings?.paypalEmailAddress,
       cardNumberPreview: publisher?.withdrawalSettings?.bankAccountNumber,
+      nextPayoutDate: paymentDay,
     },
     text: {
       ...props.getTextProps(),
-      nextPayoutDetailedStatusText: paymentDay,
     },
   };
 }

@@ -1,10 +1,6 @@
 import { h, VNode } from "@stencil/core";
-import { createStyleSheet } from "../../../styling/JSS";
 import { intl } from "../../../global/global";
-import {
-  PayoutDetailsCardView,
-  PayoutDetailsCardViewProps,
-} from "../sqm-payout-details-card/sqm-payout-details-card-view";
+import { createStyleSheet } from "../../../styling/JSS";
 import { TaxDocumentType } from "../sqm-tax-and-cash/data";
 
 export interface TaxAndCashDashboardProps {
@@ -25,7 +21,7 @@ export interface TaxAndCashDashboardProps {
     subRegionTaxNumber?: number;
     //AL TODO add sub-region (spain)
     subRegion?: string;
-    indirectTaxNumber?: number;
+    indirectTaxNumber?: string;
     province?: string;
     country?: string;
     notRegistered?: boolean;
