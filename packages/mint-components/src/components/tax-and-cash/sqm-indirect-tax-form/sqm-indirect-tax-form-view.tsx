@@ -41,7 +41,7 @@ export interface IndirectTaxFormViewProps {
     error: {
       generalTitle: string;
       generalDescription: string;
-      taxDetails: string;
+      fieldRequiredError: string;
     };
   };
   refs: {

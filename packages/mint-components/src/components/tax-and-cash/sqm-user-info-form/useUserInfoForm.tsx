@@ -158,7 +158,7 @@ export function useUserInfoForm(props: TaxForm) {
 
       // required validation
       if (control.required && !value) {
-        jsonpointer.set(errors, key, props.allowBankingCollectionError);
+        jsonpointer.set(errors, key, props.fieldRequiredError);
       }
 
       // custom validation

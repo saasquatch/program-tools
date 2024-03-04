@@ -20,11 +20,7 @@ export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
   subRegion: "Sub-region",
   subRegionTaxNumberLabel: "Income Tax Number",
   error: {
-    subRegionTaxNumber: "asdf", // TODO:
-    selectedRegion: "Country is required",
-    province: "Province is required",
     indirectTaxNumber: "Indirect Tax is required",
-    subRegion: "Sub-region is required",
-    qstNumber: "QST Number is required"
+    fieldRequiredError: '{fieldName} is required'
   },
 };

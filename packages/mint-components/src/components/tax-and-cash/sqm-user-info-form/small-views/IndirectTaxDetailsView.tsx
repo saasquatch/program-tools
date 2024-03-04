@@ -4,6 +4,7 @@ import { createStyleSheet } from "../../../../styling/JSS";
 import { INDIRECT_TAX_PROVINCES } from "../../subregions";
 import { TaxContext, TaxCountry } from "../../sqm-tax-and-cash/data";
 import { vatLabels } from "../../countries";
+import { getIsRequiredErrorMessage } from "../../utils";
 
 export interface IndirectDetailsSlotViewProps {
   states: {
@@ -50,12 +51,8 @@ export interface IndirectDetailsSlotViewProps {
     isRegisteredQST: string;
     isRegisteredSubRegionIncomeTax: string;
     error: {
-      selectedRegion: string;
-      province: string;
       indirectTaxNumber: string;
-      subRegionTaxNumber: string;
-      subRegion: string;
-      qstNumber: string;
+      fieldRequiredError: string;
     };
   };
 }
@@ -193,11 +190,14 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           exportparts="label: input-label"
           class={classes.Input}
           value={formState.subRegion}
-          label={"Sub Region"}
+          label={text.subRegion}
           disabled={states.loading || states.disabled}
           {...(formState.errors?.indirectTaxNumber && {
             class: classes.ErrorInput,
-            helpText: text.error.subRegion,
+            helpText: getIsRequiredErrorMessage(
+              text.subRegion,
+              text.error.fieldRequiredError
+            ),
           })}
           id="subRegion"
           name="/subRegion"
@@ -230,7 +230,10 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             value={formState.subRegionTaxNumber}
             {...(formState.errors?.subRegionTaxNumberError && {
               class: classes.ErrorInput,
-              helpText: text.error.subRegionTaxNumber,
+              helpText: getIsRequiredErrorMessage(
+                text.subRegionTaxNumberLabel,
+                text.error.fieldRequiredError
+              ),
             })}
             id={"subRegionTaxNumber"}
             name={"/subRegionTaxNumber"}
@@ -259,7 +262,10 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           onSl-select={(e) => callbacks.onFormChange("province", e)}
           {...(formState.errors?.province && {
             class: classes.ErrorInput,
-            helpText: text.error.province,
+            helpText: getIsRequiredErrorMessage(
+              text.province,
+              text.error.fieldRequiredError
+            ),
           })}
           id="province"
           name="/province"
@@ -296,7 +302,10 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
               <IndirectTaxNumberInput
                 name={"qstNumber"}
                 label={text.qstNumber}
-                error={text.error.qstNumber}
+                error={getIsRequiredErrorMessage(
+                  text.qstNumber,
+                  text.error.fieldRequiredError
+                )}
               />
             )}
           </div>
@@ -354,7 +363,10 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             onSl-select={(e) => callbacks.onFormChange("selectedRegion", e)}
             {...(formState.errors?.selectedRegion && {
               class: classes.ErrorInput,
-              helpText: text.error.selectedRegion,
+              helpText: getIsRequiredErrorMessage(
+                text.selectedRegion,
+                text.error.fieldRequiredError
+              ),
             })}
             id="selectedRegion"
             name="/selectedRegion"

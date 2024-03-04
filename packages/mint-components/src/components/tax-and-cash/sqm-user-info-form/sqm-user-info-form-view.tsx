@@ -1,6 +1,8 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 import { useRef } from "@saasquatch/universal-hooks";
+import { intl } from "../../../global/global";
+import { getIsRequiredErrorMessage } from "../utils";
 
 export interface UserInfoFormViewProps {
   states: {
@@ -52,23 +54,14 @@ export interface UserInfoFormViewProps {
     currency: string;
     allowBankingCollection: string;
     personalInformation: string;
-    individualParticipant: string;
-    businessEntity: string;
-    participantType: string;
-    taxAndBankingCollection: string;
     submitButton: string;
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
+    termsAndConditionsLabel: string;
     error: {
       generalTitle: string;
       generalDescription: string;
-      firstName: string;
-      lastName: string;
-      email: string;
-      countryCode: string;
-      currency: string;
-      allowBankingCollection: string;
-      participantType: string;
+      fieldRequiredError: string;
     };
   };
   refs: {
@@ -243,7 +236,10 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               {...(formState.errors?.firstName
                 ? {
                     class: classes.ErrorInput,
-                    helpText: text.error.firstName,
+                    helpText: getIsRequiredErrorMessage(
+                      text.firstName,
+                      text.error.fieldRequiredError
+                    ),
                   }
                 : {})}
               id="firstName"
@@ -258,7 +254,10 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               {...(formState.errors?.lastName
                 ? {
                     class: classes.ErrorInput,
-                    helpText: text.error.lastName,
+                    helpText: getIsRequiredErrorMessage(
+                      text.lastName,
+                      text.error.fieldRequiredError
+                    ),
                   }
                 : {})}
               id="lastName"
@@ -285,7 +284,10 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               {...(formState.errors?.countryCode
                 ? {
                     class: classes.ErrorInput,
-                    helpText: text.error.countryCode,
+                    helpText: getIsRequiredErrorMessage(
+                      text.country,
+                      text.error.fieldRequiredError
+                    ),
                   }
                 : {})}
               required
@@ -319,7 +321,10 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               {...(formState.errors?.currency
                 ? {
                     class: classes.ErrorInput,
-                    helpText: text.error.currency,
+                    helpText: getIsRequiredErrorMessage(
+                      text.currency,
+                      text.error.fieldRequiredError
+                    ),
                   }
                 : {})}
               required
@@ -344,7 +349,6 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
             </sl-select>
 
             <div class={classes.CheckboxWrapper}>
-              <p class={classes.BoldText}> {text.taxAndBankingCollection}</p>
               <sl-checkbox
                 exportparts="label: input-label"
                 checked={formState.allowBankingCollection === true}
@@ -361,7 +365,10 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               </sl-checkbox>
               {formState.errors?.allowBankingCollection && (
                 <p class={classes.ErrorText}>
-                  {text.error.allowBankingCollection}
+                  {getIsRequiredErrorMessage(
+                    text.termsAndConditionsLabel,
+                    text.error.fieldRequiredError
+                  )}
                 </p>
               )}
             </div>

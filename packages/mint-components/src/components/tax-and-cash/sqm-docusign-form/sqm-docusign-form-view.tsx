@@ -45,7 +45,6 @@ export interface DocusignFormViewProps {
     banner: string;
     checkboxLabel: string;
     checkboxDescription: string;
-    submitButton: string;
     backButton: string;
     businessEntity: string;
     individualParticipant: string;

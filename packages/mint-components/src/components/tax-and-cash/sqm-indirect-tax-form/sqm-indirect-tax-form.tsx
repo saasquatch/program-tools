@@ -127,13 +127,6 @@ export class IndirectTaxForm {
    * @uiName Back button text
    */
   @Prop() backButton: string = "Back";
-
-  /**
-   * Error message for the tax details input field
-   * @uiName Tax details error message
-   */
-  @Prop() taxDetailsError: string = "This field is required";
-
   /**
    * Title text for a general form submission error
    * @uiName General form submission error title
@@ -149,48 +142,16 @@ export class IndirectTaxForm {
     "Please review your information and try again. If this problem continues, contact Support.";
 
   /**
-   * Error message for the selected region input field
-   * @uiName Selected region error message
-   */
-  @Prop() selectedRegionError: string = "Country is required";
-
-  /**
-   * Error message for the province input field
-   * @uiName Province error message
-   */
-  @Prop() provinceError: string = "Province is required";
-
-  /**
    * Error message for the indirect tax number input field with a dynamic placeholder based on tax type
    * @uiName Indirect tax number error message
    */
   @Prop() indirectTaxNumberError: string =
     "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number} SST {SST Number} GENERAL {Indirect Tax Number}} is required";
-
-  /**
-   * Error message for the sub-region tax number input field
-   * @uiName Sub-region tax number error message
-   */
-  @Prop() subRegionTaxNumberError: string = "Income Tax Number is required";
-
-  /**
-   * Error message for the QST tax number input field
-   * @uiName QST tax number error message
-   */
-  @Prop() qstTaxNumberError: string = "QST Number is required";
-
   /**
    * Label text for the sub-region input field
    * @uiName Sub-region input label
    */
   @Prop() subRegion: string = "Sub-region";
-
-  /**
-   * Error message for the sub-region input field
-   * @uiName Sub-region error message
-   */
-  @Prop() subRegionError: string = "Sub-region is required";
-
   /**
    * Label text for the QST number input field
    * @uiName QST number input label
@@ -222,6 +183,11 @@ export class IndirectTaxForm {
    */
   @Prop() cannotChangeInfoAlert: string =
     "Changes to your personal information and indirect tax can only be made through our Support team after you complete this step. Ensure these are correct before continuing.";
+  /**
+   * Required error text shown at the bottom of field inputs
+   * @uiName Field inputs error text
+   */
+  @Prop() fieldRequiredError: string = "{fieldName} is required";
 
   /**
    * @undocumented
@@ -242,7 +208,7 @@ export class IndirectTaxForm {
       error: {
         generalTitle: props.generalErrorTitle,
         generalDescription: props.generalErrorDescription,
-        taxDetails: props.taxDetailsError,
+        fieldRequiredError: props.fieldRequiredError,
       },
       slotText: {
         isRegisteredQST: props.isRegisteredQST,
@@ -254,12 +220,8 @@ export class IndirectTaxForm {
         province: props.province,
         indirectTaxNumber: props.indirectTaxNumber,
         error: {
-          subRegionTaxNumber: props.subRegionTaxNumberError,
-          selectedRegion: props.selectedRegionError,
-          province: props.provinceError,
           indirectTaxNumber: props.indirectTaxNumberError,
-          subRegion: props.subRegionError,
-          qstNumber: props.qstTaxNumberError,
+          fieldRequiredError: props.fieldRequiredError,
         },
       },
     };
