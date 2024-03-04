@@ -1,13 +1,7 @@
 import { Request, Response } from "express";
 import { formatGenericError } from "./error";
-
-import { customAlphabet } from "nanoid";
 import { Logger } from "winston";
-const alphabet =
-  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
-// security: nanoid uses cyrpto random bytes by default
-export const nanoid = customAlphabet(alphabet, 32);
+import { nanoid } from "./nanoid";
 
 export function asyncHandlerWrapper<T>(
   handler: (req: Request, res: Response) => Promise<T>,
