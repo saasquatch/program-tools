@@ -1,4 +1,4 @@
-<h1 align="center">@saasquatch/shutdown-manager-node</h1>
+<h1 align="center">@saasquatch/express-boilerplate</h1>
 
 The SaaSquatch shutdown manager package facilitates graceful shutdown behavior across all
 NodeJS-based SaaSquatch services.
@@ -8,7 +8,7 @@ NodeJS-based SaaSquatch services.
 Install the package:
 
 ```bash
-npm install @saasquatch/shutdown-manager-node
+npm install @saasquatch/express-boilerplate
 ```
 
 Basic usage:
@@ -18,7 +18,7 @@ import {
   healthCheck,
   installShutdownManager,
   shutdownManagerConfigFromEnv,
-} from "@saasquatch/shutdown-manager-node";
+} from "@saasquatch/express-boilerplate";
 
 import { initializeLogger } from "@saasquatch/logger";
 import express from "express";

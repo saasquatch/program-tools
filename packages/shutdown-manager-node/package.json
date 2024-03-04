@@ -1,5 +1,5 @@
 {
-  "name": "@saasquatch/shutdown-manager-node",
+  "name": "@saasquatch/express-boilerplate",
   "version": "1.0.0",
   "private": false,
   "publishConfig": {
@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/saasquatch/program-tools/issues"
   },
-  "homepage": "https://github.com/saasquatch/program-tools/packages/shutdown-manager-node#readme",
+  "homepage": "https://github.com/saasquatch/program-tools/packages/express-boilerplate#readme",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
