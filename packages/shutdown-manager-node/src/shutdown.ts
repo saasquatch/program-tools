@@ -63,6 +63,7 @@ export function installShutdownManager(
   logger: Logger,
   config: ShutdownManagerConfig,
 ): Server {
+  app.disable("x-powered-by");
   const server = createServer(app);
 
   // https://cloud.google.com/load-balancing/docs/https/https-logging-monitoring#failure-messages
