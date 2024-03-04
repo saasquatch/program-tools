@@ -65,7 +65,7 @@ export function usePayoutDetailsCard(
       },
       status: isPayoutToday ? "payoutToday" : "nextPayout",
       payoutType: publisher?.withdrawalSettings?.paymentMethod,
-      error: false,
+      error: publisher?.payoutsAccount?.hold,
       paypalEmailAddress: publisher?.withdrawalSettings?.paypalEmailAddress,
       cardNumberPreview: publisher?.withdrawalSettings?.bankAccountNumber,
       nextPayoutDate: paymentDay,
