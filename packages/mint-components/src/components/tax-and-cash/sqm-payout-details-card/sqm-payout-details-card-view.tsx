@@ -34,7 +34,7 @@ export interface PayoutDetailsCardViewProps {
 }
 
 const style = {
-  Container: {
+  CardContainer: {
     display: "grid",
     gridTemplateColumns: "1fr",
     gridGap: "var(--sl-spacing-large)",
@@ -116,6 +116,28 @@ const style = {
     width: "50%",
     height: "34px",
   },
+  Alert: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-red-100)",
+      borderTop: "none",
+      padding: "0 16px",
+    },
+
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-danger-500)",
+    },
+  },
+  AlertContent: {
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+  },
+  Container: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "var(--sl-spacing-xx-large)",
+  },
 };
 
 export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
@@ -127,7 +149,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
 
   const renderLoadingSkeleton = () => {
     return (
-      <div class={classes.Container}>
+      <div class={classes.CardContainer}>
         <div class={classes.StatusContainer}>
           <sl-skeleton class={classes.SkeletonOne}></sl-skeleton>
           <sl-skeleton class={classes.SkeletonTwo}></sl-skeleton>
@@ -168,12 +190,12 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
   );
 
   return (
-    <div>
+    <div class={classes.Container}>
       <style type="text/css">{styleString}</style>
       {states.error && (
-        <sl-alert type="danger" open>
+        <sl-alert class={classes.Alert} type="danger" open>
           <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-          <div>
+          <div class={classes.AlertContent}>
             <b>There was an error with your payout infomation</b>
             Please ensure your payout information is correct. If this problem
             continues, contact Support.
@@ -183,7 +205,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
       {states.loading ? (
         renderLoadingSkeleton()
       ) : (
-        <div class={classes.Container}>
+        <div class={classes.CardContainer}>
           <div class={classes.StatusContainer}>
             <p class={classes.SubduedRegularText}>
               {states.status === "thresholdPayout"
