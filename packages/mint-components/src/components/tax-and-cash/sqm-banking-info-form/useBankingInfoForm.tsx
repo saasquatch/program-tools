@@ -64,11 +64,9 @@ export type BankingInfoFormData = {
   bankCity?: string;
   bankState?: string;
   branchCode?: string;
-
   // TODO These fields aren't settable in the mutation
   bankName?: string;
   patronymicName?: string;
-  bankProvinceState?: string;
 };
 
 type RoutingCodeLabels = {
@@ -398,16 +396,16 @@ export function getFormMap({
         ></sl-input>,
         <sl-input
           required
-          label={props.text.bankProvinceStateLabel}
-          name="/bankProvinceState"
-          id="bankProvinceState"
-          key="bankProvinceState"
+          label={props.text.bankStateLabel}
+          name="/bankState"
+          id="bankState"
+          key="bankState"
           type="text"
-          {...(errors?.inputErrors?.bankProvinceState && {
+          {...(errors?.inputErrors?.bankState && {
             class: "error-input",
             helpText: getValidationErrorMessage({
-              type: errors?.inputErrors?.bankProvinceState?.type,
-              label: props.text.bankProvinceStateLabel,
+              type: errors?.inputErrors?.bankState?.type,
+              label: props.text.bankStateLabel,
             }),
           })}
         ></sl-input>,
@@ -546,10 +544,6 @@ export function useBankingInfoForm(
 
   const user = useUserIdentity();
 
-  /** mock data */
-  const [_currency, setCurrency] = useState("");
-  /** */
-
   const formRef = useRef<HTMLFormElement>(null);
 
   const [bankCountry, setBankCountry] = useState("");
@@ -581,7 +575,7 @@ export function useBankingInfoForm(
         JSONPointer.set(validationErrors, key, { type: "required" });
       }
     });
-    console.log({ formData });
+
     setErrors({ inputErrors: validationErrors });
     if (Object.keys(validationErrors).length) {
       return;
@@ -605,14 +599,11 @@ export function useBankingInfoForm(
         } as SetImpactPublisherWithdrawalSettingsInput,
       });
       if (!response || (response as Error)?.message) {
-        console.log({ response });
         throw new Error();
       } else if (
         !(response as SetImpactPublisherWithdrawalSettingsResult)
           .setImpactPublisherWithdrawalSettings?.success
       ) {
-        console.log({ response });
-
         console.error(
           "Validation failed: ",
           (response as SetImpactPublisherWithdrawalSettingsResult)
@@ -654,8 +645,7 @@ export function useBankingInfoForm(
     }
   };
 
-  const currency =
-    _currency || userData?.user?.impactConnection?.publisher?.currency;
+  const currency = userData?.user?.impactConnection?.publisher?.currency || "";
 
   const feeCap = paypalFeeMap[currency] || "";
 
@@ -753,7 +743,6 @@ export function useBankingInfoForm(
       setBankCountry: updateBankCountry,
       setPaymentMethodChecked,
       setPaymentScheduleChecked,
-      setCurrency,
       getValidationErrorMessage: props.getValidationErrorMessage,
     },
     states: {
@@ -783,8 +772,6 @@ export function useBankingInfoForm(
       thresholds: currentPaymentOption?.thresholdOptions?.split(",") || [],
       countries,
       hasPayPal,
-      showInputs: false,
-      hideSteps: false,
     },
     refs: {
       formRef,

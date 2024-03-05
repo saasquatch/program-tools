@@ -71,7 +71,7 @@ export const BankingInfoFormDefaultWithValidationErrors = () => {
                 bankAddress: { type: "required" },
                 bankCity: { type: "required" },
                 bankCountry: { type: "required" },
-                bankProvinceState: { type: "required" },
+                bankState: { type: "required" },
                 bankPostalCode: { type: "required" },
                 branchCode: { type: "required" },
                 balanceThreshold: { type: "required" },

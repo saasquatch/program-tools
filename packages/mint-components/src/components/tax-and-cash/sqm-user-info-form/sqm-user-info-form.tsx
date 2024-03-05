@@ -165,7 +165,7 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
       step,
       setStep,
       onSubmit: () => {},
-      onRadioClick: (value: string) => {},
+      onRadioClick: () => {},
       text: props.getTextProps(),
       refs: {
         formRef: { current: null },

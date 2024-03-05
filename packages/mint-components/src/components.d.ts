@@ -109,10 +109,10 @@ export namespace Components {
          */
         "bankPostalCodeLabel": string;
         /**
-          * Label text for the Bank Province State input
-          * @uiName Bank Province State input label
+          * Label text for the Bank Province / State input
+          * @uiName Bank Province / State input label
          */
-        "bankProvinceStateLabel": string;
+        "bankStateLabel": string;
         /**
           * Label text for the beneficiary account name input field
           * @uiName Beneficiary account name input label
@@ -4191,10 +4191,10 @@ export namespace Components {
          */
         "step4_bankPostalCodeLabel": string;
         /**
-          * Label text for the Bank Province State input
-          * @uiName Bank Province State input label
+          * Label text for the Bank Province / State input
+          * @uiName Bank Province / State input label
          */
-        "step4_bankProvinceStateLabel": string;
+        "step4_bankStateLabel": string;
         /**
           * Label text for the beneficiary account name input field
           * @uiName Beneficiary account name input label
@@ -5490,10 +5490,10 @@ declare namespace LocalJSX {
          */
         "bankPostalCodeLabel"?: string;
         /**
-          * Label text for the Bank Province State input
-          * @uiName Bank Province State input label
+          * Label text for the Bank Province / State input
+          * @uiName Bank Province / State input label
          */
-        "bankProvinceStateLabel"?: string;
+        "bankStateLabel"?: string;
         /**
           * Label text for the beneficiary account name input field
           * @uiName Beneficiary account name input label
@@ -9549,10 +9549,10 @@ declare namespace LocalJSX {
          */
         "step4_bankPostalCodeLabel"?: string;
         /**
-          * Label text for the Bank Province State input
-          * @uiName Bank Province State input label
+          * Label text for the Bank Province / State input
+          * @uiName Bank Province / State input label
          */
-        "step4_bankProvinceStateLabel"?: string;
+        "step4_bankStateLabel"?: string;
         /**
           * Label text for the beneficiary account name input field
           * @uiName Beneficiary account name input label

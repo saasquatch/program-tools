@@ -270,10 +270,10 @@ export class BankingInfoForm {
    */
   @Prop() bankCityLabel: string = "Bank City";
   /**
-   * Label text for the Bank Province State input
-   * @uiName Bank Province State input label
+   * Label text for the Bank Province / State input
+   * @uiName Bank Province / State input label
    */
-  @Prop() bankProvinceStateLabel: string = "Bank Province State";
+  @Prop() bankStateLabel: string = "Bank Province/State";
   /**
    * Label text for the Bank Postal Code
    * @uiName  Bank Postal Code input label
@@ -560,6 +560,7 @@ function useDemoBankingInfoForm(
         saveLoading: false,
         hideSteps: false,
         feeCap,
+        thresholds: [],
         paymentMethodFeeLabel,
         formState: {
           paymentMethodChecked,
@@ -579,7 +580,7 @@ function useDemoBankingInfoForm(
             agencyCode: false,
             bankAddress: false,
             bankCity: false,
-            bankProvinceState: false,
+            bankState: false,
             bankPostalCode: false,
             branchCode: false,
             paymentThreshold: false,
