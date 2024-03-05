@@ -36,7 +36,7 @@ export interface IndirectTaxFormViewProps {
     notRegistered: string;
     notRegisteredSubtext: string;
     cannotChangeInfoAlert: string;
-    submitButton: string;
+    continueButton: string;
     backButton: string;
     error: {
       generalTitle: string;
@@ -291,7 +291,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               submit
               exportparts="base: primarybutton-base"
             >
-              {text.submitButton}
+              {text.continueButton}
             </sl-button>
             <sl-button
               class={classes.SecondaryBtn}

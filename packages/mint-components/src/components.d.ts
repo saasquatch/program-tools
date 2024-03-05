@@ -1016,6 +1016,11 @@ export namespace Components {
          */
         "cannotChangeInfoAlert": string;
         /**
+          * Text for the continue button in the form
+          * @uiName Continue button text
+         */
+        "continueButton": string;
+        /**
           * @undocumented
          */
         "demoData"?: DemoData<UseIndirectTaxFormResult>;
@@ -1134,11 +1139,6 @@ export namespace Components {
           * @uiName Sub-region tax number input label
          */
         "subRegionTaxNumberLabel": string;
-        /**
-          * Text for the continue button in the form
-          * @uiName Continue button text
-         */
-        "submitButton": string;
     }
     interface SqmInputField {
         /**
@@ -3667,6 +3667,12 @@ export namespace Components {
     }
     interface SqmTaxAndCash {
         /**
+          * Text for the continue button in the form
+          * @uiName Continue button text
+          * @uiGroup General Form Properties
+         */
+        "continueButton": string;
+        /**
           * Description text which appears beside badge showing the form is awaiting review
           * @uiName Badge description text
           * @uiGroup Dashboard Properties
@@ -3845,6 +3851,18 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
+          * Alert description text shown in alert if user is already a registered partner
+          * @uiName Participant is partner description
+          * @uiGroup General Form Properties
+         */
+        "isPartnerAlertDescription": string;
+        /**
+          * Alert header text shown in alert if user is already a registered partner
+          * @uiName Participant is partner title
+          * @uiGroup General Form Properties
+         */
+        "isPartnerAlertHeader": string;
+        /**
           * Subtext for the option indicating not being registered for indirect tax
           * @uiName Not registered for indirect tax option sub-text
           * @uiGroup Step 2 Properties
@@ -3892,18 +3910,6 @@ export namespace Components {
           * @uiGroup Step 1 Properties
          */
         "step1_formStep": string;
-        /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
-          * @uiGroup Step 1 Properties
-         */
-        "step1_isPartnerAlertDescription": string;
-        /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
-          * @uiGroup Step 1 Properties
-         */
-        "step1_isPartnerAlertHeader": string;
         /**
           * Label text for last name input
           * @uiName Last name label
@@ -3976,18 +3982,6 @@ export namespace Components {
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxNumberError": string;
-        /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
-          * @uiGroup Step 2 Properties
-         */
-        "step2_isPartnerAlertDescription": string;
-        /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
-          * @uiGroup Step 2 Properties
-         */
-        "step2_isPartnerAlertHeader": string;
         /**
           * Label text for the QST checkbox
           * @uiName checkbox label
@@ -4267,16 +4261,6 @@ export namespace Components {
          */
         "step4_individualSelectItemLabel": string;
         /**
-          * Description text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert description
-         */
-        "step4_isPartnerAlertDescription": string;
-        /**
-          * Header text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert header
-         */
-        "step4_isPartnerAlertHeader": string;
-        /**
           * Label text for the patronymic name input field
           * @uiName Patronymic name input label
          */
@@ -4341,11 +4325,6 @@ export namespace Components {
           * @uiName Savings select item label
          */
         "step4_savingsSelectItemLabel": string;
-        /**
-          * Text for the save button in the form
-          * @uiName Save button text
-         */
-        "step4_submitButton": string;
         /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label
@@ -4629,6 +4608,11 @@ export namespace Components {
          */
         "allowBankingCollection": string;
         /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+         */
+        "continueButton": string;
+        /**
           * Label text for country input
           * @uiName Country label
          */
@@ -4698,11 +4682,6 @@ export namespace Components {
           * @uiName Form heading text
          */
         "personalInformation": string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
-        "submitButton": string;
         /**
           * Label text for terms and conditions
           * @uiName Terms and conditions label text
@@ -6419,6 +6398,11 @@ declare namespace LocalJSX {
          */
         "cannotChangeInfoAlert"?: string;
         /**
+          * Text for the continue button in the form
+          * @uiName Continue button text
+         */
+        "continueButton"?: string;
+        /**
           * @undocumented
          */
         "demoData"?: DemoData<UseIndirectTaxFormResult>;
@@ -6537,11 +6521,6 @@ declare namespace LocalJSX {
           * @uiName Sub-region tax number input label
          */
         "subRegionTaxNumberLabel"?: string;
-        /**
-          * Text for the continue button in the form
-          * @uiName Continue button text
-         */
-        "submitButton"?: string;
     }
     interface SqmInputField {
         /**
@@ -9046,6 +9025,12 @@ declare namespace LocalJSX {
     }
     interface SqmTaxAndCash {
         /**
+          * Text for the continue button in the form
+          * @uiName Continue button text
+          * @uiGroup General Form Properties
+         */
+        "continueButton"?: string;
+        /**
           * Description text which appears beside badge showing the form is awaiting review
           * @uiName Badge description text
           * @uiGroup Dashboard Properties
@@ -9224,6 +9209,18 @@ declare namespace LocalJSX {
          */
         "generalErrorTitle"?: string;
         /**
+          * Alert description text shown in alert if user is already a registered partner
+          * @uiName Participant is partner description
+          * @uiGroup General Form Properties
+         */
+        "isPartnerAlertDescription"?: string;
+        /**
+          * Alert header text shown in alert if user is already a registered partner
+          * @uiName Participant is partner title
+          * @uiGroup General Form Properties
+         */
+        "isPartnerAlertHeader"?: string;
+        /**
           * Subtext for the option indicating not being registered for indirect tax
           * @uiName Not registered for indirect tax option sub-text
           * @uiGroup Step 2 Properties
@@ -9271,18 +9268,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 1 Properties
          */
         "step1_formStep"?: string;
-        /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
-          * @uiGroup Step 1 Properties
-         */
-        "step1_isPartnerAlertDescription"?: string;
-        /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
-          * @uiGroup Step 1 Properties
-         */
-        "step1_isPartnerAlertHeader"?: string;
         /**
           * Label text for last name input
           * @uiName Last name label
@@ -9355,18 +9340,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxNumberError"?: string;
-        /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
-          * @uiGroup Step 2 Properties
-         */
-        "step2_isPartnerAlertDescription"?: string;
-        /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
-          * @uiGroup Step 2 Properties
-         */
-        "step2_isPartnerAlertHeader"?: string;
         /**
           * Label text for the QST checkbox
           * @uiName checkbox label
@@ -9646,16 +9619,6 @@ declare namespace LocalJSX {
          */
         "step4_individualSelectItemLabel"?: string;
         /**
-          * Description text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert description
-         */
-        "step4_isPartnerAlertDescription"?: string;
-        /**
-          * Header text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert header
-         */
-        "step4_isPartnerAlertHeader"?: string;
-        /**
           * Label text for the patronymic name input field
           * @uiName Patronymic name input label
          */
@@ -9720,11 +9683,6 @@ declare namespace LocalJSX {
           * @uiName Savings select item label
          */
         "step4_savingsSelectItemLabel"?: string;
-        /**
-          * Text for the save button in the form
-          * @uiName Save button text
-         */
-        "step4_submitButton"?: string;
         /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label
@@ -10007,6 +9965,11 @@ declare namespace LocalJSX {
          */
         "allowBankingCollection"?: string;
         /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+         */
+        "continueButton"?: string;
+        /**
           * Label text for country input
           * @uiName Country label
          */
@@ -10076,11 +10039,6 @@ declare namespace LocalJSX {
           * @uiName Form heading text
          */
         "personalInformation"?: string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
-        "submitButton"?: string;
         /**
           * Label text for terms and conditions
           * @uiName Terms and conditions label text

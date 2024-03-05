@@ -764,6 +764,23 @@ export const StepFourDefault = () => {
   return <sqm-banking-info-form></sqm-banking-info-form>;
 };
 
+export const StepFourIsPartner = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...stepFourProps,
+        states: {
+          ...stepFourProps.states,
+          isPartner: true,
+          formState: {
+            ...stepFourProps.states.formState,
+          },
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
 export const StepFourDirectToBankChecked = () => {
   return (
     <sqm-banking-info-form

@@ -56,7 +56,7 @@ export interface UserInfoFormViewProps {
     currencyHelpText: string;
     allowBankingCollection: string;
     personalInformation: string;
-    submitButton: string;
+    continueButton: string;
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
     termsAndConditionsLabel: string;
@@ -205,7 +205,17 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
         <div>
           <div class={classes.TextContainer}>
             <div>
-              {!states.hideSteps && <p>{text.formStep}</p>}
+              {!states.hideSteps && (
+                <p>
+                  {intl.formatMessage(
+                    {
+                      id: `formStep`,
+                      defaultMessage: text.formStep,
+                    },
+                    { current: "1", total: "4" }
+                  )}
+                </p>
+              )}
               <h3>{text.personalInformation}</h3>
             </div>
           </div>
@@ -384,7 +394,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               submit
               exportparts="base: primarybutton-base"
             >
-              {text.submitButton}
+              {text.continueButton}
             </sl-button>
           </div>
         </div>
