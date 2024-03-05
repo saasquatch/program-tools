@@ -35,7 +35,7 @@ export class GlobalContainer {
    */
   @Prop() maxwidth: string;
   /**
-   * Show the Powered by Impact link. This can only be disabled on Pro plans.
+   * Show the Powered by Impact.com link. This can only be disabled on Pro plans.
    *
    * @uiName Show Powered By
    */
@@ -89,7 +89,7 @@ export class GlobalContainer {
             href="https://impact.com/advocate/"
             target="_blank"
           >
-            Powered By Impact.com
+            Powered By Impact.com/Advocate
           </a>
         ) : (
           ""
