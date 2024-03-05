@@ -40,16 +40,13 @@ export class PayoutDetailsCard {
     const props = getProps(this);
     console.log(props);
     return {
-      statusBadgeText:
-        "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }",
-      thresholdPayoutText:
-        "Next payout occurs when balance is {thresholdBalance}",
-      otherCurrenciesText: "other currencies",
-      w9PendingText: "Awaiting W-9 tax form",
-      accountText: "Account",
-      errorTitleText: "There was an error with your payout infomation",
-      errorDescriptionText:
-        "Please ensure your payout information is correct. If this problem continues, contact Support.",
+      statusBadgeText: props.statusBadgeText,
+      thresholdPayoutText: props.thresholdPayoutText,
+      otherCurrenciesText: props.otherCurrenciesText,
+      w9PendingText: props.w9PendingText,
+      accountText: props.accountText,
+      errorTitleText: props.errorTitleText,
+      errorDescriptionText: props.errorDescriptionText,
     };
   }
 

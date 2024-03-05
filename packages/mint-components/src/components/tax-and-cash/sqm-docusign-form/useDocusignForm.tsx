@@ -5,7 +5,7 @@ import {
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useParent, useParentValue } from "../../../utils/useParentState";
+import { useParentValue, useSetParent } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
@@ -57,18 +57,23 @@ export const DOCUSIGN_SUCCESS_STATES = ["signing_complete", "viewing_complete"];
 
 export function useDocusignForm(props: DocusignForm) {
   const user = useUserIdentity();
-  const [path, setPath] = useParent<string>(TAX_CONTEXT_NAMESPACE);
+
   const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
+  const setPath = useSetParent<string>(TAX_CONTEXT_NAMESPACE);
+
   const {
     data,
     loading: userLoading,
     refetch,
   } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
   const publisher = data?.user?.impactConnection?.publisher;
+  const [
+    createTaxDocument,
+    { loading: documentLoading, data: document, errors: documentErrors },
+  ] = useMutation<CreateTaxDocumentQuery>(GET_TAX_DOCUMENT);
 
   const [docusignStatus, setDocusignStatus] =
     useState<DocusignStatus>(undefined);
-
   const [participantType, setParticipantType] =
     useState<ParticipantType>(undefined);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
@@ -81,11 +86,6 @@ export function useDocusignForm(props: DocusignForm) {
 
   const actualDocumentType =
     existingDocumentType || getDocumentType(participantType);
-
-  const [
-    createTaxDocument,
-    { loading: documentLoading, data: document, errors: documentErrors },
-  ] = useMutation<CreateTaxDocumentQuery>(GET_TAX_DOCUMENT);
 
   useEffect(() => {
     if (!publisher?.currentTaxDocument?.type) return;

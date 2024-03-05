@@ -558,6 +558,78 @@ export function useBankingInfoForm(
     "BALANCE_THRESHOLD" | "FIXED_DAY" | undefined
   >(undefined);
 
+  const currency = userData?.user?.impactConnection?.publisher?.currency || "";
+
+  const feeCap = paypalFeeMap[currency] || "";
+
+  const paymentOptionsRes = useParentQueryValue<FinanceNetworkSettingsQuery>(
+    FINANCE_NETWORK_SETTINGS_NAMESPACE
+  );
+
+  const paymentOptions =
+    paymentOptionsRes?.data?.impactFinanceNetworkSettings?.data;
+
+  const paymentMethodFeeMap = {
+    [ACH_PAYMENT_METHOD]: "EFT Withdrawal (free)",
+    [WIRE_PAYMENT_METHOD]: `FX Wire (Processing Fee ${currency}${
+      currentPaymentOption?.defaultFxFee || 0
+    }.00)`,
+  };
+  const paymentMethodFeeLabel =
+    paymentMethodFeeMap[currentPaymentOption?.defaultFinancePaymentMethodId];
+
+  const intlLocale = locale?.replace("_", "-") || "en";
+
+  // filter out any duplicate countries and null countryCode
+  const availableCountries = new Set(
+    paymentOptions?.map((option) => option.countryCode).filter((value) => value)
+  );
+
+  // build list of country codes and names
+  const countries = Array.from(availableCountries)?.map((country) => {
+    // @ts-ignore DisplayNames not in Intl type
+    const name = new Intl.DisplayNames([intlLocale], {
+      type: "region",
+    }).of(country);
+
+    return {
+      code: country,
+      name,
+    };
+  });
+
+  const hasPayPal = !!paymentOptions?.find(
+    (option) => option.defaultFinancePaymentMethodId === PAYPAL_PAYMENT_METHOD
+  );
+
+  const paymentMethodChecked = !hasPayPal
+    ? "toBankAccount"
+    : _paymentMethodChecked;
+
+  useEffect(() => {
+    if (!userData) return;
+    if (!paymentOptions) return;
+
+    const publisherCountry =
+      userData?.user?.impactConnection?.publisher?.countryCode;
+    const currentPaymentOption = paymentOptions?.find(
+      (paymentOption) => paymentOption.countryCode === publisherCountry
+    );
+
+    setCurrentPaymentOption(currentPaymentOption);
+    setBankCountry(publisherCountry);
+  }, [paymentOptions, userData, setCurrentPaymentOption, setBankCountry]);
+
+  const updateBankCountry = (bankCountry: string) => {
+    const currentPaymentOption = paymentOptions?.find((paymentOption) => {
+      if (paymentOption.countryCode === bankCountry) return true;
+      return false;
+    });
+
+    setBankCountry(bankCountry);
+    setCurrentPaymentOption(currentPaymentOption);
+  };
+
   const onSubmit = async (event: any) => {
     let formData: BankingInfoFormData = {};
     let validationErrors: Record<string, string> = {};
@@ -644,78 +716,6 @@ export function useBankingInfoForm(
       setLoading(false);
     }
   };
-
-  const currency = userData?.user?.impactConnection?.publisher?.currency || "";
-
-  const feeCap = paypalFeeMap[currency] || "";
-
-  const paymentOptionsRes = useParentQueryValue<FinanceNetworkSettingsQuery>(
-    FINANCE_NETWORK_SETTINGS_NAMESPACE
-  );
-
-  const paymentOptions =
-    paymentOptionsRes?.data?.impactFinanceNetworkSettings?.data;
-
-  useEffect(() => {
-    if (!userData) return;
-    if (!paymentOptions) return;
-
-    const publisherCountry =
-      userData?.user?.impactConnection?.publisher?.countryCode;
-    const currentPaymentOption = paymentOptions?.find(
-      (paymentOption) => paymentOption.countryCode === publisherCountry
-    );
-
-    setCurrentPaymentOption(currentPaymentOption);
-    setBankCountry(publisherCountry);
-  }, [paymentOptions, userData, setCurrentPaymentOption, setBankCountry]);
-
-  const updateBankCountry = (bankCountry: string) => {
-    const currentPaymentOption = paymentOptions?.find((paymentOption) => {
-      if (paymentOption.countryCode === bankCountry) return true;
-      return false;
-    });
-
-    setBankCountry(bankCountry);
-    setCurrentPaymentOption(currentPaymentOption);
-  };
-
-  const paymentMethodFeeMap = {
-    [ACH_PAYMENT_METHOD]: "EFT Withdrawal (free)",
-    [WIRE_PAYMENT_METHOD]: `FX Wire (Processing Fee ${currency}${
-      currentPaymentOption?.defaultFxFee || 0
-    }.00)`,
-  };
-  const paymentMethodFeeLabel =
-    paymentMethodFeeMap[currentPaymentOption?.defaultFinancePaymentMethodId];
-
-  const intlLocale = locale?.replace("_", "-") || "en";
-
-  // filter out any duplicate countries and null countryCode
-  const availableCountries = new Set(
-    paymentOptions?.map((option) => option.countryCode).filter((value) => value)
-  );
-
-  // build list of country codes and names
-  const countries = Array.from(availableCountries)?.map((country) => {
-    // @ts-ignore DisplayNames not in Intl type
-    const name = new Intl.DisplayNames([intlLocale], {
-      type: "region",
-    }).of(country);
-
-    return {
-      code: country,
-      name,
-    };
-  });
-
-  const hasPayPal = !!paymentOptions?.find(
-    (option) => option.defaultFinancePaymentMethodId === PAYPAL_PAYMENT_METHOD
-  );
-
-  const paymentMethodChecked = !hasPayPal
-    ? "toBankAccount"
-    : _paymentMethodChecked;
 
   function setPaymentMethodChecked(
     paymentMethod: "toBankAccount" | "toPayPalAccount"

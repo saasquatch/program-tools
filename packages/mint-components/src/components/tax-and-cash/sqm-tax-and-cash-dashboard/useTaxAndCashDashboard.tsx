@@ -1,8 +1,10 @@
-import { h } from "@stencil/core";
+import { useLocale } from "@saasquatch/component-boilerplate";
 import { useEffect } from "@saasquatch/universal-hooks";
+import { h } from "@stencil/core";
 import { DateTime } from "luxon";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useParent, useSetParent } from "../../../utils/useParentState";
+import { useSetParent } from "../../../utils/useParentState";
+import { NextPayout } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
 import {
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
@@ -11,11 +13,9 @@ import {
   UserQuery,
 } from "../sqm-tax-and-cash/data";
 import { INDIRECT_TAX_PROVINCES } from "../subregions";
+import { taxTypeToName } from "../utils";
 import { TaxAndCashDashboard } from "./sqm-tax-and-cash-dashboard";
 import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard-view";
-import { useLocale } from "@saasquatch/component-boilerplate";
-import { NextPayout } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
-import { taxTypeToName } from "../utils";
 
 function getExpiresSoon(submissionDate: number, expiryDate: number) {
   if (!submissionDate || !expiryDate) return false;
@@ -31,9 +31,7 @@ export const useTaxAndCashDashboard = (
   props: TaxAndCashDashboard
 ): TaxAndCashDashboardProps => {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
-  const [context, setContext] = useParent<TaxContext>(
-    TAX_FORM_CONTEXT_NAMESPACE
-  );
+  const setContext = useSetParent<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
 
   const locale = useLocale();
 
