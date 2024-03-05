@@ -24,7 +24,7 @@ const PopupContainerView = (props: PopupContainerViewProps) => {
         {styles.poweredBy ? (
           <a
             class="sqh-attribution"
-            href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget"
+            href="https://impact.com/advocate/"
             target="_blank"
           >
             {styles.poweredByText}
