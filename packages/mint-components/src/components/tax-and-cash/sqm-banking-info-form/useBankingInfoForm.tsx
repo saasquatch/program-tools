@@ -532,19 +532,22 @@ export function useBankingInfoForm(
   props: BankingInfoForm
 ): BankingInfoFormViewProps {
   const locale = useLocale();
+  const user = useUserIdentity();
+
+  const formRef = useRef<HTMLFormElement>(null);
+
   const setStep = useSetParent<string>(TAX_CONTEXT_NAMESPACE);
+
+  const paymentOptionsRes = useParentQueryValue<FinanceNetworkSettingsQuery>(
+    FINANCE_NETWORK_SETTINGS_NAMESPACE
+  );
 
   const { data: userData, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
-
   const [saveWithdrawalSettings] =
     useMutation<SetImpactPublisherWithdrawalSettingsResult>(
       SAVE_WITHDRAWAL_SETTINGS
     );
-
-  const user = useUserIdentity();
-
-  const formRef = useRef<HTMLFormElement>(null);
 
   const [bankCountry, setBankCountry] = useState("");
   const [currentPaymentOption, setCurrentPaymentOption] =
@@ -561,10 +564,6 @@ export function useBankingInfoForm(
   const currency = userData?.user?.impactConnection?.publisher?.currency || "";
 
   const feeCap = paypalFeeMap[currency] || "";
-
-  const paymentOptionsRes = useParentQueryValue<FinanceNetworkSettingsQuery>(
-    FINANCE_NETWORK_SETTINGS_NAMESPACE
-  );
 
   const paymentOptions =
     paymentOptionsRes?.data?.impactFinanceNetworkSettings?.data;
