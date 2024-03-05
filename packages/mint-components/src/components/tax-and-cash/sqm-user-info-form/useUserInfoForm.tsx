@@ -151,7 +151,6 @@ export function useUserInfoForm(props: TaxForm) {
 
     formControls?.forEach((control) => {
       if (!control.name) return;
-      console.log({ control });
 
       const key = control.name;
       const value = control.value;
@@ -178,8 +177,6 @@ export function useUserInfoForm(props: TaxForm) {
     }
 
     const { allowBankingCollection, ...userData } = formData;
-
-    console.log({ userData });
 
     setUserFormContext({
       ...userFormContext,
@@ -211,7 +208,7 @@ export function useUserInfoForm(props: TaxForm) {
     },
     states: {
       hideSteps: context.hideSteps,
-      disabled: false,
+      disabled: loading,
       loading: loading,
       isPartner: !!data?.user?.impactConnection?.publisher,
       isUser: !!data?.user?.impactConnection?.user,

@@ -4,55 +4,99 @@ Feature: Indirect Tax Form
   Background: A user has submitted their personal information in Tax Form Step One
     Given a user is on the Indirect Tax Form
 
-  @minutia
-  Scenario Outline: Different indirect tax inputs are shown depending on the country of a participant
-    When <option> is selected based on the participant <country> from step 1
-    Then different <inputs> appear
+  @motivating
+  Scenario Outline: Form options
+    Given a user
+    When they view the Indirect Tax form
+    Then they see the text "Step 2 of 4"
+    And they see the title "Indirect Tax"
+    And they see the subtitle
+      """
+      Not sure if you are registered for indirect tax? Contact our Support team to find out more.
+      """
+    Then they are shown the radio option for indirect tax
+    And the option <option> has label <label> and description <description>
 
-    Examples: 
-      | country | option                          | inputs                                                 |
-      | CA      | Registered for indirect tax     | Country, Province, HST/GST Number, ?QST Number(Quebec) |
-      | ES      | Registered for indirect tax     | Country, Sub Region, VAT Number, ?Income Tax Number    |
-      | UK      | Registered for indirect tax     | Country, VAT Number                                    |
-      | IR      | Registered for indirect tax     | Country, GST Number                                    |
-      | AU      | Registered for indirect tax     | Country, GST Number                                    |
-      | JP      | Registered for indirect tax     | Country, CT Number                                     |
-      | US      | Not registered for indirect tax | N/A                                                    |
-      | EG      | Not registered for indirect tax | N/A                                                    |
+    # TODO : Descriptions
+    Examples:
+      | option        | label                                                            | description |
+      | notRegistered | I am not registered for Indirect Tax                             | TODO        |
+      | registered    | I am registered for Indirect Tax in a different Country / Region | TODO        |
+
+  @motivating @ui
+  Scenario Outline: Inputs display based on radio option selected
+    Given the option <option> is selected
+    Then the field <field> is displayed
+    And it has label <label>
+
+    Examples:
+      | option        | field               | label                            |
+      | notRegistered | N/A                 | N/A                              |
+      | registered    | indirectCountryCode | Country / Region of Indirect Tax |
+      | registered    | indirectTaxId       | {taxType} Number                 |
+
+  @motivating
+  Scenario Outline: Indirect tax country may be auto-filled
+    Given that a countryCode was selected in Step 1
+    And that countryCode <isSupported> by Impact
+    When a user loads Step 2
+    Then the radio option <option> is auto-selected
+    And the "indirectCountryCode" field <mayBe> set to the countryCode selected in Step 1
+
+    Examples:
+      | isSupported      | option        | mayBe  |
+      | is supported     | registered    | is     |
+      | is not supported | notRegistered | is not |
 
   @minutia @ui
-  Scenario Outline: Participant selects Canada in step 1
-    Given they select "Canada" as their country in step 1
-    Then the "I am registered Indirect Tax" option is selected in step 2
-    And the Country select is auto-selected with "Canada" from step 1
-    And a Province select appears with the available <provinces>
-    And based on the selected <province>
-    Then <typeTaxInput> will appear
+  Scenario Outline: indirectTaxId field label changes depending on tax type of country selected
+    Given the radio option "registered" is selelected
+    And the "indirectCountryCode" field has <country> selected
+    And the tax type of that country is <taxType>
+    Then the label of the "indirectTaxId" field is <label>
 
-    Examples: 
-      | province              | typeTaxInput      |
-      | Ontario               | HST Number        |
-      | New Brunswick         | HST Number        |
-      | Newfoundland          | HST Number        |
-      | Nova Scotia           | HST Number        |
-      | Saskatchewan          | HST Number        |
-      | Prince Edward Island  | HST Number        |
-      | Nunavut               | HST Number        |
-      | British Columbia      | HST Number        |
-      | Manitoba              | HST Number        |
-      | Quebec                | GST + ?QST Number |
-      | Yukon                 | GST Number        |
-      | Alberta               | GST Number        |
-      | Northwest Territories | GST Number        |
+    Examples:
+      | country     | taxType       | label               |
+      | New Zealand | GST           | GST Number          |
+      | Malaysia    | SST           | SST Number          |
+      | Japan       | CT            | CT Number           |
+      | Italy       | VAT           | VAT Number          |
+      | Uganda      | Not specified | Indirect Tax Number |
 
   @minutia @ui
-  Scenario: QST Number input appears if the province is Quebec
-    Given the participant selects "Canada" as their country in step 1
-    And they Quebec select as their province
-    Then a "GST Number" input will appear
-    And a checkbox with "I am registered for QST Tax" will appear
-    And if the participant checks the box
-    Then a "QST Number" input will appear
+  Scenario Outline: Canada special cases
+    Given the radio option "registered" is selelected
+    And the "indirectCountryCode" field has "Canada" selected
+    Then the "province" field is displayed
+    When the "province" field has value <province>
+    Then the "indirectTaxId" field is shown and has label <label>
+    And <additionalFields> are shown
+
+    Examples:
+      | province               | label      | additionalFields |
+      | Alberta                | GST Number | n/a              |
+      | British Columbia       | HST Number | n/a              |
+      | Manitoba               | HST Number | n/a              |
+      | New Brunswick          | HST Number | n/a              |
+      | Newfoundland           | HST Number | n/a              |
+      | North West Territories | HST Number | n/a              |
+      | Nova Scotia            | HST Number | n/a              |
+      | Nunavut                | HST Number | n/a              |
+      | Ontario                | HST Number | n/a              |
+      | Prince Edward Island   | HST Number | n/a              |
+      | Quebec                 | GST Number | registeredForQST |
+      | Saskatchewan           | HST Number | n/a              |
+      | Yukon                  | GST Number | n/a              |
+
+  @minutia @ui
+  Scenario: Selecting the "registeredForQST" checkbox shows QST Number input
+    Given the radio option "registered" is selelected
+    And the "indirectCountryCode" field has "Canada" selected
+    And the "province" field has value "Quebec"
+    Then the "registeredForQST" checkbox with label "I am registered for QST Tax" will appear
+    When the "registeredForQST" checkbox is selected
+    Then the "qstNumber" field is selected
+    And the "qstNumber" field has label "QST Number"
 
   @minutia @ui
   Scenario Outline: Participant selects other country that has tax handling in step 1
@@ -110,30 +154,32 @@ Feature: Indirect Tax Form
     And based on the <typeTax>
     Then <typeTaxInputHeader> changes
 
-    Examples: 
+    Examples:
       | country        | typeTax | typeTaxInputHeader |
       | United Kingdom | VAT     | VAT Number         |
       | Australia      | GST     | GST Number         |
       | Japan          | CT      | CT Number          |
 
-  @minutia
-  Scenario: Participant selects Spain as their country
-    Given the participant selects Spain as their country in step 1
-    Then a VAT Number input, <subRegion> select, and <isRegisteredForIncomeTax> checkbox appear
-    And if the participant <isRegisteredForIncomeTax
-    Then an Income Tax input appears
-
-    Examples: 
-      | subRegions | isRegisteredIncomeTax |
-      | Madrid     | true                  |
-      | Barcelona  | false                 |
-      | Valencia   | true                  |
+  ###############################################################
 
   @minutia
-  Scenario: Participant selects other country that is ineligible for indirect tax
-    Given they select a country ineligible for indirect tax in step 1
-    Then "I am not registered for Indirect Tax" is auto-selected
-    And no inputs appear
+  Scenario Outline: Spain special case
+    Given "impactCountryCode" has value "Spain"
+    Then the field <field> is displayed
+    And the field <field> has label <label>
+
+    Examples:
+      | field                  | label                                                                                                                      |
+      | withholdingRegion      | Sub Region                                                                                                                 |
+      | vatNumber              | VAT Number                                                                                                                 |
+      | withholdingTaxCheckbox | I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me. |
+
+  @minutia
+  Scenario: Withholding tax number field
+    Given "impactCountryCode" has value "Spain"
+    When the "withholdTaxCheckbox" checkbox is set to true
+    Then the "withholdingTaxId" field is displayed
+    And the "withholdingTaxId" field has label "Income Tax Number"
 
   @minutia @ui
   Scenario: Country/Region of Indirect Tax select is searchable
@@ -144,20 +190,32 @@ Feature: Indirect Tax Form
 
   @minutia
   Scenario: Participant is registered for indirect tax fills out and submits form
-    Given they are registered for indirect tax
-    And they fill out the form
+    Given they fill out the form
     And press "Continue"
+    Then the save request is sent
+    When the request is unsuccessful due to an error
+    Then an error banner is displayed
+    And they are not sent to Step 3
+
+  @minutia
+  Scenario: Participant is registered for indirect tax fills out and submits form
+    Given they fill out the form correctly
+    And press "Continue"
+    Then the save request is sent
+    When the request is successful
     Then their indirect tax details are saved
+    And they are sent to Step 3
 
   @minutia @ui
   Scenario: Participant fills out the Indirect Tax Form with invalid or empty values
-    When they fill out the form with invalid or empty for the following fields:
+    Given the form has invalid or empty for the following fields:
       | Country               | <country             |
       | Province              | <province>           |
       | Sub-region            | <subRegion>          |
       | Indirect Tax Number   | <indirectTaxNumber>  |
       | QST Number            | <qstNumber>          |
       | Sub-Region Tax Number | <subRegionTaxNumber> |
+    When the "Continue" button is clicked
     Then the form displays the respective errors for each field:
       | <country>           | Country is required                 |
       | <province>          | Province is required                |
@@ -165,15 +223,7 @@ Feature: Indirect Tax Form
       | <indirectTaxNumber> | "VAT/HST/GST/CT Number is required" |
       | <qstNumber>         | "QST Number is required"            |
       | <subRegionTaxNumber | "Income Tax Number is required      |
-
-  @minutia
-  Scenario: Participant goes back to step 1
-    When they press the Back button
-    Then the they are sent back to step 1
-    And they arrive at the step 1 form with their details persisted
-    When they press "Continue" on step 1
-    Then they arrive on step 2
-    And the information they filled on step 2 is persisted
+    And no request is sent to the backend
 
   @unknown @minutia
   Scenario Outline: Participant from another country can change the auto selected country
@@ -181,15 +231,16 @@ Feature: Indirect Tax Form
     And they change the Country to <newCountrySelectValue>
     Then the Country <countryAutoSelectValue> changes to the <newCountrySelectValue>
 
-    Examples: 
+    Examples:
       | country | countryAutoSelectValue | newCountrySelectValue |
       | US      | United States          | Australia             |
       | UK      | United Kingdom         | Egypt                 |
 
-  @minutia
-  Scenario: Indirect tax fields are disabled if the user has existing publisher information
-    Given a user with a existing publisher information
-    Then all fields in the indirect tax form are disabled
-    When they click "Continue"
-    Then createImpactConnection mutation is called
-    And the body contains the pre-existing publisher information
+# Not sure about including since this state is avoided in the implementation
+# @minutia
+# Scenario: Indirect tax fields are disabled if the user has existing publisher information
+#   Given a user with a existing publisher information
+#   Then all fields in the indirect tax form are disabled
+#   When they click "Continue"
+#   Then createImpactConnection mutation is called
+#   And the body contains the pre-existing publisher information
