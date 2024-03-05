@@ -624,10 +624,10 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_bankCityLabel: string = "Bank City";
   /**
-   * Label text for the Bank Province State input
-   * @uiName Bank Province State input label
+   * Label text for the Bank Province / State input
+   * @uiName Bank Province / State input label
    */
-  @Prop() step4_bankProvinceStateLabel: string = "Bank Province State";
+  @Prop() step4_bankStateLabel: string = "Bank Province / State";
   /**
    * Label text for the Bank Postal Code
    * @uiName  Bank Postal Code input label

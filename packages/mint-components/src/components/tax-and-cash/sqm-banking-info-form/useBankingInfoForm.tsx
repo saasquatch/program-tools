@@ -68,7 +68,6 @@ export type BankingInfoFormData = {
   // TODO These fields aren't settable in the mutation
   bankName?: string;
   patronymicName?: string;
-  bankProvinceState?: string;
 };
 
 type RoutingCodeLabels = {
@@ -398,16 +397,16 @@ export function getFormMap({
         ></sl-input>,
         <sl-input
           required
-          label={props.text.bankProvinceStateLabel}
-          name="/bankProvinceState"
-          id="bankProvinceState"
-          key="bankProvinceState"
+          label={props.text.bankStateLabel}
+          name="/bankState"
+          id="bankState"
+          key="bankState"
           type="text"
-          {...(errors?.inputErrors?.bankProvinceState && {
+          {...(errors?.inputErrors?.bankState && {
             class: "error-input",
             helpText: getValidationErrorMessage({
-              type: errors?.inputErrors?.bankProvinceState?.type,
-              label: props.text.bankProvinceStateLabel,
+              type: errors?.inputErrors?.bankState?.type,
+              label: props.text.bankStateLabel,
             }),
           })}
         ></sl-input>,
