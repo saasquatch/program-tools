@@ -118,6 +118,9 @@ const style = {
       color: "var(--sl-color-danger-500)",
     },
   },
+  CannotChangeAlertContainer: {
+    maxWidth: "797px",
+  },
   PartnerAlertContainer: {
     "&::part(base)": {
       backgroundColor: "var(--sl-color-sky-100)",
@@ -271,19 +274,21 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               {slots.registeredInDifferentCountryDetailsSlot}
             </div>
           </div>
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="primary"
-            open
-            class={classes.InfoAlert}
-          >
-            <sl-icon
-              class={classes.InfoWarningIcon}
-              slot="icon"
-              name="exclamation-triangle"
-            ></sl-icon>
-            {text.cannotChangeInfoAlert}
-          </sl-alert>
+          <div class={classes.CannotChangeAlertContainer}>
+            <sl-alert
+              exportparts="base: alert-base, icon:alert-icon"
+              type="primary"
+              open
+              class={classes.InfoAlert}
+            >
+              <sl-icon
+                class={classes.InfoWarningIcon}
+                slot="icon"
+                name="exclamation-triangle"
+              ></sl-icon>
+              {text.cannotChangeInfoAlert}
+            </sl-alert>
+          </div>
           <div class={classes.BtnContainer}>
             <sl-button
               type="primary"

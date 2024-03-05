@@ -98,11 +98,10 @@ const style = {
     flexDirection: "column",
   },
   CheckboxContainer: {
-    display: "flex",
     alignItems: "flex-start",
     justifyContent: "flex-start",
-    flexDirection: "column",
     gap: "var(--sl-spacing-xx-small)",
+    maxWidth: "650px",
   },
   TitleContainer: {
     display: "flex",
@@ -150,6 +149,10 @@ const style = {
       color: "var(--sl-color-danger-500)",
     },
   },
+  RadioContainer: {
+    display: "flex",
+    flexDirection: "column",
+  },
   PartnerAlertContainer: {
     "&::part(base)": {
       backgroundColor: "var(--sl-color-sky-100)",
@@ -159,6 +162,9 @@ const style = {
     "& sl-icon::part(base)": {
       color: "var(--sl-color-blue-500)",
     },
+  },
+  CannotChangeAlertContainer: {
+    maxWidth: "680px",
   },
   Checkbox: {
     "&::part(control)": {
@@ -176,11 +182,11 @@ const style = {
     gap: "16px",
 
     "& sl-input::part(base)": {
-      maxWidth: "320px",
+      maxWidth: "450px",
     },
 
     "& sl-select::part(base)": {
-      maxWidth: "320px",
+      maxWidth: "450px",
     },
   },
   CheckboxSkeleton: {
@@ -362,19 +368,21 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             {text.isPartnerAlertDescription}
           </sl-alert>
         )}
-        <sl-alert
-          exportparts="base: alert-base, icon:alert-icon"
-          type="primary"
-          open
-          class={classes.InfoAlert}
-        >
-          <sl-icon
-            class={classes.InfoWarningIcon}
-            slot="icon"
-            name="exclamation-triangle"
-          ></sl-icon>
-          {text.cannotChangeInfoAlert}
-        </sl-alert>
+        <div class={classes.CannotChangeAlertContainer}>
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            type="primary"
+            open
+            class={classes.InfoAlert}
+          >
+            <sl-icon
+              class={classes.InfoWarningIcon}
+              slot="icon"
+              name="exclamation-triangle"
+            ></sl-icon>
+            {text.cannotChangeInfoAlert}
+          </sl-alert>
+        </div>
         <div>
           <h4>{text.paymentMethod}</h4>
           <p class={classes.DescriptionText}>{text.paymentMethodSubtext}</p>
@@ -385,7 +393,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           {states.loading && formState.paymentMethodChecked === undefined ? (
             getLoadingSkeleton(undefined)
           ) : (
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div class={classes.RadioContainer}>
               {states.hasPayPal && (
                 <sl-radio
                   class={classes.Checkbox}
