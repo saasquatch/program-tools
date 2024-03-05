@@ -130,11 +130,6 @@ export class DocusignForm {
    */
   @Prop() refreshButton: string = "Refresh Page";
   /**
-   * Text shown inside of submit button
-   * @uiName Submit button text
-   */
-  @Prop() submitButton: string = "Continue";
-  /**
    * Text shown inside of back button
    * @uiName Back button text
    */

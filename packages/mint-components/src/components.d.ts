@@ -687,11 +687,6 @@ export namespace Components {
          */
         "refreshButton": string;
         /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
-        "submitButton": string;
-        /**
           * Heading text shown at the top of the page
           * @uiName Tax form heading text
          */
@@ -1025,6 +1020,11 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseIndirectTaxFormResult>;
         /**
+          * Required error text shown at the bottom of field inputs
+          * @uiName Field inputs error text
+         */
+        "fieldRequiredError": string;
+        /**
           * Subtext shown at the top of the page, used to show the current step of the tax form.
           * @uiName Form step text
          */
@@ -1115,45 +1115,20 @@ export namespace Components {
          */
         "province": string;
         /**
-          * Error message for the province input field
-          * @uiName Province error message
-         */
-        "provinceError": string;
-        /**
           * Label text for the QST number input field
           * @uiName QST number input label
          */
         "qstNumber": string;
-        /**
-          * Error message for the QST tax number input field
-          * @uiName QST tax number error message
-         */
-        "qstTaxNumberError": string;
         /**
           * Label text for the country/region select input
           * @uiName Selected country/region label
          */
         "selectedRegion": string;
         /**
-          * Error message for the selected region input field
-          * @uiName Selected region error message
-         */
-        "selectedRegionError": string;
-        /**
           * Label text for the sub-region input field
           * @uiName Sub-region input label
          */
         "subRegion": string;
-        /**
-          * Error message for the sub-region input field
-          * @uiName Sub-region error message
-         */
-        "subRegionError": string;
-        /**
-          * Error message for the sub-region tax number input field
-          * @uiName Sub-region tax number error message
-         */
-        "subRegionTaxNumberError": string;
         /**
           * Label text for the sub-region tax number input field
           * @uiName Sub-region tax number input label
@@ -1164,11 +1139,6 @@ export namespace Components {
           * @uiName Continue button text
          */
         "submitButton": string;
-        /**
-          * Error message for the tax details input field
-          * @uiName Tax details error message
-         */
-        "taxDetailsError": string;
     }
     interface SqmInputField {
         /**
@@ -3858,6 +3828,12 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
+          * Required error text shown at the bottom of field inputs
+          * @uiName Field inputs error text
+          * @uiGroup General Form Properties
+         */
+        "fieldRequiredError": string;
+        /**
           * Description text for a general form submission error
           * @uiName General form submission error description
          */
@@ -3887,29 +3863,11 @@ export namespace Components {
          */
         "step1_allowBankingCollection": string;
         /**
-          * Error text shown at the bottom of the tax and banking collection checkbox
-          * @uiName Tax and banking collection checkbox error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_allowBankingCollectionError": string;
-        /**
-          * Label text for the business entity radio button
-          * @uiName Business entity radio button label
-          * @uiGroup Step 1 Properties
-         */
-        "step1_businessEntity": string;
-        /**
           * Label text for country input
           * @uiName Country label
           * @uiGroup Step 1 Properties
          */
         "step1_country": string;
-        /**
-          * Error text shown at the bottom of the country input
-          * @uiName Country input error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_countryError": string;
         /**
           * Label text for currency input
           * @uiName Currency label
@@ -3917,23 +3875,11 @@ export namespace Components {
          */
         "step1_currency": string;
         /**
-          * Error text shown at the bottom of the currency input
-          * @uiName Currency input error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_currencyError": string;
-        /**
           * Label text for email input
           * @uiName Email label
           * @uiGroup Step 1 Properties
          */
         "step1_email": string;
-        /**
-          * Error text shown at the bottom of the email input
-          * @uiName Email input error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_emailError": string;
         /**
           * Label text for first name input
           * @uiName First name label
@@ -3941,23 +3887,11 @@ export namespace Components {
          */
         "step1_firstName": string;
         /**
-          * Error text shown at the bottom of the first name input
-          * @uiName First name input error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_firstNameError": string;
-        /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Tax form step text
           * @uiGroup Step 1 Properties
          */
         "step1_formStep": string;
-        /**
-          * Label text for the individual participant radio button
-          * @uiName Individual participant radio button label
-          * @uiGroup Step 1 Properties
-         */
-        "step1_individualParticipant": string;
         /**
           * Alert description text shown in alert if user is already a registered partner
           * @uiName Participant is partner description
@@ -3977,24 +3911,6 @@ export namespace Components {
          */
         "step1_lastName": string;
         /**
-          * Error text shown at the bottom of the last name input
-          * @uiName Last name input error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_lastNameError": string;
-        /**
-          * Heading text for the participant type radio buttons
-          * @uiName Participant type radio buttons heading
-          * @uiGroup Step 1 Properties
-         */
-        "step1_participantType": string;
-        /**
-          * Error text shown at the bottom of the participant type checkbox
-          * @uiName Participant type checkbox error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_participantTypeError": string;
-        /**
           * Heading text shown above the forms inputs.
           * @uiName Form heading text
           * @uiGroup Step 1 Properties
@@ -4006,12 +3922,6 @@ export namespace Components {
           * @uiGroup Step 1 Properties
          */
         "step1_submitButton": string;
-        /**
-          * Heading text for the tax and banking collection checkbox
-          * @uiName Tax and banking collection checkbox heading
-          * @uiGroup Step 1 Properties
-         */
-        "step1_taxAndBankingCollection": string;
         /**
           * Text shown inside of back button
           * @uiName Back button text
@@ -4109,23 +4019,11 @@ export namespace Components {
          */
         "step2_province": string;
         /**
-          * Error text shown below the Selected Region select input
-          * @uiName Province error text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_provinceError": string;
-        /**
           * Label text for the QST Tax Number input
           * @uiName QST Tax Number input label
           * @uiGroup Step 2 Properties
          */
         "step2_qstNumber": string;
-        /**
-          * Error text shown below the QST Tax number input
-          * @uiName QST Tax Number error text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_qstTaxNumberError": string;
         /**
           * Label text for the Selected Region select input
           * @uiName Selected region select input label
@@ -4133,23 +4031,11 @@ export namespace Components {
          */
         "step2_selectedRegion": string;
         /**
-          * Error text shown below the Selected Region select input
-          * @uiName Selected Region error text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_selectedRegionError": string;
-        /**
           * Label text for Sub-region select
           * @uiName for Sub-region select label
           * @uiGroup Step 2 Properties
          */
         "step2_subRegion": string;
-        /**
-          * Error text shown below the Sub-region Income Tax number input
-          * @uiName Sub-region Income Tax error text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_subRegionTaxNumberError": string;
         /**
           * Label text for the Sub-region Income Tax Number input
           * @uiName Sub-region income Tax Number input label
@@ -4162,12 +4048,6 @@ export namespace Components {
           * @uiGroup Step 2 Properties
          */
         "step2_submitButton": string;
-        /**
-          * Error text shown below the tax details radio buttons
-          * @uiName Indirect tax details error text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_taxDetailsError": string;
         /**
           * Text shown inside of back button
           * @uiName Back button text
@@ -4246,12 +4126,6 @@ export namespace Components {
           * @uiGroup Step 3 Properties
          */
         "step3_refreshButton": string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_submitButton": string;
         /**
           * Heading text shown at the top of the page
           * @uiName Tax form heading text
@@ -4508,6 +4382,12 @@ export namespace Components {
           * @uiGroup Step 3 Properties
          */
         "stop3NotBasedInUS": string;
+        /**
+          * Label text for terms and conditions
+          * @uiName Terms and conditions label text
+          * @uiGroup Step 1 Properties
+         */
+        "termsAndConditionsLabel": string;
     }
     interface SqmTaxAndCashDashboard {
         /**
@@ -4749,35 +4629,15 @@ export namespace Components {
          */
         "allowBankingCollection": string;
         /**
-          * Error text shown at the bottom of the tax and banking collection checkbox
-          * @uiName Tax and banking collection checkbox error text
-         */
-        "allowBankingCollectionError": string;
-        /**
-          * Label text for the business entity radio button
-          * @uiName Business entity radio button label
-         */
-        "businessEntity": string;
-        /**
           * Label text for country input
           * @uiName Country label
          */
         "country": string;
         /**
-          * Error text shown at the bottom of the country input
-          * @uiName Country input error text
-         */
-        "countryError": string;
-        /**
           * Label text for currency input
           * @uiName Currency label
          */
         "currency": string;
-        /**
-          * Error text shown at the bottom of the currency input
-          * @uiName Currency input error text
-         */
-        "currencyError": string;
         /**
           * @undocumented 
           * @uiType object
@@ -4789,20 +4649,15 @@ export namespace Components {
          */
         "email": string;
         /**
-          * Error text shown at the bottom of the email input
-          * @uiName Email input error text
+          * Required error text shown at the bottom of field inputs
+          * @uiName Field inputs error text
          */
-        "emailError": string;
+        "fieldRequiredError": string;
         /**
           * Label text for first name input
           * @uiName First name label
          */
         "firstName": string;
-        /**
-          * Error text shown at the bottom of the first name input
-          * @uiName First name input error text
-         */
-        "firstNameError": string;
         /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Tax form step text
@@ -4819,11 +4674,6 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
-          * Label text for the individual participant radio button
-          * @uiName Individual participant radio button label
-         */
-        "individualParticipant": string;
-        /**
           * Alert description text shown in alert if user is already a registered partner
           * @uiName Participant is partner description
          */
@@ -4839,21 +4689,6 @@ export namespace Components {
          */
         "lastName": string;
         /**
-          * Error text shown at the bottom of the last name input
-          * @uiName Last name input error text
-         */
-        "lastNameError": string;
-        /**
-          * Heading text for the participant type radio buttons
-          * @uiName Participant type radio buttons heading
-         */
-        "participantType": string;
-        /**
-          * Error text shown at the bottom of the participant type checkbox
-          * @uiName Participant type checkbox error text
-         */
-        "participantTypeError": string;
-        /**
           * Heading text shown above the forms inputs.
           * @uiName Form heading text
          */
@@ -4864,10 +4699,10 @@ export namespace Components {
          */
         "submitButton": string;
         /**
-          * Heading text for the tax and banking collection checkbox
-          * @uiName Tax and banking collection checkbox heading
+          * Label text for terms and conditions
+          * @uiName Terms and conditions label text
          */
-        "taxAndBankingCollection": string;
+        "termsAndConditionsLabel": string;
     }
     interface SqmUserName {
         /**
@@ -6250,11 +6085,6 @@ declare namespace LocalJSX {
          */
         "refreshButton"?: string;
         /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
-        "submitButton"?: string;
-        /**
           * Heading text shown at the top of the page
           * @uiName Tax form heading text
          */
@@ -6588,6 +6418,11 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseIndirectTaxFormResult>;
         /**
+          * Required error text shown at the bottom of field inputs
+          * @uiName Field inputs error text
+         */
+        "fieldRequiredError"?: string;
+        /**
           * Subtext shown at the top of the page, used to show the current step of the tax form.
           * @uiName Form step text
          */
@@ -6678,45 +6513,20 @@ declare namespace LocalJSX {
          */
         "province"?: string;
         /**
-          * Error message for the province input field
-          * @uiName Province error message
-         */
-        "provinceError"?: string;
-        /**
           * Label text for the QST number input field
           * @uiName QST number input label
          */
         "qstNumber"?: string;
-        /**
-          * Error message for the QST tax number input field
-          * @uiName QST tax number error message
-         */
-        "qstTaxNumberError"?: string;
         /**
           * Label text for the country/region select input
           * @uiName Selected country/region label
          */
         "selectedRegion"?: string;
         /**
-          * Error message for the selected region input field
-          * @uiName Selected region error message
-         */
-        "selectedRegionError"?: string;
-        /**
           * Label text for the sub-region input field
           * @uiName Sub-region input label
          */
         "subRegion"?: string;
-        /**
-          * Error message for the sub-region input field
-          * @uiName Sub-region error message
-         */
-        "subRegionError"?: string;
-        /**
-          * Error message for the sub-region tax number input field
-          * @uiName Sub-region tax number error message
-         */
-        "subRegionTaxNumberError"?: string;
         /**
           * Label text for the sub-region tax number input field
           * @uiName Sub-region tax number input label
@@ -6727,11 +6537,6 @@ declare namespace LocalJSX {
           * @uiName Continue button text
          */
         "submitButton"?: string;
-        /**
-          * Error message for the tax details input field
-          * @uiName Tax details error message
-         */
-        "taxDetailsError"?: string;
     }
     interface SqmInputField {
         /**
@@ -9397,6 +9202,12 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
+          * Required error text shown at the bottom of field inputs
+          * @uiName Field inputs error text
+          * @uiGroup General Form Properties
+         */
+        "fieldRequiredError"?: string;
+        /**
           * Description text for a general form submission error
           * @uiName General form submission error description
          */
@@ -9426,29 +9237,11 @@ declare namespace LocalJSX {
          */
         "step1_allowBankingCollection"?: string;
         /**
-          * Error text shown at the bottom of the tax and banking collection checkbox
-          * @uiName Tax and banking collection checkbox error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_allowBankingCollectionError"?: string;
-        /**
-          * Label text for the business entity radio button
-          * @uiName Business entity radio button label
-          * @uiGroup Step 1 Properties
-         */
-        "step1_businessEntity"?: string;
-        /**
           * Label text for country input
           * @uiName Country label
           * @uiGroup Step 1 Properties
          */
         "step1_country"?: string;
-        /**
-          * Error text shown at the bottom of the country input
-          * @uiName Country input error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_countryError"?: string;
         /**
           * Label text for currency input
           * @uiName Currency label
@@ -9456,23 +9249,11 @@ declare namespace LocalJSX {
          */
         "step1_currency"?: string;
         /**
-          * Error text shown at the bottom of the currency input
-          * @uiName Currency input error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_currencyError"?: string;
-        /**
           * Label text for email input
           * @uiName Email label
           * @uiGroup Step 1 Properties
          */
         "step1_email"?: string;
-        /**
-          * Error text shown at the bottom of the email input
-          * @uiName Email input error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_emailError"?: string;
         /**
           * Label text for first name input
           * @uiName First name label
@@ -9480,23 +9261,11 @@ declare namespace LocalJSX {
          */
         "step1_firstName"?: string;
         /**
-          * Error text shown at the bottom of the first name input
-          * @uiName First name input error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_firstNameError"?: string;
-        /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Tax form step text
           * @uiGroup Step 1 Properties
          */
         "step1_formStep"?: string;
-        /**
-          * Label text for the individual participant radio button
-          * @uiName Individual participant radio button label
-          * @uiGroup Step 1 Properties
-         */
-        "step1_individualParticipant"?: string;
         /**
           * Alert description text shown in alert if user is already a registered partner
           * @uiName Participant is partner description
@@ -9516,24 +9285,6 @@ declare namespace LocalJSX {
          */
         "step1_lastName"?: string;
         /**
-          * Error text shown at the bottom of the last name input
-          * @uiName Last name input error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_lastNameError"?: string;
-        /**
-          * Heading text for the participant type radio buttons
-          * @uiName Participant type radio buttons heading
-          * @uiGroup Step 1 Properties
-         */
-        "step1_participantType"?: string;
-        /**
-          * Error text shown at the bottom of the participant type checkbox
-          * @uiName Participant type checkbox error text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_participantTypeError"?: string;
-        /**
           * Heading text shown above the forms inputs.
           * @uiName Form heading text
           * @uiGroup Step 1 Properties
@@ -9545,12 +9296,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 1 Properties
          */
         "step1_submitButton"?: string;
-        /**
-          * Heading text for the tax and banking collection checkbox
-          * @uiName Tax and banking collection checkbox heading
-          * @uiGroup Step 1 Properties
-         */
-        "step1_taxAndBankingCollection"?: string;
         /**
           * Text shown inside of back button
           * @uiName Back button text
@@ -9648,23 +9393,11 @@ declare namespace LocalJSX {
          */
         "step2_province"?: string;
         /**
-          * Error text shown below the Selected Region select input
-          * @uiName Province error text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_provinceError"?: string;
-        /**
           * Label text for the QST Tax Number input
           * @uiName QST Tax Number input label
           * @uiGroup Step 2 Properties
          */
         "step2_qstNumber"?: string;
-        /**
-          * Error text shown below the QST Tax number input
-          * @uiName QST Tax Number error text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_qstTaxNumberError"?: string;
         /**
           * Label text for the Selected Region select input
           * @uiName Selected region select input label
@@ -9672,23 +9405,11 @@ declare namespace LocalJSX {
          */
         "step2_selectedRegion"?: string;
         /**
-          * Error text shown below the Selected Region select input
-          * @uiName Selected Region error text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_selectedRegionError"?: string;
-        /**
           * Label text for Sub-region select
           * @uiName for Sub-region select label
           * @uiGroup Step 2 Properties
          */
         "step2_subRegion"?: string;
-        /**
-          * Error text shown below the Sub-region Income Tax number input
-          * @uiName Sub-region Income Tax error text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_subRegionTaxNumberError"?: string;
         /**
           * Label text for the Sub-region Income Tax Number input
           * @uiName Sub-region income Tax Number input label
@@ -9701,12 +9422,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 2 Properties
          */
         "step2_submitButton"?: string;
-        /**
-          * Error text shown below the tax details radio buttons
-          * @uiName Indirect tax details error text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_taxDetailsError"?: string;
         /**
           * Text shown inside of back button
           * @uiName Back button text
@@ -9785,12 +9500,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 3 Properties
          */
         "step3_refreshButton"?: string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_submitButton"?: string;
         /**
           * Heading text shown at the top of the page
           * @uiName Tax form heading text
@@ -10047,6 +9756,12 @@ declare namespace LocalJSX {
           * @uiGroup Step 3 Properties
          */
         "stop3NotBasedInUS"?: string;
+        /**
+          * Label text for terms and conditions
+          * @uiName Terms and conditions label text
+          * @uiGroup Step 1 Properties
+         */
+        "termsAndConditionsLabel"?: string;
     }
     interface SqmTaxAndCashDashboard {
         /**
@@ -10287,35 +10002,15 @@ declare namespace LocalJSX {
          */
         "allowBankingCollection"?: string;
         /**
-          * Error text shown at the bottom of the tax and banking collection checkbox
-          * @uiName Tax and banking collection checkbox error text
-         */
-        "allowBankingCollectionError"?: string;
-        /**
-          * Label text for the business entity radio button
-          * @uiName Business entity radio button label
-         */
-        "businessEntity"?: string;
-        /**
           * Label text for country input
           * @uiName Country label
          */
         "country"?: string;
         /**
-          * Error text shown at the bottom of the country input
-          * @uiName Country input error text
-         */
-        "countryError"?: string;
-        /**
           * Label text for currency input
           * @uiName Currency label
          */
         "currency"?: string;
-        /**
-          * Error text shown at the bottom of the currency input
-          * @uiName Currency input error text
-         */
-        "currencyError"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -10327,20 +10022,15 @@ declare namespace LocalJSX {
          */
         "email"?: string;
         /**
-          * Error text shown at the bottom of the email input
-          * @uiName Email input error text
+          * Required error text shown at the bottom of field inputs
+          * @uiName Field inputs error text
          */
-        "emailError"?: string;
+        "fieldRequiredError"?: string;
         /**
           * Label text for first name input
           * @uiName First name label
          */
         "firstName"?: string;
-        /**
-          * Error text shown at the bottom of the first name input
-          * @uiName First name input error text
-         */
-        "firstNameError"?: string;
         /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Tax form step text
@@ -10357,11 +10047,6 @@ declare namespace LocalJSX {
          */
         "generalErrorTitle"?: string;
         /**
-          * Label text for the individual participant radio button
-          * @uiName Individual participant radio button label
-         */
-        "individualParticipant"?: string;
-        /**
           * Alert description text shown in alert if user is already a registered partner
           * @uiName Participant is partner description
          */
@@ -10377,21 +10062,6 @@ declare namespace LocalJSX {
          */
         "lastName"?: string;
         /**
-          * Error text shown at the bottom of the last name input
-          * @uiName Last name input error text
-         */
-        "lastNameError"?: string;
-        /**
-          * Heading text for the participant type radio buttons
-          * @uiName Participant type radio buttons heading
-         */
-        "participantType"?: string;
-        /**
-          * Error text shown at the bottom of the participant type checkbox
-          * @uiName Participant type checkbox error text
-         */
-        "participantTypeError"?: string;
-        /**
           * Heading text shown above the forms inputs.
           * @uiName Form heading text
          */
@@ -10402,10 +10072,10 @@ declare namespace LocalJSX {
          */
         "submitButton"?: string;
         /**
-          * Heading text for the tax and banking collection checkbox
-          * @uiName Tax and banking collection checkbox heading
+          * Label text for terms and conditions
+          * @uiName Terms and conditions label text
          */
-        "taxAndBankingCollection"?: string;
+        "termsAndConditionsLabel"?: string;
     }
     interface SqmUserName {
         /**

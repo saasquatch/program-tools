@@ -1,3 +1,4 @@
+import { intl } from "../../global/global";
 import { TaxDocumentType } from "./sqm-tax-and-cash/data";
 
 export const objectIsFull = (obj: Record<string, unknown>) => {
@@ -16,3 +17,15 @@ export const taxTypeToName = (taxType: TaxDocumentType) => {
       return "";
   }
 };
+
+export const getIsRequiredErrorMessage = (fieldName: string, errorMessage: string) => {
+    return intl.formatMessage(
+      {
+        id: fieldName,
+        defaultMessage: errorMessage,
+      },
+      {
+        fieldName,
+      }
+    );
+  };
