@@ -30,13 +30,13 @@ Feature: Payout Details Card
         And the payout balance is <payoutBalance>
         And the bank account number preview is shown
         Examples:
-            | payoutSchedule    | payoutThreshold | payoutMessage                        | payoutBalance |
-            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is 50 USD | 0             |
-            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is 50 USD | 25            |
-            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is 50 USD | 49            |
-            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is 50 USD | 0             |
-            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is 50 USD | 50            |
-            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is 50 USD | 99            |
+            | payoutSchedule    | payoutThreshold | payoutMessage                         | payoutBalance |
+            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is 50 USD  | 0             |
+            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is 50 USD  | 25            |
+            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is 50 USD  | 49            |
+            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is 100 USD | 0             |
+            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is 100 USD | 50            |
+            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is 100 USD | 99            |
 
 
 
@@ -65,13 +65,13 @@ Feature: Payout Details Card
         And the payout balance is shown
         And the PayPal email is shown
         Examples:
-            | payoutSchedule    | payoutThreshold | badgeText                            | mayBe |
-            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is 50 USD | 0     |
-            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is 50 USD | 25    |
-            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is 50 USD | 49    |
-            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is 50 USD | 0     |
-            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is 50 USD | 50    |
-            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is 50 USD | 99    |
+            | payoutSchedule    | payoutThreshold | badgeText                             | mayBe |
+            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is 50 USD  | 0     |
+            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is 50 USD  | 25    |
+            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is 50 USD  | 49    |
+            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is 100 USD | 0     |
+            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is 100 USD | 50    |
+            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is 100 USD | 99    |
 
     @minutia
     Scenario Outline: An error banner is shown if the payout is on hold
