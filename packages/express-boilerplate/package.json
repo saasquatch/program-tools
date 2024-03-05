@@ -26,7 +26,7 @@
   "homepage": "https://github.com/saasquatch/program-tools/packages/express-boilerplate#readme",
   "main": "dist/index.js",
   "scripts": {
-    "test": "npm run build && node --enable-source-maps node_modules/jest/bin/jest.js --roots dist/tests",
+    "test": "npm run build && node --enable-source-maps node_modules/jest/bin/jest.js --roots dist/tests --coverage",
     "build": "tsc -b",
     "lint": "eslint ./src --report-unused-disable-directives",
     "prepare": "npm run build"
