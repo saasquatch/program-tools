@@ -57,7 +57,7 @@ export function usePayoutDetailsCard(
 
   return {
     states: {
-      loading: false,
+      loading,
       thresholdBalance: publisher?.withdrawalSettings?.paymentThreshold,
       mainCurrency: {
         currencyText: publisher?.currency,

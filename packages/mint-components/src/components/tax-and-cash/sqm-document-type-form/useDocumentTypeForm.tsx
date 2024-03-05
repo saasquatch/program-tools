@@ -1,5 +1,8 @@
+import { useMutation } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
-import { useParent, useParentValue } from "../../../utils/useParentState";
+import { gql } from "graphql-request";
+import { useParentQueryValue } from "../../../utils/useParentQuery";
+import { useParentValue, useSetParent } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
@@ -8,12 +11,6 @@ import {
   UserQuery,
 } from "../sqm-tax-and-cash/data";
 import { DocumentTypeForm } from "./sqm-document-type-form";
-import {
-  useMutation,
-  useUserIdentity,
-} from "@saasquatch/component-boilerplate";
-import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { gql } from "graphql-request";
 
 const UPSERT_USER = gql`
   mutation ($userInput: UserInput!) {
@@ -25,13 +22,14 @@ const UPSERT_USER = gql`
 `;
 
 export function useDocumentTypeForm(props: DocumentTypeForm) {
-  const [path, setPath] = useParent(TAX_CONTEXT_NAMESPACE);
   const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
-  const [loading, setLoading] = useState(false);
-  const [upsertUser] = useMutation(UPSERT_USER);
-  const [errors, setErrors] = useState({});
-  const user = useUserIdentity();
+  const setPath = useSetParent(TAX_CONTEXT_NAMESPACE);
+
   const { refetch } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+  const [upsertUser] = useMutation(UPSERT_USER);
+
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const onSubmit = async (e) => {
     const controls = e.target.getFormControls();
