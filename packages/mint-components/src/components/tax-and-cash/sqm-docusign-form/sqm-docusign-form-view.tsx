@@ -83,7 +83,6 @@ const style = {
     justifyContent: "flex-start",
     flexDirection: "column",
     gap: "24px",
-    paddingBottom: "16px",
   },
   BtnContainer: {
     paddingTop: "36px",

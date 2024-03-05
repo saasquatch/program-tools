@@ -114,7 +114,7 @@ const style = {
     display: "flex",
     justifyContent: "flex-start",
     flexDirection: "column",
-    gap: "24px",
+    gap: "var(--sl-spacing-medium)",
     paddingBottom: "16px",
   },
   BtnContainer: {
