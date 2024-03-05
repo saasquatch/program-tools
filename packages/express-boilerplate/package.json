@@ -5,7 +5,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "description": "Boilerplate code for installing health checks and safely shutting down Node services when OS signals are received",
+  "description": "Boilerplate middleware and functions for building Express apps on Kubernetes",
   "prettier": {},
   "author": "ReferralSaaSquatch.com, Inc.",
   "engines": {
