@@ -61,6 +61,41 @@ test("wrapper with rejected promise", (done) => {
     });
 });
 
+test("default error message", (done) => {
+  const app = express();
+  const logger = jestLogger();
+
+  app.use(requestIdAndLogger(logger));
+
+  app.get(
+    "/",
+    asyncHandlerWrapper(async () => {
+      // eslint-disable-next-line -- @typescript-eslint/no-throw-literal
+      throw { random: "object" };
+      return Promise.resolve();
+    }),
+  );
+
+  void request(app)
+    .get("/")
+    .set("Accept", "application/json")
+    .expect("Content-Type", /json/)
+    .expect(500)
+    .end((err, res) => {
+      if (err) throw err;
+
+      expect(typeof res.body.message).toBe("string");
+      expect(res.body.message).toBe("An internal error occurred");
+
+      expect(typeof res.body.debugId).toBe("string");
+      expect(typeof res.body.requestId).toBe("string");
+      expect(typeof res.body.eStr).toBe("string");
+      expect(typeof res.body.eJson).toBe("string");
+
+      done();
+    });
+});
+
 test("rejection after headers sent", (done) => {
   const app = express();
   const logger = jestLogger();
