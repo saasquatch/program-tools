@@ -45,6 +45,12 @@ export class TaxForm {
    * @uiName Currency label
    */
   @Prop() currency: string = "Currency";
+
+  /**
+   * Help text shown underneath currency input
+   * @uiName Currency help text
+   */
+  @Prop() currencyHelpText: string = "Choose your preferred payout currency";
   /**
    * Label text for tax and banking collection checkbox
    * @uiName Tax and banking label

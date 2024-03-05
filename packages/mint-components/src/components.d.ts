@@ -4639,6 +4639,11 @@ export namespace Components {
          */
         "currency": string;
         /**
+          * Help text shown underneath currency input
+          * @uiName Currency help text
+         */
+        "currencyHelpText": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -10011,6 +10016,11 @@ declare namespace LocalJSX {
           * @uiName Currency label
          */
         "currency"?: string;
+        /**
+          * Help text shown underneath currency input
+          * @uiName Currency help text
+         */
+        "currencyHelpText"?: string;
         /**
           * @undocumented 
           * @uiType object

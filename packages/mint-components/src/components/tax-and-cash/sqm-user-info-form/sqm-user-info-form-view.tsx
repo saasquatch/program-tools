@@ -3,6 +3,7 @@ import { createStyleSheet } from "../../../styling/JSS";
 import { useRef } from "@saasquatch/universal-hooks";
 import { intl } from "../../../global/global";
 import { getIsRequiredErrorMessage } from "../utils";
+import { GeneralLoadingView } from "../TaxForm.stories";
 
 export interface UserInfoFormViewProps {
   states: {
@@ -52,6 +53,7 @@ export interface UserInfoFormViewProps {
     email: string;
     country: string;
     currency: string;
+    currencyHelpText: string;
     allowBankingCollection: string;
     personalInformation: string;
     submitButton: string;
@@ -197,191 +199,194 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
         {styleString}
         {vanillaStyle}
       </style>
-      <div class={classes.TextContainer}>
-        <div>
-          {!states.hideSteps && <p>{text.formStep}</p>}
-          <h3>{text.personalInformation}</h3>
-        </div>
-      </div>
-      {formState.errors?.general && (
-        <sl-alert type="warning" open class={sheet.classes.AlertContainer}>
-          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-          <strong>{text.error.generalTitle}</strong>
-          <br />
-          {text.error.generalDescription}
-        </sl-alert>
-      )}
-      {states.isPartner && (
-        <sl-alert
-          type="primary"
-          open
-          class={sheet.classes.PartnerAlertContainer}
-        >
-          <sl-icon slot="icon" name="info-circle"></sl-icon>
-          <strong>{text.isPartnerAlertHeader}</strong>
-          <br />
-          {text.isPartnerAlertDescription}
-        </sl-alert>
-      )}
       {states.loading ? (
-        <sl-spinner style={{ fontSize: "50px", margin: "40px" }}></sl-spinner>
+        <GeneralLoadingView />
       ) : (
         <div>
-          <div class={classes.InputContainer}>
-            <sl-input
-              exportparts="label: input-label"
-              value={formState.firstName}
-              label={text.firstName}
-              disabled={states.disabled || states.isUser || states.isPartner}
-              {...(formState.errors?.firstName
-                ? {
-                    class: classes.ErrorInput,
-                    helpText: getIsRequiredErrorMessage(
-                      text.firstName,
-                      text.error.fieldRequiredError
-                    ),
-                  }
-                : {})}
-              id="firstName"
-              name="/firstName"
-              required
-            />
-            <sl-input
-              exportparts="label: input-label"
-              value={formState.lastName}
-              label={text.lastName}
-              disabled={states.disabled || states.isUser || states.isPartner}
-              {...(formState.errors?.lastName
-                ? {
-                    class: classes.ErrorInput,
-                    helpText: getIsRequiredErrorMessage(
-                      text.lastName,
-                      text.error.fieldRequiredError
-                    ),
-                  }
-                : {})}
-              id="lastName"
-              name="/lastName"
-              required
-            />
-            <sl-input
-              exportparts="label: input-label"
-              value={formState.email}
-              label={text.email}
-              disabled={true}
-              id="email"
-              name="/email"
-              required
-            />
-
-            <sl-select
-              id="countryCode"
-              exportparts="label: input-label"
-              name="/countryCode"
-              label={text.country}
-              value={formState.countryCode}
-              disabled={states.disabled || states.isPartner}
-              {...(formState.errors?.countryCode
-                ? {
-                    class: classes.ErrorInput,
-                    helpText: getIsRequiredErrorMessage(
-                      text.country,
-                      text.error.fieldRequiredError
-                    ),
-                  }
-                : {})}
-              required
-              onSl-select={(e) => callbacks.onFormChange("countryCode", e)}
-            >
-              <sl-input
-                class={classes.SearchInput}
-                placeholder="Search for country.."
-                onKeyDown={(e) => {
-                  // Stop shoelace intercepting key presses
-                  e.stopPropagation();
-                }}
-                onSl-input={(e) => {
-                  callbacks.setCountrySearch(e.target.value);
-                }}
-              ></sl-input>
-              {data?.countries?.map((c) => (
-                <sl-menu-item value={c.countryCode}>
-                  {c.displayName}
-                </sl-menu-item>
-              ))}
-            </sl-select>
-            <sl-select
-              id="currency"
-              exportparts="label: input-label"
-              name="/currency"
-              label={text.currency}
-              menu
-              value={formState.currency}
-              disabled={states.disabled || states.isPartner}
-              {...(formState.errors?.currency
-                ? {
-                    class: classes.ErrorInput,
-                    helpText: getIsRequiredErrorMessage(
-                      text.currency,
-                      text.error.fieldRequiredError
-                    ),
-                  }
-                : {})}
-              required
-              ref={(el: HTMLFormElement) => (refs.currencyRef.current = el)}
-            >
-              <sl-input
-                class={classes.SearchInput}
-                placeholder="Search for currency.."
-                onKeyDown={(e) => {
-                  // Stop shoelace intercepting key presses
-                  e.stopPropagation();
-                }}
-                onSl-input={(e) => {
-                  callbacks.setCurrencySearch(e.target.value);
-                }}
-              />
-              {data?.currencies?.map((c) => (
-                <sl-menu-item value={c.currencyCode}>
-                  {c.currencyCode} - {c.displayName}
-                </sl-menu-item>
-              ))}
-            </sl-select>
-
-            <div class={classes.CheckboxWrapper}>
-              <sl-checkbox
-                exportparts="label: input-label"
-                checked={formState.allowBankingCollection === true}
-                onSl-change={(e) => {
-                  e.target.value = e.target.checked;
-                }}
-                disabled={states.isPartner ? false : states.disabled}
-                required
-                value={formState.allowBankingCollection}
-                id="allowBankingCollection"
-                name="/allowBankingCollection"
-              >
-                {text.allowBankingCollection}
-              </sl-checkbox>
-              {formState.errors?.allowBankingCollection && (
-                <p class={classes.ErrorText}>
-                  {getIsRequiredErrorMessage(
-                    text.termsAndConditionsLabel,
-                    text.error.fieldRequiredError
-                  )}
-                </p>
-              )}
+          <div class={classes.TextContainer}>
+            <div>
+              {!states.hideSteps && <p>{text.formStep}</p>}
+              <h3>{text.personalInformation}</h3>
             </div>
           </div>
-          <sl-button
-            type="primary"
-            disabled={states.isPartner ? false : states.disabled}
-            loading={states.loading}
-            submit
-            exportparts="base: primarybutton-base"
-          >
-            {text.submitButton}
-          </sl-button>
+          {formState.errors?.general && (
+            <sl-alert type="warning" open class={sheet.classes.AlertContainer}>
+              <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+              <strong>{text.error.generalTitle}</strong>
+              <br />
+              {text.error.generalDescription}
+            </sl-alert>
+          )}
+          {states.isPartner && (
+            <sl-alert
+              type="primary"
+              open
+              class={sheet.classes.PartnerAlertContainer}
+            >
+              <sl-icon slot="icon" name="info-circle"></sl-icon>
+              <strong>{text.isPartnerAlertHeader}</strong>
+              <br />
+              {text.isPartnerAlertDescription}
+            </sl-alert>
+          )}
+
+          <div>
+            <div class={classes.InputContainer}>
+              <sl-input
+                exportparts="label: input-label"
+                value={formState.firstName}
+                label={text.firstName}
+                disabled={states.disabled || states.isUser || states.isPartner}
+                {...(formState.errors?.firstName
+                  ? {
+                      class: classes.ErrorInput,
+                      helpText: getIsRequiredErrorMessage(
+                        text.firstName,
+                        text.error.fieldRequiredError
+                      ),
+                    }
+                  : {})}
+                id="firstName"
+                name="/firstName"
+                required
+              />
+              <sl-input
+                exportparts="label: input-label"
+                value={formState.lastName}
+                label={text.lastName}
+                disabled={states.disabled || states.isUser || states.isPartner}
+                {...(formState.errors?.lastName
+                  ? {
+                      class: classes.ErrorInput,
+                      helpText: getIsRequiredErrorMessage(
+                        text.lastName,
+                        text.error.fieldRequiredError
+                      ),
+                    }
+                  : {})}
+                id="lastName"
+                name="/lastName"
+                required
+              />
+              <sl-input
+                exportparts="label: input-label"
+                value={formState.email}
+                label={text.email}
+                disabled={true}
+                id="email"
+                name="/email"
+                required
+              />
+
+              <sl-select
+                id="countryCode"
+                exportparts="label: input-label"
+                name="/countryCode"
+                label={text.country}
+                value={formState.countryCode}
+                disabled={states.disabled || states.isPartner}
+                {...(formState.errors?.countryCode
+                  ? {
+                      class: classes.ErrorInput,
+                      helpText: getIsRequiredErrorMessage(
+                        text.country,
+                        text.error.fieldRequiredError
+                      ),
+                    }
+                  : {})}
+                required
+                onSl-select={(e) => callbacks.onFormChange("countryCode", e)}
+              >
+                <sl-input
+                  class={classes.SearchInput}
+                  placeholder="Search for country.."
+                  onKeyDown={(e) => {
+                    // Stop shoelace intercepting key presses
+                    e.stopPropagation();
+                  }}
+                  onSl-input={(e) => {
+                    callbacks.setCountrySearch(e.target.value);
+                  }}
+                ></sl-input>
+                {data?.countries?.map((c) => (
+                  <sl-menu-item value={c.countryCode}>
+                    {c.displayName}
+                  </sl-menu-item>
+                ))}
+              </sl-select>
+              <sl-select
+                id="currency"
+                exportparts="label: input-label"
+                name="/currency"
+                label={text.currency}
+                menu
+                value={formState.currency}
+                disabled={states.disabled || states.isPartner}
+                helpText={text.currencyHelpText}
+                {...(formState.errors?.currency
+                  ? {
+                      class: classes.ErrorInput,
+                      helpText: getIsRequiredErrorMessage(
+                        text.currency,
+                        text.error.fieldRequiredError
+                      ),
+                    }
+                  : {})}
+                required
+                ref={(el: HTMLFormElement) => (refs.currencyRef.current = el)}
+              >
+                <sl-input
+                  class={classes.SearchInput}
+                  placeholder="Search for currency.."
+                  onKeyDown={(e) => {
+                    // Stop shoelace intercepting key presses
+                    e.stopPropagation();
+                  }}
+                  onSl-input={(e) => {
+                    callbacks.setCurrencySearch(e.target.value);
+                  }}
+                />
+                {data?.currencies?.map((c) => (
+                  <sl-menu-item value={c.currencyCode}>
+                    {c.currencyCode} - {c.displayName}
+                  </sl-menu-item>
+                ))}
+              </sl-select>
+
+              <div class={classes.CheckboxWrapper}>
+                <sl-checkbox
+                  exportparts="label: input-label"
+                  checked={formState.allowBankingCollection === true}
+                  onSl-change={(e) => {
+                    e.target.value = e.target.checked;
+                  }}
+                  disabled={states.isPartner ? false : states.disabled}
+                  required
+                  value={formState.allowBankingCollection}
+                  id="allowBankingCollection"
+                  name="/allowBankingCollection"
+                >
+                  {text.allowBankingCollection}
+                </sl-checkbox>
+                {formState.errors?.allowBankingCollection && (
+                  <p class={classes.ErrorText}>
+                    {getIsRequiredErrorMessage(
+                      text.termsAndConditionsLabel,
+                      text.error.fieldRequiredError
+                    )}
+                  </p>
+                )}
+              </div>
+            </div>
+            <sl-button
+              type="primary"
+              disabled={states.isPartner ? false : states.disabled}
+              submit
+              exportparts="base: primarybutton-base"
+            >
+              {text.submitButton}
+            </sl-button>
+          </div>
         </div>
       )}
     </sl-form>
