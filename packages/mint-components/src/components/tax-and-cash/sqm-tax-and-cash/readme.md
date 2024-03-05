@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                                        | Attribute                                            | Description                                                                                                | Type                                                                                                                 | Default                                                                                                                                                                       |
@@ -37,7 +36,7 @@
 | `dashboard_taxDocumentSectionSubHeader`         | `dashboard_tax-document-section-sub-header`          | Sub header text displayed above the tax documents status                                                   | `string`                                                                                                             | `"{documentType} Tax Form"`                                                                                                                                                   |
 | `demoData`                                      | --                                                   |                                                                                                            | `{ loading?: boolean; step?: string; setStep?: (value: string) => void; context?: TaxContext; namespace?: string; }` | `undefined`                                                                                                                                                                   |
 | `notRegisteredSubtext`                          | `not-registered-subtext`                             | Subtext for the option indicating not being registered for indirect tax                                    | `string`                                                                                                             | `"If you’re joining this referral program as an individual or you’re based in the US, then you’re not registered."`                                                           |
-| `otherRegionSubtext`                            | `other-region-subtext`                               | Subtext for the option indicating registration for indirect tax in a different region                      | `string`                                                                                                             | `"f you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more."`                                                |
+| `otherRegionSubtext`                            | `other-region-subtext`                               | Subtext for the option indicating registration for indirect tax in a different region                      | `string`                                                                                                             | `"IIf you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more."`                                              |
 | `step1_allowBankingCollection`                  | `step-1_allow-banking-collection`                    | Label text for tax and banking collection checkbox                                                         | `string`                                                                                                             | `"I agree to the terms"`                                                                                                                                                      |
 | `step1_allowBankingCollectionError`             | `step-1_allow-banking-collection-error`              | Error text shown at the bottom of the tax and banking collection checkbox                                  | `string`                                                                                                             | `"This field is required"`                                                                                                                                                    |
 | `step1_businessEntity`                          | `step-1_business-entity`                             | Label text for the business entity radio button                                                            | `string`                                                                                                             | `"I represent a business entity"`                                                                                                                                             |
@@ -159,7 +158,6 @@
 | `step4_voCodeLabel`                             | `step-4_vo-code-label`                               | Label text for the VO code input field                                                                     | `string`                                                                                                             | `"VO Code"`                                                                                                                                                                   |
 | `stop3NotBasedInUS`                             | `stop-3-not-based-in-u-s`                            | Text shown in the link to the form for non US residents                                                    | `string`                                                                                                             | `"Not based in the US?"`                                                                                                                                                      |
 
-
 ## Dependencies
 
 ### Depends on
@@ -171,6 +169,7 @@
 - [sqm-tax-and-cash-dashboard](../sqm-tax-and-cash-dashboard)
 
 ### Graph
+
 ```mermaid
 graph TD;
   sqm-tax-and-cash --> sqm-user-info-form
@@ -182,6 +181,6 @@ graph TD;
   style sqm-tax-and-cash fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

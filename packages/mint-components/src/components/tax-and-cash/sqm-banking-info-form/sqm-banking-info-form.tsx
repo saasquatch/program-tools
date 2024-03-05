@@ -215,7 +215,7 @@ export class BankingInfoForm {
    * @uiName Partner identification alert description
    */
   @Prop() isPartnerAlertDescription: string =
-    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact our Support team or sign up for this referral program with a different email.";
 
   /**
    * Label text for the classification CPF input field
