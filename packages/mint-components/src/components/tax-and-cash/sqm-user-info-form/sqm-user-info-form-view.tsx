@@ -102,6 +102,7 @@ const style = {
     flexDirection: "column",
     gap: "24px",
     paddingBottom: "36px",
+    maxWidth: "450px",
   },
   SearchInput: {
     padding: "var(--sl-spacing-x-small)",
@@ -205,17 +206,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
         <div>
           <div class={classes.TextContainer}>
             <div>
-              {!states.hideSteps && (
-                <p>
-                  {intl.formatMessage(
-                    {
-                      id: `formStep`,
-                      defaultMessage: text.formStep,
-                    },
-                    { current: "1", total: "4" }
-                  )}
-                </p>
-              )}
+              {!states.hideSteps && <p>{text.formStep}</p>}
               <h3>{text.personalInformation}</h3>
             </div>
           </div>

@@ -61,7 +61,7 @@ export class TaxForm {
    * Sub text shown at the top of the page, used to show the current step of the tax form.
    * @uiName Tax form step text
    */
-  @Prop() formStep: string = "Step {current} of {total}";
+  @Prop() formStep: string = "Step 1 of 4";
   /**
    * Heading text shown above the forms inputs.
    * @uiName Form heading text
@@ -165,7 +165,7 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
       step,
       setStep,
       onSubmit: () => {},
-      onRadioClick: () => {},
+      onRadioClick: (value: string) => {},
       text: props.getTextProps(),
       refs: {
         formRef: { current: null },

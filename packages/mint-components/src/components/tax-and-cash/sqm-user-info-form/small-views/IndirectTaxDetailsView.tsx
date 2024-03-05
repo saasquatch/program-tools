@@ -68,6 +68,7 @@ const style = {
     flexDirection: "column",
     gap: "16px",
     padding: "16px",
+    maxWidth: "450px",
   },
   ConditionalInputsContainer: {
     width: "100%",
