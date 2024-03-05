@@ -23,6 +23,7 @@ jobs:
           - stencil-grapes-plugin
           - mint-components
           - integration-boilerplate-node
+          - express-boilerplate
 
     steps:
       - uses: actions/checkout@v4
