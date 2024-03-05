@@ -101,7 +101,7 @@ const style = {
     alignItems: "flex-start",
     justifyContent: "flex-start",
     gap: "var(--sl-spacing-xx-small)",
-    maxWidth: "650px",
+    maxWidth: "797px",
   },
   TitleContainer: {
     display: "flex",
@@ -164,7 +164,7 @@ const style = {
     },
   },
   CannotChangeAlertContainer: {
-    maxWidth: "680px",
+    maxWidth: "797px",
   },
   Checkbox: {
     "&::part(control)": {
