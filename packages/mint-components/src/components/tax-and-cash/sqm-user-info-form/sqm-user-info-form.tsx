@@ -61,7 +61,7 @@ export class TaxForm {
    * Sub text shown at the top of the page, used to show the current step of the tax form.
    * @uiName Tax form step text
    */
-  @Prop() formStep: string = "Step 1 of 4";
+  @Prop() formStep: string = "Step {current} of {total}";
   /**
    * Heading text shown above the forms inputs.
    * @uiName Form heading text
@@ -71,7 +71,7 @@ export class TaxForm {
    * Text shown inside of submit button
    * @uiName Submit button text
    */
-  @Prop() submitButton: string = "Continue";
+  @Prop() continueButton: string = "Continue";
   /**
    * Alert header text shown in alert if user is already a registered partner
    * @uiName Participant is partner title

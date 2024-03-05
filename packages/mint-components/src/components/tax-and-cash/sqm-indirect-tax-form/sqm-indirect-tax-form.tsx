@@ -120,7 +120,7 @@ export class IndirectTaxForm {
    * Text for the continue button in the form
    * @uiName Continue button text
    */
-  @Prop() submitButton: string = "Continue";
+  @Prop() continueButton: string = "Continue";
 
   /**
    * Text for the back button in the form

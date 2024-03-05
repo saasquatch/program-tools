@@ -560,6 +560,7 @@ function useDemoBankingInfoForm(
         saveLoading: false,
         hideSteps: false,
         feeCap,
+        thresholds: [],
         paymentMethodFeeLabel,
         formState: {
           paymentMethodChecked,

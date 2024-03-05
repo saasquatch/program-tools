@@ -151,11 +151,11 @@ Feature: Tax Form Step One
       | Currency                   | <currency>               |
       | Tax and Banking Collection | <allowBankingCollection> |
     Then the form displays the respective errors for each field:
-      | <firstName>              | Enter a first name     |
-      | <lastName>               | Enter a last name      |
-      | <countryCode>            | Select a country       |
-      | <currency>               | Select a currency      |
-      | <allowBankingCollection> | This field is required |
+      | <firstName>              | Firstname is required            |
+      | <lastName>               | Lastname is required             |
+      | <countryCode>            | Country is required              |
+      | <currency>               | Currency is required             |
+      | <allowBankingCollection> | Terms and Conditions is required |
 
   @minutia @ui
   Scenario: User Info Form is loading
