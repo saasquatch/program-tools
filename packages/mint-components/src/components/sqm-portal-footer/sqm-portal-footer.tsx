@@ -51,8 +51,7 @@ export class PortalFooter {
   /**
    * @uiName Powered By link
    */
-  @Prop() poweredByLink: string =
-    "https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget";
+  @Prop() poweredByLink: string = "https://impact.com/advocate/";
   /**
    * @uiName Top padding
    * @uiGroup Padding

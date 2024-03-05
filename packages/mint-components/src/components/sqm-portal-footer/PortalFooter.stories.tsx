@@ -13,7 +13,7 @@ const defaultProps = {
   supportEmail: "support@example.com",
   supportText: "For program support, contact {email}",
   hidePoweredBy: false,
-  poweredByLink: "https://saasquatch.com",
+  poweredByLink: "https://impact.com/advocate/",
   paddingTop: "large",
   paddingRight: "large",
   paddingBottom: "large",
