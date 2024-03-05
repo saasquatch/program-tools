@@ -51,12 +51,10 @@ export function useUserInfoForm(props: TaxForm) {
 
   const currencyRef = useRef<HTMLSelectElement>(undefined);
   const formRef = useRef<HTMLFormElement>(null);
-  const [formErrors, setErrors] = useState({});
+
+  const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
 
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
-  const [context, setContext] = useParent<TaxContext>(
-    TAX_FORM_CONTEXT_NAMESPACE
-  );
   const [userFormContext, setUserFormContext] = useParent<UserFormContext>(
     USER_FORM_CONTEXT_NAMESPACE
   );
@@ -66,9 +64,18 @@ export function useUserInfoForm(props: TaxForm) {
   const { data: countriesRes, loading: countriesLoading } =
     useParentQueryValue<CountriesQuery>(COUNTRIES_QUERY_NAMESPACE);
 
+  const currencies = useParentValue<Currencies>(CURRENCIES_NAMESPACE);
+
   const countries = countriesRes?.impactPayoutCountries?.data;
 
-  const currencies = useParentValue<Currencies>(CURRENCIES_NAMESPACE);
+  const [countrySearch, setCountrySearch] = useState("");
+  const [filteredCountries, setFilteredCountries] = useState(countries || []);
+
+  const [currencySearch, setCurrencySearch] = useState("");
+  const [filteredCurrencies, setFilteredCurrencies] = useState(
+    currencies || []
+  );
+  const [formErrors, setErrors] = useState({});
 
   useEffect(() => {
     const user = data?.user;
@@ -97,14 +104,6 @@ export function useUserInfoForm(props: TaxForm) {
       });
     }
   }, [data, step, userFormContext]);
-
-  const [countrySearch, setCountrySearch] = useState("");
-  const [filteredCountries, setFilteredCountries] = useState(countries || []);
-
-  const [currencySearch, setCurrencySearch] = useState("");
-  const [filteredCurrencies, setFilteredCurrencies] = useState(
-    currencies || []
-  );
 
   const onFormChange = (field: string, e: CustomEvent) => {
     const value = e.detail?.item?.__value;
@@ -157,7 +156,7 @@ export function useUserInfoForm(props: TaxForm) {
 
       // required validation
       if (control.required && !value) {
-        jsonpointer.set(errors, key, props.allowBankingCollectionError);
+        jsonpointer.set(errors, key, props.fieldRequiredError);
       }
 
       // custom validation

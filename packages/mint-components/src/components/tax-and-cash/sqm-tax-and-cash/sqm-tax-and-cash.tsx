@@ -61,13 +61,8 @@ export class TaxAndCashMonolith {
    * @uiName Tax and banking label
    * @uiGroup Step 1 Properties
    */
-  @Prop() step1_allowBankingCollection: string = "I agree to the terms";
-  /**
-   * Heading text for the tax and banking collection checkbox
-   * @uiName Tax and banking collection checkbox heading
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_taxAndBankingCollection: string = "Continue";
+  @Prop() step1_allowBankingCollection: string =
+    "I have read the terms and conditions and allow impact.com to collect my tax and banking information";
   /**
    * Sub text shown at the top of the page, used to show the current step of the tax form.
    * @uiName Tax form step text
@@ -81,86 +76,17 @@ export class TaxAndCashMonolith {
    */
   @Prop() step1_personalInformation: string = "Personal Information";
   /**
-   * Label text for the business entity radio button
-   * @uiName Business entity radio button label
+   * Label text for terms and conditions
+   * @uiName Terms and conditions label text
    * @uiGroup Step 1 Properties
    */
-  @Prop() step1_businessEntity: string = "I represent a business entity";
-  /**
-   * Label text for the individual participant radio button
-   * @uiName Individual participant radio button label
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_individualParticipant: string =
-    "I am an individual participant";
-  /**
-   * Heading text for the participant type radio buttons
-   * @uiName Participant type radio buttons heading
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_participantType: string = "Participant type";
+  @Prop() termsAndConditionsLabel: string = "Terms and conditions";
   /**
    * Text shown inside of submit button
    * @uiName Submit button text
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_submitButton: string = "Continue";
-  /**
-   * Error text shown at the bottom of the first name input
-   * @uiName First name input error text
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_firstNameError: string = "Enter a first name";
-  /**
-   * Error text shown at the bottom of the last name input
-   * @uiName Last name input error text
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_lastNameError: string = "Enter a last name";
-  /**
-   * Error text shown at the bottom of the email input
-   * @uiName Email input error text
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_emailError: string = "Enter a valid email";
-  /**
-   * Error text shown at the bottom of the country input
-   * @uiName Country input error text
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_countryError: string = "Select a country";
-  /**
-   * Error text shown at the bottom of the currency input
-   * @uiName Currency input error text
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_currencyError: string = "Select a currency";
-  /**
-   * Error text shown at the bottom of the tax and banking collection checkbox
-   * @uiName Tax and banking collection checkbox error text
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_allowBankingCollectionError: string = "This field is required";
-  /**
-   * Error text shown at the bottom of the participant type checkbox
-   * @uiName Participant type checkbox error text
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_participantTypeError: string = "Select a participant type";
-  /**
-   * Alert header text shown in alert if user is already a registered partner
-   * @uiName Participant is partner title
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_isPartnerAlertHeader: string =
-    "An account with this email already exists with our referral program provider, impact.com";
-  /**
-   * Alert description text shown in alert if user is already a registered partner
-   * @uiName Participant is partner description
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_isPartnerAlertDescription: string =
-    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
   /**
    * * STEP 2 PROPS:
    */
@@ -209,7 +135,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 2 Properties
    */
   @Prop() otherRegionSubtext: string =
-    "f you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more.";
+    "IIf you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more.";
   /**
    * Label text for the not registered radio button
    * @uiName Not registered radio button label
@@ -275,22 +201,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step2_subRegionTaxNumberLabel: string = "Income Tax Number";
   /**
-   * Alert header text shown in alert if user is already a registered partner
-   * @uiName Participant is partner title
-   * @uiGroup Step 2 Properties
-   */
-  @Prop() step2_isPartnerAlertHeader: string =
-    "An account with this email already exists with our referral program provider, impact.com";
-
-  /**
-   * Alert description text shown in alert if user is already a registered partner
-   * @uiName Participant is partner description
-   * @uiGroup Step 2 Properties
-   */
-  @Prop() step2_isPartnerAlertDescription: string =
-    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
-
-  /**
    * Text shown inside of submit button
    * @uiName Submit button text
    * @uiGroup Step 2 Properties
@@ -303,31 +213,12 @@ export class TaxAndCashMonolith {
    */
   @Prop() step2_backButton: string = "Back";
   /**
-   * Error text shown below the tax details radio buttons
-   * @uiName Indirect tax details error text
-   * @uiGroup Step 2 Properties
-   */
-  @Prop() step2_taxDetailsError: string = "This field is required";
-  /**
    * Alert text indicating participant cannot change info after it has been submitted
    * @uiName Cannot change info Alert text
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_cannotChangeInfoAlert: string =
     "Changes to your personal information and indirect tax can only be made through our Support team after you complete this step. Ensure these are correct before continuing.";
-
-  /**
-   * Error text shown below the Selected Region select input
-   * @uiName Selected Region error text
-   * @uiGroup Step 2 Properties
-   */
-  @Prop() step2_selectedRegionError: string = "Country is required";
-  /**
-   * Error text shown below the Selected Region select input
-   * @uiName Province error text
-   * @uiGroup Step 2 Properties
-   */
-  @Prop() step2_provinceError: string = "Province is required";
   /**
    * Error text shown below the Indirect Tax Number select input
    * @uiName Indirect Tax Number error text
@@ -335,20 +226,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step2_indirectTaxNumberError: string =
     "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number} SST {SST Number} GENERAL {Indirect Tax Number}} is required";
-
-  /**
-   * Error text shown below the Sub-region Income Tax number input
-   * @uiName Sub-region Income Tax error text
-   * @uiGroup Step 2 Properties
-   */
-  @Prop() step2_subRegionTaxNumberError: string =
-    "Income Tax Number is required";
-  /**
-   * Error text shown below the QST Tax number input
-   * @uiName QST Tax Number error text
-   * @uiGroup Step 2 Properties
-   */
-  @Prop() step2_qstTaxNumberError: string = "QST Tax Number is required";
   /**
    * * STEP 3 PROPS:
    */
@@ -464,12 +341,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step3_refreshButton: string = "Refresh Page";
   /**
-   * Text shown inside of submit button
-   * @uiName Submit button text
-   * @uiGroup Step 3 Properties
-   */
-  @Prop() step3_submitButton: string = "Continue";
-  /**
    * Text shown inside of back button
    * @uiName Back button text
    * @uiGroup Step 3 Properties
@@ -567,12 +438,6 @@ export class TaxAndCashMonolith {
    * @uiName PayPal email input label
    */
   @Prop() step4_payPalInputLabel: string = "PayPal Email";
-
-  /**
-   * Text for the save button in the form
-   * @uiName Save button text
-   */
-  @Prop() step4_submitButton: string = "Save";
   /**
    * Label text for the bank country location input field
    * @uiName Bank country location input label
@@ -657,20 +522,6 @@ export class TaxAndCashMonolith {
   @Prop() step4_foreignSelectItemLabel: string = "Foreign";
 
   /**
-   * Header text for the alert when the user is identified as a partner
-   * @uiName Partner identification alert header
-   */
-  @Prop() step4_isPartnerAlertHeader: string =
-    "An account with this email already exists with our referral program provider, impact.com";
-
-  /**
-   * Description text for the alert when the user is identified as a partner
-   * @uiName Partner identification alert description
-   */
-  @Prop() step4_isPartnerAlertDescription: string =
-    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
-
-  /**
    * Label text for the classification CPF input field
    * @uiName Classification CPF input label
    */
@@ -723,10 +574,10 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_bankCityLabel: string = "Bank City";
   /**
-   * Label text for the Bank Province State input
-   * @uiName Bank Province State input label
+   * Label text for the Bank Province / State input
+   * @uiName Bank Province / State input label
    */
-  @Prop() step4_bankProvinceStateLabel: string = "Bank Province State";
+  @Prop() step4_bankStateLabel: string = "Bank Province / State";
   /**
    * Label text for the Bank Postal Code
    * @uiName  Bank Postal Code input label
@@ -946,6 +797,7 @@ export class TaxAndCashMonolith {
   @Prop() dashboard_subRegionTaxNumber: string =
     "Income Tax Number: {incomeTaxNumber}";
 
+  /*----GENERAL PROPS------- */
   /**
    * The title for error message shown at the top of the page in an error banner
    *
@@ -961,6 +813,32 @@ export class TaxAndCashMonolith {
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
+  /**
+   * Required error text shown at the bottom of field inputs
+   * @uiName Field inputs error text
+   * @uiGroup General Form Properties
+   */
+  @Prop() fieldRequiredError: string = "{fieldName} is required";
+  /**
+   * Text for the continue button in the form
+   * @uiName Continue button text
+   * @uiGroup General Form Properties
+   */
+  @Prop() continueButton: string = "Continue";
+  /**
+   * Alert header text shown in alert if user is already a registered partner
+   * @uiName Participant is partner title
+   * @uiGroup General Form Properties
+   */
+  @Prop() isPartnerAlertHeader: string =
+    "An account with this email already exists with our referral program provider, impact.com";
+  /**
+   * Alert description text shown in alert if user is already a registered partner
+   * @uiName Participant is partner description
+   * @uiGroup General Form Properties
+   */
+  @Prop() isPartnerAlertDescription: string =
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
 
   /**
    * @undocumented
@@ -973,12 +851,17 @@ export class TaxAndCashMonolith {
   }
   disconnectedCallback() {}
 
+  // this field is required prop
   getGeneralStepTextProps(prefix: string) {
     const props = getProps(this);
     return {
       ...extractProps(props, prefix),
       generalErrorTitle: props.generalErrorTitle,
       generalErrorDescription: props.generalErrorDescription,
+      fieldRequiredError: props.fieldRequiredError,
+      submitButton: props.continueButton,
+      isPartnerAlertHeader: props.isPartnerAlertHeader,
+      isPartnerAlertDescription: props.isPartnerAlertDescription,
     };
   }
 

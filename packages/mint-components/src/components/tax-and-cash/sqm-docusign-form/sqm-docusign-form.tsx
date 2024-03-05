@@ -56,7 +56,7 @@ export class DocusignForm {
    * @uiName Tax form subtext
    */
   @Prop() taxFormDescription: string =
-    "Participants based in the US and partnering with US-based brands need to submit a {documentType} form.";
+    "Participants based in the US need to submit a {documentType} form.";
   /**
    * Subtext shown at the top of the page next to the document type text for individual participants
    * @uiName Tax form subtext
@@ -129,11 +129,6 @@ export class DocusignForm {
    * @uiName Refresh button text
    */
   @Prop() refreshButton: string = "Refresh Page";
-  /**
-   * Text shown inside of submit button
-   * @uiName Submit button text
-   */
-  @Prop() submitButton: string = "Continue";
   /**
    * Text shown inside of back button
    * @uiName Back button text

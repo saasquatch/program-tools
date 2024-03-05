@@ -64,11 +64,9 @@ export type BankingInfoFormData = {
   bankCity?: string;
   bankState?: string;
   branchCode?: string;
-
   // TODO These fields aren't settable in the mutation
   bankName?: string;
   patronymicName?: string;
-  bankProvinceState?: string;
 };
 
 type RoutingCodeLabels = {
@@ -398,16 +396,16 @@ export function getFormMap({
         ></sl-input>,
         <sl-input
           required
-          label={props.text.bankProvinceStateLabel}
-          name="/bankProvinceState"
-          id="bankProvinceState"
-          key="bankProvinceState"
+          label={props.text.bankStateLabel}
+          name="/bankState"
+          id="bankState"
+          key="bankState"
           type="text"
-          {...(errors?.inputErrors?.bankProvinceState && {
+          {...(errors?.inputErrors?.bankState && {
             class: "error-input",
             helpText: getValidationErrorMessage({
-              type: errors?.inputErrors?.bankProvinceState?.type,
-              label: props.text.bankProvinceStateLabel,
+              type: errors?.inputErrors?.bankState?.type,
+              label: props.text.bankStateLabel,
             }),
           })}
         ></sl-input>,
@@ -534,23 +532,22 @@ export function useBankingInfoForm(
   props: BankingInfoForm
 ): BankingInfoFormViewProps {
   const locale = useLocale();
+  const user = useUserIdentity();
+
+  const formRef = useRef<HTMLFormElement>(null);
+
   const setStep = useSetParent<string>(TAX_CONTEXT_NAMESPACE);
+
+  const paymentOptionsRes = useParentQueryValue<FinanceNetworkSettingsQuery>(
+    FINANCE_NETWORK_SETTINGS_NAMESPACE
+  );
 
   const { data: userData, refetch } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
-
   const [saveWithdrawalSettings] =
     useMutation<SetImpactPublisherWithdrawalSettingsResult>(
       SAVE_WITHDRAWAL_SETTINGS
     );
-
-  const user = useUserIdentity();
-
-  /** mock data */
-  const [_currency, setCurrency] = useState("");
-  /** */
-
-  const formRef = useRef<HTMLFormElement>(null);
 
   const [bankCountry, setBankCountry] = useState("");
   const [currentPaymentOption, setCurrentPaymentOption] =
@@ -563,6 +560,74 @@ export function useBankingInfoForm(
   const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
     "BALANCE_THRESHOLD" | "FIXED_DAY" | undefined
   >(undefined);
+
+  const currency = userData?.user?.impactConnection?.publisher?.currency || "";
+
+  const feeCap = paypalFeeMap[currency] || "";
+
+  const paymentOptions =
+    paymentOptionsRes?.data?.impactFinanceNetworkSettings?.data;
+
+  const paymentMethodFeeMap = {
+    [ACH_PAYMENT_METHOD]: "EFT Withdrawal (free)",
+    [WIRE_PAYMENT_METHOD]: `FX Wire (Processing Fee ${currency}${
+      currentPaymentOption?.defaultFxFee || 0
+    }.00)`,
+  };
+  const paymentMethodFeeLabel =
+    paymentMethodFeeMap[currentPaymentOption?.defaultFinancePaymentMethodId];
+
+  const intlLocale = locale?.replace("_", "-") || "en";
+
+  // filter out any duplicate countries and null countryCode
+  const availableCountries = new Set(
+    paymentOptions?.map((option) => option.countryCode).filter((value) => value)
+  );
+
+  // build list of country codes and names
+  const countries = Array.from(availableCountries)?.map((country) => {
+    // @ts-ignore DisplayNames not in Intl type
+    const name = new Intl.DisplayNames([intlLocale], {
+      type: "region",
+    }).of(country);
+
+    return {
+      code: country,
+      name,
+    };
+  });
+
+  const hasPayPal = !!paymentOptions?.find(
+    (option) => option.defaultFinancePaymentMethodId === PAYPAL_PAYMENT_METHOD
+  );
+
+  const paymentMethodChecked = !hasPayPal
+    ? "toBankAccount"
+    : _paymentMethodChecked;
+
+  useEffect(() => {
+    if (!userData) return;
+    if (!paymentOptions) return;
+
+    const publisherCountry =
+      userData?.user?.impactConnection?.publisher?.countryCode;
+    const currentPaymentOption = paymentOptions?.find(
+      (paymentOption) => paymentOption.countryCode === publisherCountry
+    );
+
+    setCurrentPaymentOption(currentPaymentOption);
+    setBankCountry(publisherCountry);
+  }, [paymentOptions, userData, setCurrentPaymentOption, setBankCountry]);
+
+  const updateBankCountry = (bankCountry: string) => {
+    const currentPaymentOption = paymentOptions?.find((paymentOption) => {
+      if (paymentOption.countryCode === bankCountry) return true;
+      return false;
+    });
+
+    setBankCountry(bankCountry);
+    setCurrentPaymentOption(currentPaymentOption);
+  };
 
   const onSubmit = async (event: any) => {
     let formData: BankingInfoFormData = {};
@@ -581,7 +646,7 @@ export function useBankingInfoForm(
         JSONPointer.set(validationErrors, key, { type: "required" });
       }
     });
-    console.log({ formData });
+
     setErrors({ inputErrors: validationErrors });
     if (Object.keys(validationErrors).length) {
       return;
@@ -605,14 +670,11 @@ export function useBankingInfoForm(
         } as SetImpactPublisherWithdrawalSettingsInput,
       });
       if (!response || (response as Error)?.message) {
-        console.log({ response });
         throw new Error();
       } else if (
         !(response as SetImpactPublisherWithdrawalSettingsResult)
           .setImpactPublisherWithdrawalSettings?.success
       ) {
-        console.log({ response });
-
         console.error(
           "Validation failed: ",
           (response as SetImpactPublisherWithdrawalSettingsResult)
@@ -654,79 +716,6 @@ export function useBankingInfoForm(
     }
   };
 
-  const currency =
-    _currency || userData?.user?.impactConnection?.publisher?.currency;
-
-  const feeCap = paypalFeeMap[currency] || "";
-
-  const paymentOptionsRes = useParentQueryValue<FinanceNetworkSettingsQuery>(
-    FINANCE_NETWORK_SETTINGS_NAMESPACE
-  );
-
-  const paymentOptions =
-    paymentOptionsRes?.data?.impactFinanceNetworkSettings?.data;
-
-  useEffect(() => {
-    if (!userData) return;
-    if (!paymentOptions) return;
-
-    const publisherCountry =
-      userData?.user?.impactConnection?.publisher?.countryCode;
-    const currentPaymentOption = paymentOptions?.find(
-      (paymentOption) => paymentOption.countryCode === publisherCountry
-    );
-
-    setCurrentPaymentOption(currentPaymentOption);
-    setBankCountry(publisherCountry);
-  }, [paymentOptions, userData, setCurrentPaymentOption, setBankCountry]);
-
-  const updateBankCountry = (bankCountry: string) => {
-    const currentPaymentOption = paymentOptions?.find((paymentOption) => {
-      if (paymentOption.countryCode === bankCountry) return true;
-      return false;
-    });
-
-    setBankCountry(bankCountry);
-    setCurrentPaymentOption(currentPaymentOption);
-  };
-
-  const paymentMethodFeeMap = {
-    [ACH_PAYMENT_METHOD]: "EFT Withdrawal (free)",
-    [WIRE_PAYMENT_METHOD]: `FX Wire (Processing Fee ${currency}${
-      currentPaymentOption?.defaultFxFee || 0
-    }.00)`,
-  };
-  const paymentMethodFeeLabel =
-    paymentMethodFeeMap[currentPaymentOption?.defaultFinancePaymentMethodId];
-
-  const intlLocale = locale?.replace("_", "-") || "en";
-
-  // filter out any duplicate countries and null countryCode
-  const availableCountries = new Set(
-    paymentOptions?.map((option) => option.countryCode).filter((value) => value)
-  );
-
-  // build list of country codes and names
-  const countries = Array.from(availableCountries)?.map((country) => {
-    // @ts-ignore DisplayNames not in Intl type
-    const name = new Intl.DisplayNames([intlLocale], {
-      type: "region",
-    }).of(country);
-
-    return {
-      code: country,
-      name,
-    };
-  });
-
-  const hasPayPal = !!paymentOptions?.find(
-    (option) => option.defaultFinancePaymentMethodId === PAYPAL_PAYMENT_METHOD
-  );
-
-  const paymentMethodChecked = !hasPayPal
-    ? "toBankAccount"
-    : _paymentMethodChecked;
-
   function setPaymentMethodChecked(
     paymentMethod: "toBankAccount" | "toPayPalAccount"
   ) {
@@ -753,7 +742,6 @@ export function useBankingInfoForm(
       setBankCountry: updateBankCountry,
       setPaymentMethodChecked,
       setPaymentScheduleChecked,
-      setCurrency,
       getValidationErrorMessage: props.getValidationErrorMessage,
     },
     states: {
@@ -783,8 +771,6 @@ export function useBankingInfoForm(
       thresholds: currentPaymentOption?.thresholdOptions?.split(",") || [],
       countries,
       hasPayPal,
-      showInputs: false,
-      hideSteps: false,
     },
     refs: {
       formRef,

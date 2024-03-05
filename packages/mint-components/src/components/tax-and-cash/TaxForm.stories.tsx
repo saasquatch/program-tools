@@ -356,7 +356,7 @@ export const StepTwoOtherRegionChecked = () => {
         slotProps: {
           formState: {
             selectedRegion: "UK",
-            indirectTaxNumber: 123456,
+            indirectTaxNumber: "123456",
             errors: {},
           },
         },
@@ -380,7 +380,7 @@ export const StepTwoOtherRegionCheckedCanada = () => {
           formState: {
             selectedRegion: "CA",
             province: "BRITISHCOLUMBIA",
-            indirectTaxNumber: 123456,
+            indirectTaxNumber: "123456",
             errors: {},
           },
         },
@@ -404,7 +404,7 @@ export const StepTwoOtherRegionCheckedCanadaGST = () => {
           formState: {
             selectedRegion: "CA",
             province: "QUEBEC",
-            indirectTaxNumber: 123456,
+            indirectTaxNumber: "123456",
             errors: {},
           },
         },
@@ -764,6 +764,23 @@ export const StepFourDefault = () => {
   return <sqm-banking-info-form></sqm-banking-info-form>;
 };
 
+export const StepFourIsPartner = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...stepFourProps,
+        states: {
+          ...stepFourProps.states,
+          isPartner: true,
+          formState: {
+            ...stepFourProps.states.formState,
+          },
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
 export const StepFourDirectToBankChecked = () => {
   return (
     <sqm-banking-info-form
@@ -809,7 +826,7 @@ export const TaxAndCashDashboardActiveW9Form = () => {
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           country: "United Kingdom",
-          indirectTaxNumber: 123456,
+          indirectTaxNumber: "123456",
           indirectTaxType: "VAT",
           isBusinessEntity: true,
         },
@@ -831,7 +848,7 @@ export const TaxAndCashDashboardActiveW8BENForm = () => {
           noFormNeeded: false,
           country: "United Kingdom",
           indirectTaxType: "VAT",
-          indirectTaxNumber: 123456,
+          indirectTaxNumber: "123456",
           isBusinessEntity: true,
         },
       }}
@@ -852,7 +869,7 @@ export const TaxAndCashDashboardActiveW8BENEForm = () => {
           noFormNeeded: false,
           country: "United Kingdom",
           indirectTaxType: "VAT",
-          indirectTaxNumber: 123456,
+          indirectTaxNumber: "123456",
           isBusinessEntity: true,
         },
       }}
@@ -871,7 +888,7 @@ export const TaxAndCashDashboardNotActiveW9Form = () => {
           documentTypeString: "W9",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
-          indirectTaxNumber: 123456,
+          indirectTaxNumber: "123456",
           indirectTaxType: "VAT",
           country: "Slovania",
           isBusinessEntity: true,
@@ -893,7 +910,7 @@ export const TaxAndCashDashboardNotVerifiedW9Form = () => {
           noFormNeeded: false,
           country: "United States",
           indirectTaxType: "VAT",
-          indirectTaxNumber: 123456,
+          indirectTaxNumber: "123456",
           isBusinessEntity: true,
         },
       }}
@@ -914,7 +931,7 @@ export const TaxAndCashDashboardNotVerifiedW8BENForm = () => {
           noFormNeeded: false,
           country: "United Kingdom",
           indirectTaxType: "VAT",
-          indirectTaxNumber: 123456,
+          indirectTaxNumber: "123456",
           isBusinessEntity: true,
         },
       }}
@@ -935,7 +952,7 @@ export const TaxAndCashDashboardNotVerifiedW8BENEForm = () => {
           noFormNeeded: false,
           country: "United Kingdom",
           indirectTaxType: "VAT",
-          indirectTaxNumber: 123456,
+          indirectTaxNumber: "123456",
           isBusinessEntity: true,
         },
       }}
@@ -954,7 +971,7 @@ export const TaxAndCashDashboardNotActiveW8BENEForm = () => {
           documentTypeString: "W8-BEN-E",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
-          indirectTaxNumber: 123456,
+          indirectTaxNumber: "123456",
           indirectTaxType: "VAT",
           country: "United Kingdom",
           isBusinessEntity: true,
@@ -977,7 +994,7 @@ export const TaxAndCashDashboardNoFormNeeded = () => {
           province: "Ontario",
           country: "Canada",
           isIndirectTaxCanada: true,
-          indirectTaxNumber: 123456,
+          indirectTaxNumber: "123456",
           indirectTaxType: "GST",
           isBusinessEntity: true,
         },
@@ -1001,7 +1018,7 @@ export const TaxAndCashDashboardIndirectTaxCanada = () => {
           country: "Canada",
           isIndirectTaxCanada: true,
           indirectTaxType: "GST",
-          indirectTaxNumber: 123456,
+          indirectTaxNumber: "123456",
           isBusinessEntity: true,
         },
       }}
@@ -1024,7 +1041,7 @@ export const TaxAndCashDashboardIndirectTaxCanadaQuebec = () => {
           country: "Canada",
           isIndirectTaxCanada: true,
           indirectTaxType: "GST",
-          indirectTaxNumber: 123456,
+          indirectTaxNumber: "123456",
           qstNumber: 44212,
           isBusinessEntity: true,
         },
@@ -1047,7 +1064,7 @@ export const TaxAndCashDashboardIndirectTaxSpain = () => {
           country: "Spain",
           subRegion: "Madred",
           indirectTaxType: "VAT",
-          indirectTaxNumber: 123456,
+          indirectTaxNumber: "123456",
           subRegionTaxNumber: 44212,
           isBusinessEntity: true,
         },
@@ -1104,7 +1121,7 @@ export const TaxAndCashDashboardWithGeneralError = () => {
           documentTypeString: "W9",
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
-          indirectTaxNumber: 123456,
+          indirectTaxNumber: "123456",
           country: "Slovania",
           isBusinessEntity: true,
           errors: {
@@ -1128,7 +1145,7 @@ export const TaxAndCashDashboardDisabled = () => {
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           isBusinessEntity: true,
-          indirectTaxNumber: 123456,
+          indirectTaxNumber: "123456",
           country: "Slovania",
         },
       }}

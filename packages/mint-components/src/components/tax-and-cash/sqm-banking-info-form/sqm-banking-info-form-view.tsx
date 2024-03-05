@@ -9,7 +9,7 @@ export interface BankingInfoFormViewProps {
     saveLoading?: boolean;
     disabled: boolean;
     saveDisabled: boolean;
-    hideSteps: boolean;
+    hideSteps?: boolean;
     hasPayPal: boolean;
     hideBanking?: boolean;
     hidePayPal?: boolean;

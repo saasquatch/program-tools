@@ -30,6 +30,9 @@ export interface PayoutDetailsCardViewProps {
     w9PendingText: string;
     additionalW9Text?: string;
     otherCurrenciesText: string;
+    accountText: string;
+    errorTitleText: string;
+    errorDescriptionText: string;
   };
 }
 
@@ -196,9 +199,8 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
         <sl-alert class={classes.Alert} type="danger" open>
           <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
           <div class={classes.AlertContent}>
-            <b>There was an error with your payout infomation</b>
-            Please ensure your payout information is correct. If this problem
-            continues, contact Support.
+            <b>{text.errorTitleText}</b>
+            {text.errorDescriptionText}
           </div>
         </sl-alert>
       )}
@@ -230,7 +232,9 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
             </div>
           ) : (
             <div class={classes.AccountDetailsContainer}>
-              <span>{states.cardNumberPreview}</span>
+              <span>
+                {text.accountText} {"••" + states.cardNumberPreview}
+              </span>
             </div>
           )}
         </div>

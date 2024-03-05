@@ -184,6 +184,11 @@ graph TD;
   sqm-referral-table-date-column --> sqm-referral-table-date-cell
   sqm-referral-table-rewards-column --> sqm-referral-table-rewards-cell
   sqm-coupon-code --> sqm-form-message
+  sqm-user-info-form --> sqm-user-info-form
+  sqm-user-info-form --> sqm-indirect-tax-form
+  sqm-user-info-form --> sqm-docusign-form
+  sqm-user-info-form --> sqm-banking-info-form
+  sqm-user-info-form --> sqm-tax-and-cash-dashboard
   sqm-tax-and-cash-dashboard --> sqm-payout-details-card
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```

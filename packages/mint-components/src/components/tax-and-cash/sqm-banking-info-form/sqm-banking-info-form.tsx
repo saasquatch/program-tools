@@ -215,7 +215,7 @@ export class BankingInfoForm {
    * @uiName Partner identification alert description
    */
   @Prop() isPartnerAlertDescription: string =
-    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact our Support team or sign up for this referral program with a different email.";
 
   /**
    * Label text for the classification CPF input field
@@ -270,10 +270,10 @@ export class BankingInfoForm {
    */
   @Prop() bankCityLabel: string = "Bank City";
   /**
-   * Label text for the Bank Province State input
-   * @uiName Bank Province State input label
+   * Label text for the Bank Province / State input
+   * @uiName Bank Province / State input label
    */
-  @Prop() bankProvinceStateLabel: string = "Bank Province State";
+  @Prop() bankStateLabel: string = "Bank Province/State";
   /**
    * Label text for the Bank Postal Code
    * @uiName  Bank Postal Code input label
@@ -560,6 +560,7 @@ function useDemoBankingInfoForm(
         saveLoading: false,
         hideSteps: false,
         feeCap,
+        thresholds: [],
         paymentMethodFeeLabel,
         formState: {
           paymentMethodChecked,
@@ -579,7 +580,7 @@ function useDemoBankingInfoForm(
             agencyCode: false,
             bankAddress: false,
             bankCity: false,
-            bankProvinceState: false,
+            bankState: false,
             bankPostalCode: false,
             branchCode: false,
             paymentThreshold: false,

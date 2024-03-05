@@ -82,12 +82,11 @@ function getOption(countries: TaxCountry[] | undefined, countryCode: string) {
 
 export function useIndirectTaxForm(props: IndirectTaxForm) {
   const user = useUserIdentity();
-  const setStep = useSetParent<string>(TAX_CONTEXT_NAMESPACE);
-  const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
 
   const formRef = useRef<HTMLFormElement>(null);
-  const [loading, setLoading] = useState(false);
-  const [formState, setFormState] = useState<Record<string, any>>({});
+
+  const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
+  const setStep = useSetParent<string>(TAX_CONTEXT_NAMESPACE);
 
   const [
     connectImpactPartner,
@@ -99,10 +98,17 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   const { data: _countries, loading: countriesLoading } =
     useParentQueryValue<CountriesQuery>(COUNTRIES_QUERY_NAMESPACE);
 
+  const [loading, setLoading] = useState(false);
+  const [formState, setFormState] = useState<Record<string, any>>({});
+  const [errors, setErrors] = useState({});
+  const [countrySearch, setCountrySearch] = useState("");
+  const [filteredCountries, setFilteredCountries] = useState(
+    _countries?.impactPayoutCountries?.data || []
+  );
+
   const [option, setOption] = useState<
     "hstCanada" | "otherRegion" | "notRegistered"
   >(null);
-  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const _option = getOption(
@@ -111,11 +117,6 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     );
     setOption(_option);
   }, [userForm, _countries]);
-
-  const [countrySearch, setCountrySearch] = useState("");
-  const [filteredCountries, setFilteredCountries] = useState(
-    _countries?.impactPayoutCountries?.data || []
-  );
 
   useEffect(() => {
     if (countrySearch.trim() === "") {
