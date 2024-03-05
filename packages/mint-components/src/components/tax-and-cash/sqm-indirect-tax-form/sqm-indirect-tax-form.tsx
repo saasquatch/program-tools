@@ -68,7 +68,7 @@ export class IndirectTaxForm {
    * @uiName Registered for indirect tax in a different region option sub-text
    */
   @Prop() otherRegionSubtext: string =
-    "f you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more.";
+    "If you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more.";
 
   /**
    * Text for the option indicating not being registered for indirect tax
