@@ -1,22 +1,8 @@
-import {
-  getLogger,
-  initializeLogger,
-  isLoggerInitialized,
-} from "@saasquatch/logger";
 import express from "express";
 import request from "supertest";
 import { healthCheck } from "../healthcheck";
 import { TERMINATION_APP_LOCAL_KEY } from "../shutdown";
-
-const jestLogger = () => {
-  if (isLoggerInitialized("jest-express-boilerplate")) {
-    return getLogger("jest-express-boilerplate");
-  }
-
-  return initializeLogger("jest-express-boilerplate", {
-    logLevel: "crit",
-  });
-};
+import { jestLogger } from "./util";
 
 test("returns 200 when not terminating", (done) => {
   const app = express();

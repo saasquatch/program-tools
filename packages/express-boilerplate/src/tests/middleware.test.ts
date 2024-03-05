@@ -1,22 +1,8 @@
-import {
-  getLogger,
-  initializeLogger,
-  isLoggerInitialized,
-} from "@saasquatch/logger";
 import express from "express";
 import request from "supertest";
-import { requestIdAndLogger } from "../middleware";
 import { Logger } from "winston";
-
-const jestLogger = () => {
-  if (isLoggerInitialized("jest-express-boilerplate")) {
-    return getLogger("jest-express-boilerplate");
-  }
-
-  return initializeLogger("jest-express-boilerplate", {
-    logLevel: "crit",
-  });
-};
+import { requestIdAndLogger } from "../middleware";
+import { jestLogger } from "./util";
 
 test("requestIdAndLogger adds requestId and logger", (done) => {
   const app = express();
