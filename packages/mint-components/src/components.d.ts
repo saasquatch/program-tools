@@ -966,7 +966,7 @@ export namespace Components {
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**
-          * Show Powered by Impact link
+          * Show Powered by Impact.com link
           * @uiName Show powered by
          */
         "poweredBy": boolean;
@@ -4710,7 +4710,7 @@ declare namespace LocalJSX {
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**
-          * Show Powered by Impact link
+          * Show Powered by Impact.com link
           * @uiName Show powered by
          */
         "poweredBy"?: boolean;

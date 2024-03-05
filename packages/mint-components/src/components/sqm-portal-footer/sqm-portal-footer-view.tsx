@@ -63,7 +63,10 @@ export function PortalFooterView(props: PortalFooterViewProps) {
       "font-size": "var(--sl-font-size-small)",
       display: "flex",
       alignItems: "center",
-      gap: "4px",
+      svg: {
+        marginTop: "2px",
+        shapeRendering: "geometricprecision",
+      },
       "&:hover, &:hover *": {
         color: "var(--sl-color-gray-900)",
       },
