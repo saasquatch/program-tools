@@ -1,9 +1,9 @@
 import { h } from "@stencil/core";
 import { intl } from "../../../../global/global";
 import { createStyleSheet } from "../../../../styling/JSS";
-import { INDIRECT_TAX_PROVINCES } from "../../subregions";
-import { TaxContext, TaxCountry } from "../../sqm-tax-and-cash/data";
 import { vatLabels } from "../../countries";
+import { TaxCountry } from "../../sqm-tax-and-cash/data";
+import { INDIRECT_TAX_PROVINCES } from "../../subregions";
 import { getIsRequiredErrorMessage } from "../../utils";
 
 export interface IndirectDetailsSlotViewProps {
@@ -17,7 +17,7 @@ export interface IndirectDetailsSlotViewProps {
       subRegionTaxNumber?: string;
       qstNumber?: string;
       province?: string;
-      indirectTaxNumber?: number;
+      indirectTaxNumber?: string;
       hasQst?: boolean;
       hasSubRegionTaxNumber?: boolean;
       errors?: any;
