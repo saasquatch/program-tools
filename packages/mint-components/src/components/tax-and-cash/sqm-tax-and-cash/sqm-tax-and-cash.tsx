@@ -753,7 +753,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_taxDocumentSectionSubHeader: string =
-    "{documentType} Tax Form";
+    "{documentType} tax form";
   /**
    * Subtext displayed at the bottom of the page if there are no tax documents to show
    *
@@ -768,7 +768,7 @@ export class TaxAndCashMonolith {
    * @uiName Indirect Tax Information Header
    * @uiGroup Dashboard Properties
    */
-  @Prop() dashboard_indirectTaxInfoSectionHeader: string = "Indirect Tax";
+  @Prop() dashboard_indirectTaxInfoSectionHeader: string = "Indirect tax";
   /**
    * Country/Province description text of indirect tax
    *

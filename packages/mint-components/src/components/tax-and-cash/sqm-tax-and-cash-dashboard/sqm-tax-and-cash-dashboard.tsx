@@ -104,7 +104,7 @@ export class TaxAndCashDashboard {
    *
    * @uiName Indirect Tax Information Header
    */
-  @Prop() indirectTaxInfoSectionHeader: string = "Indirect Tax";
+  @Prop() indirectTaxInfoSectionHeader: string = "Indirect tax";
   /**
    * Country/Province description text of indirect tax
    *
@@ -148,7 +148,7 @@ export class TaxAndCashDashboard {
    *
    * @uiName Tax documents sub header
    */
-  @Prop() taxDocumentSectionSubHeader: string = "{documentType} Tax Form";
+  @Prop() taxDocumentSectionSubHeader: string = "{documentType} tax form";
   /**
    * Subtext displayed at the bottom of the page if there are no tax documents to show
    *
