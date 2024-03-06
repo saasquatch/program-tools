@@ -20,7 +20,9 @@ import LoadingView from "./LoadingView";
   shadow: true,
 })
 export class TaxAndCashMonolith {
-  // !: Make sure to also change the prop names in the respective component
+  /*---------------------------------------------------------------------------------
+    !IMPORTANT!: Make sure to also change the prop names in the respective component
+  -----------------------------------------------------------------------------------*/
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 1 PROPS:
@@ -62,7 +64,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_allowBankingCollection: string =
-    "I have read the terms and conditions and allow impact.com to collect my tax and banking information";
+    "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information";
   /**
    * Sub text shown at the top of the page, used to show the current step of the tax form.
    * @uiName Tax form step text
@@ -80,7 +82,7 @@ export class TaxAndCashMonolith {
    * @uiName Terms and conditions label text
    * @uiGroup Step 1 Properties
    */
-  @Prop() termsAndConditionsLabel: string = "Terms and conditions";
+  @Prop() termsAndConditionsLabel: string = "terms and conditions";
   /**
    * Text shown inside of submit button
    * @uiName Submit button text
