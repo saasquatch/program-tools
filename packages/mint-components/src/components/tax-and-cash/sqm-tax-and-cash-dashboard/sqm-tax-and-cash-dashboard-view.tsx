@@ -127,7 +127,7 @@ const style = {
     display: "flex",
     flexDirection: "column",
     gap: "var(--sl-spacing-x-small)",
-    "& h4": {
+    "& h3": {
       margin: "0",
     },
     "& p": {
@@ -449,7 +449,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   <div>
                     <span class={sheet.classes.TaxFormDetailsContainer}>
                       <div class={sheet.classes.StatusContainer}>
-                        <h4>
+                        <h3>
                           {intl.formatMessage(
                             {
                               id: "section-subheader",
@@ -459,7 +459,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                               documentType: states.documentTypeString,
                             }
                           )}
-                        </h4>
+                        </h3>
                         <span class={sheet.classes.StatusAlert}>
                           {statusMap[states.status]}
                         </span>

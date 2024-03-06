@@ -837,14 +837,14 @@ export class TaxAndCashMonolith {
    * @uiName QST number input
    * @uiGroup Dashboard Properties
    */
-  @Prop() dashboard_qstNumber: string = "QST Number: {qstNumber}";
+  @Prop() dashboard_qstNumber: string = "QST number: {qstNumber}";
   /**
    * Label text for the sub-region tax number
    * @uiName Sub-region tax number
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_subRegionTaxNumber: string =
-    "Income Tax Number: {incomeTaxNumber}";
+    "Income tax number: {incomeTaxNumber}";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     GENERAL PROPS:

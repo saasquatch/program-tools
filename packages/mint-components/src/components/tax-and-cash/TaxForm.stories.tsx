@@ -1124,6 +1124,7 @@ export const TaxAndCashDashboardWithGeneralError = () => {
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           indirectTaxNumber: "123456",
+          indirectTaxType: "VAT",
           country: "Slovania",
           isBusinessEntity: true,
           errors: {

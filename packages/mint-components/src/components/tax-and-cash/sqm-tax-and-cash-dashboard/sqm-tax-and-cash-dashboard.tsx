@@ -199,13 +199,13 @@ export class TaxAndCashDashboard {
    * Label text for the QST number
    * @uiName QST number input
    */
-  @Prop() qstNumber: string = "QST Number: {qstNumber}";
+  @Prop() qstNumber: string = "QST number: {qstNumber}";
   /**
    * Label text for the sub-region tax number
    * @uiName Sub-region tax number
    */
   @Prop() subRegionTaxNumber: string =
-    "Income Tax Number: {subRegionTaxNumber}";
+    "Income tax number: {subRegionTaxNumber}";
   /**
    * Sub text describing how payouts are provided from impact.com
    * @uiName Payout from impact text
