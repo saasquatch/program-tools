@@ -363,93 +363,110 @@ export class TaxAndCashMonolith {
   /**
    * Subtext shown at the top of the page, used to show the current step of the tax form.
    * @uiName Form step text
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_formStep: string = "Step 4 of 4";
   /**
    * Heading text shown at the top of the page
    * @uiName Tax and Payouts heading text
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_taxAndPayouts: string = "Tax and Payouts";
   /**
    * Text shown at the top of the page next to the tax and payouts label text
    * @uiName Tax and Payouts label text
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
   /**
    * Text for the option to receive payments directly to a bank account
    * @uiName Directly to bank account option text
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_directlyToBankAccount: string = "Directly to my bank account";
   /**
    * Text for the option to receive payments to a PayPal account with processing fee details
    * @uiName PayPal option text with processing fee placeholder
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_toPayPalAccount: string =
     "PayPal (2% processing fee capped to {feeCap})";
   /**
    * Text for the option to receive payments at a specific balance threshold
    * @uiName Payment schedule balance threshold text
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentScheduleBalanceThreshold: string =
     "Pay me when my balance reaches a threshold";
   /**
    * Text for the option to receive payments on a specific day of the month
    * @uiName Payment schedule fixed day text
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentScheduleFixedDay: string =
     "Pay me on a fixed day of the month";
   /**
    * Label text for the payment day select
    * @uiName Payment day select label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentDaySelectLabel: string = "Payment Day";
 
   /**
    * Label text for the payment day select
    * @uiName Payment day select label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentThresholdSelectLabel: string = "Payment Threshold";
   /**
    * Label text for the payment day select option for the first of the month
    * @uiName First of month label text
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentDayFirstOfMonthLabelText: string = "1st of the month";
   /**
    * Label text for the payment day select option for the fifteenth of the month
    * @uiName Fifteenth of month label text
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentDayFifteenthOfMonthLabelText: string =
     "15th of the month";
   /**
    * Heading text for the payment method section
    * @uiName Payment method heading text
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentMethod: string = "Payment Method";
   /**
    * Heading text for the payment schedule section
    * @uiName Payment schedule heading text
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentSchedule: string = "Payment Schedule";
   /**
    * Subtext for the payment method section
    * @uiName Payment method subtext
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentMethodSubtext: string =
     "Payouts will be sent on the first day of each month from our referral program provider, impact.com.";
   /**
    * Label text for the PayPal email input field
    * @uiName PayPal email input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_payPalInputLabel: string = "PayPal Email";
   /**
    * Label text for the bank country location input field
    * @uiName Bank country location input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankLocationLabel: string = "Bank Country Location";
   /**
    * Label text for the beneficiary account name input field
    * @uiName Beneficiary account name input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_beneficiaryAccountNameLabel: string =
     "Beneficiary Account Name";
@@ -457,139 +474,164 @@ export class TaxAndCashMonolith {
   /**
    * Label text for the bank account type input field
    * @uiName Bank account type input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankAccountTypeLabel: string = "Bank Account Type";
 
   /**
    * Label text for the checking account type select item
    * @uiName Checking select item label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_checkingSelectItemLabel: string = "Checking";
 
   /**
    * Label text for the savings account type select item
    * @uiName Savings select item label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_savingsSelectItemLabel: string = "Savings";
 
   /**
    * Label text for the bank account number input field
    * @uiName Bank account number input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankAccountNumberLabel: string = "Bank Account Number";
+
   /**
    * Label text for the IBAN input field
    * @uiName IBAN input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_ibanLabel: string = "IBAN";
 
   /**
    * Label text for the SWIFT code input field
    * @uiName SWIFT code input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_swiftCodeLabel: string = "SWIFT Code";
 
   /**
    * Label text for the routing code input field
    * @uiName Routing code input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_routingCodeLabel: string = "Routing Code";
 
   /**
    * Label text for the bank name input field
    * @uiName Bank name input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankNameLabel: string = "Bank Name";
 
   /**
    * Label text for the classification entity input field
    * @uiName Classification entity input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_classificationEntityLabel: string = "Classification Entity";
 
   /**
    * Label text for the business select item
    * @uiName Business select item label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_businessSelectItemLabel: string = "Business";
 
   /**
    * Label text for the individual select item
    * @uiName Individual select item label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_individualSelectItemLabel: string = "Individual";
 
   /**
    * Label text for the foreign select item
    * @uiName Foreign select item label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_foreignSelectItemLabel: string = "Foreign";
 
   /**
    * Label text for the classification CPF input field
    * @uiName Classification CPF input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_classificationCPFLabel: string = "Classification CPF";
 
   /**
    * Label text for the patronymic name input field
    * @uiName Patronymic name input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_patronymicNameLabel: string = "Patronymic Name";
 
   /**
    * Label text for the VO code input field
    * @uiName VO code input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_voCodeLabel: string = "VO Code";
 
   /**
    * Label text for the agency code input field
    * @uiName Agency code input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_agencyCodeLabel: string = "Agency Code";
 
   /**
    * Label text for the branch code input field
    * @uiName Branch code input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_branchCodeLabel: string = "Branch Code";
 
   /**
    * Label text for the classification input field
    * @uiName Classification input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_classificationLabel: string = "Classification";
 
   /**
    * Label text for the Taxpayer ID input field
    * @uiName Taxpayer ID input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_taxPayerIdLabel: string = "Taxpayer ID";
 
   /**
    * Label text for the Bank Address input
    * @uiName Bank Address input item label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankAddressLabel: string = "Bank Address";
   /**
    * Label text for the Bank City input
    * @uiName Bank City Label input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankCityLabel: string = "Bank City";
   /**
    * Label text for the Bank Province / State input
    * @uiName Bank Province / State input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankStateLabel: string = "Bank Province / State";
   /**
    * Label text for the Bank Postal Code
    * @uiName  Bank Postal Code input label
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankPostalCodeLabel: string = "Bank Postal Code";
   /**
    * Alert text indicating participant cannot change info after it has been submitted
    * @uiName Cannot change info Alert text
+   * @uiGroup Step 4 Properties
    */
   @Prop() step4_cannotChangeInfoAlert: string =
     "Your payout information cannot be changed after saving. Ensure your payout method and schedule are correct before submitting.";
@@ -909,7 +951,6 @@ export class TaxAndCashMonolith {
         );
     }
 
-    // TODO: Loading view
     return <LoadingView />;
   }
 }
