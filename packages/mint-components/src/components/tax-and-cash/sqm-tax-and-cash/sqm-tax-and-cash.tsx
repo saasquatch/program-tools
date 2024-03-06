@@ -903,6 +903,12 @@ export class TaxAndCashMonolith {
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
   /**
+   * Invalid error text shown at the bottom of field inputs
+   * @uiName Field inputs invalid error text
+   * @uiGroup General Form Properties
+   */
+  @Prop() fieldInvalidError: string = "{fieldName} is invalid";
+  /**
    * Text for the continue button in the form
    * @uiName Continue button text
    * @uiGroup General Form Properties
@@ -942,6 +948,7 @@ export class TaxAndCashMonolith {
       generalErrorTitle: props.generalErrorTitle,
       generalErrorDescription: props.generalErrorDescription,
       fieldRequiredError: props.fieldRequiredError,
+      fieldInvalidError: props.fieldInvalidError,
       submitButton: props.continueButton,
       isPartnerAlertHeader: props.isPartnerAlertHeader,
       isPartnerAlertDescription: props.isPartnerAlertDescription,

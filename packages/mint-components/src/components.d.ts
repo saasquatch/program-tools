@@ -164,6 +164,22 @@ export namespace Components {
          */
         "directlyToBankAccount": string;
         /**
+          * @uiName EFT Withdrawal label text
+         */
+        "eftWithdrawalLabel": string;
+        /**
+          * Invalid error text shown at the bottom of field inputs
+          * @uiName Field inputs invalid error text
+          * @uiGroup General Form Properties
+         */
+        "fieldInvalidError": string;
+        /**
+          * Required error text shown at the bottom of field inputs
+          * @uiName Field inputs error text
+          * @uiGroup General Form Properties
+         */
+        "fieldRequiredError": string;
+        /**
           * Label text for the foreign select item
           * @uiName Foreign select item label
          */
@@ -173,6 +189,10 @@ export namespace Components {
           * @uiName Form step text
          */
         "formStep": string;
+        /**
+          * @uiName FX Wire Processing fee text
+         */
+        "fxWireProcessingFeeLabel": string;
         /**
           * Description text for a general form submission error
           * @uiName General form submission error description
@@ -3857,6 +3877,12 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
+          * Invalid error text shown at the bottom of field inputs
+          * @uiName Field inputs invalid error text
+          * @uiGroup General Form Properties
+         */
+        "fieldInvalidError": string;
+        /**
           * Required error text shown at the bottom of field inputs
           * @uiName Field inputs error text
           * @uiGroup General Form Properties
@@ -5610,6 +5636,22 @@ declare namespace LocalJSX {
          */
         "directlyToBankAccount"?: string;
         /**
+          * @uiName EFT Withdrawal label text
+         */
+        "eftWithdrawalLabel"?: string;
+        /**
+          * Invalid error text shown at the bottom of field inputs
+          * @uiName Field inputs invalid error text
+          * @uiGroup General Form Properties
+         */
+        "fieldInvalidError"?: string;
+        /**
+          * Required error text shown at the bottom of field inputs
+          * @uiName Field inputs error text
+          * @uiGroup General Form Properties
+         */
+        "fieldRequiredError"?: string;
+        /**
           * Label text for the foreign select item
           * @uiName Foreign select item label
          */
@@ -5619,6 +5661,10 @@ declare namespace LocalJSX {
           * @uiName Form step text
          */
         "formStep"?: string;
+        /**
+          * @uiName FX Wire Processing fee text
+         */
+        "fxWireProcessingFeeLabel"?: string;
         /**
           * Description text for a general form submission error
           * @uiName General form submission error description
@@ -9279,6 +9325,12 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
+        /**
+          * Invalid error text shown at the bottom of field inputs
+          * @uiName Field inputs invalid error text
+          * @uiGroup General Form Properties
+         */
+        "fieldInvalidError"?: string;
         /**
           * Required error text shown at the bottom of field inputs
           * @uiName Field inputs error text
