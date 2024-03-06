@@ -63,8 +63,6 @@ Feature: Docusign Form
       | userField                              | value  | selectedOption        |
       | user.publisher.currentTaxDocument.type | W8BEN  | individualParticipant |
       | user.publisher.currentTaxDocument.type | W8BENE | businessEntity        |
-      | user.publisher.requiredTaxDocumentType | W8BEN  | individualParticipant |
-      | user.publisher.requiredTaxDocumentType | W8BENE | businessEntity        |
 
   @minutia @ui
   Scenario Outline: Text copies change based on tax form participant fills out
