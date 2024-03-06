@@ -59,10 +59,7 @@ export function usePayoutDetailsCard(
     states: {
       loading,
       thresholdBalance: publisher?.withdrawalSettings?.paymentThreshold,
-      mainCurrency: {
-        currencyText: publisher?.currency,
-        amountText: publisher?.payoutsAccount?.balance,
-      },
+      balance: publisher?.payoutsAccount?.balance,
       status: isPayoutToday ? "payoutToday" : "nextPayout",
       payoutType: publisher?.withdrawalSettings?.paymentMethod,
       error: publisher?.payoutsAccount?.hold,
@@ -70,9 +67,7 @@ export function usePayoutDetailsCard(
       cardNumberPreview: publisher?.withdrawalSettings?.bankAccountNumber,
       nextPayoutDate: paymentDay,
     },
-    text: {
-      ...props.getTextProps(),
-    },
+    text: props.getTextProps(),
   };
 }
 

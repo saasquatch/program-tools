@@ -4,11 +4,10 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { useParentState } from "../../../utils/useParentState";
 import { getProps } from "../../../utils/utils";
-import { TAX_CONTEXT_NAMESPACE } from "./data";
-import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
-import { extractProps } from "./extractProps";
-import { isDemo } from "@saasquatch/component-boilerplate";
 import LoadingView from "./LoadingView";
+import { TAX_CONTEXT_NAMESPACE } from "./data";
+import { extractProps } from "./extractProps";
+import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
 
 /**
  * @uiName Tax and Cash
@@ -845,6 +844,38 @@ export class TaxAndCashMonolith {
    */
   @Prop() dashboard_subRegionTaxNumber: string =
     "Income tax number: {incomeTaxNumber}";
+  /**
+   * @uiName Status badge text
+   * @uiGroup Dashboard Properties
+   */
+  @Prop()
+  dashboard_statusBadgeText: string =
+    "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
+  /**
+   * @uiName Threshold payout text
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_thresholdPayoutText: string =
+    "Next payout occurs when balance is";
+  /**
+   * @uiName Account text
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_accountText: string = "Account";
+  /**
+   * @uiName Error title text
+   * @uiGroup Dashboard Properties
+   */
+  @Prop()
+  dashboard_errorTitleText: string =
+    "There was an error with your payout infomation";
+  /**
+   * @uiName Error description text
+   * @uiGroup Dashboard Properties
+   */
+  @Prop()
+  dashboard_errorDescriptionText: string =
+    "Please ensure your payout information is correct. If this problem continues, contact Support.";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     GENERAL PROPS:
@@ -919,6 +950,8 @@ export class TaxAndCashMonolith {
   render() {
     const props = useTaxAndCash();
     // const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
+
+    console.log({ dashboardProps: this.getGeneralStepTextProps("dashboard_") });
 
     switch (props.step) {
       case "/1":

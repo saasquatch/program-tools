@@ -3,15 +3,10 @@ import { createStyleSheet } from "../../../styling/JSS";
 import { PayPalIcon } from "../SVGs";
 import { intl } from "../../../global/global";
 
-export type currencyAmount = {
-  amountText: string;
-  currencyText: string;
-};
-
 export interface PayoutDetailsCardViewProps {
   states: {
     loading?: boolean;
-    mainCurrency: currencyAmount;
+    balance: string;
     status: "thresholdPayout" | "payoutToday" | "nextPayout";
     payoutType: "PAYPAL" | "BANK_TRANSFER";
     error?: boolean;
@@ -27,9 +22,6 @@ export interface PayoutDetailsCardViewProps {
   text: {
     thresholdPayoutText: string;
     statusBadgeText: string;
-    w9PendingText: string;
-    additionalW9Text?: string;
-    otherCurrenciesText: string;
     accountText: string;
     errorTitleText: string;
     errorDescriptionText: string;
@@ -219,9 +211,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
               : renderStatusBadge(states.status, text.statusBadgeText)}
           </div>
 
-          <h1 class={classes.MainCurrency}>
-            {states.mainCurrency?.amountText} {states.mainCurrency.currencyText}
-          </h1>
+          <h1 class={classes.MainCurrency}>{states.balance}</h1>
 
           {states.payoutType === "PAYPAL" ? (
             <div class={classes.AccountDetailsContainer}>

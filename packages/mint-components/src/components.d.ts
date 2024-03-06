@@ -1515,17 +1515,15 @@ export namespace Components {
         "uppercaseErrorText": string;
     }
     interface SqmPayoutDetailsCard {
-        "accountText": "Account";
+        "accountText": string;
         /**
           * @undocumented
          */
         "demoData"?: DemoData<any>;
-        "errorDescriptionText": "Please ensure your payout information is correct. If this problem continues, contact Support.";
-        "errorTitleText": "There was an error with your payout infomation";
-        "otherCurrenciesText": "other currencies";
-        "statusBadgeText": "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
-        "thresholdPayoutText": "Next payout occurs when balance is";
-        "w9PendingText": "Awaiting W-9 tax form";
+        "errorDescriptionText": string;
+        "errorTitleText": string;
+        "statusBadgeText": string;
+        "thresholdPayoutText": string;
     }
     interface SqmPopupContainer {
         /**
@@ -3673,6 +3671,11 @@ export namespace Components {
          */
         "continueButton": string;
         /**
+          * @uiName Account text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_accountText": string;
+        /**
           * Description text which appears beside badge showing the form is awaiting review
           * @uiName Badge description text
           * @uiGroup Dashboard Properties
@@ -3702,6 +3705,16 @@ export namespace Components {
           * @uiGroup Dashboard Properties
          */
         "dashboard_editPaymentInformationButton": string;
+        /**
+          * @uiName Error description text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_errorDescriptionText": string;
+        /**
+          * @uiName Error title text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_errorTitleText": string;
         /**
           * Indirect tax number/type details
           * @uiName Indirect tax details
@@ -3769,6 +3782,11 @@ export namespace Components {
          */
         "dashboard_qstNumber": string;
         /**
+          * @uiName Status badge text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusBadgeText": string;
+        /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
           * @uiGroup Dashboard Properties
@@ -3828,6 +3846,11 @@ export namespace Components {
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxDocumentSectionSubHeader": string;
+        /**
+          * @uiName Threshold payout text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_thresholdPayoutText": string;
         /**
           * @undocumented 
           * @uiType object
@@ -6939,17 +6962,15 @@ declare namespace LocalJSX {
         "uppercaseErrorText"?: string;
     }
     interface SqmPayoutDetailsCard {
-        "accountText"?: "Account";
+        "accountText"?: string;
         /**
           * @undocumented
          */
         "demoData"?: DemoData<any>;
-        "errorDescriptionText"?: "Please ensure your payout information is correct. If this problem continues, contact Support.";
-        "errorTitleText"?: "There was an error with your payout infomation";
-        "otherCurrenciesText"?: "other currencies";
-        "statusBadgeText"?: "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
-        "thresholdPayoutText"?: "Next payout occurs when balance is";
-        "w9PendingText"?: "Awaiting W-9 tax form";
+        "errorDescriptionText"?: string;
+        "errorTitleText"?: string;
+        "statusBadgeText"?: string;
+        "thresholdPayoutText"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -9073,6 +9094,11 @@ declare namespace LocalJSX {
          */
         "continueButton"?: string;
         /**
+          * @uiName Account text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_accountText"?: string;
+        /**
           * Description text which appears beside badge showing the form is awaiting review
           * @uiName Badge description text
           * @uiGroup Dashboard Properties
@@ -9102,6 +9128,16 @@ declare namespace LocalJSX {
           * @uiGroup Dashboard Properties
          */
         "dashboard_editPaymentInformationButton"?: string;
+        /**
+          * @uiName Error description text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_errorDescriptionText"?: string;
+        /**
+          * @uiName Error title text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_errorTitleText"?: string;
         /**
           * Indirect tax number/type details
           * @uiName Indirect tax details
@@ -9169,6 +9205,11 @@ declare namespace LocalJSX {
          */
         "dashboard_qstNumber"?: string;
         /**
+          * @uiName Status badge text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusBadgeText"?: string;
+        /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
           * @uiGroup Dashboard Properties
@@ -9228,6 +9269,11 @@ declare namespace LocalJSX {
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxDocumentSectionSubHeader"?: string;
+        /**
+          * @uiName Threshold payout text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_thresholdPayoutText"?: string;
         /**
           * @undocumented 
           * @uiType object
