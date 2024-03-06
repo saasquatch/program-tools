@@ -7,7 +7,7 @@ Feature: Docusign Form
   @minutia
   Scenario: Docusign URL is set in iframe on page load
     When the Docusign Form loads
-    And the Docusign URL has been fetched
+    And the Docusign URL has been fetched successfully
     Then the URL set is set on the Docusign iframe
     And the iframe loads based on the URL
 
@@ -16,22 +16,55 @@ Feature: Docusign Form
     When the Docusign Form loads
     And the Docusign URL cannot be fetched
     Then the URL is not set on the Docusign iframe
-    And the iframe fails to load
+    And the iframe is hidden
+    And an error banner is displayed
+
+  @minutia @ui
+  Scenario Outline: Participant not based in the US working with US brand selects participantType
+    Given a publisher's country is <publisherCountry>
+    And they are linked to a brand that based in <brandCountry>
+    And their current tax document type is <currentDocument>
+    But current tax document status is not "ACTIVE" or "NOT_VERIFIED"
+    When the page loads
+    Then <uiElements> are displayed
+
+    Examples:
+      | publisherCountry | brandCountry     | currentDocument | uiElements                                      |
+      | a non-US country | US               | null            | participant type radio options                  |
+      | a non-US country | US               | populated       | participant type radio options, docusign iframe |
+      | US               | a non-US country | null            | docusign iframe                                 |
+      | US               | a non-US country | populated       | docusign iframe                                 |
 
   @minutia
-  Scenario Outline: Participant not based in the US working with US brand selects participantType
-    Given they are not in the US and the brand is in the US
-    When the page loads
-    Then <participantType> radio buttons appear
+  Scenario Outline: W8 tax forms based on participant type
+    Given a publisher's country is a non-US country
+    And they are linked to a brand that based in "US"
+    And current tax document type is "null"
+    Then the participant type radio options are shown
     And the Docusign iframe is hidden
-    When they select <participantType>
+    When they select the <participantType> option
     Then the Docusign iframe appears
     And an <autoSelectedTaxForm> appears in the Docusign iframe
 
-    Examples: 
+    Examples:
       | participantType       | autoSelectedTaxForm |
       | individualParticipant | W8-BEN              |
-      | company               | W8-BEN-E            |
+      | businessEntity        | W8-BEN-E            |
+
+  @minutia
+  Scenario Outline: Participant type radio options are disabled if they have a current tax document
+    Given a publisher's country is a non-US country
+    And they are linked to a brand that is based in "US"
+    And the user field <userField> has value <value>
+    Then the participant type radio options are disabled
+    And the option <selectedOption> is auto-selected
+
+    Examples:
+      | userField                              | value  | selectedOption        |
+      | user.publisher.currentTaxDocument.type | W8BEN  | individualParticipant |
+      | user.publisher.currentTaxDocument.type | W8BENE | businessEntity        |
+      | user.publisher.requiredTaxDocumentType | W8BEN  | individualParticipant |
+      | user.publisher.requiredTaxDocumentType | W8BENE | businessEntity        |
 
   @minutia @ui
   Scenario Outline: Text copies change based on tax form participant fills out
@@ -39,7 +72,7 @@ Feature: Docusign Form
     And are <participantType>
     Then the <taxFormSubHeader>/<taxFormDescriptionCopy> displays with <typeTaxForm>
 
-    Examples: 
+    Examples:
       | typeTaxForm | participantType       | taxFormSubHeader  | taxFormDescriptionCopy                                                                                                     |
       | W9          | N/A                   | W9 Tax Form       | Participants based in the US and partnering with US-based brands need to submit a W9 form.                                 |
       | W8-BEN      | individualParticipant | W8-BEN Tax Form   | Participants residing outside of the US, joining the referral program of a US-based company, need to submit a W8-BEN form. |
