@@ -170,6 +170,9 @@ const style = {
     "&::part(control)": {
       borderRadius: "50% !important",
     },
+    "&::part(label)": {
+      fontSize: "var(--sl-font-size-small)",
+    },
   },
   InputContainer: {
     padding: "16px",
@@ -185,8 +188,16 @@ const style = {
       maxWidth: "450px",
     },
 
+    "& sl-input::part(label)": {
+      fontSize: "var(--sl-font-size-small)",
+    },
+
     "& sl-select::part(base)": {
       maxWidth: "450px",
+    },
+
+    "& sl-select::part(label)": {
+      fontSize: "var(--sl-font-size-small)",
     },
   },
   CheckboxSkeleton: {
