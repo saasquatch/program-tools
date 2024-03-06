@@ -899,7 +899,6 @@ const payoutBalanceQuery = () => {
         viewer: viewer {
           ... on User {
             publisher {
-              currency
               payoutsAccount {
                 balance
               }
@@ -912,8 +911,8 @@ const payoutBalanceQuery = () => {
     (res) => {
       const fallback = 0;
       const balance = res.data?.viewer?.publisher?.payoutsAccount?.balance;
-      const currency = res.data?.viewer?.publisher?.currency || "";
-      const balanceText = `${balance || fallback} ${currency}`;
+
+      const balanceText = `${balance || fallback}`;
       return {
         value: balance || fallback,
         statvalue: balanceText,

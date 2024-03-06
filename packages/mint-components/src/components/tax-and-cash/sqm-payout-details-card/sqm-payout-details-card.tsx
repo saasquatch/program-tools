@@ -1,11 +1,10 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
-import { PayoutDetailsCardView } from "./sqm-payout-details-card-view";
-import { DemoData } from "../../../global/demo";
 import deepmerge from "deepmerge";
+import { DemoData } from "../../../global/demo";
+import { PayoutDetailsCardView } from "./sqm-payout-details-card-view";
 import { usePayoutDetailsCard } from "./usePayoutDetailsCard";
-import { isDemo } from "@saasquatch/component-boilerplate";
-import { getProps } from "../../../utils/utils";
 
 /**
  * @uiName Payout Details Card
@@ -17,14 +16,15 @@ import { getProps } from "../../../utils/utils";
 })
 export class PayoutDetailsCard {
   @Prop()
-  statusBadgeText: "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
-  @Prop() thresholdPayoutText: "Next payout occurs when balance is";
-  @Prop() otherCurrenciesText: "other currencies";
-  @Prop() w9PendingText: "Awaiting W-9 tax form";
-  @Prop() accountText: "Account";
-  @Prop() errorTitleText: "There was an error with your payout infomation";
+  statusBadgeText: string =
+    "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
+  @Prop() thresholdPayoutText: string = "Next payout occurs when balance is";
+  @Prop() accountText: string = "Account";
+  @Prop() errorTitleText: string =
+    "There was an error with your payout infomation";
   @Prop()
-  errorDescriptionText: "Please ensure your payout information is correct. If this problem continues, contact Support.";
+  errorDescriptionText: string =
+    "Please ensure your payout information is correct. If this problem continues, contact Support.";
 
   /**
    * @undocumented
@@ -37,16 +37,12 @@ export class PayoutDetailsCard {
   disconnectedCallback() {}
 
   getTextProps() {
-    const props = getProps(this);
-    console.log(props);
     return {
-      statusBadgeText: props.statusBadgeText,
-      thresholdPayoutText: props.thresholdPayoutText,
-      otherCurrenciesText: props.otherCurrenciesText,
-      w9PendingText: props.w9PendingText,
-      accountText: props.accountText,
-      errorTitleText: props.errorTitleText,
-      errorDescriptionText: props.errorDescriptionText,
+      statusBadgeText: this.statusBadgeText,
+      thresholdPayoutText: this.thresholdPayoutText,
+      accountText: this.accountText,
+      errorTitleText: this.errorTitleText,
+      errorDescriptionText: this.errorDescriptionText,
     };
   }
 

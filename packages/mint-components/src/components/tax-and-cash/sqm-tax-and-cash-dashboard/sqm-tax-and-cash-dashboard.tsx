@@ -247,7 +247,13 @@ export class TaxAndCashDashboard {
           callbacks={props.callbacks}
           states={props.states}
           text={props.text}
-          slots={{ payoutDetailsCardSlot: <NextPayout /> }}
+          slots={{
+            payoutDetailsCardSlot: (
+              <sqm-payout-details-card
+                {...this.getTextProps()}
+              ></sqm-payout-details-card>
+            ),
+          }}
         />
       </Host>
     );
