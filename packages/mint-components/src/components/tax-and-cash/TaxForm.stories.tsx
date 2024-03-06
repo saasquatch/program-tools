@@ -629,6 +629,7 @@ export const StepThreeWithDocusignW8BEN = () => {
         states: {
           ...docusignFormProps.states,
           documentType: "W8BEN",
+          documentTypeString: "W8-BEN",
         },
       }}
     ></sqm-docusign-form>
@@ -642,6 +643,7 @@ export const StepThreeWithDocusignW8BENE = () => {
         states: {
           ...docusignFormProps.states,
           documentType: "W8BENE",
+          documentTypeString: "W8-BEN-E",
           formState: {
             completedTaxForm: false,
             taxFormExpired: false,

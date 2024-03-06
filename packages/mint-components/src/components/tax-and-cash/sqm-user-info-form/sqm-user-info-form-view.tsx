@@ -232,18 +232,19 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               {text.error.generalDescription}
             </sl-alert>
           )}
-          {states.isPartner && (
-            <sl-alert
-              type="primary"
-              open
-              class={sheet.classes.PartnerAlertContainer}
-            >
-              <sl-icon slot="icon" name="info-circle"></sl-icon>
-              <strong>{text.isPartnerAlertHeader}</strong>
-              <br />
-              {text.isPartnerAlertDescription}
-            </sl-alert>
-          )}
+          {states.isPartner ||
+            (states.isUser && (
+              <sl-alert
+                type="primary"
+                open
+                class={sheet.classes.PartnerAlertContainer}
+              >
+                <sl-icon slot="icon" name="info-circle"></sl-icon>
+                <strong>{text.isPartnerAlertHeader}</strong>
+                <br />
+                {text.isPartnerAlertDescription}
+              </sl-alert>
+            ))}
 
           <div>
             <div class={classes.InputContainer}>
