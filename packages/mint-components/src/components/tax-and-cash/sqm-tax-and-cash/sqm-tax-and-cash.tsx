@@ -8,6 +8,7 @@ import LoadingView from "./LoadingView";
 import { TAX_CONTEXT_NAMESPACE } from "./data";
 import { extractProps } from "./extractProps";
 import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
+import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
  * @uiName Tax and Cash
@@ -950,8 +951,6 @@ export class TaxAndCashMonolith {
   render() {
     const props = useTaxAndCash();
     // const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
-
-    console.log({ dashboardProps: this.getGeneralStepTextProps("dashboard_") });
 
     switch (props.step) {
       case "/1":
