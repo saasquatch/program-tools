@@ -4153,206 +4153,247 @@ export namespace Components {
         /**
           * Label text for the agency code input field
           * @uiName Agency code input label
+          * @uiGroup Step 4 Properties
          */
         "step4_agencyCodeLabel": string;
         /**
           * Label text for the bank account number input field
           * @uiName Bank account number input label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankAccountNumberLabel": string;
         /**
           * Label text for the bank account type input field
           * @uiName Bank account type input label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankAccountTypeLabel": string;
         /**
           * Label text for the Bank Address input
           * @uiName Bank Address input item label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankAddressLabel": string;
         /**
           * Label text for the Bank City input
           * @uiName Bank City Label input label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankCityLabel": string;
         /**
           * Label text for the bank country location input field
           * @uiName Bank country location input label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankLocationLabel": string;
         /**
           * Label text for the bank name input field
           * @uiName Bank name input label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankNameLabel": string;
         /**
           * Label text for the Bank Postal Code
           * @uiName Bank Postal Code input label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankPostalCodeLabel": string;
         /**
           * Label text for the Bank Province / State input
           * @uiName Bank Province / State input label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankStateLabel": string;
         /**
           * Label text for the beneficiary account name input field
           * @uiName Beneficiary account name input label
+          * @uiGroup Step 4 Properties
          */
         "step4_beneficiaryAccountNameLabel": string;
         /**
           * Label text for the branch code input field
           * @uiName Branch code input label
+          * @uiGroup Step 4 Properties
          */
         "step4_branchCodeLabel": string;
         /**
           * Label text for the business select item
           * @uiName Business select item label
+          * @uiGroup Step 4 Properties
          */
         "step4_businessSelectItemLabel": string;
         /**
           * Alert text indicating participant cannot change info after it has been submitted
           * @uiName Cannot change info Alert text
+          * @uiGroup Step 4 Properties
          */
         "step4_cannotChangeInfoAlert": string;
         /**
           * Label text for the checking account type select item
           * @uiName Checking select item label
+          * @uiGroup Step 4 Properties
          */
         "step4_checkingSelectItemLabel": string;
         /**
           * Label text for the classification CPF input field
           * @uiName Classification CPF input label
+          * @uiGroup Step 4 Properties
          */
         "step4_classificationCPFLabel": string;
         /**
           * Label text for the classification entity input field
           * @uiName Classification entity input label
+          * @uiGroup Step 4 Properties
          */
         "step4_classificationEntityLabel": string;
         /**
           * Label text for the classification input field
           * @uiName Classification input label
+          * @uiGroup Step 4 Properties
          */
         "step4_classificationLabel": string;
         /**
           * Text for the option to receive payments directly to a bank account
           * @uiName Directly to bank account option text
+          * @uiGroup Step 4 Properties
          */
         "step4_directlyToBankAccount": string;
         /**
           * Label text for the foreign select item
           * @uiName Foreign select item label
+          * @uiGroup Step 4 Properties
          */
         "step4_foreignSelectItemLabel": string;
         /**
           * Subtext shown at the top of the page, used to show the current step of the tax form.
           * @uiName Form step text
+          * @uiGroup Step 4 Properties
          */
         "step4_formStep": string;
         /**
           * Label text for the IBAN input field
           * @uiName IBAN input label
+          * @uiGroup Step 4 Properties
          */
         "step4_ibanLabel": string;
         /**
           * Label text for the individual select item
           * @uiName Individual select item label
+          * @uiGroup Step 4 Properties
          */
         "step4_individualSelectItemLabel": string;
         /**
           * Label text for the patronymic name input field
           * @uiName Patronymic name input label
+          * @uiGroup Step 4 Properties
          */
         "step4_patronymicNameLabel": string;
         /**
           * Label text for the PayPal email input field
           * @uiName PayPal email input label
+          * @uiGroup Step 4 Properties
          */
         "step4_payPalInputLabel": string;
         /**
           * Label text for the payment day select option for the fifteenth of the month
           * @uiName Fifteenth of month label text
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentDayFifteenthOfMonthLabelText": string;
         /**
           * Label text for the payment day select option for the first of the month
           * @uiName First of month label text
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentDayFirstOfMonthLabelText": string;
         /**
           * Label text for the payment day select
           * @uiName Payment day select label
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentDaySelectLabel": string;
         /**
           * Heading text for the payment method section
           * @uiName Payment method heading text
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentMethod": string;
         /**
           * Subtext for the payment method section
           * @uiName Payment method subtext
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentMethodSubtext": string;
         /**
           * Heading text for the payment schedule section
           * @uiName Payment schedule heading text
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentSchedule": string;
         /**
           * Text for the option to receive payments at a specific balance threshold
           * @uiName Payment schedule balance threshold text
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentScheduleBalanceThreshold": string;
         /**
           * Text for the option to receive payments on a specific day of the month
           * @uiName Payment schedule fixed day text
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentScheduleFixedDay": string;
         /**
           * Label text for the payment day select
           * @uiName Payment day select label
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentThresholdSelectLabel": string;
         /**
           * Label text for the routing code input field
           * @uiName Routing code input label
+          * @uiGroup Step 4 Properties
          */
         "step4_routingCodeLabel": string;
         /**
           * Label text for the savings account type select item
           * @uiName Savings select item label
+          * @uiGroup Step 4 Properties
          */
         "step4_savingsSelectItemLabel": string;
         /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label
+          * @uiGroup Step 4 Properties
          */
         "step4_swiftCodeLabel": string;
         /**
           * Heading text shown at the top of the page
           * @uiName Tax and Payouts heading text
+          * @uiGroup Step 4 Properties
          */
         "step4_taxAndPayouts": string;
         /**
           * Text shown at the top of the page next to the tax and payouts label text
           * @uiName Tax and Payouts label text
+          * @uiGroup Step 4 Properties
          */
         "step4_taxAndPayoutsDescription": string;
         /**
           * Label text for the Taxpayer ID input field
           * @uiName Taxpayer ID input label
+          * @uiGroup Step 4 Properties
          */
         "step4_taxPayerIdLabel": string;
         /**
           * Text for the option to receive payments to a PayPal account with processing fee details
           * @uiName PayPal option text with processing fee placeholder
+          * @uiGroup Step 4 Properties
          */
         "step4_toPayPalAccount": string;
         /**
           * Label text for the VO code input field
           * @uiName VO code input label
+          * @uiGroup Step 4 Properties
          */
         "step4_voCodeLabel": string;
         /**
@@ -4605,6 +4646,7 @@ export namespace Components {
         /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
+          * @uiGroup Step 1 Properties
          */
         "allowBankingCollection": string;
         /**
@@ -9511,206 +9553,247 @@ declare namespace LocalJSX {
         /**
           * Label text for the agency code input field
           * @uiName Agency code input label
+          * @uiGroup Step 4 Properties
          */
         "step4_agencyCodeLabel"?: string;
         /**
           * Label text for the bank account number input field
           * @uiName Bank account number input label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankAccountNumberLabel"?: string;
         /**
           * Label text for the bank account type input field
           * @uiName Bank account type input label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankAccountTypeLabel"?: string;
         /**
           * Label text for the Bank Address input
           * @uiName Bank Address input item label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankAddressLabel"?: string;
         /**
           * Label text for the Bank City input
           * @uiName Bank City Label input label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankCityLabel"?: string;
         /**
           * Label text for the bank country location input field
           * @uiName Bank country location input label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankLocationLabel"?: string;
         /**
           * Label text for the bank name input field
           * @uiName Bank name input label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankNameLabel"?: string;
         /**
           * Label text for the Bank Postal Code
           * @uiName Bank Postal Code input label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankPostalCodeLabel"?: string;
         /**
           * Label text for the Bank Province / State input
           * @uiName Bank Province / State input label
+          * @uiGroup Step 4 Properties
          */
         "step4_bankStateLabel"?: string;
         /**
           * Label text for the beneficiary account name input field
           * @uiName Beneficiary account name input label
+          * @uiGroup Step 4 Properties
          */
         "step4_beneficiaryAccountNameLabel"?: string;
         /**
           * Label text for the branch code input field
           * @uiName Branch code input label
+          * @uiGroup Step 4 Properties
          */
         "step4_branchCodeLabel"?: string;
         /**
           * Label text for the business select item
           * @uiName Business select item label
+          * @uiGroup Step 4 Properties
          */
         "step4_businessSelectItemLabel"?: string;
         /**
           * Alert text indicating participant cannot change info after it has been submitted
           * @uiName Cannot change info Alert text
+          * @uiGroup Step 4 Properties
          */
         "step4_cannotChangeInfoAlert"?: string;
         /**
           * Label text for the checking account type select item
           * @uiName Checking select item label
+          * @uiGroup Step 4 Properties
          */
         "step4_checkingSelectItemLabel"?: string;
         /**
           * Label text for the classification CPF input field
           * @uiName Classification CPF input label
+          * @uiGroup Step 4 Properties
          */
         "step4_classificationCPFLabel"?: string;
         /**
           * Label text for the classification entity input field
           * @uiName Classification entity input label
+          * @uiGroup Step 4 Properties
          */
         "step4_classificationEntityLabel"?: string;
         /**
           * Label text for the classification input field
           * @uiName Classification input label
+          * @uiGroup Step 4 Properties
          */
         "step4_classificationLabel"?: string;
         /**
           * Text for the option to receive payments directly to a bank account
           * @uiName Directly to bank account option text
+          * @uiGroup Step 4 Properties
          */
         "step4_directlyToBankAccount"?: string;
         /**
           * Label text for the foreign select item
           * @uiName Foreign select item label
+          * @uiGroup Step 4 Properties
          */
         "step4_foreignSelectItemLabel"?: string;
         /**
           * Subtext shown at the top of the page, used to show the current step of the tax form.
           * @uiName Form step text
+          * @uiGroup Step 4 Properties
          */
         "step4_formStep"?: string;
         /**
           * Label text for the IBAN input field
           * @uiName IBAN input label
+          * @uiGroup Step 4 Properties
          */
         "step4_ibanLabel"?: string;
         /**
           * Label text for the individual select item
           * @uiName Individual select item label
+          * @uiGroup Step 4 Properties
          */
         "step4_individualSelectItemLabel"?: string;
         /**
           * Label text for the patronymic name input field
           * @uiName Patronymic name input label
+          * @uiGroup Step 4 Properties
          */
         "step4_patronymicNameLabel"?: string;
         /**
           * Label text for the PayPal email input field
           * @uiName PayPal email input label
+          * @uiGroup Step 4 Properties
          */
         "step4_payPalInputLabel"?: string;
         /**
           * Label text for the payment day select option for the fifteenth of the month
           * @uiName Fifteenth of month label text
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentDayFifteenthOfMonthLabelText"?: string;
         /**
           * Label text for the payment day select option for the first of the month
           * @uiName First of month label text
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentDayFirstOfMonthLabelText"?: string;
         /**
           * Label text for the payment day select
           * @uiName Payment day select label
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentDaySelectLabel"?: string;
         /**
           * Heading text for the payment method section
           * @uiName Payment method heading text
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentMethod"?: string;
         /**
           * Subtext for the payment method section
           * @uiName Payment method subtext
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentMethodSubtext"?: string;
         /**
           * Heading text for the payment schedule section
           * @uiName Payment schedule heading text
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentSchedule"?: string;
         /**
           * Text for the option to receive payments at a specific balance threshold
           * @uiName Payment schedule balance threshold text
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentScheduleBalanceThreshold"?: string;
         /**
           * Text for the option to receive payments on a specific day of the month
           * @uiName Payment schedule fixed day text
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentScheduleFixedDay"?: string;
         /**
           * Label text for the payment day select
           * @uiName Payment day select label
+          * @uiGroup Step 4 Properties
          */
         "step4_paymentThresholdSelectLabel"?: string;
         /**
           * Label text for the routing code input field
           * @uiName Routing code input label
+          * @uiGroup Step 4 Properties
          */
         "step4_routingCodeLabel"?: string;
         /**
           * Label text for the savings account type select item
           * @uiName Savings select item label
+          * @uiGroup Step 4 Properties
          */
         "step4_savingsSelectItemLabel"?: string;
         /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label
+          * @uiGroup Step 4 Properties
          */
         "step4_swiftCodeLabel"?: string;
         /**
           * Heading text shown at the top of the page
           * @uiName Tax and Payouts heading text
+          * @uiGroup Step 4 Properties
          */
         "step4_taxAndPayouts"?: string;
         /**
           * Text shown at the top of the page next to the tax and payouts label text
           * @uiName Tax and Payouts label text
+          * @uiGroup Step 4 Properties
          */
         "step4_taxAndPayoutsDescription"?: string;
         /**
           * Label text for the Taxpayer ID input field
           * @uiName Taxpayer ID input label
+          * @uiGroup Step 4 Properties
          */
         "step4_taxPayerIdLabel"?: string;
         /**
           * Text for the option to receive payments to a PayPal account with processing fee details
           * @uiName PayPal option text with processing fee placeholder
+          * @uiGroup Step 4 Properties
          */
         "step4_toPayPalAccount"?: string;
         /**
           * Label text for the VO code input field
           * @uiName VO code input label
+          * @uiGroup Step 4 Properties
          */
         "step4_voCodeLabel"?: string;
         /**
@@ -9962,6 +10045,7 @@ declare namespace LocalJSX {
         /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
+          * @uiGroup Step 1 Properties
          */
         "allowBankingCollection"?: string;
         /**

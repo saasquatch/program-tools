@@ -54,9 +54,10 @@ export class TaxForm {
   /**
    * Label text for tax and banking collection checkbox
    * @uiName Tax and banking label
+   * @uiGroup Step 1 Properties
    */
   @Prop() allowBankingCollection: string =
-    "I have read the terms and conditions and allow impact.com to collect my tax and banking information";
+    "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information";
   /**
    * Sub text shown at the top of the page, used to show the current step of the tax form.
    * @uiName Tax form step text
@@ -104,7 +105,7 @@ export class TaxForm {
    * Label text for terms and conditions
    * @uiName Terms and conditions label text
    */
-  @Prop() termsAndConditionsLabel: string = "Terms and conditions";
+  @Prop() termsAndConditionsLabel: string = "terms and conditions";
   /**
    * Required error text shown at the bottom of field inputs
    * @uiName Field inputs error text
@@ -185,6 +186,7 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
         loading: false,
         isPartner: false,
         isUser: false,
+        formState: {},
       },
     },
     props.demoData || {},

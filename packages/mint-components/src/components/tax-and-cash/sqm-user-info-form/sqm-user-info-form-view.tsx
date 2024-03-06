@@ -189,6 +189,20 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
   } = props;
   const { classes } = sheet;
 
+  const bankingCollectionText = intl.formatMessage(
+    {
+      id: "bankingCollectionText",
+      defaultMessage: text.allowBankingCollection,
+    },
+    {
+      termsAndConditionsLink: (
+        <a href="https://example.com/" target="_blank">
+          {text.termsAndConditionsLabel}
+        </a>
+      ),
+    }
+  );
+
   return (
     <sl-form
       class={classes.FormWrapper}
@@ -367,7 +381,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   id="allowBankingCollection"
                   name="/allowBankingCollection"
                 >
-                  {text.allowBankingCollection}
+                  {bankingCollectionText}
                 </sl-checkbox>
                 {formState.errors?.allowBankingCollection && (
                   <p class={classes.ErrorText}>

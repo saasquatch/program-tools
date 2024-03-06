@@ -98,11 +98,10 @@ const style = {
     flexDirection: "column",
   },
   CheckboxContainer: {
-    display: "flex",
     alignItems: "flex-start",
     justifyContent: "flex-start",
-    flexDirection: "column",
     gap: "var(--sl-spacing-xx-small)",
+    maxWidth: "797px",
   },
   TitleContainer: {
     display: "flex",
@@ -115,7 +114,7 @@ const style = {
     display: "flex",
     justifyContent: "flex-start",
     flexDirection: "column",
-    gap: "24px",
+    gap: "var(--sl-spacing-medium)",
     paddingBottom: "16px",
   },
   BtnContainer: {
@@ -150,6 +149,10 @@ const style = {
       color: "var(--sl-color-danger-500)",
     },
   },
+  RadioContainer: {
+    display: "flex",
+    flexDirection: "column",
+  },
   PartnerAlertContainer: {
     "&::part(base)": {
       backgroundColor: "var(--sl-color-sky-100)",
@@ -160,9 +163,15 @@ const style = {
       color: "var(--sl-color-blue-500)",
     },
   },
+  CannotChangeAlertContainer: {
+    maxWidth: "797px",
+  },
   Checkbox: {
     "&::part(control)": {
       borderRadius: "50% !important",
+    },
+    "&::part(label)": {
+      fontSize: "var(--sl-font-size-small)",
     },
   },
   InputContainer: {
@@ -176,11 +185,19 @@ const style = {
     gap: "16px",
 
     "& sl-input::part(base)": {
-      maxWidth: "320px",
+      maxWidth: "450px",
+    },
+
+    "& sl-input::part(label)": {
+      fontSize: "var(--sl-font-size-small)",
     },
 
     "& sl-select::part(base)": {
-      maxWidth: "320px",
+      maxWidth: "450px",
+    },
+
+    "& sl-select::part(label)": {
+      fontSize: "var(--sl-font-size-small)",
     },
   },
   CheckboxSkeleton: {
@@ -362,19 +379,21 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             {text.isPartnerAlertDescription}
           </sl-alert>
         )}
-        <sl-alert
-          exportparts="base: alert-base, icon:alert-icon"
-          type="primary"
-          open
-          class={classes.InfoAlert}
-        >
-          <sl-icon
-            class={classes.InfoWarningIcon}
-            slot="icon"
-            name="exclamation-triangle"
-          ></sl-icon>
-          {text.cannotChangeInfoAlert}
-        </sl-alert>
+        <div class={classes.CannotChangeAlertContainer}>
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            type="primary"
+            open
+            class={classes.InfoAlert}
+          >
+            <sl-icon
+              class={classes.InfoWarningIcon}
+              slot="icon"
+              name="exclamation-triangle"
+            ></sl-icon>
+            {text.cannotChangeInfoAlert}
+          </sl-alert>
+        </div>
         <div>
           <h4>{text.paymentMethod}</h4>
           <p class={classes.DescriptionText}>{text.paymentMethodSubtext}</p>
@@ -385,7 +404,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           {states.loading && formState.paymentMethodChecked === undefined ? (
             getLoadingSkeleton(undefined)
           ) : (
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div class={classes.RadioContainer}>
               {states.hasPayPal && (
                 <sl-radio
                   class={classes.Checkbox}
