@@ -8,11 +8,11 @@ export const objectIsFull = (obj: Record<string, unknown>) => {
 export const taxTypeToName = (taxType: TaxDocumentType) => {
   switch (taxType) {
     case "W9":
-      return "W9";
+      return "W-9";
     case "W8BEN":
-      return "W8-BEN";
+      return "W-8 BEN";
     case "W8BENE":
-      return "W8-BEN-E";
+      return "W-8 BEN-E";
     default:
       return "";
   }

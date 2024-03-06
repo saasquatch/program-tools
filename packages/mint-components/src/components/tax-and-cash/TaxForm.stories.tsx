@@ -16,6 +16,7 @@ import { BankingInfoFormViewProps } from "./sqm-banking-info-form/sqm-banking-in
 import LoadingView from "./sqm-tax-and-cash/LoadingView";
 // import sqmUserInfoSpecs from "./sqm-tax-document-step-1.feature";
 // import sqmIndirectTaxFormSpecs from "../sqm-indirect-tax-form/sqm-indirect-tax-form.feature";
+import { taxTypeToName } from "./utils";
 
 export default {
   title: "Components/Tax Form",
@@ -615,6 +616,8 @@ export const StepThreeWithDocusign = () => {
     <sqm-docusign-form
       demoData={{
         states: {
+          documentType: "W9",
+          documentTypeString: taxTypeToName("W9"),
           ...docusignFormProps.states,
         },
       }}
@@ -629,7 +632,7 @@ export const StepThreeWithDocusignW8BEN = () => {
         states: {
           ...docusignFormProps.states,
           documentType: "W8BEN",
-          documentTypeString: "W8-BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
         },
       }}
     ></sqm-docusign-form>
@@ -643,7 +646,7 @@ export const StepThreeWithDocusignW8BENE = () => {
         states: {
           ...docusignFormProps.states,
           documentType: "W8BENE",
-          documentTypeString: "W8-BEN-E",
+          documentTypeString: taxTypeToName("W8BENE"),
           formState: {
             completedTaxForm: false,
             taxFormExpired: false,
@@ -824,7 +827,7 @@ export const TaxAndCashDashboardActiveW9Form = () => {
           disabled: false,
           status: "ACTIVE",
           documentType: "W9",
-          documentTypeString: "W9",
+          documentTypeString: taxTypeToName("W9"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           country: "United Kingdom",
@@ -845,7 +848,7 @@ export const TaxAndCashDashboardActiveW8BENForm = () => {
           disabled: false,
           status: "ACTIVE",
           documentType: "W8BEN",
-          documentTypeString: "W8-BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           country: "United Kingdom",
@@ -866,7 +869,7 @@ export const TaxAndCashDashboardActiveW8BENEForm = () => {
           disabled: false,
           status: "ACTIVE",
           documentType: "W8BENE",
-          documentTypeString: "W8-BEN-E",
+          documentTypeString: taxTypeToName("W8BENE"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           country: "United Kingdom",
@@ -887,7 +890,7 @@ export const TaxAndCashDashboardNotActiveW9Form = () => {
           disabled: false,
           status: "NOT_ACTIVE",
           documentType: "W9",
-          documentTypeString: "W9",
+          documentTypeString: taxTypeToName("W9"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           indirectTaxNumber: "123456",
@@ -907,7 +910,7 @@ export const TaxAndCashDashboardNotVerifiedW9Form = () => {
           disabled: false,
           status: "NOT_VERIFIED",
           documentType: "W9",
-          documentTypeString: "W9",
+          documentTypeString: taxTypeToName("W9"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           country: "United States",
@@ -928,7 +931,7 @@ export const TaxAndCashDashboardNotVerifiedW8BENForm = () => {
           disabled: false,
           status: "NOT_VERIFIED",
           documentType: "W8BEN",
-          documentTypeString: "W8-BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           country: "United Kingdom",
@@ -949,7 +952,7 @@ export const TaxAndCashDashboardNotVerifiedW8BENEForm = () => {
           disabled: false,
           status: "NOT_VERIFIED",
           documentType: "W8BENE",
-          documentTypeString: "W8-BEN-E",
+          documentTypeString: taxTypeToName("W8BENE"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           country: "United Kingdom",
@@ -970,7 +973,7 @@ export const TaxAndCashDashboardNotActiveW8BENEForm = () => {
           disabled: false,
           status: "NOT_ACTIVE",
           documentType: "W8BENE",
-          documentTypeString: "W8-BEN-E",
+          documentTypeString: taxTypeToName("W8BENE"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           indirectTaxNumber: "123456",
@@ -990,7 +993,7 @@ export const TaxAndCashDashboardNoFormNeeded = () => {
         states: {
           disabled: false,
           documentType: "W9",
-          documentTypeString: "W9",
+          documentTypeString: taxTypeToName("W9"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: true,
           province: "Ontario",
@@ -1013,7 +1016,7 @@ export const TaxAndCashDashboardIndirectTaxCanada = () => {
           status: "ACTIVE",
           disabled: false,
           documentType: "W8BENE",
-          documentTypeString: "W8-BEN-E",
+          documentTypeString: taxTypeToName("W8BENE"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           province: "Ontario",
@@ -1036,7 +1039,7 @@ export const TaxAndCashDashboardIndirectTaxCanadaQuebec = () => {
           status: "ACTIVE",
           disabled: false,
           documentType: "W8BENE",
-          documentTypeString: "W8-BEN-E",
+          documentTypeString: taxTypeToName("W8BENE"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           province: "Quebec",
@@ -1060,7 +1063,7 @@ export const TaxAndCashDashboardIndirectTaxSpain = () => {
           status: "ACTIVE",
           disabled: false,
           documentType: "W8BENE",
-          documentTypeString: "W8-BEN-E",
+          documentTypeString: taxTypeToName("W8BENE"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           country: "Spain",
@@ -1082,7 +1085,7 @@ export const TaxAndCashDashboardIndirectTaxNotRegistered = () => {
         states: {
           status: "ACTIVE",
           documentType: "W8BEN",
-          documentTypeString: "W8-BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           notRegistered: true,
@@ -1101,7 +1104,7 @@ export const TaxAndCashDashboardLoading = () => {
           disabled: false,
           status: "ACTIVE",
           documentType: "W9",
-          documentTypeString: "W9",
+          documentTypeString: taxTypeToName("W9"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           loading: true,
@@ -1120,7 +1123,7 @@ export const TaxAndCashDashboardWithGeneralError = () => {
           disabled: false,
           status: "ACTIVE",
           documentType: "W9",
-          documentTypeString: "W9",
+          documentTypeString: taxTypeToName("W9"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           indirectTaxNumber: "123456",
@@ -1144,7 +1147,7 @@ export const TaxAndCashDashboardDisabled = () => {
           disabled: true,
           status: "NOT_ACTIVE",
           documentType: "W8BEN",
-          documentTypeString: "W8-BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           isBusinessEntity: true,
