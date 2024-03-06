@@ -4646,6 +4646,7 @@ export namespace Components {
         /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
+          * @uiGroup Step 1 Properties
          */
         "allowBankingCollection": string;
         /**
@@ -10045,6 +10046,7 @@ declare namespace LocalJSX {
         /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
+          * @uiGroup Step 1 Properties
          */
         "allowBankingCollection"?: string;
         /**
