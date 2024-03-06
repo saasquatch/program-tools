@@ -22,9 +22,9 @@ import LoadingView from "./LoadingView";
 export class TaxAndCashMonolith {
   // !: Make sure to also change the prop names in the respective component
 
-  /**
-   * * USER INFO FORM PROPS:
-   **/
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    STEP 1 PROPS:
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
   /**
    * Label text for first name input
@@ -87,9 +87,11 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_submitButton: string = "Continue";
-  /**
-   * * STEP 2 PROPS:
-   */
+
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    STEP 2 PROPS:
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
   /**
    * Sub text shown at the top of the page, used to show the current step of the tax form.
    * @uiName Indirect tax form step text
@@ -226,9 +228,10 @@ export class TaxAndCashMonolith {
    */
   @Prop() step2_indirectTaxNumberError: string =
     "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number} SST {SST Number} GENERAL {Indirect Tax Number}} is required";
-  /**
-   * * STEP 3 PROPS:
-   */
+
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    STEP 3 PROPS:
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   /**
    * Sub text shown at the top of the page, used to show the current step of the tax form.
    * @uiName Tax form step text
@@ -353,9 +356,10 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_formSubmissionError: string = "This field is required";
-  /**
-   * STEP 4 PAYOUT INFORMATION FORM
-   */
+
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    STEP 4 PROPS:
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   /**
    * Subtext shown at the top of the page, used to show the current step of the tax form.
    * @uiName Form step text
@@ -589,9 +593,10 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_cannotChangeInfoAlert: string =
     "Your payout information cannot be changed after saving. Ensure your payout method and schedule are correct before submitting.";
-  /**
-   * * DASHBOARD DOCUMENT SUBMITTED VIEW STEP
-   */
+
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    DASHBOARD PROPS:
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   /**
    * Status text displayed in badge when tax document is Active
    *
@@ -797,7 +802,9 @@ export class TaxAndCashMonolith {
   @Prop() dashboard_subRegionTaxNumber: string =
     "Income Tax Number: {incomeTaxNumber}";
 
-  /*----GENERAL PROPS------- */
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    GENERAL PROPS:
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   /**
    * The title for error message shown at the top of the page in an error banner
    *
