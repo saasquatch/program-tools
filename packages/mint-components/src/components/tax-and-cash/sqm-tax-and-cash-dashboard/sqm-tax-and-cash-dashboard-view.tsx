@@ -109,6 +109,7 @@ const style = {
     display: "flex",
     flexDirection: "column",
     lineHeight: "var(--sl-spacing-medium)",
+    fontSize: "var(--sl-font-size-small)",
   },
   NotRegisteredIndirectTaxText: {
     color: "var(--sl-color-gray-500)",
@@ -134,6 +135,9 @@ const style = {
       paddingTop: "2px",
       color: "var(--sl-color-gray-500)",
     },
+  },
+  StatusAlert: {
+    fontSize: "var(--sl-font-size-small)",
   },
   TaxFormDetailsContainer: {
     display: "flex",
@@ -456,7 +460,9 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                             }
                           )}
                         </h4>
-                        {statusMap[states.status]}
+                        <span class={sheet.classes.StatusAlert}>
+                          {statusMap[states.status]}
+                        </span>
                       </div>
                     </span>
                     <sl-button

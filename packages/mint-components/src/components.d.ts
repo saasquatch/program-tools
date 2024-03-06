@@ -4704,7 +4704,6 @@ export namespace Components {
           * @uiName General error title
          */
         "generalErrorTitle": string;
-        "iWasLazy": string;
         /**
           * Alert description text shown in alert if user is already a registered partner
           * @uiName Participant is partner description
@@ -10104,7 +10103,6 @@ declare namespace LocalJSX {
           * @uiName General error title
          */
         "generalErrorTitle"?: string;
-        "iWasLazy"?: string;
         /**
           * Alert description text shown in alert if user is already a registered partner
           * @uiName Participant is partner description
