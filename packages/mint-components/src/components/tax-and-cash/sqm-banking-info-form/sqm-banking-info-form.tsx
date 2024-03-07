@@ -258,7 +258,7 @@ export class BankingInfoForm {
    * Label text for the Taxpayer ID input field
    * @uiName Taxpayer ID input label
    */
-  @Prop() taxPayerIdLabel: string = "Taxpayer ID";
+  @Prop() taxPayerIdLabel: string = "Beneficiary INN";
 
   /**
    * Label text for the Bank Address input
@@ -303,7 +303,7 @@ export class BankingInfoForm {
   /**
    * @uiName EFT Withdrawal label text
    */
-  @Prop() eftWithdrawalLabel: string = "EFT Withdrawal (free)";
+  @Prop() eftWithdrawalLabel: string = "EFT Withdrawal (fee)";
 
   /**
    * @uiName FX Wire Processing fee text
@@ -369,6 +369,11 @@ export class BankingInfoForm {
       CNY: "CNAPS",
     };
 
+    const taxpayerIdLabels = {
+      AR: "CUIT/CUIL",
+      KR: "Classification ID",
+    };
+
     const fieldRequiredError = this.fieldRequiredError;
     const fieldInvalidError = this.fieldInvalidError;
 
@@ -407,6 +412,7 @@ export class BankingInfoForm {
     const formMap = getFormMap({
       props,
       routingCodeLabels,
+      taxpayerIdLabels,
       getValidationErrorMessage,
     });
 
@@ -604,9 +610,9 @@ function useDemoBankingInfoForm(
   const feeCap = paypalFeeMap[currency] || "";
 
   const paymentMethodFeeMap = {
-    ACH: this.eftWithdrawalLabel,
+    ACH: props.eftWithdrawalLabel,
     WIRE: intl.formatMessage(
-      { id: "fxWireText", defaultMessage: this.fxWireProcessingFeeLabel },
+      { id: "fxWireText", defaultMessage: props.fxWireProcessingFeeLabel },
       {
         currency,
         defaultFxFee: currentPaymentOption?.defaultFxFee || "0",

@@ -76,6 +76,7 @@ function useDemoPayoutDetailsCard(props: PayoutDetailsCard) {
         hasW9Pending: false,
         hasDatePending: true,
         cardNumberPreview: "2381",
+        balance: "20.00 USD",
       },
       text: props.getTextProps(),
     },

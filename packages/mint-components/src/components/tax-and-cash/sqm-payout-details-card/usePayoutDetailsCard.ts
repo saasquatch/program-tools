@@ -60,7 +60,7 @@ export function usePayoutDetailsCard(
   return {
     states: {
       loading,
-      thresholdBalance: `${publisher.currency}${publisher?.withdrawalSettings?.paymentThreshold}`,
+      thresholdBalance: `${publisher?.currency}${publisher?.withdrawalSettings?.paymentThreshold}`,
       balance: publisher?.payoutsAccount?.balance,
       status: publisher?.withdrawalSettings?.paymentThreshold
         ? "thresholdPayout"
