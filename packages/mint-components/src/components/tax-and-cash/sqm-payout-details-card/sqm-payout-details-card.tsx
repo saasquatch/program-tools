@@ -19,7 +19,8 @@ export class PayoutDetailsCard {
   @Prop()
   statusBadgeText: string =
     "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
-  @Prop() thresholdPayoutText: string = "Next payout occurs when balance is";
+  @Prop() thresholdPayoutText: string =
+    "Next payout occurs when balance is {thresholdBalance}";
   @Prop() accountText: string = "Account";
   @Prop() errorTitleText: string =
     "There was an error with your payout infomation";
