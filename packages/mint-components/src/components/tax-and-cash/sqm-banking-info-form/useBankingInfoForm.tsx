@@ -82,19 +82,28 @@ type RoutingCodeLabels = {
   CNY: string;
 };
 
+type TaxpayerIdLabels = {
+  AR: string;
+  KR: string;
+};
+
 export function getFormMap({
   props,
   routingCodeLabels,
+  taxpayerIdLabels,
   getValidationErrorMessage,
 }: {
   props: BankingInfoFormViewProps | Omit<any, "text" | "callbacks">;
   routingCodeLabels: RoutingCodeLabels;
+  taxpayerIdLabels: TaxpayerIdLabels;
   getValidationErrorMessage: (props: {
     type: "required" | "invalid";
     label: string;
   }) => string;
 }) {
   const { errors } = props.states.formState;
+
+  const country = props.states.bankCountry;
 
   return {
     0: {
@@ -270,7 +279,7 @@ export function getFormMap({
         </sl-select>,
         <sl-input
           required
-          label={props.text.taxPayerIdLabel}
+          label={taxpayerIdLabels[country] || props.text.taxPayerIdLabel}
           type="text"
           name="/taxPayerId"
           id="taxPayerId"

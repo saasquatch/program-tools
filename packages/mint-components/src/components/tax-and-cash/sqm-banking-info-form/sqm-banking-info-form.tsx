@@ -258,7 +258,7 @@ export class BankingInfoForm {
    * Label text for the Taxpayer ID input field
    * @uiName Taxpayer ID input label
    */
-  @Prop() taxPayerIdLabel: string = "Taxpayer ID";
+  @Prop() taxPayerIdLabel: string = "Beneficiary INN";
 
   /**
    * Label text for the Bank Address input
@@ -369,6 +369,11 @@ export class BankingInfoForm {
       CNY: "CNAPS",
     };
 
+    const taxpayerIdLabels = {
+      AR: "CUIT/CUIL",
+      KR: "Classification ID",
+    };
+
     const fieldRequiredError = this.fieldRequiredError;
     const fieldInvalidError = this.fieldInvalidError;
 
@@ -407,6 +412,7 @@ export class BankingInfoForm {
     const formMap = getFormMap({
       props,
       routingCodeLabels,
+      taxpayerIdLabels,
       getValidationErrorMessage,
     });
 
