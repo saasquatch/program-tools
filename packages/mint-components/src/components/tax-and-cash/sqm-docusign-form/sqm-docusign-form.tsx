@@ -112,7 +112,7 @@ export class DocusignForm {
    * Label text for the business entity radio button
    * @uiName Business entity radio button label
    */
-  @Prop() businessEntity: string = "I represent a company";
+  @Prop() businessEntity: string = "I represent a business";
   /**
    * Label text for the individual participant radio button
    * @uiName Individual participant radio button label
