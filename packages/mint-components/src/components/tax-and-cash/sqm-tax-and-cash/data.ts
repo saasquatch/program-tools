@@ -53,7 +53,14 @@ export const GET_USER = gql`
             countryCode
             currency
             requiredTaxDocumentType
-            indirectTaxId
+            taxInformation {
+              indirectTaxId
+              indirectTaxCountryCode
+              indirectTaxRegion
+              additionalTaxId
+              withholdingTaxId
+              withholdingTaxCountryCode
+            }
             currentTaxDocument {
               status
               type
@@ -83,12 +90,19 @@ type TaxDocumentStatus = "NEW" | "NOT_VERIFIED" | "ACTIVE" | "INACTIVE";
 type ImpactPublisher = {
   countryCode: string;
   currency: string;
-  indirectTaxId: string | null;
   requiredTaxDocumentType: TaxDocumentType | null;
   currentTaxDocument: null | {
     status: TaxDocumentStatus;
     type: TaxDocumentType;
     dateCreated: number;
+  };
+  taxInformation: {
+    indirectTaxId: string | null;
+    indirectTaxCountryCode: string;
+    indirectTaxRegion: string | null;
+    additionalTaxId: string | null;
+    withholdingTaxId: string | null;
+    withholdingTaxCountryCode: string | null;
   };
   withdrawalSettings: {
     paymentMethod: "PAYPAL" | "BANK_TRANSFER";
@@ -106,10 +120,6 @@ type ImpactPublisher = {
   // TODO: Remove this comment when these fields exist
   indirectTaxOption: "SAME_COUNTRY" | "NO_TAX" | "DIFFERENT_COUNTRY";
   indirectTaxSubdivision: string;
-  indirectTaxCountry: string;
-  additionalTaxId: string;
-  withholdingTaxCountry: string;
-  withholdingTaxNumber: string;
   organizationType: string;
 };
 export type UserQuery = {
