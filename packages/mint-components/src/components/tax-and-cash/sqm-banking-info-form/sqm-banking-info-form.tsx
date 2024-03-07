@@ -16,6 +16,7 @@ import {
   paypalFeeMap,
   useBankingInfoForm,
 } from "./useBankingInfoForm";
+import { intl } from "../../../global/global";
 
 /**
  * @uiName Banking Information Form
@@ -276,7 +277,7 @@ export class BankingInfoForm {
   @Prop() bankStateLabel: string = "Bank Province/State";
   /**
    * Label text for the Bank Postal Code
-   * @uiName  Bank Postal Code input label
+   * @uiName Bank Postal Code input label
    */
   @Prop() bankPostalCodeLabel: string = "Bank Postal Code";
   /**
@@ -298,6 +299,30 @@ export class BankingInfoForm {
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
+
+  /**
+   * @uiName EFT Withdrawal label text
+   */
+  @Prop() eftWithdrawalLabel: string = "EFT Withdrawal (free)";
+
+  /**
+   * @uiName FX Wire Processing fee text
+   */
+  @Prop() fxWireProcessingFeeLabel: string =
+    "FX Wire (Processing Fee {currency}{defaultFxFee}.00)";
+
+  /**
+   * Required error text shown at the bottom of field inputs
+   * @uiName Field inputs error text
+   * @uiGroup General Form Properties
+   */
+  @Prop() fieldRequiredError: string = "{fieldName} is required";
+  /**
+   * Invalid error text shown at the bottom of field inputs
+   * @uiName Field inputs invalid error text
+   * @uiGroup General Form Properties
+   */
+  @Prop() fieldInvalidError: string = "{fieldName} is invalid";
 
   /**
    * @undocumented
@@ -323,7 +348,6 @@ export class BankingInfoForm {
     };
   }
 
-  // need to make this translatable
   getValidationErrorMessage({
     type,
     label,
@@ -332,10 +356,23 @@ export class BankingInfoForm {
     label: string;
   }) {
     if (type === "required") {
-      return `${label} is required`;
+      return intl.formatMessage(
+        {
+          id: `requiredText-${label}`,
+          defaultMessage: this.fieldRequiredError,
+        },
+        {
+          fieldName: label,
+        }
+      );
     }
     if (type === "invalid") {
-      return `${label} is invalid`;
+      return intl.formatMessage(
+        { id: `invalidText-${label}`, defaultMessage: this.fieldInvalidError },
+        {
+          fieldName: label,
+        }
+      );
     }
     return "";
   }
@@ -542,10 +579,14 @@ function useDemoBankingInfoForm(
   const feeCap = paypalFeeMap[currency] || "";
 
   const paymentMethodFeeMap = {
-    ACH: "EFT Withdrawal (free)",
-    WIRE: `FX Wire (Processing Fee ${currency}${
-      currentPaymentOption?.defaultFxFee || 0
-    }.00)`,
+    ACH: this.eftWithdrawalLabel,
+    WIRE: intl.formatMessage(
+      { id: "fxWireText", defaultMessage: this.fxWireProcessingFeeLabel },
+      {
+        currency,
+        defaultFxFee: currentPaymentOption?.defaultFxFee || "0",
+      }
+    ),
   };
 
   const paymentMethodFeeLabel =

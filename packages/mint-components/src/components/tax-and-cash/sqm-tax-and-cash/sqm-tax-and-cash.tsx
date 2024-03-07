@@ -8,6 +8,7 @@ import LoadingView from "./LoadingView";
 import { TAX_CONTEXT_NAMESPACE } from "./data";
 import { extractProps } from "./extractProps";
 import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
+import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
  * @uiName Tax and Cash
@@ -902,6 +903,12 @@ export class TaxAndCashMonolith {
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
   /**
+   * Invalid error text shown at the bottom of field inputs
+   * @uiName Field inputs invalid error text
+   * @uiGroup General Form Properties
+   */
+  @Prop() fieldInvalidError: string = "{fieldName} is invalid";
+  /**
    * Text for the continue button in the form
    * @uiName Continue button text
    * @uiGroup General Form Properties
@@ -941,6 +948,7 @@ export class TaxAndCashMonolith {
       generalErrorTitle: props.generalErrorTitle,
       generalErrorDescription: props.generalErrorDescription,
       fieldRequiredError: props.fieldRequiredError,
+      fieldInvalidError: props.fieldInvalidError,
       submitButton: props.continueButton,
       isPartnerAlertHeader: props.isPartnerAlertHeader,
       isPartnerAlertDescription: props.isPartnerAlertDescription,
@@ -950,8 +958,6 @@ export class TaxAndCashMonolith {
   render() {
     const props = useTaxAndCash();
     // const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
-
-    console.log({ dashboardProps: this.getGeneralStepTextProps("dashboard_") });
 
     switch (props.step) {
       case "/1":

@@ -655,8 +655,6 @@ export function useBankingInfoForm(
     setLoading(true);
     try {
       if (!currentPaymentOption) throw new Error("No currentPaymentOption");
-      // @ts-ignore figure out what the values for paymentDay are
-      // const { paymentDay, ...rest } = formData;
 
       const response = await saveWithdrawalSettings({
         setImpactPublisherWithdrawalSettingsInput: {
