@@ -48,7 +48,7 @@ type ImpactConnectionInput = {
   lastName: string;
   countryCode: string;
   currency: string;
-  indirectTaxCountry?: string;
+  indirectTaxCountryCode?: string;
   indirectTaxRegion?: string;
   indirectTaxId?: string;
   additionalTaxId?: string;
@@ -205,11 +205,11 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
           lastName: userForm.lastName,
           countryCode: userForm.countryCode,
           currency: userForm.currency,
-          indirectTaxCountry: formData.selectedRegion,
+          indirectTaxCountryCode: formData.selectedRegion,
           indirectTaxRegion: formData.province || formData.subRegion,
           indirectTaxId: formData.indirectTaxNumber,
           additionalTaxId: formData.qstNumber,
-          withholdingTaxNumber: formData.subRegionTaxNumber,
+          withholdingTaxId: formData.subRegionTaxNumber,
         } as ImpactConnectionInput,
       });
       if (!result || (result as Error)?.message) throw new Error();

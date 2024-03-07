@@ -61,48 +61,54 @@ export function useTaxAndCash() {
 
   function setupDemo() {
     // coleton
-    const id =
-      "0021abad9b19015c190479fdc4ac2491a30c5b744f9603003b07f122a80483df";
-    const accountId =
-      "0021abad9b19015c190479fdc4ac2491a30c5b744f9603003b07f122a80483df";
+    // const id =
+    //   "0021abad9b19015c190479fdc4ac2491a30c5b744f9603003b07f122a80483df";
+    // const accountId =
+    //   "0021abad9b19015c190479fdc4ac2491a30c5b744f9603003b07f122a80483df";
 
     // // andy
-    // const id =
-    //   "64fdeb7347c94ab69bb5ff4c788ca78c0ba127cdc374a8300157250b1643767b";
-    // const accountId =
-    //   "64fdeb7347c94ab69bb5ff4c788ca78c0ba127cdc374a8300157250b1643767b";
+    // const id = "12345";
+    // const accountId = "12345";
+
+    // andy2
+    const id =
+      "8bf41db67abff15fb0f4de69325d6f1c1fb52cf0ea9100fd646101cd8c0b27b6";
+    const accountId =
+      "8bf41db67abff15fb0f4de69325d6f1c1fb52cf0ea9100fd646101cd8c0b27b6";
 
     // sam
     // const id =
     //   "ea9c677dda4e031bcb559541007ff61179fbe8bf8f6c32e478d97f09d069fd5b";
     // const accountId =
     //   "ea9c677dda4e031bcb559541007ff61179fbe8bf8f6c32e478d97f09d069fd5b";
-    const programId = "22514";
+    // const programId = "22514";
+    const programId = "22999";
 
     //@ts-ignore
     window.widgetIdent = {
-      tenantAlias: "aprh0cfq6y8tk",
+      // tenantAlias: "aprh0cfq6y8tk",
+      tenantAlias: "aswi7zpxl6rjp",
       appDomain: "https://staging.referralsaasquatch.com",
       programId,
     };
 
     // coleton
-    useEffect(() => {
-      setUserIdentity({
-        accountId,
-        id,
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiMDAyMWFiYWQ5YjE5MDE1YzE5MDQ3OWZkYzRhYzI0OTFhMzBjNWI3NDRmOTYwMzAwM2IwN2YxMjJhODA0ODNkZiIsImFjY291bnRJZCI6IjAwMjFhYmFkOWIxOTAxNWMxOTA0NzlmZGM0YWMyNDkxYTMwYzViNzQ0Zjk2MDMwMDNiMDdmMTIyYTgwNDgzZGYifX0.bPJJiqNQOtVpkyq3X02AgdIOU7We7IVeClu5MWhbJWE",
-      });
-    }, []);
-
-    // andy
     // useEffect(() => {
     //   setUserIdentity({
     //     accountId,
     //     id,
-    //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNjRmZGViNzM0N2M5NGFiNjliYjVmZjRjNzg4Y2E3OGMwYmExMjdjZGMzNzRhODMwMDE1NzI1MGIxNjQzNzY3YiIsImFjY291bnRJZCI6IjY0ZmRlYjczNDdjOTRhYjY5YmI1ZmY0Yzc4OGNhNzhjMGJhMTI3Y2RjMzc0YTgzMDAxNTcyNTBiMTY0Mzc2N2IifX0.rSeFVjrPvRlO_m4skwgnvJNbWfnIM7f_q2tfqo4R0pU",
+    //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiMDAyMWFiYWQ5YjE5MDE1YzE5MDQ3OWZkYzRhYzI0OTFhMzBjNWI3NDRmOTYwMzAwM2IwN2YxMjJhODA0ODNkZiIsImFjY291bnRJZCI6IjAwMjFhYmFkOWIxOTAxNWMxOTA0NzlmZGM0YWMyNDkxYTMwYzViNzQ0Zjk2MDMwMDNiMDdmMTIyYTgwNDgzZGYifX0.bPJJiqNQOtVpkyq3X02AgdIOU7We7IVeClu5MWhbJWE",
     //   });
     // }, []);
+
+    // andy
+    useEffect(() => {
+      setUserIdentity({
+        accountId,
+        id,
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSZkFUVEdOZXRqUDUwNzYxMDNERjVub0d0TDRnQ0hjYjEifQ.eyJ1c2VyIjp7ImlkIjoiOGJmNDFkYjY3YWJmZjE1ZmIwZjRkZTY5MzI1ZDZmMWMxZmI1MmNmMGVhOTEwMGZkNjQ2MTAxY2Q4YzBiMjdiNiIsImFjY291bnRJZCI6IjhiZjQxZGI2N2FiZmYxNWZiMGY0ZGU2OTMyNWQ2ZjFjMWZiNTJjZjBlYTkxMDBmZDY0NjEwMWNkOGMwYjI3YjYifX0.zGP57YKLV0J5WmMpUD61KdGHK600kdO3wlhy_oOr0ts",
+      });
+    }, []);
 
     // sam
     // useEffect(() => {
