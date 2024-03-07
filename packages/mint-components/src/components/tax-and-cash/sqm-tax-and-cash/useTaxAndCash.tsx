@@ -67,19 +67,27 @@ export function useTaxAndCash() {
     //   "0021abad9b19015c190479fdc4ac2491a30c5b744f9603003b07f122a80483df";
 
     // // andy
-    const id = "12345";
-    const accountId = "12345";
+    // const id = "12345";
+    // const accountId = "12345";
+
+    // andy2
+    const id =
+      "8bf41db67abff15fb0f4de69325d6f1c1fb52cf0ea9100fd646101cd8c0b27b6";
+    const accountId =
+      "8bf41db67abff15fb0f4de69325d6f1c1fb52cf0ea9100fd646101cd8c0b27b6";
 
     // sam
     // const id =
     //   "ea9c677dda4e031bcb559541007ff61179fbe8bf8f6c32e478d97f09d069fd5b";
     // const accountId =
     //   "ea9c677dda4e031bcb559541007ff61179fbe8bf8f6c32e478d97f09d069fd5b";
-    const programId = "22514";
+    // const programId = "22514";
+    const programId = "22999";
 
     //@ts-ignore
     window.widgetIdent = {
-      tenantAlias: "aprh0cfq6y8tk",
+      // tenantAlias: "aprh0cfq6y8tk",
+      tenantAlias: "aswi7zpxl6rjp",
       appDomain: "https://staging.referralsaasquatch.com",
       programId,
     };
@@ -98,7 +106,7 @@ export function useTaxAndCash() {
       setUserIdentity({
         accountId,
         id,
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiMTIzNDUiLCJhY2NvdW50SWQiOiIxMjM0NSIsImVtYWlsIjoiYW5keS5sdW8rdGVzdDdAaW1wYWN0LmNvbSJ9fQ.seNeBfB_w31PKbzVld1Ad--dpgZBLda7dXzAthWuGO8",
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSZkFUVEdOZXRqUDUwNzYxMDNERjVub0d0TDRnQ0hjYjEifQ.eyJ1c2VyIjp7ImlkIjoiOGJmNDFkYjY3YWJmZjE1ZmIwZjRkZTY5MzI1ZDZmMWMxZmI1MmNmMGVhOTEwMGZkNjQ2MTAxY2Q4YzBiMjdiNiIsImFjY291bnRJZCI6IjhiZjQxZGI2N2FiZmYxNWZiMGY0ZGU2OTMyNWQ2ZjFjMWZiNTJjZjBlYTkxMDBmZDY0NjEwMWNkOGMwYjI3YjYifX0.zGP57YKLV0J5WmMpUD61KdGHK600kdO3wlhy_oOr0ts",
       });
     }, []);
 

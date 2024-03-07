@@ -53,7 +53,9 @@ export const GET_USER = gql`
             countryCode
             currency
             requiredTaxDocumentType
-            indirectTaxId
+            taxInformation {
+              indirectTaxId
+            }
             currentTaxDocument {
               status
               type
