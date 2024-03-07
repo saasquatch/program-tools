@@ -15,6 +15,7 @@ import { usePayoutDetailsCard } from "./usePayoutDetailsCard";
   shadow: true,
 })
 export class PayoutDetailsCard {
+  // TODO: Add jsDoc strings and cleanup getTextProps();
   @Prop()
   statusBadgeText: string =
     "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";

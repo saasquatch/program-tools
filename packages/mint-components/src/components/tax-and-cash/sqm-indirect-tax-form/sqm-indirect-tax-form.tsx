@@ -55,7 +55,7 @@ export class IndirectTaxForm {
    * @uiName Indirect tax details subtext
    */
   @Prop() indirectTaxDetailsDescription: string =
-    "Businesses based in countries that enforce indirect taxes (e.g. VAT, HST, GST) must add their indirect tax details to stay tax compliant.";
+    "Participants representing businesses based in countries that enforce indirect taxes (e.g. VAT, HST, GST) must add their indirect tax details to stay tax compliant.";
 
   /**
    * Text for the option indicating registration for indirect tax in a different region

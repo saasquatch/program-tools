@@ -125,27 +125,26 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_indirectTaxDetailsDescription: string =
-    "Not sure if you are registered for indirect tax? Contact our Support team to find out more.";
+    "Participants representing businesses based in countries that enforce indirect taxes (e.g. VAT, HST, GST) must add their indirect tax details to stay tax compliant.";
   /**
    * Label text for the other region radio button
    * @uiName Other region radio button label
    * @uiGroup Step 2 Properties
    */
-  @Prop() step2_otherRegion: string =
-    "I am registered for Indirect Tax in a different Country / Region";
+  @Prop() step2_otherRegion: string = "Registered for indirect tax";
   /**
    * Subtext for the option indicating registration for indirect tax in a different region
    * @uiName Registered for indirect tax in a different region option sub-text
    * @uiGroup Step 2 Properties
    */
   @Prop() otherRegionSubtext: string =
-    "IIf you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more.";
+    "If you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more.";
   /**
    * Label text for the not registered radio button
    * @uiName Not registered radio button label
    * @uiGroup Step 2 Properties
    */
-  @Prop() step2_notRegistered: string = "I am not registered for Indirect Tax";
+  @Prop() step2_notRegistered: string = "Not registered for indirect tax";
   /**
    * Subtext for the option indicating not being registered for indirect tax
    * @uiName Not registered for indirect tax option sub-text
@@ -959,6 +958,7 @@ export class TaxAndCashMonolith {
     const props = useTaxAndCash();
     // const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
 
+    // TODO: Create form wrapper that includes the header and sub text.
     switch (props.step) {
       case "/1":
         return (
