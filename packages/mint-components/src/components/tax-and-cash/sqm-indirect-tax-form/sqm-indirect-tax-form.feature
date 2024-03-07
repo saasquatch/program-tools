@@ -95,7 +95,7 @@ Feature: Indirect Tax Form
     And the "province" field has value "Quebec"
     Then the "registeredForQST" checkbox with label "I am registered for QST Tax" will appear
     When the "registeredForQST" checkbox is selected
-    Then the "qstNumber" field is selected
+    Then the "qstNumber" field is shown
     And the "qstNumber" field has label "QST Number"
 
   @minutia @ui
@@ -187,6 +187,30 @@ Feature: Indirect Tax Form
     Then there is a searchbar
     And as they type in the searchbar
     Then the available countries get filtered out based on their search
+
+  Scenario Outline: Fields saved
+    Given the radio option <option> is selected
+    And the indirect tax form is filled out according to <formData>
+    When the "Continue" button is pressed
+    Then the following user fields are included in the request body
+      | field       |
+      | firstName   |
+      | lastName    |
+      | email       |
+      | countryCode |
+      | currency    |
+    And the tax information fields <taxFields> have values in the request body
+    And any other fields are "undefined"
+
+    Examples:
+      | option        | indirectCountryCode | indirectTaxId | indirectTaxRegion | additionalTaxId | withholdingTaxId | requestBody                                                             |
+      | notRegistered | n/a                 | n/a           | n/a               | n/a             | n/a              | ""                                                                      |
+      | registered    | US (United States)  | 123123        | n/a               | n/a             | n/a              | indirectCountryCode, indirectTaxId                                      |
+      | registered    | UK (United Kingdom) | 123123        | n/a               | n/a             | n/a              | indirectCountryCode, indirectTaxId                                      |
+      | registered    | CA (Canada)         | 123123        | BC                | n/a             | n/a              | indirectCountryCode, indirectTaxId, indirectTaxRegion                   |
+      | registered    | CA (Canada)         | 123123        | QU                | 333             | n/a              | indirectCountryCode, indirectTaxId, indirectTaxRegion, additionalTaxId  |
+      | registered    | ES (Spain)          | 123123        | SPAINPROPER       | n/a             | 333              | indirectCountryCode, indirectTaxId, indirectTaxRegion, withholdingTaxId |
+      | registered    | ES (Spain)          | 123123        | CANARYISLANDS     | n/a             | 333              | indirectCountryCode, indirectTaxId, indirectTaxRegion, withholdingTaxId |
 
   @minutia
   Scenario: Participant is registered for indirect tax fills out and submits form
