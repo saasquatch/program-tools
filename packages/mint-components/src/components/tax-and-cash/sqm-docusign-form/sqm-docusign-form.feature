@@ -121,3 +121,19 @@ Feature: Docusign Form
   Scenario: Participant cannot go back to previous steps
     When they view the Docusign form
     Then no back button will be present
+
+  @minutia
+  Scenario: Error banner on form load failure
+    Given a participant loads the docusign form
+    And they have a required tax document type
+    And the request to get the docusign url fails
+    Then an error banner is shown
+    And the banner has title
+      """
+      There was a problem loading your form
+      """
+    And the banner has description
+      """
+      Please refresh the page and try again. If this problem continues, contact Support.
+      """
+

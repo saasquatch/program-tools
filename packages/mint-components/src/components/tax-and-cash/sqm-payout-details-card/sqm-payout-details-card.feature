@@ -1,5 +1,5 @@
-@author sam
-@owner sam
+@author:sam
+@owner:sam
 Feature: Payout Details Card
 
     Displays the details of the user's next payout via impact

@@ -22,23 +22,28 @@ Feature: Tax And Cash Dashboard
     Given they submitted a W9/W8-BEN/W8-BEN-E Tax form
     Then the Tax Form header displays "<documentType> Tax Form"
 
-    Examples: 
+    Examples:
       | documentType |
       | W9           |
-      | W8-BEN       |
-      | W8-BEN-E     |
+      | W8 BEN       |
+      | W8 BEN-E     |
+
+  @minutia
+  Scenario: Indirect tax information section is hidden if they aren't registered
+    Given a user not registered for indirect tax
+    Then the indirect tax information section is hidden
 
   @minutia @ui
   Scenario Outline: The date submitted and status of a Tax Form is displayed to the user
     Given the Tax Document is currently <status>
     When they view the Tax Document Submitted
     Then they see a badge with <status> text and a respective <badgeVariant>
-    Then they see a message indicating "<taxStatusMessage> on <dateSubmitted>"
+    Then they see the message "<taxStatusMessage> on <dateSubmitted>"
 
-    Examples: 
+    Examples:
       | status       | badgeVariant | taxStatusMessage                                                          | dateSubmitted |
-      | ACTIVE       | success      | Submitted on                                                              | Jan 17, 2024  |
-      | NOT_VERIFIED | neutral      | Awaiting Review. Submitted on                                             | Jan 17, 2024  |
+      | ACTIVE       | success      | Submitted                                                                 | Jan 17, 2024  |
+      | NOT_VERIFIED | neutral      | Awaiting Review. Submitted                                                | Jan 17, 2024  |
       | NOT_ACTIVE   | danger       | Ensure your information matches your profile and resubmit a new document. | Jan 17, 2024  |
 
   @minutia @ui
@@ -50,31 +55,21 @@ Feature: Tax And Cash Dashboard
 
   @minutia
   Scenario Outline: Indirect Tax section shows details if participant is registered for indirect tax
-    When the participant <isRegistered> for indirect tax in their <country>
+    When the participant <isRegistered> for indirect tax in their <country> and region <region>
     Then the Indirect Tax section will display <registeredDetails>, <indirectTaxType>, and <indirectTaxNumber>
 
-    Examples: 
-      | isRegistered | country          | registeredDetails                                                                                                                                             | indirectTaxType        | indirectTaxNumber |
-      | true         | Australia        | Registered in Australia.                                                                                                                                      | GST                    |            123456 |
-      | true         | Canada           | Registered in Ontario, Canada.                                                                                                                                | GST                    |            345213 |
-      | true         | Canada           | Registered in British Columbia, Canada.                                                                                                                       | HST                    |            345213 |
-      | true         | Canada           | Registered in Quebec, Canada.                                                                                                                                 | GST, QST               |     345213, 12312 |
-      | true         | United Kingdom   | Registered in United Kingdom.                                                                                                                                 | VAT                    |            321413 |
-      | true         | Spain            | Registered in Spain, Madred.                                                                                                                                  | VAT, Income Tax Number |     345213, 12345 |
-      | false        | United States    | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
-      | false        | United States    | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
-      | false        | Papua New Guinea | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
-
-  @minutia
-  Scenario Outline: Participant is registered for indirect tax in Canada, Quebec
-    When the participant is registered for indirect tax in Canada, Quebec
-    And they <doHaveQSTNumber> from step 2
-    Then the indirect tax section displays <indirectTaxNumbers>
-
-    Examples: 
-      | doHaveQSTNumber | indirectTaxNumbers     |
-      | true            | GST Number, QST Number |
-      | false           | GST Number, N/A        |
+    Examples:
+      | isRegistered | country          | region           | registeredDetails                                                                                                                                             | indirectTaxType        | indirectTaxNumber |
+      | true         | Australia        | n/a              | Registered in Australia.                                                                                                                                      | GST                    | 123456            |
+      | true         | Canada           | Ontario          | Registered in Ontario, Canada.                                                                                                                                | GST                    | 345213            |
+      | true         | Canada           | British Columbia | Registered in British Columbia, Canada.                                                                                                                       | HST                    | 345213            |
+      | true         | Canada           | Quebec           | Registered in Quebec, Canada.                                                                                                                                 | GST, QST               | 345213, 12312     |
+      | true         | United Kingdom   | n/a              | Registered in United Kingdom.                                                                                                                                 | VAT                    | 321413            |
+      | true         | Spain            | Spain Proper     | Registered in Spain, Spain Proper.                                                                                                                            | VAT, Income Tax Number | 345213, 12345     |
+      | true         | Spain            | Canary Islands   | Registered in Spain, Canary Islands.                                                                                                                          | VAT, Income Tax Number | 345213, 12345     |
+      | false        | United States    | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
+      | false        | United States    | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
+      | false        | Papua New Guinea | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
 
   @minutia
   Scenario Outline: Participant is registered for indirect tax in Spain
@@ -83,17 +78,17 @@ Feature: Tax And Cash Dashboard
     And they <doHaveIncomeTaxNumber> from step 2
     Then the indirect tax section displays <indirectTaxNumbers>
 
-    Examples: 
-      | registeredDetails    | subRegion | doHaveIncomeTaxNumber | indirectTaxNumbers            |
-      | Registered in Spain, | Madred    | true                  | VAT Number, Income Tax Number |
-      | Registered in Spain, | Valencia  | false                 | VAT Number, N/A               |
+    Examples:
+      | registeredDetails    | subRegion      | doHaveIncomeTaxNumber | indirectTaxNumbers            |
+      | Registered in Spain, | Spain Proper   | true                  | VAT Number, Income Tax Number |
+      | Registered in Spain, | Canary Islands | false                 | VAT Number, N/A               |
 
   @minutia @ui
   Scenario Outline: A Danger Alert is displayed if the users tax form is invalid
     Given the document has status <status>
     Then a danger alert indicating the <documentType> with a <taxAlertHeader> and <taxAlertMessage> appears
 
-    Examples: 
+    Examples:
       | status     | documentType | taxAlertHeader                                                             | taxAlertMessage                                                                                                              |
       | NOT_ACTIVE | W9           | Your W9 tax form has personal information that doesn't match your profile. | Please resubmit a new W9 form.                                                                                               |
       | NOT_ACTIVE | W8-BEN       | W8-BEN tax form is invalid.                                                | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W8-BEN form. |

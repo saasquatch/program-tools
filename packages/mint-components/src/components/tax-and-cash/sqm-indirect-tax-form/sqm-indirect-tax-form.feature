@@ -188,6 +188,7 @@ Feature: Indirect Tax Form
     And as they type in the searchbar
     Then the available countries get filtered out based on their search
 
+  @motivating
   Scenario Outline: Fields saved
     Given the radio option <option> is selected
     And the indirect tax form is filled out according to <formData>
@@ -203,7 +204,7 @@ Feature: Indirect Tax Form
     And any other fields are "undefined"
 
     Examples:
-      | option        | indirectCountryCode | indirectTaxId | indirectTaxRegion | additionalTaxId | withholdingTaxId | requestBody                                                             |
+      | option        | indirectCountryCode | indirectTaxId | indirectTaxRegion | additionalTaxId | withholdingTaxId | taxFields                                                               |
       | notRegistered | n/a                 | n/a           | n/a               | n/a             | n/a              | ""                                                                      |
       | registered    | US (United States)  | 123123        | n/a               | n/a             | n/a              | indirectCountryCode, indirectTaxId                                      |
       | registered    | UK (United Kingdom) | 123123        | n/a               | n/a             | n/a              | indirectCountryCode, indirectTaxId                                      |

@@ -82,8 +82,6 @@ export const useTaxAndCashDashboard = (
   const documentType = publisher?.currentTaxDocument?.type;
   const submissionDate = publisher?.currentTaxDocument?.dateCreated;
 
-  console.log({ publisher });
-
   const dateSubmitted = submissionDate
     ? DateTime.fromMillis(submissionDate).toFormat("LLL dd, yyyy")
     : undefined;
@@ -135,8 +133,7 @@ export const useTaxAndCashDashboard = (
         publisher?.taxInformation?.indirectTaxCountryCode,
         locale
       ),
-      // TODO: Remove these states since we aren't supporting autofill of saved values
-      notRegistered: false,
+      notRegistered: !publisher?.taxInformation?.indirectTaxId,
       noFormNeeded: !documentType,
       expiresSoon,
       disabled: loading,

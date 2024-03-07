@@ -6,36 +6,60 @@ Feature: Tax Form Flow
   @minutia
   Scenario Outline: Participants can register as branded partners, provide indirect tax information and submit their tax forms
     Given they are on step 1
-    When they input the following information into the form fields
-      | First Name               | <firstName>              |
-      | Last Name                | <lastName>               |
-      | Email                    | <email>                  |
-      | Country Code             | <countryCode>            |
-      | Currency                 | <currency>               |
-      | Allow Banking Collection | <allowBankingCollection> |
+    When they input information into the following form fields
+      | firstName              |
+      | lastName               |
+      | email                  |
+      | countryCode            |
+      | currency               |
+      | allowBankingCollection |
     And press "Continue"
-    Then they proceed to step 2
-    And they see three options
-      | I am registered for HST in Canada                                |
-      | I am registered for Indirect Tax in a different Country / Region |
-      | I am not registered for Indirect Tax                             |
+    Then they may proceed to step 2
+    When they arrive on step 2
+    Then they see the following radio options
+      | Not registered for indirect tax |
+      | Registered for indirect tax     |
     But <option> is selected by default
     When they complete filling out their indirect tax information
     And press "Continue"
     Then they proceed to <stepX> depending on the <brandCountry> and participants <countryCode>
 
-    Examples: 
+    Examples:
       | firstName | lastName | email                  | countryCode | brandCountry | currency | allowBankingCollection | option                               | stepX |
-      | Bob       | Johnson  | bob.johnson@email.com  | CA          | US           | CAD      | true                   | I am registered for Indirect Tax     |     3 |
-      | Jane      | Moe      | jane.moe@email.com     | CA          | MX           | CAD      | true                   | I am registered for Indirect Tax     |     4 |
-      | Dane      | Coe      | dane.coe@email.com     | US          | CA           | USD      | true                   | I am not registered for Indirect Tax |     4 |
-      | David     | Renar    | david.renar@email.com  | US          | MX           | USD      | true                   | I am not registered for Indirect Tax |     4 |
-      | Jose      | Querv    | jose.querv@email.com   | UK          | US           | GBP      | true                   | I am registered for Indirect Tax     |     3 |
-      | David     | Blaine   | david.blaine@email.com | UK          | MX           | GBP      | true                   | I am registered for Indirect Tax     |     4 |
-      | Charle    | Buck     | charle.buck@email.com  | EG          | US           | EGP      | true                   | I am not registered for Indirect Tax |     3 |
-      | Payton    | Chan     | payton.chan@email.com  | EG          | MX           | EGP      | true                   | I am not registered for Indirect Tax |     4 |
+      | Bob       | Johnson  | bob.johnson@email.com  | CA          | US           | CAD      | true                   | I am registered for Indirect Tax     | 3     |
+      | Jane      | Moe      | jane.moe@email.com     | CA          | MX           | CAD      | true                   | I am registered for Indirect Tax     | 4     |
+      | Dane      | Coe      | dane.coe@email.com     | US          | CA           | USD      | true                   | I am not registered for Indirect Tax | 4     |
+      | David     | Renar    | david.renar@email.com  | US          | MX           | USD      | true                   | I am not registered for Indirect Tax | 4     |
+      | Jose      | Querv    | jose.querv@email.com   | UK          | US           | GBP      | true                   | I am registered for Indirect Tax     | 3     |
+      | David     | Blaine   | david.blaine@email.com | UK          | MX           | GBP      | true                   | I am registered for Indirect Tax     | 4     |
+      | Charle    | Buck     | charle.buck@email.com  | EG          | US           | EGP      | true                   | I am not registered for Indirect Tax | 3     |
+      | Payton    | Chan     | payton.chan@email.com  | EG          | MX           | EGP      | true                   | I am not registered for Indirect Tax | 4     |
+
+  Scenario Outline: Default form step on load
+    Given the participant just loaded the form
+    And participant <hasTax>
+    And participant <isConnected>
+    And participant <hasRequiredDoc>
+    And participant <hasCurrentTaxDoc>
+    And participant current tax document has status <status>
+    And participant <hasWithdrawalSettings>
+    Then they proceed to <stepX>
+
+    Examples:
+      | hasTax                 | isConnected      | hasRequiredDoc             | hasCurrentTaxDoc          | status   | hasWithdrawalSettings             | stepX     |
+      | does not have tax info | is not connected | n/a                        | n/a                       | n/a      | n/a                               | step 1    |
+      | does not have tax info | is connected     | n/a                        | n/a                       | n/a      | n/a                               | step 1    |
+      | has tax info           | is not connected | n/a                        | n/a                       | n/a      | n/a                               | step 1    |
+      | has tax info           | is connected     | does have required doc     | does not have current doc | n/a      | n/a                               | step 3    |
+      | has tax info           | is connected     | does have required doc     | does have current doc     | INACTIVE | n/a                               | step 3    |
+      | has tax info           | is connected     | does have required doc     | does have current doc     | NEW      | n/a                               | step 3    |
+      | has tax info           | is connected     | does have required doc     | does have current doc     | ACTIVE   | does not have withdrawal settings | step 4    |
+      | has tax info           | is connected     | does have required doc     | does have current doc     | ACTIVE   | do have withdrawal settings       | dashboard |
+      | has tax info           | is connected     | does not have required doc | does not have current doc | n/a      | does not have withdrawal settings | step 4    |
+      | has tax info           | is connected     | does not have required doc | does not have current doc | n/a      | do have withdrawal settings       | dashboard |
 
   @minutia
+  # TODO: Can a publisher have tax info but not be connected
   Scenario: Participant is already registered as partner, provides indirect tax information, and submit their tax forms
     Given the they are already registered as a partner
     Then step 1 displays a banner with "An account with this email already exists with our referral program provider, impact.com" notifying that they are a partner
@@ -48,42 +72,24 @@ Feature: Tax Form Flow
     And they check "Allow Banking Collection"
     And press "Continue"
     Then they proceed to step 2
-    And they see three options
-      | I am registered for HST in Canada                                |
-      | I am registered for Indirect Tax in a different Country / Region |
-      | I am not registered for Indirect Tax                             |
+    And they see the following radio options
+      | Not registered for indirect tax |
+      | Registered for indirect tax     |
     But <option> is selected by default
     And the <fields> are pre-filled
     And press "Continue"
     Then they proceed to <stepX> depending on the <brandCountry> and participants <countryCode>
 
-    Examples: 
-      | countryCode | brandCountry | currency | allowBankingCollection | option                          | fields                                                 | stepX |
-      | CA          | US           | CAD      | true                   | Registered for indirect tax     | Country, Province, HST/GST Number, ?QST Number(Quebec) |     3 |
-      | CA          | MX           | CAD      | true                   | Not registered for indirect tax | Country, Province, HST/GST Number                      |     4 |
-      | US          | CA           | USD      | true                   | Not registered for indirect tax | N/A                                                    |     3 |
-      | US          | MX           | USD      | true                   | Not registered for indirect tax | N/A                                                    |     3 |
-      | UK          | US           | GBP      | true                   | Not registered for indirect tax | N/A                                                    |     3 |
-      | UK          | US           | GBP      | true                   | Registered for indirect tax     | Country, VAT Number                                    |     3 |
-      | ES          | US           | EGP      | true                   | Registered for indirect tax     | Country, Sub Region,VAT Number                         |     3 |
-      | EG          | MX           | BMD      | true                   | Not registered for indirect tax | N/A                                                    |     4 |
-
-  @minutia
-  Scenario Outline: Different indirect tax inputs are shown depending on the country of a participant
-    Given they are on step 2
-    When <option> is selected based on the participant <country> from step 1
-    Then different <inputs> appear
-
-    Examples: 
-      | country | option                          | inputs                                                 |
-      | CA      | Registered for indirect tax     | Country, Province, HST/GST Number, ?QST Number(Quebec) |
-      | ES      | Registered for indirect tax     | Country, Sub Region, VAT Number, ?Income Tax Number    |
-      | UK      | Registered for indirect tax     | Country, VAT Number                                    |
-      | IR      | Registered for indirect tax     | Country, GST Number                                    |
-      | AU      | Registered for indirect tax     | Country, GST Number                                    |
-      | JP      | Registered for indirect tax     | Country, CT Number                                     |
-      | US      | Not registered for indirect tax | N/A                                                    |
-      | EG      | Not registered for indirect tax | N/A                                                    |
+    Examples:
+      | countryCode | brandCountry | currency | allowBankingCollection | option                          | fields                                                       | stepX |
+      | CA          | US           | CAD      | true                   | Registered for indirect tax     | Country, Province, HST/GST Number, QST Number (optional)     | 3     |
+      | CA          | MX           | CAD      | true                   | Not registered for indirect tax | N/A                                                          | 4     |
+      | US          | CA           | USD      | true                   | Not registered for indirect tax | N/A                                                          | 3     |
+      | US          | MX           | USD      | true                   | Not registered for indirect tax | N/A                                                          | 3     |
+      | UK          | US           | GBP      | true                   | Not registered for indirect tax | N/A                                                          | 3     |
+      | UK          | US           | GBP      | true                   | Registered for indirect tax     | Country, VAT Number                                          | 3     |
+      | ES          | US           | EGP      | true                   | Registered for indirect tax     | Country, Sub Region, VAT Number, Income Tax Number(optional) | 3     |
+      | EG          | MX           | BMD      | true                   | Not registered for indirect tax | N/A                                                          | 4     |
 
   @minutia
   Scenario Outline: Participants based in another country working with non-US brands do not have to fillout docusign forms
@@ -92,7 +98,7 @@ Feature: Tax Form Flow
     And the user selects a <country> not in the US
     Then they skip to step 4 Payout Details
 
-    Examples: 
+    Examples:
       | brandCountry | country |
       | MX           | UK      |
       | AUS          | EGP     |
@@ -106,7 +112,7 @@ Feature: Tax Form Flow
     Then they must select <participantType>
     And the <autoSelectedForm> is displayed
 
-    Examples: 
+    Examples:
       | brandCountry | country | participantType       | autoSelectedForm |
       | US           | CA      | individualParticipant | W8-BEN           |
       | US           | CA      | company               | W8-BEN-E         |
@@ -120,7 +126,7 @@ Feature: Tax Form Flow
     When they view step 3
     Then the <autoSelectedForm> is displayed
 
-    Examples: 
+    Examples:
       | brandCountry | country | autoSelectedForm |
       | MX           | US      | W9               |
       | UK           | US      | W9               |
@@ -143,7 +149,7 @@ Feature: Tax Form Flow
     And they press Continue
     Then they proceed to step 4
     And complete their payout details
-    And they press Continnue
+    And they press Continue
     Then hey see the Dashboard page
 
   @minutia
@@ -154,35 +160,16 @@ Feature: Tax Form Flow
     But the request fails
     Then a general error banner appears with <generalTitle> and <generalDescription>
 
-    Examples: 
+    Examples:
       | generalTitle                                    | generalDescription                                                                       |
       | There was a problem submitting your information | Please review your information and try again. If this problem continues, contact Support |
-  # Undecided behaviour
-  # Scenario: Returning to the docusign iframe page shows the previously selected option from the document type page
 
-  @unknown @minutia
-  Scenario Outline: A user from Another Country completes the User Info and Indirect Tax steps with different countries
-    Given they are on the User Info Form step
-    And they fill out the following form fields with their personal information:
-      | First Name               | <firstName>              |
-      | Last Name                | <lastName>               |
-      | Email                    | <email>                  |
-      | Country Code             | <countryCode>            |
-      | Currency                 | <currency>               |
-      | Participant Type         | <participantType>        |
-      | Allow Banking Collection | <allowBankingCollection> |
-    When they select "Individual Participant" or "Business Entity" for <participantType>
-    And they agree to the terms which sets <allowBankingCollection> to true
-    When they press "Continue" to move on to the Indirect Tax Form
-    Then they are redirected to the Indirect Tax Form step
-    When they are the Indirect Tax Form Step
-    Then three options <hstCanada>, <otherRegion>, or <notRegistered> will be presented:
-      | <hstCanada>     | I am registered for HST in Canada                                | <province> | <indirectTaxNumber> |
-      | <otherRegion>   | I am registered for Indirect Tax in a different Country / Region | <country>  | <vatNumber>         |
-      | <notRegistered> | I am not registered for Indirect Tax                             | N/A        | N/A                 |
-    And the <otherRegion> radio-option is auto-selected
-    And the <country> is auto-filled with the <countryCode> from the User Info Form
-    But if the user changes the auto-filled <country> ---------- What happens?
-    And the user fills out the <vatNumber>
-    And they press "Continue"
-    Then they are redirected to the Docusign Form step
+  @minutia
+  Scenario: A general error banner appears upon form load request failing
+    Given a participant loads a step of the form
+    When any request while loading the form fails
+    Then a general loading error banner appears with <generalTitle> and <generalDescription>
+
+    Examples:
+      | generalTitle | generalDescription |
+      | TODO         | TODO               |
