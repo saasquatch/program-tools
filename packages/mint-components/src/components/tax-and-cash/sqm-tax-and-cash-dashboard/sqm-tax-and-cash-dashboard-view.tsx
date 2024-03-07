@@ -13,13 +13,9 @@ export interface TaxAndCashDashboardProps {
     dateExpired?: string;
     expiresSoon?: boolean;
     noFormNeeded?: boolean;
-    // AL: TODO add indirectTaxType props
     indirectTaxType?: string;
-    //AL: TOD add qst number (quebec)
-    qstNumber?: number;
-    //AL: TODO add income tax number (spain)
-    subRegionTaxNumber?: number;
-    //AL TODO add sub-region (spain)
+    qstNumber?: string;
+    subRegionTaxNumber?: string;
     subRegion?: string;
     indirectTaxNumber?: string;
     province?: string;

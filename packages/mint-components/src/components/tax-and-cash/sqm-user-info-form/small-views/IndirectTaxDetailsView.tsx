@@ -30,7 +30,7 @@ export interface IndirectDetailsSlotViewProps {
       displayName: string;
     }[];
     provinces?: {
-      provinceCode: string;
+      regionCode: string;
       displayName: string;
     }[];
     countries?: TaxCountry[];
@@ -248,7 +248,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
     const { classes } = sheet;
 
     const currentTaxType = INDIRECT_TAX_PROVINCES?.find(
-      (p) => p.provinceCode === formState.province
+      (p) => p.regionCode === formState.province
     )?.taxType as TaxType | undefined;
 
     return (
@@ -272,7 +272,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           name="/province"
         >
           {props.data.provinces.map((p) => (
-            <sl-menu-item value={p.provinceCode}>{p.displayName}</sl-menu-item>
+            <sl-menu-item value={p.regionCode}>{p.displayName}</sl-menu-item>
           ))}
         </sl-select>
         {currentTaxType === "GST" && (

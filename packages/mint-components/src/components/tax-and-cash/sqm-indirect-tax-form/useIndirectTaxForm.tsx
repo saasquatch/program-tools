@@ -134,10 +134,12 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     const user = userData?.user;
     if (!user) return;
 
-    if (user.impactConnection?.publisher) {
+    if (user.impactConnection?.publisher?.taxInformation) {
       setFormState({
-        province: user.impactConnection.publisher.indirectTaxSubdivision,
-        subRegion: user.impactConnection.publisher.indirectTaxSubdivision,
+        province:
+          user.impactConnection.publisher.taxInformation.indirectTaxRegion,
+        subRegion:
+          user.impactConnection.publisher.taxInformation.indirectTaxRegion,
         hasQst:
           !!user.impactConnection.publisher.taxInformation.additionalTaxId,
         qstNumber:
@@ -242,7 +244,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       hideSteps: context.hideSteps,
       disabled: loading || countriesLoading || connectLoading,
       loading: loading || connectLoading || countriesLoading,
-      isPartner: !!userData?.user?.impactConnection?.publisher,
+      isPartner: !!userData?.user?.impactConnection?.publisher?.taxInformation,
       formState: {
         checked: option,
         errors,

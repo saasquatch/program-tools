@@ -1047,7 +1047,7 @@ export const TaxAndCashDashboardIndirectTaxCanadaQuebec = () => {
           isIndirectTaxCanada: true,
           indirectTaxType: "GST",
           indirectTaxNumber: "123456",
-          qstNumber: 44212,
+          qstNumber: "44212",
           isBusinessEntity: true,
         },
       }}
@@ -1070,7 +1070,7 @@ export const TaxAndCashDashboardIndirectTaxSpain = () => {
           subRegion: "Madred",
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
-          subRegionTaxNumber: 44212,
+          subRegionTaxNumber: "44212",
           isBusinessEntity: true,
         },
       }}
