@@ -303,7 +303,7 @@ export class BankingInfoForm {
   /**
    * @uiName EFT Withdrawal label text
    */
-  @Prop() eftWithdrawalLabel: string = "EFT Withdrawal (fee)";
+  @Prop() eftWithdrawalLabel: string = "EFT Withdrawal (free)";
 
   /**
    * @uiName FX Wire Processing fee text
@@ -314,13 +314,11 @@ export class BankingInfoForm {
   /**
    * Required error text shown at the bottom of field inputs
    * @uiName Field inputs error text
-   * @uiGroup General Form Properties
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
   /**
    * Invalid error text shown at the bottom of field inputs
    * @uiName Field inputs invalid error text
-   * @uiGroup General Form Properties
    */
   @Prop() fieldInvalidError: string = "{fieldName} is invalid";
 
