@@ -218,7 +218,12 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
         </div>
       </div>
       {formState.errors?.general && (
-        <sl-alert type="warning" open class={sheet.classes.ErrorAlertContainer}>
+        <sl-alert
+          exportparts="base: alert-base, icon:alert-icon"
+          type="warning"
+          open
+          class={sheet.classes.ErrorAlertContainer}
+        >
           <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
           <strong>{text.error.generalTitle}</strong>
           <br />

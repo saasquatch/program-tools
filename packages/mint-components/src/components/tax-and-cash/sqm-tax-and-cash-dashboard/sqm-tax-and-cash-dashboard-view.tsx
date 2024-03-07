@@ -247,7 +247,12 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
 
   const alertMap = {
     NOT_ACTIVE: (
-      <sl-alert type="danger" open class={sheet.classes.WarningAlertContainer}>
+      <sl-alert
+        exportparts="base: alert-base, icon:alert-icon"
+        type="danger"
+        open
+        class={sheet.classes.WarningAlertContainer}
+      >
         <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
         <strong>
           {intl.formatMessage(
@@ -322,6 +327,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         <style type="text/css">{styleString}</style>
         {states.errors?.general && (
           <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
             type="danger"
             open
             class={sheet.classes.WarningAlertContainer}
