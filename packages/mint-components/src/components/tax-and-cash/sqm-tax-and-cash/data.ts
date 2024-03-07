@@ -87,7 +87,7 @@ export const GET_USER = gql`
 `;
 
 type TaxDocumentStatus = "NEW" | "NOT_VERIFIED" | "ACTIVE" | "INACTIVE";
-type ImpactPublisher = {
+export type ImpactPublisher = {
   countryCode: string;
   currency: string;
   requiredTaxDocumentType: TaxDocumentType | null;
@@ -96,7 +96,7 @@ type ImpactPublisher = {
     type: TaxDocumentType;
     dateCreated: number;
   };
-  taxInformation: {
+  taxInformation: null | {
     indirectTaxId: string | null;
     indirectTaxCountryCode: string;
     indirectTaxRegion: string | null;
@@ -117,10 +117,6 @@ type ImpactPublisher = {
     hold: boolean;
     balance: string;
   };
-  // TODO: Remove this comment when these fields exist
-  indirectTaxOption: "SAME_COUNTRY" | "NO_TAX" | "DIFFERENT_COUNTRY";
-  indirectTaxSubdivision: string;
-  organizationType: string;
 };
 export type UserQuery = {
   user: {

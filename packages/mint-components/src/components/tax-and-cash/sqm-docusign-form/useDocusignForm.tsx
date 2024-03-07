@@ -80,12 +80,12 @@ export function useDocusignForm(props: DocusignForm) {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const existingDocumentType =
-    publisher?.currentTaxDocument?.type || // Then current form (could be different than required)
-    publisher?.requiredTaxDocumentType; // Last, the required tax form
+  const existingDocumentType = publisher?.currentTaxDocument?.type;
 
   const actualDocumentType =
-    existingDocumentType || getDocumentType(participantType);
+    existingDocumentType ||
+    getDocumentType(participantType) ||
+    publisher?.requiredTaxDocumentType;
 
   useEffect(() => {
     if (!publisher?.currentTaxDocument?.type) return;

@@ -1,37 +1,37 @@
 export const INDIRECT_TAX_PROVINCES = [
-  { provinceCode: "ALBERTA", taxType: "GST", displayName: "Alberta" },
+  { regionCode: "ALBERTA", taxType: "GST", displayName: "Alberta" },
   {
-    provinceCode: "BRITISHCOLUMBIA",
+    regionCode: "BRITISHCOLUMBIA",
     taxType: "HST",
     displayName: "British Columbia",
   },
-  { provinceCode: "MANITOBA", taxType: "HST", displayName: "Manitoba" },
+  { regionCode: "MANITOBA", taxType: "HST", displayName: "Manitoba" },
   {
-    provinceCode: "NEWBRUNSWICK",
+    regionCode: "NEWBRUNSWICK",
     taxType: "HST",
     displayName: "New Brunswick",
   },
   {
-    provinceCode: "NEWFOUNDLANDLABRADOR",
+    regionCode: "NEWFOUNDLANDLABRADOR",
     taxType: "HST",
     displayName: "Newfoundland",
   },
   {
-    provinceCode: "NORTHWESTTERRITORIES",
+    regionCode: "NORTHWESTTERRITORIES",
     taxType: "GST",
     displayName: "North West Territories",
   },
-  { provinceCode: "NOVASCOTIA", taxType: "HST", displayName: "Nova Scotia" },
-  { provinceCode: "NUNAVUT", taxType: "HST", displayName: "Nunavut" },
-  { provinceCode: "ONTARIO", taxType: "HST", displayName: "Ontario" },
+  { regionCode: "NOVASCOTIA", taxType: "HST", displayName: "Nova Scotia" },
+  { regionCode: "NUNAVUT", taxType: "HST", displayName: "Nunavut" },
+  { regionCode: "ONTARIO", taxType: "HST", displayName: "Ontario" },
   {
-    provinceCode: "PRINCEEDWARDISLAND",
+    regionCode: "PRINCEEDWARDISLAND",
     taxType: "HST",
     displayName: "Prince Edward Island",
   },
-  { provinceCode: "QUEBEC", taxType: "GST", displayName: "Quebec" },
-  { provinceCode: "SASKATCHEWAN", taxType: "HST", displayName: "Saskatchewan" },
-  { provinceCode: "YUKON", taxType: "GST", displayName: "Yukon" },
+  { regionCode: "QUEBEC", taxType: "GST", displayName: "Quebec" },
+  { regionCode: "SASKATCHEWAN", taxType: "HST", displayName: "Saskatchewan" },
+  { regionCode: "YUKON", taxType: "GST", displayName: "Yukon" },
 ];
 
 export const INDIRECT_TAX_SPAIN_REGIONS = [

@@ -134,10 +134,12 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     const user = userData?.user;
     if (!user) return;
 
-    if (user.impactConnection?.publisher) {
+    if (user.impactConnection?.publisher?.taxInformation) {
       setFormState({
-        province: user.impactConnection.publisher.indirectTaxSubdivision,
-        subRegion: user.impactConnection.publisher.indirectTaxSubdivision,
+        province:
+          user.impactConnection.publisher.taxInformation.indirectTaxRegion,
+        subRegion:
+          user.impactConnection.publisher.taxInformation.indirectTaxRegion,
         hasQst:
           !!user.impactConnection.publisher.taxInformation.additionalTaxId,
         qstNumber:
@@ -195,22 +197,24 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
     setLoading(true);
     try {
+      const vars = {
+        user: {
+          id: user.id,
+          accountId: user.accountId,
+        },
+        firstName: userForm.firstName,
+        lastName: userForm.lastName,
+        countryCode: userForm.countryCode,
+        currency: userForm.currency,
+        indirectTaxCountryCode: formData.selectedRegion,
+        indirectTaxRegion: formData.province || formData.subRegion,
+        indirectTaxId: formData.indirectTaxNumber,
+        additionalTaxId: formData.qstNumber,
+        withholdingTaxId: formData.subRegionTaxNumber,
+      } as ImpactConnectionInput;
+
       const result = await connectImpactPartner({
-        vars: {
-          user: {
-            id: user.id,
-            accountId: user.accountId,
-          },
-          firstName: userForm.firstName,
-          lastName: userForm.lastName,
-          countryCode: userForm.countryCode,
-          currency: userForm.currency,
-          indirectTaxCountryCode: formData.selectedRegion,
-          indirectTaxRegion: formData.province || formData.subRegion,
-          indirectTaxId: formData.indirectTaxNumber,
-          additionalTaxId: formData.qstNumber,
-          withholdingTaxId: formData.subRegionTaxNumber,
-        } as ImpactConnectionInput,
+        vars,
       });
       if (!result || (result as Error)?.message) throw new Error();
 
@@ -242,7 +246,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       hideSteps: context.hideSteps,
       disabled: loading || countriesLoading || connectLoading,
       loading: loading || connectLoading || countriesLoading,
-      isPartner: !!userData?.user?.impactConnection?.publisher,
+      isPartner: !!userData?.user?.impactConnection?.publisher?.taxInformation,
       formState: {
         checked: option,
         errors,

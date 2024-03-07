@@ -6,16 +6,21 @@ import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useSetParent } from "../../../utils/useParentState";
 import { NextPayout } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
 import {
+  ImpactPublisher,
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
   TaxContext,
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
-import { INDIRECT_TAX_PROVINCES } from "../subregions";
+import {
+  INDIRECT_TAX_PROVINCES,
+  INDIRECT_TAX_SPAIN_REGIONS,
+} from "../subregions";
 import { taxTypeToName } from "../utils";
 import { TaxAndCashDashboard } from "./sqm-tax-and-cash-dashboard";
 import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard-view";
+import { vatLabels } from "../countries";
 
 function getExpiresSoon(submissionDate: number, expiryDate: number) {
   if (!submissionDate || !expiryDate) return false;
@@ -25,6 +30,36 @@ function getExpiresSoon(submissionDate: number, expiryDate: number) {
       "days"
     )?.days <= 30
   );
+}
+
+function getCountryName(countryCode: string, locale: string) {
+  if (!countryCode) return undefined;
+
+  // @ts-ignore: DisplayNames exists on Intl
+  return new Intl.DisplayNames([locale.replace("_", "-")], {
+    type: "region",
+    // @ts-ignore: Bad DisplayNames type (has to be array)
+  }).of([countryCode]);
+}
+
+function getSubRegionName(regionCode: string) {
+  const regions = [...INDIRECT_TAX_PROVINCES, ...INDIRECT_TAX_SPAIN_REGIONS];
+  return regions.find((r) => r.regionCode === regionCode)?.displayName;
+}
+
+function getIndirectTaxType(taxInformation: ImpactPublisher["taxInformation"]) {
+  const regions = [...INDIRECT_TAX_PROVINCES, ...INDIRECT_TAX_SPAIN_REGIONS];
+  if (taxInformation?.indirectTaxRegion) {
+    return regions.find(
+      (r) => r.regionCode === taxInformation?.indirectTaxRegion
+    )?.taxType;
+  }
+
+  // Spain regions only have VAT type
+  if (taxInformation?.withholdingTaxCountryCode) return "VAT";
+  if (taxInformation?.indirectTaxCountryCode) {
+    return vatLabels[taxInformation.indirectTaxCountryCode] || "Indirect Tax";
+  }
 }
 
 export const useTaxAndCashDashboard = (
@@ -79,7 +114,7 @@ export const useTaxAndCashDashboard = (
   };
 
   const provinceName = INDIRECT_TAX_PROVINCES.find(
-    (p) => p.provinceCode === publisher?.indirectTaxSubdivision
+    (p) => p.regionCode === publisher?.taxInformation?.indirectTaxRegion
   )?.displayName;
 
   return {
@@ -89,24 +124,19 @@ export const useTaxAndCashDashboard = (
       documentType,
       documentTypeString: taxTypeToName(documentType),
       status: publisher?.currentTaxDocument?.status,
-      //AL TODO ADD SUB-REGION
-      subRegion: "",
-      // AL TODO: subRegionTaxNumber
-      subRegionTaxNumber: 0,
-      // AL TODO: qstNumber
-      qstNumber: 0,
-      indirectTaxType: data?.user.customFields?.__indirectTaxType,
+      subRegion: getSubRegionName(publisher?.taxInformation?.indirectTaxRegion),
+      subRegionTaxNumber: publisher?.taxInformation?.withholdingTaxId,
+      qstNumber: publisher?.taxInformation?.additionalTaxId,
+      indirectTaxType: getIndirectTaxType(publisher?.taxInformation),
       indirectTaxNumber: publisher?.taxInformation?.indirectTaxId,
       isBusinessEntity: publisher?.requiredTaxDocumentType === "W8BENE",
       province: provinceName,
-      country: publisher?.taxInformation?.indirectTaxCountryCode
-        ? // @ts-ignore: DisplayNames does exist on Intl
-          new Intl.DisplayNames([locale.replaceAll("_", "-")], {
-            type: "language",
-            // @ts-ignore: Bad DisplayNames type (has to be array)
-          }).of([publisher.indirectTaxCountry])
-        : undefined,
-      notRegistered: publisher?.indirectTaxOption === "NO_TAX",
+      country: getCountryName(
+        publisher?.taxInformation?.indirectTaxCountryCode,
+        locale
+      ),
+      // TODO: Remove these states since we aren't supporting autofill of saved values
+      notRegistered: false,
       noFormNeeded: !documentType,
       expiresSoon,
       disabled: loading,

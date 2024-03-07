@@ -13,13 +13,9 @@ export interface TaxAndCashDashboardProps {
     dateExpired?: string;
     expiresSoon?: boolean;
     noFormNeeded?: boolean;
-    // AL: TODO add indirectTaxType props
     indirectTaxType?: string;
-    //AL: TOD add qst number (quebec)
-    qstNumber?: number;
-    //AL: TODO add income tax number (spain)
-    subRegionTaxNumber?: number;
-    //AL TODO add sub-region (spain)
+    qstNumber?: string;
+    subRegionTaxNumber?: string;
     subRegion?: string;
     indirectTaxNumber?: string;
     province?: string;
@@ -251,7 +247,12 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
 
   const alertMap = {
     NOT_ACTIVE: (
-      <sl-alert type="danger" open class={sheet.classes.WarningAlertContainer}>
+      <sl-alert
+        exportparts="base: alert-base, icon:alert-icon"
+        type="danger"
+        open
+        class={sheet.classes.WarningAlertContainer}
+      >
         <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
         <strong>
           {intl.formatMessage(
@@ -326,6 +327,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         <style type="text/css">{styleString}</style>
         {states.errors?.general && (
           <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
             type="danger"
             open
             class={sheet.classes.WarningAlertContainer}
