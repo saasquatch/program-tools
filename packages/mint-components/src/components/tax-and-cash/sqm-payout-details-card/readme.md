@@ -14,7 +14,7 @@
 | `errorDescriptionText` | `error-description-text` |             | `string`                                  | `"Please ensure your payout information is correct. If this problem continues, contact Support."` |
 | `errorTitleText`       | `error-title-text`       |             | `string`                                  | `"There was an error with your payout infomation"`                                                |
 | `statusBadgeText`      | `status-badge-text`      |             | `string`                                  | `"{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }"`                     |
-| `thresholdPayoutText`  | `threshold-payout-text`  |             | `string`                                  | `"Next payout occurs when balance is"`                                                            |
+| `thresholdPayoutText`  | `threshold-payout-text`  |             | `string`                                  | `"Next payout occurs when balance is {thresholdBalance}"`                                         |
 
 
 ## Dependencies
