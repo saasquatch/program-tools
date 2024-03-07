@@ -360,7 +360,12 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           </p>
         </div>
         {formState.errors?.general && (
-          <sl-alert type="warning" open class={sheet.classes.AlertContainer}>
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            type="warning"
+            open
+            class={sheet.classes.AlertContainer}
+          >
             <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
             <strong>{text.error.generalTitle}</strong>
             <br />
@@ -369,6 +374,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
         )}
         {states.isPartner && (
           <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
             type="primary"
             open
             class={sheet.classes.PartnerAlertContainer}

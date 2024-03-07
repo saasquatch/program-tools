@@ -211,7 +211,12 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
           </p>
         </div>
         {formState.errors?.general && (
-          <sl-alert type="warning" open class={sheet.classes.AlertContainer}>
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            type="warning"
+            open
+            class={sheet.classes.AlertContainer}
+          >
             <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
             <strong>{text.error.generalTitle}</strong>
             <br />
@@ -223,6 +228,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
             type="primary"
             open
             class={sheet.classes.PartnerAlertContainer}
+            exportparts="base: alert-base, icon:alert-icon"
           >
             <sl-icon slot="icon" name="info-circle"></sl-icon>
             <strong>{text.isPartnerAlertHeader}</strong>
