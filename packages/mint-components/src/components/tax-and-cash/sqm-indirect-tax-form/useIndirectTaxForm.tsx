@@ -138,14 +138,18 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       setFormState({
         province: user.impactConnection.publisher.indirectTaxSubdivision,
         subRegion: user.impactConnection.publisher.indirectTaxSubdivision,
-        hasQst: !!user.impactConnection.publisher.additionalTaxId,
-        qstNumber: user.impactConnection.publisher.additionalTaxId,
+        hasQst:
+          !!user.impactConnection.publisher.taxInformation.additionalTaxId,
+        qstNumber:
+          user.impactConnection.publisher.taxInformation.additionalTaxId,
         hasSubRegionTaxNumber:
-          !!user.impactConnection.publisher.withholdingTaxNumber,
+          !!user.impactConnection.publisher.taxInformation.withholdingTaxId,
         subRegionTaxNumber:
-          user.impactConnection.publisher.withholdingTaxNumber,
-        selectedRegion: user.impactConnection.publisher.indirectTaxCountry,
-        indirectTaxNumber: user.impactConnection.publisher.indirectTaxId,
+          user.impactConnection.publisher.taxInformation.withholdingTaxId,
+        selectedRegion:
+          user.impactConnection.publisher.taxInformation.indirectTaxCountryCode,
+        indirectTaxNumber:
+          user.impactConnection.publisher.taxInformation.indirectTaxId,
       });
     } else {
       setFormState({

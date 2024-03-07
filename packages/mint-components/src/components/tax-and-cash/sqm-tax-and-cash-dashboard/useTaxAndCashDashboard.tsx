@@ -96,10 +96,10 @@ export const useTaxAndCashDashboard = (
       // AL TODO: qstNumber
       qstNumber: 0,
       indirectTaxType: data?.user.customFields?.__indirectTaxType,
-      indirectTaxNumber: publisher?.indirectTaxId,
+      indirectTaxNumber: publisher?.taxInformation?.indirectTaxId,
       isBusinessEntity: publisher?.requiredTaxDocumentType === "W8BENE",
       province: provinceName,
-      country: publisher?.indirectTaxCountry
+      country: publisher?.taxInformation?.indirectTaxCountryCode
         ? // @ts-ignore: DisplayNames does exist on Intl
           new Intl.DisplayNames([locale.replaceAll("_", "-")], {
             type: "language",
