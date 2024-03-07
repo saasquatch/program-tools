@@ -124,10 +124,7 @@ export const useTaxAndCashDashboard = (
       documentType,
       documentTypeString: taxTypeToName(documentType),
       status: publisher?.currentTaxDocument?.status,
-      subRegion: getSubRegionName(
-        publisher?.taxInformation?.indirectTaxRegion ||
-          publisher?.taxInformation?.withholdingTaxCountryCode
-      ),
+      subRegion: getSubRegionName(publisher?.taxInformation?.indirectTaxRegion),
       subRegionTaxNumber: publisher?.taxInformation?.withholdingTaxId,
       qstNumber: publisher?.taxInformation?.additionalTaxId,
       indirectTaxType: getIndirectTaxType(publisher?.taxInformation),
