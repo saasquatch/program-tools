@@ -197,22 +197,24 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
     setLoading(true);
     try {
+      const vars = {
+        user: {
+          id: user.id,
+          accountId: user.accountId,
+        },
+        firstName: userForm.firstName,
+        lastName: userForm.lastName,
+        countryCode: userForm.countryCode,
+        currency: userForm.currency,
+        indirectTaxCountryCode: formData.selectedRegion,
+        indirectTaxRegion: formData.province || formData.subRegion,
+        indirectTaxId: formData.indirectTaxNumber,
+        additionalTaxId: formData.qstNumber,
+        withholdingTaxId: formData.subRegionTaxNumber,
+      } as ImpactConnectionInput;
+
       const result = await connectImpactPartner({
-        vars: {
-          user: {
-            id: user.id,
-            accountId: user.accountId,
-          },
-          firstName: userForm.firstName,
-          lastName: userForm.lastName,
-          countryCode: userForm.countryCode,
-          currency: userForm.currency,
-          indirectTaxCountryCode: formData.selectedRegion,
-          indirectTaxRegion: formData.province || formData.subRegion,
-          indirectTaxId: formData.indirectTaxNumber,
-          additionalTaxId: formData.qstNumber,
-          withholdingTaxId: formData.subRegionTaxNumber,
-        } as ImpactConnectionInput,
+        vars,
       });
       if (!result || (result as Error)?.message) throw new Error();
 

@@ -65,9 +65,9 @@ export function useTaxAndCash() {
   function setupDemo() {
     // coleton
     // const id =
-    //   "0a1e1fa178d52ded03e86b6bd01a8a02046d8bef3367634e192746e7119c41e3";
+    //   "62ed0e47b59c7f9dbfeb05dd807e542d8fee6fdb51978a6d61a238797df1914e";
     // const accountId =
-    //   "0a1e1fa178d52ded03e86b6bd01a8a02046d8bef3367634e192746e7119c41e3";
+    //   "62ed0e47b59c7f9dbfeb05dd807e542d8fee6fdb51978a6d61a238797df1914e";
 
     // // andy
     // const id = "12345";
@@ -96,6 +96,15 @@ export function useTaxAndCash() {
     };
 
     // coleton
+    // useEffect(() => {
+    //   setUserIdentity({
+    //     accountId,
+    //     id,
+    //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNjJlZDBlNDdiNTljN2Y5ZGJmZWIwNWRkODA3ZTU0MmQ4ZmVlNmZkYjUxOTc4YTZkNjFhMjM4Nzk3ZGYxOTE0ZSIsImFjY291bnRJZCI6IjYyZWQwZTQ3YjU5YzdmOWRiZmViMDVkZDgwN2U1NDJkOGZlZTZmZGI1MTk3OGE2ZDYxYTIzODc5N2RmMTkxNGUifX0.h-2WvLE61X_VsMWsMacvAjUTFEO8fn64a5modDCN0Eo",
+    //   });
+    // }, []);
+
+    // andy
     // useEffect(() => {
     //   setUserIdentity({
     //     accountId,
