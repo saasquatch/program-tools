@@ -262,7 +262,7 @@ export class TaxAndCashMonolith {
    * @uiName Business entity radio button label
    * @uiGroup Step 3 Properties
    */
-  @Prop() step3_businessEntity: string = "I represent a company";
+  @Prop() step3_businessEntity: string = "I represent a business";
   /**
    * Label text for the individual participant radio button
    * @uiName Individual participant radio button label
@@ -276,7 +276,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_taxFormDescription: string =
-    "Participants based in the US and partnering with US-based brands need to submit a {documentType} form.";
+    "Participants based in the US need to submit a {documentType} form.";
   /**
    * Subtext shown at the top of the page next to the document type text for individual participants
    * @uiName Tax form subtext
