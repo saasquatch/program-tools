@@ -740,7 +740,6 @@ export function useBankingInfoForm(
       setBankCountry: updateBankCountry,
       setPaymentMethodChecked,
       setPaymentScheduleChecked,
-      getValidationErrorMessage: props.getValidationErrorMessage,
     },
     states: {
       saveDisabled: !paymentMethodChecked || !paymentScheduleChecked,

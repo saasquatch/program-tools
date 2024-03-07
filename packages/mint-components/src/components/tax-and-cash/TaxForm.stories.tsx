@@ -145,7 +145,6 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
     onSubmit: async () => console.log("Submit"),
     setPaymentMethodChecked: () => {},
     setPaymentScheduleChecked: () => {},
-    getValidationErrorMessage: () => "",
   },
   refs: { formRef: { current: null } },
 };
