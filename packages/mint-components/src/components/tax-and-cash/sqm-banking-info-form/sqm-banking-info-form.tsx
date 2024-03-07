@@ -303,7 +303,7 @@ export class BankingInfoForm {
   /**
    * @uiName EFT Withdrawal label text
    */
-  @Prop() eftWithdrawalLabel: string = "EFT Withdrawal (free)";
+  @Prop() eftWithdrawalLabel: string = "EFT Withdrawal (fee)";
 
   /**
    * @uiName FX Wire Processing fee text
@@ -604,9 +604,9 @@ function useDemoBankingInfoForm(
   const feeCap = paypalFeeMap[currency] || "";
 
   const paymentMethodFeeMap = {
-    ACH: this.eftWithdrawalLabel,
+    ACH: props.eftWithdrawalLabel,
     WIRE: intl.formatMessage(
-      { id: "fxWireText", defaultMessage: this.fxWireProcessingFeeLabel },
+      { id: "fxWireText", defaultMessage: props.fxWireProcessingFeeLabel },
       {
         currency,
         defaultFxFee: currentPaymentOption?.defaultFxFee || "0",
