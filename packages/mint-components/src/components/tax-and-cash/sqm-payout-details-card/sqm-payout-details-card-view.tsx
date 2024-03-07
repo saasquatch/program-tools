@@ -188,7 +188,12 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
     <div class={classes.Container}>
       <style type="text/css">{styleString}</style>
       {states.error && (
-        <sl-alert class={classes.Alert} type="danger" open>
+        <sl-alert
+          exportparts="base: alert-base, icon:alert-icon"
+          class={classes.Alert}
+          type="danger"
+          open
+        >
           <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
           <div class={classes.AlertContent}>
             <b>{text.errorTitleText}</b>
