@@ -19,6 +19,7 @@ import {
 } from "../sqm-tax-and-cash/data";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
+import { intl } from "../../../global/global";
 
 // Hardcoded in Impact backend
 export const paypalFeeMap = {
@@ -578,10 +579,17 @@ export function useBankingInfoForm(
     paymentOptionsRes?.data?.impactFinanceNetworkSettings?.data;
 
   const paymentMethodFeeMap = {
-    [ACH_PAYMENT_METHOD]: "EFT Withdrawal (free)",
-    [WIRE_PAYMENT_METHOD]: `FX Wire (Processing Fee ${currency}${
-      currentPaymentOption?.defaultFxFee || 0
-    }.00)`,
+    [ACH_PAYMENT_METHOD]: props.eftWithdrawalLabel,
+    [WIRE_PAYMENT_METHOD]: intl.formatMessage(
+      {
+        id: "fxWireText",
+        defaultMessage: props.fxWireProcessingFeeLabel,
+      },
+      {
+        currency: currency,
+        defaultFxFee: currentPaymentOption?.defaultFxFee || 0,
+      }
+    ),
   };
   const paymentMethodFeeLabel =
     paymentMethodFeeMap[currentPaymentOption?.defaultFinancePaymentMethodId];
