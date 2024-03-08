@@ -603,7 +603,7 @@ export class TaxAndCashMonolith {
    * @uiName Taxpayer ID input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_taxPayerIdLabel: string = "Taxpayer ID";
+  @Prop() step4_taxPayerIdLabel: string = "Beneficiary INN";
 
   /**
    * Label text for the Bank Address input
@@ -636,6 +636,19 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_cannotChangeInfoAlert: string =
     "Your payout information cannot be changed after saving. Ensure your payout method and schedule are correct before submitting.";
+
+  /**
+   * @uiName EFT Withdrawal label text
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() eftWithdrawalLabel: string = "EFT Withdrawal (free)";
+
+  /**
+   * @uiName FX Wire Processing fee text
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() fxWireProcessingFeeLabel: string =
+    "FX Wire (Processing Fee {currency}{defaultFxFee}.00)";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     DASHBOARD PROPS:
