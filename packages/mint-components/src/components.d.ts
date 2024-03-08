@@ -3875,6 +3875,11 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
+          * @uiName EFT Withdrawal label text
+          * @uiGroup Step 4 Properties
+         */
+        "eftWithdrawalLabel": string;
+        /**
           * Invalid error text shown at the bottom of field inputs
           * @uiName Field inputs invalid error text
           * @uiGroup General Form Properties
@@ -3886,6 +3891,11 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "fieldRequiredError": string;
+        /**
+          * @uiName FX Wire Processing fee text
+          * @uiGroup Step 4 Properties
+         */
+        "fxWireProcessingFeeLabel": string;
         /**
           * Description text for a general form submission error
           * @uiName General form submission error description
@@ -9322,6 +9332,11 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
+          * @uiName EFT Withdrawal label text
+          * @uiGroup Step 4 Properties
+         */
+        "eftWithdrawalLabel"?: string;
+        /**
           * Invalid error text shown at the bottom of field inputs
           * @uiName Field inputs invalid error text
           * @uiGroup General Form Properties
@@ -9333,6 +9348,11 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "fieldRequiredError"?: string;
+        /**
+          * @uiName FX Wire Processing fee text
+          * @uiGroup Step 4 Properties
+         */
+        "fxWireProcessingFeeLabel"?: string;
         /**
           * Description text for a general form submission error
           * @uiName General form submission error description
