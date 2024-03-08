@@ -127,8 +127,8 @@ export class TaxAndCashMonolith {
   @Prop() step2_indirectTaxDetailsDescription: string =
     "Participants representing businesses based in countries that enforce indirect taxes (e.g. VAT, HST, GST) must add their indirect tax details to stay tax compliant.";
   /**
-   * Label text for the other region radio button
-   * @uiName Other region radio button label
+   * Label test for the option indicating registration for indirect tax
+   * @uiName Registered for indrect tax label
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_otherRegion: string = "Registered for indirect tax";

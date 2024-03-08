@@ -1125,8 +1125,8 @@ export namespace Components {
          */
         "notRegisteredSubtext": string;
         /**
-          * Text for the option indicating registration for indirect tax in a different region
-          * @uiName Registered for indirect tax in a different region option text
+          * Text for the option indicating registration for indirect tax
+          * @uiName Registered for indirect tax option text
          */
         "otherRegion": string;
         /**
@@ -4050,8 +4050,8 @@ export namespace Components {
          */
         "step2_notRegistered": string;
         /**
-          * Label text for the other region radio button
-          * @uiName Other region radio button label
+          * Label test for the option indicating registration for indirect tax
+          * @uiName Registered for indrect tax label
           * @uiGroup Step 2 Properties
          */
         "step2_otherRegion": string;
@@ -6598,8 +6598,8 @@ declare namespace LocalJSX {
          */
         "notRegisteredSubtext"?: string;
         /**
-          * Text for the option indicating registration for indirect tax in a different region
-          * @uiName Registered for indirect tax in a different region option text
+          * Text for the option indicating registration for indirect tax
+          * @uiName Registered for indirect tax option text
          */
         "otherRegion"?: string;
         /**
@@ -9499,8 +9499,8 @@ declare namespace LocalJSX {
          */
         "step2_notRegistered"?: string;
         /**
-          * Label text for the other region radio button
-          * @uiName Other region radio button label
+          * Label test for the option indicating registration for indirect tax
+          * @uiName Registered for indrect tax label
           * @uiGroup Step 2 Properties
          */
         "step2_otherRegion"?: string;
