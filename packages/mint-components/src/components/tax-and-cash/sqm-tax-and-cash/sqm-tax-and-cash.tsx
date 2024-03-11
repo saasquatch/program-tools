@@ -205,12 +205,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step2_subRegionTaxNumberLabel: string = "Income Tax Number";
   /**
-   * Text shown inside of back button
-   * @uiName Back button text
-   * @uiGroup Step 2 Properties
-   */
-  @Prop() step2_backButton: string = "Back";
-  /**
    * Alert text indicating participant cannot change info after it has been submitted
    * @uiName Cannot change info Alert text
    * @uiGroup Step 2 Properties
@@ -339,12 +333,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_refreshButton: string = "Refresh Page";
-  /**
-   * Text shown inside of back button
-   * @uiName Back button text
-   * @uiGroup Step 3 Properties
-   */
-  @Prop() step3_backButton: string = "Back";
+
   /**
    * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
    *
@@ -922,6 +911,12 @@ export class TaxAndCashMonolith {
    */
   @Prop() continueButton: string = "Continue";
   /**
+   * Text shown inside of back button
+   * @uiName Back button text
+   * @uiGroup General Form Properties
+   */
+  @Prop() backButton: string = "Back";
+  /**
    * Alert header text shown in alert if user is already a registered partner
    * @uiName Participant is partner title
    * @uiGroup General Form Properties
@@ -956,7 +951,8 @@ export class TaxAndCashMonolith {
       generalErrorDescription: props.generalErrorDescription,
       fieldRequiredError: props.fieldRequiredError,
       fieldInvalidError: props.fieldInvalidError,
-      submitButton: props.continueButton,
+      continueButton: props.continueButton,
+      backButton: props.backButton,
       isPartnerAlertHeader: props.isPartnerAlertHeader,
       isPartnerAlertDescription: props.isPartnerAlertDescription,
     };

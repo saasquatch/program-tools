@@ -1,4 +1,4 @@
-import { VNode, h } from "@stencil/core";
+import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 
 export interface DocumentTypeFormViewProps {
@@ -26,7 +26,7 @@ export interface DocumentTypeFormViewProps {
     w8Description: string;
     w8ELabel: string;
     w8EDescription: string;
-    submitButton: string;
+    continueButton: string;
     backButton: string;
     error: {
       generalTitle: string;
@@ -200,7 +200,7 @@ export const DocumentTypeFormView = (props: DocumentTypeFormViewProps) => {
               submit
               exportparts="base: primarybutton-base"
             >
-              {text.submitButton}
+              {text.continueButton}
             </sl-button>
             <sl-button
               class={classes.SecondaryBtn}

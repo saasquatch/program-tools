@@ -65,7 +65,7 @@ export interface BankingInfoFormViewProps {
     toPayPalAccount: string;
     paymentMethod: string;
     paymentMethodSubtext: string;
-    submitButton: string;
+    continueButton: string;
     bankLocationLabel: string;
     payPalInputLabel: string;
     paymentSchedule: string;
@@ -533,7 +533,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             submit
             exportparts="base: primarybutton-base"
           >
-            {text.submitButton}
+            {text.continueButton}
           </sl-button>
         </div>
       </div>

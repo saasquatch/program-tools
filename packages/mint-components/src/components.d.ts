@@ -154,6 +154,11 @@ export namespace Components {
          */
         "classificationLabel": string;
         /**
+          * Text for the save button in the form
+          * @uiName Save button text
+         */
+        "continueButton": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -286,11 +291,6 @@ export namespace Components {
           * @uiName Savings select item label
          */
         "savingsSelectItemLabel": string;
-        /**
-          * Text for the save button in the form
-          * @uiName Save button text
-         */
-        "submitButton": string;
         /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label
@@ -550,6 +550,11 @@ export namespace Components {
          */
         "backButton": string;
         /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+         */
+        "continueButton": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -574,11 +579,6 @@ export namespace Components {
           * @uiName General error title
          */
         "generalErrorTitle": string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
-        "submitButton": string;
         /**
           * Heading text shown at the top of the top of page
           * @uiName Tax form heading text
@@ -3683,6 +3683,12 @@ export namespace Components {
     }
     interface SqmTaxAndCash {
         /**
+          * Text shown inside of back button
+          * @uiName Back button text
+          * @uiGroup General Form Properties
+         */
+        "backButton": string;
+        /**
           * Text for the continue button in the form
           * @uiName Continue button text
           * @uiGroup General Form Properties
@@ -3970,12 +3976,6 @@ export namespace Components {
          */
         "step1_termsAndConditionsLabel": string;
         /**
-          * Text shown inside of back button
-          * @uiName Back button text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_backButton": string;
-        /**
           * Alert text indicating participant cannot change info after it has been submitted
           * @uiName Cannot change info Alert text
           * @uiGroup Step 2 Properties
@@ -4089,12 +4089,6 @@ export namespace Components {
           * @uiGroup Step 2 Properties
          */
         "step2_subRegionTaxNumberLabel": string;
-        /**
-          * Text shown inside of back button
-          * @uiName Back button text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_backButton": string;
         /**
           * Text shown in the banner above the document
           * @uiName Banner text
@@ -5627,6 +5621,11 @@ declare namespace LocalJSX {
          */
         "classificationLabel"?: string;
         /**
+          * Text for the save button in the form
+          * @uiName Save button text
+         */
+        "continueButton"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -5759,11 +5758,6 @@ declare namespace LocalJSX {
           * @uiName Savings select item label
          */
         "savingsSelectItemLabel"?: string;
-        /**
-          * Text for the save button in the form
-          * @uiName Save button text
-         */
-        "submitButton"?: string;
         /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label
@@ -6023,6 +6017,11 @@ declare namespace LocalJSX {
          */
         "backButton"?: string;
         /**
+          * Text shown inside of submit button
+          * @uiName Submit button text
+         */
+        "continueButton"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -6047,11 +6046,6 @@ declare namespace LocalJSX {
           * @uiName General error title
          */
         "generalErrorTitle"?: string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
-        "submitButton"?: string;
         /**
           * Heading text shown at the top of the top of page
           * @uiName Tax form heading text
@@ -9133,6 +9127,12 @@ declare namespace LocalJSX {
     }
     interface SqmTaxAndCash {
         /**
+          * Text shown inside of back button
+          * @uiName Back button text
+          * @uiGroup General Form Properties
+         */
+        "backButton"?: string;
+        /**
           * Text for the continue button in the form
           * @uiName Continue button text
           * @uiGroup General Form Properties
@@ -9420,12 +9420,6 @@ declare namespace LocalJSX {
          */
         "step1_termsAndConditionsLabel"?: string;
         /**
-          * Text shown inside of back button
-          * @uiName Back button text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_backButton"?: string;
-        /**
           * Alert text indicating participant cannot change info after it has been submitted
           * @uiName Cannot change info Alert text
           * @uiGroup Step 2 Properties
@@ -9539,12 +9533,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 2 Properties
          */
         "step2_subRegionTaxNumberLabel"?: string;
-        /**
-          * Text shown inside of back button
-          * @uiName Back button text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_backButton"?: string;
         /**
           * Text shown in the banner above the document
           * @uiName Banner text

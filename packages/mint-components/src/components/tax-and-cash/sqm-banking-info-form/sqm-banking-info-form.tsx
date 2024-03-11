@@ -116,12 +116,6 @@ export class BankingInfoForm {
    * @uiName PayPal email input label
    */
   @Prop() payPalInputLabel: string = "PayPal Email";
-
-  /**
-   * Text for the save button in the form
-   * @uiName Save button text
-   */
-  @Prop() submitButton: string = "Save";
   /**
    * Label text for the bank country location input field
    * @uiName Bank country location input label
@@ -321,6 +315,11 @@ export class BankingInfoForm {
    * @uiName Field inputs invalid error text
    */
   @Prop() fieldInvalidError: string = "{fieldName} is invalid";
+  /**
+   * Text for the save button in the form
+   * @uiName Save button text
+   */
+  @Prop() continueButton: string = "Save";
 
   /**
    * @undocumented

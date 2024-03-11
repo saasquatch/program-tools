@@ -75,7 +75,7 @@ export class DocumentTypeForm {
    * Text shown inside of submit button
    * @uiName Submit button text
    */
-  @Prop() submitButton: string = "Continue";
+  @Prop() continueButton: string = "Continue";
   /**
    * Text shown inside of back button
    * @uiName Back button text
