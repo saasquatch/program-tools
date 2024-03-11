@@ -279,7 +279,7 @@ export class BankingInfoForm {
    * @uiName Cannot change info Alert text
    */
   @Prop() cannotChangeInfoAlert: string =
-    "Your payout information cannot be changed after saving. Ensure your payout method and schedule are correct before submitting.";
+    "Your payout information can only be changed through our Support team after you complete this step. Make sure your payout method and schedule are correct before submitting.";
   /**
    * Title text for a general form submission error
    * @uiName General form submission error title

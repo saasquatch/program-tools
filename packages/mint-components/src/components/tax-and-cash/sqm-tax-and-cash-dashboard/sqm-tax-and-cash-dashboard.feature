@@ -44,7 +44,7 @@ Feature: Tax And Cash Dashboard
       | status       | badgeVariant | taxStatusMessage                                                          | dateSubmitted |
       | ACTIVE       | success      | Submitted                                                                 | Jan 17, 2024  |
       | NOT_VERIFIED | neutral      | Awaiting Review. Submitted                                                | Jan 17, 2024  |
-      | NOT_ACTIVE   | danger       | Ensure your information matches your profile and resubmit a new document. | Jan 17, 2024  |
+      | NOT_ACTIVE | danger | Make sure your information is correct and submit new form. | Jan 17, 2024 |
 
   @minutia @ui
   Scenario: Status badge and text does not appear if participant is not required to submit tax form
@@ -91,7 +91,7 @@ Feature: Tax And Cash Dashboard
     Examples:
       | status     | documentType | taxAlertHeader                                                             | taxAlertMessage                                                                                                              |
       | NOT_ACTIVE | W9           | Your W9 tax form has personal information that doesn't match your profile. | Please resubmit a new W9 form.                                                                                               |
-      | NOT_ACTIVE | W8-BEN       | W8-BEN tax form is invalid.                                                | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W8-BEN form. |
+      | NOT_ACTIVE | W8-BEN | W8-BEN tax form is invalid. | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 BEN form. |
 
   @unknown
   Scenario: Submit New Tax Document Form

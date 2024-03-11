@@ -619,7 +619,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_cannotChangeInfoAlert: string =
-    "Your payout information cannot be changed after saving. Ensure your payout method and schedule are correct before submitting.";
+    "Your payout information can only be changed through our Support team after you complete this step. Make sure your payout method and schedule are correct before submitting.";
 
   /**
    * @uiName EFT Withdrawal label text
@@ -718,7 +718,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_taxAlertNotActiveMessageW8?: string =
-    "Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W8-BEN form.";
+    "Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 BEN form.";
   /**
    * Description text displayed next to the badge in the tax documents status
    *
@@ -726,7 +726,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_invalidForm?: string =
-    "Ensure your information matches your profile and resubmit a new document.";
+    "Make sure your information is correct and submit new form.";
   /**
    * Header text displayed above the banking information card
    *
@@ -757,7 +757,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_noFormNeededSubtext: string =
-    "Tax documents are only required if you are based in the US. If your country of residence has changed, please contact Support.";
+    "Tax documents are only required if you are based in the US or joining the referral program of a US based brand.";
   /**
    * Header text displayed above the indirect tax preview section
    *
