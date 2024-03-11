@@ -20,6 +20,7 @@ import { FunctionalComponent } from "@stencil/core";
 import { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
+import { GenericTableViewProps } from "./tables/GenericTableView";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
 import { CopyTextViewProps } from "./components/views/copy-text-view";
@@ -38,7 +39,6 @@ import { PortalRegistrationFormViewProps } from "./components/sqm-portal-registr
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
 import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
-import { GenericTableViewProps } from "./tables/GenericTableView";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
@@ -1284,6 +1284,92 @@ export namespace Components {
           * @uiGroup Error messages
          */
         "requiredFieldErrorMessage": string;
+    }
+    interface SqmInvoiceTable {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<GenericTableViewProps> & {
+    mockData?: { data: Invoice[] };
+  };
+        /**
+          * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+          * @uiName Hidden mobile columns
+         */
+        "hiddenColumns"?: string;
+        /**
+          * @uiName Hide column labels
+         */
+        "hideLabels"?: boolean;
+        /**
+          * @uiName Tablet breakpoint
+         */
+        "mdBreakpoint"?: number;
+        /**
+          * @uiName View More button text
+         */
+        "moreLabel"?: string;
+        /**
+          * Number of invoices displayed per page
+          * @uiName Invoices per page
+         */
+        "perPage": number;
+        /**
+          * @uiName Previous button text
+         */
+        "prevLabel"?: string;
+        /**
+          * Filters to only show invoices in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all invoices from all programs. If program ID is "classic", shows classic-only invoices
+          * @uiName Program
+          * @uiWidget programSelector
+         */
+        "programId": string;
+        /**
+          * Show referred by user in table
+          * @uiName Show referrer
+          * @default
+         */
+        "showReferrer"?: boolean;
+        /**
+          * @uiName Mobile breakpoint
+         */
+        "smBreakpoint"?: number;
+    }
+    interface SqmInvoiceTableCell {
+        "innerTemplate": string;
+    }
+    interface SqmInvoiceTableColumn {
+        /**
+          * @uiName Column title
+         */
+        "columnTitle": string;
+        "renderCell": (_: Invoice) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+    }
+    interface SqmInvoiceTableDateCell {
+        "date": number;
+        "locale": string;
+    }
+    interface SqmInvoiceTableDateColumn {
+        /**
+          * @uiName Column title
+         */
+        "columnTitle": string;
+        "renderCell": (data: Invoice, options: { locale: string; }) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+    }
+    interface SqmInvoiceTableDownloadCell {
+        "date": number;
+        "locale": string;
+    }
+    interface SqmInvoiceTableDownloadColumn {
+        /**
+          * @uiName Column title
+         */
+        "columnTitle": string;
+        "renderCell": (_: Invoice) => Promise<any>;
+        "renderLabel": () => Promise<string>;
     }
     interface SqmLeaderboard {
         /**
@@ -4972,6 +5058,48 @@ declare global {
         prototype: HTMLSqmInstantAccessRegistrationElement;
         new (): HTMLSqmInstantAccessRegistrationElement;
     };
+    interface HTMLSqmInvoiceTableElement extends Components.SqmInvoiceTable, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableElement: {
+        prototype: HTMLSqmInvoiceTableElement;
+        new (): HTMLSqmInvoiceTableElement;
+    };
+    interface HTMLSqmInvoiceTableCellElement extends Components.SqmInvoiceTableCell, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableCellElement: {
+        prototype: HTMLSqmInvoiceTableCellElement;
+        new (): HTMLSqmInvoiceTableCellElement;
+    };
+    interface HTMLSqmInvoiceTableColumnElement extends Components.SqmInvoiceTableColumn, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableColumnElement: {
+        prototype: HTMLSqmInvoiceTableColumnElement;
+        new (): HTMLSqmInvoiceTableColumnElement;
+    };
+    interface HTMLSqmInvoiceTableDateCellElement extends Components.SqmInvoiceTableDateCell, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableDateCellElement: {
+        prototype: HTMLSqmInvoiceTableDateCellElement;
+        new (): HTMLSqmInvoiceTableDateCellElement;
+    };
+    interface HTMLSqmInvoiceTableDateColumnElement extends Components.SqmInvoiceTableDateColumn, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableDateColumnElement: {
+        prototype: HTMLSqmInvoiceTableDateColumnElement;
+        new (): HTMLSqmInvoiceTableDateColumnElement;
+    };
+    interface HTMLSqmInvoiceTableDownloadCellElement extends Components.SqmInvoiceTableDownloadCell, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableDownloadCellElement: {
+        prototype: HTMLSqmInvoiceTableDownloadCellElement;
+        new (): HTMLSqmInvoiceTableDownloadCellElement;
+    };
+    interface HTMLSqmInvoiceTableDownloadColumnElement extends Components.SqmInvoiceTableDownloadColumn, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableDownloadColumnElement: {
+        prototype: HTMLSqmInvoiceTableDownloadColumnElement;
+        new (): HTMLSqmInvoiceTableDownloadColumnElement;
+    };
     interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
     }
     var HTMLSqmLeaderboardElement: {
@@ -5456,6 +5584,13 @@ declare global {
         "sqm-indirect-tax-form": HTMLSqmIndirectTaxFormElement;
         "sqm-input-field": HTMLSqmInputFieldElement;
         "sqm-instant-access-registration": HTMLSqmInstantAccessRegistrationElement;
+        "sqm-invoice-table": HTMLSqmInvoiceTableElement;
+        "sqm-invoice-table-cell": HTMLSqmInvoiceTableCellElement;
+        "sqm-invoice-table-column": HTMLSqmInvoiceTableColumnElement;
+        "sqm-invoice-table-date-cell": HTMLSqmInvoiceTableDateCellElement;
+        "sqm-invoice-table-date-column": HTMLSqmInvoiceTableDateColumnElement;
+        "sqm-invoice-table-download-cell": HTMLSqmInvoiceTableDownloadCellElement;
+        "sqm-invoice-table-download-column": HTMLSqmInvoiceTableDownloadColumnElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-link-button": HTMLSqmLinkButtonElement;
@@ -6770,6 +6905,86 @@ declare namespace LocalJSX {
           * @uiGroup Error messages
          */
         "requiredFieldErrorMessage"?: string;
+    }
+    interface SqmInvoiceTable {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<GenericTableViewProps> & {
+    mockData?: { data: Invoice[] };
+  };
+        /**
+          * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+          * @uiName Hidden mobile columns
+         */
+        "hiddenColumns"?: string;
+        /**
+          * @uiName Hide column labels
+         */
+        "hideLabels"?: boolean;
+        /**
+          * @uiName Tablet breakpoint
+         */
+        "mdBreakpoint"?: number;
+        /**
+          * @uiName View More button text
+         */
+        "moreLabel"?: string;
+        /**
+          * Number of invoices displayed per page
+          * @uiName Invoices per page
+         */
+        "perPage"?: number;
+        /**
+          * @uiName Previous button text
+         */
+        "prevLabel"?: string;
+        /**
+          * Filters to only show invoices in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all invoices from all programs. If program ID is "classic", shows classic-only invoices
+          * @uiName Program
+          * @uiWidget programSelector
+         */
+        "programId"?: string;
+        /**
+          * Show referred by user in table
+          * @uiName Show referrer
+          * @default
+         */
+        "showReferrer"?: boolean;
+        /**
+          * @uiName Mobile breakpoint
+         */
+        "smBreakpoint"?: number;
+    }
+    interface SqmInvoiceTableCell {
+        "innerTemplate"?: string;
+    }
+    interface SqmInvoiceTableColumn {
+        /**
+          * @uiName Column title
+         */
+        "columnTitle"?: string;
+    }
+    interface SqmInvoiceTableDateCell {
+        "date"?: number;
+        "locale"?: string;
+    }
+    interface SqmInvoiceTableDateColumn {
+        /**
+          * @uiName Column title
+         */
+        "columnTitle"?: string;
+    }
+    interface SqmInvoiceTableDownloadCell {
+        "date"?: number;
+        "locale"?: string;
+    }
+    interface SqmInvoiceTableDownloadColumn {
+        /**
+          * @uiName Column title
+         */
+        "columnTitle"?: string;
     }
     interface SqmLeaderboard {
         /**
@@ -10297,6 +10512,13 @@ declare namespace LocalJSX {
         "sqm-indirect-tax-form": SqmIndirectTaxForm;
         "sqm-input-field": SqmInputField;
         "sqm-instant-access-registration": SqmInstantAccessRegistration;
+        "sqm-invoice-table": SqmInvoiceTable;
+        "sqm-invoice-table-cell": SqmInvoiceTableCell;
+        "sqm-invoice-table-column": SqmInvoiceTableColumn;
+        "sqm-invoice-table-date-cell": SqmInvoiceTableDateCell;
+        "sqm-invoice-table-date-column": SqmInvoiceTableDateColumn;
+        "sqm-invoice-table-download-cell": SqmInvoiceTableDownloadCell;
+        "sqm-invoice-table-download-column": SqmInvoiceTableDownloadColumn;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-link-button": SqmLinkButton;
@@ -10406,6 +10628,13 @@ declare module "@stencil/core" {
             "sqm-indirect-tax-form": LocalJSX.SqmIndirectTaxForm & JSXBase.HTMLAttributes<HTMLSqmIndirectTaxFormElement>;
             "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
             "sqm-instant-access-registration": LocalJSX.SqmInstantAccessRegistration & JSXBase.HTMLAttributes<HTMLSqmInstantAccessRegistrationElement>;
+            "sqm-invoice-table": LocalJSX.SqmInvoiceTable & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableElement>;
+            "sqm-invoice-table-cell": LocalJSX.SqmInvoiceTableCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableCellElement>;
+            "sqm-invoice-table-column": LocalJSX.SqmInvoiceTableColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableColumnElement>;
+            "sqm-invoice-table-date-cell": LocalJSX.SqmInvoiceTableDateCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateCellElement>;
+            "sqm-invoice-table-date-column": LocalJSX.SqmInvoiceTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateColumnElement>;
+            "sqm-invoice-table-download-cell": LocalJSX.SqmInvoiceTableDownloadCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadCellElement>;
+            "sqm-invoice-table-download-column": LocalJSX.SqmInvoiceTableDownloadColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadColumnElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-link-button": LocalJSX.SqmLinkButton & JSXBase.HTMLAttributes<HTMLSqmLinkButtonElement>;

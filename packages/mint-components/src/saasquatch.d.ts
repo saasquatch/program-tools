@@ -163,3 +163,14 @@ interface RewardBalance {
 }
 declare module "*.md";
 declare module "react";
+
+
+interface Invoice {
+  downloadURL: string;
+  dateCreated: number;
+  invoiceId: string;
+  program: string;
+  earnings: string;
+  taxedAmount: string;
+  netEarnings: string;
+}
