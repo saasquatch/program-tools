@@ -1,12 +1,8 @@
 import { h } from "@stencil/core";
 import { GenericTableView } from "../../tables/GenericTableView";
-import scenario from "./invoice-table.feature";
 
 export default {
   title: "Components/Invoice Table",
-  parameters: {
-    scenario,
-  },
 };
 
 const loadingElement = (
