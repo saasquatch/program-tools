@@ -869,7 +869,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_thresholdPayoutText: string =
-    "Next payout occurs when balance is";
+    "Next payout occurs when balance is {thresholdBalance}";
   /**
    * @uiName Account text
    * @uiGroup Dashboard Properties
@@ -970,6 +970,23 @@ export class TaxAndCashMonolith {
   render() {
     const props = useTaxAndCash();
     // const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
+
+    // @ts-ignore
+    if (this.demoData.showTextProps) {
+      const textProps = getProps(this);
+      return (
+        <div>
+          {Object.keys(textProps)?.map((prop) => {
+            return (
+              <div>
+                <b>{prop}:</b> {this[prop]}
+                <hr />
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
 
     // TODO: Create form wrapper that includes the header and sub text.
     switch (props.step) {
