@@ -471,9 +471,15 @@ export function getFormMap({
             }),
           })}
         >
-          <sl-menu-item value="BUSINESS">BUSINESS</sl-menu-item>
-          <sl-menu-item value="INDIVIDUAL">INDIVIDUAL</sl-menu-item>
-          <sl-menu-item value="FOREIGN">FOREIGN</sl-menu-item>
+          <sl-menu-item value="BUSINESS">
+            {props.text.businessSelectItemLabel}
+          </sl-menu-item>
+          <sl-menu-item value="INDIVIDUAL">
+            {props.text.individualSelectItemLabel}
+          </sl-menu-item>
+          <sl-menu-item value="FOREIGN">
+            {props.text.foreignSelectItemLabel}
+          </sl-menu-item>
         </sl-select>
       ),
     },
