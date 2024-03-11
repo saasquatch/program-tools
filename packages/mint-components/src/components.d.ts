@@ -3875,11 +3875,6 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
-          * @uiName EFT Withdrawal label text
-          * @uiGroup Step 4 Properties
-         */
-        "eftWithdrawalLabel": string;
-        /**
           * Invalid error text shown at the bottom of field inputs
           * @uiName Field inputs invalid error text
           * @uiGroup General Form Properties
@@ -3891,11 +3886,6 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "fieldRequiredError": string;
-        /**
-          * @uiName FX Wire Processing fee text
-          * @uiGroup Step 4 Properties
-         */
-        "fxWireProcessingFeeLabel": string;
         /**
           * Description text for a general form submission error
           * @uiName General form submission error description
@@ -3919,18 +3909,6 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "isPartnerAlertHeader": string;
-        /**
-          * Subtext for the option indicating not being registered for indirect tax
-          * @uiName Not registered for indirect tax option sub-text
-          * @uiGroup Step 2 Properties
-         */
-        "notRegisteredSubtext": string;
-        /**
-          * Subtext for the option indicating registration for indirect tax in a different region
-          * @uiName Registered for indirect tax in a different region option sub-text
-          * @uiGroup Step 2 Properties
-         */
-        "otherRegionSubtext": string;
         /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
@@ -3985,6 +3963,12 @@ export namespace Components {
           * @uiGroup Step 1 Properties
          */
         "step1_submitButton": string;
+        /**
+          * Label text for terms and conditions
+          * @uiName Terms and conditions label text
+          * @uiGroup Step 1 Properties
+         */
+        "step1_termsAndConditionsLabel": string;
         /**
           * Text shown inside of back button
           * @uiName Back button text
@@ -4058,11 +4042,23 @@ export namespace Components {
          */
         "step2_notRegistered": string;
         /**
+          * Subtext for the option indicating not being registered for indirect tax
+          * @uiName Not registered for indirect tax option sub-text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_notRegisteredSubtext": string;
+        /**
           * Label test for the option indicating registration for indirect tax
           * @uiName Registered for indrect tax label
           * @uiGroup Step 2 Properties
          */
         "step2_otherRegion": string;
+        /**
+          * Subtext for the option indicating registration for indirect tax in a different region
+          * @uiName Registered for indirect tax in a different region option sub-text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_otherRegionSubtext": string;
         /**
           * Label text for the Province select input
           * @uiName Province select input label
@@ -4316,6 +4312,11 @@ export namespace Components {
          */
         "step4_directlyToBankAccount": string;
         /**
+          * @uiName EFT Withdrawal label text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_eftWithdrawalLabel": string;
+        /**
           * Label text for the foreign select item
           * @uiName Foreign select item label
           * @uiGroup Step 4 Properties
@@ -4327,6 +4328,11 @@ export namespace Components {
           * @uiGroup Step 4 Properties
          */
         "step4_formStep": string;
+        /**
+          * @uiName FX Wire Processing fee text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_fxWireProcessingFeeLabel": string;
         /**
           * Label text for the IBAN input field
           * @uiName IBAN input label
@@ -4459,12 +4465,6 @@ export namespace Components {
           * @uiGroup Step 3 Properties
          */
         "stop3NotBasedInUS": string;
-        /**
-          * Label text for terms and conditions
-          * @uiName Terms and conditions label text
-          * @uiGroup Step 1 Properties
-         */
-        "termsAndConditionsLabel": string;
     }
     interface SqmTaxAndCashDashboard {
         /**
@@ -9332,11 +9332,6 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
-          * @uiName EFT Withdrawal label text
-          * @uiGroup Step 4 Properties
-         */
-        "eftWithdrawalLabel"?: string;
-        /**
           * Invalid error text shown at the bottom of field inputs
           * @uiName Field inputs invalid error text
           * @uiGroup General Form Properties
@@ -9348,11 +9343,6 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "fieldRequiredError"?: string;
-        /**
-          * @uiName FX Wire Processing fee text
-          * @uiGroup Step 4 Properties
-         */
-        "fxWireProcessingFeeLabel"?: string;
         /**
           * Description text for a general form submission error
           * @uiName General form submission error description
@@ -9376,18 +9366,6 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "isPartnerAlertHeader"?: string;
-        /**
-          * Subtext for the option indicating not being registered for indirect tax
-          * @uiName Not registered for indirect tax option sub-text
-          * @uiGroup Step 2 Properties
-         */
-        "notRegisteredSubtext"?: string;
-        /**
-          * Subtext for the option indicating registration for indirect tax in a different region
-          * @uiName Registered for indirect tax in a different region option sub-text
-          * @uiGroup Step 2 Properties
-         */
-        "otherRegionSubtext"?: string;
         /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
@@ -9442,6 +9420,12 @@ declare namespace LocalJSX {
           * @uiGroup Step 1 Properties
          */
         "step1_submitButton"?: string;
+        /**
+          * Label text for terms and conditions
+          * @uiName Terms and conditions label text
+          * @uiGroup Step 1 Properties
+         */
+        "step1_termsAndConditionsLabel"?: string;
         /**
           * Text shown inside of back button
           * @uiName Back button text
@@ -9515,11 +9499,23 @@ declare namespace LocalJSX {
          */
         "step2_notRegistered"?: string;
         /**
+          * Subtext for the option indicating not being registered for indirect tax
+          * @uiName Not registered for indirect tax option sub-text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_notRegisteredSubtext"?: string;
+        /**
           * Label test for the option indicating registration for indirect tax
           * @uiName Registered for indrect tax label
           * @uiGroup Step 2 Properties
          */
         "step2_otherRegion"?: string;
+        /**
+          * Subtext for the option indicating registration for indirect tax in a different region
+          * @uiName Registered for indirect tax in a different region option sub-text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_otherRegionSubtext"?: string;
         /**
           * Label text for the Province select input
           * @uiName Province select input label
@@ -9773,6 +9769,11 @@ declare namespace LocalJSX {
          */
         "step4_directlyToBankAccount"?: string;
         /**
+          * @uiName EFT Withdrawal label text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_eftWithdrawalLabel"?: string;
+        /**
           * Label text for the foreign select item
           * @uiName Foreign select item label
           * @uiGroup Step 4 Properties
@@ -9784,6 +9785,11 @@ declare namespace LocalJSX {
           * @uiGroup Step 4 Properties
          */
         "step4_formStep"?: string;
+        /**
+          * @uiName FX Wire Processing fee text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_fxWireProcessingFeeLabel"?: string;
         /**
           * Label text for the IBAN input field
           * @uiName IBAN input label
@@ -9916,12 +9922,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 3 Properties
          */
         "stop3NotBasedInUS"?: string;
-        /**
-          * Label text for terms and conditions
-          * @uiName Terms and conditions label text
-          * @uiGroup Step 1 Properties
-         */
-        "termsAndConditionsLabel"?: string;
     }
     interface SqmTaxAndCashDashboard {
         /**
