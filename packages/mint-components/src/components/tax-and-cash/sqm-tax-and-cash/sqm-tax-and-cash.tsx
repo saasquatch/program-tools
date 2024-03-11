@@ -963,7 +963,7 @@ export class TaxAndCashMonolith {
     const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
 
     // @ts-ignore
-    if (this.demoData.showTextProps) {
+    if (this.demoData?.showTextProps) {
       const textProps = getProps(this);
       return (
         <div>

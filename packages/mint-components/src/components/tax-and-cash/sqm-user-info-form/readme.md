@@ -43,14 +43,15 @@
 - [sqm-docusign-form](../sqm-docusign-form)
 - [sqm-banking-info-form](../sqm-banking-info-form)
 - [sqm-tax-and-cash-dashboard](../sqm-tax-and-cash-dashboard)
+- [sqm-tax-and-cash](../sqm-tax-and-cash)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-user-info-form --> sqm-user-info-form
   sqm-tax-and-cash-dashboard --> sqm-payout-details-card
-  sqm-stencilbook --> sqm-user-info-form
   sqm-tax-and-cash --> sqm-user-info-form
+  sqm-stencilbook --> sqm-user-info-form
   style sqm-user-info-form fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
