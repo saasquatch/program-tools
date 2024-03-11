@@ -59,6 +59,13 @@ export class TaxAndCashMonolith {
    */
   @Prop() step1_currency: string = "Currency";
   /**
+   * Help text shown underneath currency input
+   * @uiName Currency help text
+   * @uiGroup Step 1 Properties
+   */
+  @Prop() step1_currencyHelpText: string =
+    "Choose your preferred payout currency";
+  /**
    * Label text for tax and banking collection checkbox
    * @uiName Tax and banking label
    * @uiGroup Step 1 Properties
@@ -83,12 +90,6 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_termsAndConditionsLabel: string = "terms and conditions";
-  /**
-   * Text shown inside of submit button
-   * @uiName Submit button text
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_submitButton: string = "Continue";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 2 PROPS:
@@ -203,12 +204,6 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_subRegionTaxNumberLabel: string = "Income Tax Number";
-  /**
-   * Text shown inside of submit button
-   * @uiName Submit button text
-   * @uiGroup Step 2 Properties
-   */
-  @Prop() step2_submitButton: string = "Continue";
   /**
    * Text shown inside of back button
    * @uiName Back button text

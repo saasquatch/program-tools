@@ -54,7 +54,6 @@ export class TaxForm {
   /**
    * Label text for tax and banking collection checkbox
    * @uiName Tax and banking label
-   * @uiGroup Step 1 Properties
    */
   @Prop() allowBankingCollection: string =
     "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information";

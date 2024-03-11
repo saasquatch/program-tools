@@ -3928,6 +3928,12 @@ export namespace Components {
          */
         "step1_currency": string;
         /**
+          * Help text shown underneath currency input
+          * @uiName Currency help text
+          * @uiGroup Step 1 Properties
+         */
+        "step1_currencyHelpText": string;
+        /**
           * Label text for email input
           * @uiName Email label
           * @uiGroup Step 1 Properties
@@ -3957,12 +3963,6 @@ export namespace Components {
           * @uiGroup Step 1 Properties
          */
         "step1_personalInformation": string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_submitButton": string;
         /**
           * Label text for terms and conditions
           * @uiName Terms and conditions label text
@@ -4089,12 +4089,6 @@ export namespace Components {
           * @uiGroup Step 2 Properties
          */
         "step2_subRegionTaxNumberLabel": string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_submitButton": string;
         /**
           * Text shown inside of back button
           * @uiName Back button text
@@ -4703,7 +4697,6 @@ export namespace Components {
         /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
-          * @uiGroup Step 1 Properties
          */
         "allowBankingCollection": string;
         /**
@@ -9385,6 +9378,12 @@ declare namespace LocalJSX {
          */
         "step1_currency"?: string;
         /**
+          * Help text shown underneath currency input
+          * @uiName Currency help text
+          * @uiGroup Step 1 Properties
+         */
+        "step1_currencyHelpText"?: string;
+        /**
           * Label text for email input
           * @uiName Email label
           * @uiGroup Step 1 Properties
@@ -9414,12 +9413,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 1 Properties
          */
         "step1_personalInformation"?: string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_submitButton"?: string;
         /**
           * Label text for terms and conditions
           * @uiName Terms and conditions label text
@@ -9546,12 +9539,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 2 Properties
          */
         "step2_subRegionTaxNumberLabel"?: string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_submitButton"?: string;
         /**
           * Text shown inside of back button
           * @uiName Back button text
@@ -10159,7 +10146,6 @@ declare namespace LocalJSX {
         /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
-          * @uiGroup Step 1 Properties
          */
         "allowBankingCollection"?: string;
         /**

@@ -103,6 +103,58 @@ export class IndirectTaxForm {
     "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number} SST {SST Number} GENERAL {Indirect Tax Number}}";
 
   /**
+   * Label text for the QST number input field
+   * @uiName QST number input label
+   */
+  @Prop() qstNumber: string = "QST Number";
+
+  /**
+   * Text for the option indicating registration for QST tax
+   * @uiName Registered for QST tax option text
+   */
+  @Prop() isRegisteredQST: string = "I am registered for QST Tax";
+
+  /**
+   * Text for the option indicating registration for sub-region income tax
+   * @uiName Registered for sub-region income tax option text
+   */
+  @Prop() isRegisteredSubRegionIncomeTax: string =
+    "I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me.";
+  /**
+   * Label text for the sub-region input field
+   * @uiName Sub-region input label
+   */
+  @Prop() subRegion: string = "Sub-region";
+  /**
+   * Label text for the sub-region tax number input field
+   * @uiName Sub-region tax number input label
+   */
+  @Prop() subRegionTaxNumberLabel: string = "Income Tax Number";
+
+  /**
+   * Text for the back button in the form
+   * @uiName Back button text
+   */
+  @Prop() backButton: string = "Back";
+  /**
+   * Alert text indicating participant cannot change info after it has been submitted
+   * @uiName Cannot change info Alert text
+   */
+  @Prop() cannotChangeInfoAlert: string =
+    "Changes to your personal information and indirect tax can only be made through our Support team after you complete this step. Ensure these are correct before continuing.";
+  /**
+   * Error message for the indirect tax number input field with a dynamic placeholder based on tax type
+   * @uiName Indirect tax number error message
+   */
+  @Prop() indirectTaxNumberError: string =
+    "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number} SST {SST Number} GENERAL {Indirect Tax Number}} is required";
+  /**
+   * Required error text shown at the bottom of field inputs
+   * @uiName Field inputs error text
+   */
+  @Prop() fieldRequiredError: string = "{fieldName} is required";
+
+  /**
    * Header text for the alert when the user is identified as a partner
    * @uiName Partner identification alert header
    */
@@ -123,11 +175,6 @@ export class IndirectTaxForm {
   @Prop() continueButton: string = "Continue";
 
   /**
-   * Text for the back button in the form
-   * @uiName Back button text
-   */
-  @Prop() backButton: string = "Back";
-  /**
    * Title text for a general form submission error
    * @uiName General form submission error title
    */
@@ -140,54 +187,6 @@ export class IndirectTaxForm {
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
-
-  /**
-   * Error message for the indirect tax number input field with a dynamic placeholder based on tax type
-   * @uiName Indirect tax number error message
-   */
-  @Prop() indirectTaxNumberError: string =
-    "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number} SST {SST Number} GENERAL {Indirect Tax Number}} is required";
-  /**
-   * Label text for the sub-region input field
-   * @uiName Sub-region input label
-   */
-  @Prop() subRegion: string = "Sub-region";
-  /**
-   * Label text for the QST number input field
-   * @uiName QST number input label
-   */
-  @Prop() qstNumber: string = "QST Number";
-
-  /**
-   * Label text for the sub-region tax number input field
-   * @uiName Sub-region tax number input label
-   */
-  @Prop() subRegionTaxNumberLabel: string = "Income Tax Number";
-
-  /**
-   * Text for the option indicating registration for QST tax
-   * @uiName Registered for QST tax option text
-   */
-  @Prop() isRegisteredQST: string = "I am registered for QST Tax";
-
-  /**
-   * Text for the option indicating registration for sub-region income tax
-   * @uiName Registered for sub-region income tax option text
-   */
-  @Prop() isRegisteredSubRegionIncomeTax: string =
-    "I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me.";
-
-  /**
-   * Alert text indicating participant cannot change info after it has been submitted
-   * @uiName Cannot change info Alert text
-   */
-  @Prop() cannotChangeInfoAlert: string =
-    "Changes to your personal information and indirect tax can only be made through our Support team after you complete this step. Ensure these are correct before continuing.";
-  /**
-   * Required error text shown at the bottom of field inputs
-   * @uiName Field inputs error text
-   */
-  @Prop() fieldRequiredError: string = "{fieldName} is required";
 
   /**
    * @undocumented
