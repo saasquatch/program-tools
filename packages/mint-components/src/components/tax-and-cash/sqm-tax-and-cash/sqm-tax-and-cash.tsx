@@ -59,6 +59,13 @@ export class TaxAndCashMonolith {
    */
   @Prop() step1_currency: string = "Currency";
   /**
+   * Help text shown underneath currency input
+   * @uiName Currency help text
+   * @uiGroup Step 1 Properties
+   */
+  @Prop() step1_currencyHelpText: string =
+    "Choose your preferred payout currency";
+  /**
    * Label text for tax and banking collection checkbox
    * @uiName Tax and banking label
    * @uiGroup Step 1 Properties
@@ -82,13 +89,7 @@ export class TaxAndCashMonolith {
    * @uiName Terms and conditions label text
    * @uiGroup Step 1 Properties
    */
-  @Prop() termsAndConditionsLabel: string = "terms and conditions";
-  /**
-   * Text shown inside of submit button
-   * @uiName Submit button text
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_submitButton: string = "Continue";
+  @Prop() step1_termsAndConditionsLabel: string = "terms and conditions";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 2 PROPS:
@@ -137,7 +138,7 @@ export class TaxAndCashMonolith {
    * @uiName Registered for indirect tax in a different region option sub-text
    * @uiGroup Step 2 Properties
    */
-  @Prop() otherRegionSubtext: string =
+  @Prop() step2_otherRegionSubtext: string =
     "If you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more.";
   /**
    * Label text for the not registered radio button
@@ -150,7 +151,7 @@ export class TaxAndCashMonolith {
    * @uiName Not registered for indirect tax option sub-text
    * @uiGroup Step 2 Properties
    */
-  @Prop() notRegisteredSubtext: string =
+  @Prop() step2_notRegisteredSubtext: string =
     "If you’re joining this referral program as an individual or you’re based in the US, then you’re not registered.";
   /**
    * Label text for the Selected Region select input
@@ -203,12 +204,6 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_subRegionTaxNumberLabel: string = "Income Tax Number";
-  /**
-   * Text shown inside of submit button
-   * @uiName Submit button text
-   * @uiGroup Step 2 Properties
-   */
-  @Prop() step2_submitButton: string = "Continue";
   /**
    * Text shown inside of back button
    * @uiName Back button text
@@ -641,13 +636,13 @@ export class TaxAndCashMonolith {
    * @uiName EFT Withdrawal label text
    * @uiGroup Step 4 Properties
    */
-  @Prop() eftWithdrawalLabel: string = "EFT Withdrawal (free)";
+  @Prop() step4_eftWithdrawalLabel: string = "EFT Withdrawal (free)";
 
   /**
    * @uiName FX Wire Processing fee text
    * @uiGroup Step 4 Properties
    */
-  @Prop() fxWireProcessingFeeLabel: string =
+  @Prop() step4_fxWireProcessingFeeLabel: string =
     "FX Wire (Processing Fee {currency}{defaultFxFee}.00)";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -869,7 +864,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_thresholdPayoutText: string =
-    "Next payout occurs when balance is";
+    "Next payout occurs when balance is {thresholdBalance}";
   /**
    * @uiName Account text
    * @uiGroup Dashboard Properties
@@ -968,8 +963,26 @@ export class TaxAndCashMonolith {
   }
 
   render() {
-    const props = useTaxAndCash();
-    // const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
+    // const props = useTaxAndCash();
+    const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
+
+    // @ts-ignore
+    if (this.demoData.showTextProps) {
+      const textProps = getProps(this);
+      return (
+        <div>
+          {Object.keys(textProps)?.map((prop) => {
+            if (prop === "demoData") return;
+            return (
+              <div>
+                <b>{prop}:</b> {this[prop]}
+                <hr />
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
 
     // TODO: Create form wrapper that includes the header and sub text.
     switch (props.step) {

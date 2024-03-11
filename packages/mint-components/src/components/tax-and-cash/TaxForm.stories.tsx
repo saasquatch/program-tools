@@ -1158,3 +1158,14 @@ export const TaxAndCashDashboardDisabled = () => {
     ></sqm-tax-and-cash-dashboard>
   );
 };
+
+export const TaxAndCashTextProps = () => {
+  return (
+    <sqm-tax-and-cash
+      demoData={{
+        // @ts-ignore
+        showTextProps: true,
+      }}
+    ></sqm-tax-and-cash>
+  );
+};
