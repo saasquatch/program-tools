@@ -459,7 +459,6 @@ export class BankingInfoForm {
                   }),
                 })}
               >
-                {/* TODO: mock data should come from the backend when available */}
                 {props.states.countries?.map((country) => {
                   return (
                     <sl-menu-item value={country.code}>

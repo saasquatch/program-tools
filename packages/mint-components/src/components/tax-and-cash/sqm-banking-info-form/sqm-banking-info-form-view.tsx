@@ -327,8 +327,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
       );
     }
 
-    // TODO: Fix type
-    // @ts-ignore
+    // @ts-expect-error: `input` not used
     Array.from({ length: inputNumber }).forEach((input, index) => {
       skeletons.push(
         <div style={{ ...flexBoxStyle, flexDirection: "column" }} key={index}>

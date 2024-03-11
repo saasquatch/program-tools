@@ -154,9 +154,8 @@ export function useDocusignForm(props: DocusignForm) {
       const status = (result as UserQuery).user?.impactConnection?.publisher
         ?.currentTaxDocument?.status;
 
-      // TODO : Confirm behaviour
       if (status === "NOT_VERIFIED" || status === "ACTIVE") {
-        console.log("Document has been registered as submitted");
+        console.debug("Document has been registered as submitted");
       }
 
       setPath(context.overrideNextStep || "/4");
@@ -181,10 +180,9 @@ export function useDocusignForm(props: DocusignForm) {
       submitDisabled: !formSubmitted,
       loading: allLoading,
       formState: {
-        //AL: hooks todo
         participantType,
         completedTaxForm: formSubmitted,
-        taxFormExpired: false, // TODO: Unhardcode this
+        taxFormExpired: DOCUSIGN_EXPIRED_STATES.includes(docusignStatus),
         errors,
       },
       docusignStatus,
