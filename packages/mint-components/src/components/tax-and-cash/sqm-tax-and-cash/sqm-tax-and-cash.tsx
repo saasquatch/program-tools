@@ -668,7 +668,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_badgeTextSubmittedOn?: string =
-    "Submitted on {dateSubmitted}";
+    "Submitted on {dateSubmitted}.";
   /**
    * Description text for W8 which appears beside badge showing when the form was submitted
    *
@@ -734,7 +734,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_bankingInformationSectionHeader: string =
-    "Banking Information";
+    "Payout Information";
   /**
    * Header text displayed above the tax documents status
    *

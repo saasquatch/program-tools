@@ -4456,6 +4456,11 @@ export namespace Components {
     }
     interface SqmTaxAndCashDashboard {
         /**
+          * Label text account heading text
+          * @uiName Account text
+         */
+        "accountText": string;
+        /**
           * Description text which appears beside badge showing the form is awaiting review
           * @uiName Badge description text
          */
@@ -4481,15 +4486,18 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseTaxAndCashDashboardResult>;
         /**
-          * Text displayed in the edit Indirect Tax button
-          * @uiName Edit Indirect Tax button
-         */
-        "editIndirectTaxButton": string;
-        /**
           * Text displayed in the edit Payment Information button
           * @uiName Edit Payment Information button
          */
         "editPaymentInformationButton": string;
+        /**
+          * @uiName Error banner description text
+         */
+        "errorDescriptionText": string;
+        /**
+          * @uiName Error banner title text
+         */
+        "errorTitleText": string;
         /**
           * The error message shown at the top of the page in an error banner
           * @uiName General error text
@@ -4561,6 +4569,11 @@ export namespace Components {
          */
         "qstNumber": string;
         /**
+          * Label text for next payout status badge
+          * @uiName Status badge text
+         */
+        "statusBadgeText": string;
+        /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
          */
@@ -4610,6 +4623,11 @@ export namespace Components {
           * @uiName Tax documents sub header
          */
         "taxDocumentSectionSubHeader": string;
+        /**
+          * Label text for the next payout based on balance
+          * @uiName Threshold payout text
+         */
+        "thresholdPayoutText": string;
     }
     interface SqmText {
     }
@@ -9900,6 +9918,11 @@ declare namespace LocalJSX {
     }
     interface SqmTaxAndCashDashboard {
         /**
+          * Label text account heading text
+          * @uiName Account text
+         */
+        "accountText"?: string;
+        /**
           * Description text which appears beside badge showing the form is awaiting review
           * @uiName Badge description text
          */
@@ -9925,15 +9948,18 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseTaxAndCashDashboardResult>;
         /**
-          * Text displayed in the edit Indirect Tax button
-          * @uiName Edit Indirect Tax button
-         */
-        "editIndirectTaxButton"?: string;
-        /**
           * Text displayed in the edit Payment Information button
           * @uiName Edit Payment Information button
          */
         "editPaymentInformationButton"?: string;
+        /**
+          * @uiName Error banner description text
+         */
+        "errorDescriptionText"?: string;
+        /**
+          * @uiName Error banner title text
+         */
+        "errorTitleText"?: string;
         /**
           * The error message shown at the top of the page in an error banner
           * @uiName General error text
@@ -10005,6 +10031,11 @@ declare namespace LocalJSX {
          */
         "qstNumber"?: string;
         /**
+          * Label text for next payout status badge
+          * @uiName Status badge text
+         */
+        "statusBadgeText"?: string;
+        /**
           * Status text displayed in badge when tax document is Active
           * @uiName Status text
          */
@@ -10054,6 +10085,11 @@ declare namespace LocalJSX {
           * @uiName Tax documents sub header
          */
         "taxDocumentSectionSubHeader"?: string;
+        /**
+          * Label text for the next payout based on balance
+          * @uiName Threshold payout text
+         */
+        "thresholdPayoutText"?: string;
     }
     interface SqmText {
     }

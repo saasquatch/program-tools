@@ -58,7 +58,6 @@ export interface TaxAndCashDashboardProps {
     taxDocumentSectionSubHeader?: string;
     newFormButton?: string;
     editPaymentInformationButton?: string;
-    editIndirectTaxButton: string;
     invalidForm?: string;
     noFormNeededSubtext?: string;
     notRegisteredForTax?: string;

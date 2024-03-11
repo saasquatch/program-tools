@@ -100,6 +100,26 @@ export class TaxAndCashDashboard {
    */
   @Prop() bankingInformationSectionHeader: string = "Payout information";
   /**
+   * Header text displayed above the tax documents status
+   *
+   * @uiName Tax document section header
+   */
+  @Prop() taxDocumentSectionHeader: string = "Tax documents";
+  /**
+   * Sub header text displayed above the tax documents status
+   *
+   * @uiName Tax documents sub header
+   */
+  @Prop() taxDocumentSectionSubHeader: string = "{documentType} tax form";
+  /**
+   * Subtext displayed at the bottom of the page if there are no tax documents to show
+   *
+   * @uiName No form needed subtext
+   */
+  @Prop() noFormNeededSubtext: string =
+    "Tax documents are only required if you are based in the US or joining the referral program of a US based brand.";
+
+  /**
    * Header text displayed above the indirect tax preview section
    *
    * @uiName Indirect Tax Information Header
@@ -137,37 +157,13 @@ export class TaxAndCashDashboard {
    */
   @Prop() indirectTaxDetails: string =
     "{indirectTaxType} number: {indirectTaxNumber}";
-  /**
-   * Header text displayed above the tax documents status
-   *
-   * @uiName Tax document section header
-   */
-  @Prop() taxDocumentSectionHeader: string = "Tax documents";
-  /**
-   * Sub header text displayed above the tax documents status
-   *
-   * @uiName Tax documents sub header
-   */
-  @Prop() taxDocumentSectionSubHeader: string = "{documentType} tax form";
-  /**
-   * Subtext displayed at the bottom of the page if there are no tax documents to show
-   *
-   * @uiName No form needed subtext
-   */
-  @Prop() noFormNeededSubtext: string =
-    "Tax documents are only required if you are based in the US or joining the referral program of a US based brand.";
+
   /**
    * Text displayed in the submit new document button at the bottom of the page
    *
    * @uiName No form needed subtext
    */
   @Prop() newFormButton: string = "Submit New Form";
-  /**
-   * Text displayed in the edit Indirect Tax button
-   *
-   * @uiName Edit Indirect Tax button
-   */
-  @Prop() editIndirectTaxButton: string = "Edit Indirect Tax";
   /**
    * Text displayed in the edit Payment Information button
    *
@@ -182,6 +178,49 @@ export class TaxAndCashDashboard {
   @Prop() notRegisteredForTax: string =
     "Not registered. Participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information.";
   /**
+   * Label text for the QST number
+   * @uiName QST number input
+   */
+  @Prop() qstNumber: string = "QST number: {qstNumber}";
+  /**
+   * Label text for the sub-region tax number
+   * @uiName Sub-region tax number
+   */
+  @Prop() subRegionTaxNumber: string =
+    "Income tax number: {subRegionTaxNumber}";
+
+  /**
+   * Label text for next payout status badge
+   * @uiName Status badge text
+   */
+  @Prop()
+  statusBadgeText: string =
+    "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
+  /**
+   * Label text for the next payout based on balance
+   * @uiName Threshold payout text
+   */
+  @Prop() thresholdPayoutText: string =
+    "Next payout occurs when balance is {thresholdBalance}";
+
+  /**
+   * Label text account heading text
+   * @uiName Account text
+   */
+  @Prop() accountText: string = "Account";
+  /**
+   * @uiName Error banner title text
+   */
+  @Prop() errorTitleText: string =
+    "There was an error with your payout infomation";
+  /**
+   * @uiName Error banner description text
+   */
+  @Prop()
+  errorDescriptionText: string =
+    "Please ensure your payout information is correct. If this problem continues, contact Support.";
+
+  /**
    * The title for error message shown at the top of the page in an error banner
    *
    * @uiName General error title
@@ -195,17 +234,7 @@ export class TaxAndCashDashboard {
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
-  /**
-   * Label text for the QST number
-   * @uiName QST number input
-   */
-  @Prop() qstNumber: string = "QST number: {qstNumber}";
-  /**
-   * Label text for the sub-region tax number
-   * @uiName Sub-region tax number
-   */
-  @Prop() subRegionTaxNumber: string =
-    "Income tax number: {subRegionTaxNumber}";
+
   /**
    * Sub text describing how payouts are provided from impact.com
    * @uiName Payout from impact text

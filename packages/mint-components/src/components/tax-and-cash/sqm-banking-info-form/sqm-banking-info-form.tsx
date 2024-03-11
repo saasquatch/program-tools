@@ -199,20 +199,6 @@ export class BankingInfoForm {
   @Prop() foreignSelectItemLabel: string = "Foreign";
 
   /**
-   * Header text for the alert when the user is identified as a partner
-   * @uiName Partner identification alert header
-   */
-  @Prop() isPartnerAlertHeader: string =
-    "An account with this email already exists with our referral program provider, impact.com";
-
-  /**
-   * Description text for the alert when the user is identified as a partner
-   * @uiName Partner identification alert description
-   */
-  @Prop() isPartnerAlertDescription: string =
-    "If you don’t recognize this referral program provider or believe this is a mistake, please contact our Support team or sign up for this referral program with a different email.";
-
-  /**
    * Label text for the classification CPF input field
    * @uiName Classification CPF input label
    */
@@ -280,6 +266,32 @@ export class BankingInfoForm {
    */
   @Prop() cannotChangeInfoAlert: string =
     "Your payout information can only be changed through our Support team after you complete this step. Make sure your payout method and schedule are correct before submitting.";
+
+  /**
+   * @uiName EFT Withdrawal label text
+   */
+  @Prop() eftWithdrawalLabel: string = "EFT Withdrawal (free)";
+
+  /**
+   * @uiName FX Wire Processing fee text
+   */
+  @Prop() fxWireProcessingFeeLabel: string =
+    "FX Wire (Processing Fee {currency}{defaultFxFee}.00)";
+
+  /**
+   * Header text for the alert when the user is identified as a partner
+   * @uiName Partner identification alert header
+   */
+  @Prop() isPartnerAlertHeader: string =
+    "An account with this email already exists with our referral program provider, impact.com";
+
+  /**
+   * Description text for the alert when the user is identified as a partner
+   * @uiName Partner identification alert description
+   */
+  @Prop() isPartnerAlertDescription: string =
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact our Support team or sign up for this referral program with a different email.";
+
   /**
    * Title text for a general form submission error
    * @uiName General form submission error title
@@ -293,17 +305,6 @@ export class BankingInfoForm {
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
-
-  /**
-   * @uiName EFT Withdrawal label text
-   */
-  @Prop() eftWithdrawalLabel: string = "EFT Withdrawal (free)";
-
-  /**
-   * @uiName FX Wire Processing fee text
-   */
-  @Prop() fxWireProcessingFeeLabel: string =
-    "FX Wire (Processing Fee {currency}{defaultFxFee}.00)";
 
   /**
    * Required error text shown at the bottom of field inputs
@@ -370,6 +371,10 @@ export class BankingInfoForm {
       AR: "CUIT/CUIL",
       KR: "Classification ID",
     };
+
+    const test: string = undefined;
+
+    test.length;
 
     const fieldRequiredError = this.fieldRequiredError;
     const fieldInvalidError = this.fieldInvalidError;
