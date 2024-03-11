@@ -127,8 +127,8 @@ export class TaxAndCashMonolith {
   @Prop() step2_indirectTaxDetailsDescription: string =
     "Participants representing businesses based in countries that enforce indirect taxes (e.g. VAT, HST, GST) must add their indirect tax details to stay tax compliant.";
   /**
-   * Label text for the other region radio button
-   * @uiName Other region radio button label
+   * Label test for the option indicating registration for indirect tax
+   * @uiName Registered for indrect tax label
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_otherRegion: string = "Registered for indirect tax";
@@ -262,7 +262,7 @@ export class TaxAndCashMonolith {
    * @uiName Business entity radio button label
    * @uiGroup Step 3 Properties
    */
-  @Prop() step3_businessEntity: string = "I represent a company";
+  @Prop() step3_businessEntity: string = "I represent a business";
   /**
    * Label text for the individual participant radio button
    * @uiName Individual participant radio button label
@@ -276,7 +276,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_taxFormDescription: string =
-    "Participants based in the US and partnering with US-based brands need to submit a {documentType} form.";
+    "Participants based in the US need to submit a {documentType} form.";
   /**
    * Subtext shown at the top of the page next to the document type text for individual participants
    * @uiName Tax form subtext
@@ -603,7 +603,7 @@ export class TaxAndCashMonolith {
    * @uiName Taxpayer ID input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_taxPayerIdLabel: string = "Taxpayer ID";
+  @Prop() step4_taxPayerIdLabel: string = "Beneficiary INN";
 
   /**
    * Label text for the Bank Address input
@@ -636,6 +636,19 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_cannotChangeInfoAlert: string =
     "Your payout information cannot be changed after saving. Ensure your payout method and schedule are correct before submitting.";
+
+  /**
+   * @uiName EFT Withdrawal label text
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() eftWithdrawalLabel: string = "EFT Withdrawal (free)";
+
+  /**
+   * @uiName FX Wire Processing fee text
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() fxWireProcessingFeeLabel: string =
+    "FX Wire (Processing Fee {currency}{defaultFxFee}.00)";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     DASHBOARD PROPS:

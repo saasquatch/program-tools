@@ -55,12 +55,18 @@ export function usePayoutDetailsCard(
 
   const isPayoutToday = DateTime.now().toFormat("LLL dd, yyyy") === paymentDay;
 
+  console.log({ threshold: publisher?.withdrawalSettings?.paymentThreshold });
+
   return {
     states: {
       loading,
-      thresholdBalance: publisher?.withdrawalSettings?.paymentThreshold,
+      thresholdBalance: `${publisher?.currency}${publisher?.withdrawalSettings?.paymentThreshold}`,
       balance: publisher?.payoutsAccount?.balance,
-      status: isPayoutToday ? "payoutToday" : "nextPayout",
+      status: publisher?.withdrawalSettings?.paymentThreshold
+        ? "thresholdPayout"
+        : isPayoutToday
+        ? "payoutToday"
+        : "nextPayout",
       payoutType: publisher?.withdrawalSettings?.paymentMethod,
       error: publisher?.payoutsAccount?.hold,
       paypalEmailAddress: publisher?.withdrawalSettings?.paypalEmailAddress,

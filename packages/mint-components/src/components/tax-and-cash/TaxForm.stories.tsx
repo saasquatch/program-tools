@@ -145,7 +145,6 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
     onSubmit: async () => console.log("Submit"),
     setPaymentMethodChecked: () => {},
     setPaymentScheduleChecked: () => {},
-    getValidationErrorMessage: () => "",
   },
   refs: { formRef: { current: null } },
 };
@@ -819,6 +818,7 @@ export const StepFourToPaypalChecked = () => {
   );
 };
 
+// TODO: Need to add new props to the dashboard and pass them down to the payout details card
 export const TaxAndCashDashboardActiveW9Form = () => {
   return (
     <sqm-tax-and-cash-dashboard

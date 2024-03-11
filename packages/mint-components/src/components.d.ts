@@ -170,13 +170,11 @@ export namespace Components {
         /**
           * Invalid error text shown at the bottom of field inputs
           * @uiName Field inputs invalid error text
-          * @uiGroup General Form Properties
          */
         "fieldInvalidError": string;
         /**
           * Required error text shown at the bottom of field inputs
           * @uiName Field inputs error text
-          * @uiGroup General Form Properties
          */
         "fieldRequiredError": string;
         /**
@@ -1125,8 +1123,8 @@ export namespace Components {
          */
         "notRegisteredSubtext": string;
         /**
-          * Text for the option indicating registration for indirect tax in a different region
-          * @uiName Registered for indirect tax in a different region option text
+          * Text for the option indicating registration for indirect tax
+          * @uiName Registered for indirect tax option text
          */
         "otherRegion": string;
         /**
@@ -3877,6 +3875,11 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
+          * @uiName EFT Withdrawal label text
+          * @uiGroup Step 4 Properties
+         */
+        "eftWithdrawalLabel": string;
+        /**
           * Invalid error text shown at the bottom of field inputs
           * @uiName Field inputs invalid error text
           * @uiGroup General Form Properties
@@ -3888,6 +3891,11 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "fieldRequiredError": string;
+        /**
+          * @uiName FX Wire Processing fee text
+          * @uiGroup Step 4 Properties
+         */
+        "fxWireProcessingFeeLabel": string;
         /**
           * Description text for a general form submission error
           * @uiName General form submission error description
@@ -4050,8 +4058,8 @@ export namespace Components {
          */
         "step2_notRegistered": string;
         /**
-          * Label text for the other region radio button
-          * @uiName Other region radio button label
+          * Label test for the option indicating registration for indirect tax
+          * @uiName Registered for indrect tax label
           * @uiGroup Step 2 Properties
          */
         "step2_otherRegion": string;
@@ -5642,13 +5650,11 @@ declare namespace LocalJSX {
         /**
           * Invalid error text shown at the bottom of field inputs
           * @uiName Field inputs invalid error text
-          * @uiGroup General Form Properties
          */
         "fieldInvalidError"?: string;
         /**
           * Required error text shown at the bottom of field inputs
           * @uiName Field inputs error text
-          * @uiGroup General Form Properties
          */
         "fieldRequiredError"?: string;
         /**
@@ -6598,8 +6604,8 @@ declare namespace LocalJSX {
          */
         "notRegisteredSubtext"?: string;
         /**
-          * Text for the option indicating registration for indirect tax in a different region
-          * @uiName Registered for indirect tax in a different region option text
+          * Text for the option indicating registration for indirect tax
+          * @uiName Registered for indirect tax option text
          */
         "otherRegion"?: string;
         /**
@@ -9326,6 +9332,11 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
+          * @uiName EFT Withdrawal label text
+          * @uiGroup Step 4 Properties
+         */
+        "eftWithdrawalLabel"?: string;
+        /**
           * Invalid error text shown at the bottom of field inputs
           * @uiName Field inputs invalid error text
           * @uiGroup General Form Properties
@@ -9337,6 +9348,11 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "fieldRequiredError"?: string;
+        /**
+          * @uiName FX Wire Processing fee text
+          * @uiGroup Step 4 Properties
+         */
+        "fxWireProcessingFeeLabel"?: string;
         /**
           * Description text for a general form submission error
           * @uiName General form submission error description
@@ -9499,8 +9515,8 @@ declare namespace LocalJSX {
          */
         "step2_notRegistered"?: string;
         /**
-          * Label text for the other region radio button
-          * @uiName Other region radio button label
+          * Label test for the option indicating registration for indirect tax
+          * @uiName Registered for indrect tax label
           * @uiGroup Step 2 Properties
          */
         "step2_otherRegion"?: string;

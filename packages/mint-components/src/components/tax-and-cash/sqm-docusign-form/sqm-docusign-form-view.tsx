@@ -236,32 +236,38 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
         <div class={classes.CheckboxWrapper}>
           <p class={classes.BoldText}>{text.participantType}</p>
 
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <sl-radio
-              exportparts="base: radio-base"
-              value="individualParticipant"
-              name="/participantType"
-              checked={formState.participantType === "individualParticipant"}
-              disabled={states.disabled || states.participantTypeDisabled}
-              onClick={() => {
-                callbacks.setParticipantType("individualParticipant");
-              }}
-            >
-              {text.individualParticipant}
-            </sl-radio>
-            <sl-radio
-              exportparts="base: radio-base"
-              value="businessEntity"
-              name="/participantType"
-              checked={formState.participantType === "businessEntity"}
-              disabled={states.disabled || states.participantTypeDisabled}
-              onClick={() => {
-                callbacks.setParticipantType("businessEntity");
-              }}
-            >
-              {text.businessEntity}
-            </sl-radio>
-          </div>
+          {states.loading ? (
+            <sl-spinner
+              style={{ fontSize: "50px", margin: "40px" }}
+            ></sl-spinner>
+          ) : (
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <sl-radio
+                exportparts="base: radio-base"
+                value="individualParticipant"
+                name="/participantType"
+                checked={formState.participantType === "individualParticipant"}
+                disabled={states.disabled || states.participantTypeDisabled}
+                onClick={() => {
+                  callbacks.setParticipantType("individualParticipant");
+                }}
+              >
+                {text.individualParticipant}
+              </sl-radio>
+              <sl-radio
+                exportparts="base: radio-base"
+                value="businessEntity"
+                name="/participantType"
+                checked={formState.participantType === "businessEntity"}
+                disabled={states.disabled || states.participantTypeDisabled}
+                onClick={() => {
+                  callbacks.setParticipantType("businessEntity");
+                }}
+              >
+                {text.businessEntity}
+              </sl-radio>
+            </div>
+          )}
 
           {formState.errors?.participantType && (
             <p class={classes.ErrorText}>{text.error.participantType}</p>

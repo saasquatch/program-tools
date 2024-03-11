@@ -19,6 +19,7 @@ import {
 } from "../sqm-tax-and-cash/data";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
+import { intl } from "../../../global/global";
 
 // Hardcoded in Impact backend
 export const paypalFeeMap = {
@@ -82,19 +83,28 @@ type RoutingCodeLabels = {
   CNY: string;
 };
 
+type TaxpayerIdLabels = {
+  AR: string;
+  KR: string;
+};
+
 export function getFormMap({
   props,
   routingCodeLabels,
+  taxpayerIdLabels,
   getValidationErrorMessage,
 }: {
   props: BankingInfoFormViewProps | Omit<any, "text" | "callbacks">;
   routingCodeLabels: RoutingCodeLabels;
+  taxpayerIdLabels: TaxpayerIdLabels;
   getValidationErrorMessage: (props: {
     type: "required" | "invalid";
     label: string;
   }) => string;
 }) {
   const { errors } = props.states.formState;
+
+  const country = props.states.bankCountry;
 
   return {
     0: {
@@ -270,7 +280,7 @@ export function getFormMap({
         </sl-select>,
         <sl-input
           required
-          label={props.text.taxPayerIdLabel}
+          label={taxpayerIdLabels[country] || props.text.taxPayerIdLabel}
           type="text"
           name="/taxPayerId"
           id="taxPayerId"
@@ -569,10 +579,17 @@ export function useBankingInfoForm(
     paymentOptionsRes?.data?.impactFinanceNetworkSettings?.data;
 
   const paymentMethodFeeMap = {
-    [ACH_PAYMENT_METHOD]: "EFT Withdrawal (free)",
-    [WIRE_PAYMENT_METHOD]: `FX Wire (Processing Fee ${currency}${
-      currentPaymentOption?.defaultFxFee || 0
-    }.00)`,
+    [ACH_PAYMENT_METHOD]: props.eftWithdrawalLabel,
+    [WIRE_PAYMENT_METHOD]: intl.formatMessage(
+      {
+        id: "fxWireText",
+        defaultMessage: props.fxWireProcessingFeeLabel,
+      },
+      {
+        currency: currency,
+        defaultFxFee: currentPaymentOption?.defaultFxFee || 0,
+      }
+    ),
   };
   const paymentMethodFeeLabel =
     paymentMethodFeeMap[currentPaymentOption?.defaultFinancePaymentMethodId];
@@ -740,7 +757,6 @@ export function useBankingInfoForm(
       setBankCountry: updateBankCountry,
       setPaymentMethodChecked,
       setPaymentScheduleChecked,
-      getValidationErrorMessage: props.getValidationErrorMessage,
     },
     states: {
       saveDisabled: !paymentMethodChecked || !paymentScheduleChecked,

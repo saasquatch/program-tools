@@ -44,6 +44,7 @@ export interface BankingInfoFormViewProps {
     paymentMethodSlot?: VNode;
     paymentThresholdSelectSlot?: VNode;
     paymentFixedDaySelectSlot?: VNode;
+    paypalInputSlot?: VNode;
   };
   callbacks: {
     setPaymentMethodChecked: (
@@ -55,10 +56,6 @@ export interface BankingInfoFormViewProps {
     onSubmit: (props: any) => Promise<void>;
     setBankCountry?: (country: string) => void;
     setCurrency?: (currency: string) => void;
-    getValidationErrorMessage: (props: {
-      type: "required" | "invalid";
-      label: string;
-    }) => string;
   };
   text: {
     formStep: string;
@@ -468,28 +465,9 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                   class={classes.InputContainer}
                   style={states.hidePayPal ? { display: "none" } : {}}
                 >
-                  {states.loading ? (
-                    getLoadingSkeleton("toPayPalAccount")
-                  ) : (
-                    <sl-input
-                      required
-                      label={text.payPalInputLabel}
-                      key="paypalEmailAddress"
-                      name="/paypalEmailAddress"
-                      id="paypalEmailAddress"
-                      type="text"
-                      {...(formState?.errors?.inputErrors
-                        ?.paypalEmailAddress && {
-                        class: "error-input",
-                        // TODO: not translatable
-                        helpText: props.callbacks.getValidationErrorMessage({
-                          type: formState?.errors?.inputErrors
-                            ?.paypalEmailAddress?.type,
-                          label: props.text.payPalInputLabel,
-                        }),
-                      })}
-                    ></sl-input>
-                  )}
+                  {states.loading
+                    ? getLoadingSkeleton("toPayPalAccount")
+                    : slots.paypalInputSlot}
                 </div>
               )}
               <div style={{ paddingTop: "24px", paddingBottom: "12px" }}>

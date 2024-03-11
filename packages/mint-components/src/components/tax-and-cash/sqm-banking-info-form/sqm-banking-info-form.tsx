@@ -258,7 +258,7 @@ export class BankingInfoForm {
    * Label text for the Taxpayer ID input field
    * @uiName Taxpayer ID input label
    */
-  @Prop() taxPayerIdLabel: string = "Taxpayer ID";
+  @Prop() taxPayerIdLabel: string = "Beneficiary INN";
 
   /**
    * Label text for the Bank Address input
@@ -314,13 +314,11 @@ export class BankingInfoForm {
   /**
    * Required error text shown at the bottom of field inputs
    * @uiName Field inputs error text
-   * @uiGroup General Form Properties
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
   /**
    * Invalid error text shown at the bottom of field inputs
    * @uiName Field inputs invalid error text
-   * @uiGroup General Form Properties
    */
   @Prop() fieldInvalidError: string = "{fieldName} is invalid";
 
@@ -348,35 +346,6 @@ export class BankingInfoForm {
     };
   }
 
-  getValidationErrorMessage({
-    type,
-    label,
-  }: {
-    type: "required" | "invalid";
-    label: string;
-  }) {
-    if (type === "required") {
-      return intl.formatMessage(
-        {
-          id: `requiredText-${label}`,
-          defaultMessage: this.fieldRequiredError,
-        },
-        {
-          fieldName: label,
-        }
-      );
-    }
-    if (type === "invalid") {
-      return intl.formatMessage(
-        { id: `invalidText-${label}`, defaultMessage: this.fieldInvalidError },
-        {
-          fieldName: label,
-        }
-      );
-    }
-    return "";
-  }
-
   render() {
     const props = isDemo()
       ? useDemoBankingInfoForm(this)
@@ -398,10 +367,51 @@ export class BankingInfoForm {
       CNY: "CNAPS",
     };
 
+    const taxpayerIdLabels = {
+      AR: "CUIT/CUIL",
+      KR: "Classification ID",
+    };
+
+    const fieldRequiredError = this.fieldRequiredError;
+    const fieldInvalidError = this.fieldInvalidError;
+
+    function getValidationErrorMessage({
+      type,
+      label,
+    }: {
+      type: "required" | "invalid";
+      label: string;
+    }) {
+      if (type === "required") {
+        return intl.formatMessage(
+          {
+            id: `requiredText-${label}`,
+            defaultMessage: fieldRequiredError,
+          },
+          {
+            fieldName: label,
+          }
+        );
+      }
+      if (type === "invalid") {
+        return intl.formatMessage(
+          {
+            id: `invalidText-${label}`,
+            defaultMessage: fieldInvalidError,
+          },
+          {
+            fieldName: label,
+          }
+        );
+      }
+      return "";
+    }
+
     const formMap = getFormMap({
       props,
       routingCodeLabels,
-      getValidationErrorMessage: this.getValidationErrorMessage,
+      taxpayerIdLabels,
+      getValidationErrorMessage,
     });
 
     const inputFields = getFormInputs({
@@ -453,7 +463,7 @@ export class BankingInfoForm {
                 }
                 {...(errors?.inputErrors?.bankCountry && {
                   class: "error-input",
-                  helpText: this.getValidationErrorMessage({
+                  helpText: getValidationErrorMessage({
                     type: errors?.inputErrors?.bankCountry?.type,
                     label: props.text.bankLocationLabel,
                   }),
@@ -484,7 +494,7 @@ export class BankingInfoForm {
                 id="paymentThreshold"
                 {...(errors?.inputErrors?.paymentThreshold && {
                   class: "error-input",
-                  helpText: this.getValidationErrorMessage({
+                  helpText: getValidationErrorMessage({
                     type: errors?.inputErrors?.paymentThreshold?.type,
                     label: props.text.paymentThresholdSelectLabel,
                   }),
@@ -505,7 +515,7 @@ export class BankingInfoForm {
                 id="paymentDay"
                 {...(errors?.inputErrors?.paymentDay && {
                   class: "error-input",
-                  helpText: this.getValidationErrorMessage({
+                  helpText: getValidationErrorMessage({
                     type: errors?.inputErrors?.paymentDay?.type,
                     label: props.text.paymentDaySelectLabel,
                   }),
@@ -518,6 +528,25 @@ export class BankingInfoForm {
                   {props.text.paymentDayFifteenthOfMonthLabelText}
                 </sl-menu-item>
               </sl-select>
+            ),
+            paypalInputSlot: (
+              <sl-input
+                required
+                label={props.text.payPalInputLabel}
+                key="paypalEmailAddress"
+                name="/paypalEmailAddress"
+                id="paypalEmailAddress"
+                type="text"
+                {...(props.states.formState?.errors?.inputErrors
+                  ?.paypalEmailAddress && {
+                  class: "error-input",
+                  helpText: getValidationErrorMessage({
+                    type: props.states.formState?.errors?.inputErrors
+                      ?.paypalEmailAddress?.type,
+                    label: props.text.payPalInputLabel,
+                  }),
+                })}
+              ></sl-input>
             ),
           }}
         />
@@ -578,9 +607,9 @@ function useDemoBankingInfoForm(
   const feeCap = paypalFeeMap[currency] || "";
 
   const paymentMethodFeeMap = {
-    ACH: this.eftWithdrawalLabel,
+    ACH: props.eftWithdrawalLabel,
     WIRE: intl.formatMessage(
-      { id: "fxWireText", defaultMessage: this.fxWireProcessingFeeLabel },
+      { id: "fxWireText", defaultMessage: props.fxWireProcessingFeeLabel },
       {
         currency,
         defaultFxFee: currentPaymentOption?.defaultFxFee || "0",
@@ -638,7 +667,6 @@ function useDemoBankingInfoForm(
         setBankCountry,
         setPaymentMethodChecked,
         setPaymentScheduleChecked,
-        getValidationErrorMessage: props.getValidationErrorMessage,
       },
       text: props.getTextProps(),
       refs: {
