@@ -166,7 +166,8 @@ export class BankingInfoForm {
    * Label text for the routing code input field
    * @uiName Routing code input label
    */
-  @Prop() routingCodeLabel: string = "Routing Code";
+  @Prop() routingCodeLabel: string =
+    "{country, select, AU {BSB Number} CA {Routing Number} CZ {Bank Code} HK {Clearing Code} SG {Clearing Code} US {ABA Routing Number} NZ {BSB Number} ZA {Bank/Branch Number} IN {IFSC} CNY {CNAPS} other {Routing Code} }";
 
   /**
    * Label text for the bank name input field
@@ -238,7 +239,8 @@ export class BankingInfoForm {
    * Label text for the Taxpayer ID input field
    * @uiName Taxpayer ID input label
    */
-  @Prop() taxPayerIdLabel: string = "Beneficiary INN";
+  @Prop() taxPayerIdLabel: string =
+    "{country, select, AR {CUIT/CUIL} KR {Classification ID} other { Beneficiary INN } }";
 
   /**
    * Label text for the Bank Address input
@@ -353,29 +355,6 @@ export class BankingInfoForm {
 
     const { errors } = props.states.formState;
 
-    // TODO: may need to make these translatable
-    const routingCodeLabels = {
-      AU: "BSB Number",
-      CA: "Routing Number",
-      CZ: "Bank Code",
-      HK: "Clearing Code",
-      SG: "Clearing Code",
-      US: "ABA Routing Number",
-      NZ: "BSB Number",
-      ZA: "Bank/Branch Number",
-      IN: "IFSC",
-      CNY: "CNAPS",
-    };
-
-    const taxpayerIdLabels = {
-      AR: "CUIT/CUIL",
-      KR: "Classification ID",
-    };
-
-    const test: string = undefined;
-
-    test.length;
-
     const fieldRequiredError = this.fieldRequiredError;
     const fieldInvalidError = this.fieldInvalidError;
 
@@ -413,8 +392,6 @@ export class BankingInfoForm {
 
     const formMap = getFormMap({
       props,
-      routingCodeLabels,
-      taxpayerIdLabels,
       getValidationErrorMessage,
     });
 

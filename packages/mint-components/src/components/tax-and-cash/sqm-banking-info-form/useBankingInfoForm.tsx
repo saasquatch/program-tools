@@ -90,13 +90,9 @@ type TaxpayerIdLabels = {
 
 export function getFormMap({
   props,
-  routingCodeLabels,
-  taxpayerIdLabels,
   getValidationErrorMessage,
 }: {
   props: BankingInfoFormViewProps | Omit<any, "text" | "callbacks">;
-  routingCodeLabels: RoutingCodeLabels;
-  taxpayerIdLabels: TaxpayerIdLabels;
   getValidationErrorMessage: (props: {
     type: "required" | "invalid";
     label: string;
@@ -213,10 +209,15 @@ export function getFormMap({
       input: (
         <sl-input
           required
-          label={
-            routingCodeLabels[props.states.bankCountry] ||
-            props.text.routingCodeLabel
-          }
+          label={intl.formatMessage(
+            {
+              id: "routingCodeText",
+              defaultMessage: props.text.routingCodeLabel,
+            },
+            {
+              country,
+            }
+          )}
           name="/routingCode"
           id="routingCode"
           key="routingCode"
@@ -225,9 +226,15 @@ export function getFormMap({
             class: "error-input",
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.routingCode?.type,
-              label:
-                routingCodeLabels[props.states.bankCountry] ||
-                props.text.routingCodeLabel,
+              label: intl.formatMessage(
+                {
+                  id: "routingCodeErrorText",
+                  defaultMessage: props.text.routingCodeLabel,
+                },
+                {
+                  country,
+                }
+              ),
             }),
           })}
         ></sl-input>
@@ -280,7 +287,15 @@ export function getFormMap({
         </sl-select>,
         <sl-input
           required
-          label={taxpayerIdLabels[country] || props.text.taxPayerIdLabel}
+          label={intl.formatMessage(
+            {
+              id: "fxWireText",
+              defaultMessage: props.text.taxPayerIdLabel,
+            },
+            {
+              country,
+            }
+          )}
           type="text"
           name="/taxPayerId"
           id="taxPayerId"
