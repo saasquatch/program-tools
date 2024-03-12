@@ -11,7 +11,6 @@ import { BankingInfoFormViewProps } from "./components/tax-and-cash/sqm-banking-
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
-import { UseDocumentTypeFormResult } from "./components/tax-and-cash/sqm-document-type-form/useDocumentTypeForm";
 import { UseDocusignFormResult } from "./components/tax-and-cash/sqm-docusign-form/useDocusignForm";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
@@ -226,6 +225,16 @@ export namespace Components {
           * @uiName Partner identification alert header
          */
         "isPartnerAlertHeader": string;
+        /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader": string;
         /**
           * Label text for the patronymic name input field
           * @uiName Patronymic name input label
@@ -542,78 +551,6 @@ export namespace Components {
           * @uiName Border style
          */
         "dividerStyle": string;
-    }
-    interface SqmDocumentTypeForm {
-        /**
-          * Text shown inside of back button
-          * @uiName Back button text
-         */
-        "backButton": string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
-        "continueButton": string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<UseDocumentTypeFormResult>;
-        /**
-          * Sub text shown above form selection radio buttons
-          * @uiName Tax form selection heading text
-         */
-        "formLabel": string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-         */
-        "formStep": string;
-        /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-         */
-        "generalErrorDescription": string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-         */
-        "generalErrorTitle": string;
-        /**
-          * Heading text shown at the top of the top of page
-          * @uiName Tax form heading text
-         */
-        "taxForm": string;
-        /**
-          * Description for the W8 radio button
-          * @uiName W8 radio button subtext
-         */
-        "w8Description": string;
-        /**
-          * Description for the W8E radio button
-          * @uiName W8E radio button subtext
-         */
-        "w8EDescription": string;
-        /**
-          * Label text for the W8E radio button
-          * @uiName W8E radio button label
-         */
-        "w8ELabel": string;
-        /**
-          * Label text for the W8 radio button
-          * @uiName W8 radio button label
-         */
-        "w8Label": string;
-        /**
-          * Description for the W9 radio button
-          * @uiName W9 radio button subtext
-         */
-        "w9Description": string;
-        /**
-          * Label text for the W9 radio button
-          * @uiName W9 radio button label
-         */
-        "w9Label": string;
     }
     interface SqmDocusignEmbed {
         "url": string;
@@ -1112,6 +1049,16 @@ export namespace Components {
           * @uiName Registered for sub-region income tax option text
          */
         "isRegisteredSubRegionIncomeTax": string;
+        /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader": string;
         /**
           * Text for the option indicating not being registered for indirect tax
           * @uiName Not registered for indirect tax option text
@@ -4003,6 +3950,18 @@ export namespace Components {
          */
         "isPartnerAlertHeader": string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+          * @uiGroup General Form Properties
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+          * @uiGroup General Form Properties
+         */
+        "loadingErrorAlertHeader": string;
+        /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
           * @uiGroup Step 1 Properties
@@ -4631,6 +4590,16 @@ export namespace Components {
          */
         "invalidForm"?: string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader": string;
+        /**
           * Text displayed in the submit new document button at the bottom of the page
           * @uiName No form needed subtext
          */
@@ -4869,6 +4838,16 @@ export namespace Components {
          */
         "lastName": string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader": string;
+        /**
           * Heading text shown above the forms inputs.
           * @uiName Form heading text
          */
@@ -4962,12 +4941,6 @@ declare global {
     var HTMLSqmDividedLayoutElement: {
         prototype: HTMLSqmDividedLayoutElement;
         new (): HTMLSqmDividedLayoutElement;
-    };
-    interface HTMLSqmDocumentTypeFormElement extends Components.SqmDocumentTypeForm, HTMLStencilElement {
-    }
-    var HTMLSqmDocumentTypeFormElement: {
-        prototype: HTMLSqmDocumentTypeFormElement;
-        new (): HTMLSqmDocumentTypeFormElement;
     };
     interface HTMLSqmDocusignEmbedElement extends Components.SqmDocusignEmbed, HTMLStencilElement {
     }
@@ -5569,7 +5542,6 @@ declare global {
         "sqm-context-router": HTMLSqmContextRouterElement;
         "sqm-coupon-code": HTMLSqmCouponCodeElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
-        "sqm-document-type-form": HTMLSqmDocumentTypeFormElement;
         "sqm-docusign-embed": HTMLSqmDocusignEmbedElement;
         "sqm-docusign-form": HTMLSqmDocusignFormElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
@@ -5847,6 +5819,16 @@ declare namespace LocalJSX {
           * @uiName Partner identification alert header
          */
         "isPartnerAlertHeader"?: string;
+        /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader"?: string;
         /**
           * Label text for the patronymic name input field
           * @uiName Patronymic name input label
@@ -6163,78 +6145,6 @@ declare namespace LocalJSX {
           * @uiName Border style
          */
         "dividerStyle"?: string;
-    }
-    interface SqmDocumentTypeForm {
-        /**
-          * Text shown inside of back button
-          * @uiName Back button text
-         */
-        "backButton"?: string;
-        /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
-         */
-        "continueButton"?: string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<UseDocumentTypeFormResult>;
-        /**
-          * Sub text shown above form selection radio buttons
-          * @uiName Tax form selection heading text
-         */
-        "formLabel"?: string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-         */
-        "formStep"?: string;
-        /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
-         */
-        "generalErrorDescription"?: string;
-        /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
-         */
-        "generalErrorTitle"?: string;
-        /**
-          * Heading text shown at the top of the top of page
-          * @uiName Tax form heading text
-         */
-        "taxForm"?: string;
-        /**
-          * Description for the W8 radio button
-          * @uiName W8 radio button subtext
-         */
-        "w8Description"?: string;
-        /**
-          * Description for the W8E radio button
-          * @uiName W8E radio button subtext
-         */
-        "w8EDescription"?: string;
-        /**
-          * Label text for the W8E radio button
-          * @uiName W8E radio button label
-         */
-        "w8ELabel"?: string;
-        /**
-          * Label text for the W8 radio button
-          * @uiName W8 radio button label
-         */
-        "w8Label"?: string;
-        /**
-          * Description for the W9 radio button
-          * @uiName W9 radio button subtext
-         */
-        "w9Description"?: string;
-        /**
-          * Label text for the W9 radio button
-          * @uiName W9 radio button label
-         */
-        "w9Label"?: string;
     }
     interface SqmDocusignEmbed {
         "onDocusignEvent"?: (event: CustomEvent<{ status: string }>) => void;
@@ -6734,6 +6644,16 @@ declare namespace LocalJSX {
           * @uiName Registered for sub-region income tax option text
          */
         "isRegisteredSubRegionIncomeTax"?: string;
+        /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader"?: string;
         /**
           * Text for the option indicating not being registered for indirect tax
           * @uiName Not registered for indirect tax option text
@@ -9595,6 +9515,18 @@ declare namespace LocalJSX {
          */
         "isPartnerAlertHeader"?: string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+          * @uiGroup General Form Properties
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+          * @uiGroup General Form Properties
+         */
+        "loadingErrorAlertHeader"?: string;
+        /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
           * @uiGroup Step 1 Properties
@@ -10223,6 +10155,16 @@ declare namespace LocalJSX {
          */
         "invalidForm"?: string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader"?: string;
+        /**
           * Text displayed in the submit new document button at the bottom of the page
           * @uiName No form needed subtext
          */
@@ -10460,6 +10402,16 @@ declare namespace LocalJSX {
          */
         "lastName"?: string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader"?: string;
+        /**
           * Heading text shown above the forms inputs.
           * @uiName Form heading text
          */
@@ -10498,7 +10450,6 @@ declare namespace LocalJSX {
         "sqm-context-router": SqmContextRouter;
         "sqm-coupon-code": SqmCouponCode;
         "sqm-divided-layout": SqmDividedLayout;
-        "sqm-document-type-form": SqmDocumentTypeForm;
         "sqm-docusign-embed": SqmDocusignEmbed;
         "sqm-docusign-form": SqmDocusignForm;
         "sqm-dropdown-field": SqmDropdownField;
@@ -10614,7 +10565,6 @@ declare module "@stencil/core" {
             "sqm-context-router": LocalJSX.SqmContextRouter & JSXBase.HTMLAttributes<HTMLSqmContextRouterElement>;
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
-            "sqm-document-type-form": LocalJSX.SqmDocumentTypeForm & JSXBase.HTMLAttributes<HTMLSqmDocumentTypeFormElement>;
             "sqm-docusign-embed": LocalJSX.SqmDocusignEmbed & JSXBase.HTMLAttributes<HTMLSqmDocusignEmbedElement>;
             "sqm-docusign-form": LocalJSX.SqmDocusignForm & JSXBase.HTMLAttributes<HTMLSqmDocusignFormElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;

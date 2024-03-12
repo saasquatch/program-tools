@@ -29,3 +29,5 @@ export const getIsRequiredErrorMessage = (fieldName: string, errorMessage: strin
       }
     );
   };
+
+  //TODO: AL Add utils function for handling mapping of badge statuses to actual badge text in tax-and-cash-dashboard

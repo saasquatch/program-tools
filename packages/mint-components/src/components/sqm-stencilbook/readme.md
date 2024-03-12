@@ -82,6 +82,11 @@
 - [sqm-tax-and-cash-dashboard](../tax-and-cash/sqm-tax-and-cash-dashboard)
 - [sqm-tax-and-cash](../tax-and-cash/sqm-tax-and-cash)
 - [sqm-payout-details-card](../tax-and-cash/sqm-payout-details-card)
+- [sqm-invoice-table](../sqm-invoice-table)
+- [sqm-invoice-table-cell](../sqm-invoice-table/cells)
+- [sqm-invoice-table-download-cell](../sqm-invoice-table/cells)
+- [sqm-invoice-table-date-cell](../sqm-invoice-table/cells)
+- [sqm-invoice-table-date-column](../sqm-invoice-table/columns)
 
 ### Graph
 ```mermaid
@@ -159,6 +164,11 @@ graph TD;
   sqm-stencilbook --> sqm-tax-and-cash-dashboard
   sqm-stencilbook --> sqm-tax-and-cash
   sqm-stencilbook --> sqm-payout-details-card
+  sqm-stencilbook --> sqm-invoice-table
+  sqm-stencilbook --> sqm-invoice-table-cell
+  sqm-stencilbook --> sqm-invoice-table-download-cell
+  sqm-stencilbook --> sqm-invoice-table-date-cell
+  sqm-stencilbook --> sqm-invoice-table-date-column
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
@@ -198,6 +208,10 @@ graph TD;
   sqm-tax-and-cash --> sqm-docusign-form
   sqm-tax-and-cash --> sqm-banking-info-form
   sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
+  sqm-invoice-table --> sqm-empty
+  sqm-invoice-table --> sqm-table-row
+  sqm-invoice-table --> sqm-table-cell
+  sqm-invoice-table-date-column --> sqm-invoice-table-date-cell
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

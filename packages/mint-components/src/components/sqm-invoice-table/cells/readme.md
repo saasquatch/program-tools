@@ -7,24 +7,22 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `name`   | `name`    |             | `string` | `undefined` |
+| Property      | Attribute        | Description | Type     | Default     |
+| ------------- | ---------------- | ----------- | -------- | ----------- |
+| `downloadURL` | `download-u-r-l` |             | `string` | `undefined` |
 
 
 ## Dependencies
 
 ### Used by
 
- - [sqm-referral-table-user-column](../columns)
  - [sqm-stencilbook](../../sqm-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqm-referral-table-user-column --> sqm-referral-table-user-cell
-  sqm-stencilbook --> sqm-referral-table-user-cell
-  style sqm-referral-table-user-cell fill:#f9f,stroke:#333,stroke-width:4px
+  sqm-stencilbook --> sqm-invoice-table-download-cell
+  style sqm-invoice-table-download-cell fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

@@ -930,8 +930,23 @@ export class TaxAndCashMonolith {
    */
   @Prop() isPartnerAlertDescription: string =
     "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
+  /**
+   * Alert header shown if there is a problem loading a form
+   * @uiName Loading error alert header
+   * @uiGroup General Form Properties
+   */
+  @Prop() loadingErrorAlertHeader: string =
+    "There was a problem loading your form";
+  /**
+   * Alert description shown if there is a problem loading a form
+   * @uiName Loading error alert description
+   * @uiGroup General Form Properties
+   */
+  @Prop() loadingErrorAlertDescription: string =
+    "Please refresh the page and try again. If this problem continues, contact Support.";
 
   /**
+   *
    * @undocumented
    * @uiType object
    */
@@ -955,6 +970,8 @@ export class TaxAndCashMonolith {
       backButton: props.backButton,
       isPartnerAlertHeader: props.isPartnerAlertHeader,
       isPartnerAlertDescription: props.isPartnerAlertDescription,
+      loadingErrorAlertHeader: props.loadingErrorAlertHeader,
+      loadingErrorAlertDescription: props.loadingErrorAlertDescription,
     };
   }
 
@@ -1006,7 +1023,7 @@ export class TaxAndCashMonolith {
             {...this.getGeneralStepTextProps("step4_")}
           ></sqm-banking-info-form>
         );
-      case "/submitted":
+      case "/dashboard":
         return (
           <sqm-tax-and-cash-dashboard
             {...this.getGeneralStepTextProps("dashboard_")}

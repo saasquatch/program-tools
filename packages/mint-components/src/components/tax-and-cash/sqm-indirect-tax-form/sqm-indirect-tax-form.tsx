@@ -15,6 +15,8 @@ import {
   INDIRECT_TAX_PROVINCES,
   INDIRECT_TAX_SPAIN_REGIONS,
 } from "../subregions";
+import { useParent } from "../../../utils/useParentState";
+import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 
 /**
  * @uiName Indirect Tax Form
@@ -187,6 +189,18 @@ export class IndirectTaxForm {
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
+  /**
+   * Alert header shown if there is a problem loading a form
+   * @uiName Loading error alert header
+   */
+  @Prop() loadingErrorAlertHeader: string =
+    "There was a problem loading your form";
+  /**
+   * Alert description shown if there is a problem loading a form
+   * @uiName Loading error alert description
+   */
+  @Prop() loadingErrorAlertDescription: string =
+    "Please refresh the page and try again. If this problem continues, contact Support.";
 
   /**
    * @undocumented
@@ -208,6 +222,8 @@ export class IndirectTaxForm {
         generalTitle: props.generalErrorTitle,
         generalDescription: props.generalErrorDescription,
         fieldRequiredError: props.fieldRequiredError,
+        loadingErrorAlertHeader: props.loadingErrorAlertHeader,
+        loadingErrorAlertDescription: props.loadingErrorAlertDescription,
       },
       slotText: {
         isRegisteredQST: props.isRegisteredQST,
@@ -268,7 +284,9 @@ export class IndirectTaxForm {
 function useDemoIndirectTaxForm(
   props: IndirectTaxForm
 ): ReturnType<typeof useIndirectTaxForm> {
+  const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
   const [option, setOption] = useState(null);
+  const [demoFormState, setDemoFormState] = useState<any>({});
 
   return deepmerge(
     {
@@ -276,6 +294,7 @@ function useDemoIndirectTaxForm(
         disabled: false,
         loading: false,
         isPartner: false,
+        loadingError: false,
         errors: {},
         formState: {
           checked: option,
@@ -285,12 +304,24 @@ function useDemoIndirectTaxForm(
         },
       },
       callbacks: {
-        onFormChange: (field: string, e: CustomEvent) =>
-          console.log({ field, e }),
-        onBack: () => {},
-        onSubmit: async () => {},
-        onQstToggle: () => {},
-        onSpainToggle: () => {},
+        onFormChange: (field: string, e: CustomEvent) => {
+          const value = e.detail?.item?.__value;
+          if (!value) console.error("Could not detect select change");
+          setDemoFormState((p) => ({ ...p, [field]: value }));
+        },
+        onBack: () => {
+          setStep("/1");
+        },
+        onSubmit: async () => {
+          setStep("/3");
+        },
+        onQstToggle: () =>
+          setDemoFormState((p) => ({ ...p, hasQst: !p.hasQst })),
+        onSpainToggle: () =>
+          setDemoFormState((p) => ({
+            ...p,
+            hasSubRegionTaxNumber: !p.hasSubRegionTaxNumber,
+          })),
         onChange: setOption,
         setCountrySearch: (c) => console.log(c),
       },
@@ -322,7 +353,15 @@ function useDemoIndirectTaxForm(
       },
       slotProps: {
         formState: {
-          errors: {},
+          ...demoFormState,
+          errors: {
+            selectedRegion: true,
+            province: true,
+            subRegion: true,
+            qstNumber: true,
+            subRegionTaxNumber: true,
+            indirectTaxNumber: true,
+          },
         },
       },
     },

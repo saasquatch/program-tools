@@ -93,8 +93,8 @@ export const useTaxAndCashDashboard = (
 
   const onNewDocumentClick = () => {
     setContext({
-      overrideNextStep: "/submitted",
-      overrideBackStep: "/submitted",
+      overrideNextStep: "/dashboard",
+      overrideBackStep: "/dashboard",
       hideSteps: true,
     });
 
@@ -103,8 +103,8 @@ export const useTaxAndCashDashboard = (
 
   const onEditPayoutInfo = () => {
     setContext({
-      overrideNextStep: "/submitted",
-      overrideBackStep: "/submitted",
+      overrideNextStep: "/dashboard",
+      overrideBackStep: "/dashboard",
       hideSteps: true,
     });
 
@@ -138,6 +138,8 @@ export const useTaxAndCashDashboard = (
       expiresSoon,
       disabled: loading,
       loading,
+      // AL: TODO loadingError
+      loadingError: false,
     },
     slots: {
       // TODO: Replace this story once we have hooks for payment details card

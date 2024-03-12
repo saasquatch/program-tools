@@ -34,10 +34,8 @@ import {
 } from "./data";
 
 function getCurrentStep(user: UserQuery["user"]) {
-  if (
-    !user.impactConnection?.publisher?.taxInformation ||
-    !user.impactConnection?.connected
-  ) {
+  console.log({ user });
+  if (!user.impactConnection?.connected) {
     return "/1";
   }
 
@@ -56,7 +54,7 @@ function getCurrentStep(user: UserQuery["user"]) {
 
   if (!withdrawalSettings) return "/4";
 
-  return "/submitted";
+  return "/dashboard";
 }
 
 export function useTaxAndCash() {
