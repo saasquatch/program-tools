@@ -1006,7 +1006,7 @@ export class TaxAndCashMonolith {
             {...this.getGeneralStepTextProps("step4_")}
           ></sqm-banking-info-form>
         );
-      case "/submitted":
+      case "/dashboard":
         return (
           <sqm-tax-and-cash-dashboard
             {...this.getGeneralStepTextProps("dashboard_")}

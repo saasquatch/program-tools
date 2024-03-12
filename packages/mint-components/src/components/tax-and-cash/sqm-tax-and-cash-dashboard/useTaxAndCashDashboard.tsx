@@ -93,8 +93,8 @@ export const useTaxAndCashDashboard = (
 
   const onNewDocumentClick = () => {
     setContext({
-      overrideNextStep: "/submitted",
-      overrideBackStep: "/submitted",
+      overrideNextStep: "/dashboard",
+      overrideBackStep: "/dashboard",
       hideSteps: true,
     });
 
@@ -103,8 +103,8 @@ export const useTaxAndCashDashboard = (
 
   const onEditPayoutInfo = () => {
     setContext({
-      overrideNextStep: "/submitted",
-      overrideBackStep: "/submitted",
+      overrideNextStep: "/dashboard",
+      overrideBackStep: "/dashboard",
       hideSteps: true,
     });
 

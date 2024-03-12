@@ -743,7 +743,7 @@ export function useBankingInfoForm(
 
       await refetch();
 
-      setStep("/submitted");
+      setStep("/dashboard");
     } catch (e) {
       console.error(e);
       setErrors({ general: true });

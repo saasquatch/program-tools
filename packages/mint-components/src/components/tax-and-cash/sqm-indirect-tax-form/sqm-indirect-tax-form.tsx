@@ -15,6 +15,8 @@ import {
   INDIRECT_TAX_PROVINCES,
   INDIRECT_TAX_SPAIN_REGIONS,
 } from "../subregions";
+import { useParent } from "../../../utils/useParentState";
+import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 
 /**
  * @uiName Indirect Tax Form
@@ -268,7 +270,9 @@ export class IndirectTaxForm {
 function useDemoIndirectTaxForm(
   props: IndirectTaxForm
 ): ReturnType<typeof useIndirectTaxForm> {
+  const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
   const [option, setOption] = useState(null);
+  const [demoFormState, setDemoFormState] = useState<any>({});
 
   return deepmerge(
     {
@@ -285,12 +289,24 @@ function useDemoIndirectTaxForm(
         },
       },
       callbacks: {
-        onFormChange: (field: string, e: CustomEvent) =>
-          console.log({ field, e }),
-        onBack: () => {},
-        onSubmit: async () => {},
-        onQstToggle: () => {},
-        onSpainToggle: () => {},
+        onFormChange: (field: string, e: CustomEvent) => {
+          const value = e.detail?.item?.__value;
+          if (!value) console.error("Could not detect select change");
+          setDemoFormState((p) => ({ ...p, [field]: value }));
+        },
+        onBack: () => {
+          setStep("/1");
+        },
+        onSubmit: async () => {
+          setStep("/3");
+        },
+        onQstToggle: () =>
+          setDemoFormState((p) => ({ ...p, hasQst: !p.hasQst })),
+        onSpainToggle: () =>
+          setDemoFormState((p) => ({
+            ...p,
+            hasSubRegionTaxNumber: !p.hasSubRegionTaxNumber,
+          })),
         onChange: setOption,
         setCountrySearch: (c) => console.log(c),
       },
@@ -322,7 +338,15 @@ function useDemoIndirectTaxForm(
       },
       slotProps: {
         formState: {
-          errors: {},
+          ...demoFormState,
+          errors: {
+            selectedRegion: true,
+            province: true,
+            subRegion: true,
+            qstNumber: true,
+            subRegionTaxNumber: true,
+            indirectTaxNumber: true,
+          },
         },
       },
     },

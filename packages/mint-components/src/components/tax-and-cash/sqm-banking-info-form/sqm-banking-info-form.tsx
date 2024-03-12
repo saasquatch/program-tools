@@ -17,6 +17,8 @@ import {
   useBankingInfoForm,
 } from "./useBankingInfoForm";
 import { intl } from "../../../global/global";
+import { useParent } from "../../../utils/useParentState";
+import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 
 /**
  * @uiName Banking Information Form
@@ -546,6 +548,7 @@ function useDemoBankingInfoForm(
   const defaultCurrency = props.demoData?.states?.currency;
   const defaultCountry = props.demoData?.states?.bankCountry;
 
+  const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
   const [paymentMethodChecked, setPaymentMethodChecked] = useState<
     "toBankAccount" | "toPayPalAccount" | undefined
   >(undefined);
@@ -644,7 +647,9 @@ function useDemoBankingInfoForm(
         hasPayPal: true,
       },
       callbacks: {
-        onSubmit: async () => {},
+        onSubmit: async () => {
+          setStep("/dashboard");
+        },
         setBankCountry,
         setPaymentMethodChecked,
         setPaymentScheduleChecked,

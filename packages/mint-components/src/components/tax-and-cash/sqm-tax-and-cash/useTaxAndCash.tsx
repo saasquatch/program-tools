@@ -58,7 +58,7 @@ function getCurrentStep(user: UserQuery["user"]) {
 
   if (!withdrawalSettings) return "/4";
 
-  return "/submitted";
+  return "/dashboard";
 }
 
 export function useTaxAndCash() {

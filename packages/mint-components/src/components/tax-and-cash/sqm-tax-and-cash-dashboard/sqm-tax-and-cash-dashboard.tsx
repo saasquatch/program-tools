@@ -4,7 +4,10 @@ import { Component, Host, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import { TaxAndCashDashboardView } from "./sqm-tax-and-cash-dashboard-view";
+import {
+  TaxAndCashDashboardProps,
+  TaxAndCashDashboardView,
+} from "./sqm-tax-and-cash-dashboard-view";
 import {
   UseTaxAndCashDashboardResult,
   useTaxAndCashDashboard,
@@ -294,10 +297,13 @@ function useDemoTaxAndCashDashboard(
   return deepmerge(
     {
       states: {
-        dateSubmitted: undefined,
-        documentType: undefined,
-        documentTypeString: "",
-        status: undefined,
+        dateSubmitted: "today",
+        documentType: "W9",
+        documentTypeString: "W9",
+        status: "ACTIVE",
+        country: "United States",
+        indirectTaxNumber: 55555555,
+        indirectTaxType: "Indirect Tax",
         noFormNeeded: true,
         expiresSoon: false,
         disabled: false,

@@ -1,4 +1,3 @@
-import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import {
   Component,
@@ -23,6 +22,9 @@ import {
   DocusignIframe,
   DocusignStatus,
 } from "./docusign-iframe/DocusignIframe";
+import { isDemo } from "@saasquatch/component-boilerplate";
+import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
+import { useParent } from "../../../utils/useParentState";
 
 /**
  * @uiName DocuSign Document Submission
@@ -181,7 +183,22 @@ export class DocusignForm {
   }
 
   render() {
-    const props = isDemo() ? useDocusignFormDemo(this) : useDocusignForm(this);
+    const _isDemo = isDemo();
+    const props = _isDemo ? useDocusignFormDemo(this) : useDocusignForm(this);
+
+    const docusignIframeSlot = (
+      <DocusignIframe
+        states={{
+          url: props.data.documentUrl,
+          status: props.states.docusignStatus,
+          loading: props.states.loading,
+        }}
+        callbacks={{
+          onStatusChange: props.callbacks.setDocusignStatus,
+        }}
+        text={props.text}
+      />
+    );
 
     return (
       <Host>
@@ -190,19 +207,9 @@ export class DocusignForm {
           states={props.states}
           text={props.text}
           slots={{
-            docusignIframeSlot: (
-              <DocusignIframe
-                states={{
-                  url: props.data.documentUrl,
-                  status: props.states.docusignStatus,
-                  loading: props.states.loading,
-                }}
-                callbacks={{
-                  onStatusChange: props.callbacks.setDocusignStatus,
-                }}
-                text={props.text}
-              />
-            ),
+            docusignIframeSlot: _isDemo
+              ? DemoDocusignIframe({ callbacks: props.callbacks })
+              : docusignIframeSlot,
           }}
         />
       </Host>
@@ -211,6 +218,8 @@ export class DocusignForm {
 }
 
 function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
+  const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
+
   return deepmerge(
     {
       text: props.getTextProps(),
@@ -235,12 +244,60 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
       callbacks: {
         setParticipantType: (p) => console.log({ p }),
         setDocusignStatus: (status: DocusignStatus) => console.log(status),
-        onSubmit: async () => {},
+        onSubmit: async () => {
+          setStep("/4");
+        },
         toggleFormSubmitted: () => {},
-        onBack: () => {},
+        onBack: () => {
+          setStep("/2");
+        },
       },
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }
+
+const DemoDocusignIframe = ({ callbacks }: any) => {
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "600px",
+        background: "#fafafa",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "12px",
+          alignItems: "center",
+        }}
+      >
+        <span>Placeholder for docusign iframe</span>
+        <div style={{ display: "flex", gap: "8px" }}>
+          <sl-button
+            type="primary"
+            submit
+            exportparts="base: primarybutton-base"
+            onClick={callbacks.onBack}
+          >
+            Back to Step 2
+          </sl-button>
+          <sl-button
+            type="primary"
+            submit
+            exportparts="base: primarybutton-base"
+            onClick={callbacks.onSubmit}
+          >
+            Continue to Step 4
+          </sl-button>
+        </div>
+      </div>
+    </div>
+  );
+};

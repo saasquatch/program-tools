@@ -164,7 +164,9 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
     {
       step,
       setStep,
-      onSubmit: () => {},
+      onSubmit: () => {
+        setStep("/2");
+      },
       onRadioClick: () => {},
       text: props.getTextProps(),
       refs: {
@@ -185,7 +187,15 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
         loading: false,
         isPartner: false,
         isUser: false,
-        formState: {},
+        formState: {
+          errors: {
+            email: true,
+            firstName: true,
+            lastName: true,
+            countryCode: true,
+            currency: true,
+          },
+        },
       },
     },
     props.demoData || {},

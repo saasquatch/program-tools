@@ -1,6 +1,5 @@
 import { h } from "@stencil/core";
 import { StoryDemoData } from "../../global/demo";
-import { UseDocumentTypeFormResult } from "./sqm-document-type-form/useDocumentTypeForm";
 import {
   ParticipantType,
   UseDocusignFormResult,
@@ -172,23 +171,6 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
     setDocusignStatus: (status: DocusignStatus) => console.log(status),
     toggleFormSubmitted: () => console.log("Toggle checkbox"),
     onSubmit: async () => console.log("submit"),
-    onBack: () => console.log("Back"),
-  },
-};
-
-const documentTypeFormProps: StoryDemoData<UseDocumentTypeFormResult> = {
-  states: {
-    hideSteps: false,
-    loading: false,
-    disabled: false,
-    formState: {
-      errors: {},
-      formSubmission: false,
-      selectedTaxForm: undefined,
-    },
-  },
-  callbacks: {
-    onSubmit: async () => console.log("Submit"),
     onBack: () => console.log("Back"),
   },
 };
