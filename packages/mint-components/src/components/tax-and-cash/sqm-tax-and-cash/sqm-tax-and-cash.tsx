@@ -842,24 +842,28 @@ export class TaxAndCashMonolith {
   @Prop() dashboard_subRegionTaxNumber: string =
     "Income tax number: {incomeTaxNumber}";
   /**
-   * @uiName Status badge text
+   * Badge text indicating payout status
+   * @uiName Payout status badge text
    * @uiGroup Dashboard Properties
    */
   @Prop()
   dashboard_statusBadgeText: string =
     "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
   /**
+   * Text shown above current balance indicating required balance for next payout
    * @uiName Threshold payout text
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_thresholdPayoutText: string =
     "Next payout occurs when balance is {thresholdBalance}";
   /**
+   * Text shown before account number
    * @uiName Account text
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_accountText: string = "Account";
   /**
+   * Error alert header shown above payout details card
    * @uiName Error title text
    * @uiGroup Dashboard Properties
    */
@@ -867,6 +871,7 @@ export class TaxAndCashMonolith {
   dashboard_errorTitleText: string =
     "There was an error with your payout infomation";
   /**
+   * Error alert description shown above payout details card
    * @uiName Error description text
    * @uiGroup Dashboard Properties
    */

@@ -5,6 +5,7 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { PayoutDetailsCardView } from "./sqm-payout-details-card-view";
 import { usePayoutDetailsCard } from "./usePayoutDetailsCard";
+import { getProps } from "../../../utils/utils";
 
 /**
  * @uiName Payout Details Card
@@ -15,15 +16,34 @@ import { usePayoutDetailsCard } from "./usePayoutDetailsCard";
   shadow: true,
 })
 export class PayoutDetailsCard {
-  // TODO: Add jsDoc strings and cleanup getTextProps();
+  /**
+   * Badge text indicating payout status
+   * @uiName Payout badge status text
+   */
   @Prop()
   statusBadgeText: string =
     "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
+  /**
+   * Text shown above current balance indicating required balance for next payout
+   * @uiName Threshold payout text
+   */
   @Prop() thresholdPayoutText: string =
     "Next payout occurs when balance is {thresholdBalance}";
+  /**
+   * Text shown before account number
+   * @uiName Account text
+   */
   @Prop() accountText: string = "Account";
+  /**
+   * Error alert header shown above payout details card
+   * @uiName Error alert header
+   */
   @Prop() errorTitleText: string =
     "There was an error with your payout infomation";
+  /**
+   * Error alert description shown above payout details card
+   * @uiName Error alert description
+   */
   @Prop()
   errorDescriptionText: string =
     "Please ensure your payout information is correct. If this problem continues, contact Support.";
@@ -39,12 +59,13 @@ export class PayoutDetailsCard {
   disconnectedCallback() {}
 
   getTextProps() {
+    const props = getProps(this);
     return {
-      statusBadgeText: this.statusBadgeText,
-      thresholdPayoutText: this.thresholdPayoutText,
-      accountText: this.accountText,
-      errorTitleText: this.errorTitleText,
-      errorDescriptionText: this.errorDescriptionText,
+      ...props,
+      error: {
+        errorTitleText: this.errorTitleText,
+        errorDescriptionText: this.errorDescriptionText,
+      },
     };
   }
 
