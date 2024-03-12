@@ -1241,6 +1241,14 @@ export namespace Components {
     mockData?: { data: Invoice[] };
   };
         /**
+          * @uiName Tablet breakpoint
+         */
+        "description"?: string;
+        /**
+          * @uiName Tablet breakpoint
+         */
+        "header"?: string;
+        /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
           * @uiName Hidden mobile columns
          */
@@ -6827,6 +6835,14 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<GenericTableViewProps> & {
     mockData?: { data: Invoice[] };
   };
+        /**
+          * @uiName Tablet breakpoint
+         */
+        "description"?: string;
+        /**
+          * @uiName Tablet breakpoint
+         */
+        "header"?: string;
         /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
           * @uiName Hidden mobile columns
