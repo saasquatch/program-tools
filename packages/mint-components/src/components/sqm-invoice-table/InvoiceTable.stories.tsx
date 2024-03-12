@@ -1,5 +1,13 @@
 import { h } from "@stencil/core";
 import { GenericTableView } from "../../tables/GenericTableView";
+import {
+  DateCell,
+  DownloadCell,
+  EarningsAfterTaxCell,
+  EarningsCell,
+  InvoiceNumberCell,
+  TaxedAmountCell,
+} from "./InvoiceTableCell.stories";
 
 export default {
   title: "Components/Invoice Table",
@@ -45,7 +53,7 @@ const emptyElement = (
 
 // Reward Status Cases
 
-const simpleUserTableProps = {
+const simpleInvoiceTableProps = {
   states: {
     hasPrev: false,
     hasNext: true,
@@ -76,12 +84,37 @@ const simpleUserTableProps = {
       "Taxed Amount",
       "Earnings after tax",
     ],
-    rows: [[]],
+    rows: [
+      [
+        <DownloadCell />,
+        <DateCell />,
+        <InvoiceNumberCell />,
+        <EarningsCell />,
+        <TaxedAmountCell />,
+        <EarningsAfterTaxCell />,
+      ],
+      [
+        <DownloadCell />,
+        <DateCell />,
+        <InvoiceNumberCell />,
+        <EarningsCell />,
+        <TaxedAmountCell />,
+        <EarningsAfterTaxCell />,
+      ],
+      [
+        <DownloadCell />,
+        <DateCell />,
+        <InvoiceNumberCell />,
+        <EarningsCell />,
+        <TaxedAmountCell />,
+        <EarningsAfterTaxCell />,
+      ],
+    ],
   },
 };
 
-export const SimpleUserTable = () => {
-  return <GenericTableView {...simpleUserTableProps}></GenericTableView>;
+export const SimpleInvoiceTable = () => {
+  return <GenericTableView {...simpleInvoiceTableProps}></GenericTableView>;
 };
 
 export const EmptyTable = () => {

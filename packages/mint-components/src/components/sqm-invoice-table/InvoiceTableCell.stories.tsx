@@ -35,6 +35,12 @@ export const TaxedAmountCell = () => {
   );
 };
 
+export const DownloadCell = () => {
+  return (
+    <sqm-invoice-table-download-cell downloadURL="https://www.example.com"></sqm-invoice-table-download-cell>
+  );
+};
+
 export const EmptyCell = () => (
   <sqm-sqm-invoice-table-cell>-</sqm-sqm-invoice-table-cell>
 );
@@ -42,7 +48,7 @@ export const EmptyCell = () => (
 export const DateCell = () => {
   return (
     <sqm-invoice-table-date-cell
-      date={900000000000}
+      date={1710203213000}
     ></sqm-invoice-table-date-cell>
   );
 };
