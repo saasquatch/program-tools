@@ -182,6 +182,9 @@ function useInvoiceTableDemo(
         component?.firstElementChild?.getAttribute("slot") !== "loading" &&
         component?.firstElementChild?.getAttribute("slot") !== "empty"
     );
+
+    console.log({ componentData, columnComponents });
+
     // get the column titles (renderLabel is asynchronous)
     const columnsPromise = columnComponents?.map(
       async (c: any, idx: number) => {
@@ -207,15 +210,16 @@ function useInvoiceTableDemo(
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = componentData?.map(async (r) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, undefined))
+        tryMethod(c, () => c.renderCell(r, {}))
       );
+
       const cells = (await Promise.all(cellPromise)) as VNode[];
       return cells;
     });
 
-    const rows =
-      cellsPromise &&
-      [...(await Promise.all(cellsPromise))].filter((value) => value);
+    const cells = await Promise.all(cellsPromise);
+
+    const rows = cells.filter((value) => value);
 
     setContent({ rows });
     const columns =
@@ -226,6 +230,7 @@ function useInvoiceTableDemo(
 
   useEffect(() => {
     setContent({ loading: true });
+
     mockData?.data && getComponentData(components);
   }, [mockData?.data, components, tick]);
 

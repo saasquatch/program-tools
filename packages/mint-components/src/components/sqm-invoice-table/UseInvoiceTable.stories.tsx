@@ -81,39 +81,10 @@ export const InvoiceTable = createHookStory(() => {
 });
 
 export const InvoiceTableDemoHook = createHookStory(() => {
-  // setupGraphQL();
-  // setProgramId("sam-partner-test-2");
-  const props = {
-    listType: "",
-    render: () => {},
-    disconnectedCallback: () => {},
-    ignored: true,
-  };
   return (
     <sqm-invoice-table>
-      <sqm-invoice-table-user-column></sqm-invoice-table-user-column>
-      <sqm-invoice-table-status-column></sqm-invoice-table-status-column>
-      <sqm-invoice-table-date-column></sqm-invoice-table-date-column>
-      <sqm-invoice-table-rewards-column></sqm-invoice-table-rewards-column>
-    </sqm-invoice-table>
-  );
-});
-
-export const InvoiceTableDemoHookShowReferrer = createHookStory(() => {
-  // setupGraphQL();
-  // setProgramId("sam-partner-test-2");
-  const props = {
-    listType: "",
-    render: () => {},
-    disconnectedCallback: () => {},
-    ignored: true,
-  };
-  return (
-    <sqm-invoice-table show-referrer="true">
-      <sqm-invoice-table-user-column></sqm-invoice-table-user-column>
-      <sqm-invoice-table-status-column></sqm-invoice-table-status-column>
-      <sqm-invoice-table-date-column></sqm-invoice-table-date-column>
-      <sqm-invoice-table-rewards-column></sqm-invoice-table-rewards-column>
+      <sqm-invoice-table-download-column></sqm-invoice-table-download-column>
+      <sqm-invoice-table-date-column column-title="Date"></sqm-invoice-table-date-column>
     </sqm-invoice-table>
   );
 });
