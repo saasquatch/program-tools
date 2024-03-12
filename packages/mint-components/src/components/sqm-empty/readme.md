@@ -18,6 +18,7 @@
 
 ### Used by
 
+ - [sqm-invoice-table](../sqm-invoice-table)
  - [sqm-leaderboard](../sqm-leaderboard)
  - [sqm-referral-table](../sqm-referral-table)
  - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
@@ -38,6 +39,7 @@ graph TD;
   sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
+  sqm-invoice-table --> sqm-empty
   sqm-leaderboard --> sqm-empty
   sqm-referral-table --> sqm-empty
   sqm-reward-exchange-list --> sqm-empty
