@@ -179,6 +179,8 @@ export function useDocusignForm(props: DocusignForm) {
       participantTypeDisabled: allLoading || !!existingDocumentType,
       submitDisabled: !formSubmitted,
       loading: allLoading,
+      //AL: TODO seperate urlLoading for docusign URL from general loading state
+      urlLoading: false,
       formState: {
         participantType,
         completedTaxForm: formSubmitted,

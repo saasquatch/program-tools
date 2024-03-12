@@ -20,6 +20,7 @@ const bankingFormProps: StoryDemoData<BankingInfoFormViewProps> = {
     saveDisabled: false,
     thresholds: [],
     currency: "USD",
+    loadingError: false,
   },
 
   callbacks: {
@@ -39,6 +40,20 @@ export const BankingInfoFormDefaultLoading = () => {
     <sqm-banking-info-form
       demoData={{
         states: { ...bankingFormProps.states, loading: true },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
+export const BankingInfoFormDefaultWithLoadingError = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        states: {
+          ...bankingFormProps.states,
+          loading: true,
+          loadingError: true,
+        },
       }}
     ></sqm-banking-info-form>
   );

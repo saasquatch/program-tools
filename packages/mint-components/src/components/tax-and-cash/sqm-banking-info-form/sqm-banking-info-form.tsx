@@ -325,6 +325,18 @@ export class BankingInfoForm {
    * @uiName Save button text
    */
   @Prop() continueButton: string = "Save";
+  /**
+   * Alert header shown if there is a problem loading a form
+   * @uiName Loading error alert header
+   */
+  @Prop() loadingErrorAlertHeader: string =
+    "There was a problem loading your form";
+  /**
+   * Alert description shown if there is a problem loading a form
+   * @uiName Loading error alert description
+   */
+  @Prop() loadingErrorAlertDescription: string =
+    "Please refresh the page and try again. If this problem continues, contact Support.";
 
   /**
    * @undocumented
@@ -346,6 +358,8 @@ export class BankingInfoForm {
       error: {
         generalTitle: props.generalErrorTitle,
         generalDescription: props.generalErrorDescription,
+        loadingErrorAlertDescription: props.loadingErrorAlertDescription,
+        loadingErrorAlertHeader: props.loadingErrorAlertHeader,
       },
     };
   }

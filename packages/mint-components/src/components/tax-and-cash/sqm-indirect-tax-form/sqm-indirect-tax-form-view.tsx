@@ -7,6 +7,8 @@ export interface IndirectTaxFormViewProps {
     disabled: boolean;
     isPartner: boolean;
     hideSteps: boolean;
+    // AL TODO: loadingError
+    loadingError: boolean;
     formState: {
       checked?: "hstCanada" | "otherRegion" | "notRegistered";
       errors?: {
@@ -42,6 +44,8 @@ export interface IndirectTaxFormViewProps {
       generalTitle: string;
       generalDescription: string;
       fieldRequiredError: string;
+      loadingErrorAlertHeader: string;
+      loadingErrorAlertDescription: string;
     };
   };
   refs: {
@@ -210,6 +214,21 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
             {text.indirectTaxDetailsDescription}
           </p>
         </div>
+        {states.loadingError && (
+          <div>
+            <sl-alert
+              exportparts="base: alert-base, icon:alert-icon"
+              type="danger"
+              open
+              class={sheet.classes.AlertContainer}
+            >
+              <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+              <strong>{text.error.loadingErrorAlertHeader}</strong>
+              <br />
+              {text.error.loadingErrorAlertDescription}
+            </sl-alert>
+          </div>
+        )}
         {formState.errors?.general && (
           <sl-alert
             exportparts="base: alert-base, icon:alert-icon"

@@ -843,6 +843,8 @@ export function useBankingInfoForm(
         paymentMethodChecked !== "toBankAccount" || !paymentMethodChecked,
       hidePayPal:
         paymentMethodChecked !== "toPayPalAccount" || !paymentMethodChecked,
+      //AL: TODO loadingError
+      loadingError: false,
       formState: {
         ...formState,
         paymentMethodChecked,

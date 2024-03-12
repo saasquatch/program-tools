@@ -140,6 +140,8 @@ export const useTaxAndCashDashboard = (
       expiresSoon,
       disabled: loading,
       loading,
+      // AL: TODO loadingError
+      loadingError: false,
     },
     slots: {
       // TODO: Replace this story once we have hooks for payment details card

@@ -28,6 +28,7 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
     disabled: false,
     isPartner: false,
     isUser: false,
+    loadingError: false,
     formState: {
       firstName: "Bob",
       lastName: "Testerson",
@@ -83,6 +84,7 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
     disabled: false,
     loading: false,
     isPartner: false,
+    loadingError: false,
     formState: {
       checked: undefined,
       errors: {},
@@ -136,6 +138,7 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
     isPartner: false,
     saveDisabled: false,
     thresholds: [],
+    loadingError: false,
     formState: {
       paymentMethodChecked: "toBankAccount",
     },
@@ -150,6 +153,7 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
 
 const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
   states: {
+    urlLoading: false,
     docusignStatus: undefined,
     hideSteps: false,
     documentType: "W9" as const,
@@ -266,6 +270,23 @@ export const StepOneWithGeneralError = () => {
   );
 };
 
+export const StepOneWithLoadingError = () => {
+  return (
+    <sqm-user-info-form
+      demoData={{
+        states: {
+          ...stepOneProps.states,
+          loadingError: true,
+          loading: true,
+          formState: {
+            ...stepOneProps.states.formState,
+          },
+        },
+      }}
+    ></sqm-user-info-form>
+  );
+};
+
 // STEP TWO
 export const StepTwoLoading = () => {
   return (
@@ -274,6 +295,20 @@ export const StepTwoLoading = () => {
         states: {
           ...stepTwoProps.states,
           loading: true,
+        },
+      }}
+    ></sqm-indirect-tax-form>
+  );
+};
+
+export const StepTwoLoadingError = () => {
+  return (
+    <sqm-indirect-tax-form
+      demoData={{
+        states: {
+          ...stepTwoProps.states,
+          loading: true,
+          loadingError: true,
         },
       }}
     ></sqm-indirect-tax-form>
@@ -816,7 +851,6 @@ export const TaxAndCashDashboardActiveW9Form = () => {
           country: "United Kingdom",
           indirectTaxNumber: "123456",
           indirectTaxType: "VAT",
-          isBusinessEntity: true,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -838,7 +872,6 @@ export const TaxAndCashDashboardActiveW8BENForm = () => {
           country: "United Kingdom",
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
-          isBusinessEntity: true,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -860,7 +893,6 @@ export const TaxAndCashDashboardActiveW8BENEForm = () => {
           country: "United Kingdom",
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
-          isBusinessEntity: true,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -882,7 +914,6 @@ export const TaxAndCashDashboardNotActiveW9Form = () => {
           indirectTaxNumber: "123456",
           indirectTaxType: "VAT",
           country: "Slovania",
-          isBusinessEntity: true,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -903,7 +934,6 @@ export const TaxAndCashDashboardNotVerifiedW9Form = () => {
           country: "United States",
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
-          isBusinessEntity: true,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -925,7 +955,6 @@ export const TaxAndCashDashboardNotVerifiedW8BENForm = () => {
           country: "United Kingdom",
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
-          isBusinessEntity: true,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -947,7 +976,6 @@ export const TaxAndCashDashboardNotVerifiedW8BENEForm = () => {
           country: "United Kingdom",
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
-          isBusinessEntity: true,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -969,7 +997,6 @@ export const TaxAndCashDashboardNotActiveW8BENEForm = () => {
           indirectTaxNumber: "123456",
           indirectTaxType: "VAT",
           country: "United Kingdom",
-          isBusinessEntity: true,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -989,10 +1016,8 @@ export const TaxAndCashDashboardNoFormNeeded = () => {
           noFormNeeded: true,
           province: "Ontario",
           country: "Canada",
-          isIndirectTaxCanada: true,
           indirectTaxNumber: "123456",
           indirectTaxType: "GST",
-          isBusinessEntity: true,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1013,10 +1038,8 @@ export const TaxAndCashDashboardIndirectTaxCanada = () => {
           noFormNeeded: false,
           province: "Ontario",
           country: "Canada",
-          isIndirectTaxCanada: true,
           indirectTaxType: "GST",
           indirectTaxNumber: "123456",
-          isBusinessEntity: true,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1037,11 +1060,9 @@ export const TaxAndCashDashboardIndirectTaxCanadaQuebec = () => {
           noFormNeeded: false,
           province: "Quebec",
           country: "Canada",
-          isIndirectTaxCanada: true,
           indirectTaxType: "GST",
           indirectTaxNumber: "123456",
           qstNumber: "44212",
-          isBusinessEntity: true,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1065,7 +1086,6 @@ export const TaxAndCashDashboardIndirectTaxSpain = () => {
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
           subRegionTaxNumber: "44212",
-          isBusinessEntity: true,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1084,7 +1104,6 @@ export const TaxAndCashDashboardIndirectTaxNotRegistered = () => {
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           notRegistered: true,
-          isBusinessEntity: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1104,7 +1123,26 @@ export const TaxAndCashDashboardLoading = () => {
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           loading: true,
-          isBusinessEntity: true,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardWithLoadingError = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        states: {
+          disabled: false,
+          canEditPayoutInfo: true,
+          status: "ACTIVE",
+          documentType: "W9",
+          documentTypeString: taxTypeToName("W9"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          loading: true,
+          loadingError: true,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1126,7 +1164,6 @@ export const TaxAndCashDashboardWithGeneralError = () => {
           indirectTaxNumber: "123456",
           indirectTaxType: "VAT",
           country: "Slovania",
-          isBusinessEntity: true,
           errors: {
             general: true,
           },
@@ -1148,7 +1185,6 @@ export const TaxAndCashDashboardDisabled = () => {
           documentTypeString: taxTypeToName("W8BEN"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
-          isBusinessEntity: true,
           indirectTaxNumber: "123456",
           country: "Slovania",
         },

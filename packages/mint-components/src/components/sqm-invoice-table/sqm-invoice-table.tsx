@@ -15,12 +15,13 @@ import { useChildElements } from "../../tables/useChildElements";
 import { tryMethod, useInvoiceTable } from "./useInvoiceTable";
 import mockInvoiceData from "./mockInvoiceData";
 import { isDemo } from "@saasquatch/component-boilerplate";
+import { InvoiceTableView } from "./sqm-invoice-table-view";
 
 /**
  * @uiName Invoice Table
  * @exampleGroup Invoices
  * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
- * @example Invoice Table - <sqm-invoice-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" ><sqm-invoice-table-user-column column-title="Customer" anonymous-user="Anonymous User" deleted-user="Deleted User" ></sqm-invoice-table-user-column ><sqm-invoice-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} Denied {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake."></sqm-invoice-table-rewards-column ><sqm-invoice-table-date-column column-title="Date converted" date-shown="dateConverted" ></sqm-invoice-table-date-column ><sqm-invoice-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-invoice" ></sqm-invoice-table-status-column ><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_invoice2.png" empty-state-header="View your invoice details" empty-state-text="Refer a friend to view the status of your invoices and rewards earned" slot="empty" ></sqm-empty ></sqm-invoice-table> */
+ * @example Invoice Table - <sqm-invoice-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" ><sqm-invoice-table-user-column column-title="Customer" anonymous-user="Anonymous User" deleted-user="Deleted User" ></sqm-invoice-table-user-column ><sqm-invoice-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} Denied {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake."></sqm-invoice-table-rewards-column ><sqm-invoice-table-date-column column-title="Date converted" date-shown="dateConverted" ></sqm-invoice-table-date-column ><sqm-invoice-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-invoice" ></sqm-invoice-table-status-column ><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_referral2.png" empty-state-header="View your invoice details" empty-state-text="Refer a friend to view the status of your invoices and rewards earned" slot="empty" ></sqm-empty ></sqm-invoice-table> */
 @Component({
   tag: "sqm-invoice-table",
   shadow: true,
@@ -65,6 +66,13 @@ export class InvoiceTable {
   /** @uiName Tablet breakpoint  */
   @Prop() mdBreakpoint?: number = 799;
 
+  /** @uiName Tablet breakpoint  */
+  @Prop() header?: string = "Invoices";
+
+  /** @uiName Tablet breakpoint  */
+  @Prop() description?: string =
+    "View and download your invoices to report your earnings and stay tax compliant. ";
+
   /**
    * @undocumented
    * @uiType object
@@ -89,12 +97,14 @@ export class InvoiceTable {
     useRequestRerender([this.perPage]);
 
     return (
-      <GenericTableView
-        states={states}
-        data={data}
-        callbacks={callbacks}
-        elements={elements}
-      ></GenericTableView>
+      <InvoiceTableView header={this.header} description={this.description}>
+        <GenericTableView
+          states={states}
+          data={data}
+          callbacks={callbacks}
+          elements={elements}
+        ></GenericTableView>
+      </InvoiceTableView>
     );
   }
 }
@@ -172,6 +182,9 @@ function useInvoiceTableDemo(
         component?.firstElementChild?.getAttribute("slot") !== "loading" &&
         component?.firstElementChild?.getAttribute("slot") !== "empty"
     );
+
+    console.log({ componentData, columnComponents });
+
     // get the column titles (renderLabel is asynchronous)
     const columnsPromise = columnComponents?.map(
       async (c: any, idx: number) => {
@@ -197,15 +210,16 @@ function useInvoiceTableDemo(
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = componentData?.map(async (r) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, undefined))
+        tryMethod(c, () => c.renderCell(r, {}))
       );
+
       const cells = (await Promise.all(cellPromise)) as VNode[];
       return cells;
     });
 
-    const rows =
-      cellsPromise &&
-      [...(await Promise.all(cellsPromise))].filter((value) => value);
+    const cells = await Promise.all(cellsPromise);
+
+    const rows = cells.filter((value) => value);
 
     setContent({ rows });
     const columns =
@@ -216,6 +230,7 @@ function useInvoiceTableDemo(
 
   useEffect(() => {
     setContent({ loading: true });
+
     mockData?.data && getComponentData(components);
   }, [mockData?.data, components, tick]);
 

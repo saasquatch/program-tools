@@ -842,24 +842,28 @@ export class TaxAndCashMonolith {
   @Prop() dashboard_subRegionTaxNumber: string =
     "Income tax number: {incomeTaxNumber}";
   /**
-   * @uiName Status badge text
+   * Badge text indicating payout status
+   * @uiName Payout status badge text
    * @uiGroup Dashboard Properties
    */
   @Prop()
   dashboard_statusBadgeText: string =
     "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
   /**
+   * Text shown above current balance indicating required balance for next payout
    * @uiName Threshold payout text
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_thresholdPayoutText: string =
     "Next payout occurs when balance is {thresholdBalance}";
   /**
+   * Text shown before account number
    * @uiName Account text
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_accountText: string = "Account";
   /**
+   * Error alert header shown above payout details card
    * @uiName Error title text
    * @uiGroup Dashboard Properties
    */
@@ -867,6 +871,7 @@ export class TaxAndCashMonolith {
   dashboard_errorTitleText: string =
     "There was an error with your payout infomation";
   /**
+   * Error alert description shown above payout details card
    * @uiName Error description text
    * @uiGroup Dashboard Properties
    */
@@ -930,8 +935,23 @@ export class TaxAndCashMonolith {
    */
   @Prop() isPartnerAlertDescription: string =
     "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
+  /**
+   * Alert header shown if there is a problem loading a form
+   * @uiName Loading error alert header
+   * @uiGroup General Form Properties
+   */
+  @Prop() loadingErrorAlertHeader: string =
+    "There was a problem loading your form";
+  /**
+   * Alert description shown if there is a problem loading a form
+   * @uiName Loading error alert description
+   * @uiGroup General Form Properties
+   */
+  @Prop() loadingErrorAlertDescription: string =
+    "Please refresh the page and try again. If this problem continues, contact Support.";
 
   /**
+   *
    * @undocumented
    * @uiType object
    */
@@ -955,6 +975,8 @@ export class TaxAndCashMonolith {
       backButton: props.backButton,
       isPartnerAlertHeader: props.isPartnerAlertHeader,
       isPartnerAlertDescription: props.isPartnerAlertDescription,
+      loadingErrorAlertHeader: props.loadingErrorAlertHeader,
+      loadingErrorAlertDescription: props.loadingErrorAlertDescription,
     };
   }
 

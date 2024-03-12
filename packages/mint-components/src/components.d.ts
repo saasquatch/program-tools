@@ -226,6 +226,16 @@ export namespace Components {
          */
         "isPartnerAlertHeader": string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader": string;
+        /**
           * Label text for the patronymic name input field
           * @uiName Patronymic name input label
          */
@@ -1040,6 +1050,16 @@ export namespace Components {
          */
         "isRegisteredSubRegionIncomeTax": string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader": string;
+        /**
           * Text for the option indicating not being registered for indirect tax
           * @uiName Not registered for indirect tax option text
          */
@@ -1221,6 +1241,14 @@ export namespace Components {
     mockData?: { data: Invoice[] };
   };
         /**
+          * @uiName Tablet breakpoint
+         */
+        "description"?: string;
+        /**
+          * @uiName Tablet breakpoint
+         */
+        "header"?: string;
+        /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
           * @uiName Hidden mobile columns
          */
@@ -1257,15 +1285,19 @@ export namespace Components {
          */
         "smBreakpoint"?: number;
     }
-    interface SqmInvoiceTableCell {
-        "innerTemplate": string;
+    interface SqmInvoiceTableDataCell {
+        "data": string;
     }
-    interface SqmInvoiceTableColumn {
+    interface SqmInvoiceTableDataColumn {
         /**
           * @uiName Column title
          */
         "columnTitle": string;
-        "renderCell": (_: Invoice) => Promise<any>;
+        /**
+          * @uiName Property name
+         */
+        "property": string;
+        "renderCell": (data: Invoice) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmInvoiceTableDateCell {
@@ -1284,12 +1316,8 @@ export namespace Components {
         "downloadURL": string;
     }
     interface SqmInvoiceTableDownloadColumn {
-        /**
-          * @uiName Column title
-         */
-        "columnTitle": string;
-        "renderCell": (_: Invoice) => Promise<any>;
-        "renderLabel": () => Promise<string>;
+        "renderCell": (data: Invoice) => Promise<any>;
+        "renderLabel": () => Promise<any>;
     }
     interface SqmLeaderboard {
         /**
@@ -1539,14 +1567,34 @@ export namespace Components {
         "uppercaseErrorText": string;
     }
     interface SqmPayoutDetailsCard {
+        /**
+          * Text shown before account number
+          * @uiName Account text
+         */
         "accountText": string;
         /**
           * @undocumented
          */
         "demoData"?: DemoData<any>;
+        /**
+          * Error alert description shown above payout details card
+          * @uiName Error alert description
+         */
         "errorDescriptionText": string;
+        /**
+          * Error alert header shown above payout details card
+          * @uiName Error alert header
+         */
         "errorTitleText": string;
+        /**
+          * Badge text indicating payout status
+          * @uiName Payout badge status text
+         */
         "statusBadgeText": string;
+        /**
+          * Text shown above current balance indicating required balance for next payout
+          * @uiName Threshold payout text
+         */
         "thresholdPayoutText": string;
     }
     interface SqmPopupContainer {
@@ -3701,6 +3749,7 @@ export namespace Components {
          */
         "continueButton": string;
         /**
+          * Text shown before account number
           * @uiName Account text
           * @uiGroup Dashboard Properties
          */
@@ -3736,11 +3785,13 @@ export namespace Components {
          */
         "dashboard_editPaymentInformationButton": string;
         /**
+          * Error alert description shown above payout details card
           * @uiName Error description text
           * @uiGroup Dashboard Properties
          */
         "dashboard_errorDescriptionText": string;
         /**
+          * Error alert header shown above payout details card
           * @uiName Error title text
           * @uiGroup Dashboard Properties
          */
@@ -3812,7 +3863,8 @@ export namespace Components {
          */
         "dashboard_qstNumber": string;
         /**
-          * @uiName Status badge text
+          * Badge text indicating payout status
+          * @uiName Payout status badge text
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusBadgeText": string;
@@ -3877,6 +3929,7 @@ export namespace Components {
          */
         "dashboard_taxDocumentSectionSubHeader": string;
         /**
+          * Text shown above current balance indicating required balance for next payout
           * @uiName Threshold payout text
           * @uiGroup Dashboard Properties
          */
@@ -3921,6 +3974,18 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "isPartnerAlertHeader": string;
+        /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+          * @uiGroup General Form Properties
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+          * @uiGroup General Form Properties
+         */
+        "loadingErrorAlertHeader": string;
         /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
@@ -4550,6 +4615,16 @@ export namespace Components {
          */
         "invalidForm"?: string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader": string;
+        /**
           * Text displayed in the submit new document button at the bottom of the page
           * @uiName No form needed subtext
          */
@@ -4788,6 +4863,16 @@ export namespace Components {
          */
         "lastName": string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader": string;
+        /**
           * Heading text shown above the forms inputs.
           * @uiName Form heading text
          */
@@ -4978,17 +5063,17 @@ declare global {
         prototype: HTMLSqmInvoiceTableElement;
         new (): HTMLSqmInvoiceTableElement;
     };
-    interface HTMLSqmInvoiceTableCellElement extends Components.SqmInvoiceTableCell, HTMLStencilElement {
+    interface HTMLSqmInvoiceTableDataCellElement extends Components.SqmInvoiceTableDataCell, HTMLStencilElement {
     }
-    var HTMLSqmInvoiceTableCellElement: {
-        prototype: HTMLSqmInvoiceTableCellElement;
-        new (): HTMLSqmInvoiceTableCellElement;
+    var HTMLSqmInvoiceTableDataCellElement: {
+        prototype: HTMLSqmInvoiceTableDataCellElement;
+        new (): HTMLSqmInvoiceTableDataCellElement;
     };
-    interface HTMLSqmInvoiceTableColumnElement extends Components.SqmInvoiceTableColumn, HTMLStencilElement {
+    interface HTMLSqmInvoiceTableDataColumnElement extends Components.SqmInvoiceTableDataColumn, HTMLStencilElement {
     }
-    var HTMLSqmInvoiceTableColumnElement: {
-        prototype: HTMLSqmInvoiceTableColumnElement;
-        new (): HTMLSqmInvoiceTableColumnElement;
+    var HTMLSqmInvoiceTableDataColumnElement: {
+        prototype: HTMLSqmInvoiceTableDataColumnElement;
+        new (): HTMLSqmInvoiceTableDataColumnElement;
     };
     interface HTMLSqmInvoiceTableDateCellElement extends Components.SqmInvoiceTableDateCell, HTMLStencilElement {
     }
@@ -5498,8 +5583,8 @@ declare global {
         "sqm-input-field": HTMLSqmInputFieldElement;
         "sqm-instant-access-registration": HTMLSqmInstantAccessRegistrationElement;
         "sqm-invoice-table": HTMLSqmInvoiceTableElement;
-        "sqm-invoice-table-cell": HTMLSqmInvoiceTableCellElement;
-        "sqm-invoice-table-column": HTMLSqmInvoiceTableColumnElement;
+        "sqm-invoice-table-data-cell": HTMLSqmInvoiceTableDataCellElement;
+        "sqm-invoice-table-data-column": HTMLSqmInvoiceTableDataColumnElement;
         "sqm-invoice-table-date-cell": HTMLSqmInvoiceTableDateCellElement;
         "sqm-invoice-table-date-column": HTMLSqmInvoiceTableDateColumnElement;
         "sqm-invoice-table-download-cell": HTMLSqmInvoiceTableDownloadCellElement;
@@ -5759,6 +5844,16 @@ declare namespace LocalJSX {
           * @uiName Partner identification alert header
          */
         "isPartnerAlertHeader"?: string;
+        /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader"?: string;
         /**
           * Label text for the patronymic name input field
           * @uiName Patronymic name input label
@@ -6575,6 +6670,16 @@ declare namespace LocalJSX {
          */
         "isRegisteredSubRegionIncomeTax"?: string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader"?: string;
+        /**
           * Text for the option indicating not being registered for indirect tax
           * @uiName Not registered for indirect tax option text
          */
@@ -6756,6 +6861,14 @@ declare namespace LocalJSX {
     mockData?: { data: Invoice[] };
   };
         /**
+          * @uiName Tablet breakpoint
+         */
+        "description"?: string;
+        /**
+          * @uiName Tablet breakpoint
+         */
+        "header"?: string;
+        /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
           * @uiName Hidden mobile columns
          */
@@ -6792,14 +6905,18 @@ declare namespace LocalJSX {
          */
         "smBreakpoint"?: number;
     }
-    interface SqmInvoiceTableCell {
-        "innerTemplate"?: string;
+    interface SqmInvoiceTableDataCell {
+        "data"?: string;
     }
-    interface SqmInvoiceTableColumn {
+    interface SqmInvoiceTableDataColumn {
         /**
           * @uiName Column title
          */
         "columnTitle"?: string;
+        /**
+          * @uiName Property name
+         */
+        "property"?: string;
     }
     interface SqmInvoiceTableDateCell {
         "date"?: number;
@@ -6815,10 +6932,6 @@ declare namespace LocalJSX {
         "downloadURL"?: string;
     }
     interface SqmInvoiceTableDownloadColumn {
-        /**
-          * @uiName Column title
-         */
-        "columnTitle"?: string;
     }
     interface SqmLeaderboard {
         /**
@@ -7068,14 +7181,34 @@ declare namespace LocalJSX {
         "uppercaseErrorText"?: string;
     }
     interface SqmPayoutDetailsCard {
+        /**
+          * Text shown before account number
+          * @uiName Account text
+         */
         "accountText"?: string;
         /**
           * @undocumented
          */
         "demoData"?: DemoData<any>;
+        /**
+          * Error alert description shown above payout details card
+          * @uiName Error alert description
+         */
         "errorDescriptionText"?: string;
+        /**
+          * Error alert header shown above payout details card
+          * @uiName Error alert header
+         */
         "errorTitleText"?: string;
+        /**
+          * Badge text indicating payout status
+          * @uiName Payout badge status text
+         */
         "statusBadgeText"?: string;
+        /**
+          * Text shown above current balance indicating required balance for next payout
+          * @uiName Threshold payout text
+         */
         "thresholdPayoutText"?: string;
     }
     interface SqmPopupContainer {
@@ -9206,6 +9339,7 @@ declare namespace LocalJSX {
          */
         "continueButton"?: string;
         /**
+          * Text shown before account number
           * @uiName Account text
           * @uiGroup Dashboard Properties
          */
@@ -9241,11 +9375,13 @@ declare namespace LocalJSX {
          */
         "dashboard_editPaymentInformationButton"?: string;
         /**
+          * Error alert description shown above payout details card
           * @uiName Error description text
           * @uiGroup Dashboard Properties
          */
         "dashboard_errorDescriptionText"?: string;
         /**
+          * Error alert header shown above payout details card
           * @uiName Error title text
           * @uiGroup Dashboard Properties
          */
@@ -9317,7 +9453,8 @@ declare namespace LocalJSX {
          */
         "dashboard_qstNumber"?: string;
         /**
-          * @uiName Status badge text
+          * Badge text indicating payout status
+          * @uiName Payout status badge text
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusBadgeText"?: string;
@@ -9382,6 +9519,7 @@ declare namespace LocalJSX {
          */
         "dashboard_taxDocumentSectionSubHeader"?: string;
         /**
+          * Text shown above current balance indicating required balance for next payout
           * @uiName Threshold payout text
           * @uiGroup Dashboard Properties
          */
@@ -9426,6 +9564,18 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "isPartnerAlertHeader"?: string;
+        /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+          * @uiGroup General Form Properties
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+          * @uiGroup General Form Properties
+         */
+        "loadingErrorAlertHeader"?: string;
         /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
@@ -10055,6 +10205,16 @@ declare namespace LocalJSX {
          */
         "invalidForm"?: string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader"?: string;
+        /**
           * Text displayed in the submit new document button at the bottom of the page
           * @uiName No form needed subtext
          */
@@ -10292,6 +10452,16 @@ declare namespace LocalJSX {
          */
         "lastName"?: string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader"?: string;
+        /**
           * Heading text shown above the forms inputs.
           * @uiName Form heading text
          */
@@ -10346,8 +10516,8 @@ declare namespace LocalJSX {
         "sqm-input-field": SqmInputField;
         "sqm-instant-access-registration": SqmInstantAccessRegistration;
         "sqm-invoice-table": SqmInvoiceTable;
-        "sqm-invoice-table-cell": SqmInvoiceTableCell;
-        "sqm-invoice-table-column": SqmInvoiceTableColumn;
+        "sqm-invoice-table-data-cell": SqmInvoiceTableDataCell;
+        "sqm-invoice-table-data-column": SqmInvoiceTableDataColumn;
         "sqm-invoice-table-date-cell": SqmInvoiceTableDateCell;
         "sqm-invoice-table-date-column": SqmInvoiceTableDateColumn;
         "sqm-invoice-table-download-cell": SqmInvoiceTableDownloadCell;
@@ -10461,8 +10631,8 @@ declare module "@stencil/core" {
             "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
             "sqm-instant-access-registration": LocalJSX.SqmInstantAccessRegistration & JSXBase.HTMLAttributes<HTMLSqmInstantAccessRegistrationElement>;
             "sqm-invoice-table": LocalJSX.SqmInvoiceTable & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableElement>;
-            "sqm-invoice-table-cell": LocalJSX.SqmInvoiceTableCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableCellElement>;
-            "sqm-invoice-table-column": LocalJSX.SqmInvoiceTableColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableColumnElement>;
+            "sqm-invoice-table-data-cell": LocalJSX.SqmInvoiceTableDataCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDataCellElement>;
+            "sqm-invoice-table-data-column": LocalJSX.SqmInvoiceTableDataColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDataColumnElement>;
             "sqm-invoice-table-date-cell": LocalJSX.SqmInvoiceTableDateCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateCellElement>;
             "sqm-invoice-table-date-column": LocalJSX.SqmInvoiceTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateColumnElement>;
             "sqm-invoice-table-download-cell": LocalJSX.SqmInvoiceTableDownloadCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadCellElement>;

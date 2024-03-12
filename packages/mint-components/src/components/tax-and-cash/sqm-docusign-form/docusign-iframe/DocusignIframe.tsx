@@ -21,6 +21,7 @@ export interface DocusignIframeProps {
     url: string;
     status: DocusignStatus;
     loading: boolean;
+    urlLoading: boolean;
   };
   callbacks: {
     onStatusChange: (status: DocusignStatus) => void;
@@ -151,7 +152,7 @@ export const DocusignIframe = ({
   callbacks,
   text,
 }: DocusignIframeProps) => {
-  if (states.loading) return <DocusignLoadingView />;
+  if (states.urlLoading) return <DocusignLoadingView />;
 
   const callback = useCallback((e) => {
     // TODO: CHANGE THIS WHEN ACTUAL URL IS AVAILABLE

@@ -1,6 +1,5 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, getElement, h, Host, Method, Prop } from "@stencil/core";
-import { useRequestRerender } from "../../../tables/re-render";
+import { Component, h, Host, Method } from "@stencil/core";
 import { InvoiceTableColumn } from "./InvoiceTableColumn";
 
 /**
@@ -12,33 +11,26 @@ import { InvoiceTableColumn } from "./InvoiceTableColumn";
   shadow: true,
 })
 export class InvoiceTableGenericColumn implements InvoiceTableColumn {
-  /**
-   * @uiName Column title
-   */
-  @Prop() columnTitle: string;
-
   constructor() {
     withHooks(this);
   }
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(_: Invoice) {
-    // this is insecure, <script> tags can be added
+  async renderCell(data: Invoice) {
     return (
-      <sqm-invoice-table-cell
-        inner-template={getElement(this).innerHTML}
-      ></sqm-invoice-table-cell>
+      <sqm-invoice-table-download-cell
+        downloadURL={data.downloadURL}
+      ></sqm-invoice-table-download-cell>
     );
   }
 
   @Method()
   async renderLabel() {
-    return Promise.resolve(this.columnTitle);
+    return <span></span>;
   }
 
   render() {
-    useRequestRerender([this.columnTitle]);
     return (
       <Host style={{ display: "none" }}>
         <slot />

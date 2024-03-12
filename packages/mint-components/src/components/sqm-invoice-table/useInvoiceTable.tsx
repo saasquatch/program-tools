@@ -16,7 +16,37 @@ const debug = debugFn("sq:useInvoiceTable");
 
 export const CSS_NAMESPACE = "sqm-invoice-table";
 
-const GET_INVOICES = gql``;
+export const GET_INVOICES = gql`
+  query getUserTaxInfo($limit: Int!, $offset: Int!) {
+    user: viewer {
+      ... on User {
+        impactConnection {
+          connected
+          publisher {
+            invoices(limit: $limit, offset: $offset) {
+              data {
+                id
+                dateCreated
+                totalAmount
+                totalVatAmount
+                downloadUrl
+              }
+              totalCount
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+type Invoice = {
+  id: string;
+  dateCreated: number;
+  totalAmount: number;
+  totalVatAmount: number;
+  downloadUrl: string;
+};
 
 export function useInvoiceTable(
   props: InvoiceTable,
@@ -25,11 +55,6 @@ export function useInvoiceTable(
 ): GenericTableViewProps {
   const user = useUserIdentity();
   const locale = useLocale();
-
-  const invoiceFilter = {
-    userId_eq: user?.id,
-    accountId_eq: user?.accountId,
-  };
 
   const [content, setContent] = useReducer<
     GenericTableViewProps["elements"],
@@ -51,19 +76,18 @@ export function useInvoiceTable(
     envelope: invoicesData,
     states,
     callbacks,
-  } = usePaginatedQuery<Reward>(
+  } = usePaginatedQuery<Invoice>(
     GET_INVOICES,
-    (data) => data?.viewer?.invoices,
+    (data) => data?.user?.impactConnection?.publisher?.invoices,
     {
       limit: props.perPage,
       offset: 0,
     },
-    {
-      invoiceFilter,
-      locale,
-    },
+    {},
     !user?.jwt
   );
+
+  console.log(invoicesData);
 
   const tick = useRerenderListener();
   const components = useChildElements<Element>();
@@ -81,9 +105,18 @@ export function useInvoiceTable(
     );
 
     // get the column cells (renderCell is asynchronous)
-    const cellsPromise = data?.map(async (r: Reward) => {
+    const cellsPromise = data?.map(async (invoice: Invoice) => {
+      // TODO: probably going to pass in values as named by graphql
+      const invoiceData = {
+        earnings: invoice.totalAmount,
+        taxedAmount: invoice.totalVatAmount,
+        dateCreated: invoice.dateCreated,
+        invoiceId: invoice.id,
+        netEarnings: invoice.totalAmount - invoice.totalVatAmount,
+      };
+
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, { locale }, h))
+        tryMethod(c, () => c.renderCell(invoiceData, { locale }, h))
       );
       const cells = (await Promise.all(cellPromise)) as VNode[];
       return cells;
@@ -94,7 +127,8 @@ export function useInvoiceTable(
 
     setContent({ rows });
     const columns =
-      columnsPromise && ((await Promise.all(columnsPromise)) as string[]);
+      columnsPromise &&
+      ((await Promise.all(columnsPromise)) as Array<VNode | string>);
     // Set the content to render and finish loading components
     setContent({ columns, loading: false, page: states.currentPage });
   }

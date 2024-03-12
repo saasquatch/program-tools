@@ -8,6 +8,7 @@ import {
   InvoiceNumberCell,
   TaxedAmountCell,
 } from "./InvoiceTableCell.stories";
+import { InvoiceTableView } from "./sqm-invoice-table-view";
 
 export default {
   title: "Components/Invoice Table",
@@ -45,7 +46,7 @@ const loadingElement = (
 
 const emptyElement = (
   <sqm-empty
-    empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_invoice2.png"
+    empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_referral2.png"
     empty-state-header="View your invoice details"
     empty-state-text="Track the status of your invoices and rewards earned by referring friends"
   ></sqm-empty>
@@ -77,7 +78,7 @@ const simpleInvoiceTableProps = {
 
   elements: {
     columns: [
-      "",
+      <span></span>,
       "Date created",
       "Invoice",
       "Earnings",
@@ -114,7 +115,14 @@ const simpleInvoiceTableProps = {
 };
 
 export const SimpleInvoiceTable = () => {
-  return <GenericTableView {...simpleInvoiceTableProps}></GenericTableView>;
+  return (
+    <InvoiceTableView
+      header={"Invoices"}
+      description={"Invoice table description"}
+    >
+      <GenericTableView {...simpleInvoiceTableProps}></GenericTableView>
+    </InvoiceTableView>
+  );
 };
 
 export const EmptyTable = () => {
@@ -171,7 +179,14 @@ export const LoadingTable = () => {
         elements: {
           emptyElement: emptyElement,
           loadingElement: loadingElement,
-          columns: ["Name", "Email", "DOB"],
+          columns: [
+            "",
+            "Date created",
+            "Invoice",
+            "Earnings",
+            "Taxed Amount",
+            "Earnings after tax",
+          ],
           rows: [],
         },
       }}

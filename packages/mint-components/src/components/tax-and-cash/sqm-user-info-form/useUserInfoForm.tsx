@@ -208,6 +208,8 @@ export function useUserInfoForm(props: TaxForm) {
     states: {
       hideSteps: context.hideSteps,
       disabled: loading,
+      //AL TODO loadingerror
+      loadingError: false,
       loading: loading,
       isPartner: !!data?.user?.impactConnection?.publisher,
       isUser: !!data?.user?.impactConnection?.user,

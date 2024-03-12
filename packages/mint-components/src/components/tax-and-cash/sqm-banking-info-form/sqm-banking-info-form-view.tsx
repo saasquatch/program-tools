@@ -19,6 +19,7 @@ export interface BankingInfoFormViewProps {
     feeCap?: string;
     isPartner: boolean;
     paymentMethodFeeLabel?: string;
+    loadingError: boolean;
     formState: BankingInfoFormData & {
       paymentMethodChecked?: "toBankAccount" | "toPayPalAccount";
       paymentScheduleChecked?: "BALANCE_THRESHOLD" | "FIXED_DAY";
