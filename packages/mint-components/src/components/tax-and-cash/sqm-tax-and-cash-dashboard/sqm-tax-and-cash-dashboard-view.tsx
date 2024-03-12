@@ -8,6 +8,7 @@ export interface TaxAndCashDashboardProps {
     status?: string;
     documentType: TaxDocumentType | undefined;
     documentTypeString: string;
+    canEditPayoutInfo: boolean;
     disabled?: boolean;
     dateSubmitted?: string;
     dateExpired?: string;
@@ -344,14 +345,14 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             {slots.payoutDetailsCardSlot}
             <p class={sheet.classes.DescriptionText}>{text.payoutFromImpact}</p>
             {/* ZH: Most likely need this button in the next iteration of form */}
-            {/* <sl-button
+            <sl-button
               disabled={states.disabled || states.loading}
               type="default"
               class={sheet.classes.EditBankDetailsButton}
               onClick={callbacks.onEditPayoutInfo}
             >
               {text.editPaymentInformationButton}
-            </sl-button> */}
+            </sl-button>
           </div>
         </div>
 

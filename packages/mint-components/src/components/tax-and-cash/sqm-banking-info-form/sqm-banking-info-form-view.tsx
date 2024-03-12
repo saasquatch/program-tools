@@ -1,6 +1,7 @@
 import { h, VNode } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
+import { BankingInfoFormData } from "./useBankingInfoForm";
 
 export interface BankingInfoFormViewProps {
   states: {
@@ -18,7 +19,7 @@ export interface BankingInfoFormViewProps {
     feeCap?: string;
     isPartner: boolean;
     paymentMethodFeeLabel?: string;
-    formState: {
+    formState: BankingInfoFormData & {
       paymentMethodChecked?: "toBankAccount" | "toPayPalAccount";
       paymentScheduleChecked?: "BALANCE_THRESHOLD" | "FIXED_DAY";
       errors?: {
@@ -31,7 +32,6 @@ export interface BankingInfoFormViewProps {
       };
     };
     bitset?: number;
-    bankCountry?: string;
     currency?: string;
     thresholds: string[];
     countries?: { code: string; name: string }[];

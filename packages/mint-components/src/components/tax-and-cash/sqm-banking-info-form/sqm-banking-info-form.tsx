@@ -402,31 +402,13 @@ export class BankingInfoForm {
       formMap,
     });
 
+    console.log({
+      formState: props.states.formState,
+      thresholds: props.states.thresholds,
+    });
+
     return (
       <Host>
-        {/* demo */}
-        {props.states.showInputs && (
-          <sl-select
-            name="/currency"
-            value={props.states.currency}
-            onSl-select={(e) => {
-              props.callbacks.setCurrency(e.detail?.item?.value);
-              props.callbacks.setBankCountry("");
-            }}
-          >
-            <sl-menu-item value="USD">USD</sl-menu-item>
-            <sl-menu-item value="GBP">GBP</sl-menu-item>
-            <sl-menu-item value="AUD">AUD</sl-menu-item>
-            <sl-menu-item value="CAD">CAD</sl-menu-item>
-            <sl-menu-item value="EUR">EUR</sl-menu-item>
-            <sl-menu-item value="JPY">JPY</sl-menu-item>
-            <sl-menu-item value="KRW">KRW</sl-menu-item>
-            <sl-menu-item value="MYR">MYR</sl-menu-item>
-            <sl-menu-item value="MXN">MXN</sl-menu-item>
-            <sl-menu-item value="RUB">RUB</sl-menu-item>
-            <sl-menu-item value="ARS">ARS</sl-menu-item>
-          </sl-select>
-        )}
         <BankingInfoFormView
           callbacks={props.callbacks}
           text={props.text}
@@ -440,7 +422,7 @@ export class BankingInfoForm {
                 required
                 name="/bankCountry"
                 id="bankCountry"
-                value={props.states.bankCountry}
+                value={props.states.formState.bankCountry}
                 onSl-select={(e) =>
                   props.callbacks.setBankCountry(e.detail?.item?.value)
                 }
@@ -475,6 +457,7 @@ export class BankingInfoForm {
                 label={props.text.paymentThresholdSelectLabel}
                 name="/paymentThreshold"
                 id="paymentThreshold"
+                value={props.states?.formState?.paymentThreshold}
                 {...(errors?.inputErrors?.paymentThreshold && {
                   class: "error-input",
                   helpText: getValidationErrorMessage({
@@ -494,6 +477,7 @@ export class BankingInfoForm {
               <sl-select
                 required
                 label={props.text.paymentDaySelectLabel}
+                value={props.states?.formState?.paymentDay}
                 name="/paymentDay"
                 id="paymentDay"
                 {...(errors?.inputErrors?.paymentDay && {
@@ -504,10 +488,10 @@ export class BankingInfoForm {
                   }),
                 })}
               >
-                <sl-menu-item value={1}>
+                <sl-menu-item value={"1"}>
                   {props.text.paymentDayFirstOfMonthLabelText}
                 </sl-menu-item>
-                <sl-menu-item value={15}>
+                <sl-menu-item value={"15"}>
                   {props.text.paymentDayFifteenthOfMonthLabelText}
                 </sl-menu-item>
               </sl-select>
@@ -515,6 +499,7 @@ export class BankingInfoForm {
             paypalInputSlot: (
               <sl-input
                 required
+                value={props.states?.formState?.paypalEmailAddress}
                 label={props.text.payPalInputLabel}
                 key="paypalEmailAddress"
                 name="/paypalEmailAddress"
@@ -546,7 +531,7 @@ function useDemoBankingInfoForm(
   const defaultPaymentScheduleChecked =
     props.demoData?.states?.formState?.paymentScheduleChecked;
   const defaultCurrency = props.demoData?.states?.currency;
-  const defaultCountry = props.demoData?.states?.bankCountry;
+  const defaultCountry = props.demoData?.states?.formState?.bankCountry;
 
   const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
   const [paymentMethodChecked, setPaymentMethodChecked] = useState<

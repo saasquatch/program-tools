@@ -43,9 +43,17 @@ const WIRE_PAYMENT_METHOD = 5;
 const PAYPAL_PAYMENT_METHOD = 7;
 
 export type BankingInfoFormData = {
-  paypalEmailAddress?: string;
-  beneficiaryAccountName?: string;
+  // Fields that are auto-filled
   bankCountry?: string;
+  bankAccountNumber?: string;
+  paypalEmailAddress?: string;
+  paymentMethod?: string;
+  paymentThreshold?: string;
+  paymentSchedulingType?: "FIXED_DAY" | "BALANCE_THRESHOLD";
+  paymentDay?: string;
+
+  // Fields that aren't...
+  beneficiaryAccountName?: string;
   beneficiaryClassification?:
     | "BUSINESS"
     | "INDIVIDUAL"
@@ -55,7 +63,6 @@ export type BankingInfoFormData = {
   beneficiaryAlternativeName?: string;
   beneficiaryTaxPayerId?: string;
   bankAccountType?: "CHECKING" | "SAVINGS" | "NOT_SET";
-  bankAccountNumber?: string;
   swiftCode?: string;
   routingCode?: string;
   voCode?: string;
@@ -98,7 +105,7 @@ export function getFormMap({
     label: string;
   }) => string;
 }) {
-  const { errors } = props.states.formState;
+  const { errors, ...formState } = props.states.formState;
 
   const country = props.states.bankCountry;
 
@@ -155,6 +162,7 @@ export function getFormMap({
           name="/bankAccountNumber"
           id="bankAccountNumber"
           key="bankAccountNumber"
+          value={formState.bankAccountNumber}
           type="text"
           {...(errors?.inputErrors?.bankAccountNumber && {
             class: "error-input",
@@ -175,6 +183,7 @@ export function getFormMap({
           id="iban"
           key="iban"
           type="text"
+          value={formState.bankAccountNumber}
           {...(errors?.inputErrors?.bankAccountNumber && {
             class: "error-input",
             helpText: getValidationErrorMessage({
@@ -559,6 +568,15 @@ function getPaymentMethod(paymentOption: FinanceNetworkSetting | undefined) {
   return "";
 }
 
+function parseImpactThreshold(threshold: string) {
+  // Impact returns a "10.00" decimal string for threshold
+
+  const parsed = Number.parseInt(threshold);
+  if (isNaN(parsed)) return undefined;
+
+  return parsed.toString();
+}
+
 export function useBankingInfoForm(
   props: BankingInfoForm
 ): BankingInfoFormViewProps {
@@ -580,7 +598,7 @@ export function useBankingInfoForm(
       SAVE_WITHDRAWAL_SETTINGS
     );
 
-  const [bankCountry, setBankCountry] = useState("");
+  const [formState, setFormState] = useState<BankingInfoFormData>({});
   const [currentPaymentOption, setCurrentPaymentOption] =
     useState<null | FinanceNetworkSetting>(null);
   const [loading, setLoading] = useState(false);
@@ -649,13 +667,44 @@ export function useBankingInfoForm(
 
     const publisherCountry =
       userData?.user?.impactConnection?.publisher?.countryCode;
+    const withdrawalSettings =
+      userData?.user?.impactConnection?.publisher?.withdrawalSettings;
+    // Use currentPaymentOption and initialise form with userData
+    let initialData: BankingInfoFormData = {
+      bankCountry: withdrawalSettings?.bankCountry || publisherCountry,
+    };
+
+    if (
+      withdrawalSettings &&
+      !userData.user?.impactConnection?.publisher?.isExisting
+    ) {
+      initialData = {
+        ...initialData,
+        paymentMethod: withdrawalSettings.paymentMethod,
+        paypalEmailAddress: withdrawalSettings.paypalEmailAddress,
+        bankAccountNumber: withdrawalSettings.bankAccountNumber,
+        paymentSchedulingType: withdrawalSettings.paymentSchedulingType,
+        paymentThreshold: parseImpactThreshold(
+          withdrawalSettings.paymentThreshold
+        ),
+        paymentDay: withdrawalSettings.paymentDay,
+      };
+    }
+
     const currentPaymentOption = paymentOptions?.find(
-      (paymentOption) => paymentOption.countryCode === publisherCountry
+      (paymentOption) => paymentOption.countryCode === initialData.bankCountry
     );
 
     setCurrentPaymentOption(currentPaymentOption);
-    setBankCountry(publisherCountry);
-  }, [paymentOptions, userData, setCurrentPaymentOption, setBankCountry]);
+    setFormState(initialData);
+
+    setPaymentScheduleChecked(initialData.paymentSchedulingType);
+    setPaymentMethodChecked(
+      initialData.paymentMethod === "PAYPAL"
+        ? "toPayPalAccount"
+        : "toBankAccount"
+    );
+  }, [paymentOptions, userData, setCurrentPaymentOption, setFormState]);
 
   const updateBankCountry = (bankCountry: string) => {
     const currentPaymentOption = paymentOptions?.find((paymentOption) => {
@@ -663,7 +712,7 @@ export function useBankingInfoForm(
       return false;
     });
 
-    setBankCountry(bankCountry);
+    setFormState((p) => ({ bankCountry, ...p }));
     setCurrentPaymentOption(currentPaymentOption);
   };
 
@@ -765,7 +814,7 @@ export function useBankingInfoForm(
       setCurrentPaymentOption(currentPaymentOption);
     } else if (paymentMethod === "toBankAccount") {
       const currentPaymentOption = paymentOptions?.find(
-        (paymentOption) => paymentOption.countryCode === bankCountry
+        (paymentOption) => paymentOption.countryCode === formState.bankCountry
       );
       setCurrentPaymentOption(currentPaymentOption);
     }
@@ -795,13 +844,13 @@ export function useBankingInfoForm(
       hidePayPal:
         paymentMethodChecked !== "toPayPalAccount" || !paymentMethodChecked,
       formState: {
+        ...formState,
         paymentMethodChecked,
         paymentScheduleChecked,
         errors,
       },
       currentPaymentOption,
       bitset: currentPaymentOption?.withdrawalSettingId || 0,
-      bankCountry,
       currency,
       thresholds: currentPaymentOption?.thresholdOptions?.split(",") || [],
       countries,

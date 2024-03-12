@@ -91,6 +91,9 @@ export type ImpactPublisher = {
   countryCode: string;
   currency: string;
   requiredTaxDocumentType: TaxDocumentType | null;
+  // TODO: Replace this once the API is available
+  // This is the flag for if a user can edit their banking info or not
+  isExisting: boolean;
   currentTaxDocument: null | {
     status: TaxDocumentStatus;
     type: TaxDocumentType;

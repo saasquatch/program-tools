@@ -806,6 +806,7 @@ export const TaxAndCashDashboardActiveW9Form = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           disabled: false,
           status: "ACTIVE",
           documentType: "W9",
@@ -827,6 +828,7 @@ export const TaxAndCashDashboardActiveW8BENForm = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           disabled: false,
           status: "ACTIVE",
           documentType: "W8BEN",
@@ -848,6 +850,7 @@ export const TaxAndCashDashboardActiveW8BENEForm = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           disabled: false,
           status: "ACTIVE",
           documentType: "W8BENE",
@@ -869,6 +872,7 @@ export const TaxAndCashDashboardNotActiveW9Form = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_ACTIVE",
           documentType: "W9",
@@ -889,6 +893,7 @@ export const TaxAndCashDashboardNotVerifiedW9Form = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_VERIFIED",
           documentType: "W9",
@@ -910,6 +915,7 @@ export const TaxAndCashDashboardNotVerifiedW8BENForm = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_VERIFIED",
           documentType: "W8BEN",
@@ -931,6 +937,7 @@ export const TaxAndCashDashboardNotVerifiedW8BENEForm = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_VERIFIED",
           documentType: "W8BENE",
@@ -952,6 +959,7 @@ export const TaxAndCashDashboardNotActiveW8BENEForm = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_ACTIVE",
           documentType: "W8BENE",
@@ -973,6 +981,7 @@ export const TaxAndCashDashboardNoFormNeeded = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           disabled: false,
           documentType: "W9",
           documentTypeString: taxTypeToName("W9"),
@@ -995,6 +1004,7 @@ export const TaxAndCashDashboardIndirectTaxCanada = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           status: "ACTIVE",
           disabled: false,
           documentType: "W8BENE",
@@ -1018,6 +1028,7 @@ export const TaxAndCashDashboardIndirectTaxCanadaQuebec = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           status: "ACTIVE",
           disabled: false,
           documentType: "W8BENE",
@@ -1042,6 +1053,7 @@ export const TaxAndCashDashboardIndirectTaxSpain = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           status: "ACTIVE",
           disabled: false,
           documentType: "W8BENE",
@@ -1065,6 +1077,7 @@ export const TaxAndCashDashboardIndirectTaxNotRegistered = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           status: "ACTIVE",
           documentType: "W8BEN",
           documentTypeString: taxTypeToName("W8BEN"),
@@ -1083,6 +1096,7 @@ export const TaxAndCashDashboardLoading = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           disabled: false,
           status: "ACTIVE",
           documentType: "W9",
@@ -1102,6 +1116,7 @@ export const TaxAndCashDashboardWithGeneralError = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           disabled: false,
           status: "ACTIVE",
           documentType: "W9",
@@ -1126,6 +1141,7 @@ export const TaxAndCashDashboardDisabled = () => {
     <sqm-tax-and-cash-dashboard
       demoData={{
         states: {
+          canEditPayoutInfo: true,
           disabled: true,
           status: "NOT_ACTIVE",
           documentType: "W8BEN",

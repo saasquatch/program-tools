@@ -12,13 +12,13 @@ const bankingFormProps: StoryDemoData<BankingInfoFormViewProps> = {
     disabled: false,
     loading: false,
     formState: {
+      bankCountry: "US",
       paymentMethodChecked: "toBankAccount",
     },
     hasPayPal: false,
     isPartner: false,
     saveDisabled: false,
     thresholds: [],
-    bankCountry: "US",
     currency: "USD",
   },
 
@@ -91,7 +91,9 @@ export const BankingInfoFormCountryUSCurrencyUSD = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
-          bankCountry: "US",
+          formState: {
+            bankCountry: "US",
+          },
           currency: "USD",
         },
       }}
@@ -125,7 +127,9 @@ export const BankingInfoFormCountryUSCurrencyUSDLoading = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
-          bankCountry: "US",
+          formState: {
+            bankCountry: "US",
+          },
           loading: true,
           currency: "USD",
         },
@@ -141,9 +145,9 @@ export const BankingInfoFormCountryARCurrencyARS = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
-          bankCountry: "AR",
           formState: {
             ...bankingFormProps.states.formState,
+            bankCountry: "AR",
             paymentScheduleChecked: "FIXED_DAY",
             paymentMethodChecked: "toBankAccount",
           },
@@ -161,9 +165,9 @@ export const BankingInfoFormCountryMXCurrencyMXN = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
-          bankCountry: "MX",
           formState: {
             ...bankingFormProps.states.formState,
+            bankCountry: "MX",
             paymentScheduleChecked: "FIXED_DAY",
             paymentMethodChecked: "toBankAccount",
           },
@@ -181,7 +185,9 @@ export const BankingInfoFormCountryUSCurrencyGBP = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
-          bankCountry: "US",
+          formState: {
+            bankCountry: "US",
+          },
           currency: "GBP",
         },
       }}
@@ -196,7 +202,7 @@ export const BankingInfoFormCountryCanadaCurrencyCAD = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
-          bankCountry: "CA",
+          formState: { bankCountry: "CA" },
           currency: "CAD",
         },
       }}
@@ -211,7 +217,7 @@ export const BankingInfoFormCountryCanadaCurrencyUSD = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
-          bankCountry: "CA",
+          formState: { bankCountry: "CA" },
           currency: "USD",
         },
       }}
@@ -226,7 +232,7 @@ export const BankingInfoFormCountrySpainCurrencyUSD = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
-          bankCountry: "ES",
+          formState: { bankCountry: "ES" },
           currency: "USD",
         },
       }}
@@ -291,9 +297,9 @@ export const BankingInfoFormWithBalanceThresholdPaymentSchedule = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
-          bankCountry: "US",
           formState: {
             ...bankingFormProps.states.formState,
+            bankCountry: "US",
             paymentScheduleChecked: "BALANCE_THRESHOLD",
           },
           currency: "USD",
@@ -311,7 +317,6 @@ export const BankingInfoFormWithBalanceThresholdPaymentScheduleWithError =
           ...bankingFormProps,
           states: {
             ...bankingFormProps.states,
-            bankCountry: "US",
             formState: {
               errors: {
                 inputErrors: {
@@ -319,6 +324,7 @@ export const BankingInfoFormWithBalanceThresholdPaymentScheduleWithError =
                 },
               },
               ...bankingFormProps.states.formState,
+              bankCountry: "US",
               paymentScheduleChecked: "BALANCE_THRESHOLD",
             },
             currency: "USD",
@@ -336,9 +342,9 @@ export const BankingInfoFormWithBalanceThresholdPaymentScheduleLoading = () => {
         states: {
           ...bankingFormProps.states,
           loading: true,
-          bankCountry: "US",
           formState: {
             ...bankingFormProps.states.formState,
+            bankCountry: "US",
             paymentScheduleChecked: "BALANCE_THRESHOLD",
           },
           currency: "USD",
@@ -355,9 +361,9 @@ export const BankingInfoFormWithFixedDayPaymentSchedule = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
-          bankCountry: "US",
           formState: {
             ...bankingFormProps.states.formState,
+            bankCountry: "US",
             paymentScheduleChecked: "FIXED_DAY",
           },
           currency: "USD",
@@ -374,12 +380,12 @@ export const BankingInfoFormWithFixedDayPaymentScheduleWithError = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
-          bankCountry: "US",
           formState: {
             errors: {
               inputErrors: { fixedDay: { type: "required" } },
             },
             ...bankingFormProps.states.formState,
+            bankCountry: "US",
             paymentScheduleChecked: "FIXED_DAY",
           },
           currency: "USD",
@@ -397,9 +403,9 @@ export const BankingInfoFormWithFixedDayPaymentScheduleLoading = () => {
         states: {
           ...bankingFormProps.states,
           loading: true,
-          bankCountry: "US",
           formState: {
             ...bankingFormProps.states.formState,
+            bankCountry: "US",
             paymentScheduleChecked: "FIXED_DAY",
           },
           currency: "USD",

@@ -21,6 +21,7 @@ import { taxTypeToName } from "../utils";
 import { TaxAndCashDashboard } from "./sqm-tax-and-cash-dashboard";
 import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard-view";
 import { vatLabels } from "../countries";
+import { P } from "../../../global/mixins";
 
 function getExpiresSoon(submissionDate: number, expiryDate: number) {
   if (!submissionDate || !expiryDate) return false;
@@ -120,6 +121,7 @@ export const useTaxAndCashDashboard = (
       dateSubmitted,
       dateExpired,
       documentType,
+      canEditPayoutInfo: !publisher?.isExisting,
       documentTypeString: taxTypeToName(documentType),
       status: publisher?.currentTaxDocument?.status,
       subRegion: getSubRegionName(publisher?.taxInformation?.indirectTaxRegion),
