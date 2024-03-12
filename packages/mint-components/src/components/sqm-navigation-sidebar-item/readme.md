@@ -9,7 +9,7 @@
 
 | Property   | Attribute | Description                                                 | Type                                                                                        | Default     |
 | ---------- | --------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------- |
-| `demoData` | --        |                                                             | `{ data?: { label: string; icon: string; path: string; }; states?: { active: boolean; }; }` | `undefined` |
+| `demoData` | --        |                                                             | `{ states?: { active: boolean; }; data?: { label: string; icon: string; path: string; }; }` | `undefined` |
 | `icon`     | `icon`    | Options available at https://shoelace.style/components/icon | `string`                                                                                    | `undefined` |
 | `label`    | `label`   |                                                             | `string`                                                                                    | `undefined` |
 | `path`     | `path`    |                                                             | `string`                                                                                    | `undefined` |
