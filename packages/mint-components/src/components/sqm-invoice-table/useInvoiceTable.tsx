@@ -94,7 +94,8 @@ export function useInvoiceTable(
 
     setContent({ rows });
     const columns =
-      columnsPromise && ((await Promise.all(columnsPromise)) as string[]);
+      columnsPromise &&
+      ((await Promise.all(columnsPromise)) as Array<VNode | string>);
     // Set the content to render and finish loading components
     setContent({ columns, loading: false, page: states.currentPage });
   }

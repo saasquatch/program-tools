@@ -23,8 +23,10 @@ export interface PayoutDetailsCardViewProps {
     thresholdPayoutText: string;
     statusBadgeText: string;
     accountText: string;
-    errorTitleText: string;
-    errorDescriptionText: string;
+    error: {
+      errorTitleText: string;
+      errorDescriptionText: string;
+    };
   };
 }
 
@@ -196,8 +198,8 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
         >
           <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
           <div class={classes.AlertContent}>
-            <b>{text.errorTitleText}</b>
-            {text.errorDescriptionText}
+            <b>{text.error.errorTitleText}</b>
+            {text.error.errorDescriptionText}
           </div>
         </sl-alert>
       )}

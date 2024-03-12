@@ -1321,7 +1321,7 @@ export namespace Components {
          */
         "columnTitle": string;
         "renderCell": (_: Invoice) => Promise<any>;
-        "renderLabel": () => Promise<string>;
+        "renderLabel": () => Promise<any>;
     }
     interface SqmLeaderboard {
         /**
@@ -1571,14 +1571,34 @@ export namespace Components {
         "uppercaseErrorText": string;
     }
     interface SqmPayoutDetailsCard {
+        /**
+          * Text shown before account number
+          * @uiName Account text
+         */
         "accountText": string;
         /**
           * @undocumented
          */
         "demoData"?: DemoData<any>;
+        /**
+          * Error alert description shown above payout details card
+          * @uiName Error alert description
+         */
         "errorDescriptionText": string;
+        /**
+          * Error alert header shown above payout details card
+          * @uiName Error alert header
+         */
         "errorTitleText": string;
+        /**
+          * Badge text indicating payout status
+          * @uiName Payout badge status text
+         */
         "statusBadgeText": string;
+        /**
+          * Text shown above current balance indicating required balance for next payout
+          * @uiName Threshold payout text
+         */
         "thresholdPayoutText": string;
     }
     interface SqmPopupContainer {
@@ -3733,6 +3753,7 @@ export namespace Components {
          */
         "continueButton": string;
         /**
+          * Text shown before account number
           * @uiName Account text
           * @uiGroup Dashboard Properties
          */
@@ -3768,11 +3789,13 @@ export namespace Components {
          */
         "dashboard_editPaymentInformationButton": string;
         /**
+          * Error alert description shown above payout details card
           * @uiName Error description text
           * @uiGroup Dashboard Properties
          */
         "dashboard_errorDescriptionText": string;
         /**
+          * Error alert header shown above payout details card
           * @uiName Error title text
           * @uiGroup Dashboard Properties
          */
@@ -3844,7 +3867,8 @@ export namespace Components {
          */
         "dashboard_qstNumber": string;
         /**
-          * @uiName Status badge text
+          * Badge text indicating payout status
+          * @uiName Payout status badge text
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusBadgeText": string;
@@ -3909,6 +3933,7 @@ export namespace Components {
          */
         "dashboard_taxDocumentSectionSubHeader": string;
         /**
+          * Text shown above current balance indicating required balance for next payout
           * @uiName Threshold payout text
           * @uiGroup Dashboard Properties
          */
@@ -7164,14 +7189,34 @@ declare namespace LocalJSX {
         "uppercaseErrorText"?: string;
     }
     interface SqmPayoutDetailsCard {
+        /**
+          * Text shown before account number
+          * @uiName Account text
+         */
         "accountText"?: string;
         /**
           * @undocumented
          */
         "demoData"?: DemoData<any>;
+        /**
+          * Error alert description shown above payout details card
+          * @uiName Error alert description
+         */
         "errorDescriptionText"?: string;
+        /**
+          * Error alert header shown above payout details card
+          * @uiName Error alert header
+         */
         "errorTitleText"?: string;
+        /**
+          * Badge text indicating payout status
+          * @uiName Payout badge status text
+         */
         "statusBadgeText"?: string;
+        /**
+          * Text shown above current balance indicating required balance for next payout
+          * @uiName Threshold payout text
+         */
         "thresholdPayoutText"?: string;
     }
     interface SqmPopupContainer {
@@ -9302,6 +9347,7 @@ declare namespace LocalJSX {
          */
         "continueButton"?: string;
         /**
+          * Text shown before account number
           * @uiName Account text
           * @uiGroup Dashboard Properties
          */
@@ -9337,11 +9383,13 @@ declare namespace LocalJSX {
          */
         "dashboard_editPaymentInformationButton"?: string;
         /**
+          * Error alert description shown above payout details card
           * @uiName Error description text
           * @uiGroup Dashboard Properties
          */
         "dashboard_errorDescriptionText"?: string;
         /**
+          * Error alert header shown above payout details card
           * @uiName Error title text
           * @uiGroup Dashboard Properties
          */
@@ -9413,7 +9461,8 @@ declare namespace LocalJSX {
          */
         "dashboard_qstNumber"?: string;
         /**
-          * @uiName Status badge text
+          * Badge text indicating payout status
+          * @uiName Payout status badge text
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusBadgeText"?: string;
@@ -9478,6 +9527,7 @@ declare namespace LocalJSX {
          */
         "dashboard_taxDocumentSectionSubHeader"?: string;
         /**
+          * Text shown above current balance indicating required balance for next payout
           * @uiName Threshold payout text
           * @uiGroup Dashboard Properties
          */

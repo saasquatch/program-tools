@@ -96,8 +96,8 @@ Feature: Banking Information Form
     Then there will be a red border with a message underneath each of the inputs that are missing from the form
 
   @minutia
-  Scenario: A loading error banner appears when a form fails to load
-    When the participant views a form step
+  Scenario: A loading error banner appears when the form fails to load
+    When the participant views the form
     Then a request is made to fetch the form data
     But the request fails
     Then a loading error banner appears with <loadingErrorAlertHeader> and <loadingErrorAlertDescription>
