@@ -94,9 +94,8 @@ const style = {
   },
   IndirectTaxPreviewHeaderContainer: {
     marginTop: "var(--sl-spacing-x-large)",
-    marginBottom: "var(--sl-spacing-x-small)",
     display: "flex",
-    gap: "var(--sl-spacing-small)",
+    gap: "var(--sl-spacing-x-small)",
     "&::part(base)": {
       color: "var(--sl-color-green-500)",
     },
@@ -107,6 +106,11 @@ const style = {
     flexDirection: "column",
     lineHeight: "var(--sl-spacing-medium)",
     fontSize: "var(--sl-font-size-small)",
+    borderBottom: "1px solid var(--sl-color-neutral-200)",
+    paddingBottom: "var(--sl-spacing-xx-large)",
+  },
+  InvoiceTableContainer: {
+    marginTop: "var(--sl-spacing-xx-large)",
   },
   NotRegisteredIndirectTaxText: {
     color: "var(--sl-color-gray-500)",
@@ -371,6 +375,61 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             </sl-button> */}
           </div>
         </div>
+        <div class={sheet.classes.TaxDocumentsContainer}>
+          <div>
+            {states.loading ? (
+              <div class={sheet.classes.TaxSectionSkeletonContainer}>
+                <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
+                <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
+              </div>
+            ) : (
+              <div>
+                {states.noFormNeeded ? (
+                  <div>
+                    <h3
+                      class={sheet.classes.TaxDocumentsSectionHeaderContainer}
+                    >
+                      {text.taxDocumentSectionHeader}
+                    </h3>
+                    <p class={sheet.classes.TaxDocSubtext}>
+                      {text.noFormNeededSubtext}
+                    </p>
+                  </div>
+                ) : (
+                  <div>
+                    <span class={sheet.classes.TaxFormDetailsContainer}>
+                      <div class={sheet.classes.StatusContainer}>
+                        <h3>
+                          {intl.formatMessage(
+                            {
+                              id: "section-subheader",
+                              defaultMessage: text.taxDocumentSectionSubHeader,
+                            },
+                            {
+                              documentType: states.documentTypeString,
+                            }
+                          )}
+                        </h3>
+                        <span class={sheet.classes.StatusAlert}>
+                          {statusMap[states.status]}
+                        </span>
+                      </div>
+                    </span>
+                    <sl-button
+                      disabled={states.disabled || states.loading}
+                      onClick={callbacks.onClick}
+                      type="default"
+                      class={sheet.classes.NewFormButton}
+                      exportparts="base: secondarybutton-base"
+                    >
+                      {text.newFormButton}
+                    </sl-button>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
 
         <div class={sheet.classes.IndirectTaxPreviewContainer}>
           {states.loading ? (
@@ -443,60 +502,9 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             </div>
           )}
         </div>
-        <div class={sheet.classes.TaxDocumentsContainer}>
-          <div>
-            {states.loading ? (
-              <div class={sheet.classes.TaxSectionSkeletonContainer}>
-                <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-                <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
-              </div>
-            ) : (
-              <div>
-                {states.noFormNeeded ? (
-                  <div>
-                    <h3
-                      class={sheet.classes.TaxDocumentsSectionHeaderContainer}
-                    >
-                      {text.taxDocumentSectionHeader}
-                    </h3>
-                    <p class={sheet.classes.TaxDocSubtext}>
-                      {text.noFormNeededSubtext}
-                    </p>
-                  </div>
-                ) : (
-                  <div>
-                    <span class={sheet.classes.TaxFormDetailsContainer}>
-                      <div class={sheet.classes.StatusContainer}>
-                        <h3>
-                          {intl.formatMessage(
-                            {
-                              id: "section-subheader",
-                              defaultMessage: text.taxDocumentSectionSubHeader,
-                            },
-                            {
-                              documentType: states.documentTypeString,
-                            }
-                          )}
-                        </h3>
-                        <span class={sheet.classes.StatusAlert}>
-                          {statusMap[states.status]}
-                        </span>
-                      </div>
-                    </span>
-                    <sl-button
-                      disabled={states.disabled || states.loading}
-                      onClick={callbacks.onClick}
-                      type="default"
-                      class={sheet.classes.NewFormButton}
-                      exportparts="base: secondarybutton-base"
-                    >
-                      {text.newFormButton}
-                    </sl-button>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
+        {/* AL: TODO Pass props */}
+        <div class={sheet.classes.InvoiceTableContainer}>
+          <sqm-invoice-table />
         </div>
       </div>
     </div>
