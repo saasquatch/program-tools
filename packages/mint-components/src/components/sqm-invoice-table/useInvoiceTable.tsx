@@ -106,6 +106,7 @@ export function useInvoiceTable(
 
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (invoice: Invoice) => {
+      // TODO: probably going to pass in values as named by graphql
       const invoiceData = {
         earnings: invoice.totalAmount,
         taxedAmount: invoice.totalVatAmount,
