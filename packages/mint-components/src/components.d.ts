@@ -1285,15 +1285,19 @@ export namespace Components {
          */
         "smBreakpoint"?: number;
     }
-    interface SqmInvoiceTableCell {
-        "innerTemplate": string;
+    interface SqmInvoiceTableDataCell {
+        "data": string;
     }
-    interface SqmInvoiceTableColumn {
+    interface SqmInvoiceTableDataColumn {
         /**
           * @uiName Column title
          */
         "columnTitle": string;
-        "renderCell": (_: Invoice) => Promise<any>;
+        /**
+          * @uiName Property name
+         */
+        "property": string;
+        "renderCell": (data: Invoice) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmInvoiceTableDateCell {
@@ -5063,17 +5067,17 @@ declare global {
         prototype: HTMLSqmInvoiceTableElement;
         new (): HTMLSqmInvoiceTableElement;
     };
-    interface HTMLSqmInvoiceTableCellElement extends Components.SqmInvoiceTableCell, HTMLStencilElement {
+    interface HTMLSqmInvoiceTableDataCellElement extends Components.SqmInvoiceTableDataCell, HTMLStencilElement {
     }
-    var HTMLSqmInvoiceTableCellElement: {
-        prototype: HTMLSqmInvoiceTableCellElement;
-        new (): HTMLSqmInvoiceTableCellElement;
+    var HTMLSqmInvoiceTableDataCellElement: {
+        prototype: HTMLSqmInvoiceTableDataCellElement;
+        new (): HTMLSqmInvoiceTableDataCellElement;
     };
-    interface HTMLSqmInvoiceTableColumnElement extends Components.SqmInvoiceTableColumn, HTMLStencilElement {
+    interface HTMLSqmInvoiceTableDataColumnElement extends Components.SqmInvoiceTableDataColumn, HTMLStencilElement {
     }
-    var HTMLSqmInvoiceTableColumnElement: {
-        prototype: HTMLSqmInvoiceTableColumnElement;
-        new (): HTMLSqmInvoiceTableColumnElement;
+    var HTMLSqmInvoiceTableDataColumnElement: {
+        prototype: HTMLSqmInvoiceTableDataColumnElement;
+        new (): HTMLSqmInvoiceTableDataColumnElement;
     };
     interface HTMLSqmInvoiceTableDateCellElement extends Components.SqmInvoiceTableDateCell, HTMLStencilElement {
     }
@@ -5583,8 +5587,8 @@ declare global {
         "sqm-input-field": HTMLSqmInputFieldElement;
         "sqm-instant-access-registration": HTMLSqmInstantAccessRegistrationElement;
         "sqm-invoice-table": HTMLSqmInvoiceTableElement;
-        "sqm-invoice-table-cell": HTMLSqmInvoiceTableCellElement;
-        "sqm-invoice-table-column": HTMLSqmInvoiceTableColumnElement;
+        "sqm-invoice-table-data-cell": HTMLSqmInvoiceTableDataCellElement;
+        "sqm-invoice-table-data-column": HTMLSqmInvoiceTableDataColumnElement;
         "sqm-invoice-table-date-cell": HTMLSqmInvoiceTableDateCellElement;
         "sqm-invoice-table-date-column": HTMLSqmInvoiceTableDateColumnElement;
         "sqm-invoice-table-download-cell": HTMLSqmInvoiceTableDownloadCellElement;
@@ -6905,14 +6909,18 @@ declare namespace LocalJSX {
          */
         "smBreakpoint"?: number;
     }
-    interface SqmInvoiceTableCell {
-        "innerTemplate"?: string;
+    interface SqmInvoiceTableDataCell {
+        "data"?: string;
     }
-    interface SqmInvoiceTableColumn {
+    interface SqmInvoiceTableDataColumn {
         /**
           * @uiName Column title
          */
         "columnTitle"?: string;
+        /**
+          * @uiName Property name
+         */
+        "property"?: string;
     }
     interface SqmInvoiceTableDateCell {
         "date"?: number;
@@ -10516,8 +10524,8 @@ declare namespace LocalJSX {
         "sqm-input-field": SqmInputField;
         "sqm-instant-access-registration": SqmInstantAccessRegistration;
         "sqm-invoice-table": SqmInvoiceTable;
-        "sqm-invoice-table-cell": SqmInvoiceTableCell;
-        "sqm-invoice-table-column": SqmInvoiceTableColumn;
+        "sqm-invoice-table-data-cell": SqmInvoiceTableDataCell;
+        "sqm-invoice-table-data-column": SqmInvoiceTableDataColumn;
         "sqm-invoice-table-date-cell": SqmInvoiceTableDateCell;
         "sqm-invoice-table-date-column": SqmInvoiceTableDateColumn;
         "sqm-invoice-table-download-cell": SqmInvoiceTableDownloadCell;
@@ -10631,8 +10639,8 @@ declare module "@stencil/core" {
             "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
             "sqm-instant-access-registration": LocalJSX.SqmInstantAccessRegistration & JSXBase.HTMLAttributes<HTMLSqmInstantAccessRegistrationElement>;
             "sqm-invoice-table": LocalJSX.SqmInvoiceTable & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableElement>;
-            "sqm-invoice-table-cell": LocalJSX.SqmInvoiceTableCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableCellElement>;
-            "sqm-invoice-table-column": LocalJSX.SqmInvoiceTableColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableColumnElement>;
+            "sqm-invoice-table-data-cell": LocalJSX.SqmInvoiceTableDataCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDataCellElement>;
+            "sqm-invoice-table-data-column": LocalJSX.SqmInvoiceTableDataColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDataColumnElement>;
             "sqm-invoice-table-date-cell": LocalJSX.SqmInvoiceTableDateCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateCellElement>;
             "sqm-invoice-table-date-column": LocalJSX.SqmInvoiceTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateColumnElement>;
             "sqm-invoice-table-download-cell": LocalJSX.SqmInvoiceTableDownloadCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadCellElement>;
