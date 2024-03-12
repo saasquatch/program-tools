@@ -73,6 +73,11 @@ export namespace Components {
          */
         "agencyCodeLabel": string;
         /**
+          * Text for the back button in the form
+          * @uiName Back button text
+         */
+        "backButton": string;
+        /**
           * Label text for the bank account number input field
           * @uiName Bank account number input label
          */
@@ -5716,6 +5721,11 @@ declare namespace LocalJSX {
           * @uiName Agency code input label
          */
         "agencyCodeLabel"?: string;
+        /**
+          * Text for the back button in the form
+          * @uiName Back button text
+         */
+        "backButton"?: string;
         /**
           * Label text for the bank account number input field
           * @uiName Bank account number input label
