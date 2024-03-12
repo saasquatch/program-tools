@@ -35,11 +35,7 @@ import {
 
 function getCurrentStep(user: UserQuery["user"]) {
   console.log({ user });
-  if (
-    // TODO: this is causing users that are already created to land on step 1
-    // !user.impactConnection?.publisher?.taxInformation ||
-    !user.impactConnection?.connected
-  ) {
+  if (!user.impactConnection?.connected) {
     return "/1";
   }
 
