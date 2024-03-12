@@ -34,7 +34,7 @@ export class InvoiceTableGenericColumn implements InvoiceTableColumn {
 
   @Method()
   async renderLabel() {
-    return Promise.resolve(this.columnTitle);
+    return <span>{Promise.resolve(this.columnTitle)}</span>;
   }
 
   render() {

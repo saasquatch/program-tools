@@ -78,7 +78,7 @@ const simpleInvoiceTableProps = {
 
   elements: {
     columns: [
-      "",
+      <span></span>,
       "Date created",
       "Invoice",
       "Earnings",

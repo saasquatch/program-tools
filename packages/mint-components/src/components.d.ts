@@ -1332,7 +1332,7 @@ export namespace Components {
          */
         "columnTitle": string;
         "renderCell": (_: Invoice) => Promise<any>;
-        "renderLabel": () => Promise<string>;
+        "renderLabel": () => Promise<any>;
     }
     interface SqmLeaderboard {
         /**
