@@ -106,11 +106,10 @@ const style = {
     flexDirection: "column",
     lineHeight: "var(--sl-spacing-medium)",
     fontSize: "var(--sl-font-size-small)",
-    borderBottom: "1px solid var(--sl-color-neutral-200)",
-    paddingBottom: "var(--sl-spacing-xx-large)",
   },
   InvoiceTableContainer: {
     marginTop: "var(--sl-spacing-xx-large)",
+    borderTop: "1px solid var(--sl-color-neutral-200)",
   },
   NotRegisteredIndirectTaxText: {
     color: "var(--sl-color-gray-500)",
@@ -504,6 +503,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         </div>
         {/* AL: TODO Pass props */}
         <div class={sheet.classes.InvoiceTableContainer}>
+          <br />
           <sqm-invoice-table />
         </div>
       </div>
