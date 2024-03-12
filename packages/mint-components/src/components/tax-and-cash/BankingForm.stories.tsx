@@ -11,6 +11,7 @@ const bankingFormProps: StoryDemoData<BankingInfoFormViewProps> = {
     hideSteps: false,
     disabled: false,
     loading: false,
+    hideBackButton: false,
     formState: {
       bankCountry: "US",
       paymentMethodChecked: "toBankAccount",
@@ -27,6 +28,7 @@ const bankingFormProps: StoryDemoData<BankingInfoFormViewProps> = {
     onSubmit: async () => console.log("Submit"),
     setPaymentMethodChecked: () => {},
     setPaymentScheduleChecked: () => {},
+    onBack: async () => console.log("back"),
   },
   refs: { formRef: { current: null } },
 };

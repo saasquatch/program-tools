@@ -16,6 +16,7 @@ export interface BankingInfoFormViewProps {
     hidePayPal?: boolean;
     hideBalanceThreshold?: boolean;
     hideFixedDay?: boolean;
+    hideBackButton: boolean;
     feeCap?: string;
     isPartner: boolean;
     paymentMethodFeeLabel?: string;
@@ -55,6 +56,7 @@ export interface BankingInfoFormViewProps {
       paymentMethodChecked: "BALANCE_THRESHOLD" | "FIXED_DAY"
     ) => void;
     onSubmit: (props: any) => Promise<void>;
+    onBack: (props: any) => Promise<void>;
     setBankCountry?: (country: string) => void;
     setCurrency?: (currency: string) => void;
   };
@@ -67,6 +69,7 @@ export interface BankingInfoFormViewProps {
     paymentMethod: string;
     paymentMethodSubtext: string;
     continueButton: string;
+    backButton: string;
     bankLocationLabel: string;
     payPalInputLabel: string;
     paymentSchedule: string;
@@ -536,6 +539,15 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           >
             {text.continueButton}
           </sl-button>
+          {states.hideBackButton && (
+            <sl-button
+              class={classes.SecondaryBtn}
+              type="text"
+              onClick={callbacks.onBack}
+            >
+              {text.backButton}
+            </sl-button>
+          )}
         </div>
       </div>
     </sl-form>

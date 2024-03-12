@@ -136,6 +136,7 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
     loading: false,
     hasPayPal: false,
     isPartner: false,
+    hideBackButton: false,
     saveDisabled: false,
     thresholds: [],
     loadingError: false,
@@ -147,6 +148,7 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
     onSubmit: async () => console.log("Submit"),
     setPaymentMethodChecked: () => {},
     setPaymentScheduleChecked: () => {},
+    onBack: async () => console.log("back"),
   },
   refs: { formRef: { current: null } },
 };
