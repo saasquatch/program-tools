@@ -62,11 +62,12 @@ export function usePayoutDetailsCard(
       loading,
       thresholdBalance: `${publisher?.currency}${publisher?.withdrawalSettings?.paymentThreshold}`,
       balance: publisher?.payoutsAccount?.balance,
-      status: publisher?.withdrawalSettings?.paymentThreshold
-        ? "thresholdPayout"
-        : isPayoutToday
-        ? "payoutToday"
-        : "nextPayout",
+      status:
+        publisher?.withdrawalSettings?.paymentSchedulingType !== "FIXED_DAY"
+          ? "thresholdPayout"
+          : isPayoutToday
+          ? "payoutToday"
+          : "nextPayout",
       payoutType: publisher?.withdrawalSettings?.paymentMethod,
       error: publisher?.payoutsAccount?.hold,
       paypalEmailAddress: publisher?.withdrawalSettings?.paypalEmailAddress,

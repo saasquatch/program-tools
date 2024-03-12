@@ -84,6 +84,7 @@
 - [sqm-payout-details-card](../tax-and-cash/sqm-payout-details-card)
 - [sqm-invoice-table](../sqm-invoice-table)
 - [sqm-invoice-table-cell](../sqm-invoice-table/cells)
+- [sqm-invoice-table-download-cell](../sqm-invoice-table/cells)
 - [sqm-invoice-table-date-cell](../sqm-invoice-table/cells)
 - [sqm-invoice-table-date-column](../sqm-invoice-table/columns)
 
@@ -165,6 +166,7 @@ graph TD;
   sqm-stencilbook --> sqm-payout-details-card
   sqm-stencilbook --> sqm-invoice-table
   sqm-stencilbook --> sqm-invoice-table-cell
+  sqm-stencilbook --> sqm-invoice-table-download-cell
   sqm-stencilbook --> sqm-invoice-table-date-cell
   sqm-stencilbook --> sqm-invoice-table-date-column
   sqm-empty --> sqm-portal-container
