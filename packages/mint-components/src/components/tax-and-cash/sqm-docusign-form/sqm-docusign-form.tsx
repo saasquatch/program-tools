@@ -192,6 +192,7 @@ export class DocusignForm {
           url: props.data.documentUrl,
           status: props.states.docusignStatus,
           loading: props.states.loading,
+          urlLoading: props.states.urlLoading,
         }}
         callbacks={{
           onStatusChange: props.callbacks.setDocusignStatus,

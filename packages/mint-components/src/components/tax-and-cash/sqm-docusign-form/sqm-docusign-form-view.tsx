@@ -7,6 +7,7 @@ import { ParticipantType } from "./useDocusignForm";
 export interface DocusignFormViewProps {
   states: {
     loading: boolean;
+    urlLoading: boolean;
     submitDisabled: boolean;
     disabled: boolean;
     hideSteps: boolean;

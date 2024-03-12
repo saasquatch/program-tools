@@ -153,6 +153,7 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
 
 const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
   states: {
+    urlLoading: false,
     docusignStatus: undefined,
     hideSteps: false,
     documentType: "W9" as const,
