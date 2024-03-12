@@ -1326,12 +1326,6 @@ export namespace Components {
          */
         "programId": string;
         /**
-          * Show referred by user in table
-          * @uiName Show referrer
-          * @default
-         */
-        "showReferrer"?: boolean;
-        /**
           * @uiName Mobile breakpoint
          */
         "smBreakpoint"?: number;
@@ -6946,12 +6940,6 @@ declare namespace LocalJSX {
           * @uiWidget programSelector
          */
         "programId"?: string;
-        /**
-          * Show referred by user in table
-          * @uiName Show referrer
-          * @default
-         */
-        "showReferrer"?: boolean;
         /**
           * @uiName Mobile breakpoint
          */
