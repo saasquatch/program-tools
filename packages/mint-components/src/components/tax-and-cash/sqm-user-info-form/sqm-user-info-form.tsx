@@ -85,7 +85,6 @@ export class TaxForm {
    */
   @Prop() isPartnerAlertDescription: string =
     "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
-
   /**
    * The title for error message shown at the top of the page in an error banner
    *
@@ -110,6 +109,18 @@ export class TaxForm {
    * @uiName Field inputs error text
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
+  /**
+   * Alert header shown if there is a problem loading a form
+   * @uiName Loading error alert header
+   */
+  @Prop() loadingErrorAlertHeader: string =
+    "There was a problem loading your form";
+  /**
+   * Alert description shown if there is a problem loading a form
+   * @uiName Loading error alert description
+   */
+  @Prop() loadingErrorAlertDescription: string =
+    "Please refresh the page and try again. If this problem continues, contact Support.";
 
   /**
    * @undocumented
@@ -131,6 +142,8 @@ export class TaxForm {
         fieldRequiredError: props.fieldRequiredError,
         generalTitle: props.generalErrorTitle,
         generalDescription: props.generalErrorDescription,
+        loadingErrorAlertHeader: props.loadingErrorAlertHeader,
+        loadingErrorAlertDescription: props.loadingErrorAlertDescription,
       },
     };
   }
@@ -187,6 +200,7 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
         loading: false,
         isPartner: false,
         isUser: false,
+        loadingError: false,
         formState: {
           errors: {
             email: true,

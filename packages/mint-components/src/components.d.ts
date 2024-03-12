@@ -226,6 +226,16 @@ export namespace Components {
          */
         "isPartnerAlertHeader": string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader": string;
+        /**
           * Label text for the patronymic name input field
           * @uiName Patronymic name input label
          */
@@ -1039,6 +1049,16 @@ export namespace Components {
           * @uiName Registered for sub-region income tax option text
          */
         "isRegisteredSubRegionIncomeTax": string;
+        /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader": string;
         /**
           * Text for the option indicating not being registered for indirect tax
           * @uiName Not registered for indirect tax option text
@@ -3922,6 +3942,18 @@ export namespace Components {
          */
         "isPartnerAlertHeader": string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+          * @uiGroup General Form Properties
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+          * @uiGroup General Form Properties
+         */
+        "loadingErrorAlertHeader": string;
+        /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
           * @uiGroup Step 1 Properties
@@ -4550,6 +4582,16 @@ export namespace Components {
          */
         "invalidForm"?: string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader": string;
+        /**
           * Text displayed in the submit new document button at the bottom of the page
           * @uiName No form needed subtext
          */
@@ -4787,6 +4829,16 @@ export namespace Components {
           * @uiName Last name label
          */
         "lastName": string;
+        /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader": string;
         /**
           * Heading text shown above the forms inputs.
           * @uiName Form heading text
@@ -5760,6 +5812,16 @@ declare namespace LocalJSX {
          */
         "isPartnerAlertHeader"?: string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader"?: string;
+        /**
           * Label text for the patronymic name input field
           * @uiName Patronymic name input label
          */
@@ -6574,6 +6636,16 @@ declare namespace LocalJSX {
           * @uiName Registered for sub-region income tax option text
          */
         "isRegisteredSubRegionIncomeTax"?: string;
+        /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader"?: string;
         /**
           * Text for the option indicating not being registered for indirect tax
           * @uiName Not registered for indirect tax option text
@@ -9427,6 +9499,18 @@ declare namespace LocalJSX {
          */
         "isPartnerAlertHeader"?: string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+          * @uiGroup General Form Properties
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+          * @uiGroup General Form Properties
+         */
+        "loadingErrorAlertHeader"?: string;
+        /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
           * @uiGroup Step 1 Properties
@@ -10055,6 +10139,16 @@ declare namespace LocalJSX {
          */
         "invalidForm"?: string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader"?: string;
+        /**
           * Text displayed in the submit new document button at the bottom of the page
           * @uiName No form needed subtext
          */
@@ -10291,6 +10385,16 @@ declare namespace LocalJSX {
           * @uiName Last name label
          */
         "lastName"?: string;
+        /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader"?: string;
         /**
           * Heading text shown above the forms inputs.
           * @uiName Form heading text

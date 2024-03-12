@@ -21,9 +21,9 @@ export interface TaxAndCashDashboardProps {
     province?: string;
     country?: string;
     notRegistered?: boolean;
-    isIndirectTaxCanada?: boolean;
-    isBusinessEntity: boolean;
+    isBusinessEntity?: boolean;
     loading?: boolean;
+    loadingError?: boolean;
     errors?: {
       general?: boolean;
     };
@@ -66,6 +66,8 @@ export interface TaxAndCashDashboardProps {
     error: {
       generalTitle: string;
       generalDescription: string;
+      loadingErrorAlertHeader: string;
+      loadingErrorAlertDescription: string;
     };
   };
 }
@@ -324,6 +326,21 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
     <div>
       <div>
         <style type="text/css">{styleString}</style>
+        {states.loadingError && (
+          <div>
+            <sl-alert
+              exportparts="base: alert-base, icon:alert-icon"
+              type="danger"
+              open
+              class={sheet.classes.WarningAlertContainer}
+            >
+              <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+              <strong>{text.error.loadingErrorAlertHeader}</strong>
+              <br />
+              {text.error.loadingErrorAlertDescription}
+            </sl-alert>
+          </div>
+        )}
         {states.errors?.general && (
           <sl-alert
             exportparts="base: alert-base, icon:alert-icon"
