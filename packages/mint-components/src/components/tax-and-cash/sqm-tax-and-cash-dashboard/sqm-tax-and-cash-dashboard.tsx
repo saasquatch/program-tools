@@ -244,6 +244,18 @@ export class TaxAndCashDashboard {
    */
   @Prop() payoutFromImpact: string =
     "Payouts will be sent from our referral program provider, impact.com";
+  /**
+   * Alert header shown if there is a problem loading a form
+   * @uiName Loading error alert header
+   */
+  @Prop() loadingErrorAlertHeader: string =
+    "There was a problem loading your form";
+  /**
+   * Alert description shown if there is a problem loading a form
+   * @uiName Loading error alert description
+   */
+  @Prop() loadingErrorAlertDescription: string =
+    "Please refresh the page and try again. If this problem continues, contact Support.";
 
   /**
    * @undocumented
@@ -264,6 +276,8 @@ export class TaxAndCashDashboard {
       error: {
         generalDescription: props.generalErrorDescription,
         generalTitle: props.generalErrorTitle,
+        loadingErrorAlertHeader: props.loadingErrorAlertHeader,
+        loadingErrorAlertDescription: props.loadingErrorAlertDescription,
       },
     };
   }

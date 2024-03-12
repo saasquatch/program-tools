@@ -18,6 +18,8 @@ export interface BankingInfoFormViewProps {
     feeCap?: string;
     isPartner: boolean;
     paymentMethodFeeLabel?: string;
+    //AL: TODO loadingError
+    loadingError: boolean;
     formState: {
       paymentMethodChecked?: "toBankAccount" | "toPayPalAccount";
       paymentScheduleChecked?: "BALANCE_THRESHOLD" | "FIXED_DAY";
@@ -81,6 +83,8 @@ export interface BankingInfoFormViewProps {
     error: {
       generalTitle: string;
       generalDescription: string;
+      loadingErrorAlertHeader: string;
+      loadingErrorAlertDescription: string;
     };
   };
   refs: {
@@ -355,6 +359,21 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             {text.taxAndPayoutsDescription}
           </p>
         </div>
+        {states.loadingError && (
+          <div>
+            <sl-alert
+              exportparts="base: alert-base, icon:alert-icon"
+              type="danger"
+              open
+              class={sheet.classes.AlertContainer}
+            >
+              <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+              <strong>{text.error.loadingErrorAlertHeader}</strong>
+              <br />
+              {text.error.loadingErrorAlertDescription}
+            </sl-alert>
+          </div>
+        )}
         {formState.errors?.general && (
           <sl-alert
             exportparts="base: alert-base, icon:alert-icon"

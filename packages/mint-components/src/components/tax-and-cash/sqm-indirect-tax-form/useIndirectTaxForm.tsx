@@ -247,6 +247,8 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       disabled: loading || countriesLoading || connectLoading,
       loading: loading || connectLoading || countriesLoading,
       isPartner: !!userData?.user?.impactConnection?.publisher?.taxInformation,
+      //AL TODO loadingError
+      loadingError: false,
       formState: {
         checked: option,
         errors,

@@ -12,6 +12,8 @@ export interface UserInfoFormViewProps {
     isPartner: boolean;
     isUser: boolean;
     hideSteps: boolean;
+    // AL: TODO form loadingError
+    loadingError?: boolean;
     formState: {
       firstName?: string;
       lastName?: string;
@@ -64,6 +66,8 @@ export interface UserInfoFormViewProps {
       generalTitle: string;
       generalDescription: string;
       fieldRequiredError: string;
+      loadingErrorAlertHeader: string;
+      loadingErrorAlertDescription: string;
     };
   };
   refs: {
@@ -214,6 +218,22 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
         {styleString}
         {vanillaStyle}
       </style>
+      {states.loadingError && (
+        <div>
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            type="danger"
+            open
+            class={sheet.classes.AlertContainer}
+          >
+            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+            <strong>{text.error.loadingErrorAlertHeader}</strong>
+            <br />
+            {text.error.loadingErrorAlertDescription}
+          </sl-alert>
+          <br />
+        </div>
+      )}
       {states.loading ? (
         <GeneralLoadingView />
       ) : (
