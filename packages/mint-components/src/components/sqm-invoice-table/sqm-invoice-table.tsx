@@ -1,12 +1,20 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop } from "@stencil/core";
+import { useEffect, useMemo, useReducer } from "@saasquatch/universal-hooks";
+import { Component, h, Prop, VNode } from "@stencil/core";
+import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import {
   GenericTableView,
   GenericTableViewProps,
 } from "../../tables/GenericTableView";
-import { useRequestRerender } from "../../tables/re-render";
-import { useInvoiceTable } from "./useInvoiceTable";
+import {
+  useRequestRerender,
+  useRerenderListener,
+} from "../../tables/re-render";
+import { useChildElements } from "../../tables/useChildElements";
+import { tryMethod, useInvoiceTable } from "./useInvoiceTable";
+import mockInvoiceData from "./mockInvoiceData";
+import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
  * @uiName Invoice Table
@@ -45,14 +53,6 @@ export class InvoiceTable {
   @Prop() moreLabel?: string = "Next";
 
   /**
-   * Show referred by user in table
-   *
-   * @uiName Show referrer
-   * @default
-   */
-  @Prop() showReferrer?: boolean = false;
-
-  /**
    * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
    *
    * @uiName Hidden mobile columns
@@ -82,17 +82,11 @@ export class InvoiceTable {
     const empty = <EmptySlot />;
     const loading = <LoadingSlot />;
 
-    // const { states, data, callbacks, elements } = isDemo()
-    //   ? useInvoiceTableDemo(this, empty, loading)
-    //   : useInvoiceTable(this, empty, loading);
+    const { states, data, callbacks, elements } = isDemo()
+      ? useInvoiceTableDemo(this, empty, loading)
+      : useInvoiceTable(this, empty, loading);
 
-    const { states, data, callbacks, elements } = useInvoiceTable(
-      this,
-      empty,
-      loading
-    );
-
-    useRequestRerender([this.showReferrer, this.perPage]);
+    useRequestRerender([this.perPage]);
 
     return (
       <GenericTableView
@@ -137,151 +131,127 @@ function LoadingRow() {
   );
 }
 
-// function useInvoiceTableDemo(
-//   props: InvoiceTable,
-//   emptyElement: VNode,
-//   loadingElement: VNode
-// ): GenericTableViewProps {
-//   const [content, setContent] = useReducer<
-//     GenericTableViewProps["elements"],
-//     Partial<GenericTableViewProps["elements"]>
-//   >(
-//     (state, next) => ({
-//       ...state,
-//       ...next,
-//     }),
-//     {
-//       columns: [],
-//       rows: [],
-//       loading: false,
-//       page: 0,
-//     }
-//   );
+function useInvoiceTableDemo(
+  props: InvoiceTable,
+  emptyElement: VNode,
+  loadingElement: VNode
+): GenericTableViewProps {
+  const [content, setContent] = useReducer<
+    GenericTableViewProps["elements"],
+    Partial<GenericTableViewProps["elements"]>
+  >(
+    (state, next) => ({
+      ...state,
+      ...next,
+    }),
+    {
+      columns: [],
+      rows: [],
+      loading: false,
+      page: 0,
+    }
+  );
 
-//   const tick = useRerenderListener();
+  const tick = useRerenderListener();
 
-//   const mockData = useMemo(
-//     () => props.demoData?.mockData || mockInvoiceData(props.perPage),
-//     [props.perPage]
-//   );
+  const mockData = useMemo(
+    () => props.demoData?.mockData || mockInvoiceData(props.perPage),
+    [props.perPage]
+  );
 
-//   const components = useChildElements<Element>();
+  const components = useChildElements<Element>();
 
-//   async function getComponentData(components: Element[]) {
-//     let componentData;
-//     //@ts-ignore
-//     const referrerData = mockData?.referredByInvoice;
-//     const showReferrerRow =
-//       props.showReferrer &&
-//       //@ts-ignore
-//       !!mockData?.referredByInvoice?.dateInvoiceStarted;
+  async function getComponentData(components: Element[]) {
+    const componentData = mockData.data.slice(0, props.perPage);
 
-//     if (showReferrerRow) {
-//       componentData = mockData.data.slice(0, props.perPage - 1);
-//     } else {
-//       componentData = mockData.data.slice(0, props.perPage);
-//     }
-//     // filter out loading and empty states from columns array
-//     const columnComponents = components.filter(
-//       (component) =>
-//         component.slot !== "loading" &&
-//         component.slot !== "empty" &&
-//         component?.firstElementChild?.getAttribute("slot") !== "loading" &&
-//         component?.firstElementChild?.getAttribute("slot") !== "empty"
-//     );
-//     // get the column titles (renderLabel is asynchronous)
-//     const columnsPromise = columnComponents?.map(
-//       async (c: any, idx: number) => {
-//         const slot = c?.firstElementChild?.getAttribute("slot");
-//         // Custom plop targets
-//         if (
-//           c.tagName === "RAISINS-PLOP-TARGET" &&
-//           slot !== "loading" &&
-//           slot !== "empty"
-//         ) {
-//           c.setAttribute("slot", "column-" + idx);
-//           c.style.position = "absolute";
-//           // Replace add text with a simple + button
-//           const plopTarget = c.firstElementChild.childNodes[1];
-//           plopTarget.innerHTML = "＋";
-//           (plopTarget as HTMLElement).style.lineHeight = "20px";
-//           return tryMethod(c, () => c.renderLabel(idx));
-//         }
-//         return tryMethod(c, () => c.renderLabel());
-//       }
-//     );
+    // filter out loading and empty states from columns array
+    const columnComponents = components.filter(
+      (component) =>
+        component.slot !== "loading" &&
+        component.slot !== "empty" &&
+        component?.firstElementChild?.getAttribute("slot") !== "loading" &&
+        component?.firstElementChild?.getAttribute("slot") !== "empty"
+    );
+    // get the column titles (renderLabel is asynchronous)
+    const columnsPromise = columnComponents?.map(
+      async (c: any, idx: number) => {
+        const slot = c?.firstElementChild?.getAttribute("slot");
+        // Custom plop targets
+        if (
+          c.tagName === "RAISINS-PLOP-TARGET" &&
+          slot !== "loading" &&
+          slot !== "empty"
+        ) {
+          c.setAttribute("slot", "column-" + idx);
+          c.style.position = "absolute";
+          // Replace add text with a simple + button
+          const plopTarget = c.firstElementChild.childNodes[1];
+          plopTarget.innerHTML = "＋";
+          (plopTarget as HTMLElement).style.lineHeight = "20px";
+          return tryMethod(c, () => c.renderLabel(idx));
+        }
+        return tryMethod(c, () => c.renderLabel());
+      }
+    );
 
-//     // show the referrer row before any other rows (renderReferrerCell is asynchronous)
-//     let referrerRow;
-//     if (showReferrerRow) {
-//       const referrerPromise = columnComponents?.map(async (c: any) =>
-//         tryMethod(c, function renderCell() {
-//           return c.renderCell(referrerData, c);
-//         })
-//       );
-//       referrerRow = await Promise.all(referrerPromise);
-//     }
+    // get the column cells (renderCell is asynchronous)
+    const cellsPromise = componentData?.map(async (r) => {
+      const cellPromise = columnComponents?.map(async (c: any) =>
+        tryMethod(c, () => c.renderCell(r, undefined))
+      );
+      const cells = (await Promise.all(cellPromise)) as VNode[];
+      return cells;
+    });
 
-//     // get the column cells (renderCell is asynchronous)
-//     const cellsPromise = componentData?.map(async (r) => {
-//       const cellPromise = columnComponents?.map(async (c: any) =>
-//         tryMethod(c, () => c.renderCell(r, undefined))
-//       );
-//       const cells = (await Promise.all(cellPromise)) as VNode[][];
-//       return cells;
-//     });
+    const rows =
+      cellsPromise &&
+      [...(await Promise.all(cellsPromise))].filter((value) => value);
 
-//     const rows =
-//       cellsPromise &&
-//       [referrerRow, ...(await Promise.all(cellsPromise))].filter(
-//         (value) => value
-//       );
+    setContent({ rows });
+    const columns =
+      columnsPromise && ((await Promise.all(columnsPromise)) as string[]);
+    // Set the content to render and finish loading components
+    setContent({ columns, loading: false, page: 0 });
+  }
 
-//     setContent({ rows });
-//     const columns =
-//       columnsPromise && ((await Promise.all(columnsPromise)) as string[]);
-//     // Set the content to render and finish loading components
-//     setContent({ columns, loading: false, page: 0 });
-//   }
+  useEffect(() => {
+    setContent({ loading: true });
+    mockData?.data && getComponentData(components);
+  }, [mockData?.data, components, tick]);
 
-//   useEffect(() => {
-//     setContent({ loading: true });
-//     mockData?.data && getComponentData(components);
-//   }, [mockData?.data, components, tick]);
+  const demoProps = deepmerge(
+    {
+      states: {
+        hasPrev: false,
+        hasNext: false,
+        loading: false,
+        show: "rows",
+      },
+      callbacks: {
+        prevPage: () => console.log("Prev"),
+        nextPage: () => console.log("Next"),
+      },
+      data: {
+        textOverrides: {
+          showLabels: !props.hideLabels,
+          prevLabel: props.prevLabel,
+          moreLabel: props.moreLabel,
+        },
+        hiddenColumns: props.hiddenColumns,
+        invoiceData: [],
+        mdBreakpoint: 799,
+        smBreakpoint: 599,
+      },
+      elements: {
+        columns: content.columns,
+        rows: content.rows,
+        emptyElement,
+        loadingElement,
+      },
+    },
+    props.demoData || {},
+    { arrayMerge: (_, a) => a }
+  );
 
-//   const demoProps = deepmerge(
-//     {
-//       states: {
-//         hasPrev: false,
-//         hasNext: false,
-//         loading: false,
-//         show: "rows",
-//       },
-//       callbacks: {
-//         prevPage: () => console.log("Prev"),
-//         nextPage: () => console.log("Next"),
-//       },
-//       data: {
-//         textOverrides: {
-//           showLabels: !props.hideLabels,
-//           prevLabel: props.prevLabel,
-//           moreLabel: props.moreLabel,
-//         },
-//         hiddenColumns: props.hiddenColumns,
-//         invoiceData: [],
-//         mdBreakpoint: 799,
-//         smBreakpoint: 599,
-//       },
-//       elements: {
-//         columns: content.columns,
-//         rows: content.rows,
-//         emptyElement,
-//         loadingElement,
-//       },
-//     },
-//     props.demoData || {},
-//     { arrayMerge: (_, a) => a }
-//   );
-
-//   return demoProps;
-// }
+  return demoProps;
+}
