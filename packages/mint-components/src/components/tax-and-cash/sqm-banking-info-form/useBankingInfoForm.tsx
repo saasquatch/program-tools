@@ -704,10 +704,10 @@ export function useBankingInfoForm(
       (paymentOption) => paymentOption.countryCode === initialData.bankCountry
     );
 
+    console.log({ initialData });
     setCurrentPaymentOption(currentPaymentOption);
-    setFormState(initialData);
-
     setPaymentScheduleChecked(initialData.paymentSchedulingType);
+    setFormState(initialData);
     setPaymentMethodChecked(
       initialData.paymentMethod === "PAYPAL"
         ? "toPayPalAccount"
