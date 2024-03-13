@@ -121,7 +121,7 @@ export const useTaxAndCashDashboard = (
       dateSubmitted,
       dateExpired,
       documentType,
-      canEditPayoutInfo: !publisher?.isExisting,
+      canEditPayoutInfo: publisher?.brandedSignup,
       documentTypeString: taxTypeToName(documentType),
       status: publisher?.currentTaxDocument?.status,
       subRegion: getSubRegionName(publisher?.taxInformation?.indirectTaxRegion),

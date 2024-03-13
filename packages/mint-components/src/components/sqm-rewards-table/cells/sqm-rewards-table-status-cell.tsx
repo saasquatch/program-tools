@@ -52,14 +52,17 @@ export class RewardTableStatusCell {
   @Prop() pendingUnhandled: string = "Fulfillment error";
   @Prop() pendingReviewText: string = "Awaiting review";
   @Prop() deniedText: string = "Detected self-referral";
-  @Prop() payoutFailed: string = "This payout will be retried on {date}";
+  @Prop() payoutFailed: string =
+    "Payout failed due to a fulfillment issue and is currently being retried.";
   @Prop() payoutSent: string =
-    "Payout process started on {date}. Expected payout on {date}.";
+    "Reward approved for payout on {date} and scheduled for payment based on your settings.";
 
   rewardStatus(reward: Reward): string {
     const fraudStatus = reward.referral?.fraudData?.moderationStatus;
     const hasExpired = reward.statuses?.includes("EXPIRED");
     const isPending = reward.statuses?.includes("PENDING");
+    const payoutSent = reward.statuses?.includes("PAYOUT_SENT");
+    const payoutFailed = reward.statuses?.includes("PAYOUT_FAILED");
     const integrationOrFueltankReward =
       reward.type === "INTEGRATION" || reward.type === "FUELTANK";
 
@@ -68,6 +71,8 @@ export class RewardTableStatusCell {
     if (reward.dateCancelled) return "CANCELLED";
     if (hasExpired) return "EXPIRED";
     if (isPending) return "PENDING";
+    if (payoutSent) return "PAYOUT_SENT";
+    if (payoutFailed) return "PAYOUT_FAILED";
 
     if (reward.type === "CREDIT") {
       return reward.statuses?.includes("REDEEMED") ? "REDEEMED" : "AVAILABLE";
@@ -134,12 +139,17 @@ export class RewardTableStatusCell {
     }
   }
 
-  getPayoutStatusText(taxStatus: string) {
+  getPayoutStatusText(taxStatus: string, date?: string) {
     switch (taxStatus) {
       case "US_TAX":
         return this.pendingUsTax;
       case "PAYOUT_SENT":
-        return this.payoutSent;
+        return intl.formatMessage(
+          { id: "statusMessage", defaultMessage: this.payoutSent },
+          {
+            date,
+          }
+        );
       case "PAYOUT_FAILED":
         return this.payoutFailed;
       case "PENDING_TAX_REVIEW":
@@ -202,7 +212,7 @@ export class RewardTableStatusCell {
           type={badgeType}
           pill
           class={
-            rewardStatus === "REDEEMED"
+            rewardStatus === "REDEEMED" || rewardStatus === "PAYOUT_SENT"
               ? sheet.classes.RedeemBadge
               : sheet.classes.Badge
           }
@@ -210,7 +220,11 @@ export class RewardTableStatusCell {
           {statusText}
         </sl-badge>
         <p class={sheet.classes.Date}>
-          {fraudStatusText || pendingReasons || date}
+          {fraudStatusText ||
+            pendingReasons ||
+            date ||
+            //AL: TODO PASS REAL DATE INTO FUNC
+            this.getPayoutStatusText(rewardStatus, date)}
         </p>
       </div>
     );

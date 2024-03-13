@@ -368,7 +368,8 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             {text.error.generalDescription}
           </sl-alert>
         )}
-        {states.isPartner && (
+        {/* Don't show the warning if returning to edit */}
+        {states.isPartner && !states.hideSteps && (
           <sl-alert
             exportparts="base: alert-base, icon:alert-icon"
             type="primary"
