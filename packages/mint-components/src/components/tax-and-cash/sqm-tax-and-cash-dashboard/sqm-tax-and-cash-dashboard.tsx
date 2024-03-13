@@ -88,7 +88,7 @@ export class TaxAndCashDashboard {
    * @uiName Tax W8 alert message
    */
   @Prop() taxAlertNotActiveMessageW8?: string =
-    "Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 BEN-E form.";
+    "Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new {documentType} form.";
   /**
    * Description text displayed next to the badge in the tax documents status
    *
