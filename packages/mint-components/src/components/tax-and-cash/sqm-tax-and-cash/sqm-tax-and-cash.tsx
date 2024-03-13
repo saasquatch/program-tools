@@ -107,7 +107,7 @@ export class TaxAndCashMonolith {
    * @uiName Indirect tax details heading
    * @uiGroup Step 2 Properties
    */
-  @Prop() step2_indirectTaxDetails: string = "Indirect Tax Details";
+  @Prop() step2_indirectTaxDetails: string = "Indirect tax details";
   /**
    * Sub text shown above the tax details radio buttons
    * @uiName Indirect tax details sub text
@@ -146,7 +146,7 @@ export class TaxAndCashMonolith {
    * @uiName Selected region select input label
    * @uiGroup Step 2 Properties
    */
-  @Prop() step2_selectedRegion: string = "Country / Region of Indirect Tax";
+  @Prop() step2_selectedRegion: string = "Country / region of indirect tax";
   /**
    * Label text for the Province select input
    * @uiName Province select input label
@@ -160,13 +160,13 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_indirectTaxNumber: string =
-    "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number} SST {SST Number} GENERAL {Indirect Tax Number}}";
+    "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}}";
   /**
    * Label text for the QST Tax Number input
    * @uiName QST Tax Number input label
    * @uiGroup Step 2 Properties
    */
-  @Prop() step2_qstNumber: string = "QST Number";
+  @Prop() step2_qstNumber: string = "QST number";
   /**
    * Label text for the QST checkbox
    * @uiName checkbox label
@@ -198,14 +198,14 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_cannotChangeInfoAlert: string =
-    "Changes to your personal information and indirect tax can only be made through our Support team after you complete this step. Ensure these are correct before continuing.";
+    "Changes to your personal and indirect tax information can only be made through our Support team after you complete this step. Make sure these are correct before continuing.";
   /**
    * Error text shown below the Indirect Tax Number select input
    * @uiName Indirect Tax Number error text
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_indirectTaxNumberError: string =
-    "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number} SST {SST Number} GENERAL {Indirect Tax Number}} is required";
+    "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}} is required";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 3 PROPS:
@@ -379,7 +379,7 @@ export class TaxAndCashMonolith {
    * @uiName Payment day select label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_paymentThresholdSelectLabel: string = "Payment Threshold";
+  @Prop() step4_paymentThresholdSelectLabel: string = "Payment threshold";
   /**
    * Label text for the payment day select option for the first of the month
    * @uiName First of month label text
@@ -398,13 +398,13 @@ export class TaxAndCashMonolith {
    * @uiName Payment method heading text
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_paymentMethod: string = "Payment Method";
+  @Prop() step4_paymentMethod: string = "Payment method";
   /**
    * Heading text for the payment schedule section
    * @uiName Payment schedule heading text
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_paymentSchedule: string = "Payment Schedule";
+  @Prop() step4_paymentSchedule: string = "Payment schedule";
   /**
    * Subtext for the payment method section
    * @uiName Payment method subtext
@@ -417,13 +417,13 @@ export class TaxAndCashMonolith {
    * @uiName PayPal email input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_payPalInputLabel: string = "PayPal Email";
+  @Prop() step4_payPalInputLabel: string = "PayPal email";
   /**
    * Label text for the bank country location input field
    * @uiName Bank country location input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_bankLocationLabel: string = "Bank Country Location";
+  @Prop() step4_bankLocationLabel: string = "Bank country location";
   /**
    * Label text for the beneficiary account name input field
    * @uiName Beneficiary account name input label
@@ -437,7 +437,7 @@ export class TaxAndCashMonolith {
    * @uiName Bank account type input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_bankAccountTypeLabel: string = "Bank Account Type";
+  @Prop() step4_bankAccountTypeLabel: string = "Bank account type";
 
   /**
    * Label text for the checking account type select item
@@ -458,7 +458,7 @@ export class TaxAndCashMonolith {
    * @uiName Bank account number input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_bankAccountNumberLabel: string = "Bank Account Number";
+  @Prop() step4_bankAccountNumberLabel: string = "Bank account number";
 
   /**
    * Label text for the IBAN input field
@@ -472,28 +472,28 @@ export class TaxAndCashMonolith {
    * @uiName SWIFT code input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_swiftCodeLabel: string = "SWIFT Code";
+  @Prop() step4_swiftCodeLabel: string = "SWIFT code";
 
   /**
    * Label text for the routing code input field
    * @uiName Routing code input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_routingCodeLabel: string = "Routing Code";
+  @Prop() step4_routingCodeLabel: string = "Routing code";
 
   /**
    * Label text for the bank name input field
    * @uiName Bank name input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_bankNameLabel: string = "Bank Name";
+  @Prop() step4_bankNameLabel: string = "Bank name";
 
   /**
    * Label text for the classification entity input field
    * @uiName Classification entity input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_classificationEntityLabel: string = "Classification Entity";
+  @Prop() step4_classificationEntityLabel: string = "Classification entity";
 
   /**
    * Label text for the business select item
@@ -528,28 +528,28 @@ export class TaxAndCashMonolith {
    * @uiName Patronymic name input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_patronymicNameLabel: string = "Patronymic Name";
+  @Prop() step4_patronymicNameLabel: string = "Patronymic name";
 
   /**
    * Label text for the VO code input field
    * @uiName VO code input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_voCodeLabel: string = "VO Code";
+  @Prop() step4_voCodeLabel: string = "VO code";
 
   /**
    * Label text for the agency code input field
    * @uiName Agency code input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_agencyCodeLabel: string = "Agency Code";
+  @Prop() step4_agencyCodeLabel: string = "Agency code";
 
   /**
    * Label text for the branch code input field
    * @uiName Branch code input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_branchCodeLabel: string = "Branch Code";
+  @Prop() step4_branchCodeLabel: string = "Branch code";
 
   /**
    * Label text for the classification input field
@@ -570,13 +570,13 @@ export class TaxAndCashMonolith {
    * @uiName Bank Address input item label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_bankAddressLabel: string = "Bank Address";
+  @Prop() step4_bankAddressLabel: string = "Bank address";
   /**
    * Label text for the Bank City input
    * @uiName Bank City Label input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_bankCityLabel: string = "Bank City";
+  @Prop() step4_bankCityLabel: string = "Bank city";
   /**
    * Label text for the Bank Province / State input
    * @uiName Bank Province / State input label
@@ -588,7 +588,7 @@ export class TaxAndCashMonolith {
    * @uiName  Bank Postal Code input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_bankPostalCodeLabel: string = "Bank Postal Code";
+  @Prop() step4_bankPostalCodeLabel: string = "Bank postal code";
   /**
    * Alert text indicating participant cannot change info after it has been submitted
    * @uiName Cannot change info Alert text
