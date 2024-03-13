@@ -718,7 +718,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_taxAlertNotActiveMessageW8?: string =
-    "Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 BEN form.";
+    "Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new {documentType} form.";
   /**
    * Description text displayed next to the badge in the tax documents status
    *
@@ -922,6 +922,12 @@ export class TaxAndCashMonolith {
    */
   @Prop() backButton: string = "Back";
   /**
+   * Text shown inside of cancel button
+   * @uiName Cancel button text
+   * @uiGroup General Form Properties
+   */
+  @Prop() cancelButton: string = "Cancel";
+  /**
    * Alert header text shown in alert if user is already a registered partner
    * @uiName Participant is partner title
    * @uiGroup General Form Properties
@@ -973,6 +979,7 @@ export class TaxAndCashMonolith {
       fieldInvalidError: props.fieldInvalidError,
       continueButton: props.continueButton,
       backButton: props.backButton,
+      cancelButton: props.cancelButton,
       isPartnerAlertHeader: props.isPartnerAlertHeader,
       isPartnerAlertDescription: props.isPartnerAlertDescription,
       loadingErrorAlertHeader: props.loadingErrorAlertHeader,

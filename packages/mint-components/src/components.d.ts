@@ -572,6 +572,11 @@ export namespace Components {
          */
         "businessEntity": string;
         /**
+          * Text shown inside of cancel button
+          * @uiName Cancel button text
+         */
+        "cancelButton": string;
+        /**
           * Label text for the form submission checkbox
           * @uiName Form submission checkbox label
          */
@@ -3743,6 +3748,12 @@ export namespace Components {
          */
         "backButton": string;
         /**
+          * Text shown inside of cancel button
+          * @uiName Cancel button text
+          * @uiGroup General Form Properties
+         */
+        "cancelButton": string;
+        /**
           * Text for the continue button in the form
           * @uiName Continue button text
           * @uiGroup General Form Properties
@@ -6191,6 +6202,11 @@ declare namespace LocalJSX {
           * @uiName Business entity radio button label
          */
         "businessEntity"?: string;
+        /**
+          * Text shown inside of cancel button
+          * @uiName Cancel button text
+         */
+        "cancelButton"?: string;
         /**
           * Label text for the form submission checkbox
           * @uiName Form submission checkbox label
@@ -9332,6 +9348,12 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "backButton"?: string;
+        /**
+          * Text shown inside of cancel button
+          * @uiName Cancel button text
+          * @uiGroup General Form Properties
+         */
+        "cancelButton"?: string;
         /**
           * Text for the continue button in the form
           * @uiName Continue button text

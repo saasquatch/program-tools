@@ -91,7 +91,8 @@ Feature: Tax And Cash Dashboard
     Examples:
       | status     | documentType | taxAlertHeader                                                             | taxAlertMessage                                                                                                              |
       | NOT_ACTIVE | W9           | Your W9 tax form has personal information that doesn't match your profile. | Please resubmit a new W9 form.                                                                                               |
-      | NOT_ACTIVE | W8-BEN | W8-BEN tax form is invalid. | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 BEN form. |
+      | NOT_ACTIVE | W8-BEN   | W8-BEN tax form is invalid. | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 BEN form.   |
+      | NOT_ACTIVE | W8-BEN-E | W8-BEN tax form is invalid. | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 BEN-E form. |
 
   @unknown
   Scenario: Submit New Tax Document Form
