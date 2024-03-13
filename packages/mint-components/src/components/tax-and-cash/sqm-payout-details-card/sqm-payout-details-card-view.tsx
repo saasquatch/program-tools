@@ -115,13 +115,13 @@ const style = {
   },
   Alert: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-red-100)",
-      borderTop: "none",
+      backgroundColor: "var(--sl-color-warning-100)",
+      border: "1px solid var(--sl-color-warning-300)",
       padding: "0 16px",
     },
 
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sl-color-warning-500)",
     },
   },
   AlertContent: {
@@ -193,10 +193,10 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
         <sl-alert
           exportparts="base: alert-base, icon:alert-icon"
           class={classes.Alert}
-          type="danger"
+          type="warning"
           open
         >
-          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+          <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
           <div class={classes.AlertContent}>
             <b>{text.error.errorTitleText}</b>
             {text.error.errorDescriptionText}
