@@ -685,13 +685,13 @@ export function useBankingInfoForm(
 
     if (
       withdrawalSettings &&
-      userData.user?.impactConnection?.publisher?.brandedSignup
+      // TODO userData.user?.impactConnection?.publisher?.brandedSignup
+      !userData.user?.impactConnection?.publisher?.brandedSignup
     ) {
       initialData = {
         ...initialData,
         paymentMethod: withdrawalSettings.paymentMethod,
         paypalEmailAddress: withdrawalSettings.paypalEmailAddress,
-        bankAccountNumber: withdrawalSettings.bankAccountNumber,
         paymentSchedulingType: withdrawalSettings.paymentSchedulingType,
         paymentThreshold: parseImpactThreshold(
           withdrawalSettings.paymentThreshold
