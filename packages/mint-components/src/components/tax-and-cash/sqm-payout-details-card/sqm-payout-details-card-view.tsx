@@ -230,7 +230,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
           ) : (
             <div class={classes.AccountDetailsContainer}>
               <span>
-                {text.accountText} {"••" + states.cardNumberPreview}
+                {text.accountText} {states.cardNumberPreview}
               </span>
             </div>
           )}
