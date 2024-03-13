@@ -8,6 +8,8 @@ import {
   Redeemed,
   Denied,
   PendingReview,
+  PayoutSent,
+  PayoutFailed,
 } from "./ReferralTableRewardsCell.stories";
 import {
   DateCell,
@@ -161,6 +163,18 @@ const simpleUserTableProps = {
         <ConvertedStatus />,
         <DateCell />,
         <Redeemed />,
+      ],
+      [
+        <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
+        <ConvertedStatus />,
+        <DateCell />,
+        <PayoutSent />,
+      ],
+      [
+        <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
+        <ConvertedStatus />,
+        <DateCell />,
+        <PayoutFailed />,
       ],
       [
         <sqm-referral-table-user-cell name="Tom Smith"></sqm-referral-table-user-cell>,

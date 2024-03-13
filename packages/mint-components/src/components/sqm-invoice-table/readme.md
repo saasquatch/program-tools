@@ -9,7 +9,7 @@
 
 | Property        | Attribute        | Description                                                                                                                                                                                                                                                                | Type                                                                                                            | Default                                                                              |
 | --------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `demoData`      | --               |                                                                                                                                                                                                                                                                            | `Partial<Pick<GenericTableViewProps, "data" \| "states" \| "elements">> & { mockData?: { data: Invoice[]; }; }` | `undefined`                                                                          |
+| `demoData`      | --               |                                                                                                                                                                                                                                                                            | `Partial<Pick<GenericTableViewProps, "states" \| "data" \| "elements">> & { mockData?: { data: Invoice[]; }; }` | `undefined`                                                                          |
 | `description`   | `description`    |                                                                                                                                                                                                                                                                            | `string`                                                                                                        | `"View and download your invoices to report your earnings and stay tax compliant. "` |
 | `header`        | `header`         |                                                                                                                                                                                                                                                                            | `string`                                                                                                        | `"Invoices"`                                                                         |
 | `hiddenColumns` | `hidden-columns` | Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3                                                                                                                                                                             | `string`                                                                                                        | `"0"`                                                                                |
@@ -27,6 +27,7 @@
 ### Used by
 
  - [sqm-stencilbook](../sqm-stencilbook)
+ - [sqm-tax-and-cash-dashboard](../tax-and-cash/sqm-tax-and-cash-dashboard)
 
 ### Depends on
 
@@ -45,6 +46,7 @@ graph TD;
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
   sqm-stencilbook --> sqm-invoice-table
+  sqm-tax-and-cash-dashboard --> sqm-invoice-table
   style sqm-invoice-table fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -827,6 +827,7 @@ export function useBankingInfoForm(
       setBankCountry: updateBankCountry,
       setPaymentMethodChecked,
       setPaymentScheduleChecked,
+      onBack: async () => console.log("back"),
     },
     states: {
       saveDisabled: !paymentMethodChecked || !paymentScheduleChecked,
@@ -836,6 +837,7 @@ export function useBankingInfoForm(
       feeCap,
       paymentMethodFeeLabel,
       disabled: loading,
+      hideBackButton: false,
       // TODO: possibly add loading here, it causes all fields to be cleared on save if all field are filled out though
       loading: !paymentOptions,
       saveLoading: loading,

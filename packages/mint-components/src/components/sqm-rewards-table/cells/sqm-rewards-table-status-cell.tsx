@@ -57,9 +57,12 @@ export class RewardTableStatusCell {
     "Payout process started on {date}. Expected payout on {date}.";
 
   rewardStatus(reward: Reward): string {
+    console.log(reward);
     const fraudStatus = reward.referral?.fraudData?.moderationStatus;
     const hasExpired = reward.statuses?.includes("EXPIRED");
     const isPending = reward.statuses?.includes("PENDING");
+    const payoutSent = reward.statuses?.includes("PAYOUT_SENT");
+    const payoutFailed = reward.statuses?.includes("PAYOUT_FAILED");
     const integrationOrFueltankReward =
       reward.type === "INTEGRATION" || reward.type === "FUELTANK";
 
@@ -68,6 +71,8 @@ export class RewardTableStatusCell {
     if (reward.dateCancelled) return "CANCELLED";
     if (hasExpired) return "EXPIRED";
     if (isPending) return "PENDING";
+    if (payoutSent) return "PAYOUT_SENT";
+    if (payoutFailed) return "PAYOUT_FAILED";
 
     if (reward.type === "CREDIT") {
       return reward.statuses?.includes("REDEEMED") ? "REDEEMED" : "AVAILABLE";
@@ -202,7 +207,7 @@ export class RewardTableStatusCell {
           type={badgeType}
           pill
           class={
-            rewardStatus === "REDEEMED"
+            rewardStatus === "REDEEMED" || rewardStatus === "PAYOUT_SENT"
               ? sheet.classes.RedeemBadge
               : sheet.classes.Badge
           }

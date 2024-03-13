@@ -326,6 +326,11 @@ export class BankingInfoForm {
    */
   @Prop() continueButton: string = "Save";
   /**
+   * Text for the back button in the form
+   * @uiName Back button text
+   */
+  @Prop() backButton: string = "Save";
+  /**
    * Alert header shown if there is a problem loading a form
    * @uiName Loading error alert header
    */
@@ -611,6 +616,7 @@ function useDemoBankingInfoForm(
         loading: false,
         saveLoading: false,
         hideSteps: false,
+        hideBackButton: false,
         feeCap,
         thresholds: [],
         paymentMethodFeeLabel,
@@ -652,6 +658,7 @@ function useDemoBankingInfoForm(
         setBankCountry,
         setPaymentMethodChecked,
         setPaymentScheduleChecked,
+        onBack: async () => console.log("back"),
       },
       text: props.getTextProps(),
       refs: {

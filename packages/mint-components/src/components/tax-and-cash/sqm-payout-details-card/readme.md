@@ -7,14 +7,14 @@
 
 ## Properties
 
-| Property               | Attribute                | Description | Type                                      | Default                                                                                           |
-| ---------------------- | ------------------------ | ----------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `accountText`          | `account-text`           |             | `string`                                  | `"Account"`                                                                                       |
-| `demoData`             | --                       |             | `{ [x: string]: any; [x: number]: any; }` | `undefined`                                                                                       |
-| `errorDescriptionText` | `error-description-text` |             | `string`                                  | `"Please ensure your payout information is correct. If this problem continues, contact Support."` |
-| `errorTitleText`       | `error-title-text`       |             | `string`                                  | `"There was an error with your payout infomation"`                                                |
-| `statusBadgeText`      | `status-badge-text`      |             | `string`                                  | `"{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }"`                     |
-| `thresholdPayoutText`  | `threshold-payout-text`  |             | `string`                                  | `"Next payout occurs when balance is {thresholdBalance}"`                                         |
+| Property               | Attribute                | Description                                                                  | Type                                      | Default                                                                                           |
+| ---------------------- | ------------------------ | ---------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `accountText`          | `account-text`           | Text shown before account number                                             | `string`                                  | `"Account"`                                                                                       |
+| `demoData`             | --                       |                                                                              | `{ [x: string]: any; [x: number]: any; }` | `undefined`                                                                                       |
+| `errorDescriptionText` | `error-description-text` | Error alert description shown above payout details card                      | `string`                                  | `"Please ensure your payout information is correct. If this problem continues, contact Support."` |
+| `errorTitleText`       | `error-title-text`       | Error alert header shown above payout details card                           | `string`                                  | `"There was an error with your payout infomation"`                                                |
+| `statusBadgeText`      | `status-badge-text`      | Badge text indicating payout status                                          | `string`                                  | `"{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }"`                     |
+| `thresholdPayoutText`  | `threshold-payout-text`  | Text shown above current balance indicating required balance for next payout | `string`                                  | `"Next payout occurs when balance is {thresholdBalance}"`                                         |
 
 
 ## Dependencies

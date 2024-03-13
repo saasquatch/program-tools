@@ -261,25 +261,28 @@ export class ReferralTableRewardsCell {
             {state === "PAYOUT_SENT" && (
               <div>
                 <TextSpanView type="p">
-                  {statusText}{" "}
-                  <span class={sheet.classes.BoldText} part="sqm-cell-value">
-                    {/* TODO: Date payout will be sent */}
-                    {DateTime.fromMillis(0)
-                      .setLocale(luxonLocale(this.locale))
-                      .toLocaleString(DateTime.DATE_MED)}
-                  </span>
+                  <TextSpanView type="p">
+                    {intl.formatMessage(
+                      {
+                        id: `statusText`,
+                        defaultMessage: statusText,
+                      },
+                      {
+                        datePayoutStarted: DateTime.fromMillis(0)
+                          .setLocale(luxonLocale(this.locale))
+                          .toLocaleString(DateTime.DATE_MED),
+                        status: "PAYOUT_SENT",
+                      }
+                    )}
+                  </TextSpanView>
                 </TextSpanView>
               </div>
             )}
             {state === "PAYOUT_FAILED" && (
               <div>
                 <TextSpanView type="p">
-                  {statusText} {/* TODO: Date payout will be retried */}
-                  <span class={sheet.classes.BoldText} part="sqm-cell-value">
-                    {DateTime.fromMillis(0)
-                      .setLocale(luxonLocale(this.locale))
-                      .toLocaleString(DateTime.DATE_MED)}
-                  </span>
+                  {statusText}{" "}
+                  {/* TODO: Date payout will be retried AL: removed dates */}
                 </TextSpanView>
               </div>
             )}
@@ -365,7 +368,7 @@ export class ReferralTableRewardsCell {
                 </TextSpanView>
               </div>
             )}
-            {state === "PAYOUT_FAILED" && reward.dateCancelled && (
+            {/* {state === "PAYOUT_FAILED" && reward.dateCancelled && (
               <div>
                 <TextSpanView type="p">
                   {statusText}{" "}
@@ -376,7 +379,7 @@ export class ReferralTableRewardsCell {
                   </span>
                 </TextSpanView>
               </div>
-            )}
+            )} */}
             {state === "PENDING" && reward.dateScheduledFor && (
               <div>
                 <TextSpanView type="p">

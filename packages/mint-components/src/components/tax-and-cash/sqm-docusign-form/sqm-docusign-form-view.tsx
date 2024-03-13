@@ -315,6 +315,15 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
               {text.banner}
             </sl-alert>
             {slots.docusignIframeSlot}
+            {states.hideBackButton && (
+              <sl-button
+                class={classes.SecondaryBtn}
+                type="text"
+                onClick={callbacks.onBack}
+              >
+                {text.backButton}
+              </sl-button>
+            )}
           </div>
         </div>
       )}

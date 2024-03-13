@@ -30,6 +30,7 @@ export const GET_INVOICES = gql`
                 totalAmount
                 totalVatAmount
                 downloadUrl
+                currency
               }
               totalCount
             }
@@ -46,6 +47,7 @@ type Invoice = {
   totalAmount: number;
   totalVatAmount: number;
   downloadUrl: string;
+  currency: string;
 };
 
 export function useInvoiceTable(
@@ -87,7 +89,7 @@ export function useInvoiceTable(
     !user?.jwt
   );
 
-  console.log(invoicesData);
+  console.log({ invoicesData });
 
   const tick = useRerenderListener();
   const components = useChildElements<Element>();
@@ -108,11 +110,13 @@ export function useInvoiceTable(
     const cellsPromise = data?.map(async (invoice: Invoice) => {
       // TODO: probably going to pass in values as named by graphql
       const invoiceData = {
-        earnings: invoice.totalAmount,
-        taxedAmount: invoice.totalVatAmount,
+        earnings: `${invoice.currency}${invoice.totalAmount}`,
+        taxedAmount: `${invoice.currency}${invoice.totalVatAmount}`,
         dateCreated: invoice.dateCreated,
         invoiceId: invoice.id,
-        netEarnings: invoice.totalAmount - invoice.totalVatAmount,
+        netEarnings: `${invoice.currency}${
+          invoice.totalAmount - invoice.totalVatAmount
+        }`,
       };
 
       const cellPromise = columnComponents?.map(async (c: any) =>
