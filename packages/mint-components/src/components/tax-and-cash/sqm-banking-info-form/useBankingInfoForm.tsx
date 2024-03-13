@@ -704,7 +704,6 @@ export function useBankingInfoForm(
       (paymentOption) => paymentOption.countryCode === initialData.bankCountry
     );
 
-    console.log({ initialData });
     setCurrentPaymentOption(currentPaymentOption);
     setPaymentScheduleChecked(initialData.paymentSchedulingType);
     setFormState(initialData);
