@@ -676,7 +676,7 @@ export function useBankingInfoForm(
 
     if (
       withdrawalSettings &&
-      !userData.user?.impactConnection?.publisher?.isExisting
+      userData.user?.impactConnection?.publisher?.brandedSignup
     ) {
       initialData = {
         ...initialData,
