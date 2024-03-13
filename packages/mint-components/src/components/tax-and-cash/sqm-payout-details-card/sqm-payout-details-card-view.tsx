@@ -116,7 +116,7 @@ const style = {
   Alert: {
     "&::part(base)": {
       backgroundColor: "var(--sl-color-warning-100)",
-      border: "1px solid var(--sl-color-warning-300)",
+      border: "1px solid var(--sl-color-warning-200)",
       padding: "0 16px",
     },
     "& sl-icon": {

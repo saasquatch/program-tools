@@ -16,6 +16,7 @@ import LoadingView from "./sqm-tax-and-cash/LoadingView";
 // import sqmUserInfoSpecs from "./sqm-tax-document-step-1.feature";
 // import sqmIndirectTaxFormSpecs from "../sqm-indirect-tax-form/sqm-indirect-tax-form.feature";
 import { taxTypeToName } from "./utils";
+import { ErrorView } from "./sqm-tax-and-cash/ErrorView";
 
 export default {
   title: "Components/Tax Form",
@@ -187,6 +188,17 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
 
 export const GeneralLoadingView = () => {
   return <LoadingView />;
+};
+
+export const GeneralErrorView = () => {
+  return (
+    <ErrorView
+      loadingErrorAlertHeader={"There was a problem loading your form"}
+      loadingErrorAlertDescription={
+        "Please refresh the page and try again. If this problem continues, contact Support."
+      }
+    />
+  );
 };
 
 // STEP ONE

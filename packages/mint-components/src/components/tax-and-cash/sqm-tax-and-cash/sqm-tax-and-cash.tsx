@@ -9,6 +9,7 @@ import { TAX_CONTEXT_NAMESPACE } from "./data";
 import { extractProps } from "./extractProps";
 import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
 import { isDemo } from "@saasquatch/component-boilerplate";
+import { ErrorView } from "./ErrorView";
 
 /**
  * @uiName Tax and Cash
@@ -1056,16 +1057,10 @@ export class TaxAndCashMonolith {
         );
       case "/error":
         return (
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="danger"
-            open
-          >
-            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-            <strong>{this.loadingErrorAlertHeader}</strong>
-            <br />
-            {this.loadingErrorAlertDescription}
-          </sl-alert>
+          <ErrorView
+            loadingErrorAlertHeader={this.loadingErrorAlertHeader}
+            loadingErrorAlertDescription={this.loadingErrorAlertDescription}
+          />
         );
     }
 
