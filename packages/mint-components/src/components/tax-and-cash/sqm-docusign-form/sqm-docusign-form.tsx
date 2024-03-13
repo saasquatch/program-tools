@@ -1,30 +1,17 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Listen,
-  Prop,
-  State,
-} from "@stencil/core";
+import { Component, Element, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
+import { useParent } from "../../../utils/useParentState";
 import { getProps } from "../../../utils/utils";
-import {
-  DocusignFormView,
-  DocusignFormViewProps,
-} from "./sqm-docusign-form-view";
-import { useDocusignForm, UseDocusignFormResult } from "./useDocusignForm";
-import { DocusignExpiredView } from "../sqm-user-info-form/small-views/DocusignExpiredView";
-import { DocusignEmbedComponent } from "../../sqm-docusign-embed/sqm-docusign-embed";
+import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 import {
   DocusignIframe,
   DocusignStatus,
 } from "./docusign-iframe/DocusignIframe";
-import { isDemo } from "@saasquatch/component-boilerplate";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
-import { useParent } from "../../../utils/useParentState";
+import { DocusignFormView } from "./sqm-docusign-form-view";
+import { useDocusignForm, UseDocusignFormResult } from "./useDocusignForm";
 
 /**
  * @uiName DocuSign Document Submission
@@ -42,7 +29,7 @@ export class DocusignForm {
    * Sub text shown at the top of the page, used to show the current step of the tax form.
    * @uiName Tax form step text
    */
-  @Prop() formStep: string = "Step 3 of 4";
+  @Prop() formStep: string = "Step {step} of {count}";
   /**
    * Heading text shown at the top of the page
    * @uiName Tax form heading text
@@ -230,6 +217,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
     {
       text: props.getTextProps(),
       states: {
+        step: "4",
         disabled: false,
         submitDisabled: false,
         loading: false,

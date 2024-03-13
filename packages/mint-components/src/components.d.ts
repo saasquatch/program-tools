@@ -3963,6 +3963,12 @@ export namespace Components {
          */
         "fieldRequiredError": string;
         /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Tax form step text
+          * @uiGroup General Form Properties
+         */
+        "formStep": string;
+        /**
           * Description text for a general form submission error
           * @uiName General form submission error description
          */
@@ -4034,12 +4040,6 @@ export namespace Components {
          */
         "step1_firstName": string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_formStep": string;
-        /**
           * Label text for last name input
           * @uiName Last name label
           * @uiGroup Step 1 Properties
@@ -4063,12 +4063,6 @@ export namespace Components {
           * @uiGroup Step 2 Properties
          */
         "step2_cannotChangeInfoAlert": string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Indirect tax form step text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_formStep": string;
         /**
           * Heading text shown at the top of the page
           * @uiName Indirect tax heading text
@@ -4213,12 +4207,6 @@ export namespace Components {
           * @uiGroup Step 3 Properties
          */
         "step3_docusignExpired": string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_formStep": string;
         /**
           * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
           * @uiName Form submission error text
@@ -4392,12 +4380,6 @@ export namespace Components {
           * @uiGroup Step 4 Properties
          */
         "step4_foreignSelectItemLabel": string;
-        /**
-          * Subtext shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Form step text
-          * @uiGroup Step 4 Properties
-         */
-        "step4_formStep": string;
         /**
           * @uiName FX Wire Processing fee text
           * @uiGroup Step 4 Properties
@@ -9564,6 +9546,12 @@ declare namespace LocalJSX {
          */
         "fieldRequiredError"?: string;
         /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Tax form step text
+          * @uiGroup General Form Properties
+         */
+        "formStep"?: string;
+        /**
           * Description text for a general form submission error
           * @uiName General form submission error description
          */
@@ -9635,12 +9623,6 @@ declare namespace LocalJSX {
          */
         "step1_firstName"?: string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_formStep"?: string;
-        /**
           * Label text for last name input
           * @uiName Last name label
           * @uiGroup Step 1 Properties
@@ -9664,12 +9646,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 2 Properties
          */
         "step2_cannotChangeInfoAlert"?: string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Indirect tax form step text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_formStep"?: string;
         /**
           * Heading text shown at the top of the page
           * @uiName Indirect tax heading text
@@ -9814,12 +9790,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 3 Properties
          */
         "step3_docusignExpired"?: string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_formStep"?: string;
         /**
           * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
           * @uiName Form submission error text
@@ -9993,12 +9963,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 4 Properties
          */
         "step4_foreignSelectItemLabel"?: string;
-        /**
-          * Subtext shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Form step text
-          * @uiGroup Step 4 Properties
-         */
-        "step4_formStep"?: string;
         /**
           * @uiName FX Wire Processing fee text
           * @uiGroup Step 4 Properties

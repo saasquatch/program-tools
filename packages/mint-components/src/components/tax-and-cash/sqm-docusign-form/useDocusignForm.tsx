@@ -5,7 +5,7 @@ import {
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useParentValue, useSetParent } from "../../../utils/useParentState";
+import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
@@ -59,7 +59,7 @@ export function useDocusignForm(props: DocusignForm) {
   const user = useUserIdentity();
 
   const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
-  const setPath = useSetParent<string>(TAX_CONTEXT_NAMESPACE);
+  const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
 
   const {
     data,
@@ -129,7 +129,7 @@ export function useDocusignForm(props: DocusignForm) {
     if (DOCUSIGN_ERROR_STATES.includes(docusignStatus)) return;
 
     if (DOCUSIGN_SUCCESS_STATES.includes(docusignStatus)) {
-      setPath("/4");
+      setStep("/4");
     }
 
     if (DOCUSIGN_ERROR_STATES.includes(docusignStatus)) {
@@ -160,9 +160,9 @@ export function useDocusignForm(props: DocusignForm) {
 
       // Skip banking info form if it already is saved
       if (publisher?.withdrawalSettings) {
-        setPath(context.overrideNextStep || "/dashboard");
+        setStep(context.overrideNextStep || "/dashboard");
       } else {
-        setPath(context.overrideNextStep || "/4");
+        setStep(context.overrideNextStep || "/4");
       }
     } catch (e) {
       setErrors({ formSubission: { status: "document-error" } });
@@ -172,13 +172,14 @@ export function useDocusignForm(props: DocusignForm) {
   };
 
   const onBack = () => {
-    setPath(context.overrideBackStep);
+    setStep(context.overrideBackStep);
   };
 
   const allLoading = userLoading || documentLoading || loading;
 
   return {
     states: {
+      step: step?.replace("/", ""),
       hideSteps: context.hideSteps,
       disabled: allLoading,
       participantTypeDisabled: allLoading || !!existingDocumentType,

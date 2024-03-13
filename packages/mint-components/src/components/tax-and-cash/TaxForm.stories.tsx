@@ -23,6 +23,7 @@ export default {
 
 const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
   states: {
+    step: "1",
     hideSteps: false,
     loading: false,
     disabled: false,
@@ -80,6 +81,7 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
 
 const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
   states: {
+    step: "2",
     hideSteps: false,
     disabled: false,
     loading: false,
@@ -131,6 +133,7 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
 
 const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
   states: {
+    step: "4",
     hideSteps: false,
     disabled: false,
     loading: false,
@@ -155,6 +158,7 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
 
 const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
   states: {
+    step: "3",
     urlLoading: false,
     docusignStatus: undefined,
     hideSteps: false,

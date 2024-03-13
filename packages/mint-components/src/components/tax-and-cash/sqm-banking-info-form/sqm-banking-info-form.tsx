@@ -36,7 +36,7 @@ export class BankingInfoForm {
    * Subtext shown at the top of the page, used to show the current step of the tax form.
    * @uiName Form step text
    */
-  @Prop() formStep: string = "Step 4 of 4";
+  @Prop() formStep: string = "Step {step} of {count}";
 
   /**
    * Heading text shown at the top of the page
@@ -604,6 +604,7 @@ function useDemoBankingInfoForm(
   return deepmerge(
     {
       states: {
+        step: "4",
         isPartner: false,
         disabled: false,
         loading: false,

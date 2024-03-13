@@ -73,12 +73,6 @@ export class TaxAndCashMonolith {
   @Prop() step1_allowBankingCollection: string =
     "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information";
   /**
-   * Sub text shown at the top of the page, used to show the current step of the tax form.
-   * @uiName Tax form step text
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_formStep: string = "Step 1 of 4";
-  /**
    * Heading text shown above the forms inputs.
    * @uiName Form heading text
    * @uiGroup Step 1 Properties
@@ -95,12 +89,6 @@ export class TaxAndCashMonolith {
                     STEP 2 PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-  /**
-   * Sub text shown at the top of the page, used to show the current step of the tax form.
-   * @uiName Indirect tax form step text
-   * @uiGroup Step 2 Properties
-   */
-  @Prop() step2_formStep: string = "Step 2 of 4";
   /**
    * Heading text shown at the top of the page
    * @uiName Indirect tax heading text
@@ -223,12 +211,6 @@ export class TaxAndCashMonolith {
                     STEP 3 PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   /**
-   * Sub text shown at the top of the page, used to show the current step of the tax form.
-   * @uiName Tax form step text
-   * @uiGroup Step 3 Properties
-   */
-  @Prop() step3_formStep: string = "Step 3 of 4";
-  /**
    * Heading text shown at the top of the page
    * @uiName Tax form heading text
    * @uiGroup Step 3 Properties
@@ -345,12 +327,6 @@ export class TaxAndCashMonolith {
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 4 PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-  /**
-   * Subtext shown at the top of the page, used to show the current step of the tax form.
-   * @uiName Form step text
-   * @uiGroup Step 4 Properties
-   */
-  @Prop() step4_formStep: string = "Step 4 of 4";
   /**
    * Heading text shown at the top of the page
    * @uiName Tax and Payouts heading text
@@ -882,6 +858,13 @@ export class TaxAndCashMonolith {
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     GENERAL PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+  /**
+   * Sub text shown at the top of the page, used to show the current step of the tax form.
+   * @uiName Tax form step text
+   * @uiGroup General Form Properties
+   */
+  @Prop() formStep: string = "Step {step} of {count}";
   /**
    * The title for error message shown at the top of the page in an error banner
    *
@@ -984,6 +967,7 @@ export class TaxAndCashMonolith {
       isPartnerAlertDescription: props.isPartnerAlertDescription,
       loadingErrorAlertHeader: props.loadingErrorAlertHeader,
       loadingErrorAlertDescription: props.loadingErrorAlertDescription,
+      formStep: props.formStep,
     };
   }
 

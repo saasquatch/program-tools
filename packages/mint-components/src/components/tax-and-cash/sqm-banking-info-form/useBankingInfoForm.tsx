@@ -7,21 +7,21 @@ import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
+import { intl } from "../../../global/global";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useParentValue, useSetParent } from "../../../utils/useParentState";
+import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
   FINANCE_NETWORK_SETTINGS_NAMESPACE,
   FinanceNetworkSetting,
   FinanceNetworkSettingsQuery,
   TAX_CONTEXT_NAMESPACE,
+  TAX_FORM_CONTEXT_NAMESPACE,
+  TaxContext,
   USER_QUERY_NAMESPACE,
   UserQuery,
-  TaxContext,
-  TAX_FORM_CONTEXT_NAMESPACE,
 } from "../sqm-tax-and-cash/data";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
-import { intl } from "../../../global/global";
 
 // Hardcoded in Impact backend
 export const paypalFeeMap = {
@@ -587,7 +587,7 @@ export function useBankingInfoForm(
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  const setStep = useSetParent<string>(TAX_CONTEXT_NAMESPACE);
+  const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
   const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
 
   const {
@@ -837,6 +837,7 @@ export function useBankingInfoForm(
       onBack: async () => console.log("back"),
     },
     states: {
+      step: step?.replace("/", ""),
       hideSteps: !!context.hideSteps,
       saveDisabled: !paymentMethodChecked || !paymentScheduleChecked,
       locale,

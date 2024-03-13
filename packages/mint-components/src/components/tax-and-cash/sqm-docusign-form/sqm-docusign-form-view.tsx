@@ -1,11 +1,12 @@
 import { VNode, h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-import { TaxDocumentType } from "../sqm-tax-and-cash/data";
+import { FORM_STEPS, TaxDocumentType } from "../sqm-tax-and-cash/data";
 import { ParticipantType } from "./useDocusignForm";
 
 export interface DocusignFormViewProps {
   states: {
+    step: string;
     loading: boolean;
     urlLoading: boolean;
     submitDisabled: boolean;
@@ -217,7 +218,17 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
       </style>
       <div class={classes.TextContainer}>
         <div>
-          {!states.hideSteps && <p>{text.formStep}</p>}
+          {!states.hideSteps && (
+            <p>
+              {intl.formatMessage(
+                {
+                  id: "formStep",
+                  defaultMessage: text.formStep,
+                },
+                { step: states.step, count: FORM_STEPS }
+              )}
+            </p>
+          )}
           <h3>{text.taxForm}</h3>
         </div>
       </div>

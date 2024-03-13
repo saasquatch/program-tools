@@ -218,3 +218,5 @@ export const GET_FINANCE_NETWORK_SETTINGS = gql`
     }
   }
 `;
+
+export const FORM_STEPS = 4;

@@ -2,9 +2,11 @@ import { h, VNode } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { BankingInfoFormData } from "./useBankingInfoForm";
+import { FORM_STEPS } from "../sqm-tax-and-cash/data";
 
 export interface BankingInfoFormViewProps {
   states: {
+    step?: string;
     locale?: string;
     loading: boolean;
     saveLoading?: boolean;
@@ -349,7 +351,17 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
       </style>
       <div class={classes.TextContainer}>
         <div>
-          {!states.hideSteps && <p>{text.formStep}</p>}
+          {!states.hideSteps && (
+            <p>
+              {intl.formatMessage(
+                {
+                  id: "formStep",
+                  defaultMessage: text.formStep,
+                },
+                { step: states.step, count: FORM_STEPS }
+              )}
+            </p>
+          )}
           <h3 style={{ fontSize: "24px" }}>{text.taxAndPayouts}</h3>
           <p class={classes.PageDescriptionText}>
             {text.taxAndPayoutsDescription}

@@ -31,7 +31,7 @@ export class IndirectTaxForm {
    * Subtext shown at the top of the page, used to show the current step of the tax form.
    * @uiName Form step text
    */
-  @Prop() formStep: string = "Step 2 of 4";
+  @Prop() formStep: string = "Step {step} of {count}";
 
   /**
    * Heading text shown at the top of the page
@@ -291,6 +291,7 @@ function useDemoIndirectTaxForm(
   return deepmerge(
     {
       states: {
+        step: "2",
         disabled: false,
         loading: false,
         isPartner: false,

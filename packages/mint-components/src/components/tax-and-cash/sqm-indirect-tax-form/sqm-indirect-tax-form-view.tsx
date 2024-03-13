@@ -1,8 +1,11 @@
 import { VNode, h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
+import { intl } from "../../../global/global";
+import { FORM_STEPS } from "../sqm-tax-and-cash/data";
 
 export interface IndirectTaxFormViewProps {
   states: {
+    step?: string;
     loading: boolean;
     disabled: boolean;
     isPartner: boolean;
@@ -208,7 +211,18 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
       </style>
       <div class={classes.TextContainer}>
         <div>
-          {!states.hideSteps && <p>{text.formStep}</p>}
+          {!states.hideSteps && (
+            <p>
+              {" "}
+              {intl.formatMessage(
+                {
+                  id: "formStep",
+                  defaultMessage: text.formStep,
+                },
+                { step: states.step, count: FORM_STEPS }
+              )}
+            </p>
+          )}
           <h3>{text.indirectTax}</h3>
           <p class={classes.DescriptionText}>
             {text.indirectTaxDetailsDescription}
