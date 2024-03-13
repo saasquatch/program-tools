@@ -3957,10 +3957,28 @@ export namespace Components {
          */
         "dashboard_thresholdPayoutText": string;
         /**
+          * Invoice table Date column title
+          * @uiName Date column title
+          * @uiGroup Dashboard Properties
+         */
+        "dateColumnTitle": string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
+        /**
+          * Invoice table Earnings after tax column title
+          * @uiName Earnings after tax column title
+          * @uiGroup Dashboard Properties
+         */
+        "earningsAfterTaxColumnTitle": string;
+        /**
+          * Invoice table Earnings column title
+          * @uiName Earnings column title
+          * @uiGroup Dashboard Properties
+         */
+        "earningsColumnTitle": string;
         /**
           * Invalid error text shown at the bottom of field inputs
           * @uiName Field inputs invalid error text
@@ -3984,6 +4002,12 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "generalErrorTitle": string;
+        /**
+          * Invoice table Invoice column title
+          * @uiName Invoice column title
+          * @uiGroup Dashboard Properties
+         */
+        "invoiceColumnTitle": string;
         /**
           * Alert description text shown in alert if user is already a registered partner
           * @uiName Participant is partner description
@@ -4546,6 +4570,12 @@ export namespace Components {
           * @uiGroup Step 3 Properties
          */
         "stop3NotBasedInUS": string;
+        /**
+          * Invoice table Taxed Amount column title
+          * @uiName Taxed Amount column title
+          * @uiGroup Dashboard Properties
+         */
+        "taxedAmountColumnTitle": string;
     }
     interface SqmTaxAndCashDashboard {
         /**
@@ -4574,10 +4604,25 @@ export namespace Components {
          */
         "bankingInformationSectionHeader": string;
         /**
+          * Invoice table Date column title
+          * @uiName Date column title
+         */
+        "dateColumnTitle": string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxAndCashDashboardResult>;
+        /**
+          * Invoice table Earnings after tax column title
+          * @uiName Earnings after tax column title
+         */
+        "earningsAfterTaxColumnTitle": string;
+        /**
+          * Invoice table Earnings column title
+          * @uiName Earnings column title
+         */
+        "earningsColumnTitle": string;
         /**
           * Text displayed in the edit Payment Information button
           * @uiName Edit Payment Information button
@@ -4636,6 +4681,11 @@ export namespace Components {
           * @uiName Invalid form description text
          */
         "invalidForm"?: string;
+        /**
+          * Invoice table Invoice column title
+          * @uiName Invoice column title
+         */
+        "invoiceColumnTitle": string;
         /**
           * Alert description shown if there is a problem loading a form
           * @uiName Loading error alert description
@@ -4726,6 +4776,11 @@ export namespace Components {
           * @uiName Tax documents sub header
          */
         "taxDocumentSectionSubHeader": string;
+        /**
+          * Invoice table Taxed Amount column title
+          * @uiName Taxed Amount column title
+         */
+        "taxedAmountColumnTitle": string;
         /**
           * Label text for the next payout based on balance
           * @uiName Threshold payout text
@@ -9581,10 +9636,28 @@ declare namespace LocalJSX {
          */
         "dashboard_thresholdPayoutText"?: string;
         /**
+          * Invoice table Date column title
+          * @uiName Date column title
+          * @uiGroup Dashboard Properties
+         */
+        "dateColumnTitle"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
+        /**
+          * Invoice table Earnings after tax column title
+          * @uiName Earnings after tax column title
+          * @uiGroup Dashboard Properties
+         */
+        "earningsAfterTaxColumnTitle"?: string;
+        /**
+          * Invoice table Earnings column title
+          * @uiName Earnings column title
+          * @uiGroup Dashboard Properties
+         */
+        "earningsColumnTitle"?: string;
         /**
           * Invalid error text shown at the bottom of field inputs
           * @uiName Field inputs invalid error text
@@ -9608,6 +9681,12 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "generalErrorTitle"?: string;
+        /**
+          * Invoice table Invoice column title
+          * @uiName Invoice column title
+          * @uiGroup Dashboard Properties
+         */
+        "invoiceColumnTitle"?: string;
         /**
           * Alert description text shown in alert if user is already a registered partner
           * @uiName Participant is partner description
@@ -10170,6 +10249,12 @@ declare namespace LocalJSX {
           * @uiGroup Step 3 Properties
          */
         "stop3NotBasedInUS"?: string;
+        /**
+          * Invoice table Taxed Amount column title
+          * @uiName Taxed Amount column title
+          * @uiGroup Dashboard Properties
+         */
+        "taxedAmountColumnTitle"?: string;
     }
     interface SqmTaxAndCashDashboard {
         /**
@@ -10198,10 +10283,25 @@ declare namespace LocalJSX {
          */
         "bankingInformationSectionHeader"?: string;
         /**
+          * Invoice table Date column title
+          * @uiName Date column title
+         */
+        "dateColumnTitle"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxAndCashDashboardResult>;
+        /**
+          * Invoice table Earnings after tax column title
+          * @uiName Earnings after tax column title
+         */
+        "earningsAfterTaxColumnTitle"?: string;
+        /**
+          * Invoice table Earnings column title
+          * @uiName Earnings column title
+         */
+        "earningsColumnTitle"?: string;
         /**
           * Text displayed in the edit Payment Information button
           * @uiName Edit Payment Information button
@@ -10260,6 +10360,11 @@ declare namespace LocalJSX {
           * @uiName Invalid form description text
          */
         "invalidForm"?: string;
+        /**
+          * Invoice table Invoice column title
+          * @uiName Invoice column title
+         */
+        "invoiceColumnTitle"?: string;
         /**
           * Alert description shown if there is a problem loading a form
           * @uiName Loading error alert description
@@ -10350,6 +10455,11 @@ declare namespace LocalJSX {
           * @uiName Tax documents sub header
          */
         "taxDocumentSectionSubHeader"?: string;
+        /**
+          * Invoice table Taxed Amount column title
+          * @uiName Taxed Amount column title
+         */
+        "taxedAmountColumnTitle"?: string;
         /**
           * Label text for the next payout based on balance
           * @uiName Threshold payout text

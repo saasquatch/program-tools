@@ -863,6 +863,36 @@ export class TaxAndCashMonolith {
    */
   @Prop() dashboard_accountText: string = "Account";
   /**
+   * Invoice table Invoice column title
+   * @uiName Invoice column title
+   *  @uiGroup Dashboard Properties
+   */
+  @Prop() invoiceColumnTitle: string = "Invoice";
+  /**
+   * Invoice table Date column title
+   * @uiName Date column title
+   *  @uiGroup Dashboard Properties
+   */
+  @Prop() dateColumnTitle: string = "Date";
+  /**
+   * Invoice table Earnings column title
+   * @uiName Earnings column title
+   *  @uiGroup Dashboard Properties
+   */
+  @Prop() earningsColumnTitle: string = "Earnings";
+  /**
+   * Invoice table Taxed Amount column title
+   * @uiName Taxed Amount column title
+   *  @uiGroup Dashboard Properties
+   */
+  @Prop() taxedAmountColumnTitle: string = "Taxed Amount";
+  /**
+   * Invoice table Earnings after tax column title
+   * @uiName Earnings after tax column title
+   *  @uiGroup Dashboard Properties
+   */
+  @Prop() earningsAfterTaxColumnTitle: string = "Earnings after tax";
+  /**
    * Error alert header shown above payout details card
    * @uiName Error title text
    * @uiGroup Dashboard Properties
