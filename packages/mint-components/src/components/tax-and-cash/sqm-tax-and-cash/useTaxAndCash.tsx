@@ -175,7 +175,7 @@ export function useTaxAndCash() {
     }
   );
 
-  const { data } = useParentQuery<UserQuery>({
+  const { data, errors } = useParentQuery<UserQuery>({
     namespace: USER_QUERY_NAMESPACE,
     query: GET_USER,
     skip: !user,
@@ -240,17 +240,25 @@ export function useTaxAndCash() {
     if (supportedCurrencies) setCurrenciesContext(supportedCurrencies);
   }, [supportedCurrencies]);
 
+  // console.log({ errors });
+
   useEffect(() => {
+    console.log({ errors, data });
+    if (errors) {
+      setStep("/error");
+      return;
+    }
     if (!host || !user) return;
 
     if (data) {
       const user = data?.user;
+
       if (!user || step !== "/loading") return;
 
       const currentStep = getCurrentStep(user);
       setStep(currentStep);
     }
-  }, [host, user, data?.user?.email]);
+  }, [host, user, data?.user?.email, errors]);
 
   function getFinanceNetworkFilter() {
     if (step === "/4")

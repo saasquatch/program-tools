@@ -875,7 +875,7 @@ export class TaxAndCashMonolith {
    */
   @Prop()
   dashboard_errorTitleText: string =
-    "There was an error with your payout infomation";
+    "There was an error with your payout information";
   /**
    * Error alert description shown above payout details card
    * @uiName Error description text
@@ -1054,6 +1054,19 @@ export class TaxAndCashMonolith {
           <sqm-tax-and-cash-dashboard
             {...this.getGeneralStepTextProps("dashboard_")}
           ></sqm-tax-and-cash-dashboard>
+        );
+      case "/error":
+        return (
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            type="danger"
+            open
+          >
+            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+            <strong>{this.loadingErrorAlertHeader}</strong>
+            <br />
+            {this.loadingErrorAlertDescription}
+          </sl-alert>
         );
     }
 
