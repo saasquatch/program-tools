@@ -93,8 +93,11 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     { loading: connectLoading, errors: connectErrors },
   ] = useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
   const userForm = useParentValue<UserFormContext>(USER_FORM_CONTEXT_NAMESPACE);
-  const { data: userData, refetch } =
-    useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+  const {
+    data: userData,
+    refetch,
+    errors: userError,
+  } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
   const { data: _countries, loading: countriesLoading } =
     useParentQueryValue<CountriesQuery>(COUNTRIES_QUERY_NAMESPACE);
 
@@ -247,8 +250,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       disabled: loading || countriesLoading || connectLoading,
       loading: loading || connectLoading || countriesLoading,
       isPartner: !!userData?.user?.impactConnection?.publisher?.taxInformation,
-      //AL TODO loadingError
-      loadingError: false,
+      loadingError: !!userError?.message,
       formState: {
         checked: option,
         errors,

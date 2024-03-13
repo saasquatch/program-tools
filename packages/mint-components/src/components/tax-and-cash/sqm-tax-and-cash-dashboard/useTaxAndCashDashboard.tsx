@@ -76,8 +76,11 @@ export const useTaxAndCashDashboard = (
     setContext({});
   }, []);
 
-  const { data, loading } =
-    useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+  const {
+    data,
+    loading,
+    errors: userError,
+  } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
   const publisher = data?.user?.impactConnection?.publisher;
   const documentType = publisher?.currentTaxDocument?.type;
@@ -121,8 +124,7 @@ export const useTaxAndCashDashboard = (
       dateSubmitted,
       dateExpired,
       documentType,
-      // TODO: publisher?.brandedSignup
-      canEditPayoutInfo: !publisher?.brandedSignup,
+      canEditPayoutInfo: publisher?.brandedSignup,
       documentTypeString: taxTypeToName(documentType),
       status: publisher?.currentTaxDocument?.status,
       subRegion: getSubRegionName(publisher?.taxInformation?.indirectTaxRegion),
@@ -141,8 +143,7 @@ export const useTaxAndCashDashboard = (
       expiresSoon,
       disabled: loading,
       loading,
-      // AL: TODO loadingError
-      loadingError: false,
+      loadingError: !!userError?.message,
     },
     slots: {
       // TODO: Replace this story once we have hooks for payment details card

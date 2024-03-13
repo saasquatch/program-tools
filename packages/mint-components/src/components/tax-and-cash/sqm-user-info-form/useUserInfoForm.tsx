@@ -59,8 +59,11 @@ export function useUserInfoForm(props: TaxForm) {
     USER_FORM_CONTEXT_NAMESPACE
   );
 
-  const { data, loading } =
-    useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+  const {
+    data,
+    loading,
+    errors: userError,
+  } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
   const { data: countriesRes, loading: countriesLoading } =
     useParentQueryValue<CountriesQuery>(COUNTRIES_QUERY_NAMESPACE);
 
@@ -208,8 +211,7 @@ export function useUserInfoForm(props: TaxForm) {
     states: {
       hideSteps: context.hideSteps,
       disabled: loading,
-      //AL TODO loadingerror
-      loadingError: false,
+      loadingError: !!userError?.message,
       loading: loading,
       isPartner: !!data?.user?.impactConnection?.publisher,
       isUser: !!data?.user?.impactConnection?.user,

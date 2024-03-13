@@ -966,6 +966,11 @@ export namespace Components {
          */
         "backButton": string;
         /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+         */
+        "cannotChangeInfoAlert": string;
+        /**
           * Text for the continue button in the form
           * @uiName Continue button text
          */
@@ -4042,6 +4047,12 @@ export namespace Components {
          */
         "step1_termsAndConditionsLabel": string;
         /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_cannotChangeInfoAlert": string;
+        /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Indirect tax form step text
           * @uiGroup Step 2 Properties
@@ -4323,6 +4334,12 @@ export namespace Components {
           * @uiGroup Step 4 Properties
          */
         "step4_businessSelectItemLabel": string;
+        /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_cannotChangeInfoAlert": string;
         /**
           * Label text for the checking account type select item
           * @uiName Checking select item label
@@ -6568,6 +6585,11 @@ declare namespace LocalJSX {
           * @uiName Back button text
          */
         "backButton"?: string;
+        /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+         */
+        "cannotChangeInfoAlert"?: string;
         /**
           * Text for the continue button in the form
           * @uiName Continue button text
@@ -9615,6 +9637,12 @@ declare namespace LocalJSX {
          */
         "step1_termsAndConditionsLabel"?: string;
         /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_cannotChangeInfoAlert"?: string;
+        /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Indirect tax form step text
           * @uiGroup Step 2 Properties
@@ -9896,6 +9924,12 @@ declare namespace LocalJSX {
           * @uiGroup Step 4 Properties
          */
         "step4_businessSelectItemLabel"?: string;
+        /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_cannotChangeInfoAlert"?: string;
         /**
           * Label text for the checking account type select item
           * @uiName Checking select item label
