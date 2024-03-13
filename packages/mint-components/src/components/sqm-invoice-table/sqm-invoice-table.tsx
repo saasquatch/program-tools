@@ -21,7 +21,7 @@ import { InvoiceTableView } from "./sqm-invoice-table-view";
  * @uiName Invoice Table
  * @exampleGroup Invoices
  * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
- * @example Invoice Table - <sqm-invoice-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" ><sqm-invoice-table-download-column></sqm-invoice-table-download-column><sqm-invoice-table-date-column column-title="Date"></sqm-invoice-table-date-column><sqm-invoice-table-data-column column-title="Invoice" property="invoiceId"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings" property="earnings"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Taxed Amount" property="taxedAmount"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings after tax" property="netEarnings"></sqm-invoice-table-data-column><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_referral2.png" empty-state-header="View your invoice details" empty-state-text="Refer a friend to view the status of your invoices and rewards earned" slot="empty" ></sqm-empty ></sqm-invoice-table> */
+ * @example Invoice Table - <sqm-invoice-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" ><sqm-invoice-table-download-column></sqm-invoice-table-download-column><sqm-invoice-table-date-column column-title="Date"></sqm-invoice-table-date-column><sqm-invoice-table-data-column column-title="Invoice" property="invoiceId"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings" property="earnings"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Taxed Amount" property="taxedAmount"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings after tax" property="netEarnings"></sqm-invoice-table-data-column><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1710363322/squatch-assets/invoice-table-empty.png" empty-state-header="View your invoice details" empty-state-text="Refer a friend to view the status of your invoices and rewards earned" slot="empty" ></sqm-empty ></sqm-invoice-table> */
 @Component({
   tag: "sqm-invoice-table",
   shadow: true,
@@ -113,7 +113,7 @@ function EmptySlot() {
   return (
     <slot name="empty">
       <sqm-empty
-        empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_invoice2.png"
+        empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1710363322/squatch-assets/invoice-table-empty.png"
         empty-state-header="View your invoice details"
         empty-state-text="Refer a friend to view the status of your invoices and rewards earned"
       ></sqm-empty>

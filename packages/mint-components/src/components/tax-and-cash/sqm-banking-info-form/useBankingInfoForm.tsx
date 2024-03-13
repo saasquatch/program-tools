@@ -691,7 +691,6 @@ export function useBankingInfoForm(
         ...initialData,
         paymentMethod: withdrawalSettings.paymentMethod,
         paypalEmailAddress: withdrawalSettings.paypalEmailAddress,
-        bankAccountNumber: withdrawalSettings.bankAccountNumber,
         paymentSchedulingType: withdrawalSettings.paymentSchedulingType,
         paymentThreshold: parseImpactThreshold(
           withdrawalSettings.paymentThreshold

@@ -81,7 +81,6 @@ export interface BankingInfoFormViewProps {
     paymentDayFifteenthOfMonthLabelText: string;
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
-    cannotChangeInfoAlert: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -163,9 +162,6 @@ const style = {
     "& sl-icon::part(base)": {
       color: "var(--sl-color-blue-500)",
     },
-  },
-  CannotChangeAlertContainer: {
-    maxWidth: "797px",
   },
   Checkbox: {
     "&::part(control)": {
@@ -386,21 +382,6 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             {text.isPartnerAlertDescription}
           </sl-alert>
         )}
-        <div class={classes.CannotChangeAlertContainer}>
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="primary"
-            open
-            class={classes.InfoAlert}
-          >
-            <sl-icon
-              class={classes.InfoWarningIcon}
-              slot="icon"
-              name="exclamation-triangle"
-            ></sl-icon>
-            {text.cannotChangeInfoAlert}
-          </sl-alert>
-        </div>
         <div>
           <h4>{text.paymentMethod}</h4>
           <p class={classes.DescriptionText}>{text.paymentMethodSubtext}</p>

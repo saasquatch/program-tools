@@ -46,7 +46,7 @@ const loadingElement = (
 
 const emptyElement = (
   <sqm-empty
-    empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_referral2.png"
+    empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1710363322/squatch-assets/invoice-table-empty.png"
     empty-state-header="View your invoice details"
     empty-state-text="Track the status of your invoices and rewards earned by referring friends"
   ></sqm-empty>

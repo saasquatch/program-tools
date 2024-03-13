@@ -265,13 +265,6 @@ export class BankingInfoForm {
    */
   @Prop() bankPostalCodeLabel: string = "Bank Postal Code";
   /**
-   * Alert text indicating participant cannot change info after it has been submitted
-   * @uiName Cannot change info Alert text
-   */
-  @Prop() cannotChangeInfoAlert: string =
-    "Your payout information can only be changed through our Support team after you complete this step. Make sure your payout method and schedule are correct before submitting.";
-
-  /**
    * @uiName EFT Withdrawal label text
    */
   @Prop() eftWithdrawalLabel: string = "EFT Withdrawal (free)";

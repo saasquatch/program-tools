@@ -151,14 +151,19 @@ export function useDocusignForm(props: DocusignForm) {
       const result = await refetch();
       if ((result as Error).message) throw new Error();
 
-      const status = (result as UserQuery).user?.impactConnection?.publisher
-        ?.currentTaxDocument?.status;
+      const publisher = (result as UserQuery).user?.impactConnection?.publisher;
+      const status = publisher?.currentTaxDocument?.status;
 
       if (status === "NOT_VERIFIED" || status === "ACTIVE") {
         console.debug("Document has been registered as submitted");
       }
 
-      setPath(context.overrideNextStep || "/4");
+      // Skip banking info form if it already is saved
+      if (publisher?.withdrawalSettings) {
+        setPath(context.overrideNextStep || "/dashboard");
+      } else {
+        setPath(context.overrideNextStep || "/4");
+      }
     } catch (e) {
       setErrors({ formSubission: { status: "document-error" } });
     } finally {

@@ -89,9 +89,10 @@ Feature: Tax And Cash Dashboard
     Then a danger alert indicating the <documentType> with a <taxAlertHeader> and <taxAlertMessage> appears
 
     Examples: 
-      | status     | documentType | taxAlertHeader                                                             | taxAlertMessage                                                                                                               |
-      | NOT_ACTIVE | W9           | Your W9 tax form has personal information that doesn't match your profile. | Please resubmit a new W9 form.                                                                                                |
-      | NOT_ACTIVE | W8-BEN       | W8-BEN tax form is invalid.                                                | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 BEN form. |
+      | status     | documentType | taxAlertHeader                                                             | taxAlertMessage                                                                                                                 |
+      | NOT_ACTIVE | W9           | Your W9 tax form has personal information that doesn't match your profile. | Please resubmit a new W9 form.                                                                                                  |
+      | NOT_ACTIVE | W8-BEN       | W8-BEN tax form is invalid.                                                | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 BEN form.   |
+      | NOT_ACTIVE | W8-BEN-E     | W8-BEN tax form is invalid.                                                | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 BEN-E form. |
 
   @minutia @ui
   Scenario: Invoices table is available for participants regsistered for Indirect Tax
