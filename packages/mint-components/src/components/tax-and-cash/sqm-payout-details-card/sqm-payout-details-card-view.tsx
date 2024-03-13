@@ -119,9 +119,13 @@ const style = {
       border: "1px solid var(--sl-color-warning-300)",
       padding: "0 16px",
     },
+    "& sl-icon": {
+      margin: 0,
+    },
 
     "& sl-icon::part(base)": {
       color: "var(--sl-color-warning-500)",
+      margin: 0,
     },
   },
   AlertContent: {
