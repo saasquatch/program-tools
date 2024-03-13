@@ -252,7 +252,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
   );
 }
 
-const DemoDocusignIframe = ({ callbacks }: any) => {
+const DemoDocusignIframe = (_) => {
   return (
     <div
       style={{
