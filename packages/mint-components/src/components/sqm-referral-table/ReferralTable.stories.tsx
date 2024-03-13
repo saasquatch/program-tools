@@ -184,18 +184,6 @@ const simpleUserTableProps = {
         <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
         <ConvertedStatus />,
         <DateCell />,
-        <PayoutSent />,
-      ],
-      [
-        <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
-        <ConvertedStatus />,
-        <DateCell />,
-        <PayoutFailed />,
-      ],
-      [
-        <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
-        <ConvertedStatus />,
-        <DateCell />,
         <PendingNewTaxForm />,
       ],
       [
@@ -215,12 +203,6 @@ const simpleUserTableProps = {
         <ConvertedStatus />,
         <DateCell />,
         <PendingTaxSubmission />,
-      ],
-      [
-        <sqm-referral-table-user-cell name="Tom Smith"></sqm-referral-table-user-cell>,
-        <PendingReviewStatus />,
-        <DateCell />,
-        <PendingReview />,
       ],
       [
         <sqm-referral-table-user-cell name="Tom Smith"></sqm-referral-table-user-cell>,

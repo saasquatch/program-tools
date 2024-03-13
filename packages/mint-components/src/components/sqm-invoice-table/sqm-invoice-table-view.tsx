@@ -10,6 +10,7 @@ const style = {
   Description: {
     fontSize: "var(--sl-font-size-small)",
     margin: "0 0 var(--sl-spacing-xx-large)",
+    color: "var(--sl-color-gray-500)",
   },
   Header: {
     fontSize: "var(--sl-font-size-large)",
@@ -17,6 +18,29 @@ const style = {
     margin: "0 0 var(--sl-spacing-xxx-small)",
   },
   Container: {},
+  InvoiceTableContaier: {
+    "& sl-details::part(base)": {
+      border: "none",
+    },
+    "& sl-details::part(content)": {
+      padding: 0,
+    },
+    "& sl-details::part(header)": {
+      fontSize: "var(--sl-font-size-medium)",
+      padding: "0px",
+    },
+    "& sl-details::part(summary)": {
+      fontWeight: "var(-sl-font-weight-semibold)",
+    },
+    "& sl-details::part(summary-icon)": {
+      marginRight: "100%",
+      marginLeft: "var(--sl-spacing-x-small)",
+      transform: "rotate(90deg)",
+    },
+    "& sl-details[open]::part(summary-icon)": {
+      transform: "rotate(270deg)",
+    },
+  },
 };
 
 export function InvoiceTableView(
@@ -36,9 +60,12 @@ export function InvoiceTableView(
         {vanillaStyle}
         {styleString}
       </style>
-      <h2 class={sheet.classes.Header}>{props.header}</h2>
-      <p class={sheet.classes.Description}>{props.description}</p>
-      {children}
+      <div class={sheet.classes.InvoiceTableContaier}>
+        <sl-details summary={props.header}>
+          <p class={sheet.classes.Description}>{props.description}</p>
+          {children}
+        </sl-details>
+      </div>
     </div>
   );
 }

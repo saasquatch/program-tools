@@ -258,6 +258,32 @@ export class TaxAndCashDashboard {
     "Please refresh the page and try again. If this problem continues, contact Support.";
 
   /**
+   * Invoice table Invoice column title
+   * @uiName Invoice column title
+   */
+  @Prop() invoiceColumnTitle: string = "Invoice";
+  /**
+   * Invoice table Date column title
+   * @uiName Date column title
+   */
+  @Prop() dateColumnTitle: string = "Date";
+  /**
+   * Invoice table Earnings column title
+   * @uiName Earnings column title
+   */
+  @Prop() earningsColumnTitle: string = "Earnings";
+  /**
+   * Invoice table Taxed Amount column title
+   * @uiName Taxed Amount column title
+   */
+  @Prop() taxedAmountColumnTitle: string = "Taxed Amount";
+  /**
+   * Invoice table Earnings after tax column title
+   * @uiName Earnings after tax column title
+   */
+  @Prop() earningsAfterTaxColumnTitle: string = "Earnings after tax";
+
+  /**
    * @undocumented
    * @uiType object
    */
