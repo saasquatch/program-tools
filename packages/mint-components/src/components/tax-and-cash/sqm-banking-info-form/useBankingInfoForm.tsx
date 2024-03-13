@@ -8,7 +8,7 @@ import { h } from "@stencil/core";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useSetParent } from "../../../utils/useParentState";
+import { useParentValue, useSetParent } from "../../../utils/useParentState";
 import {
   FINANCE_NETWORK_SETTINGS_NAMESPACE,
   FinanceNetworkSetting,
@@ -16,6 +16,8 @@ import {
   TAX_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
   UserQuery,
+  TaxContext,
+  TAX_FORM_CONTEXT_NAMESPACE,
 } from "../sqm-tax-and-cash/data";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
@@ -586,13 +588,21 @@ export function useBankingInfoForm(
   const formRef = useRef<HTMLFormElement>(null);
 
   const setStep = useSetParent<string>(TAX_CONTEXT_NAMESPACE);
+  const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
 
-  const paymentOptionsRes = useParentQueryValue<FinanceNetworkSettingsQuery>(
+  const {
+    data: paymentOptionsData,
+    loading: paymentOptionsLoading,
+    errors: paymentOptionsError,
+  } = useParentQueryValue<FinanceNetworkSettingsQuery>(
     FINANCE_NETWORK_SETTINGS_NAMESPACE
   );
 
-  const { data: userData, refetch } =
-    useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
+  const {
+    data: userData,
+    refetch,
+    errors: userError,
+  } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
   const [saveWithdrawalSettings] =
     useMutation<SetImpactPublisherWithdrawalSettingsResult>(
       SAVE_WITHDRAWAL_SETTINGS
@@ -614,8 +624,7 @@ export function useBankingInfoForm(
 
   const feeCap = paypalFeeMap[currency] || "";
 
-  const paymentOptions =
-    paymentOptionsRes?.data?.impactFinanceNetworkSettings?.data;
+  const paymentOptions = paymentOptionsData?.impactFinanceNetworkSettings?.data;
 
   const paymentMethodFeeMap = {
     [ACH_PAYMENT_METHOD]: props.eftWithdrawalLabel,
@@ -676,7 +685,7 @@ export function useBankingInfoForm(
 
     if (
       withdrawalSettings &&
-      !userData.user?.impactConnection?.publisher?.isExisting
+      userData.user?.impactConnection?.publisher?.brandedSignup
     ) {
       initialData = {
         ...initialData,
@@ -695,10 +704,10 @@ export function useBankingInfoForm(
       (paymentOption) => paymentOption.countryCode === initialData.bankCountry
     );
 
+    console.log({ initialData });
     setCurrentPaymentOption(currentPaymentOption);
-    setFormState(initialData);
-
     setPaymentScheduleChecked(initialData.paymentSchedulingType);
+    setFormState(initialData);
     setPaymentMethodChecked(
       initialData.paymentMethod === "PAYPAL"
         ? "toPayPalAccount"
@@ -830,6 +839,7 @@ export function useBankingInfoForm(
       onBack: async () => console.log("back"),
     },
     states: {
+      hideSteps: !!context.hideSteps,
       saveDisabled: !paymentMethodChecked || !paymentScheduleChecked,
       locale,
       isPartner:
@@ -845,8 +855,7 @@ export function useBankingInfoForm(
         paymentMethodChecked !== "toBankAccount" || !paymentMethodChecked,
       hidePayPal:
         paymentMethodChecked !== "toPayPalAccount" || !paymentMethodChecked,
-      //AL: TODO loadingError
-      loadingError: false,
+      loadingError: !!userError?.message || !!paymentOptionsError?.message,
       formState: {
         ...formState,
         paymentMethodChecked,

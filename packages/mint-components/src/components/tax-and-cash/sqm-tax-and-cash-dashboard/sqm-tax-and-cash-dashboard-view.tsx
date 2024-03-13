@@ -364,15 +364,16 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           <div class={sheet.classes.BankingInformationContainer}>
             {slots.payoutDetailsCardSlot}
             <p class={sheet.classes.DescriptionText}>{text.payoutFromImpact}</p>
-            {/* ZH: Most likely need this button in the next iteration of form */}
-            <sl-button
-              disabled={states.disabled || states.loading}
-              type="default"
-              class={sheet.classes.EditBankDetailsButton}
-              onClick={callbacks.onEditPayoutInfo}
-            >
-              {text.editPaymentInformationButton}
-            </sl-button>
+            {states.canEditPayoutInfo && (
+              <sl-button
+                disabled={states.disabled || states.loading}
+                type="default"
+                class={sheet.classes.EditBankDetailsButton}
+                onClick={callbacks.onEditPayoutInfo}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+            )}
           </div>
         </div>
         <div class={sheet.classes.TaxDocumentsContainer}>
