@@ -137,6 +137,11 @@ export class DocusignForm {
    */
   @Prop() backButton: string = "Back";
   /**
+   * Text shown inside of cancel button
+   * @uiName Cancel button text
+   */
+  @Prop() cancelButton: string = "Cancel";
+  /**
    * The title for error message shown at the top of the page in an error banner
    *
    * @uiName General error title

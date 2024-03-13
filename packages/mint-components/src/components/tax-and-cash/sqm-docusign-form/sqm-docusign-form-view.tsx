@@ -47,6 +47,7 @@ export interface DocusignFormViewProps {
     checkboxLabel: string;
     checkboxDescription: string;
     backButton: string;
+    cancelButton: string;
     businessEntity: string;
     individualParticipant: string;
     participantType: string;
@@ -206,6 +207,8 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
 
   const { classes } = sheet;
 
+  console.log(props);
+
   return (
     <div class={classes.Container}>
       <style type="text/css">
@@ -321,7 +324,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
                 type="text"
                 onClick={callbacks.onBack}
               >
-                {text.backButton}
+                {text.cancelButton}
               </sl-button>
             )}
           </div>

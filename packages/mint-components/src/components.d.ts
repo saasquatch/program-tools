@@ -572,6 +572,11 @@ export namespace Components {
          */
         "businessEntity": string;
         /**
+          * Text shown inside of cancel button
+          * @uiName Cancel button text
+         */
+        "cancelButton": string;
+        /**
           * Label text for the form submission checkbox
           * @uiName Form submission checkbox label
          */
@@ -966,6 +971,11 @@ export namespace Components {
          */
         "backButton": string;
         /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+         */
+        "cannotChangeInfoAlert": string;
+        /**
           * Text for the continue button in the form
           * @uiName Continue button text
          */
@@ -1279,17 +1289,6 @@ export namespace Components {
           * @uiName Mobile breakpoint
          */
         "smBreakpoint"?: number;
-    }
-    interface SqmInvoiceTableCell {
-        "innerTemplate": string;
-    }
-    interface SqmInvoiceTableColumn {
-        /**
-          * @uiName Column title
-         */
-        "columnTitle": string;
-        "renderCell": (_: Invoice) => Promise<any>;
-        "renderLabel": () => Promise<string>;
     }
     interface SqmInvoiceTableDataCell {
         "data": string;
@@ -3749,6 +3748,12 @@ export namespace Components {
          */
         "backButton": string;
         /**
+          * Text shown inside of cancel button
+          * @uiName Cancel button text
+          * @uiGroup General Form Properties
+         */
+        "cancelButton": string;
+        /**
           * Text for the continue button in the form
           * @uiName Continue button text
           * @uiGroup General Form Properties
@@ -4053,6 +4058,12 @@ export namespace Components {
          */
         "step1_termsAndConditionsLabel": string;
         /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_cannotChangeInfoAlert": string;
+        /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Indirect tax form step text
           * @uiGroup Step 2 Properties
@@ -4334,6 +4345,12 @@ export namespace Components {
           * @uiGroup Step 4 Properties
          */
         "step4_businessSelectItemLabel": string;
+        /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_cannotChangeInfoAlert": string;
         /**
           * Label text for the checking account type select item
           * @uiName Checking select item label
@@ -5057,18 +5074,6 @@ declare global {
         prototype: HTMLSqmInvoiceTableElement;
         new (): HTMLSqmInvoiceTableElement;
     };
-    interface HTMLSqmInvoiceTableCellElement extends Components.SqmInvoiceTableCell, HTMLStencilElement {
-    }
-    var HTMLSqmInvoiceTableCellElement: {
-        prototype: HTMLSqmInvoiceTableCellElement;
-        new (): HTMLSqmInvoiceTableCellElement;
-    };
-    interface HTMLSqmInvoiceTableColumnElement extends Components.SqmInvoiceTableColumn, HTMLStencilElement {
-    }
-    var HTMLSqmInvoiceTableColumnElement: {
-        prototype: HTMLSqmInvoiceTableColumnElement;
-        new (): HTMLSqmInvoiceTableColumnElement;
-    };
     interface HTMLSqmInvoiceTableDataCellElement extends Components.SqmInvoiceTableDataCell, HTMLStencilElement {
     }
     var HTMLSqmInvoiceTableDataCellElement: {
@@ -5589,8 +5594,6 @@ declare global {
         "sqm-input-field": HTMLSqmInputFieldElement;
         "sqm-instant-access-registration": HTMLSqmInstantAccessRegistrationElement;
         "sqm-invoice-table": HTMLSqmInvoiceTableElement;
-        "sqm-invoice-table-cell": HTMLSqmInvoiceTableCellElement;
-        "sqm-invoice-table-column": HTMLSqmInvoiceTableColumnElement;
         "sqm-invoice-table-data-cell": HTMLSqmInvoiceTableDataCellElement;
         "sqm-invoice-table-data-column": HTMLSqmInvoiceTableDataColumnElement;
         "sqm-invoice-table-date-cell": HTMLSqmInvoiceTableDateCellElement;
@@ -6200,6 +6203,11 @@ declare namespace LocalJSX {
          */
         "businessEntity"?: string;
         /**
+          * Text shown inside of cancel button
+          * @uiName Cancel button text
+         */
+        "cancelButton"?: string;
+        /**
           * Label text for the form submission checkbox
           * @uiName Form submission checkbox label
          */
@@ -6594,6 +6602,11 @@ declare namespace LocalJSX {
          */
         "backButton"?: string;
         /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+         */
+        "cannotChangeInfoAlert"?: string;
+        /**
           * Text for the continue button in the form
           * @uiName Continue button text
          */
@@ -6907,15 +6920,6 @@ declare namespace LocalJSX {
           * @uiName Mobile breakpoint
          */
         "smBreakpoint"?: number;
-    }
-    interface SqmInvoiceTableCell {
-        "innerTemplate"?: string;
-    }
-    interface SqmInvoiceTableColumn {
-        /**
-          * @uiName Column title
-         */
-        "columnTitle"?: string;
     }
     interface SqmInvoiceTableDataCell {
         "data"?: string;
@@ -9345,6 +9349,12 @@ declare namespace LocalJSX {
          */
         "backButton"?: string;
         /**
+          * Text shown inside of cancel button
+          * @uiName Cancel button text
+          * @uiGroup General Form Properties
+         */
+        "cancelButton"?: string;
+        /**
           * Text for the continue button in the form
           * @uiName Continue button text
           * @uiGroup General Form Properties
@@ -9649,6 +9659,12 @@ declare namespace LocalJSX {
          */
         "step1_termsAndConditionsLabel"?: string;
         /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+          * @uiGroup Step 2 Properties
+         */
+        "step2_cannotChangeInfoAlert"?: string;
+        /**
           * Sub text shown at the top of the page, used to show the current step of the tax form.
           * @uiName Indirect tax form step text
           * @uiGroup Step 2 Properties
@@ -9930,6 +9946,12 @@ declare namespace LocalJSX {
           * @uiGroup Step 4 Properties
          */
         "step4_businessSelectItemLabel"?: string;
+        /**
+          * Alert text indicating participant cannot change info after it has been submitted
+          * @uiName Cannot change info Alert text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_cannotChangeInfoAlert"?: string;
         /**
           * Label text for the checking account type select item
           * @uiName Checking select item label
@@ -10516,8 +10538,6 @@ declare namespace LocalJSX {
         "sqm-input-field": SqmInputField;
         "sqm-instant-access-registration": SqmInstantAccessRegistration;
         "sqm-invoice-table": SqmInvoiceTable;
-        "sqm-invoice-table-cell": SqmInvoiceTableCell;
-        "sqm-invoice-table-column": SqmInvoiceTableColumn;
         "sqm-invoice-table-data-cell": SqmInvoiceTableDataCell;
         "sqm-invoice-table-data-column": SqmInvoiceTableDataColumn;
         "sqm-invoice-table-date-cell": SqmInvoiceTableDateCell;
@@ -10633,8 +10653,6 @@ declare module "@stencil/core" {
             "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
             "sqm-instant-access-registration": LocalJSX.SqmInstantAccessRegistration & JSXBase.HTMLAttributes<HTMLSqmInstantAccessRegistrationElement>;
             "sqm-invoice-table": LocalJSX.SqmInvoiceTable & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableElement>;
-            "sqm-invoice-table-cell": LocalJSX.SqmInvoiceTableCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableCellElement>;
-            "sqm-invoice-table-column": LocalJSX.SqmInvoiceTableColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableColumnElement>;
             "sqm-invoice-table-data-cell": LocalJSX.SqmInvoiceTableDataCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDataCellElement>;
             "sqm-invoice-table-data-column": LocalJSX.SqmInvoiceTableDataColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDataColumnElement>;
             "sqm-invoice-table-date-cell": LocalJSX.SqmInvoiceTableDateCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateCellElement>;
