@@ -192,10 +192,6 @@ Feature: Tax Form Flow
       Please refresh the page and try again. If this problem continues, contact Support.
       """
 
-    Examples:
-      | loadingErrorAlertHeader               | loadingErrorAlertDescription                                                       |
-      | There was a problem loading your form | Please refresh the page and try again. If this problem continues, contact Support. |
-
   @minutia
   @landmine
   Scenario: "Submit New Form" on Dashboard resets tax form progress
