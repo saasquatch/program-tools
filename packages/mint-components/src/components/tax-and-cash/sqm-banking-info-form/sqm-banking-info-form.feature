@@ -20,7 +20,6 @@ Feature: Banking Information Form
     And the form fields with be pre filled with the participants data
     And there will be banner to explain that the account is linked to their referral profile in impact.com
 
-
   @motivating
   Scenario Outline: Bank account form fields are dynamically shown
     Given the bank account payment method is selected
@@ -44,6 +43,7 @@ Feature: Banking Information Form
       | EUR      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
       | JPY      | Japan                                 | Beneficiary account name, Bank account type, Bank account number, SWIFT code, Bank Name, Branch code |
       | MAD      | Western Sahara, Morocco               | Beneficiary account name, Bank account number, SWIFT code                                            |
+
   @minutia
   Scenario Outline: Bank country dropdown list is dynamic depending on the partner's currency
     Given the bank account payment method is selected
