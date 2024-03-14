@@ -294,7 +294,9 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
     checkedValue: "toBankAccount" | "toPayPalAccount" | undefined,
     inputNumber?: number
   ) => {
-    const skeletons = [];
+    if (!inputNumber) return [];
+
+    let skeletons = [];
 
     const flexBoxStyle = {
       display: "flex",
@@ -326,15 +328,14 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
       );
     }
 
-    // @ts-expect-error: `input` not used
-    Array.from({ length: inputNumber }).forEach((input, index) => {
+    for (let i = 0; i < inputNumber; i++) {
       skeletons.push(
-        <div style={{ ...flexBoxStyle, flexDirection: "column" }} key={index}>
+        <div style={{ ...flexBoxStyle, flexDirection: "column" }} key={i}>
           <div class={classes.SmallSkeleton} />
           <div class={classes.LargeSkeleton} />
         </div>
       );
-    });
+    }
 
     return skeletons;
   };
@@ -533,7 +534,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           >
             {text.continueButton}
           </sl-button>
-          {states.hideBackButton && (
+          {!states.hideBackButton && (
             <sl-button
               class={classes.SecondaryBtn}
               type="text"

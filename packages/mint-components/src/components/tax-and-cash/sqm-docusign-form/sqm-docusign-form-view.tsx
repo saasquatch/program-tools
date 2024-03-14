@@ -208,8 +208,6 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
 
   const { classes } = sheet;
 
-  console.log(props);
-
   return (
     <div class={classes.Container}>
       <style type="text/css">

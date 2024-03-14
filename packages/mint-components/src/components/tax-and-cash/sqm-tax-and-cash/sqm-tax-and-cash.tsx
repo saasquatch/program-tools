@@ -1023,7 +1023,6 @@ export class TaxAndCashMonolith {
       );
     }
 
-    // TODO: Create form wrapper that includes the header and sub text.
     switch (props.step) {
       case "/1":
         return (
