@@ -25,3 +25,17 @@ Feature: Invoice Table
         Then the invoices are shown in the table, one per row
         And the data shown is dependent on which columns are configured
         And there exists the possibility the user can download each invoice (given the download column is included)
+
+    @motivating
+    Scenario Outline: Invoices for the user are displayed with columns by default
+        Given the participant has invoices available
+        When the invoices request finishes
+        Then <columns> are shown
+        And a download button is shown for each invoice
+        Examples:
+            | columns            |
+            | Date               |
+            | Invoice            |
+            | Earnings           |
+            | Taxed Amount       |
+            | Earnings after tax |
