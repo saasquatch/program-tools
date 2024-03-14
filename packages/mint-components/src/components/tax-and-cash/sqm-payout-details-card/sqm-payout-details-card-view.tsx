@@ -7,7 +7,7 @@ export interface PayoutDetailsCardViewProps {
   states: {
     loading?: boolean;
     balance: string;
-    status: "thresholdPayout" | "payoutToday" | "nextPayout";
+    badgeStatus: "thresholdPayout" | "payoutToday" | "nextPayout";
     payoutType: "PAYPAL" | "BANK_TRANSFER";
     error?: boolean;
     hasW9Pending?: boolean;
@@ -162,6 +162,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
   };
 
   const renderStatusBadge = (status: string, statusBadgeText: string) => {
+    console.log(status, statusBadgeText, "debug status text");
     const badgeType = status === "nextPayout" ? "success" : "primary";
     const statusText = intl.formatMessage(
       {
@@ -213,13 +214,13 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
         <div class={classes.CardContainer}>
           <div class={classes.StatusContainer}>
             <p class={classes.SubduedRegularText}>
-              {states.status === "thresholdPayout"
+              {states.badgeStatus === "thresholdPayout"
                 ? thresholdText
                 : states.nextPayoutDate}
             </p>
-            {states.status === "thresholdPayout"
+            {states.badgeStatus === "thresholdPayout"
               ? null
-              : renderStatusBadge(states.status, text.statusBadgeText)}
+              : renderStatusBadge(states.badgeStatus, text.statusBadgeText)}
           </div>
 
           <h1 class={classes.MainCurrency}>{states.balance}</h1>

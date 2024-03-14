@@ -88,7 +88,7 @@ function useDemoPayoutDetailsCard(props: PayoutDetailsCard) {
         error: false,
         thresholdBalance: "$50",
         mainCurrency: { currencyText: "USD", amountText: "100.00" },
-        status: "nextPayout",
+        badgeStatus: "nextPayout",
         payoutType: "BANK_TRANSFER",
         nextPayoutDate: "March 14, 2024",
         paypalEmailAddress: "joesmith@example.com",
