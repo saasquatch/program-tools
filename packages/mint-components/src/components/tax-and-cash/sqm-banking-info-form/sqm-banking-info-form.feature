@@ -43,7 +43,7 @@ Feature: Banking Information Form
       | EUR      | Canada                                | Beneficiary account name, Bank account number, SWIFT code                                            |
       | EUR      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
       | JPY      | Japan                                 | Beneficiary account name, Bank account type, Bank account number, SWIFT code, Bank Name, Branch code |
-
+      | MAD      | Western Sahara, Morocco               | Beneficiary account name, Bank account number, SWIFT code                                            |
   @minutia
   Scenario Outline: Bank country dropdown list is dynamic depending on the partner's currency
     Given the bank account payment method is selected
