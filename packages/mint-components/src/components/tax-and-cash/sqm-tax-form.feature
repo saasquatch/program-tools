@@ -202,6 +202,14 @@ Feature: Tax Form Flow
     And they skip the banking info form step
 
   @minutia
+  Scenario: "Edit Payout Information" button redirects to Banking Info step and shows "Back" button
+    Given a user is on the Dashboard step
+    When they click the "Edit Payout Information" button if they can
+    And they are redirected to the Banking Info step
+    Then they will see a "Back" button
+    And they may click the "Back" button to return to the Dashboard step
+
+  @minutia
   Scenario: Error banner is shown if impact user graphql request has an error
     Given a user is viewing the component
     And the request for the user returns with errors
