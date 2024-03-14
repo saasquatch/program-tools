@@ -240,13 +240,3 @@ Feature: Indirect Tax Form
       | <subRegionTaxNumber | "Income Tax Number is required      |
     And no request is sent to the backend
 
-  @unknown @minutia
-  Scenario Outline: Participant from another country can change the auto selected country
-    When the Country <countryAutoSelectValue> is selected with their <country> from step 1
-    And they change the Country to <newCountrySelectValue>
-    Then the Country <countryAutoSelectValue> changes to the <newCountrySelectValue>
-
-    Examples:
-      | country | countryAutoSelectValue | newCountrySelectValue |
-      | US      | United States          | Australia             |
-      | UK      | United Kingdom         | Egypt                 |

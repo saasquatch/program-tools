@@ -209,7 +209,7 @@ export function useUserInfoForm(props: TaxForm) {
     },
     states: {
       step: step?.replace("/", ""),
-      hideSteps: context.hideSteps,
+      hideSteps: !!context.hideSteps,
       disabled: loading,
       loadingError: !!userError?.message,
       loading: loading,

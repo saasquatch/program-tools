@@ -124,29 +124,6 @@ export const DocusignLoadingView = () => {
   );
 };
 
-// export const DocusignCompletedView = (props: {
-//   text: DocusignIframeProps["text"];
-// }) => {
-//   const { classes } = sheet;
-//   const { text } = props;
-//   return (
-//     <div>
-//       <style type="text/css">{styleString}</style>
-//       <div class={classes.DocusignStatusContainer}>
-//         <sl-icon
-//           style={{
-//             width: "50px",
-//             height: "50px",
-//             color: "var(--sl-color-success-600)",
-//           }}
-//           name="check2-circle"
-//         ></sl-icon>
-//         <p style={{ margin: "0" }}>{text.docusignCompleted}</p>
-//       </div>
-//     </div>
-//   );
-// };
-
 export const DocusignIframe = ({
   states,
   callbacks,

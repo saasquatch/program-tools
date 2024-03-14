@@ -13,7 +13,6 @@ export interface UserInfoFormViewProps {
     isPartner: boolean;
     isUser: boolean;
     hideSteps: boolean;
-    // AL: TODO form loadingError
     loadingError?: boolean;
     formState: {
       firstName?: string;

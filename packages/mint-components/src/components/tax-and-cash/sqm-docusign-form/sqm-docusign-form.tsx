@@ -252,7 +252,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
   );
 }
 
-const DemoDocusignIframe = (_) => {
+const DemoDocusignIframe = ({ callbacks }) => {
   return (
     <div
       style={{
@@ -272,7 +272,25 @@ const DemoDocusignIframe = (_) => {
           alignItems: "center",
         }}
       >
-        <div>Placeholder for docusign iframe</div>
+        <span>Placeholder for docusign iframe</span>
+        <div style={{ display: "flex", gap: "8px" }}>
+          <sl-button
+            type="primary"
+            submit
+            exportparts="base: primarybutton-base"
+            onClick={callbacks.onBack}
+          >
+            Back to Step 2
+          </sl-button>
+          <sl-button
+            type="primary"
+            submit
+            exportparts="base: primarybutton-base"
+            onClick={callbacks.onSubmit}
+          >
+            Continue to Step 4
+          </sl-button>
+        </div>
       </div>
     </div>
   );

@@ -846,8 +846,7 @@ export function useBankingInfoForm(
       feeCap,
       paymentMethodFeeLabel,
       disabled: loading,
-      hideBackButton: false,
-      // TODO: possibly add loading here, it causes all fields to be cleared on save if all field are filled out though
+      hideBackButton: !context.overrideBackStep,
       loading: !paymentOptions,
       saveLoading: loading,
       hideBanking:
