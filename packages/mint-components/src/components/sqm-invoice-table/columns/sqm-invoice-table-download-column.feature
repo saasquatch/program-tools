@@ -1,6 +1,6 @@
 @author:derek
 @owner:derek
-Feature: Reward Table Date Column
+Feature: Invoice Table Date Column
 
     Provides a download link to each invoice
 

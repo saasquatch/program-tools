@@ -1,6 +1,6 @@
 @author:derek
 @owner:derek
-Feature: Reward Table Date Column
+Feature: Invoice Table Date Column
 
     Shows the date of each reward
 
