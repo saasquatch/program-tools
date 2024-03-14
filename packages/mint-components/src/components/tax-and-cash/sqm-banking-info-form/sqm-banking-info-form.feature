@@ -23,7 +23,7 @@ Feature: Banking Information Form
     And the selected bank country is one of <bankCountry>
     Then <fields> are displayed
 
-    Examples: 
+    Examples:
       | currency | bankCountry                           | fields                                                                                               |
       | USD      | United States                         | Beneficiary Account Name, Bank Account Type, Bank Account Number, ABA Routing Number                 |
       | USD      | Canada                                | Beneficiary Account Name, Bank Account Number, SWIFT Code                                            |
@@ -39,14 +39,14 @@ Feature: Banking Information Form
       | EUR      | Canada                                | Beneficiary Account Name, Bank Account Number, SWIFT Code                                            |
       | EUR      | Spain, Ireland, United Kingdom, Japan | Beneficiary Account Name, IBAN, SWIFT Code                                                           |
       | JPY      | Japan                                 | Beneficiary Account Name, Bank Account Type, Bank Account Number, SWIFT Code, Bank Name, Branch Code |
-    # According to mock data currently available
+  # According to mock data currently available
 
   Scenario Outline: Bank country dropdown list is dynamic depending on the partner's currency
     Given the bank account payment method is selected
     And the selected currency is <currency>
     Then the bank country options are <countries>
 
-    Examples: 
+    Examples:
       | currency | countries                                                    |
       | USD      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
       | GBP      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
@@ -62,7 +62,7 @@ Feature: Banking Information Form
     Then <paymentMethodText> is shown
     And the withdrawal fee is shown
 
-    Examples: 
+    Examples:
       | currency | bankCountry                                                  | paymentMethodText |
       | USD      | United States                                                | EFT Withdrawal    |
       | USD      | Canada, Spain, Ireland, United Kingdom, Japan                | FX Wire           |
@@ -73,14 +73,14 @@ Feature: Banking Information Form
       | EUR      | Spain, Ireland,  United Kingdom                              | EFT Withdrawal    |
       | EUR      | United States, Canada, Japan                                 | FX Wire           |
       | JPY      | Japan                                                        | EFT Withdrawal    |
-    # Not sure what the actual specs for when it's shown are yet
+  # Not sure what the actual specs for when it's shown are yet
 
   Scenario Outline: PayPal option is dynamically shown
     Given <currency> is set on the payout partner
     And the currency <currencySupported> supported by PayPal
     Then the paypal option <mayBe> shown as a payment method
 
-    Examples: 
+    Examples:
       | currency | currencySupported | mayBe |
       | USD      | is                | is    |
       | GBP      | is                | is    |
@@ -100,8 +100,4 @@ Feature: Banking Information Form
     When the participant views the form
     Then a request is made to fetch the form data
     But the request fails
-    Then a loading error banner appears with <loadingErrorAlertHeader> and <loadingErrorAlertDescription>
-
-    Examples: 
-      | loadingErrorAlertHeader               | loadingErrorAlertDescription                                                       |
-      | There was a problem loading your form | Please refresh the page and try again. If this problem continues, contact Support. |
+    Then a loading error banner appears
