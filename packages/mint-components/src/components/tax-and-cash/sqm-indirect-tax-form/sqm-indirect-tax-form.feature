@@ -12,15 +12,15 @@ Feature: Indirect Tax Form
     And they see the title "Indirect Tax"
     And they see the subtitle
       """
-      Not sure if you are registered for indirect tax? Contact our Support team to find out more.
+      Participants representing businesses based in countries that enforce indirect taxes (e.g. VAT, HST, GST) must add their indirect tax details to stay tax compliant.
       """
     Then they are shown the radio option for indirect tax
     And the option <option> has label <label> and description <description>
 
-    Examples:
-      | option        | label                                                            | description                                                                                                                 |
-      | notRegistered | I am not registered for Indirect Tax                             | If you’re joining this referral program as an individual or you’re based in the US, then you’re not registered.             |
-      | registered    | I am registered for Indirect Tax in a different Country / Region | If you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more. |
+    Examples: 
+      | option        | label                           | description                                                                                                                 |
+      | notRegistered | Not registered for Indirect Tax | If you’re joining this referral program as an individual or you’re based in the US, then you’re not registered.             |
+      | registered    | Registered for Indirect Tax     | If you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more. |
 
   @motivating @ui
   Scenario Outline: Inputs display based on radio option selected
@@ -28,7 +28,7 @@ Feature: Indirect Tax Form
     Then the field <field> is displayed
     And it has label <label>
 
-    Examples:
+    Examples: 
       | option        | field               | label                            |
       | notRegistered | N/A                 | N/A                              |
       | registered    | indirectCountryCode | Country / Region of Indirect Tax |
@@ -47,7 +47,7 @@ Feature: Indirect Tax Form
     And the tax type of that country is <taxType>
     Then the label of the "indirectTaxId" field is <label>
 
-    Examples:
+    Examples: 
       | country     | taxType       | label               |
       | New Zealand | GST           | GST number          |
       | Malaysia    | SST           | SST number          |
@@ -64,7 +64,7 @@ Feature: Indirect Tax Form
     Then the "indirectTaxId" field is shown and has label <label>
     And <additionalFields> are shown
 
-    Examples:
+    Examples: 
       | province               | label      | additionalFields |
       | Alberta                | GST number | n/a              |
       | British Columbia       | HST number | n/a              |
@@ -144,7 +144,7 @@ Feature: Indirect Tax Form
       | Russia         | VAT     |
     Then <typeTaxInputHeader> changes based on the <typeTax>
 
-    Examples:
+    Examples: 
       | country        | typeTax | typeTaxInputHeader |
       | United Kingdom | VAT     | VAT number         |
       | Australia      | GST     | GST number         |
@@ -157,7 +157,7 @@ Feature: Indirect Tax Form
     Then the field <field> is displayed
     And the field <field> has label <label>
 
-    Examples:
+    Examples: 
       | field                  | label                                                                                                                      |
       | withholdingRegion      | Sub region                                                                                                                 |
       | vatNumber              | VAT number                                                                                                                 |
@@ -192,15 +192,15 @@ Feature: Indirect Tax Form
     And the tax information fields <taxFields> have values in the request body
     And any other fields are "undefined"
 
-    Examples:
+    Examples: 
       | option        | indirectCountryCode | indirectTaxId | indirectTaxRegion | additionalTaxId | withholdingTaxId | taxFields                                                               |
       | notRegistered | n/a                 | n/a           | n/a               | n/a             | n/a              | ""                                                                      |
-      | registered    | US (United States)  | 123123        | n/a               | n/a             | n/a              | indirectCountryCode, indirectTaxId                                      |
-      | registered    | UK (United Kingdom) | 123123        | n/a               | n/a             | n/a              | indirectCountryCode, indirectTaxId                                      |
-      | registered    | CA (Canada)         | 123123        | BC                | n/a             | n/a              | indirectCountryCode, indirectTaxId, indirectTaxRegion                   |
-      | registered    | CA (Canada)         | 123123        | QU                | 333             | n/a              | indirectCountryCode, indirectTaxId, indirectTaxRegion, additionalTaxId  |
-      | registered    | ES (Spain)          | 123123        | SPAINPROPER       | n/a             | 333              | indirectCountryCode, indirectTaxId, indirectTaxRegion, withholdingTaxId |
-      | registered    | ES (Spain)          | 123123        | CANARYISLANDS     | n/a             | 333              | indirectCountryCode, indirectTaxId, indirectTaxRegion, withholdingTaxId |
+      | registered    | US (United States)  |        123123 | n/a               | n/a             | n/a              | indirectCountryCode, indirectTaxId                                      |
+      | registered    | UK (United Kingdom) |        123123 | n/a               | n/a             | n/a              | indirectCountryCode, indirectTaxId                                      |
+      | registered    | CA (Canada)         |        123123 | BC                | n/a             | n/a              | indirectCountryCode, indirectTaxId, indirectTaxRegion                   |
+      | registered    | CA (Canada)         |        123123 | QU                |             333 | n/a              | indirectCountryCode, indirectTaxId, indirectTaxRegion, additionalTaxId  |
+      | registered    | ES (Spain)          |        123123 | SPAINPROPER       | n/a             |              333 | indirectCountryCode, indirectTaxId, indirectTaxRegion, withholdingTaxId |
+      | registered    | ES (Spain)          |        123123 | CANARYISLANDS     | n/a             |              333 | indirectCountryCode, indirectTaxId, indirectTaxRegion, withholdingTaxId |
 
   @minutia
   Scenario: Participant is registered for indirect tax fills out and submits form
@@ -238,4 +238,3 @@ Feature: Indirect Tax Form
       | <qstNumber>         | "QST number is required"            |
       | <subRegionTaxNumber | "Income Tax number is required      |
     And no request is sent to the backend
-
