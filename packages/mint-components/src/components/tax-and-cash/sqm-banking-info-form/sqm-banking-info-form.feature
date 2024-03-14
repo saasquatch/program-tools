@@ -19,6 +19,7 @@ Feature: Banking Information Form
     And the form fields with be pre filled with the participants data
     And there will be banner to explain that the account is linked to their referral profile in impact.com
 
+
   @motivating
   Scenario Outline: Bank account form fields are dynamically shown
     Given the bank account payment method is selected
@@ -82,13 +83,14 @@ Feature: Banking Information Form
     And the currency <currencySupported> supported by PayPal
     Then the paypal option <mayBe> shown as a payment method
     Examples:
-      | currency | currencySupported | mayBe |
-      | USD      | is                | is    |
-      | GBP      | is                | is    |
-      | AUD      | is                | is    |
-      | CAD      | is                | is    |
-      | EUR      | is                | is    |
-      | JPY      | is                | is    |
+      | currency | currencySupported | mayBe  |
+      | USD      | is                | is     |
+      | GBP      | is                | is     |
+      | AUD      | is                | is     |
+      | CAD      | is                | is     |
+      | EUR      | is                | is     |
+      | JPY      | is                | is     |
+      | MAD      | is not            | is not |
 
   @minutia
   Scenario: Error state is shown if the participant tries to submit the form before all the fields have been filled
