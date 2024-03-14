@@ -138,7 +138,7 @@ Feature: Indirect Tax Form
       | Taiwan         | VAT     |
       | Thailand       | VAT     |
       | Philippines    | VAT     |
-      | Malaysia       | GST     |
+      | Malaysia       | SST     |
       | UAE            | VAT     |
       | Turkey         | VAT     |
       | Russia         | VAT     |
@@ -168,7 +168,7 @@ Feature: Indirect Tax Form
     Given "impactCountryCode" has value "Spain"
     When the "withholdTaxCheckbox" checkbox is set to true
     Then the "withholdingTaxId" field is displayed
-    And the "withholdingTaxId" field has label "Income Tax number"
+    And the "withholdingTaxId" field has label "Income tax number"
 
   @minutia @ui
   Scenario: Country/Region of Indirect Tax select is searchable
@@ -203,7 +203,7 @@ Feature: Indirect Tax Form
       | registered    | ES (Spain)          |        123123 | CANARYISLANDS     | n/a             |              333 | indirectCountryCode, indirectTaxId, indirectTaxRegion, withholdingTaxId |
 
   @minutia
-  Scenario: Participant is registered for indirect tax fills out and submits form
+  Scenario: Participant is registered for indirect tax fills out and submits form but request is unsuccessful
     Given they fill out the form
     And press "Continue"
     Then the save request is sent
@@ -236,5 +236,5 @@ Feature: Indirect Tax Form
       | <subRegion          | Sub-region is required              |
       | <indirectTaxNumber> | "VAT/HST/GST/CT number is required" |
       | <qstNumber>         | "QST number is required"            |
-      | <subRegionTaxNumber | "Income Tax number is required      |
+      | <subRegionTaxNumber | "Income tax number is required      |
     And no request is sent to the backend
