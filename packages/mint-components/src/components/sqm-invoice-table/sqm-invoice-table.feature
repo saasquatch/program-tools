@@ -27,7 +27,6 @@ Feature: Invoice Table
         And there exists the possibility the user can download each invoice (given the download column is included)
 
     @motivating
-
     Scenario Outline: Invoices for the user are displayed
         Given the participant has invoices available
         When the invoices are loading
