@@ -1290,6 +1290,17 @@ export namespace Components {
          */
         "smBreakpoint"?: number;
     }
+    interface SqmInvoiceTableCell {
+        "innerTemplate": string;
+    }
+    interface SqmInvoiceTableColumn {
+        /**
+          * @uiName Column title
+         */
+        "columnTitle": string;
+        "renderCell": (_: Invoice) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+    }
     interface SqmInvoiceTableDataCell {
         "data": string;
     }
@@ -3946,10 +3957,28 @@ export namespace Components {
          */
         "dashboard_thresholdPayoutText": string;
         /**
+          * Invoice table Date column title
+          * @uiName Date column title
+          * @uiGroup Dashboard Properties
+         */
+        "dateColumnTitle": string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
+        /**
+          * Invoice table Earnings after tax column title
+          * @uiName Earnings after tax column title
+          * @uiGroup Dashboard Properties
+         */
+        "earningsAfterTaxColumnTitle": string;
+        /**
+          * Invoice table Earnings column title
+          * @uiName Earnings column title
+          * @uiGroup Dashboard Properties
+         */
+        "earningsColumnTitle": string;
         /**
           * Invalid error text shown at the bottom of field inputs
           * @uiName Field inputs invalid error text
@@ -3963,6 +3992,12 @@ export namespace Components {
          */
         "fieldRequiredError": string;
         /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Tax form step text
+          * @uiGroup General Form Properties
+         */
+        "formStep": string;
+        /**
           * Description text for a general form submission error
           * @uiName General form submission error description
          */
@@ -3973,6 +4008,12 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "generalErrorTitle": string;
+        /**
+          * Invoice table Invoice column title
+          * @uiName Invoice column title
+          * @uiGroup Dashboard Properties
+         */
+        "invoiceColumnTitle": string;
         /**
           * Alert description text shown in alert if user is already a registered partner
           * @uiName Participant is partner description
@@ -4034,12 +4075,6 @@ export namespace Components {
          */
         "step1_firstName": string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_formStep": string;
-        /**
           * Label text for last name input
           * @uiName Last name label
           * @uiGroup Step 1 Properties
@@ -4063,12 +4098,6 @@ export namespace Components {
           * @uiGroup Step 2 Properties
          */
         "step2_cannotChangeInfoAlert": string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Indirect tax form step text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_formStep": string;
         /**
           * Heading text shown at the top of the page
           * @uiName Indirect tax heading text
@@ -4213,12 +4242,6 @@ export namespace Components {
           * @uiGroup Step 3 Properties
          */
         "step3_docusignExpired": string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_formStep": string;
         /**
           * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
           * @uiName Form submission error text
@@ -4393,12 +4416,6 @@ export namespace Components {
          */
         "step4_foreignSelectItemLabel": string;
         /**
-          * Subtext shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Form step text
-          * @uiGroup Step 4 Properties
-         */
-        "step4_formStep": string;
-        /**
           * @uiName FX Wire Processing fee text
           * @uiGroup Step 4 Properties
          */
@@ -4535,6 +4552,12 @@ export namespace Components {
           * @uiGroup Step 3 Properties
          */
         "stop3NotBasedInUS": string;
+        /**
+          * Invoice table Taxed Amount column title
+          * @uiName Taxed Amount column title
+          * @uiGroup Dashboard Properties
+         */
+        "taxedAmountColumnTitle": string;
     }
     interface SqmTaxAndCashDashboard {
         /**
@@ -4563,10 +4586,25 @@ export namespace Components {
          */
         "bankingInformationSectionHeader": string;
         /**
+          * Invoice table Date column title
+          * @uiName Date column title
+         */
+        "dateColumnTitle": string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxAndCashDashboardResult>;
+        /**
+          * Invoice table Earnings after tax column title
+          * @uiName Earnings after tax column title
+         */
+        "earningsAfterTaxColumnTitle": string;
+        /**
+          * Invoice table Earnings column title
+          * @uiName Earnings column title
+         */
+        "earningsColumnTitle": string;
         /**
           * Text displayed in the edit Payment Information button
           * @uiName Edit Payment Information button
@@ -4625,6 +4663,11 @@ export namespace Components {
           * @uiName Invalid form description text
          */
         "invalidForm"?: string;
+        /**
+          * Invoice table Invoice column title
+          * @uiName Invoice column title
+         */
+        "invoiceColumnTitle": string;
         /**
           * Alert description shown if there is a problem loading a form
           * @uiName Loading error alert description
@@ -4715,6 +4758,11 @@ export namespace Components {
           * @uiName Tax documents sub header
          */
         "taxDocumentSectionSubHeader": string;
+        /**
+          * Invoice table Taxed Amount column title
+          * @uiName Taxed Amount column title
+         */
+        "taxedAmountColumnTitle": string;
         /**
           * Label text for the next payout based on balance
           * @uiName Threshold payout text
@@ -5073,6 +5121,18 @@ declare global {
     var HTMLSqmInvoiceTableElement: {
         prototype: HTMLSqmInvoiceTableElement;
         new (): HTMLSqmInvoiceTableElement;
+    };
+    interface HTMLSqmInvoiceTableCellElement extends Components.SqmInvoiceTableCell, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableCellElement: {
+        prototype: HTMLSqmInvoiceTableCellElement;
+        new (): HTMLSqmInvoiceTableCellElement;
+    };
+    interface HTMLSqmInvoiceTableColumnElement extends Components.SqmInvoiceTableColumn, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableColumnElement: {
+        prototype: HTMLSqmInvoiceTableColumnElement;
+        new (): HTMLSqmInvoiceTableColumnElement;
     };
     interface HTMLSqmInvoiceTableDataCellElement extends Components.SqmInvoiceTableDataCell, HTMLStencilElement {
     }
@@ -5594,6 +5654,8 @@ declare global {
         "sqm-input-field": HTMLSqmInputFieldElement;
         "sqm-instant-access-registration": HTMLSqmInstantAccessRegistrationElement;
         "sqm-invoice-table": HTMLSqmInvoiceTableElement;
+        "sqm-invoice-table-cell": HTMLSqmInvoiceTableCellElement;
+        "sqm-invoice-table-column": HTMLSqmInvoiceTableColumnElement;
         "sqm-invoice-table-data-cell": HTMLSqmInvoiceTableDataCellElement;
         "sqm-invoice-table-data-column": HTMLSqmInvoiceTableDataColumnElement;
         "sqm-invoice-table-date-cell": HTMLSqmInvoiceTableDateCellElement;
@@ -6920,6 +6982,15 @@ declare namespace LocalJSX {
           * @uiName Mobile breakpoint
          */
         "smBreakpoint"?: number;
+    }
+    interface SqmInvoiceTableCell {
+        "innerTemplate"?: string;
+    }
+    interface SqmInvoiceTableColumn {
+        /**
+          * @uiName Column title
+         */
+        "columnTitle"?: string;
     }
     interface SqmInvoiceTableDataCell {
         "data"?: string;
@@ -9547,10 +9618,28 @@ declare namespace LocalJSX {
          */
         "dashboard_thresholdPayoutText"?: string;
         /**
+          * Invoice table Date column title
+          * @uiName Date column title
+          * @uiGroup Dashboard Properties
+         */
+        "dateColumnTitle"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
+        /**
+          * Invoice table Earnings after tax column title
+          * @uiName Earnings after tax column title
+          * @uiGroup Dashboard Properties
+         */
+        "earningsAfterTaxColumnTitle"?: string;
+        /**
+          * Invoice table Earnings column title
+          * @uiName Earnings column title
+          * @uiGroup Dashboard Properties
+         */
+        "earningsColumnTitle"?: string;
         /**
           * Invalid error text shown at the bottom of field inputs
           * @uiName Field inputs invalid error text
@@ -9564,6 +9653,12 @@ declare namespace LocalJSX {
          */
         "fieldRequiredError"?: string;
         /**
+          * Sub text shown at the top of the page, used to show the current step of the tax form.
+          * @uiName Tax form step text
+          * @uiGroup General Form Properties
+         */
+        "formStep"?: string;
+        /**
           * Description text for a general form submission error
           * @uiName General form submission error description
          */
@@ -9574,6 +9669,12 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "generalErrorTitle"?: string;
+        /**
+          * Invoice table Invoice column title
+          * @uiName Invoice column title
+          * @uiGroup Dashboard Properties
+         */
+        "invoiceColumnTitle"?: string;
         /**
           * Alert description text shown in alert if user is already a registered partner
           * @uiName Participant is partner description
@@ -9635,12 +9736,6 @@ declare namespace LocalJSX {
          */
         "step1_firstName"?: string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_formStep"?: string;
-        /**
           * Label text for last name input
           * @uiName Last name label
           * @uiGroup Step 1 Properties
@@ -9664,12 +9759,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 2 Properties
          */
         "step2_cannotChangeInfoAlert"?: string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Indirect tax form step text
-          * @uiGroup Step 2 Properties
-         */
-        "step2_formStep"?: string;
         /**
           * Heading text shown at the top of the page
           * @uiName Indirect tax heading text
@@ -9814,12 +9903,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 3 Properties
          */
         "step3_docusignExpired"?: string;
-        /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_formStep"?: string;
         /**
           * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
           * @uiName Form submission error text
@@ -9994,12 +10077,6 @@ declare namespace LocalJSX {
          */
         "step4_foreignSelectItemLabel"?: string;
         /**
-          * Subtext shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Form step text
-          * @uiGroup Step 4 Properties
-         */
-        "step4_formStep"?: string;
-        /**
           * @uiName FX Wire Processing fee text
           * @uiGroup Step 4 Properties
          */
@@ -10136,6 +10213,12 @@ declare namespace LocalJSX {
           * @uiGroup Step 3 Properties
          */
         "stop3NotBasedInUS"?: string;
+        /**
+          * Invoice table Taxed Amount column title
+          * @uiName Taxed Amount column title
+          * @uiGroup Dashboard Properties
+         */
+        "taxedAmountColumnTitle"?: string;
     }
     interface SqmTaxAndCashDashboard {
         /**
@@ -10164,10 +10247,25 @@ declare namespace LocalJSX {
          */
         "bankingInformationSectionHeader"?: string;
         /**
+          * Invoice table Date column title
+          * @uiName Date column title
+         */
+        "dateColumnTitle"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxAndCashDashboardResult>;
+        /**
+          * Invoice table Earnings after tax column title
+          * @uiName Earnings after tax column title
+         */
+        "earningsAfterTaxColumnTitle"?: string;
+        /**
+          * Invoice table Earnings column title
+          * @uiName Earnings column title
+         */
+        "earningsColumnTitle"?: string;
         /**
           * Text displayed in the edit Payment Information button
           * @uiName Edit Payment Information button
@@ -10226,6 +10324,11 @@ declare namespace LocalJSX {
           * @uiName Invalid form description text
          */
         "invalidForm"?: string;
+        /**
+          * Invoice table Invoice column title
+          * @uiName Invoice column title
+         */
+        "invoiceColumnTitle"?: string;
         /**
           * Alert description shown if there is a problem loading a form
           * @uiName Loading error alert description
@@ -10316,6 +10419,11 @@ declare namespace LocalJSX {
           * @uiName Tax documents sub header
          */
         "taxDocumentSectionSubHeader"?: string;
+        /**
+          * Invoice table Taxed Amount column title
+          * @uiName Taxed Amount column title
+         */
+        "taxedAmountColumnTitle"?: string;
         /**
           * Label text for the next payout based on balance
           * @uiName Threshold payout text
@@ -10538,6 +10646,8 @@ declare namespace LocalJSX {
         "sqm-input-field": SqmInputField;
         "sqm-instant-access-registration": SqmInstantAccessRegistration;
         "sqm-invoice-table": SqmInvoiceTable;
+        "sqm-invoice-table-cell": SqmInvoiceTableCell;
+        "sqm-invoice-table-column": SqmInvoiceTableColumn;
         "sqm-invoice-table-data-cell": SqmInvoiceTableDataCell;
         "sqm-invoice-table-data-column": SqmInvoiceTableDataColumn;
         "sqm-invoice-table-date-cell": SqmInvoiceTableDateCell;
@@ -10653,6 +10763,8 @@ declare module "@stencil/core" {
             "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
             "sqm-instant-access-registration": LocalJSX.SqmInstantAccessRegistration & JSXBase.HTMLAttributes<HTMLSqmInstantAccessRegistrationElement>;
             "sqm-invoice-table": LocalJSX.SqmInvoiceTable & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableElement>;
+            "sqm-invoice-table-cell": LocalJSX.SqmInvoiceTableCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableCellElement>;
+            "sqm-invoice-table-column": LocalJSX.SqmInvoiceTableColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableColumnElement>;
             "sqm-invoice-table-data-cell": LocalJSX.SqmInvoiceTableDataCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDataCellElement>;
             "sqm-invoice-table-data-column": LocalJSX.SqmInvoiceTableDataColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDataColumnElement>;
             "sqm-invoice-table-date-cell": LocalJSX.SqmInvoiceTableDateCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateCellElement>;

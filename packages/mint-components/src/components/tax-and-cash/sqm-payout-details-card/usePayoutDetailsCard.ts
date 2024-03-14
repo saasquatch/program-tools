@@ -62,7 +62,7 @@ export function usePayoutDetailsCard(
       loading,
       thresholdBalance: `${publisher?.currency}${publisher?.withdrawalSettings?.paymentThreshold}`,
       balance: publisher?.payoutsAccount?.balance,
-      status:
+      badgeStatus:
         publisher?.withdrawalSettings?.paymentSchedulingType !== "FIXED_DAY"
           ? "thresholdPayout"
           : isPayoutToday

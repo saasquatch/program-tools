@@ -206,17 +206,20 @@ graph TD;
   sqm-user-info-form --> sqm-tax-and-cash
   sqm-tax-and-cash-dashboard --> sqm-payout-details-card
   sqm-tax-and-cash-dashboard --> sqm-invoice-table
+  sqm-tax-and-cash-dashboard --> sqm-invoice-table-download-column
+  sqm-tax-and-cash-dashboard --> sqm-invoice-table-date-column
+  sqm-tax-and-cash-dashboard --> sqm-invoice-table-data-column
   sqm-invoice-table --> sqm-empty
   sqm-invoice-table --> sqm-table-row
   sqm-invoice-table --> sqm-table-cell
+  sqm-invoice-table-download-column --> sqm-invoice-table-download-cell
+  sqm-invoice-table-date-column --> sqm-invoice-table-date-cell
+  sqm-invoice-table-data-column --> sqm-invoice-table-data-cell
   sqm-tax-and-cash --> sqm-user-info-form
   sqm-tax-and-cash --> sqm-indirect-tax-form
   sqm-tax-and-cash --> sqm-docusign-form
   sqm-tax-and-cash --> sqm-banking-info-form
   sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
-  sqm-invoice-table-download-column --> sqm-invoice-table-download-cell
-  sqm-invoice-table-date-column --> sqm-invoice-table-date-cell
-  sqm-invoice-table-data-column --> sqm-invoice-table-data-cell
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

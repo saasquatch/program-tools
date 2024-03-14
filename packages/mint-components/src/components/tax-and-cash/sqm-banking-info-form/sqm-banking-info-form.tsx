@@ -36,7 +36,7 @@ export class BankingInfoForm {
    * Subtext shown at the top of the page, used to show the current step of the tax form.
    * @uiName Form step text
    */
-  @Prop() formStep: string = "Step 4 of 4";
+  @Prop() formStep: string = "Step {step} of {count}";
 
   /**
    * Heading text shown at the top of the page
@@ -101,12 +101,12 @@ export class BankingInfoForm {
    * Heading text for the payment method section
    * @uiName Payment method heading text
    */
-  @Prop() paymentMethod: string = "Payment Method";
+  @Prop() paymentMethod: string = "Payment method";
   /**
    * Heading text for the payment schedule section
    * @uiName Payment schedule heading text
    */
-  @Prop() paymentSchedule: string = "Payment Schedule";
+  @Prop() paymentSchedule: string = "Payment schedule";
   /**
    * Subtext for the payment method section
    * @uiName Payment method subtext
@@ -117,23 +117,23 @@ export class BankingInfoForm {
    * Label text for the PayPal email input field
    * @uiName PayPal email input label
    */
-  @Prop() payPalInputLabel: string = "PayPal Email";
+  @Prop() payPalInputLabel: string = "PayPal email";
   /**
    * Label text for the bank country location input field
    * @uiName Bank country location input label
    */
-  @Prop() bankLocationLabel: string = "Bank Country Location";
+  @Prop() bankLocationLabel: string = "Bank country location";
   /**
    * Label text for the beneficiary account name input field
    * @uiName Beneficiary account name input label
    */
-  @Prop() beneficiaryAccountNameLabel: string = "Beneficiary Account Name";
+  @Prop() beneficiaryAccountNameLabel: string = "Beneficiary account name";
 
   /**
    * Label text for the bank account type input field
    * @uiName Bank account type input label
    */
-  @Prop() bankAccountTypeLabel: string = "Bank Account Type";
+  @Prop() bankAccountTypeLabel: string = "Bank account type";
 
   /**
    * Label text for the checking account type select item
@@ -151,7 +151,7 @@ export class BankingInfoForm {
    * Label text for the bank account number input field
    * @uiName Bank account number input label
    */
-  @Prop() bankAccountNumberLabel: string = "Bank Account Number";
+  @Prop() bankAccountNumberLabel: string = "Bank account number";
   /**
    * Label text for the IBAN input field
    * @uiName IBAN input label
@@ -162,14 +162,14 @@ export class BankingInfoForm {
    * Label text for the SWIFT code input field
    * @uiName SWIFT code input label
    */
-  @Prop() swiftCodeLabel: string = "SWIFT Code";
+  @Prop() swiftCodeLabel: string = "SWIFT code";
 
   /**
    * Label text for the routing code input field
    * @uiName Routing code input label
    */
   @Prop() routingCodeLabel: string =
-    "{country, select, AU {BSB Number} CA {Routing Number} CZ {Bank Code} HK {Clearing Code} SG {Clearing Code} US {ABA Routing Number} NZ {BSB Number} ZA {Bank/Branch Number} IN {IFSC} CNY {CNAPS} other {Routing Code} }";
+    "{country, select, AU {BSB number} CA {Routing number} CZ {Bank code} HK {Clearing code} SG {Clearing code} US {ABA routing number} NZ {BSB number} ZA {Bank/Branch cumber} IN {IFSC} CNY {CNAPS} other {Routing code} }";
 
   /**
    * Label text for the bank name input field
@@ -211,25 +211,25 @@ export class BankingInfoForm {
    * Label text for the patronymic name input field
    * @uiName Patronymic name input label
    */
-  @Prop() patronymicNameLabel: string = "Patronymic Name";
+  @Prop() patronymicNameLabel: string = "Patronymic name";
 
   /**
    * Label text for the VO code input field
    * @uiName VO code input label
    */
-  @Prop() voCodeLabel: string = "VO Code";
+  @Prop() voCodeLabel: string = "VO code";
 
   /**
    * Label text for the agency code input field
    * @uiName Agency code input label
    */
-  @Prop() agencyCodeLabel: string = "Agency Code";
+  @Prop() agencyCodeLabel: string = "Agency code";
 
   /**
    * Label text for the branch code input field
    * @uiName Branch code input label
    */
-  @Prop() branchCodeLabel: string = "Branch Code";
+  @Prop() branchCodeLabel: string = "Branch code";
 
   /**
    * Label text for the classification input field
@@ -248,26 +248,26 @@ export class BankingInfoForm {
    * Label text for the Bank Address input
    * @uiName Bank Address input item label
    */
-  @Prop() bankAddressLabel: string = "Bank Address";
+  @Prop() bankAddressLabel: string = "Bank address";
   /**
    * Label text for the Bank City input
    * @uiName Bank City Label input label
    */
-  @Prop() bankCityLabel: string = "Bank City";
+  @Prop() bankCityLabel: string = "Bank city";
   /**
    * Label text for the Bank Province / State input
    * @uiName Bank Province / State input label
    */
-  @Prop() bankStateLabel: string = "Bank Province/State";
+  @Prop() bankStateLabel: string = "Bank province/state";
   /**
    * Label text for the Bank Postal Code
    * @uiName Bank Postal Code input label
    */
-  @Prop() bankPostalCodeLabel: string = "Bank Postal Code";
+  @Prop() bankPostalCodeLabel: string = "Bank postal code";
   /**
    * @uiName EFT Withdrawal label text
    */
-  @Prop() eftWithdrawalLabel: string = "EFT Withdrawal (free)";
+  @Prop() eftWithdrawalLabel: string = "EFT withdrawal (free)";
 
   /**
    * @uiName FX Wire Processing fee text
@@ -604,6 +604,7 @@ function useDemoBankingInfoForm(
   return deepmerge(
     {
       states: {
+        step: "4",
         isPartner: false,
         disabled: false,
         loading: false,

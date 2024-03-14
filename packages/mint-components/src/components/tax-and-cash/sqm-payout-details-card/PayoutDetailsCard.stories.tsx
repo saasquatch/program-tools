@@ -29,7 +29,15 @@ export const Error = () => {
 };
 
 export const NextPayout = () => {
-  return <sqm-payout-details-card></sqm-payout-details-card>;
+  return (
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          badgeStatus: "nextPayout",
+        },
+      }}
+    ></sqm-payout-details-card>
+  );
 };
 
 export const PayoutToday = () => {
@@ -37,7 +45,7 @@ export const PayoutToday = () => {
     <sqm-payout-details-card
       demoData={{
         states: {
-          status: "payoutToday",
+          badgeStatus: "payoutToday",
         },
       }}
     ></sqm-payout-details-card>
@@ -50,7 +58,7 @@ export const ThresholdPayout = () => {
       demoData={{
         states: {
           thresholdBalance: "50 USD",
-          status: "thresholdPayout",
+          badgeStatus: "thresholdPayout",
         },
       }}
     ></sqm-payout-details-card>

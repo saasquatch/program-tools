@@ -61,7 +61,7 @@ export class TaxForm {
    * Sub text shown at the top of the page, used to show the current step of the tax form.
    * @uiName Tax form step text
    */
-  @Prop() formStep: string = "Step 1 of 4";
+  @Prop() formStep: string = "Step {step} of {count}";
   /**
    * Heading text shown above the forms inputs.
    * @uiName Form heading text
@@ -175,7 +175,6 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
 
   return deepmerge(
     {
-      step,
       setStep,
       onSubmit: () => {
         setStep("/2");
@@ -196,6 +195,7 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
         onFormChange: () => {},
       },
       states: {
+        step: "1",
         disabled: false,
         loading: false,
         isPartner: false,

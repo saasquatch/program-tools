@@ -200,3 +200,11 @@ Feature: Tax Form Flow
     When they successfully submit a tax document
     Then they are sent to the Dashboard step
     And they skip the banking info form step
+
+  @minutia
+  Scenario: Error banner is shown if impact user graphql request has an error
+    Given a user is viewing the component
+    And the request for the user returns with errors
+    Then the form / dashboard is not shown
+    And an error banner is shown
+

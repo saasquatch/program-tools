@@ -7,7 +7,7 @@ export interface PayoutDetailsCardViewProps {
   states: {
     loading?: boolean;
     balance: string;
-    status: "thresholdPayout" | "payoutToday" | "nextPayout";
+    badgeStatus: "thresholdPayout" | "payoutToday" | "nextPayout";
     payoutType: "PAYPAL" | "BANK_TRANSFER";
     error?: boolean;
     hasW9Pending?: boolean;
@@ -115,13 +115,17 @@ const style = {
   },
   Alert: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-red-100)",
-      borderTop: "none",
+      backgroundColor: "var(--sl-color-warning-100)",
+      border: "1px solid var(--sl-color-warning-200)",
       padding: "0 16px",
+    },
+    "& sl-icon": {
+      margin: 0,
     },
 
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sl-color-warning-500)",
+      margin: 0,
     },
   },
   AlertContent: {
@@ -158,6 +162,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
   };
 
   const renderStatusBadge = (status: string, statusBadgeText: string) => {
+    console.log(status, statusBadgeText, "debug status text");
     const badgeType = status === "nextPayout" ? "success" : "primary";
     const statusText = intl.formatMessage(
       {
@@ -193,10 +198,10 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
         <sl-alert
           exportparts="base: alert-base, icon:alert-icon"
           class={classes.Alert}
-          type="danger"
+          type="warning"
           open
         >
-          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+          <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
           <div class={classes.AlertContent}>
             <b>{text.error.errorTitleText}</b>
             {text.error.errorDescriptionText}
@@ -209,13 +214,13 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
         <div class={classes.CardContainer}>
           <div class={classes.StatusContainer}>
             <p class={classes.SubduedRegularText}>
-              {states.status === "thresholdPayout"
+              {states.badgeStatus === "thresholdPayout"
                 ? thresholdText
                 : states.nextPayoutDate}
             </p>
-            {states.status === "thresholdPayout"
+            {states.badgeStatus === "thresholdPayout"
               ? null
-              : renderStatusBadge(states.status, text.statusBadgeText)}
+              : renderStatusBadge(states.badgeStatus, text.statusBadgeText)}
           </div>
 
           <h1 class={classes.MainCurrency}>{states.balance}</h1>

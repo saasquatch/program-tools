@@ -31,7 +31,7 @@ export class IndirectTaxForm {
    * Subtext shown at the top of the page, used to show the current step of the tax form.
    * @uiName Form step text
    */
-  @Prop() formStep: string = "Step 2 of 4";
+  @Prop() formStep: string = "Step {step} of {count}";
 
   /**
    * Heading text shown at the top of the page
@@ -50,7 +50,7 @@ export class IndirectTaxForm {
    * Heading text for the indirect tax details section
    * @uiName Indirect tax details heading text
    */
-  @Prop() indirectTaxDetails: string = "Indirect Tax Details";
+  @Prop() indirectTaxDetails: string = "Indirect tax details";
 
   /**
    * Text shown below the indirect tax details heading text
@@ -89,7 +89,7 @@ export class IndirectTaxForm {
    * Label text for the country/region select input
    * @uiName Selected country/region label
    */
-  @Prop() selectedRegion: string = "Country / Region of Indirect Tax";
+  @Prop() selectedRegion: string = "Country / region of indirect tax";
 
   /**
    * Label text for the province input
@@ -102,13 +102,13 @@ export class IndirectTaxForm {
    * @uiName Indirect tax number input label
    */
   @Prop() indirectTaxNumber: string =
-    "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number} SST {SST Number} GENERAL {Indirect Tax Number}}";
+    "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}}";
 
   /**
    * Label text for the QST number input field
    * @uiName QST number input label
    */
-  @Prop() qstNumber: string = "QST Number";
+  @Prop() qstNumber: string = "QST number";
 
   /**
    * Text for the option indicating registration for QST tax
@@ -143,13 +143,13 @@ export class IndirectTaxForm {
    * @uiName Cannot change info Alert text
    */
   @Prop() cannotChangeInfoAlert: string =
-    "Changes to your personal information and indirect tax can only be made through our Support team after you complete this step. Ensure these are correct before continuing.";
+    "Changes to your personal and indirect tax information can only be made through our Support team after you complete this step. Make sure these are correct before continuing.";
   /**
    * Error message for the indirect tax number input field with a dynamic placeholder based on tax type
    * @uiName Indirect tax number error message
    */
   @Prop() indirectTaxNumberError: string =
-    "{taxType, select, GST {GST Number} HST {HST Number} VAT {VAT Number} CT {CT Number} SST {SST Number} GENERAL {Indirect Tax Number}} is required";
+    "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}} is required";
   /**
    * Required error text shown at the bottom of field inputs
    * @uiName Field inputs error text
@@ -291,6 +291,7 @@ function useDemoIndirectTaxForm(
   return deepmerge(
     {
       states: {
+        step: "2",
         disabled: false,
         loading: false,
         isPartner: false,

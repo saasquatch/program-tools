@@ -1,12 +1,13 @@
 import { h } from "@stencil/core";
-import { createStyleSheet } from "../../../styling/JSS";
-import { useRef } from "@saasquatch/universal-hooks";
 import { intl } from "../../../global/global";
-import { getIsRequiredErrorMessage } from "../utils";
+import { createStyleSheet } from "../../../styling/JSS";
 import { GeneralLoadingView } from "../TaxForm.stories";
+import { FORM_STEPS } from "../sqm-tax-and-cash/data";
+import { getIsRequiredErrorMessage } from "../utils";
 
 export interface UserInfoFormViewProps {
   states: {
+    step?: string;
     loading: boolean;
     disabled: boolean;
     isPartner: boolean;
@@ -240,7 +241,17 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
         <div>
           <div class={classes.TextContainer}>
             <div>
-              {!states.hideSteps && <p>{text.formStep}</p>}
+              {!states.hideSteps && (
+                <p>
+                  {intl.formatMessage(
+                    {
+                      id: "formStep",
+                      defaultMessage: text.formStep,
+                    },
+                    { step: states.step, count: FORM_STEPS }
+                  )}
+                </p>
+              )}
               <h3>{text.personalInformation}</h3>
             </div>
           </div>

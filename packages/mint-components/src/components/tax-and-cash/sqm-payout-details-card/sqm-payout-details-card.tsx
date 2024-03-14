@@ -38,15 +38,14 @@ export class PayoutDetailsCard {
    * Error alert header shown above payout details card
    * @uiName Error alert header
    */
-  @Prop() errorTitleText: string =
-    "There was an error with your payout infomation";
+  @Prop() errorTitleText: string = "Your payout is on hold ";
   /**
    * Error alert description shown above payout details card
    * @uiName Error alert description
    */
   @Prop()
   errorDescriptionText: string =
-    "Please ensure your payout information is correct. If this problem continues, contact Support.";
+    "If you’ve recently added your payout information, please wait while we verify your information. If it’s still on hold after a few days, please contact Support or check your inbox for an email from our referral program provider, impact.com.";
 
   /**
    * @undocumented
@@ -89,7 +88,7 @@ function useDemoPayoutDetailsCard(props: PayoutDetailsCard) {
         error: false,
         thresholdBalance: "$50",
         mainCurrency: { currencyText: "USD", amountText: "100.00" },
-        status: "nextPayout",
+        badgeStatus: "nextPayout",
         payoutType: "BANK_TRANSFER",
         nextPayoutDate: "March 14, 2024",
         paypalEmailAddress: "joesmith@example.com",

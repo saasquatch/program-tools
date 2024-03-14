@@ -191,7 +191,6 @@ export function useUserInfoForm(props: TaxForm) {
   }
 
   return {
-    step: step,
     setStep: setStep,
     onSubmit,
     text: props.getTextProps(),
@@ -209,6 +208,7 @@ export function useUserInfoForm(props: TaxForm) {
       countries: filteredCountries,
     },
     states: {
+      step: step?.replace("/", ""),
       hideSteps: context.hideSteps,
       disabled: loading,
       loadingError: !!userError?.message,

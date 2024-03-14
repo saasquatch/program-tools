@@ -64,6 +64,11 @@ export interface TaxAndCashDashboardProps {
     notRegisteredForTax?: string;
     qstNumber?: string;
     subRegionTaxNumber: string;
+    invoiceColumnTitle: string;
+    earningsColumnTitle: string;
+    taxedAmountColumnTitle: string;
+    earningsAfterTaxColumnTitle: string;
+    dateColumnTitle: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -506,24 +511,25 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         {!states.notRegistered && (
           <div class={sheet.classes.InvoiceTableContainer}>
             <br />
-            {/* AL: TODO Pass props */}
             <sqm-invoice-table>
               <sqm-invoice-table-download-column></sqm-invoice-table-download-column>
-              <sqm-invoice-table-date-column column-title="Date"></sqm-invoice-table-date-column>
+              <sqm-invoice-table-date-column
+                column-title={text.dateColumnTitle}
+              ></sqm-invoice-table-date-column>
               <sqm-invoice-table-data-column
-                column-title="Invoice"
+                column-title={text.invoiceColumnTitle}
                 property="invoiceId"
               ></sqm-invoice-table-data-column>
               <sqm-invoice-table-data-column
-                column-title="Earnings"
+                column-title={text.earningsColumnTitle}
                 property="earnings"
               ></sqm-invoice-table-data-column>
               <sqm-invoice-table-data-column
-                column-title="Taxed Amount"
+                column-title={text.taxedAmountColumnTitle}
                 property="taxedAmount"
               ></sqm-invoice-table-data-column>
               <sqm-invoice-table-data-column
-                column-title="Earnings after tax"
+                column-title={text.earningsAfterTaxColumnTitle}
                 property="netEarnings"
               ></sqm-invoice-table-data-column>
             </sqm-invoice-table>

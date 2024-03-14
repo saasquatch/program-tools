@@ -214,14 +214,13 @@ export class TaxAndCashDashboard {
   /**
    * @uiName Error banner title text
    */
-  @Prop() errorTitleText: string =
-    "There was an error with your payout infomation";
+  @Prop() errorTitleText: string = "Your payout is on hold ";
   /**
    * @uiName Error banner description text
    */
   @Prop()
   errorDescriptionText: string =
-    "Please ensure your payout information is correct. If this problem continues, contact Support.";
+    "If you’ve recently added your payout information, please wait while we verify your information. If it’s still on hold after a few days, please contact Support or check your inbox for an email from our referral program provider, impact.com.";
 
   /**
    * The title for error message shown at the top of the page in an error banner
@@ -256,6 +255,32 @@ export class TaxAndCashDashboard {
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";
+
+  /**
+   * Invoice table Invoice column title
+   * @uiName Invoice column title
+   */
+  @Prop() invoiceColumnTitle: string = "Invoice";
+  /**
+   * Invoice table Date column title
+   * @uiName Date column title
+   */
+  @Prop() dateColumnTitle: string = "Date";
+  /**
+   * Invoice table Earnings column title
+   * @uiName Earnings column title
+   */
+  @Prop() earningsColumnTitle: string = "Earnings";
+  /**
+   * Invoice table Taxed Amount column title
+   * @uiName Taxed Amount column title
+   */
+  @Prop() taxedAmountColumnTitle: string = "Taxed Amount";
+  /**
+   * Invoice table Earnings after tax column title
+   * @uiName Earnings after tax column title
+   */
+  @Prop() earningsAfterTaxColumnTitle: string = "Earnings after tax";
 
   /**
    * @undocumented
@@ -328,7 +353,9 @@ function useDemoTaxAndCashDashboard(
         onEditPayoutInfo: () => console.debug("payout info"),
       },
       slots: {
-        paymentDetailsCardSlot: <NextPayout />,
+        payoutDetailsCardSlot: (
+          <sqm-payout-details-card></sqm-payout-details-card>
+        ),
       },
       text: props.getTextProps(),
     },

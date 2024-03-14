@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useParentValue, useSetParent } from "../../../utils/useParentState";
+import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
   COUNTRIES_QUERY_NAMESPACE,
   CountriesQuery,
@@ -86,7 +86,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   const formRef = useRef<HTMLFormElement>(null);
 
   const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
-  const setStep = useSetParent<string>(TAX_CONTEXT_NAMESPACE);
+  const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
 
   const [
     connectImpactPartner,
@@ -250,6 +250,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
   return {
     states: {
+      step: step?.replace("/", ""),
       hideSteps: context.hideSteps,
       disabled: loading || countriesLoading || connectLoading,
       loading: loading || connectLoading || countriesLoading,
