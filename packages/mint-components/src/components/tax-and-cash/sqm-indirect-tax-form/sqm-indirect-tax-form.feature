@@ -71,7 +71,7 @@ Feature: Indirect Tax Form
       | Manitoba               | HST number | n/a              |
       | New Brunswick          | HST number | n/a              |
       | Newfoundland           | HST number | n/a              |
-      | North West Territories | HST number | n/a              |
+      | North West Territories | GST number | n/a              |
       | Nova Scotia            | HST number | n/a              |
       | Nunavut                | HST number | n/a              |
       | Ontario                | HST number | n/a              |
