@@ -5,7 +5,7 @@ Feature: Tax Form Step One
     Given a user on the User Information form
 
   @motivating
-  Scenario Outline: Form fields
+  Scenario Outline: User Information form requires specific user fields
     Given a user on the User Information form
     Then they see the text "Step 1 of 4"
     And they see the title "Personal Information"

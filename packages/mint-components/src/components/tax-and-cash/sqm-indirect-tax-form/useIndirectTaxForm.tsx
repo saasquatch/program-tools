@@ -111,15 +111,19 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
   const [option, setOption] = useState<
     "hstCanada" | "otherRegion" | "notRegistered"
-  >(null);
+  >("notRegistered");
+
+  const publisher = userData?.user?.impactConnection?.publisher;
 
   useEffect(() => {
+    if (!publisher?.taxInformation?.indirectTaxCountryCode) return;
+
     const _option = getOption(
       _countries?.impactPayoutCountries?.data,
-      userForm.countryCode
+      publisher.taxInformation.indirectTaxCountryCode
     );
     setOption(_option);
-  }, [userForm, _countries]);
+  }, [publisher, _countries]);
 
   useEffect(() => {
     if (countrySearch.trim() === "") {

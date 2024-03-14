@@ -24,7 +24,7 @@ Feature: Docusign Form
     Given a publisher's country is <publisherCountry>
     And they are linked to a brand that based in <brandCountry>
     And their current tax document type is <currentDocument>
-    But current tax document status is not "ACTIVE" or "NOT_VERIFIED"
+    And their current tax document status is not "ACTIVE" or "NOT_VERIFIED"
     When the page loads
     Then <uiElements> are displayed
 

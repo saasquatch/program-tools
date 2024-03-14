@@ -5,7 +5,7 @@ Feature: Indirect Tax Form
     Given a user is on the Indirect Tax Form
 
   @motivating
-  Scenario Outline: Form options
+  Scenario Outline: Indirect Tax form has 2 options for Indirect Tax information
     Given a user
     When they view the Indirect Tax form
     Then they see the text "Step 2 of 4"
@@ -16,12 +16,11 @@ Feature: Indirect Tax Form
       """
     Then they are shown the radio option for indirect tax
     And the option <option> has label <label> and description <description>
-    # TODO : Descriptions
 
     Examples: 
-      | option        | label                                                            | description |
-      | notRegistered | I am not registered for Indirect Tax                             | TODO        |
-      | registered    | I am registered for Indirect Tax in a different Country / Region | TODO        |
+      | option        | label                                                            | description                                                                                                                 |
+      | notRegistered | I am not registered for Indirect Tax                             | If you’re joining this referral program as an individual or you’re based in the US, then you’re not registered.             |
+      | registered    | I am registered for Indirect Tax in a different Country / Region | If you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more. |
 
   @motivating @ui
   Scenario Outline: Inputs display based on radio option selected
@@ -35,18 +34,11 @@ Feature: Indirect Tax Form
       | registered    | indirectCountryCode | Country / Region of Indirect Tax |
       | registered    | indirectTaxId       | {taxType} number                 |
 
-  @motivating
-  Scenario Outline: Indirect tax country may be auto-filled
+  @minutia
+  Scenario: "Not registered" is the default option
     Given that a countryCode was selected in Step 1
-    And that countryCode <isSupported> by Impact
     When a user loads Step 2
-    Then the radio option <option> is auto-selected
-    And the "indirectCountryCode" field <mayBe> set to the countryCode selected in Step 1
-
-    Examples: 
-      | isSupported      | option        | mayBe  |
-      | is supported     | registered    | is     |
-      | is not supported | notRegistered | is not |
+    Then the radio option "notRegistered" is auto-selected regardless of selected country
 
   @minutia @ui
   Scenario Outline: indirectTaxId field label changes depending on tax type of country selected
@@ -64,7 +56,7 @@ Feature: Indirect Tax Form
       | Uganda      | Not specified | Indirect Tax number |
 
   @minutia @ui
-  Scenario Outline: Canada special cases
+  Scenario Outline: Additional fields are shown when "Canada" is the selected Indirect Tax Country
     Given the radio option "registered" is selelected
     And the "indirectCountryCode" field has "Canada" selected
     Then the "province" field is displayed
@@ -99,8 +91,9 @@ Feature: Indirect Tax Form
     And the "qstNumber" field has label "QST number"
 
   @minutia @ui
-  Scenario Outline: Participant selects other country that has tax handling in step 1
-    Given they select one of the following <countries> with <typeTax> in step 1:
+  Scenario Outline: Indirect Tax Number label changes based on selected Indirect Tax Country
+    Given the user selects the "registered" option
+    And they select one of the following <countries> with <typeTax> is the indirect tax country
       | countries      | typeTax |
       | UK             | VAT     |
       | Australia      | GST     |
@@ -149,10 +142,7 @@ Feature: Indirect Tax Form
       | UAE            | VAT     |
       | Turkey         | VAT     |
       | Russia         | VAT     |
-    Then the "I am registered Indirect Tax" option is selected in step 2
-    And the Country select is auto-selected with their <country> from step 1
-    And based on the <typeTax>
-    Then <typeTaxInputHeader> changes
+    Then <typeTaxInputHeader> changes based on the <typeTax>
 
     Examples: 
       | country        | typeTax | typeTaxInputHeader |
@@ -162,7 +152,7 @@ Feature: Indirect Tax Form
   ###############################################################
 
   @minutia
-  Scenario Outline: Spain special case
+  Scenario Outline: Extra fields are shown when "Spain" is the selected Indirect Tax Country
     Given "impactCountryCode" has value "Spain"
     Then the field <field> is displayed
     And the field <field> has label <label>
