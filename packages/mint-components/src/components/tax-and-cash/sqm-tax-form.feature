@@ -35,7 +35,8 @@ Feature: Tax Form Flow
       | Charle    | Buck     | charle.buck@email.com  | EG          | US           | EGP      | true                   | I am not registered for Indirect Tax | 3     |
       | Payton    | Chan     | payton.chan@email.com  | EG          | MX           | EGP      | true                   | I am not registered for Indirect Tax | 4     |
 
-  Scenario Outline: Default form step on load
+  @motivating
+  Scenario Outline: Default form step is dependent on publisher connection status and saved publisher information
     Given the participant just loaded the form
     And participant <hasTax>
     And participant <isConnected>
@@ -59,7 +60,7 @@ Feature: Tax Form Flow
       | has tax info           | is connected     | does not have required doc | does not have current doc | n/a      | do have withdrawal settings       | dashboard |
 
   @minutia
-  Scenario: Participant is already registered as partner, provides indirect tax information, and submit their tax forms
+  Scenario Outline: Participant is already registered as partner, provides indirect tax information, and submit their tax forms
     Given the they are already registered as a partner
     Then step 1 displays a banner with "An account with this email already exists with our referral program provider, impact.com" notifying that they are a partner
     And the following fields are pre-filled:
@@ -165,32 +166,35 @@ Feature: Tax Form Flow
     And they press "Continue" to submit the form
     Then a request is made to save the form data
     But the request fails
-    Then a general error banner appears with <generalTitle> and <generalDescription>
+    Then a general error banner appears
+    And the banner has the following title
+      """
+      There was a problem submitting your information
+      """
+    And the banner has the following descriptionwith <generalTitle> and <generalDescription>
+      """
+      Please review your information and try again. If this problem continues, contact Support.
+      """
 
-    Examples:
-      | generalTitle                                    | generalDescription                                                                       |
-      | There was a problem submitting your information | Please review your information and try again. If this problem continues, contact Support |
 
   @minutia
   Scenario: A loading error banner appears when a form fails to load
     When the participant views a form step
     Then a request is made to fetch the form data
     But the request fails
-    Then a loading error banner appears with <loadingErrorAlertHeader> and <loadingErrorAlertDescription>
+    Then a loading error banner appears
+    And the banner has the following title
+      """
+      There was a problem loading your form
+      """
+    And the banner has the following description
+      """
+      Please refresh the page and try again. If this problem continues, contact Support.
+      """
 
     Examples:
       | loadingErrorAlertHeader               | loadingErrorAlertDescription                                                       |
       | There was a problem loading your form | Please refresh the page and try again. If this problem continues, contact Support. |
-
-  @minutia
-  Scenario: A general error banner appears upon form load request failing
-    Given a participant loads a step of the form
-    When any request while loading the form fails
-    Then a general loading error banner appears with <generalTitle> and <generalDescription>
-
-    Examples:
-      | generalTitle | generalDescription |
-      | TODO         | TODO               |
 
   @minutia
   @landmine
