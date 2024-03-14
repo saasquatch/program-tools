@@ -63,32 +63,40 @@ Feature: Tax Form Flow
     Given the they are already registered as a partner
     Then step 1 displays a banner with "An account with this email already exists with our referral program provider, impact.com" notifying that they are a partner
     And the following fields are pre-filled:
+      | userFields   |
       | First Name   |
       | Last Name    |
       | Email        |
       | Country Code |
       | Currency     |
     And they check "Allow Banking Collection"
-    And press "Continue"
+    When they press "Continue"
     Then they proceed to step 2
     And they see the following radio options
       | Not registered for indirect tax |
       | Registered for indirect tax     |
-    But <option> is selected by default
-    And the <fields> are pre-filled
-    And press "Continue"
-    Then they proceed to <stepX> depending on the <brandCountry> and participants <countryCode>
+    And the radio option is auto-selected based on their saved Indirect Tax Country
+    And the following fields are pre-filled if they exist
+      | taxFields              |
+      | Indirect Tax Country   |
+      | Indirect Tax Number    |
+      | Sub-region             |
+      | Withholding Tax number |
+      | Withholding Tax Region |
+      | QST Number             |
+    When they press "Continue"
+    Then they proceed to <stepX> depending on their <brandCountry> and participants <countryCode>
 
     Examples:
-      | countryCode | brandCountry | currency | allowBankingCollection | option                          | fields                                                       | stepX |
-      | CA          | US           | CAD      | true                   | Registered for indirect tax     | Country, Province, HST/GST Number, QST Number (optional)     | 3     |
-      | CA          | MX           | CAD      | true                   | Not registered for indirect tax | N/A                                                          | 4     |
-      | US          | CA           | USD      | true                   | Not registered for indirect tax | N/A                                                          | 3     |
-      | US          | MX           | USD      | true                   | Not registered for indirect tax | N/A                                                          | 3     |
-      | UK          | US           | GBP      | true                   | Not registered for indirect tax | N/A                                                          | 3     |
-      | UK          | US           | GBP      | true                   | Registered for indirect tax     | Country, VAT Number                                          | 3     |
-      | ES          | US           | EGP      | true                   | Registered for indirect tax     | Country, Sub Region, VAT Number, Income Tax Number(optional) | 3     |
-      | EG          | MX           | BMD      | true                   | Not registered for indirect tax | N/A                                                          | 4     |
+      | countryCode | brandCountry | stepX |
+      | CA          | US           | 3     |
+      | CA          | MX           | 4     |
+      | US          | CA           | 3     |
+      | US          | MX           | 3     |
+      | UK          | US           | 3     |
+      | UK          | US           | 3     |
+      | ES          | US           | 3     |
+      | EG          | MX           | 4     |
 
   @minutia
   Scenario Outline: Participants based in another country working with non-US brands do not have to fillout docusign forms
@@ -114,9 +122,9 @@ Feature: Tax Form Flow
     Examples:
       | brandCountry | country | participantType       | autoSelectedForm |
       | US           | CA      | individualParticipant | W8-BEN           |
-      | US           | CA      | company               | W8-BEN-E         |
+      | US           | CA      | businessEntity        | W8-BEN-E         |
       | US           | MX      | individualParticipant | W8-BEN           |
-      | US           | MX      | company               | W8-BEN-E         |
+      | US           | MX      | businessEntity        | W8-BEN-E         |
 
   @minutia
   Scenario Outline: Participants based in the US working with non-US brands have to fillout the W9 docusign form
