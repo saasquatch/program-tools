@@ -243,7 +243,6 @@ export function useTaxAndCash() {
   // console.log({ errors });
 
   useEffect(() => {
-    console.log({ errors, data });
     if (errors) {
       setStep("/error");
       return;
@@ -255,9 +254,8 @@ export function useTaxAndCash() {
 
       if (!user || step !== "/loading") return;
 
-      // const currentStep = getCurrentStep(user);
-      // setStep(currentStep);
-      setStep("/1");
+      const currentStep = getCurrentStep(user);
+      setStep(currentStep);
     }
   }, [host, user, data?.user?.email, errors]);
 

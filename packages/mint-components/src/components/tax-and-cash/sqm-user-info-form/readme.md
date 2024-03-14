@@ -40,6 +40,7 @@
 
 ### Depends on
 
+- [sqm-payout-details-card](../sqm-payout-details-card)
 - [sqm-user-info-form](.)
 - [sqm-indirect-tax-form](../sqm-indirect-tax-form)
 - [sqm-docusign-form](../sqm-docusign-form)

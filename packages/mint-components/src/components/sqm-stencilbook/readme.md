@@ -75,13 +75,13 @@
 - [sqm-titled-section](../sqm-titled-section)
 - [sqm-coupon-code](../sqm-coupon-code)
 - [sqm-link-button](../sqm-link-button)
+- [sqm-payout-details-card](../tax-and-cash/sqm-payout-details-card)
 - [sqm-user-info-form](../tax-and-cash/sqm-user-info-form)
 - [sqm-indirect-tax-form](../tax-and-cash/sqm-indirect-tax-form)
 - [sqm-docusign-form](../tax-and-cash/sqm-docusign-form)
 - [sqm-banking-info-form](../tax-and-cash/sqm-banking-info-form)
 - [sqm-tax-and-cash-dashboard](../tax-and-cash/sqm-tax-and-cash-dashboard)
 - [sqm-tax-and-cash](../tax-and-cash/sqm-tax-and-cash)
-- [sqm-payout-details-card](../tax-and-cash/sqm-payout-details-card)
 - [sqm-invoice-table](../sqm-invoice-table)
 - [sqm-invoice-table-download-cell](../sqm-invoice-table/cells)
 - [sqm-invoice-table-date-cell](../sqm-invoice-table/cells)
@@ -158,13 +158,13 @@ graph TD;
   sqm-stencilbook --> sqm-titled-section
   sqm-stencilbook --> sqm-coupon-code
   sqm-stencilbook --> sqm-link-button
+  sqm-stencilbook --> sqm-payout-details-card
   sqm-stencilbook --> sqm-user-info-form
   sqm-stencilbook --> sqm-indirect-tax-form
   sqm-stencilbook --> sqm-docusign-form
   sqm-stencilbook --> sqm-banking-info-form
   sqm-stencilbook --> sqm-tax-and-cash-dashboard
   sqm-stencilbook --> sqm-tax-and-cash
-  sqm-stencilbook --> sqm-payout-details-card
   sqm-stencilbook --> sqm-invoice-table
   sqm-stencilbook --> sqm-invoice-table-download-cell
   sqm-stencilbook --> sqm-invoice-table-date-cell
@@ -198,6 +198,7 @@ graph TD;
   sqm-referral-table-date-column --> sqm-referral-table-date-cell
   sqm-referral-table-rewards-column --> sqm-referral-table-rewards-cell
   sqm-coupon-code --> sqm-form-message
+  sqm-user-info-form --> sqm-payout-details-card
   sqm-user-info-form --> sqm-user-info-form
   sqm-user-info-form --> sqm-indirect-tax-form
   sqm-user-info-form --> sqm-docusign-form
