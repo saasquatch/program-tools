@@ -1,8 +1,8 @@
-@author:noah
-@owner:noah
+@author:derek
+@owner:derek
 Feature: Invoice Table Date Column
 
-Shows the date of each invoice
+    Shows the invoice of each invoice
 
     Background:
         Given the date column is included in the invoice table
@@ -17,6 +17,6 @@ Shows the date of each invoice
             | Date created | Date created |
 
     @motivating
-    Scenario: The formatted created date of the invoice is shown
-        Given at least one invoice exists
-        Then in that invoice's row the creation date is shown with the proper locale format
+    Scenario: The data shown in the column is configurable by prop
+        Given the column has a <property> set
+        Then that property is pulled from the table data object and displayed in the table column

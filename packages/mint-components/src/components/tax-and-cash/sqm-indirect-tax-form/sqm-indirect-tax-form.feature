@@ -32,7 +32,7 @@ Feature: Indirect Tax Form
       | option        | field               | label                            |
       | notRegistered | N/A                 | N/A                              |
       | registered    | indirectCountryCode | Country / Region of Indirect Tax |
-      | registered    | indirectTaxId       | {taxType} Number                 |
+      | registered    | indirectTaxId       | {taxType} number                 |
 
   @minutia
   Scenario: "Not registered" is the default option
@@ -49,11 +49,11 @@ Feature: Indirect Tax Form
 
     Examples:
       | country     | taxType       | label               |
-      | New Zealand | GST           | GST Number          |
-      | Malaysia    | SST           | SST Number          |
-      | Japan       | CT            | CT Number           |
-      | Italy       | VAT           | VAT Number          |
-      | Uganda      | Not specified | Indirect Tax Number |
+      | New Zealand | GST           | GST number          |
+      | Malaysia    | SST           | SST number          |
+      | Japan       | CT            | CT number           |
+      | Italy       | VAT           | VAT number          |
+      | Uganda      | Not specified | Indirect tax number |
 
   @minutia @ui
   Scenario Outline: Additional fields are shown when "Canada" is the selected Indirect Tax Country
@@ -66,29 +66,29 @@ Feature: Indirect Tax Form
 
     Examples:
       | province               | label      | additionalFields |
-      | Alberta                | GST Number | n/a              |
-      | British Columbia       | HST Number | n/a              |
-      | Manitoba               | HST Number | n/a              |
-      | New Brunswick          | HST Number | n/a              |
-      | Newfoundland           | HST Number | n/a              |
-      | North West Territories | HST Number | n/a              |
-      | Nova Scotia            | HST Number | n/a              |
-      | Nunavut                | HST Number | n/a              |
-      | Ontario                | HST Number | n/a              |
-      | Prince Edward Island   | HST Number | n/a              |
-      | Quebec                 | GST Number | registeredForQST |
-      | Saskatchewan           | HST Number | n/a              |
-      | Yukon                  | GST Number | n/a              |
+      | Alberta                | GST number | n/a              |
+      | British Columbia       | HST number | n/a              |
+      | Manitoba               | HST number | n/a              |
+      | New Brunswick          | HST number | n/a              |
+      | Newfoundland           | HST number | n/a              |
+      | North West Territories | HST number | n/a              |
+      | Nova Scotia            | HST number | n/a              |
+      | Nunavut                | HST number | n/a              |
+      | Ontario                | HST number | n/a              |
+      | Prince Edward Island   | HST number | n/a              |
+      | Quebec                 | GST number | registeredForQST |
+      | Saskatchewan           | HST number | n/a              |
+      | Yukon                  | GST number | n/a              |
 
   @minutia @ui
-  Scenario: Selecting the "registeredForQST" checkbox shows QST Number input
+  Scenario: Selecting the "registeredForQST" checkbox shows QST number input
     Given the radio option "registered" is selelected
     And the "indirectCountryCode" field has "Canada" selected
     And the "province" field has value "Quebec"
     Then the "registeredForQST" checkbox with label "I am registered for QST Tax" will appear
     When the "registeredForQST" checkbox is selected
     Then the "qstNumber" field is shown
-    And the "qstNumber" field has label "QST Number"
+    And the "qstNumber" field has label "QST number"
 
   @minutia @ui
   Scenario Outline: Indirect Tax Number label changes based on selected Indirect Tax Country
@@ -146,10 +146,9 @@ Feature: Indirect Tax Form
 
     Examples:
       | country        | typeTax | typeTaxInputHeader |
-      | United Kingdom | VAT     | VAT Number         |
-      | Australia      | GST     | GST Number         |
-      | Japan          | CT      | CT Number          |
-
+      | United Kingdom | VAT     | VAT number         |
+      | Australia      | GST     | GST number         |
+      | Japan          | CT      | CT number          |
   ###############################################################
 
   @minutia
@@ -160,8 +159,8 @@ Feature: Indirect Tax Form
 
     Examples:
       | field                  | label                                                                                                                      |
-      | withholdingRegion      | Sub Region                                                                                                                 |
-      | vatNumber              | VAT Number                                                                                                                 |
+      | withholdingRegion      | Sub region                                                                                                                 |
+      | vatNumber              | VAT number                                                                                                                 |
       | withholdingTaxCheckbox | I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me. |
 
   @minutia
@@ -169,7 +168,7 @@ Feature: Indirect Tax Form
     Given "impactCountryCode" has value "Spain"
     When the "withholdTaxCheckbox" checkbox is set to true
     Then the "withholdingTaxId" field is displayed
-    And the "withholdingTaxId" field has label "Income Tax Number"
+    And the "withholdingTaxId" field has label "Income Tax number"
 
   @minutia @ui
   Scenario: Country/Region of Indirect Tax select is searchable
@@ -227,16 +226,16 @@ Feature: Indirect Tax Form
       | Country               | <country             |
       | Province              | <province>           |
       | Sub-region            | <subRegion>          |
-      | Indirect Tax Number   | <indirectTaxNumber>  |
-      | QST Number            | <qstNumber>          |
-      | Sub-Region Tax Number | <subRegionTaxNumber> |
+      | Indirect Tax number   | <indirectTaxNumber>  |
+      | QST number            | <qstNumber>          |
+      | Sub-Region Tax number | <subRegionTaxNumber> |
     When the "Continue" button is clicked
     Then the form displays the respective errors for each field:
       | <country>           | Country is required                 |
       | <province>          | Province is required                |
       | <subRegion          | Sub-region is required              |
-      | <indirectTaxNumber> | "VAT/HST/GST/CT Number is required" |
-      | <qstNumber>         | "QST Number is required"            |
-      | <subRegionTaxNumber | "Income Tax Number is required      |
+      | <indirectTaxNumber> | "VAT/HST/GST/CT number is required" |
+      | <qstNumber>         | "QST number is required"            |
+      | <subRegionTaxNumber | "Income Tax number is required      |
     And no request is sent to the backend
 

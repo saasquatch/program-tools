@@ -14,11 +14,11 @@ Feature: Banking Information Form
 
   @minutia
   Scenario: A banner is shown at the top of the page if the partner already exists
-    Given the participant is already a parter with impact
+    Given the participant is already a partner with impact
+    And the user is not editing existing payout settings
     Then the payment method option will be selected automatically
     And the form fields with be pre filled with the participants data
     And there will be banner to explain that the account is linked to their referral profile in impact.com
-
 
   @motivating
   Scenario Outline: Bank account form fields are dynamically shown
@@ -42,6 +42,7 @@ Feature: Banking Information Form
       | EUR      | Canada                                | Beneficiary account name, Bank account number, SWIFT code                                            |
       | EUR      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
       | JPY      | Japan                                 | Beneficiary account name, Bank account type, Bank account number, SWIFT code, Bank Name, Branch code |
+      | MAD      | Western Sahara, Morocco               | Beneficiary account name, Bank account number, SWIFT code                                            |
 
   @minutia
   Scenario Outline: Bank country dropdown list is dynamic depending on the partner's currency
