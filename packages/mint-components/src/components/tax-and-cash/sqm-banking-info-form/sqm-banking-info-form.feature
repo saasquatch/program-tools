@@ -3,6 +3,7 @@ Feature: Banking Information Form
 
   Background: A participant has submitted a tax form and would like to fill out their banking information
 
+  @minutia
   Scenario: Loading skeletons are shown when the form is loading
     When the participant loads the form
     And they have not selected a payout method
@@ -11,12 +12,14 @@ Feature: Banking Information Form
     But if they have selected a payment method
     Then the form shows skeletons for the expected number of input fields
 
+  @minutia
   Scenario: A banner is shown at the top of the page if the partner already exists
     Given the participant is already a parter with impact
     Then the payment method option will be selected automatically
     And the form fields with be pre filled with the participants data
     And there will be banner to explain that the account is linked to their referral profile in impact.com
 
+  @motivating
   Scenario Outline: Bank account form fields are dynamically shown
     Given the bank account payment method is selected
     And the selected currency is <currency>
@@ -41,6 +44,7 @@ Feature: Banking Information Form
       | JPY      | Japan                                 | Beneficiary Account Name, Bank Account Type, Bank Account Number, SWIFT Code, Bank Name, Branch Code |
   # According to mock data currently available
 
+  @minutia
   Scenario Outline: Bank country dropdown list is dynamic depending on the partner's currency
     Given the bank account payment method is selected
     And the selected currency is <currency>
@@ -55,6 +59,7 @@ Feature: Banking Information Form
       | EUR      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
       | JPY      | Japan                                                        |
 
+  @minutia
   Scenario Outline: Payment Method text is dynamic depending on the currency and country selected
     Given the bank account payment method is selected
     And the selected currency is <currency>
@@ -75,6 +80,7 @@ Feature: Banking Information Form
       | JPY      | Japan                                                        | EFT Withdrawal    |
   # Not sure what the actual specs for when it's shown are yet
 
+  @minutia
   Scenario Outline: PayPal option is dynamically shown
     Given <currency> is set on the payout partner
     And the currency <currencySupported> supported by PayPal
@@ -89,6 +95,7 @@ Feature: Banking Information Form
       | EUR      | is                | is    |
       | JPY      | is                | is    |
 
+  @minutia
   Scenario: Error state is shown if the participant tries to submit the form before all the fields have been filled
     Given the participant has selected a payment method
     And they have not filled out all of the required fields
