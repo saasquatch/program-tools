@@ -5,7 +5,7 @@ Feature: Indirect Tax Form
     Given a user is on the Indirect Tax Form
 
   @motivating
-  Scenario Outline: Form options
+  Scenario Outline: Indirect Tax form has 2 options for Indirect Tax information
     Given a user
     When they view the Indirect Tax form
     Then they see the text "Step 2 of 4"
@@ -56,7 +56,7 @@ Feature: Indirect Tax Form
       | Uganda      | Not specified | Indirect Tax Number |
 
   @minutia @ui
-  Scenario Outline: Canada special cases
+  Scenario Outline: Additional fields are shown when "Canada" is the selected Indirect Tax Country
     Given the radio option "registered" is selelected
     And the "indirectCountryCode" field has "Canada" selected
     Then the "province" field is displayed
@@ -91,8 +91,9 @@ Feature: Indirect Tax Form
     And the "qstNumber" field has label "QST Number"
 
   @minutia @ui
-  Scenario Outline: Participant selects other country that has tax handling in step 1
-    Given they select one of the following <countries> with <typeTax> in step 1:
+  Scenario Outline: Indirect Tax Number label changes based on selected Indirect Tax Country
+    Given the user selects the "registered" option
+    And they select one of the following <countries> with <typeTax> is the indirect tax country
       | countries      | typeTax |
       | UK             | VAT     |
       | Australia      | GST     |
@@ -141,10 +142,7 @@ Feature: Indirect Tax Form
       | UAE            | VAT     |
       | Turkey         | VAT     |
       | Russia         | VAT     |
-    Then the "I am registered Indirect Tax" option is selected in step 2
-    And the Country select is auto-selected with their <country> from step 1
-    And based on the <typeTax>
-    Then <typeTaxInputHeader> changes
+    Then <typeTaxInputHeader> changes based on the <typeTax>
 
     Examples:
       | country        | typeTax | typeTaxInputHeader |
@@ -155,7 +153,7 @@ Feature: Indirect Tax Form
   ###############################################################
 
   @minutia
-  Scenario Outline: Spain special case
+  Scenario Outline: Extra fields are shown when "Spain" is the selected Indirect Tax Country
     Given "impactCountryCode" has value "Spain"
     Then the field <field> is displayed
     And the field <field> has label <label>
@@ -252,12 +250,3 @@ Feature: Indirect Tax Form
       | country | countryAutoSelectValue | newCountrySelectValue |
       | US      | United States          | Australia             |
       | UK      | United Kingdom         | Egypt                 |
-
-# Not sure about including since this state is avoided in the implementation
-# @minutia
-# Scenario: Indirect tax fields are disabled if the user has existing publisher information
-#   Given a user with a existing publisher information
-#   Then all fields in the indirect tax form are disabled
-#   When they click "Continue"
-#   Then createImpactConnection mutation is called
-#   And the body contains the pre-existing publisher information
