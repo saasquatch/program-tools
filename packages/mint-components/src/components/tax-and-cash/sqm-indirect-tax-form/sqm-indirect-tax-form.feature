@@ -53,7 +53,7 @@ Feature: Indirect Tax Form
       | Malaysia    | SST           | SST number          |
       | Japan       | CT            | CT number           |
       | Italy       | VAT           | VAT number          |
-      | Uganda      | Not specified | Indirect Tax number |
+      | Uganda      | Not specified | Indirect tax number |
 
   @minutia @ui
   Scenario Outline: Additional fields are shown when "Canada" is the selected Indirect Tax Country
