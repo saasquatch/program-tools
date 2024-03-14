@@ -16,9 +16,9 @@ Feature: Indirect Tax Form
       """
     Then they are shown the radio option for indirect tax
     And the option <option> has label <label> and description <description>
-
     # TODO : Descriptions
-    Examples:
+
+    Examples: 
       | option        | label                                                            | description |
       | notRegistered | I am not registered for Indirect Tax                             | TODO        |
       | registered    | I am registered for Indirect Tax in a different Country / Region | TODO        |
@@ -29,11 +29,11 @@ Feature: Indirect Tax Form
     Then the field <field> is displayed
     And it has label <label>
 
-    Examples:
+    Examples: 
       | option        | field               | label                            |
       | notRegistered | N/A                 | N/A                              |
       | registered    | indirectCountryCode | Country / Region of Indirect Tax |
-      | registered    | indirectTaxId       | {taxType} Number                 |
+      | registered    | indirectTaxId       | {taxType} number                 |
 
   @motivating
   Scenario Outline: Indirect tax country may be auto-filled
@@ -43,7 +43,7 @@ Feature: Indirect Tax Form
     Then the radio option <option> is auto-selected
     And the "indirectCountryCode" field <mayBe> set to the countryCode selected in Step 1
 
-    Examples:
+    Examples: 
       | isSupported      | option        | mayBe  |
       | is supported     | registered    | is     |
       | is not supported | notRegistered | is not |
@@ -55,13 +55,13 @@ Feature: Indirect Tax Form
     And the tax type of that country is <taxType>
     Then the label of the "indirectTaxId" field is <label>
 
-    Examples:
+    Examples: 
       | country     | taxType       | label               |
-      | New Zealand | GST           | GST Number          |
-      | Malaysia    | SST           | SST Number          |
-      | Japan       | CT            | CT Number           |
-      | Italy       | VAT           | VAT Number          |
-      | Uganda      | Not specified | Indirect Tax Number |
+      | New Zealand | GST           | GST number          |
+      | Malaysia    | SST           | SST number          |
+      | Japan       | CT            | CT number           |
+      | Italy       | VAT           | VAT number          |
+      | Uganda      | Not specified | Indirect Tax number |
 
   @minutia @ui
   Scenario Outline: Canada special cases
@@ -72,31 +72,31 @@ Feature: Indirect Tax Form
     Then the "indirectTaxId" field is shown and has label <label>
     And <additionalFields> are shown
 
-    Examples:
+    Examples: 
       | province               | label      | additionalFields |
-      | Alberta                | GST Number | n/a              |
-      | British Columbia       | HST Number | n/a              |
-      | Manitoba               | HST Number | n/a              |
-      | New Brunswick          | HST Number | n/a              |
-      | Newfoundland           | HST Number | n/a              |
-      | North West Territories | HST Number | n/a              |
-      | Nova Scotia            | HST Number | n/a              |
-      | Nunavut                | HST Number | n/a              |
-      | Ontario                | HST Number | n/a              |
-      | Prince Edward Island   | HST Number | n/a              |
-      | Quebec                 | GST Number | registeredForQST |
-      | Saskatchewan           | HST Number | n/a              |
-      | Yukon                  | GST Number | n/a              |
+      | Alberta                | GST number | n/a              |
+      | British Columbia       | HST number | n/a              |
+      | Manitoba               | HST number | n/a              |
+      | New Brunswick          | HST number | n/a              |
+      | Newfoundland           | HST number | n/a              |
+      | North West Territories | HST number | n/a              |
+      | Nova Scotia            | HST number | n/a              |
+      | Nunavut                | HST number | n/a              |
+      | Ontario                | HST number | n/a              |
+      | Prince Edward Island   | HST number | n/a              |
+      | Quebec                 | GST number | registeredForQST |
+      | Saskatchewan           | HST number | n/a              |
+      | Yukon                  | GST number | n/a              |
 
   @minutia @ui
-  Scenario: Selecting the "registeredForQST" checkbox shows QST Number input
+  Scenario: Selecting the "registeredForQST" checkbox shows QST number input
     Given the radio option "registered" is selelected
     And the "indirectCountryCode" field has "Canada" selected
     And the "province" field has value "Quebec"
     Then the "registeredForQST" checkbox with label "I am registered for QST Tax" will appear
     When the "registeredForQST" checkbox is selected
     Then the "qstNumber" field is shown
-    And the "qstNumber" field has label "QST Number"
+    And the "qstNumber" field has label "QST number"
 
   @minutia @ui
   Scenario Outline: Participant selects other country that has tax handling in step 1
@@ -154,12 +154,11 @@ Feature: Indirect Tax Form
     And based on the <typeTax>
     Then <typeTaxInputHeader> changes
 
-    Examples:
+    Examples: 
       | country        | typeTax | typeTaxInputHeader |
-      | United Kingdom | VAT     | VAT Number         |
-      | Australia      | GST     | GST Number         |
-      | Japan          | CT      | CT Number          |
-
+      | United Kingdom | VAT     | VAT number         |
+      | Australia      | GST     | GST number         |
+      | Japan          | CT      | CT number          |
   ###############################################################
 
   @minutia
@@ -168,10 +167,10 @@ Feature: Indirect Tax Form
     Then the field <field> is displayed
     And the field <field> has label <label>
 
-    Examples:
+    Examples: 
       | field                  | label                                                                                                                      |
-      | withholdingRegion      | Sub Region                                                                                                                 |
-      | vatNumber              | VAT Number                                                                                                                 |
+      | withholdingRegion      | Sub region                                                                                                                 |
+      | vatNumber              | VAT number                                                                                                                 |
       | withholdingTaxCheckbox | I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me. |
 
   @minutia
@@ -179,7 +178,7 @@ Feature: Indirect Tax Form
     Given "impactCountryCode" has value "Spain"
     When the "withholdTaxCheckbox" checkbox is set to true
     Then the "withholdingTaxId" field is displayed
-    And the "withholdingTaxId" field has label "Income Tax Number"
+    And the "withholdingTaxId" field has label "Income Tax number"
 
   @minutia @ui
   Scenario: Country/Region of Indirect Tax select is searchable
@@ -203,15 +202,15 @@ Feature: Indirect Tax Form
     And the tax information fields <taxFields> have values in the request body
     And any other fields are "undefined"
 
-    Examples:
+    Examples: 
       | option        | indirectCountryCode | indirectTaxId | indirectTaxRegion | additionalTaxId | withholdingTaxId | taxFields                                                               |
       | notRegistered | n/a                 | n/a           | n/a               | n/a             | n/a              | ""                                                                      |
-      | registered    | US (United States)  | 123123        | n/a               | n/a             | n/a              | indirectCountryCode, indirectTaxId                                      |
-      | registered    | UK (United Kingdom) | 123123        | n/a               | n/a             | n/a              | indirectCountryCode, indirectTaxId                                      |
-      | registered    | CA (Canada)         | 123123        | BC                | n/a             | n/a              | indirectCountryCode, indirectTaxId, indirectTaxRegion                   |
-      | registered    | CA (Canada)         | 123123        | QU                | 333             | n/a              | indirectCountryCode, indirectTaxId, indirectTaxRegion, additionalTaxId  |
-      | registered    | ES (Spain)          | 123123        | SPAINPROPER       | n/a             | 333              | indirectCountryCode, indirectTaxId, indirectTaxRegion, withholdingTaxId |
-      | registered    | ES (Spain)          | 123123        | CANARYISLANDS     | n/a             | 333              | indirectCountryCode, indirectTaxId, indirectTaxRegion, withholdingTaxId |
+      | registered    | US (United States)  |        123123 | n/a               | n/a             | n/a              | indirectCountryCode, indirectTaxId                                      |
+      | registered    | UK (United Kingdom) |        123123 | n/a               | n/a             | n/a              | indirectCountryCode, indirectTaxId                                      |
+      | registered    | CA (Canada)         |        123123 | BC                | n/a             | n/a              | indirectCountryCode, indirectTaxId, indirectTaxRegion                   |
+      | registered    | CA (Canada)         |        123123 | QU                |             333 | n/a              | indirectCountryCode, indirectTaxId, indirectTaxRegion, additionalTaxId  |
+      | registered    | ES (Spain)          |        123123 | SPAINPROPER       | n/a             |              333 | indirectCountryCode, indirectTaxId, indirectTaxRegion, withholdingTaxId |
+      | registered    | ES (Spain)          |        123123 | CANARYISLANDS     | n/a             |              333 | indirectCountryCode, indirectTaxId, indirectTaxRegion, withholdingTaxId |
 
   @minutia
   Scenario: Participant is registered for indirect tax fills out and submits form
@@ -237,17 +236,17 @@ Feature: Indirect Tax Form
       | Country               | <country             |
       | Province              | <province>           |
       | Sub-region            | <subRegion>          |
-      | Indirect Tax Number   | <indirectTaxNumber>  |
-      | QST Number            | <qstNumber>          |
-      | Sub-Region Tax Number | <subRegionTaxNumber> |
+      | Indirect Tax number   | <indirectTaxNumber>  |
+      | QST number            | <qstNumber>          |
+      | Sub-Region Tax number | <subRegionTaxNumber> |
     When the "Continue" button is clicked
     Then the form displays the respective errors for each field:
       | <country>           | Country is required                 |
       | <province>          | Province is required                |
       | <subRegion          | Sub-region is required              |
-      | <indirectTaxNumber> | "VAT/HST/GST/CT Number is required" |
-      | <qstNumber>         | "QST Number is required"            |
-      | <subRegionTaxNumber | "Income Tax Number is required      |
+      | <indirectTaxNumber> | "VAT/HST/GST/CT number is required" |
+      | <qstNumber>         | "QST number is required"            |
+      | <subRegionTaxNumber | "Income Tax number is required      |
     And no request is sent to the backend
 
   @unknown @minutia
@@ -256,16 +255,7 @@ Feature: Indirect Tax Form
     And they change the Country to <newCountrySelectValue>
     Then the Country <countryAutoSelectValue> changes to the <newCountrySelectValue>
 
-    Examples:
+    Examples: 
       | country | countryAutoSelectValue | newCountrySelectValue |
       | US      | United States          | Australia             |
       | UK      | United Kingdom         | Egypt                 |
-
-# Not sure about including since this state is avoided in the implementation
-# @minutia
-# Scenario: Indirect tax fields are disabled if the user has existing publisher information
-#   Given a user with a existing publisher information
-#   Then all fields in the indirect tax form are disabled
-#   When they click "Continue"
-#   Then createImpactConnection mutation is called
-#   And the body contains the pre-existing publisher information
