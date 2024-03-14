@@ -3,6 +3,7 @@ Feature: Banking Information Form
 
   Background: A participant has submitted a tax form and would like to fill out their banking information
 
+  @minutia
   Scenario: Loading skeletons are shown when the form is loading
     When the participant loads the form
     And they have not selected a payout method
@@ -11,19 +12,21 @@ Feature: Banking Information Form
     But if they have selected a payment method
     Then the form shows skeletons for the expected number of input fields
 
+  @minutia
   Scenario: A banner is shown at the top of the page if the partner already exists
     Given the participant is already a parter with impact
     Then the payment method option will be selected automatically
     And the form fields with be pre filled with the participants data
     And there will be banner to explain that the account is linked to their referral profile in impact.com
 
+
+  @motivating
   Scenario Outline: Bank account form fields are dynamically shown
     Given the bank account payment method is selected
     And the selected currency is <currency>
     And the selected bank country is one of <bankCountry>
     Then <fields> are displayed
-
-    Examples: 
+    Examples:
       | currency | bankCountry                           | fields                                                                                               |
       | USD      | United States                         | Beneficiary account name, Bank account type, Bank account number, ABA routing number                 |
       | USD      | Canada                                | Beneficiary account name, Bank account number, SWIFT code                                            |
@@ -34,19 +37,18 @@ Feature: Banking Information Form
       | AUD      | United States                         | Beneficiary account name, ABA routing number                                                         |
       | AUD      | Canada                                | Beneficiary account name, Bank account number, SWIFT code                                            |
       | AUD      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
-      | CAD      | Canada                                | Beneficiary account name, Bank account number, routing number                                        |
+      | CAD      | Canada                                | Beneficiary account name, Bank account number, Routing number                                        |
       | EUR      | United States                         | Beneficiary account name, ABA routing number                                                         |
       | EUR      | Canada                                | Beneficiary account name, Bank account number, SWIFT code                                            |
       | EUR      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
       | JPY      | Japan                                 | Beneficiary account name, Bank account type, Bank account number, SWIFT code, Bank Name, Branch code |
-    # According to mock data currently available
 
+  @minutia
   Scenario Outline: Bank country dropdown list is dynamic depending on the partner's currency
     Given the bank account payment method is selected
     And the selected currency is <currency>
     Then the bank country options are <countries>
-
-    Examples: 
+    Examples:
       | currency | countries                                                    |
       | USD      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
       | GBP      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
@@ -55,6 +57,7 @@ Feature: Banking Information Form
       | EUR      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
       | JPY      | Japan                                                        |
 
+  @minutia
   Scenario Outline: Payment Method text is dynamic depending on the currency and country selected
     Given the bank account payment method is selected
     And the selected currency is <currency>
@@ -62,7 +65,7 @@ Feature: Banking Information Form
     Then <paymentMethodText> is shown
     And the withdrawal fee is shown
 
-    Examples: 
+    Examples:
       | currency | bankCountry                                                  | paymentMethodText |
       | USD      | United States                                                | EFT Withdrawal    |
       | USD      | Canada, Spain, Ireland, United Kingdom, Japan                | FX Wire           |
@@ -73,22 +76,23 @@ Feature: Banking Information Form
       | EUR      | Spain, Ireland,  United Kingdom                              | EFT Withdrawal    |
       | EUR      | United States, Canada, Japan                                 | FX Wire           |
       | JPY      | Japan                                                        | EFT Withdrawal    |
-    # Not sure what the actual specs for when it's shown are yet
 
+  @minutia
   Scenario Outline: PayPal option is dynamically shown
     Given <currency> is set on the payout partner
     And the currency <currencySupported> supported by PayPal
     Then the paypal option <mayBe> shown as a payment method
+    Examples:
+      | currency | currencySupported | mayBe  |
+      | USD      | is                | is     |
+      | GBP      | is                | is     |
+      | AUD      | is                | is     |
+      | CAD      | is                | is     |
+      | EUR      | is                | is     |
+      | JPY      | is                | is     |
+      | MAD      | is not            | is not |
 
-    Examples: 
-      | currency | currencySupported | mayBe |
-      | USD      | is                | is    |
-      | GBP      | is                | is    |
-      | AUD      | is                | is    |
-      | CAD      | is                | is    |
-      | EUR      | is                | is    |
-      | JPY      | is                | is    |
-
+  @minutia
   Scenario: Error state is shown if the participant tries to submit the form before all the fields have been filled
     Given the participant has selected a payment method
     And they have not filled out all of the required fields
@@ -100,8 +104,4 @@ Feature: Banking Information Form
     When the participant views the form
     Then a request is made to fetch the form data
     But the request fails
-    Then a loading error banner appears with <loadingErrorAlertHeader> and <loadingErrorAlertDescription>
-
-    Examples: 
-      | loadingErrorAlertHeader               | loadingErrorAlertDescription                                                       |
-      | There was a problem loading your form | Please refresh the page and try again. If this problem continues, contact Support. |
+    Then a loading error banner appears
