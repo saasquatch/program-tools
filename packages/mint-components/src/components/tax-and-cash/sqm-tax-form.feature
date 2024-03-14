@@ -57,7 +57,6 @@ Feature: Tax Form Flow
       | has tax info           | is connected     | does have required doc     | does have current doc     | ACTIVE   | do have withdrawal settings       | dashboard |
       | has tax info           | is connected     | does not have required doc | does not have current doc | n/a      | does not have withdrawal settings | step 4    |
       | has tax info           | is connected     | does not have required doc | does not have current doc | n/a      | do have withdrawal settings       | dashboard |
-  # TODO: Can a publisher have tax info but not be connected
 
   @minutia
   Scenario: Participant is already registered as partner, provides indirect tax information, and submit their tax forms

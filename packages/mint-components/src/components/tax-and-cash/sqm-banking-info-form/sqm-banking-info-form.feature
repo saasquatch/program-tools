@@ -28,21 +28,21 @@ Feature: Banking Information Form
 
     Examples:
       | currency | bankCountry                           | fields                                                                                               |
-      | USD      | United States                         | Beneficiary Account Name, Bank Account Type, Bank Account Number, ABA Routing Number                 |
-      | USD      | Canada                                | Beneficiary Account Name, Bank Account Number, SWIFT Code                                            |
-      | USD      | Spain, Ireland, United Kingdom, Japan | Beneficiary Account Name, IBAN, SWIFT Code                                                           |
-      | GBP      | United States                         | Beneficiary Account Name, ABA Routing Number                                                         |
-      | GBP      | Canada                                | Beneficiary Account Name, Bank Account Number, SWIFT Code                                            |
-      | GBP      | Spain, Ireland, United Kingdom, Japan | Beneficiary Account Name, IBAN, SWIFT Code                                                           |
-      | AUD      | United States                         | Beneficiary Account Name, ABA Routing Number                                                         |
-      | AUD      | Canada                                | Beneficiary Account Name, Bank Account Number, SWIFT Code                                            |
-      | AUD      | Spain, Ireland, United Kingdom, Japan | Beneficiary Account Name, IBAN, SWIFT Code                                                           |
-      | CAD      | Canada                                | Beneficiary Account Name, Bank Account Number, Routing Number                                        |
-      | EUR      | United States                         | Beneficiary Account Name, ABA Routing Number                                                         |
-      | EUR      | Canada                                | Beneficiary Account Name, Bank Account Number, SWIFT Code                                            |
-      | EUR      | Spain, Ireland, United Kingdom, Japan | Beneficiary Account Name, IBAN, SWIFT Code                                                           |
-      | JPY      | Japan                                 | Beneficiary Account Name, Bank Account Type, Bank Account Number, SWIFT Code, Bank Name, Branch Code |
-  # According to mock data currently available
+      | USD      | United States                         | Beneficiary account name, Bank account type, Bank account number, ABA routing number                 |
+      | USD      | Canada                                | Beneficiary account name, Bank account number, SWIFT code                                            |
+      | USD      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
+      | GBP      | United States                         | Beneficiary account name, ABA routing number                                                         |
+      | GBP      | Canada                                | Beneficiary account name, Bank account number, SWIFT code                                            |
+      | GBP      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
+      | AUD      | United States                         | Beneficiary account name, ABA routing number                                                         |
+      | AUD      | Canada                                | Beneficiary account name, Bank account number, SWIFT code                                            |
+      | AUD      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
+      | CAD      | Canada                                | Beneficiary account name, Bank account number, routing number                                        |
+      | EUR      | United States                         | Beneficiary account name, ABA routing number                                                         |
+      | EUR      | Canada                                | Beneficiary account name, Bank account number, SWIFT code                                            |
+      | EUR      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
+      | JPY      | Japan                                 | Beneficiary account name, Bank account type, Bank account number, SWIFT code, Bank Name, Branch code |
+    # According to mock data currently available
 
   @minutia
   Scenario Outline: Bank country dropdown list is dynamic depending on the partner's currency

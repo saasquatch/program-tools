@@ -17,11 +17,10 @@ Feature: Indirect Tax Form
     Then they are shown the radio option for indirect tax
     And the option <option> has label <label> and description <description>
 
-    # TODO : Descriptions
     Examples:
-      | option        | label                                                            | description |
-      | notRegistered | I am not registered for Indirect Tax                             | TODO        |
-      | registered    | I am registered for Indirect Tax in a different Country / Region | TODO        |
+      | option        | label                                                            | description                                                                                                                 |
+      | notRegistered | I am not registered for Indirect Tax                             | If you’re joining this referral program as an individual or you’re based in the US, then you’re not registered.             |
+      | registered    | I am registered for Indirect Tax in a different Country / Region | If you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more. |
 
   @motivating @ui
   Scenario Outline: Inputs display based on radio option selected
@@ -35,18 +34,11 @@ Feature: Indirect Tax Form
       | registered    | indirectCountryCode | Country / Region of Indirect Tax |
       | registered    | indirectTaxId       | {taxType} Number                 |
 
-  @motivating
-  Scenario Outline: Indirect tax country may be auto-filled
+  @minutia
+  Scenario: "Not registered" is the default option
     Given that a countryCode was selected in Step 1
-    And that countryCode <isSupported> by Impact
     When a user loads Step 2
-    Then the radio option <option> is auto-selected
-    And the "indirectCountryCode" field <mayBe> set to the countryCode selected in Step 1
-
-    Examples:
-      | isSupported      | option        | mayBe  |
-      | is supported     | registered    | is     |
-      | is not supported | notRegistered | is not |
+    Then the radio option "notRegistered" is auto-selected regardless of selected country
 
   @minutia @ui
   Scenario Outline: indirectTaxId field label changes depending on tax type of country selected
