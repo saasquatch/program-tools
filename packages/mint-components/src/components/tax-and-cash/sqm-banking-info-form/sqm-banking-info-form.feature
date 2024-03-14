@@ -25,7 +25,6 @@ Feature: Banking Information Form
     And the selected currency is <currency>
     And the selected bank country is one of <bankCountry>
     Then <fields> are displayed
-
     Examples:
       | currency | bankCountry                           | fields                                                                                               |
       | USD      | United States                         | Beneficiary account name, Bank account type, Bank account number, ABA routing number                 |
@@ -37,19 +36,17 @@ Feature: Banking Information Form
       | AUD      | United States                         | Beneficiary account name, ABA routing number                                                         |
       | AUD      | Canada                                | Beneficiary account name, Bank account number, SWIFT code                                            |
       | AUD      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
-      | CAD      | Canada                                | Beneficiary account name, Bank account number, routing number                                        |
+      | CAD      | Canada                                | Beneficiary account name, Bank account number, Routing number                                        |
       | EUR      | United States                         | Beneficiary account name, ABA routing number                                                         |
       | EUR      | Canada                                | Beneficiary account name, Bank account number, SWIFT code                                            |
       | EUR      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
       | JPY      | Japan                                 | Beneficiary account name, Bank account type, Bank account number, SWIFT code, Bank Name, Branch code |
-    # According to mock data currently available
 
   @minutia
   Scenario Outline: Bank country dropdown list is dynamic depending on the partner's currency
     Given the bank account payment method is selected
     And the selected currency is <currency>
     Then the bank country options are <countries>
-
     Examples:
       | currency | countries                                                    |
       | USD      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
@@ -78,14 +75,12 @@ Feature: Banking Information Form
       | EUR      | Spain, Ireland,  United Kingdom                              | EFT Withdrawal    |
       | EUR      | United States, Canada, Japan                                 | FX Wire           |
       | JPY      | Japan                                                        | EFT Withdrawal    |
-  # Not sure what the actual specs for when it's shown are yet
 
   @minutia
   Scenario Outline: PayPal option is dynamically shown
     Given <currency> is set on the payout partner
     And the currency <currencySupported> supported by PayPal
     Then the paypal option <mayBe> shown as a payment method
-
     Examples:
       | currency | currencySupported | mayBe |
       | USD      | is                | is    |
