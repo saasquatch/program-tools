@@ -711,6 +711,7 @@ export function useBankingInfoForm(
         ? "toPayPalAccount"
         : "toBankAccount"
     );
+    updateBankCountry(currentPaymentOption?.countryCode);
   }, [paymentOptions, userData, setCurrentPaymentOption, setFormState]);
 
   const updateBankCountry = (bankCountry: string) => {
