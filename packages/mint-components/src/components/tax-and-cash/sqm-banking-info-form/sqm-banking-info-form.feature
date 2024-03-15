@@ -76,7 +76,7 @@ Feature: Banking Information Form
       | CAD      | Canada                                                       | EFT Withdrawal    |
       | EUR      | Spain, Ireland,  United Kingdom                              | EFT Withdrawal    |
       | EUR      | United States, Canada, Japan                                 | FX Wire           |
-      | JPY      | Japan                                                        | EFT Withdrawal    |
+      | JPY      | Japan                                                        | FX Wire           |
 
   @minutia
   Scenario Outline: PayPal option is dynamically shown
