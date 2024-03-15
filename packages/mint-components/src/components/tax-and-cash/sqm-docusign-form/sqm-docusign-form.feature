@@ -28,7 +28,7 @@ Feature: Docusign Form
     When the page loads
     Then <uiElements> are displayed
 
-    Examples:
+    Examples: 
       | publisherCountry | brandCountry     | currentDocument | uiElements                                      |
       | a non-US country | US               | null            | participant type radio options                  |
       | a non-US country | US               | populated       | participant type radio options, docusign iframe |
@@ -46,7 +46,7 @@ Feature: Docusign Form
     Then the Docusign iframe appears
     And an <autoSelectedTaxForm> appears in the Docusign iframe
 
-    Examples:
+    Examples: 
       | participantType       | autoSelectedTaxForm |
       | individualParticipant | W8-BEN              |
       | businessEntity        | W8-BEN-E            |
@@ -59,7 +59,7 @@ Feature: Docusign Form
     Then the participant type radio options are disabled
     And the option <selectedOption> is auto-selected
 
-    Examples:
+    Examples: 
       | userField                              | value  | selectedOption        |
       | user.publisher.currentTaxDocument.type | W8BEN  | individualParticipant |
       | user.publisher.currentTaxDocument.type | W8BENE | businessEntity        |
@@ -70,11 +70,11 @@ Feature: Docusign Form
     And are <participantType>
     Then the <taxFormSubHeader>/<taxFormDescriptionCopy> displays with <typeTaxForm>
 
-    Examples:
+    Examples: 
       | typeTaxForm | participantType       | taxFormSubHeader  | taxFormDescriptionCopy                                                                                                     |
-      | W9          | N/A                   | W9 Tax Form       | Participants based in the US and partnering with US-based brands need to submit a W9 form.                                 |
-      | W8-BEN      | individualParticipant | W8-BEN Tax Form   | Participants residing outside of the US, joining the referral program of a US-based company, need to submit a W8-BEN form. |
-      | W8-BEN-E    | businessEntity        | W8-BEN-E Tax Form | Participants residing outside of the US who represent a business enttiy need to submit a W8-BEN-E form.                    |
+      | W9          | N/A                   | W9 tax form       | Participants based in the US and partnering with US-based brands need to submit a W9 form.                                 |
+      | W8-BEN      | individualParticipant | W8-BEN tax form   | Participants residing outside of the US, joining the referral program of a US-based company, need to submit a W8-BEN form. |
+      | W8-BEN-E    | businessEntity        | W8-BEN-E tax form | Participants residing outside of the US who represent a business enttiy need to submit a W8-BEN-E form.                    |
 
   @minutia
   Scenario: Participant successfully completes Docusign document and is directed to document summary page
@@ -136,4 +136,3 @@ Feature: Docusign Form
       """
       Please refresh the page and try again. If this problem continues, contact Support.
       """
-
