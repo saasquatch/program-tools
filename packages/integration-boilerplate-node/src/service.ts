@@ -1,19 +1,27 @@
+import {
+  healthCheck,
+  installShutdownManager,
+  requestIdAndLogger,
+  shutdownManagerConfigFromEnv,
+} from "@saasquatch/express-boilerplate";
 import { httpLogMiddleware } from "@saasquatch/logger";
-import { hostname } from "os";
 import { IntegrationConfiguration } from "@saasquatch/schema/types/IntegrationConfig";
 import compression from "compression";
-import express, { Express, Request, Response, Router } from "express";
+import express, { Express, Response, Router } from "express";
 import enforce from "express-sslify";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import NodeCache from "node-cache";
 import fetch from "node-fetch";
+import { hostname } from "os";
 import path from "path";
 import { Logger } from "winston";
 import { gql } from ".";
 import { Auth } from "./auth";
+import { Auth0WorkloadIdentityCredentialProvider } from "./auth0WorkloadIdentityCredentialProvider";
 import { BaseConfig, loadConfig } from "./config";
 import { GraphQLError, IntegrationConfigError } from "./errors";
 import { formHandler } from "./formHandler";
+import { installInstrumentation } from "./instrumentation";
 import { introspectionHandler } from "./introspectionHandler";
 import { createLogger } from "./logger";
 import {
@@ -29,8 +37,6 @@ import {
 } from "./middleware";
 import * as types from "./types";
 import { webhookHandler } from "./webhookHandler";
-import { installInstrumentation } from "./instrumentation";
-import { Auth0WorkloadIdentityCredentialProvider } from "./auth0WorkloadIdentityCredentialProvider";
 
 declare module "http" {
   interface IncomingMessage {
@@ -142,10 +148,24 @@ export class IntegrationService<
     });
   }
 
-  run() {
-    this.server.listen(this.config.port, () => {
-      this.logger.info(`Listening on port ${this.config.port}`);
-    });
+  run(opts?: { gracefulShutdown?: boolean }) {
+    const msg = `${this.config.serviceName} listening on port ${this.config.port}`;
+
+    if (opts?.gracefulShutdown) {
+      const httpServer = installShutdownManager(
+        this.server,
+        this.logger,
+        shutdownManagerConfigFromEnv()
+      );
+
+      httpServer.listen(this.config.port, () => {
+        this.logger.notice(msg);
+      });
+    } else {
+      this.server.listen(this.config.port, () => {
+        this.logger.notice(msg);
+      });
+    }
   }
 
   async getIntegrationTenants() {
@@ -336,17 +356,20 @@ export class IntegrationService<
   }
 
   private createExpressServer() {
-    const server = express();
+    const app = express();
 
     // Enable compression
-    server.use(compression());
+    app.use(compression());
+
+    // generate request IDs and derived logger
+    app.use(requestIdAndLogger(this.logger));
 
     // Enable request logging
-    server.use(httpLogMiddleware(this.logger));
+    app.use(httpLogMiddleware(this.logger));
 
     // Record the server's HTTP response times if metrics are enabled
     if (this.config.metricsEnabled) {
-      server.use(async (_req, res, next) => {
+      app.use(async (_req, res, next) => {
         const startTimeNs = process.hrtime.bigint();
         this.metricsManager!.increment(METRIC_REQUEST_PROCESSING_COUNT);
 
@@ -371,7 +394,7 @@ export class IntegrationService<
     // Force HTTPS for all requests
     if (this.config.enforceHttps) {
       const enforceHttps = enforce.HTTPS({ trustProtoHeader: true });
-      server.use((req, res, next) => {
+      app.use((req, res, next) => {
         if (["/healthz", "/livez", "/readyz"].includes(req.path)) {
           next();
         } else {
@@ -381,7 +404,7 @@ export class IntegrationService<
     }
 
     // Support JSON bodies
-    server.use(
+    app.use(
       express.json({
         verify: (req, _res, buf) => {
           // Save the raw body for token validation
@@ -392,14 +415,12 @@ export class IntegrationService<
     );
 
     //  Support application/x-www-form-urlencoded bodies
-    server.use(express.urlencoded({ extended: false }));
+    app.use(express.urlencoded({ extended: false }));
 
-    const healthCheck = (_req: Request, res: Response) =>
-      res.status(200).json({ status: "OK" });
-
-    server.get("/healthz", healthCheck);
-    server.get("/livez", healthCheck);
-    server.get("/readyz", healthCheck);
+    const healthCheckFn = healthCheck(app, this.logger);
+    app.get("/healthz", healthCheckFn);
+    app.get("/livez", healthCheckFn);
+    app.get("/readyz", healthCheckFn);
 
     const requireSaaSquatchSignature = createSaasquatchRequestMiddleware(
       this.auth,
@@ -407,7 +428,7 @@ export class IntegrationService<
     );
 
     if (this.options?.handlers?.webhookHandler) {
-      server.post("/webhook", requireSaaSquatchSignature, async (req, res) => {
+      app.post("/webhook", requireSaaSquatchSignature, async (req, res) => {
         await webhookHandler(
           req,
           res,
@@ -422,7 +443,7 @@ export class IntegrationService<
     }
 
     if (this.options?.handlers?.introspectionHandler) {
-      server.post(
+      app.post(
         this.config.introspectionEndpointPath,
         requireSaaSquatchSignature,
         async (req, res) => {
@@ -440,7 +461,7 @@ export class IntegrationService<
       this.options?.handlers?.formSubmitHandler ||
       this.options?.handlers?.formValidateHandler
     ) {
-      server.post("/form", requireSaaSquatchSignature, async (req, res) => {
+      app.post("/form", requireSaaSquatchSignature, async (req, res) => {
         await formHandler(
           req,
           res,
@@ -454,11 +475,11 @@ export class IntegrationService<
       });
     }
 
-    server.use("/", this.router);
+    app.use("/", this.router);
 
     // Serve the frontend at the root of the server
     if (this.config.proxyFrontend) {
-      server.use(
+      app.use(
         "/",
         createProxyMiddleware({
           target: this.config.proxyFrontend,
@@ -470,8 +491,8 @@ export class IntegrationService<
         require.main!.path,
         this.config.staticFrontendPath
       );
-      server.use(express.static(frontendPath));
-      server.get("/*", (_req, res, next) => {
+      app.use(express.static(frontendPath));
+      app.get("/*", (_req, res, next) => {
         res.sendFile(
           path.join(frontendPath, this.config.staticFrontendIndex),
           undefined,
@@ -481,12 +502,12 @@ export class IntegrationService<
         );
       });
     } else {
-      server.get("/", (_req, res) => {
+      app.get("/", (_req, res) => {
         res.sendStatus(204);
       });
     }
 
-    return server;
+    return app;
   }
 }
 
