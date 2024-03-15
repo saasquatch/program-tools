@@ -171,6 +171,7 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
     disabled: false,
     submitDisabled: false,
     participantTypeDisabled: false,
+    loadingError: false,
     formState: {
       participantType: "individualParticipant" as ParticipantType,
       errors: {},
@@ -793,6 +794,22 @@ export const StepThreeDocusignWithGeneralError = () => {
             errors: {
               general: true,
             },
+          },
+        },
+      }}
+    ></sqm-docusign-form>
+  );
+};
+
+export const StepThreeDocusignWithLoadingError = () => {
+  return (
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          ...docusignFormProps.states,
+          loadingError: true,
+          formState: {
+            ...docusignFormProps.states.formState,
           },
         },
       }}

@@ -13,6 +13,8 @@ export interface DocusignFormViewProps {
     disabled: boolean;
     hideSteps: boolean;
     participantTypeDisabled: boolean;
+    // TODO AL: loadingError
+    loadingError?: boolean;
     formState: {
       completedTaxForm: boolean;
       taxFormExpired: boolean;
@@ -57,6 +59,8 @@ export interface DocusignFormViewProps {
       generalDescription: string;
       formSubmission: string;
       participantType: string;
+      loadingErrorAlertHeader: string;
+      loadingErrorAlertDescription: string;
     };
   };
 }
@@ -169,6 +173,9 @@ const style = {
     height: "24px",
     width: "24px",
   },
+  RadioText: {
+    fontSize: "var(--sl-font-size-small)",
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -230,6 +237,21 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           <h3>{text.taxForm}</h3>
         </div>
       </div>
+      {states.loadingError && (
+        <div>
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            type="danger"
+            open
+            class={sheet.classes.ErrorAlertContainer}
+          >
+            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+            <strong>{text.error.loadingErrorAlertHeader}</strong>
+            <br />
+            {text.error.loadingErrorAlertDescription}
+          </sl-alert>
+        </div>
+      )}
       {formState.errors?.general && (
         <sl-alert
           exportparts="base: alert-base, icon:alert-icon"
@@ -265,7 +287,9 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
                   callbacks.setParticipantType("individualParticipant");
                 }}
               >
-                {text.individualParticipant}
+                <span class={classes.RadioText}>
+                  {text.individualParticipant}
+                </span>
               </sl-radio>
               <sl-radio
                 exportparts="base: radio-base"
@@ -277,7 +301,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
                   callbacks.setParticipantType("businessEntity");
                 }}
               >
-                {text.businessEntity}
+                <span class={classes.RadioText}>{text.businessEntity}</span>
               </sl-radio>
             </div>
           )}

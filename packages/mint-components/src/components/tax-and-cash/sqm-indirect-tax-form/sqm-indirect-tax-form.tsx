@@ -131,7 +131,7 @@ export class IndirectTaxForm {
    * Label text for the sub-region tax number input field
    * @uiName Sub-region tax number input label
    */
-  @Prop() subRegionTaxNumberLabel: string = "Income Tax Number";
+  @Prop() subRegionTaxNumberLabel: string = "Income tax number";
 
   /**
    * Text for the back button in the form

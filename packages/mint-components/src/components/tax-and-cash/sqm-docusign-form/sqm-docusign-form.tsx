@@ -143,6 +143,18 @@ export class DocusignForm {
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
   /**
+   * Alert header shown if there is a problem loading a form
+   * @uiName Loading error alert header
+   */
+  @Prop() loadingErrorAlertHeader: string =
+    "There was a problem loading your form";
+  /**
+   * Alert description shown if there is a problem loading a form
+   * @uiName Loading error alert description
+   */
+  @Prop() loadingErrorAlertDescription: string =
+    "Please refresh the page and try again. If this problem continues, contact Support.";
+  /**
    * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
    *
    * @uiName Form submission error text
@@ -170,6 +182,8 @@ export class DocusignForm {
         generalDescription: props.generalErrorDescription,
         formSubmission: props.formSubmissionError,
         participantType: props.participantType,
+        loadingErrorAlertHeader: props.loadingErrorAlertHeader,
+        loadingErrorAlertDescription: props.loadingErrorAlertDescription,
       },
     };
   }
@@ -222,6 +236,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
         submitDisabled: false,
         loading: false,
         status: undefined as DocusignStatus,
+        loadingError: false,
         participantTypeDisabled: false,
         formState: {
           completedTaxForm: true,

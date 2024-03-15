@@ -632,6 +632,16 @@ export namespace Components {
          */
         "individualParticipant": string;
         /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader": string;
+        /**
           * Text shown in the link to the form for non US residents
           * @uiName Not based in US link text
          */
@@ -6299,6 +6309,16 @@ declare namespace LocalJSX {
           * @uiName Individual participant radio button label
          */
         "individualParticipant"?: string;
+        /**
+          * Alert description shown if there is a problem loading a form
+          * @uiName Loading error alert description
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Alert header shown if there is a problem loading a form
+          * @uiName Loading error alert header
+         */
+        "loadingErrorAlertHeader"?: string;
         /**
           * Text shown in the link to the form for non US residents
           * @uiName Not based in US link text
