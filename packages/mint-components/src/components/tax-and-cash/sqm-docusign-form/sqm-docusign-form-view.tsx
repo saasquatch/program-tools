@@ -13,7 +13,6 @@ export interface DocusignFormViewProps {
     disabled: boolean;
     hideSteps: boolean;
     participantTypeDisabled: boolean;
-    // TODO AL: loadingError
     loadingError?: boolean;
     formState: {
       completedTaxForm: boolean;

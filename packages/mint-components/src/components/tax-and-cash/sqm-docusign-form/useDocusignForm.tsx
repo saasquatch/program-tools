@@ -200,8 +200,7 @@ export function useDocusignForm(props: DocusignForm) {
       submitDisabled: !formSubmitted,
       loading: userLoading || loading,
       urlLoading: documentLoading,
-      // AL: TODO loading error
-      loadingError: false,
+      loadingError: !!documentErrors?.message,
       formState: {
         participantType,
         completedTaxForm: formSubmitted,
