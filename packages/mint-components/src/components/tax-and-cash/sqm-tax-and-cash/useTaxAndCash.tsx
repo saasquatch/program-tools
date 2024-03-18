@@ -42,10 +42,7 @@ function getCurrentStep(user: UserQuery["user"]) {
     user.impactConnection.publisher;
 
   // If they do have a required document, look at current document
-  if (
-    requiredTaxDocumentType &&
-    (!currentTaxDocument || currentTaxDocument?.status === "NEW")
-  ) {
+  if (requiredTaxDocumentType && !currentTaxDocument) {
     return "/3";
   }
 
@@ -59,20 +56,20 @@ export function useTaxAndCash() {
 
   function setupDemo() {
     // coleton
-    // const id =
-    //   "85438b54a9ccddaf65cdc2a23eb0e098f7e8455dfa612ba28874c21a2418f40f";
-    // const accountId =
-    //   "85438b54a9ccddaf65cdc2a23eb0e098f7e8455dfa612ba28874c21a2418f40f";
+    const id =
+      "8b8468acd871c030f257b0780322c71e8cc2c15c5b693872b76d3b18951d3267";
+    const accountId =
+      "8b8468acd871c030f257b0780322c71e8cc2c15c5b693872b76d3b18951d3267";
 
     // // andy
     // const id = "12345";
     // const accountId = "12345";
 
     // andy2
-    const id =
-      "80d24e8d6133bdcf859844ca1fc7552c57d5d0661a7f46f791ea0785827a70ed";
-    const accountId =
-      "80d24e8d6133bdcf859844ca1fc7552c57d5d0661a7f46f791ea0785827a70ed";
+    // const id =
+    //   "80d24e8d6133bdcf859844ca1fc7552c57d5d0661a7f46f791ea0785827a70ed";
+    // const accountId =
+    //   "80d24e8d6133bdcf859844ca1fc7552c57d5d0661a7f46f791ea0785827a70ed";
 
     // sam
     // const id =
@@ -90,13 +87,13 @@ export function useTaxAndCash() {
     };
 
     // coleton
-    // useEffect(() => {
-    //   setUserIdentity({
-    //     accountId,
-    //     id,
-    //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiODU0MzhiNTRhOWNjZGRhZjY1Y2RjMmEyM2ViMGUwOThmN2U4NDU1ZGZhNjEyYmEyODg3NGMyMWEyNDE4ZjQwZiIsImFjY291bnRJZCI6Ijg1NDM4YjU0YTljY2RkYWY2NWNkYzJhMjNlYjBlMDk4ZjdlODQ1NWRmYTYxMmJhMjg4NzRjMjFhMjQxOGY0MGYifX0.P9AysKA3qMEHk6jC6poi7pr4nhKqtOAJV2jwBjHPJZQ",
-    //   });
-    // }, []);
+    useEffect(() => {
+      setUserIdentity({
+        accountId,
+        id,
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiOGI4NDY4YWNkODcxYzAzMGYyNTdiMDc4MDMyMmM3MWU4Y2MyYzE1YzViNjkzODcyYjc2ZDNiMTg5NTFkMzI2NyIsImFjY291bnRJZCI6IjhiODQ2OGFjZDg3MWMwMzBmMjU3YjA3ODAzMjJjNzFlOGNjMmMxNWM1YjY5Mzg3MmI3NmQzYjE4OTUxZDMyNjcifX0.ld7M7TnXbPaT1F5b6jc06n5rm8vLsMcBX4WQk7BOUJM",
+      });
+    }, []);
 
     // andy
     // useEffect(() => {
@@ -108,13 +105,13 @@ export function useTaxAndCash() {
     // }, []);
 
     // andy
-    useEffect(() => {
-      setUserIdentity({
-        accountId,
-        id,
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSZkFUVEdOZXRqUDUwNzYxMDNERjVub0d0TDRnQ0hjYjEifQ.eyJ1c2VyIjp7ImlkIjoiODBkMjRlOGQ2MTMzYmRjZjg1OTg0NGNhMWZjNzU1MmM1N2Q1ZDA2NjFhN2Y0NmY3OTFlYTA3ODU4MjdhNzBlZCIsImFjY291bnRJZCI6IjgwZDI0ZThkNjEzM2JkY2Y4NTk4NDRjYTFmYzc1NTJjNTdkNWQwNjYxYTdmNDZmNzkxZWEwNzg1ODI3YTcwZWQifX0.8VWa3R_pSeRJeNw07AZPjCdTuTiwBYXOAc-ouVItuYs",
-      });
-    }, []);
+    // useEffect(() => {
+    //   setUserIdentity({
+    //     accountId,
+    //     id,
+    //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSZkFUVEdOZXRqUDUwNzYxMDNERjVub0d0TDRnQ0hjYjEifQ.eyJ1c2VyIjp7ImlkIjoiODBkMjRlOGQ2MTMzYmRjZjg1OTg0NGNhMWZjNzU1MmM1N2Q1ZDA2NjFhN2Y0NmY3OTFlYTA3ODU4MjdhNzBlZCIsImFjY291bnRJZCI6IjgwZDI0ZThkNjEzM2JkY2Y4NTk4NDRjYTFmYzc1NTJjNTdkNWQwNjYxYTdmNDZmNzkxZWEwNzg1ODI3YTcwZWQifX0.8VWa3R_pSeRJeNw07AZPjCdTuTiwBYXOAc-ouVItuYs",
+    //   });
+    // }, []);
 
     // sam
     // useEffect(() => {
@@ -126,7 +123,7 @@ export function useTaxAndCash() {
     // }, []);
   }
 
-  // setupDemo();
+  setupDemo();
 
   /** END DEMO DATA */
 

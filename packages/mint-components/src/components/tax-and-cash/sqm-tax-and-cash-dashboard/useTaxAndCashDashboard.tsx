@@ -44,6 +44,13 @@ function getCountryName(countryCode: string, locale: string) {
 }
 
 function getSubRegionName(regionCode: string) {
+  // Impact adds an underscore to CANARYISLANDS, so requires a hardcoded check
+  if (regionCode === "CANARY_ISLANDS") {
+    return INDIRECT_TAX_SPAIN_REGIONS.find(
+      (r) => r.regionCode === "CANARYISLANDS"
+    )?.displayName;
+  }
+
   const regions = [...INDIRECT_TAX_PROVINCES, ...INDIRECT_TAX_SPAIN_REGIONS];
   return regions.find((r) => r.regionCode === regionCode)?.displayName;
 }
