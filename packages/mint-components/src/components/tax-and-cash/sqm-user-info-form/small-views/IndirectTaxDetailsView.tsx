@@ -229,7 +229,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             label={text.subRegionTaxNumberLabel}
             disabled={states.loading || states.disabled}
             value={formState.subRegionTaxNumber}
-            {...(formState.errors?.subRegionTaxNumberError && {
+            {...(formState.errors?.subRegionTaxNumber && {
               class: classes.ErrorInput,
               helpText: getIsRequiredErrorMessage(
                 text.subRegionTaxNumberLabel,
