@@ -86,6 +86,17 @@ export class TaxAndCashMonolith {
    */
   @Prop() step1_termsAndConditionsLabel: string = "Terms and Conditions";
 
+  /**
+   * Placeholder text displayed in the country search dropdown
+   * @uiName Search for country text
+   */
+  @Prop() step1_searchForCountryText: string = "Search for country..";
+  /**
+   * Placeholder text displayed in the currency search dropdown
+   * @uiName Search for currency text
+   */
+  @Prop() step1_searchForCurrencyText: string = "Search for currency..";
+
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 2 PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -207,6 +218,12 @@ export class TaxAndCashMonolith {
    */
   @Prop() step2_indirectTaxNumberError: string =
     "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}} is required";
+
+  /**
+   * Placeholder text displayed in the country search dropdown
+   * @uiName Search for country text
+   */
+  @Prop() step2_searchForCountryText: string = "Search for country..";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 3 PROPS:
