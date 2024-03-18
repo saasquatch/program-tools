@@ -75,6 +75,38 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
         displayName: "USD",
       },
     ],
+    allCountries: [
+      {
+        countryCode: "CA",
+        displayName: "Canada",
+      },
+      {
+        countryCode: "ES",
+        displayName: "Spain",
+      },
+      {
+        countryCode: "UK",
+        displayName: "United Kingdom",
+      },
+      {
+        countryCode: "US",
+        displayName: "United States",
+      },
+    ],
+    allCurrencies: [
+      {
+        currencyCode: "CAD",
+        displayName: "CAD",
+      },
+      {
+        currencyCode: "GBP",
+        displayName: "GBP",
+      },
+      {
+        currencyCode: "USD",
+        displayName: "USD",
+      },
+    ],
   },
   refs: {
     formRef: { current: null },
@@ -107,6 +139,24 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
   data: {
     esRegions: INDIRECT_TAX_SPAIN_REGIONS,
     countries: [
+      {
+        countryCode: "CA",
+        displayName: "Canada",
+      },
+      {
+        countryCode: "ES",
+        displayName: "Spain",
+      },
+      {
+        countryCode: "UK",
+        displayName: "United Kingdom",
+      },
+      {
+        countryCode: "US",
+        displayName: "United States",
+      },
+    ],
+    allCountries: [
       {
         countryCode: "CA",
         displayName: "Canada",

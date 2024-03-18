@@ -260,6 +260,7 @@ export class IndirectTaxForm {
           esRegions: props.data.esRegions,
           countries: props.data.countries,
           provinces: props.data.provinces,
+          allCountries: props.data.allCountries,
         }}
         text={props.text.slotText}
       />
