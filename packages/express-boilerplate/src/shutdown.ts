@@ -10,9 +10,13 @@ const handleHookError = (hook: string, logger: Logger) => (err: unknown) => {
   });
 };
 
+// these should be kept opaque to consumers of the library. manipulating
+// these variables outside the library can result in unwanted behavior.
+export const TERMINATION_APP_LOCAL_KEY = "__ssqt_terminating";
+
 // this should be kept opaque to consumers of the library. manipulating
 // this variable outside the library can result in unwanted behavior.
-export const TERMINATION_APP_LOCAL_KEY = "__ssqt_terminating";
+export const INSTALLATION_APP_LOCAL_KEY = "__ssqt_shutdown_manager_installed";
 
 export type ShutdownManagerConfig = {
   keepAliveTimeoutSeconds: number;
@@ -65,6 +69,18 @@ export function installShutdownManager(
 ): Server {
   app.disable("x-powered-by");
   const server = createServer(app);
+
+  // eslint-disable-next-line -- @typescript-eslint/no-unsafe-assignment
+  const shutdownManagerInstalled = app.locals[INSTALLATION_APP_LOCAL_KEY];
+
+  if (
+    typeof shutdownManagerInstalled === "boolean" &&
+    shutdownManagerInstalled
+  ) {
+    throw new Error("Shutdown manager can only be installed once");
+  }
+
+  app.locals[INSTALLATION_APP_LOCAL_KEY] = true;
 
   // https://cloud.google.com/load-balancing/docs/https/https-logging-monitoring#failure-messages
   // (see the section on backend_connection_closed_before_data_sent_to_client)
