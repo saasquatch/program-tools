@@ -6,6 +6,7 @@ import { IndirectDetailsSlotViewProps } from "./small-views/IndirectTaxDetailsVi
 
 export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
   selectedRegion: "Country / Region of Indirect Tax",
+  searchForCountryText: "",
   province: "Province",
   indirectTaxNumber: "Indirect Tax",
   isRegisteredQST: "I am registered for QST Tax",
