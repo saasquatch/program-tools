@@ -124,6 +124,24 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
         displayName: "United States",
       },
     ],
+    allCountries: [
+      {
+        countryCode: "CA",
+        displayName: "Canada",
+      },
+      {
+        countryCode: "ES",
+        displayName: "Spain",
+      },
+      {
+        countryCode: "UK",
+        displayName: "United Kingdom",
+      },
+      {
+        countryCode: "US",
+        displayName: "United States",
+      },
+    ],
     provinces: INDIRECT_TAX_PROVINCES,
   },
   slotProps: {
