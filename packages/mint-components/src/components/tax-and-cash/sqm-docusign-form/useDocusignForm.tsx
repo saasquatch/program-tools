@@ -99,7 +99,16 @@ export function useDocusignForm(props: DocusignForm) {
   }, [publisher]);
 
   useEffect(() => {
+    // Skip if no publisher info
     if (!user || !publisher) return;
+
+    // Skip on initial load of W8 case
+    if (
+      publisher.requiredTaxDocumentType?.startsWith("W8") &&
+      !publisher.currentTaxDocument &&
+      !participantType
+    )
+      return;
 
     const fetchDocument = async () => {
       try {
@@ -129,7 +138,12 @@ export function useDocusignForm(props: DocusignForm) {
     if (DOCUSIGN_ERROR_STATES.includes(docusignStatus)) return;
 
     if (DOCUSIGN_SUCCESS_STATES.includes(docusignStatus)) {
-      setStep("/4");
+      // handles if the user refreshes and loses the override in context
+      const nextStep =
+        context.overrideNextStep || !!publisher?.withdrawalSettings
+          ? "/dashboard"
+          : "/4";
+      setStep(nextStep);
     }
 
     if (DOCUSIGN_ERROR_STATES.includes(docusignStatus)) {
@@ -159,7 +173,7 @@ export function useDocusignForm(props: DocusignForm) {
       }
 
       // Skip banking info form if it already is saved
-      if (publisher?.withdrawalSettings) {
+      if (!!publisher?.withdrawalSettings) {
         setStep(context.overrideNextStep || "/dashboard");
       } else {
         setStep(context.overrideNextStep || "/4");
@@ -186,8 +200,7 @@ export function useDocusignForm(props: DocusignForm) {
       submitDisabled: !formSubmitted,
       loading: userLoading || loading,
       urlLoading: documentLoading,
-      // AL: TODO loading error
-      loadingError: false,
+      loadingError: !!documentErrors?.message,
       formState: {
         participantType,
         completedTaxForm: formSubmitted,

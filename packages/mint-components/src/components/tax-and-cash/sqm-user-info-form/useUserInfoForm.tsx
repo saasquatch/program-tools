@@ -206,6 +206,8 @@ export function useUserInfoForm(props: TaxForm) {
     data: {
       currencies: filteredCurrencies,
       countries: filteredCountries,
+      allCurrencies: currencies,
+      allCountries: countries,
     },
     states: {
       step: step?.replace("/", ""),

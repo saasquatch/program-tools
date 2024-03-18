@@ -150,12 +150,18 @@ export class IndirectTaxForm {
    */
   @Prop() indirectTaxNumberError: string =
     "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}} is required";
+
+  /**
+   * Placeholder text displayed in the country search dropdown
+   * @uiName Search for country text
+   */
+  @Prop() searchForCountryText: string = "Search for country..";
+
   /**
    * Required error text shown at the bottom of field inputs
    * @uiName Field inputs error text
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
-
   /**
    * Header text for the alert when the user is identified as a partner
    * @uiName Partner identification alert header
@@ -238,6 +244,7 @@ export class IndirectTaxForm {
           indirectTaxNumber: props.indirectTaxNumberError,
           fieldRequiredError: props.fieldRequiredError,
         },
+        searchForCountryText: props.searchForCountryText,
       },
     };
   }
@@ -260,6 +267,7 @@ export class IndirectTaxForm {
           esRegions: props.data.esRegions,
           countries: props.data.countries,
           provinces: props.data.provinces,
+          allCountries: props.data.allCountries,
         }}
         text={props.text.slotText}
       />

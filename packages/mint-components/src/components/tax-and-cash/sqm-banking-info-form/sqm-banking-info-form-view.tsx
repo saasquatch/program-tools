@@ -58,7 +58,7 @@ export interface BankingInfoFormViewProps {
       paymentMethodChecked: "BALANCE_THRESHOLD" | "FIXED_DAY"
     ) => void;
     onSubmit: (props: any) => Promise<void>;
-    onBack: (props: any) => Promise<void>;
+    onBack: (props: any) => void;
     setBankCountry?: (country: string) => void;
     setCurrency?: (currency: string) => void;
   };

@@ -835,7 +835,7 @@ export function useBankingInfoForm(
       setBankCountry: updateBankCountry,
       setPaymentMethodChecked,
       setPaymentScheduleChecked,
-      onBack: async () => console.log("back"),
+      onBack: () => setStep("/dashboard"),
     },
     states: {
       step: step?.replace("/", ""),

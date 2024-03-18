@@ -34,6 +34,7 @@ export interface IndirectDetailsSlotViewProps {
       displayName: string;
     }[];
     countries?: TaxCountry[];
+    allCountries?: TaxCountry[];
   };
   callbacks: {
     onFormChange: (field: string, e: CustomEvent) => void;
@@ -54,6 +55,7 @@ export interface IndirectDetailsSlotViewProps {
       indirectTaxNumber: string;
       fieldRequiredError: string;
     };
+    searchForCountryText: string;
   };
 }
 
@@ -229,7 +231,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             label={text.subRegionTaxNumberLabel}
             disabled={states.loading || states.disabled}
             value={formState.subRegionTaxNumber}
-            {...(formState.errors?.subRegionTaxNumberError && {
+            {...(formState.errors?.subRegionTaxNumber && {
               class: classes.ErrorInput,
               helpText: getIsRequiredErrorMessage(
                 text.subRegionTaxNumberLabel,
@@ -374,7 +376,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           >
             <sl-input
               class={classes.SearchInput}
-              placeholder="Search for country.."
+              placeholder={text.searchForCountryText}
               onKeyDown={(e) => {
                 // Stop shoelace intercepting key presses
                 e.stopPropagation();
@@ -385,6 +387,12 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             ></sl-input>
             {props.data.countries?.map((c) => (
               <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
+            ))}
+            {/* include and hide all countries to prevent selected value from being cleared while filtering */}
+            {props.data.allCountries?.map((c) => (
+              <sl-menu-item value={c.countryCode} style={{ display: "none" }}>
+                {c.displayName}
+              </sl-menu-item>
             ))}
           </sl-select>
           {/* Trying to stop shoelace from persisting form inputs */}

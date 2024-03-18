@@ -103,7 +103,17 @@ export class TaxForm {
    * Label text for terms and conditions
    * @uiName Terms and conditions label text
    */
-  @Prop() termsAndConditionsLabel: string = "terms and conditions";
+  @Prop() termsAndConditionsLabel: string = "Terms and Conditions";
+  /**
+   * Placeholder text displayed in the country search dropdown
+   * @uiName Search for country text
+   */
+  @Prop() searchForCountryText: string = "Search for country..";
+  /**
+   * Placeholder text displayed in the currency search dropdown
+   * @uiName Search for currency text
+   */
+  @Prop() searchForCurrencyText: string = "Search for currency..";
   /**
    * Required error text shown at the bottom of field inputs
    * @uiName Field inputs error text
@@ -187,7 +197,9 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
       },
       data: {
         currencies: [{ currencyCode: "CAD", displayName: "CAD" }],
+        allCurrencies: [{ currencyCode: "CAD", displayName: "CAD" }],
         countries: [{ countryCode: "CA", displayName: "Canada" }],
+        allCountries: [{ countryCode: "CA", displayName: "Canada" }],
       },
       callbacks: {
         setCurrencySearch: (c) => console.log(c),

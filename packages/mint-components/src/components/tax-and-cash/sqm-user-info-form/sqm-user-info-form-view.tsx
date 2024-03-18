@@ -37,6 +37,14 @@ export interface UserInfoFormViewProps {
       countryCode: string;
       displayName: string;
     }[];
+    allCountries: {
+      countryCode: string;
+      displayName: string;
+    }[];
+    allCurrencies: {
+      currencyCode: string;
+      displayName: string;
+    }[];
     currencies: {
       currencyCode: string;
       displayName: string;
@@ -69,6 +77,8 @@ export interface UserInfoFormViewProps {
       loadingErrorAlertHeader: string;
       loadingErrorAlertDescription: string;
     };
+    searchForCountryText: string;
+    searchForCurrencyText: string;
   };
   refs: {
     formRef: any;
@@ -267,20 +277,19 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               {text.error.generalDescription}
             </sl-alert>
           )}
-          {states.isPartner ||
-            (states.isUser && (
-              <sl-alert
-                type="primary"
-                open
-                class={sheet.classes.PartnerAlertContainer}
-                exportparts="base: alert-base, icon:alert-icon"
-              >
-                <sl-icon slot="icon" name="info-circle"></sl-icon>
-                <strong>{text.isPartnerAlertHeader}</strong>
-                <br />
-                {text.isPartnerAlertDescription}
-              </sl-alert>
-            ))}
+          {(states.isPartner || states.isUser) && (
+            <sl-alert
+              type="primary"
+              open
+              class={sheet.classes.PartnerAlertContainer}
+              exportparts="base: alert-base, icon:alert-icon"
+            >
+              <sl-icon slot="icon" name="info-circle"></sl-icon>
+              <strong>{text.isPartnerAlertHeader}</strong>
+              <br />
+              {text.isPartnerAlertDescription}
+            </sl-alert>
+          )}
 
           <div>
             <div class={classes.InputContainer}>
@@ -351,7 +360,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               >
                 <sl-input
                   class={classes.SearchInput}
-                  placeholder="Search for country.."
+                  placeholder={text.searchForCountryText}
                   onKeyDown={(e) => {
                     // Stop shoelace intercepting key presses
                     e.stopPropagation();
@@ -364,6 +373,12 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   <sl-menu-item value={c.countryCode}>
                     {c.displayName}
                   </sl-menu-item>
+                ))}
+                {data?.allCountries?.map((c) => (
+                  <sl-menu-item
+                    value={c.countryCode}
+                    style={{ display: "none" }}
+                  ></sl-menu-item>
                 ))}
               </sl-select>
               <sl-select
@@ -389,7 +404,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               >
                 <sl-input
                   class={classes.SearchInput}
-                  placeholder="Search for currency.."
+                  placeholder={text.searchForCurrencyText}
                   onKeyDown={(e) => {
                     // Stop shoelace intercepting key presses
                     e.stopPropagation();
@@ -402,6 +417,12 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   <sl-menu-item value={c.currencyCode}>
                     {c.currencyCode} - {c.displayName}
                   </sl-menu-item>
+                ))}
+                {data?.allCurrencies?.map((c) => (
+                  <sl-menu-item
+                    value={c.currencyCode}
+                    style={{ display: "none" }}
+                  ></sl-menu-item>
                 ))}
               </sl-select>
 

@@ -277,6 +277,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     data: {
       esRegions: INDIRECT_TAX_SPAIN_REGIONS,
       countries: filteredCountries,
+      allCountries: _countries?.impactPayoutCountries?.data,
       provinces: INDIRECT_TAX_PROVINCES,
     },
     text: props.getTextProps(),
