@@ -84,7 +84,7 @@ export class TaxAndCashMonolith {
    * @uiName Terms and conditions label text
    * @uiGroup Step 1 Properties
    */
-  @Prop() step1_termsAndConditionsLabel: string = "terms and conditions";
+  @Prop() step1_termsAndConditionsLabel: string = "Terms and Conditions";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 2 PROPS:
@@ -817,7 +817,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_subRegionTaxNumber: string =
-    "Income tax number: {incomeTaxNumber}";
+    "Income tax number: {subRegionTaxNumber}";
   /**
    * Badge text indicating payout status
    * @uiName Payout status badge text
@@ -1002,8 +1002,8 @@ export class TaxAndCashMonolith {
   }
 
   render() {
-    // const props = useTaxAndCash();
-    const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
+    const props = useTaxAndCash();
+    // const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
 
     // @ts-ignore
     if (this.demoData?.showTextProps) {
