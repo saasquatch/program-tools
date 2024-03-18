@@ -103,7 +103,7 @@ export class TaxForm {
    * Label text for terms and conditions
    * @uiName Terms and conditions label text
    */
-  @Prop() termsAndConditionsLabel: string = "terms and conditions";
+  @Prop() termsAndConditionsLabel: string = "Terms and Conditions";
   /**
    * Required error text shown at the bottom of field inputs
    * @uiName Field inputs error text

@@ -84,7 +84,7 @@ export class TaxAndCashMonolith {
    * @uiName Terms and conditions label text
    * @uiGroup Step 1 Properties
    */
-  @Prop() step1_termsAndConditionsLabel: string = "terms and conditions";
+  @Prop() step1_termsAndConditionsLabel: string = "Terms and Conditions";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 2 PROPS:
