@@ -99,7 +99,16 @@ export function useDocusignForm(props: DocusignForm) {
   }, [publisher]);
 
   useEffect(() => {
+    // Skip if no publisher info
     if (!user || !publisher) return;
+
+    // Skip on initial load of W8 case
+    if (
+      publisher.requiredTaxDocumentType?.startsWith("W8") &&
+      !publisher.currentTaxDocument &&
+      !participantType
+    )
+      return;
 
     const fetchDocument = async () => {
       try {
