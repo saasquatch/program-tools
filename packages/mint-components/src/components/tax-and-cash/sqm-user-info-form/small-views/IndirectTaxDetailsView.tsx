@@ -55,6 +55,7 @@ export interface IndirectDetailsSlotViewProps {
       indirectTaxNumber: string;
       fieldRequiredError: string;
     };
+    searchForCountryText: string;
   };
 }
 
@@ -375,7 +376,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           >
             <sl-input
               class={classes.SearchInput}
-              placeholder="Search for country.."
+              placeholder={text.searchForCountryText}
               onKeyDown={(e) => {
                 // Stop shoelace intercepting key presses
                 e.stopPropagation();

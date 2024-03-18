@@ -77,6 +77,8 @@ export interface UserInfoFormViewProps {
       loadingErrorAlertHeader: string;
       loadingErrorAlertDescription: string;
     };
+    searchForCountryText: string;
+    searchForCurrencyText: string;
   };
   refs: {
     formRef: any;
@@ -358,7 +360,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               >
                 <sl-input
                   class={classes.SearchInput}
-                  placeholder="Search for country.."
+                  placeholder={text.searchForCountryText}
                   onKeyDown={(e) => {
                     // Stop shoelace intercepting key presses
                     e.stopPropagation();
@@ -402,7 +404,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               >
                 <sl-input
                   class={classes.SearchInput}
-                  placeholder="Search for currency.."
+                  placeholder={text.searchForCurrencyText}
                   onKeyDown={(e) => {
                     // Stop shoelace intercepting key presses
                     e.stopPropagation();

@@ -1105,6 +1105,11 @@ export namespace Components {
          */
         "qstNumber": string;
         /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "searchForCountryText": string;
+        /**
           * Label text for the country/region select input
           * @uiName Selected country/region label
          */
@@ -4086,6 +4091,16 @@ export namespace Components {
          */
         "step1_personalInformation": string;
         /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "step1_searchForCountryText": string;
+        /**
+          * Placeholder text displayed in the currency search dropdown
+          * @uiName Search for currency text
+         */
+        "step1_searchForCurrencyText": string;
+        /**
           * Label text for terms and conditions
           * @uiName Terms and conditions label text
           * @uiGroup Step 1 Properties
@@ -4181,6 +4196,11 @@ export namespace Components {
           * @uiGroup Step 2 Properties
          */
         "step2_qstNumber": string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "step2_searchForCountryText": string;
         /**
           * Label text for the Selected Region select input
           * @uiName Selected region select input label
@@ -4935,6 +4955,16 @@ export namespace Components {
           * @uiName Form heading text
          */
         "personalInformation": string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "searchForCountryText": string;
+        /**
+          * Placeholder text displayed in the currency search dropdown
+          * @uiName Search for currency text
+         */
+        "searchForCurrencyText": string;
         /**
           * Label text for terms and conditions
           * @uiName Terms and conditions label text
@@ -6782,6 +6812,11 @@ declare namespace LocalJSX {
           * @uiName QST number input label
          */
         "qstNumber"?: string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "searchForCountryText"?: string;
         /**
           * Label text for the country/region select input
           * @uiName Selected country/region label
@@ -9734,6 +9769,16 @@ declare namespace LocalJSX {
          */
         "step1_personalInformation"?: string;
         /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "step1_searchForCountryText"?: string;
+        /**
+          * Placeholder text displayed in the currency search dropdown
+          * @uiName Search for currency text
+         */
+        "step1_searchForCurrencyText"?: string;
+        /**
           * Label text for terms and conditions
           * @uiName Terms and conditions label text
           * @uiGroup Step 1 Properties
@@ -9829,6 +9874,11 @@ declare namespace LocalJSX {
           * @uiGroup Step 2 Properties
          */
         "step2_qstNumber"?: string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "step2_searchForCountryText"?: string;
         /**
           * Label text for the Selected Region select input
           * @uiName Selected region select input label
@@ -10582,6 +10632,16 @@ declare namespace LocalJSX {
           * @uiName Form heading text
          */
         "personalInformation"?: string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "searchForCountryText"?: string;
+        /**
+          * Placeholder text displayed in the currency search dropdown
+          * @uiName Search for currency text
+         */
+        "searchForCurrencyText"?: string;
         /**
           * Label text for terms and conditions
           * @uiName Terms and conditions label text
