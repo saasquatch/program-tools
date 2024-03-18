@@ -75,6 +75,38 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
         displayName: "USD",
       },
     ],
+    allCountries: [
+      {
+        countryCode: "CA",
+        displayName: "Canada",
+      },
+      {
+        countryCode: "ES",
+        displayName: "Spain",
+      },
+      {
+        countryCode: "UK",
+        displayName: "United Kingdom",
+      },
+      {
+        countryCode: "US",
+        displayName: "United States",
+      },
+    ],
+    allCurrencies: [
+      {
+        currencyCode: "CAD",
+        displayName: "CAD",
+      },
+      {
+        currencyCode: "GBP",
+        displayName: "GBP",
+      },
+      {
+        currencyCode: "USD",
+        displayName: "USD",
+      },
+    ],
   },
   refs: {
     formRef: { current: null },

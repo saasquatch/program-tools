@@ -187,7 +187,9 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
       },
       data: {
         currencies: [{ currencyCode: "CAD", displayName: "CAD" }],
+        allCurrencies: [{ currencyCode: "CAD", displayName: "CAD" }],
         countries: [{ countryCode: "CA", displayName: "Canada" }],
+        allCountries: [{ countryCode: "CA", displayName: "Canada" }],
       },
       callbacks: {
         setCurrencySearch: (c) => console.log(c),

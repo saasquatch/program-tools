@@ -37,6 +37,14 @@ export interface UserInfoFormViewProps {
       countryCode: string;
       displayName: string;
     }[];
+    allCountries: {
+      countryCode: string;
+      displayName: string;
+    }[];
+    allCurrencies: {
+      currencyCode: string;
+      displayName: string;
+    }[];
     currencies: {
       currencyCode: string;
       displayName: string;
@@ -364,6 +372,12 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     {c.displayName}
                   </sl-menu-item>
                 ))}
+                {data?.allCountries?.map((c) => (
+                  <sl-menu-item
+                    value={c.countryCode}
+                    style={{ display: "none" }}
+                  ></sl-menu-item>
+                ))}
               </sl-select>
               <sl-select
                 id="currency"
@@ -401,6 +415,12 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   <sl-menu-item value={c.currencyCode}>
                     {c.currencyCode} - {c.displayName}
                   </sl-menu-item>
+                ))}
+                {data?.allCurrencies?.map((c) => (
+                  <sl-menu-item
+                    value={c.currencyCode}
+                    style={{ display: "none" }}
+                  ></sl-menu-item>
                 ))}
               </sl-select>
 
