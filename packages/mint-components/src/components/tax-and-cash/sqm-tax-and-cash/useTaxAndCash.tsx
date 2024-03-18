@@ -34,7 +34,6 @@ import {
 } from "./data";
 
 function getCurrentStep(user: UserQuery["user"]) {
-  console.log({ user });
   if (!user.impactConnection?.connected) {
     return "/1";
   }
@@ -45,9 +44,7 @@ function getCurrentStep(user: UserQuery["user"]) {
   // If they do have a required document, look at current document
   if (
     requiredTaxDocumentType &&
-    (!currentTaxDocument ||
-      currentTaxDocument?.status === "INACTIVE" ||
-      currentTaxDocument?.status === "NEW")
+    (!currentTaxDocument || currentTaxDocument?.status === "NEW")
   ) {
     return "/3";
   }
