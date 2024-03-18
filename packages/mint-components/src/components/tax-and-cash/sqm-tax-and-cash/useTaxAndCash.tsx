@@ -42,10 +42,7 @@ function getCurrentStep(user: UserQuery["user"]) {
     user.impactConnection.publisher;
 
   // If they do have a required document, look at current document
-  if (
-    requiredTaxDocumentType &&
-    (!currentTaxDocument || currentTaxDocument?.status === "NEW")
-  ) {
+  if (requiredTaxDocumentType && !currentTaxDocument) {
     return "/3";
   }
 
@@ -59,44 +56,45 @@ export function useTaxAndCash() {
 
   function setupDemo() {
     // coleton
-    // const id =
-    //   "85438b54a9ccddaf65cdc2a23eb0e098f7e8455dfa612ba28874c21a2418f40f";
-    // const accountId =
-    //   "85438b54a9ccddaf65cdc2a23eb0e098f7e8455dfa612ba28874c21a2418f40f";
+    const id =
+      "f205812deeff1ab5b8d0071e057055aab16e17ba3e5fb3d1353814ceff248fde";
+    const accountId =
+      "f205812deeff1ab5b8d0071e057055aab16e17ba3e5fb3d1353814ceff248fde";
 
     // // andy
     // const id = "12345";
     // const accountId = "12345";
 
     // andy2
-    const id =
-      "80d24e8d6133bdcf859844ca1fc7552c57d5d0661a7f46f791ea0785827a70ed";
-    const accountId =
-      "80d24e8d6133bdcf859844ca1fc7552c57d5d0661a7f46f791ea0785827a70ed";
+    // const id =
+    //   "80d24e8d6133bdcf859844ca1fc7552c57d5d0661a7f46f791ea0785827a70ed";
+    // const accountId =
+    //   "80d24e8d6133bdcf859844ca1fc7552c57d5d0661a7f46f791ea0785827a70ed";
 
     // sam
     // const id =
     //   "3e0fab4f3e7c7cd3ee971b0c0e9a4ece4061349c837f24c71582330842fc8462";
     // const accountId =
     //   "3e0fab4f3e7c7cd3ee971b0c0e9a4ece4061349c837f24c71582330842fc8462";
-    const programId = "22514";
+    // const programId = "22514";
+    const programId = "22999";
 
     //@ts-ignore
     window.widgetIdent = {
-      tenantAlias: "aprh0cfq6y8tk",
-      // tenantAlias: "aswi7zpxl6rjp",
+      // tenantAlias: "aprh0cfq6y8tk",
+      tenantAlias: "aswi7zpxl6rjp",
       appDomain: "https://staging.referralsaasquatch.com",
       programId,
     };
 
     // coleton
-    // useEffect(() => {
-    //   setUserIdentity({
-    //     accountId,
-    //     id,
-    //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiODU0MzhiNTRhOWNjZGRhZjY1Y2RjMmEyM2ViMGUwOThmN2U4NDU1ZGZhNjEyYmEyODg3NGMyMWEyNDE4ZjQwZiIsImFjY291bnRJZCI6Ijg1NDM4YjU0YTljY2RkYWY2NWNkYzJhMjNlYjBlMDk4ZjdlODQ1NWRmYTYxMmJhMjg4NzRjMjFhMjQxOGY0MGYifX0.P9AysKA3qMEHk6jC6poi7pr4nhKqtOAJV2jwBjHPJZQ",
-    //   });
-    // }, []);
+    useEffect(() => {
+      setUserIdentity({
+        accountId,
+        id,
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSZkFUVEdOZXRqUDUwNzYxMDNERjVub0d0TDRnQ0hjYjEifQ.eyJ1c2VyIjp7ImlkIjoiZjIwNTgxMmRlZWZmMWFiNWI4ZDAwNzFlMDU3MDU1YWFiMTZlMTdiYTNlNWZiM2QxMzUzODE0Y2VmZjI0OGZkZSIsImFjY291bnRJZCI6ImYyMDU4MTJkZWVmZjFhYjViOGQwMDcxZTA1NzA1NWFhYjE2ZTE3YmEzZTVmYjNkMTM1MzgxNGNlZmYyNDhmZGUifX0.5xguoPY6ZpJYsn3NNmeoApUGobXSnZheXofh2oGIY84",
+      });
+    }, []);
 
     // andy
     // useEffect(() => {
@@ -108,13 +106,13 @@ export function useTaxAndCash() {
     // }, []);
 
     // andy
-    useEffect(() => {
-      setUserIdentity({
-        accountId,
-        id,
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSZkFUVEdOZXRqUDUwNzYxMDNERjVub0d0TDRnQ0hjYjEifQ.eyJ1c2VyIjp7ImlkIjoiODBkMjRlOGQ2MTMzYmRjZjg1OTg0NGNhMWZjNzU1MmM1N2Q1ZDA2NjFhN2Y0NmY3OTFlYTA3ODU4MjdhNzBlZCIsImFjY291bnRJZCI6IjgwZDI0ZThkNjEzM2JkY2Y4NTk4NDRjYTFmYzc1NTJjNTdkNWQwNjYxYTdmNDZmNzkxZWEwNzg1ODI3YTcwZWQifX0.8VWa3R_pSeRJeNw07AZPjCdTuTiwBYXOAc-ouVItuYs",
-      });
-    }, []);
+    // useEffect(() => {
+    //   setUserIdentity({
+    //     accountId,
+    //     id,
+    //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSZkFUVEdOZXRqUDUwNzYxMDNERjVub0d0TDRnQ0hjYjEifQ.eyJ1c2VyIjp7ImlkIjoiODBkMjRlOGQ2MTMzYmRjZjg1OTg0NGNhMWZjNzU1MmM1N2Q1ZDA2NjFhN2Y0NmY3OTFlYTA3ODU4MjdhNzBlZCIsImFjY291bnRJZCI6IjgwZDI0ZThkNjEzM2JkY2Y4NTk4NDRjYTFmYzc1NTJjNTdkNWQwNjYxYTdmNDZmNzkxZWEwNzg1ODI3YTcwZWQifX0.8VWa3R_pSeRJeNw07AZPjCdTuTiwBYXOAc-ouVItuYs",
+    //   });
+    // }, []);
 
     // sam
     // useEffect(() => {
@@ -126,7 +124,7 @@ export function useTaxAndCash() {
     // }, []);
   }
 
-  // setupDemo();
+  setupDemo();
 
   /** END DEMO DATA */
 
