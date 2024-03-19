@@ -115,6 +115,13 @@ interface Reward {
   referral?: Referral;
   pendingReasons?: string[];
   cancelledReason?: "UNKNOWN" | "PROGRAM_GRAPH_MODERATION" | "SUSPECTED_FRAUD";
+  partnerFundsTransfer?: {
+    id: string;
+    status: "NOT_YET_DUE" | "OVERDUE" | "TRANSFERRED" | "REVERSED" | null;
+    dateCreated: number | null;
+    dateScheduled: number | null;
+    dateTransferred: number | null;
+  };
   rewardRedemptionTransactions: {
     data: [
       {
@@ -163,7 +170,6 @@ interface RewardBalance {
 }
 declare module "*.md";
 declare module "react";
-
 
 interface Invoice {
   downloadURL: string;
