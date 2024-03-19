@@ -158,7 +158,7 @@ export function useDocusignForm(props: DocusignForm) {
             : "/4"
         );
       } catch (e) {
-        setErrors({ formSubission: { status: "document-error" } });
+        setErrors({ docusign: true });
       } finally {
         setLoading(false);
       }
