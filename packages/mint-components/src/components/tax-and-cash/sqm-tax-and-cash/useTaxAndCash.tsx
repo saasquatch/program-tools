@@ -57,9 +57,9 @@ export function useTaxAndCash() {
   function setupDemo() {
     // coleton
     const id =
-      "f205812deeff1ab5b8d0071e057055aab16e17ba3e5fb3d1353814ceff248fde";
+      "4c794ebe367f7021e3ce543542e27389d76394571b1bb8e7ebfbbd33ae4214d1";
     const accountId =
-      "f205812deeff1ab5b8d0071e057055aab16e17ba3e5fb3d1353814ceff248fde";
+      "4c794ebe367f7021e3ce543542e27389d76394571b1bb8e7ebfbbd33ae4214d1";
 
     // // andy
     // const id = "12345";
@@ -76,13 +76,13 @@ export function useTaxAndCash() {
     //   "3e0fab4f3e7c7cd3ee971b0c0e9a4ece4061349c837f24c71582330842fc8462";
     // const accountId =
     //   "3e0fab4f3e7c7cd3ee971b0c0e9a4ece4061349c837f24c71582330842fc8462";
-    // const programId = "22514";
-    const programId = "22999";
+    const programId = "22514";
+    // const programId = "22999";
 
     //@ts-ignore
     window.widgetIdent = {
-      // tenantAlias: "aprh0cfq6y8tk",
-      tenantAlias: "aswi7zpxl6rjp",
+      tenantAlias: "aprh0cfq6y8tk",
+      // tenantAlias: "aswi7zpxl6rjp",
       appDomain: "https://staging.referralsaasquatch.com",
       programId,
     };
@@ -92,7 +92,7 @@ export function useTaxAndCash() {
       setUserIdentity({
         accountId,
         id,
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSZkFUVEdOZXRqUDUwNzYxMDNERjVub0d0TDRnQ0hjYjEifQ.eyJ1c2VyIjp7ImlkIjoiZjIwNTgxMmRlZWZmMWFiNWI4ZDAwNzFlMDU3MDU1YWFiMTZlMTdiYTNlNWZiM2QxMzUzODE0Y2VmZjI0OGZkZSIsImFjY291bnRJZCI6ImYyMDU4MTJkZWVmZjFhYjViOGQwMDcxZTA1NzA1NWFhYjE2ZTE3YmEzZTVmYjNkMTM1MzgxNGNlZmYyNDhmZGUifX0.5xguoPY6ZpJYsn3NNmeoApUGobXSnZheXofh2oGIY84",
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNGM3OTRlYmUzNjdmNzAyMWUzY2U1NDM1NDJlMjczODlkNzYzOTQ1NzFiMWJiOGU3ZWJmYmJkMzNhZTQyMTRkMSIsImFjY291bnRJZCI6IjRjNzk0ZWJlMzY3ZjcwMjFlM2NlNTQzNTQyZTI3Mzg5ZDc2Mzk0NTcxYjFiYjhlN2ViZmJiZDMzYWU0MjE0ZDEifX0.XmqWPqcEXzn7Qlnw25KsLFxSxKYDLfQovC-5r5HK7xY",
       });
     }, []);
 
@@ -124,7 +124,7 @@ export function useTaxAndCash() {
     // }, []);
   }
 
-  // setupDemo();
+  setupDemo();
 
   /** END DEMO DATA */
 

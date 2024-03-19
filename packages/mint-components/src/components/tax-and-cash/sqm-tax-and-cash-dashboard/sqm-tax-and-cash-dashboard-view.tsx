@@ -245,7 +245,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         </p>
       </div>
     ),
-    NOT_ACTIVE: (
+    INACTIVE: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
         <sl-badge type="danger" pill>
           {text.statusTextNotActive}
@@ -256,7 +256,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
   };
 
   const alertMap = {
-    NOT_ACTIVE: (
+    INACTIVE: (
       <sl-alert
         exportparts="base: alert-base, icon:alert-icon"
         type="danger"
@@ -363,7 +363,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             {text.error.generalDescription}
           </sl-alert>
         )}
-        {states.status === "NOT_ACTIVE" && alertMap[states.status]}
+        {states.status === "INACTIVE" && alertMap[states.status]}
         <div>
           <h3>{text.bankingInformationSectionHeader}</h3>
           <div class={sheet.classes.BankingInformationContainer}>
