@@ -172,7 +172,6 @@ graph TD;
   sqm-stencilbook --> sqm-invoice-table-date-column
   sqm-stencilbook --> sqm-invoice-table-data-column
   sqm-empty --> sqm-portal-container
-  sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
   sqm-edit-profile --> sqm-form-message

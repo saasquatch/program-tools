@@ -52,7 +52,6 @@
 graph TD;
   sqm-reward-exchange-list --> sqm-empty
   sqm-empty --> sqm-portal-container
-  sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
   sqm-stencilbook --> sqm-reward-exchange-list

@@ -42,7 +42,6 @@ graph TD;
   sqm-invoice-table --> sqm-table-row
   sqm-invoice-table --> sqm-table-cell
   sqm-empty --> sqm-portal-container
-  sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
   sqm-stencilbook --> sqm-invoice-table

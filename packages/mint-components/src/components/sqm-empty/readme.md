@@ -28,7 +28,6 @@
 ### Depends on
 
 - [sqm-portal-container](../sqm-portal-container)
-- [sqm-image](../sqm-image)
 - [sqm-titled-section](../sqm-titled-section)
 - [sqm-text](../sqm-text)
 
@@ -36,7 +35,6 @@
 ```mermaid
 graph TD;
   sqm-empty --> sqm-portal-container
-  sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
   sqm-invoice-table --> sqm-empty
