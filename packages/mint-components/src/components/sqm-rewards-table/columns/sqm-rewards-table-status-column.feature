@@ -23,20 +23,21 @@ Feature: Reward Table Status Column
     Then the status of their reward is displayed in <pillColour> pill with <text>
 
     Examples: 
-      | status                   | text           | pillColour |
-      | AVAILABLE                | Available      | Green      |
-      | CANCELLED                | Cancelled      | Red        |
-      | PENDING                  | Pending        | Orange     |
-      | EXPIRED                  | Expired        | Red        |
-      | REDEEMED                 | Redeemed       | Blue       |
-      | PENDING_REVIEW           | Pending Review | Orange     |
-      | PAYOUT_SENT              | Payout Sent    | Orange     |
-      | PAYOUT_FAILED            | Payout Failed  | Orange     |
-      | PENDING_TAX_REVIEW       | Pending        | Orange     |
-      | PENDING_NEW_TAX_FORM     | Pending        | Orange     |
-      | PENDING_TAX_SUBMISSION   | Pending        | Orange     |
-      | PENDING_PARTNER_CREATION | Pending        | Orange     |
-      | DENIED                   | Denied         | Red        |
+      | status                   | text             | pillColour |
+      | AVAILABLE                | Available        | Green      |
+      | CANCELLED                | Cancelled        | Red        |
+      | PENDING                  | Pending          | Orange     |
+      | EXPIRED                  | Expired          | Red        |
+      | REDEEMED                 | Redeemed         | Blue       |
+      | PENDING_REVIEW           | Pending Review   | Orange     |
+      | PAYOUT_SENT              | Payout Sent      | Orange     |
+      | PAYOUT_FAILED            | Payout Failed    | Red        |
+      | PAYOUT_CANCELLED         | Payout Cancelled | Red        |
+      | PENDING_TAX_REVIEW       | Pending          | Orange     |
+      | PENDING_NEW_TAX_FORM     | Pending          | Orange     |
+      | PENDING_TAX_SUBMISSION   | Pending          | Orange     |
+      | PENDING_PARTNER_CREATION | Pending          | Orange     |
+      | DENIED                   | Denied           | Red        |
 
   @motivating
   Scenario Outline: Reward status related information is displayed under status pills
@@ -49,22 +50,23 @@ Feature: Reward Table Status Column
     And the date is localized to the users locale
 
     Examples: 
-      | reward                                                       | text                                                                                   |
-      | available reward with an expiry date                         | localized expiry date in format "Month-Day-Year"                                       |
-      | redeemed reward                                              | localized redemption date in format "Month-Day-Year"                                   |
-      | expired reward                                               | localized expired date in format "Month-Day-Year"                                      |
-      | cancelled reward                                             | localized cancelled date in format "Month-Day-Year"                                    |
-      | pending reward with a end date                               | localized pending for date in format "Month-Day-Year"                                  |
-      | pending reward due to W9                                     | W-9 required                                                                           |
-      | pending reward due to fufillment error                       | Fulfillment error                                                                      |
-      | reward pending review of referral                            | Pending review                                                                         |
-      | pending reward due to no connected Impact partner            | Complete your tax and cash payout setup to receive your rewards.                       |
-      | pending reward due to an invalid tax document                | Invalid tax form. Submit a new form to receive your rewards.                           |
-      | pending reward due to user required to submit a tax document | Submit your tax documents to receive your rewards.                                     |
-      | pending reward due to tax document being in review           | Awaiting tax form review.                                                              |
-      | reward whose payout failed                                   | Payout failed due to a fulfillment issue and is currently being retried.               |
-      | reward whose payout was sent                                 | Reward approved for payout on {date} and scheduled for payment based on your settings. |
-      | cancelled reward from denied referral                        | Flagged as fraud                                                                       |
+      | reward                                                       | text                                                                             |
+      | available reward with an expiry date                         | localized expiry date in format "Month-Day-Year"                                 |
+      | redeemed reward                                              | localized redemption date in format "Month-Day-Year"                             |
+      | expired reward                                               | localized expired date in format "Month-Day-Year"                                |
+      | cancelled reward                                             | localized cancelled date in format "Month-Day-Year"                              |
+      | pending reward with a end date                               | localized pending for date in format "Month-Day-Year"                            |
+      | pending reward due to W9                                     | W-9 required                                                                     |
+      | pending reward due to fufillment error                       | Fulfillment error                                                                |
+      | reward pending review of referral                            | Pending review                                                                   |
+      | pending reward due to no connected Impact partner            | Complete your tax and cash payout setup to receive your rewards.                 |
+      | pending reward due to an invalid tax document                | Invalid tax form. Submit a new form to receive your rewards.                     |
+      | pending reward due to user required to submit a tax document | Submit your tax documents to receive your rewards.                               |
+      | pending reward due to tax document being in review           | Awaiting tax form review.                                                        |
+      | reward whose payout failed                                   | Payout failed due to a fulfillment issue and is currently being retried.         |
+      | reward whose payout was sent                                 | Reward approved for payout and was scheduled for payment based on your settings. |
+      | reward whose payout was cancelled                            | If you think this is a mistake, contact our Support team.                        |
+      | cancelled reward from denied referral                        | Flagged as fraud                                                                 |
 
   @minutia
   Scenario Outline: Tax-related reward statuses are based on the user's Impact tax connection

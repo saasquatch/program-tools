@@ -235,7 +235,7 @@ function getYears() {
 const statusText =
   "{status, select, AVAILABLE {Available} PAYOUT_SENT {Payout Sent} CANCELLED {Cancelled} PAYOUT_FAILED {Payout Failed} PENDING {Pending} PENDING_REVIEW {Pending} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
 const statusLongText =
-  "{status, select, AVAILABLE {Reward expiring on} PAYOUT_SENT {Reward approved for payout on {datePayoutStarted} and scheduled for payment based on your settings.} CANCELLED {Reward cancelled on} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PENDING {Available on} PENDING_REVIEW {Pending since} PENDING_TAX_REVIEW {Awaiting tax form review.} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax form to receive your rewards.} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards.} DENIED {Denied on} EXPIRED {Reward expired on} REDEEMED {Redeemed}  other {Not available} }";
+  "{status, select, AVAILABLE {Reward expiring on} PAYOUT_SENT {Reward approved for payout and was scheduled for payment based on your settings.} DENIED {Denied on} EXPIRED {Reward expired on} REDEEMED {Redeemed}  other {Not available} }";
 
 export const PendingNoUnpend = () => {
   return (
@@ -548,6 +548,29 @@ export const Denied = () => {
 };
 
 export const PayoutFailed = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[
+        {
+          ...cashPayoutSentReward,
+          ...payoutFailedReward,
+          datePayoutRetried: getDays(),
+          dateGiven: null,
+        },
+      ]}
+      statusText={statusText}
+      statusLongText={statusLongText}
+      fuelTankText="Your code is"
+      rewardReceivedText="Reward received on"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+// AL: TODO payout cancelled
+export const PayoutCancelled = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={[

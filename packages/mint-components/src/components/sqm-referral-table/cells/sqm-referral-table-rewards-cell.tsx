@@ -93,6 +93,7 @@ export class ReferralTableRewardsCell {
       reward: Reward,
       taxConnection: ImpactConnection
     ): string => {
+      // AL: TODO PAYOUT_CANCELLED
       const possibleStates = [
         "REDEEMED",
         "CANCELLED",
@@ -261,20 +262,7 @@ export class ReferralTableRewardsCell {
             {state === "PAYOUT_SENT" && (
               <div>
                 <TextSpanView type="p">
-                  <TextSpanView type="p">
-                    {intl.formatMessage(
-                      {
-                        id: `statusText`,
-                        defaultMessage: statusText,
-                      },
-                      {
-                        datePayoutStarted: DateTime.fromMillis(0)
-                          .setLocale(luxonLocale(this.locale))
-                          .toLocaleString(DateTime.DATE_MED),
-                        status: "PAYOUT_SENT",
-                      }
-                    )}
-                  </TextSpanView>
+                  <TextSpanView type="p">{statusText}</TextSpanView>
                 </TextSpanView>
               </div>
             )}
