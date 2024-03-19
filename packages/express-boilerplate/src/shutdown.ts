@@ -13,9 +13,6 @@ const handleHookError = (hook: string, logger: Logger) => (err: unknown) => {
 // these should be kept opaque to consumers of the library. manipulating
 // these variables outside the library can result in unwanted behavior.
 export const TERMINATION_APP_LOCAL_KEY = "__ssqt_terminating";
-
-// this should be kept opaque to consumers of the library. manipulating
-// this variable outside the library can result in unwanted behavior.
 export const INSTALLATION_APP_LOCAL_KEY = "__ssqt_shutdown_manager_installed";
 
 export type ShutdownManagerConfig = {
