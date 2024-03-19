@@ -125,7 +125,7 @@ export function useDocusignForm(props: DocusignForm) {
 
         if (!result || (result as Error).message) throw new Error();
       } catch (e) {
-        setErrors({ general: true });
+        setErrors({ docusign: true });
       }
     };
 
@@ -158,7 +158,7 @@ export function useDocusignForm(props: DocusignForm) {
             : "/4"
         );
       } catch (e) {
-        setErrors({ docusign: true });
+        setErrors({ general: true });
       } finally {
         setLoading(false);
       }
