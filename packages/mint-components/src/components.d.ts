@@ -3179,8 +3179,9 @@ export namespace Components {
         "deniedText": string;
         "expiryText": string;
         "locale": string;
+        "payoutApproved": string;
+        "payoutCancelled": string;
         "payoutFailed": string;
-        "payoutSent": string;
         "pendingNewTaxForm": string;
         "pendingPartnerCreation": string;
         "pendingReviewText": string;
@@ -3209,15 +3210,20 @@ export namespace Components {
          */
         "expiryText": string;
         /**
+          * Displayed when reward payout is approved (based on Impact cash payout configuration).
+          * @uiName Payout approved text
+         */
+        "payoutApproved": string;
+        /**
+          * Displayed when reward payout was reversed (based on Impact cash payout configuration).
+          * @uiName Payout cancelled text
+         */
+        "payoutCancelled": string;
+        /**
           * Displayed when reward payout has failed (based on Impact cash payout configuration).
           * @uiName Payout failed text
          */
         "payoutFailed": string;
-        /**
-          * Displayed when reward payout is sent (based on Impact cash payout configuration).
-          * @uiName Payout sent text
-         */
-        "payoutSent": string;
         /**
           * Displayed when pending due to requiring a new tax document
           * @uiName Pending new tax form text
@@ -8860,8 +8866,9 @@ declare namespace LocalJSX {
         "deniedText"?: string;
         "expiryText"?: string;
         "locale"?: string;
+        "payoutApproved"?: string;
+        "payoutCancelled"?: string;
         "payoutFailed"?: string;
-        "payoutSent"?: string;
         "pendingNewTaxForm"?: string;
         "pendingPartnerCreation"?: string;
         "pendingReviewText"?: string;
@@ -8890,15 +8897,20 @@ declare namespace LocalJSX {
          */
         "expiryText"?: string;
         /**
+          * Displayed when reward payout is approved (based on Impact cash payout configuration).
+          * @uiName Payout approved text
+         */
+        "payoutApproved"?: string;
+        /**
+          * Displayed when reward payout was reversed (based on Impact cash payout configuration).
+          * @uiName Payout cancelled text
+         */
+        "payoutCancelled"?: string;
+        /**
           * Displayed when reward payout has failed (based on Impact cash payout configuration).
           * @uiName Payout failed text
          */
         "payoutFailed"?: string;
-        /**
-          * Displayed when reward payout is sent (based on Impact cash payout configuration).
-          * @uiName Payout sent text
-         */
-        "payoutSent"?: string;
         /**
           * Displayed when pending due to requiring a new tax document
           * @uiName Pending new tax form text

@@ -53,26 +53,34 @@ export class RewardTableStatusCell {
   @Prop() pendingReviewText: string = "Awaiting review";
   @Prop() deniedText: string = "Detected self-referral";
   @Prop() payoutFailed: string =
-    "Payout failed due to a fulfillment issue and is currently being retried.";
-  @Prop() payoutSent: string =
-    "Reward approved for payout on {date} and scheduled for payment based on your settings.";
+    "Payout failed due to a fulfillment issue and is current being retried.";
+  @Prop() payoutApproved: string =
+    "Reward approved for payout and was scheduled for payment based on your settings.";
+  @Prop() payoutCancelled: string =
+    "If you think this is a mistake, contact our Support team.";
 
   rewardStatus(reward: Reward): string {
-    const fraudStatus = reward.referral?.fraudData?.moderationStatus;
     const hasExpired = reward.statuses?.includes("EXPIRED");
     const isPending = reward.statuses?.includes("PENDING");
-    const payoutSent = reward.statuses?.includes("PAYOUT_SENT");
-    const payoutFailed = reward.statuses?.includes("PAYOUT_FAILED");
     const integrationOrFueltankReward =
       reward.type === "INTEGRATION" || reward.type === "FUELTANK";
 
+    const fraudStatus = reward.referral?.fraudData?.moderationStatus;
     if (fraudStatus === "DENIED") return "DENIED";
     if (fraudStatus === "PENDING") return "PENDING_REVIEW";
+
+    const partnerTransferStatus = reward.partnerFundsTransfer?.status;
+    if (
+      partnerTransferStatus === "TRANSFERRED" ||
+      partnerTransferStatus === "NOT_YET_DUE"
+    )
+      return "PAYOUT_APPROVED";
+    if (partnerTransferStatus === "OVERDUE") return "PAYOUT_FAILED";
+    if (partnerTransferStatus === "REVERSED") return "PAYOUT_CANCELLED";
+
     if (reward.dateCancelled) return "CANCELLED";
     if (hasExpired) return "EXPIRED";
     if (isPending) return "PENDING";
-    if (payoutSent) return "PAYOUT_SENT";
-    if (payoutFailed) return "PAYOUT_FAILED";
 
     if (reward.type === "CREDIT") {
       return reward.statuses?.includes("REDEEMED") ? "REDEEMED" : "AVAILABLE";
@@ -119,8 +127,6 @@ export class RewardTableStatusCell {
       return this.pendingPartnerCreation;
     }
 
-    // TODO: Payout enums
-
     return "";
   }
 
@@ -129,7 +135,7 @@ export class RewardTableStatusCell {
       case "AVAILABLE":
         return "success";
       case "REDEEMED":
-      case "PAYOUT_SENT":
+      case "PAYOUT_APPROVED":
         return "primary";
       case "PENDING":
       case "PENDING_REVIEW":
@@ -139,19 +145,16 @@ export class RewardTableStatusCell {
     }
   }
 
-  getPayoutStatusText(taxStatus: string, date?: string) {
+  getPayoutStatusText(taxStatus: string) {
     switch (taxStatus) {
       case "US_TAX":
         return this.pendingUsTax;
-      case "PAYOUT_SENT":
-        return intl.formatMessage(
-          { id: "statusMessage", defaultMessage: this.payoutSent },
-          {
-            date,
-          }
-        );
+      case "PAYOUT_APPROVED":
+        return this.payoutApproved;
       case "PAYOUT_FAILED":
         return this.payoutFailed;
+      case "PAYOUT_CANCELLED":
+        return this.payoutCancelled;
       case "PENDING_TAX_REVIEW":
         return this.pendingTaxReview;
       case "PENDING_NEW_TAX_FORM":
@@ -222,9 +225,8 @@ export class RewardTableStatusCell {
         <p class={sheet.classes.Date}>
           {fraudStatusText ||
             pendingReasons ||
-            date ||
-            //AL: TODO PASS REAL DATE INTO FUNC
-            this.getPayoutStatusText(rewardStatus, date)}
+            this.getPayoutStatusText(rewardStatus) ||
+            date}
         </p>
       </div>
     );
