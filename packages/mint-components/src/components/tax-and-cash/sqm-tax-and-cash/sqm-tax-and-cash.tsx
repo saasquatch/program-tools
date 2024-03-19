@@ -881,11 +881,18 @@ export class TaxAndCashMonolith {
    */
   @Prop() taxedAmountColumnTitle: string = "Taxed Amount";
   /**
+   * Sub text describing how payouts are provided from impact.com
+   * @uiName Payout from impact text
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_payoutFromImpact: string =
+    "Your balance may take up to 24 hours to update. Payouts will be sent from our referral program provider, impact.com.";
+  /**
    * Invoice table Earnings after tax column title
    * @uiName Earnings after tax column title
    *  @uiGroup Dashboard Properties
    */
-  @Prop() earningsAfterTaxColumnTitle: string = "Earnings after tax";
+  @Prop() dashboard_earningsAfterTaxColumnTitle: string = "Earnings after tax";
   /**
    * Error alert header shown above payout details card
    * @uiName Error title text
@@ -1020,8 +1027,8 @@ export class TaxAndCashMonolith {
   }
 
   render() {
-    // const props = useTaxAndCash();
-    const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
+    const props = useTaxAndCash();
+    // const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
 
     // @ts-ignore
     if (this.demoData?.showTextProps) {

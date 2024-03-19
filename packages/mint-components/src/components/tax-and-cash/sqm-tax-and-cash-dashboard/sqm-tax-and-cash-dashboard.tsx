@@ -242,7 +242,7 @@ export class TaxAndCashDashboard {
    * @uiName Payout from impact text
    */
   @Prop() payoutFromImpact: string =
-    "Payouts will be sent from our referral program provider, impact.com";
+    "Your balance may take up to 24 hours to update. Payouts will be sent from our referral program provider, impact.com.";
   /**
    * Alert header shown if there is a problem loading a form
    * @uiName Loading error alert header

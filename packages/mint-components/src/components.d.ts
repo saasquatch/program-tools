@@ -3805,6 +3805,12 @@ export namespace Components {
          */
         "dashboard_bankingInformationSectionHeader": string;
         /**
+          * Invoice table Earnings after tax column title
+          * @uiName Earnings after tax column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_earningsAfterTaxColumnTitle": string;
+        /**
           * Text displayed in the edit Payment Information button
           * @uiName Edit Payment Information button
           * @uiGroup Dashboard Properties
@@ -3882,6 +3888,12 @@ export namespace Components {
           * @uiGroup Dashboard Properties
          */
         "dashboard_notRegisteredForTax": string;
+        /**
+          * Sub text describing how payouts are provided from impact.com
+          * @uiName Payout from impact text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_payoutFromImpact": string;
         /**
           * Label text for the QST number
           * @uiName QST number input
@@ -3971,12 +3983,6 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
-        /**
-          * Invoice table Earnings after tax column title
-          * @uiName Earnings after tax column title
-          * @uiGroup Dashboard Properties
-         */
-        "earningsAfterTaxColumnTitle": string;
         /**
           * Invoice table Earnings column title
           * @uiName Earnings column title
@@ -9484,6 +9490,12 @@ declare namespace LocalJSX {
          */
         "dashboard_bankingInformationSectionHeader"?: string;
         /**
+          * Invoice table Earnings after tax column title
+          * @uiName Earnings after tax column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_earningsAfterTaxColumnTitle"?: string;
+        /**
           * Text displayed in the edit Payment Information button
           * @uiName Edit Payment Information button
           * @uiGroup Dashboard Properties
@@ -9561,6 +9573,12 @@ declare namespace LocalJSX {
           * @uiGroup Dashboard Properties
          */
         "dashboard_notRegisteredForTax"?: string;
+        /**
+          * Sub text describing how payouts are provided from impact.com
+          * @uiName Payout from impact text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_payoutFromImpact"?: string;
         /**
           * Label text for the QST number
           * @uiName QST number input
@@ -9650,12 +9668,6 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
-        /**
-          * Invoice table Earnings after tax column title
-          * @uiName Earnings after tax column title
-          * @uiGroup Dashboard Properties
-         */
-        "earningsAfterTaxColumnTitle"?: string;
         /**
           * Invoice table Earnings column title
           * @uiName Earnings column title

@@ -56,10 +56,16 @@ export function useTaxAndCash() {
 
   function setupDemo() {
     // coleton
+    // const id =
+    //   "4c794ebe367f7021e3ce543542e27389d76394571b1bb8e7ebfbbd33ae4214d1";
+    // const accountId =
+    //   "4c794ebe367f7021e3ce543542e27389d76394571b1bb8e7ebfbbd33ae4214d1";
+
+    // andy3
     const id =
-      "4c794ebe367f7021e3ce543542e27389d76394571b1bb8e7ebfbbd33ae4214d1";
+      "eaf8000b0073f6c916d85756c69bdc24fe1e94d1668a194724e5d929b0719f33";
     const accountId =
-      "4c794ebe367f7021e3ce543542e27389d76394571b1bb8e7ebfbbd33ae4214d1";
+      "eaf8000b0073f6c916d85756c69bdc24fe1e94d1668a194724e5d929b0719f33";
 
     // // andy
     // const id = "12345";
@@ -88,11 +94,20 @@ export function useTaxAndCash() {
     };
 
     // coleton
+    // useEffect(() => {
+    //   setUserIdentity({
+    //     accountId,
+    //     id,
+    //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNGM3OTRlYmUzNjdmNzAyMWUzY2U1NDM1NDJlMjczODlkNzYzOTQ1NzFiMWJiOGU3ZWJmYmJkMzNhZTQyMTRkMSIsImFjY291bnRJZCI6IjRjNzk0ZWJlMzY3ZjcwMjFlM2NlNTQzNTQyZTI3Mzg5ZDc2Mzk0NTcxYjFiYjhlN2ViZmJiZDMzYWU0MjE0ZDEiLCJlbWFpbCI6ImNvbGV0b24uYW5uZXR0K3c5bmV3QGltcGFjdC5jb20ifX0.CYQ2Z7QrE304gZsrPANxizOVm7TmC3gp3WJUmCl7TUQ",
+    //   });
+    // }, []);
+
+    // andy3
     useEffect(() => {
       setUserIdentity({
         accountId,
         id,
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNGM3OTRlYmUzNjdmNzAyMWUzY2U1NDM1NDJlMjczODlkNzYzOTQ1NzFiMWJiOGU3ZWJmYmJkMzNhZTQyMTRkMSIsImFjY291bnRJZCI6IjRjNzk0ZWJlMzY3ZjcwMjFlM2NlNTQzNTQyZTI3Mzg5ZDc2Mzk0NTcxYjFiYjhlN2ViZmJiZDMzYWU0MjE0ZDEiLCJlbWFpbCI6ImNvbGV0b24uYW5uZXR0K3c5bmV3QGltcGFjdC5jb20ifX0.CYQ2Z7QrE304gZsrPANxizOVm7TmC3gp3WJUmCl7TUQ",
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiZWFmODAwMGIwMDczZjZjOTE2ZDg1NzU2YzY5YmRjMjRmZTFlOTRkMTY2OGExOTQ3MjRlNWQ5MjliMDcxOWYzMyIsImFjY291bnRJZCI6ImVhZjgwMDBiMDA3M2Y2YzkxNmQ4NTc1NmM2OWJkYzI0ZmUxZTk0ZDE2NjhhMTk0NzI0ZTVkOTI5YjA3MTlmMzMiLCJlbWFpbCI6ImFuZHkubHVvK3Rlc3RxYTIzQGltcGFjdC5jb20ifX0.1MRd0kLPLKNR6Y9dCqxaei5ySkpFwoHkqvckkiJsgaw",
       });
     }, []);
 
@@ -124,7 +139,7 @@ export function useTaxAndCash() {
     // }, []);
   }
 
-  // setupDemo();
+  setupDemo();
 
   /** END DEMO DATA */
 

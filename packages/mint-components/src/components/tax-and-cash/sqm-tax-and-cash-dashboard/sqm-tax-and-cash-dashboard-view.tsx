@@ -196,6 +196,7 @@ const style = {
     color: "var(--sl-color-gray-500)",
     fontSize: "12px",
     marginBottom: "none",
+    maxWidth: "492px",
   },
 };
 
