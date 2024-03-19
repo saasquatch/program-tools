@@ -924,6 +924,7 @@ export class TaxAndCashMonolith {
   /**
    * Description text for a general form submission error
    * @uiName General form submission error description
+   * @uiGroup General Form Properties
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
