@@ -4004,6 +4004,7 @@ export namespace Components {
         /**
           * Description text for a general form submission error
           * @uiName General form submission error description
+          * @uiGroup General Form Properties
          */
         "generalErrorDescription": string;
         /**
@@ -9682,6 +9683,7 @@ declare namespace LocalJSX {
         /**
           * Description text for a general form submission error
           * @uiName General form submission error description
+          * @uiGroup General Form Properties
          */
         "generalErrorDescription"?: string;
         /**
