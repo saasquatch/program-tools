@@ -134,16 +134,48 @@ export function useDocusignForm(props: DocusignForm) {
   }, [user, publisher, participantType]);
 
   useEffect(() => {
+    const onSubmit = async () => {
+      if (!formSubmitted) {
+        setErrors({ submitCheckbox: true });
+        return;
+      }
+
+      try {
+        setLoading(true);
+
+        const result = await refetch();
+        if ((result as Error).message) throw new Error();
+
+        const publisher = (result as UserQuery).user?.impactConnection
+          ?.publisher;
+        const status = publisher?.currentTaxDocument?.status;
+
+        // Throw an error if submission didn't actually save a tax document.
+        if (!status) throw new Error();
+
+        if (status === "NOT_VERIFIED" || status === "ACTIVE") {
+          console.debug("Document has been registered as submitted");
+        }
+
+        // Skip banking info form if it already is saved
+        setStep(
+          context.overrideNextStep || !!publisher?.withdrawalSettings
+            ? "/dashboard"
+            : "/4"
+        );
+      } catch (e) {
+        setErrors({ formSubission: { status: "document-error" } });
+      } finally {
+        setLoading(false);
+      }
+    };
+
     // Handled in view
     if (DOCUSIGN_ERROR_STATES.includes(docusignStatus)) return;
 
     if (DOCUSIGN_SUCCESS_STATES.includes(docusignStatus)) {
       // handles if the user refreshes and loses the override in context
-      const nextStep =
-        context.overrideNextStep || !!publisher?.withdrawalSettings
-          ? "/dashboard"
-          : "/4";
-      setStep(nextStep);
+      onSubmit();
     }
 
     if (DOCUSIGN_ERROR_STATES.includes(docusignStatus)) {
@@ -151,39 +183,7 @@ export function useDocusignForm(props: DocusignForm) {
         docusign: true,
       });
     }
-  }, [docusignStatus]);
-
-  const onSubmit = async () => {
-    if (!formSubmitted) {
-      setErrors({ submitCheckbox: true });
-      return;
-    }
-
-    try {
-      setLoading(true);
-
-      const result = await refetch();
-      if ((result as Error).message) throw new Error();
-
-      const publisher = (result as UserQuery).user?.impactConnection?.publisher;
-      const status = publisher?.currentTaxDocument?.status;
-
-      if (status === "NOT_VERIFIED" || status === "ACTIVE") {
-        console.debug("Document has been registered as submitted");
-      }
-
-      // Skip banking info form if it already is saved
-      if (!!publisher?.withdrawalSettings) {
-        setStep(context.overrideNextStep || "/dashboard");
-      } else {
-        setStep(context.overrideNextStep || "/4");
-      }
-    } catch (e) {
-      setErrors({ formSubission: { status: "document-error" } });
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [docusignStatus, refetch]);
 
   const onBack = () => {
     setStep(context.overrideBackStep);
@@ -217,7 +217,6 @@ export function useDocusignForm(props: DocusignForm) {
       documentUrl: document?.createImpactPublisherTaxDocument?.documentUrl,
     },
     callbacks: {
-      onSubmit,
       setDocusignStatus,
       setParticipantType,
       toggleFormSubmitted: () => setFormSubmitted((x) => !x),

@@ -253,9 +253,6 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
       callbacks: {
         setParticipantType: (p) => console.log({ p }),
         setDocusignStatus: (status: DocusignStatus) => console.log(status),
-        onSubmit: async () => {
-          setStep("/4");
-        },
         toggleFormSubmitted: () => {},
         onBack: () => {
           setStep("/2");

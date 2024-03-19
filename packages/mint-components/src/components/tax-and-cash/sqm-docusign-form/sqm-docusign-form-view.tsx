@@ -34,7 +34,6 @@ export interface DocusignFormViewProps {
   callbacks: {
     setParticipantType: (p: ParticipantType) => void;
     toggleFormSubmitted: () => void;
-    onSubmit: (props: any) => void;
     onBack: () => void;
   };
   text: {

@@ -234,7 +234,6 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
     setParticipantType: (p) => console.log({ p }),
     setDocusignStatus: (status: DocusignStatus) => console.log(status),
     toggleFormSubmitted: () => console.log("Toggle checkbox"),
-    onSubmit: async () => console.log("submit"),
     onBack: () => console.log("Back"),
   },
 };
