@@ -219,13 +219,11 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
     documentTypeString: "W9",
     loading: false,
     disabled: false,
-    submitDisabled: false,
     participantTypeDisabled: false,
     loadingError: false,
     formState: {
       participantType: "individualParticipant" as ParticipantType,
       errors: {},
-      completedTaxForm: true,
       taxFormExpired: false,
     },
     hideBackButton: false,
@@ -233,7 +231,6 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
   callbacks: {
     setParticipantType: (p) => console.log({ p }),
     setDocusignStatus: (status: DocusignStatus) => console.log(status),
-    toggleFormSubmitted: () => console.log("Toggle checkbox"),
     onBack: () => console.log("Back"),
   },
 };
@@ -760,7 +757,6 @@ export const StepThreeWithDocusignW8BENE = () => {
           documentType: "W8BENE",
           documentTypeString: taxTypeToName("W8BENE"),
           formState: {
-            completedTaxForm: false,
             taxFormExpired: false,
             participantType: "businessEntity",
             errors: {
@@ -784,7 +780,6 @@ export const StepThreeWithDocusignExpired = () => {
           formState: {
             participantType: "individualParticipant" as ParticipantType,
             taxFormExpired: true,
-            completedTaxForm: false,
             errors: {},
           },
         },
@@ -803,7 +798,6 @@ export const StepThreeWithDocusignCompleted = () => {
           formState: {
             participantType: "individualParticipant" as ParticipantType,
             taxFormExpired: false,
-            completedTaxForm: true,
             errors: {},
           },
         },
@@ -821,7 +815,6 @@ export const StepThreeDocusignWithError = () => {
           docusignStatus: "exception",
           formState: {
             ...docusignFormProps.states.formState,
-            completedTaxForm: false,
             errors: {
               formSubmission: true,
             },

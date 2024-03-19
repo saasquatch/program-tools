@@ -76,7 +76,6 @@ export function useDocusignForm(props: DocusignForm) {
     useState<DocusignStatus>(undefined);
   const [participantType, setParticipantType] =
     useState<ParticipantType>(undefined);
-  const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -135,11 +134,6 @@ export function useDocusignForm(props: DocusignForm) {
 
   useEffect(() => {
     const onSubmit = async () => {
-      if (!formSubmitted) {
-        setErrors({ submitCheckbox: true });
-        return;
-      }
-
       try {
         setLoading(true);
 
@@ -197,13 +191,11 @@ export function useDocusignForm(props: DocusignForm) {
       hideSteps: context.hideSteps,
       disabled: allLoading,
       participantTypeDisabled: allLoading || !!existingDocumentType,
-      submitDisabled: !formSubmitted,
       loading: userLoading || loading,
       urlLoading: documentLoading,
       loadingError: !!documentErrors?.message,
       formState: {
         participantType,
-        completedTaxForm: formSubmitted,
         taxFormExpired: DOCUSIGN_EXPIRED_STATES.includes(docusignStatus),
         errors,
       },
@@ -219,7 +211,6 @@ export function useDocusignForm(props: DocusignForm) {
     callbacks: {
       setDocusignStatus,
       setParticipantType,
-      toggleFormSubmitted: () => setFormSubmitted((x) => !x),
       onBack,
     },
     text: props.getTextProps(),

@@ -9,13 +9,11 @@ export interface DocusignFormViewProps {
     step: string;
     loading: boolean;
     urlLoading: boolean;
-    submitDisabled: boolean;
     disabled: boolean;
     hideSteps: boolean;
     participantTypeDisabled: boolean;
     loadingError?: boolean;
     formState: {
-      completedTaxForm: boolean;
       taxFormExpired: boolean;
       participantType: "individualParticipant" | "businessEntity" | undefined;
       errors?: {
@@ -33,7 +31,6 @@ export interface DocusignFormViewProps {
   };
   callbacks: {
     setParticipantType: (p: ParticipantType) => void;
-    toggleFormSubmitted: () => void;
     onBack: () => void;
   };
   text: {
