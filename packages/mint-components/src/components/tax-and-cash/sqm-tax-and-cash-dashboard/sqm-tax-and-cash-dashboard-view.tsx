@@ -114,8 +114,7 @@ const style = {
     fontSize: "var(--sl-font-size-small)",
   },
   InvoiceTableContainer: {
-    marginTop: "var(--sl-spacing-xx-large)",
-    borderTop: "1px solid var(--sl-color-neutral-200)",
+    marginTop: "var(--sl-spacing-medium)",
   },
   NotRegisteredIndirectTaxText: {
     color: "var(--sl-color-gray-500)",
@@ -196,6 +195,7 @@ const style = {
     color: "var(--sl-color-gray-500)",
     fontSize: "12px",
     marginBottom: "none",
+    maxWidth: "492px",
   },
 };
 
@@ -368,7 +368,11 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           <h3>{text.bankingInformationSectionHeader}</h3>
           <div class={sheet.classes.BankingInformationContainer}>
             {slots.payoutDetailsCardSlot}
-            <p class={sheet.classes.DescriptionText}>{text.payoutFromImpact}</p>
+            {!states.loading && (
+              <p class={sheet.classes.DescriptionText}>
+                {text.payoutFromImpact}
+              </p>
+            )}
             {states.canEditPayoutInfo && (
               <sl-button
                 disabled={states.disabled || states.loading}
@@ -504,37 +508,36 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                     </span>
                   </div>
                 )}
+                {!states.notRegistered && (
+                  <div class={sheet.classes.InvoiceTableContainer}>
+                    <sqm-invoice-table>
+                      <sqm-invoice-table-download-column></sqm-invoice-table-download-column>
+                      <sqm-invoice-table-date-column
+                        column-title={text.dateColumnTitle}
+                      ></sqm-invoice-table-date-column>
+                      <sqm-invoice-table-data-column
+                        column-title={text.invoiceColumnTitle}
+                        property="invoiceId"
+                      ></sqm-invoice-table-data-column>
+                      <sqm-invoice-table-data-column
+                        column-title={text.earningsColumnTitle}
+                        property="earnings"
+                      ></sqm-invoice-table-data-column>
+                      <sqm-invoice-table-data-column
+                        column-title={text.taxedAmountColumnTitle}
+                        property="taxedAmount"
+                      ></sqm-invoice-table-data-column>
+                      <sqm-invoice-table-data-column
+                        column-title={text.earningsAfterTaxColumnTitle}
+                        property="netEarnings"
+                      ></sqm-invoice-table-data-column>
+                    </sqm-invoice-table>
+                  </div>
+                )}
               </div>
             </div>
           )}
         </div>
-        {!states.notRegistered && (
-          <div class={sheet.classes.InvoiceTableContainer}>
-            <br />
-            <sqm-invoice-table>
-              <sqm-invoice-table-download-column></sqm-invoice-table-download-column>
-              <sqm-invoice-table-date-column
-                column-title={text.dateColumnTitle}
-              ></sqm-invoice-table-date-column>
-              <sqm-invoice-table-data-column
-                column-title={text.invoiceColumnTitle}
-                property="invoiceId"
-              ></sqm-invoice-table-data-column>
-              <sqm-invoice-table-data-column
-                column-title={text.earningsColumnTitle}
-                property="earnings"
-              ></sqm-invoice-table-data-column>
-              <sqm-invoice-table-data-column
-                column-title={text.taxedAmountColumnTitle}
-                property="taxedAmount"
-              ></sqm-invoice-table-data-column>
-              <sqm-invoice-table-data-column
-                column-title={text.earningsAfterTaxColumnTitle}
-                property="netEarnings"
-              ></sqm-invoice-table-data-column>
-            </sqm-invoice-table>
-          </div>
-        )}
       </div>
     </div>
   );

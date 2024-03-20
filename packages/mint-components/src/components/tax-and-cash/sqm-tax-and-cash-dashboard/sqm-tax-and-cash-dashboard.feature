@@ -13,7 +13,7 @@ Feature: Tax And Cash Dashboard
 
   @motivating
   Scenario: View Tax And Cash Dashboard is loading
-    Given the user has submitted a tax document
+    Given the user has completed the tax form flow
     When they view the Tax And Cash Dashboard
     Then they see a skeleton loaders until the end users Tax Document/Banking information data is available
 
@@ -65,8 +65,8 @@ Feature: Tax And Cash Dashboard
       | true         | Canada           | British Columbia | Registered in British Columbia, Canada.                                                                                                                       | HST                    |            345213 |
       | true         | Canada           | Quebec           | Registered in Quebec, Canada.                                                                                                                                 | GST, QST               |     345213, 12312 |
       | true         | United Kingdom   | n/a              | Registered in United Kingdom.                                                                                                                                 | VAT                    |            321413 |
-      | true         | Spain            | Spain Proper     | Registered in Spain, Spain Proper.                                                                                                                            | VAT, Income Tax Number |     345213, 12345 |
-      | true         | Spain            | Canary Islands   | Registered in Spain, Canary Islands.                                                                                                                          | VAT, Income Tax Number |     345213, 12345 |
+      | true         | Spain            | Spain Proper     | Registered in Spain, Spain Proper.                                                                                                                            | VAT, Income tax number |     345213, 12345 |
+      | true         | Spain            | Canary Islands   | Registered in Spain, Canary Islands.                                                                                                                          | VAT, Income tax number |     345213, 12345 |
       | false        | United States    | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
       | false        | United States    | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
       | false        | Papua New Guinea | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |

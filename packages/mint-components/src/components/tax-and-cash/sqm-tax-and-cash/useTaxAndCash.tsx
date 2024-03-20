@@ -56,10 +56,16 @@ export function useTaxAndCash() {
 
   function setupDemo() {
     // coleton
+    // const id =
+    //   "4c794ebe367f7021e3ce543542e27389d76394571b1bb8e7ebfbbd33ae4214d1";
+    // const accountId =
+    //   "4c794ebe367f7021e3ce543542e27389d76394571b1bb8e7ebfbbd33ae4214d1";
+
+    // andy3
     const id =
-      "4c794ebe367f7021e3ce543542e27389d76394571b1bb8e7ebfbbd33ae4214d1";
+      "e061ee21b45eff8ada22845d441c6a2cd7190af1718a55452ad2d44b020915a7";
     const accountId =
-      "4c794ebe367f7021e3ce543542e27389d76394571b1bb8e7ebfbbd33ae4214d1";
+      "e061ee21b45eff8ada22845d441c6a2cd7190af1718a55452ad2d44b020915a7";
 
     // // andy
     // const id = "12345";
@@ -88,11 +94,20 @@ export function useTaxAndCash() {
     };
 
     // coleton
+    // useEffect(() => {
+    //   setUserIdentity({
+    //     accountId,
+    //     id,
+    //     jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNGM3OTRlYmUzNjdmNzAyMWUzY2U1NDM1NDJlMjczODlkNzYzOTQ1NzFiMWJiOGU3ZWJmYmJkMzNhZTQyMTRkMSIsImFjY291bnRJZCI6IjRjNzk0ZWJlMzY3ZjcwMjFlM2NlNTQzNTQyZTI3Mzg5ZDc2Mzk0NTcxYjFiYjhlN2ViZmJiZDMzYWU0MjE0ZDEiLCJlbWFpbCI6ImNvbGV0b24uYW5uZXR0K3c5bmV3QGltcGFjdC5jb20ifX0.CYQ2Z7QrE304gZsrPANxizOVm7TmC3gp3WJUmCl7TUQ",
+    //   });
+    // }, []);
+
+    // andy3
     useEffect(() => {
       setUserIdentity({
         accountId,
         id,
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNGM3OTRlYmUzNjdmNzAyMWUzY2U1NDM1NDJlMjczODlkNzYzOTQ1NzFiMWJiOGU3ZWJmYmJkMzNhZTQyMTRkMSIsImFjY291bnRJZCI6IjRjNzk0ZWJlMzY3ZjcwMjFlM2NlNTQzNTQyZTI3Mzg5ZDc2Mzk0NTcxYjFiYjhlN2ViZmJiZDMzYWU0MjE0ZDEiLCJlbWFpbCI6ImNvbGV0b24uYW5uZXR0K3c5bmV3QGltcGFjdC5jb20ifX0.CYQ2Z7QrE304gZsrPANxizOVm7TmC3gp3WJUmCl7TUQ",
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiZTA2MWVlMjFiNDVlZmY4YWRhMjI4NDVkNDQxYzZhMmNkNzE5MGFmMTcxOGE1NTQ1MmFkMmQ0NGIwMjA5MTVhNyIsImFjY291bnRJZCI6ImUwNjFlZTIxYjQ1ZWZmOGFkYTIyODQ1ZDQ0MWM2YTJjZDcxOTBhZjE3MThhNTU0NTJhZDJkNDRiMDIwOTE1YTciLCJlbWFpbCI6InRlc3R1c2VyQGV4YW1wbGUuY29tIn19.92Dtz49tnl8ZL9oDAkNeND8SX5OSFlt5Y7FXP92sGiA",
       });
     }, []);
 

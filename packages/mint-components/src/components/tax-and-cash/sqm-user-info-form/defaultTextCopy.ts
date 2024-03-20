@@ -14,7 +14,7 @@ export const indirectDetailsSlotText: IndirectDetailsSlotViewProps["text"] = {
     "I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me.",
   qstNumber: "QST Number",
   subRegion: "Sub-region",
-  subRegionTaxNumberLabel: "Income Tax Number",
+  subRegionTaxNumberLabel: "Income tax number",
   error: {
     indirectTaxNumber: "Indirect Tax is required",
     fieldRequiredError: "{fieldName} is required",
