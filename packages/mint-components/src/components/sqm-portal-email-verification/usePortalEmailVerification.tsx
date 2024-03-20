@@ -47,7 +47,7 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
     const variables = { email, urlParams, redirectPath };
     const result = await request(variables);
     if (result instanceof Error) {
-      if (result.message) setError("Network request failed.");
+      if (result.message) setError(props.networkErrorMessage);
       return;
     }
     if (result.requestManagedIdentityVerificationEmail?.success)
