@@ -13,7 +13,7 @@ Feature: Tax And Cash Dashboard
 
   @motivating
   Scenario: View Tax And Cash Dashboard is loading
-    Given the user has submitted a tax document
+    Given the user has completed the tax form flow
     When they view the Tax And Cash Dashboard
     Then they see a skeleton loaders until the end users Tax Document/Banking information data is available
 
