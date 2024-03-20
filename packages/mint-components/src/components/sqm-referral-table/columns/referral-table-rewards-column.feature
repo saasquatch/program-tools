@@ -26,7 +26,7 @@ Feature: Referral Table Reward Column
       | Payout Cancelled         | red        | Payout Cancelled |
       | Expired                  | red        | Expired          |
       | Redeemed                 | blue       | Redeemed         |
-      | Payout Sent              | blue       | Payout Sent      |
+      | Transferred              | blue       | Payout Approved  |
       | Pending Review           | orange     | Pending Review   |
       | Denied                   | red        | Denied           |
 
