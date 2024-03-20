@@ -649,8 +649,7 @@ export function useBankingInfoForm(
     paymentOptions?.map((option) => option.countryCode).filter((value) => value)
   );
 
-  // build list of country codes and names
-  const countries = Array.from(availableCountries)?.map((country) => {
+  const getCountryObj = (country: string) => {
     // @ts-ignore DisplayNames not in Intl type
     const name = new Intl.DisplayNames([intlLocale], {
       type: "region",
@@ -660,7 +659,28 @@ export function useBankingInfoForm(
       code: country,
       name,
     };
-  });
+  };
+
+  const topCountries = ["CA", "US", "UK"]
+    ?.filter((value) => Array.from(availableCountries).includes(value))
+    ?.map((country) => {
+      return getCountryObj(country);
+    });
+
+  // build list of country codes and names
+  const countries = [
+    ...new Set(
+      topCountries.concat(
+        Array.from(availableCountries)
+          ?.map((country) => {
+            return getCountryObj(country);
+          })
+          .sort((a, b) => {
+            return a < b ? -1 : 1;
+          })
+      )
+    ),
+  ];
 
   const hasPayPal = !!paymentOptions?.find(
     (option) => option.defaultFinancePaymentMethodId === PAYPAL_PAYMENT_METHOD
