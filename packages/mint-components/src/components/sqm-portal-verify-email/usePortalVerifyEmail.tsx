@@ -13,6 +13,7 @@ export function usePortalVerifyEmail({
   verifyEmailText,
   verifyInvalidText,
   networkErrorMessage,
+  continueText,
 }) {
   const userIdent = useUserIdentity();
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
@@ -61,13 +62,14 @@ export function usePortalVerifyEmail({
   };
 
   useEffect(() => {
+    console.log({ data, loading, verified });
     // Already verified, begin redirect
     if (verified) {
       setTimeout(() => {
         gotoNextPage();
       }, 3000);
     }
-    !data && submit();
+    !data && !loading && submit();
   }, [verified]);
 
   return {
@@ -90,6 +92,7 @@ export function usePortalVerifyEmail({
       verifySuccessText,
       verifyEmailText,
       verifyInvalidText,
+      continueText,
     },
   };
 }
