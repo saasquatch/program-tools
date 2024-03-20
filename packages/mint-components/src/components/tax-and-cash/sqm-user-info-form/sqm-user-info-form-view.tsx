@@ -378,7 +378,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   <sl-menu-item
                     value={c.countryCode}
                     style={{ display: "none" }}
-                  ></sl-menu-item>
+                  >
+                    {c.displayName}
+                  </sl-menu-item>
                 ))}
               </sl-select>
               <sl-select
@@ -422,7 +424,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   <sl-menu-item
                     value={c.currencyCode}
                     style={{ display: "none" }}
-                  ></sl-menu-item>
+                  >
+                    {c.currencyCode} - {c.displayName}
+                  </sl-menu-item>
                 ))}
               </sl-select>
 
