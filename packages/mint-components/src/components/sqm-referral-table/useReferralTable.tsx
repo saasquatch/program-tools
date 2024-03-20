@@ -58,6 +58,10 @@ const GET_REFERRER_DATA = gql`
             statuses
             globalRewardKey
             programRewardKey
+            partnerFundsTransfer {
+              id
+              status
+            }
             meta {
               status
               integration {
@@ -162,6 +166,10 @@ const GET_REFERRAL_DATA = gql`
               statuses
               globalRewardKey
               programRewardKey
+              partnerFundsTransfer {
+                id
+                status
+              }
               referral {
                 dateModerated
                 fraudData {

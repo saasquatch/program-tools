@@ -101,7 +101,8 @@ export class ReferralTableRewardsCell {
         "AVAILABLE",
         "PENDING_REVIEW",
         "DENIED",
-        "PAYOUT_SENT",
+        "PAYOUT_APPROVED",
+        "PAYOUT_CANCELLED",
         "PAYOUT_FAILED",
         "PENDING_TAX_REVIEW",
         "PENDING_NEW_TAX_FORM",
@@ -109,14 +110,21 @@ export class ReferralTableRewardsCell {
         "PENDING_PARTNER_CREATION",
       ];
 
-      // TODO: Add payout states
-
       if (reward.referral?.fraudData?.moderationStatus !== "APPROVED") {
         if (reward.referral?.fraudData?.moderationStatus === "PENDING")
           return "PENDING_REVIEW";
         if (reward.referral?.fraudData?.moderationStatus === "DENIED")
           return "DENIED";
       }
+
+      const partnerFundsStatus = reward.partnerFundsTransfer?.status;
+      if (
+        partnerFundsStatus === "NOT_YET_DUE" ||
+        partnerFundsStatus === "TRANSFERRED"
+      ) {
+        return "PAYOUT_ACCEPTED";
+      } else if (partnerFundsStatus === "OVERDUE") return "PAYOUT_FAILED";
+      else if (partnerFundsStatus === "REVERSED") return "PAYOUT_CANCELLED";
 
       if (reward?.pendingReasons?.includes("US_TAX")) {
         if (!taxConnection?.taxHandlingEnabled) return "PENDING";
@@ -146,12 +154,13 @@ export class ReferralTableRewardsCell {
     const getSLBadgeType = (state: string): string => {
       switch (state) {
         case "REDEEMED":
-        case "PAYOUT_SENT":
+        case "PAYOUT_APPROVED":
           return "primary";
         case "DENIED":
         case "EXPIRED":
         case "CANCELLED":
         case "PAYOUT_FAILED":
+        case "PAYOUT_CANCELLED":
           return "danger";
         case "PENDING":
         case "PENDING_REVIEW":
@@ -258,34 +267,6 @@ export class ReferralTableRewardsCell {
             </div>
           </div>
           <div>
-            {state === "PAYOUT_SENT" && (
-              <div>
-                <TextSpanView type="p">
-                  <TextSpanView type="p">
-                    {intl.formatMessage(
-                      {
-                        id: `statusText`,
-                        defaultMessage: statusText,
-                      },
-                      {
-                        datePayoutStarted: DateTime.fromMillis(0)
-                          .setLocale(luxonLocale(this.locale))
-                          .toLocaleString(DateTime.DATE_MED),
-                        status: "PAYOUT_SENT",
-                      }
-                    )}
-                  </TextSpanView>
-                </TextSpanView>
-              </div>
-            )}
-            {state === "PAYOUT_FAILED" && (
-              <div>
-                <TextSpanView type="p">
-                  {statusText}{" "}
-                  {/* TODO: Date payout will be retried AL: removed dates */}
-                </TextSpanView>
-              </div>
-            )}
             {state === "PENDING_REVIEW" && reward.referral?.dateModerated && (
               <div>
                 <TextSpanView type="p">
@@ -298,7 +279,21 @@ export class ReferralTableRewardsCell {
                 </TextSpanView>
               </div>
             )}
-            {/* TODO: Combine these cases */}
+            {state === "PAYOUT_APPROVED" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
+            {state === "PAYOUT_FAILED" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
+            {state === "PAYOUT_CANCELLED" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
             {state === "PENDING_TAX_REVIEW" && (
               <div>
                 <TextSpanView type="p">{statusText}</TextSpanView>
@@ -368,18 +363,6 @@ export class ReferralTableRewardsCell {
                 </TextSpanView>
               </div>
             )}
-            {/* {state === "PAYOUT_FAILED" && reward.dateCancelled && (
-              <div>
-                <TextSpanView type="p">
-                  {statusText}{" "}
-                  <span class={sheet.classes.BoldText} part="sqm-cell-value">
-                    {DateTime.fromMillis(reward.datePayoutRetried)
-                      .setLocale(luxonLocale(this.locale))
-                      .toLocaleString(DateTime.DATE_MED)}
-                  </span>
-                </TextSpanView>
-              </div>
-            )} */}
             {state === "PENDING" && reward.dateScheduledFor && (
               <div>
                 <TextSpanView type="p">

@@ -78,6 +78,10 @@ const GET_REWARDS = gql`
             program {
               name
             }
+            partnerFundsTransfer {
+              id
+              status
+            }
             statuses
             pendingReasons
             cancelledReason
