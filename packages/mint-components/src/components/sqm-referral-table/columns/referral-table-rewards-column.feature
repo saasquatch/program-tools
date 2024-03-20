@@ -22,11 +22,12 @@ Feature: Referral Table Reward Column
       | Pending Tax Submission   | orange     | Pending          |
       | Pending Partner Creation | orange     | Pending          |
       | Cancelled                | red        | Cancelled        |
-      | Payout Failed            | red        | Payout Failed    |
-      | Payout Cancelled         | red        | Payout Cancelled |
+      | Payout Overdue           | red        | Payout Failed    |
+      | Payout Reversed          | red        | Payout Cancelled |
       | Expired                  | red        | Expired          |
       | Redeemed                 | blue       | Redeemed         |
-      | Transferred              | blue       | Payout Approved  |
+      | Payout Transferred       | blue       | Payout Approved  |
+      | Payout Not Yet Due       | blue       | Payout Approved  |
       | Pending Review           | orange     | Pending Review   |
       | Denied                   | red        | Denied           |
 

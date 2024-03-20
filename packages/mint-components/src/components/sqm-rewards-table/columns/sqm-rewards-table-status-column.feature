@@ -30,9 +30,10 @@ Feature: Reward Table Status Column
       | EXPIRED                  | Expired          | Red        |
       | REDEEMED                 | Redeemed         | Blue       |
       | PENDING_REVIEW           | Pending Review   | Orange     |
-      | TRANSFERRED              | Payout Sent      | blue       |
-      | PAYOUT_FAILED            | Payout Failed    | Red        |
-      | PAYOUT_CANCELLED         | Payout Cancelled | Red        |
+      | PAYOUT_TRANSFERRED       | Payout Approved  | blue       |
+      | PAYOUT_NOT_YET_DUE       | Payout Approved  | blue       |
+      | PAYOUT_OVERDUE           | Payout Failed    | Red        |
+      | PAYOUT_REVERSED          | Payout Cancelled | Red        |
       | PENDING_TAX_REVIEW       | Pending          | Orange     |
       | PENDING_NEW_TAX_FORM     | Pending          | Orange     |
       | PENDING_TAX_SUBMISSION   | Pending          | Orange     |
@@ -64,7 +65,7 @@ Feature: Reward Table Status Column
       | pending reward due to user required to submit a tax document | Submit your tax documents to receive your rewards.                               |
       | pending reward due to tax document being in review           | Awaiting tax form review.                                                        |
       | reward whose payout failed                                   | Payout failed due to a fulfillment issue and is currently being retried.         |
-      | reward whose payout was sent                                 | Reward approved for payout and was scheduled for payment based on your settings. |
+      | reward whose payout was approved                             | Reward approved for payout and was scheduled for payment based on your settings. |
       | reward whose payout was cancelled                            | If you think this is a mistake, contact our Support team.                        |
       | cancelled reward from denied referral                        | Flagged as fraud                                                                 |
 
@@ -95,8 +96,10 @@ Feature: Reward Table Status Column
       | EXPIRED                  | Past due                  | Red        |
       | REDEEMED                 | Spent                     | Blue       |
       | PENDING_REVIEW           | Pending Review!           | Orange     |
-      | PAYOUT_SENT              | Payout Sent!              | Orange     |
-      | PAYOUT_FAILED            | Payout Failed!            | Orange     |
+      | PAYOUT_TRANSFERRED       | Payout Approved!          | Blue       |
+      | PAYOUT_NOT_YET_DUE       | Payout Approved!          | Blue       |
+      | PAYOUT_OVERDUE           | Payout Failed!            | Red        |
+      | PAYOUT_REVERSED          | Payout Cancelled!         | Red        |
       | PENDING_TAX_REVIEW       | Pending Tax Review!       | Orange     |
       | PENDING_NEW_TAX_FORM     | Pending new tax form!     | Orange     |
       | PENDING_TAX_SUBMISSION   | Pending tax submission!   | Orange     |
