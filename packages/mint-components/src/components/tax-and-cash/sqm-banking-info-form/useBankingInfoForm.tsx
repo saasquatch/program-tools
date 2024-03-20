@@ -661,7 +661,7 @@ export function useBankingInfoForm(
     };
   };
 
-  const topCountries = ["CA", "US", "UK"]
+  const topCountries = ["CA", "GB", "US"]
     ?.filter((value) => Array.from(availableCountries).includes(value))
     ?.map((country) => {
       return getCountryObj(country);
@@ -676,7 +676,7 @@ export function useBankingInfoForm(
             return getCountryObj(country);
           })
           .sort((a, b) => {
-            return a < b ? -1 : 1;
+            return a.name < b.name ? -1 : 1;
           })
       )
     ),
