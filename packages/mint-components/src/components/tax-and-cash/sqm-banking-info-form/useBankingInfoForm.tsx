@@ -661,26 +661,20 @@ export function useBankingInfoForm(
     };
   };
 
-  const topCountries = ["CA", "GB", "US"]
-    ?.filter((value) => Array.from(availableCountries).includes(value))
-    ?.map((country) => {
-      return getCountryObj(country);
-    });
+  type CountryObj = { name: string; code: string };
 
-  // build list of country codes and names
-  const countries = [
-    ...new Set(
-      topCountries.concat(
-        Array.from(availableCountries)
-          ?.map((country) => {
-            return getCountryObj(country);
-          })
-          .sort((a, b) => {
-            return a.name < b.name ? -1 : 1;
-          })
-      )
-    ),
-  ];
+  const sortByName = (a: CountryObj, b: CountryObj) =>
+    a.name < b.name ? -1 : 1;
+
+  const _topCountries = ["CA", "GB", "US"];
+
+  const countries = Array.from(availableCountries)
+    .map((c) => getCountryObj(c))
+    .sort(sortByName)
+    .reduce((prev, countryObj) => {
+      if (_topCountries.includes(countryObj.code)) return [countryObj, ...prev];
+      return [...prev, countryObj];
+    }, []);
 
   const hasPayPal = !!paymentOptions?.find(
     (option) => option.defaultFinancePaymentMethodId === PAYPAL_PAYMENT_METHOD
