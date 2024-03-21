@@ -133,24 +133,11 @@ export function useDocusignForm(props: DocusignForm) {
   }, [user, publisher, participantType]);
 
   useEffect(() => {
-    // TODO: Determine if check is required
     const onSubmit = async () => {
       try {
         setLoading(true);
 
-        const result = await refetch();
-        if ((result as Error)?.message) throw new Error();
-
-        const publisher = (result as UserQuery)?.user?.impactConnection
-          ?.publisher;
-        const status = publisher?.currentTaxDocument?.status;
-
-        // Throw an error if submission didn't actually save a tax document.
-        if (!status) throw new Error();
-
-        if (status === "NOT_VERIFIED" || status === "ACTIVE") {
-          console.debug("Document has been registered as submitted");
-        }
+        await refetch();
 
         // Skip banking info form if it already is saved
         setStep(
@@ -165,17 +152,11 @@ export function useDocusignForm(props: DocusignForm) {
       }
     };
 
-    console.log({ DOCUSIGN_SUCCESS_STATES, docusignStatus });
     // Handled in view
     if (DOCUSIGN_ERROR_STATES.includes(docusignStatus)) return;
 
     if (DOCUSIGN_SUCCESS_STATES.includes(docusignStatus)) {
-      // handles if the user refreshes and loses the override in context
-      setStep(
-        context.overrideNextStep || !!publisher?.withdrawalSettings
-          ? "/dashboard"
-          : "/4"
-      );
+      onSubmit();
     }
   }, [docusignStatus, refetch]);
 

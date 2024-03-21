@@ -352,11 +352,6 @@ function useDemoTaxAndCashDashboard(
         onClick: () => console.debug("check step"),
         onEditPayoutInfo: () => console.debug("payout info"),
       },
-      slots: {
-        payoutDetailsCardSlot: (
-          <sqm-payout-details-card></sqm-payout-details-card>
-        ),
-      },
       text: props.getTextProps(),
     },
     props.demoData || {},

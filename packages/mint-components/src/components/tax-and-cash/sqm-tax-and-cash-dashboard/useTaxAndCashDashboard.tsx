@@ -1,17 +1,16 @@
 import { useLocale } from "@saasquatch/component-boilerplate";
 import { useEffect } from "@saasquatch/universal-hooks";
-import { h } from "@stencil/core";
 import { DateTime } from "luxon";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useSetParent } from "../../../utils/useParentState";
-import { NextPayout } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
+import { vatLabels } from "../countries";
 import {
   ImpactPublisher,
+  TaxContext,
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
-  TaxContext,
-  USER_QUERY_NAMESPACE,
   UserQuery,
+  USER_QUERY_NAMESPACE,
 } from "../sqm-tax-and-cash/data";
 import {
   INDIRECT_TAX_PROVINCES,
@@ -20,8 +19,6 @@ import {
 import { taxTypeToName } from "../utils";
 import { TaxAndCashDashboard } from "./sqm-tax-and-cash-dashboard";
 import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard-view";
-import { vatLabels } from "../countries";
-import { P } from "../../../global/mixins";
 
 function getExpiresSoon(submissionDate: number, expiryDate: number) {
   if (!submissionDate || !expiryDate) return false;
@@ -44,23 +41,22 @@ function getCountryName(countryCode: string, locale: string) {
 }
 
 function getSubRegionName(regionCode: string) {
-  // Impact adds an underscore to CANARYISLANDS, so requires a hardcoded check
-  if (regionCode === "CANARY_ISLANDS") {
-    return INDIRECT_TAX_SPAIN_REGIONS.find(
-      (r) => r.regionCode === "CANARYISLANDS"
-    )?.displayName;
-  }
+  // Impact adds an underscore to some regions
+  const standardCode = regionCode.replace("_", "");
 
   const regions = [...INDIRECT_TAX_PROVINCES, ...INDIRECT_TAX_SPAIN_REGIONS];
-  return regions.find((r) => r.regionCode === regionCode)?.displayName;
+  return regions.find((r) => r.regionCode === standardCode)?.displayName;
 }
 
 function getIndirectTaxType(taxInformation: ImpactPublisher["taxInformation"]) {
   const regions = [...INDIRECT_TAX_PROVINCES, ...INDIRECT_TAX_SPAIN_REGIONS];
   if (taxInformation?.indirectTaxRegion) {
-    return regions.find(
-      (r) => r.regionCode === taxInformation?.indirectTaxRegion
+    const standardRegion = taxInformation.indirectTaxRegion.replace("_", "");
+    const taxType = regions.find(
+      (r) => r.regionCode === standardRegion
     )?.taxType;
+
+    if (taxType) return taxType;
   }
 
   // Spain regions only have VAT type
@@ -68,11 +64,13 @@ function getIndirectTaxType(taxInformation: ImpactPublisher["taxInformation"]) {
   if (taxInformation?.indirectTaxCountryCode) {
     return vatLabels[taxInformation.indirectTaxCountryCode] || "Indirect Tax";
   }
+
+  return "Indirect Tax";
 }
 
 export const useTaxAndCashDashboard = (
   props: TaxAndCashDashboard
-): TaxAndCashDashboardProps => {
+): Omit<TaxAndCashDashboardProps, "slots"> => {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
   const setContext = useSetParent<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
 
@@ -151,10 +149,6 @@ export const useTaxAndCashDashboard = (
       disabled: loading,
       loading,
       loadingError: !!userError?.message,
-    },
-    slots: {
-      // TODO: Replace this story once we have hooks for payment details card
-      payoutDetailsCardSlot: <NextPayout />,
     },
     callbacks: {
       onClick: onNewDocumentClick,
