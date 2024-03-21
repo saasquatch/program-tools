@@ -31,6 +31,7 @@ Feature: Banking Information Form
       | USD      | United States                         | Beneficiary account name, Bank account type, Bank account number, ABA routing number                 |
       | USD      | Canada                                | Beneficiary account name, Bank account number, SWIFT code, Routing number                            |
       | USD      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
+      | USD      | Japan                                 | Beneficiary account name, Bank account number, SWIFT code                                            |
       | GBP      | United States                         | Beneficiary account name, Bank account type, Bank account number, SWIFT code, ABA routing number     |
       | GBP      | Canada                                | Beneficiary account name, Bank account number, SWIFT code, Routing number                            |
       | GBP      | Spain, Ireland, United Kingdom,       | Beneficiary account name, IBAN, SWIFT code                                                           |
