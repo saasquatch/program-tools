@@ -448,7 +448,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_beneficiaryAccountNameLabel: string =
-    "Beneficiary Account Name";
+    "Beneficiary account name";
 
   /**
    * Label text for the bank account type input field
@@ -497,7 +497,8 @@ export class TaxAndCashMonolith {
    * @uiName Routing code input label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_routingCodeLabel: string = "Routing code";
+  @Prop() step4_routingCodeLabel: string =
+    "{bankCountry, select, AU {BSB number} CA {Routing number} CZ {Bank code} HK {Clearing code} SG {Clearing code} US {ABA routing number} NZ {BSB number} ZA {Bank/Branch number} IN {IFSC} CNY {CNAPS} other {Routing code} }";
 
   /**
    * Label text for the bank name input field

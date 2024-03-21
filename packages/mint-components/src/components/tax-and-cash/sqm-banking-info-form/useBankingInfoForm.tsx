@@ -100,16 +100,16 @@ type TaxpayerIdLabels = {
 export function getFormMap({
   props,
   getValidationErrorMessage,
+  bankCountry,
 }: {
   props: BankingInfoFormViewProps | Omit<any, "text" | "callbacks">;
   getValidationErrorMessage: (props: {
     type: "required" | "invalid";
     label: string;
   }) => string;
+  bankCountry?: string;
 }) {
   const { errors, ...formState } = props.states.formState;
-
-  const country = props.states.bankCountry;
 
   return {
     0: {
@@ -226,7 +226,7 @@ export function getFormMap({
               defaultMessage: props.text.routingCodeLabel,
             },
             {
-              country,
+              bankCountry,
             }
           )}
           name="/routingCode"
@@ -243,7 +243,7 @@ export function getFormMap({
                   defaultMessage: props.text.routingCodeLabel,
                 },
                 {
-                  country,
+                  bankCountry,
                 }
               ),
             }),
@@ -304,7 +304,7 @@ export function getFormMap({
               defaultMessage: props.text.taxPayerIdLabel,
             },
             {
-              country,
+              bankCountry,
             }
           )}
           type="text"
@@ -734,7 +734,7 @@ export function useBankingInfoForm(
       return false;
     });
 
-    setFormState((p) => ({ bankCountry, ...p }));
+    setFormState((p) => ({ ...p, bankCountry }));
     setCurrentPaymentOption(currentPaymentOption);
   };
 
@@ -881,6 +881,7 @@ export function useBankingInfoForm(
       thresholds: currentPaymentOption?.thresholdOptions?.split(",") || [],
       countries,
       hasPayPal,
+      bankCountry: formState.bankCountry,
     },
     refs: {
       formRef,

@@ -169,7 +169,7 @@ export class BankingInfoForm {
    * @uiName Routing code input label
    */
   @Prop() routingCodeLabel: string =
-    "{country, select, AU {BSB number} CA {Routing number} CZ {Bank code} HK {Clearing code} SG {Clearing code} US {ABA routing number} NZ {BSB number} ZA {Bank/Branch cumber} IN {IFSC} CNY {CNAPS} other {Routing code} }";
+    "{bankCountry, select, AU {BSB number} CA {Routing number} CZ {Bank code} HK {Clearing code} SG {Clearing code} US {ABA routing number} NZ {BSB number} ZA {Bank/Branch number} IN {IFSC} CNY {CNAPS} other {Routing code} }";
 
   /**
    * Label text for the bank name input field
@@ -407,16 +407,12 @@ export class BankingInfoForm {
     const formMap = getFormMap({
       props,
       getValidationErrorMessage,
+      bankCountry: props.states.bankCountry,
     });
 
     const inputFields = getFormInputs({
       bitset: props.states.bitset,
       formMap,
-    });
-
-    console.log({
-      formState: props.states.formState,
-      thresholds: props.states.thresholds,
     });
 
     return (
@@ -567,14 +563,6 @@ function useDemoBankingInfoForm(
     currentPaymentOption?.withdrawalSettingId ||
     props.demoData?.states?.bitset ||
     0;
-
-  console.log("demo hook", {
-    demoData: props.demoData,
-    currentPaymentOption,
-    currency,
-    bankCountry,
-    bitset,
-  });
 
   useEffect(() => {
     if (defaultPaymentMethodChecked !== paymentMethodChecked)
