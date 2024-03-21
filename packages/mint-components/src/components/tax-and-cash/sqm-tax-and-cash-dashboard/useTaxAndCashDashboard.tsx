@@ -58,9 +58,12 @@ function getSubRegionName(regionCode: string) {
 function getIndirectTaxType(taxInformation: ImpactPublisher["taxInformation"]) {
   const regions = [...INDIRECT_TAX_PROVINCES, ...INDIRECT_TAX_SPAIN_REGIONS];
   if (taxInformation?.indirectTaxRegion) {
-    return regions.find(
-      (r) => r.regionCode === taxInformation?.indirectTaxRegion
+    const standardRegion = taxInformation.indirectTaxRegion.replace("_", "");
+    const taxType = regions.find(
+      (r) => r.regionCode === standardRegion
     )?.taxType;
+
+    if (taxType) return taxType;
   }
 
   // Spain regions only have VAT type
@@ -68,11 +71,13 @@ function getIndirectTaxType(taxInformation: ImpactPublisher["taxInformation"]) {
   if (taxInformation?.indirectTaxCountryCode) {
     return vatLabels[taxInformation.indirectTaxCountryCode] || "Indirect Tax";
   }
+
+  return "Indirect Tax";
 }
 
 export const useTaxAndCashDashboard = (
   props: TaxAndCashDashboard
-): TaxAndCashDashboardProps => {
+): Omit<TaxAndCashDashboardProps, "slots"> => {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
   const setContext = useSetParent<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
 
@@ -151,10 +156,6 @@ export const useTaxAndCashDashboard = (
       disabled: loading,
       loading,
       loadingError: !!userError?.message,
-    },
-    slots: {
-      // TODO: Replace this story once we have hooks for payment details card
-      payoutDetailsCardSlot: <NextPayout />,
     },
     callbacks: {
       onClick: onNewDocumentClick,
