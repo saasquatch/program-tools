@@ -139,7 +139,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_otherRegionSubtext: string =
-    "If you represent a business based outside of the US may be registered. Not sure? Contact our Support team to find out more.";
+    "If you represent a business based outside of the US you may be registered. If you’re not sure, contact our Support team to find out more.";
   /**
    * Label text for the not registered radio button
    * @uiName Not registered radio button label
