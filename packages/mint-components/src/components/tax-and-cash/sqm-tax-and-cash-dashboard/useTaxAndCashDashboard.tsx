@@ -1,17 +1,16 @@
 import { useLocale } from "@saasquatch/component-boilerplate";
 import { useEffect } from "@saasquatch/universal-hooks";
-import { h } from "@stencil/core";
 import { DateTime } from "luxon";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useSetParent } from "../../../utils/useParentState";
-import { NextPayout } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
+import { vatLabels } from "../countries";
 import {
   ImpactPublisher,
+  TaxContext,
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
-  TaxContext,
-  USER_QUERY_NAMESPACE,
   UserQuery,
+  USER_QUERY_NAMESPACE,
 } from "../sqm-tax-and-cash/data";
 import {
   INDIRECT_TAX_PROVINCES,
@@ -20,8 +19,6 @@ import {
 import { taxTypeToName } from "../utils";
 import { TaxAndCashDashboard } from "./sqm-tax-and-cash-dashboard";
 import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard-view";
-import { vatLabels } from "../countries";
-import { P } from "../../../global/mixins";
 
 function getExpiresSoon(submissionDate: number, expiryDate: number) {
   if (!submissionDate || !expiryDate) return false;

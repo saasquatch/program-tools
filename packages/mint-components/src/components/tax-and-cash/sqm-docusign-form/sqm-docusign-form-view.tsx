@@ -279,6 +279,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
                 checked={formState.participantType === "individualParticipant"}
                 disabled={states.disabled || states.participantTypeDisabled}
                 onClick={() => {
+                  if (states.disabled || states.participantTypeDisabled) return;
                   callbacks.setParticipantType("individualParticipant");
                 }}
               >
@@ -293,6 +294,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
                 checked={formState.participantType === "businessEntity"}
                 disabled={states.disabled || states.participantTypeDisabled}
                 onClick={() => {
+                  if (states.disabled || states.participantTypeDisabled) return;
                   callbacks.setParticipantType("businessEntity");
                 }}
               >
