@@ -713,10 +713,17 @@ export function useBankingInfoForm(
       };
     }
 
-    const currentPaymentOption = paymentOptions?.find(
-      (paymentOption) => paymentOption.countryCode === initialData.bankCountry
-    );
+    const currentPaymentOption = paymentOptions?.find((paymentOption) => {
+      if (paymentOption.countryCode !== initialData.bankCountry) return false;
+      if (
+        initialData.paymentMethod === "PAYPAL" &&
+        paymentOption.defaultFinancePaymentMethodId !== 7
+      )
+        return false;
+      return true;
+    });
 
+    updateBankCountry(currentPaymentOption?.countryCode);
     setCurrentPaymentOption(currentPaymentOption);
     setPaymentScheduleChecked(initialData.paymentSchedulingType);
     setFormState(initialData);
@@ -725,7 +732,6 @@ export function useBankingInfoForm(
         ? "toPayPalAccount"
         : "toBankAccount"
     );
-    updateBankCountry(currentPaymentOption?.countryCode);
   }, [paymentOptions, userData, setCurrentPaymentOption, setFormState]);
 
   const updateBankCountry = (bankCountry: string) => {
@@ -764,8 +770,7 @@ export function useBankingInfoForm(
     setLoading(true);
     try {
       if (!currentPaymentOption) throw new Error("No currentPaymentOption");
-
-      const response = await saveWithdrawalSettings({
+      const input = {
         setImpactPublisherWithdrawalSettingsInput: {
           user: {
             id: user.id,
@@ -775,7 +780,9 @@ export function useBankingInfoForm(
           paymentMethod: getPaymentMethod(currentPaymentOption),
           paymentSchedulingType: paymentScheduleChecked,
         } as SetImpactPublisherWithdrawalSettingsInput,
-      });
+      };
+
+      const response = await saveWithdrawalSettings(input);
       if (!response || (response as Error)?.message) {
         throw new Error();
       } else if (
