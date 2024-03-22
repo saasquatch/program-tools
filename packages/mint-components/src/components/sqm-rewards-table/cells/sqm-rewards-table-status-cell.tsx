@@ -244,7 +244,7 @@ export class RewardTableStatusCell {
         SUSPECTED_FRAUD: prop.pendingReview,
       };
 
-      const taxReason = this.getTaxPendingReasons(
+      const taxReason = prop.getTaxPendingReasons(
         prop.reward,
         prop.taxConnection
       );
