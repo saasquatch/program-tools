@@ -215,7 +215,7 @@ export class RewardTableStatusCell {
           type={badgeType}
           pill
           class={
-            rewardStatus === "REDEEMED" || rewardStatus === "PAYOUT_SENT"
+            rewardStatus === "REDEEMED" || rewardStatus === "PAYOUT_APPROVED"
               ? sheet.classes.RedeemBadge
               : sheet.classes.Badge
           }
