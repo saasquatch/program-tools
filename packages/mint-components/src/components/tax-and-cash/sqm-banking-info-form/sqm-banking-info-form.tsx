@@ -169,7 +169,7 @@ export class BankingInfoForm {
    * @uiName Routing code input label
    */
   @Prop() routingCodeLabel: string =
-    "{country, select, AU {BSB number} CA {Routing number} CZ {Bank code} HK {Clearing code} SG {Clearing code} US {ABA routing number} NZ {BSB number} ZA {Bank/Branch cumber} IN {IFSC} CNY {CNAPS} other {Routing code} }";
+    "{bankCountry, select, AU {BSB number} CA {Routing number} CZ {Bank code} HK {Clearing code} SG {Clearing code} US {ABA routing number} NZ {BSB number} ZA {Bank/Branch number} IN {IFSC} CNY {CNAPS} other {Routing code} }";
 
   /**
    * Label text for the bank name input field
@@ -407,16 +407,12 @@ export class BankingInfoForm {
     const formMap = getFormMap({
       props,
       getValidationErrorMessage,
+      bankCountry: props.states.bankCountry,
     });
 
     const inputFields = getFormInputs({
       bitset: props.states.bitset,
       formMap,
-    });
-
-    console.log({
-      formState: props.states.formState,
-      thresholds: props.states.thresholds,
     });
 
     return (
@@ -434,7 +430,7 @@ export class BankingInfoForm {
                 required
                 name="/bankCountry"
                 id="bankCountry"
-                value={props.states.formState.bankCountry}
+                value={props.states.formState.bankCountry || ""}
                 onSl-select={(e) =>
                   props.callbacks.setBankCountry(e.detail?.item?.value)
                 }
@@ -469,7 +465,7 @@ export class BankingInfoForm {
                 label={props.text.paymentThresholdSelectLabel}
                 name="/paymentThreshold"
                 id="paymentThreshold"
-                value={props.states?.formState?.paymentThreshold}
+                value={props.states?.formState?.paymentThreshold || ""}
                 {...(errors?.inputErrors?.paymentThreshold && {
                   class: "error-input",
                   helpText: getValidationErrorMessage({
@@ -489,7 +485,7 @@ export class BankingInfoForm {
               <sl-select
                 required
                 label={props.text.paymentDaySelectLabel}
-                value={props.states?.formState?.paymentDay}
+                value={props.states?.formState?.paymentDay || ""}
                 name="/paymentDay"
                 id="paymentDay"
                 {...(errors?.inputErrors?.paymentDay && {
@@ -511,7 +507,7 @@ export class BankingInfoForm {
             paypalInputSlot: (
               <sl-input
                 required
-                value={props.states?.formState?.paypalEmailAddress}
+                value={props.states?.formState?.paypalEmailAddress || ""}
                 label={props.text.payPalInputLabel}
                 key="paypalEmailAddress"
                 name="/paypalEmailAddress"
@@ -567,14 +563,6 @@ function useDemoBankingInfoForm(
     currentPaymentOption?.withdrawalSettingId ||
     props.demoData?.states?.bitset ||
     0;
-
-  console.log("demo hook", {
-    demoData: props.demoData,
-    currentPaymentOption,
-    currency,
-    bankCountry,
-    bitset,
-  });
 
   useEffect(() => {
     if (defaultPaymentMethodChecked !== paymentMethodChecked)

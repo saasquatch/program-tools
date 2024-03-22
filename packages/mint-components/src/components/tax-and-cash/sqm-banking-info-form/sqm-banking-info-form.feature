@@ -31,17 +31,21 @@ Feature: Banking Information Form
       | USD      | United States                         | Beneficiary account name, Bank account type, Bank account number, ABA routing number                 |
       | USD      | Canada                                | Beneficiary account name, Bank account number, SWIFT code, Routing number                            |
       | USD      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
-      | GBP      | United States                         | Beneficiary account name, ABA routing number                                                         |
+      | USD      | Japan                                 | Beneficiary account name, Bank account number, SWIFT code                                            |
+      | GBP      | United States                         | Beneficiary account name, Bank account type, Bank account number, SWIFT code, ABA routing number     |
       | GBP      | Canada                                | Beneficiary account name, Bank account number, SWIFT code, Routing number                            |
-      | GBP      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
-      | AUD      | United States                         | Beneficiary account name, ABA routing number                                                         |
+      | GBP      | Spain, Ireland, United Kingdom,       | Beneficiary account name, IBAN, SWIFT code                                                           |
+      | GBP      | Japan                                 | Beneficiary account name, Bank account number, SWIFT code                                            |
+      | AUD      | United States                         | Beneficiary account name, Bank account type, Bank account number, SWIFT code, ABA routing number     |
       | AUD      | Canada                                | Beneficiary account name, Bank account number, SWIFT code, Routing number                            |
-      | AUD      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
+      | AUD      | Spain, Ireland, United Kingdom        | Beneficiary account name, IBAN, SWIFT code                                                           |
+      | AUD      | Japan                                 | Beneficiary account name, Bank account number, SWIFT code                                            |
       | CAD      | Canada                                | Beneficiary account name, Bank account number, Routing number                                        |
-      | EUR      | United States                         | Beneficiary account name, ABA routing number                                                         |
+      | EUR      | United States                         | Beneficiary account name, Bank account type, Bank account number, SWIFT code, ABA routing number     |
       | EUR      | Canada                                | Beneficiary account name, Bank account number, SWIFT code, Routing number                            |
-      | EUR      | Spain, Ireland, United Kingdom, Japan | Beneficiary account name, IBAN, SWIFT code                                                           |
-      | JPY      | Japan                                 | Beneficiary account name, Bank account type, Bank account number, SWIFT code, Bank Name, Branch code |
+      | EUR      | Spain, Ireland, United Kingdom        | Beneficiary account name, IBAN, SWIFT code                                                           |
+      | EUR      | Japan                                 | Beneficiary account name, Bank account number, SWIFT code                                            |
+      | JPY      | Japan                                 | Beneficiary account name, Bank account type, Bank account number, SWIFT code, Bank name, Branch code |
       | MAD      | Western Sahara, Morocco               | Beneficiary account name, Bank account number, SWIFT code                                            |
 
   @minutia

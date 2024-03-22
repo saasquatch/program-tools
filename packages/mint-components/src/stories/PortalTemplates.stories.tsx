@@ -14,6 +14,7 @@ import editProfileTemplate from "../templates/EditProfile.html";
 import activityTemplate from "../templates/Activity.html";
 import resetPasswordEmailTemplate from "../templates/ResetPasswordEmail.html";
 import verifyEmailTemplate from "../templates/VerifyEmail.html";
+import taxPayoutReminderEmailTemplate from "../templates/taxPayoutReminderEmail.html";
 import loginTemplate from "../templates/Login.html";
 import registerTemplate from "../templates/Register.html";
 import forgotPasswordTemplate from "../templates/ForgotPassword.html";
@@ -205,5 +206,10 @@ export const ResetPasswordEmail = createHookStory(() => {
 
 export const VerifyEmail = createHookStory(() => {
   const { states, callbacks } = useTemplate(verifyEmailTemplate);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const taxPayoutReminderEmail = createHookStory(() => {
+  const { states, callbacks } = useTemplate(taxPayoutReminderEmailTemplate);
   return <TemplateView states={states} callbacks={callbacks} />;
 });

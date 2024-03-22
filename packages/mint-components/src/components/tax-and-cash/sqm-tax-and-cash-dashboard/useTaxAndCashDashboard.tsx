@@ -41,6 +41,8 @@ function getCountryName(countryCode: string, locale: string) {
 }
 
 function getSubRegionName(regionCode: string | undefined) {
+  if (!regionCode) return "";
+
   // Impact adds an underscore to some regions
   const standardCode = regionCode.replace("_", "");
 
