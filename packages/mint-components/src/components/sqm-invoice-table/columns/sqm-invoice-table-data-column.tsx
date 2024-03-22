@@ -29,7 +29,6 @@ export class InvoiceTableDataColumn implements InvoiceTableColumn {
 
   @Method()
   async renderCell(data: Invoice) {
-    console.log({ data, property: this.property });
     return (
       <sqm-invoice-table-data-cell
         data={data[this.property]}
