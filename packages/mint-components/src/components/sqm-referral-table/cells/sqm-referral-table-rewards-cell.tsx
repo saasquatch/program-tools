@@ -123,7 +123,7 @@ export class ReferralTableRewardsCell {
         partnerFundsStatus === "NOT_YET_DUE" ||
         partnerFundsStatus === "TRANSFERRED"
       ) {
-        return "PAYOUT_ACCEPTED";
+        return "PAYOUT_APPROVED";
       } else if (partnerFundsStatus === "OVERDUE") return "PAYOUT_FAILED";
       else if (partnerFundsStatus === "REVERSED") return "PAYOUT_CANCELLED";
 
