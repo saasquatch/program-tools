@@ -144,6 +144,8 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
       resendEmailButtonText: props.resendEmailButtonText,
       verificationLoadingMessage: props.verificationLoadingMessage,
       verificationStatusMessage: props.verificationStatusMessage,
+      verificationResentMessage: props.verificationResentMessage,
+      networkErrorMessage: props.networkErrorMessage,
     },
   };
 }
