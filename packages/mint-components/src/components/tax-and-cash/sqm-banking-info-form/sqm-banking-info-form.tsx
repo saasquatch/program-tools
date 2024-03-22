@@ -430,7 +430,7 @@ export class BankingInfoForm {
                 required
                 name="/bankCountry"
                 id="bankCountry"
-                value={props.states.formState.bankCountry}
+                value={props.states.formState.bankCountry || ""}
                 onSl-select={(e) =>
                   props.callbacks.setBankCountry(e.detail?.item?.value)
                 }
@@ -465,7 +465,7 @@ export class BankingInfoForm {
                 label={props.text.paymentThresholdSelectLabel}
                 name="/paymentThreshold"
                 id="paymentThreshold"
-                value={props.states?.formState?.paymentThreshold}
+                value={props.states?.formState?.paymentThreshold || ""}
                 {...(errors?.inputErrors?.paymentThreshold && {
                   class: "error-input",
                   helpText: getValidationErrorMessage({
@@ -485,7 +485,7 @@ export class BankingInfoForm {
               <sl-select
                 required
                 label={props.text.paymentDaySelectLabel}
-                value={props.states?.formState?.paymentDay}
+                value={props.states?.formState?.paymentDay || ""}
                 name="/paymentDay"
                 id="paymentDay"
                 {...(errors?.inputErrors?.paymentDay && {
@@ -507,7 +507,7 @@ export class BankingInfoForm {
             paypalInputSlot: (
               <sl-input
                 required
-                value={props.states?.formState?.paypalEmailAddress}
+                value={props.states?.formState?.paypalEmailAddress || ""}
                 label={props.text.payPalInputLabel}
                 key="paypalEmailAddress"
                 name="/paypalEmailAddress"

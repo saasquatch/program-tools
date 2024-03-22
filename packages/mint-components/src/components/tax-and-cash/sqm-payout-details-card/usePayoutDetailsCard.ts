@@ -9,8 +9,6 @@ import { PayoutDetailsCardViewProps } from "./sqm-payout-details-card-view";
 export function usePayoutDetailsCard(
   props: PayoutDetailsCard
 ): PayoutDetailsCardViewProps {
-  const locale = useLocale();
-
   const { data, loading } =
     useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
