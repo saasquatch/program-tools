@@ -89,22 +89,18 @@ Feature: Reward Table Status Column
     Then the status of their reward is displayed in <pillColour> pill with <text>
 
     Examples: 
-      | status                   | text                      | pillColour |
-      | AVAILABLE                | Redeem me!                | Green      |
-      | CANCELLED                | Unavailable               | Red        |
-      | PENDING                  | Coming soon!              | Orange     |
-      | EXPIRED                  | Past due                  | Red        |
-      | REDEEMED                 | Spent                     | Blue       |
-      | PENDING_REVIEW           | Pending Review!           | Orange     |
-      | PAYOUT_TRANSFERRED       | Payout Approved!          | Blue       |
-      | PAYOUT_NOT_YET_DUE       | Payout Approved!          | Blue       |
-      | PAYOUT_OVERDUE           | Payout Failed!            | Red        |
-      | PAYOUT_REVERSED          | Payout Cancelled!         | Red        |
-      | PENDING_TAX_REVIEW       | Pending Tax Review!       | Orange     |
-      | PENDING_NEW_TAX_FORM     | Pending new tax form!     | Orange     |
-      | PENDING_TAX_SUBMISSION   | Pending tax submission!   | Orange     |
-      | PENDING_PARTNER_CREATION | Pending partner creation! | Orange     |
-      | DENIED                   | Unlucky!                  | Red        |
+      | status             | text              | pillColour |
+      | AVAILABLE          | Redeem me!        | Green      |
+      | CANCELLED          | Unavailable       | Red        |
+      | PENDING            | Coming soon!      | Orange     |
+      | EXPIRED            | Past due          | Red        |
+      | REDEEMED           | Spent             | Blue       |
+      | PENDING_REVIEW     | Pending Review!   | Orange     |
+      | PAYOUT_TRANSFERRED | Payout Approved!  | Blue       |
+      | PAYOUT_NOT_YET_DUE | Payout Approved!  | Blue       |
+      | PAYOUT_OVERDUE     | Payout Failed!    | Red        |
+      | PAYOUT_REVERSED    | Payout Cancelled! | Red        |
+      | DENIED             | Unlucky!          | Red        |
 
   @minutia @ui
   Scenario: Expiry status date text can be configured
