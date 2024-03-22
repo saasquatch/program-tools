@@ -33,7 +33,7 @@ export function usePayoutDetailsCard(
         : DateTime.now()
             .plus({ month: 1 })
             .startOf("month")
-            .plus({ day: 15 })
+            .plus({ day: 14 })
             .toFormat("LLL dd, yyyy");
     } else {
       intl.formatMessage(
