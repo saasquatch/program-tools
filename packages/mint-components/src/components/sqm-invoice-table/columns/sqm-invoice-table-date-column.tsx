@@ -25,13 +25,11 @@ export class InvoiceTableDateColumn implements InvoiceTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Invoice, options: { locale: string }) {
-    // TODO - Validate `dateShown` against a set of known values
-
+  async renderCell(data: Invoice, options?: { locale: string }) {
     return (
       <sqm-invoice-table-date-cell
         date={data.dateCreated}
-        locale={options.locale}
+        locale={options?.locale}
       ></sqm-invoice-table-date-cell>
     );
   }

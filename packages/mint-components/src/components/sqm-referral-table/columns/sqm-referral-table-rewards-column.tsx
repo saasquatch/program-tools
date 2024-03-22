@@ -87,13 +87,12 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   @Method()
   async renderCell(
     data: Referral,
-    options: { locale: string; taxConnection: ImpactConnection }
+    options?: { locale: string; taxConnection: ImpactConnection }
   ) {
-    // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
     return (
       <sqm-referral-table-rewards-cell
         rewards={data.rewards}
-        taxConnection={options.taxConnection}
+        taxConnection={options?.taxConnection}
         statusText={this.statusText}
         statusLongText={this.statusLongText}
         fuelTankText={this.fuelTankText}
@@ -102,7 +101,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
         pendingForText={this.pendingForText}
         hideDetails={this.hideDetails}
         deniedHelpText={this.deniedHelpText}
-        locale={options.locale}
+        locale={options?.locale}
         exportparts="sqm-cell-value"
       ></sqm-referral-table-rewards-cell>
     );
