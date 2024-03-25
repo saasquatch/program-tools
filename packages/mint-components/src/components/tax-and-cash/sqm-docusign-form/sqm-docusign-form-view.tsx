@@ -46,6 +46,7 @@ export interface DocusignFormViewProps {
     businessEntity: string;
     individualParticipant: string;
     participantType: string;
+    taxAndPayoutsDescription: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -167,6 +168,10 @@ const style = {
   RadioText: {
     fontSize: "var(--sl-font-size-small)",
   },
+  PageDescriptionText: {
+    color: "var(--sl-color-neutral-500)",
+    fontSize: "var(--sl-font-size-medium)",
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -226,6 +231,9 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             </p>
           )}
           <h3>{text.taxForm}</h3>
+          <p class={classes.PageDescriptionText}>
+            {text.taxAndPayoutsDescription}
+          </p>
         </div>
       </div>
       {states.loadingError && (

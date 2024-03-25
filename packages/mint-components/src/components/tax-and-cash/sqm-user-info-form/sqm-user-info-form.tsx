@@ -119,6 +119,12 @@ export class TaxForm {
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";
+  /**
+   * Displayed at the top of the page on all set up steps and on the dashboard.
+   * @uiName Page description
+   */
+  @Prop() taxAndPayoutsDescription: string =
+    "Submit your tax documents and add your banking information to receive your rewards.";
 
   /**
    * @undocumented

@@ -4,19 +4,19 @@ import { useState } from "@saasquatch/universal-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
+import { useParent } from "../../../utils/useParentState";
 import { getProps } from "../../../utils/utils";
+import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 import { OtherRegionSlotView } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
+import {
+  INDIRECT_TAX_PROVINCES,
+  INDIRECT_TAX_SPAIN_REGIONS,
+} from "../subregions";
 import { IndirectTaxFormView } from "./sqm-indirect-tax-form-view";
 import {
   UseIndirectTaxFormResult,
   useIndirectTaxForm,
 } from "./useIndirectTaxForm";
-import {
-  INDIRECT_TAX_PROVINCES,
-  INDIRECT_TAX_SPAIN_REGIONS,
-} from "../subregions";
-import { useParent } from "../../../utils/useParentState";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 
 /**
  * @uiName Indirect Tax Form
@@ -193,6 +193,12 @@ export class IndirectTaxForm {
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";
+  /**
+   * Displayed at the top of the page on all set up steps and on the dashboard.
+   * @uiName Page description
+   */
+  @Prop() taxAndPayoutsDescription: string =
+    "Submit your tax documents and add your banking information to receive your rewards.";
 
   /**
    * @undocumented

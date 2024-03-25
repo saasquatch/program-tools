@@ -70,6 +70,7 @@ export interface UserInfoFormViewProps {
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
     termsAndConditionsLabel: string;
+    taxAndPayoutsDescription: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -163,6 +164,10 @@ const style = {
     "& sl-icon::part(base)": {
       color: "var(--sl-color-blue-500)",
     },
+  },
+  PageDescriptionText: {
+    color: "var(--sl-color-neutral-500)",
+    fontSize: "var(--sl-font-size-medium)",
   },
 };
 
@@ -262,6 +267,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 </p>
               )}
               <h3>{text.personalInformation}</h3>
+              <p class={classes.PageDescriptionText}>
+                {text.taxAndPayoutsDescription}
+              </p>
             </div>
           </div>
           {formState.errors?.general && (
