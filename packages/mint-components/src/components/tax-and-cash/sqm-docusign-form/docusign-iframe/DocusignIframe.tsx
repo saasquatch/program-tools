@@ -28,7 +28,6 @@ export interface DocusignIframeProps {
   };
   text: {
     docusignExpired: string;
-    docusignCompleted: string;
     docusignError: string;
     refreshButton: string;
   };

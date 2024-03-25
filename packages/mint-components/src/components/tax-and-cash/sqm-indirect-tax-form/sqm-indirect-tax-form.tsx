@@ -140,7 +140,7 @@ export class IndirectTaxForm {
 
   /**
    * Placeholder text displayed in the country search dropdown
-   * @uiName Search for country text
+   * @uiName Country field placeholder text
    */
   @Prop() searchForCountryText: string = "Search for country..";
 

@@ -300,7 +300,7 @@ export namespace Components {
         "savingsSelectItemLabel": string;
         /**
           * Placeholder text displayed in the country search dropdown
-          * @uiName Search for country text
+          * @uiName Country field placeholder text
          */
         "searchForCountryText": string;
         /**
@@ -565,8 +565,8 @@ export namespace Components {
          */
         "banner": string;
         /**
-          * Label text for the business entity radio button
-          * @uiName Business entity radio button label
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Business representative participant type label
          */
         "businessEntity": string;
         /**
@@ -574,44 +574,24 @@ export namespace Components {
          */
         "cancelButton": string;
         /**
-          * Label text for the form submission checkbox
-          * @uiName Form submission checkbox label
-         */
-        "checkboxDescription": string;
-        /**
-          * Heading text for the form submission checkbox
-          * @uiName Form submission checkbox heading
-         */
-        "checkboxLabel": string;
-        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UseDocusignFormResult>;
         /**
-          * Text inside iframe when Docusign form is compelted
-          * @uiName Docusign completed text
-         */
-        "docusignCompleted": string;
-        /**
-          * Text inside iframe when Docusign form throws error
-          * @uiName Docusign error text
+          * This appears inside the Docusign frame.
+          * @uiName Docusign form error message
          */
         "docusignError": string;
         /**
-          * Text inside iframe when Docusign expires
-          * @uiName Docusign expired text
+          * Remind participants their session will time out after 20 minutes of inactivity.
+          * @uiName Docusign timed session message
          */
         "docusignExpired": string;
         /**
           * @uiName Setup progress
          */
         "formStep": string;
-        /**
-          * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
-          * @uiName Form submission error text
-         */
-        "formSubmissionError": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
@@ -623,8 +603,8 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
-          * Label text for the individual participant radio button
-          * @uiName Individual participant radio button label
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Individual participant type label
          */
         "individualParticipant": string;
         /**
@@ -638,43 +618,35 @@ export namespace Components {
          */
         "loadingErrorAlertHeader": string;
         /**
-          * Text shown in the link to the form for non US residents
-          * @uiName Not based in US link text
-         */
-        "notBasedInUS": string;
-        /**
-          * Heading text for the participant type radio buttons
-          * @uiName Participant type radio buttons heading
+          * @uiName Participant type field label
          */
         "participantType": string;
         /**
-          * Text shown inside of refresh button
-          * @uiName Refresh button text
+          * @uiName Refresh page button label
          */
         "refreshButton": string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Tax form heading text
+          * @uiName Step 3 title
          */
         "taxForm": string;
         /**
-          * Subtext shown at the top of the page next to the document type text
-          * @uiName Tax form subtext
+          * Displayed at the top of the page to participants based in the US.
+          * @uiName W-9 tax form description
          */
         "taxFormDescription": string;
         /**
-          * Subtext shown at the top of the page next to the document type text for business entities
-          * @uiName Tax form subtext
+          * Displayed at the top of the page to participants representing a business.
+          * @uiName W-8 BEN-E tax form description
          */
         "taxFormDescriptionBusinessEntity": string;
         /**
-          * Subtext shown at the top of the page next to the document type text for individual participants
-          * @uiName Tax form subtext
+          * Displayed at the top of the page to individuals joining a US program who reside outside the country.
+          * @uiName W-8 BEN tax form description
          */
         "taxFormDescriptionIndividualParticipant": string;
         /**
-          * Text shown at the top of the page next to the document type text
-          * @uiName Tax form label text
+          * Display the type of tax form that the participant must submit.
+          * @uiName Tax form name
          */
         "taxFormLabel": string;
     }
@@ -1093,7 +1065,7 @@ export namespace Components {
         "qstNumber": string;
         /**
           * Placeholder text displayed in the country search dropdown
-          * @uiName Search for country text
+          * @uiName Country field placeholder text
          */
         "searchForCountryText": string;
         /**
@@ -4026,6 +3998,11 @@ export namespace Components {
          */
         "loadingErrorAlertHeader": string;
         /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Country field placeholder text
+         */
+        "searchForCountryText": string;
+        /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
           * @uiGroup Step 1 Properties
@@ -4067,13 +4044,8 @@ export namespace Components {
          */
         "step1_personalInformation": string;
         /**
-          * Placeholder text displayed in the country search dropdown
-          * @uiName Search for country text
-         */
-        "step1_searchForCountryText": string;
-        /**
           * Placeholder text displayed in the currency search dropdown
-          * @uiName Search for currency text
+          * @uiName Currency field placeholder text
          */
         "step1_searchForCurrencyText": string;
         /**
@@ -4166,11 +4138,6 @@ export namespace Components {
          */
         "step2_qstNumber": string;
         /**
-          * Placeholder text displayed in the country search dropdown
-          * @uiName Search for country text
-         */
-        "step2_searchForCountryText": string;
-        /**
           * @uiName Region of indirect tax field label
           * @uiGroup Step 2 Properties
          */
@@ -4193,92 +4160,65 @@ export namespace Components {
          */
         "step3_banner": string;
         /**
-          * Label text for the business entity radio button
-          * @uiName Business entity radio button label
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Business representative participant type label
           * @uiGroup Step 3 Properties
          */
         "step3_businessEntity": string;
         /**
-          * Label text for the form submission checkbox
-          * @uiName Form submission checkbox label
-          * @uiGroup Step 3 Properties
-         */
-        "step3_checkboxDescription": string;
-        /**
-          * Heading text for the form submission checkbox
-          * @uiName Form submission checkbox heading
-          * @uiGroup Step 3 Properties
-         */
-        "step3_checkboxLabel": string;
-        /**
-          * Text inside iframe when Docusign form is completed
-          * @uiName Docusign completed text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_docusignCompleted": string;
-        /**
-          * Text inside iframe when Docusign form throws error
-          * @uiName Docusign error text *
+          * This appears inside the Docusign frame.
+          * @uiName Docusign form error message *
           * @uiGroup Step 3 Properties
          */
         "step3_docusignError": string;
         /**
-          * Text shown inside iframe when Docusign form expires
-          * @uiName Expired Docusign form text
+          * Remind participants their session will time out after 20 minutes of inactivity.
+          * @uiName Docusign timed session message
           * @uiGroup Step 3 Properties
          */
         "step3_docusignExpired": string;
         /**
-          * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
-          * @uiName Form submission error text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_formSubmissionError": string;
-        /**
-          * Label text for the individual participant radio button
-          * @uiName Individual participant radio button label
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Individual participant type label
           * @uiGroup Step 3 Properties
          */
         "step3_individualParticipant": string;
         /**
-          * Heading text for the participant type radio buttons
-          * @uiName Participant type radio buttons heading
+          * @uiName Participant type field label
           * @uiGroup Step 3 Properties
          */
         "step3_participantType": string;
         /**
-          * Text shown inside of refresh button
-          * @uiName Refresh button text
+          * @uiName Refresh page button label
           * @uiGroup Step 3 Properties
          */
         "step3_refreshButton": string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Tax form heading text
+          * @uiName Step 3 title
           * @uiGroup Step 3 Properties
          */
         "step3_taxForm": string;
         /**
-          * Subtext shown at the top of the page next to the document type text
-          * @uiName Tax form subtext
+          * Displayed at the top of the page to participants based in the US.
+          * @uiName W-9 tax form description
           * @uiGroup Step 3 Properties
          */
         "step3_taxFormDescription": string;
         /**
-          * Subtext shown at the top of the page next to the document type text for business entities
-          * @uiName Tax form subtext
+          * Displayed at the top of the page to participants representing a business.
+          * @uiName W-8 BEN-E tax form description
           * @uiGroup Step 3 Properties
          */
         "step3_taxFormDescriptionBusinessEntity": string;
         /**
-          * Subtext shown at the top of the page next to the document type text for individual participants
-          * @uiName Tax form subtext
+          * Displayed at the top of the page to individuals joining a US program who reside outside the country.
+          * @uiName W-8 BEN tax form description
           * @uiGroup Step 3 Properties
          */
         "step3_taxFormDescriptionIndividualParticipant": string;
         /**
-          * Text shown at the top of the page next to the document type text
-          * @uiName Tax form label text
+          * Display the type of tax form that the participant must submit.
+          * @uiName Tax form name
           * @uiGroup Step 3 Properties
          */
         "step3_taxFormLabel": string;
@@ -4497,11 +4437,6 @@ export namespace Components {
          */
         "step4_savingsSelectItemLabel": string;
         /**
-          * Placeholder text displayed in the country search dropdown
-          * @uiName Search for country text
-         */
-        "step4_searchForCountryText": string;
-        /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label
           * @uiGroup Step 4 Properties
@@ -4532,12 +4467,6 @@ export namespace Components {
           * @uiGroup Step 4 Properties
          */
         "step4_voCodeLabel": string;
-        /**
-          * Text shown in the link to the form for non US residents
-          * @uiName Not based in US link text
-          * @uiGroup Step 3 Properties
-         */
-        "stop3NotBasedInUS": string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Taxed amount column title
@@ -4905,12 +4834,12 @@ export namespace Components {
         "personalInformation": string;
         /**
           * Placeholder text displayed in the country search dropdown
-          * @uiName Search for country text
+          * @uiName Country field placeholder text
          */
         "searchForCountryText": string;
         /**
           * Placeholder text displayed in the currency search dropdown
-          * @uiName Search for currency text
+          * @uiName Currency field placeholder text
          */
         "searchForCurrencyText": string;
         /**
@@ -5954,7 +5883,7 @@ declare namespace LocalJSX {
         "savingsSelectItemLabel"?: string;
         /**
           * Placeholder text displayed in the country search dropdown
-          * @uiName Search for country text
+          * @uiName Country field placeholder text
          */
         "searchForCountryText"?: string;
         /**
@@ -6220,8 +6149,8 @@ declare namespace LocalJSX {
          */
         "banner"?: string;
         /**
-          * Label text for the business entity radio button
-          * @uiName Business entity radio button label
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Business representative participant type label
          */
         "businessEntity"?: string;
         /**
@@ -6229,44 +6158,24 @@ declare namespace LocalJSX {
          */
         "cancelButton"?: string;
         /**
-          * Label text for the form submission checkbox
-          * @uiName Form submission checkbox label
-         */
-        "checkboxDescription"?: string;
-        /**
-          * Heading text for the form submission checkbox
-          * @uiName Form submission checkbox heading
-         */
-        "checkboxLabel"?: string;
-        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UseDocusignFormResult>;
         /**
-          * Text inside iframe when Docusign form is compelted
-          * @uiName Docusign completed text
-         */
-        "docusignCompleted"?: string;
-        /**
-          * Text inside iframe when Docusign form throws error
-          * @uiName Docusign error text
+          * This appears inside the Docusign frame.
+          * @uiName Docusign form error message
          */
         "docusignError"?: string;
         /**
-          * Text inside iframe when Docusign expires
-          * @uiName Docusign expired text
+          * Remind participants their session will time out after 20 minutes of inactivity.
+          * @uiName Docusign timed session message
          */
         "docusignExpired"?: string;
         /**
           * @uiName Setup progress
          */
         "formStep"?: string;
-        /**
-          * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
-          * @uiName Form submission error text
-         */
-        "formSubmissionError"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
@@ -6278,8 +6187,8 @@ declare namespace LocalJSX {
          */
         "generalErrorTitle"?: string;
         /**
-          * Label text for the individual participant radio button
-          * @uiName Individual participant radio button label
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Individual participant type label
          */
         "individualParticipant"?: string;
         /**
@@ -6293,43 +6202,35 @@ declare namespace LocalJSX {
          */
         "loadingErrorAlertHeader"?: string;
         /**
-          * Text shown in the link to the form for non US residents
-          * @uiName Not based in US link text
-         */
-        "notBasedInUS"?: string;
-        /**
-          * Heading text for the participant type radio buttons
-          * @uiName Participant type radio buttons heading
+          * @uiName Participant type field label
          */
         "participantType"?: string;
         /**
-          * Text shown inside of refresh button
-          * @uiName Refresh button text
+          * @uiName Refresh page button label
          */
         "refreshButton"?: string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Tax form heading text
+          * @uiName Step 3 title
          */
         "taxForm"?: string;
         /**
-          * Subtext shown at the top of the page next to the document type text
-          * @uiName Tax form subtext
+          * Displayed at the top of the page to participants based in the US.
+          * @uiName W-9 tax form description
          */
         "taxFormDescription"?: string;
         /**
-          * Subtext shown at the top of the page next to the document type text for business entities
-          * @uiName Tax form subtext
+          * Displayed at the top of the page to participants representing a business.
+          * @uiName W-8 BEN-E tax form description
          */
         "taxFormDescriptionBusinessEntity"?: string;
         /**
-          * Subtext shown at the top of the page next to the document type text for individual participants
-          * @uiName Tax form subtext
+          * Displayed at the top of the page to individuals joining a US program who reside outside the country.
+          * @uiName W-8 BEN tax form description
          */
         "taxFormDescriptionIndividualParticipant"?: string;
         /**
-          * Text shown at the top of the page next to the document type text
-          * @uiName Tax form label text
+          * Display the type of tax form that the participant must submit.
+          * @uiName Tax form name
          */
         "taxFormLabel"?: string;
     }
@@ -6748,7 +6649,7 @@ declare namespace LocalJSX {
         "qstNumber"?: string;
         /**
           * Placeholder text displayed in the country search dropdown
-          * @uiName Search for country text
+          * @uiName Country field placeholder text
          */
         "searchForCountryText"?: string;
         /**
@@ -9651,6 +9552,11 @@ declare namespace LocalJSX {
          */
         "loadingErrorAlertHeader"?: string;
         /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Country field placeholder text
+         */
+        "searchForCountryText"?: string;
+        /**
           * Label text for tax and banking collection checkbox
           * @uiName Tax and banking label
           * @uiGroup Step 1 Properties
@@ -9692,13 +9598,8 @@ declare namespace LocalJSX {
          */
         "step1_personalInformation"?: string;
         /**
-          * Placeholder text displayed in the country search dropdown
-          * @uiName Search for country text
-         */
-        "step1_searchForCountryText"?: string;
-        /**
           * Placeholder text displayed in the currency search dropdown
-          * @uiName Search for currency text
+          * @uiName Currency field placeholder text
          */
         "step1_searchForCurrencyText"?: string;
         /**
@@ -9791,11 +9692,6 @@ declare namespace LocalJSX {
          */
         "step2_qstNumber"?: string;
         /**
-          * Placeholder text displayed in the country search dropdown
-          * @uiName Search for country text
-         */
-        "step2_searchForCountryText"?: string;
-        /**
           * @uiName Region of indirect tax field label
           * @uiGroup Step 2 Properties
          */
@@ -9818,92 +9714,65 @@ declare namespace LocalJSX {
          */
         "step3_banner"?: string;
         /**
-          * Label text for the business entity radio button
-          * @uiName Business entity radio button label
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Business representative participant type label
           * @uiGroup Step 3 Properties
          */
         "step3_businessEntity"?: string;
         /**
-          * Label text for the form submission checkbox
-          * @uiName Form submission checkbox label
-          * @uiGroup Step 3 Properties
-         */
-        "step3_checkboxDescription"?: string;
-        /**
-          * Heading text for the form submission checkbox
-          * @uiName Form submission checkbox heading
-          * @uiGroup Step 3 Properties
-         */
-        "step3_checkboxLabel"?: string;
-        /**
-          * Text inside iframe when Docusign form is completed
-          * @uiName Docusign completed text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_docusignCompleted"?: string;
-        /**
-          * Text inside iframe when Docusign form throws error
-          * @uiName Docusign error text *
+          * This appears inside the Docusign frame.
+          * @uiName Docusign form error message *
           * @uiGroup Step 3 Properties
          */
         "step3_docusignError"?: string;
         /**
-          * Text shown inside iframe when Docusign form expires
-          * @uiName Expired Docusign form text
+          * Remind participants their session will time out after 20 minutes of inactivity.
+          * @uiName Docusign timed session message
           * @uiGroup Step 3 Properties
          */
         "step3_docusignExpired"?: string;
         /**
-          * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
-          * @uiName Form submission error text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_formSubmissionError"?: string;
-        /**
-          * Label text for the individual participant radio button
-          * @uiName Individual participant radio button label
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Individual participant type label
           * @uiGroup Step 3 Properties
          */
         "step3_individualParticipant"?: string;
         /**
-          * Heading text for the participant type radio buttons
-          * @uiName Participant type radio buttons heading
+          * @uiName Participant type field label
           * @uiGroup Step 3 Properties
          */
         "step3_participantType"?: string;
         /**
-          * Text shown inside of refresh button
-          * @uiName Refresh button text
+          * @uiName Refresh page button label
           * @uiGroup Step 3 Properties
          */
         "step3_refreshButton"?: string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Tax form heading text
+          * @uiName Step 3 title
           * @uiGroup Step 3 Properties
          */
         "step3_taxForm"?: string;
         /**
-          * Subtext shown at the top of the page next to the document type text
-          * @uiName Tax form subtext
+          * Displayed at the top of the page to participants based in the US.
+          * @uiName W-9 tax form description
           * @uiGroup Step 3 Properties
          */
         "step3_taxFormDescription"?: string;
         /**
-          * Subtext shown at the top of the page next to the document type text for business entities
-          * @uiName Tax form subtext
+          * Displayed at the top of the page to participants representing a business.
+          * @uiName W-8 BEN-E tax form description
           * @uiGroup Step 3 Properties
          */
         "step3_taxFormDescriptionBusinessEntity"?: string;
         /**
-          * Subtext shown at the top of the page next to the document type text for individual participants
-          * @uiName Tax form subtext
+          * Displayed at the top of the page to individuals joining a US program who reside outside the country.
+          * @uiName W-8 BEN tax form description
           * @uiGroup Step 3 Properties
          */
         "step3_taxFormDescriptionIndividualParticipant"?: string;
         /**
-          * Text shown at the top of the page next to the document type text
-          * @uiName Tax form label text
+          * Display the type of tax form that the participant must submit.
+          * @uiName Tax form name
           * @uiGroup Step 3 Properties
          */
         "step3_taxFormLabel"?: string;
@@ -10122,11 +9991,6 @@ declare namespace LocalJSX {
          */
         "step4_savingsSelectItemLabel"?: string;
         /**
-          * Placeholder text displayed in the country search dropdown
-          * @uiName Search for country text
-         */
-        "step4_searchForCountryText"?: string;
-        /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label
           * @uiGroup Step 4 Properties
@@ -10157,12 +10021,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 4 Properties
          */
         "step4_voCodeLabel"?: string;
-        /**
-          * Text shown in the link to the form for non US residents
-          * @uiName Not based in US link text
-          * @uiGroup Step 3 Properties
-         */
-        "stop3NotBasedInUS"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Taxed amount column title
@@ -10529,12 +10387,12 @@ declare namespace LocalJSX {
         "personalInformation"?: string;
         /**
           * Placeholder text displayed in the country search dropdown
-          * @uiName Search for country text
+          * @uiName Country field placeholder text
          */
         "searchForCountryText"?: string;
         /**
           * Placeholder text displayed in the currency search dropdown
-          * @uiName Search for currency text
+          * @uiName Currency field placeholder text
          */
         "searchForCurrencyText"?: string;
         /**

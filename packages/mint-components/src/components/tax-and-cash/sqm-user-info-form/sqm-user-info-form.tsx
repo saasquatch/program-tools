@@ -94,12 +94,12 @@ export class TaxForm {
   @Prop() termsAndConditionsLabel: string = "terms and conditions";
   /**
    * Placeholder text displayed in the country search dropdown
-   * @uiName Search for country text
+   * @uiName Country field placeholder text
    */
   @Prop() searchForCountryText: string = "Search for country..";
   /**
    * Placeholder text displayed in the currency search dropdown
-   * @uiName Search for currency text
+   * @uiName Currency field placeholder text
    */
   @Prop() searchForCurrencyText: string = "Search for currency..";
   /**

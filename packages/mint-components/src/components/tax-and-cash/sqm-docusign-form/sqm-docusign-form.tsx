@@ -30,38 +30,32 @@ export class DocusignForm {
    */
   @Prop() formStep: string = "Step {step} of {count}";
   /**
-   * Heading text shown at the top of the page
-   * @uiName Tax form heading text
+   * @uiName Step 3 title
    */
   @Prop() taxForm: string = "Tax form";
   /**
-   * Text shown at the top of the page next to the document type text
-   * @uiName Tax form label text
+   * Display the type of tax form that the participant must submit.
+   * @uiName Tax form name
    */
   @Prop() taxFormLabel: string = "{documentType} Tax Form";
   /**
-   * Subtext shown at the top of the page next to the document type text
-   * @uiName Tax form subtext
+   * Displayed at the top of the page to participants based in the US.
+   * @uiName W-9 tax form description
    */
   @Prop() taxFormDescription: string =
     "Participants based in the US need to submit a {documentType} form.";
   /**
-   * Subtext shown at the top of the page next to the document type text for individual participants
-   * @uiName Tax form subtext
+   * Displayed at the top of the page to individuals joining a US program who reside outside the country.
+   * @uiName W-8 BEN tax form description
    */
   @Prop() taxFormDescriptionIndividualParticipant: string =
     "Participants residing outside of the US, joining the referral program of a US-based company, need to submit a {documentType} form.";
   /**
-   * Subtext shown at the top of the page next to the document type text for business entities
-   * @uiName Tax form subtext
+   * Displayed at the top of the page to participants representing a business.
+   * @uiName W-8 BEN-E tax form description
    */
   @Prop() taxFormDescriptionBusinessEntity: string =
     "Participants residing outside of the US who represent a business entity need to submit a {documentType} form.";
-  /**
-   * Text shown in the link to the form for non US residents
-   * @uiName Not based in US link text
-   */
-  @Prop() notBasedInUS: string = "Not based in the US?";
   /**
    * Text shown in the banner above the document
    * @uiName Banner text
@@ -69,52 +63,33 @@ export class DocusignForm {
   @Prop() banner: string =
     "For your security, we automatically end your session when you have not interacted with the form after 20 minutes.";
   /**
-   * Heading text for the form submission checkbox
-   * @uiName Form submission checkbox heading
-   */
-  @Prop() checkboxLabel: string = "Form submission";
-  /**
-   * Label text for the form submission checkbox
-   * @uiName Form submission checkbox label
-   */
-  @Prop() checkboxDescription: string =
-    "I have completed and submitted my tax form";
-  /**
-   * Text inside iframe when Docusign expires
-   * @uiName Docusign expired text
+   * Remind participants their session will time out after 20 minutes of inactivity.
+   * @uiName Docusign timed session message
    */
   @Prop() docusignExpired: string =
     "For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue.";
   /**
-   * Text inside iframe when Docusign form is compelted
-   * @uiName Docusign completed text
-   */
-  @Prop() docusignCompleted: string =
-    "Your document has been completed and submitted.";
-  /**
-   * Heading text for the participant type radio buttons
-   * @uiName Participant type radio buttons heading
+   * @uiName Participant type field label
    */
   @Prop() participantType: string = "Participant type";
   /**
-   * Label text for the business entity radio button
-   * @uiName Business entity radio button label
+   * An option for the participant type field. Used to determine which W-8 form is required.
+   * @uiName Business representative participant type label
    */
   @Prop() businessEntity: string = "I represent a business";
   /**
-   * Label text for the individual participant radio button
-   * @uiName Individual participant radio button label
+   * An option for the participant type field. Used to determine which W-8 form is required.
+   * @uiName Individual participant type label
    */
   @Prop() individualParticipant: string = "I am an individual participant";
   /**
-   * Text inside iframe when Docusign form throws error
-   * @uiName Docusign error text
+   * This appears inside the Docusign frame.
+   * @uiName Docusign form error message
    */
   @Prop() docusignError: string =
     "There was a problem displaying this form. Please refresh the page. If this problem continues, contact Support.";
   /**
-   * Text shown inside of refresh button
-   * @uiName Refresh button text
+   * @uiName Refresh page button label
    */
   @Prop() refreshButton: string = "Refresh Page";
   /**
@@ -150,12 +125,6 @@ export class DocusignForm {
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";
   /**
-   * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
-   *
-   * @uiName Form submission error text
-   */
-  @Prop() formSubmissionError: string = "This field is required";
-  /**
    * @undocumented
    * @uiType object
    */
@@ -175,7 +144,6 @@ export class DocusignForm {
       error: {
         generalTitle: props.generalErrorTitle,
         generalDescription: props.generalErrorDescription,
-        formSubmission: props.formSubmissionError,
         participantType: props.participantType,
         loadingErrorAlertHeader: props.loadingErrorAlertHeader,
         loadingErrorAlertDescription: props.loadingErrorAlertDescription,
