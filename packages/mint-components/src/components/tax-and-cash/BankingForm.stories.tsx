@@ -28,6 +28,7 @@ const bankingFormProps: StoryDemoData<BankingInfoFormViewProps> = {
     onSubmit: async () => console.log("Submit"),
     setPaymentMethodChecked: () => {},
     setPaymentScheduleChecked: () => {},
+    setCountrySearch: () => {},
     onBack: async () => console.log("back"),
   },
   refs: { formRef: { current: null } },

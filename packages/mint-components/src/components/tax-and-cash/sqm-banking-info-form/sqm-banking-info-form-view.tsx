@@ -39,9 +39,11 @@ export interface BankingInfoFormViewProps {
     currency?: string;
     thresholds: string[];
     countries?: { code: string; name: string }[];
+    allCountries?: { code: string; name: string }[];
     currentPaymentOption?: any;
     showInputs?: boolean;
     bankCountry?: string;
+    countrySearch?: string;
   };
   slots?: {
     formInputsSlot?: VNode[];
@@ -62,6 +64,7 @@ export interface BankingInfoFormViewProps {
     onBack: (props: any) => void;
     setBankCountry?: (country: string) => void;
     setCurrency?: (currency: string) => void;
+    setCountrySearch: (c: any) => void;
   };
   text: {
     formStep: string;
