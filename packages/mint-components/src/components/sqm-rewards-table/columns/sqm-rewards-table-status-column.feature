@@ -29,7 +29,7 @@ Feature: Reward Table Status Column
       | PENDING                  | Pending          | Orange     |
       | EXPIRED                  | Expired          | Red        |
       | REDEEMED                 | Redeemed         | Blue       |
-      | PENDING_REVIEW           | Pending Review   | Orange     |
+      | PENDING_REVIEW           | Pending          | Orange     |
       | PAYOUT_TRANSFERRED       | Payout Approved  | blue       |
       | PAYOUT_NOT_YET_DUE       | Payout Approved  | blue       |
       | PAYOUT_OVERDUE           | Payout Failed    | Red        |
