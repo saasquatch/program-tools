@@ -980,8 +980,8 @@ export namespace Components {
          */
         "backButton": string;
         /**
-          * Alert text indicating participant cannot change info after it has been submitted
-          * @uiName Cannot change info Alert text
+          * Communicate that after this step, only Support can change personal and indirect tax information.
+          * @uiName Submission confirmation alert
          */
         "cannotChangeInfoAlert": string;
         /**
@@ -1012,33 +1012,30 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Indirect tax heading text
+          * @uiName Step 2 title
          */
         "indirectTax": string;
         /**
-          * Text shown at the top of the page below to the indirect tax header
-          * @uiName Indirect tax label text
+          * Displayed under the title of this step.
+          * @uiName Step 2 description
          */
         "indirectTaxDescription": string;
         /**
-          * Heading text for the indirect tax details section
-          * @uiName Indirect tax details heading text
+          * Displayed with indirect tax registration options.
+          * @uiName Indirect tax details section title
          */
         "indirectTaxDetails": string;
         /**
-          * Text shown below the indirect tax details heading text
-          * @uiName Indirect tax details subtext
+          * Displayed under the indirect tax details title.
+          * @uiName Indirect tax details section  description
          */
         "indirectTaxDetailsDescription": string;
         /**
-          * Label text for the indirect tax number input with a dynamic placeholder based on tax type
-          * @uiName Indirect tax number input label
+          * @uiName Indirect tax number field label
          */
         "indirectTaxNumber": string;
         /**
-          * Error message for the indirect tax number input field with a dynamic placeholder based on tax type
-          * @uiName Indirect tax number error message
+          * @uiName Missing indirect tax number error message
          */
         "indirectTaxNumberError": string;
         /**
@@ -1052,13 +1049,13 @@ export namespace Components {
          */
         "isPartnerAlertHeader": string;
         /**
-          * Text for the option indicating registration for QST tax
-          * @uiName Registered for QST tax option text
+          * Displayed to participants registered for indirect tax in Quebec, Canada.
+          * @uiName QST tax checkbox
          */
         "isRegisteredQST": string;
         /**
-          * Text for the option indicating registration for sub-region income tax
-          * @uiName Registered for sub-region income tax option text
+          * Displayed to participants registered for indirect tax in Spain.
+          * @uiName Spain income tax checkbox
          */
         "isRegisteredSubRegionIncomeTax": string;
         /**
@@ -1072,33 +1069,30 @@ export namespace Components {
          */
         "loadingErrorAlertHeader": string;
         /**
-          * Text for the option indicating not being registered for indirect tax
-          * @uiName Not registered for indirect tax option text
+          * @uiName Not registered for indirect tax option
          */
         "notRegistered": string;
         /**
-          * Subtext for the option indicating not being registered for indirect tax
-          * @uiName Not registered for indirect tax option sub-text
+          * Participants based in the US are  considered not registered.
+          * @uiName Not registered for indirect tax option description
          */
         "notRegisteredSubtext": string;
         /**
-          * Text for the option indicating registration for indirect tax
-          * @uiName Registered for indirect tax option text
+          * @uiName Registered for indirect tax option
          */
         "otherRegion": string;
         /**
-          * Subtext for the option indicating registration for indirect tax in a different region
-          * @uiName Registered for indirect tax in a different region option sub-text
+          * Selecting this option will display fields to enter indirect tax details.
+          * @uiName Registered for indirect tax option description
          */
         "otherRegionSubtext": string;
         /**
-          * Label text for the province input
-          * @uiName Province input label
+          * @uiName Province field label
          */
         "province": string;
         /**
-          * Label text for the QST number input field
-          * @uiName QST number input label
+          * Displayed to participants registered for QST.
+          * @uiName QST number field label
          */
         "qstNumber": string;
         /**
@@ -1107,18 +1101,16 @@ export namespace Components {
          */
         "searchForCountryText": string;
         /**
-          * Label text for the country/region select input
-          * @uiName Selected country/region label
+          * @uiName Region of indirect tax field label
          */
         "selectedRegion": string;
         /**
-          * Label text for the sub-region input field
+          * Displayed to participants registered in Spain.
           * @uiName Sub-region input label
          */
         "subRegion": string;
         /**
-          * Label text for the sub-region tax number input field
-          * @uiName Sub-region tax number input label
+          * @uiName Income tax field label
          */
         "subRegionTaxNumberLabel": string;
     }
@@ -4094,92 +4086,86 @@ export namespace Components {
          */
         "step1_termsAndConditionsLabel": string;
         /**
-          * Alert text indicating participant cannot change info after it has been submitted
-          * @uiName Cannot change info Alert text
+          * Communicate that after this step, only Support can change personal and indirect tax information.
+          * @uiName Submission confirmation alert
           * @uiGroup Step 2 Properties
          */
         "step2_cannotChangeInfoAlert": string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Indirect tax heading text
+          * @uiName Step 2 title
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTax": string;
         /**
-          * Subtext shown at the top of the page
-          * @uiName Indirect tax sub text
+          * Displayed under the title of this step.
+          * @uiName Step 2 description
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxDescription": string;
         /**
-          * Heading text shown above the tax details radio buttons
-          * @uiName Indirect tax details heading
+          * Displayed with indirect tax registration options.
+          * @uiName Indirect tax details section title
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxDetails": string;
         /**
-          * Sub text shown above the tax details radio buttons
-          * @uiName Indirect tax details sub text
+          * Displayed under the indirect tax details title.
+          * @uiName Indirect tax details section  description
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxDetailsDescription": string;
         /**
-          * Label text for the Indirect Tax Number input
-          * @uiName Indirect Tax Number input label
+          * @uiName Indirect tax number field label
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxNumber": string;
         /**
-          * Error text shown below the Indirect Tax Number select input
-          * @uiName Indirect Tax Number error text
+          * @uiName Missing indirect tax number error message
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxNumberError": string;
         /**
-          * Label text for the QST checkbox
-          * @uiName checkbox label
+          * Displayed to participants registered for indirect tax in Quebec, Canada.
+          * @uiName QST tax checkbox
           * @uiGroup Step 2 Properties
          */
         "step2_isRegisteredQST": string;
         /**
-          * Label text for Income Tax checkbox
-          * @uiName Income Tax checkbox label
+          * Displayed to participants registered for indirect tax in Spain.
+          * @uiName Spain income tax checkbox
           * @uiGroup Step 2 Properties
          */
         "step2_isRegisteredSubRegionIncomeTax": string;
         /**
-          * Label text for the not registered radio button
-          * @uiName Not registered radio button label
+          * @uiName Not registered for indirect tax option
           * @uiGroup Step 2 Properties
          */
         "step2_notRegistered": string;
         /**
-          * Subtext for the option indicating not being registered for indirect tax
-          * @uiName Not registered for indirect tax option sub-text
+          * Participants based in the US are  considered not registered.
+          * @uiName Not registered for indirect tax option description
           * @uiGroup Step 2 Properties
          */
         "step2_notRegisteredSubtext": string;
         /**
-          * Label test for the option indicating registration for indirect tax
-          * @uiName Registered for indrect tax label
+          * @uiName Registered for indirect tax option
           * @uiGroup Step 2 Properties
          */
         "step2_otherRegion": string;
         /**
-          * Subtext for the option indicating registration for indirect tax in a different region
-          * @uiName Registered for indirect tax in a different region option sub-text
+          * Selecting this option will display fields to enter indirect tax details.
+          * @uiName Registered for indirect tax option description
           * @uiGroup Step 2 Properties
          */
         "step2_otherRegionSubtext": string;
         /**
-          * Label text for the Province select input
-          * @uiName Province select input label
+          * @uiName Province field label
           * @uiGroup Step 2 Properties
          */
         "step2_province": string;
         /**
-          * Label text for the QST Tax Number input
-          * @uiName QST Tax Number input label
+          * Displayed to participants registered for QST.
+          * @uiName QST number field label
           * @uiGroup Step 2 Properties
          */
         "step2_qstNumber": string;
@@ -4189,20 +4175,18 @@ export namespace Components {
          */
         "step2_searchForCountryText": string;
         /**
-          * Label text for the Selected Region select input
-          * @uiName Selected region select input label
+          * @uiName Region of indirect tax field label
           * @uiGroup Step 2 Properties
          */
         "step2_selectedRegion": string;
         /**
-          * Label text for Sub-region select
-          * @uiName for Sub-region select label
+          * Displayed to participants registered in Spain.
+          * @uiName Sub-region input label
           * @uiGroup Step 2 Properties
          */
         "step2_subRegion": string;
         /**
-          * Label text for the Sub-region Income Tax Number input
-          * @uiName Sub-region income Tax Number input label
+          * @uiName Income tax field label
           * @uiGroup Step 2 Properties
          */
         "step2_subRegionTaxNumberLabel": string;
@@ -6660,8 +6644,8 @@ declare namespace LocalJSX {
          */
         "backButton"?: string;
         /**
-          * Alert text indicating participant cannot change info after it has been submitted
-          * @uiName Cannot change info Alert text
+          * Communicate that after this step, only Support can change personal and indirect tax information.
+          * @uiName Submission confirmation alert
          */
         "cannotChangeInfoAlert"?: string;
         /**
@@ -6692,33 +6676,30 @@ declare namespace LocalJSX {
          */
         "generalErrorTitle"?: string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Indirect tax heading text
+          * @uiName Step 2 title
          */
         "indirectTax"?: string;
         /**
-          * Text shown at the top of the page below to the indirect tax header
-          * @uiName Indirect tax label text
+          * Displayed under the title of this step.
+          * @uiName Step 2 description
          */
         "indirectTaxDescription"?: string;
         /**
-          * Heading text for the indirect tax details section
-          * @uiName Indirect tax details heading text
+          * Displayed with indirect tax registration options.
+          * @uiName Indirect tax details section title
          */
         "indirectTaxDetails"?: string;
         /**
-          * Text shown below the indirect tax details heading text
-          * @uiName Indirect tax details subtext
+          * Displayed under the indirect tax details title.
+          * @uiName Indirect tax details section  description
          */
         "indirectTaxDetailsDescription"?: string;
         /**
-          * Label text for the indirect tax number input with a dynamic placeholder based on tax type
-          * @uiName Indirect tax number input label
+          * @uiName Indirect tax number field label
          */
         "indirectTaxNumber"?: string;
         /**
-          * Error message for the indirect tax number input field with a dynamic placeholder based on tax type
-          * @uiName Indirect tax number error message
+          * @uiName Missing indirect tax number error message
          */
         "indirectTaxNumberError"?: string;
         /**
@@ -6732,13 +6713,13 @@ declare namespace LocalJSX {
          */
         "isPartnerAlertHeader"?: string;
         /**
-          * Text for the option indicating registration for QST tax
-          * @uiName Registered for QST tax option text
+          * Displayed to participants registered for indirect tax in Quebec, Canada.
+          * @uiName QST tax checkbox
          */
         "isRegisteredQST"?: string;
         /**
-          * Text for the option indicating registration for sub-region income tax
-          * @uiName Registered for sub-region income tax option text
+          * Displayed to participants registered for indirect tax in Spain.
+          * @uiName Spain income tax checkbox
          */
         "isRegisteredSubRegionIncomeTax"?: string;
         /**
@@ -6752,33 +6733,30 @@ declare namespace LocalJSX {
          */
         "loadingErrorAlertHeader"?: string;
         /**
-          * Text for the option indicating not being registered for indirect tax
-          * @uiName Not registered for indirect tax option text
+          * @uiName Not registered for indirect tax option
          */
         "notRegistered"?: string;
         /**
-          * Subtext for the option indicating not being registered for indirect tax
-          * @uiName Not registered for indirect tax option sub-text
+          * Participants based in the US are  considered not registered.
+          * @uiName Not registered for indirect tax option description
          */
         "notRegisteredSubtext"?: string;
         /**
-          * Text for the option indicating registration for indirect tax
-          * @uiName Registered for indirect tax option text
+          * @uiName Registered for indirect tax option
          */
         "otherRegion"?: string;
         /**
-          * Subtext for the option indicating registration for indirect tax in a different region
-          * @uiName Registered for indirect tax in a different region option sub-text
+          * Selecting this option will display fields to enter indirect tax details.
+          * @uiName Registered for indirect tax option description
          */
         "otherRegionSubtext"?: string;
         /**
-          * Label text for the province input
-          * @uiName Province input label
+          * @uiName Province field label
          */
         "province"?: string;
         /**
-          * Label text for the QST number input field
-          * @uiName QST number input label
+          * Displayed to participants registered for QST.
+          * @uiName QST number field label
          */
         "qstNumber"?: string;
         /**
@@ -6787,18 +6765,16 @@ declare namespace LocalJSX {
          */
         "searchForCountryText"?: string;
         /**
-          * Label text for the country/region select input
-          * @uiName Selected country/region label
+          * @uiName Region of indirect tax field label
          */
         "selectedRegion"?: string;
         /**
-          * Label text for the sub-region input field
+          * Displayed to participants registered in Spain.
           * @uiName Sub-region input label
          */
         "subRegion"?: string;
         /**
-          * Label text for the sub-region tax number input field
-          * @uiName Sub-region tax number input label
+          * @uiName Income tax field label
          */
         "subRegionTaxNumberLabel"?: string;
     }
@@ -9744,92 +9720,86 @@ declare namespace LocalJSX {
          */
         "step1_termsAndConditionsLabel"?: string;
         /**
-          * Alert text indicating participant cannot change info after it has been submitted
-          * @uiName Cannot change info Alert text
+          * Communicate that after this step, only Support can change personal and indirect tax information.
+          * @uiName Submission confirmation alert
           * @uiGroup Step 2 Properties
          */
         "step2_cannotChangeInfoAlert"?: string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Indirect tax heading text
+          * @uiName Step 2 title
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTax"?: string;
         /**
-          * Subtext shown at the top of the page
-          * @uiName Indirect tax sub text
+          * Displayed under the title of this step.
+          * @uiName Step 2 description
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxDescription"?: string;
         /**
-          * Heading text shown above the tax details radio buttons
-          * @uiName Indirect tax details heading
+          * Displayed with indirect tax registration options.
+          * @uiName Indirect tax details section title
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxDetails"?: string;
         /**
-          * Sub text shown above the tax details radio buttons
-          * @uiName Indirect tax details sub text
+          * Displayed under the indirect tax details title.
+          * @uiName Indirect tax details section  description
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxDetailsDescription"?: string;
         /**
-          * Label text for the Indirect Tax Number input
-          * @uiName Indirect Tax Number input label
+          * @uiName Indirect tax number field label
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxNumber"?: string;
         /**
-          * Error text shown below the Indirect Tax Number select input
-          * @uiName Indirect Tax Number error text
+          * @uiName Missing indirect tax number error message
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxNumberError"?: string;
         /**
-          * Label text for the QST checkbox
-          * @uiName checkbox label
+          * Displayed to participants registered for indirect tax in Quebec, Canada.
+          * @uiName QST tax checkbox
           * @uiGroup Step 2 Properties
          */
         "step2_isRegisteredQST"?: string;
         /**
-          * Label text for Income Tax checkbox
-          * @uiName Income Tax checkbox label
+          * Displayed to participants registered for indirect tax in Spain.
+          * @uiName Spain income tax checkbox
           * @uiGroup Step 2 Properties
          */
         "step2_isRegisteredSubRegionIncomeTax"?: string;
         /**
-          * Label text for the not registered radio button
-          * @uiName Not registered radio button label
+          * @uiName Not registered for indirect tax option
           * @uiGroup Step 2 Properties
          */
         "step2_notRegistered"?: string;
         /**
-          * Subtext for the option indicating not being registered for indirect tax
-          * @uiName Not registered for indirect tax option sub-text
+          * Participants based in the US are  considered not registered.
+          * @uiName Not registered for indirect tax option description
           * @uiGroup Step 2 Properties
          */
         "step2_notRegisteredSubtext"?: string;
         /**
-          * Label test for the option indicating registration for indirect tax
-          * @uiName Registered for indrect tax label
+          * @uiName Registered for indirect tax option
           * @uiGroup Step 2 Properties
          */
         "step2_otherRegion"?: string;
         /**
-          * Subtext for the option indicating registration for indirect tax in a different region
-          * @uiName Registered for indirect tax in a different region option sub-text
+          * Selecting this option will display fields to enter indirect tax details.
+          * @uiName Registered for indirect tax option description
           * @uiGroup Step 2 Properties
          */
         "step2_otherRegionSubtext"?: string;
         /**
-          * Label text for the Province select input
-          * @uiName Province select input label
+          * @uiName Province field label
           * @uiGroup Step 2 Properties
          */
         "step2_province"?: string;
         /**
-          * Label text for the QST Tax Number input
-          * @uiName QST Tax Number input label
+          * Displayed to participants registered for QST.
+          * @uiName QST number field label
           * @uiGroup Step 2 Properties
          */
         "step2_qstNumber"?: string;
@@ -9839,20 +9809,18 @@ declare namespace LocalJSX {
          */
         "step2_searchForCountryText"?: string;
         /**
-          * Label text for the Selected Region select input
-          * @uiName Selected region select input label
+          * @uiName Region of indirect tax field label
           * @uiGroup Step 2 Properties
          */
         "step2_selectedRegion"?: string;
         /**
-          * Label text for Sub-region select
-          * @uiName for Sub-region select label
+          * Displayed to participants registered in Spain.
+          * @uiName Sub-region input label
           * @uiGroup Step 2 Properties
          */
         "step2_subRegion"?: string;
         /**
-          * Label text for the Sub-region Income Tax Number input
-          * @uiName Sub-region income Tax Number input label
+          * @uiName Income tax field label
           * @uiGroup Step 2 Properties
          */
         "step2_subRegionTaxNumberLabel"?: string;

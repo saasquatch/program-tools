@@ -33,102 +33,92 @@ export class IndirectTaxForm {
   @Prop() formStep: string = "Step {step} of {count}";
 
   /**
-   * Heading text shown at the top of the page
-   * @uiName Indirect tax heading text
+   * @uiName Step 2 title
    */
   @Prop() indirectTax: string = "Indirect Tax";
 
   /**
-   * Text shown at the top of the page below to the indirect tax header
-   * @uiName Indirect tax label text
+   * Displayed under the title of this step.
+   * @uiName Step 2 description
    */
   @Prop() indirectTaxDescription: string =
     "Indirect taxes (e.g. VAT, HST, GST) are transactional based taxes collected by business and retailers on behalf of governments. Any rewards you receive may be subject to indirect taxes based on your country.";
 
   /**
-   * Heading text for the indirect tax details section
-   * @uiName Indirect tax details heading text
+   * Displayed with indirect tax registration options.
+   * @uiName Indirect tax details section title
    */
   @Prop() indirectTaxDetails: string = "Indirect tax details";
 
   /**
-   * Text shown below the indirect tax details heading text
-   * @uiName Indirect tax details subtext
+   * Displayed under the indirect tax details title.
+   * @uiName Indirect tax details section  description
    */
   @Prop() indirectTaxDetailsDescription: string =
     "Participants representing businesses based in countries that enforce indirect taxes (e.g. VAT, HST, GST) must add their indirect tax details to stay tax compliant.";
 
   /**
-   * Text for the option indicating registration for indirect tax
-   * @uiName Registered for indirect tax option text
+   * @uiName Registered for indirect tax option
    */
   @Prop() otherRegion: string = "Registered for indirect tax";
 
   /**
-   * Subtext for the option indicating registration for indirect tax in a different region
-   * @uiName Registered for indirect tax in a different region option sub-text
+   * Selecting this option will display fields to enter indirect tax details.
+   * @uiName Registered for indirect tax option description
    */
   @Prop() otherRegionSubtext: string =
     "If you represent a business based outside of the US you may be registered. If you’re not sure, contact our Support team to find out more.";
 
   /**
-   * Text for the option indicating not being registered for indirect tax
-   * @uiName Not registered for indirect tax option text
+   * @uiName Not registered for indirect tax option
    */
   @Prop() notRegistered: string = "Not registered for indirect tax";
-
   /**
-   * Subtext for the option indicating not being registered for indirect tax
-   * @uiName Not registered for indirect tax option sub-text
+   * Participants based in the US are  considered not registered.
+   * @uiName Not registered for indirect tax option description
    */
   @Prop() notRegisteredSubtext: string =
     "If you’re joining this referral program as an individual or you’re based in the US, then you’re not registered.";
-
   /**
-   * Label text for the country/region select input
-   * @uiName Selected country/region label
+   * @uiName Region of indirect tax field label
    */
   @Prop() selectedRegion: string = "Country / region of indirect tax";
-
   /**
-   * Label text for the province input
-   * @uiName Province input label
+   * @uiName Province field label
    */
   @Prop() province: string = "Province";
 
   /**
-   * Label text for the indirect tax number input with a dynamic placeholder based on tax type
-   * @uiName Indirect tax number input label
+   * @uiName Indirect tax number field label
    */
   @Prop() indirectTaxNumber: string =
     "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}}";
 
   /**
-   * Label text for the QST number input field
-   * @uiName QST number input label
+   * Displayed to participants registered for QST.
+   * @uiName QST number field label
    */
   @Prop() qstNumber: string = "QST number";
 
   /**
-   * Text for the option indicating registration for QST tax
-   * @uiName Registered for QST tax option text
+   * Displayed to participants registered for indirect tax in Quebec, Canada.
+   * @uiName QST tax checkbox
    */
   @Prop() isRegisteredQST: string = "I am registered for QST Tax";
 
   /**
-   * Text for the option indicating registration for sub-region income tax
-   * @uiName Registered for sub-region income tax option text
+   * Displayed to participants registered for indirect tax in Spain.
+   * @uiName Spain income tax checkbox
    */
   @Prop() isRegisteredSubRegionIncomeTax: string =
     "I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me.";
   /**
-   * Label text for the sub-region input field
+   * Displayed to participants registered in Spain.
    * @uiName Sub-region input label
    */
   @Prop() subRegion: string = "Sub-region";
   /**
-   * Label text for the sub-region tax number input field
-   * @uiName Sub-region tax number input label
+   * @uiName Income tax field label
    */
   @Prop() subRegionTaxNumberLabel: string = "Income tax number";
 
@@ -137,14 +127,13 @@ export class IndirectTaxForm {
    */
   @Prop() backButton: string = "Back";
   /**
-   * Alert text indicating participant cannot change info after it has been submitted
-   * @uiName Cannot change info Alert text
+   * Communicate that after this step, only Support can change personal and indirect tax information.
+   * @uiName Submission confirmation alert
    */
   @Prop() cannotChangeInfoAlert: string =
     "Changes to your personal and indirect tax information can only be made through our Support team after you complete this step. Make sure these are correct before continuing.";
   /**
-   * Error message for the indirect tax number input field with a dynamic placeholder based on tax type
-   * @uiName Indirect tax number error message
+   * @uiName Missing indirect tax number error message
    */
   @Prop() indirectTaxNumberError: string =
     "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}} is required";
