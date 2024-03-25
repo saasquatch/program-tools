@@ -4056,44 +4056,37 @@ export namespace Components {
          */
         "step1_allowBankingCollection": string;
         /**
-          * Label text for country input
-          * @uiName Country label
+          * @uiName Country field label
           * @uiGroup Step 1 Properties
          */
         "step1_country": string;
         /**
-          * Label text for currency input
-          * @uiName Currency label
+          * @uiName Currency field label
           * @uiGroup Step 1 Properties
          */
         "step1_currency": string;
         /**
-          * Help text shown underneath currency input
-          * @uiName Currency help text
+          * @uiName Currency field help text
           * @uiGroup Step 1 Properties
          */
         "step1_currencyHelpText": string;
         /**
-          * Label text for email input
-          * @uiName Email label
+          * @uiName Email field label
           * @uiGroup Step 1 Properties
          */
         "step1_email": string;
         /**
-          * Label text for first name input
-          * @uiName First name label
+          * @uiName First name field label
           * @uiGroup Step 1 Properties
          */
         "step1_firstName": string;
         /**
-          * Label text for last name input
-          * @uiName Last name label
+          * @uiName Last name field label
           * @uiGroup Step 1 Properties
          */
         "step1_lastName": string;
         /**
-          * Heading text shown above the forms inputs.
-          * @uiName Form heading text
+          * @uiName Step 1 title
           * @uiGroup Step 1 Properties
          */
         "step1_personalInformation": string;
@@ -4108,8 +4101,7 @@ export namespace Components {
          */
         "step1_searchForCurrencyText": string;
         /**
-          * Label text for terms and conditions
-          * @uiName Terms and conditions label text
+          * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
          */
         "step1_termsAndConditionsLabel": string;
@@ -4878,18 +4870,15 @@ export namespace Components {
          */
         "continueButton": string;
         /**
-          * Label text for country input
-          * @uiName Country label
+          * @uiName Country field label
          */
         "country": string;
         /**
-          * Label text for currency input
-          * @uiName Currency label
+          * @uiName Currency field label
          */
         "currency": string;
         /**
-          * Help text shown underneath currency input
-          * @uiName Currency help text
+          * @uiName Currency field help text
          */
         "currencyHelpText": string;
         /**
@@ -4898,8 +4887,7 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseUserInfoFormResult>;
         /**
-          * Label text for email input
-          * @uiName Email label
+          * @uiName Email field label
          */
         "email": string;
         /**
@@ -4908,8 +4896,7 @@ export namespace Components {
          */
         "fieldRequiredError": string;
         /**
-          * Label text for first name input
-          * @uiName First name label
+          * @uiName First name field label
          */
         "firstName": string;
         /**
@@ -4938,8 +4925,7 @@ export namespace Components {
          */
         "isPartnerAlertHeader": string;
         /**
-          * Label text for last name input
-          * @uiName Last name label
+          * @uiName Last name field label
          */
         "lastName": string;
         /**
@@ -4953,8 +4939,7 @@ export namespace Components {
          */
         "loadingErrorAlertHeader": string;
         /**
-          * Heading text shown above the forms inputs.
-          * @uiName Form heading text
+          * @uiName Step 1 title
          */
         "personalInformation": string;
         /**
@@ -4968,8 +4953,7 @@ export namespace Components {
          */
         "searchForCurrencyText": string;
         /**
-          * Label text for terms and conditions
-          * @uiName Terms and conditions label text
+          * @uiName Terms and conditions checkbox
          */
         "termsAndConditionsLabel": string;
     }
@@ -9736,44 +9720,37 @@ declare namespace LocalJSX {
          */
         "step1_allowBankingCollection"?: string;
         /**
-          * Label text for country input
-          * @uiName Country label
+          * @uiName Country field label
           * @uiGroup Step 1 Properties
          */
         "step1_country"?: string;
         /**
-          * Label text for currency input
-          * @uiName Currency label
+          * @uiName Currency field label
           * @uiGroup Step 1 Properties
          */
         "step1_currency"?: string;
         /**
-          * Help text shown underneath currency input
-          * @uiName Currency help text
+          * @uiName Currency field help text
           * @uiGroup Step 1 Properties
          */
         "step1_currencyHelpText"?: string;
         /**
-          * Label text for email input
-          * @uiName Email label
+          * @uiName Email field label
           * @uiGroup Step 1 Properties
          */
         "step1_email"?: string;
         /**
-          * Label text for first name input
-          * @uiName First name label
+          * @uiName First name field label
           * @uiGroup Step 1 Properties
          */
         "step1_firstName"?: string;
         /**
-          * Label text for last name input
-          * @uiName Last name label
+          * @uiName Last name field label
           * @uiGroup Step 1 Properties
          */
         "step1_lastName"?: string;
         /**
-          * Heading text shown above the forms inputs.
-          * @uiName Form heading text
+          * @uiName Step 1 title
           * @uiGroup Step 1 Properties
          */
         "step1_personalInformation"?: string;
@@ -9788,8 +9765,7 @@ declare namespace LocalJSX {
          */
         "step1_searchForCurrencyText"?: string;
         /**
-          * Label text for terms and conditions
-          * @uiName Terms and conditions label text
+          * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
          */
         "step1_termsAndConditionsLabel"?: string;
@@ -10557,18 +10533,15 @@ declare namespace LocalJSX {
          */
         "continueButton"?: string;
         /**
-          * Label text for country input
-          * @uiName Country label
+          * @uiName Country field label
          */
         "country"?: string;
         /**
-          * Label text for currency input
-          * @uiName Currency label
+          * @uiName Currency field label
          */
         "currency"?: string;
         /**
-          * Help text shown underneath currency input
-          * @uiName Currency help text
+          * @uiName Currency field help text
          */
         "currencyHelpText"?: string;
         /**
@@ -10577,8 +10550,7 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseUserInfoFormResult>;
         /**
-          * Label text for email input
-          * @uiName Email label
+          * @uiName Email field label
          */
         "email"?: string;
         /**
@@ -10587,8 +10559,7 @@ declare namespace LocalJSX {
          */
         "fieldRequiredError"?: string;
         /**
-          * Label text for first name input
-          * @uiName First name label
+          * @uiName First name field label
          */
         "firstName"?: string;
         /**
@@ -10617,8 +10588,7 @@ declare namespace LocalJSX {
          */
         "isPartnerAlertHeader"?: string;
         /**
-          * Label text for last name input
-          * @uiName Last name label
+          * @uiName Last name field label
          */
         "lastName"?: string;
         /**
@@ -10632,8 +10602,7 @@ declare namespace LocalJSX {
          */
         "loadingErrorAlertHeader"?: string;
         /**
-          * Heading text shown above the forms inputs.
-          * @uiName Form heading text
+          * @uiName Step 1 title
          */
         "personalInformation"?: string;
         /**
@@ -10647,8 +10616,7 @@ declare namespace LocalJSX {
          */
         "searchForCurrencyText"?: string;
         /**
-          * Label text for terms and conditions
-          * @uiName Terms and conditions label text
+          * @uiName Terms and conditions checkbox
          */
         "termsAndConditionsLabel"?: string;
     }

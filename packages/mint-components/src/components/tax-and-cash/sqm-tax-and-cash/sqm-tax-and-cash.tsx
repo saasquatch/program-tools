@@ -30,38 +30,32 @@ export class TaxAndCashMonolith {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
   /**
-   * Label text for first name input
-   * @uiName First name label
+   * @uiName First name field label
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_firstName: string = "First name";
   /**
-   * Label text for last name input
-   * @uiName Last name label
+   * @uiName Last name field label
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_lastName: string = "Last name";
   /**
-   * Label text for email input
-   * @uiName Email label
+   * @uiName Email field label
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_email: string = "Email";
   /**
-   * Label text for country input
-   * @uiName Country label
+   * @uiName Country field label
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_country: string = "Country";
   /**
-   * Label text for currency input
-   * @uiName Currency label
+   * @uiName Currency field label
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_currency: string = "Currency";
   /**
-   * Help text shown underneath currency input
-   * @uiName Currency help text
+   * @uiName Currency field help text
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_currencyHelpText: string =
@@ -74,17 +68,15 @@ export class TaxAndCashMonolith {
   @Prop() step1_allowBankingCollection: string =
     "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information";
   /**
-   * Heading text shown above the forms inputs.
-   * @uiName Form heading text
+   * @uiName Step 1 title
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_personalInformation: string = "Personal Information";
   /**
-   * Label text for terms and conditions
-   * @uiName Terms and conditions label text
+   * @uiName Terms and conditions checkbox
    * @uiGroup Step 1 Properties
    */
-  @Prop() step1_termsAndConditionsLabel: string = "Terms and Conditions";
+  @Prop() step1_termsAndConditionsLabel: string = "terms and conditions";
 
   /**
    * Placeholder text displayed in the country search dropdown

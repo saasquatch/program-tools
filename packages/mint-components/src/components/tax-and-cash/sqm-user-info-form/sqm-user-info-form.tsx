@@ -21,34 +21,28 @@ import { useUserInfoForm, UseUserInfoFormResult } from "./useUserInfoForm";
 export class TaxForm {
   @State() ignored = true;
   /**
-   * Label text for first name input
-   * @uiName First name label
+   * @uiName First name field label
    */
   @Prop() firstName: string = "First name";
   /**
-   * Label text for last name input
-   * @uiName Last name label
+   * @uiName Last name field label
    */
   @Prop() lastName: string = "Last name";
   /**
-   * Label text for email input
-   * @uiName Email label
+   * @uiName Email field label
    */
   @Prop() email: string = "Email";
   /**
-   * Label text for country input
-   * @uiName Country label
+   * @uiName Country field label
    */
   @Prop() country: string = "Country";
   /**
-   * Label text for currency input
-   * @uiName Currency label
+   * @uiName Currency field label
    */
   @Prop() currency: string = "Currency";
 
   /**
-   * Help text shown underneath currency input
-   * @uiName Currency help text
+   * @uiName Currency field help text
    */
   @Prop() currencyHelpText: string = "Choose your preferred payout currency";
   /**
@@ -63,8 +57,7 @@ export class TaxForm {
    */
   @Prop() formStep: string = "Step {step} of {count}";
   /**
-   * Heading text shown above the forms inputs.
-   * @uiName Form heading text
+   * @uiName Step 1 title
    */
   @Prop() personalInformation: string = "Personal Information";
   /**
@@ -100,10 +93,9 @@ export class TaxForm {
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
   /**
-   * Label text for terms and conditions
-   * @uiName Terms and conditions label text
+   * @uiName Terms and conditions checkbox
    */
-  @Prop() termsAndConditionsLabel: string = "Terms and Conditions";
+  @Prop() termsAndConditionsLabel: string = "terms and conditions";
   /**
    * Placeholder text displayed in the country search dropdown
    * @uiName Search for country text
