@@ -93,7 +93,6 @@ export class ReferralTableRewardsCell {
       reward: Reward,
       taxConnection: ImpactConnection
     ): string => {
-      // AL: TODO PAYOUT_CANCELLED
       const possibleStates = [
         "REDEEMED",
         "CANCELLED",
