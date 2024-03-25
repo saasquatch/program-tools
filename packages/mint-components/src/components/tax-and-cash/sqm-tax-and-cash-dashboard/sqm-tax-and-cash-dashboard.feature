@@ -103,7 +103,7 @@ Feature: Tax And Cash Dashboard
 
   @minutia
   Scenario Outline: Non-existing brand partners can edit their payout information
-    Given a particiapnt has filled out their payout information
+    Given a participant has filled out their payout information
     And they are <brandPartnerType>
     And they are viewing the Payout section
     Then they <maySee> the "Edit Payout Information" button
