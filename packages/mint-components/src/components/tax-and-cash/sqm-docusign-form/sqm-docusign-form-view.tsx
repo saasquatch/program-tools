@@ -40,10 +40,7 @@ export interface DocusignFormViewProps {
     taxFormDescription: string;
     taxFormDescriptionIndividualParticipant: string;
     taxFormDescriptionBusinessEntity?: string;
-    notBasedInUS: string;
     banner: string;
-    checkboxLabel: string;
-    checkboxDescription: string;
     backButton: string;
     cancelButton: string;
     businessEntity: string;
@@ -52,7 +49,6 @@ export interface DocusignFormViewProps {
     error: {
       generalTitle: string;
       generalDescription: string;
-      formSubmission: string;
       participantType: string;
       loadingErrorAlertHeader: string;
       loadingErrorAlertDescription: string;

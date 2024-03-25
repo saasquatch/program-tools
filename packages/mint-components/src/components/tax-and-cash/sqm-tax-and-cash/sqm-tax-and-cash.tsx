@@ -77,15 +77,9 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_termsAndConditionsLabel: string = "terms and conditions";
-
-  /**
-   * Placeholder text displayed in the country search dropdown
-   * @uiName Search for country text
-   */
-  @Prop() step1_searchForCountryText: string = "Search for country..";
   /**
    * Placeholder text displayed in the currency search dropdown
-   * @uiName Search for currency text
+   * @uiName Currency field placeholder text
    */
   @Prop() step1_searchForCurrencyText: string = "Search for currency..";
 
@@ -203,73 +197,59 @@ export class TaxAndCashMonolith {
   @Prop() step2_indirectTaxNumberError: string =
     "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}} is required";
 
-  /**
-   * Placeholder text displayed in the country search dropdown
-   * @uiName Search for country text
-   */
-  @Prop() step2_searchForCountryText: string = "Search for country..";
-
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 3 PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   /**
-   * Heading text shown at the top of the page
-   * @uiName Tax form heading text
+   * @uiName Step 3 title
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_taxForm: string = "Tax form";
   /**
-   * Text shown at the top of the page next to the document type text
-   * @uiName Tax form label text
+   * Display the type of tax form that the participant must submit.
+   * @uiName Tax form name
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_taxFormLabel: string = "{documentType} Tax Form";
   /**
-   * Heading text for the participant type radio buttons
-   * @uiName Participant type radio buttons heading
+   * @uiName Participant type field label
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_participantType: string = "Participant type";
   /**
-   * Label text for the business entity radio button
-   * @uiName Business entity radio button label
+   * An option for the participant type field. Used to determine which W-8 form is required.
+   * @uiName Business representative participant type label
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_businessEntity: string = "I represent a business";
   /**
-   * Label text for the individual participant radio button
-   * @uiName Individual participant radio button label
+   * An option for the participant type field. Used to determine which W-8 form is required.
+   * @uiName Individual participant type label
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_individualParticipant: string =
     "I am an individual participant";
   /**
-   * Subtext shown at the top of the page next to the document type text
-   * @uiName Tax form subtext
+   * Displayed at the top of the page to participants based in the US.
+   * @uiName W-9 tax form description
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_taxFormDescription: string =
     "Participants based in the US need to submit a {documentType} form.";
   /**
-   * Subtext shown at the top of the page next to the document type text for individual participants
-   * @uiName Tax form subtext
+   * Displayed at the top of the page to individuals joining a US program who reside outside the country.
+   * @uiName W-8 BEN tax form description
    *  @uiGroup Step 3 Properties
    */
   @Prop() step3_taxFormDescriptionIndividualParticipant: string =
     "Participants residing outside of the US, joining the referral program of a US-based company, need to submit a {documentType} form.";
   /**
-   * Subtext shown at the top of the page next to the document type text for business entities
-   * @uiName Tax form subtext
+   * Displayed at the top of the page to participants representing a business.
+   * @uiName W-8 BEN-E tax form description
    *  @uiGroup Step 3 Properties
    */
   @Prop() step3_taxFormDescriptionBusinessEntity: string =
     "Participants residing outside of the US who represent a business entity need to submit a {documentType} form.";
-  /**
-   * Text shown in the link to the form for non US residents
-   * @uiName Not based in US link text
-   * @uiGroup Step 3 Properties
-   */
-  @Prop() stop3NotBasedInUS: string = "Not based in the US?";
   /**
    * Text shown in the banner above the document
    * @uiName Banner text
@@ -278,53 +258,24 @@ export class TaxAndCashMonolith {
   @Prop() step3_banner: string =
     "For your security, we automatically end your session when you have not interacted with the form after 20 minutes.";
   /**
-   * Heading text for the form submission checkbox
-   * @uiName Form submission checkbox heading
-   * @uiGroup Step 3 Properties
-   */
-  @Prop() step3_checkboxLabel: string = "Form submission";
-  /**
-   * Label text for the form submission checkbox
-   * @uiName Form submission checkbox label
-   * @uiGroup Step 3 Properties
-   */
-  @Prop() step3_checkboxDescription: string =
-    "I have completed and submitted my tax form";
-  /**
-   * Text shown inside iframe when Docusign form expires
-   * @uiName Expired Docusign form text
+   * Remind participants their session will time out after 20 minutes of inactivity.
+   * @uiName Docusign timed session message
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_docusignExpired: string =
     "For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue.";
   /**
-   * Text inside iframe when Docusign form is completed
-   * @uiName Docusign completed text
-   * @uiGroup Step 3 Properties
-   */
-  @Prop() step3_docusignCompleted: string =
-    "Your document has been completed and submitted.";
-  /**
-   * Text inside iframe when Docusign form throws error
-   * @uiName Docusign error text
+   * This appears inside the Docusign frame.
+   * @uiName Docusign form error message
    * * @uiGroup Step 3 Properties
    */
   @Prop() step3_docusignError: string =
     "There was a problem displaying this form. Please refresh the page. If this problem continues, contact Support.";
   /**
-   * Text shown inside of refresh button
-   * @uiName Refresh button text
+   * @uiName Refresh page button label
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_refreshButton: string = "Refresh Page";
-
-  /**
-   * The error message shown at the bottom of the page if the user has not checked the form submission checkbox
-   *
-   * @uiName Form submission error text
-   * @uiGroup Step 3 Properties
-   */
-  @Prop() step3_formSubmissionError: string = "This field is required";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 4 PROPS:
@@ -612,12 +563,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_fxWireProcessingFeeLabel: string =
     "FX Wire (Processing Fee {currency}{defaultFxFee}.00)";
-
-  /**
-   * Placeholder text displayed in the country search dropdown
-   * @uiName Search for country text
-   */
-  @Prop() step4_searchForCountryText: string = "Search for country..";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     DASHBOARD PROPS:
@@ -946,6 +891,11 @@ export class TaxAndCashMonolith {
    */
   @Prop() isPartnerAlertDescription: string =
     "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
+  /**
+   * Placeholder text displayed in the country search dropdown
+   * @uiName Country field placeholder text
+   */
+  @Prop() searchForCountryText: string = "Search for country..";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message title
