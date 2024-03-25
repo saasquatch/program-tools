@@ -168,6 +168,7 @@ const style = {
   PageDescriptionText: {
     color: "var(--sl-color-neutral-500)",
     fontSize: "var(--sl-font-size-medium)",
+    marginBottom: "var(--sl-spacing-small)",
   },
 };
 
