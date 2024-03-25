@@ -24,24 +24,24 @@ export class PayoutDetailsCard {
   statusBadgeText: string =
     "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
   /**
-   * Text shown above current balance indicating required balance for next payout
-   * @uiName Threshold payout text
+   * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
+   * @uiName Payout schedule by threshold text
    */
   @Prop() thresholdPayoutText: string =
     "Next payout occurs when balance is {thresholdBalance}";
   /**
-   * Text shown before account number
-   * @uiName Account text
+   * Shown before the participant’s bank account information.
+   * @uiName Bank account field label
    */
   @Prop() accountText: string = "Account";
   /**
-   * Error alert header shown above payout details card
-   * @uiName Error alert header
+   * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+   * @uiName Payout error message title
    */
   @Prop() errorTitleText: string = "Your payout is on hold ";
   /**
-   * Error alert description shown above payout details card
-   * @uiName Error alert description
+   * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+   * @uiName Payout error message description
    */
   @Prop()
   errorDescriptionText: string =

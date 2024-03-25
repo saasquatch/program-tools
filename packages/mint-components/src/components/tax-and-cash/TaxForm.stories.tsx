@@ -997,7 +997,7 @@ export const TaxAndCashDashboardNotActiveW9Form = () => {
         states: {
           noFormNeeded: false,
           canEditPayoutInfo: true,
-          status: "NOT_ACTIVE",
+          status: "INACTIVE",
           documentType: "W9",
           documentTypeString: taxTypeToName("W9"),
           country: "United Kingdom",
