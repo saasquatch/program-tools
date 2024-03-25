@@ -20,203 +20,185 @@ import { NextPayout } from "../sqm-payout-details-card/PayoutDetailsCard.stories
 @Component({ tag: "sqm-tax-and-cash-dashboard", shadow: true })
 export class TaxAndCashDashboard {
   /**
-   * Status text displayed in badge when tax document is Active
-   *
-   * @uiName Status text
+   * @uiName Active tax form badge label
    */
   @Prop() statusTextActive?: string = "Active";
 
   /**
-   * Status text displayed in badge when tax document is Not Active
-   *
-   * @uiName Status text
+   * @uiName Invalid tax form badge label
    */
   @Prop() statusTextNotActive?: string = "Invalid Tax Form";
 
   /**
-   * Status text displayed in badge when tax document is Not Verified
+   * Displayed when the participant submitted their form but it is awaiting review.
    *
-   * @uiName Status text
+   * @uiName Not verified tax form badge label
    */
   @Prop() statusTextNotVerified?: string = "Not Verified";
 
   /**
-   * Description text which appears beside badge showing when the form was submitted
+   * Additional text displayed next to the tax form's status badge
    *
-   * @uiName Badge description text
+   * @uiName Active W-9 description
    */
   @Prop() badgeTextSubmittedOn?: string = "Submitted on {dateSubmitted}.";
   /**
-   * Description text for W8 which appears beside badge showing when the form was submitted
+   * Additional text displayed next to the tax form's status badge.
    *
-   * @uiName Badge description text
+   * @uiName Active W-8 description
    */
   @Prop() badgeTextSubmittedOnW8?: string =
     "Submitted on {dateSubmitted}. Valid for three years after submission.";
   /**
-   * Description text which appears beside badge showing the form is awaiting review
+   * Additional text displayed next to the tax form's status badge.
    *
-   * @uiName Badge description text
+   * @uiName Tax form in review description
    */
   @Prop() badgeTextAwaitingReview?: string =
     "Awaiting review. Submitted on {dateSubmitted}.";
 
   /**
-   * Header displayed in not active W9 alert header at the top of the page.
+   * Part of the alert displayed at the top of the page.
    *
-   * @uiName Not active W9 alert header
+   * @uiName Inactive W-9 error message title
    */
   @Prop() taxAlertHeaderNotActiveW9?: string =
     "Your W9 tax form has personal information that doesn’t match your profile";
   /**
-   * Header displayed in not active W9 alert header at the top of the page.
+   * Part of the alert displayed at the top of the page.
    *
-   * @uiName Not active W8 alert header
+   * @uiName Inactive W-8 error message title
    */
   @Prop() taxAlertHeaderNotActiveW8?: string =
     "{documentType} tax form is invalid";
   /**
-   * Description text displayed in W9 alert body at the top of the page.
+   * Part of the alert displayed at the top of the page.
    *
-   * @uiName Tax W9 alert message
+   * @uiName Inactive W-9 error message description
    */
   @Prop() taxAlertNotActiveMessageW9?: string =
     "Please resubmit a new {documentType} form.";
   /**
-   * Description text displayed in W8 alert body at the top of the page.
+   * Part of the alert displayed at the top of the page.
    *
-   * @uiName Tax W8 alert message
+   * @uiName Inactive W-8 error message description
    */
   @Prop() taxAlertNotActiveMessageW8?: string =
     "Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new {documentType} form.";
   /**
-   * Description text displayed next to the badge in the tax documents status
+   * Additional text displayed next to the tax form's status badge.
    *
-   * @uiName Invalid form description text
+   * @uiName Invalid tax form description
    */
   @Prop() invalidForm?: string =
     "Make sure your information is correct and submit new form.";
   /**
-   * Header text displayed above the banking information card
-   *
-   * @uiName Banking information header
+   * @uiName Payout information section header
    */
   @Prop() bankingInformationSectionHeader: string = "Payout information";
   /**
-   * Header text displayed above the tax documents status
-   *
    * @uiName Tax document section header
    */
   @Prop() taxDocumentSectionHeader: string = "Tax documents";
   /**
-   * Sub header text displayed above the tax documents status
+   * Displayed under the tax document section header.
    *
-   * @uiName Tax documents sub header
+   * @uiName Tax documents section description
    */
   @Prop() taxDocumentSectionSubHeader: string = "{documentType} tax form";
   /**
-   * Subtext displayed at the bottom of the page if there are no tax documents to show
+   * No other statuses or badges will be displayed in the tax form section in this case.
    *
-   * @uiName No form needed subtext
+   * @uiName Tax form not required text
    */
   @Prop() noFormNeededSubtext: string =
     "Tax documents are only required if you are based in the US or joining the referral program of a US based brand.";
 
   /**
-   * Header text displayed above the indirect tax preview section
    *
-   * @uiName Indirect Tax Information Header
+   * @uiName Indirect tax section header
    */
   @Prop() indirectTaxInfoSectionHeader: string = "Indirect tax";
   /**
-   * Country/Province description text of indirect tax
+   * If the participant is registered for indirect tax in Canada, display the province they’re registered in.
    *
-   * @uiName Indirect tax Canada description
+   * @uiName Canadian province of indirect tax
    */
   @Prop() indirectTaxInfoCanada: string = "Registered in {province}, {country}";
   /**
-   * Other country description text of indirect tax
+   * If the participant is registered for indirect tax, display the country they’re registered in.
    *
-   * @uiName Indirect tax other country description
+   * @uiName Indirect tax country
    */
   @Prop() indirectTaxInfoOtherCountry: string = "Registered in {country}";
   /**
-   * Spain/Region description text of indirect tax
+   * If the participant is registered for indirect tax in Spain, display the region they’re registered in.
    *
-   * @uiName Indirect tax Spain description
+   * @uiName Spanish region of indirect tax
    */
   @Prop() indirectTaxInfoSpain: string = "Registered in {country}, {subRegion}";
   /**
-   * Indirect tax tooltip text for support
-   *
-   * @uiName Indirect tax tooltip description
+   * @uiName Indirect tax tooltip
    */
   @Prop() indirectTaxTooltipSupport: string =
     "To make changes to your indirect tax information, please contact Support.";
   /**
-   * Indirect tax number/type details
+   * Displayed to participants who have submitted their indirect tax information.
    *
    * @uiName Indirect tax details
    */
   @Prop() indirectTaxDetails: string =
     "{indirectTaxType} number: {indirectTaxNumber}";
-
   /**
-   * Text displayed in the submit new document button at the bottom of the page
-   *
-   * @uiName No form needed subtext
+   * @uiName Submit new tax form button label
    */
   @Prop() newFormButton: string = "Submit New Form";
   /**
-   * Text displayed in the edit Payment Information button
    *
-   * @uiName Edit Payment Information button
+   * @uiName Edit payment info button label
    */
   @Prop() editPaymentInformationButton: string = "Edit Payout Information";
   /**
-   * Text displayed when partner is not registered for Indirect Tax
-   *
-   * @uiName Not registered for Indirect Tax
+   * @uiName Not registered for indirect tax text
    */
   @Prop() notRegisteredForTax: string =
     "Not registered. Participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information.";
   /**
-   * Label text for the QST number
-   * @uiName QST number input
+   * Displayed to participants registered in Quebec, Canada.
+   * @uiName QST indirect tax details
    */
   @Prop() qstNumber: string = "QST number: {qstNumber}";
   /**
-   * Label text for the sub-region tax number
-   * @uiName Sub-region tax number
+   * @uiName Spain sub-region indirect tax number
    */
   @Prop() subRegionTaxNumber: string =
     "Income tax number: {subRegionTaxNumber}";
 
   /**
-   * Label text for next payout status badge
-   * @uiName Status badge text
+   * @uiName Payout status badge
    */
   @Prop()
   statusBadgeText: string =
     "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
   /**
-   * Label text for the next payout based on balance
-   * @uiName Threshold payout text
+   * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
+   * @uiName Payout schedule by threshold text
    */
   @Prop() thresholdPayoutText: string =
     "Next payout occurs when balance is {thresholdBalance}";
 
   /**
-   * Label text account heading text
-   * @uiName Account text
+   * Shown before the participant’s bank account information.
+   * @uiName Bank account field label
    */
   @Prop() accountText: string = "Account";
   /**
+   * Payout error message title
    * @uiName Error banner title text
    */
   @Prop() errorTitleText: string = "Your payout is on hold ";
   /**
-   * @uiName Error banner description text
+   * @uiName Payout error message description
    */
   @Prop()
   errorDescriptionText: string =
@@ -257,27 +239,27 @@ export class TaxAndCashDashboard {
     "Please refresh the page and try again. If this problem continues, contact Support.";
 
   /**
-   * Invoice table Invoice column title
-   * @uiName Invoice column title
+   * Part of the Invoice table displayed at the bottom of the page.
+   * @uiName Invoice number column title
    */
   @Prop() invoiceColumnTitle: string = "Invoice";
   /**
-   * Invoice table Date column title
+   * Part of the Invoice table displayed at the bottom of the page.
    * @uiName Date column title
    */
   @Prop() dateColumnTitle: string = "Date";
   /**
-   * Invoice table Earnings column title
+   * Part of the Invoice table displayed at the bottom of the page.
    * @uiName Earnings column title
    */
   @Prop() earningsColumnTitle: string = "Earnings";
   /**
-   * Invoice table Taxed Amount column title
-   * @uiName Taxed Amount column title
+   * Part of the Invoice table displayed at the bottom of the page.
+   * @uiName Taxed amount column title
    */
   @Prop() taxedAmountColumnTitle: string = "Taxed Amount";
   /**
-   * Invoice table Earnings after tax column title
+   * Part of the Invoice table displayed at the bottom of the page.
    * @uiName Earnings after tax column title
    */
   @Prop() earningsAfterTaxColumnTitle: string = "Earnings after tax";

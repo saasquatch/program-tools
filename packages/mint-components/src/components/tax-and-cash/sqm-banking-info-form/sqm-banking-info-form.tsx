@@ -276,6 +276,12 @@ export class BankingInfoForm {
     "FX Wire (Processing Fee {currency}{defaultFxFee}.00)";
 
   /**
+   * Placeholder text displayed in the country search dropdown
+   * @uiName Search for country text
+   */
+  @Prop() searchForCountryText: string = "Search for country..";
+
+  /**
    * Header text for the alert when the user is identified as a partner
    * @uiName Partner identification alert header
    */
@@ -415,6 +421,12 @@ export class BankingInfoForm {
       formMap,
     });
 
+    const searchStyle = {
+      SearchInput: {
+        padding: "var(--sl-spacing-x-small)",
+      },
+    };
+
     return (
       <Host>
         <BankingInfoFormView
@@ -442,6 +454,17 @@ export class BankingInfoForm {
                   }),
                 })}
               >
+                <sl-input
+                  class={searchStyle.SearchInput}
+                  placeholder={this.searchForCountryText}
+                  onKeyDown={(e) => {
+                    // Stop shoelace intercepting key presses
+                    e.stopPropagation();
+                  }}
+                  onSl-input={(e) => {
+                    props.callbacks.setCountrySearch(e.target.value);
+                  }}
+                ></sl-input>
                 {props.states.countries?.map((country) => {
                   return (
                     <sl-menu-item value={country.code}>
@@ -449,6 +472,11 @@ export class BankingInfoForm {
                     </sl-menu-item>
                   );
                 })}
+                {props.states?.allCountries?.map((c) => (
+                  <sl-menu-item value={c.code} style={{ display: "none" }}>
+                    {c.name}
+                  </sl-menu-item>
+                ))}
               </sl-select>
             ),
             paymentMethodSlot: (
@@ -640,6 +668,7 @@ function useDemoBankingInfoForm(
         setBankCountry,
         setPaymentMethodChecked,
         setPaymentScheduleChecked,
+        setCountrySearch: () => {},
         onBack: async () => console.log("back"),
       },
       text: props.getTextProps(),

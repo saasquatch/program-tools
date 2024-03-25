@@ -301,6 +301,11 @@ export namespace Components {
          */
         "savingsSelectItemLabel": string;
         /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "searchForCountryText": string;
+        /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label
          */
@@ -1588,8 +1593,8 @@ export namespace Components {
     }
     interface SqmPayoutDetailsCard {
         /**
-          * Text shown before account number
-          * @uiName Account text
+          * Shown before the participant’s bank account information.
+          * @uiName Bank account field label
          */
         "accountText": string;
         /**
@@ -1597,13 +1602,13 @@ export namespace Components {
          */
         "demoData"?: DemoData<any>;
         /**
-          * Error alert description shown above payout details card
-          * @uiName Error alert description
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
          */
         "errorDescriptionText": string;
         /**
-          * Error alert header shown above payout details card
-          * @uiName Error alert header
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
          */
         "errorTitleText": string;
         /**
@@ -1612,8 +1617,8 @@ export namespace Components {
          */
         "statusBadgeText": string;
         /**
-          * Text shown above current balance indicating required balance for next payout
-          * @uiName Threshold payout text
+          * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
+          * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText": string;
     }
@@ -3781,50 +3786,48 @@ export namespace Components {
          */
         "continueButton": string;
         /**
-          * Text shown before account number
-          * @uiName Account text
+          * Shown before the participant’s bank account information.
+          * @uiName Bank account field label
           * @uiGroup Dashboard Properties
          */
         "dashboard_accountText": string;
         /**
-          * Description text which appears beside badge showing the form is awaiting review
-          * @uiName Badge description text
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Tax form in review description
           * @uiGroup Dashboard Properties
          */
         "dashboard_badgeTextAwaitingReview"?: string;
         /**
-          * Description text which appears beside badge showing when the form was submitted
-          * @uiName Badge description text
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Active W-9 description
           * @uiGroup Dashboard Properties
          */
         "dashboard_badgeTextSubmittedOn"?: string;
         /**
-          * Description text for W8 which appears beside badge showing when the form was submitted
-          * @uiName Badge description text
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Active W-8 description
           * @uiGroup Dashboard Properties
          */
         "dashboard_badgeTextSubmittedOnW8"?: string;
         /**
-          * Header text displayed above the banking information card
-          * @uiName Banking information header
+          * @uiName Payout information section header
           * @uiGroup Dashboard Properties
          */
         "dashboard_bankingInformationSectionHeader": string;
         /**
-          * Invoice table Earnings after tax column title
+          * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings after tax column title
           * @uiGroup Dashboard Properties
          */
         "dashboard_earningsAfterTaxColumnTitle": string;
         /**
-          * Text displayed in the edit Payment Information button
-          * @uiName Edit Payment Information button
+          * @uiName Edit payment info button label
           * @uiGroup Dashboard Properties
          */
         "dashboard_editPaymentInformationButton": string;
         /**
-          * Error alert description shown above payout details card
-          * @uiName Error description text
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
           * @uiGroup Dashboard Properties
          */
         "dashboard_errorDescriptionText": string;
@@ -3835,62 +3838,58 @@ export namespace Components {
          */
         "dashboard_errorTitleText": string;
         /**
-          * Indirect tax number/type details
+          * Displayed to participants who have submitted their indirect tax information.
           * @uiName Indirect tax details
           * @uiGroup Dashboard Properties
          */
         "dashboard_indirectTaxDetails": string;
         /**
-          * Country/Province description text of indirect tax
-          * @uiName Indirect tax Canada description
+          * If the participant is registered for indirect tax in Canada, display the province they’re registered in.
+          * @uiName Canadian province of indirect tax
           * @uiGroup Dashboard Properties
          */
         "dashboard_indirectTaxInfoCanada": string;
         /**
-          * Other country description text of indirect tax
-          * @uiName Indirect tax other country description
+          * If the participant is registered for indirect tax, display the country they’re registered in.
+          * @uiName Indirect tax country
           * @uiGroup Dashboard Properties
          */
         "dashboard_indirectTaxInfoOtherCountry": string;
         /**
-          * Header text displayed above the indirect tax preview section
-          * @uiName Indirect Tax Information Header
+          * @uiName Indirect tax section header
           * @uiGroup Dashboard Properties
          */
         "dashboard_indirectTaxInfoSectionHeader": string;
         /**
-          * Spain/Region description text of indirect tax
-          * @uiName Indirect tax Spain description
+          * If the participant is registered for indirect tax in Spain, display the region they’re registered in.
+          * @uiName Spanish region of indirect tax
           * @uiGroup Dashboard Properties
          */
         "dashboard_indirectTaxInfoSpain": string;
         /**
-          * Indirect tax tooltip text for support
-          * @uiName Indirect tax tooltip description
+          * @uiName Indirect tax tooltip
           * @uiGroup Dashboard Properties
          */
         "dashboard_indirectTaxTooltipSupport": string;
         /**
-          * Description text displayed next to the badge in the tax documents status
-          * @uiName Invalid form description text
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Invalid tax form description
           * @uiGroup Dashboard Properties
          */
         "dashboard_invalidForm"?: string;
         /**
-          * Text displayed in the submit new document button at the bottom of the page
-          * @uiName No form needed subtext
+          * @uiName Submit new tax form button label
           * @uiGroup Dashboard Properties
          */
         "dashboard_newFormButton": string;
         /**
-          * Subtext displayed at the bottom of the page if there are no tax documents to show
-          * @uiName No form needed subtext
+          * No other statuses or badges will be displayed in the tax form section in this case.
+          * @uiName Tax form not required text
           * @uiGroup Dashboard Properties
          */
         "dashboard_noFormNeededSubtext": string;
         /**
-          * Text displayed when partner is not registered for Indirect Tax
-          * @uiName Not registered for Indirect Tax
+          * @uiName Not registered for indirect tax text
           * @uiGroup Dashboard Properties
          */
         "dashboard_notRegisteredForTax": string;
@@ -3901,85 +3900,80 @@ export namespace Components {
          */
         "dashboard_payoutFromImpact": string;
         /**
-          * Label text for the QST number
-          * @uiName QST number input
+          * Displayed to participants registered in Quebec, Canada.
+          * @uiName QST indirect tax details
           * @uiGroup Dashboard Properties
          */
         "dashboard_qstNumber": string;
         /**
-          * Badge text indicating payout status
-          * @uiName Payout status badge text
+          * @uiName Payout status badge
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusBadgeText": string;
         /**
-          * Status text displayed in badge when tax document is Active
-          * @uiName Status text
+          * @uiName Active tax form badge label
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusTextActive"?: string;
         /**
-          * Status text displayed in badge when tax document is Not Active
-          * @uiName Status text
+          * @uiName Invalid tax form badge label
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusTextNotActive"?: string;
         /**
-          * Status text displayed in badge when tax document is Not Verified
-          * @uiName Status text
+          * Displayed when the participant submitted their form but it is awaiting review.
+          * @uiName Not verified tax form badge label
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusTextNotVerified"?: string;
         /**
-          * Label text for the sub-region tax number
-          * @uiName Sub-region tax number
+          * @uiName Spain sub-region indirect tax number
           * @uiGroup Dashboard Properties
          */
         "dashboard_subRegionTaxNumber": string;
         /**
-          * Header displayed in not active W9 alert header at the top of the page.
-          * @uiName Not active W8 alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message title
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxAlertHeaderNotActiveW8"?: string;
         /**
-          * Header displayed in not active W9 alert header at the top of the page.
-          * @uiName Not active W9 alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message title
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxAlertHeaderNotActiveW9"?: string;
         /**
-          * Description text displayed in W8 alert body at the top of the page.
-          * @uiName Tax W8 alert message
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message description
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxAlertNotActiveMessageW8"?: string;
         /**
-          * Description text displayed in W9 alert body at the top of the page.
-          * @uiName Tax W9 alert message
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message description
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxAlertNotActiveMessageW9"?: string;
         /**
-          * Header text displayed above the tax documents status
           * @uiName Tax document section header
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxDocumentSectionHeader": string;
         /**
-          * Sub header text displayed above the tax documents status
-          * @uiName Tax documents sub header
+          * Displayed under the tax document section header.
+          * @uiName Tax documents section description
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxDocumentSectionSubHeader": string;
         /**
-          * Text shown above current balance indicating required balance for next payout
-          * @uiName Threshold payout text
+          * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
+          * @uiName Payout schedule by threshold text
           * @uiGroup Dashboard Properties
          */
         "dashboard_thresholdPayoutText": string;
         /**
-          * Invoice table Date column title
+          * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
           * @uiGroup Dashboard Properties
          */
@@ -3990,7 +3984,7 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
-          * Invoice table Earnings column title
+          * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings column title
           * @uiGroup Dashboard Properties
          */
@@ -4026,8 +4020,8 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
-          * Invoice table Invoice column title
-          * @uiName Invoice column title
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Invoice number column title
           * @uiGroup Dashboard Properties
          */
         "invoiceColumnTitle": string;
@@ -4062,44 +4056,37 @@ export namespace Components {
          */
         "step1_allowBankingCollection": string;
         /**
-          * Label text for country input
-          * @uiName Country label
+          * @uiName Country field label
           * @uiGroup Step 1 Properties
          */
         "step1_country": string;
         /**
-          * Label text for currency input
-          * @uiName Currency label
+          * @uiName Currency field label
           * @uiGroup Step 1 Properties
          */
         "step1_currency": string;
         /**
-          * Help text shown underneath currency input
-          * @uiName Currency help text
+          * @uiName Currency field help text
           * @uiGroup Step 1 Properties
          */
         "step1_currencyHelpText": string;
         /**
-          * Label text for email input
-          * @uiName Email label
+          * @uiName Email field label
           * @uiGroup Step 1 Properties
          */
         "step1_email": string;
         /**
-          * Label text for first name input
-          * @uiName First name label
+          * @uiName First name field label
           * @uiGroup Step 1 Properties
          */
         "step1_firstName": string;
         /**
-          * Label text for last name input
-          * @uiName Last name label
+          * @uiName Last name field label
           * @uiGroup Step 1 Properties
          */
         "step1_lastName": string;
         /**
-          * Heading text shown above the forms inputs.
-          * @uiName Form heading text
+          * @uiName Step 1 title
           * @uiGroup Step 1 Properties
          */
         "step1_personalInformation": string;
@@ -4114,8 +4101,7 @@ export namespace Components {
          */
         "step1_searchForCurrencyText": string;
         /**
-          * Label text for terms and conditions
-          * @uiName Terms and conditions label text
+          * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
          */
         "step1_termsAndConditionsLabel": string;
@@ -4543,6 +4529,11 @@ export namespace Components {
          */
         "step4_savingsSelectItemLabel": string;
         /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "step4_searchForCountryText": string;
+        /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label
           * @uiGroup Step 4 Properties
@@ -4585,40 +4576,39 @@ export namespace Components {
          */
         "stop3NotBasedInUS": string;
         /**
-          * Invoice table Taxed Amount column title
-          * @uiName Taxed Amount column title
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Taxed amount column title
           * @uiGroup Dashboard Properties
          */
         "taxedAmountColumnTitle": string;
     }
     interface SqmTaxAndCashDashboard {
         /**
-          * Label text account heading text
-          * @uiName Account text
+          * Shown before the participant’s bank account information.
+          * @uiName Bank account field label
          */
         "accountText": string;
         /**
-          * Description text which appears beside badge showing the form is awaiting review
-          * @uiName Badge description text
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Tax form in review description
          */
         "badgeTextAwaitingReview"?: string;
         /**
-          * Description text which appears beside badge showing when the form was submitted
-          * @uiName Badge description text
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Active W-9 description
          */
         "badgeTextSubmittedOn"?: string;
         /**
-          * Description text for W8 which appears beside badge showing when the form was submitted
-          * @uiName Badge description text
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Active W-8 description
          */
         "badgeTextSubmittedOnW8"?: string;
         /**
-          * Header text displayed above the banking information card
-          * @uiName Banking information header
+          * @uiName Payout information section header
          */
         "bankingInformationSectionHeader": string;
         /**
-          * Invoice table Date column title
+          * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
          */
         "dateColumnTitle": string;
@@ -4628,25 +4618,25 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseTaxAndCashDashboardResult>;
         /**
-          * Invoice table Earnings after tax column title
+          * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings after tax column title
          */
         "earningsAfterTaxColumnTitle": string;
         /**
-          * Invoice table Earnings column title
+          * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings column title
          */
         "earningsColumnTitle": string;
         /**
-          * Text displayed in the edit Payment Information button
-          * @uiName Edit Payment Information button
+          * @uiName Edit payment info button label
          */
         "editPaymentInformationButton": string;
         /**
-          * @uiName Error banner description text
+          * @uiName Payout error message description
          */
         "errorDescriptionText": string;
         /**
+          * Payout error message title
           * @uiName Error banner title text
          */
         "errorTitleText": string;
@@ -4661,43 +4651,41 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
-          * Indirect tax number/type details
+          * Displayed to participants who have submitted their indirect tax information.
           * @uiName Indirect tax details
          */
         "indirectTaxDetails": string;
         /**
-          * Country/Province description text of indirect tax
-          * @uiName Indirect tax Canada description
+          * If the participant is registered for indirect tax in Canada, display the province they’re registered in.
+          * @uiName Canadian province of indirect tax
          */
         "indirectTaxInfoCanada": string;
         /**
-          * Other country description text of indirect tax
-          * @uiName Indirect tax other country description
+          * If the participant is registered for indirect tax, display the country they’re registered in.
+          * @uiName Indirect tax country
          */
         "indirectTaxInfoOtherCountry": string;
         /**
-          * Header text displayed above the indirect tax preview section
-          * @uiName Indirect Tax Information Header
+          * @uiName Indirect tax section header
          */
         "indirectTaxInfoSectionHeader": string;
         /**
-          * Spain/Region description text of indirect tax
-          * @uiName Indirect tax Spain description
+          * If the participant is registered for indirect tax in Spain, display the region they’re registered in.
+          * @uiName Spanish region of indirect tax
          */
         "indirectTaxInfoSpain": string;
         /**
-          * Indirect tax tooltip text for support
-          * @uiName Indirect tax tooltip description
+          * @uiName Indirect tax tooltip
          */
         "indirectTaxTooltipSupport": string;
         /**
-          * Description text displayed next to the badge in the tax documents status
-          * @uiName Invalid form description text
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Invalid tax form description
          */
         "invalidForm"?: string;
         /**
-          * Invoice table Invoice column title
-          * @uiName Invoice column title
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Invoice number column title
          */
         "invoiceColumnTitle": string;
         /**
@@ -4711,18 +4699,16 @@ export namespace Components {
          */
         "loadingErrorAlertHeader": string;
         /**
-          * Text displayed in the submit new document button at the bottom of the page
-          * @uiName No form needed subtext
+          * @uiName Submit new tax form button label
          */
         "newFormButton": string;
         /**
-          * Subtext displayed at the bottom of the page if there are no tax documents to show
-          * @uiName No form needed subtext
+          * No other statuses or badges will be displayed in the tax form section in this case.
+          * @uiName Tax form not required text
          */
         "noFormNeededSubtext": string;
         /**
-          * Text displayed when partner is not registered for Indirect Tax
-          * @uiName Not registered for Indirect Tax
+          * @uiName Not registered for indirect tax text
          */
         "notRegisteredForTax": string;
         /**
@@ -4731,73 +4717,68 @@ export namespace Components {
          */
         "payoutFromImpact": string;
         /**
-          * Label text for the QST number
-          * @uiName QST number input
+          * Displayed to participants registered in Quebec, Canada.
+          * @uiName QST indirect tax details
          */
         "qstNumber": string;
         /**
-          * Label text for next payout status badge
-          * @uiName Status badge text
+          * @uiName Payout status badge
          */
         "statusBadgeText": string;
         /**
-          * Status text displayed in badge when tax document is Active
-          * @uiName Status text
+          * @uiName Active tax form badge label
          */
         "statusTextActive"?: string;
         /**
-          * Status text displayed in badge when tax document is Not Active
-          * @uiName Status text
+          * @uiName Invalid tax form badge label
          */
         "statusTextNotActive"?: string;
         /**
-          * Status text displayed in badge when tax document is Not Verified
-          * @uiName Status text
+          * Displayed when the participant submitted their form but it is awaiting review.
+          * @uiName Not verified tax form badge label
          */
         "statusTextNotVerified"?: string;
         /**
-          * Label text for the sub-region tax number
-          * @uiName Sub-region tax number
+          * @uiName Spain sub-region indirect tax number
          */
         "subRegionTaxNumber": string;
         /**
-          * Header displayed in not active W9 alert header at the top of the page.
-          * @uiName Not active W8 alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message title
          */
         "taxAlertHeaderNotActiveW8"?: string;
         /**
-          * Header displayed in not active W9 alert header at the top of the page.
-          * @uiName Not active W9 alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message title
          */
         "taxAlertHeaderNotActiveW9"?: string;
         /**
-          * Description text displayed in W8 alert body at the top of the page.
-          * @uiName Tax W8 alert message
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message description
          */
         "taxAlertNotActiveMessageW8"?: string;
         /**
-          * Description text displayed in W9 alert body at the top of the page.
-          * @uiName Tax W9 alert message
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message description
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
-          * Header text displayed above the tax documents status
           * @uiName Tax document section header
          */
         "taxDocumentSectionHeader": string;
         /**
-          * Sub header text displayed above the tax documents status
-          * @uiName Tax documents sub header
+          * Displayed under the tax document section header.
+          * @uiName Tax documents section description
          */
         "taxDocumentSectionSubHeader": string;
         /**
-          * Invoice table Taxed Amount column title
-          * @uiName Taxed Amount column title
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Taxed amount column title
          */
         "taxedAmountColumnTitle": string;
         /**
-          * Label text for the next payout based on balance
-          * @uiName Threshold payout text
+          * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
+          * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText": string;
     }
@@ -4889,18 +4870,15 @@ export namespace Components {
          */
         "continueButton": string;
         /**
-          * Label text for country input
-          * @uiName Country label
+          * @uiName Country field label
          */
         "country": string;
         /**
-          * Label text for currency input
-          * @uiName Currency label
+          * @uiName Currency field label
          */
         "currency": string;
         /**
-          * Help text shown underneath currency input
-          * @uiName Currency help text
+          * @uiName Currency field help text
          */
         "currencyHelpText": string;
         /**
@@ -4909,8 +4887,7 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseUserInfoFormResult>;
         /**
-          * Label text for email input
-          * @uiName Email label
+          * @uiName Email field label
          */
         "email": string;
         /**
@@ -4919,8 +4896,7 @@ export namespace Components {
          */
         "fieldRequiredError": string;
         /**
-          * Label text for first name input
-          * @uiName First name label
+          * @uiName First name field label
          */
         "firstName": string;
         /**
@@ -4949,8 +4925,7 @@ export namespace Components {
          */
         "isPartnerAlertHeader": string;
         /**
-          * Label text for last name input
-          * @uiName Last name label
+          * @uiName Last name field label
          */
         "lastName": string;
         /**
@@ -4964,8 +4939,7 @@ export namespace Components {
          */
         "loadingErrorAlertHeader": string;
         /**
-          * Heading text shown above the forms inputs.
-          * @uiName Form heading text
+          * @uiName Step 1 title
          */
         "personalInformation": string;
         /**
@@ -4979,8 +4953,7 @@ export namespace Components {
          */
         "searchForCurrencyText": string;
         /**
-          * Label text for terms and conditions
-          * @uiName Terms and conditions label text
+          * @uiName Terms and conditions checkbox
          */
         "termsAndConditionsLabel": string;
     }
@@ -6020,6 +5993,11 @@ declare namespace LocalJSX {
           * @uiName Savings select item label
          */
         "savingsSelectItemLabel"?: string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "searchForCountryText"?: string;
         /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label
@@ -7303,8 +7281,8 @@ declare namespace LocalJSX {
     }
     interface SqmPayoutDetailsCard {
         /**
-          * Text shown before account number
-          * @uiName Account text
+          * Shown before the participant’s bank account information.
+          * @uiName Bank account field label
          */
         "accountText"?: string;
         /**
@@ -7312,13 +7290,13 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<any>;
         /**
-          * Error alert description shown above payout details card
-          * @uiName Error alert description
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
          */
         "errorDescriptionText"?: string;
         /**
-          * Error alert header shown above payout details card
-          * @uiName Error alert header
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
          */
         "errorTitleText"?: string;
         /**
@@ -7327,8 +7305,8 @@ declare namespace LocalJSX {
          */
         "statusBadgeText"?: string;
         /**
-          * Text shown above current balance indicating required balance for next payout
-          * @uiName Threshold payout text
+          * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
+          * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText"?: string;
     }
@@ -9472,50 +9450,48 @@ declare namespace LocalJSX {
          */
         "continueButton"?: string;
         /**
-          * Text shown before account number
-          * @uiName Account text
+          * Shown before the participant’s bank account information.
+          * @uiName Bank account field label
           * @uiGroup Dashboard Properties
          */
         "dashboard_accountText"?: string;
         /**
-          * Description text which appears beside badge showing the form is awaiting review
-          * @uiName Badge description text
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Tax form in review description
           * @uiGroup Dashboard Properties
          */
         "dashboard_badgeTextAwaitingReview"?: string;
         /**
-          * Description text which appears beside badge showing when the form was submitted
-          * @uiName Badge description text
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Active W-9 description
           * @uiGroup Dashboard Properties
          */
         "dashboard_badgeTextSubmittedOn"?: string;
         /**
-          * Description text for W8 which appears beside badge showing when the form was submitted
-          * @uiName Badge description text
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Active W-8 description
           * @uiGroup Dashboard Properties
          */
         "dashboard_badgeTextSubmittedOnW8"?: string;
         /**
-          * Header text displayed above the banking information card
-          * @uiName Banking information header
+          * @uiName Payout information section header
           * @uiGroup Dashboard Properties
          */
         "dashboard_bankingInformationSectionHeader"?: string;
         /**
-          * Invoice table Earnings after tax column title
+          * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings after tax column title
           * @uiGroup Dashboard Properties
          */
         "dashboard_earningsAfterTaxColumnTitle"?: string;
         /**
-          * Text displayed in the edit Payment Information button
-          * @uiName Edit Payment Information button
+          * @uiName Edit payment info button label
           * @uiGroup Dashboard Properties
          */
         "dashboard_editPaymentInformationButton"?: string;
         /**
-          * Error alert description shown above payout details card
-          * @uiName Error description text
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
           * @uiGroup Dashboard Properties
          */
         "dashboard_errorDescriptionText"?: string;
@@ -9526,62 +9502,58 @@ declare namespace LocalJSX {
          */
         "dashboard_errorTitleText"?: string;
         /**
-          * Indirect tax number/type details
+          * Displayed to participants who have submitted their indirect tax information.
           * @uiName Indirect tax details
           * @uiGroup Dashboard Properties
          */
         "dashboard_indirectTaxDetails"?: string;
         /**
-          * Country/Province description text of indirect tax
-          * @uiName Indirect tax Canada description
+          * If the participant is registered for indirect tax in Canada, display the province they’re registered in.
+          * @uiName Canadian province of indirect tax
           * @uiGroup Dashboard Properties
          */
         "dashboard_indirectTaxInfoCanada"?: string;
         /**
-          * Other country description text of indirect tax
-          * @uiName Indirect tax other country description
+          * If the participant is registered for indirect tax, display the country they’re registered in.
+          * @uiName Indirect tax country
           * @uiGroup Dashboard Properties
          */
         "dashboard_indirectTaxInfoOtherCountry"?: string;
         /**
-          * Header text displayed above the indirect tax preview section
-          * @uiName Indirect Tax Information Header
+          * @uiName Indirect tax section header
           * @uiGroup Dashboard Properties
          */
         "dashboard_indirectTaxInfoSectionHeader"?: string;
         /**
-          * Spain/Region description text of indirect tax
-          * @uiName Indirect tax Spain description
+          * If the participant is registered for indirect tax in Spain, display the region they’re registered in.
+          * @uiName Spanish region of indirect tax
           * @uiGroup Dashboard Properties
          */
         "dashboard_indirectTaxInfoSpain"?: string;
         /**
-          * Indirect tax tooltip text for support
-          * @uiName Indirect tax tooltip description
+          * @uiName Indirect tax tooltip
           * @uiGroup Dashboard Properties
          */
         "dashboard_indirectTaxTooltipSupport"?: string;
         /**
-          * Description text displayed next to the badge in the tax documents status
-          * @uiName Invalid form description text
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Invalid tax form description
           * @uiGroup Dashboard Properties
          */
         "dashboard_invalidForm"?: string;
         /**
-          * Text displayed in the submit new document button at the bottom of the page
-          * @uiName No form needed subtext
+          * @uiName Submit new tax form button label
           * @uiGroup Dashboard Properties
          */
         "dashboard_newFormButton"?: string;
         /**
-          * Subtext displayed at the bottom of the page if there are no tax documents to show
-          * @uiName No form needed subtext
+          * No other statuses or badges will be displayed in the tax form section in this case.
+          * @uiName Tax form not required text
           * @uiGroup Dashboard Properties
          */
         "dashboard_noFormNeededSubtext"?: string;
         /**
-          * Text displayed when partner is not registered for Indirect Tax
-          * @uiName Not registered for Indirect Tax
+          * @uiName Not registered for indirect tax text
           * @uiGroup Dashboard Properties
          */
         "dashboard_notRegisteredForTax"?: string;
@@ -9592,85 +9564,80 @@ declare namespace LocalJSX {
          */
         "dashboard_payoutFromImpact"?: string;
         /**
-          * Label text for the QST number
-          * @uiName QST number input
+          * Displayed to participants registered in Quebec, Canada.
+          * @uiName QST indirect tax details
           * @uiGroup Dashboard Properties
          */
         "dashboard_qstNumber"?: string;
         /**
-          * Badge text indicating payout status
-          * @uiName Payout status badge text
+          * @uiName Payout status badge
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusBadgeText"?: string;
         /**
-          * Status text displayed in badge when tax document is Active
-          * @uiName Status text
+          * @uiName Active tax form badge label
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusTextActive"?: string;
         /**
-          * Status text displayed in badge when tax document is Not Active
-          * @uiName Status text
+          * @uiName Invalid tax form badge label
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusTextNotActive"?: string;
         /**
-          * Status text displayed in badge when tax document is Not Verified
-          * @uiName Status text
+          * Displayed when the participant submitted their form but it is awaiting review.
+          * @uiName Not verified tax form badge label
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusTextNotVerified"?: string;
         /**
-          * Label text for the sub-region tax number
-          * @uiName Sub-region tax number
+          * @uiName Spain sub-region indirect tax number
           * @uiGroup Dashboard Properties
          */
         "dashboard_subRegionTaxNumber"?: string;
         /**
-          * Header displayed in not active W9 alert header at the top of the page.
-          * @uiName Not active W8 alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message title
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxAlertHeaderNotActiveW8"?: string;
         /**
-          * Header displayed in not active W9 alert header at the top of the page.
-          * @uiName Not active W9 alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message title
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxAlertHeaderNotActiveW9"?: string;
         /**
-          * Description text displayed in W8 alert body at the top of the page.
-          * @uiName Tax W8 alert message
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message description
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxAlertNotActiveMessageW8"?: string;
         /**
-          * Description text displayed in W9 alert body at the top of the page.
-          * @uiName Tax W9 alert message
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message description
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxAlertNotActiveMessageW9"?: string;
         /**
-          * Header text displayed above the tax documents status
           * @uiName Tax document section header
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxDocumentSectionHeader"?: string;
         /**
-          * Sub header text displayed above the tax documents status
-          * @uiName Tax documents sub header
+          * Displayed under the tax document section header.
+          * @uiName Tax documents section description
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxDocumentSectionSubHeader"?: string;
         /**
-          * Text shown above current balance indicating required balance for next payout
-          * @uiName Threshold payout text
+          * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
+          * @uiName Payout schedule by threshold text
           * @uiGroup Dashboard Properties
          */
         "dashboard_thresholdPayoutText"?: string;
         /**
-          * Invoice table Date column title
+          * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
           * @uiGroup Dashboard Properties
          */
@@ -9681,7 +9648,7 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
-          * Invoice table Earnings column title
+          * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings column title
           * @uiGroup Dashboard Properties
          */
@@ -9717,8 +9684,8 @@ declare namespace LocalJSX {
          */
         "generalErrorTitle"?: string;
         /**
-          * Invoice table Invoice column title
-          * @uiName Invoice column title
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Invoice number column title
           * @uiGroup Dashboard Properties
          */
         "invoiceColumnTitle"?: string;
@@ -9753,44 +9720,37 @@ declare namespace LocalJSX {
          */
         "step1_allowBankingCollection"?: string;
         /**
-          * Label text for country input
-          * @uiName Country label
+          * @uiName Country field label
           * @uiGroup Step 1 Properties
          */
         "step1_country"?: string;
         /**
-          * Label text for currency input
-          * @uiName Currency label
+          * @uiName Currency field label
           * @uiGroup Step 1 Properties
          */
         "step1_currency"?: string;
         /**
-          * Help text shown underneath currency input
-          * @uiName Currency help text
+          * @uiName Currency field help text
           * @uiGroup Step 1 Properties
          */
         "step1_currencyHelpText"?: string;
         /**
-          * Label text for email input
-          * @uiName Email label
+          * @uiName Email field label
           * @uiGroup Step 1 Properties
          */
         "step1_email"?: string;
         /**
-          * Label text for first name input
-          * @uiName First name label
+          * @uiName First name field label
           * @uiGroup Step 1 Properties
          */
         "step1_firstName"?: string;
         /**
-          * Label text for last name input
-          * @uiName Last name label
+          * @uiName Last name field label
           * @uiGroup Step 1 Properties
          */
         "step1_lastName"?: string;
         /**
-          * Heading text shown above the forms inputs.
-          * @uiName Form heading text
+          * @uiName Step 1 title
           * @uiGroup Step 1 Properties
          */
         "step1_personalInformation"?: string;
@@ -9805,8 +9765,7 @@ declare namespace LocalJSX {
          */
         "step1_searchForCurrencyText"?: string;
         /**
-          * Label text for terms and conditions
-          * @uiName Terms and conditions label text
+          * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
          */
         "step1_termsAndConditionsLabel"?: string;
@@ -10234,6 +10193,11 @@ declare namespace LocalJSX {
          */
         "step4_savingsSelectItemLabel"?: string;
         /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "step4_searchForCountryText"?: string;
+        /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label
           * @uiGroup Step 4 Properties
@@ -10276,40 +10240,39 @@ declare namespace LocalJSX {
          */
         "stop3NotBasedInUS"?: string;
         /**
-          * Invoice table Taxed Amount column title
-          * @uiName Taxed Amount column title
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Taxed amount column title
           * @uiGroup Dashboard Properties
          */
         "taxedAmountColumnTitle"?: string;
     }
     interface SqmTaxAndCashDashboard {
         /**
-          * Label text account heading text
-          * @uiName Account text
+          * Shown before the participant’s bank account information.
+          * @uiName Bank account field label
          */
         "accountText"?: string;
         /**
-          * Description text which appears beside badge showing the form is awaiting review
-          * @uiName Badge description text
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Tax form in review description
          */
         "badgeTextAwaitingReview"?: string;
         /**
-          * Description text which appears beside badge showing when the form was submitted
-          * @uiName Badge description text
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Active W-9 description
          */
         "badgeTextSubmittedOn"?: string;
         /**
-          * Description text for W8 which appears beside badge showing when the form was submitted
-          * @uiName Badge description text
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Active W-8 description
          */
         "badgeTextSubmittedOnW8"?: string;
         /**
-          * Header text displayed above the banking information card
-          * @uiName Banking information header
+          * @uiName Payout information section header
          */
         "bankingInformationSectionHeader"?: string;
         /**
-          * Invoice table Date column title
+          * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
          */
         "dateColumnTitle"?: string;
@@ -10319,25 +10282,25 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseTaxAndCashDashboardResult>;
         /**
-          * Invoice table Earnings after tax column title
+          * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings after tax column title
          */
         "earningsAfterTaxColumnTitle"?: string;
         /**
-          * Invoice table Earnings column title
+          * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings column title
          */
         "earningsColumnTitle"?: string;
         /**
-          * Text displayed in the edit Payment Information button
-          * @uiName Edit Payment Information button
+          * @uiName Edit payment info button label
          */
         "editPaymentInformationButton"?: string;
         /**
-          * @uiName Error banner description text
+          * @uiName Payout error message description
          */
         "errorDescriptionText"?: string;
         /**
+          * Payout error message title
           * @uiName Error banner title text
          */
         "errorTitleText"?: string;
@@ -10352,43 +10315,41 @@ declare namespace LocalJSX {
          */
         "generalErrorTitle"?: string;
         /**
-          * Indirect tax number/type details
+          * Displayed to participants who have submitted their indirect tax information.
           * @uiName Indirect tax details
          */
         "indirectTaxDetails"?: string;
         /**
-          * Country/Province description text of indirect tax
-          * @uiName Indirect tax Canada description
+          * If the participant is registered for indirect tax in Canada, display the province they’re registered in.
+          * @uiName Canadian province of indirect tax
          */
         "indirectTaxInfoCanada"?: string;
         /**
-          * Other country description text of indirect tax
-          * @uiName Indirect tax other country description
+          * If the participant is registered for indirect tax, display the country they’re registered in.
+          * @uiName Indirect tax country
          */
         "indirectTaxInfoOtherCountry"?: string;
         /**
-          * Header text displayed above the indirect tax preview section
-          * @uiName Indirect Tax Information Header
+          * @uiName Indirect tax section header
          */
         "indirectTaxInfoSectionHeader"?: string;
         /**
-          * Spain/Region description text of indirect tax
-          * @uiName Indirect tax Spain description
+          * If the participant is registered for indirect tax in Spain, display the region they’re registered in.
+          * @uiName Spanish region of indirect tax
          */
         "indirectTaxInfoSpain"?: string;
         /**
-          * Indirect tax tooltip text for support
-          * @uiName Indirect tax tooltip description
+          * @uiName Indirect tax tooltip
          */
         "indirectTaxTooltipSupport"?: string;
         /**
-          * Description text displayed next to the badge in the tax documents status
-          * @uiName Invalid form description text
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Invalid tax form description
          */
         "invalidForm"?: string;
         /**
-          * Invoice table Invoice column title
-          * @uiName Invoice column title
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Invoice number column title
          */
         "invoiceColumnTitle"?: string;
         /**
@@ -10402,18 +10363,16 @@ declare namespace LocalJSX {
          */
         "loadingErrorAlertHeader"?: string;
         /**
-          * Text displayed in the submit new document button at the bottom of the page
-          * @uiName No form needed subtext
+          * @uiName Submit new tax form button label
          */
         "newFormButton"?: string;
         /**
-          * Subtext displayed at the bottom of the page if there are no tax documents to show
-          * @uiName No form needed subtext
+          * No other statuses or badges will be displayed in the tax form section in this case.
+          * @uiName Tax form not required text
          */
         "noFormNeededSubtext"?: string;
         /**
-          * Text displayed when partner is not registered for Indirect Tax
-          * @uiName Not registered for Indirect Tax
+          * @uiName Not registered for indirect tax text
          */
         "notRegisteredForTax"?: string;
         /**
@@ -10422,73 +10381,68 @@ declare namespace LocalJSX {
          */
         "payoutFromImpact"?: string;
         /**
-          * Label text for the QST number
-          * @uiName QST number input
+          * Displayed to participants registered in Quebec, Canada.
+          * @uiName QST indirect tax details
          */
         "qstNumber"?: string;
         /**
-          * Label text for next payout status badge
-          * @uiName Status badge text
+          * @uiName Payout status badge
          */
         "statusBadgeText"?: string;
         /**
-          * Status text displayed in badge when tax document is Active
-          * @uiName Status text
+          * @uiName Active tax form badge label
          */
         "statusTextActive"?: string;
         /**
-          * Status text displayed in badge when tax document is Not Active
-          * @uiName Status text
+          * @uiName Invalid tax form badge label
          */
         "statusTextNotActive"?: string;
         /**
-          * Status text displayed in badge when tax document is Not Verified
-          * @uiName Status text
+          * Displayed when the participant submitted their form but it is awaiting review.
+          * @uiName Not verified tax form badge label
          */
         "statusTextNotVerified"?: string;
         /**
-          * Label text for the sub-region tax number
-          * @uiName Sub-region tax number
+          * @uiName Spain sub-region indirect tax number
          */
         "subRegionTaxNumber"?: string;
         /**
-          * Header displayed in not active W9 alert header at the top of the page.
-          * @uiName Not active W8 alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message title
          */
         "taxAlertHeaderNotActiveW8"?: string;
         /**
-          * Header displayed in not active W9 alert header at the top of the page.
-          * @uiName Not active W9 alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message title
          */
         "taxAlertHeaderNotActiveW9"?: string;
         /**
-          * Description text displayed in W8 alert body at the top of the page.
-          * @uiName Tax W8 alert message
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message description
          */
         "taxAlertNotActiveMessageW8"?: string;
         /**
-          * Description text displayed in W9 alert body at the top of the page.
-          * @uiName Tax W9 alert message
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message description
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
-          * Header text displayed above the tax documents status
           * @uiName Tax document section header
          */
         "taxDocumentSectionHeader"?: string;
         /**
-          * Sub header text displayed above the tax documents status
-          * @uiName Tax documents sub header
+          * Displayed under the tax document section header.
+          * @uiName Tax documents section description
          */
         "taxDocumentSectionSubHeader"?: string;
         /**
-          * Invoice table Taxed Amount column title
-          * @uiName Taxed Amount column title
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Taxed amount column title
          */
         "taxedAmountColumnTitle"?: string;
         /**
-          * Label text for the next payout based on balance
-          * @uiName Threshold payout text
+          * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
+          * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText"?: string;
     }
@@ -10579,18 +10533,15 @@ declare namespace LocalJSX {
          */
         "continueButton"?: string;
         /**
-          * Label text for country input
-          * @uiName Country label
+          * @uiName Country field label
          */
         "country"?: string;
         /**
-          * Label text for currency input
-          * @uiName Currency label
+          * @uiName Currency field label
          */
         "currency"?: string;
         /**
-          * Help text shown underneath currency input
-          * @uiName Currency help text
+          * @uiName Currency field help text
          */
         "currencyHelpText"?: string;
         /**
@@ -10599,8 +10550,7 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseUserInfoFormResult>;
         /**
-          * Label text for email input
-          * @uiName Email label
+          * @uiName Email field label
          */
         "email"?: string;
         /**
@@ -10609,8 +10559,7 @@ declare namespace LocalJSX {
          */
         "fieldRequiredError"?: string;
         /**
-          * Label text for first name input
-          * @uiName First name label
+          * @uiName First name field label
          */
         "firstName"?: string;
         /**
@@ -10639,8 +10588,7 @@ declare namespace LocalJSX {
          */
         "isPartnerAlertHeader"?: string;
         /**
-          * Label text for last name input
-          * @uiName Last name label
+          * @uiName Last name field label
          */
         "lastName"?: string;
         /**
@@ -10654,8 +10602,7 @@ declare namespace LocalJSX {
          */
         "loadingErrorAlertHeader"?: string;
         /**
-          * Heading text shown above the forms inputs.
-          * @uiName Form heading text
+          * @uiName Step 1 title
          */
         "personalInformation"?: string;
         /**
@@ -10669,8 +10616,7 @@ declare namespace LocalJSX {
          */
         "searchForCurrencyText"?: string;
         /**
-          * Label text for terms and conditions
-          * @uiName Terms and conditions label text
+          * @uiName Terms and conditions checkbox
          */
         "termsAndConditionsLabel"?: string;
     }

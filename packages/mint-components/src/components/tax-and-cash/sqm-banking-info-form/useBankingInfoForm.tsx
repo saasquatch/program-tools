@@ -3,7 +3,12 @@ import {
   useMutation,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
@@ -619,6 +624,7 @@ export function useBankingInfoForm(
   const [paymentScheduleChecked, setPaymentScheduleChecked] = useState<
     "BALANCE_THRESHOLD" | "FIXED_DAY" | undefined
   >(undefined);
+  const [countrySearch, setCountrySearch] = useState("");
 
   const currency = userData?.user?.impactConnection?.publisher?.currency || "";
 
@@ -645,8 +651,14 @@ export function useBankingInfoForm(
   const intlLocale = locale?.replace("_", "-") || "en";
 
   // filter out any duplicate countries and null countryCode
-  const availableCountries = new Set(
-    paymentOptions?.map((option) => option.countryCode).filter((value) => value)
+  const availableCountries = useMemo(
+    () =>
+      new Set(
+        paymentOptions
+          ?.map((option) => option.countryCode)
+          .filter((value) => value)
+      ),
+    [paymentOptions]
   );
 
   const getCountryObj = (country: string) => {
@@ -668,13 +680,20 @@ export function useBankingInfoForm(
 
   const _topCountries = ["CA", "GB", "US"];
 
-  const countries = Array.from(availableCountries)
-    .map((c) => getCountryObj(c))
-    .sort(sortByName)
-    .reduce((prev, countryObj) => {
-      if (_topCountries.includes(countryObj.code)) return [countryObj, ...prev];
-      return [...prev, countryObj];
-    }, []);
+  const countries = useMemo(
+    () =>
+      Array.from(availableCountries)
+        .map((c) => getCountryObj(c))
+        .sort(sortByName)
+        .reduce((prev, countryObj) => {
+          if (_topCountries.includes(countryObj.code))
+            return [countryObj, ...prev];
+          return [...prev, countryObj];
+        }, []),
+    [availableCountries]
+  );
+
+  const [filteredCountries, setFilteredCountries] = useState(countries || []);
 
   const hasPayPal = !!paymentOptions?.find(
     (option) => option.defaultFinancePaymentMethodId === PAYPAL_PAYMENT_METHOD
@@ -695,6 +714,7 @@ export function useBankingInfoForm(
     // Use currentPaymentOption and initialise form with userData
     let initialData: BankingInfoFormData = {
       bankCountry: withdrawalSettings?.bankCountry || publisherCountry,
+      paymentMethod: "BANK_TRANSFER",
     };
 
     if (
@@ -724,15 +744,28 @@ export function useBankingInfoForm(
     });
 
     updateBankCountry(currentPaymentOption?.countryCode);
-    setCurrentPaymentOption(currentPaymentOption);
-    setPaymentScheduleChecked(initialData.paymentSchedulingType);
-    setFormState(initialData);
     setPaymentMethodChecked(
       initialData.paymentMethod === "PAYPAL"
         ? "toPayPalAccount"
         : "toBankAccount"
     );
+    setCurrentPaymentOption(currentPaymentOption);
+    setPaymentScheduleChecked(initialData.paymentSchedulingType);
+    setFormState(initialData);
   }, [paymentOptions, userData, setCurrentPaymentOption, setFormState]);
+
+  useEffect(() => {
+    if (!countries?.length) return;
+    if (countrySearch.trim() === "") {
+      setFilteredCountries(countries || []);
+    } else {
+      setFilteredCountries(
+        countries.filter((c) =>
+          c.name.toLowerCase().includes(countrySearch.toLowerCase())
+        ) || []
+      );
+    }
+  }, [countrySearch, countries]);
 
   const updateBankCountry = (bankCountry: string) => {
     const currentPaymentOption = paymentOptions?.find((paymentOption) => {
@@ -857,6 +890,7 @@ export function useBankingInfoForm(
       setPaymentMethodChecked,
       setPaymentScheduleChecked,
       onBack: () => setStep("/dashboard"),
+      setCountrySearch,
     },
     states: {
       step: step?.replace("/", ""),
@@ -886,9 +920,11 @@ export function useBankingInfoForm(
       bitset: currentPaymentOption?.withdrawalSettingId || 0,
       currency,
       thresholds: currentPaymentOption?.thresholdOptions?.split(",") || [],
-      countries,
+      countries: filteredCountries,
+      allCountries: countries,
       hasPayPal,
       bankCountry: formState.bankCountry,
+      countrySearch,
     },
     refs: {
       formRef,

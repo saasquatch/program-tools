@@ -23,7 +23,6 @@ Feature: Tax Form Flow
     When they complete filling out their indirect tax information
     And press "Continue"
     Then they proceed to <stepX> depending on the <brandCountry> and participants <countryCode>
-
     Examples: 
       | countryCode | brandCountry | stepX |
       | CA          | US           |     3 |
