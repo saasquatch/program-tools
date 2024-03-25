@@ -276,6 +276,12 @@ export class BankingInfoForm {
     "FX Wire (Processing Fee {currency}{defaultFxFee}.00)";
 
   /**
+   * Placeholder text displayed in the country search dropdown
+   * @uiName Search for country text
+   */
+  @Prop() searchForCountryText: string = "Search for country..";
+
+  /**
    * Header text for the alert when the user is identified as a partner
    * @uiName Partner identification alert header
    */
@@ -415,6 +421,12 @@ export class BankingInfoForm {
       formMap,
     });
 
+    const searchStyle = {
+      SearchInput: {
+        padding: "var(--sl-spacing-x-small)",
+      },
+    };
+
     return (
       <Host>
         <BankingInfoFormView
@@ -442,6 +454,17 @@ export class BankingInfoForm {
                   }),
                 })}
               >
+                <sl-input
+                  class={searchStyle.SearchInput}
+                  placeholder={this.searchForCountryText}
+                  onKeyDown={(e) => {
+                    // Stop shoelace intercepting key presses
+                    e.stopPropagation();
+                  }}
+                  onSl-input={(e) => {
+                    props.callbacks.setCountrySearch(e.target.value);
+                  }}
+                ></sl-input>
                 {props.states.countries?.map((country) => {
                   return (
                     <sl-menu-item value={country.code}>
@@ -449,7 +472,56 @@ export class BankingInfoForm {
                     </sl-menu-item>
                   );
                 })}
+                {props.states?.allCountries?.map((c) => (
+                  <sl-menu-item value={c.code} style={{ display: "none" }}>
+                    {c.name}
+                  </sl-menu-item>
+                ))}
               </sl-select>
+              //   <sl-select
+              //   id="countryCode"
+              //   exportparts="label: input-label"
+              //   name="/countryCode"
+              //   label={text.country}
+              //   value={formState.countryCode}
+              //   disabled={states.disabled || states.isPartner}
+              //   {...(formState.errors?.countryCode
+              //     ? {
+              //         class: classes.ErrorInput,
+              //         helpText: getIsRequiredErrorMessage(
+              //           text.country,
+              //           text.error.fieldRequiredError
+              //         ),
+              //       }
+              //     : {})}
+              //   required
+              //   onSl-select={(e) => callbacks.onFormChange("countryCode", e)}
+              // >
+              //   <sl-input
+              //     class={classes.SearchInput}
+              //     placeholder={text.searchForCountryText}
+              //     onKeyDown={(e) => {
+              //       // Stop shoelace intercepting key presses
+              //       e.stopPropagation();
+              //     }}
+              //     onSl-input={(e) => {
+              //       callbacks.setCountrySearch(e.target.value);
+              //     }}
+              //   ></sl-input>
+              //   {data?.countries?.map((c) => (
+              //     <sl-menu-item value={c.countryCode}>
+              //       {c.displayName}
+              //     </sl-menu-item>
+              //   ))}
+              //   {data?.allCountries?.map((c) => (
+              //     <sl-menu-item
+              //       value={c.countryCode}
+              //       style={{ display: "none" }}
+              //     >
+              //       {c.displayName}
+              //     </sl-menu-item>
+              //   ))}
+              // </sl-select>
             ),
             paymentMethodSlot: (
               <sl-input
@@ -640,6 +712,7 @@ function useDemoBankingInfoForm(
         setBankCountry,
         setPaymentMethodChecked,
         setPaymentScheduleChecked,
+        setCountrySearch: () => {},
         onBack: async () => console.log("back"),
       },
       text: props.getTextProps(),

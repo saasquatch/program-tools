@@ -301,6 +301,11 @@ export namespace Components {
          */
         "savingsSelectItemLabel": string;
         /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "searchForCountryText": string;
+        /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label
          */
@@ -4543,6 +4548,11 @@ export namespace Components {
          */
         "step4_savingsSelectItemLabel": string;
         /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "step4_searchForCountryText": string;
+        /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label
           * @uiGroup Step 4 Properties
@@ -6020,6 +6030,11 @@ declare namespace LocalJSX {
           * @uiName Savings select item label
          */
         "savingsSelectItemLabel"?: string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "searchForCountryText"?: string;
         /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label
@@ -10233,6 +10248,11 @@ declare namespace LocalJSX {
           * @uiGroup Step 4 Properties
          */
         "step4_savingsSelectItemLabel"?: string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Search for country text
+         */
+        "step4_searchForCountryText"?: string;
         /**
           * Label text for the SWIFT code input field
           * @uiName SWIFT code input label

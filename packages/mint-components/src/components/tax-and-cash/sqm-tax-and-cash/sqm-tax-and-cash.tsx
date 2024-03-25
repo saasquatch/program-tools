@@ -629,6 +629,12 @@ export class TaxAndCashMonolith {
   @Prop() step4_fxWireProcessingFeeLabel: string =
     "FX Wire (Processing Fee {currency}{defaultFxFee}.00)";
 
+  /**
+   * Placeholder text displayed in the country search dropdown
+   * @uiName Search for country text
+   */
+  @Prop() step4_searchForCountryText: string = "Search for country..";
+
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     DASHBOARD PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

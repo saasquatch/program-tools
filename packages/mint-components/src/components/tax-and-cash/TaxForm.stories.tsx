@@ -205,6 +205,7 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
     setPaymentMethodChecked: () => {},
     setPaymentScheduleChecked: () => {},
     onBack: async () => console.log("back"),
+    setCountrySearch: () => {},
   },
   refs: { formRef: { current: null } },
 };
