@@ -478,50 +478,6 @@ export class BankingInfoForm {
                   </sl-menu-item>
                 ))}
               </sl-select>
-              //   <sl-select
-              //   id="countryCode"
-              //   exportparts="label: input-label"
-              //   name="/countryCode"
-              //   label={text.country}
-              //   value={formState.countryCode}
-              //   disabled={states.disabled || states.isPartner}
-              //   {...(formState.errors?.countryCode
-              //     ? {
-              //         class: classes.ErrorInput,
-              //         helpText: getIsRequiredErrorMessage(
-              //           text.country,
-              //           text.error.fieldRequiredError
-              //         ),
-              //       }
-              //     : {})}
-              //   required
-              //   onSl-select={(e) => callbacks.onFormChange("countryCode", e)}
-              // >
-              //   <sl-input
-              //     class={classes.SearchInput}
-              //     placeholder={text.searchForCountryText}
-              //     onKeyDown={(e) => {
-              //       // Stop shoelace intercepting key presses
-              //       e.stopPropagation();
-              //     }}
-              //     onSl-input={(e) => {
-              //       callbacks.setCountrySearch(e.target.value);
-              //     }}
-              //   ></sl-input>
-              //   {data?.countries?.map((c) => (
-              //     <sl-menu-item value={c.countryCode}>
-              //       {c.displayName}
-              //     </sl-menu-item>
-              //   ))}
-              //   {data?.allCountries?.map((c) => (
-              //     <sl-menu-item
-              //       value={c.countryCode}
-              //       style={{ display: "none" }}
-              //     >
-              //       {c.displayName}
-              //     </sl-menu-item>
-              //   ))}
-              // </sl-select>
             ),
             paymentMethodSlot: (
               <sl-input
