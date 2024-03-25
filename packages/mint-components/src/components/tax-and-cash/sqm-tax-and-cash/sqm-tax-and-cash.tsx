@@ -94,118 +94,110 @@ export class TaxAndCashMonolith {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
   /**
-   * Heading text shown at the top of the page
-   * @uiName Indirect tax heading text
+   * @uiName Step 2 title
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_indirectTax: string = "Indirect Tax";
   /**
-   * Subtext shown at the top of the page
-   * @uiName Indirect tax sub text
+   * Displayed under the title of this step.
+   * @uiName Step 2 description
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_indirectTaxDescription: string =
     "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.";
   /**
-   * Heading text shown above the tax details radio buttons
-   * @uiName Indirect tax details heading
+   * Displayed with indirect tax registration options.
+   * @uiName Indirect tax details section title
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_indirectTaxDetails: string = "Indirect tax details";
   /**
-   * Sub text shown above the tax details radio buttons
-   * @uiName Indirect tax details sub text
+   * Displayed under the indirect tax details title.
+   * @uiName Indirect tax details section  description
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_indirectTaxDetailsDescription: string =
     "Participants representing businesses based in countries that enforce indirect taxes (e.g. VAT, HST, GST) must add their indirect tax details to stay tax compliant.";
   /**
-   * Label test for the option indicating registration for indirect tax
-   * @uiName Registered for indrect tax label
+   * @uiName Registered for indirect tax option
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_otherRegion: string = "Registered for indirect tax";
   /**
-   * Subtext for the option indicating registration for indirect tax in a different region
-   * @uiName Registered for indirect tax in a different region option sub-text
+   * Selecting this option will display fields to enter indirect tax details.
+   * @uiName Registered for indirect tax option description
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_otherRegionSubtext: string =
     "If you represent a business based outside of the US you may be registered. If you’re not sure, contact our Support team to find out more.";
   /**
-   * Label text for the not registered radio button
-   * @uiName Not registered radio button label
+   * @uiName Not registered for indirect tax option
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_notRegistered: string = "Not registered for indirect tax";
   /**
-   * Subtext for the option indicating not being registered for indirect tax
-   * @uiName Not registered for indirect tax option sub-text
+   * Participants based in the US are  considered not registered.
+   * @uiName Not registered for indirect tax option description
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_notRegisteredSubtext: string =
     "If you’re joining this referral program as an individual or you’re based in the US, then you’re not registered.";
   /**
-   * Label text for the Selected Region select input
-   * @uiName Selected region select input label
+   * @uiName Region of indirect tax field label
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_selectedRegion: string = "Country / region of indirect tax";
   /**
-   * Label text for the Province select input
-   * @uiName Province select input label
+   * @uiName Province field label
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_province: string = "Province";
 
   /**
-   * Label text for the Indirect Tax Number input
-   * @uiName Indirect Tax Number input label
+   * @uiName Indirect tax number field label
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_indirectTaxNumber: string =
     "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}}";
   /**
-   * Label text for the QST Tax Number input
-   * @uiName QST Tax Number input label
+   * Displayed to participants registered for QST.
+   * @uiName QST number field label
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_qstNumber: string = "QST number";
   /**
-   * Label text for the QST checkbox
-   * @uiName checkbox label
+   * Displayed to participants registered for indirect tax in Quebec, Canada.
+   * @uiName QST tax checkbox
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_isRegisteredQST: string = "I am registered for QST Tax";
   /**
-   * Label text for Income Tax checkbox
-   * @uiName Income Tax checkbox label
+   * Displayed to participants registered for indirect tax in Spain.
+   * @uiName Spain income tax checkbox
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_isRegisteredSubRegionIncomeTax: string =
     "I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me.";
   /**
-   * Label text for Sub-region select
-   * @uiName for Sub-region select label
+   * Displayed to participants registered in Spain.
+   * @uiName Sub-region input label
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_subRegion: string = "Sub-region";
   /**
-   * Label text for the Sub-region Income Tax Number input
-   * @uiName Sub-region income Tax Number input label
+   * @uiName Income tax field label
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_subRegionTaxNumberLabel: string = "Income Tax Number";
   /**
-   * Alert text indicating participant cannot change info after it has been submitted
-   * @uiName Cannot change info Alert text
+   * Communicate that after this step, only Support can change personal and indirect tax information.
+   * @uiName Submission confirmation alert
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_cannotChangeInfoAlert: string =
     "Changes to your personal and indirect tax information can only be made through our Support team after you complete this step. Make sure these are correct before continuing.";
   /**
-   * Error text shown below the Indirect Tax Number select input
-   * @uiName Indirect Tax Number error text
+   * @uiName Missing indirect tax number error message
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_indirectTaxNumberError: string =
@@ -338,15 +330,13 @@ export class TaxAndCashMonolith {
                     STEP 4 PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   /**
-   * Heading text shown at the top of the page
-   * @uiName Tax and Payouts heading text
+   * @uiName Step 4 title
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_taxAndPayouts: string = "Tax and Payouts";
+  @Prop() step4_taxAndPayouts: string = "Payouts";
   /**
-   * Text shown at the top of the page next to the tax and payouts label text
-   * @uiName Tax and Payouts label text
-   * @uiGroup Step 4 Properties
+   * Displayed at the top of the page on all set up steps and on the dashboard.
+   * @uiName Page description
    */
   @Prop() step4_taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
@@ -357,8 +347,7 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_directlyToBankAccount: string = "Directly to my bank account";
   /**
-   * Text for the option to receive payments to a PayPal account with processing fee details
-   * @uiName PayPal option text with processing fee placeholder
+   * @uiName PayPal payout option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_toPayPalAccount: string =
@@ -542,8 +531,7 @@ export class TaxAndCashMonolith {
   @Prop() step4_patronymicNameLabel: string = "Patronymic name";
 
   /**
-   * Label text for the VO code input field
-   * @uiName VO code input label
+   * @uiName VO code field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_voCodeLabel: string = "VO code";
@@ -570,8 +558,7 @@ export class TaxAndCashMonolith {
   @Prop() step4_classificationLabel: string = "Classification";
 
   /**
-   * Label text for the Taxpayer ID input field
-   * @uiName Taxpayer ID input label
+   * @uiName Taxpayer ID field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_taxPayerIdLabel: string = "Beneficiary INN";
@@ -894,81 +881,76 @@ export class TaxAndCashMonolith {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
   /**
-   * Sub text shown at the top of the page, used to show the current step of the tax form.
-   * @uiName Tax form step text
+   * @uiName Setup progress
    * @uiGroup General Form Properties
    */
   @Prop() formStep: string = "Step {step} of {count}";
   /**
-   * The title for error message shown at the top of the page in an error banner
-   *
-   * @uiName General error title
+   * Part of the alert displayed at the top of the page.
+   * @uiName Form submission error message title
    * @uiGroup General Form Properties
    */
   @Prop() generalErrorTitle: string =
     "There was a problem submitting your information";
 
   /**
-   * Description text for a general form submission error
-   * @uiName General form submission error description
+   * Part of the alert displayed at the top of the page.
+   * @uiName Form submission error message description
    * @uiGroup General Form Properties
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
   /**
-   * Required error text shown at the bottom of field inputs
-   * @uiName Field inputs error text
+   * Displayed under a field that is missing required information.
+   * @uiName Empty form field error message
    * @uiGroup General Form Properties
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
   /**
-   * Invalid error text shown at the bottom of field inputs
-   * @uiName Field inputs invalid error text
+   * Displayed under a field when it has an invalid entry.
+   * @uiName Form field error message
    * @uiGroup General Form Properties
    */
   @Prop() fieldInvalidError: string = "{fieldName} is invalid";
   /**
-   * Text for the continue button in the form
-   * @uiName Continue button text
+   * @uiName Continue button label
    * @uiGroup General Form Properties
    */
   @Prop() continueButton: string = "Continue";
   /**
-   * Text shown inside of back button
-   * @uiName Back button text
+   * @uiName Back button label
    * @uiGroup General Form Properties
    */
   @Prop() backButton: string = "Back";
   /**
-   * Text shown inside of cancel button
-   * @uiName Cancel button text
+   * @uiName Cancel button label
    * @uiGroup General Form Properties
    */
   @Prop() cancelButton: string = "Cancel";
   /**
-   * Alert header text shown in alert if user is already a registered partner
-   * @uiName Participant is partner title
+   * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+   * @uiName Participant is a partner alert title
    * @uiGroup General Form Properties
    */
   @Prop() isPartnerAlertHeader: string =
     "An account with this email already exists with our referral program provider, impact.com";
   /**
-   * Alert description text shown in alert if user is already a registered partner
-   * @uiName Participant is partner description
+   * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+   * @uiName Participant is a partner alert description
    * @uiGroup General Form Properties
    */
   @Prop() isPartnerAlertDescription: string =
     "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
   /**
-   * Alert header shown if there is a problem loading a form
-   * @uiName Loading error alert header
+   * Part of the alert displayed at the top of the page.
+   * @uiName Page load error message title
    * @uiGroup General Form Properties
    */
   @Prop() loadingErrorAlertHeader: string =
     "There was a problem loading your form";
   /**
-   * Alert description shown if there is a problem loading a form
-   * @uiName Loading error alert description
+   * Part of the alert displayed at the top of the page.
+   * @uiName Page load error message description
    * @uiGroup General Form Properties
    */
   @Prop() loadingErrorAlertDescription: string =

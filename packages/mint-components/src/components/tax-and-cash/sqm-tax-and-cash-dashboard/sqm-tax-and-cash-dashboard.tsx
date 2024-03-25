@@ -205,16 +205,14 @@ export class TaxAndCashDashboard {
     "If you’ve recently added your payout information, please wait while we verify your information. If it’s still on hold after a few days, please contact Support or check your inbox for an email from our referral program provider, impact.com.";
 
   /**
-   * The title for error message shown at the top of the page in an error banner
-   *
-   * @uiName General error title
+   * Part of the alert displayed at the top of the page.
+   * @uiName Form submission error message title
    */
   @Prop() generalErrorTitle: string =
     "There was a problem submitting your information";
   /**
-   * The error message shown at the top of the page in an error banner
-   *
-   * @uiName General error text
+   * Part of the alert displayed at the top of the page.
+   * @uiName Form submission error message description
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
@@ -226,14 +224,14 @@ export class TaxAndCashDashboard {
   @Prop() payoutFromImpact: string =
     "Your balance may take up to 24 hours to update. Payouts will be sent from our referral program provider, impact.com.";
   /**
-   * Alert header shown if there is a problem loading a form
-   * @uiName Loading error alert header
+   * Part of the alert displayed at the top of the page.
+   * @uiName Page load error message title
    */
   @Prop() loadingErrorAlertHeader: string =
     "There was a problem loading your form";
   /**
-   * Alert description shown if there is a problem loading a form
-   * @uiName Loading error alert description
+   * Part of the alert displayed at the top of the page.
+   * @uiName Page load error message description
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";

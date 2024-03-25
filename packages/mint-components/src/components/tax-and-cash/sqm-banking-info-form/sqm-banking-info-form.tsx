@@ -33,20 +33,18 @@ export class BankingInfoForm {
   @State() ignored = true;
 
   /**
-   * Subtext shown at the top of the page, used to show the current step of the tax form.
-   * @uiName Form step text
+   * @uiName Setup progress
    */
   @Prop() formStep: string = "Step {step} of {count}";
 
   /**
-   * Heading text shown at the top of the page
-   * @uiName Tax and Payouts heading text
+   * @uiName Step 4 title
    */
-  @Prop() taxAndPayouts: string = "Tax and Payouts";
+  @Prop() taxAndPayouts: string = "Payouts";
 
   /**
-   * Text shown at the top of the page next to the tax and payouts label text
-   * @uiName Tax and Payouts label text
+   * Displayed at the top of the page on all set up steps and on the dashboard.
+   * @uiName Page description
    */
   @Prop() taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
@@ -58,8 +56,7 @@ export class BankingInfoForm {
   @Prop() directlyToBankAccount: string = "Directly to my bank account";
 
   /**
-   * Text for the option to receive payments to a PayPal account with processing fee details
-   * @uiName PayPal option text with processing fee placeholder
+   * @uiName PayPal payout option
    */
   @Prop() toPayPalAccount: string =
     "PayPal (2% processing fee capped to {feeCap})";
@@ -214,8 +211,7 @@ export class BankingInfoForm {
   @Prop() patronymicNameLabel: string = "Patronymic name";
 
   /**
-   * Label text for the VO code input field
-   * @uiName VO code input label
+   * @uiName VO code field label
    */
   @Prop() voCodeLabel: string = "VO code";
 
@@ -238,8 +234,7 @@ export class BankingInfoForm {
   @Prop() classificationLabel: string = "Classification";
 
   /**
-   * Label text for the Taxpayer ID input field
-   * @uiName Taxpayer ID input label
+   * @uiName Taxpayer ID field label
    */
   @Prop() taxPayerIdLabel: string =
     "{country, select, AR {CUIT/CUIL} KR {Classification ID} other { Beneficiary INN } }";
@@ -282,62 +277,60 @@ export class BankingInfoForm {
   @Prop() searchForCountryText: string = "Search for country..";
 
   /**
-   * Header text for the alert when the user is identified as a partner
-   * @uiName Partner identification alert header
+   * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+   * @uiName Participant is a partner alert title
    */
   @Prop() isPartnerAlertHeader: string =
     "An account with this email already exists with our referral program provider, impact.com";
 
   /**
-   * Description text for the alert when the user is identified as a partner
-   * @uiName Partner identification alert description
+   * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+   * @uiName Participant is a partner alert description
    */
   @Prop() isPartnerAlertDescription: string =
     "If you don’t recognize this referral program provider or believe this is a mistake, please contact our Support team or sign up for this referral program with a different email.";
 
   /**
-   * Title text for a general form submission error
-   * @uiName General form submission error title
+   * Part of the alert displayed at the top of the page.
+   * @uiName Form submission error message title
    */
   @Prop() generalErrorTitle: string =
     "There was a problem submitting your information";
 
   /**
-   * Description text for a general form submission error
-   * @uiName General form submission error description
+   * Part of the alert displayed at the top of the page.
+   * @uiName Form submission error message description
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
-
   /**
-   * Required error text shown at the bottom of field inputs
-   * @uiName Field inputs error text
+   * Displayed under a field that is missing required information.
+   * @uiName Empty form field error message
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
   /**
-   * Invalid error text shown at the bottom of field inputs
-   * @uiName Field inputs invalid error text
+   * Displayed under a field when it has an invalid entry.
+   * @uiName Form field error message
    */
   @Prop() fieldInvalidError: string = "{fieldName} is invalid";
   /**
-   * Text for the save button in the form
-   * @uiName Save button text
+   * @uiName Continue button label
    */
   @Prop() continueButton: string = "Save";
   /**
    * Text for the back button in the form
-   * @uiName Back button text
+   * @uiName Back button label
    */
-  @Prop() backButton: string = "Save";
+  @Prop() backButton: string = "Back";
   /**
-   * Alert header shown if there is a problem loading a form
-   * @uiName Loading error alert header
+   * Part of the alert displayed at the top of the page.
+   * @uiName Page load error message title
    */
   @Prop() loadingErrorAlertHeader: string =
     "There was a problem loading your form";
   /**
-   * Alert description shown if there is a problem loading a form
-   * @uiName Loading error alert description
+   * Part of the alert displayed at the top of the page.
+   * @uiName Page load error message description
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";

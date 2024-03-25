@@ -74,7 +74,7 @@ export namespace Components {
         "agencyCodeLabel": string;
         /**
           * Text for the back button in the form
-          * @uiName Back button text
+          * @uiName Back button label
          */
         "backButton": string;
         /**
@@ -153,8 +153,7 @@ export namespace Components {
          */
         "classificationLabel": string;
         /**
-          * Text for the save button in the form
-          * @uiName Save button text
+          * @uiName Continue button label
          */
         "continueButton": string;
         /**
@@ -172,13 +171,13 @@ export namespace Components {
          */
         "eftWithdrawalLabel": string;
         /**
-          * Invalid error text shown at the bottom of field inputs
-          * @uiName Field inputs invalid error text
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
          */
         "fieldInvalidError": string;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
          */
         "fieldRequiredError": string;
         /**
@@ -187,8 +186,7 @@ export namespace Components {
          */
         "foreignSelectItemLabel": string;
         /**
-          * Subtext shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Form step text
+          * @uiName Setup progress
          */
         "formStep": string;
         /**
@@ -196,13 +194,13 @@ export namespace Components {
          */
         "fxWireProcessingFeeLabel": string;
         /**
-          * Description text for a general form submission error
-          * @uiName General form submission error description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription": string;
         /**
-          * Title text for a general form submission error
-          * @uiName General form submission error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle": string;
         /**
@@ -216,23 +214,23 @@ export namespace Components {
          */
         "individualSelectItemLabel": string;
         /**
-          * Description text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
          */
         "isPartnerAlertDescription": string;
         /**
-          * Header text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert header
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
          */
         "isPartnerAlertHeader": string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription": string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -311,28 +309,24 @@ export namespace Components {
          */
         "swiftCodeLabel": string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Tax and Payouts heading text
+          * @uiName Step 4 title
          */
         "taxAndPayouts": string;
         /**
-          * Text shown at the top of the page next to the tax and payouts label text
-          * @uiName Tax and Payouts label text
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
          */
         "taxAndPayoutsDescription": string;
         /**
-          * Label text for the Taxpayer ID input field
-          * @uiName Taxpayer ID input label
+          * @uiName Taxpayer ID field label
          */
         "taxPayerIdLabel": string;
         /**
-          * Text for the option to receive payments to a PayPal account with processing fee details
-          * @uiName PayPal option text with processing fee placeholder
+          * @uiName PayPal payout option
          */
         "toPayPalAccount": string;
         /**
-          * Label text for the VO code input field
-          * @uiName VO code input label
+          * @uiName VO code field label
          */
         "voCodeLabel": string;
     }
@@ -562,8 +556,7 @@ export namespace Components {
     }
     interface SqmDocusignForm {
         /**
-          * Text shown inside of back button
-          * @uiName Back button text
+          * @uiName Back button label
          */
         "backButton": string;
         /**
@@ -577,8 +570,7 @@ export namespace Components {
          */
         "businessEntity": string;
         /**
-          * Text shown inside of cancel button
-          * @uiName Cancel button text
+          * @uiName Cancel button label
          */
         "cancelButton": string;
         /**
@@ -612,8 +604,7 @@ export namespace Components {
          */
         "docusignExpired": string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
+          * @uiName Setup progress
          */
         "formStep": string;
         /**
@@ -622,13 +613,13 @@ export namespace Components {
          */
         "formSubmissionError": string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription": string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle": string;
         /**
@@ -637,13 +628,13 @@ export namespace Components {
          */
         "individualParticipant": string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription": string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -981,18 +972,16 @@ export namespace Components {
     }
     interface SqmIndirectTaxForm {
         /**
-          * Text for the back button in the form
-          * @uiName Back button text
+          * @uiName Back button label
          */
         "backButton": string;
         /**
-          * Alert text indicating participant cannot change info after it has been submitted
-          * @uiName Cannot change info Alert text
+          * Communicate that after this step, only Support can change personal and indirect tax information.
+          * @uiName Submission confirmation alert
          */
         "cannotChangeInfoAlert": string;
         /**
-          * Text for the continue button in the form
-          * @uiName Continue button text
+          * @uiName Continue button label
          */
         "continueButton": string;
         /**
@@ -1000,113 +989,106 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseIndirectTaxFormResult>;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
          */
         "fieldRequiredError": string;
         /**
-          * Subtext shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Form step text
+          * @uiName Setup progress
          */
         "formStep": string;
         /**
-          * Description text for a general form submission error
-          * @uiName General form submission error description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription": string;
         /**
-          * Title text for a general form submission error
-          * @uiName General form submission error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle": string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Indirect tax heading text
+          * @uiName Step 2 title
          */
         "indirectTax": string;
         /**
-          * Text shown at the top of the page below to the indirect tax header
-          * @uiName Indirect tax label text
+          * Displayed under the title of this step.
+          * @uiName Step 2 description
          */
         "indirectTaxDescription": string;
         /**
-          * Heading text for the indirect tax details section
-          * @uiName Indirect tax details heading text
+          * Displayed with indirect tax registration options.
+          * @uiName Indirect tax details section title
          */
         "indirectTaxDetails": string;
         /**
-          * Text shown below the indirect tax details heading text
-          * @uiName Indirect tax details subtext
+          * Displayed under the indirect tax details title.
+          * @uiName Indirect tax details section  description
          */
         "indirectTaxDetailsDescription": string;
         /**
-          * Label text for the indirect tax number input with a dynamic placeholder based on tax type
-          * @uiName Indirect tax number input label
+          * @uiName Indirect tax number field label
          */
         "indirectTaxNumber": string;
         /**
-          * Error message for the indirect tax number input field with a dynamic placeholder based on tax type
-          * @uiName Indirect tax number error message
+          * @uiName Missing indirect tax number error message
          */
         "indirectTaxNumberError": string;
         /**
-          * Description text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
          */
         "isPartnerAlertDescription": string;
         /**
-          * Header text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert header
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
          */
         "isPartnerAlertHeader": string;
         /**
-          * Text for the option indicating registration for QST tax
-          * @uiName Registered for QST tax option text
+          * Displayed to participants registered for indirect tax in Quebec, Canada.
+          * @uiName QST tax checkbox
          */
         "isRegisteredQST": string;
         /**
-          * Text for the option indicating registration for sub-region income tax
-          * @uiName Registered for sub-region income tax option text
+          * Displayed to participants registered for indirect tax in Spain.
+          * @uiName Spain income tax checkbox
          */
         "isRegisteredSubRegionIncomeTax": string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription": string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader": string;
         /**
-          * Text for the option indicating not being registered for indirect tax
-          * @uiName Not registered for indirect tax option text
+          * @uiName Not registered for indirect tax option
          */
         "notRegistered": string;
         /**
-          * Subtext for the option indicating not being registered for indirect tax
-          * @uiName Not registered for indirect tax option sub-text
+          * Participants based in the US are  considered not registered.
+          * @uiName Not registered for indirect tax option description
          */
         "notRegisteredSubtext": string;
         /**
-          * Text for the option indicating registration for indirect tax
-          * @uiName Registered for indirect tax option text
+          * @uiName Registered for indirect tax option
          */
         "otherRegion": string;
         /**
-          * Subtext for the option indicating registration for indirect tax in a different region
-          * @uiName Registered for indirect tax in a different region option sub-text
+          * Selecting this option will display fields to enter indirect tax details.
+          * @uiName Registered for indirect tax option description
          */
         "otherRegionSubtext": string;
         /**
-          * Label text for the province input
-          * @uiName Province input label
+          * @uiName Province field label
          */
         "province": string;
         /**
-          * Label text for the QST number input field
-          * @uiName QST number input label
+          * Displayed to participants registered for QST.
+          * @uiName QST number field label
          */
         "qstNumber": string;
         /**
@@ -1115,18 +1097,16 @@ export namespace Components {
          */
         "searchForCountryText": string;
         /**
-          * Label text for the country/region select input
-          * @uiName Selected country/region label
+          * @uiName Region of indirect tax field label
          */
         "selectedRegion": string;
         /**
-          * Label text for the sub-region input field
+          * Displayed to participants registered in Spain.
           * @uiName Sub-region input label
          */
         "subRegion": string;
         /**
-          * Label text for the sub-region tax number input field
-          * @uiName Sub-region tax number input label
+          * @uiName Income tax field label
          */
         "subRegionTaxNumberLabel": string;
     }
@@ -3768,20 +3748,17 @@ export namespace Components {
     }
     interface SqmTaxAndCash {
         /**
-          * Text shown inside of back button
-          * @uiName Back button text
+          * @uiName Back button label
           * @uiGroup General Form Properties
          */
         "backButton": string;
         /**
-          * Text shown inside of cancel button
-          * @uiName Cancel button text
+          * @uiName Cancel button label
           * @uiGroup General Form Properties
          */
         "cancelButton": string;
         /**
-          * Text for the continue button in the form
-          * @uiName Continue button text
+          * @uiName Continue button label
           * @uiGroup General Form Properties
          */
         "continueButton": string;
@@ -3990,32 +3967,31 @@ export namespace Components {
          */
         "earningsColumnTitle": string;
         /**
-          * Invalid error text shown at the bottom of field inputs
-          * @uiName Field inputs invalid error text
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
           * @uiGroup General Form Properties
          */
         "fieldInvalidError": string;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
           * @uiGroup General Form Properties
          */
         "fieldRequiredError": string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
+          * @uiName Setup progress
           * @uiGroup General Form Properties
          */
         "formStep": string;
         /**
-          * Description text for a general form submission error
-          * @uiName General form submission error description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
           * @uiGroup General Form Properties
          */
         "generalErrorDescription": string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
           * @uiGroup General Form Properties
          */
         "generalErrorTitle": string;
@@ -4026,26 +4002,26 @@ export namespace Components {
          */
         "invoiceColumnTitle": string;
         /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
          */
         "isPartnerAlertDescription": string;
         /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
           * @uiGroup General Form Properties
          */
         "isPartnerAlertHeader": string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
           * @uiGroup General Form Properties
          */
         "loadingErrorAlertDescription": string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
           * @uiGroup General Form Properties
          */
         "loadingErrorAlertHeader": string;
@@ -4106,92 +4082,86 @@ export namespace Components {
          */
         "step1_termsAndConditionsLabel": string;
         /**
-          * Alert text indicating participant cannot change info after it has been submitted
-          * @uiName Cannot change info Alert text
+          * Communicate that after this step, only Support can change personal and indirect tax information.
+          * @uiName Submission confirmation alert
           * @uiGroup Step 2 Properties
          */
         "step2_cannotChangeInfoAlert": string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Indirect tax heading text
+          * @uiName Step 2 title
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTax": string;
         /**
-          * Subtext shown at the top of the page
-          * @uiName Indirect tax sub text
+          * Displayed under the title of this step.
+          * @uiName Step 2 description
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxDescription": string;
         /**
-          * Heading text shown above the tax details radio buttons
-          * @uiName Indirect tax details heading
+          * Displayed with indirect tax registration options.
+          * @uiName Indirect tax details section title
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxDetails": string;
         /**
-          * Sub text shown above the tax details radio buttons
-          * @uiName Indirect tax details sub text
+          * Displayed under the indirect tax details title.
+          * @uiName Indirect tax details section  description
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxDetailsDescription": string;
         /**
-          * Label text for the Indirect Tax Number input
-          * @uiName Indirect Tax Number input label
+          * @uiName Indirect tax number field label
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxNumber": string;
         /**
-          * Error text shown below the Indirect Tax Number select input
-          * @uiName Indirect Tax Number error text
+          * @uiName Missing indirect tax number error message
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxNumberError": string;
         /**
-          * Label text for the QST checkbox
-          * @uiName checkbox label
+          * Displayed to participants registered for indirect tax in Quebec, Canada.
+          * @uiName QST tax checkbox
           * @uiGroup Step 2 Properties
          */
         "step2_isRegisteredQST": string;
         /**
-          * Label text for Income Tax checkbox
-          * @uiName Income Tax checkbox label
+          * Displayed to participants registered for indirect tax in Spain.
+          * @uiName Spain income tax checkbox
           * @uiGroup Step 2 Properties
          */
         "step2_isRegisteredSubRegionIncomeTax": string;
         /**
-          * Label text for the not registered radio button
-          * @uiName Not registered radio button label
+          * @uiName Not registered for indirect tax option
           * @uiGroup Step 2 Properties
          */
         "step2_notRegistered": string;
         /**
-          * Subtext for the option indicating not being registered for indirect tax
-          * @uiName Not registered for indirect tax option sub-text
+          * Participants based in the US are  considered not registered.
+          * @uiName Not registered for indirect tax option description
           * @uiGroup Step 2 Properties
          */
         "step2_notRegisteredSubtext": string;
         /**
-          * Label test for the option indicating registration for indirect tax
-          * @uiName Registered for indrect tax label
+          * @uiName Registered for indirect tax option
           * @uiGroup Step 2 Properties
          */
         "step2_otherRegion": string;
         /**
-          * Subtext for the option indicating registration for indirect tax in a different region
-          * @uiName Registered for indirect tax in a different region option sub-text
+          * Selecting this option will display fields to enter indirect tax details.
+          * @uiName Registered for indirect tax option description
           * @uiGroup Step 2 Properties
          */
         "step2_otherRegionSubtext": string;
         /**
-          * Label text for the Province select input
-          * @uiName Province select input label
+          * @uiName Province field label
           * @uiGroup Step 2 Properties
          */
         "step2_province": string;
         /**
-          * Label text for the QST Tax Number input
-          * @uiName QST Tax Number input label
+          * Displayed to participants registered for QST.
+          * @uiName QST number field label
           * @uiGroup Step 2 Properties
          */
         "step2_qstNumber": string;
@@ -4201,20 +4171,18 @@ export namespace Components {
          */
         "step2_searchForCountryText": string;
         /**
-          * Label text for the Selected Region select input
-          * @uiName Selected region select input label
+          * @uiName Region of indirect tax field label
           * @uiGroup Step 2 Properties
          */
         "step2_selectedRegion": string;
         /**
-          * Label text for Sub-region select
-          * @uiName for Sub-region select label
+          * Displayed to participants registered in Spain.
+          * @uiName Sub-region input label
           * @uiGroup Step 2 Properties
          */
         "step2_subRegion": string;
         /**
-          * Label text for the Sub-region Income Tax Number input
-          * @uiName Sub-region income Tax Number input label
+          * @uiName Income tax field label
           * @uiGroup Step 2 Properties
          */
         "step2_subRegionTaxNumberLabel": string;
@@ -4540,32 +4508,27 @@ export namespace Components {
          */
         "step4_swiftCodeLabel": string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Tax and Payouts heading text
+          * @uiName Step 4 title
           * @uiGroup Step 4 Properties
          */
         "step4_taxAndPayouts": string;
         /**
-          * Text shown at the top of the page next to the tax and payouts label text
-          * @uiName Tax and Payouts label text
-          * @uiGroup Step 4 Properties
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
          */
         "step4_taxAndPayoutsDescription": string;
         /**
-          * Label text for the Taxpayer ID input field
-          * @uiName Taxpayer ID input label
+          * @uiName Taxpayer ID field label
           * @uiGroup Step 4 Properties
          */
         "step4_taxPayerIdLabel": string;
         /**
-          * Text for the option to receive payments to a PayPal account with processing fee details
-          * @uiName PayPal option text with processing fee placeholder
+          * @uiName PayPal payout option
           * @uiGroup Step 4 Properties
          */
         "step4_toPayPalAccount": string;
         /**
-          * Label text for the VO code input field
-          * @uiName VO code input label
+          * @uiName VO code field label
           * @uiGroup Step 4 Properties
          */
         "step4_voCodeLabel": string;
@@ -4641,13 +4604,13 @@ export namespace Components {
          */
         "errorTitleText": string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription": string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle": string;
         /**
@@ -4689,13 +4652,13 @@ export namespace Components {
          */
         "invoiceColumnTitle": string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription": string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -4865,8 +4828,7 @@ export namespace Components {
          */
         "allowBankingCollection": string;
         /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
+          * @uiName Continue button label
          */
         "continueButton": string;
         /**
@@ -4891,8 +4853,8 @@ export namespace Components {
          */
         "email": string;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
          */
         "fieldRequiredError": string;
         /**
@@ -4900,28 +4862,27 @@ export namespace Components {
          */
         "firstName": string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
+          * @uiName Setup progress
          */
         "formStep": string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription": string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle": string;
         /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
          */
         "isPartnerAlertDescription": string;
         /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
          */
         "isPartnerAlertHeader": string;
         /**
@@ -4929,13 +4890,13 @@ export namespace Components {
          */
         "lastName": string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription": string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -5767,7 +5728,7 @@ declare namespace LocalJSX {
         "agencyCodeLabel"?: string;
         /**
           * Text for the back button in the form
-          * @uiName Back button text
+          * @uiName Back button label
          */
         "backButton"?: string;
         /**
@@ -5846,8 +5807,7 @@ declare namespace LocalJSX {
          */
         "classificationLabel"?: string;
         /**
-          * Text for the save button in the form
-          * @uiName Save button text
+          * @uiName Continue button label
          */
         "continueButton"?: string;
         /**
@@ -5865,13 +5825,13 @@ declare namespace LocalJSX {
          */
         "eftWithdrawalLabel"?: string;
         /**
-          * Invalid error text shown at the bottom of field inputs
-          * @uiName Field inputs invalid error text
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
          */
         "fieldInvalidError"?: string;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
          */
         "fieldRequiredError"?: string;
         /**
@@ -5880,8 +5840,7 @@ declare namespace LocalJSX {
          */
         "foreignSelectItemLabel"?: string;
         /**
-          * Subtext shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Form step text
+          * @uiName Setup progress
          */
         "formStep"?: string;
         /**
@@ -5889,13 +5848,13 @@ declare namespace LocalJSX {
          */
         "fxWireProcessingFeeLabel"?: string;
         /**
-          * Description text for a general form submission error
-          * @uiName General form submission error description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription"?: string;
         /**
-          * Title text for a general form submission error
-          * @uiName General form submission error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle"?: string;
         /**
@@ -5909,23 +5868,23 @@ declare namespace LocalJSX {
          */
         "individualSelectItemLabel"?: string;
         /**
-          * Description text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
          */
         "isPartnerAlertDescription"?: string;
         /**
-          * Header text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert header
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
          */
         "isPartnerAlertHeader"?: string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription"?: string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -6004,28 +5963,24 @@ declare namespace LocalJSX {
          */
         "swiftCodeLabel"?: string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Tax and Payouts heading text
+          * @uiName Step 4 title
          */
         "taxAndPayouts"?: string;
         /**
-          * Text shown at the top of the page next to the tax and payouts label text
-          * @uiName Tax and Payouts label text
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
          */
         "taxAndPayoutsDescription"?: string;
         /**
-          * Label text for the Taxpayer ID input field
-          * @uiName Taxpayer ID input label
+          * @uiName Taxpayer ID field label
          */
         "taxPayerIdLabel"?: string;
         /**
-          * Text for the option to receive payments to a PayPal account with processing fee details
-          * @uiName PayPal option text with processing fee placeholder
+          * @uiName PayPal payout option
          */
         "toPayPalAccount"?: string;
         /**
-          * Label text for the VO code input field
-          * @uiName VO code input label
+          * @uiName VO code field label
          */
         "voCodeLabel"?: string;
     }
@@ -6256,8 +6211,7 @@ declare namespace LocalJSX {
     }
     interface SqmDocusignForm {
         /**
-          * Text shown inside of back button
-          * @uiName Back button text
+          * @uiName Back button label
          */
         "backButton"?: string;
         /**
@@ -6271,8 +6225,7 @@ declare namespace LocalJSX {
          */
         "businessEntity"?: string;
         /**
-          * Text shown inside of cancel button
-          * @uiName Cancel button text
+          * @uiName Cancel button label
          */
         "cancelButton"?: string;
         /**
@@ -6306,8 +6259,7 @@ declare namespace LocalJSX {
          */
         "docusignExpired"?: string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
+          * @uiName Setup progress
          */
         "formStep"?: string;
         /**
@@ -6316,13 +6268,13 @@ declare namespace LocalJSX {
          */
         "formSubmissionError"?: string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription"?: string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle"?: string;
         /**
@@ -6331,13 +6283,13 @@ declare namespace LocalJSX {
          */
         "individualParticipant"?: string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription"?: string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -6675,18 +6627,16 @@ declare namespace LocalJSX {
     }
     interface SqmIndirectTaxForm {
         /**
-          * Text for the back button in the form
-          * @uiName Back button text
+          * @uiName Back button label
          */
         "backButton"?: string;
         /**
-          * Alert text indicating participant cannot change info after it has been submitted
-          * @uiName Cannot change info Alert text
+          * Communicate that after this step, only Support can change personal and indirect tax information.
+          * @uiName Submission confirmation alert
          */
         "cannotChangeInfoAlert"?: string;
         /**
-          * Text for the continue button in the form
-          * @uiName Continue button text
+          * @uiName Continue button label
          */
         "continueButton"?: string;
         /**
@@ -6694,113 +6644,106 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseIndirectTaxFormResult>;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
          */
         "fieldRequiredError"?: string;
         /**
-          * Subtext shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Form step text
+          * @uiName Setup progress
          */
         "formStep"?: string;
         /**
-          * Description text for a general form submission error
-          * @uiName General form submission error description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription"?: string;
         /**
-          * Title text for a general form submission error
-          * @uiName General form submission error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle"?: string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Indirect tax heading text
+          * @uiName Step 2 title
          */
         "indirectTax"?: string;
         /**
-          * Text shown at the top of the page below to the indirect tax header
-          * @uiName Indirect tax label text
+          * Displayed under the title of this step.
+          * @uiName Step 2 description
          */
         "indirectTaxDescription"?: string;
         /**
-          * Heading text for the indirect tax details section
-          * @uiName Indirect tax details heading text
+          * Displayed with indirect tax registration options.
+          * @uiName Indirect tax details section title
          */
         "indirectTaxDetails"?: string;
         /**
-          * Text shown below the indirect tax details heading text
-          * @uiName Indirect tax details subtext
+          * Displayed under the indirect tax details title.
+          * @uiName Indirect tax details section  description
          */
         "indirectTaxDetailsDescription"?: string;
         /**
-          * Label text for the indirect tax number input with a dynamic placeholder based on tax type
-          * @uiName Indirect tax number input label
+          * @uiName Indirect tax number field label
          */
         "indirectTaxNumber"?: string;
         /**
-          * Error message for the indirect tax number input field with a dynamic placeholder based on tax type
-          * @uiName Indirect tax number error message
+          * @uiName Missing indirect tax number error message
          */
         "indirectTaxNumberError"?: string;
         /**
-          * Description text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
          */
         "isPartnerAlertDescription"?: string;
         /**
-          * Header text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert header
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
          */
         "isPartnerAlertHeader"?: string;
         /**
-          * Text for the option indicating registration for QST tax
-          * @uiName Registered for QST tax option text
+          * Displayed to participants registered for indirect tax in Quebec, Canada.
+          * @uiName QST tax checkbox
          */
         "isRegisteredQST"?: string;
         /**
-          * Text for the option indicating registration for sub-region income tax
-          * @uiName Registered for sub-region income tax option text
+          * Displayed to participants registered for indirect tax in Spain.
+          * @uiName Spain income tax checkbox
          */
         "isRegisteredSubRegionIncomeTax"?: string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription"?: string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader"?: string;
         /**
-          * Text for the option indicating not being registered for indirect tax
-          * @uiName Not registered for indirect tax option text
+          * @uiName Not registered for indirect tax option
          */
         "notRegistered"?: string;
         /**
-          * Subtext for the option indicating not being registered for indirect tax
-          * @uiName Not registered for indirect tax option sub-text
+          * Participants based in the US are  considered not registered.
+          * @uiName Not registered for indirect tax option description
          */
         "notRegisteredSubtext"?: string;
         /**
-          * Text for the option indicating registration for indirect tax
-          * @uiName Registered for indirect tax option text
+          * @uiName Registered for indirect tax option
          */
         "otherRegion"?: string;
         /**
-          * Subtext for the option indicating registration for indirect tax in a different region
-          * @uiName Registered for indirect tax in a different region option sub-text
+          * Selecting this option will display fields to enter indirect tax details.
+          * @uiName Registered for indirect tax option description
          */
         "otherRegionSubtext"?: string;
         /**
-          * Label text for the province input
-          * @uiName Province input label
+          * @uiName Province field label
          */
         "province"?: string;
         /**
-          * Label text for the QST number input field
-          * @uiName QST number input label
+          * Displayed to participants registered for QST.
+          * @uiName QST number field label
          */
         "qstNumber"?: string;
         /**
@@ -6809,18 +6752,16 @@ declare namespace LocalJSX {
          */
         "searchForCountryText"?: string;
         /**
-          * Label text for the country/region select input
-          * @uiName Selected country/region label
+          * @uiName Region of indirect tax field label
          */
         "selectedRegion"?: string;
         /**
-          * Label text for the sub-region input field
+          * Displayed to participants registered in Spain.
           * @uiName Sub-region input label
          */
         "subRegion"?: string;
         /**
-          * Label text for the sub-region tax number input field
-          * @uiName Sub-region tax number input label
+          * @uiName Income tax field label
          */
         "subRegionTaxNumberLabel"?: string;
     }
@@ -9432,20 +9373,17 @@ declare namespace LocalJSX {
     }
     interface SqmTaxAndCash {
         /**
-          * Text shown inside of back button
-          * @uiName Back button text
+          * @uiName Back button label
           * @uiGroup General Form Properties
          */
         "backButton"?: string;
         /**
-          * Text shown inside of cancel button
-          * @uiName Cancel button text
+          * @uiName Cancel button label
           * @uiGroup General Form Properties
          */
         "cancelButton"?: string;
         /**
-          * Text for the continue button in the form
-          * @uiName Continue button text
+          * @uiName Continue button label
           * @uiGroup General Form Properties
          */
         "continueButton"?: string;
@@ -9654,32 +9592,31 @@ declare namespace LocalJSX {
          */
         "earningsColumnTitle"?: string;
         /**
-          * Invalid error text shown at the bottom of field inputs
-          * @uiName Field inputs invalid error text
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
           * @uiGroup General Form Properties
          */
         "fieldInvalidError"?: string;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
           * @uiGroup General Form Properties
          */
         "fieldRequiredError"?: string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
+          * @uiName Setup progress
           * @uiGroup General Form Properties
          */
         "formStep"?: string;
         /**
-          * Description text for a general form submission error
-          * @uiName General form submission error description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
           * @uiGroup General Form Properties
          */
         "generalErrorDescription"?: string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
           * @uiGroup General Form Properties
          */
         "generalErrorTitle"?: string;
@@ -9690,26 +9627,26 @@ declare namespace LocalJSX {
          */
         "invoiceColumnTitle"?: string;
         /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
          */
         "isPartnerAlertDescription"?: string;
         /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
           * @uiGroup General Form Properties
          */
         "isPartnerAlertHeader"?: string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
           * @uiGroup General Form Properties
          */
         "loadingErrorAlertDescription"?: string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
           * @uiGroup General Form Properties
          */
         "loadingErrorAlertHeader"?: string;
@@ -9770,92 +9707,86 @@ declare namespace LocalJSX {
          */
         "step1_termsAndConditionsLabel"?: string;
         /**
-          * Alert text indicating participant cannot change info after it has been submitted
-          * @uiName Cannot change info Alert text
+          * Communicate that after this step, only Support can change personal and indirect tax information.
+          * @uiName Submission confirmation alert
           * @uiGroup Step 2 Properties
          */
         "step2_cannotChangeInfoAlert"?: string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Indirect tax heading text
+          * @uiName Step 2 title
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTax"?: string;
         /**
-          * Subtext shown at the top of the page
-          * @uiName Indirect tax sub text
+          * Displayed under the title of this step.
+          * @uiName Step 2 description
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxDescription"?: string;
         /**
-          * Heading text shown above the tax details radio buttons
-          * @uiName Indirect tax details heading
+          * Displayed with indirect tax registration options.
+          * @uiName Indirect tax details section title
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxDetails"?: string;
         /**
-          * Sub text shown above the tax details radio buttons
-          * @uiName Indirect tax details sub text
+          * Displayed under the indirect tax details title.
+          * @uiName Indirect tax details section  description
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxDetailsDescription"?: string;
         /**
-          * Label text for the Indirect Tax Number input
-          * @uiName Indirect Tax Number input label
+          * @uiName Indirect tax number field label
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxNumber"?: string;
         /**
-          * Error text shown below the Indirect Tax Number select input
-          * @uiName Indirect Tax Number error text
+          * @uiName Missing indirect tax number error message
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxNumberError"?: string;
         /**
-          * Label text for the QST checkbox
-          * @uiName checkbox label
+          * Displayed to participants registered for indirect tax in Quebec, Canada.
+          * @uiName QST tax checkbox
           * @uiGroup Step 2 Properties
          */
         "step2_isRegisteredQST"?: string;
         /**
-          * Label text for Income Tax checkbox
-          * @uiName Income Tax checkbox label
+          * Displayed to participants registered for indirect tax in Spain.
+          * @uiName Spain income tax checkbox
           * @uiGroup Step 2 Properties
          */
         "step2_isRegisteredSubRegionIncomeTax"?: string;
         /**
-          * Label text for the not registered radio button
-          * @uiName Not registered radio button label
+          * @uiName Not registered for indirect tax option
           * @uiGroup Step 2 Properties
          */
         "step2_notRegistered"?: string;
         /**
-          * Subtext for the option indicating not being registered for indirect tax
-          * @uiName Not registered for indirect tax option sub-text
+          * Participants based in the US are  considered not registered.
+          * @uiName Not registered for indirect tax option description
           * @uiGroup Step 2 Properties
          */
         "step2_notRegisteredSubtext"?: string;
         /**
-          * Label test for the option indicating registration for indirect tax
-          * @uiName Registered for indrect tax label
+          * @uiName Registered for indirect tax option
           * @uiGroup Step 2 Properties
          */
         "step2_otherRegion"?: string;
         /**
-          * Subtext for the option indicating registration for indirect tax in a different region
-          * @uiName Registered for indirect tax in a different region option sub-text
+          * Selecting this option will display fields to enter indirect tax details.
+          * @uiName Registered for indirect tax option description
           * @uiGroup Step 2 Properties
          */
         "step2_otherRegionSubtext"?: string;
         /**
-          * Label text for the Province select input
-          * @uiName Province select input label
+          * @uiName Province field label
           * @uiGroup Step 2 Properties
          */
         "step2_province"?: string;
         /**
-          * Label text for the QST Tax Number input
-          * @uiName QST Tax Number input label
+          * Displayed to participants registered for QST.
+          * @uiName QST number field label
           * @uiGroup Step 2 Properties
          */
         "step2_qstNumber"?: string;
@@ -9865,20 +9796,18 @@ declare namespace LocalJSX {
          */
         "step2_searchForCountryText"?: string;
         /**
-          * Label text for the Selected Region select input
-          * @uiName Selected region select input label
+          * @uiName Region of indirect tax field label
           * @uiGroup Step 2 Properties
          */
         "step2_selectedRegion"?: string;
         /**
-          * Label text for Sub-region select
-          * @uiName for Sub-region select label
+          * Displayed to participants registered in Spain.
+          * @uiName Sub-region input label
           * @uiGroup Step 2 Properties
          */
         "step2_subRegion"?: string;
         /**
-          * Label text for the Sub-region Income Tax Number input
-          * @uiName Sub-region income Tax Number input label
+          * @uiName Income tax field label
           * @uiGroup Step 2 Properties
          */
         "step2_subRegionTaxNumberLabel"?: string;
@@ -10204,32 +10133,27 @@ declare namespace LocalJSX {
          */
         "step4_swiftCodeLabel"?: string;
         /**
-          * Heading text shown at the top of the page
-          * @uiName Tax and Payouts heading text
+          * @uiName Step 4 title
           * @uiGroup Step 4 Properties
          */
         "step4_taxAndPayouts"?: string;
         /**
-          * Text shown at the top of the page next to the tax and payouts label text
-          * @uiName Tax and Payouts label text
-          * @uiGroup Step 4 Properties
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
          */
         "step4_taxAndPayoutsDescription"?: string;
         /**
-          * Label text for the Taxpayer ID input field
-          * @uiName Taxpayer ID input label
+          * @uiName Taxpayer ID field label
           * @uiGroup Step 4 Properties
          */
         "step4_taxPayerIdLabel"?: string;
         /**
-          * Text for the option to receive payments to a PayPal account with processing fee details
-          * @uiName PayPal option text with processing fee placeholder
+          * @uiName PayPal payout option
           * @uiGroup Step 4 Properties
          */
         "step4_toPayPalAccount"?: string;
         /**
-          * Label text for the VO code input field
-          * @uiName VO code input label
+          * @uiName VO code field label
           * @uiGroup Step 4 Properties
          */
         "step4_voCodeLabel"?: string;
@@ -10305,13 +10229,13 @@ declare namespace LocalJSX {
          */
         "errorTitleText"?: string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription"?: string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle"?: string;
         /**
@@ -10353,13 +10277,13 @@ declare namespace LocalJSX {
          */
         "invoiceColumnTitle"?: string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription"?: string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -10528,8 +10452,7 @@ declare namespace LocalJSX {
          */
         "allowBankingCollection"?: string;
         /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
+          * @uiName Continue button label
          */
         "continueButton"?: string;
         /**
@@ -10554,8 +10477,8 @@ declare namespace LocalJSX {
          */
         "email"?: string;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
          */
         "fieldRequiredError"?: string;
         /**
@@ -10563,28 +10486,27 @@ declare namespace LocalJSX {
          */
         "firstName"?: string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
+          * @uiName Setup progress
          */
         "formStep"?: string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription"?: string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle"?: string;
         /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
          */
         "isPartnerAlertDescription"?: string;
         /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
          */
         "isPartnerAlertHeader"?: string;
         /**
@@ -10592,13 +10514,13 @@ declare namespace LocalJSX {
          */
         "lastName"?: string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription"?: string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader"?: string;
         /**
