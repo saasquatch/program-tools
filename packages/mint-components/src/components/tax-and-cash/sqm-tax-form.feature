@@ -51,7 +51,7 @@ Feature: Tax Form Flow
       | does not have tax info | is connected     | n/a                        | n/a                       | n/a      | n/a                               | step 1    |
       | has tax info           | is not connected | n/a                        | n/a                       | n/a      | n/a                               | step 1    |
       | has tax info           | is connected     | does have required doc     | does not have current doc | n/a      | n/a                               | step 3    |
-      | has tax info           | is connected     | does have required doc     | does have current doc     | INACTIVE | n/a                               | step 3    |
+      | has tax info           | is connected     | does have required doc     | does have current doc     | INACTIVE | n/a                               | step 4    |
       | has tax info           | is connected     | does have required doc     | does have current doc     | NEW      | n/a                               | step 3    |
       | has tax info           | is connected     | does have required doc     | does have current doc     | ACTIVE   | does not have withdrawal settings | step 4    |
       | has tax info           | is connected     | does have required doc     | does have current doc     | ACTIVE   | do have withdrawal settings       | dashboard |
