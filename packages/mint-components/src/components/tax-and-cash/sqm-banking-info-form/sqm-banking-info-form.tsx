@@ -38,14 +38,13 @@ export class BankingInfoForm {
   @Prop() formStep: string = "Step {step} of {count}";
 
   /**
-   * Heading text shown at the top of the page
-   * @uiName Tax and Payouts heading text
+   * @uiName Step 4 title
    */
-  @Prop() taxAndPayouts: string = "Tax and Payouts";
+  @Prop() taxAndPayouts: string = "Payouts";
 
   /**
-   * Text shown at the top of the page next to the tax and payouts label text
-   * @uiName Tax and Payouts label text
+   * Displayed at the top of the page on all set up steps and on the dashboard.
+   * @uiName Page description
    */
   @Prop() taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
@@ -57,8 +56,7 @@ export class BankingInfoForm {
   @Prop() directlyToBankAccount: string = "Directly to my bank account";
 
   /**
-   * Text for the option to receive payments to a PayPal account with processing fee details
-   * @uiName PayPal option text with processing fee placeholder
+   * @uiName PayPal payout option
    */
   @Prop() toPayPalAccount: string =
     "PayPal (2% processing fee capped to {feeCap})";
@@ -213,8 +211,7 @@ export class BankingInfoForm {
   @Prop() patronymicNameLabel: string = "Patronymic name";
 
   /**
-   * Label text for the VO code input field
-   * @uiName VO code input label
+   * @uiName VO code field label
    */
   @Prop() voCodeLabel: string = "VO code";
 
@@ -237,8 +234,7 @@ export class BankingInfoForm {
   @Prop() classificationLabel: string = "Classification";
 
   /**
-   * Label text for the Taxpayer ID input field
-   * @uiName Taxpayer ID input label
+   * @uiName Taxpayer ID field label
    */
   @Prop() taxPayerIdLabel: string =
     "{country, select, AR {CUIT/CUIL} KR {Classification ID} other { Beneficiary INN } }";

@@ -281,15 +281,13 @@ export class TaxAndCashMonolith {
                     STEP 4 PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   /**
-   * Heading text shown at the top of the page
-   * @uiName Tax and Payouts heading text
+   * @uiName Step 4 title
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_taxAndPayouts: string = "Tax and Payouts";
+  @Prop() step4_taxAndPayouts: string = "Payouts";
   /**
-   * Text shown at the top of the page next to the tax and payouts label text
-   * @uiName Tax and Payouts label text
-   * @uiGroup Step 4 Properties
+   * Displayed at the top of the page on all set up steps and on the dashboard.
+   * @uiName Page description
    */
   @Prop() step4_taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
@@ -300,8 +298,7 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_directlyToBankAccount: string = "Directly to my bank account";
   /**
-   * Text for the option to receive payments to a PayPal account with processing fee details
-   * @uiName PayPal option text with processing fee placeholder
+   * @uiName PayPal payout option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_toPayPalAccount: string =
@@ -485,8 +482,7 @@ export class TaxAndCashMonolith {
   @Prop() step4_patronymicNameLabel: string = "Patronymic name";
 
   /**
-   * Label text for the VO code input field
-   * @uiName VO code input label
+   * @uiName VO code field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_voCodeLabel: string = "VO code";
@@ -513,8 +509,7 @@ export class TaxAndCashMonolith {
   @Prop() step4_classificationLabel: string = "Classification";
 
   /**
-   * Label text for the Taxpayer ID input field
-   * @uiName Taxpayer ID input label
+   * @uiName Taxpayer ID field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_taxPayerIdLabel: string = "Beneficiary INN";

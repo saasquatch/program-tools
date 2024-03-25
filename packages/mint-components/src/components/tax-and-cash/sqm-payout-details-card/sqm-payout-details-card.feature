@@ -29,13 +29,13 @@ Feature: Payout Details Card
         And the payout balance is <payoutBalance>
         And the bank account number preview is shown
         Examples:
-            | payoutSchedule    | payoutThreshold | payoutMessage                         | payoutBalance |
-            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is 50 USD  | 0             |
-            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is 50 USD  | 25            |
-            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is 50 USD  | 49            |
-            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is 100 USD | 0             |
-            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is 100 USD | 50            |
-            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is 100 USD | 99            |
+            | payoutSchedule    | payoutThreshold | payoutMessage                           | payoutBalance |
+            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is USD50.00  | 0             |
+            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is USD50.00  | 25            |
+            | BALANCE_THRESHOLD | 50 USD          | Payout occurs when balance is USD50.00  | 49            |
+            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is USD100.00 | 0             |
+            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is USD100.00 | 50            |
+            | BALANCE_THRESHOLD | 100 USD         | Payout occurs when balance is USD100.00 | 99            |
 
     @motivating
     Scenario Outline: Payout information is shown for users with a PayPal email configured for fixed day schedule

@@ -1,12 +1,11 @@
 // @ts-nocheck
 import { h } from "@stencil/core";
 import { indirectDetailsSlotText } from "../defaultTextCopy";
+import { DocusignExpiredView } from "./DocusignExpiredView";
 import {
   IndirectDetailsSlotViewProps,
   OtherRegionSlotView,
 } from "./IndirectTaxDetailsView";
-import { DocusignExpiredView } from "./DocusignExpiredView";
-import { DocusignCompletedView } from "./DocusignCompletedView";
 
 export default {
   title: "Components/Tax Form Slot Views",
@@ -89,8 +88,4 @@ export const RegisteredInCanadaWithErrors = () => {
 
 export const DocusignExpired = () => {
   return <DocusignExpiredView />;
-};
-
-export const DocusignCompleted = () => {
-  return <DocusignCompletedView />;
 };
