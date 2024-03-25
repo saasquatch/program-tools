@@ -695,6 +695,7 @@ export function useBankingInfoForm(
     // Use currentPaymentOption and initialise form with userData
     let initialData: BankingInfoFormData = {
       bankCountry: withdrawalSettings?.bankCountry || publisherCountry,
+      paymentMethod: "BANK_TRANSFER",
     };
 
     if (
@@ -724,14 +725,14 @@ export function useBankingInfoForm(
     });
 
     updateBankCountry(currentPaymentOption?.countryCode);
-    setCurrentPaymentOption(currentPaymentOption);
-    setPaymentScheduleChecked(initialData.paymentSchedulingType);
-    setFormState(initialData);
     setPaymentMethodChecked(
       initialData.paymentMethod === "PAYPAL"
         ? "toPayPalAccount"
         : "toBankAccount"
     );
+    setCurrentPaymentOption(currentPaymentOption);
+    setPaymentScheduleChecked(initialData.paymentSchedulingType);
+    setFormState(initialData);
   }, [paymentOptions, userData, setCurrentPaymentOption, setFormState]);
 
   const updateBankCountry = (bankCountry: string) => {
