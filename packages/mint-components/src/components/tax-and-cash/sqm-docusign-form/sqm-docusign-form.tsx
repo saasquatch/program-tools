@@ -93,14 +93,6 @@ export class DocusignForm {
    */
   @Prop() refreshButton: string = "Refresh Page";
   /**
-   * @uiName Back button label
-   */
-  @Prop() backButton: string = "Back";
-  /**
-   * @uiName Cancel button label
-   */
-  @Prop() cancelButton: string = "Cancel";
-  /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
    */
@@ -215,7 +207,6 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
           errors: {},
         },
         documentType: "W9",
-        hideBackButton: false,
       },
       data: {
         taxForm: "W9",
@@ -224,9 +215,6 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
       callbacks: {
         setParticipantType: (p) => console.log({ p }),
         setDocusignStatus: (status: DocusignStatus) => console.log(status),
-        onBack: () => {
-          setStep("/2");
-        },
       },
     },
     props.demoData || {},

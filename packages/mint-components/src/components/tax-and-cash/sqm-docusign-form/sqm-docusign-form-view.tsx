@@ -23,7 +23,6 @@ export interface DocusignFormViewProps {
     };
     documentType: TaxDocumentType;
     documentTypeString: string;
-    hideBackButton: boolean;
   };
   slots: {
     docusignExpiredSlot?: VNode;
@@ -31,7 +30,6 @@ export interface DocusignFormViewProps {
   };
   callbacks: {
     setParticipantType: (p: ParticipantType) => void;
-    onBack: () => void;
   };
   text: {
     formStep: string;
@@ -41,8 +39,6 @@ export interface DocusignFormViewProps {
     taxFormDescriptionIndividualParticipant: string;
     taxFormDescriptionBusinessEntity?: string;
     banner: string;
-    backButton: string;
-    cancelButton: string;
     businessEntity: string;
     individualParticipant: string;
     participantType: string;
@@ -352,15 +348,6 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
               {text.banner}
             </sl-alert>
             {slots.docusignIframeSlot}
-            {!states.hideBackButton && (
-              <sl-button
-                class={classes.SecondaryBtn}
-                type="text"
-                onClick={callbacks.onBack}
-              >
-                {text.cancelButton}
-              </sl-button>
-            )}
           </div>
         </div>
       )}

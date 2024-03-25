@@ -556,10 +556,6 @@ export namespace Components {
     }
     interface SqmDocusignForm {
         /**
-          * @uiName Back button label
-         */
-        "backButton": string;
-        /**
           * Text shown in the banner above the document
           * @uiName Banner text
          */
@@ -569,10 +565,6 @@ export namespace Components {
           * @uiName Business representative participant type label
          */
         "businessEntity": string;
-        /**
-          * @uiName Cancel button label
-         */
-        "cancelButton": string;
         /**
           * @undocumented 
           * @uiType object
@@ -6160,10 +6152,6 @@ declare namespace LocalJSX {
     }
     interface SqmDocusignForm {
         /**
-          * @uiName Back button label
-         */
-        "backButton"?: string;
-        /**
           * Text shown in the banner above the document
           * @uiName Banner text
          */
@@ -6173,10 +6161,6 @@ declare namespace LocalJSX {
           * @uiName Business representative participant type label
          */
         "businessEntity"?: string;
-        /**
-          * @uiName Cancel button label
-         */
-        "cancelButton"?: string;
         /**
           * @undocumented 
           * @uiType object
